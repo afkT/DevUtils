@@ -117,7 +117,7 @@ public final class TextViewUtils {
 
     /**
      * 获取多个 TextView Hint 文本
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@link List<String>} 多个 TextView Hint 文本
      */
     public static List<String> getHints(final View... views) {
@@ -270,7 +270,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView Hint 字体颜色
      * @param color R.color.id
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setHintTextColors(
@@ -309,7 +309,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView Hint 字体颜色
      * @param colors {@link ColorStateList}
-     * @param views  View(TextView)[]
+     * @param views  View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setHintTextColors(
@@ -373,7 +373,7 @@ public final class TextViewUtils {
 
     /**
      * 获取多个 TextView 文本
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@link List<String>} 多个 TextView 文本
      */
     public static List<String> getTexts(final View... views) {
@@ -442,7 +442,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView 文本
      * @param text  TextView text
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setTexts(
@@ -565,7 +565,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setTextColors(
@@ -604,7 +604,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView 字体颜色
      * @param colors {@link ColorStateList}
-     * @param views  View(TextView)[]
+     * @param views  View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setTextColors(
@@ -682,7 +682,7 @@ public final class TextViewUtils {
     /**
      * 设置多个 TextView Html 内容
      * @param content Html content
-     * @param views   View(TextView)[]
+     * @param views   View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setHtmlTexts(
@@ -958,7 +958,7 @@ public final class TextViewUtils {
 
     /**
      * 设置多个 TextView 字体大小
-     * @param views View(TextView)[]
+     * @param views View[]
      * @param unit  参数类型
      * @param size  字体大小
      * @return {@code true} success, {@code false} fail

@@ -87,7 +87,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView 文本
      * @param text  TextView text
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setTexts(
@@ -115,7 +115,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView Html 内容
      * @param content Html content
-     * @param views   View(TextView)[]
+     * @param views   View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setHtmlTexts(
@@ -157,7 +157,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView Hint 字体颜色
      * @param color R.color.id
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setHintTextColors(
@@ -171,7 +171,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView Hint 字体颜色
      * @param colors {@link ColorStateList}
-     * @param views  View(TextView)[]
+     * @param views  View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setHintTextColors(
@@ -213,7 +213,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView 字体颜色
      * @param color R.color.id
-     * @param views View(TextView)[]
+     * @param views View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setTextColors(
@@ -227,7 +227,7 @@ public final class ViewHelper {
     /**
      * 设置多个 TextView 字体颜色
      * @param colors {@link ColorStateList}
-     * @param views  View(TextView)[]
+     * @param views  View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setTextColors(
@@ -326,7 +326,7 @@ public final class ViewHelper {
 
     /**
      * 设置多个 TextView 字体大小
-     * @param views View(TextView)[]
+     * @param views View[]
      * @param unit  参数类型
      * @param size  字体大小
      * @return {@link ViewHelper}

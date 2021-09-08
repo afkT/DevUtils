@@ -142,7 +142,7 @@ public final class EditTextUtils {
     /**
      * 设置多个 EditText 文本
      * @param content 文本内容
-     * @param views   View(EditText)[]
+     * @param views   View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setTexts(
