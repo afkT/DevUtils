@@ -6,7 +6,10 @@ import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
 import android.text.method.TransformationMethod;
@@ -15,11 +18,13 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
+import androidx.annotation.RequiresApi;
 
 import dev.utils.app.helper.IHelper;
 
@@ -1897,6 +1902,28 @@ public interface IHelperByView<T>
     );
 
     /**
+     * 设置输入类型
+     * @param type  类型
+     * @param views View[]
+     * @return Helper
+     */
+    T setInputType(
+            int type,
+            View... views
+    );
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param imeOptions 软键盘按钮类型
+     * @param views      View[]
+     * @return Helper
+     */
+    T setImeOptions(
+            int imeOptions,
+            View... views
+    );
+
+    /**
      * 设置文本视图显示转换
      * @param method {@link TransformationMethod}
      * @param views  View[]
@@ -2022,28 +2049,6 @@ public interface IHelperByView<T>
     );
 
     /**
-     * 设置输入类型
-     * @param type      类型
-     * @param editTexts EditText[]
-     * @return Helper
-     */
-    T setInputType(
-            int type,
-            EditText... editTexts
-    );
-
-    /**
-     * 设置软键盘右下角按钮类型
-     * @param imeOptions 软键盘按钮类型
-     * @param editTexts  EditText[]
-     * @return Helper
-     */
-    T setImeOptions(
-            int imeOptions,
-            EditText... editTexts
-    );
-
-    /**
      * 设置密码文本视图显示转换
      * @param isDisplayPassword 是否显示密码
      * @param isSelectBottom    是否设置光标到最后
@@ -2109,5 +2114,557 @@ public interface IHelperByView<T>
     T setKeyListener(
             char[] accepted,
             EditText... editTexts
+    );
+
+    // =================
+    // = TextViewUtils =
+    // =================
+
+    /**
+     * 设置 Hint 文本
+     * @param text  Hint text
+     * @param views View[]
+     * @return Helper
+     */
+    T setHint(
+            CharSequence text,
+            View... views
+    );
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param color R.color.id
+     * @param views View[]
+     * @return Helper
+     */
+    T setHintTextColors(
+            @ColorInt int color,
+            View... views
+    );
+
+    /**
+     * 设置多个 TextView Hint 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setHintTextColors(
+            ColorStateList colors,
+            View... views
+    );
+
+    /**
+     * 设置多个 TextView 字体颜色
+     * @param color R.color.id
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextColors(
+            @ColorInt int color,
+            View... views
+    );
+
+    /**
+     * 设置多个 TextView 字体颜色
+     * @param colors {@link ColorStateList}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setTextColors(
+            ColorStateList colors,
+            View... views
+    );
+
+    /**
+     * 设置多个 TextView Html 内容
+     * @param content Html content
+     * @param views   View[]
+     * @return Helper
+     */
+    T setHtmlTexts(
+            String content,
+            View... views
+    );
+
+    /**
+     * 设置字体
+     * @param typeface {@link Typeface} 字体样式
+     * @param views    View[]
+     * @return Helper
+     */
+    T setTypeface(
+            Typeface typeface,
+            View... views
+    );
+
+    /**
+     * 设置字体
+     * @param view     {@link TextView}
+     * @param typeface {@link Typeface} 字体样式
+     * @param style    样式
+     * @param views    View[]
+     * @return Helper
+     */
+    T setTypeface(
+            Typeface typeface,
+            int style,
+            View... views
+    );
+
+    /**
+     * 设置字体大小 ( px 像素 )
+     * @param size  字体大小
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextSizeByPx(
+            float size,
+            View... views
+    );
+
+    /**
+     * 设置字体大小 ( sp 缩放像素 )
+     * @param size  字体大小
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextSizeBySp(
+            float size,
+            View... views
+    );
+
+    /**
+     * 设置字体大小 ( dp 与设备无关的像素 )
+     * @param view  {@link TextView}
+     * @param size  字体大小
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextSizeByDp(
+            float size,
+            View... views
+    );
+
+    /**
+     * 设置字体大小 ( inches 英寸 )
+     * @param size  字体大小
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextSizeByIn(
+            float size,
+            View... views
+    );
+
+    /**
+     * 设置字体大小
+     * @param unit  字体参数类型
+     * @param size  字体大小
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextSize(
+            int unit,
+            float size,
+            View... views
+    );
+
+    /**
+     * 清空 flags
+     * @param views View[]
+     * @return Helper
+     */
+    T clearFlags(View... views);
+
+    /**
+     * 设置 TextView flags
+     * @param flags flags
+     * @param views View[]
+     * @return Helper
+     */
+    T setPaintFlags(
+            int flags,
+            View... views
+    );
+
+    /**
+     * 设置 TextView 抗锯齿 flags
+     * @param views View[]
+     * @return Helper
+     */
+    T setAntiAliasFlag(View... views);
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param views View[]
+     * @return Helper
+     */
+    T setBold(View... views);
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param isBold {@code true} yes, {@code false} no
+     * @param views  View[]
+     * @return Helper
+     */
+    T setBold(
+            boolean isBold,
+            View... views
+    );
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param typeface {@link Typeface} 字体样式
+     * @param isBold   {@code true} yes, {@code false} no
+     * @param views    View[]
+     * @return Helper
+     */
+    T setBold(
+            Typeface typeface,
+            boolean isBold,
+            View... views
+    );
+
+    /**
+     * 设置下划线
+     * @param views View[]
+     * @return Helper
+     */
+    T setUnderlineText(View... views);
+
+    /**
+     * 设置下划线并加清晰
+     * @param isAntiAlias 是否消除锯齿
+     * @param views       View[]
+     * @return Helper
+     */
+    T setUnderlineText(
+            boolean isAntiAlias,
+            View... views
+    );
+
+    /**
+     * 设置中划线
+     * @param views View[]
+     * @return Helper
+     */
+    T setStrikeThruText(View... views);
+
+    /**
+     * 设置中划线并加清晰
+     * @param isAntiAlias 是否消除锯齿
+     * @param views       View[]
+     * @return Helper
+     */
+    T setStrikeThruText(
+            boolean isAntiAlias,
+            View... views
+    );
+
+    /**
+     * 设置文字水平间距
+     * @param letterSpacing 文字水平间距
+     * @param views         View[]
+     * @return Helper
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    T setLetterSpacing(
+            float letterSpacing,
+            View... views
+    );
+
+    /**
+     * 设置文字行间距 ( 行高 )
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
+     * @param views       View[]
+     * @return Helper
+     */
+    T setLineSpacing(
+            float lineSpacing,
+            View... views
+    );
+
+    /**
+     * 设置文字行间距 ( 行高 )、行间距倍数
+     * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
+     * @param multiplier  行间距倍数, android:lineSpacingMultiplier
+     * @param views       View[]
+     * @return Helper
+     */
+    T setLineSpacingAndMultiplier(
+            float lineSpacing,
+            float multiplier,
+            View... views
+    );
+
+    /**
+     * 设置字体水平方向的缩放
+     * @param size  缩放比例
+     * @param views View[]
+     * @return Helper
+     */
+    T setTextScaleX(
+            float size,
+            View... views
+    );
+
+    /**
+     * 设置是否保留字体留白间隙区域
+     * @param includePadding 是否保留字体留白间隙区域
+     * @param views          View[]
+     * @return Helper
+     */
+    T setIncludeFontPadding(
+            boolean includePadding,
+            View... views
+    );
+
+    /**
+     * 设置行数
+     * @param lines 行数
+     * @param views View[]
+     * @return Helper
+     */
+    T setLines(
+            int lines,
+            View... views
+    );
+
+    /**
+     * 设置最大行数
+     * @param maxLines 最大行数
+     * @param views    View[]
+     * @return Helper
+     */
+    T setMaxLines(
+            int maxLines,
+            View... views
+    );
+
+    /**
+     * 设置最小行数
+     * @param minLines 最小行数
+     * @param views    View[]
+     * @return Helper
+     */
+    T setMinLines(
+            int minLines,
+            View... views
+    );
+
+    /**
+     * 设置最大字符宽度限制
+     * @param maxEms 最大字符
+     * @param views  View[]
+     * @return Helper
+     */
+    T setMaxEms(
+            int maxEms,
+            View... views
+    );
+
+    /**
+     * 设置最小字符宽度限制
+     * @param minEms 最小字符
+     * @param views  View[]
+     * @return Helper
+     */
+    T setMinEms(
+            int minEms,
+            View... views
+    );
+
+    /**
+     * 设置指定字符宽度
+     * @param ems   字符
+     * @param views View[]
+     * @return Helper
+     */
+    T setEms(
+            int ems,
+            View... views
+    );
+
+    /**
+     * 设置 Ellipsize 效果
+     * @param where {@link TextUtils.TruncateAt}
+     * @param views View[]
+     * @return Helper
+     */
+    T setEllipsize(
+            TextUtils.TruncateAt where,
+            View... views
+    );
+
+    /**
+     * 设置自动识别文本链接
+     * @param mask  {@link android.text.util.Linkify}
+     * @param views View[]
+     * @return Helper
+     */
+    T setAutoLinkMask(
+            int mask,
+            View... views
+    );
+
+    /**
+     * 设置文本全为大写
+     * @param allCaps 是否全部大写
+     * @param views   View[]
+     * @return Helper
+     */
+    T setAllCaps(
+            boolean allCaps,
+            View... views
+    );
+
+    /**
+     * 设置 Gravity
+     * @param view    {@link TextView}
+     * @param gravity {@link android.view.Gravity}
+     * @param views   View[]
+     * @return Helper
+     */
+    T setGravity(
+            int gravity,
+            View... views
+    );
+
+    /**
+     * 设置 CompoundDrawables Padding
+     * @param padding   CompoundDrawables Padding
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablePadding(
+            int padding,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Left CompoundDrawables
+     * @param left      left Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesByLeft(
+            Drawable left,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Top CompoundDrawables
+     * @param top       top Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesByTop(
+            Drawable top,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Right CompoundDrawables
+     * @param right     right Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesByRight(
+            Drawable right,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Bottom CompoundDrawables
+     * @param bottom    bottom Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesByBottom(
+            Drawable bottom,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 CompoundDrawables
+     * <pre>
+     *     CompoundDrawable 的大小控制是通过 drawable.setBounds() 控制
+     *     需要先设置 Drawable 的 setBounds
+     *     {@link dev.utils.app.image.ImageUtils#setBounds}
+     * </pre>
+     * @param left      left Drawable
+     * @param top       top Drawable
+     * @param right     right Drawable
+     * @param bottom    bottom Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawables(
+            Drawable left,
+            Drawable top,
+            Drawable right,
+            Drawable bottom,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Left CompoundDrawables ( 按照原有比例大小显示图片 )
+     * @param left      left Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesWithIntrinsicBoundsByLeft(
+            Drawable left,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Top CompoundDrawables ( 按照原有比例大小显示图片 )
+     * @param top       top Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesWithIntrinsicBoundsByTop(
+            Drawable top,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Right CompoundDrawables ( 按照原有比例大小显示图片 )
+     * @param right     right Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesWithIntrinsicBoundsByRight(
+            Drawable right,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 Bottom CompoundDrawables ( 按照原有比例大小显示图片 )
+     * @param bottom    bottom Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesWithIntrinsicBoundsByBottom(
+            Drawable bottom,
+            TextView... textViews
+    );
+
+    /**
+     * 设置 CompoundDrawables ( 按照原有比例大小显示图片 )
+     * @param left      left Drawable
+     * @param top       top Drawable
+     * @param right     right Drawable
+     * @param bottom    bottom Drawable
+     * @param textViews TextView[]
+     * @return Helper
+     */
+    T setCompoundDrawablesWithIntrinsicBounds(
+            Drawable left,
+            Drawable top,
+            Drawable right,
+            Drawable bottom,
+            TextView... textViews
     );
 }

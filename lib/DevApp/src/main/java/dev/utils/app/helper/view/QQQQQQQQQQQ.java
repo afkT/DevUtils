@@ -2952,6 +2952,56 @@ public final class QQQQQQQQQQQ
     }
 
     /**
+     * 设置输入类型
+     * @param type  类型
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setInputType(
+            int type,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setInputType(
+                                EditTextUtils.getEditText(value), type
+                        );
+                    } else {
+                        TextViewUtils.setInputType(value, type);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param imeOptions 软键盘按钮类型
+     * @param views      View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImeOptions(
+            int imeOptions,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setImeOptions(
+                                EditTextUtils.getEditText(value), imeOptions
+                        );
+                    } else {
+                        TextViewUtils.setImeOptions(value, imeOptions);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
      * 设置文本视图显示转换
      * @param method {@link TransformationMethod}
      * @param views  View[]
@@ -3158,40 +3208,6 @@ public final class QQQQQQQQQQQ
     ) {
         ForUtils.forSimpleArgs(
                 value -> EditTextUtils.setSelection(value, index), editTexts
-        );
-        return this;
-    }
-
-    /**
-     * 设置输入类型
-     * @param type      类型
-     * @param editTexts EditText[]
-     * @return Helper
-     */
-    @Override
-    public QQQQQQQQQQQ setInputType(
-            int type,
-            EditText... editTexts
-    ) {
-        ForUtils.forSimpleArgs(
-                value -> EditTextUtils.setInputType(value, type), editTexts
-        );
-        return this;
-    }
-
-    /**
-     * 设置软键盘右下角按钮类型
-     * @param imeOptions 软键盘按钮类型
-     * @param editTexts  EditText[]
-     * @return Helper
-     */
-    @Override
-    public QQQQQQQQQQQ setImeOptions(
-            int imeOptions,
-            EditText... editTexts
-    ) {
-        ForUtils.forSimpleArgs(
-                value -> EditTextUtils.setImeOptions(value, imeOptions), editTexts
         );
         return this;
     }
