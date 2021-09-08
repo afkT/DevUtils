@@ -1238,13 +1238,13 @@ public interface IHelperByView<T>
 
     /**
      * 设置动画
+     * @param view      {@link View}
      * @param animation {@link Animation}
-     * @param views     View[]
      * @return Helper
      */
     T setAnimation(
-            Animation animation,
-            View... views
+            View view,
+            Animation animation
     );
 
     /**
@@ -1256,13 +1256,20 @@ public interface IHelperByView<T>
 
     /**
      * 启动动画
+     * @param views View[]
+     * @return Helper
+     */
+    T startAnimation(View... views);
+
+    /**
+     * 启动动画
+     * @param view      {@link View}
      * @param animation {@link Animation}
-     * @param views     View[]
      * @return Helper
      */
     T startAnimation(
-            Animation animation,
-            View... views
+            View view,
+            Animation animation
     );
 
     /**

@@ -137,6 +137,15 @@ public final class AnimationUtils {
 
     /**
      * 启动动画
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View startAnimation(final View view) {
+        return startAnimation(view, getAnimation(view));
+    }
+
+    /**
+     * 启动动画
      * @param view      {@link View}
      * @param animation {@link Animation}
      * @return {@link View}
