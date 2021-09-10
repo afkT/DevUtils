@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -24,7 +23,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.SizeUtils;
@@ -2367,7 +2365,6 @@ public interface IHelperByView<T>
      * @param views         View[]
      * @return Helper
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     T setLetterSpacing(
             float letterSpacing,
             View... views
