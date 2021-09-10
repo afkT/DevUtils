@@ -27,6 +27,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import dev.utils.app.SizeUtils;
 import dev.utils.app.helper.IHelper;
 
 /**
@@ -2854,5 +2855,20 @@ public interface IHelperByView<T>
     T setNestedScrollingEnabled(
             boolean enabled,
             View... views
+    );
+
+    // =============
+    // = SizeUtils =
+    // =============
+
+    /**
+     * 在 onCreate 中获取视图的尺寸 ( 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 )
+     * @param view     {@link View}
+     * @param listener {@link SizeUtils.OnGetSizeListener}
+     * @return Helper
+     */
+    T forceGetViewSize(
+            View view,
+            SizeUtils.OnGetSizeListener listener
     );
 }
