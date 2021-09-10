@@ -2664,4 +2664,10 @@ public interface IHelperByView<T>
             Drawable bottom,
             TextView... textViews
     );
+
+    // =====================
+    // = RecyclerViewUtils =
+    // =====================
+
+
 }
