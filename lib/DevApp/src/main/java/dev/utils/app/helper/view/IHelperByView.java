@@ -25,6 +25,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.helper.IHelper;
 
@@ -2669,5 +2670,189 @@ public interface IHelperByView<T>
     // = RecyclerViewUtils =
     // =====================
 
+    /**
+     * 设置 RecyclerView LayoutManager
+     * @param view          {@link View}
+     * @param layoutManager LayoutManager
+     * @return Helper
+     */
+    T setLayoutManager(
+            View view,
+            RecyclerView.LayoutManager layoutManager
+    );
 
+    /**
+     * 设置 RecyclerView Orientation
+     * @param view        {@link View}
+     * @param orientation 方向
+     * @return Helper
+     */
+    T setOrientation(
+            View view,
+            @RecyclerView.Orientation int orientation
+    );
+
+    /**
+     * 设置 RecyclerView Adapter
+     * @param view    {@link View}
+     * @param adapter Adapter
+     * @return Helper
+     */
+    T setAdapter(
+            View view,
+            RecyclerView.Adapter<?> adapter
+    );
+
+    /**
+     * RecyclerView notifyItemRemoved
+     * @param view     {@link View}
+     * @param position 索引
+     * @return Helper
+     */
+    T notifyItemRemoved(
+            View view,
+            int position
+    );
+
+    /**
+     * RecyclerView notifyItemInserted
+     * @param view     {@link View}
+     * @param position 索引
+     * @return Helper
+     */
+    T notifyItemInserted(
+            View view,
+            int position
+    );
+
+    /**
+     * RecyclerView notifyItemMoved
+     * @param view         {@link View}
+     * @param fromPosition 当前索引
+     * @param toPosition   更新后索引
+     * @return Helper
+     */
+    T notifyItemMoved(
+            View view,
+            int fromPosition,
+            int toPosition
+    );
+
+    /**
+     * RecyclerView notifyDataSetChanged
+     * @param view {@link View}
+     * @return Helper
+     */
+    T notifyDataSetChanged(View view);
+
+    /**
+     * 设置 RecyclerView LinearSnapHelper
+     * @param view {@link View}
+     * @return Helper
+     */
+    T attachLinearSnapHelper(View view);
+
+    /**
+     * 设置 RecyclerView PagerSnapHelper
+     * @param view {@link View}
+     * @return Helper
+     */
+    T attachPagerSnapHelper(View view);
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @return Helper
+     */
+    T addItemDecoration(
+            View view,
+            RecyclerView.ItemDecoration decor
+    );
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @param index 添加索引
+     * @return Helper
+     */
+    T addItemDecoration(
+            View view,
+            RecyclerView.ItemDecoration decor,
+            int index
+    );
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @return Helper
+     */
+    T removeItemDecoration(
+            View view,
+            RecyclerView.ItemDecoration decor
+    );
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param index RecyclerView ItemDecoration 索引
+     * @return Helper
+     */
+    T removeItemDecorationAt(
+            View view,
+            int index
+    );
+
+    /**
+     * 设置 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return Helper
+     */
+    T setOnScrollListener(
+            View view,
+            RecyclerView.OnScrollListener listener
+    );
+
+    /**
+     * 添加 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return Helper
+     */
+    T addOnScrollListener(
+            View view,
+            RecyclerView.OnScrollListener listener
+    );
+
+    /**
+     * 移除 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return Helper
+     */
+    T removeOnScrollListener(
+            View view,
+            RecyclerView.OnScrollListener listener
+    );
+
+    /**
+     * 清空 RecyclerView ScrollListener
+     * @param view {@link View}
+     * @return Helper
+     */
+    T clearOnScrollListeners(View view);
+
+    /**
+     * 设置 RecyclerView 嵌套滚动开关
+     * @param enabled 嵌套滚动开关
+     * @param views   View[]
+     * @return Helper
+     */
+    T setNestedScrollingEnabled(
+            boolean enabled,
+            View... views
+    );
 }

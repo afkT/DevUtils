@@ -264,4 +264,24 @@ public final class TimerManager {
             }
         }
     }
+
+    // ============
+    // = 定时器操作 =
+    // ============
+
+    /**
+     * 运行定时器
+     * @param timer 定时器
+     */
+    public static void startTimer(final DevTimer timer) {
+        if (timer != null) timer.start();
+    }
+
+    /**
+     * 关闭定时器
+     * @param timer 定时器
+     */
+    public static void stopTimer(final DevTimer timer) {
+        if (timer != null) timer.stop();
+    }
 }
