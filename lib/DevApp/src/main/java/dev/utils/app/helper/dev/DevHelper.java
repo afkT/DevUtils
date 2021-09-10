@@ -161,7 +161,7 @@ public final class DevHelper {
      * @param delayMillis   延迟时间
      * @param number        轮询次数
      * @param interval      轮询时间
-     * @param onEndListener 结束通知
+     * @param listener 结束通知
      * @return {@link DevHelper}
      */
     public DevHelper postRunnable(
@@ -169,9 +169,9 @@ public final class DevHelper {
             final long delayMillis,
             final int number,
             final int interval,
-            final HandlerUtils.OnEndListener onEndListener
+            final HandlerUtils.OnEndListener listener
     ) {
-        HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval, listener);
         return this;
     }
 

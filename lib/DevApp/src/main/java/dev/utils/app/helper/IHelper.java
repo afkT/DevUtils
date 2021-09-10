@@ -79,7 +79,7 @@ public interface IHelper<T> {
      * @param delayMillis   延迟时间
      * @param number        轮询次数
      * @param interval      轮询时间
-     * @param onEndListener 结束通知
+     * @param listener 结束通知
      * @return Helper
      */
     T postRunnable(
@@ -87,7 +87,7 @@ public interface IHelper<T> {
             long delayMillis,
             int number,
             int interval,
-            HandlerUtils.OnEndListener onEndListener
+            HandlerUtils.OnEndListener listener
     );
 
     /**

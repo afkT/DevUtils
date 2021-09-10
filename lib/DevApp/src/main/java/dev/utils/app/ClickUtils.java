@@ -49,18 +49,18 @@ public final class ClickUtils {
     /**
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
      * @param view   待添加点击范围 View
-     * @param top    top range
-     * @param bottom bottom range
      * @param left   left range
+     * @param top    top range
      * @param right  right range
+     * @param bottom bottom range
      * @return {@code true} success, {@code false} fail
      */
     public static boolean addTouchArea(
             final View view,
-            final int top,
-            final int bottom,
             final int left,
-            final int right
+            final int top,
+            final int right,
+            final int bottom
     ) {
         if (view != null) {
             try {
@@ -71,10 +71,10 @@ public final class ClickUtils {
                         view.getHitRect(bounds);
 
                         // 设置范围
-                        bounds.top -= top;
-                        bounds.bottom += bottom;
                         bounds.left -= left;
+                        bounds.top -= top;
                         bounds.right += right;
+                        bounds.bottom += bottom;
 
                         TouchDelegate touchDelegate = new TouchDelegate(bounds, view);
                         if (view.getParent() instanceof View) {

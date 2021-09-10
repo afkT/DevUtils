@@ -53,18 +53,18 @@ public interface IHelperByView<T>
 
     /**
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
-     * @param top    top range
-     * @param bottom bottom range
      * @param left   left range
+     * @param top    top range
      * @param right  right range
+     * @param bottom bottom range
      * @param views  View[]
      * @return Helper
      */
     T addTouchArea(
-            int top,
-            int bottom,
             int left,
+            int top,
             int right,
+            int bottom,
             View... views
     );
 
