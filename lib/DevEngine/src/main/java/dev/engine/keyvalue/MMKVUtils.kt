@@ -25,7 +25,7 @@ import kotlin.collections.set
  * [defaultHolder].encode/decodeXxx
  * [get].encode/decodeXxx
  */
-object MMKVUtils {
+internal object MMKVUtils {
 
     // 日志 TAG
     private val TAG = MMKVUtils::class.java.simpleName
