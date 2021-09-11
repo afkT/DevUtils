@@ -36,13 +36,17 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 > 该库为 Kotlin 实现，另有 [Java 实现代码](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/java/dev/engine)
 
-该库实现模块有 **BarCode 条形码**、**Cache 有效期键值对缓存**、**Image Compress 图片压缩**、**Image 图片加载、下载、转格式**
+已实现模块有：
+
+【**BarCode 条形码**、**Cache 有效期键值对缓存**、**Image Compress 图片压缩**、**Image 图片加载、下载、转格式**
 、**JSON 映射**、**KeyValue 键值对存储**、**Log 日志打印**、**Media Selector 多媒体资源选择**、**Permission 权限申请**
-、**Storage Engine 外部、内部文件存储**，且依赖第三方库实现列表如下展示。
+、**Storage Engine 外部、内部文件存储**】
+
+，且依赖第三方库实现列表如下展示。
 
 > 该库会依赖第三方库导致项目体积变大等情况，可自行 copy 所需已实现代码进行使用
 
-> 如无法直接使用于需求实现，可自行 copy 代码进行修改，或自定义对应模块 Engine 实现类进行设置并通过 DevXxxEngine.getEngine(key) 进行获取
+> 如无法直接使用于需求实现，可自行 copy 代码进行修改，或自定义对应模块 Engine 实现类进行设置并通过 DevXxxEngine.getEngine(key) 进行调用获取
 
 ## 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine)
 
@@ -128,7 +132,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 可选实现方案：
 
-* 依赖 DevApp [MediaStoreUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/MediaStoreUtils.java)
+* 依赖 [DevApp MediaStoreUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/MediaStoreUtils.java)
   、[UriUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/UriUtils.java)
   实现 [DevMediaStoreEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/storage/engine_dev_media_store.kt)
 
