@@ -46,6 +46,7 @@ ext {
                     dev_assist                       : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_base                         : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
                     dev_base_mvvm                    : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
+                    dev_engine                       : "io.github.afkt:DevEngine:${versions.dev_engine_versionName}",
                     dev_java                         : "io.github.afkt:DevJava:${versions.dev_java_version}",
                     dev_widget_x                     : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
