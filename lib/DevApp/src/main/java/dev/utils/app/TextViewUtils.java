@@ -77,7 +77,7 @@ public final class TextViewUtils {
      * @return {@link TextView}
      */
     public static <T extends TextView> T getTextView(final View view) {
-        if (view != null) {
+        if (view instanceof TextView) {
             try {
                 return (T) view;
             } catch (Exception e) {

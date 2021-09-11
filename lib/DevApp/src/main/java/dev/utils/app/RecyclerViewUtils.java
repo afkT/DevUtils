@@ -44,7 +44,7 @@ public final class RecyclerViewUtils {
      * @return {@link RecyclerView}
      */
     public static <T extends RecyclerView> T getRecyclerView(final View view) {
-        if (view != null) {
+        if (view instanceof RecyclerView) {
             try {
                 return (T) view;
             } catch (Exception e) {

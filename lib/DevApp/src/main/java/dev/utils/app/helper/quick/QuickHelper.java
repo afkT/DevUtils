@@ -79,7 +79,7 @@ public final class QuickHelper
      * 获取目标 View
      * @return {@link View}
      */
-    private View targetView() {
+    public View targetView() {
         return mViewRef.get();
     }
 
@@ -87,7 +87,7 @@ public final class QuickHelper
      * 获取目标 View ( 转 ViewGroup )
      * @return {@link ViewGroup}
      */
-    private ViewGroup targetViewGroup() {
+    public ViewGroup targetViewGroup() {
         View view = targetView();
         if (view instanceof ViewGroup) {
             return (ViewGroup) view;
@@ -99,7 +99,7 @@ public final class QuickHelper
      * 获取目标 View ( 转 ImageView )
      * @return {@link ImageView}
      */
-    private ImageView targetImageView() {
+    public ImageView targetImageView() {
         View view = targetView();
         if (view instanceof ImageView) {
             return (ImageView) view;
@@ -111,7 +111,7 @@ public final class QuickHelper
      * 获取目标 View ( 转 TextView )
      * @return {@link TextView}
      */
-    private TextView targetTextView() {
+    public TextView targetTextView() {
         View view = targetView();
         if (view instanceof TextView) {
             return (TextView) view;
@@ -123,7 +123,7 @@ public final class QuickHelper
      * 获取目标 View ( 转 EditText )
      * @return {@link EditText}
      */
-    private EditText targetEditText() {
+    public EditText targetEditText() {
         View view = targetView();
         if (view instanceof EditText) {
             return (EditText) view;
@@ -135,7 +135,7 @@ public final class QuickHelper
      * 获取目标 View ( 转 RecyclerView )
      * @return {@link RecyclerView}
      */
-    private RecyclerView targetRecyclerView() {
+    public RecyclerView targetRecyclerView() {
         View view = targetView();
         if (view instanceof RecyclerView) {
             return (RecyclerView) view;
@@ -2085,9 +2085,7 @@ public final class QuickHelper
      * @return Helper
      */
     @Override
-    public QuickHelper setImageResources(
-            @DrawableRes int resId
-    ) {
+    public QuickHelper setImageResources(@DrawableRes int resId) {
         ViewHelper.get().setImageResources(resId, targetView());
         return this;
     }

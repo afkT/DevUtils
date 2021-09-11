@@ -65,7 +65,11 @@ import dev.utils.common.assist.record.RecordConfig;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"/>
  * </pre>
  */
-public final class DevHelper {
+public final class DevHelper
+        implements IHelperByDev<DevHelper> {
+
+    private DevHelper() {
+    }
 
     // TimeKeeper
     private final        TimeKeeper mTimeKeeper = new TimeKeeper();
@@ -80,24 +84,17 @@ public final class DevHelper {
         return HELPER;
     }
 
-    // ==========
-    // = Helper =
-    // ==========
-
-    /**
-     * 获取 ViewHelper
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper viewHelper() {
-        return ViewHelper.get();
-    }
+    // ===========
+    // = IHelper =
+    // ===========
 
     /**
      * 获取 DevHelper
      * @return {@link DevHelper}
      */
+    @Override
     public DevHelper devHelper() {
-        return HELPER;
+        return DevHelper.get();
     }
 
     /**
@@ -105,20 +102,31 @@ public final class DevHelper {
      * @param target 目标 View
      * @return {@link QuickHelper}
      */
-    public QuickHelper quickHelper(final View target) {
+    @Override
+    public QuickHelper quickHelper(View target) {
         return QuickHelper.get(target);
     }
 
-    // ===========
-    // = Handler =
-    // ===========
+    /**
+     * 获取 ViewHelper
+     * @return {@link ViewHelper}
+     */
+    @Override
+    public ViewHelper viewHelper() {
+        return ViewHelper.get();
+    }
+
+    // ================
+    // = HandlerUtils =
+    // ================
 
     /**
      * 在主线程 Handler 中执行任务
      * @param runnable 可执行的任务
-     * @return {@link DevHelper}
+     * @return Helper
      */
-    public DevHelper postRunnable(final Runnable runnable) {
+    @Override
+    public DevHelper postRunnable(Runnable runnable) {
         HandlerUtils.postRunnable(runnable);
         return this;
     }
@@ -127,11 +135,12 @@ public final class DevHelper {
      * 在主线程 Handler 中执行延迟任务
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
-     * @return {@link DevHelper}
+     * @return Helper
      */
+    @Override
     public DevHelper postRunnable(
-            final Runnable runnable,
-            final long delayMillis
+            Runnable runnable,
+            long delayMillis
     ) {
         HandlerUtils.postRunnable(runnable, delayMillis);
         return this;
@@ -143,13 +152,14 @@ public final class DevHelper {
      * @param delayMillis 延迟时间
      * @param number      轮询次数
      * @param interval    轮询时间
-     * @return {@link DevHelper}
+     * @return Helper
      */
+    @Override
     public DevHelper postRunnable(
-            final Runnable runnable,
-            final long delayMillis,
-            final int number,
-            final int interval
+            Runnable runnable,
+            long delayMillis,
+            int number,
+            int interval
     ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
         return this;
@@ -162,14 +172,15 @@ public final class DevHelper {
      * @param number      轮询次数
      * @param interval    轮询时间
      * @param listener    结束通知
-     * @return {@link DevHelper}
+     * @return Helper
      */
+    @Override
     public DevHelper postRunnable(
-            final Runnable runnable,
-            final long delayMillis,
-            final int number,
-            final int interval,
-            final HandlerUtils.OnEndListener listener
+            Runnable runnable,
+            long delayMillis,
+            int number,
+            int interval,
+            HandlerUtils.OnEndListener listener
     ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval, listener);
         return this;
@@ -178,9 +189,10 @@ public final class DevHelper {
     /**
      * 在主线程 Handler 中清除任务
      * @param runnable 需要清除的任务
-     * @return {@link DevHelper}
+     * @return Helper
      */
-    public DevHelper removeRunnable(final Runnable runnable) {
+    @Override
+    public DevHelper removeRunnable(Runnable runnable) {
         HandlerUtils.removeRunnable(runnable);
         return this;
     }

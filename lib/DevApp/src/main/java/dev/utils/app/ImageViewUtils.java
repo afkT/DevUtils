@@ -41,7 +41,7 @@ public final class ImageViewUtils {
      * @return {@link ImageView}
      */
     public static <T extends ImageView> T getImageView(final View view) {
-        if (view != null) {
+        if (view instanceof ImageView) {
             try {
                 return (T) view;
             } catch (Exception e) {

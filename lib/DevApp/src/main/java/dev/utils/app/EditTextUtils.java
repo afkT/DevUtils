@@ -65,7 +65,7 @@ public final class EditTextUtils {
      * @return {@link EditText}
      */
     public static <T extends EditText> T getEditText(final View view) {
-        if (view != null) {
+        if (view instanceof EditText) {
             try {
                 return (T) view;
             } catch (Exception e) {
