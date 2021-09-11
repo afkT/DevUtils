@@ -66,13 +66,9 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 param: Int
             ) {
                 val builder = StringBuilder()
-                    .append("Engine 接口在 DevAssist 库 dev.engine 目录下")
+                    .append("Java 实现在 DevOther Module java.dev.engine 目录下")
                     .append(DevFinal.NEW_LINE_STR)
-                    .append("Engine 实现代码在 DevOther 中直接进行 copy")
-                    .append(DevFinal.NEW_LINE_STR)
-                    .append("Java 实现在 DevOther Module dev.engine 目录下")
-                    .append(DevFinal.NEW_LINE_STR)
-                    .append("Kotlin 实现在 DevOther Module ktx.dev.engine 目录下")
+                    .append("Kotlin 实现已封装为 DevEngine 库")
                 // 进行显示
                 SnackbarUtils.with(mActivity).also { sn ->
                     // 设置多行显示
