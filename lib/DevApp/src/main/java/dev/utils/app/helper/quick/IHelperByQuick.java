@@ -891,14 +891,10 @@ public interface IHelperByQuick<T>
 
     /**
      * 设置动画
-     * @param view      {@link View}
      * @param animation {@link Animation}
      * @return Helper
      */
-    T setAnimation(
-            View view,
-            Animation animation
-    );
+    T setAnimation(Animation animation);
 
     /**
      * 清空动画
@@ -914,14 +910,10 @@ public interface IHelperByQuick<T>
 
     /**
      * 启动动画
-     * @param view      {@link View}
      * @param animation {@link Animation}
      * @return Helper
      */
-    T startAnimation(
-            View view,
-            Animation animation
-    );
+    T startAnimation(Animation animation);
 
     /**
      * 取消动画
