@@ -30,7 +30,7 @@ dependencies {
     implementation deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson
     implementation deps.lib.fastjson
-    // Glide 加载框架 https://github.com/bumptech/glide
+    // Glide 图片加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     kapt deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus

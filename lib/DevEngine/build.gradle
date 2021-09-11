@@ -20,7 +20,7 @@ dependencies {
 
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     api deps.lib.luban
-    // Glide 加载框架 https://github.com/bumptech/glide
+    // Glide 图片加载框架 https://github.com/bumptech/glide
     api deps.lib.glide
     kapt deps.lib.glide_compiler
     // Glide 图形库 https://github.com/wasabeef/glide-transformations
@@ -39,7 +39,7 @@ dependencies {
 
 //    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
 //    api 'top.zibin:Luban:1.1.8'
-//    // Glide 加载框架 https://github.com/bumptech/glide
+//    // Glide 图片加载框架 https://github.com/bumptech/glide
 //    api 'com.github.bumptech.glide:glide:4.12.0'
 //    kapt 'com.github.bumptech.glide:compiler:4.12.0'
 //    // Glide 图形库 https://github.com/wasabeef/glide-transformations

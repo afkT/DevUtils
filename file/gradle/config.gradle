@@ -125,7 +125,7 @@ ext {
             "lib"       : [
                     // Gson https://github.com/google/gson
                     gson                                : "com.google.code.gson:gson:2.8.7",
-                    // Glide 加载框架 https://github.com/bumptech/glide
+                    // Glide 图片加载框架 https://github.com/bumptech/glide
                     glide                               : "com.github.bumptech.glide:glide:4.12.0",
                     glide_compiler                      : "com.github.bumptech.glide:compiler:4.12.0",
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
