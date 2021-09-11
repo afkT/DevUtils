@@ -24,7 +24,7 @@ implementation 'io.github.afkt:DevEngine:1.0.0'
 
 ## About
 
-DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist) ）
+DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist)）
 主要为了解决项目代码中**对第三方框架强依赖使用、以及部分功能版本适配。** 
 
 通过实现对应功能模块 Engine 接口，实现对应的方法功能，
@@ -35,16 +35,13 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 ## 依赖实现信息
 
 > 该库为 Kotlin 实现，另有 [Java 实现代码](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/java/dev/engine)
+> ，该库会依赖第三方库导致项目体积变大等情况，可自行 copy 所需已实现代码进行使用
 
-已实现模块有：
+已实现模块有（依赖第三方库实现列表如下展示）：
 
-【**BarCode 条形码**、**Cache 有效期键值对缓存**、**Image Compress 图片压缩**、**Image 图片加载、下载、转格式**
+**BarCode 条形码**、**Cache 有效期键值对缓存**、**Image Compress 图片压缩**、**Image 图片加载、下载、转格式**
 、**JSON 映射**、**KeyValue 键值对存储**、**Log 日志打印**、**Media Selector 多媒体资源选择**、**Permission 权限申请**
-、**Storage Engine 外部、内部文件存储**】
-
-，且依赖第三方库实现列表如下展示。
-
-> 该库会依赖第三方库导致项目体积变大等情况，可自行 copy 所需已实现代码进行使用
+、**Storage Engine 外部、内部文件存储**
 
 > 如无法直接使用于需求实现，可自行 copy 代码进行修改，或自定义对应模块 Engine 实现类进行设置并通过 DevXxxEngine.getEngine(key) 进行调用获取
 
