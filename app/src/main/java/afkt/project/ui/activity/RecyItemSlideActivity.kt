@@ -33,8 +33,8 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val parent = binding.vidBvrRecy.parent as? ViewGroup
-        ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33))
+        ViewHelper.get().setPadding(0, parent)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
     }
 
     override fun initValue() {

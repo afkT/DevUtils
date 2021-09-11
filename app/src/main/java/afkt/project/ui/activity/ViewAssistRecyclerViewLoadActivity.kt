@@ -25,7 +25,7 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
         super.initValue()
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(parent, 0)
+        ViewHelper.get().setPadding(0, parent)
         val url = "https://picsum.photos/id/%s/1080/1920"
         val lists: MutableList<String> = ArrayList()
         for (i in 0..19) {

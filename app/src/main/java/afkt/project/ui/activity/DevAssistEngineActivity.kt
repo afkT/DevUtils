@@ -48,7 +48,7 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val view = QuickHelper.get(BaseTextView(this))
             .setText(span.create())
-            .setTextColor(ResourceUtils.getColor(R.color.black))
+            .setTextColors(ResourceUtils.getColor(R.color.black))
             .setTextSizeBySp(15.0f)
             .setLineSpacingAndMultiplier(15.0f, 1.1f)
             .setPadding(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))

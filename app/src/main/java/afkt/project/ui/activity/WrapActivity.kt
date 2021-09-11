@@ -33,11 +33,11 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
         val view = QuickHelper.get(BaseTextView(this))
             .setText("刷新")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.red))
+            .setTextColors(ResourceUtils.getColor(R.color.red))
             .setTextSizeBySp(15.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks { initValue() }.getView<View>()
+            .setOnClick { initValue() }.getView<View>()
         toolbar?.addView(view)
     }
 
@@ -80,7 +80,7 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
             .setBackground(drawable)
             .setMaxLines(1)
             .setEllipsize(TextUtils.TruncateAt.END)
-            .setTextColor(Color.WHITE)
+            .setTextColors(Color.WHITE)
             .setTextSizeBySp(15f)
             .setBold(RandomUtils.nextBoolean())
             .setText(text)

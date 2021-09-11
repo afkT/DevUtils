@@ -42,7 +42,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(parent, 0)
+        ViewHelper.get().setPadding(0, parent)
 
         // ====================
         // = 使用自定义悬浮 View =

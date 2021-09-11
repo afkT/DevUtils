@@ -97,45 +97,45 @@ class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
 
             // 获取最活跃的颜色信息 ( 也可以说整个图片出现最多的颜色 )
             it.vibrantSwatch?.run {
-                QuickHelper(binding.vidFpTv1)
+                QuickHelper.get(binding.vidFpTv1)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
             // 获取活跃明亮的颜色信息
             it.lightVibrantSwatch?.run {
-                QuickHelper(binding.vidFpTv2)
+                QuickHelper.get(binding.vidFpTv2)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
             // 获取活跃深色的颜色信息
             it.darkVibrantSwatch?.run {
-                QuickHelper(binding.vidFpTv3)
+                QuickHelper.get(binding.vidFpTv3)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
             // 获取柔和的颜色信息
             it.mutedSwatch?.run {
-                QuickHelper(binding.vidFpTv4)
+                QuickHelper.get(binding.vidFpTv4)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
             // 获取柔和明亮的颜色信息
             it.lightMutedSwatch?.run {
-                QuickHelper(binding.vidFpTv5)
+                QuickHelper.get(binding.vidFpTv5)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
             // 获取柔和深色的颜色信息
             it.darkMutedSwatch?.run {
-                QuickHelper(binding.vidFpTv6)
+                QuickHelper.get(binding.vidFpTv6)
                     .setBackgroundColor(rgb)
                     .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
-                    .setTextColor(bodyTextColor)
+                    .setTextColors(bodyTextColor)
             }
         }
     }

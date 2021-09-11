@@ -40,11 +40,11 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
         val view = QuickHelper.get(BaseTextView(this))
             .setText("截图")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextColors(ResourceUtils.getColor(R.color.white))
             .setTextSizeBySp(15.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks { v: View? ->
+            .setOnClick { v: View? ->
                 val bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid)
 //                // 保存 ListView 一样效果
 //                bitmap = CapturePictureUtils.snapshotByGridView(
@@ -107,8 +107,8 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
                     LayoutInflater.from(parent.context), parent, false
                 )
                 ViewHelper.get()
-                    .setText(_binding.vidAcpTitleTv, adapterBean.title)
-                    .setText(_binding.vidAcpContentTv, adapterBean.content)
+                    .setText(adapterBean.title, _binding.vidAcpTitleTv)
+                    .setText(adapterBean.content, _binding.vidAcpContentTv)
                 return _binding.root
             }
         }

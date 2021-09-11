@@ -41,8 +41,8 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33))
+        ViewHelper.get().setPadding(0, parent)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
     }
 
     override fun initValue() {
@@ -161,14 +161,14 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         onClickListener: View.OnClickListener
     ): BaseTextView {
         return QuickHelper.get(BaseTextView(this))
-            .setVisibility(false) // 默认隐藏
+            .setVisibilitys(false) // 默认隐藏
             .setText(text)
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextColors(ResourceUtils.getColor(R.color.white))
             .setTextSizeBySp(13.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks(onClickListener)
+            .setOnClick(onClickListener)
             .getView()
     }
 }

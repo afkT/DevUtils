@@ -34,25 +34,25 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
     ) {
         // 统一设置背景
         ViewHelper.get().setBackgroundColor(
-            holder.itemView,
-            ResourceUtils.getColor(R.color.color_33)
+            ResourceUtils.getColor(R.color.color_33),
+            holder.itemView
         )
 
         val itemObj = item.obj
 
         ViewHelper.get()
             // 判断是否显示边距
-            .setVisibility(itemObj.isFirst, holder.binding.vidAieLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidAieLine)
             // 商品名
-            .setText(holder.binding.vidAieNameTv, itemObj.commodityName)
+            .setText(itemObj.commodityName, holder.binding.vidAieNameTv)
             // 商品价格
             .setText(
-                holder.binding.vidAiePriceTv, "￥" + BigDecimalUtils.round(
+                "￥" + BigDecimalUtils.round(
                     itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                )
+                ), holder.binding.vidAiePriceTv
             )
             // 评价内容
-            .setText(holder.binding.vidAieContentEdit, itemObj.evaluateContent)
+            .setText(itemObj.evaluateContent, holder.binding.vidAieContentEdit)
             // 禁止点击评价输入框
             .setEnabled(false, holder.binding.vidAieContentEdit)
 

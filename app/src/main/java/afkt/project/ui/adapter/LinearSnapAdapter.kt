@@ -34,9 +34,9 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
     ) {
         val item = getDataItem(position)
         ViewHelper.get()
-            .setText(holder.binding.vidAlsTitleTv, item.title)
-            .setText(holder.binding.vidAlsSubtitleTv, item.subtitle)
-            .setText(holder.binding.vidAlsTimeTv, item.timeFormat)
+            .setText(item.title, holder.binding.vidAlsTitleTv)
+            .setText(item.subtitle, holder.binding.vidAlsSubtitleTv)
+            .setText(item.timeFormat, holder.binding.vidAlsTimeTv)
         DevEngine.getImage()?.display(
             holder.binding.vidAlsIgview,
             item.imageUrl,

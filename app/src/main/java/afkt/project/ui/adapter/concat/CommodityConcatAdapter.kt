@@ -54,24 +54,24 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
     ) {
         // 统一设置背景
         ViewHelper.get().setBackgroundColor(
-            holder.itemView,
-            ResourceUtils.getColor(R.color.color_33)
+            ResourceUtils.getColor(R.color.color_33),
+            holder.itemView
         )
 
         val item = getDataItem(position)
         if (holder is CommodityHolder) {
             ViewHelper.get()
                 // 是否显示编辑按钮
-                .setVisibility(false, holder.binding.vidAmsIgview)
+                .setVisibilitys(false, holder.binding.vidAmsIgview)
                 // 判断是否显示边距
-                .setVisibility(position == 0, holder.binding.vidAmsLine)
+                .setVisibilitys(position == 0, holder.binding.vidAmsLine)
                 // 商品名
-                .setText(holder.binding.vidAmsNameTv, item.commodityName)
+                .setText(item.commodityName, holder.binding.vidAmsNameTv)
                 // 商品价格
                 .setText(
-                    holder.binding.vidAmsPriceTv, "￥" + BigDecimalUtils.round(
+                    "￥" + BigDecimalUtils.round(
                         item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    )
+                    ), holder.binding.vidAmsPriceTv
                 )
             // 商品图片
             DevEngine.getImage()?.display(
@@ -83,17 +83,17 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
         } else if (holder is CommodityEvaluateHolder) {
             ViewHelper.get()
                 // 判断是否显示边距
-                .setVisibility(position == 0, holder.binding.vidAieLine)
+                .setVisibilitys(position == 0, holder.binding.vidAieLine)
                 // 商品名
-                .setText(holder.binding.vidAieNameTv, item.commodityName)
+                .setText(item.commodityName, holder.binding.vidAieNameTv)
                 // 商品价格
                 .setText(
-                    holder.binding.vidAiePriceTv, "￥" + BigDecimalUtils.round(
+                    "￥" + BigDecimalUtils.round(
                         item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    )
+                    ), holder.binding.vidAiePriceTv
                 )
                 // 评价内容
-                .setText(holder.binding.vidAieContentEdit, item.evaluateContent)
+                .setText(item.evaluateContent, holder.binding.vidAieContentEdit)
                 // 禁止点击评价输入框
                 .setEnabled(false, holder.binding.vidAieContentEdit)
 

@@ -35,7 +35,7 @@ class LineActivity : BaseActivity<ActivityLineBinding>() {
             val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
             // 设置内容
             QuickHelper.get(binding.vidAlContentTv)
-                .setTextColor(Color.BLACK)
+                .setTextColors(Color.BLACK)
                 .setTextSizeBySp(RandomUtils.getRandom(13, 25).toFloat())
                 .setBold(RandomUtils.nextBoolean())
                 .setText(randomText)

@@ -113,23 +113,24 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             val tabItem = listTabs[i]
             val view = QuickHelper.get(BaseTextView(this))
                 .setText(tabItem.title)
-                .setTextColor(ResourceUtils.getColor(R.color.black))
+                .setTextColors(ResourceUtils.getColor(R.color.black))
                 .setPadding(30, 30, 30, 30)
-                .setOnClicks {
+                .setOnClick {
                     ViewHelper.get()
                         .setBold(
-                            ViewUtils.getChildAt(binding.vidAue70Linear, selectTabIndex),
-                            false
+                            false,
+                            ViewUtils.getChildAt(binding.vidAue70Linear, selectTabIndex)
                         )
-                        .setTextColor(
+                        .setTextColors(
+                            ResourceUtils.getColor(R.color.black),
                             ViewUtils.getChildAt(
                                 binding.vidAue70Linear, selectTabIndex
-                            ), ResourceUtils.getColor(R.color.black)
+                            )
                         )
-                        .setBold(ViewUtils.getChildAt(binding.vidAue70Linear, i), true)
-                        .setTextColor(
-                            ViewUtils.getChildAt(binding.vidAue70Linear, i),
-                            ResourceUtils.getColor(R.color.red)
+                        .setBold(true, ViewUtils.getChildAt(binding.vidAue70Linear, i))
+                        .setTextColors(
+                            ResourceUtils.getColor(R.color.red),
+                            ViewUtils.getChildAt(binding.vidAue70Linear, i)
                         )
                     // 修改索引
                     selectTabIndex = i

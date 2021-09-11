@@ -35,11 +35,11 @@ class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>
         val view = QuickHelper.get(BaseTextView(this))
             .setText("截图")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextColors(ResourceUtils.getColor(R.color.white))
             .setTextSizeBySp(15.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks {
+            .setOnClick {
                 DevEngine.getStorage()?.insertImageToExternal(
                     StorageItem.createExternalItem(
                         "web.jpg"

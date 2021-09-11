@@ -37,11 +37,11 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val view = QuickHelper.get(BaseTextView(this))
             .setText("提交")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextColors(ResourceUtils.getColor(R.color.white))
             .setTextSizeBySp(13.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks {
+            .setOnClick {
                 val builder = StringBuilder()
                 for (item in adapter.dataList) {
                     builder
@@ -55,8 +55,8 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         toolbar?.addView(view)
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
-        ViewHelper.get().setPadding(parent, 0)
-            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33))
+        ViewHelper.get().setPadding(0, parent)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
     }
 
     override fun initValue() {

@@ -58,10 +58,10 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
             val index = position % size
             val itemBean = getDataItem(index)
             ViewHelper.get()
-                .setText(holder.binding.vidAlsTitleTv, itemBean.title)
-                .setText(holder.binding.vidAlsSubtitleTv, itemBean.subtitle)
-                .setText(holder.binding.vidAlsTimeTv, itemBean.timeFormat)
-                .setText(holder.binding.vidAlsIndexTv, "$position - $index")
+                .setText(itemBean.title, holder.binding.vidAlsTitleTv)
+                .setText(itemBean.subtitle, holder.binding.vidAlsSubtitleTv)
+                .setText(itemBean.timeFormat, holder.binding.vidAlsTimeTv)
+                .setText("$position - $index", holder.binding.vidAlsIndexTv)
             DevEngine.getImage()?.display(
                 holder.binding.vidAlsIgview,
                 itemBean.imageUrl,

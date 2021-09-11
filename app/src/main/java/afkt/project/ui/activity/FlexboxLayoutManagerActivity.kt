@@ -39,18 +39,18 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         ViewHelper.get().setPadding(
-            parent, 0, 0, SizeUtils.dipConvertPx(5F),
-            SizeUtils.dipConvertPx(5F)
+            0, 0, SizeUtils.dipConvertPx(5F),
+            SizeUtils.dipConvertPx(5F), parent
         )
 
         val view = QuickHelper.get(BaseTextView(this))
             .setText("刷新")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.red))
+            .setTextColors(ResourceUtils.getColor(R.color.red))
             .setTextSizeBySp(15.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks { initValue() }.getView<View>()
+            .setOnClick { initValue() }.getView<View>()
         toolbar?.addView(view)
     }
 

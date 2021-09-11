@@ -33,10 +33,10 @@ class TextCalcActivity : BaseActivity<ActivityTextCalcBinding>() {
                 .setPadding(30)
                 .setMarginTop(40)
                 .setMarginBottom(20)
-                .setTextColor(Color.BLACK)
+                .setTextColors(Color.BLACK)
                 .setTextSizeBySp(RandomUtils.getRandom(13, 20).toFloat())
                 .setBold(RandomUtils.nextBoolean())
-                .setText(randomText).setOnClicks { v ->
+                .setText(randomText).setOnClick { v ->
                     val textView = v as BaseTextView
                     val text = textView.text.toString()
                     val builder = StringBuilder()

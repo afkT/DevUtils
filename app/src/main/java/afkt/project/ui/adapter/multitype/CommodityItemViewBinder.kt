@@ -34,24 +34,24 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
     ) {
         // 统一设置背景
         ViewHelper.get().setBackgroundColor(
-            holder.itemView,
-            ResourceUtils.getColor(R.color.color_33)
+            ResourceUtils.getColor(R.color.color_33),
+            holder.itemView
         )
 
         val itemObj = item.obj
 
         ViewHelper.get()
             // 是否显示编辑按钮
-            .setVisibility(false, holder.binding.vidAmsIgview)
+            .setVisibilitys(false, holder.binding.vidAmsIgview)
             // 判断是否显示边距
-            .setVisibility(itemObj.isFirst, holder.binding.vidAmsLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidAmsLine)
             // 商品名
-            .setText(holder.binding.vidAmsNameTv, itemObj.commodityName)
+            .setText(itemObj.commodityName, holder.binding.vidAmsNameTv)
             // 商品价格
             .setText(
-                holder.binding.vidAmsPriceTv, "￥" + BigDecimalUtils.round(
+                "￥" + BigDecimalUtils.round(
                     itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                )
+                ), holder.binding.vidAmsPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(

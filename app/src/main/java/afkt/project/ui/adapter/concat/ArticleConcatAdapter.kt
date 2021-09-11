@@ -32,10 +32,10 @@ class ArticleConcatAdapter(data: List<ArticleBean1>) : DevDataAdapter<ArticleBea
     ) {
         val item = getDataItem(position)
         ViewHelper.get()
-            .setText(holder.binding.vidAcaTitleTv, item.title)
-            .setText(holder.binding.vidAcaContentTv, item.content)
-            .setImageBitmap(holder.binding.vidAcaIgview, item.pictures)
-            .setBackgroundColor(holder.itemView, item.background)
+            .setText(item.title, holder.binding.vidAcaTitleTv)
+            .setText(item.content, holder.binding.vidAcaContentTv)
+            .setImageBitmap(item.pictures, holder.binding.vidAcaIgview)
+            .setBackgroundColor(item.background, holder.itemView)
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -42,11 +42,11 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
         val view = QuickHelper.get(BaseTextView(this))
             .setText("截图")
             .setBold()
-            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextColors(ResourceUtils.getColor(R.color.white))
             .setTextSizeBySp(15.0f)
             .setPaddingLeft(30)
             .setPaddingRight(30)
-            .setOnClicks {
+            .setOnClick {
                 // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
                 // 以及对于的横、竖屏效果截图
                 DevEngine.getStorage()?.insertImageToExternal(
@@ -110,8 +110,8 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
                 ) {
                     val item = getDataItem(position)
                     ViewHelper.get()
-                        .setText(holder.binding.vidAcpTitleTv, item.title)
-                        .setText(holder.binding.vidAcpContentTv, item.content)
+                        .setText(item.title, holder.binding.vidAcpTitleTv)
+                        .setText(item.content, holder.binding.vidAcpContentTv)
                 }
             }
     }
