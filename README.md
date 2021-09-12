@@ -53,12 +53,6 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
 
-### DevJava - Java 工具类库 ( 不依赖 android api )
-
-- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
-
-- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/CHANGELOG.md)
-
 ### DevWidget - 自定义 View UI 库
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
@@ -72,6 +66,12 @@
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Environment)
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironment/CHANGELOG.md)
+
+### DevJava - Java 工具类库 ( 不依赖 android api )
+
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/CHANGELOG.md)
 
 ## Other
 
