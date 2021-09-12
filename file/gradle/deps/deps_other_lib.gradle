@@ -28,7 +28,7 @@ dependencies {
     implementation deps.lib.auto_dispose_lifecycle
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
-    // fastjson https://github.com/alibaba/fastjson
+    // Fastjson https://github.com/alibaba/fastjson
     implementation deps.lib.fastjson
     // Glide 图片加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
@@ -37,7 +37,7 @@ dependencies {
     implementation deps.lib.eventbus
     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
     implementation deps.lib.live_eventbus
-    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     implementation deps.lib.mmkv
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize

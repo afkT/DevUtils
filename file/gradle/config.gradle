@@ -161,7 +161,7 @@ ext {
                     auto_dispose                        : "com.uber.autodispose2:autodispose:2.0.0",
                     auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.0.0",
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
-                    // fastjson https://github.com/alibaba/fastjson
+                    // Fastjson https://github.com/alibaba/fastjson
                     fastjson                            : "com.alibaba:fastjson:1.2.76",
                     fastjson_android                    : "com.alibaba:fastjson:1.1.72.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md

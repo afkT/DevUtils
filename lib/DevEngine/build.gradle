@@ -27,9 +27,9 @@ dependencies {
     api deps.lib.glide_transformations
     // Gson https://github.com/google/gson
     api deps.lib.gson
-    // fastjson https://github.com/alibaba/fastjson
+    // Fastjson https://github.com/alibaba/fastjson
     api deps.lib.fastjson
-    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     api deps.lib.mmkv
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps.lib.pictureSelector
@@ -46,9 +46,9 @@ dependencies {
 //    api 'jp.wasabeef:glide-transformations:4.3.0'
 //    // Gson https://github.com/google/gson
 //    api 'com.google.code.gson:gson:2.8.7'
-//    // fastjson https://github.com/alibaba/fastjson
+//    // Fastjson https://github.com/alibaba/fastjson
 //    api 'com.alibaba:fastjson:1.2.76'
-//    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+//    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
 //    api 'com.tencent:mmkv-static:1.2.10'
 //    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
 //    api 'io.github.lucksiege:pictureselector:v2.7.3-rc06'

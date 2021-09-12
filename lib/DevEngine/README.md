@@ -101,7 +101,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 可选实现方案：
 
-* 依赖 [基于 mmap 的高性能通用 key-value 组件 MMKV](https://github.com/Tencent/MMKV/blob/master/readme_cn.md)
+* 依赖 [基于 mmap 的高性能通用 key-value 组件 MMKV](https://github.com/Tencent/MMKV/blob/master/README_CN.md)
   实现 [MMKVKeyValueEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/keyvalue/engine_mmkv.kt)
 
 * 依赖 [DevApp SharedPreferences 封装](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share)
@@ -260,7 +260,12 @@ private fun initEngine(appContext: Application) {
     // 使用 GSON
     DevJSONEngine.setEngine(GsonEngineImpl())
     // 使用 Fastjson
-    DevJSONEngine.setEngine(FastjsonEngineImpl())
+    DevJSONEngine.setEngine(Key, FastjsonEngineImpl())
+
+    // GsonEngineImpl
+    DevJSONEngine.getEngine()
+    // FastjsonEngineImpl
+    DevJSONEngine.getEngine(Key)
 }
 ```
 

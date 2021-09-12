@@ -21,7 +21,7 @@ import dev.utils.common.StringUtils;
  *     支持组件化 module 存储、以及默认通用 mmkv 对象
  *     <p></p>
  *     基于 mmap 的高性能通用 key-value 组件
- *     @see <a href="https://github.com/Tencent/MMKV/blob/master/readme_cn.md"/>
+ *     @see <a href="https://github.com/Tencent/MMKV/blob/master/README_CN.md"/>
  *     [Google] 再见 SharedPreferences 拥抱 Jetpack DataStore
  *     @see <a href="https://juejin.im/post/6881442312560803853"/>
  *     [Google] 再见 SharedPreferences 拥抱 Jetpack DataStore ( 二 )
