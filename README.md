@@ -100,11 +100,11 @@ implementation 'io.github.afkt:DevBase:1.0.6'
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
 implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
 
+// DevEngine 第三方框架解耦、一键替换第三方库
+implementation 'io.github.afkt:DevEngine:1.0.0'
+
 // DevHttpCapture OKHttp 抓包工具库
 implementation 'io.github.afkt:DevHttpCapture:1.0.0'
-
-// DevJava Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.3.5' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
 // DevWidget 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.1.0'
@@ -114,6 +114,9 @@ implementation 'io.github.afkt:DevEnvironment:1.0.3'
 debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.3' // kaptDebug
 releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.3' // kaptRelease
 //annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.3' // kapt
+
+// DevJava Java 工具类库 ( 不依赖 android api )
+implementation 'io.github.afkt:DevJava:1.3.5' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
 ## [APK Demo](https://github.com/afkT/Resources/tree/main/APK)
