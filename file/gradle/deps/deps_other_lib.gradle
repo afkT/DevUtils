@@ -10,9 +10,9 @@ dependencies {
     implementation deps.lib.okhttp3_logging
     // Retrofit 网络请求库  https://github.com/square/retrofit
     implementation deps.lib.retrofit
-    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
     implementation deps.lib.retrofit_gson
-    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/blob/master/retrofit-adapters/rxjava3
     implementation deps.lib.retrofit_rxjava3
     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
     implementation deps.lib.rxjava3

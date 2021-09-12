@@ -142,9 +142,9 @@ ext {
                     okhttp3_logging                     : "com.squareup.okhttp3:logging-interceptor:4.9.1",
                     // Retrofit 网络请求库  https://github.com/square/retrofit
                     retrofit                            : "com.squareup.retrofit2:retrofit:2.9.0",
-                    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+                    // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
                     retrofit_gson                       : "com.squareup.retrofit2:converter-gson:2.9.0",
-                    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+                    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/blob/master/retrofit-adapters/rxjava3
                     retrofit_rxjava3                    : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // https://mvnrepository.com/search?q=io.reactivex.rxjava3
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
@@ -214,7 +214,7 @@ ext {
 
                     // JavaPoet 编译时代码生成 https://github.com/square/javapoet
                     javapoet    : "com.squareup:javapoet:1.13.0",
-                    // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
+                    // APT 编译时注解简化服务 https://github.com/google/auto/blob/master/service
                     auto_service: "com.google.auto.service:auto-service:1.0",
             ],
             "property"  : [
