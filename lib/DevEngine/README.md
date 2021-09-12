@@ -13,7 +13,7 @@ implementation 'io.github.afkt:DevEngine:1.0.0'
    - cache           | Cache Engine 有效期键值对缓存
    - compress        | Image Compress Engine 图片压缩
    - image           | Image Engine 图片加载、下载、转格式等
-   - json            | JSON Engine
+   - json            | JSON Engine 映射
    - keyvalue        | KeyValue Engine 键值对存储
    - log             | Log Engine 日志打印
    - media           | Media Selector Engine 多媒体资源选择
@@ -141,3 +141,125 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
   实现 [DevMediaStoreEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/storage/engine_dev_media_store.kt)
 
 
+## 使用
+
+```java
+/**
+ * 初始化 Engine
+ */
+private fun initEngine(appContext: Application) {
+
+    // =========
+    // = 初始化 =
+    // =========
+
+    // 使用内部默认实现 Engine ( 使用 MMKV 必须调用 defaultMMKVInitialize() )
+    DevEngine.defaultMMKVInitialize(appContext)
+        .defaultEngine(DevEngine.getMMKVConfig())
+
+    // 如不需使用 MMKV Key-Value 则直接调用即可
+    DevEngine.defaultEngine()
+
+    // 如不想内部默认初始化全部 Engine 也可单独调用进行初始化覆盖 ( 参考下方【设置】 )
+
+    // =======
+    // = 使用 =
+    // =======
+
+    // =====================
+    // = 通过 DevEngine 使用 =
+    // =====================
+
+    // Analytics Engine 数据统计 ( 埋点 )
+    DevEngine.getAnalytics().xxx
+
+    // Cache Engine 有效期键值对缓存
+    DevEngine.getCache().xxx
+
+    // Image Compress Engine 图片压缩
+    DevEngine.getCompress().xxx
+
+    // Image Engine 图片加载、下载、转格式等
+    DevEngine.getImage().xxx
+
+    // JSON Engine 映射
+    DevEngine.getJSON().xxx
+
+    // KeyValue Engine 键值对存储
+    DevEngine.getKeyValue().xxx
+
+    // Log Engine 日志打印
+    DevEngine.getLog().xxx
+
+    // Media Selector Engine 多媒体资源选择
+    DevEngine.getMedia().xxx
+
+    // Permission Engine 权限申请
+    DevEngine.getPermission().xxx
+
+    // Push Engine 推送平台处理
+    DevEngine.getPush().xxx
+
+    // Share Engine 分享平台处理
+    DevEngine.getShare().xxx
+
+    // Storage Engine 外部、内部文件存储
+    DevEngine.getStorage().xxx
+
+    // =====================
+    // = 通过 DevAssist 使用 =
+    // =====================
+
+    // Analytics Engine 数据统计 ( 埋点 )
+    DevAnalyticsEngine.getEngine().xxx
+
+    // Cache Engine 有效期键值对缓存
+    DevCacheEngine.getEngine().xxx
+
+    // Image Compress Engine 图片压缩
+    DevCompressEngine.getEngine().xxx
+
+    // Image Engine 图片加载、下载、转格式等
+    DevImageEngine.getEngine().xxx
+
+    // JSON Engine 映射
+    DevJSONEngine.getEngine().xxx
+
+    // KeyValue Engine 键值对存储
+    DevKeyValueEngine.getEngine().xxx
+
+    // Log Engine 日志打印
+    DevLogEngine.getEngine().xxx
+
+    // Media Selector Engine 多媒体资源选择
+    DevMediaEngine.getEngine().xxx
+
+    // Permission Engine 权限申请
+    DevPermissionEngine.getEngine().xxx
+
+    // Push Engine 推送平台处理
+    DevPushEngine.getEngine().xxx
+
+    // Share Engine 分享平台处理
+    DevShareEngine.getEngine().xxx
+
+    // Storage Engine 外部、内部文件存储
+    DevStorageEngine.getEngine().xxx
+
+    // =======
+    // = 设置 =
+    // =======
+
+    // 设置 Engine 实现, 组件化、模块化可通过设置各个模块 Key 进行区分
+    DevEngine.getJSONAssist().setEngine(EngineImpl)
+    DevEngine.getJSONAssist().setEngine(Key, EngineImpl)
+
+    DevJSONEngine.setEngine(EngineImpl)
+    DevJSONEngine.setEngine(Key, EngineImpl)
+
+    // 使用 GSON
+    DevJSONEngine.setEngine(GsonEngineImpl())
+    // 使用 Fastjson
+    DevJSONEngine.setEngine(FastjsonEngineImpl())
+}
+```

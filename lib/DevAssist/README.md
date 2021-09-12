@@ -25,7 +25,7 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
          - listener                                   | 图片压缩回调事件
       - image                                         | Image Engine 图片加载、下载、转格式等
          - listener                                   | 图片加载监听事件
-      - json                                          | JSON Engine
+      - json                                          | JSON Engine 映射
       - keyvalue                                      | KeyValue Engine 键值对存储
       - log                                           | Log Engine 日志打印
       - media                                         | Media Selector Engine 多媒体资源选择
@@ -67,7 +67,7 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
       - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
          - [listener](#devengineimagelistener)        | 图片加载监听事件
-      - [json](#devenginejson)                        | JSON Engine
+      - [json](#devenginejson)                        | JSON Engine 映射
       - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
       - [log](#devenginelog)                          | Log Engine 日志打印
       - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择

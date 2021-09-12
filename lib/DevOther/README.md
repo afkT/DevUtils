@@ -9,7 +9,7 @@
       - cache                                         | Cache Engine 有效期键值对缓存
       - compress                                      | Image Compress Engine 图片压缩
       - image                                         | Image Engine 图片加载、下载、转格式等
-      - json                                          | JSON Engine
+      - json                                          | JSON Engine 映射
       - keyvalue                                      | KeyValue Engine 键值对存储
       - log                                           | Log Engine 日志打印
       - media                                         | Media Selector Engine 多媒体资源选择
@@ -44,7 +44,7 @@
       - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
       - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
       - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
-      - [json](#devenginejson)                        | JSON Engine
+      - [json](#devenginejson)                        | JSON Engine 映射
       - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
       - [log](#devenginelog)                          | Log Engine 日志打印
       - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
