@@ -45,11 +45,10 @@ public final class SharedUtils {
      * 保存数据
      * @param key   保存的 key
      * @param value 保存的 value
-     * @param <T>   泛型
      */
-    public static <T> void put(
+    public static void put(
             final String key,
-            final T value
+            final Object value
     ) {
         SPUtils.getPreference(DevUtils.getContext()).put(key, value);
     }
@@ -57,9 +56,8 @@ public final class SharedUtils {
     /**
      * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
-     * @param <T> 泛型
      */
-    public static <T> void putAll(final Map<String, T> map) {
+    public static void putAll(final Map<String, Object> map) {
         SPUtils.getPreference(DevUtils.getContext()).putAll(map);
     }
 

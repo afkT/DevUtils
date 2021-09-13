@@ -217,17 +217,17 @@ final class PreferenceImpl
      * 保存数据
      * @param key   保存的 key
      * @param value 保存的 value
-     * @param <T>   泛型
      */
     @Override
-    public <T> void put(
+    public void put(
             final String key,
-            final T value
+            final Object value
     ) {
-        SharedPreferences.Editor edit = mPreferences.edit();
-        DataType dataType = put(edit, key, value);
+        SharedPreferences.Editor edit     = mPreferences.edit();
+        DataType                 dataType = put(edit, key, value);
         if (dataType != null) {
             edit.apply();
+
             // 触发操作回调
             if (mListener != null) {
                 mListener.onPut(this, dataType, key, value);
@@ -238,21 +238,21 @@ final class PreferenceImpl
     /**
      * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
-     * @param <T> 泛型
      */
     @Override
-    public <T> void putAll(final Map<String, T> map) {
+    public void putAll(final Map<String, Object> map) {
         SharedPreferences.Editor edit = mPreferences.edit();
-        for (Map.Entry<String, T> entry : map.entrySet()) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
             String key   = entry.getKey();
             Object value = entry.getValue();
-            DataType dataType = put(edit, key, value);
-            // 触发操作回调
-            if (mListener != null && dataType != null) {
-                mListener.onPutByMap(this, dataType, key, value);
-            }
+            put(edit, key, value);
         }
         edit.apply();
+
+        // 触发操作回调
+        if (mListener != null) {
+            mListener.onPutByMap(this, map);
+        }
     }
 
     /**
@@ -283,10 +283,11 @@ final class PreferenceImpl
         Set<String> value = new TreeSet<>(comparator);
         value.addAll(list);
 
-        SharedPreferences.Editor edit = mPreferences.edit();
-        DataType dataType = put(edit, key, value);
+        SharedPreferences.Editor edit     = mPreferences.edit();
+        DataType                 dataType = put(edit, key, value);
         if (dataType != null) {
             edit.apply();
+
             // 触发操作回调
             if (mListener != null) {
                 mListener.onPut(this, dataType, key, value);
@@ -308,7 +309,13 @@ final class PreferenceImpl
             final DataType type,
             final Object defaultValue
     ) {
-        return (T) getValue(key, type, defaultValue);
+        Object value = getValue(key, type, defaultValue);
+
+        // 触发操作回调
+        if (mListener != null) {
+            mListener.onGet(this, type, key, value, defaultValue);
+        }
+        return (T) value;
     }
 
     /**
@@ -340,6 +347,11 @@ final class PreferenceImpl
     @Override
     public void remove(final String key) {
         mPreferences.edit().remove(key).apply();
+
+        // 触发操作回调
+        if (mListener != null) {
+            mListener.onRemove(this, key);
+        }
     }
 
     /**
@@ -353,6 +365,11 @@ final class PreferenceImpl
             edit.remove(key);
         }
         edit.apply();
+
+        // 触发操作回调
+        if (mListener != null) {
+            mListener.onRemoveByList(this, keys);
+        }
     }
 
     /**
@@ -380,6 +397,11 @@ final class PreferenceImpl
     @Override
     public void clear() {
         mPreferences.edit().clear().apply();
+
+        // 触发操作回调
+        if (mListener != null) {
+            mListener.clear();
+        }
     }
 
     // =

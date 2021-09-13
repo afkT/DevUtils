@@ -53,19 +53,17 @@ public interface IPreference {
      * </pre>
      * @param key   保存的 key
      * @param value 保存的 value
-     * @param <T>   泛型
      */
-    <T> void put(
+    void put(
             String key,
-            T value
+            Object value
     );
 
     /**
      * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
      * @param map {@link Map}
-     * @param <T> 泛型
      */
-    <T> void putAll(Map<String, T> map);
+    void putAll(Map<String, Object> map);
 
     /**
      * 保存 List 集合
