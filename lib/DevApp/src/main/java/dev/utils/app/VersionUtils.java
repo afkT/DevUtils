@@ -184,6 +184,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 12.0 版本及以上
+     * @return 是否在 12.0 版本及以上
+     */
+    public static boolean isS() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
      * @return SDK 版本
      */
@@ -258,6 +266,8 @@ public final class VersionUtils {
                 return "Android 10.0";
             case 30:
                 return "Android 11.0";
+            case 31:
+                return "Android 12.0";
         }
         return "unknown";
     }
