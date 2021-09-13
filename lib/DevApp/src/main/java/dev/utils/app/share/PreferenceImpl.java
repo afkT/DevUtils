@@ -85,7 +85,7 @@ final class PreferenceImpl
      * @param editor {@link SharedPreferences.Editor}
      * @param key    保存的 key
      * @param object 保存的 value
-     * @return {@code true} success, {@code false} fail
+     * @return 存储数据所属类型
      */
     private DataType put(
             final SharedPreferences.Editor editor,

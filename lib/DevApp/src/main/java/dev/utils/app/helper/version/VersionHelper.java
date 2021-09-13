@@ -36,14 +36,14 @@ import dev.utils.app.UriUtils;
  *     Android 11 更新内容
  *     @see <a href="https://developer.android.google.cn/about/versions/11"/>
  *     <p></p>
- *     Android Q 适配指南
+ *     Android 10 ( Q ) 适配指南
  *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
  *     Android 11 最全适配实践指南
  *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
  *     MANAGE_EXTERNAL_STORAGE
  *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
  *     <p></p>
- *     在 Android Q 上想要公开的资源, 通过 Image、Video、Audio、Document
+ *     在 Android 10 ( Q ) 上想要公开的资源, 通过 Image、Video、Audio、Document
  *     {@link #createImageUri()}、{@link #createVideoUri()}、
  *     {@link #createAudioUri()}、{@link IntentUtils#getCreateDocumentIntent(String, String)}
  *     去创建 Uri 并写入数据
@@ -62,9 +62,9 @@ public final class VersionHelper {
     private VersionHelper() {
     }
 
-    // =============
-    // = Android Q =
-    // =============
+    // ====================
+    // = Android 10 ( Q ) =
+    // ====================
 
     // ============
     // = UriUtils =
@@ -202,7 +202,7 @@ public final class VersionHelper {
      *     默认不复制文件, 防止影响已经使用该方法的功能 ( 文件过大导致 ANR、耗时操作等 )
      * </pre>
      * @param uri     {@link Uri}
-     * @param isQCopy Android Q 及其以上版本是否复制文件
+     * @param isQCopy Android 10 ( Q ) 及其以上版本是否复制文件
      * @return 文件路径
      */
     public static String getFilePathByUri(
@@ -505,7 +505,7 @@ public final class VersionHelper {
     /**
      * 创建 Download Uri
      * <pre>
-     *     Android Q ( 10.0 ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
+     *     Android 10 ( Q ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
      * </pre>
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param mimeType     资源类型

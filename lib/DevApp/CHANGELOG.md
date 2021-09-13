@@ -279,7 +279,7 @@ Version 2.0.0 *(2020-08-29)*
 Version 1.9.9 *(2020-08-27)*
 ----------------------------
 
-* `[Fix]` UriUtils#getFilePathByUri 方法新增 Android Q 适配操作
+* `[Fix]` UriUtils#getFilePathByUri 方法新增 Android 10 ( Q ) 适配操作
 
 * `[Add]` ContentResolverUtils#getDisplayNameColumn
 
@@ -420,7 +420,7 @@ Version 1.8.7 *(2020-01-07)*
 Version 1.8.6 *(2019-12-25)*
 ----------------------------
 
-* `[Feature]` 适配 Android Q 并重构 PathUtils 工具类, 提供适配思路以及增加 MediaStoreUtils 多媒体工具类用于外部存储适配操作
+* `[Feature]` 适配 Android 10 ( Q ) 并重构 PathUtils 工具类, 提供适配思路以及增加 MediaStoreUtils 多媒体工具类用于外部存储适配操作
 
 * `[Add]` ViewUtils#toggleFocusable、toggleSelected、toggleEnabled、toggleClickable、toggleLongClickable、getChilds
 
@@ -537,7 +537,7 @@ Version 1.8.0 *(2019-10-09)*
 Version 1.7.9 *(2019-09-19)*
 ----------------------------
  
- * `[Update]` compileSdkVersion 29 Android Q
+ * `[Update]` compileSdkVersion 29 Android 10 ( Q )
  
  * `[Update]` AppCommonUtils#convertSDKVersion
  

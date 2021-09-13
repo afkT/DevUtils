@@ -40,7 +40,7 @@ import dev.utils.common.FileUtils;
  * <pre>
  *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 ) )
  *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
- *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android Q )
+ *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android 10 ( Q ) )
  *     <p></p>
  *     MimeType
  *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
@@ -92,7 +92,7 @@ public final class MediaStoreUtils {
      * </pre>
      * @param file 文件
      * @return {@code true} success, {@code false} fail
-     * @deprecated Android Q 以后的版本需要通过 MediaStore 插入数据
+     * @deprecated Android 10 ( Q ) 以后的版本需要通过 MediaStore 插入数据
      */
     @Deprecated
     public static boolean notifyMediaStore(final File file) {
@@ -496,7 +496,7 @@ public final class MediaStoreUtils {
     /**
      * 创建 Download Uri
      * <pre>
-     *     Android Q ( 10.0 ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
+     *     Android 10 ( Q ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
      * </pre>
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param mimeType     资源类型
@@ -645,7 +645,7 @@ public final class MediaStoreUtils {
     /**
      * 插入一张图片
      * <pre>
-     *     Android Q 已抛弃仍可用, 推荐使用传入 Uri 方式 {@link #createImageUri}
+     *     Android 10 ( Q ) 已抛弃仍可用, 推荐使用传入 Uri 方式 {@link #createImageUri}
      * </pre>
      * @param filePath 文件路径
      * @param name     存储文件名
@@ -956,7 +956,7 @@ public final class MediaStoreUtils {
     /**
      * 获取本地视频时长
      * @param filePath   文件路径
-     * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
+     * @param isAndroidQ 是否兼容 Android 10 ( Q ) ( 私有目录传入 false )
      * @return 本地视频时长
      */
     public static long getVideoDuration(
@@ -1012,7 +1012,7 @@ public final class MediaStoreUtils {
     /**
      * 获取本地视频宽高
      * @param filePath   文件路径
-     * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
+     * @param isAndroidQ 是否兼容 Android 10 ( Q ) ( 私有目录传入 false )
      * @return 本地视频宽高 0 = 宽, 1 = 高
      */
     public static int[] getVideoSize(
@@ -1074,7 +1074,7 @@ public final class MediaStoreUtils {
     /**
      * 获取本地图片宽高
      * @param filePath   文件路径
-     * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
+     * @param isAndroidQ 是否兼容 Android 10 ( Q ) ( 私有目录传入 false )
      * @return 本地图片宽高 0 = 宽, 1 = 高
      */
     public static int[] getImageWidthHeight(

@@ -358,7 +358,7 @@ public final class UriUtils {
      *     默认不复制文件, 防止影响已经使用该方法的功能 ( 文件过大导致 ANR、耗时操作等 )
      * </pre>
      * @param uri     {@link Uri}
-     * @param isQCopy Android Q 及其以上版本是否复制文件
+     * @param isQCopy Android 10 ( Q ) 及其以上版本是否复制文件
      * @return 文件路径
      */
     public static String getFilePathByUri(
