@@ -173,7 +173,7 @@ class Utils {
     /**
      * 获取时间间隔文件夹路径
      * @param modulePath 模块名
-     * @param millis       创建时间 ( 本地时间戳 )
+     * @param millis     创建时间 ( 本地时间戳 )
      * @return 时间间隔文件夹路径
      */
     public static String getTimeFile(

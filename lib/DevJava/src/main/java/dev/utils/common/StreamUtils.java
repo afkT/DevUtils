@@ -143,7 +143,7 @@ public final class StreamUtils {
 
     /**
      * String 转换输入流
-     * @param str      数据源
+     * @param str         数据源
      * @param charsetName 编码格式
      * @return {@link InputStream}
      */
@@ -181,7 +181,7 @@ public final class StreamUtils {
 
     /**
      * String 转 输出流
-     * @param str      数据源
+     * @param str         数据源
      * @param charsetName 编码格式
      * @return {@link OutputStream}
      */

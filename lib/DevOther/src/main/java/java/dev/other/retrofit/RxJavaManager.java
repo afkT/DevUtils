@@ -111,8 +111,9 @@ public final class RxJavaManager {
      */
     public <T> FlowableTransformer<T, T> io_main() {
         return new FlowableTransformer<T, T>() {
+            @NonNull
             @Override
-            public @NonNull Publisher<T> apply(@NonNull Flowable<T> upstream) {
+            public Publisher<T> apply(@NonNull Flowable<T> upstream) {
                 return upstream
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io())

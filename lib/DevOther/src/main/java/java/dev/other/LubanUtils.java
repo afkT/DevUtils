@@ -173,7 +173,7 @@ public final class LubanUtils {
                     }
 
                     private List<File> getLists() {
-                        List<File>     files    = new ArrayList<>();
+                        List<File> files = new ArrayList<>();
                         for (File file : fileMaps.values()) {
                             if (file != null && file.exists()) {
                                 files.add(file);

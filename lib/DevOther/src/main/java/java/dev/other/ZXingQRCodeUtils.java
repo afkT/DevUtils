@@ -25,7 +25,7 @@ import dev.utils.common.thread.DevThreadManager;
 /**
  * detail: ZXing 二维码工具类
  * @author Ttt
- * @deprecated  推荐使用 {@link dev.engine.barcode.DevBarCodeEngine} 实现类
+ * @deprecated 推荐使用 {@link dev.engine.barcode.DevBarCodeEngine} 实现类
  */
 @Deprecated
 public final class ZXingQRCodeUtils {
@@ -149,7 +149,8 @@ public final class ZXingQRCodeUtils {
     public static Bitmap encodeQRCodeSync(
             final String content,
             final int size
-    ) throws Exception {
+    )
+            throws Exception {
         return encodeQRCodeSync(content, size, Color.BLACK, Color.WHITE);
     }
 
@@ -169,7 +170,8 @@ public final class ZXingQRCodeUtils {
             final int size,
             final int foregroundColor,
             final int backgroundColor
-    ) throws Exception {
+    )
+            throws Exception {
         BitMatrix matrix = new MultiFormatWriter().encode(
                 content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
         );
