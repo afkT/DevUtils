@@ -311,7 +311,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
         }
         // 外部存储才需要进行适配
         if (external) {
-            // Android 9.0 及以下版本则直接使用 File 读写
+            // Android 9 ( Pie ) 及以下版本则直接使用 File 读写
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 //                if (type == StorageType.DOWNLOAD) {
 //                    // 低版本直接创建 SDCard/Download File

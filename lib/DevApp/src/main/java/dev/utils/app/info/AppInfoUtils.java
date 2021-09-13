@@ -22,10 +22,10 @@ import dev.utils.common.FileUtils;
  * detail: APP 信息获取工具类
  * @author Ttt
  * <pre>
- *     Android 11 适配
+ *     Android 11 ( R ) 适配
  *     @see <a href="https://developer.android.google.cn/about/versions/11/privacy/package-visibility"/>
  *     <p></p>
- *     Android 11 需要加该权限 ( 无需申请 ) 才能够获取安装列表
+ *     Android 11 ( R ) 需要加该权限 ( 无需申请 ) 才能够获取安装列表
  *     <uses-permission
  *         android:name="android.permission.QUERY_ALL_PACKAGES"
  *         tools:ignore="QueryAllPackagesPermission"/>

@@ -39,7 +39,7 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 ) )
- *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
+ *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()} 外部存储 ( 私有目录 ) 中
  *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android 10 ( Q ) )
  *     <p></p>
  *     MimeType

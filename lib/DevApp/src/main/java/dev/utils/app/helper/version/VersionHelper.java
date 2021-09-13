@@ -31,30 +31,17 @@ import dev.utils.app.UriUtils;
  *     并简化需多工具类组合使用的功能
  *     关于路径建议及兼容建议查看 {@link PathUtils}
  *     <p></p>
- *     Android 10 更新内容
+ *     Android 10 ( Q ) 更新内容
  *     @see <a href="https://developer.android.google.cn/about/versions/10"/>
- *     Android 11 更新内容
+ *     Android 11 ( R ) 更新内容
  *     @see <a href="https://developer.android.google.cn/about/versions/11"/>
+ *     Android 12 ( S ) 更新内容
+ *     @see <a href="https://developer.android.google.cn/about/versions/12"/>
  *     <p></p>
  *     Android 10 ( Q ) 适配指南
  *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
- *     Android 11 最全适配实践指南
+ *     Android 11 ( R ) 适配指南
  *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
- *     MANAGE_EXTERNAL_STORAGE
- *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
- *     <p></p>
- *     在 Android 10 ( Q ) 上想要公开的资源, 通过 Image、Video、Audio、Document
- *     {@link #createImageUri()}、{@link #createVideoUri()}、
- *     {@link #createAudioUri()}、{@link IntentUtils#getCreateDocumentIntent(String, String)}
- *     去创建 Uri 并写入数据
- *     {@link #insertImage(Uri, Uri)} ()}、{@link #insertVideo(Uri, Uri)} ()}、
- *     {@link #insertAudio(Uri, Uri)} ()}、{@link #insertMedia(Uri, Uri)} ()}
- *     关于参数:
- *     inputUri 输入 Uri ( 待存储文件 Uri )
- *     通过 {@link #getUriForFile(File)} 把需要存储到外部的文件传入
- *     <p></p>
- *     获取文件通过 {@link IntentUtils#getOpenDocumentIntent()} startActivityForResult 获取选择的 Uri
- *     如果需要把选中的文件进行存储调用 {@link #copyByUri(Uri)}
  * </pre>
  */
 public final class VersionHelper {
@@ -835,9 +822,9 @@ public final class VersionHelper {
         return MediaStoreUtils.insertMedia(uri, bitmap, format, quality);
     }
 
-    // =============
-    // = Android R =
-    // =============
+    // ====================
+    // = Android 11 ( R ) =
+    // ====================
 
     /**
      * 是否获得 MANAGE_EXTERNAL_STORAGE 权限

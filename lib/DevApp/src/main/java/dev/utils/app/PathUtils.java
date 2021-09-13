@@ -23,7 +23,7 @@ import dev.utils.common.FileUtils;
  *     外部存储 ( 公开目录 ) : /storage/emulated/0/ 目录
  *     <p></p>
  *     推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储 )
- *     Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
+ *     Android 11 ( R ) 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
  *     <p></p>
  *     关于路径建议及兼容:
  *     推荐隐私数据存储到内部存储中 {@link PathUtils#getInternal()}
@@ -88,6 +88,10 @@ public final class PathUtils {
 
     /**
      * 检查是否有 MANAGE_EXTERNAL_STORAGE 权限并跳转设置页面
+     * <pre>
+     *     MANAGE_EXTERNAL_STORAGE
+     *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
+     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     public static boolean checkExternalStorageAndIntentSetting() {
@@ -130,7 +134,7 @@ public final class PathUtils {
          * 获取 SDCard 外部存储路径 ( path /storage/emulated/0/ )
          * @return /storage/emulated/0/
          * @deprecated 推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储 )
-         * Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
+         * Android 11 ( R ) 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
          */
         @Deprecated
         public File getSDCardFile() {
@@ -188,7 +192,7 @@ public final class PathUtils {
          * @param type 文件类型
          * @return /storage/emulated/0/
          * @deprecated 推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储 )
-         * Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
+         * Android 11 ( R ) 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
          */
         @Deprecated
         public File getExternalStoragePublicDir(final String type) {

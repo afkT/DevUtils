@@ -162,7 +162,7 @@ Version 2.0.9 *(2020-11-05)*
 Version 2.0.8 *(2020-10-29)*
 ----------------------------
 
-* `[Feature]` 适配 Android R ( Android 11 )
+* `[Feature]` 适配 Android 11 ( R )
 
 * `[Add]` 新增 VersionHelper ( Android 版本适配 Helper 类 ), 方便快捷使用并简化需多工具类组合使用的功能
 
