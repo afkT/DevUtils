@@ -16,6 +16,31 @@ public final class SharedUtils {
     private SharedUtils() {
     }
 
+    // ==========
+    // = 监听方法 =
+    // ==========
+
+    /**
+     * 注册 SharedPreferences 操作监听器
+     * @param listener SharedPreferences 操作监听器
+     */
+    public static void registerListener(final OnSPOperateListener listener) {
+        SPUtils.getPreference(DevUtils.getContext()).registerListener(
+                listener
+        );
+    }
+
+    /**
+     * 注销 SharedPreferences 操作监听器
+     */
+    public static void unregisterListener() {
+        SPUtils.getPreference(DevUtils.getContext()).unregisterListener();
+    }
+
+    // ==========
+    // = 操作方法 =
+    // ==========
+
     /**
      * 保存数据
      * @param key   保存的 key

@@ -25,7 +25,24 @@ public interface IPreference {
         STRING_SET
     }
 
-    // =
+    // ==========
+    // = 监听方法 =
+    // ==========
+
+    /**
+     * 注册 SharedPreferences 操作监听器
+     * @param listener SharedPreferences 操作监听器
+     */
+    void registerListener(OnSPOperateListener listener);
+
+    /**
+     * 注销 SharedPreferences 操作监听器
+     */
+    void unregisterListener();
+
+    // ==========
+    // = 操作方法 =
+    // ==========
 
     /**
      * 保存数据

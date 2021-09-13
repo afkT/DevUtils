@@ -24,17 +24,19 @@ final class PreferenceImpl
         implements IPreference {
 
     // 文件名
-    private static final String            NAME               = "SPConfig";
+    private static final String              NAME               = "SPConfig";
     // SharedPreferences 对象
-    private final        SharedPreferences mPreferences;
+    private final        SharedPreferences   mPreferences;
+    // SharedPreferences 操作监听器
+    private              OnSPOperateListener mListener;
     // 默认值
-    private final        int               INTEGER_DEFAULT    = -1;
-    private final        long              LONG_DEFAULT       = -1L;
-    private final        float             FLOAT_DEFAULT      = -1F;
-    private final        double            DOUBLE_DEFAULT     = -1D;
-    private final        boolean           BOOLEAN_DEFAULT    = false;
-    private final        String            STRING_DEFAULT     = null;
-    private final        Set<String>       STRING_SET_DEFAULT = null;
+    private final        int                 INTEGER_DEFAULT    = -1;
+    private final        long                LONG_DEFAULT       = -1L;
+    private final        float               FLOAT_DEFAULT      = -1F;
+    private final        double              DOUBLE_DEFAULT     = -1D;
+    private final        boolean             BOOLEAN_DEFAULT    = false;
+    private final        String              STRING_DEFAULT     = null;
+    private final        Set<String>         STRING_SET_DEFAULT = null;
 
     // ==========
     // = 构造函数 =
@@ -83,8 +85,9 @@ final class PreferenceImpl
      * @param editor {@link SharedPreferences.Editor}
      * @param key    保存的 key
      * @param object 保存的 value
+     * @return {@code true} success, {@code false} fail
      */
-    private void put(
+    private DataType put(
             final SharedPreferences.Editor editor,
             final String key,
             final Object object
@@ -93,23 +96,31 @@ final class PreferenceImpl
         if (key != null && object != null) {
             if (object instanceof Integer) {
                 editor.putInt(key, (Integer) object);
+                return DataType.INTEGER;
             } else if (object instanceof Long) {
                 editor.putLong(key, (Long) object);
+                return DataType.LONG;
             } else if (object instanceof Float) {
                 editor.putFloat(key, (Float) object);
+                return DataType.FLOAT;
             } else if (object instanceof Double) {
                 editor.putLong(key, Double.doubleToRawLongBits((Double) object));
+                return DataType.DOUBLE;
             } else if (object instanceof Boolean) {
                 editor.putBoolean(key, (Boolean) object);
+                return DataType.BOOLEAN;
             } else if (object instanceof String) {
                 editor.putString(key, String.valueOf(object));
+                return DataType.STRING;
             } else if (object instanceof Set) {
                 try {
                     editor.putStringSet(key, (Set<String>) object);
+                    return DataType.STRING_SET;
                 } catch (Exception ignored) {
                 }
             }
         }
+        return null;
     }
 
     /**
@@ -177,6 +188,27 @@ final class PreferenceImpl
         }
     }
 
+    // ==========
+    // = 监听方法 =
+    // ==========
+
+    /**
+     * 注册 SharedPreferences 操作监听器
+     * @param listener SharedPreferences 操作监听器
+     */
+    @Override
+    public void registerListener(final OnSPOperateListener listener) {
+        this.mListener = listener;
+    }
+
+    /**
+     * 注销 SharedPreferences 操作监听器
+     */
+    @Override
+    public void unregisterListener() {
+        this.mListener = null;
+    }
+
     // =============
     // = 接口实现方法 =
     // =============
@@ -193,8 +225,14 @@ final class PreferenceImpl
             final T value
     ) {
         SharedPreferences.Editor edit = mPreferences.edit();
-        put(edit, key, value);
-        edit.apply();
+        DataType dataType = put(edit, key, value);
+        if (dataType != null) {
+            edit.apply();
+            // 触发操作回调
+            if (mListener != null) {
+                mListener.onPut(this, dataType, key, value);
+            }
+        }
     }
 
     /**
@@ -208,7 +246,11 @@ final class PreferenceImpl
         for (Map.Entry<String, T> entry : map.entrySet()) {
             String key   = entry.getKey();
             Object value = entry.getValue();
-            put(edit, key, value);
+            DataType dataType = put(edit, key, value);
+            // 触发操作回调
+            if (mListener != null && dataType != null) {
+                mListener.onPutByMap(this, dataType, key, value);
+            }
         }
         edit.apply();
     }
@@ -238,9 +280,18 @@ final class PreferenceImpl
             final List<String> list,
             final Comparator<String> comparator
     ) {
-        Set<String> set = new TreeSet<>(comparator);
-        set.addAll(list);
-        mPreferences.edit().putStringSet(key, set).apply();
+        Set<String> value = new TreeSet<>(comparator);
+        value.addAll(list);
+
+        SharedPreferences.Editor edit = mPreferences.edit();
+        DataType dataType = put(edit, key, value);
+        if (dataType != null) {
+            edit.apply();
+            // 触发操作回调
+            if (mListener != null) {
+                mListener.onPut(this, dataType, key, value);
+            }
+        }
     }
 
     /**
