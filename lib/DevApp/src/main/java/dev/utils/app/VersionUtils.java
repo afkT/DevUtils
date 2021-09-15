@@ -24,6 +24,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 2.1 版本及以上
+     * @return 是否在 2.1 版本及以上
+     */
+    public static boolean isEclair() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR;
+    }
+
+    /**
      * 是否在 2.2 版本及以上
      * @return 是否在 2.2 版本及以上
      */
@@ -112,11 +120,27 @@ public final class VersionUtils {
     }
 
     /**
-     * 是否在 5.0.1 版本及以上
-     * @return 是否在 5.0.1 版本及以上
+     * 是否在 4.4W 版本及以上
+     * @return 是否在 4.4W 版本及以上
+     */
+    public static boolean isKitkat_Watch() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH;
+    }
+
+    /**
+     * 是否在 5.0 版本及以上
+     * @return 是否在 5.0 版本及以上
      */
     public static boolean isLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+    /**
+     * 是否在 5.1 版本及以上
+     * @return 是否在 5.1 版本及以上
+     */
+    public static boolean isLollipop_MR1() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1;
     }
 
     /**
@@ -200,7 +224,7 @@ public final class VersionUtils {
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
+     * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @param sdkVersion SDK 版本
      * @return SDK 版本
      */
@@ -268,6 +292,79 @@ public final class VersionUtils {
                 return "Android 11.0";
             case 31:
                 return "Android 12.0";
+        }
+        return "unknown";
+    }
+
+    /**
+     * 转换 SDK 版本名字 convertSDKVersionName(31) = Android S
+     * @param sdkVersion SDK 版本
+     * @return SDK 版本
+     */
+    public static String convertSDKVersionName(final int sdkVersion) {
+        switch (sdkVersion) {
+            case 1:
+                return "Android Base";
+            case 2:
+                return "Android Base_1_1";
+            case 3:
+                return "Android Cupcake";
+            case 4:
+                return "Android Donut";
+            case 5:
+                return "Android Eclair";
+            case 6:
+                return "Android Eclair_0_1";
+            case 7:
+                return "Android Eclair_MR1";
+            case 8:
+                return "Android Froyo";
+            case 9:
+                return "Android Gingerbread";
+            case 10:
+                return "Android Gingerbread_MR1";
+            case 11:
+                return "Android Honeycomb";
+            case 12:
+                return "Android Honeycomb_MR1";
+            case 13:
+                return "Android Honeycomb_MR2";
+            case 14:
+                return "Android Ice_Cream_Sandwich";
+            case 15:
+                return "Android Ice_Cream_Sandwich_MR1";
+            case 16:
+                return "Android Jelly_Bean";
+            case 17:
+                return "Android Jelly_Bean_MR1";
+            case 18:
+                return "Android Jelly_Bean_MR2";
+            case 19:
+                return "Android Kitkat";
+            case 20:
+                return "Android Kitkat_Watch";
+            case 21:
+                return "Android Lollipop";
+            case 22:
+                return "Android Lollipop_MR1";
+            case 23:
+                return "Android M";
+            case 24:
+                return "Android N";
+            case 25:
+                return "Android N_MR1";
+            case 26:
+                return "Android O";
+            case 27:
+                return "Android O_MR1";
+            case 28:
+                return "Android P";
+            case 29:
+                return "Android Q";
+            case 30:
+                return "Android R";
+            case 31:
+                return "Android S";
         }
         return "unknown";
     }
