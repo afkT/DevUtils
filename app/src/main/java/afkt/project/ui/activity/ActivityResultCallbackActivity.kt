@@ -40,7 +40,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                 override fun onActivityResult(
                     result: Boolean,
                     resultCode: Int,
-                    data: Intent
+                    data: Intent?
                 ) {
                     if (result && data != null) {
                         val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)

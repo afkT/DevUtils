@@ -4,8 +4,8 @@
 
     <application>
         <activity
-            android:name="dev.environment.DevEnvironmentActivity"
             android:exported="false"
+            android:name="dev.environment.DevEnvironmentActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
     </application>
 </manifest>

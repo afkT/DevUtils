@@ -65,6 +65,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:requestLegacyExternalStorage">
 
         <meta-data
