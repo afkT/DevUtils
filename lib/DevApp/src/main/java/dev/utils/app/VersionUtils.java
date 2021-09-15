@@ -216,7 +216,7 @@ public final class VersionUtils {
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
+     * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
     public static String convertSDKVersion() {
@@ -298,8 +298,16 @@ public final class VersionUtils {
 
     /**
      * 转换 SDK 版本名字 convertSDKVersionName(31) = Android S
+     * @return SDK 版本名字
+     */
+    public static String convertSDKVersionName() {
+        return convertSDKVersionName(Build.VERSION.SDK_INT);
+    }
+
+    /**
+     * 转换 SDK 版本名字 convertSDKVersionName(31) = Android S
      * @param sdkVersion SDK 版本
-     * @return SDK 版本
+     * @return SDK 版本名字
      */
     public static String convertSDKVersionName(final int sdkVersion) {
         switch (sdkVersion) {
