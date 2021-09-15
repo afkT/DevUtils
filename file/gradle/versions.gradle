@@ -9,10 +9,12 @@ ext {
             lib_minSdkVersion                        : 14,
             // 支持最小的 SDK
             app_minSdkVersion                        : 21,
+            // Lib 编译 SDK 版本
+            lib_compileSdkVersion                    : 31,
             // 编译 SDK 版本
-            compileSdkVersion                        : 31,
+            compileSdkVersion                        : 30,
             // 向前兼容 SDK 版本
-            targetSdkVersion                         : 31,
+            targetSdkVersion                         : 30,
             // 构建工具版本
             buildToolsVersion                        : "31.0.0",
             // Java 版本
