@@ -17,7 +17,9 @@ import java.util.Collection;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ContentResolverUtils;
 import dev.utils.app.IntentUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.UriUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: VersionHelper 接口
@@ -25,13 +27,108 @@ import dev.utils.app.UriUtils;
  */
 public interface IHelperByVersion<T> {
 
-    // ====================
-    // = Android 10 ( Q ) =
-    // ====================
-
     // ============
     // = UriUtils =
     // ============
+
+    // ================
+    // = FileProvider =
+    // ================
+
+    /**
+     * 获取 FileProvider File Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    Uri getUriForFile(File file);
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    Uri getUriForPath(String filePath);
+
+    /**
+     * 获取 FileProvider File Path Uri ( 自动添加包名 ${applicationId} )
+     * @param file         文件
+     * @param fileProvider android:authorities = ${applicationId}.fileProvider
+     * @return 指定文件 {@link Uri}
+     */
+    Uri getUriForFileToName(
+            File file,
+            String fileProvider
+    );
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param file      文件
+     * @param authority android:authorities
+     * @return 指定文件 {@link Uri}
+     */
+    Uri getUriForFile(
+            File file,
+            String authority
+    );
+
+    /**
+     * 通过 String 获取 Uri
+     * @param uriString uri 路径
+     * @return {@link Uri}
+     */
+    Uri getUriForString(String uriString);
+
+    /**
+     * 通过 File Path 创建 Uri
+     * @param filePath 文件路径
+     * @return {@link Uri}
+     */
+    Uri fromFile(String filePath);
+
+    /**
+     * 通过 File 创建 Uri
+     * <pre>
+     *     File 的文件夹需要存在才能够对文件进行写入
+     *     可以传入前调用 {@link FileUtils#createFolderByPath(File)} 进行创建文件夹
+     * </pre>
+     * @param file 文件
+     * @return {@link Uri}
+     */
+    Uri fromFile(File file);
+
+    // =======
+    // = Uri =
+    // =======
+
+    /**
+     * 判断是否 Uri
+     * @param uriString uri 路径
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isUri(String uriString);
+
+    /**
+     * 判断是否 Uri
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isUri(Uri uri);
+
+    // =
+
+    /**
+     * 获取 Uri Scheme
+     * @param uriString uri 路径
+     * @return Uri Scheme
+     */
+    String getUriScheme(String uriString);
+
+    /**
+     * 获取 Uri Scheme
+     * @param uri {@link Uri}
+     * @return Uri Scheme
+     */
+    String getUriScheme(Uri uri);
 
     /**
      * 判断 Uri 路径资源是否存在
@@ -50,41 +147,9 @@ public interface IHelperByVersion<T> {
      */
     boolean isUriExists(Uri uri);
 
-    /**
-     * 通过 File 获取 Media Uri
-     * @param file 文件
-     * @return 指定文件 {@link Uri}
-     */
-    Uri getMediaUri(File file);
-
-    /**
-     * 通过 File 获取 Media Uri
-     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param file 文件
-     * @return 指定文件 {@link Uri}
-     */
-    Uri getMediaUri(
-            Uri uri,
-            File file
-    );
-
-    /**
-     * 通过 File Path 获取 Media Uri
-     * @param filePath 文件路径
-     * @return 指定文件 {@link Uri}
-     */
-    Uri getMediaUri(String filePath);
-
-    /**
-     * 通过 File Path 获取 Media Uri
-     * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param filePath 文件路径
-     * @return 指定文件 {@link Uri}
-     */
-    Uri getMediaUri(
-            Uri uri,
-            String filePath
-    );
+    // ==========
+    // = 复制文件 =
+    // ==========
 
     /**
      * 通过 Uri 复制文件
@@ -130,6 +195,10 @@ public interface IHelperByVersion<T> {
             String fileName
     );
 
+    // =============
+    // = 获取文件路径 =
+    // =============
+
     /**
      * 通过 Uri 获取文件路径
      * @param uri {@link Uri}
@@ -151,45 +220,143 @@ public interface IHelperByVersion<T> {
             boolean isQCopy
     );
 
+    // ========================
+    // = ContentResolverUtils =
+    // ========================
+
     /**
-     * 获取 FileProvider File Uri
+     * 通过 File 获取 Media Uri
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    Uri getUriForFile(File file);
+    Uri getMediaUri(File file);
 
     /**
-     * 获取 FileProvider File Path Uri
-     * @param filePath 文件路径
+     * 通过 File 获取 Media Uri
+     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    Uri getUriForPath(String filePath);
-
-    /**
-     * 获取 FileProvider File Path Uri ( 自动添加包名 ${applicationId} )
-     * @param file         文件
-     * @param fileProvider android:authorities = ${applicationId}.fileProvider
-     * @return 指定文件 {@link Uri}
-     */
-    Uri getUriForFileToName(
-            File file,
-            String fileProvider
+    Uri getMediaUri(
+            Uri uri,
+            File file
     );
 
     /**
-     * 获取 FileProvider File Path Uri
-     * @param file      文件
-     * @param authority android:authorities
+     * 通过 File Path 获取 Media Uri
+     * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    Uri getUriForFile(
+    Uri getMediaUri(String filePath);
+
+    /**
+     * 通过 File Path 获取 Media Uri
+     * <pre>
+     *     只能用于查询 Media ( SDK_INT >= Q 使用, SDK_INT < Q 则直接使用 {@link Uri#fromFile(File)})
+     *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
+     * </pre>
+     * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    Uri getMediaUri(
+            Uri uri,
+            String filePath
+    );
+
+    // =
+
+    /**
+     * 通过 File 获取 Media 信息
+     * @param file       文件
+     * @param mediaQuery 多媒体查询抽象类
+     * @return Media 信息
+     */
+    String[] mediaQuery(
             File file,
-            String authority
+            ContentResolverUtils.MediaQuery mediaQuery
+    );
+
+    /**
+     * 通过 File 获取 Media 信息
+     * @param uri        MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file       文件
+     * @param mediaQuery 多媒体查询抽象类
+     * @return Media 信息
+     */
+    String[] mediaQuery(
+            Uri uri,
+            File file,
+            ContentResolverUtils.MediaQuery mediaQuery
+    );
+
+    /**
+     * 通过 File Path 获取 Media Uri
+     * @param filePath   文件路径
+     * @param mediaQuery 多媒体查询抽象类
+     * @return Media 信息
+     */
+    String[] mediaQuery(
+            String filePath,
+            ContentResolverUtils.MediaQuery mediaQuery
+    );
+
+    /**
+     * 通过 File Path 获取 Media Uri
+     * <pre>
+     *     只能用于查询 Media ( SDK_INT >= Q 使用, SDK_INT < Q 则直接使用 {@link Uri#fromFile(File)})
+     *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
+     * </pre>
+     * @param uri        MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param filePath   文件路径
+     * @param mediaQuery 多媒体查询抽象类
+     * @return Media 信息
+     */
+    String[] mediaQuery(
+            Uri uri,
+            String filePath,
+            ContentResolverUtils.MediaQuery mediaQuery
     );
 
     // ===================
     // = MediaStoreUtils =
     // ===================
+
+    // ==========
+    // = 通知相册 =
+    // ==========
+
+    /**
+     * 通知刷新本地资源
+     * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
+     */
+    @Deprecated
+    boolean notifyMediaStore(String filePath);
+
+    /**
+     * 通知刷新本地资源
+     * <pre>
+     *     注意事项: 部分手机 ( 如小米 ) 通知文件地址层级过深, 将会并入相册文件夹中
+     *     尽量放在 SDCrad/XXX/xx.jpg 层级中, 推荐直接存储到 {@link PathUtils#getSDCard().getDCIMPath()}
+     *     该方法只能通知刷新 外部存储 ( 公开目录 ) SDCard 文件地址
+     *     MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 )
+     *     <p></p>
+     *     正确的操作应该是: 不论版本统一存储到 外部存储 ( 私有目录 ) 再通过 MediaStore 插入数据
+     * </pre>
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
+     * @deprecated Android 10 ( Q ) 以后的版本需要通过 MediaStore 插入数据
+     */
+    @Deprecated
+    boolean notifyMediaStore(File file);
+
+    /**
+     * 通知刷新本地资源
+     * @param uri {@link Uri}
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean notifyMediaStore(Uri uri);
 
     // =======
     // = 图片 =
@@ -493,11 +660,30 @@ public interface IHelperByVersion<T> {
      */
     Uri createUriByFile(File file);
 
-    // =
+    // ==========
+    // = 插入数据 =
+    // ==========
 
     /**
      * 插入一张图片
-     * @param uri      Media Uri
+     * <pre>
+     *     Android 10 ( Q ) 已抛弃仍可用, 推荐使用传入 Uri 方式 {@link #createImageUri}
+     * </pre>
+     * @param filePath 文件路径
+     * @param name     存储文件名
+     * @param notify   是否通知相册
+     * @return {@code true} success, {@code false} fail
+     */
+    @Deprecated
+    Uri insertImage(
+            String filePath,
+            String name,
+            boolean notify
+    );
+
+    /**
+     * 插入一张图片
+     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @param format   如 Bitmap.CompressFormat.PNG
      * @param quality  质量
@@ -510,9 +696,11 @@ public interface IHelperByVersion<T> {
             @IntRange(from = 0, to = 100) int quality
     );
 
+    // =
+
     /**
      * 插入一张图片
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
@@ -523,7 +711,7 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条视频
-     * @param uri      Media Uri
+     * @param uri      {@link #createVideoUri} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
@@ -534,7 +722,7 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条音频
-     * @param uri      Media Uri
+     * @param uri      {@link #createAudioUri()} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
@@ -544,8 +732,22 @@ public interface IHelperByVersion<T> {
     );
 
     /**
+     * 插入一条文件资源
+     * @param uri      {@link #createDownloadUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean insertDownload(
+            Uri uri,
+            Uri inputUri
+    );
+
+    // =
+
+    /**
      * 插入一条多媒体资源
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
@@ -556,7 +758,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri         Media Uri
+     * @param uri         {@link #createImageUri} or {@link #createVideoUri} or
+     *                    {@link #createAudioUri()} or {@link #createMediaUri}
      * @param inputStream {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
@@ -580,7 +783,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param filePath 待存储文件路径
      * @return {@code true} success, {@code false} fail
      */
@@ -591,7 +795,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri  Media Uri
+     * @param uri  {@link #createImageUri} or {@link #createVideoUri} or
+     *             {@link #createAudioUri()} or {@link #createMediaUri}
      * @param file 待存储文件
      * @return {@code true} success, {@code false} fail
      */
@@ -604,7 +809,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param drawable 待保存图片
      * @return {@code true} success, {@code false} fail
      */
@@ -615,7 +821,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param drawable 待保存图片
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
@@ -628,7 +835,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri      Media Uri
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param drawable 待保存图片
      * @param format   如 Bitmap.CompressFormat.PNG
      * @param quality  质量
@@ -645,7 +853,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri    Media Uri
+     * @param uri    {@link #createImageUri} or {@link #createVideoUri} or
+     *               {@link #createAudioUri()} or {@link #createMediaUri}
      * @param bitmap 待保存图片
      * @return {@code true} success, {@code false} fail
      */
@@ -656,7 +865,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri    Media Uri
+     * @param uri    {@link #createImageUri} or {@link #createVideoUri} or
+     *               {@link #createAudioUri()} or {@link #createMediaUri}
      * @param bitmap 待保存图片
      * @param format 如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
@@ -669,7 +879,8 @@ public interface IHelperByVersion<T> {
 
     /**
      * 插入一条多媒体资源
-     * @param uri     Media Uri
+     * @param uri     {@link #createImageUri} or {@link #createVideoUri} or
+     *                {@link #createAudioUri()} or {@link #createMediaUri}
      * @param bitmap  待保存图片
      * @param format  如 Bitmap.CompressFormat.PNG
      * @param quality 质量
@@ -681,22 +892,6 @@ public interface IHelperByVersion<T> {
             Bitmap.CompressFormat format,
             @IntRange(from = 0, to = 100) int quality
     );
-
-    // ====================
-    // = Android 11 ( R ) =
-    // ====================
-
-    /**
-     * 是否获得 MANAGE_EXTERNAL_STORAGE 权限
-     * @return {@code true} yes, {@code false} no
-     */
-    boolean isExternalStorageManager();
-
-    /**
-     * 检查是否有 MANAGE_EXTERNAL_STORAGE 权限并跳转设置页面
-     * @return {@code true} yes, {@code false} no
-     */
-    boolean checkExternalStorageAndIntentSetting();
 
     /**
      * 获取用户向应用授予对指定媒体文件组的写入访问权限的请求
@@ -745,4 +940,20 @@ public interface IHelperByVersion<T> {
      * @return {@link PendingIntent}
      */
     PendingIntent createDeleteRequest(Collection<Uri> uris);
+
+    // =============
+    // = PathUtils =
+    // =============
+
+    /**
+     * 是否获得 MANAGE_EXTERNAL_STORAGE 权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isExternalStorageManager();
+
+    /**
+     * 检查是否有 MANAGE_EXTERNAL_STORAGE 权限并跳转设置页面
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean checkExternalStorageAndIntentSetting();
 }
