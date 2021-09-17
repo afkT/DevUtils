@@ -85,7 +85,7 @@ object PictureSelectorUtils {
     }
 
     /**
-     * 获取图片大于多少才进行压缩 (kb)
+     * 获取图片大于多少才进行压缩 ( kb )
      * @return 最小压缩大小
      */
     fun getMinimumCompressSize(): Int {
@@ -93,7 +93,7 @@ object PictureSelectorUtils {
     }
 
     /**
-     * 设置图片大于多少才进行压缩 (kb)
+     * 设置图片大于多少才进行压缩 ( kb )
      * @param minimumCompressSize 最小压缩大小
      */
     fun setMinimumCompressSize(minimumCompressSize: Int) {
@@ -416,7 +416,7 @@ object PictureSelectorUtils {
         // 是否压缩
         private var mIsCompress = false
 
-        // 图片大于多少才进行压缩 (kb)
+        // 图片大于多少才进行压缩 ( kb )
         private var mMinimumCompressSize = 2048
 
         // 裁减比例

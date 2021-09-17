@@ -92,7 +92,7 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取图片大于多少才进行压缩 (kb)
+     * 获取图片大于多少才进行压缩 ( kb )
      * @return 最小压缩大小
      */
     public static int getMinimumCompressSize() {
@@ -100,7 +100,7 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 设置图片大于多少才进行压缩 (kb)
+     * 设置图片大于多少才进行压缩 ( kb )
      * @param minimumCompressSize 最小压缩大小
      */
     public static void setMinimumCompressSize(final int minimumCompressSize) {
@@ -437,7 +437,7 @@ public final class PictureSelectorUtils {
         private boolean          mIsCircleCrop        = false;
         // 是否压缩
         private boolean          mIsCompress          = false;
-        // 图片大于多少才进行压缩 (kb)
+        // 图片大于多少才进行压缩 ( kb )
         private int              mMinimumCompressSize = 2048;
         // 裁减比例
         private int[]            mWithAspectRatio     = new int[]{0, 0};

@@ -24,7 +24,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     // 是否压缩
     private var mIsCompress = false
 
-    // 图片大于多少才进行压缩 (kb)
+    // 图片大于多少才进行压缩 ( kb )
     private var mMinimumCompressSize = 2048
 
     // 裁减比例

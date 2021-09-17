@@ -233,7 +233,7 @@ public class DevVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 value list( 倒序 )
+     * 获取变量数据 value list ( 倒序 )
      * @return {@link List}
      */
     public List<V> getVariableValuesToReverse() {
@@ -270,7 +270,7 @@ public class DevVariable<K, V> {
     }
 
     /**
-     * 获取变量数据 key list( 倒序 )
+     * 获取变量数据 key list ( 倒序 )
      * @return {@link List}
      */
     public List<K> getVariableKeysToReverse() {

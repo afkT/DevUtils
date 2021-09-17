@@ -469,10 +469,10 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | getVariableValue | 通过 key 获取 value |
 | getVariableValueConvert | 通过 key 获取 value |
 | getVariableValues | 获取变量数据 value list |
-| getVariableValuesToReverse | 获取变量数据 value list( 倒序 ) |
+| getVariableValuesToReverse | 获取变量数据 value list ( 倒序 ) |
 | getVariableKey | 通过 value 获取 key |
 | getVariableKeys | 获取变量数据 key list |
-| getVariableKeysToReverse | 获取变量数据 key list( 倒序 ) |
+| getVariableKeysToReverse | 获取变量数据 key list ( 倒序 ) |
 
 
 ## <span id="devbasedata">**`dev.base.data`**</span>

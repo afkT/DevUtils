@@ -35,7 +35,7 @@ public class PictureSelectorEngineImpl
     private       String      CAMERA_SAVE_PATH      = null;
     // 压缩图片存储地址
     private       String      COMPRESS_SAVE_PATH    = null;
-    // 图片大于多少才进行压缩 (kb)
+    // 图片大于多少才进行压缩 ( kb )
     private       int         MINIMUM_COMPRESS_SIZE = 0;
 
     // =============
