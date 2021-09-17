@@ -55,7 +55,7 @@ public class VersionHelper
     }
 
     // VersionHelper
-    private static VersionHelper HELPER = new VersionHelper();
+    private static final VersionHelper HELPER = new VersionHelper();
 
     /**
      * 获取单例 VersionHelper
