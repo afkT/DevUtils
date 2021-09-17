@@ -60,7 +60,7 @@ public interface IPreference {
     );
 
     /**
-     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set )
      * @param map {@link Map}
      */
     void putAll(Map<String, Object> map);

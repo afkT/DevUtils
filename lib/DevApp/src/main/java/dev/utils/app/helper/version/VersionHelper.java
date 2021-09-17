@@ -31,6 +31,10 @@ import dev.utils.app.UriUtils;
  *     并简化需多工具类组合使用的功能
  *     关于路径建议及兼容建议查看 {@link PathUtils}
  *     <p></p>
+ *     推荐使用 DevEngine 库 MediaStore Engine 实现 ( DevMediaStoreEngineImpl ) 进行外部、内部文件存储统一处理
+ *     DevEngine README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
+ *     <p></p>
  *     Android 10 ( Q ) 更新内容
  *     @see <a href="https://developer.android.google.cn/about/versions/10"/>
  *     Android 11 ( R ) 更新内容

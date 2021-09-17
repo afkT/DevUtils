@@ -260,7 +260,7 @@ public final class DevMediaManager
     // ==========
 
     /**
-     * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
+     * 预加载播放 ( file-path or http/rtsp URL ) http 资源、本地资源
      * @param playUri 播放地址
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
@@ -269,7 +269,7 @@ public final class DevMediaManager
     }
 
     /**
-     * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
+     * 预加载播放 ( file-path or http/rtsp URL ) http 资源、本地资源
      * @param playUri   播放地址
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行失败

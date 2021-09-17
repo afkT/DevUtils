@@ -98,8 +98,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最大频率 ( 单位 KHZ)
-     * @return CPU 最大频率 ( 单位 KHZ)
+     * 获取 CPU 最大频率 ( 单位 KHZ )
+     * @return CPU 最大频率 ( 单位 KHZ )
      */
     public static String getMaxCpuFreq() {
         ProcessBuilder cmd;
@@ -130,8 +130,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 最小频率 ( 单位 KHZ)
-     * @return CPU 最小频率 ( 单位 KHZ)
+     * 获取 CPU 最小频率 ( 单位 KHZ )
+     * @return CPU 最小频率 ( 单位 KHZ )
      */
     public static String getMinCpuFreq() {
         ProcessBuilder cmd;
@@ -162,8 +162,8 @@ public final class CPUUtils {
     }
 
     /**
-     * 获取 CPU 当前频率 ( 单位 KHZ)
-     * @return CPU 当前频率 ( 单位 KHZ)
+     * 获取 CPU 当前频率 ( 单位 KHZ )
+     * @return CPU 当前频率 ( 单位 KHZ )
      */
     public static String getCurCpuFreq() {
         try {

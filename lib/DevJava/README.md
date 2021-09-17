@@ -708,16 +708,16 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | addZero | 补 0 处理 ( 小于 10, 则自动补充 0x ) |
 | subZeroAndDot | 去掉结尾多余的 . 与 0 |
-| percentI | 计算百分比值 ( 最大 100%) |
-| percentD | 计算百分比值 ( 最大 100%) |
-| percentL | 计算百分比值 ( 最大 100%) |
-| percentF | 计算百分比值 ( 最大 100%) |
-| percentI2 | 计算百分比值 ( 可超出 100%) |
-| percentD2 | 计算百分比值 ( 可超出 100%) |
-| percentL2 | 计算百分比值 ( 可超出 100%) |
-| percentF2 | 计算百分比值 ( 可超出 100%) |
+| percentI | 计算百分比值 ( 最大 100% ) |
+| percentD | 计算百分比值 ( 最大 100% ) |
+| percentL | 计算百分比值 ( 最大 100% ) |
+| percentF | 计算百分比值 ( 最大 100% ) |
+| percentI2 | 计算百分比值 ( 可超出 100% ) |
+| percentD2 | 计算百分比值 ( 可超出 100% ) |
+| percentL2 | 计算百分比值 ( 可超出 100% ) |
+| percentF2 | 计算百分比值 ( 可超出 100% ) |
 | clamp | 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max |
-| getMultiple | 获取倍数 ( 自动补 1) |
+| getMultiple | 获取倍数 ( 自动补 1 ) |
 | getMultipleI | 获取倍数 |
 | getMultipleD | 获取倍数 |
 | getMultipleL | 获取倍数 |

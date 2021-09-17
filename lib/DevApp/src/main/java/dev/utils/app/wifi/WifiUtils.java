@@ -572,7 +572,7 @@ public final class WifiUtils {
     // ==========
 
     /**
-     * 删除指定的 Wifi(SSID) 配置信息
+     * 删除指定的 Wifi ( SSID ) 配置信息
      * @param ssid Wifi ssid
      * @return {@code true} success, {@code false} fail
      */

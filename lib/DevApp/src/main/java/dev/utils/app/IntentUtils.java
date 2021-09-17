@@ -149,28 +149,28 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取安装 APP( 支持 8.0) 的意图
+     * 获取安装 APP ( 支持 8.0 ) 的意图
      * @param filePath 文件路径
-     * @return 安装 APP( 支持 8.0) 的意图
+     * @return 安装 APP ( 支持 8.0 ) 的意图
      */
     public static Intent getInstallAppIntent(final String filePath) {
         return getInstallAppIntent(FileUtils.getFileByPath(filePath));
     }
 
     /**
-     * 获取安装 APP( 支持 8.0) 的意图
+     * 获取安装 APP ( 支持 8.0 ) 的意图
      * @param file 文件
-     * @return 安装 APP( 支持 8.0) 的意图
+     * @return 安装 APP ( 支持 8.0 ) 的意图
      */
     public static Intent getInstallAppIntent(final File file) {
         return getInstallAppIntent(file, false);
     }
 
     /**
-     * 获取安装 APP( 支持 8.0) 的意图
+     * 获取安装 APP ( 支持 8.0 ) 的意图
      * @param file      文件
      * @param isNewTask 是否开启新的任务栈
-     * @return 安装 APP( 支持 8.0) 的意图
+     * @return 安装 APP ( 支持 8.0 ) 的意图
      */
     public static Intent getInstallAppIntent(
             final File file,

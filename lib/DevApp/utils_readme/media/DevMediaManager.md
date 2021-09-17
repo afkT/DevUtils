@@ -30,7 +30,7 @@
 | setAudioStreamType | 设置流类型 |
 | playPrepareRaw | 播放 Raw 资源 |
 | playPrepareAssets | 播放 Assets 资源 |
-| playPrepare | 预加载播放 - (file-path or http/rtsp URL) http 资源、本地资源 |
+| playPrepare | 预加载播放 - ( file-path or http/rtsp URL ) http 资源、本地资源 |
 | isPlaying | 是否播放中 |
 | pause | 暂停操作 |
 | stop | 停止操作 - 销毁 MediaPlayer |

@@ -286,7 +286,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 获取 Alpha 位图 ( 获取源图片的轮廓 rgb 为 0)
+     * 获取 Alpha 位图 ( 获取源图片的轮廓 rgb 为 0 )
      * @param bitmap {@link Bitmap}
      * @return Alpha 位图
      */

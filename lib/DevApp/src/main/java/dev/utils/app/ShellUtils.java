@@ -218,7 +218,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功 ( 判断 errorMsg)
+         * 判断是否执行成功 ( 判断 errorMsg )
          * @return {@code true} yes, {@code false} no
          */
         public boolean isSuccess2() {
@@ -226,7 +226,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功 ( 判断 successMsg)
+         * 判断是否执行成功 ( 判断 successMsg )
          * @return {@code true} yes, {@code false} no
          */
         public boolean isSuccess3() {
@@ -234,7 +234,7 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功 ( 判断 successMsg), 并且 successMsg 是否包含某个字符串
+         * 判断是否执行成功 ( 判断 successMsg ), 并且 successMsg 是否包含某个字符串
          * @param contains 待校验包含字符串
          * @return {@code true} yes, {@code false} no
          */

@@ -54,7 +54,7 @@ public final class SharedUtils {
     }
 
     /**
-     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set )
      * @param map {@link Map}
      */
     public static void putAll(final Map<String, Object> map) {

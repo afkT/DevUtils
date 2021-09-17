@@ -1030,7 +1030,7 @@ public final class AppUtils {
     // ===========
 
     /**
-     * 安装 APP( 支持 8.0) 的意图
+     * 安装 APP ( 支持 8.0 ) 的意图
      * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
@@ -1039,7 +1039,7 @@ public final class AppUtils {
     }
 
     /**
-     * 安装 APP( 支持 8.0) 的意图
+     * 安装 APP ( 支持 8.0 ) 的意图
      * @param file 文件
      * @return {@code true} success, {@code false} fail
      */
@@ -1056,7 +1056,7 @@ public final class AppUtils {
     }
 
     /**
-     * 安装 APP( 支持 8.0) 的意图
+     * 安装 APP ( 支持 8.0 ) 的意图
      * @param activity    {@link Activity}
      * @param filePath    文件路径
      * @param requestCode 请求 code
@@ -1071,7 +1071,7 @@ public final class AppUtils {
     }
 
     /**
-     * 安装 APP( 支持 8.0) 的意图
+     * 安装 APP ( 支持 8.0 ) 的意图
      * @param activity    {@link Activity}
      * @param file        文件
      * @param requestCode 请求 code

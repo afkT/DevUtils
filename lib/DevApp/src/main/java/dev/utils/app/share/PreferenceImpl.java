@@ -236,7 +236,7 @@ final class PreferenceImpl
     }
 
     /**
-     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
+     * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set )
      * @param map {@link Map}
      */
     @Override
