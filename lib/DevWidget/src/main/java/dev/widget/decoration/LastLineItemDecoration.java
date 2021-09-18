@@ -27,6 +27,10 @@ public class LastLineItemDecoration
     private final Paint   mLinePaint;
     // 单条数据是否绘制分割线
     private       boolean mSingleLineDraw = false;
+    // 分割线距左边距
+    private       float   mLineLeft       = 0.0f;
+    // 分割线距右边距
+    private       float   mLineRight      = 0.0f;
 
     public LastLineItemDecoration(float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
@@ -71,6 +75,57 @@ public class LastLineItemDecoration
         return this;
     }
 
+    /**
+     * 获取分割线距左边距
+     * @return 分割线距左边距
+     */
+    public float getLineLeft() {
+        return mLineLeft;
+    }
+
+    /**
+     * 设置分割线距左边距
+     * @param lineLeft 分割线距左边距
+     * @return {@link LastLineItemDecoration}
+     */
+    public LastLineItemDecoration setLineLeft(float lineLeft) {
+        this.mLineLeft = lineLeft;
+        return this;
+    }
+
+    /**
+     * 获取分割线距右边距
+     * @return 分割线距右边距
+     */
+    public float getLineRight() {
+        return mLineRight;
+    }
+
+    /**
+     * 设置分割线距右边距
+     * @param lineRight 分割线距右边距
+     * @return {@link LastLineItemDecoration}
+     */
+    public LastLineItemDecoration setLineRight(float lineRight) {
+        this.mLineRight = lineRight;
+        return this;
+    }
+
+    /**
+     * 设置分割线距左、右边距
+     * @param lineLeft  分割线距左边距
+     * @param lineRight 分割线距右边距
+     * @return {@link LastLineItemDecoration}
+     */
+    public LastLineItemDecoration setLineLeftRight(
+            float lineLeft,
+            float lineRight
+    ) {
+        this.mLineLeft  = lineLeft;
+        this.mLineRight = lineRight;
+        return this;
+    }
+
     // ==========
     // = 处理方法 =
     // ==========
@@ -112,9 +167,9 @@ public class LastLineItemDecoration
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
                     canvas.drawRect(
-                            child.getLeft(),
+                            child.getLeft() + mLineLeft,
                             child.getBottom(),
-                            child.getRight(),
+                            child.getRight() - mLineRight,
                             child.getBottom() + mLineHeight,
                             mLinePaint
                     );
