@@ -25,7 +25,7 @@ import dev.utils.common.FileUtils;
  * detail: VersionHelper 接口
  * @author Ttt
  */
-public interface IHelperByVersion<T> {
+public interface IHelperByVersion {
 
     // ============
     // = UriUtils =

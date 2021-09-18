@@ -50,7 +50,7 @@ import dev.utils.common.FileUtils;
  * </pre>
  */
 public class VersionHelper
-        implements IHelperByVersion<VersionHelper> {
+        implements IHelperByVersion {
 
     private VersionHelper() {
     }
@@ -69,7 +69,6 @@ public class VersionHelper
     // ====================
     // = IHelperByVersion =
     // ====================
-
 
     // ============
     // = UriUtils =
