@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * detail: RecyclerView 分割线
  * @author Ttt
  * <pre>
+ *     效果:
+ *     每个 Item 下面绘制 Line, 最后一条数据不绘制 ( 绘制 ItemCount - 1 条 Line 效果 )
+ *     <p></p>
  *     使用:
  *     {@link RecyclerView#addItemDecoration(RecyclerView.ItemDecoration)}
  *     <p></p>
@@ -29,12 +32,12 @@ public class LineItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // 分割线高度
-    private       float mLineHeight;
+    private final float mLineHeight;
     // 分割线画笔
     private final Paint mLinePaint;
 
     public LineItemDecoration(float lineHeight) {
-        this(lineHeight, Color.BLACK);
+        this(lineHeight, Color.TRANSPARENT);
     }
 
     public LineItemDecoration(

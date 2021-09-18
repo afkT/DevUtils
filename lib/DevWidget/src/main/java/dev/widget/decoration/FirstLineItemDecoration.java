@@ -11,19 +11,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * detail: RecyclerView 分割线 ( 在开头添加分割线 )
+ * detail: RecyclerView 分割线 ( 在开头添加一条分割线 )
  * @author Ttt
+ * <pre>
+ *     可自行改造 {@link #onDrawOver(Canvas, RecyclerView, RecyclerView.State)}
+ *     通过 Canvas 绘制所需样式
+ * </pre>
  */
 public class FirstLineItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // 分割线高度
-    private       float mLineHeight;
+    private final float   mLineHeight;
     // 分割线画笔
-    private final Paint mLinePaint;
+    private final Paint   mLinePaint;
+    // 单条数据是否绘制分割线
+    private       boolean mSingleLineDraw = false;
 
     public FirstLineItemDecoration(float lineHeight) {
-        this(lineHeight, Color.BLACK);
+        this(lineHeight, Color.TRANSPARENT);
     }
 
     public FirstLineItemDecoration(
@@ -47,6 +53,24 @@ public class FirstLineItemDecoration
         return mLinePaint;
     }
 
+    /**
+     * 获取单条数据是否绘制分割线
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isSingleLineDraw() {
+        return mSingleLineDraw;
+    }
+
+    /**
+     * 设置单条数据是否绘制分割线
+     * @param singleLineDraw {@code true} yes, {@code false} no
+     * @return {@link FirstLineItemDecoration}
+     */
+    public FirstLineItemDecoration setSingleLineDraw(boolean singleLineDraw) {
+        this.mSingleLineDraw = singleLineDraw;
+        return this;
+    }
+
     // ==========
     // = 处理方法 =
     // ==========
@@ -59,6 +83,10 @@ public class FirstLineItemDecoration
             @NonNull RecyclerView.State state
     ) {
         if (parent.getChildAdapterPosition(view) == 0) {
+            int itemCount = state.getItemCount();
+            if (!mSingleLineDraw && itemCount <= 1) {
+                return;
+            }
             outRect.set(0, (int) mLineHeight, 0, 0);
         } else {
             outRect.set(0, 0, 0, 0);
