@@ -849,7 +849,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | calcScale | 计算比例 ( 商 ) |
-| calcScaleToMath | 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 )  ) |
+| calcScaleToMath | 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 ) ) |
 | calcScaleToWidth | 计算缩放比例 ( 根据宽度比例转换高度 ) |
 | calcScaleToHeight | 计算缩放比例 ( 根据高度比例转换宽度 ) |
 | calcWidthHeightToScale | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
