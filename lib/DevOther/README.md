@@ -3,30 +3,42 @@
 ## 目录结构
 
 ```
-- dev                                                 | 根目录
-   - assist                                           | 常用辅助类封装
-   - engine                                           | 兼容 Engine
-      - cache                                         | Cache Engine 有效期键值对缓存
-      - compress                                      | Image Compress Engine 图片压缩
-      - image                                         | Image Engine 图片加载、下载、转格式等
-      - json                                          | JSON Engine 映射
-      - keyvalue                                      | KeyValue Engine 键值对存储
-      - log                                           | Log Engine 日志打印
-      - media                                         | Media Selector Engine 多媒体资源选择
-      - permission                                    | Permission Engine 权限申请
-      - storage                                       | Storage Engine 外部、内部文件存储
-   - other                                            | 第三方库封装工具类
-      - cache                                         | 缓存工具类
-      - okgo                                          | OkGo 网络请求
-      - retrofit                                      | Retrofit 网络请求
-         - response                                   | 请求响应解析
-         - subscriber                                 | 请求响应处理
-      - work                                          | WorkManager Utils
-         - demo                                       | WorkManager 使用 Demo
-   - receiver                                         | BroadcastReceiver 监听相关
-   - service                                          | Service 相关
-   - widget                                           | 控件相关
-      - decoration                                    | RecyclerView ItemDecoration
+-                                                     | 根目录
+   - dev                                              | 通用实现
+      - receiver                                      | BroadcastReceiver 监听相关
+      - service                                       | Service 相关
+   - java                                             | Java 实现
+      - dev                                           | 根目录
+         - assist                                     | 常用辅助类封装
+         - engine                                     | 兼容 Engine
+            - barcode                                 | BarCode Engine 条形码、二维码处理
+            - cache                                   | Cache Engine 有效期键值对缓存
+            - compress                                | Image Compress Engine 图片压缩
+            - image                                   | Image Engine 图片加载、下载、转格式等
+            - json                                    | JSON Engine 映射
+            - keyvalue                                | KeyValue Engine 键值对存储
+            - log                                     | Log Engine 日志打印
+            - media                                   | Media Selector Engine 多媒体资源选择
+            - permission                              | Permission Engine 权限申请
+            - storage                                 | Storage Engine 外部、内部文件存储
+         - other                                      | 第三方库封装工具类
+            - cache                                   | 缓存工具类
+            - okgo                                    | OkGo 网络请求
+            - retrofit                                | Retrofit 网络请求
+               - response                             | 请求响应解析
+               - subscriber                           | 请求响应处理
+            - work                                    | WorkManager Utils
+               - demo                                 | WorkManager 使用 Demo
+   - ktx                                              | Kotlin 实现
+      - dev                                           | 根目录
+         - assist                                     | 常用辅助类封装
+         - other                                      | 第三方库封装工具类
+            - retrofit_coroutines                     | Retrofit Coroutines 封装
+               - demo                                 | Retrofit Coroutines Demo
+            - retrofit_rxjava                         | Retrofit RxJava 封装
+               - demo                                 | Retrofit RxJava Demo
+               - response                             | 请求响应解析
+               - subscriber                           | 请求响应处理
 ```
 
 
@@ -38,30 +50,42 @@
 ## API
 
 
-- dev                                                 | 根目录
-   - [assist](#devassist)                             | 常用辅助类封装
-   - [engine](#devengine)                             | 兼容 Engine
-      - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
-      - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
-      - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
-      - [json](#devenginejson)                        | JSON Engine 映射
-      - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
-      - [log](#devenginelog)                          | Log Engine 日志打印
-      - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
-      - [permission](#devenginepermission)            | Permission Engine 权限申请
-      - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
-   - [other](#devother)                               | 第三方库封装工具类
-      - [cache](#devothercache)                       | 缓存工具类
-      - [okgo](#devotherokgo)                         | OkGo 网络请求
-      - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
-         - [response](#devotherretrofitresponse)      | 请求响应解析
-         - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
-      - [work](#devotherwork)                         | WorkManager Utils
-         - [demo](#devotherworkdemo)                  | WorkManager 使用 Demo
-   - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
-   - [service](#devservice)                           | Service 相关
-   - [widget](#devwidget)                             | 控件相关
-      - [decoration](#devwidgetdecoration)            | RecyclerView ItemDecoration
+-                                                                        | 根目录
+   - [dev](#dev)                                                         | 通用实现
+      - [receiver](#devreceiver)                                         | BroadcastReceiver 监听相关
+      - [service](#devservice)                                           | Service 相关
+   - [java](#java)                                                       | Java 实现
+      - [dev](#javadev)                                                  | 根目录
+         - [assist](#javadevassist)                                      | 常用辅助类封装
+         - [engine](#javadevengine)                                      | 兼容 Engine
+            - [barcode](#javadevenginebarcode)                           | BarCode Engine 条形码、二维码处理
+            - [cache](#javadevenginecache)                               | Cache Engine 有效期键值对缓存
+            - [compress](#javadevenginecompress)                         | Image Compress Engine 图片压缩
+            - [image](#javadevengineimage)                               | Image Engine 图片加载、下载、转格式等
+            - [json](#javadevenginejson)                                 | JSON Engine 映射
+            - [keyvalue](#javadevenginekeyvalue)                         | KeyValue Engine 键值对存储
+            - [log](#javadevenginelog)                                   | Log Engine 日志打印
+            - [media](#javadevenginemedia)                               | Media Selector Engine 多媒体资源选择
+            - [permission](#javadevenginepermission)                     | Permission Engine 权限申请
+            - [storage](#javadevenginestorage)                           | Storage Engine 外部、内部文件存储
+         - [other](#javadevother)                                        | 第三方库封装工具类
+            - [cache](#javadevothercache)                                | 缓存工具类
+            - [okgo](#javadevotherokgo)                                  | OkGo 网络请求
+            - [retrofit](#javadevotherretrofit)                          | Retrofit 网络请求
+               - [response](#javadevotherretrofitresponse)               | 请求响应解析
+               - [subscriber](#javadevotherretrofitsubscriber)           | 请求响应处理
+            - [work](#javadevotherwork)                                  | WorkManager Utils
+               - [demo](#javadevotherworkdemo)                           | WorkManager 使用 Demo
+   - [ktx](#ktx)                                                         | Kotlin 实现
+      - [dev](#ktxdev)                                                   | 根目录
+         - [assist](#ktxdevassist)                                       | 常用辅助类封装
+         - [other](#ktxdevother)                                         | 第三方库封装工具类
+            - [retrofit_coroutines](#ktxdevotherretrofit_coroutines)     | Retrofit Coroutines 封装
+               - [demo](#ktxdevotherretrofit_coroutinesdemo)             | Retrofit Coroutines Demo
+            - [retrofit_rxjava](#ktxdevotherretrofit_rxjava)             | Retrofit RxJava 封装
+               - [demo](#ktxdevotherretrofit_rxjavademo)                 | Retrofit RxJava Demo
+               - [response](#ktxdevotherretrofit_rxjavaresponse)         | 请求响应解析
+               - [subscriber](#ktxdevotherretrofit_rxjavasubscriber)     | 请求响应处理
 
 
 
@@ -69,10 +93,22 @@
 ## <span id="dev">**`dev`**</span>
 
 
-## <span id="devassist">**`dev.assist`**</span>
+## <span id="devreceiver">**`dev.receiver`**</span>
 
 
-* **WebView 辅助类 ->** [WebViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/assist/WebViewAssist.java)
+## <span id="devservice">**`dev.service`**</span>
+
+
+## <span id="java">**`java`**</span>
+
+
+## <span id="javadev">**`java.dev`**</span>
+
+
+## <span id="javadevassist">**`java.dev.assist`**</span>
+
+
+* **WebView 辅助类 ->** [WebViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/assist/WebViewAssist.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -190,16 +226,74 @@
 | onApply | 应用配置通知方法 |
 
 
-## <span id="devengine">**`dev.engine`**</span>
+## <span id="javadevengine">**`java.dev.engine`**</span>
 
 
-## <span id="devenginecache">**`dev.engine.cache`**</span>
+## <span id="javadevenginebarcode">**`java.dev.engine.barcode`**</span>
 
 
-* **DevCache Engine 实现 ->** [DevCacheEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/cache/DevCacheEngineImpl.java)
+* **BarCode Config ->** [BarCodeConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| getEncodeHints | 获取编码 ( 生成 ) 配置 |
+| getDecodeHints | 获取解码 ( 解析 ) 配置 |
+| defaultEncode | 设置默认编码 ( 生成 ) 配置 |
+| putEncodeHints | 设置编码 ( 生成 ) 配置 |
+| putDecodeHints | 设置解码 ( 解析 ) 配置 |
+
+
+* **BarCode ( Data、Params ) Item ->** [BarCodeData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeData.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 快捷创建 BarCode ( Data、Params ) Item |
+| getContent | 获取条码内容 |
+| getWidth | 获取条码宽度 |
+| getHeight | 获取条码高度 |
+| getFormat | 获取条码类型 |
+| setFormat | 设置条码类型 |
+| getForegroundColor | 获取条码前景色 |
+| setForegroundColor | 设置条码前景色 |
+| getBackgroundColor | 获取条码背景色 |
+| setBackgroundColor | 设置条码背景色 |
+| getIcon | 获取条码嵌入 icon、logo |
+| setIcon | 设置条码嵌入 icon、logo |
+| getIconScale | 获取 icon 占比 |
+| setIconScale | 设置 icon 占比 |
+
+
+* **BarCode Result ->** [BarCodeResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeResult.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isSuccess | 是否解析成功 |
+| getResult | 获取解析结果 |
+| getResultData | 获取扫描结果数据 |
+| getBarcodeFormat | 获取条码类型 |
+
+
+* **ZXing BarCode Engine 实现 ->** [ZXingEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/ZXingEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | initialize |
+| getConfig | getConfig |
+| encodeBarCode | encodeBarCode |
+| encodeBarCodeSync | encodeBarCodeSync |
+| decodeBarCode | decodeBarCode |
+| decodeBarCodeSync | decodeBarCodeSync |
+| addIconToBarCode | 添加 Icon 到条码图片上 |
+
+
+## <span id="javadevenginecache">**`java.dev.engine.cache`**</span>
+
+
+* **DevCache ( DevUtils ) Cache Engine 实现 ->** [DevCacheEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/cache/DevCacheEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setJSONEngine | setJSONEngine |
 | getConfig | getConfig |
 | remove | remove |
 | removeForKeys | removeForKeys |
@@ -230,10 +324,10 @@
 | getEntity | getEntity |
 
 
-## <span id="devenginecompress">**`dev.engine.compress`**</span>
+## <span id="javadevenginecompress">**`java.dev.engine.compress`**</span>
 
 
-* **Image Compress Config ->** [CompressConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/compress/CompressConfig.java)
+* **Image Compress Config ->** [CompressConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/compress/CompressConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -241,17 +335,17 @@
 | setFailFinish | setFailFinish |
 
 
-* **Luban Image Compress Engine 实现 ->** [LubanEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/compress/LubanEngineImpl.java)
+* **Luban Image Compress Engine 实现 ->** [LubanEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/compress/LubanEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | compress | compress |
 
 
-## <span id="devengineimage">**`dev.engine.image`**</span>
+## <span id="javadevengineimage">**`java.dev.engine.image`**</span>
 
 
-* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideEngineImpl.java)
+* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/image/GlideEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -273,7 +367,7 @@
 | convertImageFormat | convertImageFormat |
 
 
-* **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/ImageConfig.java)
+* **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/image/ImageConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -306,24 +400,16 @@
 | setQuality | setQuality |
 | isOriginalPathReturn | isOriginalPathReturn |
 | setOriginalPathReturn | setOriginalPathReturn |
+| isDontAnimate | isDontAnimate |
+| setDontAnimate | setDontAnimate |
+| isDontTransform | isDontTransform |
+| setDontTransform | setDontTransform |
 
 
-## <span id="devenginejson">**`dev.engine.json`**</span>
+## <span id="javadevenginejson">**`java.dev.engine.json`**</span>
 
 
-* **Fastjson JSON Engine 实现 ->** [FastjsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/json/FastjsonEngineImpl.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| toJson | toJson |
-| fromJson | fromJson |
-| isJSON | isJSON |
-| isJSONObject | isJSONObject |
-| isJSONArray | isJSONArray |
-| toJsonIndent | toJsonIndent |
-
-
-* **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/json/GsonEngineImpl.java)
+* **Fastjson JSON Engine 实现 ->** [FastjsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/json/FastjsonEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -335,20 +421,33 @@
 | toJsonIndent | toJsonIndent |
 
 
-## <span id="devenginekeyvalue">**`dev.engine.keyvalue`**</span>
+* **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/json/GsonEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| toJson | toJson |
+| fromJson | fromJson |
+| isJSON | isJSON |
+| isJSONObject | isJSONObject |
+| isJSONArray | isJSONArray |
+| toJsonIndent | toJsonIndent |
 
 
-* **MMKV Key-Value Config ->** [MMKVConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/keyvalue/MMKVConfig.java)
+## <span id="javadevenginekeyvalue">**`java.dev.engine.keyvalue`**</span>
+
+
+* **MMKV Key-Value Config ->** [MMKVConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getMMKV | getMMKV |
 
 
-* **MMKV Key-Value Engine 实现 ->** [MMKVKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/keyvalue/MMKVKeyValueEngineImpl.java)
+* **MMKV Key-Value Engine 实现 ->** [MMKVKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVKeyValueEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| setJSONEngine | setJSONEngine |
 | getConfig | getConfig |
 | remove | remove |
 | removeForKeys | removeForKeys |
@@ -370,17 +469,18 @@
 | getEntity | getEntity |
 
 
-* **SharedPreferences Key-Value Config ->** [SPConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/keyvalue/SPConfig.java)
+* **SharedPreferences Key-Value Config ->** [SPConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/SPConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getPreference | getPreference |
 
 
-* **SharedPreferences Key-Value Engine 实现 ->** [SPKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/keyvalue/SPKeyValueEngineImpl.java)
+* **SharedPreferences Key-Value Engine 实现 ->** [SPKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/SPKeyValueEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| setJSONEngine | setJSONEngine |
 | getConfig | getConfig |
 | remove | remove |
 | removeForKeys | removeForKeys |
@@ -402,13 +502,14 @@
 | getEntity | getEntity |
 
 
-## <span id="devenginelog">**`dev.engine.log`**</span>
+## <span id="javadevenginelog">**`java.dev.engine.log`**</span>
 
 
-* **DevLogger Log Engine 实现 ->** [DevLoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/log/DevLoggerEngineImpl.java)
+* **DevLogger Log Engine 实现 ->** [DevLoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/log/DevLoggerEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| getLogConfig | getLogConfig |
 | d | d |
 | e | e |
 | w | w |
@@ -427,10 +528,10 @@
 | xmlTag | xmlTag |
 
 
-## <span id="devenginemedia">**`dev.engine.media`**</span>
+## <span id="javadevenginemedia">**`java.dev.engine.media`**</span>
 
 
-* **Glide 加载引擎 ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/GlideEngine.java)
+* **Glide 加载引擎 ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -441,7 +542,7 @@
 | createGlideEngine | createGlideEngine |
 
 
-* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/LocalMediaData.java)
+* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/LocalMediaData.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -450,7 +551,7 @@
 | getLocalMediaPath | 获取本地资源路径 |
 
 
-* **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/MediaConfig.java)
+* **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/MediaConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -492,7 +593,7 @@
 | ofAudio | ofAudio |
 
 
-* **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/PictureSelectorEngineImpl.java)
+* **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/PictureSelectorEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -514,10 +615,10 @@
 | getSingleSelectorPath | getSingleSelectorPath |
 
 
-## <span id="devenginepermission">**`dev.engine.permission`**</span>
+## <span id="javadevenginepermission">**`java.dev.engine.permission`**</span>
 
 
-* **DevUtils Permission Engine 实现 ->** [DevPermissionEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/permission/DevPermissionEngineImpl.java)
+* **DevUtils Permission Engine 实现 ->** [DevPermissionEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/permission/DevPermissionEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -528,10 +629,10 @@
 | request | request |
 
 
-## <span id="devenginestorage">**`dev.engine.storage`**</span>
+## <span id="javadevenginestorage">**`java.dev.engine.storage`**</span>
 
 
-* **DevUtils MediaStore Engine 实现 ->** [DevMediaStoreEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/DevMediaStoreEngineImpl.java)
+* **DevUtils MediaStore Engine 实现 ->** [DevMediaStoreEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/DevMediaStoreEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -547,7 +648,7 @@
 | insertMediaToInternal | 插入一条多媒体资源到内部存储空间 |
 
 
-* **Storage Item Params ->** [StorageItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageItem.java)
+* **Storage Item Params ->** [StorageItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageItem.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -569,7 +670,7 @@
 | createExternalItemFolder | 创建外部存储路径信息 Item |
 
 
-* **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageResult.java)
+* **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageResult.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -588,7 +689,7 @@
 | setExternal | setExternal |
 
 
-* **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageType.java)
+* **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageType.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -603,10 +704,10 @@
 | getTypeRelativePath | 通过 mimeType 获取对应存储文件夹 |
 
 
-## <span id="devother">**`dev.other`**</span>
+## <span id="javadevother">**`java.dev.other`**</span>
 
 
-* **EventBus 工具类 ->** [EventBusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/EventBusUtils.java)
+* **EventBus 工具类 ->** [EventBusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/EventBusUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -619,7 +720,7 @@
 | removeAllStickyEvents | 移除所有的粘性订阅事件 |
 
 
-* **Fastjson 工具类 ->** [FastjsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/FastjsonUtils.java)
+* **Fastjson 工具类 ->** [FastjsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/FastjsonUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -636,7 +737,7 @@
 | getType | 获取 Type |
 
 
-* **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/GlideTransformUtils.java)
+* **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GlideTransformUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -645,7 +746,7 @@
 | blurBitmap | 模糊图片处理 |
 
 
-* **Glide 工具类 ->** [GlideUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/GlideUtils.java)
+* **Glide 工具类 ->** [GlideUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GlideUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -667,7 +768,7 @@
 | convertImageFormat | convertImageFormat |
 
 
-* **Gson 工具类 ->** [GsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/GsonUtils.java)
+* **Gson 工具类 ->** [GsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GsonUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -686,11 +787,11 @@
 | getType | 获取 Type |
 
 
-* **ImageLoader 工具类 ->** [ImageLoaderUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ImageLoaderUtils.java)
+* **ImageLoader 工具类 ->** [ImageLoaderUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ImageLoaderUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| init | 初始化 ImageLoader 加载配置 |
+| initialize | 初始化 ImageLoader 加载配置 |
 | defaultOptions | 获取 DisplayImageOptions 图片加载配置 |
 | getDefaultImageOptions | 获取图片默认加载配置 |
 | getNoCacheImageOptions | 获取不使用缓存的图片加载配置 |
@@ -717,7 +818,7 @@
 | stop | 停止图片加载 |
 
 
-* **Luban 工具类 ->** [LubanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/LubanUtils.java)
+* **Luban 工具类 ->** [LubanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/LubanUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -730,11 +831,11 @@
 | onComplete | 压缩完成 ( 压缩结束 ) |
 
 
-* **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/MMKVUtils.java)
+* **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/MMKVUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| init | 初始化方法 ( 必须调用 ) |
+| initialize | 初始化方法 ( 必须调用 ) |
 | containsMMKV | 是否存在指定 Key 的 MMKV Holder |
 | get | 通过 Key 获取 MMKV Holder |
 | putHolder | 保存自定义 MMKV Holder |
@@ -761,7 +862,7 @@
 | decodeParcelable | decodeParcelable |
 
 
-* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/PictureSelectorUtils.java)
+* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/PictureSelectorUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -770,8 +871,8 @@
 | getCameraSavePath | 获取拍照存储地址 |
 | getCompressSavePath | 获取压缩图片存储地址 |
 | setSavePath | 设置存储地址 |
-| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
-| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 ( kb ) |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 ( kb ) |
 | deleteCacheDirFile | 清空缓存 |
 | deleteAllCacheDirFile | 清空全部缓存 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
@@ -816,7 +917,7 @@
 | ofAudio | ofAudio |
 
 
-* **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ZXingQRCodeUtils.java)
+* **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ZXingQRCodeUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -826,12 +927,13 @@
 | decodeQRCodeSync | 解码 ( 解析 ) 二维码图片 |
 | addLogoToQRCode | 添加 Logo 到二维码图片上 |
 | getResultData | 获取扫描结果数据 |
+| onResult | 二维码编码 ( 生成 ) 回调 |
 
 
-## <span id="devothercache">**`dev.other.cache`**</span>
+## <span id="javadevothercache">**`java.dev.other.cache`**</span>
 
 
-* **缓存工具类 ->** [ACache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/cache/ACache.java)
+* **缓存工具类 ->** [ACache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/cache/ACache.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -850,10 +952,10 @@
 | clear | 清除所有数据 |
 
 
-## <span id="devotherokgo">**`dev.other.okgo`**</span>
+## <span id="javadevotherokgo">**`java.dev.other.okgo`**</span>
 
 
-* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)
+* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -869,7 +971,7 @@
 | onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 
 
-* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoDemo.java)
+* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoDemo.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -879,7 +981,7 @@
 | uploadImages | 上传多个文件 |
 
 
-* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
+* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoResponse.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -894,7 +996,7 @@
 | setException | setException |
 
 
-* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoUtils.java)
+* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -902,10 +1004,10 @@
 | execute | 执行请求处理 |
 
 
-## <span id="devotherretrofit">**`dev.other.retrofit`**</span>
+## <span id="javadevotherretrofit">**`java.dev.other.retrofit`**</span>
 
 
-* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/RetrofitManager.java)
+* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/RetrofitManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -918,7 +1020,7 @@
 | create | 创建 API Service Class |
 
 
-* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/RxJavaManager.java)
+* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/RxJavaManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -930,13 +1032,13 @@
 | io_main | Flowable UI 线程 |
 
 
-## <span id="devotherretrofitresponse">**`dev.other.retrofit.response`**</span>
+## <span id="javadevotherretrofitresponse">**`java.dev.other.retrofit.response`**</span>
 
 
-## <span id="devotherretrofitsubscriber">**`dev.other.retrofit.subscriber`**</span>
+## <span id="javadevotherretrofitsubscriber">**`java.dev.other.retrofit.subscriber`**</span>
 
 
-* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
+* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -949,7 +1051,7 @@
 | getErrorMessage | 获取异常信息 |
 
 
-* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
+* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -963,10 +1065,10 @@
 | isSuccess | 通过 code 判断请求是否正确 |
 
 
-## <span id="devotherwork">**`dev.other.work`**</span>
+## <span id="javadevotherwork">**`java.dev.other.work`**</span>
 
 
-* **WorkManager 工具类 ->** [WorkManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/WorkManagerUtils.java)
+* **WorkManager 工具类 ->** [WorkManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/WorkManagerUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -995,10 +1097,10 @@
 | beginUniqueWork | beginUniqueWork |
 
 
-## <span id="devotherworkdemo">**`dev.other.work.demo`**</span>
+## <span id="javadevotherworkdemo">**`java.dev.other.work.demo`**</span>
 
 
-* ** ->** [ChainWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/ChainWorker.java)
+* ** ->** [ChainWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/ChainWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1007,7 +1109,7 @@
 | doWork | doWork |
 
 
-* **模拟后台间隔性进行定位 ->** [LocationWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/LocationWorker.java)
+* **模拟后台间隔性进行定位 ->** [LocationWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/LocationWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1015,7 +1117,7 @@
 | builder | 快捷创建循环 Worker Request |
 
 
-* **打印日志 Worker ( 用于演示 ) ->** [LogWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/LogWorker.java)
+* **打印日志 Worker ( 用于演示 ) ->** [LogWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/LogWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1025,13 +1127,31 @@
 | observe | 监听 WorkRequest 状态 |
 
 
-## <span id="devreceiver">**`dev.receiver`**</span>
+## <span id="ktx">**`ktx`**</span>
 
 
-## <span id="devservice">**`dev.service`**</span>
+## <span id="ktxdev">**`ktx.dev`**</span>
 
 
-## <span id="devwidget">**`dev.widget`**</span>
+## <span id="ktxdevassist">**`ktx.dev.assist`**</span>
 
 
-## <span id="devwidgetdecoration">**`dev.widget.decoration`**</span>
+## <span id="ktxdevother">**`ktx.dev.other`**</span>
+
+
+## <span id="ktxdevotherretrofit_coroutines">**`ktx.dev.other.retrofit_coroutines`**</span>
+
+
+## <span id="ktxdevotherretrofit_coroutinesdemo">**`ktx.dev.other.retrofit_coroutines.demo`**</span>
+
+
+## <span id="ktxdevotherretrofit_rxjava">**`ktx.dev.other.retrofit_rxjava`**</span>
+
+
+## <span id="ktxdevotherretrofit_rxjavademo">**`ktx.dev.other.retrofit_rxjava.demo`**</span>
+
+
+## <span id="ktxdevotherretrofit_rxjavaresponse">**`ktx.dev.other.retrofit_rxjava.response`**</span>
+
+
+## <span id="ktxdevotherretrofit_rxjavasubscriber">**`ktx.dev.other.retrofit_rxjava.subscriber`**</span>

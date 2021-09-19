@@ -58,8 +58,6 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
       - [validator](#devutilscommonvalidator)         | 数据校验工具类
 
 
-
-
 ## <span id="devutilscommon">**`dev.utils.common`**</span>
 
 
@@ -72,6 +70,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | length | 获取数组长度 |
 | isLength | 判断数组长度是否等于期望长度 |
 | getCount | 获取数组长度总和 |
+| getByArray | 获取数组对应索引数据 |
 | get | 获取数组对应索引数据 |
 | getFirst | 获取数组第一条数据 |
 | getLast | 获取数组最后一条数据 |
@@ -343,8 +342,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | convert | Object 转换所需类型对象 |
-| toString | Object 转 String |
 | newString | Object 转 String |
+| toString | Object 转 String |
 | toInt | Object 转 Integer |
 | toBoolean | Object 转 Boolean |
 | toFloat | Object 转 Float |
@@ -410,29 +409,49 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| getDateNow | 获取当前日期的字符串 ( yyyy-MM-dd HH:mm:ss ) |
-| formatTime | 将时间戳转换日期字符串 |
+| getDefaultFormat | 获取默认 SimpleDateFormat ( yyyy-MM-dd HH:mm:ss ) |
+| getSafeDateFormat | 获取对应时间格式线程安全 SimpleDateFormat |
+| getCalendar | 获取 Calendar |
+| getCurrentTime | 获取当前时间 Date |
+| getCurrentTimeMillis | 获取当前时间毫秒 |
+| getDateTime | 获取 Date Time |
+| getDateNow | 获取当前时间的字符串 |
 | formatDate | 将 Date 转换日期字符串 |
-| parseDate | 将时间戳转换成 Date |
-| parseLong | 解析时间字符串转换为 long 毫秒 ( 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式 ) |
-| parseToString | 转换时间为指定字符串 |
-| getTimeDiffMinute | 获取时间差 ( 分钟 ) |
-| getTimeDiffHour | 获取时间差 ( 小时 ) |
-| getTimeDiffDay | 获取时间差 ( 天 ) |
-| getTimeDiff | 获取时间差 ( 传入时间 - 当前时间 ) |
-| getYear | 获取年 |
-| getMonth | 获取月 ( 0 - 11 ) + 1 |
-| getDay | 获取日 |
-| getWeek | 获取日期是星期几 |
-| get24Hour | 获取时 ( 24 ) |
-| get12Hour | 获取时 ( 12 ) |
-| getMinute | 获取分 |
-| getSecond | 获取秒 |
-| timeAddZero | 时间补 0 处理 ( 小于 10, 则自动补充 0x ) |
+| formatTime | 将时间毫秒转换日期字符串 |
+| parseDate | 将时间毫秒转换成 Date |
+| parseLong | 解析时间字符串转换为 long 毫秒 |
+| parseStringDefault | 解析时间字符串转换为指定格式字符串 |
+| parseString | 解析时间字符串转换为指定格式字符串 |
+| getYear | 获取年份 |
+| getMonth | 获取月份 ( 0 - 11 ) + 1 |
+| getDay | 获取天数 |
+| getWeek | 获取星期数 ( 1 - 7、日 - 六 ) |
+| get24Hour | 获取小时 ( 24 ) |
+| get12Hour | 获取小时 ( 12 ) |
+| getMinute | 获取分钟 |
+| getSecond | 获取秒数 |
+| isAM | 是否上午 |
+| isPM | 是否下午 |
+| isYear | 是否对应年份 |
+| isMonth | 是否对应月份 |
+| isDay | 是否对应天数 |
+| isWeek | 是否对应星期 |
+| isHour | 是否对应小时 |
+| isMinute | 是否对应分钟 |
+| isSecond | 是否对应秒数 |
+| getSecondMultiple | 获取秒数倍数 |
+| getMinuteMultiple | 获取分钟倍数 |
+| getHourMultiple | 获取小时倍数 |
+| getDayMultiple | 获取天数倍数 |
+| getWeekMultiple | 获取周数倍数 |
+| getMillisMultiple | 获取对应单位倍数 |
+| getTimeDiffByCurrent | 获取时间差 ( 传入时间 - 当前时间 ) |
+| getTimeDiff | 获取时间差 |
 | isLeapYear | 判断是否闰年 |
 | getMonthDayNumberAll | 根据年份、月份, 获取对应的天数 ( 完整天数, 无判断是否属于未来日期 ) |
 | getYearMonthNumber | 根据年份, 获取对应的月份 |
 | getMonthDayNumber | 根据年份、月份, 获取对应的天数 |
+| timeAddZero | 时间补 0 处理 ( 小于 10, 则自动补充 0x ) |
 | getArrayToHH | 生成 HH 按时间排序数组 |
 | getListToHH | 生成 HH 按时间排序集合 |
 | getArrayToMM | 生成 MM 按时间排序数组 |
@@ -440,14 +459,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getArrayToHHMM | 生成 HH:mm 按间隔时间排序数组 |
 | getListToHHMM | 生成 HH:mm 按间隔时间排序集合 |
 | getListToHHMMPosition | 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引 |
-| secToTimeRetain | 传入时间, 获取时间 ( 00:00:00 格式, 不处理大于一天 ) |
-| convertTimeArys | 传入时间, 时间参数 ( 小时、分钟、秒 ) |
 | millisToFitTimeSpan | 转换时间 |
-| millisToTimeArys | 转换时间为数组 |
-| isInTimeHHmm | 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致 |
-| isInTimeHHmmss | 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致 |
-| isInTime | 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致 |
-| isInDate | 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致 |
+| millisToTimeArrays | 转换时间为数组 |
+| timeConvertByMillis | 传入时间毫秒, 获取 00:00:00 格式 ( 不处理大于一天 ) |
+| timeConvertBySecond | 传入时间秒, 获取 00:00:00 格式 ( 不处理大于一天 ) |
+| isInTime | 判断时间是否在 [startTime, endTime] 区间 |
+| isInTimeFormat | 判断时间是否在 [startTime, endTime] 区间 ( 自定义格式 ) |
+| isInTimeHHmm | 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 ) |
+| isInTimeHHmmss | 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 ) |
 | getEndTimeDiffHHmm | 获取指定时间距离该时间第二天的指定时段的时间 ( 判断凌晨情况 ) |
 | getEndTimeDiff | 获取指定时间距离该时间第二天的指定时段的时间差 ( 判断凌晨情况 ) |
 | getZodiac | 获取生肖 |
@@ -545,6 +564,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | createOrExistsDir | 判断目录是否存在, 不存在则判断是否创建成功 |
 | createOrExistsFile | 判断文件是否存在, 不存在则判断是否创建成功 |
 | createFileByDeleteOldFile | 判断文件是否存在, 存在则在创建之前删除 |
+| createTimestampFileName | 通过文件后缀创建时间戳文件名 |
+| createTimestampFileNameByName | 通过文件名创建时间戳文件名 |
+| createTimestampFileNameByFile | 通过文件创建时间戳文件名 |
+| createTimestampFileNameByPath | 通过文件路径创建时间戳文件名 |
 | convertFiles | Path List 转 File List |
 | convertPaths | File List 转 Path List |
 | getPath | 获取文件路径 |
@@ -604,6 +627,23 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isFileFormats | 根据文件名判断文件是否为指定格式 |
 | getFileMD5 | 获取文件 MD5 值 |
 | getFileMD5ToHexString | 获取文件 MD5 值 |
+
+
+* **循环工具类 ->** [ForUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ForUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| forArgs | 循环可变数组 |
+| forSimpleArgs | 循环可变数组 |
+| forInts | 循环可变数组 |
+| forDoubles | 循环可变数组 |
+| forFloats | 循环可变数组 |
+| forLongs | 循环可变数组 |
+| forBooleans | 循环可变数组 |
+| forBytes | 循环可变数组 |
+| forChars | 循环可变数组 |
+| forShorts | 循环可变数组 |
+| accept | 循环消费方法 |
 
 
 * **Html 工具类 ->** [HtmlUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/HtmlUtils.java)
@@ -690,7 +730,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | remove | 移除一条数据 |
 | removeToKeys | 移除多条数据 |
 | removeToValue | 移除等于 value 的所有数据 |
-| removeToValues | 移除等于 value 的所有数据 (Collection<Value>) |
+| removeToValues | 移除等于 value 的所有数据 ( Collection<Value> ) |
 | equals | 判断两个值是否一样 |
 | toggle | 切换保存状态 |
 | isNullToValue | 判断指定 key 的 value 是否为 null |
@@ -708,21 +748,23 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | addZero | 补 0 处理 ( 小于 10, 则自动补充 0x ) |
 | subZeroAndDot | 去掉结尾多余的 . 与 0 |
-| percentI | 计算百分比值 ( 最大 100% ) |
+| calculateUnit | 计算指定单位倍数 |
+| calculateUnitI | 计算指定单位倍数 |
+| calculateUnitL | 计算指定单位倍数 |
 | percentD | 计算百分比值 ( 最大 100% ) |
+| percentI | 计算百分比值 ( 最大 100% ) |
 | percentL | 计算百分比值 ( 最大 100% ) |
 | percentF | 计算百分比值 ( 最大 100% ) |
-| percentI2 | 计算百分比值 ( 可超出 100% ) |
 | percentD2 | 计算百分比值 ( 可超出 100% ) |
+| percentI2 | 计算百分比值 ( 可超出 100% ) |
 | percentL2 | 计算百分比值 ( 可超出 100% ) |
 | percentF2 | 计算百分比值 ( 可超出 100% ) |
+| multipleD | 获取倍数 |
+| multipleI | 获取倍数 |
+| multipleL | 获取倍数 |
+| multipleF | 获取倍数 |
+| multiple | 获取整数倍数 ( 自动补 1 ) |
 | clamp | 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max |
-| getMultiple | 获取倍数 ( 自动补 1 ) |
-| getMultipleI | 获取倍数 |
-| getMultipleD | 获取倍数 |
-| getMultipleL | 获取倍数 |
-| getMultipleF | 获取倍数 |
-| calculateUnit | 计算指定单位倍数 |
 | numberToCHN | 数字转中文数值 |
 | isNumber | 检验数字 |
 | isNumberDecimal | 检验数字或包含小数点 |
@@ -813,6 +855,21 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | calcWidthHeightToScale | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
 | calcWidthToScale | 以宽度为基准, 转换对应比例的高度 |
 | calcHeightToScale | 以高度为基准, 转换对应比例的宽度 |
+| calcScaleToWidthI | 计算缩放比例 ( 根据宽度比例转换高度 ) |
+| calcScaleToHeightI | 计算缩放比例 ( 根据高度比例转换宽度 ) |
+| calcWidthHeightToScaleI | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
+| calcWidthToScaleI | 以宽度为基准, 转换对应比例的高度 |
+| calcHeightToScaleI | 以高度为基准, 转换对应比例的宽度 |
+| calcScaleToWidthL | 计算缩放比例 ( 根据宽度比例转换高度 ) |
+| calcScaleToHeightL | 计算缩放比例 ( 根据高度比例转换宽度 ) |
+| calcWidthHeightToScaleL | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
+| calcWidthToScaleL | 以宽度为基准, 转换对应比例的高度 |
+| calcHeightToScaleL | 以高度为基准, 转换对应比例的宽度 |
+| calcScaleToWidthF | 计算缩放比例 ( 根据宽度比例转换高度 ) |
+| calcScaleToHeightF | 计算缩放比例 ( 根据高度比例转换宽度 ) |
+| calcWidthHeightToScaleF | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
+| calcWidthToScaleF | 以宽度为基准, 转换对应比例的高度 |
+| calcHeightToScaleF | 以高度为基准, 转换对应比例的宽度 |
 | calcXY | 计算 XY 比 |
 
 
@@ -837,7 +894,13 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | isEmpty | 判断字符串是否为 null |
+| isEmptyClear | 判断字符串是否为 null ( 调用 clearSpaceTabLineTrim ) |
 | isNotEmpty | 判断字符串是否不为 null |
+| isNotEmptyClear | 判断字符串是否不为 null ( 调用 clearSpaceTabLineTrim ) |
+| isNull | 判断字符串是否为 "null" |
+| isNullClear | 判断字符串是否为 "null" ( 调用 clearSpaceTabLineTrim ) |
+| isNotNull | 判断字符串是否不为 "null" |
+| isNotNullClear | 判断字符串是否不为 "null" ( 调用 clearSpaceTabLineTrim ) |
 | length | 获取字符串长度 |
 | isLength | 获取字符串长度 是否等于期望长度 |
 | equals | 判断两个值是否一样 |
@@ -853,14 +916,17 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | clearSpace | 清空字符串全部空格 |
 | clearTab | 清空字符串全部 Tab |
 | clearLine | 清空字符串全部换行符 |
+| clearLine2 | 清空字符串全部换行符 |
 | clearSpaceTrim | 清空字符串前后全部空格 |
 | clearTabTrim | 清空字符串前后全部 Tab |
 | clearLineTrim | 清空字符串前后全部换行符 |
+| clearLineTrim2 | 清空字符串前后全部换行符 |
 | clearSpaceTabLine | 清空字符串全部空格、Tab、换行符 |
 | clearSpaceTabLineTrim | 清空字符串前后全部空格、Tab、换行符 |
 | appendSpace | 追加空格 |
 | appendTab | 追加 Tab |
 | appendLine | 追加换行 |
+| appendLine2 | 追加换行 |
 | forString | 循环指定数量字符串 |
 | forJoint | 循环追加 |
 | colonSplit | 冒号分割处理 |
@@ -889,7 +955,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | dbc | 转化为半角字符 |
 | sbc | 转化为全角字符 如: a = ａ, A = Ａ |
 | checkChineseToString | 检测字符串是否全是中文 |
-| isChinese | 判定输入汉字 |
+| isChinese | 判断输入汉字 |
 | upperFirstLetter | 首字母大写 |
 | lowerFirstLetter | 首字母小写 |
 | reverse | 反转字符串 |
@@ -1017,6 +1083,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getFileIntervalTime | 获取文件记录间隔时间 |
 | isHandler | 是否处理记录 |
 | setHandler | 设置是否处理记录 |
+| isInsertHeaderData | 是否插入头数据 |
+| setInsertHeaderData | 设置是否插入头数据 |
 | getRecordInsert | 获取日志记录插入信息 |
 | setRecordInsert | 设置日志记录插入信息 |
 | getFinalPath | 获取文件地址 |
@@ -1229,13 +1297,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | decrypt | 3DES 解密 |
 
 
-* **异或 ( 加密 ) 工具类 ->** [XorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/encrypt/XorUtils.java)
+* **异或工具类 ->** [XorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/encrypt/XorUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | encryptAsFix | 加解密 ( 固定 Key 方式 ) 这种方式 加解密 方法共用 |
 | encrypt | 加密 ( 非固定 Key 方式 ) |
 | decrypt | 解密 ( 非固定 Key 方式 ) |
+| xorChecksum | 数据异或校验位计算 |
 
 
 ## <span id="devutilscommonfile">**`dev.utils.common.file`**</span>

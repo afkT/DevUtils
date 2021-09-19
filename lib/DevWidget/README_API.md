@@ -9,15 +9,16 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 ## 目录结构
 
 ```
-- dev                                                 | 根目录
-   - widget                                           | 自定义 View 根目录
-      - adjust                                        | 自动调节高度 View
-      - assist                                        | View 辅助类
-      - custom                                        | 自定义 View
-      - function                                      | 需求功能 View
-      - ui                                            | UI View
-         - round                                      | 圆角相关 View
-      - utils                                         | 工具类目录
+- dev                                                                    | 根目录
+   - widget                                                              | 自定义 View 根目录
+      - adjust                                                           | 自动调节高度 View
+      - assist                                                           | View 辅助类
+      - custom                                                           | 自定义 View
+      - decoration                                                       | RecyclerView ItemDecoration
+      - function                                                         | 需求功能 View
+      - ui                                                               | UI View
+         - round                                                         | 圆角相关 View
+      - utils                                                            | 工具类目录
 ```
 
 
@@ -43,23 +44,32 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 ## API
 
 
-- dev                                                 | 根目录
-   - [widget](#devwidget)                             | 自定义 View 根目录
-      - [adjust](#devwidgetadjust)                    | 自动调节高度 View
-      - [assist](#devwidgetassist)                    | View 辅助类
-      - [custom](#devwidgetcustom)                    | 自定义 View
-      - [function](#devwidgetfunction)                | 需求功能 View
-      - [ui](#devwidgetui)                            | UI View
-         - [round](#devwidgetuiround)                 | 圆角相关 View
-      - [utils](#devwidgetutils)                      | 工具类目录
-
-
+- dev                                                                    | 根目录
+   - [widget](#devwidget)                                                | 自定义 View 根目录
+      - [adjust](#devwidgetadjust)                                       | 自动调节高度 View
+      - [assist](#devwidgetassist)                                       | View 辅助类
+      - [custom](#devwidgetcustom)                                       | 自定义 View
+      - [decoration](#devwidgetdecoration)                               | RecyclerView ItemDecoration
+      - [function](#devwidgetfunction)                                   | 需求功能 View
+      - [ui](#devwidgetui)                                               | UI View
+         - [round](#devwidgetuiround)                                    | 圆角相关 View
+      - [utils](#devwidgetutils)                                         | 工具类目录
 
 
 ## <span id="dev">**`dev`**</span>
 
 
 ## <span id="devwidget">**`dev.widget`**</span>
+
+
+* **DevWidget ->** [DevWidget.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/DevWidget.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDevWidgetVersionCode | 获取 DevWidget 版本号 |
+| getDevWidgetVersion | 获取 DevWidget 版本 |
+| getDevAppVersionCode | 获取 DevApp 版本号 |
+| getDevAppVersion | 获取 DevApp 版本 |
 
 
 ## <span id="devwidgetadjust">**`dev.widget.adjust`**</span>
@@ -258,6 +268,47 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 | setScrollCallback | 设置滑动监听回调 |
 
 
+## <span id="devwidgetdecoration">**`dev.widget.decoration`**</span>
+
+
+* **基础 RecyclerView 分割线处理 ->** [BaseItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/BaseItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getLinePaint | 获取分割线画笔 |
+| isSingleLineDraw | 获取单条数据是否绘制分割线 |
+| setSingleLineDraw | 设置单条数据是否绘制分割线 |
+| getLineLeft | 获取分割线距左边距 |
+| setLineLeft | 设置分割线距左边距 |
+| getLineRight | 获取分割线距右边距 |
+| setLineRight | 设置分割线距右边距 |
+| setLineLeftRight | 设置分割线距左、右边距 |
+
+
+* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/FirstLineItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/LastLineItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+* **RecyclerView 分割线 ->** [LineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/LineItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
 ## <span id="devwidgetfunction">**`dev.widget.function`**</span>
 
 
@@ -384,6 +435,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 | getCurrentPosition | 获取当前显示的索引 |
 | getAdapter | 获取数据源适配器 |
 | setAdapter | 设置数据源适配器 |
+| notifyDataSetChanged | Adapter 数据源变更时调用 |
 | flip | 翻转操作 |
 | setInOutAnimator | 设置进出动画 |
 | setFlipDistance | 设置翻牌角度 |
@@ -552,6 +604,32 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 | getRadius | getRadius |
 
 
+* **波浪 View ->** [WaveView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/WaveView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| onDraw | onDraw |
+| getAmplitudeRatio | 获取波浪垂直振幅比率 |
+| setAmplitudeRatio | 设置波浪垂直振幅比率 |
+| getWaterLevelRatio | 获取波浪水位比率 |
+| setWaterLevelRatio | 设置波浪水位比率 |
+| getWaveLengthRatio | 获取波浪波长比率 |
+| setWaveLengthRatio | 设置波浪波长比率 |
+| getWaveShiftRatio | 获取波浪水平偏移比率 |
+| setWaveShiftRatio | 设置波浪水平偏移比率 |
+| getBorderWidth | 获取边框宽度 |
+| getBorderColor | 获取边框颜色 |
+| setBorder | 设置边框宽度、颜色 |
+| getBehindWaveColor | 获取波浪背景色 |
+| getFrontWaveColor | 获取波浪前景色 |
+| setWaveColor | 设置波浪颜色 |
+| getShapeType | 获取波浪外形形状 |
+| setShapeType | 设置波浪外形形状 |
+| isShowWave | 是否进行波浪图形处理 |
+| setShowWave | 设置是否进行波浪图形处理 |
+
+
 * **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/WrapView.java)
 
 | 方法 | 注释 |
@@ -588,6 +666,38 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 | setBackgroundKeepingPadding | 设置背景 |
 
 
+* **圆角图片 ->** [RoundImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/round/RoundImageView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setScaleType | setScaleType |
+| setAdjustViewBounds | setAdjustViewBounds |
+| onDraw | onDraw |
+| invalidateDrawable | invalidateDrawable |
+| onSizeChanged | onSizeChanged |
+| setPadding | setPadding |
+| setPaddingRelative | setPaddingRelative |
+| setImageBitmap | setImageBitmap |
+| setImageDrawable | setImageDrawable |
+| setImageResource | setImageResource |
+| setImageURI | setImageURI |
+| getImageAlpha | getImageAlpha |
+| setImageAlpha | setImageAlpha |
+| getColorFilter | getColorFilter |
+| setColorFilter | setColorFilter |
+| onTouchEvent | onTouchEvent |
+| getBorderWidth | 获取边框宽度 |
+| setBorderWidth | 设置边框宽度 |
+| getBorderColor | 获取边框颜色 |
+| setBorderColor | 设置边框颜色 |
+| getCircleBackgroundColor | 获取圆圈背景颜色 |
+| setCircleBackgroundColor | 设置圆圈背景颜色 |
+| isBorderOverlay | 是否叠加边框 |
+| setBorderOverlay | 设置是否叠加边框 |
+| isDisableCircularTransformation | 是否开启圆圈处理 |
+| setDisableCircularTransformation | 设置是否开启圆圈处理 |
+
+
 ## <span id="devwidgetutils">**`dev.widget.utils`**</span>
 
 
@@ -613,6 +723,47 @@ implementation 'io.github.afkt:DevWidgetX:1.1.0'
 | getRadiusRightBottom | 获取右下圆角值 |
 | onSaveInstanceState | onSaveInstanceState |
 | onRestoreInstanceState | onRestoreInstanceState |
+
+
+* **波浪 View Helper 类 ->** [WaveHelper.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/WaveHelper.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取 WaveHelper |
+| start | 启动动画 |
+| cancel | 关闭动画 |
+| getAmplitudeRatio | 获取波浪垂直振幅比率 |
+| setAmplitudeRatio | 设置波浪垂直振幅比率 |
+| getWaterLevelRatio | 获取波浪水位比率 |
+| setWaterLevelRatio | 设置波浪水位比率 |
+| getWaveLengthRatio | 获取波浪波长比率 |
+| setWaveLengthRatio | 设置波浪波长比率 |
+| getWaveShiftRatio | 获取波浪水平偏移比率 |
+| setWaveShiftRatio | 设置波浪水平偏移比率 |
+| getBorderWidth | 获取边框宽度 |
+| getBorderColor | 获取边框颜色 |
+| setBorder | 设置边框宽度、颜色 |
+| getBehindWaveColor | 获取波浪背景色 |
+| getFrontWaveColor | 获取波浪前景色 |
+| setWaveColor | 设置波浪颜色 |
+| getShapeType | 获取波浪外形形状 |
+| setShapeType | 设置波浪外形形状 |
+| isShowWave | 是否进行波浪图形处理 |
+| setShowWave | 设置是否进行波浪图形处理 |
+| buildPropertyAnimation | 通过属性动画进行设置波浪 View 动画效果 |
+| build | build |
+| getWaveShiftRatioStart | getWaveShiftRatioStart |
+| getWaveShiftRatioEnd | getWaveShiftRatioEnd |
+| getWaveShiftRatioMillis | getWaveShiftRatioMillis |
+| setWaveShiftRatioMillis | 设置波浪移动方向效果属性值 |
+| getAmplitudeRatioStart | getAmplitudeRatioStart |
+| getAmplitudeRatioEnd | getAmplitudeRatioEnd |
+| getAmplitudeRatioMillis | getAmplitudeRatioMillis |
+| setAmplitudeRatioMillis | 设置波浪大小 ( 上下波动 ) 效果属性值 |
+| getWaterLevelRatioStart | getWaterLevelRatioStart |
+| getWaterLevelRatioEnd | getWaterLevelRatioEnd |
+| getWaterLevelRatioMillis | getWaterLevelRatioMillis |
+| setWaterLevelRatioMillis | 设置水位高度属性值 |
 
 
 * **DevWidget 属性封装处理类 ->** [WidgetAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/WidgetAttrs.java)

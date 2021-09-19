@@ -20,6 +20,8 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
       - analytics                                     | Analytics Engine 数据统计 ( 埋点 )
+      - barcode                                       | BarCode Engine 条形码、二维码处理
+         - listener                                   | 条形码、二维码操作回调事件
       - cache                                         | Cache Engine 有效期键值对缓存
       - compress                                      | Image Compress Engine 图片压缩
          - listener                                   | 图片压缩回调事件
@@ -62,6 +64,8 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
       - [analytics](#devengineanalytics)              | Analytics Engine 数据统计 ( 埋点 )
+      - [barcode](#devenginebarcode)                  | BarCode Engine 条形码、二维码处理
+         - [listener](#devenginebarcodelistener)      | 条形码、二维码操作回调事件
       - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
       - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
@@ -78,8 +82,6 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
       - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
          - [listener](#devenginestoragelistener)      | Storage 存储结果事件
    - [function](#devfunction)                         | 快捷方法执行相关
-
-
 
 
 ## <span id="dev">**`dev`**</span>
@@ -165,6 +167,84 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 
 * **DataManager RecyclerView Adapter Extend ->** [DevDataAdapterExt2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataAdapterExt2.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isNotifyAdapter | 是否通知适配器 ( 通用: 如多选操作后是否通知适配器 ) |
+| setNotifyAdapter | 设置是否通知适配器 ( 通用: 如多选操作后是否通知适配器 ) |
+| isEditState | isEditState |
+| setEditState | setEditState |
+| toggleEditState | toggleEditState |
+| clearSelectAll | clearSelectAll |
+| isSelectAll | isSelectAll |
+| isSelect | isSelect |
+| isNotSelect | isNotSelect |
+| getSelectSize | getSelectSize |
+| getDataCount | getDataCount |
+| selectAll | selectAll |
+| inverseSelect | inverseSelect |
+| getMultiSelectKey | 获取多选标记 Key |
+
+
+* **DataManager List ->** [DevDataList.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataList.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getContext | 获取 Context |
+| setContext | 设置 Context |
+| getActivity | 获取 Activity |
+| setActivity | 设置 Activity |
+| parentContext | 通过 ViewGroup 设置 Context |
+| getItemCount | getItemCount |
+| getDataList | getDataList |
+| getDataArrayList | getDataArrayList |
+| getDataSize | getDataSize |
+| getDataItem | getDataItem |
+| getDataItemPosition | getDataItemPosition |
+| getFirstData | getFirstData |
+| getLastData | getLastData |
+| getLastPosition | getLastPosition |
+| isDataEmpty | isDataEmpty |
+| isDataNotEmpty | isDataNotEmpty |
+| isFirstPosition | isFirstPosition |
+| isLastPosition | isLastPosition |
+| isLastPositionAndGreaterThanOrEqual | isLastPositionAndGreaterThanOrEqual |
+| equalsFirstData | equalsFirstData |
+| equalsLastData | equalsLastData |
+| equalsPositionData | equalsPositionData |
+| addData | addData |
+| addDataAt | addDataAt |
+| addDatas | addDatas |
+| addDatasAt | addDatasAt |
+| addDatasChecked | addDatasChecked |
+| addDatasCheckedAt | addDatasCheckedAt |
+| addLists | addLists |
+| removeData | removeData |
+| removeDataAt | removeDataAt |
+| removeDatas | removeDatas |
+| replaceData | replaceData |
+| replaceDataAt | replaceDataAt |
+| swipePosition | swipePosition |
+| contains | contains |
+| clearDataList | clearDataList |
+| setDataList | setDataList |
+| getObject | 获取通用 Object |
+| setObject | 设置通用 Object |
+| getPage | 获取 Page 实体类 |
+| setPage | 设置 Page 实体类 |
+| getCallback | 获取通用回调 |
+| setCallback | 设置通用回调 |
+| getItemCallback | 获取通用 Item Click 回调 |
+| setItemCallback | 设置通用 Item Click 回调 |
+| getState | 请求状态实体类 |
+| setState | 设置请求状态实体类 |
+| getTextWatcherAssist | 获取 EditText 输入监听辅助类 |
+| setTextWatcherAssist | 设置 EditText 输入监听辅助类 |
+| getMultiSelectMap | 获取多选辅助类 |
+| setMultiSelectMap | 设置多选辅助类 |
+
+
+* **DataManager List Extend ->** [DevDataListExt.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataListExt.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -286,6 +366,9 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | getPage | 获取当前页数 |
 | setPage | 设置当前页数 |
 | equalsPage | 判断当前页数是否一致 |
+| getConfig | 获取页数配置信息 |
+| getConfigPage | 获取配置初始页页数 |
+| getConfigPageSize | 获取配置每页请求条数 |
 | getPageSize | 获取每页请求条数 |
 | equalsPageSize | 判断每页请求条数是否一致 |
 | isLastPage | 判断是否最后一页 |
@@ -296,6 +379,7 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | getNextPage | 获取下一页页数 |
 | nextPage | 累加当前页数 ( 下一页 ) |
 | isLessThanPageSize | 判断是否小于每页请求条数 |
+| response | 请求响应处理 |
 
 
 ## <span id="devbase">**`dev.base`**</span>
@@ -431,6 +515,7 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | getNextPage | 获取下一页页数 |
 | nextPage | 累加当前页数 ( 下一页 ) |
 | isLessThanPageSize | 判断是否小于每页请求条数 |
+| response | 请求响应处理 |
 
 
 * **资源来源通用类 ->** [DevSource.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevSource.java)
@@ -761,6 +846,18 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 ## <span id="devengine">**`dev.engine`**</span>
 
 
+* **DevEngine Generic Assist ->** [DevEngineAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/DevEngineAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
 ## <span id="devengineanalytics">**`dev.engine.analytics`**</span>
 
 
@@ -768,10 +865,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Analytics Engine |
-| setEngine | 设置 Analytics Engine |
-| contains | 是否存在 Analytics Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Analytics Engine 接口 ->** [IAnalyticsEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/analytics/IAnalyticsEngine.java)
@@ -784,6 +884,52 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | track | 数据统计 ( 埋点 ) 方法 |
 
 
+## <span id="devenginebarcode">**`dev.engine.barcode`**</span>
+
+
+* **BarCode Engine ->** [DevBarCodeEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/barcode/DevBarCodeEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **BarCode Engine 接口 ->** [IBarCodeEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/barcode/IBarCodeEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| getConfig | 获取 BarCode Engine Config |
+| encodeBarCode | 编码 ( 生成 ) 条码图片 |
+| encodeBarCodeSync | 编码 ( 生成 ) 条码图片 |
+| decodeBarCode | 解码 ( 解析 ) 条码图片 |
+| decodeBarCodeSync | 解码 ( 解析 ) 条码图片 |
+| addIconToBarCode | 添加 Icon 到条码图片上 |
+
+
+## <span id="devenginebarcodelistener">**`dev.engine.barcode.listener`**</span>
+
+
+* **条码解码 ( 解析 ) 回调 ->** [BarCodeDecodeCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/barcode/listener/BarCodeDecodeCallback.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onResult | 条码解码 ( 解析 ) 回调 |
+
+
+* **条码编码 ( 生成 ) 回调 ->** [BarCodeEncodeCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/barcode/listener/BarCodeEncodeCallback.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onResult | 条码编码 ( 生成 ) 回调 |
+
+
 ## <span id="devenginecache">**`dev.engine.cache`**</span>
 
 
@@ -791,10 +937,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Cache Engine |
-| setEngine | 设置 Cache Engine |
-| contains | 是否存在 Cache Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Cache Engine 接口 ->** [ICacheEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/cache/ICacheEngine.java)
@@ -838,10 +987,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Compress Engine |
-| setEngine | 设置 Compress Engine |
-| contains | 是否存在 Compress Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Image Compress Engine 接口 ->** [ICompressEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/ICompressEngine.java)
@@ -878,43 +1030,6 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | rename | 压缩前调用该方法用于修改压缩后文件名 |
 
 
-## <span id="devenginehttp">**`dev.engine.http`**</span>
-
-
-* **Http Engine ->** [DevHttpEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/http/DevHttpEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getEngine | 获取 Http Engine |
-| setEngine | 设置 Http Engine |
-| contains | 是否存在 Http Engine |
-| getsEngineMaps | 获取 Engine Map |
-
-
-* **Http Engine 接口 ->** [IHttpEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/http/IHttpEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| newCall | 获取 Request Call Object |
-| cancelAll | 取消请求 ( 全部 ) |
-| cancelCall | 取消请求 |
-| cancelUrl | 取消请求 |
-| cancelTag | 取消请求 |
-| getRequest | 获取 Request Object |
-| getSentRequestAtMillis | 获取发送请求时间 |
-| getReceivedResponseAtMillis | 获取请求响应时间 |
-| isCanceled | 是否取消请求 |
-| isExecuted | 是否执行过请求 |
-| isEnd | 是否请求结束 |
-| cancel | 取消请求 |
-| start | 开始请求方法 ( 同步 ) |
-| startAsync | 开始请求方法 ( 异步 ) |
-| onStart | 开始请求 |
-| onCancel | 请求取消 |
-| onResponse | 请求响应 |
-| onFailure | 请求失败 |
-
-
 ## <span id="devengineimage">**`dev.engine.image`**</span>
 
 
@@ -922,10 +1037,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Image Engine |
-| setEngine | 设置 Image Engine |
-| contains | 是否存在 Image Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Image Engine 接口 ->** [IImageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/IImageEngine.java)
@@ -948,16 +1066,6 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | loadDrawable | loadDrawable |
 | loadDrawableThrows | loadDrawableThrows |
 | convertImageFormat | convertImageFormat |
-
-
-* **图片加载事件 ->** [LoadListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/LoadListener.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getTranscodeType | 获取转码类型 |
-| onStart | 开始加载 |
-| onResponse | 响应回调 |
-| onFailure | 失败回调 |
 
 
 ## <span id="devengineimagelistener">**`dev.engine.image.listener`**</span>
@@ -984,6 +1092,16 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 | getTranscodeType | getTranscodeType |
 
 
+* **图片加载事件 ->** [LoadListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/LoadListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getTranscodeType | 获取转码类型 |
+| onStart | 开始加载 |
+| onResponse | 响应回调 |
+| onFailure | 失败回调 |
+
+
 * **转换图片格式回调接口 ->** [OnConvertListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/OnConvertListener.java)
 
 | 方法 | 注释 |
@@ -1001,10 +1119,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 JSON Engine |
-| setEngine | 设置 JSON Engine |
-| contains | 是否存在 JSON Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **JSON Engine 接口 ->** [IJSONEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/json/IJSONEngine.java)
@@ -1022,14 +1143,17 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 ## <span id="devenginekeyvalue">**`dev.engine.keyvalue`**</span>
 
 
-* **Key-Value Engine ->** [DevKeyValueEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/keyvalue/DevKeyValueEngine.java)
+* **KeyValue Engine ->** [DevKeyValueEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/keyvalue/DevKeyValueEngine.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Key-Value Engine |
-| setEngine | 设置 Key-Value Engine |
-| contains | 是否存在 Key-Value Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Key-Value Engine 接口 ->** [IKeyValueEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/keyvalue/IKeyValueEngine.java)
@@ -1064,10 +1188,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Log Engine |
-| setEngine | 设置 Log Engine |
-| contains | 是否存在 Log Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Log Engine 接口 ->** [ILogEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/log/ILogEngine.java)
@@ -1100,10 +1227,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Media Engine |
-| setEngine | 设置 Media Engine |
-| contains | 是否存在 Media Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Media Selector Engine 接口 ->** [IMediaEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/media/IMediaEngine.java)
@@ -1135,10 +1265,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Permission Engine |
-| setEngine | 设置 Permission Engine |
-| contains | 是否存在 Permission Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Permission Engine 接口 ->** [IPermissionEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/permission/IPermissionEngine.java)
@@ -1161,10 +1294,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Push Engine |
-| setEngine | 设置 Push Engine |
-| contains | 是否存在 Push Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Push Engine 接口 ->** [IPushEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/push/IPushEngine.java)
@@ -1192,10 +1328,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Share Engine |
-| setEngine | 设置 Share Engine |
-| contains | 是否存在 Share Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Share Engine 接口 ->** [IShareEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/share/IShareEngine.java)
@@ -1236,10 +1375,13 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 Storage Engine |
-| setEngine | 设置 Storage Engine |
-| contains | 是否存在 Storage Engine |
-| getsEngineMaps | 获取 Engine Map |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
 
 
 * **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)

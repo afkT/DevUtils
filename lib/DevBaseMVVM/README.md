@@ -63,7 +63,7 @@ implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
 
 * [AndroidX Jetpack Practice](https://github.com/hi-dhl/AndroidX-Jetpack-Practice)
 
-* [AndroidLibs / 框架](https://github.com/GuoYangGit/AndroidLibs/blob/master/框架)
+* [AndroidLibs / 框架](https://github.com/GuoYangGit/AndroidLibs/tree/master/框架)
 
 * [深入浅出 MVVM 教程](https://www.jianshu.com/p/bcdb7c2a07eb)
 

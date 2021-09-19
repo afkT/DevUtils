@@ -8,24 +8,24 @@ implementation 'io.github.afkt:DevEngine:1.0.0'
 ## 目录结构
 
 ```
-- dev.engine         | 根目录
-   - barcode         | BarCode Engine 条形码、二维码处理
-   - cache           | Cache Engine 有效期键值对缓存
-   - compress        | Image Compress Engine 图片压缩
-   - image           | Image Engine 图片加载、下载、转格式等
-   - json            | JSON Engine 映射
-   - keyvalue        | KeyValue Engine 键值对存储
-   - log             | Log Engine 日志打印
-   - media           | Media Selector Engine 多媒体资源选择
-   - permission      | Permission Engine 权限申请
-   - storage         | Storage Engine 外部、内部文件存储
+- dev.engine                                          | 根目录
+   - barcode                                          | BarCode Engine 条形码、二维码处理
+   - cache                                            | Cache Engine 有效期键值对缓存
+   - compress                                         | Image Compress Engine 图片压缩
+   - image                                            | Image Engine 图片加载、下载、转格式等
+   - json                                             | JSON Engine 映射
+   - keyvalue                                         | KeyValue Engine 键值对存储
+   - log                                              | Log Engine 日志打印
+   - media                                            | Media Selector Engine 多媒体资源选择
+   - permission                                       | Permission Engine 权限申请
+   - storage                                          | Storage Engine 外部、内部文件存储
 ```
 
 
 ## About
 
 DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist)）
-主要为了解决项目代码中**对第三方框架强依赖使用、以及部分功能版本适配。** 
+主要为了解决项目代码中**对第三方框架强依赖使用、以及部分功能版本适配。**
 
 通过实现对应功能模块 Engine 接口，实现对应的方法功能，
 **对外无需关注实现代码，直接通过 DevXXXEngine 进行调用，实现对第三方框架解耦、一键替换第三方库、同类库多 Engine 混合使用、以及部分功能适配 ( 如外部文件存储 MediaStore 全局适配 ) 等**

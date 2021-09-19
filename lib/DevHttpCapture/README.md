@@ -36,8 +36,6 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.0'
    - [capture](#devcapture)                           | Http 抓包实现代码
 
 
-
-
 ## <span id="dev">**`dev`**</span>
 
 
@@ -97,6 +95,14 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.0'
 | getResponseHeader | getResponseHeader |
 | getResponseBody | getResponseBody |
 | toJson | 将对象转换为 JSON String |
+
+
+* **抓包存储 Item ->** [CaptureItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CaptureItem.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getYyyyMMdd | getYyyyMMdd |
+| getData | getData |
 
 
 * **Http 抓包拦截器 ( 存在存储抓包数据逻辑 ) ->** [HttpCaptureInterceptor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/HttpCaptureInterceptor.java)
