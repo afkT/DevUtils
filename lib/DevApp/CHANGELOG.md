@@ -1,6 +1,33 @@
 Change Log
 ==========
 
+Version 2.2.9 *(2021-09-20)*
+----------------------------
+
+* `[Refactor]` review code、代码格式化处理、方法名、参数名、变量名等规范排查
+
+* `[Add]` ForUtils
+
+* `[Add]` XorUtils#xorChecksum
+
+* `[Add]` FileUtils#createTimestampFileName
+
+* `[Add]` RecyclerViewUtils
+
+* `[Add]` SharedPreferences 操作监听器 OnSPOperateListener
+
+* `[Add]` ViewUtils#setVisibilityIN、setVisibilityINs、getGlobalVisibleRect、getLocalVisibleRect、getLocationInWindow、getLocationOnScreen、setBarProgress、setBarMax、setBarValue
+  
+* `[Add]` KeyBoardUtils#openKeyboardByFocus
+
+* `[Add]` ImageViewUtils#setImageLevel
+  
+* `[Add]` VersionUtils#isEclair、isKitkat_Watch、isLollipop_MR1、convertSDKVersionName
+
+* `[Refactor]` 重构 QuickHelper、ViewHelper、VersionHelper
+
+* `[Delete]` DevHelper
+
 Version 2.2.8 *(2021-06-28)*
 ----------------------------
 

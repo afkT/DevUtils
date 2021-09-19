@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.2.6 *(2021-09-20)*
+----------------------------
+
+* `[Refactor]` review code、代码格式化处理、方法名、参数名、变量名等规范排查
+
+* `[Add]` DevDataList、DevDataListExt
+
+* `[Add]` DevEngineAssist、DevBarCodeEngine 条形码模块
+
+* `[Delete]` DevHttpEngine
+
 Version 1.2.5 *(2021-06-28)*
 ----------------------------
 
