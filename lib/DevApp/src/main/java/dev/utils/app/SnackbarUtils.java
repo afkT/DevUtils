@@ -148,7 +148,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 获取 Snackbar TextView(snackbar_text)
+     * 获取 Snackbar TextView ( snackbar_text )
      * @return Snackbar {@link TextView}
      */
     public TextView getTextView() {
@@ -160,7 +160,7 @@ public final class SnackbarUtils {
     }
 
     /**
-     * 获取 Snackbar Action Button(snackbar_action)
+     * 获取 Snackbar Action Button ( snackbar_action )
      * <pre>
      *     右边按钮 ( 如: 撤销 )
      * </pre>

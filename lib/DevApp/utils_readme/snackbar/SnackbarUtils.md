@@ -35,8 +35,8 @@
 | setStyle | 设置样式 |
 | getSnackbar | 获取 Snackbar |
 | getSnackbarView | 获取 Snackbar View |
-| getTextView | 获取 Snackbar TextView(snackbar_text) |
-| getActionButton | 获取 Snackbar Action Button(snackbar_action) |
+| getTextView | 获取 Snackbar TextView ( snackbar_text ) |
+| getActionButton | 获取 Snackbar Action Button ( snackbar_action ) |
 | addView | 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示) |
 | setCallback | 设置 Snackbar 展示完成 及 隐藏完成 的监听 |
 | setAction | 设置 Action 按钮文字内容及点击监听 |
@@ -101,10 +101,10 @@ SnackbarUtils.with(activity);
 // 获取 Snackbar 底层 View
 View snackbarView = SnackbarUtils.with(view).getSnackbarView();
 
-// 获取 Snackbar TextView(snackbar_text) - 左侧 文本TextView
+// 获取 Snackbar TextView ( snackbar_text ) - 左侧 文本TextView
 TextView textView = SnackbarUtils.with(view).getTextView();
 
-// 获取 Snackbar Action Button(snackbar_action) - 右侧 Button
+// 获取 Snackbar Action Button ( snackbar_action ) - 右侧 Button
 Button actionButton = SnackbarUtils.with(view).getActionButton();
 
 // =

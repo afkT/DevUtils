@@ -1607,7 +1607,7 @@ public final class StringUtils {
     // =
 
     /**
-     * 裁剪超出的内容, 并且追加符号 ( 如 ...)
+     * 裁剪超出的内容, 并且追加符号 ( 如 ... )
      * @param maxLength 允许最大的长度
      * @param str       待处理字符串
      * @param symbol    转换符号

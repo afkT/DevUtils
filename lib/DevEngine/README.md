@@ -725,8 +725,8 @@ private fun initEngine(appContext: Application) {
 | getCameraSavePath | 获取拍照存储地址 |
 | getCompressSavePath | 获取压缩图片存储地址 |
 | setSavePath | 设置存储地址 |
-| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
-| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 ( kb ) |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 ( kb ) |
 | deleteCacheDirFile | 删除缓存文件 |
 | deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |

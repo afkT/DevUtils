@@ -2730,7 +2730,7 @@ public final class QuickHelper
     }
 
     /**
-     * 设置文字行间距 ( 行高 )、行间距倍数
+     * 设置文字行间距 ( 行高 ) 、行间距倍数
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @return Helper

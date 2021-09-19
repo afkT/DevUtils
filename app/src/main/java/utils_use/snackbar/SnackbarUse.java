@@ -62,10 +62,10 @@ public final class SnackbarUse {
         // 获取 Snackbar 底层 View
         View snackbarView = SnackbarUtils.with(view).getSnackbarView();
 
-        // 获取 Snackbar TextView(snackbar_text) - 左侧 文本 TextView
+        // 获取 Snackbar TextView ( snackbar_text ) - 左侧 文本 TextView
         TextView textView = SnackbarUtils.with(view).getTextView();
 
-        // 获取 Snackbar Action Button(snackbar_action) - 右侧 Button
+        // 获取 Snackbar Action Button ( snackbar_action ) - 右侧 Button
         Button actionButton = SnackbarUtils.with(view).getActionButton();
 
         // =

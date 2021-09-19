@@ -146,13 +146,13 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     );
 
     /**
-     * 获取图片大于多少才进行压缩 (kb)
+     * 获取图片大于多少才进行压缩 ( kb )
      * @return 最小压缩大小
      */
     int getMinimumCompressSize();
 
     /**
-     * 设置图片大于多少才进行压缩 (kb)
+     * 设置图片大于多少才进行压缩 ( kb )
      * @param minimumCompressSize 最小压缩大小
      */
     void setMinimumCompressSize(int minimumCompressSize);

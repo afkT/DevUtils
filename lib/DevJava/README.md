@@ -824,7 +824,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isInstance | 是不是某个类的实例 |
 | getArgsClass | 获取参数类型 |
 | getPropertyByParent | 获取父类中的变量对象 |
-| getDeclaredFieldParent | 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField) |
+| getDeclaredFieldParent | 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField ) |
 
 
 * **反射相关工具类 ->** [ReflectUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ReflectUtils.java)
@@ -849,7 +849,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | calcScale | 计算比例 ( 商 ) |
-| calcScaleToMath | 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 ) ) |
+| calcScaleToMath | 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 )  ) |
 | calcScaleToWidth | 计算缩放比例 ( 根据宽度比例转换高度 ) |
 | calcScaleToHeight | 计算缩放比例 ( 根据高度比例转换宽度 ) |
 | calcWidthHeightToScale | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 ( 智能转换 ) |
@@ -964,7 +964,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | sqliteEscape | 字符串数据库字符转义 |
 | convertHideMobile | 转换手机号 |
 | convertSymbolHide | 转换符号处理 |
-| subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
+| subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ... ) |
 | subSymbolHide | 裁剪符号处理 |
 | subSetSymbol | 裁剪内容 ( 设置符号处理 ) |
 | substring | 裁剪字符串 |
@@ -1267,8 +1267,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| md5 | 加密内容 (32 位小写 MD5) |
-| md5Upper | 加密内容 (32 位大写 MD5) |
+| md5 | 加密内容 ( 32 位小写 MD5 ) |
+| md5Upper | 加密内容 ( 32 位大写 MD5 ) |
 | getFileMD5 | 获取文件 MD5 值 |
 | getFileMD5ToHexString | 获取文件 MD5 值 |
 
@@ -1383,7 +1383,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getCalcThreads | 获取线程数 |
 | execute | 加入到线程池任务队列 |
 | shutdown | shutdown 会等待所有提交的任务执行完成, 不管是正在执行还是保存在任务队列中的已提交任务 |
-| shutdownNow | shutdownNow 会尝试中断正在执行的任务 ( 其主要是中断一些指定方法如 sleep 方法 ), 并且停止执行等待队列中提交的任务 |
+| shutdownNow | shutdownNow 会尝试中断正在执行的任务 ( 其主要是中断一些指定方法如 sleep 方法 ) , 并且停止执行等待队列中提交的任务 |
 | isShutdown | 判断线程池是否已关闭 ( isShutDown 当调用 shutdown() 方法后返回为 true ) |
 | isTerminated | 若关闭后所有任务都已完成, 则返回 true |
 | awaitTermination | 请求关闭、发生超时或者当前线程中断 |

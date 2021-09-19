@@ -641,7 +641,7 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField)
+     * 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField )
      * @param object    对象
      * @param fieldName 属性名
      * @return {@link Field}
@@ -654,7 +654,7 @@ public final class Reflect2Utils {
     }
 
     /**
-     * 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField)
+     * 获取父类中的变量对象 ( 循环向上转型, 获取对象的 DeclaredField )
      * @param object      子类对象
      * @param fieldName   父类中的属性名
      * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量

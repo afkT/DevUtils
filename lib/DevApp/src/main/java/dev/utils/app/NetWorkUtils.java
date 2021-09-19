@@ -193,7 +193,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断是否连接 Wifi( 连接上、连接中 )
+     * 判断是否连接 Wifi ( 连接上、连接中 )
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)

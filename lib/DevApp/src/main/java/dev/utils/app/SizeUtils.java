@@ -28,7 +28,7 @@ public final class SizeUtils {
     }
 
     /**
-     * dp 转 px (float)
+     * dp 转 px ( float )
      * @param dpValue 待转换值
      * @return 转换后的值
      */
@@ -46,7 +46,7 @@ public final class SizeUtils {
     }
 
     /**
-     * px 转 dp (float)
+     * px 转 dp ( float )
      * @param pxValue 待转换值
      * @return 转换后的值
      */
@@ -64,7 +64,7 @@ public final class SizeUtils {
     }
 
     /**
-     * sp 转 px (float)
+     * sp 转 px ( float )
      * @param spValue 待转换值
      * @return 转换后的值
      */
@@ -82,7 +82,7 @@ public final class SizeUtils {
     }
 
     /**
-     * px 转 sp (float)
+     * px 转 sp ( float )
      * @param pxValue 待转换值
      * @return 转换后的值
      */
@@ -108,7 +108,7 @@ public final class SizeUtils {
     }
 
     /**
-     * dp 转 px (float)
+     * dp 转 px ( float )
      * @param dpValue 待转换值
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
@@ -134,7 +134,7 @@ public final class SizeUtils {
     }
 
     /**
-     * px 转 dp (float)
+     * px 转 dp ( float )
      * @param pxValue 待转换值
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
@@ -168,7 +168,7 @@ public final class SizeUtils {
     }
 
     /**
-     * sp 转 px (float)
+     * sp 转 px ( float )
      * @param spValue 待转换值
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
@@ -194,7 +194,7 @@ public final class SizeUtils {
     }
 
     /**
-     * px 转 sp (float)
+     * px 转 sp ( float )
      * @param pxValue 待转换值
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
