@@ -59,18 +59,4 @@ dependencies {
     implementation project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
-
-//    // Java
-//    implementation 'io.github.afkt:DevEnvironment:1.0.3'
-//    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.3'
-//    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.3'
-//    // 如果需要 Release 包, 支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-//    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.3'
-//
-//    // Kotlin
-//    implementation 'io.github.afkt:DevEnvironment:1.0.3'
-//    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.0.3'
-//    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.3'
-//    // 如果需要 Release 包, 支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-//    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.0.3'
 }
