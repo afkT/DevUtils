@@ -264,6 +264,52 @@ public final class FileUtils {
     }
 
     /**
+     * 通过文件后缀创建时间戳文件名
+     * @param extension 文件后缀 ( 有无 . 都行 )
+     * @return 时间戳文件名 ( 包含后缀 )
+     */
+    public static String createTimestampFileName(final String extension) {
+        // 临时后缀名
+        String temp = StringUtils.clearSpace(extension);
+        if (StringUtils.isNotEmpty(temp)) {
+            temp = StringUtils.clearSEWiths(temp, ".");
+            if (StringUtils.isNotEmpty(temp)) {
+                return System.currentTimeMillis() + "." + temp;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 通过文件名创建时间戳文件名
+     * @param fileName 文件名
+     * @return 时间戳文件名 ( 包含后缀 )
+     */
+    public static String createTimestampFileNameByName(final String fileName) {
+        return createTimestampFileName(FileUtils.getFileExtension(fileName));
+    }
+
+    /**
+     * 通过文件创建时间戳文件名
+     * @param file 文件
+     * @return 时间戳文件名 ( 包含后缀 )
+     */
+    public static String createTimestampFileNameByFile(final File file) {
+        return createTimestampFileName(FileUtils.getFileExtension(file));
+    }
+
+    /**
+     * 通过文件路径创建时间戳文件名
+     * @param filePath 文件路径
+     * @return 时间戳文件名 ( 包含后缀 )
+     */
+    public static String createTimestampFileNameByPath(final String filePath) {
+        return createTimestampFileName(FileUtils.getFileExtension(filePath));
+    }
+
+    // =
+
+    /**
      * Path List 转 File List
      * @param paths Path List
      * @return File List
