@@ -528,6 +528,11 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
+        // ViewUtils.removeSelfFromParent(view)
+        val parent = view?.parent as? ViewGroup
+        // 防止重复添加, 当 parent 不为 null 则表示已添加, 则进行移除
+        parent?.removeView(view)
+
         if (isSafe) {
             view?.let { viewGroup?.addView(it, index) }
         } else {
@@ -550,6 +555,11 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
+        // ViewUtils.removeSelfFromParent(view)
+        val parent = view?.parent as? ViewGroup
+        // 防止重复添加, 当 parent 不为 null 则表示已添加, 则进行移除
+        parent?.removeView(view)
+
         if (isSafe) {
             view?.let { viewGroup?.addView(it, index, params) }
         } else {
