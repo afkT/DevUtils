@@ -96,6 +96,7 @@ ext {
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
                     // https://developer.android.com/jetpack/androidx/versions
                     // https://developer.android.com/jetpack/androidx/explorer
+                    // https://developer.android.com/jetpack/androidx/versions/stable-channel
 
                     appcompat            : "androidx.appcompat:appcompat:1.3.1",
                     appcompat_resources  : "androidx.appcompat:appcompat-resources:1.3.1",
@@ -121,6 +122,8 @@ ext {
                     hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.38",
                     // https://developer.android.google.cn/topic/libraries/app-startup
                     startup              : "androidx.startup:startup-runtime:1.0.0",
+                    // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
+                    swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
             ],
             "lib"       : [
                     // Gson https://github.com/google/gson
