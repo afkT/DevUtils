@@ -27,6 +27,9 @@ buildscript {
 
         // 个推 maven
         maven { url "https://mvn.getui.com/nexus/content/repositories/releases/" }
+
+        // 华为 maven
+        maven { url "https://developer.huawei.com/repo/" }
     }
 
     dependencies {
@@ -47,6 +50,8 @@ buildscript {
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
         // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
         classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
+        // 华为推送所需
+        classpath "com.huawei.agconnect:agcp:1.4.2.300"
     }
 }
 
@@ -65,6 +70,9 @@ allprojects {
 
         // 个推 maven
         maven { url "https://mvn.getui.com/nexus/content/repositories/releases/" }
+
+        // 华为 maven
+        maven { url "https://developer.huawei.com/repo/" }
     }
 
 //    gradle.projectsEvaluated {
