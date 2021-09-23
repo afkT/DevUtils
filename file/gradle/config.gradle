@@ -63,7 +63,7 @@ ext {
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     core                          : "androidx.core:core-ktx:1.6.0",
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2",
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle#declaring_dependencies
                     // Lifecycles only (without ViewModel or LiveData)
                     lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1",
@@ -80,14 +80,14 @@ ext {
                     room_compiler                 : "androidx.room:room-compiler:2.3.0",
                     room_ktx                      : "androidx.room:room-ktx:2.3.0",
                     // WorkManager Kotlin + coroutines
-                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0",
+                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.6.0",
                     // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
-                    work_runtime                  : "androidx.work:work-runtime:2.5.0",
+                    work_runtime                  : "androidx.work:work-runtime:2.6.0",
                     // DataStore https://developer.android.google.cn/topic/libraries/architecture/datastore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha06",
                     fragment_ktx                  : "androidx.fragment:fragment-ktx:1.3.6",
                     // https://developer.android.google.cn/jetpack/androidx/releases/activity
-                    activity_ktx                  : "androidx.activity:activity-ktx:1.2.4"
+                    activity_ktx                  : "androidx.activity:activity-ktx:1.3.1"
 
                     // https://developer.android.google.cn/jetpack/androidx/explorer
                     // https://developer.android.google.cn/jetpack/androidx/releases/datastore
@@ -104,7 +104,7 @@ ext {
                     cardview             : "androidx.cardview:cardview:1.0.0",
                     recyclerview         : "androidx.recyclerview:recyclerview:1.2.0",
                     multidex             : "androidx.multidex:multidex:2.0.1",
-                    constraint_layout    : "androidx.constraintlayout:constraintlayout:2.0.4",
+                    constraint_layout    : "androidx.constraintlayout:constraintlayout:2.1.0",
                     viewpager2           : "androidx.viewpager2:viewpager2:1.0.0",
                     sqlite               : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/com.google.android.material/material
@@ -112,7 +112,7 @@ ext {
                     // https://blog.csdn.net/qq_36861770/article/details/108946449
                     design               : "com.google.android.material:material:1.4.0",
                     fragment             : "androidx.fragment:fragment:1.3.6",
-                    activity             : "androidx.activity:activity:1.2.4",
+                    activity             : "androidx.activity:activity:1.3.1",
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette              : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
@@ -121,7 +121,7 @@ ext {
                     hilt_android         : "com.google.dagger:hilt-android:2.38", // https://blog.csdn.net/petterp/article/details/106771203
                     hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.38",
                     // https://developer.android.google.cn/topic/libraries/app-startup
-                    startup              : "androidx.startup:startup-runtime:1.0.0",
+                    startup              : "androidx.startup:startup-runtime:1.1.0",
                     // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
             ],
@@ -151,7 +151,7 @@ ext {
                     retrofit_rxjava3                    : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // https://mvnrepository.com/search?q=io.reactivex.rxjava3
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.0.13",
+                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.1",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.0",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
@@ -165,16 +165,16 @@ ext {
                     auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.0.0",
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
                     // Fastjson https://github.com/alibaba/fastjson
-                    fastjson                            : "com.alibaba:fastjson:1.2.76",
+                    fastjson                            : "com.alibaba:fastjson:1.2.78",
                     fastjson_android                    : "com.alibaba:fastjson:1.1.72.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
                     anchors                             : "com.effective.android:anchors:1.1.4",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc06",
+                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc08",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                              : "com.airbnb.android:lottie:3.7.2", // https://www.jianshu.com/p/9a2136ecbc7b
+                    lottie                              : "com.airbnb.android:lottie:4.1.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
                     aria_core                           : "com.arialyy.aria:core:3.8.16",
                     aria_compiler                       : "com.arialyy.aria:compiler:3.8.16",
@@ -197,7 +197,7 @@ ext {
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
                     kluban                              : "com.github.forJrking:KLuban:1.1.0",
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:11.6",
+                    xxPermissions                       : "com.github.getActivity:XXPermissions:12.3",
                     // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
                     progressmanager                     : "me.jessyan:progressmanager:1.5.0",
 
@@ -227,8 +227,8 @@ ext {
                     // ====================
 
                     // Bugly https://bugly.qq.com/docs/
-                    bugly                         : "com.tencent.bugly:crashreport:3.3.92",
-                    bugly_ndk                     : "com.tencent.bugly:nativecrashreport:3.9.0",
+                    bugly                         : "com.tencent.bugly:crashreport:3.4.4",
+                    bugly_ndk                     : "com.tencent.bugly:nativecrashreport:3.9.2",
                     // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
                     uetool                        : "me.ele:uetool:1.2.9",
                     uetool_no_op                  : "me.ele:uetool-no-op:1.2.9",
@@ -278,7 +278,7 @@ ext {
                     photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.5.3", // AndroidX
+                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.6.0", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0", // https://blog.csdn.net/ww897532167/article/details/74171294
                     // Banner 库 https://github.com/youth5201314/banner
