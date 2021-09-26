@@ -1,8 +1,15 @@
 apply from: rootProject.file(files.lib_app_gradle)
 
-android.defaultConfig {
-    versionCode versions.dev_http_capture_versionCode
-    versionName versions.dev_http_capture_compiler_version
+android {
+    defaultConfig {
+        versionCode versions.dev_http_capture_versionCode
+        versionName versions.dev_http_capture_compiler_version
+    }
+
+    buildFeatures {
+        // View Binding
+        viewBinding = true
+    }
 }
 
 dependencies {
