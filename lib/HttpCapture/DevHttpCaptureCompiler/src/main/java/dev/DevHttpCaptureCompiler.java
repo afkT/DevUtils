@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import dev.capture.DevHttpCaptureMainActivity;
-import dev.capture.Utils;
+import dev.capture.UtilsCompiler;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 
@@ -28,7 +28,7 @@ public final class DevHttpCaptureCompiler {
      * 结束所有 Activity
      */
     public static void finishAllActivity() {
-        Utils.getInstance().finishAllActivity();
+        UtilsCompiler.getInstance().finishAllActivity();
     }
 
     // ==========

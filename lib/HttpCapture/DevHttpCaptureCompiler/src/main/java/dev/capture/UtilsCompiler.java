@@ -7,23 +7,23 @@ import java.util.Stack;
 
 import dev.utils.LogPrintUtils;
 
-public final class Utils {
+public final class UtilsCompiler {
 
     // 日志 TAG
-    private static final String TAG = Utils.class.getSimpleName();
+    private static final String TAG = UtilsCompiler.class.getSimpleName();
 
     // Utils 实例
-    private static volatile Utils sInstance;
+    private static volatile UtilsCompiler sInstance;
 
     /**
      * 获取 Utils 实例
-     * @return {@link Utils}
+     * @return {@link UtilsCompiler}
      */
-    public static Utils getInstance() {
+    public static UtilsCompiler getInstance() {
         if (sInstance == null) {
-            synchronized (Utils.class) {
+            synchronized (UtilsCompiler.class) {
                 if (sInstance == null) {
-                    sInstance = new Utils();
+                    sInstance = new UtilsCompiler();
                 }
             }
         }
@@ -40,9 +40,9 @@ public final class Utils {
     /**
      * 添加 Activity
      * @param activity {@link Activity}
-     * @return {@link Utils}
+     * @return {@link UtilsCompiler}
      */
-    protected Utils addActivity(final Activity activity) {
+    protected UtilsCompiler addActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 if (mActivityStacks.contains(activity)) {
@@ -57,9 +57,9 @@ public final class Utils {
     /**
      * 移除 Activity
      * @param activity {@link Activity}
-     * @return {@link Utils}
+     * @return {@link UtilsCompiler}
      */
-    protected Utils removeActivity(final Activity activity) {
+    protected UtilsCompiler removeActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 int index = mActivityStacks.indexOf(activity);

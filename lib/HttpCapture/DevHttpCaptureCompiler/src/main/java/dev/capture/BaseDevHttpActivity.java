@@ -16,13 +16,13 @@ class BaseDevHttpActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 记录 Activity
-        Utils.getInstance().addActivity(this);
+        UtilsCompiler.getInstance().addActivity(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // 移除 Activity
-        Utils.getInstance().removeActivity(this);
+        UtilsCompiler.getInstance().removeActivity(this);
     }
 }
