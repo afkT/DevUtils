@@ -53,9 +53,13 @@ dependencies {
     implementation project(':DevBase2')
     implementation project(':DevBaseMVVM')
     implementation project(':DevEngine')
-    implementation project(':DevHttpCapture')
     implementation project(':DevOther')
     implementation project(':DevWidget')
+
+    implementation project(':DevHttpCapture')
+    debugImplementation project(':DevHttpCaptureCompiler')
+    releaseImplementation project(':DevHttpCaptureCompilerRelease')
+
     implementation project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
