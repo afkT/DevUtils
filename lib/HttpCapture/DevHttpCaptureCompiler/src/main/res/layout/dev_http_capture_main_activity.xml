@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/dev_http_capture_bg"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:scrollbars="none">
 
     <include

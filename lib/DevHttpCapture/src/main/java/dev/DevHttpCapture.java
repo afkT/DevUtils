@@ -10,6 +10,7 @@ import dev.capture.CaptureItem;
 import dev.capture.HttpCaptureInterceptor;
 import dev.capture.IHttpCapture;
 import dev.capture.IHttpFilter;
+import dev.capture.UtilsPublic;
 import dev.utils.common.StringUtils;
 import dev.utils.common.cipher.Encrypt;
 import okhttp3.OkHttpClient;
@@ -218,5 +219,16 @@ public final class DevHttpCapture {
             }
         }
         return new ArrayList<>();
+    }
+
+    /**
+     * 获取全部模块所有抓包数据
+     * @param isEncrypt 是否加密数据
+     * @return 全部模块所有抓包数据
+     */
+    public static Map<String, List<CaptureItem>> getAllModule(
+            final boolean isEncrypt
+    ) {
+        return UtilsPublic.getAllModule(isEncrypt);
     }
 }

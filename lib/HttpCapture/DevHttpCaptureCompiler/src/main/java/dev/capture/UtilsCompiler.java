@@ -3,9 +3,16 @@ package dev.capture;
 import android.app.Activity;
 
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Stack;
+import java.util.concurrent.CopyOnWriteArrayList;
 
+import dev.DevHttpCapture;
+import dev.callback.DevCallback;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.HandlerUtils;
 
 public final class UtilsCompiler {
 
@@ -103,5 +110,90 @@ public final class UtilsCompiler {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "finishAllActivity");
         }
+    }
+
+    // ============
+    // = Callback =
+    // ============
+
+    // 监听回调
+    private List<DevCallback<Boolean>> mCallbackLists = new CopyOnWriteArrayList<>();
+
+    /**
+     * 移除所有回调
+     */
+    private void clearCallback() {
+        mCallbackLists.clear();
+    }
+
+    /**
+     * 移除回调 ( 关闭页面调用 )
+     * @param callback 回调事件
+     */
+    private void removeCallback(final DevCallback<Boolean> callback) {
+        if (callback == null) return;
+        mCallbackLists.remove(callback);
+    }
+
+    /**
+     * 添加回调
+     * @param callback 回调事件
+     */
+    private void addCallback(final DevCallback<Boolean> callback) {
+        if (callback == null) return;
+        if (mCallbackLists.contains(callback)) return;
+        mCallbackLists.add(callback);
+    }
+
+    /**
+     * 通知回调
+     */
+    private void notifyCallback(final boolean isQuerying) {
+        for (DevCallback<Boolean> callback : mCallbackLists) {
+            HandlerUtils.postRunnable(() -> {
+                try {
+                    callback.callback(isQuerying);
+                } catch (Exception ignored) {
+                }
+            });
+        }
+    }
+
+    // ==========
+    // = 数据获取 =
+    // ==========
+
+    // 是否查询中
+    private boolean                        mQuerying = false;
+    // 数据源
+    private Map<String, List<CaptureItem>> mDataMaps = new LinkedHashMap<>();
+
+    /**
+     * 查询数据
+     * @param callback  回调事件
+     * @param isRefresh 是否刷新操作
+     */
+    private void queryData(
+            final DevCallback<Boolean> callback,
+            final boolean isRefresh
+    ) {
+        addCallback(callback);
+        if (mQuerying) {
+            notifyCallback(true);
+            return;
+        }
+        // 如果存在数据且非刷新操作表示需要获取数据
+        if (mDataMaps.size() != 0 && !isRefresh) {
+            notifyCallback(false);
+            return;
+        }
+        mQuerying = true;
+        new Thread(() -> {
+            Map<String, List<CaptureItem>> maps = DevHttpCapture.getAllModule(false);
+            mDataMaps.clear();
+            mDataMaps.putAll(maps);
+            mQuerying = false;
+            notifyCallback(false);
+        }).start();
     }
 }
