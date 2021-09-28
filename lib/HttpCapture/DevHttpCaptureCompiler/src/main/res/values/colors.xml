@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="devHttp_colorPrimary">#3F51B5</color>
+    <color name="dev_http_capture_bg">#e9e9e9</color>
+    <color name="dev_http_capture_title_bg">#3F51B5</color>
 </resources>

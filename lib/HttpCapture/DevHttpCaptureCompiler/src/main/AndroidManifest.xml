@@ -6,7 +6,6 @@
         <activity
             android:name="dev.capture.DevHttpCaptureMainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
     </application>
 </manifest>

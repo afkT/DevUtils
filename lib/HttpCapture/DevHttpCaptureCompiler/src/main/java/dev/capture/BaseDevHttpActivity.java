@@ -1,16 +1,16 @@
 package dev.capture;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * detail: DevHttpCapture Base Activity
  * @author Ttt
  */
 class BaseDevHttpActivity
-        extends AppCompatActivity {
+        extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

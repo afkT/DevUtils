@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56.0dp"
+    android:background="@color/dev_http_capture_title_bg"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+
+    <ImageView
+        android:id="@+id/vid_dhcit_back_igview"
+        android:layout_width="56.0dp"
+        android:layout_height="56.0dp"
+        android:background="@drawable/dev_http_capture_back"
+        android:padding="15.0dp" />
+
+    <TextView
+        android:id="@+id/vid_dhcit_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="56.0dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/dev_http_capture_title"
+        android:textColor="@android:color/white"
+        android:textSize="21.0sp"
+        android:textStyle="bold" />
+</FrameLayout>
