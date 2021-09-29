@@ -4,9 +4,6 @@ import java.util.List;
 
 class Items {
 
-    public static final int TYPE_TITLE = 1;
-    public static final int TYPE_ITEM  = 2;
-
     /**
      * 首页适配器数据包装类
      */

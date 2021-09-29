@@ -21,15 +21,15 @@ import dev.utils.app.toast.ToastTintUtils;
 public class DevHttpCaptureListActivity
         extends BaseDevHttpActivity {
 
-    private DevHttpCaptureMainActivityBinding mBinding;
+    private       DevHttpCaptureMainActivityBinding mBinding;
     // 当前选中的 Module
-    private String                            mModule;
+    private       String                            mModule;
     // 当前选中的日期
-    private String                            mDate;
+    private       String                            mDate;
     // 首页适配器
-    private AdapterMainModule                 mAdapter  = new AdapterMainModule();
+    private final AdapterMainModule                 mAdapter  = new AdapterMainModule();
     // 查询回调
-    private DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
+    private final DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
         @Override
         public void callback(Boolean isQuerying) {
             if (!isFinishing()) {

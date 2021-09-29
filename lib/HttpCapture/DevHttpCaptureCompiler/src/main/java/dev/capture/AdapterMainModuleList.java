@@ -19,7 +19,7 @@ import dev.utils.app.helper.quick.QuickHelper;
 public class AdapterMainModuleList
         extends DevDataAdapterExt<CaptureItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleListAdapterBinding>> {
 
-    private Items.MainItem mMainItem;
+    private final Items.MainItem mMainItem;
 
     public AdapterMainModuleList(Items.MainItem mainItem) {
         this.mMainItem = mainItem;
