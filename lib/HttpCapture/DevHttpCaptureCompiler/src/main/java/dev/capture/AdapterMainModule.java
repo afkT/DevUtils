@@ -54,7 +54,7 @@ public class AdapterMainModule
         // 判断对应模块是否展开
         boolean unfold = mMultiSelectMap.isSelectKey(item.moduleName);
         if (ViewUtils.setVisibility(unfold, holder.binding.vidRecycler)) {
-            holder.binding.vidRecycler.setAdapter(new AdapterMainModuleList(item.lists));
+            holder.binding.vidRecycler.setAdapter(new AdapterMainModuleList(item));
         }
         QuickHelper.get(holder.binding.vidTitleTv)
                 .setText(item.moduleName)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_tips_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    tools:background="@color/dev_http_capture_bg"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="50.0dp">
+
+        <ImageView
+            android:layout_width="180.0dp"
+            android:layout_height="180.0dp"
+            android:background="@drawable/dev_http_capture_icon_tips" />
+
+        <TextView
+            android:id="@+id/vid_tips_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/dev_http_capture_tips"
+            android:textSize="17.0sp"
+            tools:text="@string/dev_http_capture_query_no_data" />
+    </LinearLayout>
+</FrameLayout>

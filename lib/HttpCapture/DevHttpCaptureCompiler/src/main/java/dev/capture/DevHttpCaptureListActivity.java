@@ -5,9 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-
-import dev.DevHttpCapture;
 import dev.callback.DevCallback;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureMainActivityBinding;
@@ -16,18 +13,19 @@ import dev.utils.app.BarUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.utils.common.StringUtils;
 
 /**
- * detail: DevHttpCapture 入口
+ * detail: DevHttpCapture 抓包数据列表
  * @author Ttt
  */
-public class DevHttpCaptureMainActivity
+public class DevHttpCaptureListActivity
         extends BaseDevHttpActivity {
 
     private DevHttpCaptureMainActivityBinding mBinding;
     // 当前选中的 Module
     private String                            mModule;
+    // 当前选中的日期
+    private String                            mDate;
     // 首页适配器
     private AdapterMainModule                 mAdapter  = new AdapterMainModule();
     // 查询回调
@@ -77,11 +75,9 @@ public class DevHttpCaptureMainActivity
      */
     private void finishOperate() {
         // 移除回调
-        UtilsCompiler.getInstance().clearCallback();
-        // 清空数据
-        UtilsCompiler.getInstance().clearData();
-        // 关闭所有页面
-        UtilsCompiler.getInstance().finishAllActivity();
+        UtilsCompiler.getInstance().removeCallback(mCallback);
+        // 关闭当前页面
+        finish();
     }
 
     // ==========
@@ -93,36 +89,16 @@ public class DevHttpCaptureMainActivity
      * @param intent Intent
      */
     private void initValue(Intent intent) {
-        // 移除回调
-        UtilsCompiler.getInstance().clearCallback();
-        // 清空数据
-        UtilsCompiler.getInstance().clearData();
-
         // 获取模块名
         mModule = intent.getStringExtra(DevFinal.MODULE);
+        // 获取时间
+        mDate = intent.getStringExtra(DevFinal.DATE);
 
         // 设置点击事件
         mBinding.title.vidBackIgview.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.title.vidTitleTv.setText(DevHttpCapture.TAG);
+        mBinding.title.vidTitleTv.setText(mDate + " - " + mModule);
         // 设置提示文案
         mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
-        // 初始化适配器
-        mBinding.vidRecycler.setAdapter(mAdapter);
-        // 判断是否选择指定模块
-        if (StringUtils.isNotEmpty(mModule)) {
-            // 默认展开该模块
-            mAdapter.getMultiSelectMap().select(
-                    mModule, new Items.MainItem(mModule, new ArrayList<>())
-            );
-        }
-
-        // ==========
-        // = 数据获取 =
-        // ==========
-
-        UtilsCompiler.getInstance().queryData(
-                mCallback, true
-        );
     }
 }

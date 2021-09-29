@@ -5,4 +5,5 @@
     <color name="dev_http_capture_adapter_title_bg">#0080FF</color>
     <color name="dev_http_capture_adapter_item">#777777</color>
     <color name="dev_http_capture_adapter_item_bg">#d0d0d0</color>
+    <color name="dev_http_capture_tips">#3F51B5</color>
 </resources>

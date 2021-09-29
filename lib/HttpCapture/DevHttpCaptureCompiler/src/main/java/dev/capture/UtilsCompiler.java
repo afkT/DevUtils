@@ -50,31 +50,28 @@ public final class UtilsCompiler {
     /**
      * 添加 Activity
      * @param activity {@link Activity}
-     * @return {@link UtilsCompiler}
      */
-    protected UtilsCompiler addActivity(final Activity activity) {
+    protected void addActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 if (mActivityStacks.contains(activity)) {
-                    return this;
+                    return;
                 }
                 mActivityStacks.add(activity);
             }
         }
-        return this;
     }
 
     /**
      * 移除 Activity
      * @param activity {@link Activity}
-     * @return {@link UtilsCompiler}
      */
-    protected UtilsCompiler removeActivity(final Activity activity) {
+    protected void removeActivity(final Activity activity) {
         if (activity != null) {
             synchronized (mActivityStacks) {
                 int index = mActivityStacks.indexOf(activity);
                 if (index == -1) {
-                    return this;
+                    return;
                 }
                 try {
                     mActivityStacks.remove(index);
@@ -83,7 +80,6 @@ public final class UtilsCompiler {
                 }
             }
         }
-        return this;
     }
 
     /**
@@ -120,7 +116,7 @@ public final class UtilsCompiler {
     // ============
 
     // 监听回调
-    private List<DevCallback<Boolean>> mCallbackLists = new CopyOnWriteArrayList<>();
+    private final List<DevCallback<Boolean>> mCallbackLists = new CopyOnWriteArrayList<>();
 
     /**
      * 移除所有回调
@@ -167,9 +163,9 @@ public final class UtilsCompiler {
     // ==========
 
     // 是否查询中
-    private boolean                        mQuerying = false;
+    private       boolean                        mQuerying = false;
     // 数据源
-    private Map<String, List<CaptureItem>> mDataMaps = new LinkedHashMap<>();
+    private final Map<String, List<CaptureItem>> mDataMaps = new LinkedHashMap<>();
 
     /**
      * 查询数据
@@ -191,6 +187,9 @@ public final class UtilsCompiler {
             return;
         }
         mQuerying = true;
+        // 触发通知表示查询中
+        notifyCallback(true);
+        // 后台读取数据
         new Thread(() -> {
             Map<String, List<CaptureItem>> maps = DevHttpCapture.getAllModule(false);
             mDataMaps.clear();
