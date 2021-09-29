@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dev_http_capture_bg"
@@ -13,11 +14,12 @@
         layout="@layout/dev_http_capture_include_title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vid_dhcma_recycler"
+        android:id="@+id/vid_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:overScrollMode="never"
         android:scrollbars="none"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/dev_http_capture_main_module_adapter" />
 </LinearLayout>

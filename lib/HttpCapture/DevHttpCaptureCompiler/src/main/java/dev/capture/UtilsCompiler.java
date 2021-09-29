@@ -2,6 +2,7 @@ package dev.capture;
 
 import android.app.Activity;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,6 +14,8 @@ import dev.DevHttpCapture;
 import dev.callback.DevCallback;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.HandlerUtils;
+import dev.utils.common.CollectionUtils;
+import dev.utils.common.StringUtils;
 
 public final class UtilsCompiler {
 
@@ -202,5 +205,31 @@ public final class UtilsCompiler {
      */
     protected void clearData() {
         mDataMaps.clear();
+    }
+
+    // ==========
+    // = 数据转换 =
+    // ==========
+
+    /**
+     * 获取首页数据源
+     * @return 首页数据源
+     */
+    protected List<Items.MainItem> getMainData(final String moduleName) {
+        List<Items.MainItem> lists = new ArrayList<>();
+        // 判断是否显示指定模块
+        if (StringUtils.isEmpty(moduleName)) {
+            for (Map.Entry<String, List<CaptureItem>> entry : mDataMaps.entrySet()) {
+                if (CollectionUtils.isNotEmpty(entry.getValue())) {
+                    lists.add(new Items.MainItem(entry.getKey(), entry.getValue()));
+                }
+            }
+        } else {
+            List<CaptureItem> data = mDataMaps.get(moduleName);
+            if (CollectionUtils.isNotEmpty(data)) {
+                lists.add(new Items.MainItem(moduleName, data));
+            }
+        }
+        return lists;
     }
 }

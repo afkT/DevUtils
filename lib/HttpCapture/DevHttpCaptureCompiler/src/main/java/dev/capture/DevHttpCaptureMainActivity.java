@@ -25,6 +25,8 @@ public class DevHttpCaptureMainActivity
     private DevHttpCaptureMainActivityBinding mBinding;
     // 当前选中的 Module
     private String                            mModule;
+    // 首页适配器
+    private AdapterMainModule                 mAdapter  = new AdapterMainModule();
     // 查询回调
     private DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
         @Override
@@ -36,7 +38,8 @@ public class DevHttpCaptureMainActivity
                     );
                     return;
                 }
-
+                // 设置数据源
+                mAdapter.setDataList(UtilsCompiler.getInstance().getMainData(mModule));
             }
         }
     };
@@ -52,13 +55,15 @@ public class DevHttpCaptureMainActivity
         mModule = getIntent().getStringExtra(DevFinal.MODULE);
 
         // 设置点击事件
-        mBinding.title.vidDhcitBackIgview.setOnClickListener(view -> DevHttpCaptureCompiler.finishAllActivity());
+        mBinding.title.vidBackIgview.setOnClickListener(view -> DevHttpCaptureCompiler.finishAllActivity());
         // 设置标题
         if (StringUtils.isEmpty(mModule)) {
-            mBinding.title.vidDhcitTitleTv.setText(DevHttpCapture.TAG);
+            mBinding.title.vidTitleTv.setText(DevHttpCapture.TAG);
         } else {
-            mBinding.title.vidDhcitTitleTv.setText(mModule);
+            mBinding.title.vidTitleTv.setText(mModule);
         }
+        // 初始化适配器
+        mBinding.vidRecycler.setAdapter(mAdapter);
 
         // ==========
         // = 数据获取 =
