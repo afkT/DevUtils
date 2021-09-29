@@ -122,7 +122,7 @@ public final class UtilsCompiler {
     /**
      * 移除所有回调
      */
-    private void clearCallback() {
+    protected void clearCallback() {
         mCallbackLists.clear();
     }
 
@@ -130,7 +130,7 @@ public final class UtilsCompiler {
      * 移除回调 ( 关闭页面调用 )
      * @param callback 回调事件
      */
-    private void removeCallback(final DevCallback<Boolean> callback) {
+    protected void removeCallback(final DevCallback<Boolean> callback) {
         if (callback == null) return;
         mCallbackLists.remove(callback);
     }
@@ -139,7 +139,7 @@ public final class UtilsCompiler {
      * 添加回调
      * @param callback 回调事件
      */
-    private void addCallback(final DevCallback<Boolean> callback) {
+    protected void addCallback(final DevCallback<Boolean> callback) {
         if (callback == null) return;
         if (mCallbackLists.contains(callback)) return;
         mCallbackLists.add(callback);
@@ -148,7 +148,7 @@ public final class UtilsCompiler {
     /**
      * 通知回调
      */
-    private void notifyCallback(final boolean isQuerying) {
+    protected void notifyCallback(final boolean isQuerying) {
         for (DevCallback<Boolean> callback : mCallbackLists) {
             HandlerUtils.postRunnable(() -> {
                 try {
@@ -173,7 +173,7 @@ public final class UtilsCompiler {
      * @param callback  回调事件
      * @param isRefresh 是否刷新操作
      */
-    private void queryData(
+    protected void queryData(
             final DevCallback<Boolean> callback,
             final boolean isRefresh
     ) {
@@ -195,5 +195,12 @@ public final class UtilsCompiler {
             mQuerying = false;
             notifyCallback(false);
         }).start();
+    }
+
+    /**
+     * 移除所有数据
+     */
+    protected void clearData() {
+        mDataMaps.clear();
     }
 }

@@ -6,11 +6,13 @@ import androidx.annotation.Nullable;
 
 import dev.DevHttpCapture;
 import dev.DevHttpCaptureCompiler;
+import dev.callback.DevCallback;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureMainActivityBinding;
 import dev.utils.DevFinal;
 import dev.utils.app.BarUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -23,6 +25,21 @@ public class DevHttpCaptureMainActivity
     private DevHttpCaptureMainActivityBinding mBinding;
     // 当前选中的 Module
     private String                            mModule;
+    // 查询回调
+    private DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
+        @Override
+        public void callback(Boolean isQuerying) {
+            if (!isFinishing()) {
+                if (isQuerying) {
+                    ToastTintUtils.normal(
+                            ResourceUtils.getString(R.string.dev_http_capture_querying)
+                    );
+                    return;
+                }
+
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,5 +59,13 @@ public class DevHttpCaptureMainActivity
         } else {
             mBinding.title.vidDhcitTitleTv.setText(mModule);
         }
+
+        // ==========
+        // = 数据获取 =
+        // ==========
+
+        UtilsCompiler.getInstance().queryData(
+                mCallback, true
+        );
     }
 }
