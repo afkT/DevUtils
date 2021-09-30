@@ -96,6 +96,19 @@ public final class DevHttpCapture {
      * 添加 Http 抓包拦截处理
      * @param builder    OkHttpClient Builder
      * @param moduleName 模块名 ( 要求唯一性 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addInterceptor(
+            final OkHttpClient.Builder builder,
+            final String moduleName
+    ) {
+        return addInterceptor(builder, moduleName, null, null, true);
+    }
+
+    /**
+     * 添加 Http 抓包拦截处理
+     * @param builder    OkHttpClient Builder
+     * @param moduleName 模块名 ( 要求唯一性 )
      * @param isCapture  是否进行 Http 抓包拦截
      * @return {@code true} success, {@code false} fail
      */

@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -81,6 +82,28 @@ class Utils {
             LogPrintUtils.eTag(DevHttpCapture.TAG, e, "fromJson");
         }
         return null;
+    }
+
+    // =======
+    // = 排序 =
+    // =======
+
+    /**
+     * 通过文件名进行排序
+     * @param files 待排序文件数组
+     * @return 排序后的文件名
+     */
+    private static List<File> sortFileByName(File[] files) {
+        List<File> lists = new ArrayList<>();
+        if (files != null) {
+            lists.addAll(Arrays.asList(files));
+            Collections.sort(lists, (file1, file2) -> {
+                int value1 = ConvertUtils.toInt(file1.getName());
+                int value2 = ConvertUtils.toInt(file2.getName());
+                return Integer.compare(value2, value1);
+            });
+        }
+        return lists;
     }
 
     // =============
@@ -258,72 +281,70 @@ class Utils {
         File   moduleFile = FileUtils.getFile(filePath);
         if (FileUtils.isFileExists(moduleFile)) {
             // 循环年月日文件夹
-            File[] yyyyMMddFiles = moduleFile.listFiles();
-            if (yyyyMMddFiles != null) {
-                for (File ymdFile : yyyyMMddFiles) {
-                    if (FileUtils.isDirectory(ymdFile)) {
-                        String ymdName = ymdFile.getName();
-                        if (ValidatorUtils.isNumber(ymdName) &&
-                                StringUtils.isLength(ymdName, 8)) {
-                            // 循环时分文件夹
-                            File[] hhmmFiles = ymdFile.listFiles();
-                            if (hhmmFiles != null && hhmmFiles.length != 0) {
-                                CaptureItem captureItem = new CaptureItem()
-                                        .setYyyyMMdd(ymdName);
-                                for (File hmFile : hhmmFiles) {
-                                    if (FileUtils.isDirectory(hmFile)) {
-                                        String hmName = hmFile.getName();
-                                        if (ValidatorUtils.isNumber(hmName) &&
-                                                StringUtils.isLength(hmName, 4)) {
-                                            // 循环抓包存储文件
-                                            File[] files = hmFile.listFiles();
-                                            if (files != null && files.length != 0) {
-                                                List<CaptureFile> captureList = new ArrayList<>();
-                                                for (File file : files) {
-                                                    if (FileUtils.isFile(file)) {
-                                                        // 获取文件名
-                                                        String fileName = file.getName();
-                                                        // 判断是否加密文件
-                                                        boolean isEncryptFile = fileName.startsWith("encrypt_");
-                                                        if (isEncrypt) {
-                                                            // 要求获取加密文件并且属于加密文件才处理
-                                                            if (isEncryptFile) {
-                                                                CaptureFile captureFile = fromCaptureFile(file);
-                                                                if (captureFile != null) {
-                                                                    captureList.add(captureFile);
-                                                                }
+            List<File> yyyyMMddFiles = sortFileByName(moduleFile.listFiles());
+            for (File ymdFile : yyyyMMddFiles) {
+                if (FileUtils.isDirectory(ymdFile)) {
+                    String ymdName = ymdFile.getName();
+                    if (ValidatorUtils.isNumber(ymdName) &&
+                            StringUtils.isLength(ymdName, 8)) {
+                        // 循环时分文件夹
+                        List<File> hhmmFiles = sortFileByName(ymdFile.listFiles());
+                        if (hhmmFiles.size() != 0) {
+                            CaptureItem captureItem = new CaptureItem()
+                                    .setYyyyMMdd(ymdName);
+                            for (File hmFile : hhmmFiles) {
+                                if (FileUtils.isDirectory(hmFile)) {
+                                    String hmName = hmFile.getName();
+                                    if (ValidatorUtils.isNumber(hmName) &&
+                                            StringUtils.isLength(hmName, 4)) {
+                                        // 循环抓包存储文件
+                                        File[] files = hmFile.listFiles();
+                                        if (files != null && files.length != 0) {
+                                            List<CaptureFile> captureList = new ArrayList<>();
+                                            for (File file : files) {
+                                                if (FileUtils.isFile(file)) {
+                                                    // 获取文件名
+                                                    String fileName = file.getName();
+                                                    // 判断是否加密文件
+                                                    boolean isEncryptFile = fileName.startsWith("encrypt_");
+                                                    if (isEncrypt) {
+                                                        // 要求获取加密文件并且属于加密文件才处理
+                                                        if (isEncryptFile) {
+                                                            CaptureFile captureFile = fromCaptureFile(file);
+                                                            if (captureFile != null) {
+                                                                captureList.add(captureFile);
                                                             }
-                                                        } else {
-                                                            // 要求获取非加密文件并且属于非加密文件才处理
-                                                            if (!isEncryptFile) {
-                                                                CaptureFile captureFile = fromCaptureFile(file);
-                                                                if (captureFile != null) {
-                                                                    captureList.add(captureFile);
-                                                                }
+                                                        }
+                                                    } else {
+                                                        // 要求获取非加密文件并且属于非加密文件才处理
+                                                        if (!isEncryptFile) {
+                                                            CaptureFile captureFile = fromCaptureFile(file);
+                                                            if (captureFile != null) {
+                                                                captureList.add(captureFile);
                                                             }
                                                         }
                                                     }
                                                 }
-                                                if (captureList.size() != 0) {
-                                                    // 最新的在最前面
-                                                    Collections.sort(captureList, (o1, o2) -> {
-                                                        float diff = o1.getTime() - o2.getTime();
-                                                        if (diff > 0) {
-                                                            return -1;
-                                                        } else if (diff < 0) {
-                                                            return 1;
-                                                        }
-                                                        return 0;
-                                                    });
-                                                    captureItem.getData().put(hmName, captureList);
-                                                }
+                                            }
+                                            if (captureList.size() != 0) {
+                                                // 最新的在最前面
+                                                Collections.sort(captureList, (o1, o2) -> {
+                                                    float diff = o1.getTime() - o2.getTime();
+                                                    if (diff > 0) {
+                                                        return -1;
+                                                    } else if (diff < 0) {
+                                                        return 1;
+                                                    }
+                                                    return 0;
+                                                });
+                                                captureItem.getData().put(hmName, captureList);
                                             }
                                         }
                                     }
                                 }
-                                if (captureItem.getData().size() != 0) {
-                                    lists.add(captureItem);
-                                }
+                            }
+                            if (captureItem.getData().size() != 0) {
+                                lists.add(captureItem);
                             }
                         }
                     }
