@@ -29,6 +29,8 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     protected Context       mContext;
     // Activity
     protected Activity      mActivity;
+    // RecyclerView
+    protected RecyclerView  mRecyclerView;
 
     public DevDataAdapter() {
     }
@@ -103,6 +105,34 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
         return getDataSize();
+    }
+
+    // ================
+    // = RecyclerView =
+    // ================
+
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    public DevDataAdapter<T, VH> setRecyclerView(RecyclerView recyclerView) {
+        this.mRecyclerView = recyclerView;
+        return this;
+    }
+
+    public DevDataAdapter<T, VH> bindAdapter(RecyclerView recyclerView) {
+        return bindAdapter(recyclerView, true);
+    }
+
+    public DevDataAdapter<T, VH> bindAdapter(
+            RecyclerView recyclerView,
+            boolean set
+    ) {
+        if (recyclerView != null) {
+            recyclerView.setAdapter(this);
+        }
+        if (set) setRecyclerView(recyclerView);
+        return this;
     }
 
     // ===============
