@@ -62,7 +62,7 @@ public class DevHttpCaptureMainActivity
         mBinding = DevHttpCaptureMainActivityBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         // 设置状态栏颜色
-        BarUtils.setStatusBarColor(this, ResourceUtils.getColor(R.color.dev_http_capture_title_bg));
+        BarUtils.setStatusBarColor(this, ResourceUtils.getColor(R.color.dev_http_capture_title_bg_color));
         // 初始化数据
         initValue(getIntent());
     }
@@ -109,6 +109,7 @@ public class DevHttpCaptureMainActivity
         mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
         // 初始化适配器
         mBinding.vidRecycler.setAdapter(mAdapter);
+        mAdapter.setRecyclerView(mBinding.vidRecycler);
         // 判断是否选择指定模块
         if (StringUtils.isNotEmpty(mModule)) {
             // 默认展开该模块

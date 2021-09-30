@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="gone"
-    tools:background="@color/dev_http_capture_bg"
+    tools:background="@color/dev_http_capture_bg_color"
     tools:visibility="visible">
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:layout_marginTop="20.0dp"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_tips"
+            android:textColor="@color/dev_http_capture_tips_color"
             android:textSize="17.0sp"
             tools:text="@string/dev_http_capture_query_no_data" />
     </LinearLayout>

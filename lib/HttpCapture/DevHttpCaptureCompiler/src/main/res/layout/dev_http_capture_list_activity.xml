@@ -30,6 +30,6 @@
             android:overScrollMode="never"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/dev_http_capture_main_module_adapter" />
+            tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
     </FrameLayout>
 </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="56.0dp"
-    android:background="@color/dev_http_capture_title_bg"
+    android:background="@color/dev_http_capture_title_bg_color"
     android:fitsSystemWindows="true"
     android:scrollbars="none">
 
@@ -23,6 +23,7 @@
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:maxLines="1"
+        android:paddingRight="5.0dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textSize="21.0sp"

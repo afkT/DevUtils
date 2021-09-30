@@ -19,4 +19,20 @@ class Items {
             this.lists      = lists;
         }
     }
+
+    /**
+     * 抓包列表数据包装类
+     */
+    public static class GroupItem {
+        public String            title;
+        public List<CaptureFile> lists;
+
+        public GroupItem(
+                String title,
+                List<CaptureFile> lists
+        ) {
+            this.title = title;
+            this.lists = lists;
+        }
+    }
 }

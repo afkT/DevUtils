@@ -212,6 +212,7 @@ public final class UtilsCompiler {
 
     /**
      * 获取首页数据源
+     * @param moduleName 模块名 ( 要求唯一性 )
      * @return 首页数据源
      */
     protected List<Items.MainItem> getMainData(final String moduleName) {
@@ -227,6 +228,51 @@ public final class UtilsCompiler {
             List<CaptureItem> data = mDataMaps.get(moduleName);
             if (CollectionUtils.isNotEmpty(data)) {
                 lists.add(new Items.MainItem(moduleName, data));
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param date       yyyyMMdd
+     * @return 抓包存储 Item
+     */
+    private CaptureItem getCaptureItemByDate(
+            final String moduleName,
+            final String date
+    ) {
+        if (StringUtils.isNotEmpty(date)) {
+            List<CaptureItem> data = mDataMaps.get(moduleName);
+            if (CollectionUtils.isNotEmpty(data)) {
+                for (CaptureItem item : data) {
+                    if (item != null && date.equals(item.getYyyyMMdd())) {
+                        return item;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param date       yyyyMMdd
+     * @return 指定筛选条件抓包列表数据
+     */
+    protected List<Items.GroupItem> getDateData(
+            final String moduleName,
+            final String date
+    ) {
+        List<Items.GroupItem> lists = new ArrayList<>();
+        // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
+        CaptureItem captureItem = getCaptureItemByDate(moduleName, date);
+
+        for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
+            if (CollectionUtils.isNotEmpty(entry.getValue())) {
+                lists.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
             }
         }
         return lists;

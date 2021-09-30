@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import dev.callback.DevCallback;
 import dev.capture.compiler.R;
-import dev.capture.compiler.databinding.DevHttpCaptureMainActivityBinding;
+import dev.capture.compiler.databinding.DevHttpCaptureListActivityBinding;
 import dev.utils.DevFinal;
 import dev.utils.app.BarUtils;
 import dev.utils.app.ResourceUtils;
@@ -21,13 +21,13 @@ import dev.utils.app.toast.ToastTintUtils;
 public class DevHttpCaptureListActivity
         extends BaseDevHttpActivity {
 
-    private       DevHttpCaptureMainActivityBinding mBinding;
+    private       DevHttpCaptureListActivityBinding mBinding;
     // 当前选中的 Module
     private       String                            mModule;
     // 当前选中的日期
     private       String                            mDate;
     // 首页适配器
-    private final AdapterMainModule                 mAdapter  = new AdapterMainModule();
+    private final AdapterDateModuleList             mAdapter  = new AdapterDateModuleList();
     // 查询回调
     private final DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
         @Override
@@ -43,7 +43,11 @@ public class DevHttpCaptureListActivity
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
                 );
                 // 设置数据源
-                mAdapter.setDataList(UtilsCompiler.getInstance().getMainData(mModule));
+                mAdapter.setRecyclerView(mBinding.vidRecycler).setDataList(
+                        UtilsCompiler.getInstance().getDateData(
+                                mModule, mDate
+                        )
+                );
                 // 判断是否存在数据
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
@@ -57,10 +61,10 @@ public class DevHttpCaptureListActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DevHttpCaptureMainActivityBinding.inflate(getLayoutInflater());
+        mBinding = DevHttpCaptureListActivityBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         // 设置状态栏颜色
-        BarUtils.setStatusBarColor(this, ResourceUtils.getColor(R.color.dev_http_capture_title_bg));
+        BarUtils.setStatusBarColor(this, ResourceUtils.getColor(R.color.dev_http_capture_title_bg_color));
         // 初始化数据
         initValue(getIntent());
     }
@@ -100,5 +104,15 @@ public class DevHttpCaptureListActivity
         mBinding.title.vidTitleTv.setText(mDate + " - " + mModule);
         // 设置提示文案
         mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
+        // 初始化适配器
+        mBinding.vidRecycler.setAdapter(mAdapter);
+
+        // ==========
+        // = 数据获取 =
+        // ==========
+
+        UtilsCompiler.getInstance().queryData(
+                mCallback, true
+        );
     }
 }

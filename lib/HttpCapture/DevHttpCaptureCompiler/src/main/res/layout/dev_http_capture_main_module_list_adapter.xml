@@ -9,14 +9,14 @@
         android:id="@+id/vid_title_tv"
         android:layout_width="match_parent"
         android:layout_height="45.0dp"
-        android:background="@color/dev_http_capture_adapter_item_bg"
+        android:background="@color/dev_http_capture_adapter_item_bg_color"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:paddingLeft="10.0dp"
         android:paddingRight="10.0dp"
-        android:textColor="@color/dev_http_capture_adapter_item"
+        android:textColor="@color/dev_http_capture_adapter_item_color"
         android:textSize="17.0sp"
         tools:text="@string/dev_http_capture_title" />
 </LinearLayout>

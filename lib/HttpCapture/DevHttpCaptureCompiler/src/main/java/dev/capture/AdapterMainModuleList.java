@@ -54,6 +54,10 @@ public class AdapterMainModuleList
                 });
     }
 
+    // ==========
+    // = 其他方法 =
+    // ==========
+
     /**
      * 跳转 抓包数据列表 Activity
      * @param context    {@link Context}

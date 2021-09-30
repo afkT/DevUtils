@@ -4,4 +4,5 @@
     <string name="dev_http_capture_querying">正在加载中，请稍后&#8230;</string>
     <string name="dev_http_capture_query_complete">数据刷新完成</string>
     <string name="dev_http_capture_query_no_data">暂无抓包数据</string>
+    <integer name="dev_http_capture_query_item_scroll_delay">30</integer>
 </resources>
