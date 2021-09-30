@@ -12,5 +12,10 @@
             android:name="dev.capture.DevHttpCaptureListActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity
+            android:name="dev.capture.DevHttpCaptureFileActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
     </application>
 </manifest>

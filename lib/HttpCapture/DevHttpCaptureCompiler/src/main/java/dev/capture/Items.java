@@ -40,6 +40,22 @@ class Items {
     }
 
     /**
+     * 抓包文件数据包装类
+     */
+    public static class FileItem {
+        public String title;
+        public String value;
+
+        public FileItem(
+                final String title,
+                final String value
+        ) {
+            this.title = title;
+            this.value = value;
+        }
+    }
+
+    /**
      * 通过时间转换标题
      * <pre>
      *     例

@@ -1,5 +1,7 @@
 package dev.capture;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -7,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import dev.adapter.DevDataAdapterExt;
 import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListItemAdapterBinding;
+import dev.utils.DevFinal;
 import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.common.DateUtils;
 
@@ -47,8 +50,29 @@ public class AdapterDateModuleListItem
                 .setText(item.getUrl(), holder.binding.vidUrlTv)
                 .setText(DateUtils.formatTime(item.getTime()), holder.binding.vidTimeTv)
                 .setOnClick(view -> {
-                    // 跳转 抓包数据列表 Activity
-//                    start(mContext, mMainItem.moduleName, item.getYyyyMMdd());
+                    // 跳转 抓包数据详情 Activity
+                    start(mContext, item);
                 });
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 跳转 抓包数据详情 Activity
+     * @param context    {@link Context}
+     * @param captureFile 抓包存储文件
+     */
+    private void start(
+            final Context context,
+            final CaptureFile captureFile
+    ) {
+        try {
+            Intent intent = new Intent(context, DevHttpCaptureFileActivity.class);
+            intent.putExtra(DevFinal.JSON, captureFile.toJson());
+            context.startActivity(intent);
+        } catch (Exception ignored) {
+        }
     }
 }
