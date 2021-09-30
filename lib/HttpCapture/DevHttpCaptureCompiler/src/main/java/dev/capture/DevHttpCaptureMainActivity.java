@@ -33,7 +33,10 @@ public class DevHttpCaptureMainActivity
     // 查询回调
     private final DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
         @Override
-        public void callback(Boolean isQuerying) {
+        public void callback(
+                Boolean isQuerying,
+                int size
+        ) {
             if (!isFinishing()) {
                 if (isQuerying) {
                     ToastTintUtils.normal(

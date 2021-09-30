@@ -146,12 +146,17 @@ public final class UtilsCompiler {
 
     /**
      * 通知回调
+     * @param isQuerying 是否查询中
+     * @param size       数据数量
      */
-    protected void notifyCallback(final boolean isQuerying) {
+    protected void notifyCallback(
+            final boolean isQuerying,
+            final int size
+    ) {
         for (DevCallback<Boolean> callback : mCallbackLists) {
             HandlerUtils.postRunnable(() -> {
                 try {
-                    callback.callback(isQuerying);
+                    callback.callback(isQuerying, size);
                 } catch (Exception ignored) {
                 }
             });
@@ -177,25 +182,27 @@ public final class UtilsCompiler {
             final boolean isRefresh
     ) {
         addCallback(callback);
+        int size = mDataMaps.size();
         if (mQuerying) {
-            notifyCallback(true);
+            notifyCallback(true, size);
             return;
         }
         // 如果存在数据且非刷新操作表示需要获取数据
-        if (mDataMaps.size() != 0 && !isRefresh) {
-            notifyCallback(false);
+        if (size != 0 && !isRefresh) {
+            notifyCallback(false, size);
             return;
         }
         mQuerying = true;
         // 触发通知表示查询中
-        notifyCallback(true);
+        notifyCallback(true, size);
         // 后台读取数据
         new Thread(() -> {
             Map<String, List<CaptureItem>> maps = DevHttpCapture.getAllModule(false);
             mDataMaps.clear();
             mDataMaps.putAll(maps);
             mQuerying = false;
-            notifyCallback(false);
+            notifyCallback(false, mDataMaps.size());
+            clearCallback();
         }).start();
     }
 

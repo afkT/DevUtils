@@ -31,12 +31,17 @@ public class DevHttpCaptureListActivity
     // 查询回调
     private final DevCallback<Boolean>              mCallback = new DevCallback<Boolean>() {
         @Override
-        public void callback(Boolean isQuerying) {
+        public void callback(
+                Boolean isQuerying,
+                int size
+        ) {
             if (!isFinishing()) {
                 if (isQuerying) {
-                    ToastTintUtils.normal(
-                            ResourceUtils.getString(R.string.dev_http_capture_querying)
-                    );
+                    if (size == 0) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
+                    }
                     return;
                 }
                 ToastTintUtils.success(

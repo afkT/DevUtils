@@ -93,7 +93,7 @@ class Utils {
      * @param files 待排序文件数组
      * @return 排序后的文件名
      */
-    private static List<File> sortFileByName(File[] files) {
+    private static List<File> sortFileByName(final File[] files) {
         List<File> lists = new ArrayList<>();
         if (files != null) {
             lists.addAll(Arrays.asList(files));
