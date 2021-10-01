@@ -21,7 +21,6 @@ public class AdapterCaptureFile
             @NonNull ViewGroup parent,
             int viewType
     ) {
-        parentContext(parent);
         return new BaseDevHttpViewHolder<>(
                 DevHttpCaptureCaptureFileAdapterBinding.inflate(
                         LayoutInflater.from(mContext), parent, false

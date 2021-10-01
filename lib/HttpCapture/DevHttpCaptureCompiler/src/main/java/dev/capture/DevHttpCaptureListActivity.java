@@ -48,7 +48,7 @@ public class DevHttpCaptureListActivity
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
                 );
                 // 设置数据源
-                mAdapter.setRecyclerView(mBinding.vidRecycler).setDataList(
+                mAdapter.setDataList(
                         UtilsCompiler.getInstance().getDateData(
                                 mModule, mDate
                         )
@@ -109,8 +109,8 @@ public class DevHttpCaptureListActivity
         mBinding.title.vidTitleTv.setText(mDate + " - " + mModule);
         // 设置提示文案
         mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
-        // 初始化适配器
-        mBinding.vidRecycler.setAdapter(mAdapter);
+        // 绑定适配器
+        mAdapter.bindAdapter(mBinding.vidRecycler);
 
         // ==========
         // = 数据获取 =

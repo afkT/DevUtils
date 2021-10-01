@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import dev.adapter.DevDataAdapterExt2;
 import dev.base.multiselect.DevMultiSelectMap;
@@ -23,9 +22,8 @@ import dev.utils.app.helper.quick.QuickHelper;
 public class AdapterDateModuleList
         extends DevDataAdapterExt2<Items.GroupItem, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding>> {
 
-    private       RecyclerView mRecyclerView;
     // 延迟滑动时间
-    private final long         mDelay;
+    private final long mDelay;
 
     public AdapterDateModuleList() {
         // 初始化多选实现方案
@@ -50,7 +48,6 @@ public class AdapterDateModuleList
             @NonNull ViewGroup parent,
             int viewType
     ) {
-        parentContext(parent);
         return new BaseDevHttpViewHolder<>(
                 DevHttpCaptureDateModuleListAdapterBinding.inflate(
                         LayoutInflater.from(mContext), parent, false
@@ -68,7 +65,7 @@ public class AdapterDateModuleList
         // 判断对应模块是否展开
         boolean unfold = mMultiSelectMap.isSelectKey(item.title);
         if (ViewUtils.setVisibility(unfold, holder.binding.vidRecycler)) {
-            holder.binding.vidRecycler.setAdapter(new AdapterDateModuleListItem(item));
+            new AdapterDateModuleListItem(item, holder.binding.vidRecycler);
         }
         QuickHelper.get(holder.binding.vidTitleTv)
                 .setText(item.title)
@@ -82,19 +79,5 @@ public class AdapterDateModuleList
                             mRecyclerView, position
                     ), mDelay);
                 });
-    }
-
-    // ==========
-    // = 其他方法 =
-    // ==========
-
-    /**
-     * 设置关联的 RecyclerView
-     * @param recyclerView RecyclerView
-     * @return this Adapter
-     */
-    public AdapterDateModuleList setRecyclerView(final RecyclerView recyclerView) {
-        this.mRecyclerView = recyclerView;
-        return this;
     }
 }

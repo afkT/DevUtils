@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import dev.adapter.DevDataAdapterExt;
 import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListItemAdapterBinding;
@@ -20,8 +21,12 @@ import dev.utils.common.DateUtils;
 public class AdapterDateModuleListItem
         extends DevDataAdapterExt<CaptureFile, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListItemAdapterBinding>> {
 
-    public AdapterDateModuleListItem(Items.GroupItem groupItem) {
+    public AdapterDateModuleListItem(
+            Items.GroupItem groupItem,
+            RecyclerView recyclerView
+    ) {
         setDataList(groupItem.lists, false);
+        bindAdapter(recyclerView);
     }
 
     @NonNull
@@ -30,7 +35,6 @@ public class AdapterDateModuleListItem
             @NonNull ViewGroup parent,
             int viewType
     ) {
-        parentContext(parent);
         return new BaseDevHttpViewHolder<>(
                 DevHttpCaptureDateModuleListItemAdapterBinding.inflate(
                         LayoutInflater.from(mContext), parent, false
@@ -61,7 +65,7 @@ public class AdapterDateModuleListItem
 
     /**
      * 跳转 抓包数据详情 Activity
-     * @param context    {@link Context}
+     * @param context     {@link Context}
      * @param captureFile 抓包存储文件
      */
     private void start(

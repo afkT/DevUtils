@@ -20,11 +20,9 @@ dependencies {
     // 编译时使用
     api project(':DevHttpCapture')
     api project(':DevAssist')
-    api project(':DevWidget')
 //    // 打包时使用
 //    api deps.dev.dev_http_capture
 //    api deps.dev.dev_assist
-//    api deps.dev.dev_widget_x
 }
 
 // gradlew clean

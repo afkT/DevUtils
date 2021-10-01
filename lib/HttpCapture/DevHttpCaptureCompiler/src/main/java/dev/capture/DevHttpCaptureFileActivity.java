@@ -62,7 +62,7 @@ public class DevHttpCaptureFileActivity
         mBinding.title.vidBackIgview.setOnClickListener(view -> finishOperate());
         // 设置标题
         mBinding.title.vidTitleTv.setText("Http Capture Details");
-        // 初始化适配器
-        mBinding.vidRecycler.setAdapter(mAdapter);
+        // 绑定适配器
+        mAdapter.bindAdapter(mBinding.vidRecycler);
     }
 }

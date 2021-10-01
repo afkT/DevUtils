@@ -13,6 +13,7 @@ import java.util.List;
 import dev.assist.DataAssist;
 import dev.base.data.DataChanged;
 import dev.base.data.DataManager;
+import dev.utils.app.ActivityUtils;
 
 /**
  * detail: DataManager RecyclerView Adapter
@@ -36,11 +37,17 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     public DevDataAdapter(Context context) {
-        this.mContext = context;
+        this.mContext  = context;
+        this.mActivity = ActivityUtils.getActivity(context);
     }
 
     public DevDataAdapter(Activity activity) {
+        this.mContext  = activity;
         this.mActivity = activity;
+    }
+
+    public DevDataAdapter(RecyclerView recyclerView) {
+        bindAdapter(recyclerView);
     }
 
     // ===========
@@ -129,6 +136,13 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
             boolean set
     ) {
         if (recyclerView != null) {
+            // 进行设置 Context、Activity
+            if (mContext == null) {
+                mContext = recyclerView.getContext();
+            }
+            if (mActivity == null) {
+                mActivity = ActivityUtils.getActivity(recyclerView.getContext());
+            }
             recyclerView.setAdapter(this);
         }
         if (set) setRecyclerView(recyclerView);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,16 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="10.0dp" />
 
-    <dev.widget.ui.round.RoundLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10.0dp"
         android:layout_marginRight="10.0dp"
         android:layout_marginBottom="10.0dp"
+        android:background="@drawable/dev_http_capture_item_round_bg"
         android:orientation="vertical"
-        android:padding="10.0dp"
-        app:dev_backgroundColor="@color/dev_http_capture_adapter_item_round_bg_color"
-        app:dev_radius="10.0dp">
+        android:padding="10.0dp">
 
         <TextView
             android:id="@+id/vid_method_tv"
@@ -52,5 +50,5 @@
             android:textColor="@color/dev_http_capture_time_color"
             android:textSize="14.0sp"
             tools:text="2021-09-30 18:15:13" />
-    </dev.widget.ui.round.RoundLinearLayout>
+    </LinearLayout>
 </LinearLayout>

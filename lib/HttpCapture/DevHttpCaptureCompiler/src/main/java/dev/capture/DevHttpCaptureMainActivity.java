@@ -110,9 +110,8 @@ public class DevHttpCaptureMainActivity
         mBinding.title.vidTitleTv.setText(DevHttpCapture.TAG);
         // 设置提示文案
         mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
-        // 初始化适配器
-        mBinding.vidRecycler.setAdapter(mAdapter);
-        mAdapter.setRecyclerView(mBinding.vidRecycler);
+        // 绑定适配器
+        mAdapter.bindAdapter(mBinding.vidRecycler);
         // 判断是否选择指定模块
         if (StringUtils.isNotEmpty(mModule)) {
             // 默认展开该模块

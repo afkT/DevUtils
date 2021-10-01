@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import dev.adapter.DevDataAdapterExt;
 import dev.capture.compiler.databinding.DevHttpCaptureMainModuleListAdapterBinding;
@@ -21,9 +22,13 @@ public class AdapterMainModuleList
 
     private final Items.MainItem mMainItem;
 
-    public AdapterMainModuleList(Items.MainItem mainItem) {
+    public AdapterMainModuleList(
+            Items.MainItem mainItem,
+            RecyclerView recyclerView
+    ) {
         this.mMainItem = mainItem;
         setDataList(mainItem.lists, false);
+        bindAdapter(recyclerView);
     }
 
     @NonNull
@@ -32,7 +37,6 @@ public class AdapterMainModuleList
             @NonNull ViewGroup parent,
             int viewType
     ) {
-        parentContext(parent);
         return new BaseDevHttpViewHolder<>(
                 DevHttpCaptureMainModuleListAdapterBinding.inflate(
                         LayoutInflater.from(mContext), parent, false
