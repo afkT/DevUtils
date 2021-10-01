@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import dev.adapter.DevDataAdapterExt;
 import dev.capture.compiler.databinding.DevHttpCaptureCaptureFileAdapterBinding;
+import dev.utils.app.helper.view.ViewHelper;
 
 /**
  * detail: DevHttpCapture 抓包数据详情适配器
@@ -34,5 +35,8 @@ public class AdapterCaptureFile
             int position
     ) {
         Items.FileItem item = getDataItem(position);
+        ViewHelper.get()
+                .setText(item.title, holder.binding.vidTitleTv)
+                .setText(item.value, holder.binding.vidValueTv);
     }
 }

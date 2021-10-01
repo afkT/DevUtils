@@ -67,4 +67,29 @@ public final class DevHttpCaptureCompiler {
         }
         return false;
     }
+
+    /**
+     * 添加接口所属功能注释
+     * <pre>
+     *     url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
+     * </pre>
+     * @param url      请求接口链接
+     * @param function 接口所属功能注释
+     */
+    public static void putUrlFunction(
+            final String url,
+            final String function
+    ) {
+        UtilsCompiler.getInstance().putUrlFunction(
+                url, function
+        );
+    }
+
+    /**
+     * 移除接口所属功能注释
+     * @param url 请求接口链接
+     */
+    public static void removeUrlFunction(final String url) {
+        UtilsCompiler.getInstance().removeUrlFunction(url);
+    }
 }

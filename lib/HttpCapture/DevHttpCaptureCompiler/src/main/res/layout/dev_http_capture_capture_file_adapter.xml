@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10.0dp"
-    android:orientation="vertical"
-    tools:background="@color/white">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10.0dp"
-        android:layout_marginRight="10.0dp"
-        android:layout_marginBottom="10.0dp"
-        android:background="@drawable/dev_http_capture_item_round_bg"
-        android:orientation="vertical"
-        android:padding="10.0dp">
+        android:layout_margin="20.0dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/vid_method_tv"
+            android:id="@+id/vid_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_method_color"
-            android:textSize="18.0sp"
-            android:textStyle="bold"
-            tools:text="GET Http/1.1" />
+            android:textColor="@color/dev_http_capture_value_color"
+            android:textSize="17.0sp"
+            tools:text="Title" />
 
         <TextView
-            android:id="@+id/vid_url_tv"
+            android:id="@+id/vid_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="13.0dp"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_url_color"
-            android:textSize="16.0sp"
-            tools:text="https://www.baidu.com" />
-
-        <TextView
-            android:id="@+id/vid_time_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
-            android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_time_color"
-            android:textSize="14.0sp"
-            tools:text="2021-09-30 18:15:13" />
+            android:textColor="@color/dev_http_capture_value_color"
+            android:textSize="15.0sp"
+            tools:text="Value" />
     </LinearLayout>
-</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="10.0dp"
+        android:layout_marginRight="10.0dp"
+        android:background="@drawable/dev_http_capture_file_round_bg"
+        android:includeFontPadding="false"
+        android:paddingLeft="20.0dp"
+        android:paddingTop="4.0dp"
+        android:paddingRight="20.0dp"
+        android:paddingBottom="4.0dp"
+        android:text="@string/dev_http_capture_copy"
+        android:textColor="@color/white"
+        android:textSize="16.0sp" />
+
+</FrameLayout>

@@ -111,6 +111,37 @@ public final class UtilsCompiler {
         }
     }
 
+    // ==============
+    // = 接口所属功能 =
+    // ==============
+
+    // key = url, value = 接口所属功能注释
+    private final Map<String, String> URL_FUNCTION_MAP = new LinkedHashMap<>();
+
+    /**
+     * 添加接口所属功能注释
+     * <pre>
+     *     url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
+     * </pre>
+     * @param url      请求接口链接
+     * @param function 接口所属功能注释
+     */
+    public void putUrlFunction(
+            final String url,
+            final String function
+    ) {
+        if (StringUtils.isSpace(url)) return;
+        URL_FUNCTION_MAP.put(url, function);
+    }
+
+    /**
+     * 移除接口所属功能注释
+     * @param url 请求接口链接
+     */
+    public void removeUrlFunction(final String url) {
+        URL_FUNCTION_MAP.remove(url);
+    }
+
     // ============
     // = Callback =
     // ============

@@ -55,6 +55,10 @@ class Items {
         }
     }
 
+    // =============
+    // = 内部转换方法 =
+    // =============
+
     /**
      * 通过时间转换标题
      * <pre>
@@ -88,5 +92,18 @@ class Items {
             return builder.toString();
         }
         return title;
+    }
+
+    /**
+     * 拆分 Url 用于匹配接口所属功能注释
+     * @param url 请求接口链接
+     * @return 处理后的 Url
+     */
+    protected static String convertUrlKey(final String url) {
+        if (!StringUtils.isSpace(url)) {
+            String key = StringUtils.split(url, "?", 0);
+            return StringUtils.replaceEndsWith(key, "/", "");
+        }
+        return null;
     }
 }
