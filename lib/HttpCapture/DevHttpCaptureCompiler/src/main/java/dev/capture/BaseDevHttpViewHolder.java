@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding;
  * detail: DevHttpCapture Base ViewHolder ViewBinding
  * @author Ttt
  */
-public class BaseDevHttpViewHolder<VB extends ViewBinding>
+class BaseDevHttpViewHolder<VB extends ViewBinding>
         extends RecyclerView.ViewHolder {
 
     public VB binding;

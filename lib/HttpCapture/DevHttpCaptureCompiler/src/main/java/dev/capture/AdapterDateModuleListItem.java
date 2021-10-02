@@ -18,7 +18,7 @@ import dev.utils.common.DateUtils;
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-public class AdapterDateModuleListItem
+class AdapterDateModuleListItem
         extends DevDataAdapterExt<CaptureFile, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListItemAdapterBinding>> {
 
     public AdapterDateModuleListItem(

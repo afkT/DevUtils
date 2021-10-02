@@ -18,7 +18,7 @@ import dev.utils.app.helper.quick.QuickHelper;
  * detail: DevHttpCapture 模块适配器
  * @author Ttt
  */
-public class AdapterMainModule
+class AdapterMainModule
         extends DevDataAdapterExt2<Items.MainItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleAdapterBinding>> {
 
     // 延迟滑动时间

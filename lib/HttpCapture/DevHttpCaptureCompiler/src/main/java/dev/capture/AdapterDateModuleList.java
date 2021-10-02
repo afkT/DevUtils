@@ -19,7 +19,7 @@ import dev.utils.app.helper.quick.QuickHelper;
  * detail: DevHttpCapture 对应模块具体日期抓包列表适配器
  * @author Ttt
  */
-public class AdapterDateModuleList
+class AdapterDateModuleList
         extends DevDataAdapterExt2<Items.GroupItem, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding>> {
 
     // 延迟滑动时间

@@ -17,7 +17,7 @@ import dev.utils.app.helper.quick.QuickHelper;
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-public class AdapterMainModuleList
+class AdapterMainModuleList
         extends DevDataAdapterExt<CaptureItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleListAdapterBinding>> {
 
     private final Items.MainItem mMainItem;

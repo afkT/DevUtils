@@ -53,6 +53,7 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.1'
 | updateInterceptor | 更新对应 Module Http 抓包拦截处理 |
 | getModulePath | 获取指定模块抓包存储路径 |
 | getModuleHttpCaptures | 获取指定模块所有抓包数据 |
+| getAllModule | 获取全部模块所有抓包数据 |
 
 
 ## <span id="devcapture">**`dev.capture`**</span>
@@ -145,3 +146,10 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.1'
 | 方法 | 注释 |
 | :- | :- |
 | filter | 是否过滤该 Http 请求不进行抓包存储 |
+
+
+* ** ->** [UtilsPublic.java](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/UtilsPublic.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getAllModule | 获取全部模块所有抓包数据 |

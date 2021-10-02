@@ -8,8 +8,10 @@ android.defaultConfig {
 dependencies {
     // 编译时使用
     api project(':DevHttpCapture')
+    api project(':DevAssist')
 //    // 打包时使用
 //    api deps.dev.dev_http_capture
+//    api deps.dev.dev_assist
 }
 
 // gradlew clean

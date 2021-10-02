@@ -17,7 +17,7 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: DevHttpCapture 抓包数据详情适配器
  * @author Ttt
  */
-public class AdapterCaptureFile
+class AdapterCaptureFile
         extends DevDataAdapterExt<Items.FileItem, BaseDevHttpViewHolder<DevHttpCaptureCaptureFileAdapterBinding>> {
 
     @NonNull

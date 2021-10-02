@@ -9,14 +9,14 @@
     <TextView
         android:id="@+id/vid_title_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50.0dp"
         android:background="@color/dev_http_capture_adapter_title_bg_color"
+        android:ellipsize="end"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
+        android:maxLines="1"
         android:paddingLeft="10.0dp"
-        android:paddingTop="15.0dp"
         android:paddingRight="10.0dp"
-        android:paddingBottom="15.0dp"
         android:textColor="@color/white"
         android:textSize="19.0sp"
         tools:text="@string/dev_http_capture_title" />
