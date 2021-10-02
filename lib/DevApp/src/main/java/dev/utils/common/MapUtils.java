@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -1290,5 +1291,54 @@ public final class MapUtils {
             return true;
         }
         return false;
+    }
+
+    // ==========
+    // = 拼接处理 =
+    // ==========
+
+    /**
+     * 键值对拼接
+     * @param map    {@link Map}
+     * @param symbol 拼接符号
+     * @param <K>    key
+     * @param <V>    value
+     * @return {@link StringBuilder}
+     */
+    public static <K, V> StringBuilder mapToString(
+            final Map<K, V> map,
+            final String symbol
+    ) {
+        return mapToString(map, symbol, new StringBuilder());
+    }
+
+    /**
+     * 键值对拼接
+     * @param map     {@link Map}
+     * @param symbol  拼接符号
+     * @param builder Builder
+     * @param <K>     key
+     * @param <V>     value
+     * @return {@link StringBuilder}
+     */
+    public static <K, V> StringBuilder mapToString(
+            final Map<K, V> map,
+            final String symbol,
+            final StringBuilder builder
+    ) {
+        if (map != null && builder != null) {
+            Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<K, V> entry = iterator.next();
+                builder.append(ConvertUtils.toString(entry.getKey()));
+                builder.append(symbol);
+                builder.append(ConvertUtils.toString(entry.getValue()));
+                // 如果还有下一行则追加换行
+                if (iterator.hasNext()) {
+                    builder.append(DevFinal.NEW_LINE_STR);
+                }
+            }
+        }
+        return builder;
     }
 }

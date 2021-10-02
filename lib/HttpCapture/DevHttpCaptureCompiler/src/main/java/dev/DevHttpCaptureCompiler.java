@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import dev.capture.DevHttpCaptureMainActivity;
+import dev.capture.UrlFunctionGet;
 import dev.capture.UtilsCompiler;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
@@ -70,26 +71,23 @@ public final class DevHttpCaptureCompiler {
 
     /**
      * 添加接口所属功能注释
-     * <pre>
-     *     url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
-     * </pre>
-     * @param url      请求接口链接
-     * @param function 接口所属功能注释
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param function   接口所属功能注释获取
      */
     public static void putUrlFunction(
-            final String url,
-            final String function
+            final String moduleName,
+            final UrlFunctionGet function
     ) {
         UtilsCompiler.getInstance().putUrlFunction(
-                url, function
+                moduleName, function
         );
     }
 
     /**
      * 移除接口所属功能注释
-     * @param url 请求接口链接
+     * @param moduleName 模块名 ( 要求唯一性 )
      */
-    public static void removeUrlFunction(final String url) {
-        UtilsCompiler.getInstance().removeUrlFunction(url);
+    public static void removeUrlFunction(final String moduleName) {
+        UtilsCompiler.getInstance().removeUrlFunction(moduleName);
     }
 }

@@ -64,5 +64,7 @@ public class DevHttpCaptureFileActivity
         mBinding.title.vidTitleTv.setText("Http Capture Details");
         // 绑定适配器
         mAdapter.bindAdapter(mBinding.vidRecycler);
+        // 设置数据源
+        mAdapter.setDataList(UtilsCompiler.getInstance().getFileData(json));
     }
 }

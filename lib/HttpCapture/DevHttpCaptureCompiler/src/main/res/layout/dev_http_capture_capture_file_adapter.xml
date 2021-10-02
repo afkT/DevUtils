@@ -25,27 +25,27 @@
             android:id="@+id/vid_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13.0dp"
+            android:layout_marginTop="7.0dp"
             android:includeFontPadding="false"
             android:textColor="@color/dev_http_capture_value_color"
-            android:textSize="15.0sp"
+            android:textSize="14.0sp"
             tools:text="Value" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/vid_copy_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginRight="10.0dp"
+        android:layout_marginTop="15.0dp"
+        android:layout_marginRight="15.0dp"
         android:background="@drawable/dev_http_capture_file_round_bg"
         android:includeFontPadding="false"
-        android:paddingLeft="20.0dp"
-        android:paddingTop="4.0dp"
-        android:paddingRight="20.0dp"
-        android:paddingBottom="4.0dp"
+        android:paddingLeft="18.0dp"
+        android:paddingTop="3.0dp"
+        android:paddingRight="18.0dp"
+        android:paddingBottom="3.0dp"
         android:text="@string/dev_http_capture_copy"
         android:textColor="@color/white"
-        android:textSize="16.0sp" />
-
+        android:textSize="14.0sp" />
 </FrameLayout>

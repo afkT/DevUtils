@@ -101,7 +101,7 @@ class Items {
      */
     protected static String convertUrlKey(final String url) {
         if (!StringUtils.isSpace(url)) {
-            String key = StringUtils.split(url, "?", 0);
+            String key = StringUtils.split(url, "\\?", 0);
             return StringUtils.replaceEndsWith(key, "/", "");
         }
         return null;

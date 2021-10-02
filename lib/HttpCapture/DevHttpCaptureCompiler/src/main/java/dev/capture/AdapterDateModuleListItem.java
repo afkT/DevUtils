@@ -56,7 +56,7 @@ public class AdapterDateModuleListItem
                 .setOnClick(view -> {
                     // 跳转 抓包数据详情 Activity
                     start(mContext, item);
-                });
+                }, holder.binding.getRoot());
     }
 
     // ==========

@@ -2,6 +2,13 @@ package dev.capture;
 
 import android.app.Activity;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -12,9 +19,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import dev.DevHttpCapture;
 import dev.callback.DevCallback;
+import dev.capture.compiler.R;
+import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.ResourceUtils;
 import dev.utils.common.CollectionUtils;
+import dev.utils.common.MapUtils;
 import dev.utils.common.StringUtils;
 
 public final class UtilsCompiler {
@@ -111,35 +122,132 @@ public final class UtilsCompiler {
         }
     }
 
+    // ========
+    // = GSON =
+    // ========
+
+    // JSON 字符串转 T Object
+    private final Gson FROM_GSON   = createGson(true).create();
+    // JSON 缩进
+    private final Gson INDENT_GSON = createGson(true).setPrettyPrinting().create();
+
+    /**
+     * 创建 GsonBuilder
+     * @param serializeNulls 是否序列化 null 值
+     * @return {@link GsonBuilder}
+     */
+    protected GsonBuilder createGson(final boolean serializeNulls) {
+        GsonBuilder builder = new GsonBuilder();
+        if (serializeNulls) builder.serializeNulls();
+        return builder;
+    }
+
+    /**
+     * JSON String 缩进处理
+     * @param json JSON String
+     * @return JSON String
+     */
+    protected String toJsonIndent(final String json) {
+        return toJsonIndent(json, INDENT_GSON);
+    }
+
+    /**
+     * JSON String 缩进处理
+     * @param json JSON String
+     * @param gson {@link Gson}
+     * @return JSON String
+     */
+    protected String toJsonIndent(
+            final String json,
+            final Gson gson
+    ) {
+        if (gson != null) {
+            try {
+                JsonReader reader = new JsonReader(new StringReader(json));
+                reader.setLenient(true);
+                JsonElement jsonElement = JsonParser.parseReader(reader);
+                return gson.toJson(jsonElement);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "toJsonIndent");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json     JSON String
+     * @param classOfT {@link Class} T
+     * @param <T>      泛型
+     * @return instance of type
+     */
+    protected <T> T fromJson(
+            final String json,
+            final Class<T> classOfT
+    ) {
+        return fromJson(json, classOfT, FROM_GSON);
+    }
+
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json     JSON String
+     * @param classOfT {@link Class} T
+     * @param gson     {@link Gson}
+     * @param <T>      泛型
+     * @return instance of type
+     */
+    protected <T> T fromJson(
+            final String json,
+            final Class<T> classOfT,
+            final Gson gson
+    ) {
+        if (gson != null) {
+            try {
+                return gson.fromJson(json, classOfT);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "fromJson");
+            }
+        }
+        return null;
+    }
+
     // ==============
     // = 接口所属功能 =
     // ==============
 
-    // key = url, value = 接口所属功能注释
-    private final Map<String, String> URL_FUNCTION_MAP = new LinkedHashMap<>();
+    // key = moduleName, value = 接口所属功能注释获取
+    private final Map<String, UrlFunctionGet> URL_FUNCTION_MAP = new LinkedHashMap<>();
 
     /**
      * 添加接口所属功能注释
-     * <pre>
-     *     url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
-     * </pre>
-     * @param url      请求接口链接
-     * @param function 接口所属功能注释
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param function   接口所属功能注释获取
      */
     public void putUrlFunction(
-            final String url,
-            final String function
+            final String moduleName,
+            final UrlFunctionGet function
     ) {
-        if (StringUtils.isSpace(url)) return;
-        URL_FUNCTION_MAP.put(url, function);
+        if (StringUtils.isSpace(moduleName)) return;
+        URL_FUNCTION_MAP.put(moduleName, function);
     }
 
     /**
      * 移除接口所属功能注释
-     * @param url 请求接口链接
+     * @param moduleName 模块名 ( 要求唯一性 )
      */
-    public void removeUrlFunction(final String url) {
-        URL_FUNCTION_MAP.remove(url);
+    public void removeUrlFunction(final String moduleName) {
+        URL_FUNCTION_MAP.remove(moduleName);
+    }
+
+    /**
+     * 获取接口所属功能注释
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return 接口所属功能注释获取
+     */
+    protected UrlFunctionGet getUrlFunction(final String moduleName) {
+        return URL_FUNCTION_MAP.get(moduleName);
     }
 
     // ============
@@ -311,6 +419,102 @@ public final class UtilsCompiler {
         for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
             if (CollectionUtils.isNotEmpty(entry.getValue())) {
                 lists.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 获取抓包文件数据
+     * @param json 抓包文件 JSON 格式数据
+     * @return 抓包文件数据
+     */
+    protected List<Items.FileItem> getFileData(final String json) {
+        List<Items.FileItem> lists       = new ArrayList<>();
+        CaptureFile          captureFile = fromJson(json, CaptureFile.class);
+        if (captureFile != null) {
+            CaptureInfo captureInfo = captureFile.getCaptureInfo();
+            if (captureInfo != null) {
+
+                // 接口所属功能
+                UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
+                        captureFile.getModuleName()
+                );
+                if (urlFunction != null) {
+                    String function = urlFunction.toUrlFunction(
+                            captureFile.getModuleName(), captureInfo.requestUrl,
+                            Items.convertUrlKey(captureInfo.requestUrl),
+                            captureInfo.requestMethod
+                    );
+                    if (StringUtils.isNotEmpty(function)) {
+                        lists.add(new Items.FileItem(
+                                ResourceUtils.getString(R.string.dev_http_capture_url_function),
+                                function
+                        ));
+                    }
+                }
+
+                // 请求方式
+                lists.add(new Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_method),
+                        captureInfo.requestMethod
+                ));
+
+                // 请求 URL
+                lists.add(new Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_url),
+                        captureInfo.requestUrl
+                ));
+
+                // 请求 Header
+                String requestHeader = MapUtils.mapToString(
+                        captureInfo.requestHeader, ": "
+                ).toString();
+                if (StringUtils.isNotEmpty(requestHeader)) {
+                    lists.add(new Items.FileItem(
+                            ResourceUtils.getString(R.string.dev_http_capture_request_header),
+                            requestHeader
+                    ));
+                }
+
+                // 请求 Body
+                String requestBody = MapUtils.mapToString(
+                        captureInfo.requestBody, ": "
+                ).toString();
+                if (StringUtils.isNotEmpty(requestBody)) {
+                    lists.add(new Items.FileItem(
+                            ResourceUtils.getString(R.string.dev_http_capture_request_body),
+                            requestBody
+                    ));
+                }
+
+                // 响应状态
+                String responseStatus = MapUtils.mapToString(
+                        captureInfo.responseStatus, ": "
+                ).toString();
+                if (StringUtils.isNotEmpty(responseStatus)) {
+                    lists.add(new Items.FileItem(
+                            ResourceUtils.getString(R.string.dev_http_capture_response_status),
+                            responseStatus
+                    ));
+                }
+
+                // 响应 Header
+                String responseHeader = MapUtils.mapToString(
+                        captureInfo.responseHeader, ": "
+                ).toString();
+                if (StringUtils.isNotEmpty(responseHeader)) {
+                    lists.add(new Items.FileItem(
+                            ResourceUtils.getString(R.string.dev_http_capture_response_header),
+                            responseHeader
+                    ));
+                }
+
+                // 响应 Body
+                lists.add(new Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_response_body),
+                        UtilsCompiler.getInstance().toJsonIndent(captureInfo.responseBody)
+                ));
             }
         }
         return lists;
