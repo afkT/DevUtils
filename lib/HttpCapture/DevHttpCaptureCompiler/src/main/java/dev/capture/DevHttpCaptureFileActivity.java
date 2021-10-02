@@ -65,6 +65,10 @@ public class DevHttpCaptureFileActivity
         // 绑定适配器
         mAdapter.bindAdapter(mBinding.vidRecycler);
         // 设置数据源
-        mAdapter.setDataList(UtilsCompiler.getInstance().getFileData(json));
+        mBinding.vidRecycler.post(() -> {
+            if (!isFinishing()) {
+                mAdapter.setDataList(UtilsCompiler.getInstance().getFileData(json));
+            }
+        });
     }
 }
