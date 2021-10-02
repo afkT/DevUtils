@@ -97,7 +97,7 @@ public class DevHttpCaptureListActivity
      * 初始化数据
      * @param intent Intent
      */
-    private void initValue(Intent intent) {
+    private void initValue(final Intent intent) {
         // 获取模块名
         mModule = intent.getStringExtra(DevFinal.MODULE);
         // 获取时间

@@ -54,7 +54,7 @@ public class DevHttpCaptureFileActivity
      * 初始化数据
      * @param intent Intent
      */
-    private void initValue(Intent intent) {
+    private void initValue(final Intent intent) {
         // 获取抓包文件
         String json = intent.getStringExtra(DevFinal.JSON);
 

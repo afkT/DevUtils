@@ -95,7 +95,7 @@ public class DevHttpCaptureMainActivity
      * 初始化数据
      * @param intent Intent
      */
-    private void initValue(Intent intent) {
+    private void initValue(final Intent intent) {
         // 移除回调
         UtilsCompiler.getInstance().clearCallback();
         // 清空数据
