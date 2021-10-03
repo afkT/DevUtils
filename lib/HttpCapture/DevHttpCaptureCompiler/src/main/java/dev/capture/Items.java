@@ -62,10 +62,10 @@ class Items {
      */
     public enum GroupType {
 
-        // 以时间分割
-        T_DATE("1"),
+        // 抓包时间
+        T_TIME("1"),
 
-        // 以请求接口前缀 ( ? 号前 )
+        // 请求链接, 以请求接口前缀 ( ? 号前 )
         T_URL("2"),
 
         ;
@@ -77,7 +77,7 @@ class Items {
         }
 
         public String getTitle() {
-            int res = R.string.dev_http_capture_group_type_date;
+            int res = R.string.dev_http_capture_group_type_time;
             switch (this) {
                 case T_URL:
                     res = R.string.dev_http_capture_group_type_url;

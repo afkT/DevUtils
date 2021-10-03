@@ -406,11 +406,15 @@ public final class UtilsCompiler {
      * 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param date       yyyyMMdd
+     * @param dataType   数据来源类型
+     * @param groupType  分组条件类型
      * @return 指定筛选条件抓包列表数据
      */
     protected List<Items.GroupItem> getDateData(
             final String moduleName,
-            final String date
+            final String date,
+            final Items.DataType dataType,
+            final Items.GroupType groupType
     ) {
         List<Items.GroupItem> lists = new ArrayList<>();
         // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item

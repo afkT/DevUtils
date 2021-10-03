@@ -44,9 +44,6 @@ public class DevHttpCaptureMainActivity
                     );
                     return;
                 }
-                ToastTintUtils.success(
-                        ResourceUtils.getString(R.string.dev_http_capture_query_complete)
-                );
                 // 设置数据源
                 mAdapter.setDataList(UtilsCompiler.getInstance().getMainData(mModule));
                 // 判断是否存在数据
@@ -54,6 +51,9 @@ public class DevHttpCaptureMainActivity
                         mAdapter.isDataNotEmpty(),
                         mBinding.vidRecycler,
                         mBinding.vidTips.vidTipsFrame
+                );
+                ToastTintUtils.success(
+                        ResourceUtils.getString(R.string.dev_http_capture_query_complete)
                 );
             }
         }

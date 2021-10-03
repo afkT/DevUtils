@@ -7,6 +7,7 @@
     <string name="dev_http_capture_query_no_data">No Http Capture Data</string>
     <string name="dev_http_capture_copy">Copy</string>
     <string name="dev_http_capture_copy_success">Copy Success</string>
+    <string name="dev_http_capture_cancel">cancel</string>
     <string name="dev_http_capture_url_function">Url Function</string>
     <string name="dev_http_capture_request_method">Request Method</string>
     <string name="dev_http_capture_request_url">Request Url</string>
@@ -20,8 +21,8 @@
     <string name="dev_http_capture_data_type_15_29">15&#8211;29 minute</string>
     <string name="dev_http_capture_data_type_30_44">30&#8211;44 minute</string>
     <string name="dev_http_capture_data_type_45_59">45&#8211;59 minute</string>
-    <string name="dev_http_capture_group_type_date">date</string>
-    <string name="dev_http_capture_group_type_url">url</string>
+    <string name="dev_http_capture_group_type_time">capture time</string>
+    <string name="dev_http_capture_group_type_url">request url</string>
     <string name="dev_http_capture_options_data">Data Sources</string>
     <string name="dev_http_capture_options_group">Group type</string>
 </resources>

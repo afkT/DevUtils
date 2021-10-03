@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/dev_http_capture_tab_bg_color"
+    android:baselineAligned="false"
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/vid_data_tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="3.0dp"
-        android:paddingTop="8.0dp"
+        android:paddingTop="3.0dp"
         android:paddingRight="3.0dp"
-        android:paddingBottom="10.0dp">
+        android:paddingBottom="11.0dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -45,6 +47,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/vid_group_tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -79,6 +82,6 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="16.0sp"
-            tools:text="@string/dev_http_capture_group_type_date" />
+            tools:text="@string/dev_http_capture_group_type_time" />
     </LinearLayout>
 </LinearLayout>

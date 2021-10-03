@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_tran40">
+
+
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/dev_http_capture_dialog_round_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15.0dp"
+            android:layout_marginBottom="8.0dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/dev_http_capture_options_data"
+            android:textColor="@color/color_33"
+            android:textSize="15.0sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vid_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_all"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_0_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_0_14"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_15_29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_15_29"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_30_44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_30_44"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_45_59"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_45_59"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:includeFontPadding="false"
+            android:paddingLeft="35.0dp"
+            android:paddingTop="5.0dp"
+            android:paddingRight="20.0dp"
+            android:paddingBottom="15.0dp"
+            android:text="@string/dev_http_capture_cancel"
+            android:textColor="@color/red"
+            android:textSize="14.0sp" />
+    </LinearLayout>
+</FrameLayout>

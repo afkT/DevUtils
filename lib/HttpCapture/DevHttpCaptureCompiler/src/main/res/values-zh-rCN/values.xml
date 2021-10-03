@@ -5,6 +5,7 @@
     <string name="dev_http_capture_query_no_data">暂无抓包数据</string>
     <string name="dev_http_capture_copy">复制</string>
     <string name="dev_http_capture_copy_success">复制成功</string>
+    <string name="dev_http_capture_cancel">取消</string>
     <string name="dev_http_capture_url_function">接口所属功能</string>
     <string name="dev_http_capture_request_method">请求方式</string>
     <string name="dev_http_capture_request_url">请求 Url</string>
@@ -18,8 +19,8 @@
     <string name="dev_http_capture_data_type_15_29">15&#8211;29 分钟</string>
     <string name="dev_http_capture_data_type_30_44">30&#8211;44 分钟</string>
     <string name="dev_http_capture_data_type_45_59">45&#8211;59 分钟</string>
-    <string name="dev_http_capture_group_type_date">时间</string>
-    <string name="dev_http_capture_group_type_url">链接</string>
+    <string name="dev_http_capture_group_type_time">抓包时间</string>
+    <string name="dev_http_capture_group_type_url">请求链接</string>
     <string name="dev_http_capture_options_data">数据来源</string>
     <string name="dev_http_capture_options_group">分组类型</string>
 </resources>
