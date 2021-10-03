@@ -59,9 +59,9 @@ public class DevHttpCaptureFileActivity
         String json = intent.getStringExtra(DevFinal.JSON);
 
         // 设置点击事件
-        mBinding.title.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.title.vidTitleTv.setText("Http Capture Details");
+        mBinding.vidTitle.vidTitleTv.setText("Http Capture Details");
         // 绑定适配器
         mAdapter.bindAdapter(mBinding.vidRecycler);
         // 设置数据源

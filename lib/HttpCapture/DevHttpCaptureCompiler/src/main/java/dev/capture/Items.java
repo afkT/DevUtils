@@ -2,10 +2,90 @@ package dev.capture;
 
 import java.util.List;
 
+import dev.capture.compiler.R;
+import dev.utils.app.ResourceUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.StringUtils;
 
 class Items {
+
+    /**
+     * 数据来源类型
+     */
+    public enum DataType {
+
+        // 全部
+        T_ALL("1"),
+
+        // 0-14 分钟
+        T_0_14("2"),
+
+        // 15-29 分钟
+        T_15_29("3"),
+
+        // 30-44 分钟
+        T_30_44("4"),
+
+        // 45-59 分钟
+        T_45_59("5"),
+
+        ;
+
+        public String type;
+
+        DataType(String type) {
+            this.type = type;
+        }
+
+        public String getTitle() {
+            int res = R.string.dev_http_capture_data_type_all;
+            switch (this) {
+                case T_0_14:
+                    res = R.string.dev_http_capture_data_type_0_14;
+                    break;
+                case T_15_29:
+                    res = R.string.dev_http_capture_data_type_15_29;
+                    break;
+                case T_30_44:
+                    res = R.string.dev_http_capture_data_type_30_44;
+                    break;
+                case T_45_59:
+                    res = R.string.dev_http_capture_data_type_45_59;
+                    break;
+            }
+            return ResourceUtils.getString(res);
+        }
+    }
+
+    /**
+     * 分组条件类型
+     */
+    public enum GroupType {
+
+        // 以时间分割
+        T_DATE("1"),
+
+        // 以请求接口前缀 ( ? 号前 )
+        T_URL("2"),
+
+        ;
+
+        public String type;
+
+        GroupType(String type) {
+            this.type = type;
+        }
+
+        public String getTitle() {
+            int res = R.string.dev_http_capture_group_type_date;
+            switch (this) {
+                case T_URL:
+                    res = R.string.dev_http_capture_group_type_url;
+                    break;
+            }
+            return ResourceUtils.getString(res);
+        }
+    }
 
     /**
      * 首页适配器数据包装类

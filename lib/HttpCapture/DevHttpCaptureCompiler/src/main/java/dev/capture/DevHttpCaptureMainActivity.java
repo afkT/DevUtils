@@ -53,7 +53,7 @@ public class DevHttpCaptureMainActivity
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
                         mBinding.vidRecycler,
-                        mBinding.tipsView.vidTipsFrame
+                        mBinding.vidTips.vidTipsFrame
                 );
             }
         }
@@ -105,11 +105,11 @@ public class DevHttpCaptureMainActivity
         mModule = intent.getStringExtra(DevFinal.MODULE);
 
         // 设置点击事件
-        mBinding.title.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.title.vidTitleTv.setText(DevHttpCapture.TAG);
+        mBinding.vidTitle.vidTitleTv.setText(DevHttpCapture.TAG);
         // 设置提示文案
-        mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
+        mBinding.vidTips.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
         // 绑定适配器
         mAdapter.bindAdapter(mBinding.vidRecycler);
         // 判断是否选择指定模块
@@ -125,7 +125,7 @@ public class DevHttpCaptureMainActivity
         // ==========
 
         UtilsCompiler.getInstance().queryData(
-                mCallback, true
+                mCallback, false
         );
     }
 }

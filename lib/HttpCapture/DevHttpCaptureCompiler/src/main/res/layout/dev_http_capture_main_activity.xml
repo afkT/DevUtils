@@ -10,7 +10,7 @@
     android:scrollbars="none">
 
     <include
-        android:id="@+id/title"
+        android:id="@+id/vid_title"
         layout="@layout/dev_http_capture_include_title" />
 
     <FrameLayout
@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/tipsView"
+            android:id="@+id/vid_tips"
             layout="@layout/dev_http_capture_include_tips"
             android:visibility="gone" />
 

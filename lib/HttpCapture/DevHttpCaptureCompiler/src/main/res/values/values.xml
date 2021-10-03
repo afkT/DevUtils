@@ -15,4 +15,13 @@
     <string name="dev_http_capture_response_status">Response Status</string>
     <string name="dev_http_capture_response_header">Response Header</string>
     <string name="dev_http_capture_response_body">Response Body</string>
+    <string name="dev_http_capture_data_type_all">all</string>
+    <string name="dev_http_capture_data_type_0_14">00&#8211;14 minute</string>
+    <string name="dev_http_capture_data_type_15_29">15&#8211;29 minute</string>
+    <string name="dev_http_capture_data_type_30_44">30&#8211;44 minute</string>
+    <string name="dev_http_capture_data_type_45_59">45&#8211;59 minute</string>
+    <string name="dev_http_capture_group_type_date">date</string>
+    <string name="dev_http_capture_group_type_url">url</string>
+    <string name="dev_http_capture_options_data">Data Sources</string>
+    <string name="dev_http_capture_options_group">Group type</string>
 </resources>

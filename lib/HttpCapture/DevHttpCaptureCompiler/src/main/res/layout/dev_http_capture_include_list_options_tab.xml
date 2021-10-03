@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dev_http_capture_tab_bg_color"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="3.0dp"
+        android:paddingTop="8.0dp"
+        android:paddingRight="3.0dp"
+        android:paddingBottom="10.0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@string/dev_http_capture_options_data"
+            android:textColor="@color/white"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/vid_data_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7.0dp"
+            android:drawableRight="@drawable/dev_http_capture_icon_sort_arrow"
+            android:drawablePadding="2.0dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="16.0sp"
+            tools:text="@string/dev_http_capture_data_type_all" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="3.0dp"
+        android:paddingTop="8.0dp"
+        android:paddingRight="3.0dp"
+        android:paddingBottom="10.0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@string/dev_http_capture_options_group"
+            android:textColor="@color/white"
+            android:textSize="12.0sp" />
+
+        <TextView
+            android:id="@+id/vid_group_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7.0dp"
+            android:drawableRight="@drawable/dev_http_capture_icon_sort_arrow"
+            android:drawablePadding="2.0dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="16.0sp"
+            tools:text="@string/dev_http_capture_group_type_date" />
+    </LinearLayout>
+</LinearLayout>

@@ -56,8 +56,8 @@ public class DevHttpCaptureListActivity
                 // 判断是否存在数据
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
-                        mBinding.vidRecycler,
-                        mBinding.tipsView.vidTipsFrame
+                        mBinding.vidLinear,
+                        mBinding.vidTips.vidTipsFrame
                 );
             }
         }
@@ -104,11 +104,11 @@ public class DevHttpCaptureListActivity
         mDate = intent.getStringExtra(DevFinal.DATE);
 
         // 设置点击事件
-        mBinding.title.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.title.vidTitleTv.setText(mDate + " - " + mModule);
+        mBinding.vidTitle.vidTitleTv.setText(mDate + " - " + mModule);
         // 设置提示文案
-        mBinding.tipsView.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
+        mBinding.vidTips.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
         // 绑定适配器
         mAdapter.bindAdapter(mBinding.vidRecycler);
 
@@ -117,7 +117,7 @@ public class DevHttpCaptureListActivity
         // ==========
 
         UtilsCompiler.getInstance().queryData(
-                mCallback, true
+                mCallback, false
         );
     }
 }

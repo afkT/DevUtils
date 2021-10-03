@@ -10,7 +10,7 @@
     android:scrollbars="none">
 
     <include
-        android:id="@+id/title"
+        android:id="@+id/vid_title"
         layout="@layout/dev_http_capture_include_title" />
 
     <FrameLayout
@@ -18,18 +18,29 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/tipsView"
+            android:id="@+id/vid_tips"
             layout="@layout/dev_http_capture_include_tips"
             android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vid_recycler"
+        <LinearLayout
+            android:id="@+id/vid_linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/vid_tab"
+                layout="@layout/dev_http_capture_include_list_options_tab" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vid_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
+        </LinearLayout>
     </FrameLayout>
 </LinearLayout>

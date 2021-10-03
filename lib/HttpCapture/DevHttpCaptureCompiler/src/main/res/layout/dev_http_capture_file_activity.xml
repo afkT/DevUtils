@@ -10,7 +10,7 @@
     android:scrollbars="none">
 
     <include
-        android:id="@+id/title"
+        android:id="@+id/vid_title"
         layout="@layout/dev_http_capture_include_title" />
 
     <androidx.recyclerview.widget.RecyclerView
