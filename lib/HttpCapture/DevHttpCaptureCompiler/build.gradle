@@ -13,10 +13,6 @@ android {
 }
 
 dependencies {
-//    // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
-//    api deps.androidx.swiperefreshlayout
-    compileOnly deps.androidx.swiperefreshlayout
-
     // 编译时使用
     api project(':DevHttpCapture')
     api project(':DevAssist')

@@ -69,7 +69,7 @@ public class DevHttpCaptureListActivity
                 // 判断是否存在数据
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
-                        mBinding.vidLinear,
+                        mBinding.vidRecycler,
                         mBinding.vidTips.vidTipsFrame
                 );
                 ToastTintUtils.success(
