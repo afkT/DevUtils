@@ -6,6 +6,8 @@
 > **并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能**，支持实时开关抓包功能、可控 Http 拦截过滤器。
 >
 > 内置两个 Http 抓包拦截器，CallbackInterceptor ( 无存储逻辑，进行回调通知 )、HttpCaptureInterceptor ( 存在存储抓包数据逻辑 )
+>
+> `DevHttpCaptureCompiler` 提供对 `DevHttpCapture` 抓包库可视化功能
 
 
 ### 最新版本
@@ -19,7 +21,6 @@ version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.2-brightgreen.
 
 ```groovy
 dependencies {
-    implementation 'io.github.afkt:DevHttpCapture:1.0.2'
     debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.2'
     releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.2'
 }
@@ -27,8 +28,6 @@ dependencies {
 
 
 ### 使用方法
-
-> `DevHttpCaptureCompiler` 提供对 `DevHttpCapture` 抓包库可视化功能
 
 ```java
 // 显示所有 Module 抓包数据
@@ -72,6 +71,9 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 | start | 跳转抓包数据可视化 Activity |
 | putUrlFunction | 添加接口所属功能注释 |
 | removeUrlFunction | 移除接口所属功能注释 |
+
+
+## <span id="devcapture">**`dev.capture`**</span>
 
 
 * **接口所属功能注释获取 ->** [UrlFunctionGet.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UrlFunctionGet.java)
