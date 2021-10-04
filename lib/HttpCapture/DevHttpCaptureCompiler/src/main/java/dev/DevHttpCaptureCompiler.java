@@ -37,7 +37,7 @@ public final class DevHttpCaptureCompiler {
     // ==========
 
     /**
-     * 跳转 DevHttpCaptureMainActivity Activity
+     * 跳转抓包数据可视化 Activity
      * @param context {@link Context}
      * @return {@code true} success, {@code false} fail
      */
@@ -46,7 +46,7 @@ public final class DevHttpCaptureCompiler {
     }
 
     /**
-     * 跳转 DevHttpCaptureMainActivity Activity
+     * 跳转抓包数据可视化 Activity
      * @param context    {@link Context}
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return {@code true} success, {@code false} fail

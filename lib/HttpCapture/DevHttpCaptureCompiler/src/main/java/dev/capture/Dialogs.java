@@ -39,7 +39,7 @@ class Dialogs {
             mBinding.vidCancel.setOnClickListener(view -> dismiss());
         }
 
-        private void callback(Items.DataType dataType) {
+        private void callback(final Items.DataType dataType) {
             dismiss();
             mCallback.callback(dataType);
         }
@@ -72,7 +72,7 @@ class Dialogs {
             mBinding.vidCancel.setOnClickListener(view -> dismiss());
         }
 
-        private void callback(Items.GroupType dataType) {
+        private void callback(final Items.GroupType dataType) {
             dismiss();
             mCallback.callback(dataType);
         }
