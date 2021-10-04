@@ -22,6 +22,7 @@ import dev.callback.DevCallback;
 import dev.capture.compiler.R;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ClickUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.CollectionUtils;
@@ -352,6 +353,14 @@ public final class UtilsCompiler {
         mDataMaps.clear();
     }
 
+    /**
+     * 是否查询中
+     * @return {@code true} yes, {@code false} no
+     */
+    protected boolean isQuerying() {
+        return mQuerying;
+    }
+
     // ==========
     // = 数据转换 =
     // ==========
@@ -605,5 +614,19 @@ public final class UtilsCompiler {
             }
         }
         return null;
+    }
+
+    // ==========
+    // = 刷新处理 =
+    // ==========
+
+    // 刷新点击 ( 双击 ) 辅助类
+    protected static final ClickUtils.ClickAssist sRefreshClick = new ClickUtils.ClickAssist(10000L);
+
+    /**
+     * 重置刷新点击处理
+     */
+    protected void resetRefreshClick() {
+        sRefreshClick.reset().setIntervalTime(10000L);
     }
 }

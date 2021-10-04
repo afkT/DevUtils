@@ -40,6 +40,22 @@
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
+
+            <FrameLayout
+                android:id="@+id/vid_refresh"
+                android:layout_width="50.0dp"
+                android:layout_height="50.0dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="15.0dp"
+                android:layout_marginBottom="35.0dp"
+                android:background="@drawable/dev_http_capture_action_round_bg">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10.0dp"
+                    android:background="@drawable/dev_http_capture_icon_refresh" />
+            </FrameLayout>
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

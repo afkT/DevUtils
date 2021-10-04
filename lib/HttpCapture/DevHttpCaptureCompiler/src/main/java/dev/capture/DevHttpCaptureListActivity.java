@@ -75,6 +75,8 @@ public class DevHttpCaptureListActivity
                 ToastTintUtils.success(
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
                 );
+                // 重置刷新点击处理
+                UtilsCompiler.getInstance().resetRefreshClick();
             }
         }
     };
@@ -173,8 +175,8 @@ public class DevHttpCaptureListActivity
     // = 事件处理 =
     // ==========
 
-    // 点击 ( 双击 ) 辅助类
-    private final ClickUtils.ClickAssist mClickAssist = new ClickUtils.ClickAssist(300L);
+    // 筛选选项点击 ( 双击 ) 辅助类
+    private final ClickUtils.ClickAssist mOptionsClick = new ClickUtils.ClickAssist(300L);
 
     /**
      * 初始化事件
@@ -183,20 +185,40 @@ public class DevHttpCaptureListActivity
         initDialogs();
 
         ViewHelper.get()
-                .setOnClick(new ClickUtils.OnDebouncingClickListener(mClickAssist) {
+                .setOnClick(new ClickUtils.OnDebouncingClickListener(mOptionsClick) {
                     @Override
                     public void doClick(View view) {
                         DialogUtils.closeDialog(mDataTypeDialog);
                         DialogUtils.showDialog(mDataTypeDialog);
                     }
                 }, mBinding.vidTab.vidDataTab)
-                .setOnClick(new ClickUtils.OnDebouncingClickListener(mClickAssist) {
+                .setOnClick(new ClickUtils.OnDebouncingClickListener(mOptionsClick) {
                     @Override
                     public void doClick(View view) {
                         DialogUtils.closeDialog(mGroupTypeDialog);
                         DialogUtils.showDialog(mGroupTypeDialog);
                     }
-                }, mBinding.vidTab.vidGroupTab);
+                }, mBinding.vidTab.vidGroupTab)
+                .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
+                    @Override
+                    public void doClick(View view) {
+                        if (!UtilsCompiler.getInstance().isQuerying()) {
+                            ToastTintUtils.normal(
+                                    ResourceUtils.getString(R.string.dev_http_capture_querying)
+                            );
+                            UtilsCompiler.getInstance().queryData(
+                                    mCallback, true
+                            );
+                        }
+                    }
+
+                    @Override
+                    public void doInvalidClick(View view) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
+                    }
+                }, mBinding.vidRefresh);
     }
 
     // ==========

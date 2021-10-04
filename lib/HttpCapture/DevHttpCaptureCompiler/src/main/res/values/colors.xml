@@ -8,6 +8,7 @@
     <color name="dev_http_capture_adapter_item_bg_color">#d0d0d0</color>
     <color name="dev_http_capture_adapter_item_round_bg_color">#FFFFFF</color>
     <color name="dev_http_capture_adapter_file_round_bg_color">#0080FF</color>
+    <color name="dev_http_capture_action_round_bg_color">#FF4181</color>
     <color name="dev_http_capture_tips_color">#3F51B5</color>
     <color name="dev_http_capture_method_color">#FF0000</color>
     <color name="dev_http_capture_url_color">#333333</color>

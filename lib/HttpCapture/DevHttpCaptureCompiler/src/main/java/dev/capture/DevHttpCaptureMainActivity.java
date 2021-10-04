@@ -2,6 +2,7 @@ package dev.capture;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -13,8 +14,10 @@ import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureMainActivityBinding;
 import dev.utils.DevFinal;
 import dev.utils.app.BarUtils;
+import dev.utils.app.ClickUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.StringUtils;
 
@@ -55,6 +58,8 @@ public class DevHttpCaptureMainActivity
                 ToastTintUtils.success(
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
                 );
+                // 重置刷新点击处理
+                UtilsCompiler.getInstance().resetRefreshClick();
             }
         }
     };
@@ -127,5 +132,31 @@ public class DevHttpCaptureMainActivity
         UtilsCompiler.getInstance().queryData(
                 mCallback, false
         );
+
+        // ==========
+        // = 事件处理 =
+        // ==========
+
+        ViewHelper.get()
+                .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
+                    @Override
+                    public void doClick(View view) {
+                        if (!UtilsCompiler.getInstance().isQuerying()) {
+                            ToastTintUtils.normal(
+                                    ResourceUtils.getString(R.string.dev_http_capture_querying)
+                            );
+                            UtilsCompiler.getInstance().queryData(
+                                    mCallback, true
+                            );
+                        }
+                    }
+
+                    @Override
+                    public void doInvalidClick(View view) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
+                    }
+                }, mBinding.vidRefresh);
     }
 }
