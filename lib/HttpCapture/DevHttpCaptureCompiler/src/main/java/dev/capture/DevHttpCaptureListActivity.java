@@ -202,10 +202,10 @@ public class DevHttpCaptureListActivity
                 .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
                     @Override
                     public void doClick(View view) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
                         if (!UtilsCompiler.getInstance().isQuerying()) {
-                            ToastTintUtils.normal(
-                                    ResourceUtils.getString(R.string.dev_http_capture_querying)
-                            );
                             UtilsCompiler.getInstance().queryData(
                                     mCallback, true
                             );

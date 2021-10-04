@@ -42,9 +42,11 @@ public class DevHttpCaptureMainActivity
         ) {
             if (!isFinishing()) {
                 if (isQuerying) {
-                    ToastTintUtils.normal(
-                            ResourceUtils.getString(R.string.dev_http_capture_querying)
-                    );
+                    if (size == 0) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
+                    }
                     return;
                 }
                 // 设置数据源
@@ -141,10 +143,10 @@ public class DevHttpCaptureMainActivity
                 .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
                     @Override
                     public void doClick(View view) {
+                        ToastTintUtils.normal(
+                                ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        );
                         if (!UtilsCompiler.getInstance().isQuerying()) {
-                            ToastTintUtils.normal(
-                                    ResourceUtils.getString(R.string.dev_http_capture_querying)
-                            );
                             UtilsCompiler.getInstance().queryData(
                                     mCallback, true
                             );
