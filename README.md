@@ -53,6 +53,12 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
 
+### DevHttpCapture OKHttp 抓包工具库 ( 可视化功能 )
+
+- [README](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/README.md)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/CHANGELOG.md)
+
 ### DevWidget - 自定义 View UI 库
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
