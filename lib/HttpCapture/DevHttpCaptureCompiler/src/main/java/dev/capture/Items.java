@@ -109,6 +109,7 @@ class Items {
     public static class GroupItem {
         public String            title;
         public List<CaptureFile> lists;
+        public String            function;
 
         public GroupItem(
                 final String title,
@@ -116,6 +117,11 @@ class Items {
         ) {
             this.title = convertTitleByHHMM(title);
             this.lists = lists;
+        }
+
+        public GroupItem setFunction(final String function) {
+            this.function = function;
+            return this;
         }
     }
 
@@ -138,6 +144,28 @@ class Items {
     // =============
     // = 内部转换方法 =
     // =============
+
+    /**
+     * 根据时间转换数据类型
+     * @param key HHMM
+     * @return 数据类型
+     */
+    protected static DataType convertDataType(final String key) {
+        // 获取分钟
+        String minute = StringUtils.substring(key, 2, 4, false);
+        int    mm     = ConvertUtils.toInt(minute, -1);
+        if (mm == -1) return null;
+        // 存储间隔以 15 分钟为单位
+        if (mm < 15) { // 00-14
+            return DataType.T_0_14;
+        } else if (mm < 30) { // 15-29
+            return DataType.T_15_29;
+        } else if (mm < 45) { // 30-44
+            return DataType.T_30_44;
+        } else { // 45-59
+            return DataType.T_45_59;
+        }
+    }
 
     /**
      * 通过时间转换标题

@@ -14,6 +14,7 @@ import dev.utils.app.ListViewUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.quick.QuickHelper;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: DevHttpCapture 对应模块具体日期抓包列表适配器
@@ -79,5 +80,9 @@ class AdapterDateModuleList
                             mRecyclerView, position
                     ), mDelay);
                 });
+        // 接口所属功能
+        QuickHelper.get(holder.binding.vidFunctionTv)
+                .setText(item.function)
+                .setVisibilitys(StringUtils.isNotEmpty(item.function));
     }
 }

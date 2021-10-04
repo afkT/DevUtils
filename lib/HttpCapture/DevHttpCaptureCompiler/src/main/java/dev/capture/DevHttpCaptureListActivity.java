@@ -56,6 +56,7 @@ public class DevHttpCaptureListActivity
                 }
                 // 如果和之前的选项不一样, 则清空历史多选数据
                 if (!getNewOptions().equals(mOptions)) {
+                    mOptions = getNewOptions();
                     mAdapter.setNotifyAdapter(false)
                             .clearSelectAll();
                 }

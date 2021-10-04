@@ -403,32 +403,6 @@ public final class UtilsCompiler {
     }
 
     /**
-     * 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据
-     * @param moduleName 模块名 ( 要求唯一性 )
-     * @param date       yyyyMMdd
-     * @param dataType   数据来源类型
-     * @param groupType  分组条件类型
-     * @return 指定筛选条件抓包列表数据
-     */
-    protected List<Items.GroupItem> getDateData(
-            final String moduleName,
-            final String date,
-            final Items.DataType dataType,
-            final Items.GroupType groupType
-    ) {
-        List<Items.GroupItem> lists = new ArrayList<>();
-        // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
-        CaptureItem captureItem = getCaptureItemByDate(moduleName, date);
-
-        for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
-            if (CollectionUtils.isNotEmpty(entry.getValue())) {
-                lists.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
-            }
-        }
-        return lists;
-    }
-
-    /**
      * 获取抓包文件数据
      * @param json 抓包文件 JSON 格式数据
      * @return 抓包文件数据
@@ -441,21 +415,12 @@ public final class UtilsCompiler {
             if (captureInfo != null) {
 
                 // 接口所属功能
-                UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
-                        captureFile.getModuleName()
-                );
-                if (urlFunction != null) {
-                    String function = urlFunction.toUrlFunction(
-                            captureFile.getModuleName(), captureInfo.requestUrl,
-                            Items.convertUrlKey(captureInfo.requestUrl),
-                            captureInfo.requestMethod
-                    );
-                    if (StringUtils.isNotEmpty(function)) {
-                        lists.add(new Items.FileItem(
-                                ResourceUtils.getString(R.string.dev_http_capture_url_function),
-                                function
-                        ));
-                    }
+                String function = getUrlFunctionByInfo(captureFile, captureInfo);
+                if (StringUtils.isNotEmpty(function)) {
+                    lists.add(new Items.FileItem(
+                            ResourceUtils.getString(R.string.dev_http_capture_url_function),
+                            function
+                    ));
                 }
 
                 // 请求方式
@@ -522,5 +487,111 @@ public final class UtilsCompiler {
             }
         }
         return lists;
+    }
+
+    /**
+     * 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param date       yyyyMMdd
+     * @param dataType   数据来源类型
+     * @param groupType  分组条件类型
+     * @return 指定筛选条件抓包列表数据
+     */
+    protected List<Items.GroupItem> getDateData(
+            final String moduleName,
+            final String date,
+            final Items.DataType dataType,
+            final Items.GroupType groupType
+    ) {
+        List<Items.GroupItem> datas = new ArrayList<>();
+        // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
+        CaptureItem captureItem = getCaptureItemByDate(moduleName, date);
+
+        // 以全部数据为展示
+        if (dataType == Items.DataType.T_ALL) {
+            // 以时间为分组 ( 展开条标题 )
+            if (groupType == Items.GroupType.T_TIME) {
+                for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
+                    if (CollectionUtils.isNotEmpty(entry.getValue())) {
+                        datas.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
+                    }
+                }
+            } else {
+                // 以请求链接为分组 ( 展开条标题 )
+                Map<String, List<CaptureFile>> urlMaps = new LinkedHashMap<>();
+                for (List<CaptureFile> lists : captureItem.getData().values()) {
+                    if (CollectionUtils.isNotEmpty(lists)) {
+                        for (CaptureFile captureFile : lists) {
+                            String urlKey = Items.convertUrlKey(captureFile.getUrl());
+                            MapUtils.putToList(urlMaps, urlKey, captureFile);
+                        }
+                    }
+                }
+                // 保存处理后的数据
+                for (Map.Entry<String, List<CaptureFile>> entry : urlMaps.entrySet()) {
+                    CaptureFile     captureFile = entry.getValue().get(0);
+                    String          function    = getUrlFunctionByFile(captureFile, entry.getKey());
+                    Items.GroupItem item        = new Items.GroupItem(entry.getKey(), entry.getValue());
+                    item.setFunction(function);
+                    datas.add(item);
+                }
+            }
+        }
+        return datas;
+    }
+
+    // =============
+    // = 接口所属功能 =
+    // =============
+
+    /**
+     * 获取接口所属功能
+     * @param captureFile 抓包存储文件
+     * @param captureInfo 抓包数据
+     * @return 接口所属功能
+     */
+    private String getUrlFunctionByInfo(
+            final CaptureFile captureFile,
+            final CaptureInfo captureInfo
+    ) {
+        if (captureFile != null && captureInfo != null) {
+            // 接口所属功能
+            UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
+                    captureFile.getModuleName()
+            );
+            if (urlFunction != null) {
+                return urlFunction.toUrlFunction(
+                        captureFile.getModuleName(), captureInfo.requestUrl,
+                        Items.convertUrlKey(captureInfo.requestUrl),
+                        captureInfo.requestMethod
+                );
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取接口所属功能
+     * @param captureFile 抓包存储文件
+     * @param urlKey      拆分 Url 用于匹配接口所属功能注释
+     * @return 接口所属功能
+     */
+    private String getUrlFunctionByFile(
+            final CaptureFile captureFile,
+            final String urlKey
+    ) {
+        if (captureFile != null) {
+            // 接口所属功能
+            UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
+                    captureFile.getModuleName()
+            );
+            if (urlFunction != null) {
+                return urlFunction.toUrlFunction(
+                        captureFile.getModuleName(), captureFile.getUrl(),
+                        urlKey, captureFile.getMethod()
+                );
+            }
+        }
+        return null;
     }
 }

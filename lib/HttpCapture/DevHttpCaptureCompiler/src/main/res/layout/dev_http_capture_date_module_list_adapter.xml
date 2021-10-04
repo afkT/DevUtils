@@ -6,20 +6,39 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/vid_title_tv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50.0dp"
+        android:layout_height="wrap_content"
         android:background="@color/dev_http_capture_adapter_title_bg_color"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:includeFontPadding="false"
-        android:maxLines="1"
+        android:orientation="vertical"
         android:paddingLeft="10.0dp"
+        android:paddingTop="14.0dp"
         android:paddingRight="10.0dp"
-        android:textColor="@color/white"
-        android:textSize="19.0sp"
-        tools:text="@string/dev_http_capture_title" />
+        android:paddingBottom="14.0dp">
+
+        <TextView
+            android:id="@+id/vid_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="19.0sp"
+            tools:text="@string/dev_http_capture_title" />
+
+        <TextView
+            android:id="@+id/vid_function_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dp"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="15.0sp"
+            android:visibility="gone"
+            tools:text="@string/dev_http_capture_url_function"
+            tools:visibility="visible" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vid_recycler"
