@@ -25,11 +25,12 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.btnColor, binding.btnLeft, binding.btnTop, binding.btnTriangle,
-            binding.btnText1Minus, binding.btnText1Plus,
-            binding.btnHeight1Minus, binding.btnHeight1Plus,
-            binding.btnText2Minus, binding.btnText2Plus,
-            binding.btnHeight2Minus, binding.btnHeight2Plus
+            binding.vidBtnColor, binding.vidBtnLeft,
+            binding.vidBtnTop, binding.vidBtnTriangle,
+            binding.vidBtnText1Minus, binding.vidBtnText1Plus,
+            binding.vidBtnHeight1Minus, binding.vidBtnHeight1Plus,
+            binding.vidBtnText2Minus, binding.vidBtnText2Plus,
+            binding.vidBtnHeight2Minus, binding.vidBtnHeight2Plus
         )
     }
 
@@ -38,10 +39,10 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
         val labelView = binding.vidAclLabelview
         val layoutParams: FrameLayout.LayoutParams
         when (v.id) {
-            R.id.btn_color -> labelView.setFillColor(
+            R.id.vid_btn_color -> labelView.setFillColor(
                 -0x1000000 or RandomUtils.getRandom(0, 0xffffff)
             )
-            R.id.btn_left -> {
+            R.id.vid_btn_left -> {
                 if (mIsLeft) {
                     labelView.right()
                 } else {
@@ -53,7 +54,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                     (if (mIsLeft) Gravity.LEFT else Gravity.RIGHT) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
-            R.id.btn_top -> {
+            R.id.vid_btn_top -> {
                 if (mIsTop) {
                     labelView.bottom()
                 } else {
@@ -65,19 +66,19 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                     (if (mIsLeft) Gravity.LEFT else Gravity.RIGHT) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
-            R.id.btn_triangle -> {
+            R.id.vid_btn_triangle -> {
                 mIsTriangle = !mIsTriangle
                 labelView.triangle(mIsTriangle)
             }
-            R.id.btn_text1_minus -> {
+            R.id.vid_btn_text1_minus -> {
                 mText1Index = (mText1Index - 1 + TEXTS.size) % TEXTS.size
                 labelView.setText1(TEXTS[mText1Index])
             }
-            R.id.btn_text1_plus -> {
+            R.id.vid_btn_text1_plus -> {
                 mText1Index = (mText1Index + 1) % TEXTS.size
                 labelView.setText1(TEXTS[mText1Index])
             }
-            R.id.btn_height1_minus -> {
+            R.id.vid_btn_height1_minus -> {
                 if (mText1Height < 8) return
                 mText1Height -= 2f
                 convertPx = SizeUtils.spConvertPx(mText1Height).toFloat()
@@ -86,7 +87,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                 labelView.setPaddingCenter(convertPx / 3)
                 labelView.setPaddingBottom(convertPx / 3)
             }
-            R.id.btn_height1_plus -> {
+            R.id.vid_btn_height1_plus -> {
                 if (mText1Height > 30) return
                 mText1Height += 2f
                 convertPx = SizeUtils.spConvertPx(mText1Height).toFloat()
@@ -95,21 +96,21 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                 labelView.setPaddingCenter(convertPx / 3)
                 labelView.setPaddingBottom(convertPx / 3)
             }
-            R.id.btn_text2_minus -> {
+            R.id.vid_btn_text2_minus -> {
                 mText2Index = (mText2Index + 5 - 1) % 5
                 labelView.setText2("1234567890".substring(0, mText2Index))
             }
-            R.id.btn_text2_plus -> {
+            R.id.vid_btn_text2_plus -> {
                 mText2Index = (mText2Index + 5 + 1) % 5
                 labelView.setText2("1234567890".substring(0, mText2Index))
             }
-            R.id.btn_height2_minus -> {
+            R.id.vid_btn_height2_minus -> {
                 if (mText2Height < 4) return
                 mText2Height -= 2f
                 convertPx = SizeUtils.spConvertPx(mText2Height).toFloat()
                 labelView.setTextHeight2(convertPx)
             }
-            R.id.btn_height2_plus -> {
+            R.id.vid_btn_height2_plus -> {
                 if (mText2Height > 20) return
                 mText2Height += 2f
                 convertPx = SizeUtils.spConvertPx(mText2Height).toFloat()
