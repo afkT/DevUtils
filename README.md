@@ -53,7 +53,7 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
 
-### DevHttpCapture OKHttp 抓包工具库 ( 可视化功能 )
+### DevHttpCaptureCompiler OKHttp 抓包工具库 ( 可视化功能 )
 
 - [README](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/README.md)
 
