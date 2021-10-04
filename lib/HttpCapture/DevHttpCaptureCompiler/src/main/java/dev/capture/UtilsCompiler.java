@@ -503,41 +503,53 @@ public final class UtilsCompiler {
             final Items.DataType dataType,
             final Items.GroupType groupType
     ) {
-        List<Items.GroupItem> datas = new ArrayList<>();
+        List<Items.GroupItem> dataLists = new ArrayList<>();
         // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
         CaptureItem captureItem = getCaptureItemByDate(moduleName, date);
+        if (captureItem == null) return dataLists;
 
-        // 以全部数据为展示
+        Map<String, List<CaptureFile>> tempMaps = new LinkedHashMap<>();
         if (dataType == Items.DataType.T_ALL) {
-            // 以时间为分组 ( 展开条标题 )
-            if (groupType == Items.GroupType.T_TIME) {
-                for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
-                    if (CollectionUtils.isNotEmpty(entry.getValue())) {
-                        datas.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
+            // 以全部数据为展示
+            tempMaps.putAll(captureItem.getData());
+        } else {
+            // 以指定时间数据为展示
+            for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
+                if (CollectionUtils.isNotEmpty(entry.getValue())) {
+                    if (Items.convertDataType(entry.getKey()) == dataType) {
+                        tempMaps.put(entry.getKey(), entry.getValue());
                     }
-                }
-            } else {
-                // 以请求链接为分组 ( 展开条标题 )
-                Map<String, List<CaptureFile>> urlMaps = new LinkedHashMap<>();
-                for (List<CaptureFile> lists : captureItem.getData().values()) {
-                    if (CollectionUtils.isNotEmpty(lists)) {
-                        for (CaptureFile captureFile : lists) {
-                            String urlKey = Items.convertUrlKey(captureFile.getUrl());
-                            MapUtils.putToList(urlMaps, urlKey, captureFile);
-                        }
-                    }
-                }
-                // 保存处理后的数据
-                for (Map.Entry<String, List<CaptureFile>> entry : urlMaps.entrySet()) {
-                    CaptureFile     captureFile = entry.getValue().get(0);
-                    String          function    = getUrlFunctionByFile(captureFile, entry.getKey());
-                    Items.GroupItem item        = new Items.GroupItem(entry.getKey(), entry.getValue());
-                    item.setFunction(function);
-                    datas.add(item);
                 }
             }
         }
-        return datas;
+        // 以时间为分组 ( 展开条标题 )
+        if (groupType == Items.GroupType.T_TIME) {
+            for (Map.Entry<String, List<CaptureFile>> entry : tempMaps.entrySet()) {
+                if (CollectionUtils.isNotEmpty(entry.getValue())) {
+                    dataLists.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
+                }
+            }
+        } else {
+            // 以请求链接为分组 ( 展开条标题 )
+            Map<String, List<CaptureFile>> urlMaps = new LinkedHashMap<>();
+            for (List<CaptureFile> lists : tempMaps.values()) {
+                if (CollectionUtils.isNotEmpty(lists)) {
+                    for (CaptureFile captureFile : lists) {
+                        String urlKey = Items.convertUrlKey(captureFile.getUrl());
+                        MapUtils.putToList(urlMaps, urlKey, captureFile);
+                    }
+                }
+            }
+            // 保存处理后的数据
+            for (Map.Entry<String, List<CaptureFile>> entry : urlMaps.entrySet()) {
+                CaptureFile     captureFile = entry.getValue().get(0);
+                String          function    = getUrlFunctionByFile(captureFile, entry.getKey());
+                Items.GroupItem item        = new Items.GroupItem(entry.getKey(), entry.getValue());
+                item.setFunction(function);
+                dataLists.add(item);
+            }
+        }
+        return dataLists;
     }
 
     // =============
