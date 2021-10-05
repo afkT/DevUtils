@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.2.7 *(2021-10-06)*
+----------------------------
+
+* `[Add]` DevDataAdapter#getRecyclerView、setRecyclerView、bindAdapter
+
 Version 1.2.6 *(2021-09-20)*
 ----------------------------
 

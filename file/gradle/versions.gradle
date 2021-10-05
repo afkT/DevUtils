@@ -30,8 +30,8 @@ ext {
             dev_app_versionName                      : "2.2.9",
 
             // DevAssist 快捷功能辅助类库
-            dev_assist_versionCode                   : 126,
-            dev_assist_versionName                   : "1.2.6",
+            dev_assist_versionCode                   : 127,
+            dev_assist_versionName                   : "1.2.7",
 
             // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
             dev_base_versionCode                     : 107,
@@ -46,10 +46,10 @@ ext {
             dev_engine_versionName                   : "1.0.0",
 
             // DevHttpCapture OKHttp 抓包工具库
-            dev_http_capture_versionCode             : 101,
-            dev_http_capture_versionName             : "1.0.1",
-            dev_http_capture_compiler_version        : "1.0.1",
-            dev_http_capture_compiler_release_version: "1.0.1",
+            dev_http_capture_versionCode             : 102,
+            dev_http_capture_versionName             : "1.0.2",
+            dev_http_capture_compiler_version        : "1.0.2",
+            dev_http_capture_compiler_release_version: "1.0.2",
 
             // DevWidget 自定义 View UI 库
             dev_widget_versionCode                   : 111,

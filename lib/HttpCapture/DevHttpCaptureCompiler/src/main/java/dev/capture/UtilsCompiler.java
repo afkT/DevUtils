@@ -20,12 +20,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import dev.DevHttpCapture;
 import dev.callback.DevCallback;
 import dev.capture.compiler.R;
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ClickUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.CollectionUtils;
+import dev.utils.common.ConvertUtils;
 import dev.utils.common.MapUtils;
 import dev.utils.common.StringUtils;
 
@@ -445,7 +447,7 @@ public final class UtilsCompiler {
                 ));
 
                 // 请求 Header
-                String requestHeader = MapUtils.mapToString(
+                String requestHeader = mapToString(
                         captureInfo.requestHeader, ": "
                 ).toString();
                 if (StringUtils.isNotEmpty(requestHeader)) {
@@ -456,7 +458,7 @@ public final class UtilsCompiler {
                 }
 
                 // 请求 Body
-                String requestBody = MapUtils.mapToString(
+                String requestBody = mapToString(
                         captureInfo.requestBody, ": "
                 ).toString();
                 if (StringUtils.isNotEmpty(requestBody)) {
@@ -467,7 +469,7 @@ public final class UtilsCompiler {
                 }
 
                 // 响应状态
-                String responseStatus = MapUtils.mapToString(
+                String responseStatus = mapToString(
                         captureInfo.responseStatus, ": "
                 ).toString();
                 if (StringUtils.isNotEmpty(responseStatus)) {
@@ -478,7 +480,7 @@ public final class UtilsCompiler {
                 }
 
                 // 响应 Header
-                String responseHeader = MapUtils.mapToString(
+                String responseHeader = mapToString(
                         captureInfo.responseHeader, ": "
                 ).toString();
                 if (StringUtils.isNotEmpty(responseHeader)) {
@@ -628,5 +630,54 @@ public final class UtilsCompiler {
      */
     protected void resetRefreshClick() {
         sRefreshClick.reset().setIntervalTime(10000L);
+    }
+
+    // ============
+    // = MapUtils =
+    // ============
+
+    /**
+     * 键值对拼接
+     * @param map    {@link Map}
+     * @param symbol 拼接符号
+     * @param <K>    key
+     * @param <V>    value
+     * @return {@link StringBuilder}
+     */
+    private <K, V> StringBuilder mapToString(
+            final Map<K, V> map,
+            final String symbol
+    ) {
+        return mapToString(map, symbol, new StringBuilder());
+    }
+
+    /**
+     * 键值对拼接
+     * @param map     {@link Map}
+     * @param symbol  拼接符号
+     * @param builder Builder
+     * @param <K>     key
+     * @param <V>     value
+     * @return {@link StringBuilder}
+     */
+    private <K, V> StringBuilder mapToString(
+            final Map<K, V> map,
+            final String symbol,
+            final StringBuilder builder
+    ) {
+        if (map != null && builder != null) {
+            Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<K, V> entry = iterator.next();
+                builder.append(ConvertUtils.toString(entry.getKey()));
+                builder.append(symbol);
+                builder.append(ConvertUtils.toString(entry.getValue()));
+                // 如果还有下一行则追加换行
+                if (iterator.hasNext()) {
+                    builder.append(DevFinal.NEW_LINE_STR);
+                }
+            }
+        }
+        return builder;
     }
 }
