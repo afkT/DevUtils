@@ -62,6 +62,12 @@ object ButtonList {
                     RouterPath.DevAssistEngineActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_DEV_HTTP_CAPTURE, "DevHttpCapture OKHttp 抓包工具库",
+                    RouterPath.DevHttpCaptureActivity_PATH
+                )
+            )
             return lists
         }
 
