@@ -48,9 +48,7 @@ object RetrofitManager {
         val builder = OkHttpClient.Builder()
 
 //        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 抓包数据存储 )
-//        DevHttpCapture.addInterceptor(builder, "ModuleName") { data ->
-//            data // 加密处理, encrypt 参数传入 null 表示不加密
-//        }
+//        DevHttpCapture.addInterceptor(builder, "ModuleName")
 
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->
