@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import dev.adapter.DevDataAdapterExt;
 import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListItemAdapterBinding;
 import dev.utils.DevFinal;
+import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.common.DateUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: DevHttpCapture 模块列表适配器
@@ -21,10 +24,13 @@ import dev.utils.common.DateUtils;
 class AdapterDateModuleListItem
         extends DevDataAdapterExt<CaptureFile, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListItemAdapterBinding>> {
 
+    Items.GroupItem groupItem;
+
     public AdapterDateModuleListItem(
             Items.GroupItem groupItem,
             RecyclerView recyclerView
     ) {
+        this.groupItem = groupItem;
         setDataList(groupItem.lists, false);
         bindAdapter(recyclerView);
     }
@@ -57,6 +63,19 @@ class AdapterDateModuleListItem
                     // 跳转 抓包数据详情 Activity
                     start(mContext, item);
                 }, holder.binding.getRoot());
+
+        // 判断分组筛选类型是否为请求链接类型
+        if (
+                ViewUtils.setVisibility(
+                        StringUtils.isEmpty(groupItem.function),
+                        holder.binding.vidFunctionTv
+                )
+        ) {
+            String function = UtilsCompiler.getInstance().getUrlFunctionByFile(item);
+            QuickHelper.get(holder.binding.vidFunctionTv)
+                    .setText(function)
+                    .setVisibilitys(StringUtils.isNotEmpty(function));
+        }
     }
 
     // ==========

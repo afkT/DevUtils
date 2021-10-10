@@ -42,6 +42,16 @@
             tools:text="https://www.baidu.com" />
 
         <TextView
+            android:id="@+id/vid_function_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/dev_http_capture_url_color"
+            android:textSize="16.0sp"
+            tools:text="@string/dev_http_capture_url_function" />
+
+        <TextView
             android:id="@+id/vid_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

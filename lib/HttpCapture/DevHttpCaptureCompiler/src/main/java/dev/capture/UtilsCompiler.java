@@ -594,11 +594,24 @@ public final class UtilsCompiler {
                         convertUrlKey, captureInfo.requestMethod, cacheFunction
                 );
                 // 两个值不同才进行变更
-                if (function != null && !StringUtils.equals(cacheFunction, function)) {
+                if (!StringUtils.equals(cacheFunction, function)) {
                     mFunctionCacheMaps.put(convertUrlKey, function);
                 }
                 return function;
             }
+        }
+        return null;
+    }
+
+    /**
+     * 获取接口所属功能
+     * @param captureFile 抓包存储文件
+     * @return 接口所属功能
+     */
+    protected String getUrlFunctionByFile(final CaptureFile captureFile) {
+        if (captureFile != null) {
+            String convertUrlKey = Items.convertUrlKey(captureFile.getUrl());
+            return getUrlFunctionByFile(captureFile, convertUrlKey);
         }
         return null;
     }
@@ -625,7 +638,7 @@ public final class UtilsCompiler {
                         convertUrlKey, captureFile.getMethod(), cacheFunction
                 );
                 // 两个值不同才进行变更
-                if (function != null && !StringUtils.equals(cacheFunction, function)) {
+                if (!StringUtils.equals(cacheFunction, function)) {
                     mFunctionCacheMaps.put(convertUrlKey, function);
                 }
                 return function;
