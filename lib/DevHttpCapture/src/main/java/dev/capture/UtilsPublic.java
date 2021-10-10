@@ -82,4 +82,50 @@ public class UtilsPublic {
     public static boolean deleteAllModule() {
         return FileUtils.deleteAllInDir(getStoragePath());
     }
+
+    /**
+     * 获取指定模块抓包文件大小
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return 指定模块抓包文件大小
+     */
+    public static String getModuleFileSize(final String moduleName) {
+        return FileUtils.getDirSize(getModulePath(moduleName));
+    }
+
+    /**
+     * 获取全部模块抓包文件大小
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @return 全部模块抓包文件大小
+     */
+    public static String getAllModuleFileSize() {
+        return FileUtils.getDirSize(getStoragePath());
+    }
+
+    /**
+     * 获取指定模块抓包文件大小
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return 指定模块抓包文件大小
+     */
+    public static long getModuleFileLength(final String moduleName) {
+        return FileUtils.getDirLength(getModulePath(moduleName));
+    }
+
+    /**
+     * 获取全部模块抓包文件大小
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @return 全部模块抓包文件大小
+     */
+    public static long getAllModuleFileLength() {
+        return FileUtils.getDirLength(getStoragePath());
+    }
 }
