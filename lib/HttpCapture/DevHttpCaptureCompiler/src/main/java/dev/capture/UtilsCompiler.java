@@ -10,6 +10,7 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -567,6 +568,9 @@ public final class UtilsCompiler {
     // = 接口所属功能 =
     // =============
 
+    // 接口所属功能注释缓存
+    private final Map<String, String> mFunctionCacheMaps = new HashMap<>();
+
     /**
      * 获取接口所属功能
      * @param captureFile 抓包存储文件
@@ -583,11 +587,17 @@ public final class UtilsCompiler {
                     captureFile.getModuleName()
             );
             if (urlFunction != null) {
-                return urlFunction.toUrlFunction(
+                String convertUrlKey = Items.convertUrlKey(captureInfo.requestUrl);
+                String cacheFunction = mFunctionCacheMaps.get(convertUrlKey);
+                String function = urlFunction.toUrlFunction(
                         captureFile.getModuleName(), captureInfo.requestUrl,
-                        Items.convertUrlKey(captureInfo.requestUrl),
-                        captureInfo.requestMethod
+                        convertUrlKey, captureInfo.requestMethod, cacheFunction
                 );
+                // 两个值不同才进行变更
+                if (function != null && !StringUtils.equals(cacheFunction, function)) {
+                    mFunctionCacheMaps.put(convertUrlKey, function);
+                }
+                return function;
             }
         }
         return null;
@@ -595,13 +605,13 @@ public final class UtilsCompiler {
 
     /**
      * 获取接口所属功能
-     * @param captureFile 抓包存储文件
-     * @param urlKey      拆分 Url 用于匹配接口所属功能注释
+     * @param captureFile   抓包存储文件
+     * @param convertUrlKey 拆分 Url 用于匹配接口所属功能注释
      * @return 接口所属功能
      */
     private String getUrlFunctionByFile(
             final CaptureFile captureFile,
-            final String urlKey
+            final String convertUrlKey
     ) {
         if (captureFile != null) {
             // 接口所属功能
@@ -609,10 +619,16 @@ public final class UtilsCompiler {
                     captureFile.getModuleName()
             );
             if (urlFunction != null) {
-                return urlFunction.toUrlFunction(
+                String cacheFunction = mFunctionCacheMaps.get(convertUrlKey);
+                String function = urlFunction.toUrlFunction(
                         captureFile.getModuleName(), captureFile.getUrl(),
-                        urlKey, captureFile.getMethod()
+                        convertUrlKey, captureFile.getMethod(), cacheFunction
                 );
+                // 两个值不同才进行变更
+                if (function != null && !StringUtils.equals(cacheFunction, function)) {
+                    mFunctionCacheMaps.put(convertUrlKey, function);
+                }
+                return function;
             }
         }
         return null;

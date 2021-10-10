@@ -17,17 +17,23 @@ class Items {
         // 全部
         T_ALL("1"),
 
-        // 0-14 分钟
-        T_0_14("2"),
+        // 0-9 分钟
+        T_0_9("2"),
 
-        // 15-29 分钟
-        T_15_29("3"),
+        // 10-19 分钟
+        T_10_19("3"),
 
-        // 30-44 分钟
-        T_30_44("4"),
+        // 20-29 分钟
+        T_20_29("4"),
 
-        // 45-59 分钟
-        T_45_59("5"),
+        // 30-39 分钟
+        T_30_39("5"),
+
+        // 40-49 分钟
+        T_40_49("6"),
+
+        // 50-59 分钟
+        T_50_59("7"),
 
         ;
 
@@ -40,17 +46,23 @@ class Items {
         public String getTitle() {
             int res = R.string.dev_http_capture_data_type_all;
             switch (this) {
-                case T_0_14:
-                    res = R.string.dev_http_capture_data_type_0_14;
+                case T_0_9:
+                    res = R.string.dev_http_capture_data_type_0_9;
                     break;
-                case T_15_29:
-                    res = R.string.dev_http_capture_data_type_15_29;
+                case T_10_19:
+                    res = R.string.dev_http_capture_data_type_10_19;
                     break;
-                case T_30_44:
-                    res = R.string.dev_http_capture_data_type_30_44;
+                case T_20_29:
+                    res = R.string.dev_http_capture_data_type_20_29;
                     break;
-                case T_45_59:
-                    res = R.string.dev_http_capture_data_type_45_59;
+                case T_30_39:
+                    res = R.string.dev_http_capture_data_type_30_39;
+                    break;
+                case T_40_49:
+                    res = R.string.dev_http_capture_data_type_40_49;
+                    break;
+                case T_50_59:
+                    res = R.string.dev_http_capture_data_type_50_59;
                     break;
             }
             return ResourceUtils.getString(res);
@@ -156,14 +168,18 @@ class Items {
         int    mm     = ConvertUtils.toInt(minute, -1);
         if (mm == -1) return null;
         // 存储间隔以 10 分钟为单位
-        if (mm < 15) { // 00-14
-            return DataType.T_0_14;
-        } else if (mm < 30) { // 15-29
-            return DataType.T_15_29;
-        } else if (mm < 45) { // 30-44
-            return DataType.T_30_44;
-        } else { // 45-59
-            return DataType.T_45_59;
+        if (mm < 10) { // 00-09
+            return DataType.T_0_9;
+        } else if (mm < 20) { // 10-19
+            return DataType.T_10_19;
+        } else if (mm < 30) { // 20-29
+            return DataType.T_20_29;
+        } else if (mm < 40) { // 30-39
+            return DataType.T_30_39;
+        } else if (mm < 50) { // 40-49
+            return DataType.T_40_49;
+        } else { // 50-59
+            return DataType.T_50_59;
         }
     }
 
@@ -171,10 +187,12 @@ class Items {
      * 通过时间转换标题
      * <pre>
      *     例
-     *     1000 转换为 10 hour 00-14 minute
-     *     1015 转换为 10 hour 15-29 minute
-     *     1030 转换为 10 hour 30-44 minute
-     *     1045 转换为 10 hour 45-59 minute
+     *     1000 转换为 10 hour 00-09 minute
+     *     1010 转换为 10 hour 10-19 minute
+     *     1020 转换为 10 hour 20-29 minute
+     *     1030 转换为 10 hour 30-39 minute
+     *     1040 转换为 10 hour 40-49 minute
+     *     1050 转换为 10 hour 50-59 minute
      * </pre>
      * @param title HHMM
      * @return 转换后的标题
@@ -187,14 +205,18 @@ class Items {
             String minute = StringUtils.substring(title, 2, 4, false);
             int    mm     = ConvertUtils.toInt(minute);
             // 存储间隔以 10 分钟为单位
-            if (mm < 15) {
-                minute = "00-14"; // 00-14
-            } else if (mm < 30) {
-                minute = "15-29"; // 15-29
-            } else if (mm < 45) {
-                minute = "30-44"; // 30-44
-            } else {
-                minute = "45-59"; // 45-59
+            if (mm < 10) { // 00-09
+                minute = "00";
+            } else if (mm < 20) { // 10-19
+                minute = "10";
+            } else if (mm < 30) { // 20-29
+                minute = "20";
+            } else if (mm < 40) { // 30-39
+                minute = "30";
+            } else if (mm < 50) { // 40-49
+                minute = "40";
+            } else { // 50-59
+                minute = "50";
             }
             builder.append(minute).append(" minute");
             return builder.toString();

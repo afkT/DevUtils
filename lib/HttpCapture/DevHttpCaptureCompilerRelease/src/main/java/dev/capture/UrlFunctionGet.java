@@ -12,12 +12,14 @@ public interface UrlFunctionGet {
      * @param url           原始请求链接
      * @param convertUrlKey url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
      * @param method        请求方法
+     * @param cacheFunction 缓存功能注释
      * @return 接口所属功能注释
      */
     String toUrlFunction(
             String moduleName,
             String url,
             String convertUrlKey,
-            String method
+            String method,
+            String cacheFunction
     );
 }

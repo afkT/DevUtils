@@ -208,18 +208,18 @@ class Utils {
         int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.mm));
         String mmStr;
         // 存储间隔以 10 分钟为单位
-        if (mm < 10) {
-            mmStr = "00"; // 00-09
-        } else if (mm < 20) {
-            mmStr = "10"; // 10-19
-        } else if (mm < 30) {
-            mmStr = "20"; // 20-29
-        } else if (mm < 40) {
-            mmStr = "30"; // 30-39
-        } else if (mm < 50) {
-            mmStr = "40"; // 40-49
-        } else {
-            mmStr = "50"; // 50-59
+        if (mm < 10) { // 00-09
+            mmStr = "00";
+        } else if (mm < 20) { // 10-19
+            mmStr = "10";
+        } else if (mm < 30) { // 20-29
+            mmStr = "20";
+        } else if (mm < 40) { // 30-39
+            mmStr = "30";
+        } else if (mm < 50) { // 40-49
+            mmStr = "40";
+        } else { // 50-59
+            mmStr = "50";
         }
         // 存储文件夹路径
         return FileUtils.getAbsolutePath(

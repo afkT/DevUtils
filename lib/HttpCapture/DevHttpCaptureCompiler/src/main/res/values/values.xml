@@ -17,10 +17,12 @@
     <string name="dev_http_capture_response_header">Response Header</string>
     <string name="dev_http_capture_response_body">Response Body</string>
     <string name="dev_http_capture_data_type_all">all</string>
-    <string name="dev_http_capture_data_type_0_14">00&#8211;14 minute</string>
-    <string name="dev_http_capture_data_type_15_29">15&#8211;29 minute</string>
-    <string name="dev_http_capture_data_type_30_44">30&#8211;44 minute</string>
-    <string name="dev_http_capture_data_type_45_59">45&#8211;59 minute</string>
+    <string name="dev_http_capture_data_type_0_9">00&#8211;09 minute</string>
+    <string name="dev_http_capture_data_type_10_19">10&#8211;19 minute</string>
+    <string name="dev_http_capture_data_type_20_29">20&#8211;29 minute</string>
+    <string name="dev_http_capture_data_type_30_39">30&#8211;39 minute</string>
+    <string name="dev_http_capture_data_type_40_49">40&#8211;49 minute</string>
+    <string name="dev_http_capture_data_type_50_59">50&#8211;59 minute</string>
     <string name="dev_http_capture_group_type_time">capture time</string>
     <string name="dev_http_capture_group_type_url">request url</string>
     <string name="dev_http_capture_options_data">Data Sources</string>

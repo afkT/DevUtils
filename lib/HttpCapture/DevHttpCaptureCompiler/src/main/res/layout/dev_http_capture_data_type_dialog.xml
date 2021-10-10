@@ -37,7 +37,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_0_14"
+            android:id="@+id/vid_0_9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -45,12 +45,12 @@
             android:paddingTop="8.0dp"
             android:paddingRight="10.0dp"
             android:paddingBottom="8.0dp"
-            android:text="@string/dev_http_capture_data_type_0_14"
+            android:text="@string/dev_http_capture_data_type_0_9"
             android:textColor="@color/color_33"
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_15_29"
+            android:id="@+id/vid_10_19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -58,12 +58,12 @@
             android:paddingTop="8.0dp"
             android:paddingRight="10.0dp"
             android:paddingBottom="8.0dp"
-            android:text="@string/dev_http_capture_data_type_15_29"
+            android:text="@string/dev_http_capture_data_type_10_19"
             android:textColor="@color/color_33"
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_30_44"
+            android:id="@+id/vid_20_29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -71,12 +71,12 @@
             android:paddingTop="8.0dp"
             android:paddingRight="10.0dp"
             android:paddingBottom="8.0dp"
-            android:text="@string/dev_http_capture_data_type_30_44"
+            android:text="@string/dev_http_capture_data_type_20_29"
             android:textColor="@color/color_33"
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_45_59"
+            android:id="@+id/vid_30_39"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -84,7 +84,33 @@
             android:paddingTop="8.0dp"
             android:paddingRight="10.0dp"
             android:paddingBottom="8.0dp"
-            android:text="@string/dev_http_capture_data_type_45_59"
+            android:text="@string/dev_http_capture_data_type_30_39"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_40_49"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_40_49"
+            android:textColor="@color/color_33"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/vid_50_59"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingTop="8.0dp"
+            android:paddingRight="10.0dp"
+            android:paddingBottom="8.0dp"
+            android:text="@string/dev_http_capture_data_type_50_59"
             android:textColor="@color/color_33"
             android:textSize="17.0sp" />
 
