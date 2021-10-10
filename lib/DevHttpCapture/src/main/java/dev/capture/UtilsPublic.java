@@ -59,4 +59,27 @@ public class UtilsPublic {
     ) {
         return Utils.getAllModule(isEncrypt);
     }
+
+    /**
+     * 删除指定模块抓包数据
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean deleteModule(final String moduleName) {
+        return FileUtils.deleteAllInDir(getModulePath(moduleName));
+    }
+
+    /**
+     * 删除全部模块抓包数据
+     * <pre>
+     *     耗时操作需开启线程执行
+     * </pre>
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean deleteAllModule() {
+        return FileUtils.deleteAllInDir(getStoragePath());
+    }
 }

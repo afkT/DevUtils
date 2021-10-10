@@ -207,15 +207,19 @@ class Utils {
         String HH       = DateUtils.formatTime(millis, DevFinal.HH);
         int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.mm));
         String mmStr;
-        // 存储间隔以 15 分钟为单位
-        if (mm < 15) {
-            mmStr = "00"; // 0-14
+        // 存储间隔以 10 分钟为单位
+        if (mm < 10) {
+            mmStr = "00"; // 00-09
+        } else if (mm < 20) {
+            mmStr = "10"; // 10-19
         } else if (mm < 30) {
-            mmStr = "15"; // 15-29
-        } else if (mm < 45) {
-            mmStr = "30"; // 30-44
+            mmStr = "20"; // 20-29
+        } else if (mm < 40) {
+            mmStr = "30"; // 30-39
+        } else if (mm < 50) {
+            mmStr = "40"; // 40-49
         } else {
-            mmStr = "45"; // 45-59
+            mmStr = "50"; // 50-59
         }
         // 存储文件夹路径
         return FileUtils.getAbsolutePath(

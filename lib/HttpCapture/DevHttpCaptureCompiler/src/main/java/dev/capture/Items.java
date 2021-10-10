@@ -155,7 +155,7 @@ class Items {
         String minute = StringUtils.substring(key, 2, 4, false);
         int    mm     = ConvertUtils.toInt(minute, -1);
         if (mm == -1) return null;
-        // 存储间隔以 15 分钟为单位
+        // 存储间隔以 10 分钟为单位
         if (mm < 15) { // 00-14
             return DataType.T_0_14;
         } else if (mm < 30) { // 15-29
@@ -186,7 +186,7 @@ class Items {
             // 获取分钟
             String minute = StringUtils.substring(title, 2, 4, false);
             int    mm     = ConvertUtils.toInt(minute);
-            // 存储间隔以 15 分钟为单位
+            // 存储间隔以 10 分钟为单位
             if (mm < 15) {
                 minute = "00-14"; // 00-14
             } else if (mm < 30) {
