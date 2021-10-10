@@ -46,10 +46,10 @@ ext {
             dev_engine_versionName                   : "1.0.0",
 
             // DevHttpCapture OKHttp 抓包工具库
-            dev_http_capture_versionCode             : 102,
-            dev_http_capture_versionName             : "1.0.2",
-            dev_http_capture_compiler_version        : "1.0.2",
-            dev_http_capture_compiler_release_version: "1.0.2",
+            dev_http_capture_versionCode             : 103,
+            dev_http_capture_versionName             : "1.0.3",
+            dev_http_capture_compiler_version        : "1.0.3",
+            dev_http_capture_compiler_release_version: "1.0.3",
 
             // DevWidget 自定义 View UI 库
             dev_widget_versionCode                   : 111,

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevHttpCapture:1.0.2'
+implementation 'io.github.afkt:DevHttpCapture:1.0.3'
 ```
 
 ## 目录结构
@@ -152,4 +152,13 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.2'
 
 | 方法 | 注释 |
 | :- | :- |
+| getStoragePath | 获取抓包存储路径 |
+| getModulePath | 获取指定模块抓包存储路径 |
+| getAllModuleName | 获取全部模块名 |
 | getAllModule | 获取全部模块所有抓包数据 |
+| deleteModule | 删除指定模块抓包数据 |
+| deleteAllModule | 删除全部模块抓包数据 |
+| getModuleFileSize | 获取指定模块抓包文件大小 |
+| getAllModuleFileSize | 获取全部模块抓包文件大小 |
+| getModuleFileLength | 获取指定模块抓包文件大小 |
+| getAllModuleFileLength | 获取全部模块抓包文件大小 |

@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.3 *(2021-10-11)*
+----------------------------
+
+* `[Update]` 修改存储间隔以 10 分钟为单位
+
+* `[Add]` UtilsPublic#getStoragePath、getModulePath、getAllModuleName、deleteModule、deleteAllModule、getModuleFileSize、getAllModuleFileSize、getModuleFileLength、getAllModuleFileLength
+
 Version 1.0.2 *(2021-10-06)*
 ----------------------------
 
