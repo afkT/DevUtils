@@ -39,7 +39,7 @@ class Utils {
      * @param serializeNulls 是否序列化 null 值
      * @return {@link GsonBuilder}
      */
-    public static GsonBuilder createGson(final boolean serializeNulls) {
+    private static GsonBuilder createGson(final boolean serializeNulls) {
         GsonBuilder builder = new GsonBuilder();
         if (serializeNulls) builder.serializeNulls();
         return builder;
@@ -54,7 +54,7 @@ class Utils {
      * @param object {@link Object}
      * @return JSON String
      */
-    public static String toJson(final Object object) {
+    protected static String toJson(final Object object) {
         if (object == null) return null;
         try {
             return GSON.toJson(object);
@@ -71,7 +71,7 @@ class Utils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(
+    protected static <T> T fromJson(
             final String json,
             final Class<T> classOfT
     ) {
@@ -117,7 +117,7 @@ class Utils {
      * 获取抓包存储路径
      * @return 抓包存储路径
      */
-    public static String getStoragePath() {
+    protected static String getStoragePath() {
         if (StringUtils.isEmpty(sStoragePath)) {
             sStoragePath = PathUtils.getInternal().getAppDataPath(
                     DevHttpCapture.TAG
@@ -128,10 +128,10 @@ class Utils {
 
     /**
      * 获取指定模块抓包存储路径
-     * @param moduleName 模块名
+     * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包存储路径
      */
-    public static String getModulePath(final String moduleName) {
+    protected static String getModulePath(final String moduleName) {
         return FileUtils.getAbsolutePath(
                 FileUtils.getFile(getStoragePath(), moduleName)
         );
@@ -143,7 +143,7 @@ class Utils {
      * @param fileName   抓包存储文件名
      * @return 指定模块指定抓包存储文件
      */
-    public static File getModuleHttpCaptureFile(
+    private static File getModuleHttpCaptureFile(
             final String modulePath,
             final String fileName
     ) {
@@ -155,7 +155,7 @@ class Utils {
      * @param captureFile 抓包存储文件
      * @return 指定模块指定抓包存储文件
      */
-    public static File getModuleHttpCaptureFile(
+    protected static File getModuleHttpCaptureFile(
             final CaptureFile captureFile
     ) {
         return getModuleHttpCaptureFile(
@@ -199,7 +199,7 @@ class Utils {
      * @param millis     创建时间 ( 本地时间戳 )
      * @return 时间间隔文件夹路径
      */
-    public static String getTimeFile(
+    private static String getTimeFile(
             final String modulePath,
             final long millis
     ) {
@@ -228,7 +228,7 @@ class Utils {
      * @param captureFile 抓包存储文件
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveHttpCaptureFile(final CaptureFile captureFile) {
+    protected static boolean saveHttpCaptureFile(final CaptureFile captureFile) {
         if (captureFile != null) {
             // 获取指定模块抓包存储路径
             String modulePath = getModulePath(captureFile.getModuleName());
@@ -257,7 +257,7 @@ class Utils {
      * @param file 抓包存储文件地址
      * @return 抓包存储文件
      */
-    public static CaptureFile fromCaptureFile(final File file) {
+    private static CaptureFile fromCaptureFile(final File file) {
         if (FileUtils.isFile(file)) {
             String json = FileUtils.readFile(file);
             return fromJson(json, CaptureFile.class);
@@ -267,11 +267,11 @@ class Utils {
 
     /**
      * 获取指定模块所有抓包数据
-     * @param moduleName 模块名
+     * @param moduleName 模块名 ( 要求唯一性 )
      * @param isEncrypt  是否加密数据
      * @return 指定模块所有抓包数据
      */
-    public static List<CaptureItem> getModuleHttpCaptures(
+    protected static List<CaptureItem> getModuleHttpCaptures(
             final String moduleName,
             final boolean isEncrypt
     ) {
@@ -359,7 +359,7 @@ class Utils {
      * @param isEncrypt 是否加密数据
      * @return 全部模块所有抓包数据
      */
-    public static Map<String, List<CaptureItem>> getAllModule(
+    protected static Map<String, List<CaptureItem>> getAllModule(
             final boolean isEncrypt
     ) {
         Map<String, List<CaptureItem>> maps = new LinkedHashMap<>();
