@@ -56,11 +56,11 @@ ext {
             dev_widget_versionName                   : "1.1.1",
 
             // DevEnvironment Android 环境配置切换库
-            dev_environment_versionCode              : 104,
-            dev_environment_version                  : "1.0.4",
-            dev_environment_base_version             : "1.0.4",
-            dev_environment_compiler_version         : "1.0.4",
-            dev_environment_compiler_release_version : "1.0.4",
+            dev_environment_versionCode              : 105,
+            dev_environment_version                  : "1.0.5",
+            dev_environment_base_version             : "1.0.5",
+            dev_environment_compiler_version         : "1.0.5",
+            dev_environment_compiler_release_version : "1.0.5",
 
             // DevJava Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                     : 136,

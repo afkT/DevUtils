@@ -120,10 +120,10 @@ releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.3'
 implementation 'io.github.afkt:DevWidgetX:1.1.1'
 
 // DevEnvironment Android 环境配置切换库
-implementation 'io.github.afkt:DevEnvironment:1.0.4'
-debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.4' // kaptDebug
-releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.4' // kaptRelease
-//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.4' // kapt
+implementation 'io.github.afkt:DevEnvironment:1.0.5'
+debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.5' // kaptDebug
+releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.5' // kaptRelease
+//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.5' // kapt
 
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'io.github.afkt:DevJava:1.3.6' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
