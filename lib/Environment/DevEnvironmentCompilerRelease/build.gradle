@@ -2,6 +2,11 @@ apply from: rootProject.file(files.lib_java_gradle)
 
 version versions.dev_environment_compiler_release_version
 
+compileJava {
+    sourceCompatibility JavaVersion.VERSION_1_8.toString()
+    targetCompatibility JavaVersion.VERSION_1_8.toString()
+}
+
 dependencies {
     api deps.aop.javapoet
     compileOnly deps.aop.auto_service
