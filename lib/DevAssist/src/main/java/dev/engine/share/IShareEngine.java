@@ -48,11 +48,13 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
      * 打开小程序
      * @param activity {@link Activity}
      * @param params   Share ( Data、Params ) Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean openMinApp(
             Activity activity,
-            Item params
+            Item params,
+            ShareListener<Item> listener
     );
 
     /**
