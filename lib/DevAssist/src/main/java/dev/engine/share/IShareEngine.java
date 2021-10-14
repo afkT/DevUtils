@@ -42,7 +42,9 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
             Config config
     );
 
-    // =
+    // ==========
+    // = 分享操作 =
+    // ==========
 
     /**
      * 打开小程序
@@ -97,6 +99,19 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     );
 
     /**
+     * 分享文本
+     * @param activity {@link Activity}
+     * @param params   Share ( Data、Params ) Item
+     * @param listener 分享回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean shareText(
+            Activity activity,
+            Item params,
+            ShareListener<Item> listener
+    );
+
+    /**
      * 分享视频
      * @param activity {@link Activity}
      * @param params   Share ( Data、Params ) Item
@@ -130,19 +145,6 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean shareEmoji(
-            Activity activity,
-            Item params,
-            ShareListener<Item> listener
-    );
-
-    /**
-     * 分享文本
-     * @param activity {@link Activity}
-     * @param params   Share ( Data、Params ) Item
-     * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
-     */
-    boolean shareText(
             Activity activity,
             Item params,
             ShareListener<Item> listener
