@@ -99,6 +99,19 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     );
 
     /**
+     * 分享多张图片
+     * @param activity {@link Activity}
+     * @param params   Share ( Data、Params ) Item
+     * @param listener 分享回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean shareImageList(
+            Activity activity,
+            Item params,
+            ShareListener<Item> listener
+    );
+
+    /**
      * 分享文本
      * @param activity {@link Activity}
      * @param params   Share ( Data、Params ) Item
