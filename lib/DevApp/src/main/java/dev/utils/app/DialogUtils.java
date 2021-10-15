@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,9 +14,13 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import androidx.annotation.ArrayRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+
+import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
 
@@ -42,6 +47,114 @@ public final class DialogUtils {
      */
     public static Window getWindow(final Dialog dialog) {
         return (dialog != null) ? dialog.getWindow() : null;
+    }
+
+    /**
+     * 设置 Dialog 状态栏颜色
+     * @param dialog {@link Dialog}
+     * @param color  Dialog StatusBar Color
+     * @return {@link Window}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static Window setStatusBarColor(
+            final Dialog dialog,
+            @ColorInt final int color
+    ) {
+        return setStatusBarColor(getWindow(dialog), color);
+    }
+
+    /**
+     * 设置 Dialog 状态栏颜色
+     * @param window Dialog Window
+     * @param color  Dialog StatusBar Color
+     * @return {@link Window}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static Window setStatusBarColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window != null) {
+            window.setStatusBarColor(color);
+        }
+        return window;
+    }
+
+    /**
+     * 设置 Dialog 高版本状态栏蒙层
+     * @param dialog {@link Dialog}
+     * @param color  Dialog StatusBar Color
+     * @return {@link Window}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static Window setSemiTransparentStatusBarColor(
+            final Dialog dialog,
+            @ColorInt final int color
+    ) {
+        return setSemiTransparentStatusBarColor(getWindow(dialog), color);
+    }
+
+    /**
+     * 设置 Dialog 高版本状态栏蒙层
+     * @param window Dialog Window
+     * @param color  Dialog StatusBar Color
+     * @return {@link Window}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static Window setSemiTransparentStatusBarColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window != null) {
+            try {
+                Class<?> decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
+                Field    field          = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor");
+                field.setAccessible(true);
+                field.setInt(window, color);
+            } catch (Exception ignored) {
+            }
+        }
+        return window;
+    }
+
+    /**
+     * 设置 Dialog 状态栏颜色、高版本状态栏蒙层
+     * @param dialog   {@link Dialog}
+     * @param color    Dialog StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return {@link Window}
+     */
+    public static Window setStatusBarColor2(
+            final Dialog dialog,
+            @ColorInt final int color,
+            final boolean addFlags
+    ) {
+        return setStatusBarColor2(getWindow(dialog), color, addFlags);
+    }
+
+    /**
+     * 设置 Dialog 状态栏颜色、高版本状态栏蒙层
+     * @param window   Dialog Window
+     * @param color    Dialog StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return {@link Window}
+     */
+    public static Window setStatusBarColor2(
+            final Window window,
+            @ColorInt final int color,
+            final boolean addFlags
+    ) {
+        if (window != null && addFlags) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setStatusBarColor(window, color);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            setSemiTransparentStatusBarColor(window, color);
+        }
+        return window;
     }
 
     /**
