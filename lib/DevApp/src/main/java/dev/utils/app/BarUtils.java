@@ -34,6 +34,8 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     所需权限
  *     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+ *     Android 顶部状态栏和底部导航栏的沉浸式效果设置
+ *     @see <a href="https://blog.csdn.net/su749520/article/details/88430184"/>
  * </pre>
  */
 public final class BarUtils {

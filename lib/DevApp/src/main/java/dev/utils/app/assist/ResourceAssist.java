@@ -366,6 +366,24 @@ public final class ResourceAssist {
     }
 
     /**
+     * 获取 Resources.Theme
+     * @param context {@link Context}
+     * @return {@link Resources.Theme}
+     */
+    public Resources.Theme getTheme(final Context context) {
+        return staticTheme(context);
+    }
+
+    /**
+     * 获取 ContentResolver
+     * @param context {@link Context}
+     * @return {@link ContentResolver}
+     */
+    public ContentResolver getContentResolver(final Context context) {
+        return staticContentResolver(context);
+    }
+
+    /**
      * 获取 DisplayMetrics
      * @return {@link DisplayMetrics}
      */
