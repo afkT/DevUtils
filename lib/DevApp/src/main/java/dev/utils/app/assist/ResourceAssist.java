@@ -1219,6 +1219,19 @@ public final class ResourceAssist {
 
     /**
      * 获取 Uri InputStream
+     * @param uri     {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param context {@link Context}
+     * @return Uri InputStream
+     */
+    public InputStream openInputStream(
+            final Uri uri,
+            final Context context
+    ) {
+        return openInputStream(uri, staticContentResolver(context));
+    }
+
+    /**
+     * 获取 Uri InputStream
      * <pre>
      *     主要用于获取到分享的 FileProvider Uri 存储起来
      *     {@link FileIOUtils#writeFileFromIS(File, InputStream)}
@@ -1240,6 +1253,8 @@ public final class ResourceAssist {
         return null;
     }
 
+    // =
+
     /**
      * 获取 Uri OutputStream
      * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
@@ -1247,6 +1262,19 @@ public final class ResourceAssist {
      */
     public OutputStream openOutputStream(final Uri uri) {
         return openOutputStream(uri, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri     {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param context {@link Context}
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(
+            final Uri uri,
+            final Context context
+    ) {
+        return openOutputStream(uri, staticContentResolver(context));
     }
 
     /**
@@ -1268,6 +1296,8 @@ public final class ResourceAssist {
         return null;
     }
 
+    // =
+
     /**
      * 获取 Uri OutputStream
      * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
@@ -1279,6 +1309,21 @@ public final class ResourceAssist {
             final String mode
     ) {
         return openOutputStream(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri     {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode    读写模式
+     * @param context {@link Context}
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(
+            final Uri uri,
+            final String mode,
+            final Context context
+    ) {
+        return openOutputStream(uri, mode, staticContentResolver(context));
     }
 
     /**
@@ -1305,6 +1350,8 @@ public final class ResourceAssist {
         return null;
     }
 
+    // =
+
     /**
      * 获取 Uri ParcelFileDescriptor
      * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
@@ -1316,6 +1363,21 @@ public final class ResourceAssist {
             final String mode
     ) {
         return openFileDescriptor(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri ParcelFileDescriptor
+     * @param uri     {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode    读写模式
+     * @param context {@link Context}
+     * @return Uri ParcelFileDescriptor
+     */
+    public ParcelFileDescriptor openFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final Context context
+    ) {
+        return openFileDescriptor(uri, mode, staticContentResolver(context));
     }
 
     /**
@@ -1345,6 +1407,8 @@ public final class ResourceAssist {
         return null;
     }
 
+    // =
+
     /**
      * 获取 Uri AssetFileDescriptor
      * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
@@ -1356,6 +1420,24 @@ public final class ResourceAssist {
             final String mode
     ) {
         return openAssetFileDescriptor(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri AssetFileDescriptor
+     * <pre>
+     *     通过 new FileInputStream(openAssetFileDescriptor().getFileDescriptor()) 进行文件操作
+     * </pre>
+     * @param uri     {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode    读写模式
+     * @param context {@link Context}
+     * @return Uri AssetFileDescriptor
+     */
+    public AssetFileDescriptor openAssetFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final Context context
+    ) {
+        return openAssetFileDescriptor(uri, mode, staticContentResolver(context));
     }
 
     /**

@@ -78,6 +78,7 @@ public final class ResourceUtils {
      * @return {@link Resources}
      */
     public static Resources getResources(final ResourceAssist assist) {
+        if (assist == null) return null;
         return assist.getResources();
     }
 
@@ -159,6 +160,7 @@ public final class ResourceUtils {
      * @return {@link DisplayMetrics}
      */
     public static DisplayMetrics getDisplayMetrics(final ResourceAssist assist) {
+        if (assist == null) return null;
         return assist.getDisplayMetrics();
     }
 
@@ -198,6 +200,7 @@ public final class ResourceUtils {
      * @return {@link Configuration}
      */
     public static Configuration getConfiguration(final ResourceAssist assist) {
+        if (assist == null) return null;
         return assist.getConfiguration();
     }
 
@@ -237,6 +240,7 @@ public final class ResourceUtils {
      * @return {@link AssetManager}
      */
     public static AssetManager getAssets(final ResourceAssist assist) {
+        if (assist == null) return null;
         return assist.getAssets();
     }
 
@@ -258,12 +262,44 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取资源 id
+     * @param resName 资源名
+     * @param defType 资源类型
+     * @param assist {@link ResourceAssist}
+     * @return 资源 id
+     */
+    public static int getIdentifier(
+            final String resName,
+            final String defType,
+            final ResourceAssist assist
+    ) {
+        if (assist == null) return 0;
+        return assist.getIdentifier(resName, defType);
+    }
+
+    // =
+
+    /**
      * 获取给定资源标识符的全名
      * @param id resource identifier
      * @return Integer
      */
     public static String getResourceName(@AnyRes final int id) {
         return ResourceAssist.getInstance().getResourceName(id);
+    }
+
+    /**
+     * 获取给定资源标识符的全名
+     * @param id resource identifier
+     * @param assist {@link ResourceAssist}
+     * @return Integer
+     */
+    public static String getResourceName(
+            @AnyRes final int id,
+            final ResourceAssist assist
+    ) {
+        if (assist == null) return null;
+        return assist.getResourceName(id);
     }
 
     // ==========
