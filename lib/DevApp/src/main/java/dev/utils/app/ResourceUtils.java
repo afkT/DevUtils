@@ -51,6 +51,10 @@ public final class ResourceUtils {
     private ResourceUtils() {
     }
 
+    // =============
+    // = Resources =
+    // =============
+
     /**
      * 获取 Resources
      * @return {@link Resources}
@@ -69,6 +73,19 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 Resources
+     * @param assist {@link ResourceAssist}
+     * @return {@link Resources}
+     */
+    public static Resources getResources(final ResourceAssist assist) {
+        return assist.getResources();
+    }
+
+    // ===================
+    // = Resources.Theme =
+    // ===================
+
+    /**
      * 获取 Resources.Theme
      * @return {@link Resources.Theme}
      */
@@ -84,6 +101,10 @@ public final class ResourceUtils {
     public static Resources.Theme getTheme(final Context context) {
         return ResourceAssist.staticTheme(context);
     }
+
+    // ===================
+    // = ContentResolver =
+    // ===================
 
     /**
      * 获取 ContentResolver
@@ -101,6 +122,10 @@ public final class ResourceUtils {
     public static ContentResolver getContentResolver(final Context context) {
         return ResourceAssist.staticContentResolver(context);
     }
+
+    // ==================
+    // = DisplayMetrics =
+    // ==================
 
     /**
      * 获取 DisplayMetrics
@@ -129,6 +154,19 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 DisplayMetrics
+     * @param assist {@link ResourceAssist}
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics getDisplayMetrics(final ResourceAssist assist) {
+        return assist.getDisplayMetrics();
+    }
+
+    // =================
+    // = Configuration =
+    // =================
+
+    /**
      * 获取 Configuration
      * @return {@link Configuration}
      */
@@ -155,6 +193,19 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 Configuration
+     * @param assist {@link ResourceAssist}
+     * @return {@link Configuration}
+     */
+    public static Configuration getConfiguration(final ResourceAssist assist) {
+        return assist.getConfiguration();
+    }
+
+    // ================
+    // = AssetManager =
+    // ================
+
+    /**
      * 获取 AssetManager
      * @return {@link AssetManager}
      */
@@ -179,6 +230,19 @@ public final class ResourceUtils {
     public static AssetManager getAssets(final Resources resource) {
         return ResourceAssist.staticAssets(resource);
     }
+
+    /**
+     * 获取 AssetManager
+     * @param assist {@link ResourceAssist}
+     * @return {@link AssetManager}
+     */
+    public static AssetManager getAssets(final ResourceAssist assist) {
+        return assist.getAssets();
+    }
+
+    // ==========
+    // = 具体方法 =
+    // ==========
 
     /**
      * 获取资源 id

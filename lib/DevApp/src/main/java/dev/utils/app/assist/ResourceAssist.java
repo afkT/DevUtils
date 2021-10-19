@@ -164,6 +164,10 @@ public final class ResourceAssist {
     // = 静态方法 =
     // ==========
 
+    // =============
+    // = Resources =
+    // =============
+
     /**
      * 获取 Resources
      * @return {@link Resources}
@@ -186,6 +190,10 @@ public final class ResourceAssist {
         }
         return null;
     }
+
+    // ===================
+    // = Resources.Theme =
+    // ===================
 
     /**
      * 获取 Resources.Theme
@@ -210,6 +218,10 @@ public final class ResourceAssist {
         return null;
     }
 
+    // ===================
+    // = ContentResolver =
+    // ===================
+
     /**
      * 获取 ContentResolver
      * @return {@link ContentResolver}
@@ -232,6 +244,10 @@ public final class ResourceAssist {
         }
         return null;
     }
+
+    // ==================
+    // = DisplayMetrics =
+    // ==================
 
     /**
      * 获取 DisplayMetrics
@@ -265,6 +281,10 @@ public final class ResourceAssist {
         return null;
     }
 
+    // =================
+    // = Configuration =
+    // =================
+
     /**
      * 获取 Configuration
      * @return {@link Configuration}
@@ -296,6 +316,10 @@ public final class ResourceAssist {
         }
         return null;
     }
+
+    // ================
+    // = AssetManager =
+    // ================
 
     /**
      * 获取 AssetManager
@@ -421,6 +445,10 @@ public final class ResourceAssist {
         }
         return null;
     }
+
+    // ==========
+    // = 具体方法 =
+    // ==========
 
     /**
      * 获取资源 id
