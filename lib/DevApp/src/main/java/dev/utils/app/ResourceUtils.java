@@ -1237,7 +1237,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getStringId(resName);
+        return assist.getStringId(resName);
     }
 
     /**
@@ -1251,7 +1251,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getString(resName);
+        return assist.getString(resName);
     }
 
     /**
@@ -1267,7 +1267,7 @@ public final class ResourceUtils {
             final Object... formatArgs
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getString(resName, formatArgs);
+        return assist.getString(resName, formatArgs);
     }
 
     /**
@@ -1281,7 +1281,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getString(id);
+        return assist.getString(id);
     }
 
     /**
@@ -1297,7 +1297,7 @@ public final class ResourceUtils {
             final Object... formatArgs
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getString(id, formatArgs);
+        return assist.getString(id, formatArgs);
     }
 
     // =
@@ -1313,7 +1313,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getDimenId(resName);
+        return assist.getDimenId(resName);
     }
 
     /**
@@ -1327,7 +1327,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0f;
-        return ResourceAssist.getInstance().getDimension(resName);
+        return assist.getDimension(resName);
     }
 
     /**
@@ -1341,7 +1341,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getDimensionInt(resName);
+        return assist.getDimensionInt(resName);
     }
 
     /**
@@ -1355,7 +1355,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0f;
-        return ResourceAssist.getInstance().getDimension(id);
+        return assist.getDimension(id);
     }
 
     /**
@@ -1369,7 +1369,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getDimensionInt(id);
+        return assist.getDimensionInt(id);
     }
 
     // =
@@ -1385,7 +1385,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getColorId(resName);
+        return assist.getColorId(resName);
     }
 
     /**
@@ -1399,7 +1399,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getColor(resName);
+        return assist.getColor(resName);
     }
 
     /**
@@ -1416,7 +1416,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getColor(colorId);
+        return assist.getColor(colorId);
     }
 
     // =
@@ -1432,7 +1432,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getDrawableId(resName);
+        return assist.getDrawableId(resName);
     }
 
     /**
@@ -1446,7 +1446,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getDrawable(resName);
+        return assist.getDrawable(resName);
     }
 
     /**
@@ -1460,7 +1460,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getNinePatchDrawable(resName);
+        return assist.getNinePatchDrawable(resName);
     }
 
     /**
@@ -1477,7 +1477,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getDrawable(drawableId);
+        return assist.getDrawable(drawableId);
     }
 
     /**
@@ -1491,7 +1491,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getNinePatchDrawable(drawableId);
+        return assist.getNinePatchDrawable(drawableId);
     }
 
     // =
@@ -1507,7 +1507,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmap(resName);
+        return assist.getBitmap(resName);
     }
 
     /**
@@ -1523,7 +1523,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmap(resName, options);
+        return assist.getBitmap(resName, options);
     }
 
     /**
@@ -1537,7 +1537,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmap(resId);
+        return assist.getBitmap(resId);
     }
 
     /**
@@ -1553,7 +1553,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmap(resId, options);
+        return assist.getBitmap(resId, options);
     }
 
     // =
@@ -1569,7 +1569,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getMipmapId(resName);
+        return assist.getMipmapId(resName);
     }
 
     /**
@@ -1583,7 +1583,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getDrawableMipmap(resName);
+        return assist.getDrawableMipmap(resName);
     }
 
     /**
@@ -1597,7 +1597,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getNinePatchDrawableMipmap(resName);
+        return assist.getNinePatchDrawableMipmap(resName);
     }
 
     /**
@@ -1611,7 +1611,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmapMipmap(resName);
+        return assist.getBitmapMipmap(resName);
     }
 
     /**
@@ -1627,7 +1627,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getBitmapMipmap(resName, options);
+        return assist.getBitmapMipmap(resName, options);
     }
 
     // =
@@ -1643,7 +1643,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getAnimId(resName);
+        return assist.getAnimId(resName);
     }
 
     /**
@@ -1657,7 +1657,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimationXml(resName);
+        return assist.getAnimationXml(resName);
     }
 
     /**
@@ -1671,7 +1671,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimationXml(id);
+        return assist.getAnimationXml(id);
     }
 
     /**
@@ -1685,7 +1685,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimation(resName);
+        return assist.getAnimation(resName);
     }
 
     /**
@@ -1701,7 +1701,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimation(resName, context);
+        return assist.getAnimation(resName, context);
     }
 
     /**
@@ -1715,7 +1715,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimation(id);
+        return assist.getAnimation(id);
     }
 
     /**
@@ -1731,7 +1731,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getAnimation(id, context);
+        return assist.getAnimation(id, context);
     }
 
     // =
@@ -1747,7 +1747,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getBooleanId(resName);
+        return assist.getBooleanId(resName);
     }
 
     /**
@@ -1761,7 +1761,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return false;
-        return ResourceAssist.getInstance().getBoolean(resName);
+        return assist.getBoolean(resName);
     }
 
     /**
@@ -1775,7 +1775,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return false;
-        return ResourceAssist.getInstance().getBoolean(id);
+        return assist.getBoolean(id);
     }
 
     // =
@@ -1791,7 +1791,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getIntegerId(resName);
+        return assist.getIntegerId(resName);
     }
 
     /**
@@ -1805,7 +1805,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getInteger(resName);
+        return assist.getInteger(resName);
     }
 
     /**
@@ -1819,7 +1819,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return -1;
-        return ResourceAssist.getInstance().getInteger(id);
+        return assist.getInteger(id);
     }
 
     // =
@@ -1835,7 +1835,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getArrayId(resName);
+        return assist.getArrayId(resName);
     }
 
     /**
@@ -1849,7 +1849,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getIntArray(resName);
+        return assist.getIntArray(resName);
     }
 
     /**
@@ -1863,7 +1863,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getStringArray(resName);
+        return assist.getStringArray(resName);
     }
 
     /**
@@ -1877,7 +1877,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getTextArray(resName);
+        return assist.getTextArray(resName);
     }
 
     /**
@@ -1891,7 +1891,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getIntArray(id);
+        return assist.getIntArray(id);
     }
 
     /**
@@ -1905,7 +1905,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getStringArray(id);
+        return assist.getStringArray(id);
     }
 
     /**
@@ -1919,7 +1919,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getTextArray(id);
+        return assist.getTextArray(id);
     }
 
     // =
@@ -1935,7 +1935,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getId(resName);
+        return assist.getId(resName);
     }
 
     /**
@@ -1952,7 +1952,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getLayoutId(resName);
+        return assist.getLayoutId(resName);
     }
 
     /**
@@ -1969,7 +1969,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getMenuId(resName);
+        return assist.getMenuId(resName);
     }
 
     /**
@@ -1983,7 +1983,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getRawId(resName);
+        return assist.getRawId(resName);
     }
 
     /**
@@ -1997,7 +1997,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getAttrId(resName);
+        return assist.getAttrId(resName);
     }
 
     /**
@@ -2011,7 +2011,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getStyleId(resName);
+        return assist.getStyleId(resName);
     }
 
     /**
@@ -2025,7 +2025,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getStyleableId(resName);
+        return assist.getStyleableId(resName);
     }
 
     /**
@@ -2039,7 +2039,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getAnimatorId(resName);
+        return assist.getAnimatorId(resName);
     }
 
     /**
@@ -2053,7 +2053,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getXmlId(resName);
+        return assist.getXmlId(resName);
     }
 
     /**
@@ -2067,7 +2067,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getInterpolatorId(resName);
+        return assist.getInterpolatorId(resName);
     }
 
     /**
@@ -2081,7 +2081,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return 0;
-        return ResourceAssist.getInstance().getPluralsId(resName);
+        return assist.getPluralsId(resName);
     }
 
     // =
@@ -2097,7 +2097,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getColorStateList(resName);
+        return assist.getColorStateList(resName);
     }
 
     /**
@@ -2114,7 +2114,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getColorStateList(id);
+        return assist.getColorStateList(id);
     }
 
     /**
@@ -2128,7 +2128,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getColorDrawable(color);
+        return assist.getColorDrawable(color);
     }
 
     /**
@@ -2142,7 +2142,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().getColorDrawable(color);
+        return assist.getColorDrawable(color);
     }
 
     // ===================
@@ -2160,7 +2160,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openInputStream(uri);
+        return assist.openInputStream(uri);
     }
 
     /**
@@ -2179,7 +2179,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openInputStream(uri, resolver);
+        return assist.openInputStream(uri, resolver);
     }
 
     /**
@@ -2193,7 +2193,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openOutputStream(uri);
+        return assist.openOutputStream(uri);
     }
 
     /**
@@ -2209,7 +2209,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openOutputStream(uri, resolver);
+        return assist.openOutputStream(uri, resolver);
     }
 
     /**
@@ -2225,7 +2225,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openOutputStream(uri, mode);
+        return assist.openOutputStream(uri, mode);
     }
 
     /**
@@ -2243,7 +2243,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openOutputStream(uri, mode, resolver);
+        return assist.openOutputStream(uri, mode, resolver);
     }
 
     /**
@@ -2259,7 +2259,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openFileDescriptor(uri, mode);
+        return assist.openFileDescriptor(uri, mode);
     }
 
     /**
@@ -2280,7 +2280,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openFileDescriptor(uri, mode, resolver);
+        return assist.openFileDescriptor(uri, mode, resolver);
     }
 
     /**
@@ -2296,7 +2296,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode);
+        return assist.openAssetFileDescriptor(uri, mode);
     }
 
     /**
@@ -2317,7 +2317,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode, resolver);
+        return assist.openAssetFileDescriptor(uri, mode, resolver);
     }
 
     // ================
@@ -2335,7 +2335,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().open(fileName);
+        return assist.open(fileName);
     }
 
     /**
@@ -2349,7 +2349,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openFd(fileName);
+        return assist.openFd(fileName);
     }
 
     /**
@@ -2363,7 +2363,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openNonAssetFd(fileName);
+        return assist.openNonAssetFd(fileName);
     }
 
     /**
@@ -2377,7 +2377,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openRawResource(id);
+        return assist.openRawResource(id);
     }
 
     /**
@@ -2391,7 +2391,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().openRawResourceFd(id);
+        return assist.openRawResourceFd(id);
     }
 
     // =============
@@ -2414,7 +2414,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().readBytesFromAssets(fileName);
+        return assist.readBytesFromAssets(fileName);
     }
 
     /**
@@ -2428,7 +2428,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().readStringFromAssets(fileName);
+        return assist.readStringFromAssets(fileName);
     }
 
     // =
@@ -2444,7 +2444,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().readBytesFromRaw(resId);
+        return assist.readBytesFromRaw(resId);
     }
 
     /**
@@ -2458,7 +2458,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().readStringFromRaw(resId);
+        return assist.readStringFromRaw(resId);
     }
 
     // =
@@ -2474,7 +2474,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().geFileToListFromAssets(fileName);
+        return assist.geFileToListFromAssets(fileName);
     }
 
     /**
@@ -2488,7 +2488,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return null;
-        return ResourceAssist.getInstance().geFileToListFromRaw(resId);
+        return assist.geFileToListFromRaw(resId);
     }
 
     // =
@@ -2506,7 +2506,7 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return false;
-        return ResourceAssist.getInstance().saveAssetsFormFile(fileName, file);
+        return assist.saveAssetsFormFile(fileName, file);
     }
 
     /**
@@ -2522,6 +2522,6 @@ public final class ResourceUtils {
             final ResourceAssist assist
     ) {
         if (assist == null) return false;
-        return ResourceAssist.getInstance().saveRawFormFile(resId, file);
+        return assist.saveRawFormFile(resId, file);
     }
 }
