@@ -263,15 +263,15 @@ public final class ResourceUtils {
 
     /**
      * 获取资源 id
+     * @param assist  {@link ResourceAssist}
      * @param resName 资源名
      * @param defType 资源类型
-     * @param assist  {@link ResourceAssist}
      * @return 资源 id
      */
     public static int getIdentifier(
+            final ResourceAssist assist,
             final String resName,
-            final String defType,
-            final ResourceAssist assist
+            final String defType
     ) {
         if (assist == null) return 0;
         return assist.getIdentifier(resName, defType);
@@ -290,13 +290,13 @@ public final class ResourceUtils {
 
     /**
      * 获取给定资源标识符的全名
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return Integer
      */
     public static String getResourceName(
-            @AnyRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @AnyRes final int id
     ) {
         if (assist == null) return null;
         return assist.getResourceName(id);
@@ -1228,13 +1228,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 String id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return String id
      */
     public static int getStringId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getStringId(resName);
@@ -1242,13 +1242,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 String
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return String
      */
     public static String getString(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getString(resName);
@@ -1256,14 +1256,14 @@ public final class ResourceUtils {
 
     /**
      * 获取 String
-     * @param resName    resource name
      * @param assist     {@link ResourceAssist}
+     * @param resName    resource name
      * @param formatArgs 格式化参数
      * @return String
      */
-    public static String getStringByAssist(
-            final String resName,
+    public static String getString(
             final ResourceAssist assist,
+            final String resName,
             final Object... formatArgs
     ) {
         if (assist == null) return null;
@@ -1272,13 +1272,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 String
-     * @param id     R.string.id
      * @param assist {@link ResourceAssist}
+     * @param id     R.string.id
      * @return String
      */
     public static String getString(
-            @StringRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @StringRes final int id
     ) {
         if (assist == null) return null;
         return assist.getString(id);
@@ -1286,14 +1286,14 @@ public final class ResourceUtils {
 
     /**
      * 获取 String
-     * @param id         R.string.id
      * @param assist     {@link ResourceAssist}
+     * @param id         R.string.id
      * @param formatArgs 格式化参数
      * @return String
      */
-    public static String getStringByAssist(
-            @StringRes final int id,
+    public static String getString(
             final ResourceAssist assist,
+            @StringRes final int id,
             final Object... formatArgs
     ) {
         if (assist == null) return null;
@@ -1304,13 +1304,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Dimension id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Dimension id
      */
     public static int getDimenId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getDimenId(resName);
@@ -1318,13 +1318,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Dimension
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Dimension
      */
     public static float getDimension(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0f;
         return assist.getDimension(resName);
@@ -1332,13 +1332,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Dimension
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Dimension
      */
     public static int getDimensionInt(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getDimensionInt(resName);
@@ -1346,13 +1346,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Dimension
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return Dimension
      */
     public static float getDimension(
-            @DimenRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @DimenRes final int id
     ) {
         if (assist == null) return 0f;
         return assist.getDimension(id);
@@ -1360,13 +1360,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Dimension
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return Dimension
      */
     public static int getDimensionInt(
-            @DimenRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @DimenRes final int id
     ) {
         if (assist == null) return 0;
         return assist.getDimensionInt(id);
@@ -1376,13 +1376,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Color id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Color id
      */
     public static int getColorId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return -1;
         return assist.getColorId(resName);
@@ -1390,13 +1390,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Color
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Color
      */
     public static int getColor(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return -1;
         return assist.getColor(resName);
@@ -1407,13 +1407,13 @@ public final class ResourceUtils {
      * <pre>
      *     {@link ContextCompat#getColor(Context, int)}
      * </pre>
-     * @param colorId R.color.id
      * @param assist  {@link ResourceAssist}
+     * @param colorId R.color.id
      * @return Color
      */
     public static int getColor(
-            @ColorRes final int colorId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ColorRes final int colorId
     ) {
         if (assist == null) return -1;
         return assist.getColor(colorId);
@@ -1423,13 +1423,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Drawable id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Drawable id
      */
     public static int getDrawableId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getDrawableId(resName);
@@ -1437,13 +1437,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Drawable
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link Drawable}
      */
     public static Drawable getDrawable(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getDrawable(resName);
@@ -1451,13 +1451,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 .9 Drawable
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawable(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getNinePatchDrawable(resName);
@@ -1468,13 +1468,13 @@ public final class ResourceUtils {
      * <pre>
      *     {@link ContextCompat#getDrawable(Context, int)}
      * </pre>
-     * @param drawableId R.drawable.id
      * @param assist     {@link ResourceAssist}
+     * @param drawableId R.drawable.id
      * @return {@link Drawable}
      */
     public static Drawable getDrawable(
-            @DrawableRes final int drawableId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @DrawableRes final int drawableId
     ) {
         if (assist == null) return null;
         return assist.getDrawable(drawableId);
@@ -1482,13 +1482,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 .9 Drawable
-     * @param drawableId R.drawable.id
      * @param assist     {@link ResourceAssist}
+     * @param drawableId R.drawable.id
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawable(
-            @DrawableRes final int drawableId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @DrawableRes final int drawableId
     ) {
         if (assist == null) return null;
         return assist.getNinePatchDrawable(drawableId);
@@ -1498,13 +1498,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Bitmap
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getBitmap(resName);
@@ -1512,15 +1512,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Bitmap
+     * @param assist  {@link ResourceAssist}
      * @param resName resource name
      * @param options {@link BitmapFactory.Options}
-     * @param assist  {@link ResourceAssist}
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(
+            final ResourceAssist assist,
             final String resName,
-            final BitmapFactory.Options options,
-            final ResourceAssist assist
+            final BitmapFactory.Options options
     ) {
         if (assist == null) return null;
         return assist.getBitmap(resName, options);
@@ -1528,13 +1528,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Bitmap
-     * @param resId  resource identifier
      * @param assist {@link ResourceAssist}
+     * @param resId  resource identifier
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(
-            final int resId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final int resId
     ) {
         if (assist == null) return null;
         return assist.getBitmap(resId);
@@ -1542,15 +1542,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Bitmap
+     * @param assist  {@link ResourceAssist}
      * @param resId   resource identifier
      * @param options {@link BitmapFactory.Options}
-     * @param assist  {@link ResourceAssist}
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(
+            final ResourceAssist assist,
             final int resId,
-            final BitmapFactory.Options options,
-            final ResourceAssist assist
+            final BitmapFactory.Options options
     ) {
         if (assist == null) return null;
         return assist.getBitmap(resId, options);
@@ -1560,13 +1560,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Mipmap id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Mipmap id
      */
     public static int getMipmapId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getMipmapId(resName);
@@ -1574,13 +1574,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Mipmap Drawable
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link Drawable}
      */
     public static Drawable getDrawableMipmap(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getDrawableMipmap(resName);
@@ -1588,13 +1588,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Mipmap .9 Drawable
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawableMipmap(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getNinePatchDrawableMipmap(resName);
@@ -1602,13 +1602,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Mipmap Bitmap
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmapMipmap(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getBitmapMipmap(resName);
@@ -1616,15 +1616,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Mipmap Bitmap
+     * @param assist  {@link ResourceAssist}
      * @param resName resource name
      * @param options {@link BitmapFactory.Options}
-     * @param assist  {@link ResourceAssist}
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmapMipmap(
+            final ResourceAssist assist,
             final String resName,
-            final BitmapFactory.Options options,
-            final ResourceAssist assist
+            final BitmapFactory.Options options
     ) {
         if (assist == null) return null;
         return assist.getBitmapMipmap(resName, options);
@@ -1634,13 +1634,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Anim id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Anim id
      */
     public static int getAnimId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getAnimId(resName);
@@ -1648,13 +1648,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation Xml
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link XmlResourceParser}
      */
     public static XmlResourceParser getAnimationXml(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getAnimationXml(resName);
@@ -1662,13 +1662,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation Xml
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return {@link XmlResourceParser}
      */
     public static XmlResourceParser getAnimationXml(
-            @AnimatorRes @AnimRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @AnimatorRes @AnimRes final int id
     ) {
         if (assist == null) return null;
         return assist.getAnimationXml(id);
@@ -1676,13 +1676,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getAnimation(resName);
@@ -1690,15 +1690,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation
+     * @param assist  {@link ResourceAssist}
      * @param resName resource name
      * @param context {@link Context}
-     * @param assist  {@link ResourceAssist}
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(
+            final ResourceAssist assist,
             final String resName,
-            final Context context,
-            final ResourceAssist assist
+            final Context context
     ) {
         if (assist == null) return null;
         return assist.getAnimation(resName, context);
@@ -1706,13 +1706,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(
-            @AnimatorRes @AnimRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @AnimatorRes @AnimRes final int id
     ) {
         if (assist == null) return null;
         return assist.getAnimation(id);
@@ -1720,15 +1720,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animation
+     * @param assist  {@link ResourceAssist}
      * @param id      resource identifier
      * @param context {@link Context}
-     * @param assist  {@link ResourceAssist}
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(
+            final ResourceAssist assist,
             @AnimatorRes @AnimRes final int id,
-            final Context context,
-            final ResourceAssist assist
+            final Context context
     ) {
         if (assist == null) return null;
         return assist.getAnimation(id, context);
@@ -1738,13 +1738,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Boolean id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Boolean id
      */
     public static int getBooleanId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getBooleanId(resName);
@@ -1752,13 +1752,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Boolean
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Boolean
      */
     public static boolean getBoolean(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return false;
         return assist.getBoolean(resName);
@@ -1766,13 +1766,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Boolean
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return Boolean
      */
     public static boolean getBoolean(
-            @BoolRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @BoolRes final int id
     ) {
         if (assist == null) return false;
         return assist.getBoolean(id);
@@ -1782,13 +1782,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Integer id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Integer id
      */
     public static int getIntegerId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return -1;
         return assist.getIntegerId(resName);
@@ -1796,13 +1796,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Integer
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Integer
      */
     public static int getInteger(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return -1;
         return assist.getInteger(resName);
@@ -1810,13 +1810,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Integer
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return Integer
      */
     public static int getInteger(
-            @IntegerRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @IntegerRes final int id
     ) {
         if (assist == null) return -1;
         return assist.getInteger(id);
@@ -1826,13 +1826,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Array id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Array id
      */
     public static int getArrayId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getArrayId(resName);
@@ -1840,13 +1840,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 int[]
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return int[]
      */
     public static int[] getIntArray(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getIntArray(resName);
@@ -1854,13 +1854,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 String[]
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return String[]
      */
     public static String[] getStringArray(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getStringArray(resName);
@@ -1868,13 +1868,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 CharSequence[]
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return CharSequence[]
      */
     public static CharSequence[] getTextArray(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getTextArray(resName);
@@ -1882,13 +1882,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 int[]
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return int[]
      */
     public static int[] getIntArray(
-            @ArrayRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ArrayRes final int id
     ) {
         if (assist == null) return null;
         return assist.getIntArray(id);
@@ -1896,13 +1896,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 String[]
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return String[]
      */
     public static String[] getStringArray(
-            @ArrayRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ArrayRes final int id
     ) {
         if (assist == null) return null;
         return assist.getStringArray(id);
@@ -1910,13 +1910,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 CharSequence[]
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return CharSequence[]
      */
     public static CharSequence[] getTextArray(
-            @ArrayRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ArrayRes final int id
     ) {
         if (assist == null) return null;
         return assist.getTextArray(id);
@@ -1926,13 +1926,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 id ( view )
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return id
      */
     public static int getId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getId(resName);
@@ -1943,13 +1943,13 @@ public final class ResourceUtils {
      * <pre>
      *     {@link android.view.LayoutInflater#inflate(int, ViewGroup)}
      * </pre>
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Layout id
      */
     public static int getLayoutId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getLayoutId(resName);
@@ -1960,13 +1960,13 @@ public final class ResourceUtils {
      * <pre>
      *     {@link android.view.MenuInflater#inflate(int, Menu)}
      * </pre>
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Menu id
      */
     public static int getMenuId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getMenuId(resName);
@@ -1974,13 +1974,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Raw id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Raw id
      */
     public static int getRawId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getRawId(resName);
@@ -1988,13 +1988,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Attr id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Attr id
      */
     public static int getAttrId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getAttrId(resName);
@@ -2002,13 +2002,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Style id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Style id
      */
     public static int getStyleId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getStyleId(resName);
@@ -2016,13 +2016,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Styleable id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Styleable id
      */
     public static int getStyleableId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getStyleableId(resName);
@@ -2030,13 +2030,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Animator id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Animator id
      */
     public static int getAnimatorId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getAnimatorId(resName);
@@ -2044,13 +2044,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Xml id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Xml id
      */
     public static int getXmlId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getXmlId(resName);
@@ -2058,13 +2058,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Interpolator id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Interpolator id
      */
     public static int getInterpolatorId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getInterpolatorId(resName);
@@ -2072,13 +2072,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Plurals id
-     * @param resName resource name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource name
      * @return Plurals id
      */
     public static int getPluralsId(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return 0;
         return assist.getPluralsId(resName);
@@ -2088,13 +2088,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 ColorStateList
-     * @param resName resource Name
      * @param assist  {@link ResourceAssist}
+     * @param resName resource Name
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(
-            final String resName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String resName
     ) {
         if (assist == null) return null;
         return assist.getColorStateList(resName);
@@ -2105,13 +2105,13 @@ public final class ResourceUtils {
      * <pre>
      *     {@link ContextCompat#getColorStateList(Context, int)}
      * </pre>
-     * @param id     resource identifier of a {@link ColorStateList}
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier of a {@link ColorStateList}
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(
-            @ColorRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ColorRes final int id
     ) {
         if (assist == null) return null;
         return assist.getColorStateList(id);
@@ -2119,13 +2119,13 @@ public final class ResourceUtils {
 
     /**
      * 获取十六进制颜色值 Drawable
-     * @param color  十六进制颜色值
      * @param assist {@link ResourceAssist}
+     * @param color  十六进制颜色值
      * @return 十六进制颜色值 Drawable
      */
     public static ColorDrawable getColorDrawable(
-            final String color,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String color
     ) {
         if (assist == null) return null;
         return assist.getColorDrawable(color);
@@ -2133,13 +2133,13 @@ public final class ResourceUtils {
 
     /**
      * 获取指定颜色 Drawable
-     * @param color  颜色值
      * @param assist {@link ResourceAssist}
+     * @param color  颜色值
      * @return 指定颜色 Drawable
      */
     public static ColorDrawable getColorDrawable(
-            @ColorInt final int color,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @ColorInt final int color
     ) {
         if (assist == null) return null;
         return assist.getColorDrawable(color);
@@ -2151,13 +2151,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri InputStream
-     * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param assist {@link ResourceAssist}
+     * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @return Uri InputStream
      */
     public static InputStream openInputStream(
-            final Uri uri,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final Uri uri
     ) {
         if (assist == null) return null;
         return assist.openInputStream(uri);
@@ -2168,15 +2168,15 @@ public final class ResourceUtils {
      * <pre>
      *     主要用于获取到分享的 FileProvider Uri 存储起来 {@link FileIOUtils#writeFileFromIS(File, InputStream)}
      * </pre>
+     * @param assist   {@link ResourceAssist}
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param resolver {@link ContentResolver}
-     * @param assist   {@link ResourceAssist}
      * @return Uri InputStream
      */
     public static InputStream openInputStream(
+            final ResourceAssist assist,
             final Uri uri,
-            final ContentResolver resolver,
-            final ResourceAssist assist
+            final ContentResolver resolver
     ) {
         if (assist == null) return null;
         return assist.openInputStream(uri, resolver);
@@ -2184,13 +2184,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri OutputStream
-     * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param assist {@link ResourceAssist}
+     * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @return Uri OutputStream
      */
     public static OutputStream openOutputStream(
-            final Uri uri,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final Uri uri
     ) {
         if (assist == null) return null;
         return assist.openOutputStream(uri);
@@ -2198,15 +2198,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri OutputStream
+     * @param assist   {@link ResourceAssist}
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param resolver {@link ContentResolver}
-     * @param assist   {@link ResourceAssist}
      * @return Uri OutputStream
      */
     public static OutputStream openOutputStream(
+            final ResourceAssist assist,
             final Uri uri,
-            final ContentResolver resolver,
-            final ResourceAssist assist
+            final ContentResolver resolver
     ) {
         if (assist == null) return null;
         return assist.openOutputStream(uri, resolver);
@@ -2214,15 +2214,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri OutputStream
+     * @param assist {@link ResourceAssist}
      * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode   读写模式
-     * @param assist {@link ResourceAssist}
      * @return Uri OutputStream
      */
     public static OutputStream openOutputStream(
+            final ResourceAssist assist,
             final Uri uri,
-            final String mode,
-            final ResourceAssist assist
+            final String mode
     ) {
         if (assist == null) return null;
         return assist.openOutputStream(uri, mode);
@@ -2230,17 +2230,17 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri OutputStream
+     * @param assist   {@link ResourceAssist}
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode     读写模式
      * @param resolver {@link ContentResolver}
-     * @param assist   {@link ResourceAssist}
      * @return Uri OutputStream
      */
     public static OutputStream openOutputStream(
+            final ResourceAssist assist,
             final Uri uri,
             final String mode,
-            final ContentResolver resolver,
-            final ResourceAssist assist
+            final ContentResolver resolver
     ) {
         if (assist == null) return null;
         return assist.openOutputStream(uri, mode, resolver);
@@ -2248,15 +2248,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri ParcelFileDescriptor
+     * @param assist {@link ResourceAssist}
      * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode   读写模式
-     * @param assist {@link ResourceAssist}
      * @return Uri ParcelFileDescriptor
      */
     public static ParcelFileDescriptor openFileDescriptor(
+            final ResourceAssist assist,
             final Uri uri,
-            final String mode,
-            final ResourceAssist assist
+            final String mode
     ) {
         if (assist == null) return null;
         return assist.openFileDescriptor(uri, mode);
@@ -2267,17 +2267,17 @@ public final class ResourceUtils {
      * <pre>
      *     通过 new FileInputStream(openFileDescriptor().getFileDescriptor()) 进行文件操作
      * </pre>
+     * @param assist   {@link ResourceAssist}
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode     读写模式
      * @param resolver {@link ContentResolver}
-     * @param assist   {@link ResourceAssist}
      * @return Uri ParcelFileDescriptor
      */
     public static ParcelFileDescriptor openFileDescriptor(
+            final ResourceAssist assist,
             final Uri uri,
             final String mode,
-            final ContentResolver resolver,
-            final ResourceAssist assist
+            final ContentResolver resolver
     ) {
         if (assist == null) return null;
         return assist.openFileDescriptor(uri, mode, resolver);
@@ -2285,15 +2285,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri AssetFileDescriptor
+     * @param assist {@link ResourceAssist}
      * @param uri    {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode   读写模式
-     * @param assist {@link ResourceAssist}
      * @return Uri AssetFileDescriptor
      */
     public static AssetFileDescriptor openAssetFileDescriptor(
+            final ResourceAssist assist,
             final Uri uri,
-            final String mode,
-            final ResourceAssist assist
+            final String mode
     ) {
         if (assist == null) return null;
         return assist.openAssetFileDescriptor(uri, mode);
@@ -2304,17 +2304,17 @@ public final class ResourceUtils {
      * <pre>
      *     通过 new FileInputStream(openAssetFileDescriptor().getFileDescriptor()) 进行文件操作
      * </pre>
+     * @param assist   {@link ResourceAssist}
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode     读写模式
      * @param resolver {@link ContentResolver}
-     * @param assist   {@link ResourceAssist}
      * @return Uri AssetFileDescriptor
      */
     public static AssetFileDescriptor openAssetFileDescriptor(
+            final ResourceAssist assist,
             final Uri uri,
             final String mode,
-            final ContentResolver resolver,
-            final ResourceAssist assist
+            final ContentResolver resolver
     ) {
         if (assist == null) return null;
         return assist.openAssetFileDescriptor(uri, mode, resolver);
@@ -2326,13 +2326,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 AssetManager 指定资源 InputStream
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return {@link InputStream}
      */
     public static InputStream open(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.open(fileName);
@@ -2340,13 +2340,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 AssetManager 指定资源 AssetFileDescriptor
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openFd(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.openFd(fileName);
@@ -2354,13 +2354,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 AssetManager 指定资源 AssetFileDescriptor
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openNonAssetFd(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.openNonAssetFd(fileName);
@@ -2368,13 +2368,13 @@ public final class ResourceUtils {
 
     /**
      * 获取对应资源 InputStream
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return {@link InputStream}
      */
     public static InputStream openRawResource(
-            @RawRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @RawRes final int id
     ) {
         if (assist == null) return null;
         return assist.openRawResource(id);
@@ -2382,13 +2382,13 @@ public final class ResourceUtils {
 
     /**
      * 获取对应资源 AssetFileDescriptor
-     * @param id     resource identifier
      * @param assist {@link ResourceAssist}
+     * @param id     resource identifier
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openRawResourceFd(
-            @RawRes final int id,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @RawRes final int id
     ) {
         if (assist == null) return null;
         return assist.openRawResourceFd(id);
@@ -2405,13 +2405,13 @@ public final class ResourceUtils {
      *     根目录 a.txt
      *     子目录 /www/a.html
      * </pre>
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromAssets(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.readBytesFromAssets(fileName);
@@ -2419,13 +2419,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Assets 资源文件数据
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return 文件字符串内容
      */
     public static String readStringFromAssets(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.readStringFromAssets(fileName);
@@ -2435,13 +2435,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Raw 资源文件数据
-     * @param resId  资源 id
      * @param assist {@link ResourceAssist}
+     * @param resId  资源 id
      * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromRaw(
-            @RawRes final int resId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @RawRes final int resId
     ) {
         if (assist == null) return null;
         return assist.readBytesFromRaw(resId);
@@ -2449,13 +2449,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Raw 资源文件数据
-     * @param resId  资源 id
      * @param assist {@link ResourceAssist}
+     * @param resId  资源 id
      * @return 文件字符串内容
      */
     public static String readStringFromRaw(
-            @RawRes final int resId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @RawRes final int resId
     ) {
         if (assist == null) return null;
         return assist.readStringFromRaw(resId);
@@ -2465,13 +2465,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Assets 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
-     * @param fileName 文件名
      * @param assist   {@link ResourceAssist}
+     * @param fileName 文件名
      * @return {@link List <String>}
      */
     public static List<String> geFileToListFromAssets(
-            final String fileName,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            final String fileName
     ) {
         if (assist == null) return null;
         return assist.geFileToListFromAssets(fileName);
@@ -2479,13 +2479,13 @@ public final class ResourceUtils {
 
     /**
      * 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
-     * @param resId  资源 id
      * @param assist {@link ResourceAssist}
+     * @param resId  资源 id
      * @return {@link List<String>}
      */
     public static List<String> geFileToListFromRaw(
-            @RawRes final int resId,
-            final ResourceAssist assist
+            final ResourceAssist assist,
+            @RawRes final int resId
     ) {
         if (assist == null) return null;
         return assist.geFileToListFromRaw(resId);
@@ -2495,15 +2495,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Assets 资源文件数据并保存到本地
+     * @param assist   {@link ResourceAssist}
      * @param fileName 文件名
      * @param file     文件存储地址
-     * @param assist   {@link ResourceAssist}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveAssetsFormFile(
+            final ResourceAssist assist,
             final String fileName,
-            final File file,
-            final ResourceAssist assist
+            final File file
     ) {
         if (assist == null) return false;
         return assist.saveAssetsFormFile(fileName, file);
@@ -2511,15 +2511,15 @@ public final class ResourceUtils {
 
     /**
      * 获取 Raw 资源文件数据并保存到本地
+     * @param assist {@link ResourceAssist}
      * @param resId  资源 id
      * @param file   文件存储地址
-     * @param assist {@link ResourceAssist}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveRawFormFile(
+            final ResourceAssist assist,
             @RawRes final int resId,
-            final File file,
-            final ResourceAssist assist
+            final File file
     ) {
         if (assist == null) return false;
         return assist.saveRawFormFile(resId, file);
