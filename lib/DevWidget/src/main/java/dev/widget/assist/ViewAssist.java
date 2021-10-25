@@ -28,7 +28,7 @@ public final class ViewAssist {
     private ViewAssist() {
     }
 
-    // 标记 Tag
+    // 标记 TAG
     private Object    mTag;
     // 包裹 View
     private ViewGroup mWrapper;
@@ -45,7 +45,7 @@ public final class ViewAssist {
     /**
      * 传入包裹 View
      * @param wrapper 包裹 View
-     * @param tag     Tag
+     * @param tag     TAG
      * @return {@link ViewAssist}
      */
     public static ViewAssist wrap(

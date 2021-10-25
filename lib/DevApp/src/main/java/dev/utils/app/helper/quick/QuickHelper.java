@@ -568,8 +568,8 @@ public final class QuickHelper
     }
 
     /**
-     * 设置 View Tag
-     * @param object Tag
+     * 设置 View TAG
+     * @param object TAG
      * @return Helper
      */
     @Override

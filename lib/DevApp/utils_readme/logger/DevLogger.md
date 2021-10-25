@@ -27,7 +27,7 @@
 
 * 支持 JSON、XML 字符串解析、格式化打印
 
-* 支持无 Tag 快捷打印、以及全局配置 Tag
+* 支持无 TAG 快捷打印、以及全局配置 TAG
 
 * 支持显示行号、线程、类、方法信息等打印, 以及堆栈信息跟踪、偏移打印等
 
@@ -106,7 +106,7 @@ DevLogger.initialize(LogConfig.getReleaseLogConfig(TAG));
 
 #### 打印日志
 ```java
-// 无 Tag 快捷打印 (使用全局 LogConfig.tag)
+// 无 TAG 快捷打印 (使用全局 LogConfig.tag)
 DevLogger.v("测试数据 - v");
 DevLogger.d("测试数据 - d");
 DevLogger.i("测试数据 - i");
@@ -114,7 +114,7 @@ DevLogger.w("测试数据 - w");
 DevLogger.e("错误 - e");
 DevLogger.wtf("测试数据 - wtf");
 
-// 使用 自定义 Tag 打印日志
+// 使用 自定义 TAG 打印日志
 DevLogger.vTag(tag, "测试数据 - v");
 DevLogger.dTag(tag, "测试数据 - d");
 DevLogger.iTag(tag, "测试数据 - i");
@@ -153,7 +153,7 @@ DevLogger.other(logConfig).e(new Exception("报错"), "new Config - e");
 DevLogger.other(logConfig).eTag(tag, "new Config - e");
 DevLogger.other(logConfig).eTag(tag, new Exception("报错"), "new Config - e");
 
-// 有 Tag 优先使用自定义 Tag, 无 Tag 才使用 LogConfig.tag 
+// 有 TAG 优先使用自定义 TAG, 无 TAG 才使用 LogConfig.tag 
 DevLogger.other(logConfig).eTag(tag, "new Config - e");
 ```
 

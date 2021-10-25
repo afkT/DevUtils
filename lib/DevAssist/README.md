@@ -473,9 +473,9 @@ implementation 'io.github.afkt:DevAssist:1.2.7'
 | getUUID | 获取 UUID |
 | getObject | 获取 Object |
 | setObject | 设置 Object |
-| getTag | 获取标记 Tag |
-| convertTag | 转换标记 Tag |
-| setTag | 设置标记 Tag |
+| getTag | 获取标记 TAG |
+| convertTag | 转换标记 TAG |
+| setTag | 设置标记 TAG |
 | getModelId | 获取 Model id |
 | setModelId | 设置 Model id |
 | getCode | 获取 Code |
@@ -488,7 +488,7 @@ implementation 'io.github.afkt:DevAssist:1.2.7'
 | setTokenUUID | 设置 Token UUID |
 | randomTokenUUID | 重置随机 Token UUID |
 | equalsObject | 判断 Object 是否一致 |
-| equalsTag | 判断 Tag 是否一致 |
+| equalsTag | 判断 TAG 是否一致 |
 | equalsModelId | 判断 Model id 是否一致 |
 | equalsCode | 判断 Code 是否一致 |
 | equalsType | 判断 Type 是否一致 |

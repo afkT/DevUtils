@@ -255,8 +255,8 @@ public interface IHelperByQuick<T>
     T setAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha);
 
     /**
-     * 设置 View Tag
-     * @param object Tag
+     * 设置 View TAG
+     * @param object TAG
      * @return Helper
      */
     T setTag(Object object);

@@ -188,7 +188,7 @@ public final class OkGoUtils {
      *     控制请求思路: 例 MVP 模式 可以在 BaseView 写一个专门请求方法
      *     传入 (Request request, OKCallback<T> callback)
      *     并在 BaseActivity 内实现且加上 final, 内部 Presenter 请求最终调用 BaseView 请求方法
-     *     BaseView 请求方法内调用该方法, 进行设置 Tag 在 Activity#onDestroy 中调用
+     *     BaseView 请求方法内调用该方法, 进行设置 TAG 在 Activity#onDestroy 中调用
      *     OkGo.getInstance().cancelTag(tag); 防止内存泄露
      * </pre>
      * @param tag      request tag

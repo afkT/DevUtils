@@ -16,7 +16,7 @@ public class DevObject<T>
     private final int    mUUID      = UUID.randomUUID().hashCode();
     // Object
     private       T      mObject;
-    // 标记 Tag
+    // 标记 TAG
     private       Object mTag;
     // model id
     private       int    mModelId;
@@ -75,15 +75,15 @@ public class DevObject<T>
     }
 
     /**
-     * 获取标记 Tag
-     * @return 标记 Tag
+     * 获取标记 TAG
+     * @return 标记 TAG
      */
     public Object getTag() {
         return mTag;
     }
 
     /**
-     * 转换标记 Tag
+     * 转换标记 TAG
      * @param <CTO> 泛型
      * @return Object convert T object
      */
@@ -96,8 +96,8 @@ public class DevObject<T>
     }
 
     /**
-     * 设置标记 Tag
-     * @param tag Tag
+     * 设置标记 TAG
+     * @param tag TAG
      * @return {@link DevObject}
      */
     public DevObject<T> setTag(final Object tag) {
@@ -227,8 +227,8 @@ public class DevObject<T>
     }
 
     /**
-     * 判断 Tag 是否一致
-     * @param tag 待校验 Tag
+     * 判断 TAG 是否一致
+     * @param tag 待校验 TAG
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsTag(final Object tag) {

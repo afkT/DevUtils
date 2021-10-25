@@ -332,9 +332,9 @@ public interface IHelperByView<T>
     );
 
     /**
-     * 设置 View Tag
+     * 设置 View TAG
      * @param view   View
-     * @param object Tag
+     * @param object TAG
      * @return Helper
      */
     T setTag(

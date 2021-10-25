@@ -78,7 +78,7 @@ public final class JCLogUtils {
     /**
      * 最终打印日志方法 ( 全部调用此方法 )
      * @param logType 日志类型
-     * @param tag     打印 Tag
+     * @param tag     打印 TAG
      * @param message 日志信息
      */
     private static void printLog(
@@ -316,7 +316,7 @@ public final class JCLogUtils {
         /**
          * 日志打印
          * @param logType 日志类型
-         * @param tag     打印 Tag
+         * @param tag     打印 TAG
          * @param message 日志信息
          */
         void printLog(

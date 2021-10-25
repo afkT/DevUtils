@@ -75,7 +75,7 @@
 DevTimer timer = new DevTimer.Builder(1500L)
         .setDelay(100L) // 延迟时间 ( 多少毫秒后开始执行 )
         .setPeriod(1500L) // 循环时间 ( 每隔多少毫秒执行一次 )
-        .setTag(TAG) // 定时器 Tag
+        .setTag(TAG) // 定时器 TAG
         .setLimit(19) // 触发次数上限 ( 负数为无限循环 )
         .build(); // 构建定时器
 timer.setCallback(new DevTimer.Callback() {

@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class DevTimer {
 
-    // 定时器 Tag
+    // 定时器 TAG
     private final String mTag;
     // 延迟时间 ( 多少毫秒后开始执行 )
     private final long   mDelay;
@@ -35,7 +35,7 @@ public class DevTimer {
      */
     public static final class Builder {
 
-        // 定时器 Tag
+        // 定时器 TAG
         private String tag;
         // 延迟时间 ( 多少毫秒后开始执行 )
         private long   delay;
