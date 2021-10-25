@@ -89,7 +89,7 @@ public final class WeakReferenceAssist<T> {
      * @return 弱引用对象值
      */
     public T getWeakValue(final String key) {
-        return priGetWeakValue(getWeak(key), null);
+        return getWeakValue(key, null);
     }
 
     /**
@@ -102,7 +102,11 @@ public final class WeakReferenceAssist<T> {
             final String key,
             final T defaultValue
     ) {
-        return priGetWeakValue(getWeak(key), defaultValue);
+        WeakReference<T> weak = getWeak(key);
+        if (weak == null) return defaultValue;
+        T value = weak.get();
+        if (value != null) return value;
+        return defaultValue;
     }
 
     // =
@@ -145,25 +149,5 @@ public final class WeakReferenceAssist<T> {
             if (weak != null) weak.clear();
         }
         lists.clear();
-    }
-
-    // ==========
-    // = 内部方法 =
-    // ==========
-
-    /**
-     * 内部获取弱引用对象值方法
-     * @param weak         弱引用对象
-     * @param defaultValue 默认值
-     * @return 获取弱引用对象值方法
-     */
-    private T priGetWeakValue(
-            final WeakReference<T> weak,
-            final T defaultValue
-    ) {
-        if (weak == null) return defaultValue;
-        T value = weak.get();
-        if (value != null) return value;
-        return defaultValue;
     }
 }
