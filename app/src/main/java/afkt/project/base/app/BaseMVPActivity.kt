@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
-import dev.DevUtils
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.utils.DevFinal
@@ -267,7 +266,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         clazz: Class<*>?,
         buttonValue: ButtonValue
     ): Boolean {
-        val intent = Intent(DevUtils.getContext(), clazz)
+        val intent = Intent(this, clazz)
         intent.putExtra(DevFinal.TYPE, buttonValue.type)
         intent.putExtra(DevFinal.TITLE, buttonValue.text)
         return AppUtils.startActivity(intent)

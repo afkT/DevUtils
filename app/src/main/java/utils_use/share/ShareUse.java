@@ -2,7 +2,6 @@ package utils_use.share;
 
 import android.content.Context;
 
-import dev.DevUtils;
 import dev.utils.app.share.SPUtils;
 import dev.utils.app.share.SharedUtils;
 
@@ -15,7 +14,7 @@ public final class ShareUse {
     private ShareUse() {
     }
 
-    public static void shareUse() {
+    public static void shareUse(Context context) {
         // 具体实现方法 基于 PreferenceImpl 实现
 
         // 存在可调用的方法 IPreference
@@ -30,9 +29,9 @@ public final class ShareUse {
         // ===========
 
         // 想要自定义 模式, 名字等
-        SPUtils.getPreference(DevUtils.getContext()).put("aa", 1);
-        SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
-        SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);
+        SPUtils.getPreference(context).put("aa", 1);
+        SPUtils.getPreference(context, "xxx").put("aa", 1);
+        SPUtils.getPreference(context, "xxxxx", Context.MODE_PRIVATE).put("aa", 1);
 
 //        // 默认值如下
 //        switch (type) {

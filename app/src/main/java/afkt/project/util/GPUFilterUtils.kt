@@ -1,7 +1,7 @@
 package afkt.project.util
 
+import android.content.Context
 import android.graphics.Bitmap
-import dev.DevUtils
 import dev.engine.DevEngine
 import dev.utils.common.CloseUtils
 import jp.co.cyberagent.android.gpuimage.GPUImage
@@ -60,17 +60,19 @@ object GPUFilterUtils {
 
     /**
      * 获取滤镜后的 Bitmap
+     * @param context        [Context]
      * @param bitmap         [Bitmap]
      * @param gpuImageFilter [GPUImageFilter]
      * @return 滤镜后的 Bitmap
      */
     @JvmStatic
     fun getFilterBitmap(
+        context: Context?,
         bitmap: Bitmap?,
         gpuImageFilter: GPUImageFilter?
     ): Bitmap? {
-        if (bitmap != null && gpuImageFilter != null) {
-            val gpuImage = GPUImage(DevUtils.getContext())
+        if (context != null && bitmap != null && gpuImageFilter != null) {
+            val gpuImage = GPUImage(context)
             gpuImage.setImage(bitmap)
             gpuImage.setFilter(gpuImageFilter)
             return gpuImage.bitmapWithFilterApplied

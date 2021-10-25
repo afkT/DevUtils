@@ -1,10 +1,10 @@
 package utils_use.text;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import dev.DevUtils;
 import dev.engine.log.DevLogEngine;
 import dev.utils.app.TextViewUtils;
 
@@ -23,7 +23,7 @@ public final class TextCalcUse {
     /**
      * 计算字体宽度、高度
      */
-    protected void textCalcUse() {
+    protected void textCalcUse(Context context) {
         LinearLayout vid_linear = null;
         // 打印信息
         for (int i = 0, len = vid_linear.getChildCount(); i < len; i++) {
@@ -36,7 +36,7 @@ public final class TextCalcUse {
 //        // 计算第几位超过宽度 (600)
 //        int pos = TextViewUtils.calcTextWidth(vid_tv.getPaint(), "测试内容", 600);
 
-        TextView tv = new TextView(DevUtils.getContext());
+        TextView tv = new TextView(context);
         // 获取字体高度
         TextViewUtils.getTextHeight(tv);
         // 获取字体大小

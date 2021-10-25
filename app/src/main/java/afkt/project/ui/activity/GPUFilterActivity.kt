@@ -131,8 +131,9 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
             // 获取滤镜 Item
             val filterItem = gpuFilterAdapter.getItem(position)
             // 设置滤镜效果
-            val bitmapFilter =
-                getFilterBitmap(selectBitmap, createFilterForType(filterItem.filterType))
+            val bitmapFilter = getFilterBitmap(
+                this, selectBitmap, createFilterForType(filterItem.filterType)
+            )
             binding.vidAgfIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")

@@ -145,7 +145,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
             val acvFileBean = gpuFilterACVAdapter.getItem(position)
             // 设置滤镜效果
             val gpuFilter = getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath))
-            val bitmapFilter = getFilterBitmap(selectBitmap, gpuFilter)
+            val bitmapFilter = getFilterBitmap(this, selectBitmap, gpuFilter)
             binding.vidAgfIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")
