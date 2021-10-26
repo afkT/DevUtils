@@ -102,7 +102,7 @@ public final class WeakReferenceAssist<T> {
             final String key,
             final T defaultValue
     ) {
-        WeakReference<T> weak = getWeak(key);
+        WeakReference<T> weak = mWeakMaps.get(key);
         if (weak == null) return defaultValue;
         T value = weak.get();
         if (value != null) return value;
@@ -136,7 +136,7 @@ public final class WeakReferenceAssist<T> {
         WeakReference<T> weak = mWeakMaps.remove(key);
         if (weak == null) return false;
         weak.clear();
-        return false;
+        return true;
     }
 
     /**
