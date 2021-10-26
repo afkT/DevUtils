@@ -533,9 +533,7 @@ public final class ToastUtils {
             final String text,
             final int duration
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
         // 提示文本
         String toastText = text;
         // 判断是否过滤
@@ -701,9 +699,7 @@ public final class ToastUtils {
             final View view,
             final int duration
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
         // 判断是否过滤
         if (!sPriToastFilter.filter(view)) {
             return null;
@@ -783,9 +779,8 @@ public final class ToastUtils {
             final int duration,
             final Object... formatArgs
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
+        // 防止 Context 为 null
         if (context != null) {
             String text = null;
             try {
@@ -816,9 +811,7 @@ public final class ToastUtils {
             final int duration,
             final Object... formatArgs
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
         // 防止 Context 为 null
         if (context != null) {
             // 表示需要格式化字符串, 只是为了减少 format 步骤, 增加判断, 为 null 不影响

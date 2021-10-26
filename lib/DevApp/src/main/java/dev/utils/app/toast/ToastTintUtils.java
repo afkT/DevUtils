@@ -1166,9 +1166,7 @@ public final class ToastTintUtils {
             final View view,
             final int duration
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
         // 防止 Context 为 null
         if (context == null) {
             return null;
@@ -1239,9 +1237,7 @@ public final class ToastTintUtils {
             final String text,
             Drawable icon
     ) {
-        if (context == null) {
-            context = DevUtils.getContext();
-        }
+        context = DevUtils.getContext(context);
         // 如果样式为 null, 则不处理
         if (style == null) {
             return null;

@@ -842,16 +842,33 @@ public final class AppUtils {
      */
     public static boolean startActivity(final Intent intent) {
         if (intent == null) return false;
+        return startActivity(
+                DevUtils.getContext(),
+                IntentUtils.getIntent(intent, true)
+        );
+    }
+
+    /**
+     * Activity 跳转
+     * @param context Context
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startActivity(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
         try {
-            DevUtils.getContext().startActivity(
-                    IntentUtils.getIntent(intent, true)
-            );
+            context.startActivity(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivity");
         }
         return false;
     }
+
+    // =
 
     /**
      * Activity 跳转回传
