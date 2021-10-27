@@ -73,11 +73,53 @@ public final class AppUtils {
     private static final String TAG = AppUtils.class.getSimpleName();
 
     /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    public static <T> T getSystemService(final String name) {
+        return getSystemService(DevUtils.getContext(), name);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param context Context
+     * @param name    服务名
+     * @param <T>     泛型
+     * @return SystemService Object
+     */
+    public static <T> T getSystemService(
+            final Context context,
+            final String name
+    ) {
+        if (context == null) return null;
+        if (StringUtils.isSpace(name)) return null;
+        try {
+            return (T) context.getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取 WindowManager
      * @return {@link WindowManager}
      */
     public static WindowManager getWindowManager() {
         return getSystemService(Context.WINDOW_SERVICE);
+    }
+
+    /**
+     * 获取 WindowManager
+     * @param context Context
+     * @return {@link WindowManager}
+     */
+    public static WindowManager getWindowManager(final Context context) {
+        return getSystemService(context, Context.WINDOW_SERVICE);
     }
 
     /**
@@ -89,6 +131,15 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 AudioManager
+     * @param context Context
+     * @return {@link AudioManager}
+     */
+    public static AudioManager getAudioManager(final Context context) {
+        return getSystemService(context, Context.AUDIO_SERVICE);
+    }
+
+    /**
      * 获取 SensorManager
      * @return {@link SensorManager}
      */
@@ -97,11 +148,29 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 SensorManager
+     * @param context Context
+     * @return {@link SensorManager}
+     */
+    public static SensorManager getSensorManager(final Context context) {
+        return getSystemService(context, Context.SENSOR_SERVICE);
+    }
+
+    /**
      * 获取 StorageManager
      * @return {@link StorageManager}
      */
     public static StorageManager getStorageManager() {
         return getSystemService(Context.STORAGE_SERVICE);
+    }
+
+    /**
+     * 获取 StorageManager
+     * @param context Context
+     * @return {@link StorageManager}
+     */
+    public static StorageManager getStorageManager(final Context context) {
+        return getSystemService(context, Context.STORAGE_SERVICE);
     }
 
     /**
@@ -114,6 +183,16 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 WifiManager
+     * @param context Context
+     * @return {@link WifiManager}
+     */
+    @SuppressLint("WifiManagerLeak")
+    public static WifiManager getWifiManager(final Context context) {
+        return getSystemService(context, Context.WIFI_SERVICE);
+    }
+
+    /**
      * 获取 ConnectivityManager
      * @return {@link ConnectivityManager}
      */
@@ -122,11 +201,29 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 ConnectivityManager
+     * @param context Context
+     * @return {@link ConnectivityManager}
+     */
+    public static ConnectivityManager getConnectivityManager(final Context context) {
+        return getSystemService(context, Context.CONNECTIVITY_SERVICE);
+    }
+
+    /**
      * 获取 TelephonyManager
      * @return {@link TelephonyManager}
      */
     public static TelephonyManager getTelephonyManager() {
         return getSystemService(Context.TELEPHONY_SERVICE);
+    }
+
+    /**
+     * 获取 TelephonyManager
+     * @param context Context
+     * @return {@link TelephonyManager}
+     */
+    public static TelephonyManager getTelephonyManager(final Context context) {
+        return getSystemService(context, Context.TELEPHONY_SERVICE);
     }
 
     /**
@@ -139,11 +236,30 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 AppOpsManager
+     * @param context Context
+     * @return {@link AppOpsManager}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static AppOpsManager getAppOpsManager(final Context context) {
+        return getSystemService(context, Context.APP_OPS_SERVICE);
+    }
+
+    /**
      * 获取 NotificationManager
      * @return {@link NotificationManager}
      */
     public static NotificationManager getNotificationManager() {
         return getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    /**
+     * 获取 NotificationManager
+     * @param context Context
+     * @return {@link NotificationManager}
+     */
+    public static NotificationManager getNotificationManager(final Context context) {
+        return getSystemService(context, Context.NOTIFICATION_SERVICE);
     }
 
     /**
@@ -156,11 +272,30 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 ShortcutManager
+     * @param context Context
+     * @return {@link ShortcutManager}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
+    public static ShortcutManager getShortcutManager(final Context context) {
+        return getSystemService(context, Context.SHORTCUT_SERVICE);
+    }
+
+    /**
      * 获取 ActivityManager
      * @return {@link ActivityManager}
      */
     public static ActivityManager getActivityManager() {
         return getSystemService(Context.ACTIVITY_SERVICE);
+    }
+
+    /**
+     * 获取 ActivityManager
+     * @param context Context
+     * @return {@link ActivityManager}
+     */
+    public static ActivityManager getActivityManager(final Context context) {
+        return getSystemService(context, Context.ACTIVITY_SERVICE);
     }
 
     /**
@@ -172,11 +307,29 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 PowerManager
+     * @param context Context
+     * @return {@link PowerManager}
+     */
+    public static PowerManager getPowerManager(final Context context) {
+        return getSystemService(context, Context.POWER_SERVICE);
+    }
+
+    /**
      * 获取 KeyguardManager
      * @return {@link KeyguardManager}
      */
     public static KeyguardManager getKeyguardManager() {
         return getSystemService(Context.KEYGUARD_SERVICE);
+    }
+
+    /**
+     * 获取 KeyguardManager
+     * @param context Context
+     * @return {@link KeyguardManager}
+     */
+    public static KeyguardManager getKeyguardManager(final Context context) {
+        return getSystemService(context, Context.KEYGUARD_SERVICE);
     }
 
     /**
@@ -188,11 +341,29 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 InputMethodManager
+     * @param context Context
+     * @return {@link InputMethodManager}
+     */
+    public static InputMethodManager getInputMethodManager(final Context context) {
+        return getSystemService(context, Context.INPUT_METHOD_SERVICE);
+    }
+
+    /**
      * 获取 ClipboardManager
      * @return {@link ClipboardManager}
      */
     public static ClipboardManager getClipboardManager() {
         return getSystemService(Context.CLIPBOARD_SERVICE);
+    }
+
+    /**
+     * 获取 ClipboardManager
+     * @param context Context
+     * @return {@link ClipboardManager}
+     */
+    public static ClipboardManager getClipboardManager(final Context context) {
+        return getSystemService(context, Context.CLIPBOARD_SERVICE);
     }
 
     /**
@@ -205,11 +376,30 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 UsageStatsManager
+     * @param context Context
+     * @return {@link UsageStatsManager}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static UsageStatsManager getUsageStatsManager(final Context context) {
+        return getSystemService(context, Context.USAGE_STATS_SERVICE);
+    }
+
+    /**
      * 获取 AlarmManager
      * @return {@link AlarmManager}
      */
     public static AlarmManager getAlarmManager() {
         return getSystemService(Context.ALARM_SERVICE);
+    }
+
+    /**
+     * 获取 AlarmManager
+     * @param context Context
+     * @return {@link AlarmManager}
+     */
+    public static AlarmManager getAlarmManager(final Context context) {
+        return getSystemService(context, Context.ALARM_SERVICE);
     }
 
     /**
@@ -221,11 +411,29 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 LocationManager
+     * @param context Context
+     * @return {@link LocationManager}
+     */
+    public static LocationManager getLocationManager(final Context context) {
+        return getSystemService(context, Context.LOCATION_SERVICE);
+    }
+
+    /**
      * 获取 Vibrator
      * @return {@link Vibrator}
      */
     public static Vibrator getVibrator() {
         return getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    /**
+     * 获取 Vibrator
+     * @param context Context
+     * @return {@link Vibrator}
+     */
+    public static Vibrator getVibrator(final Context context) {
+        return getSystemService(context, Context.VIBRATOR_SERVICE);
     }
 
     /**
@@ -237,36 +445,33 @@ public final class AppUtils {
     }
 
     /**
+     * 获取 DevicePolicyManager
+     * @param context Context
+     * @return {@link DevicePolicyManager}
+     */
+    public static DevicePolicyManager getDevicePolicyManager(final Context context) {
+        return getSystemService(context, Context.DEVICE_POLICY_SERVICE);
+    }
+
+    /**
      * 获取 WallpaperManager
      * @return {@link WallpaperManager}
      */
     public static WallpaperManager getWallpaperManager() {
-        return WallpaperManager.getInstance(DevUtils.getContext());
+        return getWallpaperManager(DevUtils.getContext());
     }
 
     /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
+     * 获取 WallpaperManager
+     * @param context Context
+     * @return {@link WallpaperManager}
      */
-    public static <T> T getSystemService(final String name) {
-        return getSystemService(DevUtils.getContext(), name);
-    }
-
-    /**
-     * 获取 SystemService
-     * @param name 服务名
-     * @param <T>  泛型
-     * @return SystemService Object
-     */
-    public static <T> T getSystemService(final Context context, final String name) {
+    public static WallpaperManager getWallpaperManager(final Context context) {
         if (context == null) return null;
-        if (StringUtils.isSpace(name)) return null;
         try {
-            return (T) context.getSystemService(name);
+            return WallpaperManager.getInstance(context);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getSystemService");
+            LogPrintUtils.eTag(TAG, e, "getWallpaperManager");
         }
         return null;
     }
@@ -276,6 +481,16 @@ public final class AppUtils {
      * @return {@link PackageManager}
      */
     public static PackageManager getPackageManager() {
+        return getPackageManager(DevUtils.getContext());
+    }
+
+    /**
+     * 获取 PackageManager
+     * @param context Context
+     * @return {@link PackageManager}
+     */
+    public static PackageManager getPackageManager(final Context context) {
+        if (context == null) return null;
         try {
             return DevUtils.getContext().getPackageManager();
         } catch (Exception e) {
@@ -289,8 +504,17 @@ public final class AppUtils {
      * @return {@link WindowMetrics}
      */
     public static WindowMetrics getCurrentWindowMetrics() {
+        return getCurrentWindowMetrics(DevUtils.getContext());
+    }
+
+    /**
+     * 获取 Current WindowMetrics
+     * @param context Context
+     * @return {@link WindowMetrics}
+     */
+    public static WindowMetrics getCurrentWindowMetrics(final Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            WindowManager windowManager = getWindowManager();
+            WindowManager windowManager = getWindowManager(context);
             if (windowManager != null) {
                 try {
                     return windowManager.getCurrentWindowMetrics();
@@ -307,8 +531,17 @@ public final class AppUtils {
      * @return {@link WindowMetrics}
      */
     public static WindowMetrics getMaximumWindowMetrics() {
+        return getMaximumWindowMetrics(DevUtils.getContext());
+    }
+
+    /**
+     * 获取 Maximum WindowMetrics
+     * @param context Context
+     * @return {@link WindowMetrics}
+     */
+    public static WindowMetrics getMaximumWindowMetrics(final Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            WindowManager windowManager = getWindowManager();
+            WindowManager windowManager = getWindowManager(context);
             if (windowManager != null) {
                 try {
                     return windowManager.getMaximumWindowMetrics();
