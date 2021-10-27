@@ -37,7 +37,10 @@ public final class WidgetUtils {
             final int maximumWidth,
             final int maximumHeight
     ) {
-        return viewMeasure(view, widthMeasureSpec, heightMeasureSpec, maximumWidth, maximumHeight, DEF_VALUE);
+        return viewMeasure(
+                view, widthMeasureSpec, heightMeasureSpec,
+                maximumWidth, maximumHeight, DEF_VALUE
+        );
     }
 
     /**
@@ -63,8 +66,10 @@ public final class WidgetUtils {
             minimumWidth  = view.getMinimumWidth();
             minimumHeight = view.getMinimumHeight();
         }
-        return viewMeasure(widthMeasureSpec, heightMeasureSpec,
-                minimumWidth, maximumWidth, minimumHeight, maximumHeight, defaultValue
+        return viewMeasure(
+                widthMeasureSpec, heightMeasureSpec,
+                minimumWidth, maximumWidth,
+                minimumHeight, maximumHeight, defaultValue
         );
     }
 
@@ -86,8 +91,10 @@ public final class WidgetUtils {
             final int minimumHeight,
             final int maximumHeight
     ) {
-        return viewMeasure(widthMeasureSpec, heightMeasureSpec,
-                minimumWidth, maximumWidth, minimumHeight, maximumHeight, DEF_VALUE
+        return viewMeasure(
+                widthMeasureSpec, heightMeasureSpec,
+                minimumWidth, maximumWidth,
+                minimumHeight, maximumHeight, DEF_VALUE
         );
     }
 

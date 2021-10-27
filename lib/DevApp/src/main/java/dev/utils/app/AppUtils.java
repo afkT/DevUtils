@@ -251,9 +251,20 @@ public final class AppUtils {
      * @return SystemService Object
      */
     public static <T> T getSystemService(final String name) {
+        return getSystemService(DevUtils.getContext(), name);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param name 服务名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    public static <T> T getSystemService(final Context context, final String name) {
+        if (context == null) return null;
         if (StringUtils.isSpace(name)) return null;
         try {
-            return (T) DevUtils.getContext().getSystemService(name);
+            return (T) context.getSystemService(name);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSystemService");
         }
