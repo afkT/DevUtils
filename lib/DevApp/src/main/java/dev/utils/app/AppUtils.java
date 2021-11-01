@@ -492,7 +492,7 @@ public final class AppUtils {
     public static PackageManager getPackageManager(final Context context) {
         if (context == null) return null;
         try {
-            return DevUtils.getContext().getPackageManager();
+            return context.getPackageManager();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageManager");
         }
@@ -1085,7 +1085,6 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final Intent intent) {
-        if (intent == null) return false;
         return startActivity(
                 DevUtils.getContext(),
                 IntentUtils.getIntent(intent, true)

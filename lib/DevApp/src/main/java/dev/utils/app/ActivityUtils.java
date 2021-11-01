@@ -129,9 +129,39 @@ public final class ActivityUtils {
     public static boolean isFinishing(final Context context) {
         if (context != null) {
             try {
-                return ((Activity) context).isFinishing();
+                return isFinishing((Activity) context);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isFinishing");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 判断 Activity 是否未关闭
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotFinishing(final Activity activity) {
+        if (activity != null) {
+            return !activity.isFinishing();
+        }
+        return false;
+    }
+
+    /**
+     * 判断 Activity 是否未关闭
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotFinishing(final Context context) {
+        if (context != null) {
+            try {
+                return isNotFinishing((Activity) context);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isNotFinishing");
             }
         }
         return false;
