@@ -1,8 +1,12 @@
 package dev.utils.app;
 
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
@@ -1225,5 +1229,59 @@ public final class RecyclerViewUtils {
             return true;
         }
         return false;
+    }
+
+    // =============
+    // = 快捷部分实现 =
+    // =============
+
+    /**
+     * detail: 修复子 View 导致滑动 Bug LinearLayoutManager
+     * @author Ttt
+     */
+    public static class FixChildScrollBugLinearLayoutManager
+            extends LinearLayoutManager {
+
+        public FixChildScrollBugLinearLayoutManager(Context context) {
+            super(context);
+        }
+
+        public FixChildScrollBugLinearLayoutManager(
+                Context context,
+                int orientation,
+                boolean reverseLayout
+        ) {
+            super(context, orientation, reverseLayout);
+        }
+
+        public FixChildScrollBugLinearLayoutManager(
+                Context context,
+                AttributeSet attrs,
+                int defStyleAttr,
+                int defStyleRes
+        ) {
+            super(context, attrs, defStyleAttr, defStyleRes);
+        }
+
+        @Override
+        public boolean requestChildRectangleOnScreen(
+                @NonNull RecyclerView parent,
+                @NonNull View child,
+                @NonNull Rect rect,
+                boolean immediate
+        ) {
+            return false;
+        }
+
+        @Override
+        public boolean requestChildRectangleOnScreen(
+                @NonNull RecyclerView parent,
+                @NonNull View child,
+                @NonNull Rect rect,
+                boolean immediate,
+                boolean focusedChildVisible
+        ) {
+            return false;
+        }
     }
 }
