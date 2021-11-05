@@ -29,23 +29,25 @@ public class EditTextWatcherAssist<T> {
             final EditText editText,
             final InputListener<T> listener
     ) {
-        bindListener(text, position, editText, null, listener);
+        bindListener(text, position, editText, null, listener, null);
     }
 
     /**
      * 绑定事件
-     * @param text     待设置文本
-     * @param position 索引
-     * @param editText EditText
-     * @param object   Object
-     * @param listener 输入监听回调事件
+     * @param text          待设置文本
+     * @param position      索引
+     * @param editText      EditText
+     * @param object        Object
+     * @param listener      输入监听回调事件
+     * @param otherListener 其他事件触发扩展抽象类
      */
     public void bindListener(
             final CharSequence text,
             final int position,
             final EditText editText,
             final T object,
-            final InputListener<T> listener
+            final InputListener<T> listener,
+            final OtherListener<T> otherListener
     ) {
         if (editText != null) {
             // 设置内容
@@ -53,35 +55,15 @@ public class EditTextWatcherAssist<T> {
             // 清空焦点
             editText.clearFocus();
             // 设置获取焦点事件
-            editText.setOnFocusChangeListener(new FocusListener(position, editText, object, listener));
+            editText.setOnFocusChangeListener(new FocusListener(
+                    position, editText, object, listener, otherListener
+            ));
         }
     }
 
     // =============
     // = 内部判断方法 =
     // =============
-
-    /**
-     * detail: 输入监听回调事件
-     * @param <T> 泛型
-     * @author Ttt
-     */
-    public interface InputListener<T> {
-
-        /**
-         * 文本改变监听
-         * @param charSequence 改变文本
-         * @param editText     EditText
-         * @param position     索引
-         * @param object       Object
-         */
-        void onTextChanged(
-                CharSequence charSequence,
-                EditText editText,
-                int position,
-                T object
-        );
-    }
 
     // =================================
     // = 处理 Adapter Item ( EditText ) =
@@ -132,24 +114,29 @@ public class EditTextWatcherAssist<T> {
         private final T                object;
         // 输入监听事件
         private final InputListener<T> listener;
+        // 其他事件触发扩展抽象类
+        private final OtherListener<T> otherListener;
 
         /**
          * 构造函数
-         * @param position 索引
-         * @param editText EditText
-         * @param object   Object
-         * @param listener 输入监听回调事件
+         * @param position      索引
+         * @param editText      EditText
+         * @param object        Object
+         * @param listener      输入监听回调事件
+         * @param otherListener 其他事件触发扩展抽象类
          */
         public FocusListener(
                 int position,
                 EditText editText,
                 T object,
-                InputListener<T> listener
+                InputListener<T> listener,
+                OtherListener<T> otherListener
         ) {
-            this.position = position;
-            this.editText = editText;
-            this.object   = object;
-            this.listener = listener;
+            this.position      = position;
+            this.editText      = editText;
+            this.object        = object;
+            this.listener      = listener;
+            this.otherListener = otherListener;
         }
 
         @Override
@@ -157,6 +144,15 @@ public class EditTextWatcherAssist<T> {
                 View v,
                 boolean hasFocus
         ) {
+            if (mFocusPos == position) {
+                if (otherListener != null) {
+                    otherListener.onFocusChange(
+                            true, hasFocus,
+                            editText, position, object
+                    );
+                }
+            }
+
             if (hasFocus) {
                 // 获得焦点设置 View 操作
                 focusChange(editText, position);
@@ -171,6 +167,13 @@ public class EditTextWatcherAssist<T> {
                                 int count
                         ) {
                             if (mFocusPos == position) {
+                                if (otherListener != null) {
+                                    otherListener.onTextChanged(
+                                            charSequence, start, before, count,
+                                            editText, position, object
+                                    );
+                                }
+
                                 if (listener != null) { // 触发回调
                                     listener.onTextChanged(charSequence, editText, position, object);
                                 }
@@ -184,10 +187,25 @@ public class EditTextWatcherAssist<T> {
                                 int count,
                                 int after
                         ) {
+                            if (mFocusPos == position) {
+                                if (otherListener != null) {
+                                    otherListener.beforeTextChanged(
+                                            s, start, count, after,
+                                            editText, position, object
+                                    );
+                                }
+                            }
                         }
 
                         @Override
                         public void afterTextChanged(Editable s) {
+                            if (mFocusPos == position) {
+                                if (otherListener != null) {
+                                    otherListener.afterTextChanged(
+                                            s, editText, position, object
+                                    );
+                                }
+                            }
                         }
                     };
                 }
@@ -197,6 +215,130 @@ public class EditTextWatcherAssist<T> {
             } else { // 失去焦点, 清空操作
                 focusChange(null, -1);
             }
+            if (mFocusPos == position) {
+                if (otherListener != null) {
+                    otherListener.onFocusChange(
+                            false, hasFocus,
+                            editText, position, object
+                    );
+                }
+            }
+        }
+    }
+
+    // ==========
+    // = 事件相关 =
+    // ==========
+
+    /**
+     * detail: 输入监听回调事件
+     * @param <T> 泛型
+     * @author Ttt
+     */
+    public interface InputListener<T> {
+
+        /**
+         * 文本改变监听
+         * @param charSequence 改变文本
+         * @param editText     EditText
+         * @param position     索引
+         * @param object       Object
+         */
+        void onTextChanged(
+                CharSequence charSequence,
+                EditText editText,
+                int position,
+                T object
+        );
+    }
+
+    /**
+     * detail: 其他事件触发扩展抽象类
+     * @param <T> 泛型
+     * @author Ttt
+     */
+    public static abstract class OtherListener<T> {
+
+        // =========================
+        // = OnFocusChangeListener =
+        // =========================
+
+        /**
+         * 焦点触发方法
+         * @param before   {@code true} 进入方法先触发, {@code false} 逻辑处理后再次触发
+         * @param hasFocus 是否获取焦点
+         * @param editText EditText
+         * @param position 索引
+         * @param object   Object
+         */
+        public void onFocusChange(
+                boolean before,
+                boolean hasFocus,
+                EditText editText,
+                int position,
+                T object
+        ) {
+        }
+
+        // ===============
+        // = TextWatcher =
+        // ===============
+
+        /**
+         * 在文本变化前调用
+         * @param s        修改之前的文字
+         * @param start    字符串中即将发生修改的位置
+         * @param count    字符串中即将被修改的文字的长度, 如果是新增的话则为 0
+         * @param after    被修改的文字修改之后的长度, 如果是删除的话则为 0
+         * @param editText EditText
+         * @param position 索引
+         * @param object   Object
+         */
+        public void beforeTextChanged(
+                CharSequence s,
+                int start,
+                int count,
+                int after,
+                EditText editText,
+                int position,
+                T object
+        ) {
+        }
+
+        /**
+         * 在文本变化后调用
+         * @param s        改变后的字符串
+         * @param start    有变动的字符串的位置
+         * @param before   被改变的字符串长度, 如果是新增则为 0
+         * @param count    添加的字符串长度, 如果是删除则为 0
+         * @param editText EditText
+         * @param position 索引
+         * @param object   Object
+         */
+        public void onTextChanged(
+                CharSequence s,
+                int start,
+                int before,
+                int count,
+                EditText editText,
+                int position,
+                T object
+        ) {
+        }
+
+        /**
+         * 在文本变化后调用
+         * @param s        修改后的文字
+         * @param editText EditText
+         * @param position 索引
+         * @param object   Object
+         */
+        public void afterTextChanged(
+                Editable s,
+                EditText editText,
+                int position,
+                T object
+        ) {
         }
     }
 }
