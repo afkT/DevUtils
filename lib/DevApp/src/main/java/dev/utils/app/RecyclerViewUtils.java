@@ -23,6 +23,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://www.jianshu.com/p/85e8b9de5ecc"/>
  *     判断 RecyclerView 中 View 的可见性
  *     @see <a href="https://blog.csdn.net/xlh1191860939/article/details/113182209"/>
+ *     RecyclerView 嵌套 EditText, EditText 获取焦点时滑动异常问题解决记录 ( requestChildRectangleOnScreen )
+ *     @see <a href="https://blog.csdn.net/sunnyjerry/article/details/104416593"/>
  * </pre>
  */
 public final class RecyclerViewUtils {
