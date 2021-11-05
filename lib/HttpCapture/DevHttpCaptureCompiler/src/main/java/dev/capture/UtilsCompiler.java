@@ -15,7 +15,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import dev.DevHttpCapture;
@@ -23,10 +22,10 @@ import dev.callback.DevCallback;
 import dev.capture.compiler.R;
 import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
-import dev.utils.LogPrintUtils;
 import dev.utils.app.ClickUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.assist.ActivityManagerAssist;
 import dev.utils.common.CollectionUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.MapUtils;
@@ -55,26 +54,34 @@ public final class UtilsCompiler {
         return sInstance;
     }
 
-    // =================
-    // = Activity 栈处理 =
-    // =================
+    // ===================
+    // = Activity 管理控制 =
+    // ===================
 
-    // Activity 栈 ( 后进先出 )
-    private final Stack<Activity> mActivityStacks = new Stack<>();
+    // ActivityManagerAssist 实例
+    private volatile ActivityManagerAssist sManagerInstance;
+
+    /**
+     * 获取 ActivityManagerAssist 管理实例
+     * @return {@link ActivityManagerAssist}
+     */
+    private ActivityManagerAssist getManager() {
+        if (sManagerInstance == null) {
+            synchronized (ActivityManagerAssist.class) {
+                if (sManagerInstance == null) {
+                    sManagerInstance = new ActivityManagerAssist();
+                }
+            }
+        }
+        return sManagerInstance;
+    }
 
     /**
      * 添加 Activity
      * @param activity {@link Activity}
      */
     protected void addActivity(final Activity activity) {
-        if (activity != null) {
-            synchronized (mActivityStacks) {
-                if (mActivityStacks.contains(activity)) {
-                    return;
-                }
-                mActivityStacks.add(activity);
-            }
-        }
+        getManager().addActivity(activity);
     }
 
     /**
@@ -82,48 +89,14 @@ public final class UtilsCompiler {
      * @param activity {@link Activity}
      */
     protected void removeActivity(final Activity activity) {
-        if (activity != null) {
-            synchronized (mActivityStacks) {
-                int index = mActivityStacks.indexOf(activity);
-                if (index == -1) {
-                    return;
-                }
-                try {
-                    mActivityStacks.remove(index);
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "removeActivity");
-                }
-            }
-        }
+        getManager().removeActivity(activity);
     }
 
     /**
      * 结束所有 Activity
      */
     public void finishAllActivity() {
-        try {
-            synchronized (mActivityStacks) {
-                // 保存新的堆栈, 防止出现同步问题
-                Stack<Activity> stack = new Stack<>();
-                stack.addAll(mActivityStacks);
-                // 清空全部, 便于后续操作处理
-                mActivityStacks.clear();
-                // 进行遍历移除
-                Iterator<Activity> iterator = stack.iterator();
-                while (iterator.hasNext()) {
-                    Activity activity = iterator.next();
-                    if (activity != null && !activity.isFinishing()) {
-                        activity.finish();
-                        // 删除对应的 Item
-                        iterator.remove();
-                    }
-                }
-                // 移除数据, 并且清空内存
-                stack.clear();
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "finishAllActivity");
-        }
+        getManager().finishAllActivity();
     }
 
     // ========
