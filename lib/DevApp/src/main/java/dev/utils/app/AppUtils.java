@@ -25,6 +25,7 @@ import android.content.pm.ShortcutManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
+import android.hardware.SensorPrivacyManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
@@ -97,6 +98,39 @@ public final class AppUtils {
         if (StringUtils.isSpace(name)) return null;
         try {
             return (T) context.getSystemService(name);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemService");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 SystemService
+     * @param clazz 服务类名
+     * @param <T>  泛型
+     * @return SystemService Object
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static <T> T getSystemService(final Class<T> clazz) {
+        return getSystemService(DevUtils.getContext(), clazz);
+    }
+
+    /**
+     * 获取 SystemService
+     * @param context Context
+     * @param clazz    服务类名
+     * @param <T>     泛型
+     * @return SystemService Object
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static <T> T getSystemService(
+            final Context context,
+            final Class<T> clazz
+    ) {
+        if (context == null) return null;
+        if (clazz == null) return null;
+        try {
+            return context.getSystemService(clazz);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSystemService");
         }
@@ -451,6 +485,25 @@ public final class AppUtils {
      */
     public static DevicePolicyManager getDevicePolicyManager(final Context context) {
         return getSystemService(context, Context.DEVICE_POLICY_SERVICE);
+    }
+
+    /**
+     * 获取 SensorPrivacyManager
+     * @return {@link SensorPrivacyManager}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    public static SensorPrivacyManager getSensorPrivacyManager() {
+        return getSystemService(SensorPrivacyManager.class);
+    }
+
+    /**
+     * 获取 SensorPrivacyManager
+     * @param context Context
+     * @return {@link SensorPrivacyManager}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    public static SensorPrivacyManager getSensorPrivacyManager(final Context context) {
+        return getSystemService(context, SensorPrivacyManager.class);
     }
 
     /**
