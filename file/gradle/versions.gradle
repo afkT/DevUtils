@@ -2,9 +2,9 @@ ext {
     versions = [
 
             // 版本号
-            versionCode                              : 104,
+            versionCode                              : 999,
             // 版本名
-            versionName                              : "1.0.4",
+            versionName                              : "9.9.9",
             // 支持最小的 SDK
             lib_minSdkVersion                        : 14,
             // 支持最小的 SDK
@@ -12,7 +12,7 @@ ext {
             // Lib 编译 SDK 版本
             lib_compileSdkVersion                    : 31,
             // 编译 SDK 版本
-            compileSdkVersion                        : 30,
+            compileSdkVersion                        : 31,
             // 向前兼容 SDK 版本
             targetSdkVersion                         : 30,
             // 构建工具版本
