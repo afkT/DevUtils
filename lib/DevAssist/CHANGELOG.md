@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.2.8 *(2021-12-XX)*
+----------------------------
+
+* `[Add]` EditTextWatcherAssist#OtherListener 其他事件触发扩展抽象类
+
 Version 1.2.7 *(2021-10-06)*
 ----------------------------
 

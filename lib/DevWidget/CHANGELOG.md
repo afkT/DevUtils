@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.2 *(2021-12-XX)*
+----------------------------
+
+* `[Add]` RecyclerView ItemDecoration ( FirstLineHorizontalItemDecoration、LastLineHorizontalItemDecoration、LineHorizontalItemDecoration )
+
 Version 1.1.1 *(2021-09-20)*
 ----------------------------
 
