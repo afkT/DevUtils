@@ -10,6 +10,8 @@ Version 2.3.0 *(2021-12-XX)*
   
 * `[Add]` WeakReferenceAssist 弱引用辅助类
 
+* `[Add]` MapUtils#mapToString
+
 Version 2.2.9 *(2021-09-20)*
 ----------------------------
 
