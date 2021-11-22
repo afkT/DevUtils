@@ -2804,6 +2804,13 @@ public interface IHelperByView<T>
     );
 
     /**
+     * 移除 RecyclerView 全部 ItemDecoration
+     * @param view  {@link View}
+     * @return Helper
+     */
+    T removeAllItemDecoration(View view);
+
+    /**
      * 设置 RecyclerView ScrollListener
      * @param view     {@link View}
      * @param listener ScrollListener

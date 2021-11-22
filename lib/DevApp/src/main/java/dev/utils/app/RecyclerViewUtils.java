@@ -1015,6 +1015,33 @@ public final class RecyclerViewUtils {
         return false;
     }
 
+    /**
+     * 移除 RecyclerView 全部 ItemDecoration
+     * @param view  {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeAllItemDecoration(final View view) {
+        return removeAllItemDecoration(getRecyclerView(view));
+    }
+
+    /**
+     * 移除 RecyclerView 全部 ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeAllItemDecoration(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            for (int i = 0, len = recyclerView.getItemDecorationCount(); i < len; i++) {
+                try {
+                    recyclerView.removeItemDecorationAt(0);
+                } catch (Exception ignored) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     // ====================
     // = OnScrollListener =
     // ====================

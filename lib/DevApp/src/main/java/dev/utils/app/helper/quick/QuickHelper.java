@@ -3173,6 +3173,16 @@ public final class QuickHelper
     }
 
     /**
+     * 移除 RecyclerView 全部 ItemDecoration
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeAllItemDecoration() {
+        ViewHelper.get().removeAllItemDecoration(targetView());
+        return this;
+    }
+
+    /**
      * 设置 RecyclerView ScrollListener
      * @param listener ScrollListener
      * @return Helper

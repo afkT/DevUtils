@@ -1994,6 +1994,12 @@ public interface IHelperByQuick<T>
     T removeItemDecorationAt(int index);
 
     /**
+     * 移除 RecyclerView 全部 ItemDecoration
+     * @return Helper
+     */
+    T removeAllItemDecoration();
+
+    /**
      * 设置 RecyclerView ScrollListener
      * @param listener ScrollListener
      * @return Helper

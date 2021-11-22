@@ -19,9 +19,9 @@ public class BaseItemDecoration
     protected final Paint   mLinePaint;
     // 单条数据是否绘制分割线
     protected       boolean mSingleLineDraw = false;
-    // 分割线距左边距
+    // 分割线距左边距 ( 横向为上边距 )
     protected       float   mLineLeft       = 0.0f;
-    // 分割线距右边距
+    // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0f;
 
     public BaseItemDecoration(float lineHeight) {
@@ -68,16 +68,16 @@ public class BaseItemDecoration
     }
 
     /**
-     * 获取分割线距左边距
-     * @return 分割线距左边距
+     * 获取分割线距左边距 ( 横向为上边距 )
+     * @return 分割线距左边距 ( 横向为上边距 )
      */
     public float getLineLeft() {
         return mLineLeft;
     }
 
     /**
-     * 设置分割线距左边距
-     * @param lineLeft 分割线距左边距
+     * 设置分割线距左边距 ( 横向为上边距 )
+     * @param lineLeft 分割线距左边距 ( 横向为上边距 )
      * @return {@link BaseItemDecoration}
      */
     public BaseItemDecoration setLineLeft(float lineLeft) {
@@ -86,16 +86,16 @@ public class BaseItemDecoration
     }
 
     /**
-     * 获取分割线距右边距
-     * @return 分割线距右边距
+     * 获取分割线距右边距 ( 横向为下边距 )
+     * @return 分割线距右边距 ( 横向为下边距 )
      */
     public float getLineRight() {
         return mLineRight;
     }
 
     /**
-     * 设置分割线距右边距
-     * @param lineRight 分割线距右边距
+     * 设置分割线距右边距 ( 横向为下边距 )
+     * @param lineRight 分割线距右边距 ( 横向为下边距 )
      * @return {@link BaseItemDecoration}
      */
     public BaseItemDecoration setLineRight(float lineRight) {
@@ -105,8 +105,8 @@ public class BaseItemDecoration
 
     /**
      * 设置分割线距左、右边距
-     * @param lineLeft  分割线距左边距
-     * @param lineRight 分割线距右边距
+     * @param lineLeft  分割线距左边距 ( 横向为上边距 )
+     * @param lineRight 分割线距右边距 ( 横向为下边距 )
      * @return {@link BaseItemDecoration}
      */
     public BaseItemDecoration setLineLeftRight(
