@@ -62,7 +62,7 @@ public class LastLineHorizontalItemDecoration
     ) {
         super.onDrawOver(canvas, parent, state);
 
-        int itemCount    = state.getItemCount();
+        int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {
             return;
         }

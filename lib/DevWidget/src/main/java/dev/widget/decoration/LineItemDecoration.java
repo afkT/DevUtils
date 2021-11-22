@@ -50,6 +50,9 @@ public class LineItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
+        int itemCount = state.getItemCount();
+        if (itemCount <= 1) return;
+
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
@@ -64,6 +67,10 @@ public class LineItemDecoration
             @NonNull RecyclerView.State state
     ) {
         super.onDrawOver(canvas, parent, state);
+
+        int itemCount = state.getItemCount();
+        if (itemCount <= 1) return;
+
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
