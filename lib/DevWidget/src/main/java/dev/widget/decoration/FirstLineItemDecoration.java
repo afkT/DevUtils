@@ -59,6 +59,11 @@ public class FirstLineItemDecoration
     ) {
         super.onDrawOver(canvas, parent, state);
 
+        int itemCount = state.getItemCount();
+        if (!mSingleLineDraw && itemCount <= 1) {
+            return;
+        }
+
         View child    = parent.getChildAt(0);
         int  position = parent.getChildAdapterPosition(child);
         if (position == 0) {

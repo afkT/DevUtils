@@ -60,6 +60,10 @@ public class LastLineItemDecoration
         super.onDrawOver(canvas, parent, state);
 
         int itemCount    = state.getItemCount();
+        if (!mSingleLineDraw && itemCount <= 1) {
+            return;
+        }
+
         int lastPosition = (itemCount - 1);
         if (lastPosition >= 0) {
             int childCount = parent.getChildCount();
