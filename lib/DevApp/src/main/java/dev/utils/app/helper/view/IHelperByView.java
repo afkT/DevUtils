@@ -2805,7 +2805,7 @@ public interface IHelperByView<T>
 
     /**
      * 移除 RecyclerView 全部 ItemDecoration
-     * @param view  {@link View}
+     * @param view {@link View}
      * @return Helper
      */
     T removeAllItemDecoration(View view);

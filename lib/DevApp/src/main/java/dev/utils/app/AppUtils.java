@@ -107,7 +107,7 @@ public final class AppUtils {
     /**
      * 获取 SystemService
      * @param clazz 服务类名
-     * @param <T>  泛型
+     * @param <T>   泛型
      * @return SystemService Object
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -118,7 +118,7 @@ public final class AppUtils {
     /**
      * 获取 SystemService
      * @param context Context
-     * @param clazz    服务类名
+     * @param clazz   服务类名
      * @param <T>     泛型
      * @return SystemService Object
      */

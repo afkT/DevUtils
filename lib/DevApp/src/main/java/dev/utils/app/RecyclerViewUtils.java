@@ -1017,7 +1017,7 @@ public final class RecyclerViewUtils {
 
     /**
      * 移除 RecyclerView 全部 ItemDecoration
-     * @param view  {@link View}
+     * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean removeAllItemDecoration(final View view) {
