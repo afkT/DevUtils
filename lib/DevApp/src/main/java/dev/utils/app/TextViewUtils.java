@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: TextView 工具类

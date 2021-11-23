@@ -12,7 +12,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: 语言工具类
