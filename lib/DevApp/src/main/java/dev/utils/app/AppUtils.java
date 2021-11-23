@@ -37,6 +37,7 @@ import android.os.Vibrator;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -96,7 +97,7 @@ public final class AppUtils {
             final String name
     ) {
         if (context == null) return null;
-        if (StringUtils.isSpace(name)) return null;
+        if (TextUtils.isEmpty(name)) return null;
         try {
             return (T) context.getSystemService(name);
         } catch (Exception e) {
@@ -751,7 +752,7 @@ public final class AppUtils {
      * @return {@link Drawable}
      */
     public static Drawable getAppIcon(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
@@ -780,7 +781,7 @@ public final class AppUtils {
      * @return APP 应用名
      */
     public static String getAppName(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
@@ -809,7 +810,7 @@ public final class AppUtils {
      * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageInfo(
                     packageName, PackageManager.GET_SIGNATURES
@@ -835,7 +836,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static long getAppVersionCode(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return -1L;
+        if (TextUtils.isEmpty(packageName)) return -1L;
         PackageInfo packageInfo = getPackageInfo(
                 packageName, PackageManager.GET_SIGNATURES
         );
@@ -861,7 +862,7 @@ public final class AppUtils {
      * @return APP 安装包路径
      */
     public static String getAppPath(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
@@ -887,7 +888,7 @@ public final class AppUtils {
      * @return {@link Signature} 数组
      */
     public static Signature[] getAppSignature(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         try {
             PackageInfo packageInfo = getPackageInfo(
                     packageName, PackageManager.GET_SIGNATURES
@@ -962,7 +963,7 @@ public final class AppUtils {
             final String packageName,
             final String algorithm
     ) {
-        if (StringUtils.isSpace(packageName)) return null;
+        if (TextUtils.isEmpty(packageName)) return null;
         try {
             Signature[] signature = getAppSignature(packageName);
             if (signature == null || signature.length == 0) return null;
@@ -997,7 +998,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppDebug(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
+        if (TextUtils.isEmpty(packageName)) return false;
         try {
             ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
@@ -1021,7 +1022,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppRelease(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
+        if (TextUtils.isEmpty(packageName)) return false;
         try {
             ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return !(appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
@@ -1047,7 +1048,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppSystem(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
+        if (TextUtils.isEmpty(packageName)) return false;
         try {
             ApplicationInfo appInfo = getApplicationInfo(packageName, 0);
             return appInfo != null && (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
@@ -1071,7 +1072,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAppForeground(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
+        if (TextUtils.isEmpty(packageName)) return false;
         try {
             List<ActivityManager.RunningAppProcessInfo> lists = getActivityManager().getRunningAppProcesses();
             if (lists != null && lists.size() > 0) {
@@ -1119,7 +1120,7 @@ public final class AppUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isInstalledApp(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
+        if (TextUtils.isEmpty(packageName)) return false;
         try {
             ApplicationInfo appInfo = getApplicationInfo(
                     packageName, PackageManager.GET_UNINSTALLED_PACKAGES
