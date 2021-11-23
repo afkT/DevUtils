@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 
@@ -24,6 +23,7 @@ import java.util.Map;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Intent 相关工具类
@@ -176,7 +176,7 @@ public final class IntentUtils {
             final File file,
             final boolean isNewTask
     ) {
-        if (file == null) return null;
+        if (!FileUtils.isFileExists(file)) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri    data   = UriUtils.getUriForFile(file);
@@ -208,6 +208,7 @@ public final class IntentUtils {
             final String packageName,
             final boolean isNewTask
     ) {
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_DELETE);
             intent.setData(Uri.parse("package:" + packageName));
@@ -237,6 +238,7 @@ public final class IntentUtils {
             final String packageName,
             final boolean isNewTask
     ) {
+        if (StringUtils.isSpace(packageName)) return null;
         PackageManager packageManager = AppUtils.getPackageManager();
         if (packageManager == null) return null;
         try {
@@ -507,6 +509,7 @@ public final class IntentUtils {
             final String packageName,
             final boolean isNewTask
     ) {
+        if (StringUtils.isSpace(packageName)) return null;
         try {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.setData(Uri.parse("package:" + packageName));
@@ -542,12 +545,11 @@ public final class IntentUtils {
             final String marketPkg,
             final boolean isNewTask
     ) {
+        if (StringUtils.isSpace(packageName)) return null;
         try {
-            if (TextUtils.isEmpty(packageName)) return null;
-
             Uri    uri    = Uri.parse("market://details?id=" + packageName);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            if (!TextUtils.isEmpty(marketPkg)) {
+            if (!StringUtils.isSpace(marketPkg)) {
                 intent.setPackage(marketPkg);
             }
             return getIntent(intent, isNewTask);
@@ -1055,7 +1057,7 @@ public final class IntentUtils {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
-            if (!TextUtils.isEmpty(packageName)) {
+            if (!StringUtils.isSpace(packageName)) {
                 PackageManager packageManager = AppUtils.getPackageManager();
                 if (packageManager == null) return null;
                 List<ResolveInfo> lists = packageManager.queryIntentActivities(
@@ -1069,7 +1071,7 @@ public final class IntentUtils {
                     }
                 }
                 if (browsers.containsKey(packageName)) {
-                    if (TextUtils.isEmpty(className)) {
+                    if (StringUtils.isSpace(className)) {
                         intent.setComponent(
                                 new ComponentName(packageName, browsers.get(packageName))
                         );

@@ -703,12 +703,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteDatabase(final String dbName) {
-        try {
-            return DevUtils.getContext().deleteDatabase(dbName);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "deleteDatabase");
-        }
-        return false;
+        return DBUtils.deleteDatabase(dbName);
     }
 
     /**
@@ -1124,8 +1119,7 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInstalledApp2(final String packageName) {
-        return !StringUtils.isSpace(packageName)
-                && IntentUtils.getLaunchAppIntent(packageName) != null;
+        return IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
     // ================
@@ -1357,15 +1351,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final File file) {
-        if (!FileUtils.isFileExists(file)) return false;
-        try {
-            return startActivity(
-                    IntentUtils.getInstallAppIntent(file, true)
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "installApp");
-            return false;
-        }
+        return startActivity(IntentUtils.getInstallAppIntent(file));
     }
 
     /**
@@ -1395,16 +1381,10 @@ public final class AppUtils {
             final File file,
             final int requestCode
     ) {
-        if (!FileUtils.isFileExists(file)) return false;
-        try {
-            activity.startActivityForResult(
-                    IntentUtils.getInstallAppIntent(file), requestCode
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "installApp");
-            return false;
-        }
+        return startActivityForResult(
+                activity, IntentUtils.getInstallAppIntent(file),
+                requestCode
+        );
     }
 
     // =
@@ -1476,15 +1456,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallApp(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            return startActivity(
-                    IntentUtils.getUninstallAppIntent(packageName, true)
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "uninstallApp");
-            return false;
-        }
+        return startActivity(IntentUtils.getUninstallAppIntent(packageName));
     }
 
     /**
@@ -1499,16 +1471,10 @@ public final class AppUtils {
             final String packageName,
             final int requestCode
     ) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            activity.startActivityForResult(
-                    IntentUtils.getUninstallAppIntent(packageName), requestCode
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "uninstallApp");
-            return false;
-        }
+        return startActivityForResult(
+                activity, IntentUtils.getUninstallAppIntent(packageName),
+                requestCode
+        );
     }
 
     /**
@@ -1558,15 +1524,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchApp(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            return startActivity(
-                    IntentUtils.getLaunchAppIntent(packageName, true)
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "launchApp");
-        }
-        return false;
+        return startActivity(IntentUtils.getLaunchAppIntent(packageName));
     }
 
     /**
@@ -1581,16 +1539,10 @@ public final class AppUtils {
             final String packageName,
             final int requestCode
     ) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            activity.startActivityForResult(
-                    IntentUtils.getLaunchAppIntent(packageName), requestCode
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "launchApp");
-        }
-        return false;
+        return startActivityForResult(
+                activity, IntentUtils.getLaunchAppIntent(packageName),
+                requestCode
+        );
     }
 
     // =
@@ -1609,17 +1561,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean launchAppDetailsSettings(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            return startActivity(
-                    IntentUtils.getLaunchAppDetailsSettingsIntent(
-                            packageName, true
-                    )
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "launchAppDetailsSettings");
-        }
-        return false;
+        return startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName));
     }
 
     /**
@@ -1641,17 +1583,7 @@ public final class AppUtils {
             final String packageName,
             final String marketPkg
     ) {
-        if (StringUtils.isSpace(packageName)) return false;
-        try {
-            return startActivity(
-                    IntentUtils.getLaunchAppDetailIntent(
-                            packageName, marketPkg, true
-                    )
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "launchAppDetails");
-        }
-        return false;
+        return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg));
     }
 
     // ==========
@@ -1686,11 +1618,7 @@ public final class AppUtils {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
-            intent.setDataAndType(
-                    UriUtils.getUriForFile(
-                            file, DevUtils.getAuthority()
-                    ), dataType
-            );
+            intent.setDataAndType(UriUtils.getUriForFile(file), dataType);
             return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFile");
@@ -1731,6 +1659,7 @@ public final class AppUtils {
         try {
             Intent intent = new Intent();
             intent.addCategory(Intent.CATEGORY_DEFAULT);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setData(DevUtils.getUriForFile(file));
             intent.setClassName(packageName, className);
             return startActivity(intent);
@@ -1813,17 +1742,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startSysSetting() {
-        try {
-            return startActivity(
-                    IntentUtils.getIntent(
-                            new Intent(Settings.ACTION_SETTINGS),
-                            true
-                    )
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startSysSetting");
-        }
-        return false;
+        return startActivity(new Intent(Settings.ACTION_SETTINGS));
     }
 
     /**
@@ -1836,15 +1755,10 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        try {
-            activity.startActivityForResult(
-                    new Intent(Settings.ACTION_SETTINGS), requestCode
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startSysSetting");
-        }
-        return false;
+        return startActivityForResult(
+                activity, new Intent(Settings.ACTION_SETTINGS),
+                requestCode
+        );
     }
 
     /**
@@ -1852,17 +1766,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openWirelessSettings() {
-        try {
-            return startActivity(
-                    IntentUtils.getIntent(
-                            new Intent(Settings.ACTION_WIRELESS_SETTINGS),
-                            true
-                    )
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
-        }
-        return false;
+        return startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
     }
 
     /**
@@ -1875,16 +1779,10 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        try {
-            activity.startActivityForResult(
-                    new Intent(Settings.ACTION_WIRELESS_SETTINGS),
-                    requestCode
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
-        }
-        return false;
+        return startActivityForResult(
+                activity, new Intent(Settings.ACTION_WIRELESS_SETTINGS),
+                requestCode
+        );
     }
 
     /**
@@ -1892,16 +1790,22 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openGpsSettings() {
-        try {
-            return startActivity(
-                    IntentUtils.getIntent(
-                            new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
-                            true
-                    )
-            );
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openGpsSettings");
-        }
-        return false;
+        return startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+    }
+
+    /**
+     * 打开 GPS 设置界面
+     * @param activity    {@link Activity}
+     * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openGpsSettings(
+            final Activity activity,
+            final int requestCode
+    ) {
+        return startActivityForResult(
+                activity, new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+                requestCode
+        );
     }
 }

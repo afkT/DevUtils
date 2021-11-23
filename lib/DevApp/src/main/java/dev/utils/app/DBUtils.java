@@ -2,6 +2,8 @@ package dev.utils.app;
 
 import java.io.InputStream;
 
+import dev.DevUtils;
+import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -12,6 +14,9 @@ public final class DBUtils {
 
     private DBUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = DBUtils.class.getSimpleName();
 
     /**
      * 获取应用内部存储数据库路径 ( path /data/data/package/databases )
@@ -28,6 +33,24 @@ public final class DBUtils {
      */
     public static String getAppDbPath(final String name) {
         return PathUtils.getInternal().getAppDbPath(name);
+    }
+
+    // ============
+    // = 删除数据库 =
+    // ============
+
+    /**
+     * 根据名称清除数据库
+     * @param dbName 数据库名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean deleteDatabase(final String dbName) {
+        try {
+            return DevUtils.getContext().deleteDatabase(dbName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "deleteDatabase");
+        }
+        return false;
     }
 
     // ============
