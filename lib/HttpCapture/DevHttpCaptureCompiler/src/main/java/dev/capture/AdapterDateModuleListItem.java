@@ -2,6 +2,7 @@ package dev.capture;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -67,7 +68,7 @@ class AdapterDateModuleListItem
         // 判断分组筛选类型是否为请求链接类型
         if (
                 ViewUtils.setVisibility(
-                        StringUtils.isEmpty(groupItem.function),
+                        TextUtils.isEmpty(groupItem.function),
                         holder.binding.vidFunctionTv
                 )
         ) {

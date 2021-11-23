@@ -1,5 +1,7 @@
 package dev.capture;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -118,7 +120,7 @@ class Utils {
      * @return 抓包存储路径
      */
     protected static String getStoragePath() {
-        if (StringUtils.isEmpty(sStoragePath)) {
+        if (TextUtils.isEmpty(sStoragePath)) {
             sStoragePath = PathUtils.getInternal().getAppDataPath(
                     DevHttpCapture.TAG
             );
@@ -176,7 +178,7 @@ class Utils {
             final String filePath,
             final boolean isEncrypt
     ) {
-        if (StringUtils.isEmpty(filePath)) return null;
+        if (TextUtils.isEmpty(filePath)) return null;
         while (true) {
             String md5Value = MD5Utils.md5(DevCommonUtils.getRandomUUIDToString());
             String fileName;

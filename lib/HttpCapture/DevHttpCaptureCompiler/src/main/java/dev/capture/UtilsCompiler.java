@@ -1,6 +1,7 @@
 package dev.capture;
 
 import android.app.Activity;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -206,7 +207,7 @@ public final class UtilsCompiler {
             final String moduleName,
             final UrlFunctionGet function
     ) {
-        if (StringUtils.isEmpty(moduleName)) return;
+        if (TextUtils.isEmpty(moduleName)) return;
         URL_FUNCTION_MAP.put(moduleName, function);
     }
 
@@ -349,7 +350,7 @@ public final class UtilsCompiler {
     protected List<Items.MainItem> getMainData(final String moduleName) {
         List<Items.MainItem> lists = new ArrayList<>();
         // 判断是否显示指定模块
-        if (StringUtils.isEmpty(moduleName)) {
+        if (TextUtils.isEmpty(moduleName)) {
             for (Map.Entry<String, List<CaptureItem>> entry : mDataMaps.entrySet()) {
                 if (CollectionUtils.isNotEmpty(entry.getValue())) {
                     lists.add(new Items.MainItem(entry.getKey(), entry.getValue()));

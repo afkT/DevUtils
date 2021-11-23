@@ -2599,7 +2599,7 @@ public final class TextViewUtils {
             final String content
     ) {
         if (paint == null || width <= 0 || curTextSize <= 0 || content == null) return 0f;
-        if (StringUtils.isEmpty(content)) return curTextSize;
+        if (TextUtils.isEmpty(content)) return curTextSize;
         // 初始化内容画笔, 计算宽高
         TextPaint tvPaint = new TextPaint(paint);
         // 字体大小

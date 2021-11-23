@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import java.util.HashMap;
@@ -260,7 +261,7 @@ public final class LanguageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLanguage(final String language) {
-        if (StringUtils.isEmpty(language)) return false;
+        if (TextUtils.isEmpty(language)) return false;
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String lang = locale.getLanguage();
@@ -275,7 +276,7 @@ public final class LanguageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isRegion(final String region) {
-        if (StringUtils.isEmpty(region)) return false;
+        if (TextUtils.isEmpty(region)) return false;
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String country = locale.getCountry();
@@ -294,8 +295,8 @@ public final class LanguageUtils {
             final String region,
             final String language
     ) {
-        if (StringUtils.isEmpty(region)) return false;
-        if (StringUtils.isEmpty(language)) return false;
+        if (TextUtils.isEmpty(region)) return false;
+        if (TextUtils.isEmpty(language)) return false;
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String country = locale.getCountry();

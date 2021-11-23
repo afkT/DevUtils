@@ -2,6 +2,7 @@ package dev.engine.barcode
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.text.TextUtils
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
@@ -219,7 +220,7 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         if (params == null) {
             return Exception("BarCode ( Data、Params ) Item is null")
         }
-        if (StringUtils.isEmpty(params.getContent())) {
+        if (TextUtils.isEmpty(params.getContent())) {
             return Exception("BarCode content is null")
         }
         if (params.getWidth() <= 0 || params.getHeight() <= 0) {

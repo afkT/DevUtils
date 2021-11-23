@@ -2,6 +2,7 @@ package java.dev.engine.storage;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import java.io.File;
 
@@ -275,9 +276,9 @@ public final class StorageItem
             final String mimeType,
             final String folder
     ) {
-        if (StringUtils.isEmpty(fileName)) return null;
-        if (StringUtils.isEmpty(mimeType)) return null;
-        if (StringUtils.isEmpty(folder)) return null;
+        if (TextUtils.isEmpty(fileName)) return null;
+        if (TextUtils.isEmpty(mimeType)) return null;
+        if (TextUtils.isEmpty(folder)) return null;
         return new StorageItem().setFileName(fileName)
                 .setMimeType(mimeType).setFolder(folder);
     }

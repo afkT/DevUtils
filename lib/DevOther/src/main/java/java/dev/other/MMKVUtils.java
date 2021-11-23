@@ -2,6 +2,7 @@ package java.dev.other;
 
 import android.content.Context;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.tencent.mmkv.MMKV;
 import com.tencent.mmkv.MMKVLogLevel;
@@ -186,7 +187,7 @@ public final class MMKVUtils {
          */
         public boolean containsKey(String key) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.containsKey(key);
         }
 
@@ -197,7 +198,7 @@ public final class MMKVUtils {
          */
         public boolean removeValueForKey(String key) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             mmkv.removeValueForKey(key);
             return true;
         }
@@ -253,7 +254,7 @@ public final class MMKVUtils {
                 boolean value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -262,7 +263,7 @@ public final class MMKVUtils {
                 int value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -271,7 +272,7 @@ public final class MMKVUtils {
                 long value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -280,7 +281,7 @@ public final class MMKVUtils {
                 float value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -289,7 +290,7 @@ public final class MMKVUtils {
                 double value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -298,7 +299,7 @@ public final class MMKVUtils {
                 String value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
@@ -307,7 +308,7 @@ public final class MMKVUtils {
                 Set<String> value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             if (value == null) return false;
             return mmkv.encode(key, value);
         }
@@ -317,7 +318,7 @@ public final class MMKVUtils {
                 byte[] value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             if (value == null) return false;
             return mmkv.encode(key, value);
         }
@@ -327,7 +328,7 @@ public final class MMKVUtils {
                 Parcelable value
         ) {
             if (isMMKVEmpty()) return false;
-            if (StringUtils.isEmpty(key)) return false;
+            if (TextUtils.isEmpty(key)) return false;
             if (value == null) return false;
             return mmkv.encode(key, value);
         }
@@ -345,7 +346,7 @@ public final class MMKVUtils {
                 boolean defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeBool(key, defaultValue);
         }
 
@@ -358,7 +359,7 @@ public final class MMKVUtils {
                 int defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeInt(key, defaultValue);
         }
 
@@ -371,7 +372,7 @@ public final class MMKVUtils {
                 long defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeLong(key, defaultValue);
         }
 
@@ -384,7 +385,7 @@ public final class MMKVUtils {
                 float defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeFloat(key, defaultValue);
         }
 
@@ -397,7 +398,7 @@ public final class MMKVUtils {
                 double defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeDouble(key, defaultValue);
         }
 
@@ -410,7 +411,7 @@ public final class MMKVUtils {
                 String defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeString(key, defaultValue);
         }
 
@@ -431,7 +432,7 @@ public final class MMKVUtils {
                 Class<? extends Set> cls
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeStringSet(key, defaultValue, cls);
         }
 
@@ -444,7 +445,7 @@ public final class MMKVUtils {
                 byte[] defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeBytes(key, defaultValue);
         }
 
@@ -461,7 +462,7 @@ public final class MMKVUtils {
                 T defaultValue
         ) {
             if (isMMKVEmpty()) return defaultValue;
-            if (StringUtils.isEmpty(key)) return defaultValue;
+            if (TextUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeParcelable(key, tClass, defaultValue);
         }
     }
