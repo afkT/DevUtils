@@ -1,7 +1,5 @@
 package afkt.project.database.room;
 
-import android.text.TextUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 

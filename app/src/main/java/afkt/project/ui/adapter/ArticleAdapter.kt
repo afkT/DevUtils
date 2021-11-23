@@ -6,7 +6,6 @@ import afkt.project.model.bean.ArticleBean.DataBean.ListBean
 import afkt.project.util.ProjectUtils
 import android.content.Intent
 import android.net.Uri
-import android.text.TextUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
