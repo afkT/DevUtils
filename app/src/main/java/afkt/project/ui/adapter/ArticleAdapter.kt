@@ -49,7 +49,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         // 绑定点击事件
         ListenerUtils.setOnClicks({
             val link = item.link
-            if (!TextUtils.isEmpty(link)) {
+            if (!StringUtils.isSpace(link)) {
                 val uri = Uri.parse(link)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 AppUtils.startActivity(intent)

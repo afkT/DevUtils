@@ -57,7 +57,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
             }
             R.id.vid_aqi_tv -> {
                 val text = TextViewUtils.getText(binding.vidAqiTv)
-                if (TextUtils.isEmpty(text)) return
+                if (StringUtils.isSpace(text)) return
                 // 复制到剪切板
                 ClipboardUtils.copyText(text)
                 // 进行提示

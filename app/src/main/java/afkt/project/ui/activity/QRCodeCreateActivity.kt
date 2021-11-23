@@ -14,6 +14,7 @@ import dev.engine.barcode.BarCodeData
 import dev.engine.media.MediaConfig
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
+import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 
 /**
@@ -42,7 +43,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
             R.id.vid_aqc_create_btn -> {
                 val text = EditTextUtils.getText(binding.vidAqcContentEdit)
                 // 判断是否存在内容
-                if (TextUtils.isEmpty(text)) {
+                if (StringUtils.isSpace(text)) {
                     showToast(false, "请输入生成二维码内容")
                     return
                 }

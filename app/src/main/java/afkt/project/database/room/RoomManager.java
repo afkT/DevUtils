@@ -64,7 +64,7 @@ public final class RoomManager {
             final String password,
             final Class<?> clazz
     ) {
-        if (TextUtils.isEmpty(dbName)) return null;
+        if (StringUtils.isSpace(dbName)) return null;
 
         // 获取数据库名
         String databaseName = CREATE.getDatabaseName(dbName, password, clazz);
