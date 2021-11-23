@@ -8,6 +8,7 @@ import android.app.AppOpsManager;
 import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.StatusBarManager;
 import android.app.WallpaperManager;
 import android.app.admin.DevicePolicyManager;
 import android.app.usage.UsageStatsManager;
@@ -171,6 +172,23 @@ public final class AppUtils {
      */
     public static AudioManager getAudioManager(final Context context) {
         return getSystemService(context, Context.AUDIO_SERVICE);
+    }
+
+    /**
+     * 获取 StatusBarManager
+     * @return {@link StatusBarManager}
+     */
+    public static StatusBarManager getStatusBarManager() {
+        return getSystemService("statusbar");
+    }
+
+    /**
+     * 获取 StatusBarManager
+     * @param context Context
+     * @return {@link StatusBarManager}
+     */
+    public static StatusBarManager getStatusBarManager(final Context context) {
+        return getSystemService(context, "statusbar");
     }
 
     /**
