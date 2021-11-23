@@ -75,7 +75,7 @@ public final class CleanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cleanAppDbByName(final String dbName) {
-        return AppUtils.deleteDatabase(dbName);
+        return DBUtils.deleteDatabase(dbName);
     }
 
     // =

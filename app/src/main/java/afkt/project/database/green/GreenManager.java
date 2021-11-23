@@ -1,5 +1,7 @@
 package afkt.project.database.green;
 
+import android.text.TextUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +65,7 @@ public final class GreenManager {
             final String password,
             final Class<?> clazz
     ) {
-        if (StringUtils.isSpace(dbName)) return null;
+        if (TextUtils.isEmpty(dbName)) return null;
 
         // 获取数据库名
         String databaseName = CREATE.getDatabaseName(dbName, password, clazz);
