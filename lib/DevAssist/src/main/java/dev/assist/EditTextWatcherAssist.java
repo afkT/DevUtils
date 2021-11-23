@@ -1,7 +1,6 @@
 package dev.assist;
 
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -51,7 +50,7 @@ public class EditTextWatcherAssist<T> {
     ) {
         if (editText != null) {
             // 设置内容
-            editText.setText(TextUtils.isEmpty(text) ? "" : text);
+            editText.setText(text);
             // 清空焦点
             editText.clearFocus();
             // 设置获取焦点事件
