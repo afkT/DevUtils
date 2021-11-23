@@ -103,7 +103,7 @@ public final class MD5Utils {
      * @return 文件 MD5 值
      */
     public static byte[] getFileMD5(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return getFileMD5(file);
     }
 
@@ -113,7 +113,7 @@ public final class MD5Utils {
      * @return 文件 MD5 值转十六进制字符串
      */
     public static String getFileMD5ToHexString(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return getFileMD5ToHexString(file);
     }
 

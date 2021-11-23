@@ -75,7 +75,7 @@ public final class SHAUtils {
      * @return 文件 SHA1 字符串信息
      */
     public static String getFileSHA1(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return getFileSHA(file, "SHA-1");
     }
 
@@ -94,7 +94,7 @@ public final class SHAUtils {
      * @return 文件 SHA256 字符串信息
      */
     public static String getFileSHA256(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return getFileSHA(file, "SHA-256");
     }
 

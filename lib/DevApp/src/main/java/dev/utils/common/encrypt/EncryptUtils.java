@@ -140,7 +140,7 @@ public final class EncryptUtils {
      * @return 文件 MD5 值
      */
     public static byte[] encryptMD5File(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return encryptMD5File(file);
     }
 
@@ -150,7 +150,7 @@ public final class EncryptUtils {
      * @return 文件 MD5 值转十六进制字符串
      */
     public static String encryptMD5FileToHexString(final String filePath) {
-        File file = StringUtils.isSpace(filePath) ? null : new File(filePath);
+        File file = StringUtils.isEmpty(filePath) ? null : new File(filePath);
         return encryptMD5FileToHexString(file);
     }
 

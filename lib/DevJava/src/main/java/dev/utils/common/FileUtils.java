@@ -425,7 +425,7 @@ public final class FileUtils {
             final String filePath,
             final String defaultStr
     ) {
-        return StringUtils.isSpace(filePath) ? defaultStr : new File(filePath).getName();
+        return StringUtils.isEmpty(filePath) ? defaultStr : new File(filePath).getName();
     }
 
     /**
@@ -506,7 +506,7 @@ public final class FileUtils {
      * @return 不带扩展名的文件名
      */
     public static String getFileNameNoExtension(final String filePath) {
-        if (StringUtils.isSpace(filePath)) return filePath;
+        if (StringUtils.isEmpty(filePath)) return filePath;
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastSep == -1) {
@@ -534,7 +534,7 @@ public final class FileUtils {
      * @return 文件扩展名
      */
     public static String getFileExtension(final String filePath) {
-        if (StringUtils.isSpace(filePath)) return filePath;
+        if (StringUtils.isEmpty(filePath)) return filePath;
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastPoi == -1 || lastSep >= lastPoi) return "";
@@ -876,7 +876,7 @@ public final class FileUtils {
      * @return 文件大小
      */
     public static long getFileLengthNetwork(final String httpUri) {
-        if (StringUtils.isSpace(httpUri)) return 0L;
+        if (StringUtils.isEmpty(httpUri)) return 0L;
         // 判断是否网络资源
         boolean isHttpRes = httpUri.toLowerCase().startsWith("http:") || httpUri.toLowerCase().startsWith("https:");
         if (isHttpRes) {
@@ -911,7 +911,7 @@ public final class FileUtils {
      * @return 文件名
      */
     public static String getFileName(final String filePath) {
-        if (StringUtils.isSpace(filePath)) return filePath;
+        if (StringUtils.isEmpty(filePath)) return filePath;
         int lastSep = filePath.lastIndexOf(File.separator);
         return lastSep == -1 ? filePath : filePath.substring(lastSep + 1);
     }
@@ -932,7 +932,7 @@ public final class FileUtils {
      * @return 最长目录地址
      */
     public static String getDirName(final String filePath) {
-        if (StringUtils.isSpace(filePath)) return filePath;
+        if (StringUtils.isEmpty(filePath)) return filePath;
         int lastSep = filePath.lastIndexOf(File.separator);
         return lastSep == -1 ? "" : filePath.substring(0, lastSep + 1);
     }

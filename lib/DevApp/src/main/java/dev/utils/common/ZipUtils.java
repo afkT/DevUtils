@@ -220,7 +220,7 @@ public final class ZipUtils {
     )
             throws Exception {
         // 处理后的文件路径
-        String filePath = rootPath + (StringUtils.isSpace(rootPath) ? "" : File.separator) + resFile.getName();
+        String filePath = rootPath + (StringUtils.isEmpty(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
             File[] fileList = resFile.listFiles();
             // 如果是空文件夹那么创建它
@@ -324,7 +324,7 @@ public final class ZipUtils {
         List<File>     files   = new ArrayList<>();
         ZipFile        zip     = new ZipFile(zipFile);
         Enumeration<?> entries = zip.entries();
-        if (StringUtils.isSpace(keyword)) {
+        if (StringUtils.isEmpty(keyword)) {
             while (entries.hasMoreElements()) {
                 ZipEntry entry     = ((ZipEntry) entries.nextElement());
                 String   entryName = entry.getName();

@@ -44,7 +44,7 @@ public final class StringUtils {
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final String str) {
+    public static boolean isEmpty(final CharSequence str) {
         return (str == null || str.length() == 0);
     }
 
@@ -53,9 +53,9 @@ public final class StringUtils {
      * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final String... args) {
+    public static boolean isEmpty(final CharSequence... args) {
         if (args != null && args.length != 0) {
-            for (String value : args) {
+            for (CharSequence value : args) {
                 if (isEmpty(value)) {
                     return true;
                 }
@@ -98,7 +98,7 @@ public final class StringUtils {
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotEmpty(final String str) {
+    public static boolean isNotEmpty(final CharSequence str) {
         return (str != null && str.length() != 0);
     }
 

@@ -206,7 +206,7 @@ public final class UtilsCompiler {
             final String moduleName,
             final UrlFunctionGet function
     ) {
-        if (StringUtils.isSpace(moduleName)) return;
+        if (StringUtils.isEmpty(moduleName)) return;
         URL_FUNCTION_MAP.put(moduleName, function);
     }
 

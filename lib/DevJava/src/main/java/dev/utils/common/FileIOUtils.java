@@ -602,7 +602,7 @@ public final class FileIOUtils {
             String       line;
             int          curLine = 1;
             List<String> list    = new ArrayList<>();
-            if (StringUtils.isSpace(charsetName)) {
+            if (StringUtils.isEmpty(charsetName)) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
@@ -668,7 +668,7 @@ public final class FileIOUtils {
         BufferedReader br = null;
         try {
             StringBuilder builder = new StringBuilder();
-            if (StringUtils.isSpace(charsetName)) {
+            if (StringUtils.isEmpty(charsetName)) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));

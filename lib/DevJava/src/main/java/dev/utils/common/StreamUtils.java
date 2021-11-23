@@ -132,7 +132,7 @@ public final class StreamUtils {
             final InputStream inputStream,
             final String charsetName
     ) {
-        if (inputStream == null || StringUtils.isSpace(charsetName)) return null;
+        if (inputStream == null || StringUtils.isEmpty(charsetName)) return null;
         try {
             return new String(inputStreamToBytes(inputStream), charsetName);
         } catch (Exception e) {
@@ -151,7 +151,7 @@ public final class StreamUtils {
             final String str,
             final String charsetName
     ) {
-        if (str == null || StringUtils.isSpace(charsetName)) return null;
+        if (str == null || StringUtils.isEmpty(charsetName)) return null;
         try {
             return new ByteArrayInputStream(str.getBytes(charsetName));
         } catch (Exception e) {
@@ -170,7 +170,7 @@ public final class StreamUtils {
             final OutputStream outputStream,
             final String charsetName
     ) {
-        if (outputStream == null || StringUtils.isSpace(charsetName)) return null;
+        if (outputStream == null || StringUtils.isEmpty(charsetName)) return null;
         try {
             return new String(outputStreamToBytes(outputStream), charsetName);
         } catch (Exception e) {
@@ -189,7 +189,7 @@ public final class StreamUtils {
             final String str,
             final String charsetName
     ) {
-        if (str == null || StringUtils.isSpace(charsetName)) return null;
+        if (str == null || StringUtils.isEmpty(charsetName)) return null;
         try {
             return bytesToOutputStream(str.getBytes(charsetName));
         } catch (Exception e) {
