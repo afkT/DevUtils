@@ -1280,7 +1280,7 @@ public final class AppUtils {
     // ==========
 
     /**
-     * 发送广播
+     * 发送广播 ( 无序 )
      * @param intent {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
@@ -1296,7 +1296,7 @@ public final class AppUtils {
     }
 
     /**
-     * 发送广播
+     * 发送广播 ( 无序 )
      * @param intent             {@link Intent}
      * @param receiverPermission 广播权限
      * @return {@code true} success, {@code false} fail
@@ -1311,6 +1311,26 @@ public final class AppUtils {
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcast");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播 ( 有序 )
+     * @param intent             {@link Intent}
+     * @param receiverPermission 广播权限
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendOrderedBroadcast(
+            final Intent intent,
+            final String receiverPermission
+    ) {
+        if (intent == null || receiverPermission == null) return false;
+        try {
+            DevUtils.getContext().sendOrderedBroadcast(intent, receiverPermission);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "sendOrderedBroadcast");
         }
         return false;
     }
