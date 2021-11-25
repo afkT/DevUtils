@@ -1,5 +1,6 @@
 package dev.utils.app.image;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -27,6 +28,7 @@ import java.io.FileDescriptor;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.FileUtils;
@@ -180,12 +182,22 @@ public final class BitmapUtils {
      * @return int[] { 宽度, 高度 }
      */
     public static int[] getBitmapWidthHeight(@DrawableRes final int resId) {
+        return getBitmapWidthHeight(DevUtils.getContext(), resId);
+    }
+
+    /**
+     * 获取 Bitmap 宽高
+     * @param context {@link Context}
+     * @param resId resource identifier
+     * @return int[] { 宽度, 高度 }
+     */
+    public static int[] getBitmapWidthHeight(final Context context, @DrawableRes final int resId) {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             // 只解析图片信息, 不加载到内存中
             options.inJustDecodeBounds = true;
             // 返回的 bitmap 为 null
-            BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
+            BitmapFactory.decodeResource(ResourceUtils.getResources(context), resId, options);
             // options.outHeight 为原始图片的高
             return new int[]{options.outWidth, options.outHeight};
         } catch (Exception e) {

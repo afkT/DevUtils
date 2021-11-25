@@ -580,9 +580,18 @@ public final class BarUtils {
      * @return ActionBar 高度
      */
     public static int getActionBarHeight() {
+        return getActionBarHeight(DevUtils.getContext());
+    }
+
+    /**
+     * 获取 ActionBar 高度
+     * @param context {@link Context}
+     * @return ActionBar 高度
+     */
+    public static int getActionBarHeight(final Context context) {
         TypedValue tv = new TypedValue();
         try {
-            if (ResourceUtils.getTheme().resolveAttribute(
+            if (ResourceUtils.getTheme(context).resolveAttribute(
                     android.R.attr.actionBarSize, tv, true)) {
                 return TypedValue.complexToDimensionPixelSize(
                         tv.data, Resources.getSystem().getDisplayMetrics()
