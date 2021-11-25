@@ -557,8 +557,17 @@ public final class ScreenUtils {
      * @return 底部导航栏高度
      */
     public static int getNavigationBarHeight() {
+        return getNavigationBarHeight(DevUtils.getContext());
+    }
+
+    /**
+     * 获取底部导航栏高度
+     * @param context {@link Context}
+     * @return 底部导航栏高度
+     */
+    public static int getNavigationBarHeight(final Context context) {
         try {
-            Resources resources = ResourceUtils.getResources();
+            Resources resources = ResourceUtils.getResources(context);
             // 获取对应方向字符串
             String orientation = resources.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height" : "navigation_bar_height_landscape";
             // 获取对应的 id
