@@ -1,9 +1,11 @@
 package dev.utils.app;
 
+import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -24,7 +26,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int dipConvertPx(final float dpValue) {
-        return dipConvertPx(dpValue, ResourceUtils.getDisplayMetrics());
+        return dipConvertPx(DevUtils.getContext(), dpValue);
     }
 
     /**
@@ -33,7 +35,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float dipConvertPxf(final float dpValue) {
-        return dipConvertPxf(dpValue, ResourceUtils.getDisplayMetrics());
+        return dipConvertPxf(DevUtils.getContext(), dpValue);
     }
 
     /**
@@ -42,7 +44,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int pxConvertDip(final float pxValue) {
-        return pxConvertDip(pxValue, ResourceUtils.getDisplayMetrics());
+        return pxConvertDip(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -51,7 +53,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float pxConvertDipf(final float pxValue) {
-        return pxConvertDipf(pxValue, ResourceUtils.getDisplayMetrics());
+        return pxConvertDipf(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -60,7 +62,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int spConvertPx(final float spValue) {
-        return spConvertPx(spValue, ResourceUtils.getDisplayMetrics());
+        return spConvertPx(DevUtils.getContext(), spValue);
     }
 
     /**
@@ -69,7 +71,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float spConvertPxf(final float spValue) {
-        return spConvertPxf(spValue, ResourceUtils.getDisplayMetrics());
+        return spConvertPxf(DevUtils.getContext(), spValue);
     }
 
     /**
@@ -78,7 +80,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int pxConvertSp(final float pxValue) {
-        return pxConvertSp(pxValue, ResourceUtils.getDisplayMetrics());
+        return pxConvertSp(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -87,7 +89,113 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float pxConvertSpf(final float pxValue) {
-        return pxConvertSpf(pxValue, ResourceUtils.getDisplayMetrics());
+        return pxConvertSpf(DevUtils.getContext(), pxValue);
+    }
+
+    // =
+
+    /**
+     * dp 转 px
+     * @param context {@link Context}
+     * @param dpValue 待转换值
+     * @return 转换后的值
+     */
+    public static int dipConvertPx(
+            final Context context,
+            final float dpValue
+    ) {
+        return dipConvertPx(dpValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * dp 转 px ( float )
+     * @param context {@link Context}
+     * @param dpValue 待转换值
+     * @return 转换后的值
+     */
+    public static float dipConvertPxf(
+            final Context context,
+            final float dpValue
+    ) {
+        return dipConvertPxf(dpValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * px 转 dp
+     * @param context {@link Context}
+     * @param pxValue 待转换值
+     * @return 转换后的值
+     */
+    public static int pxConvertDip(
+            final Context context,
+            final float pxValue
+    ) {
+        return pxConvertDip(pxValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * px 转 dp ( float )
+     * @param context {@link Context}
+     * @param pxValue 待转换值
+     * @return 转换后的值
+     */
+    public static float pxConvertDipf(
+            final Context context,
+            final float pxValue
+    ) {
+        return pxConvertDipf(pxValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * sp 转 px
+     * @param context {@link Context}
+     * @param spValue 待转换值
+     * @return 转换后的值
+     */
+    public static int spConvertPx(
+            final Context context,
+            final float spValue
+    ) {
+        return spConvertPx(spValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * sp 转 px ( float )
+     * @param context {@link Context}
+     * @param spValue 待转换值
+     * @return 转换后的值
+     */
+    public static float spConvertPxf(
+            final Context context,
+            final float spValue
+    ) {
+        return spConvertPxf(spValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * px 转 sp
+     * @param context {@link Context}
+     * @param pxValue 待转换值
+     * @return 转换后的值
+     */
+    public static int pxConvertSp(
+            final Context context,
+            final float pxValue
+    ) {
+        return pxConvertSp(pxValue, ResourceUtils.getDisplayMetrics(context));
+    }
+
+    /**
+     * px 转 sp ( float )
+     * @param context {@link Context}
+     * @param pxValue 待转换值
+     * @return 转换后的值
+     */
+    public static float pxConvertSpf(
+            final Context context,
+            final float pxValue
+    ) {
+        return pxConvertSpf(pxValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     // ==================
