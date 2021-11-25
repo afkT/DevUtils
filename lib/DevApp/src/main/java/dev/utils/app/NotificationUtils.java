@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -20,6 +21,7 @@ import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.assist.ResourceAssist;
 
 /**
  * detail: 通知栏管理工具类
@@ -296,16 +298,18 @@ public final class NotificationUtils {
      * @return {@link Notification}
      */
     public static Notification createNotification(final Params params) {
-        return createNotification(params, null);
+        return createNotification(DevUtils.getContext(), params, null);
     }
 
     /**
      * 创建通知栏对象
+     * @param context  {@link Context}
      * @param params   Notification 参数
      * @param callback {@link Callback}
      * @return {@link Notification}
      */
     public static Notification createNotification(
+            final Context context,
             final Params params,
             final Callback callback
     ) {
@@ -329,7 +333,8 @@ public final class NotificationUtils {
         // 设置图标
         builder.setSmallIcon(params.getIcon());
         // 设置图标
-        builder.setLargeIcon(ResourceUtils.getBitmap(params.getIcon()));
+        Bitmap iconBitmap = ResourceUtils.getBitmap(ResourceAssist.get(context), params.getIcon());
+        builder.setLargeIcon(iconBitmap);
         // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
         builder.setTicker(params.getTicker());
         // 设置标题
