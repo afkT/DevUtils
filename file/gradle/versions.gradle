@@ -26,12 +26,12 @@ ext {
             // ===========
 
             // DevApp Android 工具类库
-            dev_app_versionCode                      : 229,
-            dev_app_versionName                      : "2.2.9",
+            dev_app_versionCode                      : 230,
+            dev_app_versionName                      : "2.3.0",
 
             // DevAssist 快捷功能辅助类库
-            dev_assist_versionCode                   : 127,
-            dev_assist_versionName                   : "1.2.7",
+            dev_assist_versionCode                   : 128,
+            dev_assist_versionName                   : "1.2.8",
 
             // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
             dev_base_versionCode                     : 107,
@@ -46,14 +46,14 @@ ext {
             dev_engine_versionName                   : "1.0.0",
 
             // DevHttpCapture OKHttp 抓包工具库
-            dev_http_capture_versionCode             : 103,
-            dev_http_capture_versionName             : "1.0.3",
-            dev_http_capture_compiler_version        : "1.0.3",
-            dev_http_capture_compiler_release_version: "1.0.3",
+            dev_http_capture_versionCode             : 104,
+            dev_http_capture_versionName             : "1.0.4",
+            dev_http_capture_compiler_version        : "1.0.4",
+            dev_http_capture_compiler_release_version: "1.0.4",
 
             // DevWidget 自定义 View UI 库
-            dev_widget_versionCode                   : 111,
-            dev_widget_versionName                   : "1.1.1",
+            dev_widget_versionCode                   : 112,
+            dev_widget_versionName                   : "1.1.2",
 
             // DevEnvironment Android 环境配置切换库
             dev_environment_versionCode              : 105,
@@ -63,7 +63,7 @@ ext {
             dev_environment_compiler_release_version : "1.0.5",
 
             // DevJava Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 136,
-            dev_java_version                         : "1.3.6",
+            dev_java_versionCode                     : 137,
+            dev_java_version                         : "1.3.7",
     ]
 }

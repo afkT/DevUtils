@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.4 *(2021-12-XX)*
+Version 1.0.4 *(2021-11-26)*
 ----------------------------
 
 * `[Update]` 修改原本 Activity 管理代码使用 ActivityManagerAssist 进行管理控制

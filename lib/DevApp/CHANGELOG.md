@@ -1,10 +1,10 @@
 Change Log
 ==========
 
-Version 2.3.0 *(2021-12-XX)*
+Version 2.3.0 *(2021-11-26)*
 ----------------------------
 
-* `[Refactor]` 
+* `[Refactor]` 检查整个项目新增部分方法支持传入 Context 参数 ( 以便屏幕适配等 )
 
 * `[Add]` ActivityManagerAssist Activity 栈管理辅助类
   

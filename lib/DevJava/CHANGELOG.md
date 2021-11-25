@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.3.7 *(2021-12-XX)*
+Version 1.3.7 *(2021-11-26)*
 ----------------------------
 
 * `[Add]` WeakReferenceAssist 弱引用辅助类
