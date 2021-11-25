@@ -1,5 +1,6 @@
 package dev.utils.app.image;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.CloseUtils;
@@ -379,22 +381,24 @@ public final class ImageUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap decodeResource(@DrawableRes final int resId) {
-        return decodeResource(resId, null);
+        return decodeResource(DevUtils.getContext(), resId, null);
     }
 
     /**
      * 获取 Bitmap
+     * @param context {@link Context}
      * @param resId   resource identifier
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
     public static Bitmap decodeResource(
+            final Context context,
             @DrawableRes final int resId,
             final BitmapFactory.Options options
     ) {
         try {
             return BitmapFactory.decodeResource(
-                    ResourceUtils.getResources(), resId, options
+                    ResourceUtils.getResources(context), resId, options
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "decodeResource");
@@ -1008,8 +1012,28 @@ public final class ImageUtils {
             final int maxWidth,
             final int maxHeight
     ) {
+        return getBitmap(
+                DevUtils.getContext(), resId,
+                maxWidth, maxHeight
+        );
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param context   {@link Context}
+     * @param resId     resource identifier
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getBitmap(
+            final Context context,
+            @DrawableRes final int resId,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         try {
-            Resources             resources = ResourceUtils.getResources();
+            Resources             resources = ResourceUtils.getResources(context);
             BitmapFactory.Options options   = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
