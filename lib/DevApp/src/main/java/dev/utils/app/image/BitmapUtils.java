@@ -188,10 +188,13 @@ public final class BitmapUtils {
     /**
      * 获取 Bitmap 宽高
      * @param context {@link Context}
-     * @param resId resource identifier
+     * @param resId   resource identifier
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] getBitmapWidthHeight(final Context context, @DrawableRes final int resId) {
+    public static int[] getBitmapWidthHeight(
+            final Context context,
+            @DrawableRes final int resId
+    ) {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             // 只解析图片信息, 不加载到内存中
