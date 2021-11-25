@@ -316,6 +316,16 @@ public final class CapturePictureUtils {
 
     /**
      * 通过 View 绘制为 Bitmap
+     * <pre>
+     *     如果 View 是动态创建 ( 且没有添加到任何 ViewGroup 中 ) 想进行截图
+     *     需要设置完控件值, 如: text、background 等
+     *     再调用以下两个方法其中一个, 进行测量 View
+     *     {@link WidgetUtils#measureView(View, int)}
+     *     {@link WidgetUtils#measureView(View, int, int)}
+     *     接着调用截图方法
+     *     {@link #snapshotByView(View)}
+     *     {@link #snapshotByViewCache(View)}
+     * </pre>
      * @param view   {@link View}
      * @param config {@link Bitmap.Config}
      * @return {@link Bitmap}
@@ -340,6 +350,16 @@ public final class CapturePictureUtils {
 
     /**
      * 通过 View Cache 绘制为 Bitmap
+     * <pre>
+     *     如果 View 是动态创建 ( 且没有添加到任何 ViewGroup 中 ) 想进行截图
+     *     需要设置完控件值, 如: text、background 等
+     *     再调用以下两个方法其中一个, 进行测量 View
+     *     {@link WidgetUtils#measureView(View, int)}
+     *     {@link WidgetUtils#measureView(View, int, int)}
+     *     接着调用截图方法
+     *     {@link #snapshotByView(View)}
+     *     {@link #snapshotByViewCache(View)}
+     * </pre>
      * @param view {@link View}
      * @return {@link Bitmap}
      */
