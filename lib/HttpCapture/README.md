@@ -14,15 +14,15 @@
 
 module | DevHttpCapture | DevHttpCaptureCompiler | DevHttpCaptureCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.4-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.4-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.4-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 
 
 ### Gradle
 
 ```groovy
 dependencies {
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.3'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.3'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.4'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.4'
 }
 ```
 
@@ -76,9 +76,60 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 ## <span id="devcapture">**`dev.capture`**</span>
 
 
+* **DevHttpCapture 抓包数据详情页 ->** [DevHttpCaptureFileActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureFileActivity.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onCreate | onCreate |
+| onBackPressed | onBackPressed |
+
+
+* **DevHttpCapture 抓包数据列表 ->** [DevHttpCaptureListActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureListActivity.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onCreate | onCreate |
+| onBackPressed | onBackPressed |
+
+
+* **DevHttpCapture 入口 ->** [DevHttpCaptureMainActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureMainActivity.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onCreate | onCreate |
+| onBackPressed | onBackPressed |
+
+
 * **接口所属功能注释获取 ->** [UrlFunctionGet.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UrlFunctionGet.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | toUrlFunction | 接口所属功能注释获取 |
 
+
+* ** ->** [UtilsCompiler.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UtilsCompiler.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getInstance | 获取 Utils 实例 |
+| addActivity | 添加 Activity |
+| removeActivity | 移除 Activity |
+| finishAllActivity | 结束所有 Activity |
+| createGson | 创建 GsonBuilder |
+| toJsonIndent | JSON String 缩进处理 |
+| fromJson | 将 JSON String 映射为指定类型对象 |
+| putUrlFunction | 添加接口所属功能注释 |
+| removeUrlFunction | 移除接口所属功能注释 |
+| getUrlFunction | 获取接口所属功能注释 |
+| clearCallback | 移除所有回调 |
+| removeCallback | 移除回调 ( 关闭页面调用 ) |
+| addCallback | 添加回调 |
+| notifyCallback | 通知回调 |
+| queryData | 查询数据 |
+| clearData | 移除所有数据 |
+| isQuerying | 是否查询中 |
+| getMainData | 获取首页数据源 |
+| getFileData | 获取抓包文件数据 |
+| getDateData | 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据 |
+| getUrlFunctionByFile | 获取接口所属功能 |
+| resetRefreshClick | 重置刷新点击处理 |

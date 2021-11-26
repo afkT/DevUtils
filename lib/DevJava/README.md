@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevJava:1.3.6'
+implementation 'io.github.afkt:DevJava:1.3.7'
 ```
 
 ## 目录结构
@@ -1054,6 +1054,21 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | waitForEndAsync | 设置等待一段时间后, 通知方法 ( 异步 ) |
 | waitForEnd | 设置等待一段时间后, 通知方法 ( 同步 ) |
+
+
+* **弱引用辅助类 ->** [WeakReferenceAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/WeakReferenceAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getSingleWeak | 获取单个弱引用对象 |
+| getSingleWeakValue | 获取单个弱引用对象值 |
+| setSingleWeakValue | 保存单个弱引用对象值 |
+| removeSingleWeak | 移除单个弱引用持有对象 |
+| getWeak | 获取弱引用对象 |
+| getWeakValue | 获取弱引用对象值 |
+| setWeakValue | 保存弱引用对象值 |
+| removeWeak | 移除指定弱引用持有对象 |
+| clear | 清空全部弱引用持有对象 |
 
 
 ## <span id="devutilscommonassistrecord">**`dev.utils.common.assist.record`**</span>

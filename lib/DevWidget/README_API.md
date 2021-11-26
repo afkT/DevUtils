@@ -3,7 +3,7 @@
 
 ```java
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.1.1'
+implementation 'io.github.afkt:DevWidgetX:1.1.2'
 ```
 
 ## 目录结构
@@ -15,6 +15,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.1'
       - assist                                                           | View 辅助类
       - custom                                                           | 自定义 View
       - decoration                                                       | RecyclerView ItemDecoration
+         - horizontal                                                    | Horizontal ItemDecoration
       - function                                                         | 需求功能 View
       - ui                                                               | UI View
          - round                                                         | 圆角相关 View
@@ -50,6 +51,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.1'
       - [assist](#devwidgetassist)                                       | View 辅助类
       - [custom](#devwidgetcustom)                                       | 自定义 View
       - [decoration](#devwidgetdecoration)                               | RecyclerView ItemDecoration
+         - [horizontal](#devwidgetdecorationhorizontal)                  | Horizontal ItemDecoration
       - [function](#devwidgetfunction)                                   | 需求功能 View
       - [ui](#devwidgetui)                                               | UI View
          - [round](#devwidgetuiround)                                    | 圆角相关 View
@@ -278,10 +280,10 @@ implementation 'io.github.afkt:DevWidgetX:1.1.1'
 | getLinePaint | 获取分割线画笔 |
 | isSingleLineDraw | 获取单条数据是否绘制分割线 |
 | setSingleLineDraw | 设置单条数据是否绘制分割线 |
-| getLineLeft | 获取分割线距左边距 |
-| setLineLeft | 设置分割线距左边距 |
-| getLineRight | 获取分割线距右边距 |
-| setLineRight | 设置分割线距右边距 |
+| getLineLeft | 获取分割线距左边距 ( 横向为上边距 ) |
+| setLineLeft | 设置分割线距左边距 ( 横向为上边距 ) |
+| getLineRight | 获取分割线距右边距 ( 横向为下边距 ) |
+| setLineRight | 设置分割线距右边距 ( 横向为下边距 ) |
 | setLineLeftRight | 设置分割线距左、右边距 |
 
 
@@ -302,6 +304,33 @@ implementation 'io.github.afkt:DevWidgetX:1.1.1'
 
 
 * **RecyclerView 分割线 ->** [LineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/LineItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+## <span id="devwidgetdecorationhorizontal">**`dev.widget.decoration.horizontal`**</span>
+
+
+* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/FirstLineHorizontalItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/LastLineHorizontalItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+* **RecyclerView 分割线 ->** [LineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/LineHorizontalItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |

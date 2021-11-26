@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevAssist:1.2.7'
+implementation 'io.github.afkt:DevAssist:1.2.8'
 ```
 
 ## 目录结构
@@ -329,6 +329,9 @@ implementation 'io.github.afkt:DevAssist:1.2.7'
 | 方法 | 注释 |
 | :- | :- |
 | bindListener | 绑定事件 |
+| onFocusChange | 焦点触发方法 |
+| beforeTextChanged | 在文本变化前调用 |
+| afterTextChanged | 在文本变化后调用 |
 
 
 * **数量控制辅助类 ->** [NumberControlAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/NumberControlAssist.java)
@@ -1349,10 +1352,11 @@ implementation 'io.github.afkt:DevAssist:1.2.7'
 | shareMinApp | 分享小程序 |
 | shareUrl | 分享链接 |
 | shareImage | 分享图片 |
+| shareImageList | 分享多张图片 |
+| shareText | 分享文本 |
 | shareVideo | 分享视频 |
 | shareMusic | 分享音乐 |
 | shareEmoji | 分享表情 |
-| shareText | 分享文本 |
 | shareFile | 分享文件 |
 | share | 分享操作 ( 通用扩展 ) |
 | onActivityResult | 部分平台 Activity onActivityResult 额外调用处理 |
