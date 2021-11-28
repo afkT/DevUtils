@@ -3,9 +3,11 @@ package dev.utils.app.assist;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.graphics.PointF;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -274,6 +276,77 @@ public final class FloatWindowManagerAssist {
                 mLayoutParams = params;
             }
             return mLayoutParams;
+        }
+    }
+
+    /**
+     * detail: 悬浮窗触摸辅助类实现
+     * @author Ttt
+     */
+    public interface TouchIMPL {
+
+        /**
+         * 悬浮窗 View 触摸事件
+         * @param view  {@link View}
+         * @param event 触摸事件
+         * @return True if the event was handled, false otherwise.
+         */
+        boolean onTouchEvent(
+                View view,
+                MotionEvent event
+        );
+    }
+
+    /**
+     * detail: DevApp 悬浮窗触摸辅助类实现
+     * @author Ttt
+     */
+    public static class DevTouchIMPL
+            implements TouchIMPL {
+
+        // 悬浮窗管理辅助类
+        private FloatWindowManagerAssist mAssist;
+        // 触摸点记录
+        private PointF                   mPoint = new PointF();
+
+        public DevTouchIMPL(final FloatWindowManagerAssist assist) {
+            this.mAssist = assist;
+        }
+
+        @Override
+        public boolean onTouchEvent(
+                View view,
+                MotionEvent event
+        ) {
+            if (event != null) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPoint.x = event.getRawX();
+                        mPoint.y = event.getRawY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        float x = event.getRawX();
+                        float y = event.getRawY();
+
+                        int dx = (int) (x - mPoint.x);
+                        int dy = (int) (y - mPoint.y);
+
+                        mPoint.x = x;
+                        mPoint.y = y;
+
+                        if (view != null && mAssist != null) {
+                            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                            if (layoutParams instanceof WindowManager.LayoutParams) {
+                                WindowManager.LayoutParams params = (WindowManager.LayoutParams) layoutParams;
+                                params.x += dx;
+                                params.y += dy;
+                                mAssist.updateViewLayout(view, params);
+                            }
+                        }
+                        break;
+                }
+            }
+            return false;
         }
     }
 }
