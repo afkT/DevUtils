@@ -20,25 +20,24 @@ import dev.utils.app.IntentUtils;
  * detail: 悬浮窗管理辅助类
  * @author Ttt
  * <pre>
- *     所需权限
- *     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+ *     另一种实现方式 在 Activity Content 中添加 View
  * </pre>
  */
-public final class FloatWindowManagerAssist {
+public final class FloatWindowManagerAssist2 {
 
     // 日志 TAG
-    private static final String TAG          = FloatWindowManagerAssist.class.getSimpleName();
+    private static final String TAG          = FloatWindowManagerAssist2.class.getSimpleName();
     // 请求 Code
     public static final  int    REQUEST_CODE = 112233;
 
     // 悬浮窗管理辅助类实现
     private final AssistIMPL IMPL;
 
-    public FloatWindowManagerAssist() {
+    public FloatWindowManagerAssist2() {
         this(new DevAssistIMPL());
     }
 
-    public FloatWindowManagerAssist(final AssistIMPL impl) {
+    public FloatWindowManagerAssist2(final AssistIMPL impl) {
         this.IMPL = impl;
     }
 
@@ -305,11 +304,11 @@ public final class FloatWindowManagerAssist {
             implements TouchIMPL {
 
         // 悬浮窗管理辅助类
-        private final FloatWindowManagerAssist mAssist;
+        private final FloatWindowManagerAssist2 mAssist;
         // 触摸点记录
-        private final PointF                   mPoint = new PointF();
+        private final PointF                    mPoint = new PointF();
 
-        public DevTouchIMPL(final FloatWindowManagerAssist assist) {
+        public DevTouchIMPL(final FloatWindowManagerAssist2 assist) {
             this.mAssist = assist;
         }
 
