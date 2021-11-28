@@ -6,8 +6,11 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.IntentUtils;
 
@@ -21,8 +24,10 @@ import dev.utils.app.IntentUtils;
  */
 public final class FloatWindowManagerAssist {
 
+    // 日志 TAG
+    private static final String TAG          = FloatWindowManagerAssist.class.getSimpleName();
     // 请求 Code
-    public static final int REQUEST_CODE = 112233;
+    public static final  int    REQUEST_CODE = 112233;
 
     // 悬浮窗管理辅助类实现
     private AssistIMPL IMPL;
@@ -46,6 +51,105 @@ public final class FloatWindowManagerAssist {
     public AssistIMPL getIMPL() {
         return IMPL;
     }
+
+    /**
+     * 获取 WindowManager
+     * @return {@link WindowManager}
+     */
+    public WindowManager getWindowManager() {
+        if (IMPL != null) return IMPL.getWindowManager();
+        return null;
+    }
+
+    /**
+     * 获取 Window LayoutParams
+     * @return {@link WindowManager.LayoutParams}
+     */
+    public WindowManager.LayoutParams getLayoutParams() {
+        if (IMPL != null) return IMPL.getLayoutParams();
+        return null;
+    }
+
+    // =
+
+    /**
+     * 添加悬浮 View
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean addView(final View view) {
+        return addView(view, getLayoutParams());
+    }
+
+    /**
+     * 添加悬浮 View
+     * @param view   {@link View}
+     * @param params Window LayoutParams
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean addView(
+            final View view,
+            final WindowManager.LayoutParams params
+    ) {
+        if (view == null || params == null) return false;
+        WindowManager windowManager = getWindowManager();
+        if (windowManager != null) {
+            try {
+                view.setLayoutParams(params);
+                windowManager.addView(view, params);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "addView");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 移除悬浮 View
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean removeView(final View view) {
+        if (view == null) return false;
+        WindowManager windowManager = getWindowManager();
+        if (windowManager != null) {
+            try {
+                windowManager.removeView(view);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeView");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 更新 View Layout
+     * @param view   {@link View}
+     * @param params Window LayoutParams
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean updateViewLayout(
+            final View view,
+            final ViewGroup.LayoutParams params
+    ) {
+        if (view == null || params == null) return false;
+        WindowManager windowManager = getWindowManager();
+        if (windowManager != null) {
+            try {
+                windowManager.updateViewLayout(view, params);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "updateViewLayout");
+            }
+        }
+        return false;
+    }
+
+    // ==========
+    // = 静态方法 =
+    // ==========
 
     /**
      * 是否存在悬浮窗权限
