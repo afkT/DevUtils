@@ -30,6 +30,7 @@ import java.lang.ref.WeakReference;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.view.ViewHelper;
 
 /**
@@ -145,6 +146,15 @@ public final class QuickHelper
     // ===========
     // = IHelper =
     // ===========
+
+    /**
+     * 获取 DevHelper
+     * @return {@link DevHelper}
+     */
+    @Override
+    public DevHelper devHelper() {
+        return DevHelper.get();
+    }
 
     /**
      * 获取 QuickHelper

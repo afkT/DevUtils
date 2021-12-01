@@ -3,6 +3,7 @@ package dev.utils.app.helper;
 import android.view.View;
 
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
 
@@ -15,6 +16,12 @@ public interface IHelper<T> {
     // ==========
     // = Helper =
     // ==========
+
+    /**
+     * 获取 DevHelper
+     * @return {@link DevHelper}
+     */
+    DevHelper devHelper();
 
     /**
      * 获取 QuickHelper
