@@ -85,9 +85,6 @@ public final class ScreenUtils {
      */
     public static int[] getScreenWidthHeight() {
         try {
-//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-//            return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
-
             WindowManager windowManager = AppUtils.getWindowManager();
             Point         point         = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -108,9 +105,6 @@ public final class ScreenUtils {
      */
     public static Point getScreenWidthHeightToPoint() {
         try {
-//            DisplayMetrics displayMetrics = ResourceUtils.getDisplayMetrics();
-//            return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
-
             WindowManager windowManager = AppUtils.getWindowManager();
             Point         point         = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

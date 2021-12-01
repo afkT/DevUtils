@@ -25,9 +25,9 @@ import dev.utils.app.IntentUtils;
 public final class FloatingWindowManagerAssist {
 
     // 日志 TAG
-    private static final String TAG          = FloatingWindowManagerAssist.class.getSimpleName();
+    private final       String TAG          = FloatingWindowManagerAssist.class.getSimpleName();
     // 请求 Code
-    public static final  int    REQUEST_CODE = 112233;
+    public static final int    REQUEST_CODE = 112233;
 
     // 悬浮窗管理辅助类实现
     private final AssistIMPL IMPL;
