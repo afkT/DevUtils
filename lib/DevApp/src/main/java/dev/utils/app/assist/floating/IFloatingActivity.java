@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * detail: 悬浮窗触摸辅助类接口
+ * detail: 悬浮窗辅助类接口
  * @author Ttt
  * <pre>
  *     {@link FloatingWindowManagerAssist2} 所需接口方法

@@ -20,7 +20,8 @@ import dev.utils.app.ViewUtils;
  *     添加到 Activity content View 中
  * </pre>
  */
-public final class FloatingWindowManagerAssist2 {
+public final class FloatingWindowManagerAssist2
+        implements IFloatingOperate {
 
     // 日志 TAG
     private final String            TAG       = FloatingWindowManagerAssist2.class.getSimpleName();
@@ -35,9 +36,10 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 移除悬浮窗 View
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return {@code true} success, {@code false} fail
      */
+    @Override
     public boolean removeFloatingView(final IFloatingActivity floatingActivity) {
         String key = getMapFloatingKey(floatingActivity);
         if (key != null) {
@@ -50,9 +52,10 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 添加悬浮窗 View
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return {@code true} success, {@code false} fail
      */
+    @Override
     public boolean addFloatingView(final IFloatingActivity floatingActivity) {
         if (!needsAdd) return false;
         String key = getMapFloatingKey(floatingActivity);
@@ -82,9 +85,9 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 移除所有悬浮窗 View
-     * @return {@link FloatingWindowManagerAssist2}
      */
-    public FloatingWindowManagerAssist2 removeAllFloatingView() {
+    @Override
+    public void removeAllFloatingView() {
         List<View> views = new ArrayList<>(mViewMaps.values());
         mViewMaps.clear();
         Iterator<View> iterator = views.iterator();
@@ -92,7 +95,6 @@ public final class FloatingWindowManagerAssist2 {
             ViewUtils.removeSelfFromParent(iterator.next());
             iterator.remove();
         }
-        return this;
     }
 
     // ===========
@@ -103,6 +105,7 @@ public final class FloatingWindowManagerAssist2 {
      * 是否处理悬浮 View 添加操作
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isNeedsAdd() {
         return needsAdd;
     }
@@ -110,11 +113,10 @@ public final class FloatingWindowManagerAssist2 {
     /**
      * 设置是否处理悬浮 View 添加操作
      * @param needsAdd {@code true} yes, {@code false} no
-     * @return {@link FloatingWindowManagerAssist2}
      */
-    public FloatingWindowManagerAssist2 setNeedsAdd(final boolean needsAdd) {
+    @Override
+    public void setNeedsAdd(final boolean needsAdd) {
         this.needsAdd = needsAdd;
-        return this;
     }
 
     // ==========
@@ -127,7 +129,7 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 获取悬浮窗依附的 Activity
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return {@link Activity}
      */
     private Activity getAttachActivity(final IFloatingActivity floatingActivity) {
@@ -143,7 +145,7 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 获取悬浮窗 Map Key
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return 悬浮窗 Map Key
      */
     private String getMapFloatingKey(final IFloatingActivity floatingActivity) {
@@ -159,7 +161,7 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 获取悬浮窗 Map Value View
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return 悬浮窗 Map Value View
      */
     private View getMapFloatingView(final IFloatingActivity floatingActivity) {
@@ -175,7 +177,7 @@ public final class FloatingWindowManagerAssist2 {
 
     /**
      * 获取悬浮窗 View LayoutParams
-     * @param floatingActivity 悬浮窗触摸辅助类接口
+     * @param floatingActivity 悬浮窗辅助类接口
      * @return 悬浮窗 View LayoutParams
      */
     private ViewGroup.LayoutParams getMapFloatingViewLayoutParams(final IFloatingActivity floatingActivity) {
