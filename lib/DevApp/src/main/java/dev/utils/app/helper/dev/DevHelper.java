@@ -1,60 +1,18 @@
 package dev.utils.app.helper.dev;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.Notification;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Handler;
-import android.text.TextWatcher;
-import android.text.method.KeyListener;
 import android.view.View;
 import android.view.animation.Animation;
-import android.widget.EditText;
-import android.widget.PopupWindow;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.RawRes;
-import androidx.annotation.RequiresPermission;
-import androidx.fragment.app.DialogFragment;
-
-import java.io.Closeable;
-import java.io.File;
-import java.io.Flushable;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.util.Locale;
-
-import dev.utils.app.CleanUtils;
-import dev.utils.app.ClickUtils;
-import dev.utils.app.ClipboardUtils;
-import dev.utils.app.DialogUtils;
-import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
-import dev.utils.app.KeyBoardUtils;
-import dev.utils.app.LanguageUtils;
-import dev.utils.app.ListenerUtils;
-import dev.utils.app.MediaStoreUtils;
-import dev.utils.app.NotificationUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.ScreenUtils;
-import dev.utils.app.SizeUtils;
-import dev.utils.app.VibrationUtils;
 import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.app.image.BitmapUtils;
-import dev.utils.app.image.ImageUtils;
 import dev.utils.app.timer.DevTimer;
-import dev.utils.common.CloseUtils;
+import dev.utils.app.timer.TimerManager;
 import dev.utils.common.ForUtils;
-import dev.utils.common.HttpURLConnectionUtils;
 import dev.utils.common.assist.TimeKeeper;
-import dev.utils.common.assist.record.FileRecordUtils;
-import dev.utils.common.assist.record.RecordConfig;
 
 /**
  * detail: Dev 工具类链式调用 Helper 类
@@ -264,6 +222,119 @@ public final class DevHelper
     public DevHelper cancelAnimation(Animation... animations) {
         ForUtils.forSimpleArgs(
                 value -> AnimationUtils.cancelAnimation(value), animations
+        );
+        return this;
+    }
+
+    // ===============
+    // = BitmapUtils =
+    // ===============
+
+    /**
+     * Bitmap 通知回收
+     * @param bitmaps Bitmap[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper recycle(Bitmap... bitmaps) {
+        ForUtils.forSimpleArgs(
+                value -> BitmapUtils.recycle(value), bitmaps
+        );
+        return this;
+    }
+
+    // ================
+    // = TimerManager =
+    // ================
+
+    /**
+     * 运行定时器
+     * @param timers DevTimer[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper startTimer(DevTimer... timers) {
+        ForUtils.forSimpleArgs(
+                value -> TimerManager.startTimer(value), timers
+        );
+        return this;
+    }
+
+    /**
+     * 关闭定时器
+     * @param timers DevTimer[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper stopTimer(DevTimer... timers) {
+        ForUtils.forSimpleArgs(
+                value -> TimerManager.stopTimer(value), timers
+        );
+        return this;
+    }
+
+    /**
+     * 回收定时器资源
+     * @return Helper
+     */
+    @Override
+    public DevHelper recycleTimer() {
+        TimerManager.recycle();
+        return this;
+    }
+
+    /**
+     * 关闭全部定时器
+     * @return Helper
+     */
+    @Override
+    public DevHelper closeAllTimer() {
+        TimerManager.closeAll();
+        return this;
+    }
+
+    /**
+     * 关闭所有未运行的定时器
+     * @return Helper
+     */
+    @Override
+    public DevHelper closeAllNotRunningTimer() {
+        TimerManager.closeAllNotRunning();
+        return this;
+    }
+
+    /**
+     * 关闭所有无限循环的定时器
+     * @return Helper
+     */
+    @Override
+    public DevHelper closeAllInfiniteTimer() {
+        TimerManager.closeAllInfinite();
+        return this;
+    }
+
+    /**
+     * 关闭所有对应 TAG 定时器
+     * @param tags 判断 {@link DevTimer#getTag()}
+     * @return Helper
+     */
+    @Override
+    public DevHelper closeAllTagTimer(String... tags) {
+        ForUtils.forSimpleArgs(
+                value -> TimerManager.closeAllTag(value), tags
+        );
+        return this;
+    }
+
+    /**
+     * 关闭所有对应 UUID 定时器
+     * @param uuids 判断 {@link DevTimer#getUUID()}
+     * @return Helper
+     */
+    @Override
+    public DevHelper closeAllUUIDTimer(int... uuids) {
+        ForUtils.forInts(
+                (index, value) -> TimerManager.closeAllUUID(value), uuids
         );
         return this;
     }
