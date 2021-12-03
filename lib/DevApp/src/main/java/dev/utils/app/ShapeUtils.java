@@ -72,6 +72,13 @@ import androidx.annotation.RequiresApi;
  *         android:height="dimension"                      shape drawable 高
  *         />
  * </pre>
+ * <pre>
+ *     gradient android:angle
+ *     当 angle 为 0 时, 颜色渐变方向是从左往右
+ *     当 angle 为 90 时, 颜色渐变方向是从下往上
+ *     当 angle 为 180 时, 颜色渐变方向是从右往左
+ *     当 angle 为 270 时, 颜色渐变方向是从上往下
+ * </pre>
  */
 public final class ShapeUtils {
 
