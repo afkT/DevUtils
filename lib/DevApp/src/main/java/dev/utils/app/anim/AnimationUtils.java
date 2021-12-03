@@ -64,22 +64,22 @@ public final class AnimationUtils {
 
     /**
      * 设置动画重复处理
-     * @param anim        动画
+     * @param animation   {@link Animation}
      * @param repeatCount 执行次数
      * @param repeatMode  重复模式 {@link Animation#RESTART} 重新从头开始执行、{@link Animation#REVERSE} 反方向执行
      * @param <T>         泛型
      * @return 动画
      */
-    public static <T extends Animation> T setAnimRepeat(
-            final T anim,
+    public static <T extends Animation> T setAnimationRepeat(
+            final T animation,
             final int repeatCount,
             final int repeatMode
     ) {
-        if (anim != null) {
-            anim.setRepeatCount(repeatCount);
-            anim.setRepeatMode(repeatMode);
+        if (animation != null) {
+            animation.setRepeatCount(repeatCount);
+            animation.setRepeatMode(repeatMode);
         }
-        return anim;
+        return animation;
     }
 
     /**
