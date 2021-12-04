@@ -19,6 +19,10 @@ import android.widget.PopupWindow;
 import androidx.annotation.ColorInt;
 import androidx.fragment.app.DialogFragment;
 
+import java.io.Closeable;
+import java.io.Flushable;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.util.Locale;
 
 import dev.utils.app.KeyBoardUtils;
@@ -875,7 +879,7 @@ public interface IHelperByDev<T>
     /**
      * 创建 NotificationChannel
      * @param channel {@link NotificationChannel}
-     * @return {@link NotificationChannel}
+     * @return Helper
      */
     T createNotificationChannel(NotificationChannel channel);
 
@@ -1110,4 +1114,64 @@ public interface IHelperByDev<T>
             int specifiedWidth,
             int specifiedHeight
     );
+
+    // ==============
+    // = CloseUtils =
+    // ==============
+
+    /**
+     * 关闭 IO
+     * @param closeables Closeable[]
+     * @return Helper
+     */
+    T closeIO(final Closeable... closeables);
+
+    /**
+     * 安静关闭 IO
+     * @param closeables Closeable[]
+     * @return Helper
+     */
+    T closeIOQuietly(final Closeable... closeables);
+
+    /**
+     * 将缓冲区数据输出
+     * @param flushables Flushable[]
+     * @return Helper
+     */
+    T flush(final Flushable... flushables);
+
+    /**
+     * 安静将缓冲区数据输出
+     * @param flushables Flushable[]
+     * @return Helper
+     */
+    T flushQuietly(final Flushable... flushables);
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     * @return Helper
+     */
+    T flushCloseIO(final OutputStream outputStream);
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     * @return Helper
+     */
+    T flushCloseIOQuietly(final OutputStream outputStream);
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     * @return Helper
+     */
+    T flushCloseIO(final Writer writer);
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     * @return Helper
+     */
+    T flushCloseIOQuietly(final Writer writer);
 }

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.view.animation.Animation;
 
+import dev.utils.app.ClickUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.helper.quick.QuickHelper;
@@ -155,6 +156,10 @@ public final class DevHelper
         HandlerUtils.removeRunnable(runnable);
         return this;
     }
+
+    // ================
+    // = IHelperByDev =
+    // ================
 
     // ==================
     // = AnimationUtils =
@@ -338,4 +343,103 @@ public final class DevHelper
         );
         return this;
     }
+
+    // ==============
+    // = ClickUtils =
+    // ==============
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param range 点击范围
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper addTouchArea(
+            int range,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ClickUtils.addTouchArea(value, range), views
+        );
+        return this;
+    }
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param left   left range
+     * @param top    top range
+     * @param right  right range
+     * @param bottom bottom range
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper addTouchArea(
+            int left,
+            int top,
+            int right,
+            int bottom,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ClickUtils.addTouchArea(value, left, top, right, bottom), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置点击事件
+     * @param listener {@link View.OnClickListener}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper setOnClick(
+            View.OnClickListener listener,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ClickUtils.setOnClick(value, listener), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置长按事件
+     * @param listener {@link View.OnLongClickListener}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper setOnLongClick(
+            View.OnLongClickListener listener,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ClickUtils.setOnLongClick(value, listener), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置触摸事件
+     * @param listener {@link View.OnTouchListener}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public DevHelper setOnTouch(
+            View.OnTouchListener listener,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ClickUtils.setOnTouch(value, listener), views
+        );
+        return this;
+    }
+
+    // ==================
+    // = ClipboardUtils =
+    // ==================
 }
