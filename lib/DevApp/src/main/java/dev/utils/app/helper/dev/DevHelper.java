@@ -1,5 +1,6 @@
 package dev.utils.app.helper.dev;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Notification;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.RequiresPermission;
 import androidx.fragment.app.DialogFragment;
 
 import java.io.Closeable;
@@ -31,16 +33,23 @@ import dev.utils.app.ClipboardUtils;
 import dev.utils.app.DialogUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
+import dev.utils.app.LanguageUtils;
+import dev.utils.app.NotificationUtils;
+import dev.utils.app.PhoneUtils;
+import dev.utils.app.PowerManagerUtils;
+import dev.utils.app.ScreenUtils;
 import dev.utils.app.SizeUtils;
+import dev.utils.app.VibrationUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.WidgetUtils;
 import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.timer.DevTimer;
 import dev.utils.app.timer.TimerManager;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.ForUtils;
-import dev.utils.common.assist.TimeKeeper;
 
 /**
  * detail: Dev 工具类链式调用 Helper 类
@@ -58,10 +67,8 @@ public final class DevHelper
     private DevHelper() {
     }
 
-    // TimeKeeper
-    private final        TimeKeeper mTimeKeeper = new TimeKeeper();
     // DevHelper
-    private static final DevHelper  HELPER      = new DevHelper();
+    private static final DevHelper HELPER = new DevHelper();
 
     /**
      * 获取单例 DevHelper
@@ -898,6 +905,9 @@ public final class DevHelper
             Activity activity,
             boolean inputVisible
     ) {
+        KeyBoardUtils.setSoftInputMode(
+                activity, inputVisible
+        );
         return this;
     }
 
@@ -912,6 +922,9 @@ public final class DevHelper
             Window window,
             boolean inputVisible
     ) {
+        KeyBoardUtils.setSoftInputMode(
+                window, inputVisible
+        );
         return this;
     }
 
@@ -928,6 +941,9 @@ public final class DevHelper
             boolean inputVisible,
             boolean clearFlag
     ) {
+        KeyBoardUtils.setSoftInputMode(
+                activity, inputVisible, clearFlag
+        );
         return this;
     }
 
@@ -944,6 +960,9 @@ public final class DevHelper
             boolean inputVisible,
             boolean clearFlag
     ) {
+        KeyBoardUtils.setSoftInputMode(
+                window, inputVisible, clearFlag
+        );
         return this;
     }
 
@@ -962,6 +981,9 @@ public final class DevHelper
             View view,
             Activity activity
     ) {
+        KeyBoardUtils.judgeView(
+                view, activity
+        );
         return this;
     }
 
@@ -980,6 +1002,9 @@ public final class DevHelper
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
+        KeyBoardUtils.registerSoftInputChangedListener(
+                activity, listener
+        );
         return this;
     }
 
@@ -994,6 +1019,9 @@ public final class DevHelper
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
+        KeyBoardUtils.registerSoftInputChangedListener2(
+                activity, listener
+        );
         return this;
     }
 
@@ -1004,6 +1032,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper fixSoftInputLeaks(Context context) {
+        KeyBoardUtils.fixSoftInputLeaks(context);
         return this;
     }
 
@@ -1021,6 +1050,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper toggleKeyboard() {
+        KeyBoardUtils.toggleKeyboard();
         return this;
     }
 
@@ -1034,6 +1064,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboard() {
+        KeyBoardUtils.openKeyboard();
         return this;
     }
 
@@ -1043,6 +1074,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboardDelay() {
+        KeyBoardUtils.openKeyboardDelay();
         return this;
     }
 
@@ -1053,6 +1085,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboardDelay(long delayMillis) {
+        KeyBoardUtils.openKeyboardDelay(delayMillis);
         return this;
     }
 
@@ -1063,6 +1096,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboard(EditText editText) {
+        KeyBoardUtils.openKeyboard(editText);
         return this;
     }
 
@@ -1073,6 +1107,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboardDelay(EditText editText) {
+        KeyBoardUtils.openKeyboardDelay(editText);
         return this;
     }
 
@@ -1087,6 +1122,9 @@ public final class DevHelper
             EditText editText,
             long delayMillis
     ) {
+        KeyBoardUtils.openKeyboardDelay(
+                editText, delayMillis
+        );
         return this;
     }
 
@@ -1097,6 +1135,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper openKeyboardByFocus(EditText editText) {
+        KeyBoardUtils.openKeyboardByFocus(editText);
         return this;
     }
 
@@ -1110,6 +1149,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboard() {
+        KeyBoardUtils.closeKeyboard();
         return this;
     }
 
@@ -1120,6 +1160,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboard(EditText editText) {
+        KeyBoardUtils.closeKeyboard(editText);
         return this;
     }
 
@@ -1130,6 +1171,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboard(Activity activity) {
+        KeyBoardUtils.closeKeyboard(activity);
         return this;
     }
 
@@ -1140,6 +1182,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboard(Dialog dialog) {
+        KeyBoardUtils.closeKeyboard(dialog);
         return this;
     }
 
@@ -1154,6 +1197,9 @@ public final class DevHelper
             EditText editText,
             Dialog dialog
     ) {
+        KeyBoardUtils.closeKeyBoardSpecial(
+                editText, dialog
+        );
         return this;
     }
 
@@ -1172,6 +1218,9 @@ public final class DevHelper
             EditText editText,
             Dialog dialog
     ) {
+        KeyBoardUtils.closeKeyBoardSpecialDelay(
+                editText, dialog
+        );
         return this;
     }
 
@@ -1188,6 +1237,9 @@ public final class DevHelper
             Dialog dialog,
             long delayMillis
     ) {
+        KeyBoardUtils.closeKeyBoardSpecialDelay(
+                editText, dialog, delayMillis
+        );
         return this;
     }
 
@@ -1197,6 +1249,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboardDelay() {
+        KeyBoardUtils.closeKeyboardDelay();
         return this;
     }
 
@@ -1207,6 +1260,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboardDelay(long delayMillis) {
+        KeyBoardUtils.closeKeyboardDelay(delayMillis);
         return this;
     }
 
@@ -1217,6 +1271,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboardDelay(EditText editText) {
+        KeyBoardUtils.closeKeyboardDelay(editText);
         return this;
     }
 
@@ -1231,6 +1286,9 @@ public final class DevHelper
             EditText editText,
             long delayMillis
     ) {
+        KeyBoardUtils.closeKeyboardDelay(
+                editText, delayMillis
+        );
         return this;
     }
 
@@ -1241,6 +1299,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboardDelay(Activity activity) {
+        KeyBoardUtils.closeKeyboardDelay(activity);
         return this;
     }
 
@@ -1255,6 +1314,9 @@ public final class DevHelper
             Activity activity,
             long delayMillis
     ) {
+        KeyBoardUtils.closeKeyboardDelay(
+                activity, delayMillis
+        );
         return this;
     }
 
@@ -1265,6 +1327,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeKeyboardDelay(Dialog dialog) {
+        KeyBoardUtils.closeKeyboardDelay(dialog);
         return this;
     }
 
@@ -1279,6 +1342,9 @@ public final class DevHelper
             Dialog dialog,
             long delayMillis
     ) {
+        KeyBoardUtils.closeKeyboardDelay(
+                dialog, delayMillis
+        );
         return this;
     }
 
@@ -1297,6 +1363,9 @@ public final class DevHelper
             Context context,
             Locale locale
     ) {
+        LanguageUtils.applyLanguage(
+                context, locale
+        );
         return this;
     }
 
@@ -1311,6 +1380,9 @@ public final class DevHelper
             Context context,
             String language
     ) {
+        LanguageUtils.applyLanguage(
+                context, language
+        );
         return this;
     }
 
@@ -1327,6 +1399,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper cancelAllNotification() {
+        NotificationUtils.cancelAll();
         return this;
     }
 
@@ -1340,6 +1413,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper cancelNotification(int... args) {
+        NotificationUtils.cancel(args);
         return this;
     }
 
@@ -1357,6 +1431,7 @@ public final class DevHelper
             String tag,
             int id
     ) {
+        NotificationUtils.cancel(tag, id);
         return this;
     }
 
@@ -1371,6 +1446,7 @@ public final class DevHelper
             int id,
             Notification notification
     ) {
+        NotificationUtils.notify(id, notification);
         return this;
     }
 
@@ -1387,6 +1463,9 @@ public final class DevHelper
             int id,
             Notification notification
     ) {
+        NotificationUtils.notify(
+                tag, id, notification
+        );
         return this;
     }
 
@@ -1397,6 +1476,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper createNotificationChannel(NotificationChannel channel) {
+        NotificationUtils.createNotificationChannel(channel);
         return this;
     }
 
@@ -1411,6 +1491,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper dial(String phoneNumber) {
+        PhoneUtils.dial(phoneNumber);
         return this;
     }
 
@@ -1421,6 +1502,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper call(String phoneNumber) {
+        PhoneUtils.call(phoneNumber);
         return this;
     }
 
@@ -1435,6 +1517,7 @@ public final class DevHelper
             String phoneNumber,
             String content
     ) {
+        PhoneUtils.sendSms(phoneNumber, content);
         return this;
     }
 
@@ -1449,6 +1532,7 @@ public final class DevHelper
             String phoneNumber,
             String content
     ) {
+        PhoneUtils.sendSmsSilent(phoneNumber, content);
         return this;
     }
 
@@ -1463,6 +1547,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setBright(Activity activity) {
+        PowerManagerUtils.setBright(activity);
         return this;
     }
 
@@ -1473,6 +1558,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setBright(Window window) {
+        PowerManagerUtils.setBright(window);
         return this;
     }
 
@@ -1487,6 +1573,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setWindowSecure(Activity activity) {
+        ScreenUtils.setWindowSecure(activity);
         return this;
     }
 
@@ -1497,6 +1584,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setFullScreen(Activity activity) {
+        ScreenUtils.setFullScreen(activity);
         return this;
     }
 
@@ -1510,6 +1598,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setFullScreenNoTitle(Activity activity) {
+        ScreenUtils.setFullScreenNoTitle(activity);
         return this;
     }
 
@@ -1530,6 +1619,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setLandscape(Activity activity) {
+        ScreenUtils.setLandscape(activity);
         return this;
     }
 
@@ -1540,6 +1630,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setPortrait(Activity activity) {
+        ScreenUtils.setPortrait(activity);
         return this;
     }
 
@@ -1550,6 +1641,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper toggleScreenOrientation(Activity activity) {
+        ScreenUtils.toggleScreenOrientation(activity);
         return this;
     }
 
@@ -1560,6 +1652,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper setSleepDuration(int duration) {
+        ScreenUtils.setSleepDuration(duration);
         return this;
     }
 
@@ -1592,6 +1685,9 @@ public final class DevHelper
             View view,
             SizeUtils.OnGetSizeListener listener
     ) {
+        SizeUtils.forceGetViewSize(
+                view, listener
+        );
         return this;
     }
 
@@ -1604,8 +1700,10 @@ public final class DevHelper
      * @param millis 震动时长 ( 毫秒 )
      * @return Helper
      */
+    @RequiresPermission(Manifest.permission.VIBRATE)
     @Override
     public DevHelper vibrate(long millis) {
+        VibrationUtils.vibrate(millis);
         return this;
     }
 
@@ -1616,11 +1714,13 @@ public final class DevHelper
      *                -1 表示只震动一次, 非 -1 表示从 pattern 数组指定下标开始重复震动
      * @return Helper
      */
+    @RequiresPermission(Manifest.permission.VIBRATE)
     @Override
     public DevHelper vibrate(
             long[] pattern,
             int repeat
     ) {
+        VibrationUtils.vibrate(pattern, repeat);
         return this;
     }
 
@@ -1628,8 +1728,10 @@ public final class DevHelper
      * 取消震动
      * @return Helper
      */
+    @RequiresPermission(Manifest.permission.VIBRATE)
     @Override
     public DevHelper cancelVibrate() {
+        VibrationUtils.cancel();
         return this;
     }
 
@@ -1648,6 +1750,9 @@ public final class DevHelper
             View view,
             ViewUtils.OnWHListener listener
     ) {
+        ViewUtils.getWidthHeightExact(
+                view, listener
+        );
         return this;
     }
 
@@ -1662,6 +1767,9 @@ public final class DevHelper
             View view,
             ViewUtils.OnWHListener listener
     ) {
+        ViewUtils.getWidthHeightExact2(
+                view, listener
+        );
         return this;
     }
 
@@ -1680,6 +1788,9 @@ public final class DevHelper
             View view,
             int specifiedWidth
     ) {
+        WidgetUtils.measureView(
+                view, specifiedWidth
+        );
         return this;
     }
 
@@ -1696,6 +1807,9 @@ public final class DevHelper
             int specifiedWidth,
             int specifiedHeight
     ) {
+        WidgetUtils.measureView(
+                view, specifiedWidth, specifiedHeight
+        );
         return this;
     }
 
@@ -1709,7 +1823,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper closeIO(final Closeable... closeables) {
+    public DevHelper closeIO(Closeable... closeables) {
+        CloseUtils.closeIO(closeables);
         return this;
     }
 
@@ -1719,7 +1834,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper closeIOQuietly(final Closeable... closeables) {
+    public DevHelper closeIOQuietly(Closeable... closeables) {
+        CloseUtils.closeIOQuietly(closeables);
         return this;
     }
 
@@ -1729,7 +1845,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flush(final Flushable... flushables) {
+    public DevHelper flush(Flushable... flushables) {
+        CloseUtils.flush(flushables);
         return this;
     }
 
@@ -1739,7 +1856,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flushQuietly(final Flushable... flushables) {
+    public DevHelper flushQuietly(Flushable... flushables) {
+        CloseUtils.flushQuietly(flushables);
         return this;
     }
 
@@ -1749,7 +1867,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flushCloseIO(final OutputStream outputStream) {
+    public DevHelper flushCloseIO(OutputStream outputStream) {
+        CloseUtils.flushCloseIO(outputStream);
         return this;
     }
 
@@ -1759,7 +1878,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flushCloseIOQuietly(final OutputStream outputStream) {
+    public DevHelper flushCloseIOQuietly(OutputStream outputStream) {
+        CloseUtils.flushCloseIOQuietly(outputStream);
         return this;
     }
 
@@ -1769,7 +1889,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flushCloseIO(final Writer writer) {
+    public DevHelper flushCloseIO(Writer writer) {
+        CloseUtils.flushCloseIO(writer);
         return this;
     }
 
@@ -1779,7 +1900,8 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper flushCloseIOQuietly(final Writer writer) {
+    public DevHelper flushCloseIOQuietly(Writer writer) {
+        CloseUtils.flushCloseIOQuietly(writer);
         return this;
     }
 }

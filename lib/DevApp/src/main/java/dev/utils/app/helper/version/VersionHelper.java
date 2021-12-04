@@ -49,7 +49,7 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
  * </pre>
  */
-public class VersionHelper
+public final class VersionHelper
         implements IHelperByVersion {
 
     private VersionHelper() {

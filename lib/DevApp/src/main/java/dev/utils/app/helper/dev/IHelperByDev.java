@@ -1124,54 +1124,54 @@ public interface IHelperByDev<T>
      * @param closeables Closeable[]
      * @return Helper
      */
-    T closeIO(final Closeable... closeables);
+    T closeIO(Closeable... closeables);
 
     /**
      * 安静关闭 IO
      * @param closeables Closeable[]
      * @return Helper
      */
-    T closeIOQuietly(final Closeable... closeables);
+    T closeIOQuietly(Closeable... closeables);
 
     /**
      * 将缓冲区数据输出
      * @param flushables Flushable[]
      * @return Helper
      */
-    T flush(final Flushable... flushables);
+    T flush(Flushable... flushables);
 
     /**
      * 安静将缓冲区数据输出
      * @param flushables Flushable[]
      * @return Helper
      */
-    T flushQuietly(final Flushable... flushables);
+    T flushQuietly(Flushable... flushables);
 
     /**
      * 将缓冲区数据输出并关闭流
      * @param outputStream {@link OutputStream}
      * @return Helper
      */
-    T flushCloseIO(final OutputStream outputStream);
+    T flushCloseIO(OutputStream outputStream);
 
     /**
      * 安静将缓冲区数据输出并关闭流
      * @param outputStream {@link OutputStream}
      * @return Helper
      */
-    T flushCloseIOQuietly(final OutputStream outputStream);
+    T flushCloseIOQuietly(OutputStream outputStream);
 
     /**
      * 将缓冲区数据输出并关闭流
      * @param writer {@link Writer}
      * @return Helper
      */
-    T flushCloseIO(final Writer writer);
+    T flushCloseIO(Writer writer);
 
     /**
      * 安静将缓冲区数据输出并关闭流
      * @param writer {@link Writer}
      * @return Helper
      */
-    T flushCloseIOQuietly(final Writer writer);
+    T flushCloseIOQuietly(Writer writer);
 }
