@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,8 @@ import java.io.Writer;
 import java.util.Locale;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.ClipboardUtils;
+import dev.utils.app.DialogUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.SizeUtils;
@@ -474,6 +477,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper copyText(CharSequence text) {
+        ClipboardUtils.copyText(text);
         return this;
     }
 
@@ -484,6 +488,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper copyUri(Uri uri) {
+        ClipboardUtils.copyUri(uri);
         return this;
     }
 
@@ -494,6 +499,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper copyIntent(Intent intent) {
+        ClipboardUtils.copyIntent(intent);
         return this;
     }
 
@@ -512,6 +518,11 @@ public final class DevHelper
             Dialog dialog,
             @ColorInt int color
     ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            DialogUtils.setStatusBarColor(
+                    dialog, color
+            );
+        }
         return this;
     }
 
@@ -526,6 +537,11 @@ public final class DevHelper
             Dialog dialog,
             @ColorInt int color
     ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            DialogUtils.setSemiTransparentStatusBarColor(
+                    dialog, color
+            );
+        }
         return this;
     }
 
@@ -542,6 +558,9 @@ public final class DevHelper
             @ColorInt int color,
             boolean addFlags
     ) {
+        DialogUtils.setStatusBarColor2(
+                dialog, color, addFlags
+        );
         return this;
     }
 
@@ -556,6 +575,9 @@ public final class DevHelper
             Dialog dialog,
             WindowManager.LayoutParams params
     ) {
+        DialogUtils.setAttributes(
+                dialog, params
+        );
         return this;
     }
 
@@ -570,6 +592,9 @@ public final class DevHelper
             Dialog dialog,
             int width
     ) {
+        DialogUtils.setWidth(
+                dialog, width
+        );
         return this;
     }
 
@@ -584,6 +609,9 @@ public final class DevHelper
             Dialog dialog,
             int height
     ) {
+        DialogUtils.setHeight(
+                dialog, height
+        );
         return this;
     }
 
@@ -600,6 +628,9 @@ public final class DevHelper
             int width,
             int height
     ) {
+        DialogUtils.setWidthHeight(
+                dialog, width, height
+        );
         return this;
     }
 
@@ -614,6 +645,9 @@ public final class DevHelper
             Dialog dialog,
             int x
     ) {
+        DialogUtils.setX(
+                dialog, x
+        );
         return this;
     }
 
@@ -628,6 +662,9 @@ public final class DevHelper
             Dialog dialog,
             int y
     ) {
+        DialogUtils.setY(
+                dialog, y
+        );
         return this;
     }
 
@@ -644,6 +681,9 @@ public final class DevHelper
             int x,
             int y
     ) {
+        DialogUtils.setXY(
+                dialog, x, y
+        );
         return this;
     }
 
@@ -658,6 +698,9 @@ public final class DevHelper
             Dialog dialog,
             int gravity
     ) {
+        DialogUtils.setGravity(
+                dialog, gravity
+        );
         return this;
     }
 
@@ -672,6 +715,9 @@ public final class DevHelper
             Dialog dialog,
             float dimAmount
     ) {
+        DialogUtils.setDimAmount(
+                dialog, dimAmount
+        );
         return this;
     }
 
@@ -686,6 +732,9 @@ public final class DevHelper
             Dialog dialog,
             boolean cancel
     ) {
+        DialogUtils.setCancelable(
+                dialog, cancel
+        );
         return this;
     }
 
@@ -700,6 +749,9 @@ public final class DevHelper
             Dialog dialog,
             boolean cancel
     ) {
+        DialogUtils.setCanceledOnTouchOutside(
+                dialog, cancel
+        );
         return this;
     }
 
@@ -714,6 +766,9 @@ public final class DevHelper
             Dialog dialog,
             boolean cancel
     ) {
+        DialogUtils.setCancelableAndTouchOutside(
+                dialog, cancel
+        );
         return this;
     }
 
@@ -728,6 +783,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper showDialog(Dialog dialog) {
+        DialogUtils.showDialog(dialog);
         return this;
     }
 
@@ -738,6 +794,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeDialogs(Dialog... dialogs) {
+        DialogUtils.closeDialogs(dialogs);
         return this;
     }
 
@@ -748,6 +805,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closeDialogs(DialogFragment... dialogs) {
+        DialogUtils.closeDialogs(dialogs);
         return this;
     }
 
@@ -758,6 +816,7 @@ public final class DevHelper
      */
     @Override
     public DevHelper closePopupWindows(PopupWindow... popupWindows) {
+        DialogUtils.closePopupWindows(popupWindows);
         return this;
     }
 
@@ -774,6 +833,11 @@ public final class DevHelper
             Handler handler,
             Dialog... dialogs
     ) {
+        ForUtils.forSimpleArgs(
+                value -> DialogUtils.autoCloseDialog(
+                        value, delayMillis, handler
+                ), dialogs
+        );
         return this;
     }
 
@@ -790,6 +854,11 @@ public final class DevHelper
             Handler handler,
             DialogFragment... dialogs
     ) {
+        ForUtils.forSimpleArgs(
+                value -> DialogUtils.autoCloseDialog(
+                        value, delayMillis, handler
+                ), dialogs
+        );
         return this;
     }
 
@@ -806,6 +875,11 @@ public final class DevHelper
             Handler handler,
             PopupWindow... popupWindows
     ) {
+        ForUtils.forSimpleArgs(
+                value -> DialogUtils.autoClosePopupWindow(
+                        value, delayMillis, handler
+                ), popupWindows
+        );
         return this;
     }
 
