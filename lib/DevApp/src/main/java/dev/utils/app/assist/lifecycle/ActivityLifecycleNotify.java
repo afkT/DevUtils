@@ -2,8 +2,6 @@ package dev.utils.app.assist.lifecycle;
 
 import android.app.Activity;
 
-import dev.DevUtils;
-
 /**
  * detail: Activity 生命周期 通知接口
  * @author Ttt
@@ -17,7 +15,7 @@ public interface ActivityLifecycleNotify {
      */
     void addOnAppStatusChangedListener(
             Object object,
-            DevUtils.OnAppStatusChangedListener listener
+            OnAppStatusChangedListener listener
     );
 
     /**
@@ -40,7 +38,7 @@ public interface ActivityLifecycleNotify {
      */
     void addOnActivityDestroyedListener(
             Activity activity,
-            DevUtils.OnActivityDestroyedListener listener
+            OnActivityDestroyedListener listener
     );
 
     /**
