@@ -28,7 +28,7 @@ public final class FloatingWindowManagerAssist2
     // 悬浮窗 View Map
     private final Map<String, View> mViewMaps = new HashMap<>();
     // 是否处理悬浮 View 添加操作
-    private       boolean           needsAdd  = true;
+    private       boolean           mNeedsAdd = true;
 
     // =============
     // = 对外公开方法 =
@@ -57,7 +57,7 @@ public final class FloatingWindowManagerAssist2
      */
     @Override
     public boolean addFloatingView(final IFloatingActivity floatingActivity) {
-        if (!needsAdd) return false;
+        if (!mNeedsAdd) return false;
         String key = getMapFloatingKey(floatingActivity);
         if (key != null) {
             View view = mViewMaps.get(key);
@@ -107,7 +107,7 @@ public final class FloatingWindowManagerAssist2
      */
     @Override
     public boolean isNeedsAdd() {
-        return needsAdd;
+        return mNeedsAdd;
     }
 
     /**
@@ -116,7 +116,7 @@ public final class FloatingWindowManagerAssist2
      */
     @Override
     public void setNeedsAdd(final boolean needsAdd) {
-        this.needsAdd = needsAdd;
+        this.mNeedsAdd = needsAdd;
     }
 
     // ==========

@@ -266,13 +266,28 @@ public final class NotificationUtils {
                     DevUtils.TAG + "_" + TAG,
                     NotificationManager.IMPORTANCE_HIGH
             );
-            if (create) {
+            if (create) createNotificationChannel(channel);
+            return channel;
+        }
+        return null;
+    }
+
+    /**
+     * 创建 NotificationChannel
+     * @param channel {@link NotificationChannel}
+     * @return {@link NotificationChannel}
+     */
+    public static NotificationChannel createNotificationChannel(final NotificationChannel channel) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (channel != null) {
                 getNotificationManager().createNotificationChannel(channel);
             }
             return channel;
         }
         return null;
     }
+
+    // =
 
     /**
      * 获取 PendingIntent
@@ -319,7 +334,7 @@ public final class NotificationUtils {
             String channelId = null;
             if (params.getChannel() != null) {
                 channelId = params.getChannel().getId();
-                getNotificationManager().createNotificationChannel(params.getChannel());
+                createNotificationChannel(params.getChannel());
             }
             if (TextUtils.isEmpty(channelId)) {
                 channelId = getNotificationChannel().getId();
