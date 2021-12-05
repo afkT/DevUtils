@@ -1,7 +1,7 @@
 
 ## Gradle
 
-```java
+```gradle
 implementation 'io.github.afkt:DevBase:1.0.7'
 ```
 

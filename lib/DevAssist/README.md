@@ -1,7 +1,7 @@
 
 ## Gradle
 
-```java
+```gradle
 implementation 'io.github.afkt:DevAssist:1.2.8'
 ```
 

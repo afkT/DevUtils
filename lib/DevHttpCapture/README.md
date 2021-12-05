@@ -1,7 +1,7 @@
 
 ## Gradle
 
-```java
+```gradle
 implementation 'io.github.afkt:DevHttpCapture:1.0.4'
 ```
 

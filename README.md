@@ -92,7 +92,7 @@
 
 ## Dev 系列全部 Lib Gradle
 
-```java
+```gradle
 
 // DevApp Android 工具类库
 implementation 'io.github.afkt:DevAppX:2.3.0'
