@@ -16,7 +16,6 @@ import dev.engine.barcode.IBarCodeEngine;
 import dev.engine.barcode.listener.BarCodeDecodeCallback;
 import dev.engine.barcode.listener.BarCodeEncodeCallback;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.StringUtils;
 import dev.utils.common.thread.DevThreadPool;
 
 /**

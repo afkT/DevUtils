@@ -6,7 +6,6 @@ import android.text.TextUtils
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.PathUtils
 import dev.utils.common.FileUtils
-import dev.utils.common.StringUtils
 import java.io.File
 
 /**
