@@ -39,6 +39,9 @@ public final class PermissionUtils {
     // 日志 TAG
     private static final String TAG = PermissionUtils.class.getSimpleName();
 
+    // 权限 Activity.class name
+    public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.permission.PermissionUtils$PermissionActivity";
+
     /**
      * 判断是否授予了权限
      * @param permissions 待判断权限

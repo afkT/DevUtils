@@ -19,10 +19,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.KeyBoardUtils;
+import dev.utils.app.permission.PermissionUtils;
 
 /**
  * detail: Activity 生命周期辅助类
  * @author Ttt
+ * <pre>
+ *     必须主动调用 {@link #registerActivityLifecycleCallbacks()} 方法进行注册监听
+ * </pre>
  */
 public final class ActivityLifecycleAssist {
 
@@ -30,7 +34,7 @@ public final class ActivityLifecycleAssist {
     private static final String TAG = ActivityLifecycleAssist.class.getSimpleName();
 
     // Application 对象
-    private Application mApplication;
+    private final Application mApplication;
 
     // ==========
     // = 构造函数 =
@@ -67,50 +71,6 @@ public final class ActivityLifecycleAssist {
         return null;
     }
 
-    // ================
-    // = Activity 监听 =
-    // ================
-
-    // ActivityLifecycleCallbacks 实现类, 监听 Activity
-    private static final ActivityLifecycleImpl   ACTIVITY_LIFECYCLE             = new ActivityLifecycleImpl();
-    // Activity 过滤判断接口
-    private static       ActivityLifecycleFilter sActivityLifecycleFilter;
-    // 权限 Activity.class name
-    public static final  String                  PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.permission.PermissionUtils$PermissionActivity";
-
-    /**
-     * 注册绑定 Activity 生命周期事件处理
-     * @param application {@link Application}
-     */
-    private static void registerActivityLifecycleCallbacks(final Application application) {
-        // 先移除监听
-        unregisterActivityLifecycleCallbacks(application);
-        // 防止为 null
-        if (application != null) {
-            try {
-                // 绑定新的监听
-                application.registerActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "registerActivityLifecycleCallbacks");
-            }
-        }
-    }
-
-    /**
-     * 解除注册 Activity 生命周期事件处理
-     * @param application {@link Application}
-     */
-    private static void unregisterActivityLifecycleCallbacks(final Application application) {
-        if (application != null) {
-            try {
-                // 先移除旧的监听
-                application.unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "unregisterActivityLifecycleCallbacks");
-            }
-        }
-    }
-
     // =============
     // = 对外公开方法 =
     // =============
@@ -119,7 +79,7 @@ public final class ActivityLifecycleAssist {
      * 获取 Activity 生命周期 相关信息获取接口类
      * @return {@link ActivityLifecycleGet}
      */
-    public static ActivityLifecycleGet getActivityLifecycleGet() {
+    public ActivityLifecycleGet getActivityLifecycleGet() {
         return ACTIVITY_LIFECYCLE;
     }
 
@@ -127,7 +87,7 @@ public final class ActivityLifecycleAssist {
      * 获取 Activity 生命周期 事件监听接口类
      * @return {@link ActivityLifecycleNotify}
      */
-    public static ActivityLifecycleNotify getActivityLifecycleNotify() {
+    public ActivityLifecycleNotify getActivityLifecycleNotify() {
         return ACTIVITY_LIFECYCLE;
     }
 
@@ -135,7 +95,7 @@ public final class ActivityLifecycleAssist {
      * 获取 Top Activity
      * @return {@link Activity}
      */
-    public static Activity getTopActivity() {
+    public Activity getTopActivity() {
         return ACTIVITY_LIFECYCLE.getTopActivity();
     }
 
@@ -143,19 +103,79 @@ public final class ActivityLifecycleAssist {
      * 设置 Activity 生命周期 过滤判断接口
      * @param activityLifecycleFilter Activity 过滤判断接口
      */
-    public static void setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
-        sActivityLifecycleFilter = activityLifecycleFilter;
+    public void setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
+        this.mActivityLifecycleFilter = activityLifecycleFilter;
     }
 
-    // ==========
-    // = 接口相关 =
-    // ==========
+    /**
+     * 设置 ActivityLifecycle 监听回调
+     * @param abstractActivityLifecycle Activity 生命周期监听类
+     */
+    public void setAbstractActivityLifecycle(final AbstractActivityLifecycle abstractActivityLifecycle) {
+        this.mAbstractActivityLifecycle = abstractActivityLifecycle;
+    }
+
+    /**
+     * 注册绑定 Activity 生命周期事件处理
+     */
+    public void registerActivityLifecycleCallbacks() {
+        // 先移除监听
+        unregisterActivityLifecycleCallbacks();
+        if (mApplication != null) {
+            try {
+                mApplication.registerActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "registerActivityLifecycleCallbacks");
+            }
+        }
+    }
+
+    /**
+     * 解除注册 Activity 生命周期事件处理
+     */
+    public void unregisterActivityLifecycleCallbacks() {
+        if (mApplication != null) {
+            try {
+                mApplication.unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "unregisterActivityLifecycleCallbacks");
+            }
+        }
+    }
+
+    // ================
+    // = Activity 监听 =
+    // ================
+
+    // Activity 过滤判断接口
+    private       ActivityLifecycleFilter   mActivityLifecycleFilter;
+    // ActivityLifecycleCallbacks 抽象类
+    private       AbstractActivityLifecycle mAbstractActivityLifecycle;
+    // ActivityLifecycleCallbacks 实现类, 监听 Activity
+    private final ActivityLifecycleImpl     ACTIVITY_LIFECYCLE        = new ActivityLifecycleImpl();
+    // 内部 Activity 生命周期过滤处理
+    private final ActivityLifecycleFilter   ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
+        @Override
+        public boolean filter(Activity activity) {
+            if (activity != null) {
+                if (PermissionUtils.PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())) {
+                    // 如果相同则不处理 ( 该页面为内部权限框架, 申请权限页面 )
+                    return true;
+                } else {
+                    if (mActivityLifecycleFilter != null) {
+                        return mActivityLifecycleFilter.filter(activity);
+                    }
+                }
+            }
+            return false;
+        }
+    };
 
     /**
      * detail: 对 Activity 的生命周期事件进行集中处理, ActivityLifecycleCallbacks 实现方法
      * @author Ttt
      */
-    private static class ActivityLifecycleImpl
+    private class ActivityLifecycleImpl
             implements Application.ActivityLifecycleCallbacks,
             ActivityLifecycleGet,
             ActivityLifecycleNotify {
@@ -185,8 +205,8 @@ public final class ActivityLifecycleAssist {
         ) {
             setTopActivity(activity);
 
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityCreated(activity, savedInstanceState);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityCreated(activity, savedInstanceState);
             }
         }
 
@@ -201,8 +221,8 @@ public final class ActivityLifecycleAssist {
                 ++mForegroundCount;
             }
 
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityStarted(activity);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityStarted(activity);
             }
         }
 
@@ -215,15 +235,15 @@ public final class ActivityLifecycleAssist {
                 postStatus(true);
             }
 
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityResumed(activity);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityResumed(activity);
             }
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityPaused(activity);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityPaused(activity);
             }
         }
 
@@ -240,8 +260,8 @@ public final class ActivityLifecycleAssist {
                 }
             }
 
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityStopped(activity);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityStopped(activity);
             }
         }
 
@@ -250,8 +270,8 @@ public final class ActivityLifecycleAssist {
                 Activity activity,
                 Bundle outState
         ) {
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivitySaveInstanceState(activity, outState);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivitySaveInstanceState(activity, outState);
             }
         }
 
@@ -263,8 +283,8 @@ public final class ActivityLifecycleAssist {
             // 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用
             KeyBoardUtils.fixSoftInputLeaks(activity);
 
-            if (sAbstractActivityLifecycle != null) {
-                sAbstractActivityLifecycle.onActivityDestroyed(activity);
+            if (mAbstractActivityLifecycle != null) {
+                mAbstractActivityLifecycle.onActivityDestroyed(activity);
             }
         }
 
@@ -509,40 +529,5 @@ public final class ActivityLifecycleAssist {
             // 移除已消费的事件
             removeOnActivityDestroyedListener(activity);
         }
-    }
-
-    // ==========
-    // = 接口实现 =
-    // ==========
-
-    // 内部 Activity 生命周期过滤处理
-    private static final ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
-        @Override
-        public boolean filter(Activity activity) {
-            if (activity != null) {
-                if (PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())) {
-                    // 如果相同则不处理 ( 该页面为内部权限框架, 申请权限页面 )
-                    return true;
-                } else {
-                    if (sActivityLifecycleFilter != null) {
-                        return sActivityLifecycleFilter.filter(activity);
-                    }
-                }
-            }
-            return false;
-        }
-    };
-
-    // =
-
-    // ActivityLifecycleCallbacks 抽象类
-    private static AbstractActivityLifecycle sAbstractActivityLifecycle;
-
-    /**
-     * 设置 ActivityLifecycle 监听回调
-     * @param abstractActivityLifecycle Activity 生命周期监听类
-     */
-    public static void setAbstractActivityLifecycle(final AbstractActivityLifecycle abstractActivityLifecycle) {
-        sAbstractActivityLifecycle = abstractActivityLifecycle;
     }
 }
