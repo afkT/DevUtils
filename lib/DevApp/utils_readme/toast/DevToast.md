@@ -86,7 +86,7 @@ DevToast.reset();
 ```
 
 
-#### 使用方法
+#### 使用示例
 ```java
 // 显示 Toast
 DevToast.show(view);

@@ -13,7 +13,7 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.4'
 ```
 
 
-## 使用
+## 功能介绍
 
 > 该库主要对使用 Okhttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
 >

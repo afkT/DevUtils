@@ -121,7 +121,7 @@ ToastTintUtils.reset();
 ```
 
 
-#### 使用方法
+#### 使用示例
 ```java
 // 显示 Success 样式 Toast
 ToastTintUtils.success("Success Style Toast");

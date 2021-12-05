@@ -53,7 +53,7 @@ module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.5-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.5-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.5-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 
 
-### 使用方法
+### Gradle
 
 ```groovy
 dependencies {
@@ -320,11 +320,11 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md) 技术链接
 
 
-### 使用示例参考
+### 示例参考
 
-DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/constants/http/HttpConstants.java)
+DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/constants/http/HttpConstants.kt)
 
-DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
+DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.kt)
 
 > 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 

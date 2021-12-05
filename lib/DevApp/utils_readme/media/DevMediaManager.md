@@ -89,7 +89,7 @@
 | getPlayPercent | 获取播放进度百分比 |
 
 
-#### 使用方法
+#### 使用示例
 ```java
 // 设置 TAG, 打印日志使用
 DevMediaManager.getInstance().setTAG(TAG);

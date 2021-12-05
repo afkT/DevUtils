@@ -33,7 +33,7 @@
 | onStopped | 关闭热点回调 |
 | onFailed | 失败回调 |
 
-#### 使用方法
+#### 使用示例
 ```java
 // 所需权限
 // <uses-permission android:name="android.permission.WRITE_SETTINGS"/>

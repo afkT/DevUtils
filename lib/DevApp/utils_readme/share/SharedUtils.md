@@ -37,7 +37,7 @@
 | getString | 获取 String 类型的数据 |
 | getSet | 获取 Set 类型的数据 |
 
-#### 使用方法
+#### 使用示例
 ```java
 // 具体实现方法 基于 PreferenceImpl 实现
 

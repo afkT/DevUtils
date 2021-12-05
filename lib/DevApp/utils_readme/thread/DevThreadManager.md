@@ -37,7 +37,7 @@
 | scheduleWithFixedRate | 延迟并循环执行命令 |
 | scheduleWithFixedDelay | 延迟并以固定休息时间循环执行命令 |
 
-#### 使用方法
+#### 使用示例
 ```java
 Runnable runnable = new Runnable() {
     @Override

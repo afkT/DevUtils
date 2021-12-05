@@ -70,7 +70,7 @@
 | closeAllUUID | 关闭所有对应 UUID 定时器 |
 
 
-#### 使用方法
+#### 使用示例
 ```java
 DevTimer timer = new DevTimer.Builder(1500L)
         .setDelay(100L) // 延迟时间 ( 多少毫秒后开始执行 )

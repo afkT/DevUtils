@@ -64,7 +64,7 @@
 | isJSONObject | isJSONObject |
 | isJSONArray | isJSONArray |
 
-#### 使用方法
+#### 使用示例
 ```java
 // 初始化
 CacheVo cacheVo = new CacheVo("测试持久化");
