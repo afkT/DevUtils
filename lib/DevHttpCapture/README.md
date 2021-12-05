@@ -13,13 +13,39 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.4'
 ```
 
 
-## 功能介绍
+## 库功能介绍
 
 > 该库主要对使用 Okhttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
 >
 > **并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能**，支持实时开关抓包功能、可控 Http 拦截过滤器。
 >
 > 内置两个 Http 抓包拦截器，CallbackInterceptor ( 无存储逻辑，进行回调通知 )、HttpCaptureInterceptor ( 存在存储抓包数据逻辑 )
+
+### 使用示例
+
+```java
+// 添加 Http 抓包拦截处理
+DevHttpCapture.addInterceptor(
+    OkHttpClient.Builder, moduleName
+);
+
+// 添加 Http 抓包拦截处理
+DevHttpCapture.addInterceptor(
+    OkHttpClient.Builder, moduleName, isCapture
+);
+
+// 添加 Http 抓包拦截处理
+DevHttpCapture.addInterceptor(
+    OkHttpClient.Builder, moduleName,
+    encrypt, httpFilter, isCapture
+);
+
+// 移除对应 Module Http 抓包拦截
+DevHttpCapture.removeInterceptor(moduleName);
+
+// 更新对应 Module Http 抓包拦截处理
+DevHttpCapture.updateInterceptor(moduleName, isCapture);
+```
 
 ## 事项
 
