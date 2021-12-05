@@ -102,23 +102,28 @@ public final class ActivityLifecycleAssist {
     /**
      * 设置 Activity 生命周期 过滤判断接口
      * @param activityLifecycleFilter Activity 过滤判断接口
+     * @return {@link ActivityLifecycleAssist}
      */
-    public void setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
+    public ActivityLifecycleAssist setActivityLifecycleFilter(final ActivityLifecycleFilter activityLifecycleFilter) {
         this.mActivityLifecycleFilter = activityLifecycleFilter;
+        return this;
     }
 
     /**
      * 设置 ActivityLifecycle 监听回调
      * @param abstractActivityLifecycle Activity 生命周期监听类
+     * @return {@link ActivityLifecycleAssist}
      */
-    public void setAbstractActivityLifecycle(final AbstractActivityLifecycle abstractActivityLifecycle) {
+    public ActivityLifecycleAssist setAbstractActivityLifecycle(final AbstractActivityLifecycle abstractActivityLifecycle) {
         this.mAbstractActivityLifecycle = abstractActivityLifecycle;
+        return this;
     }
 
     /**
      * 注册绑定 Activity 生命周期事件处理
+     * @return {@link ActivityLifecycleAssist}
      */
-    public void registerActivityLifecycleCallbacks() {
+    public ActivityLifecycleAssist registerActivityLifecycleCallbacks() {
         // 先移除监听
         unregisterActivityLifecycleCallbacks();
         if (mApplication != null) {
@@ -128,12 +133,14 @@ public final class ActivityLifecycleAssist {
                 LogPrintUtils.eTag(TAG, e, "registerActivityLifecycleCallbacks");
             }
         }
+        return this;
     }
 
     /**
      * 解除注册 Activity 生命周期事件处理
+     * @return {@link ActivityLifecycleAssist}
      */
-    public void unregisterActivityLifecycleCallbacks() {
+    public ActivityLifecycleAssist unregisterActivityLifecycleCallbacks() {
         if (mApplication != null) {
             try {
                 mApplication.unregisterActivityLifecycleCallbacks(ACTIVITY_LIFECYCLE);
@@ -141,6 +148,7 @@ public final class ActivityLifecycleAssist {
                 LogPrintUtils.eTag(TAG, e, "unregisterActivityLifecycleCallbacks");
             }
         }
+        return this;
     }
 
     // ================
