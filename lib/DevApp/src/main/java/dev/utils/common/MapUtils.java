@@ -1335,7 +1335,7 @@ public final class MapUtils {
                 builder.append(ConvertUtils.toString(entry.getValue()));
                 // 如果还有下一行则追加换行
                 if (iterator.hasNext()) {
-                    builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
             }
         }

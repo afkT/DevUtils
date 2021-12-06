@@ -288,7 +288,7 @@ public final class JCLogUtils {
                         errorInfo = e1.toString();
                     }
                 }
-                printLog(ERROR, tag, errorInfo + DevFinal.SYMBOL.NEW_LINE_STR + xml);
+                printLog(ERROR, tag, errorInfo + DevFinal.SYMBOL.NEW_LINE + xml);
             }
         }
     }

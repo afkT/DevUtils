@@ -94,29 +94,29 @@ public class AppRecordInsert
         // = 拼接数据 =
         // ==========
 
-        return DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+        return DevFinal.SYMBOL.NEW_LINE_X2 +
                 "[设备信息]" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 "===========================" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 DEVICE_INFO_STR +
-                DevFinal.SYMBOL.NEW_LINE_STR +
+                DevFinal.SYMBOL.NEW_LINE +
                 "===========================" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X4 +
+                DevFinal.SYMBOL.NEW_LINE_X4 +
                 "[版本信息]" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 "===========================" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 "versionName: " + APP_VERSION_NAME +
-                DevFinal.SYMBOL.NEW_LINE_STR +
+                DevFinal.SYMBOL.NEW_LINE +
                 "versionCode: " + APP_VERSION_CODE +
-                DevFinal.SYMBOL.NEW_LINE_STR +
+                DevFinal.SYMBOL.NEW_LINE +
                 "package: " + PACKAGE_NAME +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 "===========================" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X4 +
+                DevFinal.SYMBOL.NEW_LINE_X4 +
                 "[日志内容]" +
-                DevFinal.SYMBOL.NEW_LINE_STR_X2 +
+                DevFinal.SYMBOL.NEW_LINE_X2 +
                 "===========================";
     }
 }

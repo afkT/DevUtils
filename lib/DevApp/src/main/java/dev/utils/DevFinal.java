@@ -16,30 +16,30 @@ public final class DevFinal {
     public static final class SYMBOL {
 
         // 空格 字符串
-        public static final String SPACE_STR       = " ";
+        public static final String SPACE       = " ";
         // TAB 字符串
-        public static final String TAB_STR         = "\t";
+        public static final String TAB         = "\t";
         // 回车 ( CR ) 字符串
-        public static final String CR_STR          = "\r";
+        public static final String CR          = "\r";
         // 换行 ( \n ) 字符串 ( single newline ('\n') character )
-        public static final String NL_STR          = "\n";
-        public static final char   NL_CHAR         = '\n';
+        public static final String NL          = "\n";
+        public static final char   NL_CHAR     = '\n';
         // 点 字符串
-        public static final String DOT_STR         = ".";
+        public static final String DOT         = ".";
         // 横杠 字符串
-        public static final String DASH_STR        = "-";
+        public static final String DASH        = "-";
         // 反斜杠 字符串
-        public static final String BACKSLASH_STR   = "\\";
+        public static final String BACKSLASH   = "\\";
         // 斜杠 字符串
-        public static final String SLASH_STR       = "/";
+        public static final String SLASH       = "/";
         // 换行字符串
-        public static final String NEW_LINE_STR    = System.getProperty("line.separator");
+        public static final String NEW_LINE    = System.getProperty("line.separator");
         // 换行字符串 ( 两行 )
-        public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+        public static final String NEW_LINE_X2 = NEW_LINE + NEW_LINE;
         // 换行字符串 ( 四行 )
-        public static final String NEW_LINE_STR_X4 = NEW_LINE_STR_X2 + NEW_LINE_STR_X2;
+        public static final String NEW_LINE_X4 = NEW_LINE_X2 + NEW_LINE_X2;
         // 空对象字符串
-        public static final String NULL_STR        = "null";
+        public static final String NULL        = "null";
     }
 
     /**

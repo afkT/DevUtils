@@ -625,7 +625,7 @@ public final class SpanUtils {
      */
     public SpanUtils appendLine() {
         apply(TYPE_CHAR_SEQUENCE);
-        mText = DevFinal.SYMBOL.NEW_LINE_STR;
+        mText = DevFinal.SYMBOL.NEW_LINE;
         return this;
     }
 
@@ -636,7 +636,7 @@ public final class SpanUtils {
      */
     public SpanUtils appendLine(@NonNull final CharSequence text) {
         apply(TYPE_CHAR_SEQUENCE);
-        mText = text + DevFinal.SYMBOL.NEW_LINE_STR;
+        mText = text + DevFinal.SYMBOL.NEW_LINE;
         return this;
     }
 
@@ -850,7 +850,7 @@ public final class SpanUtils {
         int start = mBuilder.length();
         if (start == 0 && lineHeight != -1) { // bug of LineHeightSpan when first line
             mBuilder.append(Character.toString((char) 2))
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .setSpan(new AbsoluteSizeSpan(0), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             start = 2;
         }

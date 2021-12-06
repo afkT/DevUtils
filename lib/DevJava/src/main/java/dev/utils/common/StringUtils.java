@@ -106,7 +106,7 @@ public final class StringUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNull(final String str) {
-        return isEmpty(str) || DevFinal.SYMBOL.NULL_STR.equalsIgnoreCase(str);
+        return isEmpty(str) || DevFinal.SYMBOL.NULL.equalsIgnoreCase(str);
     }
 
     /**
@@ -576,7 +576,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearSpace(final String str) {
-        return replaceAll(str, DevFinal.SYMBOL.SPACE_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.SPACE, "");
     }
 
     /**
@@ -585,7 +585,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearTab(final String str) {
-        return replaceAll(str, DevFinal.SYMBOL.TAB_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.TAB, "");
     }
 
     /**
@@ -594,7 +594,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLine(final String str) {
-        return replaceAll(str, DevFinal.SYMBOL.NEW_LINE_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.NEW_LINE, "");
     }
 
     /**
@@ -603,7 +603,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLine2(final String str) {
-        return replaceAll(str, DevFinal.SYMBOL.NL_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.NL, "");
     }
 
     // =
@@ -614,7 +614,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearSpaceTrim(final String str) {
-        return clearSEWiths(str, DevFinal.SYMBOL.SPACE_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.SPACE);
     }
 
     /**
@@ -623,7 +623,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearTabTrim(final String str) {
-        return clearSEWiths(str, DevFinal.SYMBOL.TAB_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.TAB);
     }
 
     /**
@@ -632,7 +632,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLineTrim(final String str) {
-        return clearSEWiths(str, DevFinal.SYMBOL.NEW_LINE_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.NEW_LINE);
     }
 
     /**
@@ -641,7 +641,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLineTrim2(final String str) {
-        return clearSEWiths(str, DevFinal.SYMBOL.NL_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.NL);
     }
 
     /**
@@ -667,16 +667,16 @@ public final class StringUtils {
         if (isEmpty(str)) return str;
         String value = str;
         while (true) {
-            boolean space = (value.startsWith(DevFinal.SYMBOL.SPACE_STR) || value.endsWith(DevFinal.SYMBOL.SPACE_STR));
+            boolean space = (value.startsWith(DevFinal.SYMBOL.SPACE) || value.endsWith(DevFinal.SYMBOL.SPACE));
             if (space) value = clearSpaceTrim(value);
 
-            boolean tab = (value.startsWith(DevFinal.SYMBOL.TAB_STR) || value.endsWith(DevFinal.SYMBOL.TAB_STR));
+            boolean tab = (value.startsWith(DevFinal.SYMBOL.TAB) || value.endsWith(DevFinal.SYMBOL.TAB));
             if (tab) value = clearTabTrim(value);
 
-            boolean line = (value.startsWith(DevFinal.SYMBOL.NEW_LINE_STR) || value.endsWith(DevFinal.SYMBOL.NEW_LINE_STR));
+            boolean line = (value.startsWith(DevFinal.SYMBOL.NEW_LINE) || value.endsWith(DevFinal.SYMBOL.NEW_LINE));
             if (line) value = clearLineTrim(value);
 
-            boolean line2 = (value.startsWith(DevFinal.SYMBOL.NL_STR) || value.endsWith(DevFinal.SYMBOL.NL_STR));
+            boolean line2 = (value.startsWith(DevFinal.SYMBOL.NL) || value.endsWith(DevFinal.SYMBOL.NL));
             if (line2) value = clearLineTrim2(value);
 
             // 都不存在则返回值
@@ -692,7 +692,7 @@ public final class StringUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        return forString(number, DevFinal.SYMBOL.SPACE_STR);
+        return forString(number, DevFinal.SYMBOL.SPACE);
     }
 
     /**
@@ -701,7 +701,7 @@ public final class StringUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        return forString(number, DevFinal.SYMBOL.TAB_STR);
+        return forString(number, DevFinal.SYMBOL.TAB);
     }
 
     /**
@@ -710,7 +710,7 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
-        return forString(number, DevFinal.SYMBOL.NEW_LINE_STR);
+        return forString(number, DevFinal.SYMBOL.NEW_LINE);
     }
 
     /**
@@ -719,7 +719,7 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine2(final int number) {
-        return forString(number, DevFinal.SYMBOL.NL_STR);
+        return forString(number, DevFinal.SYMBOL.NL);
     }
 
     /**
@@ -785,7 +785,7 @@ public final class StringUtils {
      * @return 校验后的字符串
      */
     public static String getString(final String str) {
-        return getString(str, DevFinal.SYMBOL.NULL_STR);
+        return getString(str, DevFinal.SYMBOL.NULL);
     }
 
     /**
@@ -807,7 +807,7 @@ public final class StringUtils {
      * @return 校验后的字符串
      */
     public static String getString(final Object object) {
-        return getString(object, DevFinal.SYMBOL.NULL_STR);
+        return getString(object, DevFinal.SYMBOL.NULL);
     }
 
     /**

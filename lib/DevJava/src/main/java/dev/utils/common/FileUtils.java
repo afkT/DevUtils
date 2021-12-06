@@ -763,7 +763,7 @@ public final class FileUtils {
             is = new BufferedInputStream(new FileInputStream(file));
             byte[] buffer = new byte[1024];
             int    readChars;
-            if (DevFinal.SYMBOL.NEW_LINE_STR.endsWith("\n")) {
+            if (DevFinal.SYMBOL.NEW_LINE.endsWith("\n")) {
                 while ((readChars = is.read(buffer, 0, 1024)) != -1) {
                     for (int i = 0; i < readChars; ++i) {
                         if (buffer[i] == '\n') ++lineCount;

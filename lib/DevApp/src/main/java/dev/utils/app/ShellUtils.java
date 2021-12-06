@@ -120,10 +120,10 @@ public final class ShellUtils {
             for (String command : commands) {
                 if (command == null) continue;
                 dos.write(command.getBytes());
-                dos.writeBytes(DevFinal.SYMBOL.NEW_LINE_STR);
+                dos.writeBytes(DevFinal.SYMBOL.NEW_LINE);
                 dos.flush();
             }
-            dos.writeBytes("exit" + DevFinal.SYMBOL.NEW_LINE_STR);
+            dos.writeBytes("exit" + DevFinal.SYMBOL.NEW_LINE);
             dos.flush();
             // 为了避免 Process.waitFor() 导致主线程堵塞问题, 最好读取信息
             if (isNeedResultMsg) { // 如果程序不断在向输出流和错误流写数据, 而 JVM 不读取的话, 当缓冲区满之后将无法继续写入数据, 最终造成阻塞在 waitFor() 这里
@@ -164,7 +164,7 @@ public final class ShellUtils {
             if ((str = br.readLine()) != null) {
                 builder.append(str);
                 while ((str = br.readLine()) != null) {
-                    builder.append(DevFinal.SYMBOL.NEW_LINE_STR).append(str);
+                    builder.append(DevFinal.SYMBOL.NEW_LINE).append(str);
                 }
             }
             return builder.toString();

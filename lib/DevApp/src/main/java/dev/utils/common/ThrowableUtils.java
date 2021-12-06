@@ -80,12 +80,12 @@ public final class ThrowableUtils {
 //                StackTraceElement[] stElement = throwable.getStackTrace();
 //                // 标题, 提示属于什么异常
 //                printWriter.append(throwable.toString());
-//                printWriter.append(DevFinal.SYMBOL.NEW_LINE_STR);
+//                printWriter.append(DevFinal.SYMBOL.NEW_LINE);
 //                // 遍历错误栈信息, 并且进行换行缩进
 //                for (StackTraceElement element : stElement) {
 //                    printWriter.append("\tat ");
 //                    printWriter.append(element.toString());
-//                    printWriter.append(DevFinal.SYMBOL.NEW_LINE_STR);
+//                    printWriter.append(DevFinal.SYMBOL.NEW_LINE);
 //                }
                 return writer.toString();
             } catch (Exception e) {

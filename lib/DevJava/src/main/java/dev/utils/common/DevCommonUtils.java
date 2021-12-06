@@ -57,17 +57,17 @@ public final class DevCommonUtils {
         long diffTime = endTime - startTime;
         // 计算时间
         if (!StringUtils.isEmpty(title)) {
-            builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+            builder.append(DevFinal.SYMBOL.NEW_LINE);
             builder.append(title);
         }
         // 计算时间
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR).append("开始时间: ")
+        builder.append(DevFinal.SYMBOL.NEW_LINE).append("开始时间: ")
                 .append(DateUtils.formatTime(startTime))
-                .append(DevFinal.SYMBOL.NEW_LINE_STR).append("结束时间: ")
+                .append(DevFinal.SYMBOL.NEW_LINE).append("结束时间: ")
                 .append(DateUtils.formatTime(endTime))
-                .append(DevFinal.SYMBOL.NEW_LINE_STR).append("所用时间(毫秒): ")
+                .append(DevFinal.SYMBOL.NEW_LINE).append("所用时间(毫秒): ")
                 .append(diffTime)
-                .append(DevFinal.SYMBOL.NEW_LINE_STR).append("所用时间(秒): ")
+                .append(DevFinal.SYMBOL.NEW_LINE).append("所用时间(秒): ")
                 .append(diffTime / 1000);
         return builder;
     }

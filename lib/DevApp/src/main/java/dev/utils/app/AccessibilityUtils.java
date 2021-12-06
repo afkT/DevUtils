@@ -153,24 +153,24 @@ public final class AccessibilityUtils {
 
         StringBuilder builder = new StringBuilder();
         builder.append("=========================");
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         // 响应事件的应用包名
         builder.append("packageName: ").append(event.getPackageName());
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         // 事件源信息
         builder.append("source: ").append(event.getSource());
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         // 事件源的类名, 如 android.widget.TextView
         builder.append("source class: ").append(event.getClassName());
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         // 事件类型
         int eventType = event.getEventType();
         builder.append("event type(int): ").append(eventType);
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
@@ -204,12 +204,12 @@ public final class AccessibilityUtils {
                 builder.append("event type: TYPE_VIEW_TEXT_SELECTION_CHANGED");
                 break;
         }
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+        builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         for (CharSequence text : event.getText()) {
             // 输出当前事件包含的文本信息
             builder.append("text: ").append(text);
-            builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+            builder.append(DevFinal.SYMBOL.NEW_LINE);
         }
         builder.append("=========================");
 
