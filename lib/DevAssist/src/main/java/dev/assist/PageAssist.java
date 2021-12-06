@@ -1,7 +1,7 @@
 package dev.assist;
 
 import dev.base.DevPage;
-import dev.base.expand.RequestState;
+import dev.base.state.RequestState;
 
 /**
  * detail: Page 辅助类
