@@ -103,25 +103,32 @@ public final class DevFinal {
         public static final String mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
 
         // 一分钟 60 秒
-        public static final int  MINUTE_S = 60;
+        public static final int MINUTE_S = 60;
         // 一小时 60 * 60 秒
-        public static final int  HOUR_S   = 3600;
+        public static final int HOUR_S   = 3600;
         // 一天 24 * 60 * 60 秒
-        public static final int  DAY_S    = 86400;
+        public static final int DAY_S    = 86400;
+        // 周与秒的倍数
+        public static final int WEEK_S   = DAY_S * 7;
+        // 月与秒的倍数
+        public static final int MONTH_S  = DAY_S * 30;
+        // 年与秒的倍数
+        public static final int YEAR_S   = DAY_S * 365;
+
         // 秒与毫秒的倍数
-        public static final long SECOND   = 1000;
+        public static final long SECOND_MS = 1000;
         // 分与毫秒的倍数
-        public static final long MINUTE   = SECOND * 60;
+        public static final long MINUTE_MS = SECOND_MS * 60;
         // 时与毫秒的倍数
-        public static final long HOUR     = MINUTE * 60;
+        public static final long HOUR_MS   = MINUTE_MS * 60;
         // 天与毫秒的倍数
-        public static final long DAY      = HOUR * 24;
+        public static final long DAY_MS    = HOUR_MS * 24;
         // 周与毫秒的倍数
-        public static final long WEEK     = DAY * 7;
+        public static final long WEEK_MS   = DAY_MS * 7;
         // 月与毫秒的倍数
-        public static final long MONTH    = DAY * 30;
+        public static final long MONTH_MS  = DAY_MS * 30;
         // 年与毫秒的倍数
-        public static final long YEAR     = DAY * 365;
+        public static final long YEAR_MS   = DAY_MS * 365;
     }
 
     /**

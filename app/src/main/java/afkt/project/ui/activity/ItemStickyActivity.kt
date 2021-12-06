@@ -14,12 +14,12 @@ import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
 import dev.engine.DevEngine
+import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ChineseUtils
-import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils
 import java.util.*
 
@@ -98,7 +98,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             var time = System.currentTimeMillis()
             for (i in 0..9) {
                 val number = RandomUtils.getRandom(4, 10)
-                time -= DateUtils.DAY * number
+                time -= DevFinal.TIME.DAY_MS * number
                 for (y in 0..number) {
                     lists.add(
                         ItemStickyBean(

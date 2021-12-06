@@ -117,9 +117,9 @@ class ItemBean(
          * @return [ItemBean]
          */
         fun newItemBean(): ItemBean {
-            var time = System.currentTimeMillis() - RandomUtils.nextLongRange(
-                DateUtils.MINUTE,
-                DateUtils.DAY
+            val time = System.currentTimeMillis() - RandomUtils.nextLongRange(
+                DevFinal.TIME.MINUTE_MS,
+                DevFinal.TIME.DAY_MS
             )
             return ItemBean(
                 title = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10)),

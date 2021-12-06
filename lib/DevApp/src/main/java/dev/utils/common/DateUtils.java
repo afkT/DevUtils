@@ -1892,7 +1892,7 @@ public final class DateUtils {
      * @return 秒数倍数
      */
     public static int getSecondMultiple(final long millis) {
-        return getMillisMultiple(millis, DevFinal.TIME.SECOND);
+        return getMillisMultiple(millis, DevFinal.TIME.SECOND_MS);
     }
 
     /**
@@ -1901,7 +1901,7 @@ public final class DateUtils {
      * @return 分钟倍数
      */
     public static int getMinuteMultiple(final long millis) {
-        return getMillisMultiple(millis, DevFinal.TIME.MINUTE);
+        return getMillisMultiple(millis, DevFinal.TIME.MINUTE_MS);
     }
 
     /**
@@ -1910,7 +1910,7 @@ public final class DateUtils {
      * @return 小时倍数
      */
     public static int getHourMultiple(final long millis) {
-        return getMillisMultiple(millis, DevFinal.TIME.HOUR);
+        return getMillisMultiple(millis, DevFinal.TIME.HOUR_MS);
     }
 
     /**
@@ -1919,7 +1919,7 @@ public final class DateUtils {
      * @return 天数倍数
      */
     public static int getDayMultiple(final long millis) {
-        return getMillisMultiple(millis, DevFinal.TIME.DAY);
+        return getMillisMultiple(millis, DevFinal.TIME.DAY_MS);
     }
 
     /**
@@ -1928,7 +1928,7 @@ public final class DateUtils {
      * @return 周数倍数
      */
     public static int getWeekMultiple(final long millis) {
-        return getMillisMultiple(millis, DevFinal.TIME.WEEK);
+        return getMillisMultiple(millis, DevFinal.TIME.WEEK_MS);
     }
 
     /**
