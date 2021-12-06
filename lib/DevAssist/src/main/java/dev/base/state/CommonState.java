@@ -1,16 +1,13 @@
 package dev.base.state;
 
 import dev.base.DevState;
+import dev.utils.DevFinal;
 
 /**
  * detail: 通用状态类
  * @author Ttt
  */
 public class CommonState<T> {
-
-    private static final int BASE   = 102036;
-    // 默认状态 ( 暂未进行操作 )
-    public static final  int NORMAL = BASE + 1;
 
     // State Object
     private final DevState<T> mState = new DevState<>();
@@ -115,7 +112,7 @@ public class CommonState<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isNormal() {
-        return equalsState(NORMAL);
+        return equalsState(DevFinal.INT.NORMAL);
     }
 
     // =======
@@ -127,6 +124,6 @@ public class CommonState<T> {
      * @return {@link CommonState}
      */
     public CommonState<T> setNormal() {
-        return setState(NORMAL);
+        return setState(DevFinal.INT.NORMAL);
     }
 }
