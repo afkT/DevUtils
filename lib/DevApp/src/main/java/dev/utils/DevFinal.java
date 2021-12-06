@@ -38,8 +38,10 @@ public final class DevFinal {
         public static final String NEW_LINE_X2 = NEW_LINE + NEW_LINE;
         // 换行字符串 ( 四行 )
         public static final String NEW_LINE_X4 = NEW_LINE_X2 + NEW_LINE_X2;
-        // 空对象字符串
+        // null 对象字符串
         public static final String NULL        = "null";
+        // "" 对象字符串
+        public static final String EMPTY       = "";
     }
 
     /**
@@ -611,7 +613,7 @@ public final class DevFinal {
         // 正则表达式: 不能输入特殊字符 ^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$
         public static final String SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
 
-        // 正则表达式: 验证微信号 ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$
+        // 正则表达式: 验证微信号
         public static final String WX = "^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$";
 
         // 正则表达式: 验证真实姓名 ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$
