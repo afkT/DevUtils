@@ -43,11 +43,11 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     var toolbar: Toolbar? = null
 
     @JvmField
-    @Autowired(name = DevFinal.TITLE)
+    @Autowired(name = DevFinal.STR.TITLE)
     var moduleTitle: String? = null
 
     @JvmField
-    @Autowired(name = DevFinal.TYPE)
+    @Autowired(name = DevFinal.STR.TYPE)
     var moduleType: Int = 0
 
     override fun baseLayoutView(): View? = null
@@ -251,8 +251,8 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         buttonValue: ButtonValue
     ) {
         ARouter.getInstance().build(buttonValue.path)
-            .withInt(DevFinal.TYPE, buttonValue.type)
-            .withString(DevFinal.TITLE, buttonValue.text)
+            .withInt(DevFinal.STR.TYPE, buttonValue.type)
+            .withString(DevFinal.STR.TITLE, buttonValue.text)
             .navigation(this)
     }
 
@@ -267,8 +267,8 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         buttonValue: ButtonValue
     ): Boolean {
         val intent = Intent(this, clazz)
-        intent.putExtra(DevFinal.TYPE, buttonValue.type)
-        intent.putExtra(DevFinal.TITLE, buttonValue.text)
+        intent.putExtra(DevFinal.STR.TYPE, buttonValue.type)
+        intent.putExtra(DevFinal.STR.TITLE, buttonValue.text)
         return AppUtils.startActivity(intent)
     }
 }

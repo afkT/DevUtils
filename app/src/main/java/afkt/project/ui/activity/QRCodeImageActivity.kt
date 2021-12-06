@@ -112,7 +112,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                                     .append("二维码解析数据: \n")
                                                     .append(
                                                         StringUtils.checkValue(
-                                                            DevFinal.NULL_STR,
+                                                            DevFinal.SYMBOL.NULL_STR,
                                                             result?.getResultData()
                                                         )
                                                     )

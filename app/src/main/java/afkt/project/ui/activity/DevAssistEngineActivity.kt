@@ -67,7 +67,7 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             ) {
                 val builder = StringBuilder()
                     .append("Java 实现在 DevOther Module java.dev.engine 目录下")
-                    .append(DevFinal.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
                     .append("Kotlin 实现已封装为 DevEngine 库")
                 // 进行显示
                 SnackbarUtils.with(mActivity).also { sn ->

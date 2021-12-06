@@ -2,6 +2,7 @@ package dev.utils.common.validator;
 
 import java.util.regex.Pattern;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 import dev.utils.common.StringUtils;
 
@@ -16,51 +17,6 @@ public final class ValidatorUtils {
 
     // 日志 TAG
     private static final String TAG = ValidatorUtils.class.getSimpleName();
-
-    // 正则表达式: 空格
-    public static final String REGEX_SPACE = "\\s";
-
-    // 正则表达式: 验证数字
-    public static final String REGEX_NUMBER = "^[0-9]*$";
-
-    // 正则表达式: 验证数字或包含小数点
-    public static final String REGEX_NUMBER_OR_DECIMAL = "^[0-9]*[.]?[0-9]*$";
-
-    // 正则表达式: 验证是否包含数字
-    public static final String REGEX_CONTAIN_NUMBER = ".*\\d+.*";
-
-    // 正则表达式: 验证是否数字或者字母
-    public static final String REGEX_NUMBER_OR_LETTER = "^[A-Za-z0-9]+$";
-
-    // 正则表达式: 验证是否全是字母
-    public static final String REGEX_LETTER = "^[A-Za-z]+$";
-
-    // 正则表达式: 不能输入特殊字符 ^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$
-    public static final String REGEX_SPECIAL = "^[\\u4E00-\\u9FA5A-Za-z0-9]+$";
-
-    // 正则表达式: 验证微信号 ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$
-    public static final String REGEX_WX = "^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}+$";
-
-    // 正则表达式: 验证真实姓名 ^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$
-    public static final String REGEX_REALNAME = "^[\\u4e00-\\u9fa5]+(•[\\u4e00-\\u9fa5]*)*$|^[\\u4e00-\\u9fa5]+(·[\\u4e00-\\u9fa5]*)*$";
-
-    // 正则表达式: 验证昵称
-    public static final String REGEX_NICKNAME = "^[\\u4E00-\\u9FA5A-Za-z0-9_]+$";
-
-    // 正则表达式: 验证用户名 ( 不包含中文和特殊字符 ) 如果用户名使用手机号码或邮箱 则结合手机号验证和邮箱验证
-    public static final String REGEX_USERNAME = "^[a-zA-Z]\\w{5,17}$";
-
-    // 正则表达式: 验证密码 ( 不包含特殊字符 )
-    public static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,18}$";
-
-    // 正则表达式: 验证邮箱
-    public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
-
-    // 正则表达式: 验证 URL
-    public static final String REGEX_URL = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?";
-
-    // 正则表达式: 验证 IP 地址
-    public static final String REGEX_IP_ADDRESS = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
 
     /**
      * 通用匹配函数
@@ -90,7 +46,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumber(final String str) {
-        return match(REGEX_NUMBER, str);
+        return match(DevFinal.REGEX.NUMBER, str);
     }
 
     /**
@@ -99,7 +55,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberDecimal(final String str) {
-        return match(REGEX_NUMBER_OR_DECIMAL, str);
+        return match(DevFinal.REGEX.NUMBER_OR_DECIMAL, str);
     }
 
     /**
@@ -108,7 +64,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLetter(final String str) {
-        return match(REGEX_LETTER, str);
+        return match(DevFinal.REGEX.LETTER, str);
     }
 
     /**
@@ -117,7 +73,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContainNumber(final String str) {
-        return match(REGEX_CONTAIN_NUMBER, str);
+        return match(DevFinal.REGEX.CONTAIN_NUMBER, str);
     }
 
     /**
@@ -126,7 +82,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNumberLetter(final String str) {
-        return match(REGEX_NUMBER_OR_LETTER, str);
+        return match(DevFinal.REGEX.NUMBER_OR_LETTER, str);
     }
 
     /**
@@ -135,7 +91,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSpec(final String str) {
-        return match(REGEX_SPECIAL, str);
+        return match(DevFinal.REGEX.SPECIAL, str);
     }
 
     /**
@@ -144,7 +100,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isWx(final String str) {
-        return match(REGEX_WX, str);
+        return match(DevFinal.REGEX.WX, str);
     }
 
     /**
@@ -153,7 +109,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isRealName(final String str) {
-        return match(REGEX_REALNAME, str);
+        return match(DevFinal.REGEX.REALNAME, str);
     }
 
     /**
@@ -162,7 +118,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNickName(final String str) {
-        return match(REGEX_NICKNAME, str);
+        return match(DevFinal.REGEX.NICKNAME, str);
     }
 
     /**
@@ -171,7 +127,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isUserName(final String str) {
-        return match(REGEX_USERNAME, str);
+        return match(DevFinal.REGEX.USERNAME, str);
     }
 
     /**
@@ -180,7 +136,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPassword(final String str) {
-        return match(REGEX_PASSWORD, str);
+        return match(DevFinal.REGEX.PASSWORD, str);
     }
 
     /**
@@ -189,7 +145,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmail(final String str) {
-        return match(REGEX_EMAIL, str);
+        return match(DevFinal.REGEX.EMAIL, str);
     }
 
     /**
@@ -199,7 +155,7 @@ public final class ValidatorUtils {
      */
     public static boolean isUrl(final String str) {
         if (!StringUtils.isEmpty(str)) {
-            return match(REGEX_URL, str.toLowerCase());
+            return match(DevFinal.REGEX.URL, str.toLowerCase());
         }
         return false;
     }
@@ -210,17 +166,8 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isIPAddress(final String str) {
-        return match(REGEX_IP_ADDRESS, str);
+        return match(DevFinal.REGEX.IP_ADDRESS, str);
     }
-
-    // 正则表达式: 验证汉字
-    public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
-
-    // 正则表达式: 验证汉字 ( 含双角符号 )
-    public static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
-
-    // 正则表达式: 验证汉字 ( 含双角符号 )
-    public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
     /**
      * 校验汉字 ( 无符号, 纯汉字 )
@@ -228,7 +175,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isChinese(final String str) {
-        return match(REGEX_CHINESE, str);
+        return match(DevFinal.REGEX.CHINESE, str);
     }
 
     /**
@@ -237,7 +184,7 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isChineseAll(final String str) {
-        return match(REGEX_CHINESE_ALL, str);
+        return match(DevFinal.REGEX.CHINESE_ALL, str);
     }
 
     /**
@@ -252,7 +199,7 @@ public final class ValidatorUtils {
                 if (length != 0) {
                     char[] dChar = str.toCharArray();
                     for (int i = 0; i < length; i++) {
-                        boolean flag = String.valueOf(dChar[i]).matches(REGEX_CHINESE_ALL2);
+                        boolean flag = String.valueOf(dChar[i]).matches(DevFinal.REGEX.CHINESE_ALL2);
                         if (flag) {
                             return true;
                         }

@@ -52,7 +52,7 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
         binding.vidAamToolbar.setNavigationOnClickListener { v: View? -> finish() }
 
         // 获取标题
-        val title = intent.getStringExtra(DevFinal.TITLE)
+        val title = intent.getStringExtra(DevFinal.STR.TITLE)
         // 设置标题
         binding.title = title // 或用下面设置
         binding.setVariable(BR.title, title) // 设置后, 会动态刷新

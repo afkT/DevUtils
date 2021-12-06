@@ -15,7 +15,7 @@ import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
 fun newPagerFragment(position: Int) = PagerFragment().apply {
-    arguments = bundleOf(DevFinal.POSITION to position)
+    arguments = bundleOf(DevFinal.STR.POSITION to position)
 }
 
 class PagerFragment : BaseFragment<FragmentPagerBinding>() {
@@ -29,7 +29,7 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        position = arguments?.getInt(DevFinal.POSITION) ?: 1
+        position = arguments?.getInt(DevFinal.STR.POSITION) ?: 1
 
         /**
          * 竖屏需要使用 [VerticalScrollView]

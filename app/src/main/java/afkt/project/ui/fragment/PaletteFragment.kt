@@ -18,7 +18,7 @@ import dev.utils.common.ColorUtils
 import java.lang.ref.WeakReference
 
 fun newPaletteFragment(position: Int) = PaletteFragment().apply {
-    arguments = bundleOf(DevFinal.POSITION to position)
+    arguments = bundleOf(DevFinal.STR.POSITION to position)
 }
 
 class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
@@ -38,7 +38,7 @@ class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        position = arguments?.getInt(DevFinal.POSITION) ?: 1
+        position = arguments?.getInt(DevFinal.STR.POSITION) ?: 1
         loadPalette()
     }
 

@@ -39,7 +39,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 when (buttonValue.type) {
                     ButtonValue.BTN_PATH_INTERNAL -> {
                         StringUtils.appendsIgnoreLast(
-                            builder, DevFinal.NEW_LINE_STR,
+                            builder, DevFinal.SYMBOL.NEW_LINE_STR,
                             "内部存储路径",
                             PathUtils.getInternal().rootPath,
                             PathUtils.getInternal().rootDirectory,
@@ -100,7 +100,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     }
                     ButtonValue.BTN_PATH_APP_EXTERNAL -> {
                         StringUtils.appendsIgnoreLast(
-                            builder, DevFinal.NEW_LINE_STR,
+                            builder, DevFinal.SYMBOL.NEW_LINE_STR,
                             "应用外部存储路径类",
                             PathUtils.getAppExternal().appDataPath,
                             PathUtils.getAppExternal().appDataDir,
@@ -147,7 +147,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     }
                     ButtonValue.BTN_PATH_SDCARD -> {
                         StringUtils.appendsIgnoreLast(
-                            builder, DevFinal.NEW_LINE_STR,
+                            builder, DevFinal.SYMBOL.NEW_LINE_STR,
                             "外部存储路径 ( SDCard )",
                             PathUtils.getSDCard().isSDCardEnable,
                             PathUtils.getSDCard().sdCardFile,
