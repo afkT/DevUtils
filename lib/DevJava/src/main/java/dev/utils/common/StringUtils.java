@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -18,22 +19,6 @@ public final class StringUtils {
 
     // 日志 TAG
     private static final String TAG = StringUtils.class.getSimpleName();
-
-    // 空格 字符串
-    public static final String SPACE_STR       = " ";
-    // TAB 字符串
-    public static final String TAB_STR         = "\t";
-    // 回车 ( CR ) 字符串
-    public static final String CR_STR          = "\r";
-    // 换行 ( \n ) 字符串 ( single newline ('\n') character )
-    public static final String NL_STR          = "\n";
-    public static final char   NL_CHAR         = '\n';
-    // 换行字符串
-    public static final String NEW_LINE_STR    = System.getProperty("line.separator");
-    // 换行字符串 ( 两行 )
-    public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
-    // 空对象字符串
-    public static final String NULL_STR        = "null";
 
     // ==========
     // = String =
@@ -121,7 +106,7 @@ public final class StringUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNull(final String str) {
-        return isEmpty(str) || NULL_STR.equalsIgnoreCase(str);
+        return isEmpty(str) || DevFinal.SYMBOL.NULL_STR.equalsIgnoreCase(str);
     }
 
     /**
@@ -591,7 +576,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearSpace(final String str) {
-        return replaceAll(str, SPACE_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.SPACE_STR, "");
     }
 
     /**
@@ -600,7 +585,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearTab(final String str) {
-        return replaceAll(str, TAB_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.TAB_STR, "");
     }
 
     /**
@@ -609,7 +594,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLine(final String str) {
-        return replaceAll(str, NEW_LINE_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.NEW_LINE_STR, "");
     }
 
     /**
@@ -618,7 +603,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLine2(final String str) {
-        return replaceAll(str, NL_STR, "");
+        return replaceAll(str, DevFinal.SYMBOL.NL_STR, "");
     }
 
     // =
@@ -629,7 +614,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearSpaceTrim(final String str) {
-        return clearSEWiths(str, SPACE_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.SPACE_STR);
     }
 
     /**
@@ -638,7 +623,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearTabTrim(final String str) {
-        return clearSEWiths(str, TAB_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.TAB_STR);
     }
 
     /**
@@ -647,7 +632,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLineTrim(final String str) {
-        return clearSEWiths(str, NEW_LINE_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.NEW_LINE_STR);
     }
 
     /**
@@ -656,7 +641,7 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLineTrim2(final String str) {
-        return clearSEWiths(str, NL_STR);
+        return clearSEWiths(str, DevFinal.SYMBOL.NL_STR);
     }
 
     /**
@@ -682,16 +667,16 @@ public final class StringUtils {
         if (isEmpty(str)) return str;
         String value = str;
         while (true) {
-            boolean space = (value.startsWith(SPACE_STR) || value.endsWith(SPACE_STR));
+            boolean space = (value.startsWith(DevFinal.SYMBOL.SPACE_STR) || value.endsWith(DevFinal.SYMBOL.SPACE_STR));
             if (space) value = clearSpaceTrim(value);
 
-            boolean tab = (value.startsWith(TAB_STR) || value.endsWith(TAB_STR));
+            boolean tab = (value.startsWith(DevFinal.SYMBOL.TAB_STR) || value.endsWith(DevFinal.SYMBOL.TAB_STR));
             if (tab) value = clearTabTrim(value);
 
-            boolean line = (value.startsWith(NEW_LINE_STR) || value.endsWith(NEW_LINE_STR));
+            boolean line = (value.startsWith(DevFinal.SYMBOL.NEW_LINE_STR) || value.endsWith(DevFinal.SYMBOL.NEW_LINE_STR));
             if (line) value = clearLineTrim(value);
 
-            boolean line2 = (value.startsWith(NL_STR) || value.endsWith(NL_STR));
+            boolean line2 = (value.startsWith(DevFinal.SYMBOL.NL_STR) || value.endsWith(DevFinal.SYMBOL.NL_STR));
             if (line2) value = clearLineTrim2(value);
 
             // 都不存在则返回值
@@ -707,7 +692,7 @@ public final class StringUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        return forString(number, SPACE_STR);
+        return forString(number, DevFinal.SYMBOL.SPACE_STR);
     }
 
     /**
@@ -716,7 +701,7 @@ public final class StringUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        return forString(number, TAB_STR);
+        return forString(number, DevFinal.SYMBOL.TAB_STR);
     }
 
     /**
@@ -725,7 +710,7 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
-        return forString(number, NEW_LINE_STR);
+        return forString(number, DevFinal.SYMBOL.NEW_LINE_STR);
     }
 
     /**
@@ -734,7 +719,7 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine2(final int number) {
-        return forString(number, NL_STR);
+        return forString(number, DevFinal.SYMBOL.NL_STR);
     }
 
     /**
@@ -800,7 +785,7 @@ public final class StringUtils {
      * @return 校验后的字符串
      */
     public static String getString(final String str) {
-        return getString(str, NULL_STR);
+        return getString(str, DevFinal.SYMBOL.NULL_STR);
     }
 
     /**
@@ -822,7 +807,7 @@ public final class StringUtils {
      * @return 校验后的字符串
      */
     public static String getString(final Object object) {
-        return getString(object, NULL_STR);
+        return getString(object, DevFinal.SYMBOL.NULL_STR);
     }
 
     /**

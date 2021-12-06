@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -22,60 +23,6 @@ public final class DateUtils {
 
     // 日志 TAG
     private static final String TAG = DateUtils.class.getSimpleName();
-
-    // =============
-    // = 时间格式类型 =
-    // =============
-
-    public static final String yyyy            = "yyyy";
-    public static final String yyMMdd          = "yy-MM-dd";
-    public static final String yyMMdd2         = "yyMMdd";
-    public static final String yyyyMMdd        = "yyyy-MM-dd";
-    public static final String yyyyMMdd2       = "yyyyMMdd";
-    public static final String yyyyMMdd3       = "yyyy年MM月dd日";
-    public static final String yyyyMMdd4       = "yyyy_MM_dd";
-    public static final String yyyyMMdd5       = "yyyy.MM.dd";
-    public static final String yyyyMMddHHmmss  = "yyyy-MM-dd HH:mm:ss";
-    public static final String yyyyMMddHHmmss2 = "yyyy年M月d日 HH:mm:ss";
-    public static final String yyyyMMddHHmmss3 = "yyyyMMdd_HHmmss";
-    public static final String yyyyMMddHHmmss4 = "yyyyMMdd.HHmmss";
-    public static final String MMdd            = "MM-dd";
-    public static final String MMdd2           = "MM月dd日";
-    public static final String MMdd3           = "MMdd";
-    public static final String yy              = "yy";
-    public static final String MM              = "MM";
-    public static final String dd              = "dd";
-    public static final String hh              = "hh";
-    public static final String HH              = "HH";
-    public static final String mm              = "mm";
-    public static final String HHmm            = "HH:mm";
-    public static final String HHmm2           = "HHmm";
-    public static final String HHmmss          = "HH:mm:ss";
-    public static final String HHmmss2         = "HHmmss";
-    public static final String hhmmMMDDyyyy    = "hh:mm M月d日 yyyy";
-    public static final String hhmmssMMDDyyyy  = "hh:mm:ss M月d日 yyyy";
-    public static final String mmddHHmmyyyyss  = "MMddHHmmyyyy.ss";
-
-    // 一分钟 60 秒
-    public static final int  MINUTE_S = 60;
-    // 一小时 60 * 60 秒
-    public static final int  HOUR_S   = 3600;
-    // 一天 24 * 60 * 60 秒
-    public static final int  DAY_S    = 86400;
-    // 秒与毫秒的倍数
-    public static final long SECOND   = 1000;
-    // 分与毫秒的倍数
-    public static final long MINUTE   = SECOND * 60;
-    // 时与毫秒的倍数
-    public static final long HOUR     = MINUTE * 60;
-    // 天与毫秒的倍数
-    public static final long DAY      = HOUR * 24;
-    // 周与毫秒的倍数
-    public static final long WEEK     = DAY * 7;
-    // 月与毫秒的倍数
-    public static final long MONTH    = DAY * 30;
-    // 年与毫秒的倍数
-    public static final long YEAR     = DAY * 365;
 
     // 线程安全 SimpleDateFormat Map
     private static final ThreadLocal<Map<String, SimpleDateFormat>> SDF_THREAD_LOCAL
@@ -91,7 +38,7 @@ public final class DateUtils {
      * @return {@link SimpleDateFormat}
      */
     public static SimpleDateFormat getDefaultFormat() {
-        return getSafeDateFormat(yyyyMMddHHmmss);
+        return getSafeDateFormat(DevFinal.TIME.yyyyMMddHHmmss);
     }
 
     /**
@@ -1945,7 +1892,7 @@ public final class DateUtils {
      * @return 秒数倍数
      */
     public static int getSecondMultiple(final long millis) {
-        return getMillisMultiple(millis, SECOND);
+        return getMillisMultiple(millis, DevFinal.TIME.SECOND);
     }
 
     /**
@@ -1954,7 +1901,7 @@ public final class DateUtils {
      * @return 分钟倍数
      */
     public static int getMinuteMultiple(final long millis) {
-        return getMillisMultiple(millis, MINUTE);
+        return getMillisMultiple(millis, DevFinal.TIME.MINUTE);
     }
 
     /**
@@ -1963,7 +1910,7 @@ public final class DateUtils {
      * @return 小时倍数
      */
     public static int getHourMultiple(final long millis) {
-        return getMillisMultiple(millis, HOUR);
+        return getMillisMultiple(millis, DevFinal.TIME.HOUR);
     }
 
     /**
@@ -1972,7 +1919,7 @@ public final class DateUtils {
      * @return 天数倍数
      */
     public static int getDayMultiple(final long millis) {
-        return getMillisMultiple(millis, DAY);
+        return getMillisMultiple(millis, DevFinal.TIME.DAY);
     }
 
     /**
@@ -1981,7 +1928,7 @@ public final class DateUtils {
      * @return 周数倍数
      */
     public static int getWeekMultiple(final long millis) {
-        return getMillisMultiple(millis, WEEK);
+        return getMillisMultiple(millis, DevFinal.TIME.WEEK);
     }
 
     /**
@@ -2623,7 +2570,7 @@ public final class DateUtils {
      * 判断时间是否在 [startTime, endTime] 区间 ( 自定义格式 )
      * <pre>
      *     handlerMoreThanDay 参数注意事项
-     *     用于 {@link #HHmm}、{@link #HHmmss} 判断, 只有该格式判断可传入 true
+     *     用于 {@link DevFinal.TIME#HHmm}、{@link DevFinal.TIME#HHmmss} 判断, 只有该格式判断可传入 true
      *     其他都用于 false
      * </pre>
      * @param time               待判断时间
@@ -2684,8 +2631,8 @@ public final class DateUtils {
             final boolean handlerMoreThanDay
     ) {
         return isInTimeFormat(
-                getDateNow(HHmm), startTime, endTime,
-                HHmm, handlerMoreThanDay
+                getDateNow(DevFinal.TIME.HHmm), startTime, endTime,
+                DevFinal.TIME.HHmm, handlerMoreThanDay
         );
     }
 
@@ -2720,7 +2667,7 @@ public final class DateUtils {
     ) {
         return isInTimeFormat(
                 time, startTime, endTime,
-                HHmm, handlerMoreThanDay
+                DevFinal.TIME.HHmm, handlerMoreThanDay
         );
     }
 
@@ -2754,8 +2701,8 @@ public final class DateUtils {
             final boolean handlerMoreThanDay
     ) {
         return isInTimeFormat(
-                getDateNow(HHmmss), startTime, endTime,
-                HHmmss, handlerMoreThanDay
+                getDateNow(DevFinal.TIME.HHmmss), startTime, endTime,
+                DevFinal.TIME.HHmmss, handlerMoreThanDay
         );
     }
 
@@ -2790,7 +2737,7 @@ public final class DateUtils {
     ) {
         return isInTimeFormat(
                 time, startTime, endTime,
-                HHmmss, handlerMoreThanDay
+                DevFinal.TIME.HHmmss, handlerMoreThanDay
         );
     }
 
@@ -2802,7 +2749,7 @@ public final class DateUtils {
      * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final String endTime) {
-        return getEndTimeDiff(System.currentTimeMillis(), endTime, HHmm);
+        return getEndTimeDiff(System.currentTimeMillis(), endTime, DevFinal.TIME.HHmm);
     }
 
     /**
@@ -2815,7 +2762,7 @@ public final class DateUtils {
             final long startTime,
             final String endTime
     ) {
-        return getEndTimeDiff(startTime, endTime, HHmm);
+        return getEndTimeDiff(startTime, endTime, DevFinal.TIME.HHmm);
     }
 
     /**
@@ -2867,11 +2814,11 @@ public final class DateUtils {
                 calendar.add(Calendar.DATE, 1); // 当前日期加一天
             }
             // 获取天数时间
-            String yyyyMMddDate = formatDate(calendar.getTime(), yyyyMMdd);
+            String yyyyMMddDate = formatDate(calendar.getTime(), DevFinal.TIME.yyyyMMdd);
             // 累加时间
             String yyyyMMddHHmmssDate = yyyyMMddDate + " " + endTime + (isSecond ? "" : ":00");
             // 返回转换后的时间
-            return parseLong(yyyyMMddHHmmssDate, yyyyMMddHHmmss);
+            return parseLong(yyyyMMddHHmmssDate, DevFinal.TIME.yyyyMMddHHmmss);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }
