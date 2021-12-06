@@ -107,8 +107,12 @@ public class RequestState<T> {
     // = 快捷方法 =
     // ==========
 
+    // =======
+    // = get =
+    // =======
+
     /**
-     * 判断是否默认状态
+     * 判断是否默认状态 ( 暂未进行操作 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestNormal() {
@@ -135,7 +139,7 @@ public class RequestState<T> {
      * 判断是否请求成功
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isRequestSuccess() {
+    public boolean isRequestSuc() {
         return equalsState(DevFinal.INT.REQUEST_SUC);
     }
 
@@ -160,7 +164,7 @@ public class RequestState<T> {
     // =======
 
     /**
-     * 设置状态为默认状态
+     * 设置状态为默认状态 ( 暂未进行操作 )
      * @return {@link RequestState}
      */
     public RequestState<T> setRequestNormal() {
@@ -187,7 +191,7 @@ public class RequestState<T> {
      * 设置状态为请求成功
      * @return {@link RequestState}
      */
-    public RequestState<T> setRequestSuccess() {
+    public RequestState<T> setRequestSuc() {
         return setState(DevFinal.INT.REQUEST_SUC);
     }
 
