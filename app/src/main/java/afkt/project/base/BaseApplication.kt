@@ -79,7 +79,7 @@ class BaseApplication : MultiDexApplication() {
         LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, message ->
             var message: String? = message ?: return@Print
             // 进行编码处理
-            message = StringUtils.strEncode(message, "UTF-8")
+            message = StringUtils.strEncode(message, DevFinal.ENCODE.UTF_8)
             when (logType) {
                 Log.VERBOSE -> Log.v(tag, message)
                 Log.DEBUG -> Log.d(tag, message)

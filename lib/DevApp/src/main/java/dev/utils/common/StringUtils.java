@@ -1116,7 +1116,7 @@ public final class StringUtils {
      * @return GBK 编码后的字符串
      */
     public static String gbkEncode(final String str) {
-        return strEncode(str, "GBK");
+        return strEncode(str, DevFinal.ENCODE.GBK);
     }
 
     /**
@@ -1125,7 +1125,7 @@ public final class StringUtils {
      * @return GBK2312 编码后的字符串
      */
     public static String gbk2312Encode(final String str) {
-        return strEncode(str, "GBK-2312");
+        return strEncode(str, DevFinal.ENCODE.GBK_2312);
     }
 
     /**
@@ -1134,7 +1134,7 @@ public final class StringUtils {
      * @return UTF-8 编码后的字符串
      */
     public static String utf8Encode(final String str) {
-        return strEncode(str, "UTF-8");
+        return strEncode(str, DevFinal.ENCODE.UTF_8);
     }
 
     /**
@@ -1164,7 +1164,7 @@ public final class StringUtils {
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
     public static String urlEncode(final String str) {
-        return urlEncode(str, "UTF-8");
+        return urlEncode(str, DevFinal.ENCODE.UTF_8);
     }
 
     /**
@@ -1194,7 +1194,7 @@ public final class StringUtils {
      * @return UTF-8 编码格式 URL 解码后的字符串
      */
     public static String urlDecode(final String str) {
-        return urlDecode(str, "UTF-8");
+        return urlDecode(str, DevFinal.ENCODE.UTF_8);
     }
 
     /**
@@ -1228,7 +1228,7 @@ public final class StringUtils {
             final String str,
             final int threshold
     ) {
-        return urlDecodeWhile(str, "UTF-8", threshold);
+        return urlDecodeWhile(str, DevFinal.ENCODE.UTF_8, threshold);
     }
 
     /**

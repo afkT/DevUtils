@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import dev.DevUtils;
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.StringUtils;
@@ -763,8 +764,8 @@ public final class PhoneUtils {
 //            // 获取短信的个数
 //            int count = cursor.getCount();
             XmlSerializer xmlSerializer = Xml.newSerializer();
-            xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), "UTF-8");
-            xmlSerializer.startDocument("UTF-8", true);
+            xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), DevFinal.ENCODE.UTF_8);
+            xmlSerializer.startDocument(DevFinal.ENCODE.UTF_8, true);
             xmlSerializer.startTag(null, "smss");
             while (cursor.moveToNext()) {
                 xmlSerializer.startTag(null, "sms");

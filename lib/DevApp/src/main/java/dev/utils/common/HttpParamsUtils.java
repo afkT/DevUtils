@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -283,7 +284,7 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             String data = null;
             try {
-                data = URLEncoder.encode(value, "UTF-8");
+                data = URLEncoder.encode(value, DevFinal.ENCODE.UTF_8);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "convertObjToMS");
             }
@@ -310,7 +311,7 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             Object data = null;
             try {
-                data = URLEncoder.encode(value.toString(), "UTF-8");
+                data = URLEncoder.encode(value.toString(), DevFinal.ENCODE.UTF_8);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "convertObjToMO");
             }

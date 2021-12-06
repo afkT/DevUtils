@@ -3,6 +3,7 @@ package dev.engine.barcode
 import com.google.zxing.DecodeHintType
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import dev.utils.DevFinal
 import java.util.*
 
 /**
@@ -51,7 +52,7 @@ class BarCodeConfig : IBarCodeEngine.EngineConfig() {
      */
     fun defaultEncode(): BarCodeConfig {
         // 编码类型
-        encodeHints[EncodeHintType.CHARACTER_SET] = "UTF-8"
+        encodeHints[EncodeHintType.CHARACTER_SET] = DevFinal.ENCODE.UTF_8
         // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
         encodeHints[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
         // 设置二维码边的空度, 非负数

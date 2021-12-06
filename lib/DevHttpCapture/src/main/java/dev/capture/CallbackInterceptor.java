@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 
+import dev.utils.DevFinal;
 import okhttp3.Connection;
 import okhttp3.FormBody;
 import okhttp3.Headers;
@@ -50,7 +51,7 @@ public final class CallbackInterceptor
     // = 内部方法 =
     // ==========
 
-    private final Charset UTF_8 = Charset.forName("UTF-8");
+    private final Charset UTF_8 = Charset.forName(DevFinal.ENCODE.UTF_8);
 
     /**
      * 内部抓包方法

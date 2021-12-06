@@ -129,11 +129,11 @@ public final class ShellUtils {
             if (isNeedResultMsg) { // 如果程序不断在向输出流和错误流写数据, 而 JVM 不读取的话, 当缓冲区满之后将无法继续写入数据, 最终造成阻塞在 waitFor() 这里
                 // 读取成功数据
                 successMsg = consumeInputStream(
-                        new InputStreamReader(process.getInputStream(), "UTF-8")
+                        new InputStreamReader(process.getInputStream(), DevFinal.ENCODE.UTF_8)
                 );
                 // 读取异常数据
                 errorMsg = consumeInputStream(
-                        new InputStreamReader(process.getErrorStream(), "UTF-8")
+                        new InputStreamReader(process.getErrorStream(), DevFinal.ENCODE.UTF_8)
                 );
             }
             // 执行结果状态码

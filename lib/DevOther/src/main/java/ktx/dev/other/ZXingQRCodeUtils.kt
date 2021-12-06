@@ -6,6 +6,7 @@ import android.graphics.Color
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.common.thread.DevThreadManager
 import java.util.*
@@ -112,7 +113,7 @@ object ZXingQRCodeUtils {
 
     init {
         // 编码类型
-        ENCODE_HINTS[EncodeHintType.CHARACTER_SET] = "UTF-8"
+        ENCODE_HINTS[EncodeHintType.CHARACTER_SET] = DevFinal.ENCODE.UTF_8
         // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
         ENCODE_HINTS[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
         // 设置二维码边的空度, 非负数

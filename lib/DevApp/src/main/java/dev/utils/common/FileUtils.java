@@ -731,13 +731,13 @@ public final class FileUtils {
         }
         switch (pos) {
             case 0xefbb:
-                return "UTF-8";
+                return DevFinal.ENCODE.UTF_8;
             case 0xfffe:
-                return "Unicode";
+                return DevFinal.ENCODE.UNICODE;
             case 0xfeff:
-                return "UTF-16BE";
+                return DevFinal.ENCODE.UTF_16BE;
             default:
-                return "GBK";
+                return DevFinal.ENCODE.GBK;
         }
     }
 

@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import dev.utils.DevFinal;
 import dev.utils.common.ThrowableUtils;
 import dev.utils.common.cipher.Encrypt;
 import okhttp3.Connection;
@@ -121,7 +122,7 @@ public final class HttpCaptureInterceptor
     // = 内部方法 =
     // ==========
 
-    private final Charset UTF_8 = Charset.forName("UTF-8");
+    private final Charset UTF_8 = Charset.forName(DevFinal.ENCODE.UTF_8);
 
     /**
      * 内部抓包方法

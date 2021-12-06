@@ -3,6 +3,7 @@ package dev.utils.common;
 import java.math.BigDecimal;
 import java.util.Random;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -42,7 +43,7 @@ public final class ChineseUtils {
         bytes[0] = Integer.valueOf(heightPos).byteValue();
         bytes[1] = Integer.valueOf(lowPos).byteValue();
         try {
-            return new String(bytes, "GBK");
+            return new String(bytes, DevFinal.ENCODE.GBK);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "randomWord");
         }

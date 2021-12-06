@@ -9,6 +9,7 @@ import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebSettings.RenderPriority
 import android.webkit.WebView.HitTestResult
 import dev.DevUtils
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
 
@@ -348,7 +349,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         data: String,
         historyUrl: String?
     ): WebViewAssist {
-        return loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", historyUrl)
+        return loadDataWithBaseURL(baseUrl, data, "text/html", DevFinal.ENCODE.UTF_8, historyUrl)
     }
 
     // ==========
@@ -953,7 +954,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
             this.mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             this.mLoadsImagesAutomatically = true
             this.mJavaScriptCanOpenWindowsAutomatically = true
-            this.mDefaultTextEncodingName = "UTF-8"
+            this.mDefaultTextEncodingName = DevFinal.ENCODE.UTF_8
             this.mGeolocationEnabled = true
             this.mUserAgentString = null
             this.mAllowFileAccess = true
@@ -1019,7 +1020,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         private var mJavaScriptCanOpenWindowsAutomatically = true
 
         // 编码格式
-        private var mDefaultTextEncodingName: String? = "UTF-8"
+        private var mDefaultTextEncodingName: String? = DevFinal.ENCODE.UTF_8
 
         // 是否允许网页执行定位操作
         private var mGeolocationEnabled = true

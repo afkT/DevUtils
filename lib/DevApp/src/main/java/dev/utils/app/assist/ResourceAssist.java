@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.DevUtils;
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.common.CloseUtils;
@@ -1578,7 +1579,7 @@ public final class ResourceAssist {
      */
     public String readStringFromAssets(final String fileName) {
         try {
-            return new String(readBytesFromAssets(fileName), "UTF-8");
+            return new String(readBytesFromAssets(fileName), DevFinal.ENCODE.UTF_8);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readStringFromAssets");
         }
@@ -1615,7 +1616,7 @@ public final class ResourceAssist {
      */
     public String readStringFromRaw(@RawRes final int resId) {
         try {
-            return new String(readBytesFromRaw(resId), "UTF-8");
+            return new String(readBytesFromRaw(resId), DevFinal.ENCODE.UTF_8);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "readStringFromRaw");
         }
