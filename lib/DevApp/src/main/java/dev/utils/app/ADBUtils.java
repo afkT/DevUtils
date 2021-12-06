@@ -100,7 +100,7 @@ public final class ADBUtils {
         );
         if (result.isSuccess3()) {
             try {
-                String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 return Arrays.asList(arrays);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getAppList type: %s", typeStr);
@@ -243,7 +243,7 @@ public final class ADBUtils {
                     true
             );
             if (result.isSuccess3()) {
-                String[] arrays = result.successMsg.split(DevFinal.REGEX_SPACE);
+                String[] arrays = result.successMsg.split(DevFinal.REGEX.SPACE);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
                         try {
@@ -278,7 +278,7 @@ public final class ADBUtils {
                     true
             );
             if (result.isSuccess3()) {
-                String[] arrays = result.successMsg.split(DevFinal.REGEX_SPACE);
+                String[] arrays = result.successMsg.split(DevFinal.REGEX.SPACE);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
                         try {
@@ -511,12 +511,12 @@ public final class ADBUtils {
                     // 进行裁剪字符串
                     String subData = result.successMsg.substring(start + mainStr.length());
                     // 进行拆分
-                    String[] arrays = subData.split(DevFinal.NEW_LINE_STR);
+                    String[] arrays = subData.split(DevFinal.SYMBOL.NEW_LINE_STR);
                     for (String value : arrays) {
                         if (!TextUtils.isEmpty(value)) {
                             // 存在包名才处理
                             if (value.contains(packageName)) {
-                                String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
+                                String[] splitArrays = value.split(DevFinal.REGEX.SPACE);
                                 for (String itemValue : splitArrays) {
                                     if (!TextUtils.isEmpty(itemValue)) {
                                         // 属于 packageName/ 前缀的
@@ -562,7 +562,7 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 String   nameStr = "name=";
-                String[] arrays  = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String[] arrays  = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
                         int start = value.indexOf(nameStr);
@@ -596,10 +596,10 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 // 拆分换行, 并循环
-                String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
-                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
+                        String[] splitArrays = value.split(DevFinal.REGEX.SPACE);
                         if (splitArrays.length != 0) {
                             for (String itemValue : splitArrays) {
                                 if (!TextUtils.isEmpty(itemValue)) {
@@ -645,10 +645,10 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 // 拆分换行, 并循环
-                String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
-                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
+                        String[] splitArrays = value.split(DevFinal.REGEX.SPACE);
                         if (splitArrays.length != 0) {
                             for (String itemValue : splitArrays) {
                                 if (!TextUtils.isEmpty(itemValue)) {
@@ -698,10 +698,10 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 // 拆分换行, 并循环
-                String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
-                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
+                        String[] splitArrays = value.split(DevFinal.REGEX.SPACE);
                         if (splitArrays.length != 0) {
                             for (String itemValue : splitArrays) {
                                 if (!TextUtils.isEmpty(itemValue)) {
@@ -779,7 +779,7 @@ public final class ADBUtils {
         if (!TextUtils.isEmpty(result)) {
             try {
                 List<String> lists  = new ArrayList<>();
-                String[]     arrays = result.split(DevFinal.NEW_LINE_STR);
+                String[]     arrays = result.split(DevFinal.SYMBOL.NEW_LINE_STR);
                 // 拆分后, 数据长度
                 int splitLength = arrays.length;
                 // 获取 Activity 栈字符串
@@ -805,7 +805,7 @@ public final class ADBUtils {
                 String[] activityArrays = activities.split("ActivityRecord");
                 for (String value : activityArrays) {
                     try {
-                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
+                        String[] splitArrays = value.split(DevFinal.REGEX.SPACE);
                         if (splitArrays.length != 0) {
                             for (String itemValue : splitArrays) {
                                 int start = itemValue.indexOf(packageName + "/");
@@ -1699,7 +1699,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(
-                            cmd, DateUtils.formatTime(millis, DevFinal.mmddHHmmyyyyss)
+                            cmd, DateUtils.formatTime(millis, DevFinal.TIME.mmddHHmmyyyyss)
                     ), true
             );
             return result.isSuccess2();
@@ -2077,7 +2077,7 @@ public final class ADBUtils {
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 最后进行添加
-                    builder.append(subStr.split(DevFinal.REGEX_SPACE)[0]);
+                    builder.append(subStr.split(DevFinal.REGEX.SPACE)[0]);
                     // 返回对应的数据
                     return builder.toString();
                 } catch (Exception e) {
@@ -2091,12 +2091,12 @@ public final class ADBUtils {
             );
             if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI
                 try {
-                    String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                    String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE_STR);
                     for (String value : arrays) {
                         if (!TextUtils.isEmpty(value)) {
                             if (value.toLowerCase().contains("device")) {
                                 // 进行拆分
-                                String[] splitArray = value.split(DevFinal.REGEX_SPACE);
+                                String[] splitArray = value.split(DevFinal.REGEX.SPACE);
                                 return splitArray[splitArray.length - 1];
                             }
                         }

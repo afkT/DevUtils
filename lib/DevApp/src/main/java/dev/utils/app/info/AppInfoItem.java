@@ -126,7 +126,7 @@ public final class AppInfoItem {
         builder.append(sdf.format(notBefore));
         builder.append(" ").append(context.getString(R.string.dev_str_to)).append(" "); // 至
         builder.append(sdf.format(notAfter));
-        builder.append(DevFinal.NEW_LINE_STR_X2);
+        builder.append(DevFinal.SYMBOL.NEW_LINE_STR_X2);
         builder.append(notBefore);
         builder.append(" ").append(context.getString(R.string.dev_str_to)).append(" ");
         builder.append(notAfter);

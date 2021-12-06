@@ -75,8 +75,8 @@ class AdapterMainModuleList
     ) {
         try {
             Intent intent = new Intent(context, DevHttpCaptureListActivity.class);
-            intent.putExtra(DevFinal.MODULE, moduleName);
-            intent.putExtra(DevFinal.DATE, date);
+            intent.putExtra(DevFinal.STR.MODULE, moduleName);
+            intent.putExtra(DevFinal.STR.DATE, date);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         } catch (Exception ignored) {

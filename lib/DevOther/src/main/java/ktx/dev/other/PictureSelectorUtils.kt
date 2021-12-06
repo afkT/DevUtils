@@ -207,7 +207,7 @@ object PictureSelectorUtils {
             if (original) return it.path
             // 判断资源类型
             val mimeType = it.mimeType
-            if (StringUtils.isStartsWith(mimeType, DevFinal.IMAGE)) { // 图片
+            if (StringUtils.isStartsWith(mimeType, DevFinal.STR.IMAGE)) { // 图片
                 if (it.isCompressed) { // 是否压缩图片
                     return it.compressPath
                 } else if (it.isCut) { // 是否裁减图片

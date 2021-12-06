@@ -211,7 +211,7 @@ public final class PictureSelectorUtils {
             if (original) return localMedia.getPath();
             // 判断资源类型
             String mimeType = localMedia.getMimeType();
-            if (StringUtils.isStartsWith(mimeType, DevFinal.IMAGE)) { // 图片
+            if (StringUtils.isStartsWith(mimeType, DevFinal.STR.IMAGE)) { // 图片
                 if (localMedia.isCompressed()) { // 是否压缩图片
                     return localMedia.getCompressPath();
                 } else if (localMedia.isCut()) { // 是否裁减图片

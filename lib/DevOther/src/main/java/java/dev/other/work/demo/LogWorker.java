@@ -74,7 +74,7 @@ public class LogWorker
         // 模拟操作进度, 并进行通知
         for (int i = 0; i <= 100; i++) {
             Data data = new Data.Builder().putInt(
-                    DevFinal.PROGRESS, i
+                    DevFinal.STR.PROGRESS, i
             ).build();
             setProgressAsync(data);
             try {
@@ -95,7 +95,7 @@ public class LogWorker
      */
     private static Data createData(final String log) {
         Data.Builder builder = new Data.Builder();
-        builder.putString(DevFinal.CONTENT, log);
+        builder.putString(DevFinal.STR.CONTENT, log);
         return builder.build();
     }
 
@@ -104,7 +104,7 @@ public class LogWorker
      * @return Log Content
      */
     private String getLog() {
-        return getInputData().getString(DevFinal.CONTENT);
+        return getInputData().getString(DevFinal.STR.CONTENT);
     }
 
     // ==================
@@ -148,7 +148,7 @@ public class LogWorker
                         DevEngine.INSTANCE.getLog().dTag(TAG, "堵塞");
                         break;
                     case RUNNING:
-                        int progress = workInfo.getProgress().getInt(DevFinal.PROGRESS, 0);
+                        int progress = workInfo.getProgress().getInt(DevFinal.STR.PROGRESS, 0);
 //                        DevEngine.INSTANCE.getLog().dTag(TAG, "正在运行");
                         DevEngine.INSTANCE.getLog().dTag(TAG, String.format(
                                 "正在运行, 进度: %d%%", progress
@@ -166,7 +166,7 @@ public class LogWorker
                     case SUCCEEDED:
                         DevEngine.INSTANCE.getLog().dTag(TAG, "成功");
                         // doWork return Result 传入了 Data 则会存在数据
-                        String content = workInfo.getOutputData().getString(DevFinal.CONTENT);
+                        String content = workInfo.getOutputData().getString(DevFinal.STR.CONTENT);
                         DevEngine.INSTANCE.getLog().dTag(TAG, "content: " + content);
                         break;
                 }

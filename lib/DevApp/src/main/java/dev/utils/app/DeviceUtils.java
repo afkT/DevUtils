@@ -112,11 +112,11 @@ public final class DeviceUtils {
             }
             // 保存 APP 版本信息
             builder.append("versionName: ").append(versionName);
-            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
             builder.append("versionCode: ").append(versionCode);
-            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
             builder.append("package: ").append(packageName);
-            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
             builder.append(deviceInfo);
             // 设置应用、设备信息
             APP_DEVICE_INFO = builder.toString();
@@ -233,7 +233,7 @@ public final class DeviceUtils {
                 builder.append(rnKey);
                 builder.append(" = ");
                 builder.append(rnValue);
-                builder.append(DevFinal.NEW_LINE_STR);
+                builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
             }
             return builder.toString();
         } catch (Exception e) {

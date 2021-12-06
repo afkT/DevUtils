@@ -42,7 +42,7 @@ public class LocalMediaData
             if (original) return mLocalMedia.getPath();
             // 判断资源类型
             String mimeType = mLocalMedia.getMimeType();
-            if (StringUtils.isStartsWith(mimeType, DevFinal.IMAGE)) { // 图片
+            if (StringUtils.isStartsWith(mimeType, DevFinal.STR.IMAGE)) { // 图片
                 if (mLocalMedia.isCompressed()) { // 是否压缩图片
                     return mLocalMedia.getCompressPath();
                 } else if (mLocalMedia.isCut()) { // 是否裁减图片

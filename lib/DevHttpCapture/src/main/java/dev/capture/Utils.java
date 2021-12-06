@@ -205,9 +205,9 @@ class Utils {
             final String modulePath,
             final long millis
     ) {
-        String yyyyMMdd = DateUtils.formatTime(millis, DevFinal.yyyyMMdd2);
-        String HH       = DateUtils.formatTime(millis, DevFinal.HH);
-        int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.mm));
+        String yyyyMMdd = DateUtils.formatTime(millis, DevFinal.TIME.yyyyMMdd2);
+        String HH       = DateUtils.formatTime(millis, DevFinal.TIME.HH);
+        int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.TIME.mm));
         String mmStr;
         // 存储间隔以 10 分钟为单位
         if (mm < 10) { // 00-09

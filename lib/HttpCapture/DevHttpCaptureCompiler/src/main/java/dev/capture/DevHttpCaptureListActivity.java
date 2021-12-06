@@ -117,9 +117,9 @@ public class DevHttpCaptureListActivity
      */
     private void initValue(final Intent intent) {
         // 获取模块名
-        mModule = intent.getStringExtra(DevFinal.MODULE);
+        mModule = intent.getStringExtra(DevFinal.STR.MODULE);
         // 获取时间
-        mDate = intent.getStringExtra(DevFinal.DATE);
+        mDate = intent.getStringExtra(DevFinal.STR.DATE);
 
         // 设置点击事件
         mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());

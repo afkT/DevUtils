@@ -677,7 +677,7 @@ public final class FileIOUtils {
             if ((line = br.readLine()) != null) {
                 builder.append(line);
                 while ((line = br.readLine()) != null) {
-                    builder.append(DevFinal.NEW_LINE_STR).append(line);
+                    builder.append(DevFinal.SYMBOL.NEW_LINE_STR).append(line);
                 }
             }
             return builder.toString();

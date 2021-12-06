@@ -253,7 +253,7 @@ final class LoggerPrinter
             }
             logHandle(
                     logConfig, tag, Log.ERROR,
-                    errorInfo + DevFinal.NEW_LINE_STR + json
+                    errorInfo + DevFinal.SYMBOL.NEW_LINE_STR + json
             );
         }
     }
@@ -305,7 +305,7 @@ final class LoggerPrinter
             }
             logHandle(
                     logConfig, tag, Log.ERROR,
-                    errorInfo + DevFinal.NEW_LINE_STR + xml
+                    errorInfo + DevFinal.SYMBOL.NEW_LINE_STR + xml
             );
         }
     }
@@ -501,7 +501,7 @@ final class LoggerPrinter
             }
             logHandle(
                     logConfig, tag, Log.ERROR,
-                    errorInfo + DevFinal.NEW_LINE_STR + json
+                    errorInfo + DevFinal.SYMBOL.NEW_LINE_STR + json
             );
         }
     }
@@ -555,7 +555,7 @@ final class LoggerPrinter
             }
             logHandle(
                     logConfig, tag, Log.ERROR,
-                    errorInfo + DevFinal.NEW_LINE_STR + xml
+                    errorInfo + DevFinal.SYMBOL.NEW_LINE_STR + xml
             );
         }
     }
@@ -891,7 +891,7 @@ final class LoggerPrinter
             final String tag,
             final String msg
     ) {
-        String[] lines = msg.split(DevFinal.NEW_LINE_STR);
+        String[] lines = msg.split(DevFinal.SYMBOL.NEW_LINE_STR);
         for (String line : lines) {
             finalLogPrinter(
                     logType, tag,

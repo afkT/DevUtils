@@ -103,7 +103,7 @@ public final class FileRecordUtils {
 
         StringBuilder builder = new StringBuilder();
         if (headerData) {
-            builder.append(DevFinal.NEW_LINE_STR_X2)
+            builder.append(DevFinal.SYMBOL.NEW_LINE_STR_X2)
                     // 获取当前时间
                     .append(DateUtils.getDateNow())
                     // 追加边距、换行
@@ -112,10 +112,10 @@ public final class FileRecordUtils {
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
             // 追加存储内容
-            builder.append(DevFinal.NEW_LINE_STR_X2);
+            builder.append(DevFinal.SYMBOL.NEW_LINE_STR_X2);
             if (headerData) {
                 builder.append("logs[").append(i).append("]: ")
-                        .append(DevFinal.NEW_LINE_STR);
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR);
             }
             Object object = logs[i];
             if (object instanceof Throwable) {

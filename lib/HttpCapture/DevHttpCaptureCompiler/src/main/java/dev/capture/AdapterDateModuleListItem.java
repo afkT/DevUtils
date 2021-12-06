@@ -94,7 +94,7 @@ class AdapterDateModuleListItem
     ) {
         try {
             Intent intent = new Intent(context, DevHttpCaptureFileActivity.class);
-            intent.putExtra(DevFinal.JSON, captureFile.toJson());
+            intent.putExtra(DevFinal.STR.JSON, captureFile.toJson());
             context.startActivity(intent);
         } catch (Exception ignored) {
         }

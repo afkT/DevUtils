@@ -19,7 +19,7 @@ public class DevEngineAssist<Engine> {
      * @return {@link Engine}
      */
     public Engine getEngine() {
-        return getEngine(DevFinal.DEFAULT);
+        return getEngine(DevFinal.STR.DEFAULT);
     }
 
     /**
@@ -37,7 +37,7 @@ public class DevEngineAssist<Engine> {
      * @return {@link Engine}
      */
     public Engine setEngine(final Engine engine) {
-        return setEngine(DevFinal.DEFAULT, engine);
+        return setEngine(DevFinal.STR.DEFAULT, engine);
     }
 
     /**
@@ -58,7 +58,7 @@ public class DevEngineAssist<Engine> {
      * 移除 Engine
      */
     public void removeEngine() {
-        removeEngine(DevFinal.DEFAULT);
+        removeEngine(DevFinal.STR.DEFAULT);
     }
 
     /**
@@ -86,7 +86,7 @@ public class DevEngineAssist<Engine> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean contains() {
-        return contains(DevFinal.DEFAULT);
+        return contains(DevFinal.STR.DEFAULT);
     }
 
     /**
@@ -103,7 +103,7 @@ public class DevEngineAssist<Engine> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isEmpty() {
-        return isEmpty(DevFinal.DEFAULT);
+        return isEmpty(DevFinal.STR.DEFAULT);
     }
 
     /**

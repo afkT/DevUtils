@@ -59,7 +59,7 @@ public final class DevHttpCaptureCompiler {
         finishAllActivity();
         try {
             Intent intent = new Intent(context, DevHttpCaptureMainActivity.class);
-            intent.putExtra(DevFinal.MODULE, moduleName);
+            intent.putExtra(DevFinal.STR.MODULE, moduleName);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             return true;

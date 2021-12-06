@@ -384,13 +384,13 @@ public final class CameraSizeAssist {
         // = 打印信息 =
         if (LogPrintUtils.isPrintLog()) {
             StringBuilder builder = new StringBuilder();
-            builder.append("预览支持尺寸: ").append(DevFinal.NEW_LINE_STR);
+            builder.append("预览支持尺寸: ").append(DevFinal.SYMBOL.NEW_LINE_STR);
             // 打印信息
             for (Camera.Size previewSize : listPreviewSizes) {
                 // 例: 1080 x 1920
                 builder.append(previewSize.width)
                         .append("x").append(previewSize.height)
-                        .append(DevFinal.NEW_LINE_STR);
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR);
             }
             // 打印尺寸信息
             LogPrintUtils.dTag(TAG, builder.toString());
@@ -500,13 +500,13 @@ public final class CameraSizeAssist {
         // = 打印信息 =
         if (LogPrintUtils.isPrintLog()) {
             StringBuilder builder = new StringBuilder();
-            builder.append("拍照支持尺寸: ").append(DevFinal.NEW_LINE_STR);
+            builder.append("拍照支持尺寸: ").append(DevFinal.SYMBOL.NEW_LINE_STR);
             // 打印信息
             for (Camera.Size pictureSize : listPictureSizes) {
                 // 例: 1080 x 1920
                 builder.append(pictureSize.width)
                         .append("x").append(pictureSize.height)
-                        .append(DevFinal.NEW_LINE_STR);
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR);
             }
             // 打印尺寸信息
             LogPrintUtils.dTag(TAG, builder.toString());
@@ -642,13 +642,13 @@ public final class CameraSizeAssist {
         // = 打印信息 =
         if (LogPrintUtils.isPrintLog()) {
             StringBuilder builder = new StringBuilder();
-            builder.append("视频录制支持尺寸: ").append(DevFinal.NEW_LINE_STR);
+            builder.append("视频录制支持尺寸: ").append(DevFinal.SYMBOL.NEW_LINE_STR);
             // 打印信息
             for (Camera.Size videoSize : listVideoSizes) {
                 // 例: 1080 x 1920
                 builder.append(videoSize.width)
                         .append("x").append(videoSize.height)
-                        .append(DevFinal.NEW_LINE_STR);
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR);
             }
             // 打印尺寸信息
             LogPrintUtils.dTag(TAG, builder.toString());

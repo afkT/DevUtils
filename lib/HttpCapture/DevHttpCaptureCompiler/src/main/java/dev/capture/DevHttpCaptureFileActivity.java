@@ -56,7 +56,7 @@ public class DevHttpCaptureFileActivity
      */
     private void initValue(final Intent intent) {
         // 获取抓包文件
-        String json = intent.getStringExtra(DevFinal.JSON);
+        String json = intent.getStringExtra(DevFinal.STR.JSON);
 
         // 设置点击事件
         mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());

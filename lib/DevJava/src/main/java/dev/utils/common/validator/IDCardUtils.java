@@ -129,7 +129,7 @@ public final class IDCardUtils {
             String birthCode = idCard.substring(6, 12);
             Date   birthDate = null;
             try {
-                birthDate = DateUtils.getSafeDateFormat(DevFinal.yy).parse(birthCode.substring(0, 2));
+                birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yy).parse(birthCode.substring(0, 2));
             } catch (ParseException e) {
                 JCLogUtils.eTag(TAG, e, "validateIdCard15");
             }
@@ -188,7 +188,7 @@ public final class IDCardUtils {
             // 获取出生日期
             String birthday = idCard.substring(6, 12);
             try {
-                birthDate = DateUtils.getSafeDateFormat(DevFinal.yyMMdd).parse(birthday);
+                birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yyMMdd).parse(birthday);
             } catch (ParseException e) {
                 JCLogUtils.eTag(TAG, e, "convert15CardTo18");
             }
