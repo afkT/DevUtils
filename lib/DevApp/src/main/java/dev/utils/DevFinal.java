@@ -101,7 +101,18 @@ public final class DevFinal {
 
         // 变量名以 _数字 命名的表示 属于单个 M、d
 
-        public static final String yyyy      = "yyyy";
+        public static final String yy   = "yy";
+        public static final String yyyy = "yyyy";
+        public static final String MM   = "MM";
+        public static final String dd   = "dd";
+        public static final String HH   = "HH";
+        public static final String mm   = "mm";
+        public static final String ss   = "ss";
+
+        public static final String MM_SINGLE    = "M";
+        public static final String dd_SINGLE    = "d";
+        public static final String HH_LOWERCASE = "hh";
+
         public static final String yyMMdd    = "yy-MM-dd";
         public static final String yyMMdd2   = "yyMMdd";
         public static final String yyyyMMdd  = "yyyy-MM-dd";
@@ -119,19 +130,17 @@ public final class DevFinal {
         public static final String yyyyMMddHHmmss3 = "yyyyMMdd_HHmmss";
         public static final String yyyyMMddHHmmss4 = "yyyyMMdd.HHmmss";
 
-        public static final String MMdd           = "MM-dd";
-        public static final String MMdd2          = "MM月dd日";
-        public static final String MMdd3          = "MMdd";
-        public static final String yy             = "yy";
-        public static final String MM             = "MM";
-        public static final String dd             = "dd";
-        public static final String hh             = "hh";
-        public static final String HH             = "HH";
-        public static final String mm             = "mm";
-        public static final String HHmm           = "HH:mm";
-        public static final String HHmm2          = "HHmm";
-        public static final String HHmmss         = "HH:mm:ss";
-        public static final String HHmmss2        = "HHmmss";
+        public static final String MMdd  = "MM-dd";
+        public static final String MMdd2 = "MM月dd日";
+        public static final String MMdd3 = "MMdd";
+        public static final String MMdd4 = "Md";
+        public static final String MMdd5 = "M月d日";
+
+        public static final String HHmm    = "HH:mm";
+        public static final String HHmm2   = "HHmm";
+        public static final String HHmmss  = "HH:mm:ss";
+        public static final String HHmmss2 = "HHmmss";
+
         public static final String hhmmMMDDyyyy   = "hh:mm M月d日 yyyy";
         public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
         public static final String mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
