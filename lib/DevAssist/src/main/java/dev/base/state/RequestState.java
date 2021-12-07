@@ -120,14 +120,6 @@ public class RequestState<T> {
     }
 
     /**
-     * 判断是否未请求过
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isRequestNever() {
-        return equalsState(DevFinal.INT.REQUEST_NEVER);
-    }
-
-    /**
      * 判断是否请求中
      * @return {@code true} yes, {@code false} no
      */
@@ -139,8 +131,8 @@ public class RequestState<T> {
      * 判断是否请求成功
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isRequestSuc() {
-        return equalsState(DevFinal.INT.REQUEST_SUC);
+    public boolean isRequestSuccess() {
+        return equalsState(DevFinal.INT.REQUEST_SUCCESS);
     }
 
     /**
@@ -159,6 +151,62 @@ public class RequestState<T> {
         return equalsState(DevFinal.INT.REQUEST_ERROR);
     }
 
+    /**
+     * 判断是否请求开始
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestStart() {
+        return equalsState(DevFinal.INT.REQUEST_START);
+    }
+
+    /**
+     * 判断是否重新请求
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestRestart() {
+        return equalsState(DevFinal.INT.REQUEST_RESTART);
+    }
+
+    /**
+     * 判断是否请求结束
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestEnd() {
+        return equalsState(DevFinal.INT.REQUEST_END);
+    }
+
+    /**
+     * 判断是否请求暂停
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestPause() {
+        return equalsState(DevFinal.INT.REQUEST_PAUSE);
+    }
+
+    /**
+     * 判断是否请求恢复 ( 继续 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestResume() {
+        return equalsState(DevFinal.INT.REQUEST_RESUME);
+    }
+
+    /**
+     * 判断是否请求停止
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestStop() {
+        return equalsState(DevFinal.INT.REQUEST_STOP);
+    }
+
+    /**
+     * 判断是否请求取消
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRequestCancel() {
+        return equalsState(DevFinal.INT.REQUEST_CANCEL);
+    }
+
     // =======
     // = set =
     // =======
@@ -169,14 +217,6 @@ public class RequestState<T> {
      */
     public RequestState<T> setRequestNormal() {
         return setState(DevFinal.INT.REQUEST_NORMAL);
-    }
-
-    /**
-     * 设置状态为未请求过
-     * @return {@link RequestState}
-     */
-    public RequestState<T> setRequestNever() {
-        return setState(DevFinal.INT.REQUEST_NEVER);
     }
 
     /**
@@ -191,8 +231,8 @@ public class RequestState<T> {
      * 设置状态为请求成功
      * @return {@link RequestState}
      */
-    public RequestState<T> setRequestSuc() {
-        return setState(DevFinal.INT.REQUEST_SUC);
+    public RequestState<T> setRequestSuccess() {
+        return setState(DevFinal.INT.REQUEST_SUCCESS);
     }
 
     /**
@@ -209,5 +249,61 @@ public class RequestState<T> {
      */
     public RequestState<T> setRequestError() {
         return setState(DevFinal.INT.REQUEST_ERROR);
+    }
+
+    /**
+     * 设置状态为请求开始
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestStart() {
+        return setState(DevFinal.INT.REQUEST_START);
+    }
+
+    /**
+     * 设置状态为重新请求
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestRestart() {
+        return setState(DevFinal.INT.REQUEST_RESTART);
+    }
+
+    /**
+     * 设置状态为请求结束
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestEnd() {
+        return setState(DevFinal.INT.REQUEST_END);
+    }
+
+    /**
+     * 设置状态为请求暂停
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestPause() {
+        return setState(DevFinal.INT.REQUEST_PAUSE);
+    }
+
+    /**
+     * 设置状态为请求恢复 ( 继续 )
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestResume() {
+        return setState(DevFinal.INT.REQUEST_RESUME);
+    }
+
+    /**
+     * 设置状态为请求停止
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestStop() {
+        return setState(DevFinal.INT.REQUEST_STOP);
+    }
+
+    /**
+     * 设置状态为请求取消
+     * @return {@link RequestState}
+     */
+    public RequestState<T> setRequestCancel() {
+        return setState(DevFinal.INT.REQUEST_CANCEL);
     }
 }

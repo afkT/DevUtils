@@ -502,29 +502,11 @@ public final class DevFinal {
      */
     public static final class INT {
 
-        // ===========
-        // = Request =
-        // ===========
-
-        public static final int REQUEST_BASE   = 102030;
-        // 默认状态 ( 暂未进行操作 )
-        public static final int REQUEST_NORMAL = REQUEST_BASE + 1;
-        // 未请求过
-        public static final int REQUEST_NEVER  = REQUEST_BASE + 2;
-        // 请求中
-        public static final int REQUEST_ING    = REQUEST_BASE + 3;
-        // 请求成功
-        public static final int REQUEST_SUC    = REQUEST_BASE + 4;
-        // 请求失败
-        public static final int REQUEST_FAIL   = REQUEST_BASE + 5;
-        // 请求异常
-        public static final int REQUEST_ERROR  = REQUEST_BASE + 6;
-
         // ============
         // = 常用操作值 =
         // ============
 
-        public static final int BASE         = 103050;
+        public static final int BASE         = 102030;
         // 默认状态 ( 暂未进行操作 )
         public static final int NORMAL       = BASE + 1;
         // 操作中
@@ -595,6 +577,35 @@ public final class DevFinal {
         public static final int OPEN         = BASE + 34;
         // 退出
         public static final int EXIT         = BASE + 35;
+
+        // ===========
+        // = Request =
+        // ===========
+
+        // 默认状态 ( 暂未进行操作 )
+        public static final int REQUEST_NORMAL  = NORMAL;
+        // 请求中
+        public static final int REQUEST_ING     = ING;
+        // 请求成功
+        public static final int REQUEST_SUCCESS = SUCCESS;
+        // 请求失败
+        public static final int REQUEST_FAIL    = FAIL;
+        // 请求异常
+        public static final int REQUEST_ERROR   = ERROR;
+        // 请求开始
+        public static final int REQUEST_START   = START;
+        // 重新请求
+        public static final int REQUEST_RESTART = RESTART;
+        // 请求结束
+        public static final int REQUEST_END     = END;
+        // 请求暂停
+        public static final int REQUEST_PAUSE   = PAUSE;
+        // 请求恢复 ( 继续 )
+        public static final int REQUEST_RESUME  = RESUME;
+        // 请求停止
+        public static final int REQUEST_STOP    = STOP;
+        // 请求取消
+        public static final int REQUEST_CANCEL  = CANCEL;
     }
 
     /**

@@ -502,7 +502,11 @@ public final class DevFinal {
      */
     public static final class INT {
 
-        public static final int BASE         = 103050;
+        // ============
+        // = 常用操作值 =
+        // ============
+
+        public static final int BASE         = 102030;
         // 默认状态 ( 暂未进行操作 )
         public static final int NORMAL       = BASE + 1;
         // 操作中
@@ -513,62 +517,95 @@ public final class DevFinal {
         public static final int FAIL         = BASE + 4;
         // 操作异常
         public static final int ERROR        = BASE + 5;
-        // 操作开始
+        // 开始操作
         public static final int START        = BASE + 6;
+        // 重新开始操作
+        public static final int RESTART      = BASE + 7;
         // 操作结束
-        public static final int END          = BASE + 7;
+        public static final int END          = BASE + 8;
         // 操作暂停
-        public static final int PAUSE        = BASE + 8;
+        public static final int PAUSE        = BASE + 9;
         // 操作恢复 ( 继续 )
-        public static final int RESUME       = BASE + 9;
+        public static final int RESUME       = BASE + 10;
         // 操作停止
-        public static final int STOP         = BASE + 10;
+        public static final int STOP         = BASE + 11;
         // 操作取消
-        public static final int CANCEL       = BASE + 11;
-        // 创建操作
-        public static final int CREATE       = BASE + 12;
-        // 销毁操作
-        public static final int DESTROY      = BASE + 13;
-        // 回收操作
-        public static final int RECYCLE      = BASE + 14;
-        // 初始化操作
-        public static final int INIT         = BASE + 15;
+        public static final int CANCEL       = BASE + 12;
+        // 创建
+        public static final int CREATE       = BASE + 13;
+        // 销毁
+        public static final int DESTROY      = BASE + 14;
+        // 回收
+        public static final int RECYCLE      = BASE + 15;
+        // 初始化
+        public static final int INIT         = BASE + 16;
         // 已打开
-        public static final int ENABLED      = BASE + 16;
+        public static final int ENABLED      = BASE + 17;
         // 正在打开
-        public static final int ENABLING     = BASE + 17;
+        public static final int ENABLING     = BASE + 18;
         // 已关闭
-        public static final int DISABLED     = BASE + 18;
+        public static final int DISABLED     = BASE + 19;
         // 正在关闭
-        public static final int DISABLING    = BASE + 19;
+        public static final int DISABLING    = BASE + 20;
         // 连接成功
-        public static final int CONNECTED    = BASE + 20;
+        public static final int CONNECTED    = BASE + 21;
         // 连接中
-        public static final int CONNECTING   = BASE + 21;
+        public static final int CONNECTING   = BASE + 22;
         // 连接失败、断开
-        public static final int DISCONNECTED = BASE + 22;
+        public static final int DISCONNECTED = BASE + 23;
         // 暂停、延迟
-        public static final int SUSPENDED    = BASE + 23;
+        public static final int SUSPENDED    = BASE + 24;
         // 未知
-        public static final int UNKNOWN      = BASE + 24;
+        public static final int UNKNOWN      = BASE + 25;
+        // 新增
+        public static final int INSERT       = BASE + 26;
+        // 删除
+        public static final int DELETE       = BASE + 27;
+        // 更新
+        public static final int UPDATE       = BASE + 28;
+        // 查询
+        public static final int SELECT       = BASE + 29;
+        // 加密
+        public static final int ENCRYPT      = BASE + 30;
+        // 解密
+        public static final int DECRYPT      = BASE + 31;
+        // 重置
+        public static final int RESET        = BASE + 32;
+        // 关闭
+        public static final int CLOSE        = BASE + 33;
+        // 打开
+        public static final int OPEN         = BASE + 34;
+        // 退出
+        public static final int EXIT         = BASE + 35;
 
         // ===========
         // = Request =
         // ===========
 
-        public static final int REQUEST_BASE   = 102030;
         // 默认状态 ( 暂未进行操作 )
-        public static final int REQUEST_NORMAL = REQUEST_BASE + 1;
-        // 未请求过
-        public static final int REQUEST_NEVER  = REQUEST_BASE + 2;
+        public static final int REQUEST_NORMAL  = NORMAL;
         // 请求中
-        public static final int REQUEST_ING    = REQUEST_BASE + 3;
+        public static final int REQUEST_ING     = ING;
         // 请求成功
-        public static final int REQUEST_SUC    = REQUEST_BASE + 4;
+        public static final int REQUEST_SUCCESS = SUCCESS;
         // 请求失败
-        public static final int REQUEST_FAIL   = REQUEST_BASE + 5;
+        public static final int REQUEST_FAIL    = FAIL;
         // 请求异常
-        public static final int REQUEST_ERROR  = REQUEST_BASE + 6;
+        public static final int REQUEST_ERROR   = ERROR;
+        // 请求开始
+        public static final int REQUEST_START   = START;
+        // 重新请求
+        public static final int REQUEST_RESTART = RESTART;
+        // 请求结束
+        public static final int REQUEST_END     = END;
+        // 请求暂停
+        public static final int REQUEST_PAUSE   = PAUSE;
+        // 请求恢复 ( 继续 )
+        public static final int REQUEST_RESUME  = RESUME;
+        // 请求停止
+        public static final int REQUEST_STOP    = STOP;
+        // 请求取消
+        public static final int REQUEST_CANCEL  = CANCEL;
     }
 
     /**
