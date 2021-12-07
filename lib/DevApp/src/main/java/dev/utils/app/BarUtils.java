@@ -26,6 +26,7 @@ import java.lang.reflect.Method;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.assist.WindowAssist;
 
 /**
  * detail: Bar 相关工具类
@@ -123,7 +124,7 @@ public final class BarUtils {
             final Activity activity,
             final boolean isVisible
     ) {
-        return setStatusBarVisibility(ActivityUtils.getWindow(activity), isVisible);
+        return setStatusBarVisibility(WindowAssist.getWindow(activity), isVisible);
     }
 
     /**
@@ -161,7 +162,7 @@ public final class BarUtils {
             final Activity activity,
             final boolean isLightMode
     ) {
-        return setStatusBarLightMode(ActivityUtils.getWindow(activity), isLightMode);
+        return setStatusBarLightMode(WindowAssist.getWindow(activity), isLightMode);
     }
 
     /**
@@ -194,7 +195,7 @@ public final class BarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStatusBarLightMode(final Activity activity) {
-        return isStatusBarLightMode(ActivityUtils.getWindow(activity));
+        return isStatusBarLightMode(WindowAssist.getWindow(activity));
     }
 
     /**
@@ -455,7 +456,7 @@ public final class BarUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean transparentStatusBar(final Activity activity) {
-        return transparentStatusBar(ActivityUtils.getWindow(activity));
+        return transparentStatusBar(WindowAssist.getWindow(activity));
     }
 
     /**
@@ -492,7 +493,7 @@ public final class BarUtils {
             final int color,
             final boolean isDecor
     ) {
-        return applyStatusBarColor(ActivityUtils.getWindow(activity), color, isDecor);
+        return applyStatusBarColor(WindowAssist.getWindow(activity), color, isDecor);
     }
 
     /**
@@ -527,7 +528,7 @@ public final class BarUtils {
      * @param activity {@link Activity}
      */
     private static void hideStatusBarView(final Activity activity) {
-        hideStatusBarView(ActivityUtils.getWindow(activity));
+        hideStatusBarView(WindowAssist.getWindow(activity));
     }
 
     /**
@@ -666,7 +667,7 @@ public final class BarUtils {
             final Activity activity,
             final boolean isVisible
     ) {
-        return setNavBarVisibility(ActivityUtils.getWindow(activity), isVisible);
+        return setNavBarVisibility(WindowAssist.getWindow(activity), isVisible);
     }
 
     /**
@@ -710,7 +711,7 @@ public final class BarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarVisible(final Activity activity) {
-        return isNavBarVisible(ActivityUtils.getWindow(activity));
+        return isNavBarVisible(WindowAssist.getWindow(activity));
     }
 
     /**
@@ -773,7 +774,7 @@ public final class BarUtils {
             final Activity activity,
             final int color
     ) {
-        return setNavBarColor(ActivityUtils.getWindow(activity), color);
+        return setNavBarColor(WindowAssist.getWindow(activity), color);
     }
 
     /**
@@ -800,7 +801,7 @@ public final class BarUtils {
      * @return Navigation Bar 颜色
      */
     public static int getNavBarColor(final Activity activity) {
-        return getNavBarColor(ActivityUtils.getWindow(activity));
+        return getNavBarColor(WindowAssist.getWindow(activity));
     }
 
     /**
@@ -825,7 +826,7 @@ public final class BarUtils {
             final Activity activity,
             final boolean isLightMode
     ) {
-        return setNavBarLightMode(ActivityUtils.getWindow(activity), isLightMode);
+        return setNavBarLightMode(WindowAssist.getWindow(activity), isLightMode);
     }
 
     /**
@@ -858,7 +859,7 @@ public final class BarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNavBarLightMode(final Activity activity) {
-        return isNavBarLightMode(ActivityUtils.getWindow(activity));
+        return isNavBarLightMode(WindowAssist.getWindow(activity));
     }
 
     /**
