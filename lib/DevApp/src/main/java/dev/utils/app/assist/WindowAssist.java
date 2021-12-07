@@ -124,4 +124,16 @@ public final class WindowAssist {
     public WindowAssist(final android.app.DialogFragment dialog) {
         this(getWindow(dialog));
     }
+
+    // =============
+    // = 对外公开方法 =
+    // =============
+
+    /**
+     * 获取 Window
+     * @return {@link Window}
+     */
+    public Window getWindow() {
+        return mWindow;
+    }
 }

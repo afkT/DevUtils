@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
@@ -49,24 +48,6 @@ public final class ActivityUtils {
     // ===================
     // = Activity 判断处理 =
     // ===================
-
-    /**
-     * 获取 Window
-     * @param context {@link Context}
-     * @return {@link Window}
-     */
-    public static Window getWindow(final Context context) {
-        return getWindow(getActivity(context));
-    }
-
-    /**
-     * 获取 Window
-     * @param activity {@link Activity}
-     * @return {@link Window}
-     */
-    public static Window getWindow(final Activity activity) {
-        return (activity != null) ? activity.getWindow() : null;
-    }
 
     /**
      * 通过 Context 获取 Activity
