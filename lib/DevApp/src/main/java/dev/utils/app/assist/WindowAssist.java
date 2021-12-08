@@ -401,8 +401,8 @@ public final class WindowAssist {
      * 是否屏幕常亮
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFlagKeepScreenOn() {
-        return isFlagKeepScreenOn(mWindow);
+    public boolean isKeepScreenOnFlag() {
+        return isKeepScreenOnFlag(mWindow);
     }
 
     /**
@@ -425,8 +425,8 @@ public final class WindowAssist {
      * 是否禁止截屏
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFlagSecure() {
-        return isFlagSecure(mWindow);
+    public boolean isSecureFlag() {
+        return isSecureFlag(mWindow);
     }
 
     /**
@@ -449,8 +449,8 @@ public final class WindowAssist {
      * 是否屏幕为全屏
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFullScreen() {
-        return isFullScreen(mWindow);
+    public boolean isFullScreenFlag() {
+        return isFullScreenFlag(mWindow);
     }
 
     /**
@@ -714,7 +714,7 @@ public final class WindowAssist {
      * @param window {@link Activity#getWindow()}
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFlagKeepScreenOn(final Window window) {
+    public boolean isKeepScreenOnFlag(final Window window) {
         return hasFlag(window, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
@@ -745,7 +745,7 @@ public final class WindowAssist {
      * @param window {@link Activity#getWindow()}
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFlagSecure(final Window window) {
+    public boolean isSecureFlag(final Window window) {
         return hasFlag(window, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
@@ -776,7 +776,7 @@ public final class WindowAssist {
      * @param window {@link Activity#getWindow()}
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isFullScreen(final Window window) {
+    public boolean isFullScreenFlag(final Window window) {
         return hasFlag(window, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 

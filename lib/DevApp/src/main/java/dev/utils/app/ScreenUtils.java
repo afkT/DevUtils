@@ -291,7 +291,7 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFullScreen(final Activity activity) {
-        return WindowUtils.get(activity).isFullScreen();
+        return WindowUtils.get(activity).isFullScreenFlag();
     }
 
     /**
