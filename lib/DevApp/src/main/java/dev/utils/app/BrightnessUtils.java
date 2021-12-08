@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.annotation.IntRange;
 
@@ -135,16 +134,7 @@ public final class BrightnessUtils {
             final Window window,
             @IntRange(from = 0, to = 255) final int brightness
     ) {
-        if (window == null) return false;
-        try {
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
-            layoutParams.screenBrightness = brightness / 255f;
-            window.setAttributes(layoutParams);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setWindowBrightness");
-        }
-        return false;
+        return WindowUtils.setWindowBrightness(window, brightness);
     }
 
     /**
@@ -153,15 +143,6 @@ public final class BrightnessUtils {
      * @return 屏幕亮度 0-255
      */
     public static int getWindowBrightness(final Window window) {
-        if (window == null) return -1;
-        try {
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
-            float                      brightness   = layoutParams.screenBrightness;
-            if (brightness < 0) return getBrightness();
-            return (int) (brightness * 255);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWindowBrightness");
-        }
-        return 0;
+        return WindowUtils.getWindowBrightness(window);
     }
 }

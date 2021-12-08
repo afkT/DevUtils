@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.IntRange;
 import androidx.fragment.app.DialogFragment;
 
+import dev.utils.LogPrintUtils;
 import dev.utils.app.ActivityUtils;
+import dev.utils.app.BrightnessUtils;
 
 /**
  * detail: Window 辅助类
@@ -277,6 +280,25 @@ public final class WindowAssist {
         return setFlags(mWindow, flags, mask);
     }
 
+    // =
+
+    /**
+     * 设置窗口亮度
+     * @param brightness 亮度值
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWindowBrightness(@IntRange(from = 0, to = 255) final int brightness) {
+        return setWindowBrightness(mWindow, brightness);
+    }
+
+    /**
+     * 获取窗口亮度
+     * @return 屏幕亮度 0-255
+     */
+    public int getWindowBrightness() {
+        return getWindowBrightness(mWindow);
+    }
+
     // ==============
     // = Window 传参 =
     // ==============
@@ -393,4 +415,44 @@ public final class WindowAssist {
     }
 
     // =
+
+    /**
+     * 设置窗口亮度
+     * @param window     {@link Window}
+     * @param brightness 亮度值
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWindowBrightness(
+            final Window window,
+            @IntRange(from = 0, to = 255) final int brightness
+    ) {
+        if (window == null) return false;
+        try {
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            layoutParams.screenBrightness = brightness / 255f;
+            window.setAttributes(layoutParams);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setWindowBrightness");
+        }
+        return false;
+    }
+
+    /**
+     * 获取窗口亮度
+     * @param window {@link Window}
+     * @return 屏幕亮度 0-255
+     */
+    public int getWindowBrightness(final Window window) {
+        if (window == null) return 0;
+        try {
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            float                      brightness   = layoutParams.screenBrightness;
+            if (brightness < 0) return BrightnessUtils.getBrightness();
+            return (int) (brightness * 255);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getWindowBrightness");
+        }
+        return 0;
+    }
 }

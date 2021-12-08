@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
 
+import androidx.annotation.IntRange;
 import androidx.fragment.app.DialogFragment;
 
 import dev.utils.app.assist.WindowAssist;
@@ -64,5 +65,31 @@ public final class WindowUtils {
      */
     public static Window getWindow(final android.app.DialogFragment dialog) {
         return WindowAssist.getWindow(dialog);
+    }
+
+    // =
+
+    /**
+     * 设置窗口亮度
+     * @param window     {@link Window}
+     * @param brightness 亮度值
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setWindowBrightness(
+            final Window window,
+            @IntRange(from = 0, to = 255) final int brightness
+    ) {
+        return WindowAssist.getInstance().setWindowBrightness(
+                window, brightness
+        );
+    }
+
+    /**
+     * 获取窗口亮度
+     * @param window {@link Window}
+     * @return 屏幕亮度 0-255
+     */
+    public static int getWindowBrightness(final Window window) {
+        return WindowAssist.getInstance().getWindowBrightness(window);
     }
 }
