@@ -125,4 +125,22 @@ public final class WindowUtils {
                 window, inputVisible, clearFlag
         );
     }
+
+    /**
+     * 设置屏幕常亮
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setBrightByFlagKeepScreenOn(final Window window) {
+        return WindowAssist.getInstance().setBrightByFlagKeepScreenOn(window);
+    }
+
+    /**
+     * 移除屏幕常亮
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean clearBrightByFlagKeepScreenOn(final Window window) {
+        return WindowAssist.getInstance().clearBrightByFlagKeepScreenOn(window);
+    }
 }

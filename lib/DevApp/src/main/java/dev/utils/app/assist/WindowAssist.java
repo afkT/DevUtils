@@ -368,6 +368,22 @@ public final class WindowAssist {
         return setKeyBoardSoftInputMode(mWindow, inputVisible, clearFlag);
     }
 
+    /**
+     * 设置屏幕常亮
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setBrightByFlagKeepScreenOn() {
+        return setBrightByFlagKeepScreenOn(mWindow);
+    }
+
+    /**
+     * 移除屏幕常亮
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearBrightByFlagKeepScreenOn() {
+        return clearBrightByFlagKeepScreenOn(mWindow);
+    }
+
     // ==============
     // = Window 传参 =
     // ==============
@@ -568,6 +584,41 @@ public final class WindowAssist {
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setKeyBoardSoftInputMode");
+        }
+        return false;
+    }
+
+    /**
+     * 设置屏幕常亮
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setBrightByFlagKeepScreenOn(final Window window) {
+        if (window == null) return false;
+        try {
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+            );
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setBrightByFlagKeepScreenOn");
+        }
+        return false;
+    }
+
+    /**
+     * 移除屏幕常亮
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearBrightByFlagKeepScreenOn(final Window window) {
+        if (window == null) return false;
+        try {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "clearBrightByFlagKeepScreenOn");
         }
         return false;
     }

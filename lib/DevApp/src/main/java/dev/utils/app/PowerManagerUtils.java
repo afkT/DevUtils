@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.PowerManager;
 import android.view.Window;
-import android.view.WindowManager;
 
 import dev.utils.LogPrintUtils;
 
@@ -147,10 +146,7 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBright(final Activity activity) {
-        if (activity != null) {
-            return setBright(activity.getWindow());
-        }
-        return false;
+        return setBright(activity != null ? activity.getWindow() : null);
     }
 
     /**
@@ -159,15 +155,7 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBright(final Window window) {
-        if (window != null) {
-            try {
-                window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBright");
-            }
-        }
-        return false;
+        return WindowUtils.setBrightByFlagKeepScreenOn(window);
     }
 
     /**
@@ -183,7 +171,10 @@ public final class PowerManagerUtils {
         try {
             // onResume()
             PowerManager.WakeLock mWakeLock = PowerManagerUtils.getInstance().getPowerManager()
-                    .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, TAG);
+                    .newWakeLock(
+                            PowerManager.SCREEN_BRIGHT_WAKE_LOCK
+                                    | PowerManager.ON_AFTER_RELEASE, TAG
+                    );
             mWakeLock.acquire(); // 常量, 持有不黑屏
 
 //        // onPause()
