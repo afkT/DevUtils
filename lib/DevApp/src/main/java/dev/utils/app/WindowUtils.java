@@ -7,6 +7,7 @@ import android.view.Window;
 
 import androidx.annotation.IntRange;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import dev.utils.app.assist.WindowAssist;
 
@@ -18,9 +19,6 @@ public final class WindowUtils {
 
     private WindowUtils() {
     }
-
-    // 日志 TAG
-    private static final String TAG = WindowUtils.class.getSimpleName();
 
     /**
      * 获取 Window
@@ -38,6 +36,24 @@ public final class WindowUtils {
      */
     public static Window getWindow(final Activity activity) {
         return WindowAssist.getWindow(activity);
+    }
+
+    /**
+     * 获取 Window
+     * @param fragment {@link Fragment}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final Fragment fragment) {
+        return WindowAssist.getWindow(fragment);
+    }
+
+    /**
+     * 获取 Window
+     * @param fragment {@link android.app.Fragment}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final android.app.Fragment fragment) {
+        return WindowAssist.getWindow(fragment);
     }
 
     /**

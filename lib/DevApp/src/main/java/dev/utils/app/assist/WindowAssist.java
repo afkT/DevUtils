@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.IntRange;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ActivityUtils;
@@ -40,6 +41,26 @@ public final class WindowAssist {
      */
     public static Window getWindow(final Activity activity) {
         return (activity != null) ? activity.getWindow() : null;
+    }
+
+    /**
+     * 获取 Window
+     * @param fragment {@link Fragment}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final Fragment fragment) {
+        if (fragment == null) return null;
+        return getWindow(fragment.getActivity());
+    }
+
+    /**
+     * 获取 Window
+     * @param fragment {@link android.app.Fragment}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final android.app.Fragment fragment) {
+        if (fragment == null) return null;
+        return getWindow(fragment.getActivity());
     }
 
     /**
@@ -100,6 +121,24 @@ public final class WindowAssist {
      */
     public static WindowAssist get(final Activity activity) {
         return new WindowAssist(activity);
+    }
+
+    /**
+     * 获取 WindowAssist
+     * @param fragment {@link Fragment}
+     * @return {@link WindowAssist}
+     */
+    public static WindowAssist get(final Fragment fragment) {
+        return new WindowAssist(fragment);
+    }
+
+    /**
+     * 获取 WindowAssist
+     * @param fragment {@link android.app.Fragment}
+     * @return {@link WindowAssist}
+     */
+    public static WindowAssist get(final android.app.Fragment fragment) {
+        return new WindowAssist(fragment);
     }
 
     /**
@@ -174,6 +213,14 @@ public final class WindowAssist {
 
     public WindowAssist(final Activity activity) {
         this(getWindow(activity));
+    }
+
+    public WindowAssist(final Fragment fragment) {
+        this(getWindow(fragment));
+    }
+
+    public WindowAssist(final android.app.Fragment fragment) {
+        this(getWindow(fragment));
     }
 
     public WindowAssist(final Dialog dialog) {
@@ -505,23 +552,22 @@ public final class WindowAssist {
             final boolean inputVisible,
             final boolean clearFlag
     ) {
-        if (window != null) {
-            try {
-                if (inputVisible) {
-                    if (clearFlag) {
-                        window.clearFlags(
-                                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                                        | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
-                        );
-                    }
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-                } else {
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        if (window == null) return false;
+        try {
+            if (inputVisible) {
+                if (clearFlag) {
+                    window.clearFlags(
+                            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
+                                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    );
                 }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setKeyBoardSoftInputMode");
+                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+            } else {
+                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
             }
             return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setKeyBoardSoftInputMode");
         }
         return false;
     }
