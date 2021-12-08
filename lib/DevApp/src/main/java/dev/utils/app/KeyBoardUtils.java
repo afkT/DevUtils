@@ -10,7 +10,6 @@ import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -113,25 +112,9 @@ public final class KeyBoardUtils {
             final boolean inputVisible,
             final boolean clearFlag
     ) {
-        if (window != null) {
-            try {
-                if (inputVisible) {
-                    if (clearFlag) {
-                        window.clearFlags(
-                                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                                        | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
-                        );
-                    }
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-                } else {
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setSoftInputMode");
-            }
-            return true;
-        }
-        return false;
+        return WindowUtils.setKeyBoardSoftInputMode(
+                window, inputVisible, clearFlag
+        );
     }
 
     // ============================

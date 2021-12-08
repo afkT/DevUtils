@@ -92,4 +92,21 @@ public final class WindowUtils {
     public static int getWindowBrightness(final Window window) {
         return WindowAssist.getInstance().getWindowBrightness(window);
     }
+
+    /**
+     * 设置 Window 软键盘是否显示
+     * @param window       {@link Window}
+     * @param inputVisible 是否显示软键盘
+     * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setKeyBoardSoftInputMode(
+            final Window window,
+            final boolean inputVisible,
+            final boolean clearFlag
+    ) {
+        return WindowAssist.getInstance().setKeyBoardSoftInputMode(
+                window, inputVisible, clearFlag
+        );
+    }
 }

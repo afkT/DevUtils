@@ -280,6 +280,15 @@ public final class WindowAssist {
         return setFlags(mWindow, flags, mask);
     }
 
+    /**
+     * 设置 Window 输入模式
+     * @param mode input mode
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSoftInputMode(final int mode) {
+        return setSoftInputMode(mWindow, mode);
+    }
+
     // =
 
     /**
@@ -297,6 +306,19 @@ public final class WindowAssist {
      */
     public int getWindowBrightness() {
         return getWindowBrightness(mWindow);
+    }
+
+    /**
+     * 设置 Window 软键盘是否显示
+     * @param inputVisible 是否显示软键盘
+     * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setKeyBoardSoftInputMode(
+            final boolean inputVisible,
+            final boolean clearFlag
+    ) {
+        return setKeyBoardSoftInputMode(mWindow, inputVisible, clearFlag);
     }
 
     // ==============
@@ -414,6 +436,21 @@ public final class WindowAssist {
         return true;
     }
 
+    /**
+     * 设置 Window 输入模式
+     * @param window {@link Window}
+     * @param mode   input mode
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSoftInputMode(
+            final Window window,
+            final int mode
+    ) {
+        if (window == null) return false;
+        window.setSoftInputMode(mode);
+        return true;
+    }
+
     // =
 
     /**
@@ -454,5 +491,38 @@ public final class WindowAssist {
             LogPrintUtils.eTag(TAG, e, "getWindowBrightness");
         }
         return 0;
+    }
+
+    /**
+     * 设置 Window 软键盘是否显示
+     * @param window       {@link Window}
+     * @param inputVisible 是否显示软键盘
+     * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setKeyBoardSoftInputMode(
+            final Window window,
+            final boolean inputVisible,
+            final boolean clearFlag
+    ) {
+        if (window != null) {
+            try {
+                if (inputVisible) {
+                    if (clearFlag) {
+                        window.clearFlags(
+                                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                                        | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
+                        );
+                    }
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+                } else {
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setKeyBoardSoftInputMode");
+            }
+            return true;
+        }
+        return false;
     }
 }
