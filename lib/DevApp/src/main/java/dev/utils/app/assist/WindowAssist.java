@@ -336,6 +336,24 @@ public final class WindowAssist {
     }
 
     /**
+     * Window 是否设置指定 flag 值
+     * @param flag 待校验 flag
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFlag(final int flag) {
+        return hasFlag(mWindow, flag);
+    }
+
+    /**
+     * Window 是否设置指定 flags 值
+     * @param flags 待校验 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFlags(final int... flags) {
+        return hasFlags(mWindow, flags);
+    }
+
+    /**
      * 设置 Window 输入模式
      * @param mode input mode
      * @return {@code true} success, {@code false} fail
@@ -344,7 +362,9 @@ public final class WindowAssist {
         return setSoftInputMode(mWindow, mode);
     }
 
-    // =
+    // ==========
+    // = 具体功能 =
+    // ==========
 
     /**
      * 设置窗口亮度
@@ -376,20 +396,77 @@ public final class WindowAssist {
         return setKeyBoardSoftInputMode(mWindow, inputVisible, clearFlag);
     }
 
+
+    /**
+     * 是否屏幕常亮
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFlagKeepScreenOn() {
+        return isFlagKeepScreenOn(mWindow);
+    }
+
     /**
      * 设置屏幕常亮
      * @return {@code true} success, {@code false} fail
      */
-    public boolean setBrightByFlagKeepScreenOn() {
-        return setBrightByFlagKeepScreenOn(mWindow);
+    public boolean setFlagKeepScreenOn() {
+        return setFlagKeepScreenOn(mWindow);
     }
 
     /**
      * 移除屏幕常亮
      * @return {@code true} success, {@code false} fail
      */
-    public boolean clearBrightByFlagKeepScreenOn() {
-        return clearBrightByFlagKeepScreenOn(mWindow);
+    public boolean clearFlagKeepScreenOn() {
+        return clearFlagKeepScreenOn(mWindow);
+    }
+
+    /**
+     * 是否禁止截屏
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFlagSecure() {
+        return isFlagSecure(mWindow);
+    }
+
+    /**
+     * 设置禁止截屏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagSecure() {
+        return setFlagSecure(mWindow);
+    }
+
+    /**
+     * 移除禁止截屏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagSecure() {
+        return clearFlagSecure(mWindow);
+    }
+
+    /**
+     * 是否屏幕为全屏
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFullScreen() {
+        return isFullScreen(mWindow);
+    }
+
+    /**
+     * 设置屏幕为全屏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagFullScreen() {
+        return setFlagFullScreen(mWindow);
+    }
+
+    /**
+     * 移除屏幕全屏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagFullScreen() {
+        return clearFlagFullScreen(mWindow);
     }
 
     // ==============
@@ -508,6 +585,45 @@ public final class WindowAssist {
     }
 
     /**
+     * Window 是否设置指定 flag 值
+     * @param window {@link Window}
+     * @param flag   待校验 flag
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFlag(
+            final Window window,
+            final int flag
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        int flags = layoutParams.flags;
+        return (flags & flag) != 0;
+    }
+
+    /**
+     * Window 是否设置指定 flags 值
+     * @param window {@link Window}
+     * @param flags  待校验 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFlags(
+            final Window window,
+            final int... flags
+    ) {
+        if (window == null) return false;
+        if (flags == null || flags.length == 0) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        for (int value : flags) {
+            if ((value & layoutParams.flags) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 设置 Window 输入模式
      * @param window {@link Window}
      * @param mode   input mode
@@ -522,7 +638,9 @@ public final class WindowAssist {
         return true;
     }
 
-    // =
+    // ==========
+    // = 具体功能 =
+    // ==========
 
     /**
      * 设置窗口亮度
@@ -577,23 +695,27 @@ public final class WindowAssist {
             final boolean clearFlag
     ) {
         if (window == null) return false;
-        try {
-            if (inputVisible) {
-                if (clearFlag) {
-                    window.clearFlags(
-                            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
-                                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                    );
-                }
-                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-            } else {
-                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        if (inputVisible) {
+            if (clearFlag) {
+                window.clearFlags(
+                        WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
+                                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                );
             }
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setKeyBoardSoftInputMode");
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        } else {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
-        return false;
+        return true;
+    }
+
+    /**
+     * 是否屏幕常亮
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFlagKeepScreenOn(final Window window) {
+        return hasFlag(window, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     /**
@@ -601,18 +723,10 @@ public final class WindowAssist {
      * @param window {@link Activity#getWindow()}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean setBrightByFlagKeepScreenOn(final Window window) {
+    public boolean setFlagKeepScreenOn(final Window window) {
         if (window == null) return false;
-        try {
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
-                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-            );
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setBrightByFlagKeepScreenOn");
-        }
-        return false;
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        return true;
     }
 
     /**
@@ -620,14 +734,71 @@ public final class WindowAssist {
      * @param window {@link Activity#getWindow()}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean clearBrightByFlagKeepScreenOn(final Window window) {
+    public boolean clearFlagKeepScreenOn(final Window window) {
         if (window == null) return false;
-        try {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "clearBrightByFlagKeepScreenOn");
-        }
-        return false;
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        return true;
+    }
+
+    /**
+     * 是否禁止截屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFlagSecure(final Window window) {
+        return hasFlag(window, WindowManager.LayoutParams.FLAG_SECURE);
+    }
+
+    /**
+     * 设置禁止截屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagSecure(final Window window) {
+        if (window == null) return false;
+        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        return true;
+    }
+
+    /**
+     * 移除禁止截屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagSecure(final Window window) {
+        if (window == null) return false;
+        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        return true;
+    }
+
+    /**
+     * 是否屏幕为全屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFullScreen(final Window window) {
+        return hasFlag(window, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    /**
+     * 设置屏幕为全屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagFullScreen(final Window window) {
+        if (window == null) return false;
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        return true;
+    }
+
+    /**
+     * 移除屏幕全屏
+     * @param window {@link Activity#getWindow()}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagFullScreen(final Window window) {
+        if (window == null) return false;
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        return true;
     }
 }

@@ -282,31 +282,16 @@ public final class ScreenUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setWindowSecure(final Activity activity) {
-        try {
-            // 禁止截屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setWindowSecure");
-        }
-        return false;
+        return WindowUtils.get(activity).setFlagSecure();
     }
 
     /**
-     * 屏幕是否为全屏
+     * 是否屏幕为全屏
      * @param activity {@link Activity}
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFullScreen(final Activity activity) {
-        if (activity != null) {
-            try {
-                int flags = activity.getWindow().getAttributes().flags;
-                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isFullScreen");
-            }
-        }
-        return false;
+        return WindowUtils.get(activity).isFullScreen();
     }
 
     /**
@@ -315,14 +300,7 @@ public final class ScreenUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setFullScreen(final Activity activity) {
-        try {
-            // 设置全屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setFullScreen");
-        }
-        return false;
+        return WindowUtils.get(activity).setFlagFullScreen();
     }
 
     /**

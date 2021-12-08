@@ -155,7 +155,7 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBright(final Window window) {
-        return WindowUtils.get().setBrightByFlagKeepScreenOn(window);
+        return WindowUtils.get().setFlagKeepScreenOn(window);
     }
 
     /**
