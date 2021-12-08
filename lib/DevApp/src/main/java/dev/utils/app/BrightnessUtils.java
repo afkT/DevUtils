@@ -134,7 +134,7 @@ public final class BrightnessUtils {
             final Window window,
             @IntRange(from = 0, to = 255) final int brightness
     ) {
-        return WindowUtils.setWindowBrightness(window, brightness);
+        return WindowUtils.get().setWindowBrightness(window, brightness);
     }
 
     /**
@@ -143,6 +143,6 @@ public final class BrightnessUtils {
      * @return 屏幕亮度 0-255
      */
     public static int getWindowBrightness(final Window window) {
-        return WindowUtils.getWindowBrightness(window);
+        return WindowUtils.get().getWindowBrightness(window);
     }
 }

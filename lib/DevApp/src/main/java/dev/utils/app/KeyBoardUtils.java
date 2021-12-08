@@ -112,7 +112,7 @@ public final class KeyBoardUtils {
             final boolean inputVisible,
             final boolean clearFlag
     ) {
-        return WindowUtils.setKeyBoardSoftInputMode(
+        return WindowUtils.get().setKeyBoardSoftInputMode(
                 window, inputVisible, clearFlag
         );
     }

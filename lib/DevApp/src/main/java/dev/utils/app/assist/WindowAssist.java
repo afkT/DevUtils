@@ -98,6 +98,14 @@ public final class WindowAssist {
 
     /**
      * 获取 WindowAssist
+     * @return {@link WindowAssist}
+     */
+    public static WindowAssist get() {
+        return getInstance();
+    }
+
+    /**
+     * 获取 WindowAssist
      * @param window {@link Context}
      * @return {@link WindowAssist}
      */
@@ -179,7 +187,7 @@ public final class WindowAssist {
      * 获取 WindowAssist 实例
      * @return {@link WindowAssist}
      */
-    public static WindowAssist getInstance() {
+    private static WindowAssist getInstance() {
         if (sInstance == null) {
             synchronized (WindowAssist.class) {
                 if (sInstance == null) {
