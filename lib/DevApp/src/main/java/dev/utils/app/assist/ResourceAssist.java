@@ -72,7 +72,7 @@ public final class ResourceAssist {
      * 获取 ResourceAssist 实例
      * @return {@link ResourceAssist}
      */
-    public static ResourceAssist getInstance() {
+    private static ResourceAssist getInstance() {
         if (sInstance == null) {
             synchronized (ResourceAssist.class) {
                 if (sInstance == null) {

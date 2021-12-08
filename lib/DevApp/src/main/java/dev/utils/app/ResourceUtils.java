@@ -60,7 +60,7 @@ public final class ResourceUtils {
      * @return {@link Resources}
      */
     public static Resources getResources() {
-        return ResourceAssist.getInstance().getResources();
+        return ResourceAssist.get().getResources();
     }
 
     /**
@@ -133,7 +133,7 @@ public final class ResourceUtils {
      * @return {@link DisplayMetrics}
      */
     public static DisplayMetrics getDisplayMetrics() {
-        return ResourceAssist.getInstance().getDisplayMetrics();
+        return ResourceAssist.get().getDisplayMetrics();
     }
 
     /**
@@ -173,7 +173,7 @@ public final class ResourceUtils {
      * @return {@link Configuration}
      */
     public static Configuration getConfiguration() {
-        return ResourceAssist.getInstance().getConfiguration();
+        return ResourceAssist.get().getConfiguration();
     }
 
     /**
@@ -213,7 +213,7 @@ public final class ResourceUtils {
      * @return {@link AssetManager}
      */
     public static AssetManager getAssets() {
-        return ResourceAssist.getInstance().getAssets();
+        return ResourceAssist.get().getAssets();
     }
 
     /**
@@ -258,7 +258,7 @@ public final class ResourceUtils {
             final String resName,
             final String defType
     ) {
-        return ResourceAssist.getInstance().getIdentifier(resName, defType);
+        return ResourceAssist.get().getIdentifier(resName, defType);
     }
 
     /**
@@ -285,7 +285,7 @@ public final class ResourceUtils {
      * @return Integer
      */
     public static String getResourceName(@AnyRes final int id) {
-        return ResourceAssist.getInstance().getResourceName(id);
+        return ResourceAssist.get().getResourceName(id);
     }
 
     /**
@@ -316,7 +316,7 @@ public final class ResourceUtils {
      * @return String id
      */
     public static int getStringId(final String resName) {
-        return ResourceAssist.getInstance().getStringId(resName);
+        return ResourceAssist.get().getStringId(resName);
     }
 
     /**
@@ -325,7 +325,7 @@ public final class ResourceUtils {
      * @return String
      */
     public static String getString(final String resName) {
-        return ResourceAssist.getInstance().getString(resName);
+        return ResourceAssist.get().getString(resName);
     }
 
     /**
@@ -338,7 +338,7 @@ public final class ResourceUtils {
             final String resName,
             final Object... formatArgs
     ) {
-        return ResourceAssist.getInstance().getString(resName, formatArgs);
+        return ResourceAssist.get().getString(resName, formatArgs);
     }
 
     /**
@@ -347,7 +347,7 @@ public final class ResourceUtils {
      * @return String
      */
     public static String getString(@StringRes final int id) {
-        return ResourceAssist.getInstance().getString(id);
+        return ResourceAssist.get().getString(id);
     }
 
     /**
@@ -360,7 +360,7 @@ public final class ResourceUtils {
             @StringRes final int id,
             final Object... formatArgs
     ) {
-        return ResourceAssist.getInstance().getString(id, formatArgs);
+        return ResourceAssist.get().getString(id, formatArgs);
     }
 
     // =
@@ -371,7 +371,7 @@ public final class ResourceUtils {
      * @return Dimension id
      */
     public static int getDimenId(final String resName) {
-        return ResourceAssist.getInstance().getDimenId(resName);
+        return ResourceAssist.get().getDimenId(resName);
     }
 
     /**
@@ -380,7 +380,7 @@ public final class ResourceUtils {
      * @return Dimension
      */
     public static float getDimension(final String resName) {
-        return ResourceAssist.getInstance().getDimension(resName);
+        return ResourceAssist.get().getDimension(resName);
     }
 
     /**
@@ -389,7 +389,7 @@ public final class ResourceUtils {
      * @return Dimension
      */
     public static int getDimensionInt(final String resName) {
-        return ResourceAssist.getInstance().getDimensionInt(resName);
+        return ResourceAssist.get().getDimensionInt(resName);
     }
 
     /**
@@ -398,7 +398,7 @@ public final class ResourceUtils {
      * @return Dimension
      */
     public static float getDimension(@DimenRes final int id) {
-        return ResourceAssist.getInstance().getDimension(id);
+        return ResourceAssist.get().getDimension(id);
     }
 
     /**
@@ -407,7 +407,7 @@ public final class ResourceUtils {
      * @return Dimension
      */
     public static int getDimensionInt(@DimenRes final int id) {
-        return ResourceAssist.getInstance().getDimensionInt(id);
+        return ResourceAssist.get().getDimensionInt(id);
     }
 
     // =
@@ -418,7 +418,7 @@ public final class ResourceUtils {
      * @return Color id
      */
     public static int getColorId(final String resName) {
-        return ResourceAssist.getInstance().getColorId(resName);
+        return ResourceAssist.get().getColorId(resName);
     }
 
     /**
@@ -427,7 +427,7 @@ public final class ResourceUtils {
      * @return Color
      */
     public static int getColor(final String resName) {
-        return ResourceAssist.getInstance().getColor(resName);
+        return ResourceAssist.get().getColor(resName);
     }
 
     /**
@@ -439,7 +439,7 @@ public final class ResourceUtils {
      * @return Color
      */
     public static int getColor(@ColorRes final int colorId) {
-        return ResourceAssist.getInstance().getColor(colorId);
+        return ResourceAssist.get().getColor(colorId);
     }
 
     // =
@@ -450,7 +450,7 @@ public final class ResourceUtils {
      * @return Drawable id
      */
     public static int getDrawableId(final String resName) {
-        return ResourceAssist.getInstance().getDrawableId(resName);
+        return ResourceAssist.get().getDrawableId(resName);
     }
 
     /**
@@ -459,7 +459,7 @@ public final class ResourceUtils {
      * @return {@link Drawable}
      */
     public static Drawable getDrawable(final String resName) {
-        return ResourceAssist.getInstance().getDrawable(resName);
+        return ResourceAssist.get().getDrawable(resName);
     }
 
     /**
@@ -468,7 +468,7 @@ public final class ResourceUtils {
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawable(final String resName) {
-        return ResourceAssist.getInstance().getNinePatchDrawable(resName);
+        return ResourceAssist.get().getNinePatchDrawable(resName);
     }
 
     /**
@@ -480,7 +480,7 @@ public final class ResourceUtils {
      * @return {@link Drawable}
      */
     public static Drawable getDrawable(@DrawableRes final int drawableId) {
-        return ResourceAssist.getInstance().getDrawable(drawableId);
+        return ResourceAssist.get().getDrawable(drawableId);
     }
 
     /**
@@ -489,7 +489,7 @@ public final class ResourceUtils {
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawable(@DrawableRes final int drawableId) {
-        return ResourceAssist.getInstance().getNinePatchDrawable(drawableId);
+        return ResourceAssist.get().getNinePatchDrawable(drawableId);
     }
 
     // =
@@ -500,7 +500,7 @@ public final class ResourceUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(final String resName) {
-        return ResourceAssist.getInstance().getBitmap(resName);
+        return ResourceAssist.get().getBitmap(resName);
     }
 
     /**
@@ -513,7 +513,7 @@ public final class ResourceUtils {
             final String resName,
             final BitmapFactory.Options options
     ) {
-        return ResourceAssist.getInstance().getBitmap(resName, options);
+        return ResourceAssist.get().getBitmap(resName, options);
     }
 
     /**
@@ -522,7 +522,7 @@ public final class ResourceUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmap(final int resId) {
-        return ResourceAssist.getInstance().getBitmap(resId);
+        return ResourceAssist.get().getBitmap(resId);
     }
 
     /**
@@ -535,7 +535,7 @@ public final class ResourceUtils {
             final int resId,
             final BitmapFactory.Options options
     ) {
-        return ResourceAssist.getInstance().getBitmap(resId, options);
+        return ResourceAssist.get().getBitmap(resId, options);
     }
 
     // =
@@ -546,7 +546,7 @@ public final class ResourceUtils {
      * @return Mipmap id
      */
     public static int getMipmapId(final String resName) {
-        return ResourceAssist.getInstance().getMipmapId(resName);
+        return ResourceAssist.get().getMipmapId(resName);
     }
 
     /**
@@ -555,7 +555,7 @@ public final class ResourceUtils {
      * @return {@link Drawable}
      */
     public static Drawable getDrawableMipmap(final String resName) {
-        return ResourceAssist.getInstance().getDrawableMipmap(resName);
+        return ResourceAssist.get().getDrawableMipmap(resName);
     }
 
     /**
@@ -564,7 +564,7 @@ public final class ResourceUtils {
      * @return .9 {@link NinePatchDrawable}
      */
     public static NinePatchDrawable getNinePatchDrawableMipmap(final String resName) {
-        return ResourceAssist.getInstance().getNinePatchDrawableMipmap(resName);
+        return ResourceAssist.get().getNinePatchDrawableMipmap(resName);
     }
 
     /**
@@ -573,7 +573,7 @@ public final class ResourceUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap getBitmapMipmap(final String resName) {
-        return ResourceAssist.getInstance().getBitmapMipmap(resName);
+        return ResourceAssist.get().getBitmapMipmap(resName);
     }
 
     /**
@@ -586,7 +586,7 @@ public final class ResourceUtils {
             final String resName,
             final BitmapFactory.Options options
     ) {
-        return ResourceAssist.getInstance().getBitmapMipmap(resName, options);
+        return ResourceAssist.get().getBitmapMipmap(resName, options);
     }
 
     // =
@@ -597,7 +597,7 @@ public final class ResourceUtils {
      * @return Anim id
      */
     public static int getAnimId(final String resName) {
-        return ResourceAssist.getInstance().getAnimId(resName);
+        return ResourceAssist.get().getAnimId(resName);
     }
 
     /**
@@ -606,7 +606,7 @@ public final class ResourceUtils {
      * @return {@link XmlResourceParser}
      */
     public static XmlResourceParser getAnimationXml(final String resName) {
-        return ResourceAssist.getInstance().getAnimationXml(resName);
+        return ResourceAssist.get().getAnimationXml(resName);
     }
 
     /**
@@ -615,7 +615,7 @@ public final class ResourceUtils {
      * @return {@link XmlResourceParser}
      */
     public static XmlResourceParser getAnimationXml(@AnimatorRes @AnimRes final int id) {
-        return ResourceAssist.getInstance().getAnimationXml(id);
+        return ResourceAssist.get().getAnimationXml(id);
     }
 
     /**
@@ -624,7 +624,7 @@ public final class ResourceUtils {
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(final String resName) {
-        return ResourceAssist.getInstance().getAnimation(resName);
+        return ResourceAssist.get().getAnimation(resName);
     }
 
     /**
@@ -637,7 +637,7 @@ public final class ResourceUtils {
             final String resName,
             final Context context
     ) {
-        return ResourceAssist.getInstance().getAnimation(resName, context);
+        return ResourceAssist.get().getAnimation(resName, context);
     }
 
     /**
@@ -646,7 +646,7 @@ public final class ResourceUtils {
      * @return {@link XmlResourceParser}
      */
     public static Animation getAnimation(@AnimatorRes @AnimRes final int id) {
-        return ResourceAssist.getInstance().getAnimation(id);
+        return ResourceAssist.get().getAnimation(id);
     }
 
     /**
@@ -659,7 +659,7 @@ public final class ResourceUtils {
             @AnimatorRes @AnimRes final int id,
             final Context context
     ) {
-        return ResourceAssist.getInstance().getAnimation(id, context);
+        return ResourceAssist.get().getAnimation(id, context);
     }
 
     // =
@@ -670,7 +670,7 @@ public final class ResourceUtils {
      * @return Boolean id
      */
     public static int getBooleanId(final String resName) {
-        return ResourceAssist.getInstance().getBooleanId(resName);
+        return ResourceAssist.get().getBooleanId(resName);
     }
 
     /**
@@ -679,7 +679,7 @@ public final class ResourceUtils {
      * @return Boolean
      */
     public static boolean getBoolean(final String resName) {
-        return ResourceAssist.getInstance().getBoolean(resName);
+        return ResourceAssist.get().getBoolean(resName);
     }
 
     /**
@@ -688,7 +688,7 @@ public final class ResourceUtils {
      * @return Boolean
      */
     public static boolean getBoolean(@BoolRes final int id) {
-        return ResourceAssist.getInstance().getBoolean(id);
+        return ResourceAssist.get().getBoolean(id);
     }
 
     // =
@@ -699,7 +699,7 @@ public final class ResourceUtils {
      * @return Integer id
      */
     public static int getIntegerId(final String resName) {
-        return ResourceAssist.getInstance().getIntegerId(resName);
+        return ResourceAssist.get().getIntegerId(resName);
     }
 
     /**
@@ -708,7 +708,7 @@ public final class ResourceUtils {
      * @return Integer
      */
     public static int getInteger(final String resName) {
-        return ResourceAssist.getInstance().getInteger(resName);
+        return ResourceAssist.get().getInteger(resName);
     }
 
     /**
@@ -717,7 +717,7 @@ public final class ResourceUtils {
      * @return Integer
      */
     public static int getInteger(@IntegerRes final int id) {
-        return ResourceAssist.getInstance().getInteger(id);
+        return ResourceAssist.get().getInteger(id);
     }
 
     // =
@@ -728,7 +728,7 @@ public final class ResourceUtils {
      * @return Array id
      */
     public static int getArrayId(final String resName) {
-        return ResourceAssist.getInstance().getArrayId(resName);
+        return ResourceAssist.get().getArrayId(resName);
     }
 
     /**
@@ -737,7 +737,7 @@ public final class ResourceUtils {
      * @return int[]
      */
     public static int[] getIntArray(final String resName) {
-        return ResourceAssist.getInstance().getIntArray(resName);
+        return ResourceAssist.get().getIntArray(resName);
     }
 
     /**
@@ -746,7 +746,7 @@ public final class ResourceUtils {
      * @return String[]
      */
     public static String[] getStringArray(final String resName) {
-        return ResourceAssist.getInstance().getStringArray(resName);
+        return ResourceAssist.get().getStringArray(resName);
     }
 
     /**
@@ -755,7 +755,7 @@ public final class ResourceUtils {
      * @return CharSequence[]
      */
     public static CharSequence[] getTextArray(final String resName) {
-        return ResourceAssist.getInstance().getTextArray(resName);
+        return ResourceAssist.get().getTextArray(resName);
     }
 
     /**
@@ -764,7 +764,7 @@ public final class ResourceUtils {
      * @return int[]
      */
     public static int[] getIntArray(@ArrayRes final int id) {
-        return ResourceAssist.getInstance().getIntArray(id);
+        return ResourceAssist.get().getIntArray(id);
     }
 
     /**
@@ -773,7 +773,7 @@ public final class ResourceUtils {
      * @return String[]
      */
     public static String[] getStringArray(@ArrayRes final int id) {
-        return ResourceAssist.getInstance().getStringArray(id);
+        return ResourceAssist.get().getStringArray(id);
     }
 
     /**
@@ -782,7 +782,7 @@ public final class ResourceUtils {
      * @return CharSequence[]
      */
     public static CharSequence[] getTextArray(@ArrayRes final int id) {
-        return ResourceAssist.getInstance().getTextArray(id);
+        return ResourceAssist.get().getTextArray(id);
     }
 
     // =
@@ -793,7 +793,7 @@ public final class ResourceUtils {
      * @return id
      */
     public static int getId(final String resName) {
-        return ResourceAssist.getInstance().getId(resName);
+        return ResourceAssist.get().getId(resName);
     }
 
     /**
@@ -805,7 +805,7 @@ public final class ResourceUtils {
      * @return Layout id
      */
     public static int getLayoutId(final String resName) {
-        return ResourceAssist.getInstance().getLayoutId(resName);
+        return ResourceAssist.get().getLayoutId(resName);
     }
 
     /**
@@ -817,7 +817,7 @@ public final class ResourceUtils {
      * @return Menu id
      */
     public static int getMenuId(final String resName) {
-        return ResourceAssist.getInstance().getMenuId(resName);
+        return ResourceAssist.get().getMenuId(resName);
     }
 
     /**
@@ -826,7 +826,7 @@ public final class ResourceUtils {
      * @return Raw id
      */
     public static int getRawId(final String resName) {
-        return ResourceAssist.getInstance().getRawId(resName);
+        return ResourceAssist.get().getRawId(resName);
     }
 
     /**
@@ -835,7 +835,7 @@ public final class ResourceUtils {
      * @return Attr id
      */
     public static int getAttrId(final String resName) {
-        return ResourceAssist.getInstance().getAttrId(resName);
+        return ResourceAssist.get().getAttrId(resName);
     }
 
     /**
@@ -844,7 +844,7 @@ public final class ResourceUtils {
      * @return Style id
      */
     public static int getStyleId(final String resName) {
-        return ResourceAssist.getInstance().getStyleId(resName);
+        return ResourceAssist.get().getStyleId(resName);
     }
 
     /**
@@ -853,7 +853,7 @@ public final class ResourceUtils {
      * @return Styleable id
      */
     public static int getStyleableId(final String resName) {
-        return ResourceAssist.getInstance().getStyleableId(resName);
+        return ResourceAssist.get().getStyleableId(resName);
     }
 
     /**
@@ -862,7 +862,7 @@ public final class ResourceUtils {
      * @return Animator id
      */
     public static int getAnimatorId(final String resName) {
-        return ResourceAssist.getInstance().getAnimatorId(resName);
+        return ResourceAssist.get().getAnimatorId(resName);
     }
 
     /**
@@ -871,7 +871,7 @@ public final class ResourceUtils {
      * @return Xml id
      */
     public static int getXmlId(final String resName) {
-        return ResourceAssist.getInstance().getXmlId(resName);
+        return ResourceAssist.get().getXmlId(resName);
     }
 
     /**
@@ -880,7 +880,7 @@ public final class ResourceUtils {
      * @return Interpolator id
      */
     public static int getInterpolatorId(final String resName) {
-        return ResourceAssist.getInstance().getInterpolatorId(resName);
+        return ResourceAssist.get().getInterpolatorId(resName);
     }
 
     /**
@@ -889,7 +889,7 @@ public final class ResourceUtils {
      * @return Plurals id
      */
     public static int getPluralsId(final String resName) {
-        return ResourceAssist.getInstance().getPluralsId(resName);
+        return ResourceAssist.get().getPluralsId(resName);
     }
 
     // =
@@ -900,7 +900,7 @@ public final class ResourceUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(final String resName) {
-        return ResourceAssist.getInstance().getColorStateList(resName);
+        return ResourceAssist.get().getColorStateList(resName);
     }
 
     /**
@@ -912,7 +912,7 @@ public final class ResourceUtils {
      * @return {@link ColorStateList}
      */
     public static ColorStateList getColorStateList(@ColorRes final int id) {
-        return ResourceAssist.getInstance().getColorStateList(id);
+        return ResourceAssist.get().getColorStateList(id);
     }
 
     /**
@@ -921,7 +921,7 @@ public final class ResourceUtils {
      * @return 十六进制颜色值 Drawable
      */
     public static ColorDrawable getColorDrawable(final String color) {
-        return ResourceAssist.getInstance().getColorDrawable(color);
+        return ResourceAssist.get().getColorDrawable(color);
     }
 
     /**
@@ -930,7 +930,7 @@ public final class ResourceUtils {
      * @return 指定颜色 Drawable
      */
     public static ColorDrawable getColorDrawable(@ColorInt final int color) {
-        return ResourceAssist.getInstance().getColorDrawable(color);
+        return ResourceAssist.get().getColorDrawable(color);
     }
 
     // ===================
@@ -943,7 +943,7 @@ public final class ResourceUtils {
      * @return Uri InputStream
      */
     public static InputStream openInputStream(final Uri uri) {
-        return ResourceAssist.getInstance().openInputStream(uri);
+        return ResourceAssist.get().openInputStream(uri);
     }
 
     /**
@@ -959,7 +959,7 @@ public final class ResourceUtils {
             final Uri uri,
             final ContentResolver resolver
     ) {
-        return ResourceAssist.getInstance().openInputStream(uri, resolver);
+        return ResourceAssist.get().openInputStream(uri, resolver);
     }
 
     /**
@@ -968,7 +968,7 @@ public final class ResourceUtils {
      * @return Uri OutputStream
      */
     public static OutputStream openOutputStream(final Uri uri) {
-        return ResourceAssist.getInstance().openOutputStream(uri);
+        return ResourceAssist.get().openOutputStream(uri);
     }
 
     /**
@@ -981,7 +981,7 @@ public final class ResourceUtils {
             final Uri uri,
             final ContentResolver resolver
     ) {
-        return ResourceAssist.getInstance().openOutputStream(uri, resolver);
+        return ResourceAssist.get().openOutputStream(uri, resolver);
     }
 
     /**
@@ -994,7 +994,7 @@ public final class ResourceUtils {
             final Uri uri,
             final String mode
     ) {
-        return ResourceAssist.getInstance().openOutputStream(uri, mode);
+        return ResourceAssist.get().openOutputStream(uri, mode);
     }
 
     /**
@@ -1009,7 +1009,7 @@ public final class ResourceUtils {
             final String mode,
             final ContentResolver resolver
     ) {
-        return ResourceAssist.getInstance().openOutputStream(uri, mode, resolver);
+        return ResourceAssist.get().openOutputStream(uri, mode, resolver);
     }
 
     /**
@@ -1022,7 +1022,7 @@ public final class ResourceUtils {
             final Uri uri,
             final String mode
     ) {
-        return ResourceAssist.getInstance().openFileDescriptor(uri, mode);
+        return ResourceAssist.get().openFileDescriptor(uri, mode);
     }
 
     /**
@@ -1040,7 +1040,7 @@ public final class ResourceUtils {
             final String mode,
             final ContentResolver resolver
     ) {
-        return ResourceAssist.getInstance().openFileDescriptor(uri, mode, resolver);
+        return ResourceAssist.get().openFileDescriptor(uri, mode, resolver);
     }
 
     /**
@@ -1053,7 +1053,7 @@ public final class ResourceUtils {
             final Uri uri,
             final String mode
     ) {
-        return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode);
+        return ResourceAssist.get().openAssetFileDescriptor(uri, mode);
     }
 
     /**
@@ -1071,7 +1071,7 @@ public final class ResourceUtils {
             final String mode,
             final ContentResolver resolver
     ) {
-        return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode, resolver);
+        return ResourceAssist.get().openAssetFileDescriptor(uri, mode, resolver);
     }
 
     // ================
@@ -1084,7 +1084,7 @@ public final class ResourceUtils {
      * @return {@link InputStream}
      */
     public static InputStream open(final String fileName) {
-        return ResourceAssist.getInstance().open(fileName);
+        return ResourceAssist.get().open(fileName);
     }
 
     /**
@@ -1093,7 +1093,7 @@ public final class ResourceUtils {
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openFd(final String fileName) {
-        return ResourceAssist.getInstance().openFd(fileName);
+        return ResourceAssist.get().openFd(fileName);
     }
 
     /**
@@ -1102,7 +1102,7 @@ public final class ResourceUtils {
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openNonAssetFd(final String fileName) {
-        return ResourceAssist.getInstance().openNonAssetFd(fileName);
+        return ResourceAssist.get().openNonAssetFd(fileName);
     }
 
     /**
@@ -1111,7 +1111,7 @@ public final class ResourceUtils {
      * @return {@link InputStream}
      */
     public static InputStream openRawResource(@RawRes final int id) {
-        return ResourceAssist.getInstance().openRawResource(id);
+        return ResourceAssist.get().openRawResource(id);
     }
 
     /**
@@ -1120,7 +1120,7 @@ public final class ResourceUtils {
      * @return {@link AssetFileDescriptor}
      */
     public static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
-        return ResourceAssist.getInstance().openRawResourceFd(id);
+        return ResourceAssist.get().openRawResourceFd(id);
     }
 
     // =============
@@ -1138,7 +1138,7 @@ public final class ResourceUtils {
      * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromAssets(final String fileName) {
-        return ResourceAssist.getInstance().readBytesFromAssets(fileName);
+        return ResourceAssist.get().readBytesFromAssets(fileName);
     }
 
     /**
@@ -1147,7 +1147,7 @@ public final class ResourceUtils {
      * @return 文件字符串内容
      */
     public static String readStringFromAssets(final String fileName) {
-        return ResourceAssist.getInstance().readStringFromAssets(fileName);
+        return ResourceAssist.get().readStringFromAssets(fileName);
     }
 
     // =
@@ -1158,7 +1158,7 @@ public final class ResourceUtils {
      * @return 文件 byte[] 数据
      */
     public static byte[] readBytesFromRaw(@RawRes final int resId) {
-        return ResourceAssist.getInstance().readBytesFromRaw(resId);
+        return ResourceAssist.get().readBytesFromRaw(resId);
     }
 
     /**
@@ -1167,7 +1167,7 @@ public final class ResourceUtils {
      * @return 文件字符串内容
      */
     public static String readStringFromRaw(@RawRes final int resId) {
-        return ResourceAssist.getInstance().readStringFromRaw(resId);
+        return ResourceAssist.get().readStringFromRaw(resId);
     }
 
     // =
@@ -1178,7 +1178,7 @@ public final class ResourceUtils {
      * @return {@link List <String>}
      */
     public static List<String> geFileToListFromAssets(final String fileName) {
-        return ResourceAssist.getInstance().geFileToListFromAssets(fileName);
+        return ResourceAssist.get().geFileToListFromAssets(fileName);
     }
 
     /**
@@ -1187,7 +1187,7 @@ public final class ResourceUtils {
      * @return {@link List<String>}
      */
     public static List<String> geFileToListFromRaw(@RawRes final int resId) {
-        return ResourceAssist.getInstance().geFileToListFromRaw(resId);
+        return ResourceAssist.get().geFileToListFromRaw(resId);
     }
 
     // =
@@ -1202,7 +1202,7 @@ public final class ResourceUtils {
             final String fileName,
             final File file
     ) {
-        return ResourceAssist.getInstance().saveAssetsFormFile(fileName, file);
+        return ResourceAssist.get().saveAssetsFormFile(fileName, file);
     }
 
     /**
@@ -1215,7 +1215,7 @@ public final class ResourceUtils {
             @RawRes final int resId,
             final File file
     ) {
-        return ResourceAssist.getInstance().saveRawFormFile(resId, file);
+        return ResourceAssist.get().saveRawFormFile(resId, file);
     }
 
     // =========================
