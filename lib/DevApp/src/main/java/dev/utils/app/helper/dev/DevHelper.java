@@ -1553,7 +1553,7 @@ public final class DevHelper
 
     /**
      * 设置屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return Helper
      */
     @Override

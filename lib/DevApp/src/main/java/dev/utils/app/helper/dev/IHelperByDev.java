@@ -936,7 +936,7 @@ public interface IHelperByDev<T>
 
     /**
      * 设置屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return Helper
      */
     T setBright(Window window);

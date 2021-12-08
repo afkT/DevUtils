@@ -354,6 +354,36 @@ public final class WindowAssist {
     }
 
     /**
+     * 启用 Window Extended Feature
+     * <pre>
+     *     启用后无法关闭, 需要在 setContentView() 之前调用
+     * </pre>
+     * @param featureId 待启用 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean requestFeature(final int featureId) {
+        return requestFeature(mWindow, featureId);
+    }
+
+    /**
+     * Window 是否开启指定 Extended Feature
+     * @param featureId 待校验 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFeature(final int featureId) {
+        return hasFeature(mWindow, featureId);
+    }
+
+    /**
+     * Window 是否开启指定 Extended Feature
+     * @param featureIds 待校验 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFeatures(final int... featureIds) {
+        return hasFeatures(mWindow, featureIds);
+    }
+
+    /**
      * 设置 Window 输入模式
      * @param mode input mode
      * @return {@code true} success, {@code false} fail
@@ -467,6 +497,30 @@ public final class WindowAssist {
      */
     public boolean clearFlagFullScreen() {
         return clearFlagFullScreen(mWindow);
+    }
+
+    /**
+     * 是否屏幕页面为无标题
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isNoTitleFeature() {
+        return isNoTitleFeature(mWindow);
+    }
+
+    /**
+     * 设置屏幕页面无标题
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFeatureNoTitle() {
+        return setFeatureNoTitle(mWindow);
+    }
+
+    /**
+     * 设置屏幕为全屏无标题
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagFullScreenAndNoTitle() {
+        return setFlagFullScreenAndNoTitle(mWindow);
     }
 
     // ==============
@@ -624,6 +678,58 @@ public final class WindowAssist {
     }
 
     /**
+     * 启用 Window Extended Feature
+     * <pre>
+     *     启用后无法关闭, 需要在 setContentView() 之前调用
+     * </pre>
+     * @param window    {@link Window}
+     * @param featureId 待启用 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean requestFeature(
+            final Window window,
+            final int featureId
+    ) {
+        if (window == null) return false;
+        window.requestFeature(featureId);
+        return true;
+    }
+
+    /**
+     * Window 是否开启指定 Extended Feature
+     * @param window    {@link Window}
+     * @param featureId 待校验 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFeature(
+            final Window window,
+            final int featureId
+    ) {
+        if (window == null) return false;
+        return window.hasFeature(featureId);
+    }
+
+    /**
+     * Window 是否开启指定 Extended Feature
+     * @param window     {@link Window}
+     * @param featureIds 待校验 feature
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean hasFeatures(
+            final Window window,
+            final int... featureIds
+    ) {
+        if (window == null) return false;
+        if (featureIds == null || featureIds.length == 0) return false;
+        for (int value : featureIds) {
+            if (!window.hasFeature(value)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 设置 Window 输入模式
      * @param window {@link Window}
      * @param mode   input mode
@@ -711,7 +817,7 @@ public final class WindowAssist {
 
     /**
      * 是否屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
      */
     public boolean isKeepScreenOnFlag(final Window window) {
@@ -720,7 +826,7 @@ public final class WindowAssist {
 
     /**
      * 设置屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlagKeepScreenOn(final Window window) {
@@ -731,7 +837,7 @@ public final class WindowAssist {
 
     /**
      * 移除屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean clearFlagKeepScreenOn(final Window window) {
@@ -742,7 +848,7 @@ public final class WindowAssist {
 
     /**
      * 是否禁止截屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSecureFlag(final Window window) {
@@ -751,7 +857,7 @@ public final class WindowAssist {
 
     /**
      * 设置禁止截屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlagSecure(final Window window) {
@@ -762,7 +868,7 @@ public final class WindowAssist {
 
     /**
      * 移除禁止截屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean clearFlagSecure(final Window window) {
@@ -773,7 +879,7 @@ public final class WindowAssist {
 
     /**
      * 是否屏幕为全屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFullScreenFlag(final Window window) {
@@ -782,7 +888,7 @@ public final class WindowAssist {
 
     /**
      * 设置屏幕为全屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlagFullScreen(final Window window) {
@@ -793,12 +899,42 @@ public final class WindowAssist {
 
     /**
      * 移除屏幕全屏
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public boolean clearFlagFullScreen(final Window window) {
         if (window == null) return false;
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        return true;
+    }
+
+    /**
+     * 是否屏幕页面为无标题
+     * @param window {@link Window}
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isNoTitleFeature(final Window window) {
+        return hasFeature(window, Window.FEATURE_NO_TITLE);
+    }
+
+    /**
+     * 设置屏幕页面无标题
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFeatureNoTitle(final Window window) {
+        return requestFeature(window, Window.FEATURE_NO_TITLE);
+    }
+
+    /**
+     * 设置屏幕为全屏无标题
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagFullScreenAndNoTitle(final Window window) {
+        if (window == null) return false;
+        setFeatureNoTitle(window);
+        setFlagFullScreen(window);
         return true;
     }
 }

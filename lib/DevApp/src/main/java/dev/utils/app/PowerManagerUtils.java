@@ -151,7 +151,7 @@ public final class PowerManagerUtils {
 
     /**
      * 设置屏幕常亮
-     * @param window {@link Activity#getWindow()}
+     * @param window {@link Window}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBright(final Window window) {

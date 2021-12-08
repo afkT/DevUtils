@@ -11,7 +11,6 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Surface;
-import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.RequiresApi;
@@ -306,22 +305,13 @@ public final class ScreenUtils {
     /**
      * 设置屏幕为全屏无标题
      * <pre>
-     *     需要在 setContentView 之前调用
+     *     需要在 setContentView() 之前调用
      * </pre>
      * @param activity {@link Activity}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setFullScreenNoTitle(final Activity activity) {
-        try {
-            // 隐藏标题
-            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            // 设置全屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setFullScreenNoTitle");
-        }
-        return false;
+        return WindowUtils.get(activity).setFlagFullScreenAndNoTitle();
     }
 
     /**
