@@ -3,6 +3,7 @@ package dev.utils.app.assist;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -197,6 +198,30 @@ public final class WindowAssist {
     }
 
     /**
+     * 获取 Window DecorView
+     * @return DecorView
+     */
+    public View getDecorView() {
+        return getDecorView(mWindow);
+    }
+
+    /**
+     * 获取 Window DecorView
+     * @return DecorView
+     */
+    public View peekDecorView() {
+        return peekDecorView(mWindow);
+    }
+
+    /**
+     * 获取 Window 当前获取焦点 View
+     * @return 当前获取焦点 View
+     */
+    public View getCurrentFocus() {
+        return getCurrentFocus(mWindow);
+    }
+
+    /**
      * 获取 Window LayoutParams
      * @return Window LayoutParams
      */
@@ -211,6 +236,14 @@ public final class WindowAssist {
      */
     public boolean setAttributes(final WindowManager.LayoutParams params) {
         return setAttributes(mWindow, params);
+    }
+
+    /**
+     * 刷新自身 Window LayoutParams
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean refreshSelfAttributes() {
+        return refreshSelfAttributes(mWindow);
     }
 
     /**
@@ -249,6 +282,36 @@ public final class WindowAssist {
     // ==============
 
     /**
+     * 获取 Window DecorView
+     * @param window {@link Window}
+     * @return DecorView
+     */
+    public View getDecorView(final Window window) {
+        if (window == null) return null;
+        return window.getDecorView();
+    }
+
+    /**
+     * 获取 Window DecorView
+     * @param window {@link Window}
+     * @return DecorView
+     */
+    public View peekDecorView(final Window window) {
+        if (window == null) return null;
+        return window.peekDecorView();
+    }
+
+    /**
+     * 获取 Window 当前获取焦点 View
+     * @param window {@link Window}
+     * @return 当前获取焦点 View
+     */
+    public View getCurrentFocus(final Window window) {
+        if (window == null) return null;
+        return window.getCurrentFocus();
+    }
+
+    /**
      * 获取 Window LayoutParams
      * @param window {@link Window}
      * @return Window LayoutParams
@@ -271,6 +334,15 @@ public final class WindowAssist {
         if (window == null || params == null) return false;
         window.setAttributes(params);
         return true;
+    }
+
+    /**
+     * 刷新自身 Window LayoutParams
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean refreshSelfAttributes(final Window window) {
+        return setAttributes(window, getAttributes(window));
     }
 
     /**
@@ -319,4 +391,6 @@ public final class WindowAssist {
         window.setFlags(flags, mask);
         return true;
     }
+
+    // =
 }

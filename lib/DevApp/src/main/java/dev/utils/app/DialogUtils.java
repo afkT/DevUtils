@@ -41,15 +41,6 @@ public final class DialogUtils {
     // ==============
 
     /**
-     * 获取 Dialog Window
-     * @param dialog {@link Dialog}
-     * @return {@link Window}
-     */
-    public static Window getWindow(final Dialog dialog) {
-        return (dialog != null) ? dialog.getWindow() : null;
-    }
-
-    /**
      * 设置 Dialog 状态栏颜色
      * @param dialog {@link Dialog}
      * @param color  Dialog StatusBar Color
@@ -60,7 +51,7 @@ public final class DialogUtils {
             final Dialog dialog,
             @ColorInt final int color
     ) {
-        return setStatusBarColor(getWindow(dialog), color);
+        return setStatusBarColor(WindowUtils.getWindow(dialog), color);
     }
 
     /**
@@ -91,7 +82,9 @@ public final class DialogUtils {
             final Dialog dialog,
             @ColorInt final int color
     ) {
-        return setSemiTransparentStatusBarColor(getWindow(dialog), color);
+        return setSemiTransparentStatusBarColor(
+                WindowUtils.getWindow(dialog), color
+        );
     }
 
     /**
@@ -129,7 +122,9 @@ public final class DialogUtils {
             @ColorInt final int color,
             final boolean addFlags
     ) {
-        return setStatusBarColor2(getWindow(dialog), color, addFlags);
+        return setStatusBarColor2(
+                WindowUtils.getWindow(dialog), color, addFlags
+        );
     }
 
     /**
@@ -163,7 +158,7 @@ public final class DialogUtils {
      * @return {@link WindowManager.LayoutParams}
      */
     public static WindowManager.LayoutParams getAttributes(final Dialog dialog) {
-        Window window = getWindow(dialog);
+        Window window = WindowUtils.getWindow(dialog);
         return (window != null) ? window.getAttributes() : null;
     }
 
@@ -178,7 +173,7 @@ public final class DialogUtils {
             final T dialog,
             final WindowManager.LayoutParams params
     ) {
-        Window window = getWindow(dialog);
+        Window window = WindowUtils.getWindow(dialog);
         if (window != null && params != null) {
             window.setAttributes(params);
         }
