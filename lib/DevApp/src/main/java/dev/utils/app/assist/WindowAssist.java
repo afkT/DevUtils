@@ -1,15 +1,21 @@
 package dev.utils.app.assist;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+
+import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ActivityUtils;
@@ -392,6 +398,63 @@ public final class WindowAssist {
         return setSoftInputMode(mWindow, mode);
     }
 
+    /**
+     * 设置 StatusBar Color
+     * @param color StatusBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public boolean setStatusBarColor(@ColorInt final int color) {
+        return setStatusBarColor(mWindow, color);
+    }
+
+    /**
+     * 获取 StatusBar Color
+     * @return StatusBar Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public int getStatusBarColor() {
+        return getStatusBarColor(mWindow);
+    }
+
+    /**
+     * 设置 NavigationBar Color
+     * @param color NavigationBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public boolean setNavigationBarColor(@ColorInt final int color) {
+        return setNavigationBarColor(mWindow, color);
+    }
+
+    /**
+     * 获取 NavigationBar Color
+     * @return NavigationBar Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public int getNavigationBarColor() {
+        return getNavigationBarColor(mWindow);
+    }
+
+    /**
+     * 设置 NavigationBar Divider Color
+     * @param color NavigationBar Divider Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public boolean setNavigationBarDividerColor(@ColorInt final int color) {
+        return setNavigationBarDividerColor(mWindow, color);
+    }
+
+    /**
+     * 获取 NavigationBar Divider Color
+     * @return NavigationBar Divider Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public int getNavigationBarDividerColor() {
+        return getNavigationBarDividerColor(mWindow);
+    }
+
     // ==========
     // = 具体功能 =
     // ==========
@@ -500,6 +563,54 @@ public final class WindowAssist {
     }
 
     /**
+     * 是否透明状态栏
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isTranslucentStatusFlag() {
+        return isTranslucentStatusFlag(mWindow);
+    }
+
+    /**
+     * 设置透明状态栏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagTranslucentStatus() {
+        return setFlagTranslucentStatus(mWindow);
+    }
+
+    /**
+     * 移除透明状态栏
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagTranslucentStatus() {
+        return clearFlagTranslucentStatus(mWindow);
+    }
+
+    /**
+     * 是否系统状态栏背景绘制
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isDrawsSystemBarBackgroundsFlag() {
+        return isDrawsSystemBarBackgroundsFlag(mWindow);
+    }
+
+    /**
+     * 设置系统状态栏背景绘制
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setFlagDrawsSystemBarBackgrounds() {
+        return setFlagDrawsSystemBarBackgrounds(mWindow);
+    }
+
+    /**
+     * 移除系统状态栏背景绘制
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean clearFlagDrawsSystemBarBackgrounds() {
+        return clearFlagDrawsSystemBarBackgrounds(mWindow);
+    }
+
+    /**
      * 是否屏幕页面为无标题
      * @return {@code true} yes, {@code false} no
      */
@@ -521,6 +632,29 @@ public final class WindowAssist {
      */
     public boolean setFlagFullScreenAndNoTitle() {
         return setFlagFullScreenAndNoTitle(mWindow);
+    }
+
+    /**
+     * 设置高版本状态栏蒙层
+     * @param color StatusBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public boolean setSemiTransparentStatusBarColor(@ColorInt final int color) {
+        return setSemiTransparentStatusBarColor(mWindow, color);
+    }
+
+    /**
+     * 设置状态栏颜色、高版本状态栏蒙层
+     * @param color    StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setStatusBarColorAndFlag(
+            @ColorInt final int color,
+            final boolean addFlags
+    ) {
+        return setStatusBarColorAndFlag(mWindow, color, addFlags);
     }
 
     // ==============
@@ -744,6 +878,87 @@ public final class WindowAssist {
         return true;
     }
 
+    /**
+     * 设置 StatusBar Color
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public boolean setStatusBarColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window == null) return false;
+        window.setStatusBarColor(color);
+        return true;
+    }
+
+    /**
+     * 获取 StatusBar Color
+     * @param window {@link Window}
+     * @return StatusBar Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public int getStatusBarColor(final Window window) {
+        if (window == null) return 0;
+        return window.getStatusBarColor();
+    }
+
+    /**
+     * 设置 NavigationBar Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public boolean setNavigationBarColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window == null) return false;
+        window.setNavigationBarColor(color);
+        return true;
+    }
+
+    /**
+     * 获取 NavigationBar Color
+     * @param window {@link Window}
+     * @return NavigationBar Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public int getNavigationBarColor(final Window window) {
+        if (window == null) return 0;
+        return window.getNavigationBarColor();
+    }
+
+    /**
+     * 设置 NavigationBar Divider Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Divider Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public boolean setNavigationBarDividerColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window == null) return false;
+        window.setNavigationBarDividerColor(color);
+        return true;
+    }
+
+    /**
+     * 获取 NavigationBar Divider Color
+     * @param window {@link Window}
+     * @return NavigationBar Divider Color
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public int getNavigationBarDividerColor(final Window window) {
+        if (window == null) return 0;
+        return window.getNavigationBarDividerColor();
+    }
+
     // ==========
     // = 具体功能 =
     // ==========
@@ -909,6 +1124,74 @@ public final class WindowAssist {
     }
 
     /**
+     * 是否透明状态栏
+     * @param window {@link Window}
+     * @return {@code true} yes, {@code false} no
+     */
+    @SuppressLint("InlinedApi")
+    public boolean isTranslucentStatusFlag(final Window window) {
+        return hasFlag(window, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
+    /**
+     * 设置透明状态栏
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("InlinedApi")
+    public boolean setFlagTranslucentStatus(final Window window) {
+        if (window == null) return false;
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        return true;
+    }
+
+    /**
+     * 移除透明状态栏
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("InlinedApi")
+    public boolean clearFlagTranslucentStatus(final Window window) {
+        if (window == null) return false;
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        return true;
+    }
+
+    /**
+     * 是否系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return {@code true} yes, {@code false} no
+     */
+    @SuppressLint("InlinedApi")
+    public boolean isDrawsSystemBarBackgroundsFlag(final Window window) {
+        return hasFlag(window, WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+    }
+
+    /**
+     * 设置系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("InlinedApi")
+    public boolean setFlagDrawsSystemBarBackgrounds(final Window window) {
+        if (window == null) return false;
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        return true;
+    }
+
+    /**
+     * 移除系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("InlinedApi")
+    public boolean clearFlagDrawsSystemBarBackgrounds(final Window window) {
+        if (window == null) return false;
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        return true;
+    }
+
+    /**
      * 是否屏幕页面为无标题
      * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
@@ -935,6 +1218,60 @@ public final class WindowAssist {
         if (window == null) return false;
         setFeatureNoTitle(window);
         setFlagFullScreen(window);
+        return true;
+    }
+
+    /**
+     * 设置高版本状态栏蒙层
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("PrivateApi")
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public boolean setSemiTransparentStatusBarColor(
+            final Window window,
+            @ColorInt final int color
+    ) {
+        if (window != null) {
+            try {
+                Class<?> decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
+                Field field = decorViewClazz.getDeclaredField(
+                        "mSemiTransparentStatusBarColor"
+                );
+                field.setAccessible(true);
+                field.setInt(window, color);
+                return true;
+            } catch (Exception ignored) {
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置状态栏颜色、高版本状态栏蒙层
+     * @param window   {@link Window}
+     * @param color    StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setStatusBarColorAndFlag(
+            final Window window,
+            @ColorInt final int color,
+            final boolean addFlags
+    ) {
+        if (window == null) return false;
+
+        if (addFlags) {
+            setFlagDrawsSystemBarBackgrounds(window);
+            setFlagTranslucentStatus(window);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setStatusBarColor(window, color);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            setSemiTransparentStatusBarColor(window, color);
+        }
         return true;
     }
 }

@@ -560,12 +560,12 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper setDialogStatusBarColor2(
+    public DevHelper setDialogStatusBarColorAndFlag(
             Dialog dialog,
             @ColorInt int color,
             boolean addFlags
     ) {
-        DialogUtils.setStatusBarColor2(
+        DialogUtils.setStatusBarColorAndFlag(
                 dialog, color, addFlags
         );
         return this;

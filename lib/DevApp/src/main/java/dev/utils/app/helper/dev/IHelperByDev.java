@@ -270,7 +270,7 @@ public interface IHelperByDev<T>
      * @param addFlags 是否添加 Windows flags
      * @return Helper
      */
-    T setDialogStatusBarColor2(
+    T setDialogStatusBarColorAndFlag(
             Dialog dialog,
             @ColorInt int color,
             boolean addFlags

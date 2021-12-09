@@ -20,8 +20,6 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import java.lang.reflect.Field;
-
 import dev.utils.LogPrintUtils;
 
 /**
@@ -65,9 +63,7 @@ public final class DialogUtils {
             final Window window,
             @ColorInt final int color
     ) {
-        if (window != null) {
-            window.setStatusBarColor(color);
-        }
+        WindowUtils.get().setStatusBarColor(window, color);
         return window;
     }
 
@@ -98,15 +94,7 @@ public final class DialogUtils {
             final Window window,
             @ColorInt final int color
     ) {
-        if (window != null) {
-            try {
-                Class<?> decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
-                Field    field          = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor");
-                field.setAccessible(true);
-                field.setInt(window, color);
-            } catch (Exception ignored) {
-            }
-        }
+        WindowUtils.get().setSemiTransparentStatusBarColor(window, color);
         return window;
     }
 
@@ -117,12 +105,12 @@ public final class DialogUtils {
      * @param addFlags 是否添加 Windows flags
      * @return {@link Window}
      */
-    public static Window setStatusBarColor2(
+    public static Window setStatusBarColorAndFlag(
             final Dialog dialog,
             @ColorInt final int color,
             final boolean addFlags
     ) {
-        return setStatusBarColor2(
+        return setStatusBarColorAndFlag(
                 WindowUtils.getWindow(dialog), color, addFlags
         );
     }
@@ -134,21 +122,12 @@ public final class DialogUtils {
      * @param addFlags 是否添加 Windows flags
      * @return {@link Window}
      */
-    public static Window setStatusBarColor2(
+    public static Window setStatusBarColorAndFlag(
             final Window window,
             @ColorInt final int color,
             final boolean addFlags
     ) {
-        if (window != null && addFlags) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setStatusBarColor(window, color);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            setSemiTransparentStatusBarColor(window, color);
-        }
+        WindowUtils.get().setStatusBarColorAndFlag(window, color, addFlags);
         return window;
     }
 
@@ -158,8 +137,7 @@ public final class DialogUtils {
      * @return {@link WindowManager.LayoutParams}
      */
     public static WindowManager.LayoutParams getAttributes(final Dialog dialog) {
-        Window window = WindowUtils.getWindow(dialog);
-        return (window != null) ? window.getAttributes() : null;
+        return WindowUtils.get(dialog).getAttributes();
     }
 
     /**
@@ -173,10 +151,7 @@ public final class DialogUtils {
             final T dialog,
             final WindowManager.LayoutParams params
     ) {
-        Window window = WindowUtils.getWindow(dialog);
-        if (window != null && params != null) {
-            window.setAttributes(params);
-        }
+        WindowUtils.get(dialog).setAttributes(params);
         return dialog;
     }
 
