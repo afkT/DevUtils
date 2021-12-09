@@ -455,6 +455,86 @@ public final class WindowAssist {
         return getNavigationBarDividerColor(mWindow);
     }
 
+    /**
+     * 设置 Dialog 宽度
+     * @param width 宽度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWidthByParams(final int width) {
+        return setWidthByParams(mWindow, width);
+    }
+
+    /**
+     * 设置 Dialog 高度
+     * @param height 高度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setHeightByParams(final int height) {
+        return setHeightByParams(mWindow, height);
+    }
+
+    /**
+     * 设置 Dialog 宽度、高度
+     * @param width  宽度
+     * @param height 高度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWidthHeightByParams(
+            final int width,
+            final int height
+    ) {
+        return setWidthHeightByParams(mWindow, width, height);
+    }
+
+    /**
+     * 设置 Dialog X 轴坐标
+     * @param x X 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setXByParams(final int x) {
+        return setXByParams(mWindow, x);
+    }
+
+    /**
+     * 设置 Dialog Y 轴坐标
+     * @param y Y 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setYByParams(final int y) {
+        return setYByParams(mWindow, y);
+    }
+
+    /**
+     * 设置 Dialog X、Y 轴坐标
+     * @param x X 轴坐标
+     * @param y Y 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setXYByParams(
+            final int x,
+            final int y
+    ) {
+        return setXYByParams(mWindow, x, y);
+    }
+
+    /**
+     * 设置 Dialog Gravity
+     * @param gravity 重心
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setGravityByParams(final int gravity) {
+        return setGravityByParams(mWindow, gravity);
+    }
+
+    /**
+     * 设置 Dialog 透明度
+     * @param dimAmount 透明度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setDimAmountByParams(final float dimAmount) {
+        return setDimAmountByParams(mWindow, dimAmount);
+    }
+
     // ==========
     // = 具体功能 =
     // ==========
@@ -488,7 +568,6 @@ public final class WindowAssist {
     ) {
         return setKeyBoardSoftInputMode(mWindow, inputVisible, clearFlag);
     }
-
 
     /**
      * 是否屏幕常亮
@@ -957,6 +1036,148 @@ public final class WindowAssist {
     public int getNavigationBarDividerColor(final Window window) {
         if (window == null) return 0;
         return window.getNavigationBarDividerColor();
+    }
+
+    /**
+     * 设置 Dialog 宽度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWidthByParams(
+            final Window window,
+            final int width
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.width = width;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog 高度
+     * @param window {@link Window}
+     * @param height 高度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setHeightByParams(
+            final Window window,
+            final int height
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.height = height;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog 宽度、高度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @param height 高度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setWidthHeightByParams(
+            final Window window,
+            final int width,
+            final int height
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.width  = width;
+        layoutParams.height = height;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog X 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setXByParams(
+            final Window window,
+            final int x
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.x = x;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog Y 轴坐标
+     * @param window {@link Window}
+     * @param y      Y 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setYByParams(
+            final Window window,
+            final int y
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.y = y;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog X、Y 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @param y      Y 轴坐标
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setXYByParams(
+            final Window window,
+            final int x,
+            final int y
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.x = x;
+        layoutParams.y = y;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog Gravity
+     * @param window  {@link Window}
+     * @param gravity 重心
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setGravityByParams(
+            final Window window,
+            final int gravity
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.gravity = gravity;
+        return setAttributes(window, layoutParams);
+    }
+
+    /**
+     * 设置 Dialog 透明度
+     * @param window    {@link Window}
+     * @param dimAmount 透明度
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setDimAmountByParams(
+            final Window window,
+            final float dimAmount
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.dimAmount = dimAmount;
+        return setAttributes(window, layoutParams);
     }
 
     // ==========

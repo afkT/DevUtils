@@ -168,7 +168,8 @@ public final class DialogUtils {
             final T dialog,
             final int width
     ) {
-        return setWidthHeight(dialog, width, Integer.MIN_VALUE);
+        WindowUtils.get(dialog).setWidthByParams(width);
+        return dialog;
     }
 
     /**
@@ -182,7 +183,8 @@ public final class DialogUtils {
             final T dialog,
             final int height
     ) {
-        return setWidthHeight(dialog, Integer.MIN_VALUE, height);
+        WindowUtils.get(dialog).setHeightByParams(height);
+        return dialog;
     }
 
     /**
@@ -198,20 +200,9 @@ public final class DialogUtils {
             final int width,
             final int height
     ) {
-        WindowManager.LayoutParams layoutParams = getAttributes(dialog);
-        if (layoutParams != null) {
-            if (width != Integer.MIN_VALUE) {
-                layoutParams.width = width;
-            }
-            if (height != Integer.MIN_VALUE) {
-                layoutParams.height = height;
-            }
-            setAttributes(dialog, layoutParams);
-        }
+        WindowUtils.get(dialog).setWidthHeightByParams(width, height);
         return dialog;
     }
-
-    // =
 
     /**
      * 设置 Dialog X 轴坐标
@@ -224,7 +215,8 @@ public final class DialogUtils {
             final T dialog,
             final int x
     ) {
-        return setXY(dialog, x, Integer.MIN_VALUE);
+        WindowUtils.get(dialog).setXByParams(x);
+        return dialog;
     }
 
     /**
@@ -238,7 +230,8 @@ public final class DialogUtils {
             final T dialog,
             final int y
     ) {
-        return setXY(dialog, Integer.MIN_VALUE, y);
+        WindowUtils.get(dialog).setYByParams(y);
+        return dialog;
     }
 
     /**
@@ -254,20 +247,9 @@ public final class DialogUtils {
             final int x,
             final int y
     ) {
-        WindowManager.LayoutParams layoutParams = getAttributes(dialog);
-        if (layoutParams != null) {
-            if (x != Integer.MIN_VALUE) {
-                layoutParams.x = x;
-            }
-            if (y != Integer.MIN_VALUE) {
-                layoutParams.y = y;
-            }
-            setAttributes(dialog, layoutParams);
-        }
+        WindowUtils.get(dialog).setXYByParams(x, y);
         return dialog;
     }
-
-    // =
 
     /**
      * 设置 Dialog Gravity
@@ -280,11 +262,7 @@ public final class DialogUtils {
             final T dialog,
             final int gravity
     ) {
-        WindowManager.LayoutParams layoutParams = getAttributes(dialog);
-        if (layoutParams != null) {
-            layoutParams.gravity = gravity;
-            setAttributes(dialog, layoutParams);
-        }
+        WindowUtils.get(dialog).setGravityByParams(gravity);
         return dialog;
     }
 
@@ -299,11 +277,7 @@ public final class DialogUtils {
             final T dialog,
             final float dimAmount
     ) {
-        WindowManager.LayoutParams layoutParams = getAttributes(dialog);
-        if (layoutParams != null) {
-            layoutParams.dimAmount = dimAmount;
-            setAttributes(dialog, layoutParams);
-        }
+        WindowUtils.get(dialog).setDimAmountByParams(dimAmount);
         return dialog;
     }
 
