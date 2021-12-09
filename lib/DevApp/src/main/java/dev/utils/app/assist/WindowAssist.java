@@ -344,7 +344,7 @@ public final class WindowAssist {
     /**
      * Window 是否设置指定 flag 值
      * @param flag 待校验 flag
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFlag(final int flag) {
         return hasFlag(mWindow, flag);
@@ -353,10 +353,28 @@ public final class WindowAssist {
     /**
      * Window 是否设置指定 flags 值
      * @param flags 待校验 flags
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFlags(final int... flags) {
         return hasFlags(mWindow, flags);
+    }
+
+    /**
+     * Window 是否没有设置指定 flag 值
+     * @param flag 待校验 flag
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFlag(final int flag) {
+        return notHasFlag(mWindow, flag);
+    }
+
+    /**
+     * Window 是否没有设置指定 flags 值
+     * @param flags 待校验 flags
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFlags(final int... flags) {
+        return notHasFlags(mWindow, flags);
     }
 
     /**
@@ -374,7 +392,7 @@ public final class WindowAssist {
     /**
      * Window 是否开启指定 Extended Feature
      * @param featureId 待校验 feature
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFeature(final int featureId) {
         return hasFeature(mWindow, featureId);
@@ -383,10 +401,28 @@ public final class WindowAssist {
     /**
      * Window 是否开启指定 Extended Feature
      * @param featureIds 待校验 feature
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFeatures(final int... featureIds) {
         return hasFeatures(mWindow, featureIds);
+    }
+
+    /**
+     * Window 是否没有开启指定 Extended Feature
+     * @param featureId 待校验 feature
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFeature(final int featureId) {
+        return notHasFeature(mWindow, featureId);
+    }
+
+    /**
+     * Window 是否没有开启指定 Extended Feature
+     * @param featureIds 待校验 feature
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFeatures(final int... featureIds) {
+        return notHasFeatures(mWindow, featureIds);
     }
 
     /**
@@ -855,7 +891,7 @@ public final class WindowAssist {
      * Window 是否设置指定 flag 值
      * @param window {@link Window}
      * @param flag   待校验 flag
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFlag(
             final Window window,
@@ -872,7 +908,7 @@ public final class WindowAssist {
      * Window 是否设置指定 flags 值
      * @param window {@link Window}
      * @param flags  待校验 flags
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFlags(
             final Window window,
@@ -884,6 +920,45 @@ public final class WindowAssist {
         if (layoutParams == null) return false;
         for (int value : flags) {
             if ((value & layoutParams.flags) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Window 是否没有设置指定 flag 值
+     * @param window {@link Window}
+     * @param flag   待校验 flag
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFlag(
+            final Window window,
+            final int flag
+    ) {
+        if (window == null) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        int flags = layoutParams.flags;
+        return (flags & flag) == 0;
+    }
+
+    /**
+     * Window 是否没有设置指定 flags 值
+     * @param window {@link Window}
+     * @param flags  待校验 flags
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFlags(
+            final Window window,
+            final int... flags
+    ) {
+        if (window == null) return false;
+        if (flags == null || flags.length == 0) return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        for (int value : flags) {
+            if ((value & layoutParams.flags) != 0) {
                 return false;
             }
         }
@@ -912,7 +987,7 @@ public final class WindowAssist {
      * Window 是否开启指定 Extended Feature
      * @param window    {@link Window}
      * @param featureId 待校验 feature
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFeature(
             final Window window,
@@ -926,7 +1001,7 @@ public final class WindowAssist {
      * Window 是否开启指定 Extended Feature
      * @param window     {@link Window}
      * @param featureIds 待校验 feature
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} yes, {@code false} no
      */
     public boolean hasFeatures(
             final Window window,
@@ -936,6 +1011,40 @@ public final class WindowAssist {
         if (featureIds == null || featureIds.length == 0) return false;
         for (int value : featureIds) {
             if (!window.hasFeature(value)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Window 是否没有开启指定 Extended Feature
+     * @param window    {@link Window}
+     * @param featureId 待校验 feature
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFeature(
+            final Window window,
+            final int featureId
+    ) {
+        if (window == null) return false;
+        return !window.hasFeature(featureId);
+    }
+
+    /**
+     * Window 是否没有开启指定 Extended Feature
+     * @param window     {@link Window}
+     * @param featureIds 待校验 feature
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean notHasFeatures(
+            final Window window,
+            final int... featureIds
+    ) {
+        if (window == null) return false;
+        if (featureIds == null || featureIds.length == 0) return false;
+        for (int value : featureIds) {
+            if (window.hasFeature(value)) {
                 return false;
             }
         }
