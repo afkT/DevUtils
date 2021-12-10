@@ -47,6 +47,9 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
  *     Android 11 ( R ) 适配指南
  *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
+ *     <p></p>
+ *     Android 版本适配全套指南
+ *     @see <a href="https://github.com/getActivity/AndroidVersionAdapter"/>
  * </pre>
  */
 public final class VersionHelper

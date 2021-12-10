@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import java.lang.reflect.Field;
 
-import dev.utils.LogPrintUtils;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.BrightnessUtils;
 
@@ -112,7 +111,7 @@ public final class WindowAssist {
 
     /**
      * 获取 WindowAssist
-     * @param window {@link Context}
+     * @param window {@link Window}
      * @return {@link WindowAssist}
      */
     public static WindowAssist get(final Window window) {
@@ -208,8 +207,6 @@ public final class WindowAssist {
     // = 辅助类具体实现 =
     // ===============
 
-    // 日志 TAG
-    private final String TAG = WindowAssist.class.getSimpleName();
     // 内部 Window
     private final Window mWindow;
 
@@ -1304,15 +1301,10 @@ public final class WindowAssist {
             @IntRange(from = 0, to = 255) final int brightness
     ) {
         if (window == null) return false;
-        try {
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
-            layoutParams.screenBrightness = brightness / 255f;
-            window.setAttributes(layoutParams);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setWindowBrightness");
-        }
-        return false;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return false;
+        layoutParams.screenBrightness = brightness / 255f;
+        return setAttributes(window, layoutParams);
     }
 
     /**
@@ -1322,15 +1314,11 @@ public final class WindowAssist {
      */
     public int getWindowBrightness(final Window window) {
         if (window == null) return 0;
-        try {
-            WindowManager.LayoutParams layoutParams = window.getAttributes();
-            float                      brightness   = layoutParams.screenBrightness;
-            if (brightness < 0) return BrightnessUtils.getBrightness();
-            return (int) (brightness * 255);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWindowBrightness");
-        }
-        return 0;
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (layoutParams == null) return 0;
+        float brightness = layoutParams.screenBrightness;
+        if (brightness < 0) return BrightnessUtils.getBrightness();
+        return (int) (brightness * 255);
     }
 
     /**
@@ -1563,17 +1551,16 @@ public final class WindowAssist {
             final Window window,
             @ColorInt final int color
     ) {
-        if (window != null) {
-            try {
-                Class<?> decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
-                Field field = decorViewClazz.getDeclaredField(
-                        "mSemiTransparentStatusBarColor"
-                );
-                field.setAccessible(true);
-                field.setInt(window, color);
-                return true;
-            } catch (Exception ignored) {
-            }
+        if (window == null) return false;
+        try {
+            Class<?> decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
+            Field field = decorViewClazz.getDeclaredField(
+                    "mSemiTransparentStatusBarColor"
+            );
+            field.setAccessible(true);
+            field.setInt(window, color);
+            return true;
+        } catch (Exception ignored) {
         }
         return false;
     }

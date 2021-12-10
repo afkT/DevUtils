@@ -96,7 +96,7 @@ public final class WindowUtils {
 
     /**
      * 获取 WindowAssist
-     * @param window {@link Context}
+     * @param window {@link Window}
      * @return {@link WindowAssist}
      */
     public static WindowAssist get(final Window window) {
