@@ -308,6 +308,24 @@ public final class WindowAssist {
     }
 
     /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行追加 )
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibilityByAdd(final int visibility) {
+        return setSystemUiVisibilityByAdd(mWindow, visibility);
+    }
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行清除 )
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibilityByClear(final int visibility) {
+        return setSystemUiVisibilityByClear(mWindow, visibility);
+    }
+
+    /**
      * 获取 Window LayoutParams
      * @return Window LayoutParams
      */
@@ -830,6 +848,42 @@ public final class WindowAssist {
         View decorView = getDecorView(window);
         if (decorView == null) return 0;
         return decorView.getSystemUiVisibility();
+    }
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行追加 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibilityByAdd(
+            final Window window,
+            final int visibility
+    ) {
+        View decorView = getDecorView(window);
+        if (decorView == null) return false;
+        int flags = new FlagsValue(decorView.getSystemUiVisibility())
+                .addFlags(visibility).getFlags();
+        decorView.setSystemUiVisibility(flags);
+        return true;
+    }
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行清除 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibilityByClear(
+            final Window window,
+            final int visibility
+    ) {
+        View decorView = getDecorView(window);
+        if (decorView == null) return false;
+        int flags = new FlagsValue(decorView.getSystemUiVisibility())
+                .clearFlags(visibility).getFlags();
+        decorView.setSystemUiVisibility(flags);
+        return true;
     }
 
     /**
