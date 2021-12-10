@@ -258,6 +258,10 @@ public final class WindowAssist {
         return mWindow;
     }
 
+    // ==============
+    // = Window 无参 =
+    // ==============
+
     /**
      * 获取 Window DecorView
      * @return DecorView
@@ -280,6 +284,26 @@ public final class WindowAssist {
      */
     public View getCurrentFocus() {
         return getCurrentFocus(mWindow);
+    }
+
+    /**
+     * 设置 Window System UI 可见性
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibility(final int visibility) {
+        return setSystemUiVisibility(mWindow, visibility);
+    }
+
+    /**
+     * 获取 Window System UI 可见性
+     * <pre>
+     *     返回最后一次设置 {@link View#setSystemUiVisibility(int)} 值
+     * </pre>
+     * @return Window System UI 可见性
+     */
+    public int getSystemUiVisibility() {
+        return getSystemUiVisibility(mWindow);
     }
 
     /**
@@ -801,6 +825,36 @@ public final class WindowAssist {
     public View getCurrentFocus(final Window window) {
         if (window == null) return null;
         return window.getCurrentFocus();
+    }
+
+    /**
+     * 设置 Window System UI 可见性
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setSystemUiVisibility(
+            final Window window,
+            final int visibility
+    ) {
+        View decorView = getDecorView(window);
+        if (decorView == null) return false;
+        decorView.setSystemUiVisibility(visibility);
+        return true;
+    }
+
+    /**
+     * 获取 Window System UI 可见性
+     * <pre>
+     *     返回最后一次设置 {@link View#setSystemUiVisibility(int)} 值
+     * </pre>
+     * @param window {@link Window}
+     * @return Window System UI 可见性
+     */
+    public int getSystemUiVisibility(final Window window) {
+        View decorView = getDecorView(window);
+        if (decorView == null) return 0;
+        return decorView.getSystemUiVisibility();
     }
 
     /**
