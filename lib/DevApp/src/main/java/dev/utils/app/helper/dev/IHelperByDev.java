@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.IntRange;
 import androidx.fragment.app.DialogFragment;
 
 import java.io.Closeable;
@@ -1174,4 +1175,376 @@ public interface IHelperByDev<T>
      * @return Helper
      */
     T flushCloseIOQuietly(Writer writer);
+
+    // ================
+    // = WindowAssist =
+    // ================
+
+    /**
+     * 设置 Window System UI 可见性
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    T setSystemUiVisibility(
+            Window window,
+            int visibility
+    );
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行追加 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    T setSystemUiVisibilityByAdd(
+            Window window,
+            int visibility
+    );
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行清除 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    T setSystemUiVisibilityByClear(
+            Window window,
+            int visibility
+    );
+
+    /**
+     * 设置 Window LayoutParams
+     * @param window {@link Window}
+     * @param params WindowManager.LayoutParams
+     * @return Helper
+     */
+    T setAttributes(
+            Window window,
+            WindowManager.LayoutParams params
+    );
+
+    /**
+     * 刷新自身 Window LayoutParams
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T refreshSelfAttributes(Window window);
+
+    /**
+     * 清除 Window flags
+     * @param window {@link Window}
+     * @param flags  待清除 flags
+     * @return Helper
+     */
+    T clearFlags(
+            Window window,
+            int flags
+    );
+
+    /**
+     * 添加 Window flags
+     * @param window {@link Window}
+     * @param flags  待添加 flags
+     * @return Helper
+     */
+    T addFlags(
+            Window window,
+            int flags
+    );
+
+    /**
+     * 设置 Window flags
+     * @param window {@link Window}
+     * @param flags  待设置 flags
+     * @param mask   待设置 flags 位
+     * @return Helper
+     */
+    T setFlags(
+            Window window,
+            int flags,
+            int mask
+    );
+
+    /**
+     * 启用 Window Extended Feature
+     * <pre>
+     *     启用后无法关闭, 需要在 setContentView() 之前调用
+     * </pre>
+     * @param window    {@link Window}
+     * @param featureId 待启用 feature
+     * @return Helper
+     */
+    T requestFeature(
+            Window window,
+            int featureId
+    );
+
+    /**
+     * 设置 Window 输入模式
+     * @param window {@link Window}
+     * @param mode   input mode
+     * @return Helper
+     */
+    T setSoftInputMode(
+            Window window,
+            int mode
+    );
+
+    /**
+     * 设置 StatusBar Color
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return Helper
+     */
+    T setStatusBarColor(
+            Window window,
+            @ColorInt int color
+    );
+
+    /**
+     * 设置 NavigationBar Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Color
+     * @return Helper
+     */
+    T setNavigationBarColor(
+            Window window,
+            @ColorInt int color
+    );
+
+    /**
+     * 设置 NavigationBar Divider Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Divider Color
+     * @return Helper
+     */
+    T setNavigationBarDividerColor(
+            Window window,
+            @ColorInt int color
+    );
+
+    /**
+     * 设置 Dialog 宽度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @return Helper
+     */
+    T setWidthByParams(
+            Window window,
+            int width
+    );
+
+    /**
+     * 设置 Dialog 高度
+     * @param window {@link Window}
+     * @param height 高度
+     * @return Helper
+     */
+    T setHeightByParams(
+            Window window,
+            int height
+    );
+
+    /**
+     * 设置 Dialog 宽度、高度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @param height 高度
+     * @return Helper
+     */
+    T setWidthHeightByParams(
+            Window window,
+            int width,
+            int height
+    );
+
+    /**
+     * 设置 Dialog X 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @return Helper
+     */
+    T setXByParams(
+            Window window,
+            int x
+    );
+
+    /**
+     * 设置 Dialog Y 轴坐标
+     * @param window {@link Window}
+     * @param y      Y 轴坐标
+     * @return Helper
+     */
+    T setYByParams(
+            Window window,
+            int y
+    );
+
+    /**
+     * 设置 Dialog X、Y 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @param y      Y 轴坐标
+     * @return Helper
+     */
+    T setXYByParams(
+            Window window,
+            int x,
+            int y
+    );
+
+    /**
+     * 设置 Dialog Gravity
+     * @param window  {@link Window}
+     * @param gravity 重心
+     * @return Helper
+     */
+    T setGravityByParams(
+            Window window,
+            int gravity
+    );
+
+    /**
+     * 设置 Dialog 透明度
+     * @param window    {@link Window}
+     * @param dimAmount 透明度
+     * @return Helper
+     */
+    T setDimAmountByParams(
+            Window window,
+            float dimAmount
+    );
+
+    /**
+     * 设置窗口亮度
+     * @param window     {@link Window}
+     * @param brightness 亮度值
+     * @return Helper
+     */
+    T setWindowBrightness(
+            Window window,
+            @IntRange(from = 0, to = 255) int brightness
+    );
+
+    /**
+     * 设置 Window 软键盘是否显示
+     * @param window       {@link Window}
+     * @param inputVisible 是否显示软键盘
+     * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
+     * @return Helper
+     */
+    T setKeyBoardSoftInputMode(
+            Window window,
+            boolean inputVisible,
+            boolean clearFlag
+    );
+
+    /**
+     * 设置屏幕常亮
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagKeepScreenOn(Window window);
+
+    /**
+     * 移除屏幕常亮
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T clearFlagKeepScreenOn(Window window);
+
+    /**
+     * 设置禁止截屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagSecure(Window window);
+
+    /**
+     * 移除禁止截屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T clearFlagSecure(Window window);
+
+    /**
+     * 设置屏幕为全屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagFullScreen(Window window);
+
+    /**
+     * 移除屏幕全屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T clearFlagFullScreen(Window window);
+
+    /**
+     * 设置透明状态栏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagTranslucentStatus(Window window);
+
+    /**
+     * 移除透明状态栏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T clearFlagTranslucentStatus(Window window);
+
+    /**
+     * 设置系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagDrawsSystemBarBackgrounds(Window window);
+
+    /**
+     * 移除系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T clearFlagDrawsSystemBarBackgrounds(Window window);
+
+    /**
+     * 设置屏幕页面无标题
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFeatureNoTitle(Window window);
+
+    /**
+     * 设置屏幕为全屏无标题
+     * @param window {@link Window}
+     * @return Helper
+     */
+    T setFlagFullScreenAndNoTitle(Window window);
+
+    /**
+     * 设置高版本状态栏蒙层
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return Helper
+     */
+    T setSemiTransparentStatusBarColor(
+            Window window,
+            @ColorInt int color
+    );
+
+    /**
+     * 设置状态栏颜色、高版本状态栏蒙层
+     * @param window   {@link Window}
+     * @param color    StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return Helper
+     */
+    T setStatusBarColorAndFlag(
+            Window window,
+            @ColorInt int color,
+            boolean addFlags
+    );
 }

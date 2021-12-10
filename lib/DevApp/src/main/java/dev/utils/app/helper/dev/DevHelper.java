@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.IntRange;
 import androidx.annotation.RequiresPermission;
 import androidx.fragment.app.DialogFragment;
 
@@ -42,6 +43,7 @@ import dev.utils.app.SizeUtils;
 import dev.utils.app.VibrationUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.WidgetUtils;
+import dev.utils.app.WindowUtils;
 import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
@@ -1902,6 +1904,582 @@ public final class DevHelper
     @Override
     public DevHelper flushCloseIOQuietly(Writer writer) {
         CloseUtils.flushCloseIOQuietly(writer);
+        return this;
+    }
+
+    // ================
+    // = WindowAssist =
+    // ================
+
+    /**
+     * 设置 Window System UI 可见性
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper setSystemUiVisibility(
+            Window window,
+            int visibility
+    ) {
+        WindowUtils.get().setSystemUiVisibility(
+                window, visibility
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行追加 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper setSystemUiVisibilityByAdd(
+            Window window,
+            int visibility
+    ) {
+        WindowUtils.get().setSystemUiVisibilityByAdd(
+                window, visibility
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window System UI 可见性 ( 原来基础上进行清除 )
+     * @param window     {@link Window}
+     * @param visibility 待操作 flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper setSystemUiVisibilityByClear(
+            Window window,
+            int visibility
+    ) {
+        WindowUtils.get().setSystemUiVisibilityByClear(
+                window, visibility
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window LayoutParams
+     * @param window {@link Window}
+     * @param params WindowManager.LayoutParams
+     * @return Helper
+     */
+    @Override
+    public DevHelper setAttributes(
+            Window window,
+            WindowManager.LayoutParams params
+    ) {
+        WindowUtils.get().setAttributes(
+                window, params
+        );
+        return this;
+    }
+
+    /**
+     * 刷新自身 Window LayoutParams
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper refreshSelfAttributes(Window window) {
+        WindowUtils.get().refreshSelfAttributes(window);
+        return this;
+    }
+
+    /**
+     * 清除 Window flags
+     * @param window {@link Window}
+     * @param flags  待清除 flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlags(
+            Window window,
+            int flags
+    ) {
+        WindowUtils.get().clearFlags(
+                window, flags
+        );
+        return this;
+    }
+
+    /**
+     * 添加 Window flags
+     * @param window {@link Window}
+     * @param flags  待添加 flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper addFlags(
+            Window window,
+            int flags
+    ) {
+        WindowUtils.get().addFlags(
+                window, flags
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window flags
+     * @param window {@link Window}
+     * @param flags  待设置 flags
+     * @param mask   待设置 flags 位
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlags(
+            Window window,
+            int flags,
+            int mask
+    ) {
+        WindowUtils.get().setFlags(
+                window, flags, mask
+        );
+        return this;
+    }
+
+    /**
+     * 启用 Window Extended Feature
+     * <pre>
+     *     启用后无法关闭, 需要在 setContentView() 之前调用
+     * </pre>
+     * @param window    {@link Window}
+     * @param featureId 待启用 feature
+     * @return Helper
+     */
+    @Override
+    public DevHelper requestFeature(
+            Window window,
+            int featureId
+    ) {
+        WindowUtils.get().requestFeature(
+                window, featureId
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window 输入模式
+     * @param window {@link Window}
+     * @param mode   input mode
+     * @return Helper
+     */
+    @Override
+    public DevHelper setSoftInputMode(
+            Window window,
+            int mode
+    ) {
+        WindowUtils.get().setSoftInputMode(
+                window, mode
+        );
+        return this;
+    }
+
+    /**
+     * 设置 StatusBar Color
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return Helper
+     */
+    @Override
+    public DevHelper setStatusBarColor(
+            Window window,
+            @ColorInt int color
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            WindowUtils.get().setStatusBarColor(
+                    window, color
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置 NavigationBar Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Color
+     * @return Helper
+     */
+    @Override
+    public DevHelper setNavigationBarColor(
+            Window window,
+            @ColorInt int color
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            WindowUtils.get().setNavigationBarColor(
+                    window, color
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置 NavigationBar Divider Color
+     * @param window {@link Window}
+     * @param color  NavigationBar Divider Color
+     * @return Helper
+     */
+    @Override
+    public DevHelper setNavigationBarDividerColor(
+            Window window,
+            @ColorInt int color
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            WindowUtils.get().setNavigationBarDividerColor(
+                    window, color
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置 Dialog 宽度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @return Helper
+     */
+    @Override
+    public DevHelper setWidthByParams(
+            Window window,
+            int width
+    ) {
+        WindowUtils.get().setWidthByParams(
+                window, width
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog 高度
+     * @param window {@link Window}
+     * @param height 高度
+     * @return Helper
+     */
+    @Override
+    public DevHelper setHeightByParams(
+            Window window,
+            int height
+    ) {
+        WindowUtils.get().setHeightByParams(
+                window, height
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog 宽度、高度
+     * @param window {@link Window}
+     * @param width  宽度
+     * @param height 高度
+     * @return Helper
+     */
+    @Override
+    public DevHelper setWidthHeightByParams(
+            Window window,
+            int width,
+            int height
+    ) {
+        WindowUtils.get().setWidthHeightByParams(
+                window, width, height
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog X 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @return Helper
+     */
+    @Override
+    public DevHelper setXByParams(
+            Window window,
+            int x
+    ) {
+        WindowUtils.get().setXByParams(
+                window, x
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog Y 轴坐标
+     * @param window {@link Window}
+     * @param y      Y 轴坐标
+     * @return Helper
+     */
+    @Override
+    public DevHelper setYByParams(
+            Window window,
+            int y
+    ) {
+        WindowUtils.get().setYByParams(
+                window, y
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog X、Y 轴坐标
+     * @param window {@link Window}
+     * @param x      X 轴坐标
+     * @param y      Y 轴坐标
+     * @return Helper
+     */
+    @Override
+    public DevHelper setXYByParams(
+            Window window,
+            int x,
+            int y
+    ) {
+        WindowUtils.get().setXYByParams(
+                window, x, y
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog Gravity
+     * @param window  {@link Window}
+     * @param gravity 重心
+     * @return Helper
+     */
+    @Override
+    public DevHelper setGravityByParams(
+            Window window,
+            int gravity
+    ) {
+        WindowUtils.get().setGravityByParams(
+                window, gravity
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Dialog 透明度
+     * @param window    {@link Window}
+     * @param dimAmount 透明度
+     * @return Helper
+     */
+    @Override
+    public DevHelper setDimAmountByParams(
+            Window window,
+            float dimAmount
+    ) {
+        WindowUtils.get().setDimAmountByParams(
+                window, dimAmount
+        );
+        return this;
+    }
+
+    /**
+     * 设置窗口亮度
+     * @param window     {@link Window}
+     * @param brightness 亮度值
+     * @return Helper
+     */
+    @Override
+    public DevHelper setWindowBrightness(
+            Window window,
+            @IntRange(from = 0, to = 255) int brightness
+    ) {
+        WindowUtils.get().setWindowBrightness(
+                window, brightness
+        );
+        return this;
+    }
+
+    /**
+     * 设置 Window 软键盘是否显示
+     * @param window       {@link Window}
+     * @param inputVisible 是否显示软键盘
+     * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
+     * @return Helper
+     */
+    @Override
+    public DevHelper setKeyBoardSoftInputMode(
+            Window window,
+            boolean inputVisible,
+            boolean clearFlag
+    ) {
+        WindowUtils.get().setKeyBoardSoftInputMode(
+                window, inputVisible, clearFlag
+        );
+        return this;
+    }
+
+    /**
+     * 设置屏幕常亮
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagKeepScreenOn(Window window) {
+        WindowUtils.get().setFlagKeepScreenOn(window);
+        return this;
+    }
+
+    /**
+     * 移除屏幕常亮
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlagKeepScreenOn(Window window) {
+        WindowUtils.get().clearFlagKeepScreenOn(window);
+        return this;
+    }
+
+    /**
+     * 设置禁止截屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagSecure(Window window) {
+        WindowUtils.get().setFlagSecure(window);
+        return this;
+    }
+
+    /**
+     * 移除禁止截屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlagSecure(Window window) {
+        WindowUtils.get().clearFlagSecure(window);
+        return this;
+    }
+
+    /**
+     * 设置屏幕为全屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagFullScreen(Window window) {
+        WindowUtils.get().setFlagFullScreen(window);
+        return this;
+    }
+
+    /**
+     * 移除屏幕全屏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlagFullScreen(Window window) {
+        WindowUtils.get().clearFlagFullScreen(window);
+        return this;
+    }
+
+    /**
+     * 设置透明状态栏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagTranslucentStatus(Window window) {
+        WindowUtils.get().setFlagTranslucentStatus(window);
+        return this;
+    }
+
+    /**
+     * 移除透明状态栏
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlagTranslucentStatus(Window window) {
+        WindowUtils.get().clearFlagTranslucentStatus(window);
+        return this;
+    }
+
+    /**
+     * 设置系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagDrawsSystemBarBackgrounds(Window window) {
+        WindowUtils.get().setFlagDrawsSystemBarBackgrounds(window);
+        return this;
+    }
+
+    /**
+     * 移除系统状态栏背景绘制
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper clearFlagDrawsSystemBarBackgrounds(Window window) {
+        WindowUtils.get().clearFlagDrawsSystemBarBackgrounds(window);
+        return this;
+    }
+
+    /**
+     * 设置屏幕页面无标题
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFeatureNoTitle(Window window) {
+        WindowUtils.get().setFeatureNoTitle(window);
+        return this;
+    }
+
+    /**
+     * 设置屏幕为全屏无标题
+     * @param window {@link Window}
+     * @return Helper
+     */
+    @Override
+    public DevHelper setFlagFullScreenAndNoTitle(Window window) {
+        WindowUtils.get().setFlagFullScreenAndNoTitle(window);
+        return this;
+    }
+
+    /**
+     * 设置高版本状态栏蒙层
+     * @param window {@link Window}
+     * @param color  StatusBar Color
+     * @return Helper
+     */
+    @Override
+    public DevHelper setSemiTransparentStatusBarColor(
+            Window window,
+            @ColorInt int color
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            WindowUtils.get().setSemiTransparentStatusBarColor(
+                    window, color
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置状态栏颜色、高版本状态栏蒙层
+     * @param window   {@link Window}
+     * @param color    StatusBar Color
+     * @param addFlags 是否添加 Windows flags
+     * @return Helper
+     */
+    @Override
+    public DevHelper setStatusBarColorAndFlag(
+            Window window,
+            @ColorInt int color,
+            boolean addFlags
+    ) {
+        WindowUtils.get().setStatusBarColorAndFlag(
+                window, color, addFlags
+        );
         return this;
     }
 }
