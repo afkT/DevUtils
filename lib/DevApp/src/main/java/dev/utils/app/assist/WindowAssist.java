@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.BrightnessUtils;
+import dev.utils.common.assist.FlagsValue;
 
 /**
  * detail: Window 辅助类
@@ -793,6 +794,16 @@ public final class WindowAssist {
 
     /**
      * 设置 Window System UI 可见性
+     * <pre>
+     *     可搭配 {@link FlagsValue} 使用
+     *     进行追加、清除、设置等最后调用 getFlags() 进行设置
+     *     <p></p>
+     *     FlagsValue mFlags = new FlagsValue(getSystemUiVisibility(window));
+     *     mFlags.addFlags(xxxx);
+     *     mFlags.clearFlags(xxxx);
+     *     int flags = mFlags.getFlags();
+     *     setSystemUiVisibility(window, flags)
+     * </pre>
      * @param window     {@link Window}
      * @param visibility 待操作 flags
      * @return {@code true} success, {@code false} fail
