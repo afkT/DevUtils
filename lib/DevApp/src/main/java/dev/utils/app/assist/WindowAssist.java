@@ -363,30 +363,12 @@ public final class WindowAssist {
     }
 
     /**
-     * Window 是否设置指定 flag 值
-     * @param flag 待校验 flag
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean hasFlag(final int flag) {
-        return hasFlag(mWindow, flag);
-    }
-
-    /**
      * Window 是否设置指定 flags 值
      * @param flags 待校验 flags
      * @return {@code true} yes, {@code false} no
      */
-    public boolean hasFlags(final int... flags) {
+    public boolean hasFlags(final int flags) {
         return hasFlags(mWindow, flags);
-    }
-
-    /**
-     * Window 是否没有设置指定 flag 值
-     * @param flag 待校验 flag
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean notHasFlag(final int flag) {
-        return notHasFlag(mWindow, flag);
     }
 
     /**
@@ -394,7 +376,7 @@ public final class WindowAssist {
      * @param flags 待校验 flags
      * @return {@code true} yes, {@code false} no
      */
-    public boolean notHasFlags(final int... flags) {
+    public boolean notHasFlags(final int flags) {
         return notHasFlags(mWindow, flags);
     }
 
@@ -420,30 +402,12 @@ public final class WindowAssist {
     }
 
     /**
-     * Window 是否开启指定 Extended Feature
-     * @param featureIds 待校验 feature
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean hasFeatures(final int... featureIds) {
-        return hasFeatures(mWindow, featureIds);
-    }
-
-    /**
      * Window 是否没有开启指定 Extended Feature
      * @param featureId 待校验 feature
      * @return {@code true} yes, {@code false} no
      */
     public boolean notHasFeature(final int featureId) {
         return notHasFeature(mWindow, featureId);
-    }
-
-    /**
-     * Window 是否没有开启指定 Extended Feature
-     * @param featureIds 待校验 feature
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean notHasFeatures(final int... featureIds) {
-        return notHasFeatures(mWindow, featureIds);
     }
 
     /**
@@ -939,23 +903,6 @@ public final class WindowAssist {
     }
 
     /**
-     * Window 是否设置指定 flag 值
-     * @param window {@link Window}
-     * @param flag   待校验 flag
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean hasFlag(
-            final Window window,
-            final int flag
-    ) {
-        if (window == null) return false;
-        WindowManager.LayoutParams layoutParams = window.getAttributes();
-        if (layoutParams == null) return false;
-        int flags = layoutParams.flags;
-        return (flags & flag) != 0;
-    }
-
-    /**
      * Window 是否设置指定 flags 值
      * @param window {@link Window}
      * @param flags  待校验 flags
@@ -963,35 +910,12 @@ public final class WindowAssist {
      */
     public boolean hasFlags(
             final Window window,
-            final int... flags
-    ) {
-        if (window == null) return false;
-        if (flags == null || flags.length == 0) return false;
-        WindowManager.LayoutParams layoutParams = window.getAttributes();
-        if (layoutParams == null) return false;
-        for (int value : flags) {
-            if ((value & layoutParams.flags) == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Window 是否没有设置指定 flag 值
-     * @param window {@link Window}
-     * @param flag   待校验 flag
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean notHasFlag(
-            final Window window,
-            final int flag
+            final int flags
     ) {
         if (window == null) return false;
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         if (layoutParams == null) return false;
-        int flags = layoutParams.flags;
-        return (flags & flag) == 0;
+        return (layoutParams.flags & flags) == flags;
     }
 
     /**
@@ -1002,18 +926,12 @@ public final class WindowAssist {
      */
     public boolean notHasFlags(
             final Window window,
-            final int... flags
+            final int flags
     ) {
         if (window == null) return false;
-        if (flags == null || flags.length == 0) return false;
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         if (layoutParams == null) return false;
-        for (int value : flags) {
-            if ((value & layoutParams.flags) != 0) {
-                return false;
-            }
-        }
-        return true;
+        return (layoutParams.flags & flags) != flags;
     }
 
     /**
@@ -1049,26 +967,6 @@ public final class WindowAssist {
     }
 
     /**
-     * Window 是否开启指定 Extended Feature
-     * @param window     {@link Window}
-     * @param featureIds 待校验 feature
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean hasFeatures(
-            final Window window,
-            final int... featureIds
-    ) {
-        if (window == null) return false;
-        if (featureIds == null || featureIds.length == 0) return false;
-        for (int value : featureIds) {
-            if (!window.hasFeature(value)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Window 是否没有开启指定 Extended Feature
      * @param window    {@link Window}
      * @param featureId 待校验 feature
@@ -1080,26 +978,6 @@ public final class WindowAssist {
     ) {
         if (window == null) return false;
         return !window.hasFeature(featureId);
-    }
-
-    /**
-     * Window 是否没有开启指定 Extended Feature
-     * @param window     {@link Window}
-     * @param featureIds 待校验 feature
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean notHasFeatures(
-            final Window window,
-            final int... featureIds
-    ) {
-        if (window == null) return false;
-        if (featureIds == null || featureIds.length == 0) return false;
-        for (int value : featureIds) {
-            if (window.hasFeature(value)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**
@@ -1408,7 +1286,7 @@ public final class WindowAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isKeepScreenOnFlag(final Window window) {
-        return hasFlag(window, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        return hasFlags(window, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     /**
@@ -1439,7 +1317,7 @@ public final class WindowAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSecureFlag(final Window window) {
-        return hasFlag(window, WindowManager.LayoutParams.FLAG_SECURE);
+        return hasFlags(window, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     /**
@@ -1470,7 +1348,7 @@ public final class WindowAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFullScreenFlag(final Window window) {
-        return hasFlag(window, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        return hasFlags(window, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     /**
@@ -1502,7 +1380,7 @@ public final class WindowAssist {
      */
     @SuppressLint("InlinedApi")
     public boolean isTranslucentStatusFlag(final Window window) {
-        return hasFlag(window, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        return hasFlags(window, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     /**
@@ -1536,7 +1414,7 @@ public final class WindowAssist {
      */
     @SuppressLint("InlinedApi")
     public boolean isDrawsSystemBarBackgroundsFlag(final Window window) {
-        return hasFlag(window, WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        return hasFlags(window, WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
     }
 
     /**
