@@ -13,6 +13,7 @@ import dev.base.state.CommonState;
 import dev.base.state.RequestState;
 import dev.callback.DevCallback;
 import dev.callback.DevItemClickCallback;
+import dev.utils.common.assist.FlagsValue;
 
 /**
  * detail: DataManager RecyclerView Adapter Extend
@@ -48,6 +49,8 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     protected DevObject<T>                 mObject            = new DevObject<>();
     // Page 实体类
     protected DevPage<T>                   mPage              = DevPage.getDefault();
+    // 标记值计算存储 ( 位运算符 )
+    protected FlagsValue                   mFlags             = new FlagsValue();
     // 通用状态
     protected CommonState<T>               mState             = new CommonState<>();
     // 请求状态
@@ -152,7 +155,25 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     }
 
     /**
-     * 通用状态实体类
+     * 获取标记值计算存储 ( 位运算符 ) 实体类
+     * @return {@link FlagsValue}
+     */
+    public FlagsValue getFlags() {
+        return mFlags;
+    }
+
+    /**
+     * 设置标记值计算存储 ( 位运算符 ) 实体类
+     * @param flags {@link FlagsValue}
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setFlags(final FlagsValue flags) {
+        this.mFlags = flags;
+        return this;
+    }
+
+    /**
+     * 获取通用状态实体类
      * @return {@link CommonState}
      */
     public CommonState<T> getState() {
@@ -170,7 +191,7 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     }
 
     /**
-     * 请求状态实体类
+     * 获取请求状态实体类
      * @return {@link RequestState}
      */
     public RequestState<T> getRequestState() {
