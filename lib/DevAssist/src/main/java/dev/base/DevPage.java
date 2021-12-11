@@ -244,4 +244,24 @@ public class DevPage<T>
     ) {
         return response(refresh).setLastPage(lastPage);
     }
+
+    // ===========
+    // = Default =
+    // ===========
+
+    // 默认页数配置
+    private static final int DEFAULT_PAGE      = 1;
+    // 默认每页请求条数配置
+    private static final int DEFAULT_PAGE_SIZE = 10;
+
+    /**
+     * 获取默认配置 Page 实体类
+     * @param <T> 泛型
+     * @return {@link DevPage}
+     */
+    public static <T> DevPage<T> getDefault() {
+        return new DevPage<>(
+                DEFAULT_PAGE, DEFAULT_PAGE_SIZE
+        );
+    }
 }

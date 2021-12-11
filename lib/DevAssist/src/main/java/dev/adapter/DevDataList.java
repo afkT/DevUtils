@@ -31,25 +31,25 @@ public abstract class DevDataList<T>
         DataChanged<T> {
 
     // 数据辅助类
-    protected DataAssist<T>                mAssist = new DataAssist<>(this);
+    protected DataAssist<T>                mAssist            = new DataAssist<>(this);
     // Context
     protected Context                      mContext;
     // Activity
     protected Activity                     mActivity;
-    // 通用 Object
-    protected DevObject<T>                 mObject = new DevObject<>();
-    // Page 实体类
-    protected DevPage<T>                   mPage;
     // 通用回调
     protected DevCallback<T>               mCallback;
     // 通用 Item Click 回调
     protected DevItemClickCallback<T>      mItemCallback;
+    // 通用 Object
+    protected DevObject<T>                 mObject            = new DevObject<>();
+    // Page 实体类
+    protected DevPage<T>                   mPage              = DevPage.getDefault();
     // 请求状态
-    protected RequestState<T>              mState;
+    protected RequestState<T>              mState             = new RequestState<>();
     // EditText 输入监听辅助类
-    protected EditTextWatcherAssist<T>     mTextWatcherAssist;
+    protected EditTextWatcherAssist<T>     mTextWatcherAssist = new EditTextWatcherAssist<>();
     // 多选辅助类
-    protected DevMultiSelectMap<String, T> mMultiSelectMap;
+    protected DevMultiSelectMap<String, T> mMultiSelectMap    = new DevMultiSelectMap<>();
 
     public DevDataList() {
     }
@@ -382,6 +382,42 @@ public abstract class DevDataList<T>
     // =====================
 
     /**
+     * 获取通用回调
+     * @return {@link DevCallback}
+     */
+    public DevCallback<T> getCallback() {
+        return mCallback;
+    }
+
+    /**
+     * 设置通用回调
+     * @param callback {@link DevCallback}
+     * @return {@link DevDataList}
+     */
+    public DevDataList<T> setCallback(final DevCallback<T> callback) {
+        this.mCallback = callback;
+        return this;
+    }
+
+    /**
+     * 获取通用 Item Click 回调
+     * @return {@link DevItemClickCallback}
+     */
+    public DevItemClickCallback<T> getItemCallback() {
+        return mItemCallback;
+    }
+
+    /**
+     * 设置通用 Item Click 回调
+     * @param itemCallback {@link DevItemClickCallback}
+     * @return {@link DevDataList}
+     */
+    public DevDataList<T> setItemCallback(final DevItemClickCallback<T> itemCallback) {
+        this.mItemCallback = itemCallback;
+        return this;
+    }
+
+    /**
      * 获取通用 Object
      * @return {@link DevObject}
      */
@@ -436,42 +472,6 @@ public abstract class DevDataList<T>
      */
     public DevDataList<T> setPage(final DevPage<T> page) {
         this.mPage = page;
-        return this;
-    }
-
-    /**
-     * 获取通用回调
-     * @return {@link DevCallback}
-     */
-    public DevCallback<T> getCallback() {
-        return mCallback;
-    }
-
-    /**
-     * 设置通用回调
-     * @param callback {@link DevCallback}
-     * @return {@link DevDataList}
-     */
-    public DevDataList<T> setCallback(final DevCallback<T> callback) {
-        this.mCallback = callback;
-        return this;
-    }
-
-    /**
-     * 获取通用 Item Click 回调
-     * @return {@link DevItemClickCallback}
-     */
-    public DevItemClickCallback<T> getItemCallback() {
-        return mItemCallback;
-    }
-
-    /**
-     * 设置通用 Item Click 回调
-     * @param itemCallback {@link DevItemClickCallback}
-     * @return {@link DevDataList}
-     */
-    public DevDataList<T> setItemCallback(final DevItemClickCallback<T> itemCallback) {
-        this.mItemCallback = itemCallback;
         return this;
     }
 
