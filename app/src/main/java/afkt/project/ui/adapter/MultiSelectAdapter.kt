@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt2
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.base.multiselect.DevMultiSelectMap
 import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
@@ -24,7 +23,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
     DevDataAdapterExt2<CommodityEvaluateBean?, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
     init {
-        setMultiSelectMap(DevMultiSelectMap()).setDataList(data, false)
+        setDataList(data, false)
     }
 
     override fun onCreateViewHolder(

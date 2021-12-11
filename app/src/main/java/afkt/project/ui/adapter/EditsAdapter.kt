@@ -6,7 +6,6 @@ import afkt.project.model.item.EvaluateItem
 import afkt.project.util.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
-import dev.assist.EditTextWatcherAssist
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
@@ -22,8 +21,7 @@ import java.math.BigDecimal
 class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterItemEditsBinding>>() {
 
     init {
-        setTextWatcherAssist(EditTextWatcherAssist())
-            .setDataList(data, false)
+        setDataList(data, false)
     }
 
     override fun onCreateViewHolder(

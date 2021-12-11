@@ -8,15 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import dev.base.multiselect.DevMultiSelectMap;
 import dev.base.multiselect.IMultiSelectEdit;
 
 /**
  * detail: DataManager RecyclerView Adapter Extend
  * @author Ttt
  * <pre>
- *     在 {@link DevDataAdapterExt} 基础上
- *     实现多选辅助: 内部不判 null, 需先调用 {@link #setMultiSelectMap(DevMultiSelectMap)} 初始化
+ *     在 {@link DevDataAdapterExt} 基础上实现多选辅助
  * </pre>
  */
 public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>

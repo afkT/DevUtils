@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import dev.adapter.DevDataAdapterExt2;
-import dev.base.multiselect.DevMultiSelectMap;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureMainModuleAdapterBinding;
 import dev.utils.app.ListViewUtils;
@@ -25,8 +24,6 @@ class AdapterMainModule
     private final long mDelay;
 
     public AdapterMainModule() {
-        // 初始化多选实现方案
-        setMultiSelectMap(new DevMultiSelectMap<>());
         // 初始化延迟滑动时间
         mDelay = Math.max(ResourceUtils.getInteger(
                 R.integer.dev_http_capture_query_item_scroll_delay
