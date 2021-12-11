@@ -9,6 +9,7 @@ import dev.assist.EditTextWatcherAssist;
 import dev.base.DevObject;
 import dev.base.DevPage;
 import dev.base.multiselect.DevMultiSelectMap;
+import dev.base.state.CommonState;
 import dev.base.state.RequestState;
 import dev.callback.DevCallback;
 import dev.callback.DevItemClickCallback;
@@ -47,8 +48,10 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     protected DevObject<T>                 mObject            = new DevObject<>();
     // Page 实体类
     protected DevPage<T>                   mPage              = DevPage.getDefault();
+    // 通用状态
+    protected CommonState<T>               mState             = new CommonState<>();
     // 请求状态
-    protected RequestState<T>              mState             = new RequestState<>();
+    protected RequestState<T>              mRequestState      = new RequestState<>();
     // EditText 输入监听辅助类
     protected EditTextWatcherAssist<T>     mTextWatcherAssist = new EditTextWatcherAssist<>();
     // 多选辅助类
@@ -149,20 +152,38 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     }
 
     /**
-     * 请求状态实体类
-     * @return {@link RequestState}
+     * 通用状态实体类
+     * @return {@link CommonState}
      */
-    public RequestState<T> getState() {
+    public CommonState<T> getState() {
         return mState;
     }
 
     /**
-     * 设置请求状态实体类
-     * @param state {@link RequestState}
+     * 设置通用状态实体类
+     * @param state {@link CommonState}
      * @return {@link DevDataAdapterExt}
      */
-    public DevDataAdapterExt<T, VH> setState(final RequestState<T> state) {
+    public DevDataAdapterExt<T, VH> setState(final CommonState<T> state) {
         this.mState = state;
+        return this;
+    }
+
+    /**
+     * 请求状态实体类
+     * @return {@link RequestState}
+     */
+    public RequestState<T> getRequestState() {
+        return mRequestState;
+    }
+
+    /**
+     * 设置请求状态实体类
+     * @param requestState {@link RequestState}
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setRequestState(final RequestState<T> requestState) {
+        this.mRequestState = requestState;
         return this;
     }
 
