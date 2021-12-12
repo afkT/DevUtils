@@ -10,6 +10,16 @@ public final class DevFinal {
     }
 
     /**
+     * detail: 工具类内部返回值等常量定义
+     * @author Ttt
+     */
+    public static final class INNER {
+
+        // 异常错误返回值
+        public static final int ERROR_INT = -1;
+    }
+
+    /**
      * detail: 符号、标记字符串常量
      * @author Ttt
      */
@@ -144,6 +154,58 @@ public final class DevFinal {
         public static final String hhmmMMDDyyyy   = "hh:mm M月d日 yyyy";
         public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
         public static final String mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
+
+        // =============
+        // = 中文时间格式 =
+        // =============
+
+        public static final String yy_ZH   = "yy";
+        public static final String yyyy_ZH = "yyyy";
+        public static final String MM_ZH   = "MM";
+        public static final String dd_ZH   = "dd";
+        public static final String HH_ZH   = "HH";
+        public static final String mm_ZH   = "mm";
+        public static final String ss_ZH   = "ss";
+
+        public static final String MM_SINGLE_ZH    = "M";
+        public static final String dd_SINGLE_ZH    = "d";
+        public static final String HH_LOWERCASE_ZH = "hh";
+
+        public static final String yyMMdd_ZH    = "yy-MM-dd";
+        public static final String yyMMdd2_ZH   = "yyMMdd";
+        public static final String yyyyMMdd_ZH  = "yyyy-MM-dd";
+        public static final String yyyyMMdd2_ZH = "yyyyMMdd";
+        public static final String yyyyMMdd3_ZH = "yyyy年MM月dd日";
+        public static final String yyyyMMdd4_ZH = "yyyy_MM_dd";
+        public static final String yyyyMMdd5_ZH = "yyyy.MM.dd";
+
+        public static final String yyyyMMddHHmm_ZH  = "yyyy-MM-dd HH:mm";
+        public static final String yyyyMMddHHmm2_ZH = "yyyy年M月d日 HH:mm";
+        public static final String yyyyMMddHHmm3_ZH = "yyyy.MM.dd HH:mm";
+
+        public static final String yyyyMMddHHmmss_ZH  = "yyyy-MM-dd HH:mm:ss";
+        public static final String yyyyMMddHHmmss2_ZH = "yyyy年M月d日 HH:mm:ss";
+        public static final String yyyyMMddHHmmss3_ZH = "yyyyMMdd_HHmmss";
+        public static final String yyyyMMddHHmmss4_ZH = "yyyyMMdd.HHmmss";
+
+        public static final String MMdd_ZH  = "MM-dd";
+        public static final String MMdd2_ZH = "MM月dd日";
+        public static final String MMdd3_ZH = "MMdd";
+        public static final String MMdd4_ZH = "Md";
+        public static final String MMdd5_ZH = "M月d日";
+
+        public static final String HHmm_ZH    = "HH:mm";
+        public static final String HHmm2_ZH   = "HHmm";
+        public static final String HHmmss_ZH  = "HH:mm:ss";
+        public static final String HHmmss2_ZH = "HHmmss";
+
+        public static final String hhmmMMDDyyyy_ZH   = "hh:mm M月d日 yyyy";
+        public static final String hhmmssMMDDyyyy_ZH = "hh:mm:ss M月d日 yyyy";
+        public static final String mmddHHmmyyyyss_ZH = "MMddHHmmyyyy.ss";
+
+        // ==============
+        // = Deprecated =
+        // ==============
     }
 
     /**
