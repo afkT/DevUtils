@@ -1698,9 +1698,9 @@ public final class ADBUtils {
             String cmd = "date %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(
-                    String.format(
-                            cmd, DateUtils.formatTime(millis, DevFinal.TIME.mmddHHmmyyyyss)
-                    ), true
+                    String.format(cmd, DateUtils.formatTime(
+                            millis, DevFinal.TIME.SPECIAL_mmddHHmmyyyyss
+                    )), true
             );
             return result.isSuccess2();
         } catch (Exception e) {

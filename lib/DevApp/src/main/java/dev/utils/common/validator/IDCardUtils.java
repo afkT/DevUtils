@@ -188,7 +188,7 @@ public final class IDCardUtils {
             // 获取出生日期
             String birthday = idCard.substring(6, 12);
             try {
-                birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yyMMdd).parse(birthday);
+                birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yyMMdd_HYPHEN).parse(birthday);
             } catch (ParseException e) {
                 JCLogUtils.eTag(TAG, e, "convert15CardTo18");
             }

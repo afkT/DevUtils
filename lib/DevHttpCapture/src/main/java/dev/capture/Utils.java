@@ -205,7 +205,7 @@ class Utils {
             final String modulePath,
             final long millis
     ) {
-        String yyyyMMdd = DateUtils.formatTime(millis, DevFinal.TIME.yyyyMMdd2);
+        String yyyyMMdd = DateUtils.formatTime(millis, DevFinal.TIME.yyyyMMdd);
         String HH       = DateUtils.formatTime(millis, DevFinal.TIME.HH);
         int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.TIME.mm));
         String mmStr;

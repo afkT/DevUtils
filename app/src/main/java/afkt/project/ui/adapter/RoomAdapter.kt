@@ -44,7 +44,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             .setText(note.text, holder.binding.vidAdbTitleTv)
             .setText(note.comment, holder.binding.vidAdbContentTv)
             .setText(
-                DateUtils.formatDate(note.date, DevFinal.TIME.yyyyMMdd5),
+                DateUtils.formatDate(note.date, DevFinal.TIME.yyyyMMdd_POINT),
                 holder.binding.vidAdbTimeTv
             )
             .setVisibilitys(note.type != NoteType.PICTURE, holder.binding.vidAdbContentTv)

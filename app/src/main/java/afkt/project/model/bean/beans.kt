@@ -79,7 +79,7 @@ class ItemStickyBean(
     val timeTile: String
 
     init {
-        val format = DevFinal.TIME.yyyyMMdd5
+        val format = DevFinal.TIME.yyyyMMdd_POINT
         // 进行格式化
         timeFormat = DateUtils.formatTime(time, format)
         // 获取当前时间
@@ -88,7 +88,7 @@ class ItemStickyBean(
         timeTile = if (currentTime == timeFormat) {
             "今日"
         } else {
-            DateUtils.formatTime(time, DevFinal.TIME.MMdd2)
+            DateUtils.formatTime(time, DevFinal.TIME.ZH_MMdd)
         }
     }
 }
@@ -129,7 +129,7 @@ class ItemBean(
                     "https://picsum.photos/id/%s/500",
                     RandomUtils.getRandom(1, 50)
                 ),
-                timeFormat = DateUtils.formatTime(time, DevFinal.TIME.yyyyMMdd5)
+                timeFormat = DateUtils.formatTime(time, DevFinal.TIME.yyyyMMdd_POINT)
             )
         }
 

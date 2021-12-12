@@ -35,9 +35,13 @@ public final class DevFinal {
         public static final String NL          = "\n";
         public static final char   NL_CHAR     = '\n';
         // 点 字符串
-        public static final String DOT         = ".";
+        public static final String POINT       = ".";
         // 横杠 字符串
-        public static final String DASH        = "-";
+        public static final String HYPHEN      = "-";
+        // 下划线 字符串
+        public static final String UNDERSCORE  = "_";
+        // 冒号 字符串
+        public static final String COLON       = ":";
         // 反斜杠 字符串
         public static final String BACKSLASH   = "\\";
         // 斜杠 字符串
@@ -109,8 +113,6 @@ public final class DevFinal {
         // = 时间格式 =
         // ==========
 
-        // 变量名以 _数字 命名的表示 属于单个 M、d
-
         public static final String yy   = "yy";
         public static final String yyyy = "yyyy";
         public static final String MM   = "MM";
@@ -119,9 +121,85 @@ public final class DevFinal {
         public static final String mm   = "mm";
         public static final String ss   = "ss";
 
-        public static final String MM_SINGLE    = "M";
-        public static final String dd_SINGLE    = "d";
-        public static final String HH_LOWERCASE = "hh";
+        public static final String yyMMdd            = "yyMMdd";
+        public static final String yyMMdd_POINT      = "yy.MM.dd";
+        public static final String yyMMdd_HYPHEN     = "yy-MM-dd";
+        public static final String yyMMdd_UNDERSCORE = "yy_MM_dd";
+
+        public static final String yyyyMMdd            = "yyyyMMdd";
+        public static final String yyyyMMdd_POINT      = "yyyy.MM.dd";
+        public static final String yyyyMMdd_HYPHEN     = "yyyy-MM-dd";
+        public static final String yyyyMMdd_UNDERSCORE = "yyyy_MM_dd";
+
+        public static final String yyyyMMddHHmm            = "yyyyMMddHHmm";
+        public static final String yyyyMMddHHmm_POINT      = "yyyy.MM.dd HH:mm";
+        public static final String yyyyMMddHHmm_HYPHEN     = "yyyy-MM-dd HH:mm";
+        public static final String yyyyMMddHHmm_UNDERSCORE = "yyyy_MM_dd HH:mm";
+
+        public static final String yyyyMMddHHmmss            = "yyyyMMddHHmmss";
+        public static final String yyyyMMddHHmmss_POINT      = "yyyy.MM.dd HH:mm:ss";
+        public static final String yyyyMMddHHmmss_HYPHEN     = "yyyy-MM-dd HH:mm:ss";
+        public static final String yyyyMMddHHmmss_UNDERSCORE = "yyyy_MM_dd HH:mm:ss";
+
+        public static final String MMdd            = "MMdd";
+        public static final String MMdd_POINT      = "MM.dd";
+        public static final String MMdd_HYPHEN     = "MM-dd";
+        public static final String MMdd_UNDERSCORE = "MM_dd";
+
+        public static final String HHmm            = "HHmm";
+        public static final String HHmm_COLON      = "HH:mm";
+        public static final String HHmm_POINT      = "HH.mm";
+        public static final String HHmm_HYPHEN     = "HH-mm";
+        public static final String HHmm_UNDERSCORE = "HH_mm";
+
+        public static final String HHmmss            = "HHmmss";
+        public static final String HHmmss_COLON      = "HH:mm:ss";
+        public static final String HHmmss_POINT      = "HH.mm.ss";
+        public static final String HHmmss_HYPHEN     = "HH-mm-ss";
+        public static final String HHmmss_UNDERSCORE = "HH_mm_ss";
+
+        public static final String SPECIAL_mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
+
+        // =============
+        // = 中文时间格式 =
+        // =============
+
+        public static final String ZH_yy   = "yy年";
+        public static final String ZH_yyyy = "yyyy年";
+        public static final String ZH_MM   = "MM月";
+        public static final String ZH_dd   = "dd日";
+        public static final String ZH_HH   = "HH时";
+        public static final String ZH_mm   = "mm分";
+        public static final String ZH_ss   = "ss秒";
+
+        public static final String ZH_yyMMdd         = "yy年MM月dd日";
+        public static final String ZH_yyyyMMdd       = "yyyy年MM月dd日";
+        public static final String ZH_yyyyMMddHHmm   = "yyyy年MM月dd日HH时mm分";
+        public static final String ZH_yyyyMMddHHmmss = "yyyy年MM月dd日HH时mm分ss秒";
+        public static final String ZH_MMdd           = "MM月dd日";
+        public static final String ZH_HHmm           = "HH时mm分";
+        public static final String ZH_HHmmss         = "HH时mm分ss秒";
+    }
+
+    /**
+     * detail: 时间格式字符串常量
+     * @author Ttt
+     * <pre>
+     *     存储历史时间格式常量, 方便更新库过渡使用
+     *     并标记已弃用, 提醒使用 {@link DevFinal.TIME} 类
+     *     随时删除请及时替换
+     * </pre>
+     */
+    @Deprecated
+    public static final class TIME_DEPRECATED {
+
+        public static final String yy   = "yy";
+        public static final String yyyy = "yyyy";
+        public static final String MM   = "MM";
+        public static final String dd   = "dd";
+        public static final String HH   = "HH";
+        public static final String mm   = "mm";
+        public static final String ss   = "ss";
 
         public static final String yyMMdd    = "yy-MM-dd";
         public static final String yyMMdd2   = "yyMMdd";
@@ -154,58 +232,6 @@ public final class DevFinal {
         public static final String hhmmMMDDyyyy   = "hh:mm M月d日 yyyy";
         public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
         public static final String mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
-
-        // =============
-        // = 中文时间格式 =
-        // =============
-
-        public static final String yy_ZH   = "yy";
-        public static final String yyyy_ZH = "yyyy";
-        public static final String MM_ZH   = "MM";
-        public static final String dd_ZH   = "dd";
-        public static final String HH_ZH   = "HH";
-        public static final String mm_ZH   = "mm";
-        public static final String ss_ZH   = "ss";
-
-        public static final String MM_SINGLE_ZH    = "M";
-        public static final String dd_SINGLE_ZH    = "d";
-        public static final String HH_LOWERCASE_ZH = "hh";
-
-        public static final String yyMMdd_ZH    = "yy-MM-dd";
-        public static final String yyMMdd2_ZH   = "yyMMdd";
-        public static final String yyyyMMdd_ZH  = "yyyy-MM-dd";
-        public static final String yyyyMMdd2_ZH = "yyyyMMdd";
-        public static final String yyyyMMdd3_ZH = "yyyy年MM月dd日";
-        public static final String yyyyMMdd4_ZH = "yyyy_MM_dd";
-        public static final String yyyyMMdd5_ZH = "yyyy.MM.dd";
-
-        public static final String yyyyMMddHHmm_ZH  = "yyyy-MM-dd HH:mm";
-        public static final String yyyyMMddHHmm2_ZH = "yyyy年M月d日 HH:mm";
-        public static final String yyyyMMddHHmm3_ZH = "yyyy.MM.dd HH:mm";
-
-        public static final String yyyyMMddHHmmss_ZH  = "yyyy-MM-dd HH:mm:ss";
-        public static final String yyyyMMddHHmmss2_ZH = "yyyy年M月d日 HH:mm:ss";
-        public static final String yyyyMMddHHmmss3_ZH = "yyyyMMdd_HHmmss";
-        public static final String yyyyMMddHHmmss4_ZH = "yyyyMMdd.HHmmss";
-
-        public static final String MMdd_ZH  = "MM-dd";
-        public static final String MMdd2_ZH = "MM月dd日";
-        public static final String MMdd3_ZH = "MMdd";
-        public static final String MMdd4_ZH = "Md";
-        public static final String MMdd5_ZH = "M月d日";
-
-        public static final String HHmm_ZH    = "HH:mm";
-        public static final String HHmm2_ZH   = "HHmm";
-        public static final String HHmmss_ZH  = "HH:mm:ss";
-        public static final String HHmmss2_ZH = "HHmmss";
-
-        public static final String hhmmMMDDyyyy_ZH   = "hh:mm M月d日 yyyy";
-        public static final String hhmmssMMDDyyyy_ZH = "hh:mm:ss M月d日 yyyy";
-        public static final String mmddHHmmyyyyss_ZH = "MMddHHmmyyyy.ss";
-
-        // ==============
-        // = Deprecated =
-        // ==============
     }
 
     /**

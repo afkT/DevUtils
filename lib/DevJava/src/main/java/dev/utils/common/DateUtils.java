@@ -38,7 +38,7 @@ public final class DateUtils {
      * @return {@link SimpleDateFormat}
      */
     public static SimpleDateFormat getDefaultFormat() {
-        return getSafeDateFormat(DevFinal.TIME.yyyyMMddHHmmss);
+        return getSafeDateFormat(DevFinal.TIME.yyyyMMddHHmmss_HYPHEN);
     }
 
     /**
@@ -2570,7 +2570,7 @@ public final class DateUtils {
      * 判断时间是否在 [startTime, endTime] 区间 ( 自定义格式 )
      * <pre>
      *     handlerMoreThanDay 参数注意事项
-     *     用于 {@link DevFinal.TIME#HHmm}、{@link DevFinal.TIME#HHmmss} 判断, 只有该格式判断可传入 true
+     *     用于 {@link DevFinal.TIME#HHmm_COLON}、{@link DevFinal.TIME#HHmmss_COLON} 判断, 只有该格式判断可传入 true
      *     其他都用于 false
      * </pre>
      * @param time               待判断时间
@@ -2631,8 +2631,8 @@ public final class DateUtils {
             final boolean handlerMoreThanDay
     ) {
         return isInTimeFormat(
-                getDateNow(DevFinal.TIME.HHmm), startTime, endTime,
-                DevFinal.TIME.HHmm, handlerMoreThanDay
+                getDateNow(DevFinal.TIME.HHmm_COLON), startTime, endTime,
+                DevFinal.TIME.HHmm_COLON, handlerMoreThanDay
         );
     }
 
@@ -2667,7 +2667,7 @@ public final class DateUtils {
     ) {
         return isInTimeFormat(
                 time, startTime, endTime,
-                DevFinal.TIME.HHmm, handlerMoreThanDay
+                DevFinal.TIME.HHmm_COLON, handlerMoreThanDay
         );
     }
 
@@ -2701,8 +2701,8 @@ public final class DateUtils {
             final boolean handlerMoreThanDay
     ) {
         return isInTimeFormat(
-                getDateNow(DevFinal.TIME.HHmmss), startTime, endTime,
-                DevFinal.TIME.HHmmss, handlerMoreThanDay
+                getDateNow(DevFinal.TIME.HHmmss_COLON), startTime, endTime,
+                DevFinal.TIME.HHmmss_COLON, handlerMoreThanDay
         );
     }
 
@@ -2737,7 +2737,7 @@ public final class DateUtils {
     ) {
         return isInTimeFormat(
                 time, startTime, endTime,
-                DevFinal.TIME.HHmmss, handlerMoreThanDay
+                DevFinal.TIME.HHmmss_COLON, handlerMoreThanDay
         );
     }
 
@@ -2749,7 +2749,7 @@ public final class DateUtils {
      * @return 距离指定结束时间还有多少毫秒
      */
     public static long getEndTimeDiffHHmm(final String endTime) {
-        return getEndTimeDiff(System.currentTimeMillis(), endTime, DevFinal.TIME.HHmm);
+        return getEndTimeDiff(System.currentTimeMillis(), endTime, DevFinal.TIME.HHmm_COLON);
     }
 
     /**
@@ -2762,7 +2762,7 @@ public final class DateUtils {
             final long startTime,
             final String endTime
     ) {
-        return getEndTimeDiff(startTime, endTime, DevFinal.TIME.HHmm);
+        return getEndTimeDiff(startTime, endTime, DevFinal.TIME.HHmm_COLON);
     }
 
     /**
@@ -2814,11 +2814,11 @@ public final class DateUtils {
                 calendar.add(Calendar.DATE, 1); // 当前日期加一天
             }
             // 获取天数时间
-            String yyyyMMddDate = formatDate(calendar.getTime(), DevFinal.TIME.yyyyMMdd);
+            String yyyyMMddDate = formatDate(calendar.getTime(), DevFinal.TIME.yyyyMMdd_HYPHEN);
             // 累加时间
             String yyyyMMddHHmmssDate = yyyyMMddDate + " " + endTime + (isSecond ? "" : ":00");
             // 返回转换后的时间
-            return parseLong(yyyyMMddHHmmssDate, DevFinal.TIME.yyyyMMddHHmmss);
+            return parseLong(yyyyMMddHHmmssDate, DevFinal.TIME.yyyyMMddHHmmss_HYPHEN);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }

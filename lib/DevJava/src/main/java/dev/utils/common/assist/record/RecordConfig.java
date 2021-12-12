@@ -274,7 +274,7 @@ public final class RecordConfig {
         // 文件夹
         String folder = String.format(
                 "FileRecord/%s/%s/",
-                DateUtils.getDateNow(DevFinal.TIME.yyyyMMdd4),
+                DateUtils.getDateNow(DevFinal.TIME.yyyyMMdd_UNDERSCORE),
                 mFolderName
         );
         // 进行判断
