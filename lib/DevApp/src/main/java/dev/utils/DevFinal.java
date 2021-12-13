@@ -42,6 +42,14 @@ public final class DevFinal {
         public static final String UNDERSCORE  = "_";
         // 冒号 字符串
         public static final String COLON       = ":";
+        // 逗号 字符串
+        public static final String COMMA       = ",";
+        // 顿号 字符串
+        public static final String COMMA2      = "、";
+        // 分号 字符串
+        public static final String SEMICOLON   = ";";
+        // 百分号 字符串
+        public static final String PERCENT     = "%";
         // 反斜杠 字符串
         public static final String BACKSLASH   = "\\";
         // 斜杠 字符串
@@ -186,7 +194,7 @@ public final class DevFinal {
      * @author Ttt
      * <pre>
      *     存储历史时间格式常量, 方便更新库过渡使用
-     *     并标记已弃用, 提醒使用 {@link DevFinal.TIME} 类
+     *     并标记已弃用, 提醒使用 {@link TIME} 类
      *     随时删除请及时替换
      * </pre>
      */
@@ -702,26 +710,32 @@ public final class DevFinal {
      */
     public static final class FORMAT {
 
-        public static final String S2         = "%s %s";
-        public static final String S2_LINE    = "%s_%s";
-        public static final String S2_THROUGH = "%s-%s";
-        public static final String S2_COMMA   = "%s, %s";
-        public static final String S2_STOP    = "%s、%s";
-        public static final String S2_SPACE   = " %s %s ";
+        public static final String S2             = "%s%s";
+        public static final String S2_HYPHEN      = "%s-%s";
+        public static final String S2_UNDERSCORE  = "%s_%s";
+        public static final String S2_COMMA       = "%s,%s";
+        public static final String S2_COMMA_SPACE = "%s, %s";
+        public static final String S2_COMMA2      = "%s、%s";
+        public static final String S2_SPACE       = "%s %s";
+        public static final String S2_SPACE_SE    = " %s %s ";
 
-        public static final String S3         = "%s %s %s";
-        public static final String S3_LINE    = "%s_%s_%s";
-        public static final String S3_THROUGH = "%s-%s-%s";
-        public static final String S3_COMMA   = "%s, %s, %s";
-        public static final String S3_STOP    = "%s、%s、%s";
-        public static final String S3_SPACE   = " %s %s %s ";
+        public static final String S3             = "%s%s%s";
+        public static final String S3_HYPHEN      = "%s-%s-%s";
+        public static final String S3_UNDERSCORE  = "%s_%s_%s";
+        public static final String S3_COMMA       = "%s,%s,%s";
+        public static final String S3_COMMA_SPACE = "%s, %s, %s";
+        public static final String S3_COMMA2      = "%s、%s、%s";
+        public static final String S3_SPACE       = "%s %s %s";
+        public static final String S3_SPACE_SE    = " %s %s %s ";
 
-        public static final String S4         = "%s %s %s %s";
-        public static final String S4_LINE    = "%s_%s_%s_%s";
-        public static final String S4_THROUGH = "%s-%s-%s-%s";
-        public static final String S4_COMMA   = "%s, %s, %s, %s";
-        public static final String S4_STOP    = "%s、%s、%s、%s";
-        public static final String S4_SPACE   = " %s %s %s %s ";
+        public static final String S4             = "%s%s%s%s";
+        public static final String S4_HYPHEN      = "%s-%s-%s-%s";
+        public static final String S4_UNDERSCORE  = "%s_%s_%s_%s";
+        public static final String S4_COMMA       = "%s,%s,%s,%s";
+        public static final String S4_COMMA_SPACE = "%s, %s, %s, %s";
+        public static final String S4_COMMA2      = "%s、%s、%s、%s";
+        public static final String S4_SPACE       = "%s %s %s %s";
+        public static final String S4_SPACE_SE    = " %s %s %s %s ";
 
         public static final String BRACE       = "{ %s }";
         public static final String BRACE_SPACE = " { %s } ";
