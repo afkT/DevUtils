@@ -135,6 +135,25 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
             RecyclerView recyclerView,
             boolean set
     ) {
+        initialize(recyclerView, set);
+        if (recyclerView != null) {
+            recyclerView.setAdapter(this);
+        }
+        return this;
+    }
+
+    // =========
+    // = 初始化 =
+    // =========
+
+    public DevDataAdapter<T, VH> initialize(RecyclerView recyclerView) {
+        return initialize(recyclerView, true);
+    }
+
+    public DevDataAdapter<T, VH> initialize(
+            RecyclerView recyclerView,
+            boolean set
+    ) {
         if (recyclerView != null) {
             // 进行设置 Context、Activity
             if (mContext == null) {
@@ -143,7 +162,6 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
             if (mActivity == null) {
                 mActivity = ActivityUtils.getActivity(recyclerView.getContext());
             }
-            recyclerView.setAdapter(this);
         }
         if (set) setRecyclerView(recyclerView);
         return this;
