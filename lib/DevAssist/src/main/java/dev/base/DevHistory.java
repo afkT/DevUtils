@@ -224,7 +224,7 @@ public class DevHistory<T> {
     }
 
     /**
-     * 前往 ( 回退到 ) 上一条回退栈数据
+     * 前往上一条回退栈数据
      * @return 上一条回退栈数据
      */
     public T goBack() {
@@ -232,7 +232,7 @@ public class DevHistory<T> {
     }
 
     /**
-     * 前往 ( 回退到 ) 指定索引回退栈数据
+     * 前往指定索引回退栈数据
      * @param index 索引
      * @return 指定索引回退栈数据
      */
@@ -546,7 +546,7 @@ public class DevHistory<T> {
     }
 
     /**
-     * 前往 ( 回退到 ) 指定索引回退栈数据
+     * 前往指定索引回退栈数据
      * <pre>
      *     索引传入值可以看该方法注释
      *     {@link #calculateRealIndex(int, int)}
