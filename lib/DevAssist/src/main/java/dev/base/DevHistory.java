@@ -661,6 +661,7 @@ public class DevHistory<T> {
             } catch (Exception ignored) {
             }
         }
+        Collections.reverse(lists);
         mBack.addAll(lists);
         return forwardValue;
     }

@@ -173,7 +173,7 @@ public final class AccessibilityUtils {
         builder.append(DevFinal.SYMBOL.NEW_LINE);
 
         switch (eventType) {
-            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
+            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED: // 通知栏事件
                 builder.append("event type: TYPE_NOTIFICATION_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: // 窗体状态改变
