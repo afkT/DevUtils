@@ -1026,6 +1026,18 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | print | 输出参与均值计算的数字 |
 
 
+* **标记值计算存储 ( 位运算符 ) ->** [FlagsValue.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/FlagsValue.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getFlags | 获取 flags value |
+| setFlags | 设置 flags value |
+| addFlags | 添加 flags value |
+| clearFlags | 移除 flags value |
+| hasFlags | 是否存在 flags value |
+| notHasFlags | 是否不存在 flags value |
+
+
 * **时间均值计算辅助类 ->** [TimeAverager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/TimeAverager.java)
 
 | 方法 | 注释 |

@@ -14,9 +14,9 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
    - base                                             | 实体类基类相关
       - data                                          | 数据操作
       - entry                                         | KeyValue 实体类
-      - expand                                        | 实体类扩展
       - multiselect                                   | 多选编辑操作
       - number                                        | 数值操作
+      - state                                         | 状态相关
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
       - analytics                                     | Analytics Engine 数据统计 ( 埋点 )
@@ -58,9 +58,9 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
    - [base](#devbase)                                 | 实体类基类相关
       - [data](#devbasedata)                          | 数据操作
       - [entry](#devbaseentry)                        | KeyValue 实体类
-      - [expand](#devbaseexpand)                      | 实体类扩展
       - [multiselect](#devbasemultiselect)            | 多选编辑操作
       - [number](#devbasenumber)                      | 数值操作
+      - [state](#devbasestate)                        | 状态相关
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
       - [analytics](#devengineanalytics)              | Analytics Engine 数据统计 ( 埋点 )
@@ -113,6 +113,7 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | getRecyclerView | getRecyclerView |
 | setRecyclerView | setRecyclerView |
 | bindAdapter | bindAdapter |
+| initialize | initialize |
 | getDataList | getDataList |
 | getDataArrayList | getDataArrayList |
 | getDataSize | getDataSize |
@@ -153,16 +154,20 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 
 | 方法 | 注释 |
 | :- | :- |
-| getObject | 获取通用 Object |
-| setObject | 设置通用 Object |
-| getPage | 获取 Page 实体类 |
-| setPage | 设置 Page 实体类 |
 | getCallback | 获取通用回调 |
 | setCallback | 设置通用回调 |
 | getItemCallback | 获取通用 Item Click 回调 |
 | setItemCallback | 设置通用 Item Click 回调 |
-| getState | 请求状态实体类 |
-| setState | 设置请求状态实体类 |
+| getObject | 获取通用 Object |
+| setObject | 设置通用 Object |
+| getPage | 获取 Page 实体类 |
+| setPage | 设置 Page 实体类 |
+| getFlags | 获取标记值计算存储 ( 位运算符 ) 实体类 |
+| setFlags | 设置标记值计算存储 ( 位运算符 ) 实体类 |
+| getState | 获取通用状态实体类 |
+| setState | 设置通用状态实体类 |
+| getRequestState | 获取请求状态实体类 |
+| setRequestState | 设置请求状态实体类 |
 | getTextWatcherAssist | 获取 EditText 输入监听辅助类 |
 | setTextWatcherAssist | 设置 EditText 输入监听辅助类 |
 | getMultiSelectMap | 获取多选辅助类 |
@@ -231,16 +236,20 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | contains | contains |
 | clearDataList | clearDataList |
 | setDataList | setDataList |
-| getObject | 获取通用 Object |
-| setObject | 设置通用 Object |
-| getPage | 获取 Page 实体类 |
-| setPage | 设置 Page 实体类 |
 | getCallback | 获取通用回调 |
 | setCallback | 设置通用回调 |
 | getItemCallback | 获取通用 Item Click 回调 |
 | setItemCallback | 设置通用 Item Click 回调 |
-| getState | 请求状态实体类 |
-| setState | 设置请求状态实体类 |
+| getObject | 获取通用 Object |
+| setObject | 设置通用 Object |
+| getPage | 获取 Page 实体类 |
+| setPage | 设置 Page 实体类 |
+| getFlags | 获取标记值计算存储 ( 位运算符 ) 实体类 |
+| setFlags | 设置标记值计算存储 ( 位运算符 ) 实体类 |
+| getState | 获取通用状态实体类 |
+| setState | 设置通用状态实体类 |
+| getRequestState | 获取请求状态实体类 |
+| setRequestState | 设置请求状态实体类 |
 | getTextWatcherAssist | 获取 EditText 输入监听辅助类 |
 | setTextWatcherAssist | 设置 EditText 输入监听辅助类 |
 | getMultiSelectMap | 获取多选辅助类 |
@@ -441,6 +450,35 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | equalsValue | 判断 Value 是否一致 |
 
 
+* **历史数据记录功类 ->** [DevHistory.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevHistory.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getCurrent | 获取当前数据 |
+| setCurrent | 设置当前数据 |
+| getListener | 获取方法事件触发接口 |
+| setListener | 设置方法事件触发接口 |
+| clearBack | 清空回退栈数据 |
+| sizeBack | 获取回退栈数据条数 |
+| isEmptyBack | 是否不存在回退栈数据 |
+| canGoBack | 是否能够执行回退操作 |
+| addBack | 添加到回退栈 |
+| getBack | 获取上一条回退栈数据 |
+| goBack | 前往上一条回退栈数据 |
+| clearForward | 清空前进栈数据 |
+| sizeForward | 获取前进栈数据条数 |
+| isEmptyForward | 是否不存在前进栈数据 |
+| canGoForward | 是否能够执行前进操作 |
+| addForward | 添加到前进栈 |
+| getForward | 获取下一条前进栈数据 |
+| goForward | 前往下一条前进栈数据 |
+| accept | 是否允许添加 |
+| changeCurrent | 当前数据改变通知 |
+| clear | 清空数据回调 |
+| add | 添加数据到栈内 |
+| acceptCurrentToList | 是否允许 Current 添加到列表中 |
+
+
 * **数量实体类 ->** [DevNumber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevNumber.java)
 
 | 方法 | 注释 |
@@ -522,6 +560,7 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | nextPage | 累加当前页数 ( 下一页 ) |
 | isLessThanPageSize | 判断是否小于每页请求条数 |
 | response | 请求响应处理 |
+| getDefault | 获取默认配置 Page 实体类 |
 
 
 * **资源来源通用类 ->** [DevSource.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevSource.java)
@@ -616,36 +655,6 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 
 
 ## <span id="devbaseentry">**`dev.base.entry`**</span>
-
-
-## <span id="devbaseexpand">**`dev.base.expand`**</span>
-
-
-* **请求状态类 ->** [RequestState.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/expand/RequestState.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getType | 获取请求类型 |
-| setType | 设置请求类型 |
-| equalsType | 判断请求类型是否一致 |
-| getRequestUUID | 获取请求 UUID |
-| randomRequestUUID | 获取请求 UUID ( 随机生成并赋值 ) |
-| equalsRequestUUID | 判断 UUID 是否一致 |
-| getState | 获取 State |
-| setState | 设置 State |
-| equalsState | 判断 State 是否一致 |
-| isRequestNormal | 判断是否默认状态 |
-| isRequestNever | 判断是否未请求过 |
-| isRequestIng | 判断是否请求中 |
-| isRequestSuccess | 判断是否请求成功 |
-| isRequestFail | 判断是否请求失败 |
-| isRequestError | 判断是否请求异常 |
-| setRequestNormal | 设置状态为默认状态 |
-| setRequestNever | 设置状态为未请求过 |
-| setRequestIng | 设置状态为请求中 |
-| setRequestSuccess | 设置状态为请求成功 |
-| setRequestFail | 设置状态为请求失败 |
-| setRequestError | 设置状态为请求异常 |
 
 
 ## <span id="devbasemultiselect">**`dev.base.multiselect`**</span>
@@ -795,6 +804,133 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | subtractionNumber | 减少数量 ( 默认累减 1 ) |
 | getNumberListener | 获取数量监听事件接口 |
 | setNumberListener | 设置数量监听事件接口 |
+
+
+## <span id="devbasestate">**`dev.base.state`**</span>
+
+
+* **通用状态类 ->** [CommonState.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/state/CommonState.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getType | 获取操作类型 |
+| setType | 设置操作类型 |
+| equalsType | 判断操作类型是否一致 |
+| getUUID | 获取操作 UUID |
+| randomUUID | 获取操作 UUID ( 随机生成并赋值 ) |
+| equalsUUID | 判断 UUID 是否一致 |
+| getState | 获取 State |
+| setState | 设置 State |
+| equalsState | 判断 State 是否一致 |
+| isNormal | 判断是否默认状态 ( 暂未进行操作 ) |
+| isIng | 判断是否操作中 |
+| isSuccess | 判断是否操作成功 |
+| isFail | 判断是否操作失败 |
+| isError | 判断是否操作异常 |
+| isStart | 判断是否开始操作 |
+| isRestart | 判断是否重新开始操作 |
+| isEnd | 判断是否操作结束 |
+| isPause | 判断是否操作暂停 |
+| isResume | 判断是否操作恢复 ( 继续 ) |
+| isStop | 判断是否操作停止 |
+| isCancel | 判断是否操作取消 |
+| isCreate | 判断是否创建 |
+| isDestroy | 判断是否销毁 |
+| isRecycle | 判断是否回收 |
+| isInit | 判断是否初始化 |
+| isEnabled | 判断是否已打开 |
+| isEnabling | 判断是否正在打开 |
+| isDisabled | 判断是否已关闭 |
+| isDisabling | 判断是否正在关闭 |
+| isConnected | 判断是否连接成功 |
+| isConnecting | 判断是否连接中 |
+| isDisconnected | 判断是否连接失败、断开 |
+| isSuspended | 判断是否暂停、延迟 |
+| isUnknown | 判断是否未知 |
+| isInsert | 判断是否新增 |
+| isDelete | 判断是否删除 |
+| isUpdate | 判断是否更新 |
+| isSelect | 判断是否查询 |
+| isEncrypt | 判断是否加密 |
+| isDecrypt | 判断是否解密 |
+| isReset | 判断是否重置 |
+| isClose | 判断是否关闭 |
+| isOpen | 判断是否打开 |
+| isExit | 判断是否退出 |
+| setNormal | 设置状态为默认状态 ( 暂未进行操作 ) |
+| setIng | 设置状态为操作中 |
+| setSuccess | 设置状态为操作成功 |
+| setFail | 设置状态为操作失败 |
+| setError | 设置状态为操作异常 |
+| setStart | 设置状态为开始操作 |
+| setRestart | 设置状态为重新开始操作 |
+| setEnd | 设置状态为操作结束 |
+| setPause | 设置状态为操作暂停 |
+| setResume | 设置状态为操作恢复 ( 继续 ) |
+| setStop | 设置状态为操作停止 |
+| setCancel | 设置状态为操作取消 |
+| setCreate | 设置状态为创建 |
+| setDestroy | 设置状态为销毁 |
+| setRecycle | 设置状态为回收 |
+| setInit | 设置状态为初始化 |
+| setEnabled | 设置状态为已打开 |
+| setEnabling | 设置状态为正在打开 |
+| setDisabled | 设置状态为已关闭 |
+| setDisabling | 设置状态为正在关闭 |
+| setConnected | 设置状态为连接成功 |
+| setConnecting | 设置状态为连接中 |
+| setDisconnected | 设置状态为连接失败、断开 |
+| setSuspended | 设置状态为暂停、延迟 |
+| setUnknown | 设置状态为未知 |
+| setInsert | 设置状态为新增 |
+| setDelete | 设置状态为删除 |
+| setUpdate | 设置状态为更新 |
+| setSelect | 设置状态为查询 |
+| setEncrypt | 设置状态为加密 |
+| setDecrypt | 设置状态为解密 |
+| setReset | 设置状态为重置 |
+| setClose | 设置状态为关闭 |
+| setOpen | 设置状态为打开 |
+| setExit | 设置状态为退出 |
+
+
+* **请求状态类 ->** [RequestState.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/state/RequestState.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getType | 获取请求类型 |
+| setType | 设置请求类型 |
+| equalsType | 判断请求类型是否一致 |
+| getRequestUUID | 获取请求 UUID |
+| randomRequestUUID | 获取请求 UUID ( 随机生成并赋值 ) |
+| equalsRequestUUID | 判断 UUID 是否一致 |
+| getState | 获取 State |
+| setState | 设置 State |
+| equalsState | 判断 State 是否一致 |
+| isRequestNormal | 判断是否默认状态 ( 暂未进行操作 ) |
+| isRequestIng | 判断是否请求中 |
+| isRequestSuccess | 判断是否请求成功 |
+| isRequestFail | 判断是否请求失败 |
+| isRequestError | 判断是否请求异常 |
+| isRequestStart | 判断是否请求开始 |
+| isRequestRestart | 判断是否重新请求 |
+| isRequestEnd | 判断是否请求结束 |
+| isRequestPause | 判断是否请求暂停 |
+| isRequestResume | 判断是否请求恢复 ( 继续 ) |
+| isRequestStop | 判断是否请求停止 |
+| isRequestCancel | 判断是否请求取消 |
+| setRequestNormal | 设置状态为默认状态 ( 暂未进行操作 ) |
+| setRequestIng | 设置状态为请求中 |
+| setRequestSuccess | 设置状态为请求成功 |
+| setRequestFail | 设置状态为请求失败 |
+| setRequestError | 设置状态为请求异常 |
+| setRequestStart | 设置状态为请求开始 |
+| setRequestRestart | 设置状态为重新请求 |
+| setRequestEnd | 设置状态为请求结束 |
+| setRequestPause | 设置状态为请求暂停 |
+| setRequestResume | 设置状态为请求恢复 ( 继续 ) |
+| setRequestStop | 设置状态为请求停止 |
+| setRequestCancel | 设置状态为请求取消 |
 
 
 ## <span id="devcallback">**`dev.callback`**</span>
