@@ -152,6 +152,33 @@ public class DevHistory<T> {
         return this;
     }
 
+    /**
+     * 清空当前数据
+     * @return {@link DevHistory}
+     */
+    public DevHistory<T> cleanCurrent() {
+        return setCurrent(null, Action.SET_NULL);
+    }
+
+    /**
+     * 重置操作
+     * @return {@link DevHistory}
+     */
+    public DevHistory<T> reset() {
+        return reset(true);
+    }
+
+    /**
+     * 重置操作
+     * @param setNull 是否设置 Current 为 null
+     * @return {@link DevHistory}
+     */
+    public DevHistory<T> reset(final boolean setNull) {
+        clearBack().clearForward();
+        if (setNull) cleanCurrent();
+        return this;
+    }
+
     // ============
     // = 回退栈相关 =
     // ============
@@ -364,6 +391,8 @@ public class DevHistory<T> {
             final Action operate
     ) {
         switch (operate) {
+            case SET_NULL: // 设置为 null 操作
+                break;
             case SET_CURRENT: // 正常设置当前数据操作
                 // 清空前进栈数据
                 clearForward();
@@ -392,6 +421,9 @@ public class DevHistory<T> {
      */
     private enum Action {
 
+        // 设置为 null 操作
+        SET_NULL,
+
         // 正常设置当前数据操作
         SET_CURRENT,
 
@@ -399,7 +431,7 @@ public class DevHistory<T> {
         GO_BACK,
 
         // 前进操作
-        GO_FORWARD
+        GO_FORWARD,
     }
 
     /**
