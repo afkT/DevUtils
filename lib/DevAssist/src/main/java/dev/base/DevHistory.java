@@ -15,6 +15,9 @@ import dev.utils.common.StringUtils;
  * <pre>
  *     不判 null ( null 默认可加入 )
  *     可通过 {@link Listener#accept(boolean, Object)} 进行拦截
+ *     <p></p>
+ *     需注意的是, 首次设置 Current 会添加 null 进入回退栈
+ *     可按上方进行拦截, 判断数量是否为 0 且为 null
  * </pre>
  */
 public class DevHistory<T> {
