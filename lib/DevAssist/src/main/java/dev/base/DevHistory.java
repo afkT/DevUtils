@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 历史数据记录功类
@@ -267,6 +269,29 @@ public class DevHistory<T> {
         return gotoBack(index);
     }
 
+    /**
+     * 进行回退栈数据顺序拼接字符串
+     * @return 回退栈数据顺序拼接字符串
+     */
+    public String toStringBack() {
+        return toString(Type.BACK, false, " > ", false);
+    }
+
+    /**
+     * 进行回退栈数据顺序拼接字符串
+     * @param appendCurrent 是否追加当前数据
+     * @param symbol        拼接符号
+     * @param reverse       是否进行反转
+     * @return 回退栈数据顺序拼接字符串
+     */
+    public String toStringBack(
+            final boolean appendCurrent,
+            final String symbol,
+            final boolean reverse
+    ) {
+        return toString(Type.BACK, appendCurrent, symbol, reverse);
+    }
+
     // ============
     // = 前进栈相关 =
     // ============
@@ -353,6 +378,29 @@ public class DevHistory<T> {
      */
     public T goForward(final int index) {
         return gotoForward(index);
+    }
+
+    /**
+     * 进行前进栈数据顺序拼接字符串
+     * @return 前进栈数据顺序拼接字符串
+     */
+    public String toStringForward() {
+        return toString(Type.FORWARD, false, " > ", true);
+    }
+
+    /**
+     * 进行前进栈数据顺序拼接字符串
+     * @param appendCurrent 是否追加当前数据
+     * @param symbol        拼接符号
+     * @param reverse       是否进行反转
+     * @return 前进栈数据顺序拼接字符串
+     */
+    public String toStringForward(
+            final boolean appendCurrent,
+            final String symbol,
+            final boolean reverse
+    ) {
+        return toString(Type.FORWARD, appendCurrent, symbol, reverse);
     }
 
     // ==========
@@ -696,5 +744,53 @@ public class DevHistory<T> {
         Collections.reverse(lists);
         mBack.addAll(lists);
         return forwardValue;
+    }
+
+    /**
+     * 进行栈数据顺序拼接字符串
+     * @param operate       操作类型
+     * @param appendCurrent 是否追加当前数据
+     * @param symbol        拼接符号
+     * @param reverse       是否进行反转
+     * @return 栈数据顺序拼接字符串
+     */
+    private String toString(
+            final Type operate,
+            final boolean appendCurrent,
+            final String symbol,
+            final boolean reverse
+    ) {
+        List<T> lists = new ArrayList<>();
+        switch (operate) {
+            case BACK:
+                lists.addAll(mBack);
+                if (appendCurrent) {
+                    lists.add(mCurrent);
+                }
+                break;
+            case FORWARD:
+                if (appendCurrent) {
+                    lists.add(mCurrent);
+                }
+                lists.addAll(mForward);
+                break;
+        }
+        if (reverse) Collections.reverse(lists);
+        // 获取拼接符号
+        String spliceSymbol = StringUtils.checkValue(
+                DevFinal.SYMBOL.NULL, symbol
+        );
+        StringBuilder builder = new StringBuilder();
+        for (T value : lists) {
+            try {
+                builder.append(value)
+                        .append(spliceSymbol);
+            } catch (Exception e) {
+                builder.append("null(error)")
+                        .append(spliceSymbol);
+            }
+        }
+        String content = builder.toString();
+        return StringUtils.clearEndsWith(content, spliceSymbol);
     }
 }
