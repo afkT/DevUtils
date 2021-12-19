@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.2.9 *(2021-12-20)*
+----------------------------
+
+* `[Add]` 新增 CommonState 通用状态类
+
+* `[Add]` 新增 DevHistory 历史数据记录功类
+
+* `[Add]` 新增 DevPage#getDefault 方法
+
+* `[Add]` 新增 DevDataAdapter#initialize 方法
+
+* `[Add]` 新增 DevDataAdapter 相关类默认初始化处理
+
 Version 1.2.8 *(2021-11-26)*
 ----------------------------
 

@@ -1,6 +1,23 @@
 Change Log
 ==========
 
+Version 2.3.1 *(2021-12-20)*
+----------------------------
+
+* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+
+* `[Add]` 新增 FloatingWindowManagerAssist、FloatingWindowManagerAssist2 悬浮窗两种实现方案辅助类
+
+* `[Add]` 新增 ActivityLifecycleAssist Activity 生命周期监听辅助类
+  
+* `[Add]` 新增 WindowAssist Window 辅助类
+  
+* `[Add]` 新增 WindowUtils Window 工具类
+
+* `[Add]` 新增 DevHelper Dev 工具类链式调用类
+
+* `[Add]` FlagsValue 标记值计算存储 ( 位运算符 )
+
 Version 2.3.0 *(2021-11-26)*
 ----------------------------
 
