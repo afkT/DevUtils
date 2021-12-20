@@ -30,7 +30,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModel(
+    fun <T : ViewModel> getActivityViewModel(
         activity: FragmentActivity?,
         modelClass: Class<T>
     ): T? {
@@ -44,7 +44,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModelCache(
+    fun <T : ViewModel> getActivityViewModelCache(
         activity: FragmentActivity?,
         modelClass: Class<T>
     ): T? {
@@ -65,7 +65,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModel(
+    fun <T : ViewModel> getFragmentViewModel(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -79,7 +79,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModelCache(
+    fun <T : ViewModel> getFragmentViewModelCache(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -100,7 +100,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getAppViewModel(
+    fun <T : ViewModel> getAppViewModel(
         application: Application?,
         modelClass: Class<T>
     ): T? {

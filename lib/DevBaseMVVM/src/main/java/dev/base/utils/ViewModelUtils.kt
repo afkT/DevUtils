@@ -28,7 +28,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModel(
+    fun <T : ViewModel> getActivityViewModel(
         activity: FragmentActivity?,
         modelClass: Class<T>
     ): T? {
@@ -51,7 +51,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModel(
+    fun <T : ViewModel> getFragmentViewModel(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -74,7 +74,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getAppViewModel(
+    fun <T : ViewModel> getAppViewModel(
         application: Application?,
         modelClass: Class<T>
     ): T? {
@@ -126,7 +126,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModel(
+    fun <T : ViewModel> getActivityViewModel(
         viewModelAssist: DevBaseViewModelAssist,
         activity: FragmentActivity?,
         modelClass: Class<T>
@@ -147,7 +147,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModelCache(
+    fun <T : ViewModel> getActivityViewModelCache(
         viewModelAssist: DevBaseViewModelAssist,
         activity: FragmentActivity?,
         modelClass: Class<T>
@@ -172,7 +172,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModel(
+    fun <T : ViewModel> getFragmentViewModel(
         viewModelAssist: DevBaseViewModelAssist,
         fragment: Fragment?,
         modelClass: Class<T>
@@ -192,7 +192,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModelCache(
+    fun <T : ViewModel> getFragmentViewModelCache(
         viewModelAssist: DevBaseViewModelAssist,
         fragment: Fragment?,
         modelClass: Class<T>
@@ -216,7 +216,7 @@ object ViewModelUtils {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getAppViewModel(
+    fun <T : ViewModel> getAppViewModel(
         viewModelAssist: DevBaseViewModelAssist,
         application: Application?,
         modelClass: Class<T>

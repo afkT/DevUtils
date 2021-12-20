@@ -25,7 +25,7 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getActivityViewModel(
+    fun <T : ViewModel> getActivityViewModel(
         modelClass: Class<T>
     ): T?
 
@@ -38,7 +38,7 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModel(
+    fun <T : ViewModel> getFragmentViewModel(
         modelClass: Class<T>
     ): T?
 
@@ -48,7 +48,7 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getFragmentViewModel(
+    fun <T : ViewModel> getFragmentViewModel(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T?
@@ -63,7 +63,7 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel?> getAppViewModel(
+    fun <T : ViewModel> getAppViewModel(
         application: Application?,
         modelClass: Class<T>
     ): T?

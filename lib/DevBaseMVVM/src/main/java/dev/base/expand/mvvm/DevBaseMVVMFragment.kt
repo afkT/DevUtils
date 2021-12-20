@@ -30,7 +30,7 @@ abstract class DevBaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
     // = Activity Provider =
     // =====================
 
-    override fun <T : ViewModel?> getActivityViewModel(modelClass: Class<T>): T? {
+    override fun <T : ViewModel> getActivityViewModel(modelClass: Class<T>): T? {
         return viewModelAssist.getActivityViewModelCache(activity, modelClass)
     }
 
@@ -38,11 +38,11 @@ abstract class DevBaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
     // = Fragment Provider =
     // =====================
 
-    override fun <T : ViewModel?> getFragmentViewModel(modelClass: Class<T>): T? {
+    override fun <T : ViewModel> getFragmentViewModel(modelClass: Class<T>): T? {
         return viewModelAssist.getFragmentViewModelCache(this, modelClass)
     }
 
-    override fun <T : ViewModel?> getFragmentViewModel(
+    override fun <T : ViewModel> getFragmentViewModel(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -53,7 +53,7 @@ abstract class DevBaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
     // = Application Provider =
     // ========================
 
-    override fun <T : ViewModel?> getAppViewModel(
+    override fun <T : ViewModel> getAppViewModel(
         application: Application?,
         modelClass: Class<T>
     ): T? {
