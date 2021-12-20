@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevAssist:1.2.8'
+implementation 'io.github.afkt:DevAssist:1.2.9'
 ```
 
 ## 目录结构
@@ -458,6 +458,8 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | setCurrent | 设置当前数据 |
 | getListener | 获取方法事件触发接口 |
 | setListener | 设置方法事件触发接口 |
+| cleanCurrent | 清空当前数据 |
+| reset | 重置操作 |
 | clearBack | 清空回退栈数据 |
 | sizeBack | 获取回退栈数据条数 |
 | isEmptyBack | 是否不存在回退栈数据 |
@@ -465,6 +467,7 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | addBack | 添加到回退栈 |
 | getBack | 获取上一条回退栈数据 |
 | goBack | 前往上一条回退栈数据 |
+| toStringBack | 进行回退栈数据顺序拼接字符串 |
 | clearForward | 清空前进栈数据 |
 | sizeForward | 获取前进栈数据条数 |
 | isEmptyForward | 是否不存在前进栈数据 |
@@ -472,6 +475,7 @@ implementation 'io.github.afkt:DevAssist:1.2.8'
 | addForward | 添加到前进栈 |
 | getForward | 获取下一条前进栈数据 |
 | goForward | 前往下一条前进栈数据 |
+| toStringForward | 进行前进栈数据顺序拼接字符串 |
 | accept | 是否允许添加 |
 | changeCurrent | 当前数据改变通知 |
 | clear | 清空数据回调 |
