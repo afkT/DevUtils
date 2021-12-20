@@ -4,8 +4,8 @@ apply from: rootProject.file("file/gradle/config.gradle")
 buildscript {
 
     // Kotlin 版本
-    ext.kotlin_version = "1.5.31"
-    ext.kotlin_stdlib = "1.5.31"
+    ext.kotlin_version = "1.6.10"
+    ext.kotlin_stdlib = "1.6.10"
     ext.matrix_version = "1.0.0"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
