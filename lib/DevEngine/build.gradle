@@ -37,25 +37,6 @@ dependencies {
     api deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     api deps.lib.zxing_android_code // android-core
 
-//    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-//    api 'top.zibin:Luban:1.1.8'
-//    // Glide 图片加载框架 https://github.com/bumptech/glide
-//    api 'com.github.bumptech.glide:glide:4.12.0'
-//    kapt 'com.github.bumptech.glide:compiler:4.12.0'
-//    // Glide 图形库 https://github.com/wasabeef/glide-transformations
-//    api 'jp.wasabeef:glide-transformations:4.3.0'
-//    // Gson https://github.com/google/gson
-//    api 'com.google.code.gson:gson:2.8.7'
-//    // Fastjson https://github.com/alibaba/fastjson
-//    api 'com.alibaba:fastjson:1.2.76'
-//    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-//    api 'com.tencent:mmkv-static:1.2.10'
-//    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-//    api 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
-//    // 二维码 ZXing https://github.com/zxing/zxing
-//    api 'com.google.zxing:core:3.4.1' // http://mvnrepository.com/artifact/com.google.zxing/core
-//    api 'com.google.zxing:android-core:3.3.0' // android-core
-
     // =============
     // = DevEngine =
     // =============
