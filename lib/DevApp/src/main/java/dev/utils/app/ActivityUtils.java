@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentActivity;
@@ -98,7 +99,7 @@ public final class ActivityUtils {
         if (activity != null) {
             return activity.isFinishing();
         }
-        return false;
+        return true;
     }
 
     /**
@@ -114,10 +115,8 @@ public final class ActivityUtils {
                 LogPrintUtils.eTag(TAG, e, "isFinishing");
             }
         }
-        return false;
+        return true;
     }
-
-    // =
 
     /**
      * 判断 Activity 是否未关闭
@@ -142,6 +141,66 @@ public final class ActivityUtils {
                 return isNotFinishing((Activity) context);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isNotFinishing");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断 Activity 是否销毁
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isDestroy(final Activity activity) {
+        if (activity != null) {
+            return activity.isDestroyed();
+        }
+        return true;
+    }
+
+    /**
+     * 判断 Activity 是否销毁
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isDestroy(final Context context) {
+        if (context != null) {
+            try {
+                return isDestroy((Activity) context);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isDestroy");
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 判断 Activity 是否未销毁
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isNotDestroy(final Activity activity) {
+        if (activity != null) {
+            return !activity.isDestroyed();
+        }
+        return false;
+    }
+
+    /**
+     * 判断 Activity 是否未销毁
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isNotDestroy(final Context context) {
+        if (context != null) {
+            try {
+                return isNotDestroy((Activity) context);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isNotDestroy");
             }
         }
         return false;

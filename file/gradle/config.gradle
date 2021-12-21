@@ -172,7 +172,7 @@ ext {
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc08",
+                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc10",
                     // 动画库 https://github.com/airbnb/lottie-android
                     lottie                              : "com.airbnb.android:lottie:4.2.2", // https://www.jianshu.com/p/9a2136ecbc7b
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
