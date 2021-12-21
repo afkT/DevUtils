@@ -189,7 +189,7 @@ class GlideEngine private constructor() : ImageEngine {
     // = ImageLoaderUtils =
     // ====================
 
-    fun assertValidRequest(context: Context?): Boolean {
+    private fun assertValidRequest(context: Context?): Boolean {
         if (context is Activity) {
             return !isDestroy(context)
         } else if (context is ContextWrapper) {

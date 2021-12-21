@@ -152,7 +152,7 @@ public final class ActivityUtils {
      * @return {@code true} yes, {@code false} no
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isDestroy(final Activity activity) {
+    public static boolean isDestroyed(final Activity activity) {
         if (activity != null) {
             return activity.isDestroyed();
         }
@@ -165,12 +165,12 @@ public final class ActivityUtils {
      * @return {@code true} yes, {@code false} no
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isDestroy(final Context context) {
+    public static boolean isDestroyed(final Context context) {
         if (context != null) {
             try {
-                return isDestroy((Activity) context);
+                return isDestroyed((Activity) context);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isDestroy");
+                LogPrintUtils.eTag(TAG, e, "isDestroyed");
             }
         }
         return true;
@@ -182,7 +182,7 @@ public final class ActivityUtils {
      * @return {@code true} yes, {@code false} no
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isNotDestroy(final Activity activity) {
+    public static boolean isNotDestroyed(final Activity activity) {
         if (activity != null) {
             return !activity.isDestroyed();
         }
@@ -195,12 +195,46 @@ public final class ActivityUtils {
      * @return {@code true} yes, {@code false} no
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isNotDestroy(final Context context) {
+    public static boolean isNotDestroyed(final Context context) {
         if (context != null) {
             try {
-                return isNotDestroy((Activity) context);
+                return isNotDestroyed((Activity) context);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isNotDestroy");
+                LogPrintUtils.eTag(TAG, e, "isNotDestroyed");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 判断 Activity 是否有效
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean assertValidActivity(final Activity activity) {
+        if (activity != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                return !activity.isFinishing() && !activity.isDestroyed();
+            } else {
+                return !activity.isFinishing();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断 Activity 是否有效
+     * @param context {@link Context}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean assertValidActivity(final Context context) {
+        if (context != null) {
+            try {
+                return assertValidActivity((Activity) context);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "assertValidActivity");
             }
         }
         return false;

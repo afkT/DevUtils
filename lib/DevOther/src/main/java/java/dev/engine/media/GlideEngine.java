@@ -215,7 +215,7 @@ public class GlideEngine
     // = ImageLoaderUtils =
     // ====================
 
-    public boolean assertValidRequest(Context context) {
+    private boolean assertValidRequest(Context context) {
         if (context instanceof Activity) {
             Activity activity = (Activity) context;
             return !isDestroy(activity);
