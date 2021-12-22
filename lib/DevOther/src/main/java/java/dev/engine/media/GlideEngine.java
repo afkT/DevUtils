@@ -29,9 +29,9 @@ import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import dev.other.R;
 
 /**
- * @author：luck
- * @date：2019-11-13 17:02
- * @describe：Glide加载引擎
+ * @author luck
+ * @date 2019-11-13 17:02
+ * @describe Glide加载引擎
  */
 public class GlideEngine
         implements ImageEngine {

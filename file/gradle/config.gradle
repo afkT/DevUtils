@@ -84,7 +84,7 @@ ext {
                     // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
                     work_runtime                  : "androidx.work:work-runtime:2.7.1",
                     // DataStore https://developer.android.google.cn/topic/libraries/architecture/datastore
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha06",
+                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0",
                     fragment_ktx                  : "androidx.fragment:fragment-ktx:1.4.0",
                     // https://developer.android.google.cn/jetpack/androidx/releases/activity
                     activity_ktx                  : "androidx.activity:activity-ktx:1.4.0"

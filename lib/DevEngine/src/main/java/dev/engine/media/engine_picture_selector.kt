@@ -31,9 +31,9 @@ import dev.engine.R
 import dev.utils.LogPrintUtils
 
 /**
- * @author：luck
- * @date：2019-11-13 17:02
- * @describe：Glide加载引擎
+ * @author luck
+ * @date 2019-11-13 17:02
+ * @describe Glide加载引擎
  */
 class GlideEngine private constructor() : ImageEngine {
 

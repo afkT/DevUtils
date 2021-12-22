@@ -7,7 +7,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.core.Preferences.Key
-import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.preferencesDataStoreFile
 import dev.DevUtils
 import dev.utils.LogPrintUtils
 import kotlinx.coroutines.flow.Flow
@@ -27,11 +27,18 @@ import java.io.IOException
  * DataStore 文件存储目录: /data/data/<包名>/files/datastore
  * 仅支持 Int、String、Boolean、Float、Long、Double
  * 具体查看 [androidx.datastore.preferences.core.PreferencesKeys]
+ * <p></p>
+ * 注意事项: 限制同一个 name 只能创建一次 DataStore 并存储对象进行存储复用
+ * 多次创建 SingleProcessDataStore 会抛出
+ * There are multiple DataStores active for the same file: $file.
+ * You should either maintain your DataStore as a singleton
+ * or confirm that there is no two DataStore's active on the same file
+ * (by confirming that the scope  is cancelled)
  */
 object DataStoreUtils {
 
     // 日志 TAG
-    val TAG: String = DataStoreUtils::class.java.simpleName
+    private val TAG: String = DataStoreUtils::class.java.simpleName
 
     // Map
     private val cacheMap = HashMap<String, InnerDataStore>()
@@ -69,6 +76,10 @@ object DataStoreUtils {
 
     /**
      * SharedPreferences 迁移到 DataStore
+     * <pre>
+     *     进行迁移前, 不能使用该 storeName 进行创建 DataStore
+     *     具体看顶部注意事项
+     * </pre>
      * @param storeName DataStore Name
      * @param spNames SharedPreferences Name Array
      * @return [InnerDataStore]
@@ -89,11 +100,14 @@ object DataStoreUtils {
         }
         // 传入 migrations 参数, 构建一个 DataStore 之后
         // 需要执行一次读或写, DataStore 才会自动合并 SharedPreference 文件内容
-        val dataStore = context.createDataStore(
-            name = storeName,
+        val dataStore = PreferenceDataStoreFactory.create(
             migrations = lists
-        )
-        return InnerDataStore(dataStore)
+        ) {
+            getContext().preferencesDataStoreFile(storeName)
+        }
+        val value = InnerDataStore(dataStore)
+        cacheMap[storeName] = value
+        return value
     }
 
     /**
@@ -141,9 +155,9 @@ object DataStoreUtils {
         private var dataStore: DataStore<Preferences>? = null
 
         constructor(storeName: String) : this() {
-            this.dataStore = getContext().createDataStore(
-                name = storeName
-            )
+            this.dataStore = PreferenceDataStoreFactory.create {
+                getContext().preferencesDataStoreFile(storeName)
+            }
         }
 
         constructor(dataStore: DataStore<Preferences>?) : this() {
