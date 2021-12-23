@@ -433,6 +433,20 @@ public interface IHelperByQuick<T>
     T setTranslationY(float translationY);
 
     /**
+     * 设置 X 轴位置
+     * @param x X 轴位置
+     * @return Helper
+     */
+    T setX(float x);
+
+    /**
+     * 设置 Y 轴位置
+     * @param y Y 轴位置
+     * @return Helper
+     */
+    T setY(float y);
+
+    /**
      * 设置 View 硬件加速类型
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}

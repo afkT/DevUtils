@@ -852,6 +852,28 @@ public final class QuickHelper
     }
 
     /**
+     * 设置 X 轴位置
+     * @param x X 轴位置
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setX(float x) {
+        ViewHelper.get().setX(x, targetView());
+        return this;
+    }
+
+    /**
+     * 设置 Y 轴位置
+     * @param y Y 轴位置
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setY(float y) {
+        ViewHelper.get().setY(y, targetView());
+        return this;
+    }
+
+    /**
      * 设置 View 硬件加速类型
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}

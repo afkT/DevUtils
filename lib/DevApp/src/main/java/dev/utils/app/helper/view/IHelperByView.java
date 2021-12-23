@@ -606,6 +606,28 @@ public interface IHelperByView<T>
     );
 
     /**
+     * 设置 X 轴位置
+     * @param x     X 轴位置
+     * @param views View[]
+     * @return Helper
+     */
+    T setX(
+            float x,
+            View... views
+    );
+
+    /**
+     * 设置 Y 轴位置
+     * @param y     Y 轴位置
+     * @param views View[]
+     * @return Helper
+     */
+    T setY(
+            float y,
+            View... views
+    );
+
+    /**
      * 设置 View 硬件加速类型
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
