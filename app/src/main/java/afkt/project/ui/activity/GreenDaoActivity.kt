@@ -37,7 +37,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置")
 
         // 初始化布局管理器、适配器
-        binding.vidAdbRefresh.setAdapter(GreenDaoAdapter())
+        binding.vidAdbRefresh.setAdapter(adapter)
         // 加载数据
         loadData(true)
     }
