@@ -490,6 +490,20 @@ object ButtonList {
                     RouterPath.WallpaperActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_FLOATING_WINDOW_MANAGER,
+                    "悬浮窗管理辅助类 ( 需权限 )",
+                    RouterPath.WallpaperActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_FLOATING_WINDOW_MANAGER2,
+                    "悬浮窗管理辅助类 ( 无需权限依赖 Activity )",
+                    RouterPath.WallpaperActivity_PATH
+                )
+            )
             return lists
         }
 

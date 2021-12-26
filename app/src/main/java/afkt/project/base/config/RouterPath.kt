@@ -122,6 +122,10 @@ object RouterPath {
 
     const val WallpaperActivity_PATH = "/activity/WallpaperActivity"
 
+    const val FloatingWindowManagerActivity_PATH = "/activity/FloatingWindowManagerActivity"
+
+    const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
+
     const val ViewPagerActivity_PATH = "/activity/ViewPagerActivity"
 
     const val ProgressBarActivity_PATH = "/activity/ProgressBarActivity"

@@ -54,6 +54,8 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <!-- 窗口悬浮权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name="afkt.project.base.BaseApplication"
@@ -612,6 +614,22 @@
 
         <activity
             android:name=".ui.activity.WallpaperActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 悬浮窗管理辅助类 ( 需权限 ) -->
+
+        <activity
+            android:name=".ui.activity.FloatingWindowManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 悬浮窗管理辅助类 ( 无需权限依赖 Activity ) -->
+
+        <activity
+            android:name=".ui.activity.FloatingWindowManager2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

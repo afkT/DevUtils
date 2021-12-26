@@ -457,6 +457,12 @@ class ButtonValue(
         // 手机壁纸
         const val BTN_WALLPAPER = MODULE_OTHER + 1400
 
+        // 悬浮窗管理辅助类 ( 需权限 )
+        const val BTN_FLOATING_WINDOW_MANAGER = MODULE_OTHER + 1500
+
+        // 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
+        const val BTN_FLOATING_WINDOW_MANAGER2 = MODULE_OTHER + 1600
+
         // ==================
         // = DevWidget UI 库 =
         // ==================
