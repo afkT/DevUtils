@@ -31,27 +31,26 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.toastButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
-                    ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
-                    ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
-                    ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
-                    ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
-                    ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
-                        TempStyle(), "Custom Style Toast",
-                        ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
-                    )
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+        ButtonAdapter(ButtonList.toastButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
+                        ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
+                        ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
+                        ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
+                        ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
+                        ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
+                            TempStyle(), "Custom Style Toast",
+                            ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
+                        )
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                    }
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 
     /**

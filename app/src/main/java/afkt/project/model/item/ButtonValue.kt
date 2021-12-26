@@ -460,6 +460,12 @@ class ButtonValue(
         // 悬浮窗管理辅助类 ( 需权限 )
         const val BTN_FLOATING_WINDOW_MANAGER = MODULE_OTHER + 1500
 
+        // 打开悬浮窗
+        const val BTN_OPEN_FLOATING_WINDOW = BTN_FLOATING_WINDOW_MANAGER + 1
+
+        // 关闭悬浮窗
+        const val BTN_CLOSE_FLOATING_WINDOW = BTN_FLOATING_WINDOW_MANAGER + 2
+
         // 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
         const val BTN_FLOATING_WINDOW_MANAGER2 = MODULE_OTHER + 1600
 

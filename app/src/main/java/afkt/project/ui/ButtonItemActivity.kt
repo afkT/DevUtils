@@ -22,16 +22,15 @@ class ButtonItemActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.getButtonValues(moduleType))
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                routerActivity(buttonValue)
-            }
-        }
+        ButtonAdapter(ButtonList.getButtonValues(moduleType))
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    routerActivity(buttonValue)
+                }
+            }).bindAdapter(binding.vidBvrRecy)
         // 注册观察者
         registerAdapterDataObserver(binding.vidBvrRecy, true)
     }

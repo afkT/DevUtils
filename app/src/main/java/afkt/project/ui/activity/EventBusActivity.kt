@@ -30,42 +30,41 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(eventButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_EVENT_REGISTER -> {
-                        showToast(true, "注册成功")
-                        EventBusUtils.register(this@EventBusActivity)
+        ButtonAdapter(eventButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_EVENT_REGISTER -> {
+                            showToast(true, "注册成功")
+                            EventBusUtils.register(this@EventBusActivity)
+                        }
+                        ButtonValue.BTN_EVENT_UNREGISTER -> {
+                            showToast(true, "解绑成功")
+                            EventBusUtils.unregister(this@EventBusActivity)
+                        }
+                        ButtonValue.BTN_EVENT_CLEAN_STICKY -> {
+                            showToast(true, "清空全部粘性事件成功")
+                            EventBusUtils.removeAllStickyEvents()
+                        }
+                        ButtonValue.BTN_EVENT_SEND -> {
+                            showToast(true, "发送事件成功")
+                            val event = DevObject<String>()
+                            event.setCode(1).setObject("正常消息")
+                            EventBusUtils.post(event)
+                        }
+                        ButtonValue.BTN_EVENT_SEND_STICKY -> {
+                            showToast(true, "发送粘性事件成功")
+                            val eventSticky = DevObject<String>()
+                            eventSticky.setCode(2).setObject("粘性消息")
+                            EventBusUtils.postSticky(eventSticky)
+                        }
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
-                    ButtonValue.BTN_EVENT_UNREGISTER -> {
-                        showToast(true, "解绑成功")
-                        EventBusUtils.unregister(this@EventBusActivity)
-                    }
-                    ButtonValue.BTN_EVENT_CLEAN_STICKY -> {
-                        showToast(true, "清空全部粘性事件成功")
-                        EventBusUtils.removeAllStickyEvents()
-                    }
-                    ButtonValue.BTN_EVENT_SEND -> {
-                        showToast(true, "发送事件成功")
-                        val event = DevObject<String>()
-                        event.setCode(1).setObject("正常消息")
-                        EventBusUtils.post(event)
-                    }
-                    ButtonValue.BTN_EVENT_SEND_STICKY -> {
-                        showToast(true, "发送粘性事件成功")
-                        val eventSticky = DevObject<String>()
-                        eventSticky.setCode(2).setObject("粘性消息")
-                        EventBusUtils.postSticky(eventSticky)
-                    }
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

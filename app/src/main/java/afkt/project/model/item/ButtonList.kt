@@ -494,14 +494,14 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_FLOATING_WINDOW_MANAGER,
                     "悬浮窗管理辅助类 ( 需权限 )",
-                    RouterPath.WallpaperActivity_PATH
+                    RouterPath.FloatingWindowManagerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FLOATING_WINDOW_MANAGER2,
                     "悬浮窗管理辅助类 ( 无需权限依赖 Activity )",
-                    RouterPath.WallpaperActivity_PATH
+                    RouterPath.FloatingWindowManager2Activity_PATH
                 )
             )
             return lists
@@ -701,6 +701,18 @@ object ButtonList {
             lists.add(ButtonValue(ButtonValue.BTN_PATH_INTERNAL, "内部存储路径", ""))
             lists.add(ButtonValue(ButtonValue.BTN_PATH_APP_EXTERNAL, "应用外部存储路径", ""))
             lists.add(ButtonValue(ButtonValue.BTN_PATH_SDCARD, "外部存储路径 ( SDCard )", ""))
+            return lists
+        }
+
+    /**
+     * 获取悬浮窗 Button Value 集合
+     * @return [List]
+     */
+    val floatingWindowButtonValues: List<ButtonValue>
+        get() {
+            val lists: MutableList<ButtonValue> = ArrayList()
+            lists.add(ButtonValue(ButtonValue.BTN_OPEN_FLOATING_WINDOW, "打开悬浮窗", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_CLOSE_FLOATING_WINDOW, "关闭悬浮窗", ""))
             return lists
         }
 

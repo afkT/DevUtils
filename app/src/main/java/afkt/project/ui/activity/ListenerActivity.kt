@@ -63,47 +63,46 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
         binding.vidActLinear.addView(view)
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(listenerButtonValues)
-        binding.vidBaseRecy.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_WIFI_LISTENER -> wifiListener(true)
-                    ButtonValue.BTN_NETWORK_LISTENER -> netListener(true)
-                    ButtonValue.BTN_PHONE_LISTENER -> phoneListener(true)
-                    ButtonValue.BTN_SMS_LISTENER -> smsListener(true)
-                    ButtonValue.BTN_TIME_LISTENER -> timeListener(true)
-                    ButtonValue.BTN_SCREEN_LISTENER -> screenListener(true)
-                    ButtonValue.BTN_ROTA_LISTENER -> rotaListener(true)
-                    ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(true)
-                    ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(true)
-                    ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(true)
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+        ButtonAdapter(listenerButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_WIFI_LISTENER -> wifiListener(true)
+                        ButtonValue.BTN_NETWORK_LISTENER -> netListener(true)
+                        ButtonValue.BTN_PHONE_LISTENER -> phoneListener(true)
+                        ButtonValue.BTN_SMS_LISTENER -> smsListener(true)
+                        ButtonValue.BTN_TIME_LISTENER -> timeListener(true)
+                        ButtonValue.BTN_SCREEN_LISTENER -> screenListener(true)
+                        ButtonValue.BTN_ROTA_LISTENER -> rotaListener(true)
+                        ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(true)
+                        ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(true)
+                        ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(true)
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                    }
                 }
-            }
 
-            override fun onItemLongClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_WIFI_LISTENER -> wifiListener(false)
-                    ButtonValue.BTN_NETWORK_LISTENER -> netListener(false)
-                    ButtonValue.BTN_PHONE_LISTENER -> phoneListener(false)
-                    ButtonValue.BTN_SMS_LISTENER -> smsListener(false)
-                    ButtonValue.BTN_TIME_LISTENER -> timeListener(false)
-                    ButtonValue.BTN_SCREEN_LISTENER -> screenListener(false)
-                    ButtonValue.BTN_ROTA_LISTENER -> rotaListener(false)
-                    ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(false)
-                    ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(false)
-                    ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(false)
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                override fun onItemLongClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_WIFI_LISTENER -> wifiListener(false)
+                        ButtonValue.BTN_NETWORK_LISTENER -> netListener(false)
+                        ButtonValue.BTN_PHONE_LISTENER -> phoneListener(false)
+                        ButtonValue.BTN_SMS_LISTENER -> smsListener(false)
+                        ButtonValue.BTN_TIME_LISTENER -> timeListener(false)
+                        ButtonValue.BTN_SCREEN_LISTENER -> screenListener(false)
+                        ButtonValue.BTN_ROTA_LISTENER -> rotaListener(false)
+                        ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(false)
+                        ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(false)
+                        ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(false)
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                    }
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBaseRecy.vidBvrRecy)
     }
 
     // ============

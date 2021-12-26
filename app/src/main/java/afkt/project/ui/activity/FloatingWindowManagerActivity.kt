@@ -3,59 +3,41 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
-import afkt.project.databinding.ActivityWallpaperBinding
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.base.DevSource
-import dev.engine.DevEngine
-import dev.engine.storage.OnDevInsertListener
-import dev.engine.storage.StorageItem
-import dev.engine.storage.StorageResult
-import dev.utils.app.WallpaperUtils
-import dev.utils.common.FileUtils
+import dev.callback.DevItemClickCallback
 
 /**
  * detail: 悬浮窗管理辅助类 ( 需权限 )
  * @author Ttt
  */
 @Route(path = RouterPath.FloatingWindowManagerActivity_PATH)
-class FloatingWindowManagerActivity : BaseActivity<ActivityWallpaperBinding>() {
+class FloatingWindowManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    override fun baseLayoutId(): Int = R.layout.activity_wallpaper
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
     override fun initValue() {
         super.initValue()
 
-        val wallpaper = WallpaperUtils.getDrawable()
+        // 初始化布局管理器、适配器
+        ButtonAdapter(ButtonList.floatingWindowButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
 
-        binding.vidAwSaveBtn.setOnClickListener {
-            if (wallpaper == null) {
-                showToast(false, "获取壁纸失败")
-                return@setOnClickListener
-            }
-            DevEngine.getStorage()?.insertImageToExternal(
-                StorageItem.createExternalItem(
-                    "${System.currentTimeMillis()}.jpg"
-                ),
-                DevSource.create(
-                    wallpaper
-                ),
-                object : OnDevInsertListener {
-                    override fun onResult(
-                        result: StorageResult,
-                        params: StorageItem?,
-                        source: DevSource?
-                    ) {
-                        showToast(
-                            result.isSuccess(),
-                            "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
-                            "保存失败"
-                        )
+                        }
+                        ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
+
+                        }
                     }
                 }
-            )
-        }
-        wallpaper?.let {
-            binding.vidAwIgview.background = it
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 }

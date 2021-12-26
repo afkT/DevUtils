@@ -40,36 +40,35 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(notificationServiceButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK -> {
-                        val check = NotificationService.isNotificationListenerEnabled()
-                        showToast(check, "已开启服务通知", "未开启服务通知")
-                    }
-                    ButtonValue.BTN_NOTIFICATION_SERVICE_REGISTER -> {
-                        if (!NotificationService.checkAndIntentSetting()) {
-                            showToast(false, "请先开启服务通知权限")
-                            return
+        ButtonAdapter(notificationServiceButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK -> {
+                            val check = NotificationService.isNotificationListenerEnabled()
+                            showToast(check, "已开启服务通知", "未开启服务通知")
                         }
-                        showToast(true, "绑定通知栏监听服务成功, 请查看 Logcat")
-                        // 注册监听
-                        NotificationService.startService()
+                        ButtonValue.BTN_NOTIFICATION_SERVICE_REGISTER -> {
+                            if (!NotificationService.checkAndIntentSetting()) {
+                                showToast(false, "请先开启服务通知权限")
+                                return
+                            }
+                            showToast(true, "绑定通知栏监听服务成功, 请查看 Logcat")
+                            // 注册监听
+                            NotificationService.startService()
+                        }
+                        ButtonValue.BTN_NOTIFICATION_SERVICE_UNREGISTER -> {
+                            showToast(true, "注销通知栏监听服务成功")
+                            // 注销监听
+                            NotificationService.stopService()
+                        }
+                        else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                     }
-                    ButtonValue.BTN_NOTIFICATION_SERVICE_UNREGISTER -> {
-                        showToast(true, "注销通知栏监听服务成功")
-                        // 注销监听
-                        NotificationService.stopService()
-                    }
-                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 
     override fun initListener() {

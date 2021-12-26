@@ -35,79 +35,78 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(timerButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                // 获取操作结果
-                val result: Boolean
-                when (buttonValue.type) {
-                    ButtonValue.BTN_TIMER_START -> {
-                        if (mTimer == null) {
-                            // 初始化定时器
-                            mTimer = DevTimer.Builder(
-                                500L, 2000L,
-                                -1, TAG
-                            ).build()
-                            // 设置回调通过 Handler 触发
-                            mTimer?.apply {
-                                setHandler(mUiHandler)
-                                setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
-                                    // 触发次数
-                                    if (number == 1) {
-                                        DevEngine.getLog()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
-                                    } else {
-                                        DevEngine.getLog()
-                                            .dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number)
+        ButtonAdapter(timerButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    // 获取操作结果
+                    val result: Boolean
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_TIMER_START -> {
+                            if (mTimer == null) {
+                                // 初始化定时器
+                                mTimer = DevTimer.Builder(
+                                    500L, 2000L,
+                                    -1, TAG
+                                ).build()
+                                // 设置回调通过 Handler 触发
+                                mTimer?.apply {
+                                    setHandler(mUiHandler)
+                                    setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
+                                        // 触发次数
+                                        if (number == 1) {
+                                            DevEngine.getLog()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
+                                        } else {
+                                            DevEngine.getLog()
+                                                .dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number)
+                                        }
                                     }
                                 }
                             }
-                        }
-                        mTimer?.apply {
-                            if (isRunning) {
-                                showToast(false, "定时器已经启动, 请查看 Logcat")
-                            } else {
-                                showToast(true, "定时器启动成功, 请查看 Logcat")
-                                // 运行定时器
-                                start()
+                            mTimer?.apply {
+                                if (isRunning) {
+                                    showToast(false, "定时器已经启动, 请查看 Logcat")
+                                } else {
+                                    showToast(true, "定时器启动成功, 请查看 Logcat")
+                                    // 运行定时器
+                                    start()
+                                }
                             }
                         }
-                    }
-                    ButtonValue.BTN_TIMER_STOP -> {
-                        result = mTimer?.isRunning ?: false
-                        showToast(result, "定时器关闭成功", "定时器未启动")
-                        if (result) mTimer?.stop()
-                        // 回收定时器
-                        TimerManager.recycle()
-                    }
-                    ButtonValue.BTN_TIMER_RESTART -> {
-                        mTimer?.let {
-                            showToast(true, "定时器启动成功, 请查看 Logcat")
-                            // 运行定时器
-                            it.start()
-                            return
+                        ButtonValue.BTN_TIMER_STOP -> {
+                            result = mTimer?.isRunning ?: false
+                            showToast(result, "定时器关闭成功", "定时器未启动")
+                            if (result) mTimer?.stop()
+                            // 回收定时器
+                            TimerManager.recycle()
                         }
-                        showToast(false, "请先初始化定时器")
+                        ButtonValue.BTN_TIMER_RESTART -> {
+                            mTimer?.let {
+                                showToast(true, "定时器启动成功, 请查看 Logcat")
+                                // 运行定时器
+                                it.start()
+                                return
+                            }
+                            showToast(false, "请先初始化定时器")
+                        }
+                        ButtonValue.BTN_TIMER_CHECK -> {
+                            result = mTimer?.isRunning ?: false
+                            showToast(result, "定时器已启动", "定时器未启动")
+                        }
+                        ButtonValue.BTN_TIMER_GET -> {
+                            val timerTAG = TimerManager.getTimer(TAG)
+                            showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
+                        }
+                        ButtonValue.BTN_TIMER_GET_NUMBER -> {
+                            result = mTimer?.isRunning ?: false
+                            showToast(result, "定时器运行次数: ${mTimer?.triggerNumber}", "定时器未启动")
+                        }
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
-                    ButtonValue.BTN_TIMER_CHECK -> {
-                        result = mTimer?.isRunning ?: false
-                        showToast(result, "定时器已启动", "定时器未启动")
-                    }
-                    ButtonValue.BTN_TIMER_GET -> {
-                        val timerTAG = TimerManager.getTimer(TAG)
-                        showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
-                    }
-                    ButtonValue.BTN_TIMER_GET_NUMBER -> {
-                        result = mTimer?.isRunning ?: false
-                        showToast(result, "定时器运行次数: ${mTimer?.triggerNumber}", "定时器未启动")
-                    }
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 
     override fun initListener() {

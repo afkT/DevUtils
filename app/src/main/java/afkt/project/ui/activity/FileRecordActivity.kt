@@ -26,21 +26,20 @@ class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(fileRecordButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_FILE_RECORD_UTILS -> {
-                        showToast(true, "保存成功")
-                        FileRecordUse.fileRecordUse()
+        ButtonAdapter(fileRecordButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_FILE_RECORD_UTILS -> {
+                            showToast(true, "保存成功")
+                            FileRecordUse.fileRecordUse()
+                        }
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 }

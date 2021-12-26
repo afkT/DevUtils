@@ -62,135 +62,134 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(wifiButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            @SuppressLint("MissingPermission")
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                when (buttonValue.type) {
-                    ButtonValue.BTN_WIFI_OPEN -> {
-                        if (wifiUtils.isOpenWifi) {
-                            ToastTintUtils.error("Wifi 已打开")
-                        } else {
-                            showToast(wifiUtils.openWifi(), "打开成功", "打开失败")
-                        }
-                    }
-                    ButtonValue.BTN_WIFI_CLOSE -> {
-                        if (wifiUtils.isOpenWifi) {
-                            showToast(wifiUtils.closeWifi(), "关闭成功", "关闭失败")
-                        } else {
-                            ToastTintUtils.error("Wifi 已关闭")
-                        }
-                    }
-                    ButtonValue.BTN_WIFI_HOT_OPEN -> {
-                        if (wifiHotUtils.isOpenWifiAp) {
-                            ToastTintUtils.error("Wifi 热点已打开")
-                        } else {
-                            if (isOpenAPING) {
-                                ToastUtils.showShort("Wifi 热点开启中")
-                                return
+        ButtonAdapter(wifiButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                @SuppressLint("MissingPermission")
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    when (buttonValue.type) {
+                        ButtonValue.BTN_WIFI_OPEN -> {
+                            if (wifiUtils.isOpenWifi) {
+                                ToastTintUtils.error("Wifi 已打开")
+                            } else {
+                                showToast(wifiUtils.openWifi(), "打开成功", "打开失败")
                             }
-                            // = 8.0 特殊处理 =
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                DevEngine.getPermission()?.request(
-                                    mActivity, arrayOf(
-                                        Manifest.permission.ACCESS_FINE_LOCATION,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION
-                                    ), object : IPermissionEngine.Callback {
-                                        override fun onGranted() {
-                                            isOpenAPING = true
-                                            // 设置热点 Wifi 监听
-                                            wifiHotUtils.setOnWifiAPListener(object : WifiHotUtils.OnWifiAPListener {
-                                                override fun onStarted(wifiConfiguration: WifiConfiguration) {
-                                                    val wifiap =
-                                                        "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"
-                                                    DevEngine.getLog()?.dTag(TAG, wifiap)
-                                                    ToastTintUtils.success(wifiap)
-                                                    // 表示操作结束
-                                                    isOpenAPING = false
-                                                }
-
-                                                override fun onStopped() {
-                                                    DevEngine.getLog()?.dTag(TAG, "关闭热点")
-                                                    // 表示操作结束
-                                                    isOpenAPING = false
-                                                }
-
-                                                override fun onFailed(reason: Int) {
-                                                    DevEngine.getLog()
-                                                        .dTag(TAG, "热点异常 reason: %s", reason)
-                                                    // 表示操作结束
-                                                    isOpenAPING = false
-                                                }
-                                            })
-                                            // 密码必须大于等于 8 位
-                                            val wifiConfiguration =
-                                                WifiHotUtils.createWifiConfigToAp(
-                                                    wifiHotSSID, wifiHotPwd
-                                                )
-                                            val success =
-                                                wifiHotUtils.startWifiAp(wifiConfiguration)
-                                            showToast(success, "打开热点成功", "打开热点失败")
-                                        }
-
-                                        override fun onDenied(
-                                            grantedList: List<String>,
-                                            deniedList: List<String>,
-                                            notFoundList: List<String>
-                                        ) {
-                                            ToastTintUtils.warning("开启热点需要定位权限")
-                                        }
-                                    }
-                                )
-                                return
-                            } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) { // 7.0 及以下需要 WRITE_SETTINGS 权限
-                                // 无法进行申请, 只能跳转到权限页面, 让用户开启
-                                // 获取写入设置权限 , 必须有这个权限, 否则无法开启
-                                if (!PermissionUtils.isGranted(Manifest.permission.WRITE_SETTINGS)) {
-                                    ToastUtils.showShort("开启热点需要修改系统设置权限")
-                                    // 如果没有权限则跳转过去
-                                    AppUtils.startActivity(
-                                        IntentUtils.getLaunchAppDetailsSettingsIntent(
-                                            AppUtils.getPackageName()
-                                        )
-                                    )
+                        }
+                        ButtonValue.BTN_WIFI_CLOSE -> {
+                            if (wifiUtils.isOpenWifi) {
+                                showToast(wifiUtils.closeWifi(), "关闭成功", "关闭失败")
+                            } else {
+                                ToastTintUtils.error("Wifi 已关闭")
+                            }
+                        }
+                        ButtonValue.BTN_WIFI_HOT_OPEN -> {
+                            if (wifiHotUtils.isOpenWifiAp) {
+                                ToastTintUtils.error("Wifi 热点已打开")
+                            } else {
+                                if (isOpenAPING) {
+                                    ToastUtils.showShort("Wifi 热点开启中")
                                     return
                                 }
-                            }
-                            // 密码必须大于等于 8 位
-                            val wifiConfiguration =
-                                WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd)
+                                // = 8.0 特殊处理 =
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    DevEngine.getPermission()?.request(
+                                        mActivity, arrayOf(
+                                            Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION
+                                        ), object : IPermissionEngine.Callback {
+                                            override fun onGranted() {
+                                                isOpenAPING = true
+                                                // 设置热点 Wifi 监听
+                                                wifiHotUtils.setOnWifiAPListener(object : WifiHotUtils.OnWifiAPListener {
+                                                    override fun onStarted(wifiConfiguration: WifiConfiguration) {
+                                                        val wifiap =
+                                                            "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"
+                                                        DevEngine.getLog()?.dTag(TAG, wifiap)
+                                                        ToastTintUtils.success(wifiap)
+                                                        // 表示操作结束
+                                                        isOpenAPING = false
+                                                    }
+
+                                                    override fun onStopped() {
+                                                        DevEngine.getLog()?.dTag(TAG, "关闭热点")
+                                                        // 表示操作结束
+                                                        isOpenAPING = false
+                                                    }
+
+                                                    override fun onFailed(reason: Int) {
+                                                        DevEngine.getLog()
+                                                            .dTag(TAG, "热点异常 reason: %s", reason)
+                                                        // 表示操作结束
+                                                        isOpenAPING = false
+                                                    }
+                                                })
+                                                // 密码必须大于等于 8 位
+                                                val wifiConfiguration =
+                                                    WifiHotUtils.createWifiConfigToAp(
+                                                        wifiHotSSID, wifiHotPwd
+                                                    )
+                                                val success =
+                                                    wifiHotUtils.startWifiAp(wifiConfiguration)
+                                                showToast(success, "打开热点成功", "打开热点失败")
+                                            }
+
+                                            override fun onDenied(
+                                                grantedList: List<String>,
+                                                deniedList: List<String>,
+                                                notFoundList: List<String>
+                                            ) {
+                                                ToastTintUtils.warning("开启热点需要定位权限")
+                                            }
+                                        }
+                                    )
+                                    return
+                                } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) { // 7.0 及以下需要 WRITE_SETTINGS 权限
+                                    // 无法进行申请, 只能跳转到权限页面, 让用户开启
+                                    // 获取写入设置权限 , 必须有这个权限, 否则无法开启
+                                    if (!PermissionUtils.isGranted(Manifest.permission.WRITE_SETTINGS)) {
+                                        ToastUtils.showShort("开启热点需要修改系统设置权限")
+                                        // 如果没有权限则跳转过去
+                                        AppUtils.startActivity(
+                                            IntentUtils.getLaunchAppDetailsSettingsIntent(
+                                                AppUtils.getPackageName()
+                                            )
+                                        )
+                                        return
+                                    }
+                                }
+                                // 密码必须大于等于 8 位
+                                val wifiConfiguration =
+                                    WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd)
 //                            // 如果不需要密码, 则设置为非密码
 //                            val wifiConfiguration =
 //                                WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null)
-                            // 开启热点 ( Android 7.1 以上特殊处理 )
-                            val success = wifiHotUtils.startWifiAp(wifiConfiguration)
-                            showToast(success, "打开热点成功", "打开热点失败")
+                                // 开启热点 ( Android 7.1 以上特殊处理 )
+                                val success = wifiHotUtils.startWifiAp(wifiConfiguration)
+                                showToast(success, "打开热点成功", "打开热点失败")
+                            }
                         }
-                    }
-                    ButtonValue.BTN_WIFI_HOT_CLOSE -> {
-                        if (wifiHotUtils.isOpenWifiAp) {
-                            val success = wifiHotUtils.closeWifiAp()
-                            showToast(success, "热点关闭成功", "热点关闭失败")
-                        } else {
-                            ToastTintUtils.error("Wifi 热点已关闭")
+                        ButtonValue.BTN_WIFI_HOT_CLOSE -> {
+                            if (wifiHotUtils.isOpenWifiAp) {
+                                val success = wifiHotUtils.closeWifiAp()
+                                showToast(success, "热点关闭成功", "热点关闭失败")
+                            } else {
+                                ToastTintUtils.error("Wifi 热点已关闭")
+                            }
                         }
+                        ButtonValue.BTN_WIFI_LISTENER_REGISTER -> {
+                            register()
+                            showToast(true, "注册监听成功, 请查看 Logcat")
+                        }
+                        ButtonValue.BTN_WIFI_LISTENER_UNREGISTER -> {
+                            unregister()
+                            showToast(true, "注销监听成功")
+                        }
+                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
-                    ButtonValue.BTN_WIFI_LISTENER_REGISTER -> {
-                        register()
-                        showToast(true, "注册监听成功, 请查看 Logcat")
-                    }
-                    ButtonValue.BTN_WIFI_LISTENER_UNREGISTER -> {
-                        unregister()
-                        showToast(true, "注销监听成功")
-                    }
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
     }
 
     override fun initListener() {

@@ -58,27 +58,26 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         contentAssist.addContentView(view = view, index = 0)
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(moduleDevAssistEngineButtonValues)
-        binding.vidBvrRecy.adapter = buttonAdapter
-        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
-                val builder = StringBuilder()
-                    .append("Java 实现在 DevOther Module java.dev.engine 目录下")
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("Kotlin 实现已封装为 DevEngine 库")
-                // 进行显示
-                SnackbarUtils.with(mActivity).also { sn ->
-                    // 设置多行显示
-                    sn.style.textMaxLines = Int.MAX_VALUE
-                    // 显示 Snackbar
-                    sn.setAction({ sn.dismiss() }, "我知道了")
-                        .showIndefinite(builder.toString())
+        ButtonAdapter(moduleDevAssistEngineButtonValues)
+            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+                override fun onItemClick(
+                    buttonValue: ButtonValue,
+                    param: Int
+                ) {
+                    val builder = StringBuilder()
+                        .append("Java 实现在 DevOther Module java.dev.engine 目录下")
+                        .append(DevFinal.SYMBOL.NEW_LINE)
+                        .append("Kotlin 实现已封装为 DevEngine 库")
+                    // 进行显示
+                    SnackbarUtils.with(mActivity).also { sn ->
+                        // 设置多行显示
+                        sn.style.textMaxLines = Int.MAX_VALUE
+                        // 显示 Snackbar
+                        sn.setAction({ sn.dismiss() }, "我知道了")
+                            .showIndefinite(builder.toString())
+                    }
                 }
-            }
-        }
+            }).bindAdapter(binding.vidBvrRecy)
 
         // =================
         // = 模拟初始化、使用 =
