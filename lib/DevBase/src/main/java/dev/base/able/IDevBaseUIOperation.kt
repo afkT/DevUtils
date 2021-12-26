@@ -49,7 +49,7 @@ interface IDevBaseUIOperation {
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T
+    fun <T : PopupWindow> setDevPopupWindow(popupWindow: T): T
 
     /**
      * 设置 PopupWindow
@@ -57,7 +57,7 @@ interface IDevBaseUIOperation {
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    fun <T : PopupWindow?> setDevPopupWindow(
+    fun <T : PopupWindow> setDevPopupWindow(
         isClose: Boolean,
         popupWindow: T
     ): T
@@ -77,7 +77,7 @@ interface IDevBaseUIOperation {
      * @param dialog [Dialog]
      * @return [Dialog]
      */
-    fun <T : Dialog?> setDevDialog(dialog: T): T
+    fun <T : Dialog> setDevDialog(dialog: T): T
 
     /**
      * 设置 Dialog
@@ -85,7 +85,7 @@ interface IDevBaseUIOperation {
      * @param dialog  [Dialog]
      * @return [Dialog]
      */
-    fun <T : Dialog?> setDevDialog(
+    fun <T : Dialog> setDevDialog(
         isClose: Boolean,
         dialog: T
     ): T
@@ -105,7 +105,7 @@ interface IDevBaseUIOperation {
      * @param dialog [DialogFragment]
      * @return [DialogFragment]
      */
-    fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T
+    fun <T : DialogFragment> setDevDialogFragment(dialog: T): T
 
     /**
      * 设置 DialogFragment
@@ -113,7 +113,7 @@ interface IDevBaseUIOperation {
      * @param dialog  [DialogFragment]
      * @return [DialogFragment]
      */
-    fun <T : DialogFragment?> setDevDialogFragment(
+    fun <T : DialogFragment> setDevDialogFragment(
         isClose: Boolean,
         dialog: T
     ): T

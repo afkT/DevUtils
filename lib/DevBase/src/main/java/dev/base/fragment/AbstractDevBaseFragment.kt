@@ -202,11 +202,11 @@ abstract class AbstractDevBaseFragment : Fragment(),
         return assist.getDevPopupWindow()
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T {
+    override fun <T : PopupWindow> setDevPopupWindow(popupWindow: T): T {
         return assist.setDevPopupWindow(popupWindow)
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(
+    override fun <T : PopupWindow> setDevPopupWindow(
         isClose: Boolean,
         popupWindow: T
     ): T {
@@ -217,11 +217,11 @@ abstract class AbstractDevBaseFragment : Fragment(),
         return assist.getDevDialog()
     }
 
-    override fun <T : Dialog?> setDevDialog(dialog: T): T {
+    override fun <T : Dialog> setDevDialog(dialog: T): T {
         return assist.setDevDialog(dialog)
     }
 
-    override fun <T : Dialog?> setDevDialog(
+    override fun <T : Dialog> setDevDialog(
         isClose: Boolean,
         dialog: T
     ): T {
@@ -232,11 +232,11 @@ abstract class AbstractDevBaseFragment : Fragment(),
         return assist.getDevDialogFragment()
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T {
+    override fun <T : DialogFragment> setDevDialogFragment(dialog: T): T {
         return assist.setDevDialogFragment(dialog)
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(
+    override fun <T : DialogFragment> setDevDialogFragment(
         isClose: Boolean,
         dialog: T
     ): T {

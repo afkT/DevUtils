@@ -58,8 +58,8 @@ class DevBaseRefreshAssist<T> {
         return this
     }
 
-    fun <T : RecyclerView.Adapter<*>?> getAdapter(): T? {
-        mAdapter?.let { return mAdapter as? T? }
+    fun <T : RecyclerView.Adapter<*>> getAdapter(): T? {
+        mAdapter?.let { return mAdapter as? T }
         return null
     }
 
@@ -77,7 +77,7 @@ class DevBaseRefreshAssist<T> {
 
     /**
      * 设置 LayoutManager
-     * @param layoutManager [LayoutManager]
+     * @param layoutManager RecyclerView LayoutManager
      * @return [DevBaseRefreshAssist]
      */
     fun setLayoutManager(layoutManager: RecyclerView.LayoutManager): DevBaseRefreshAssist<T> {

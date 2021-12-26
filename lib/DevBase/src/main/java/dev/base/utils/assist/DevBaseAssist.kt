@@ -96,11 +96,11 @@ class DevBaseAssist : IDevBaseUIOperation {
         return mDevPopupWindow
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T {
+    override fun <T : PopupWindow> setDevPopupWindow(popupWindow: T): T {
         return setDevPopupWindow(true, popupWindow)
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(
+    override fun <T : PopupWindow> setDevPopupWindow(
         isClose: Boolean,
         popupWindow: T
     ): T {
@@ -113,11 +113,11 @@ class DevBaseAssist : IDevBaseUIOperation {
         return mDevDialog
     }
 
-    override fun <T : Dialog?> setDevDialog(dialog: T): T {
+    override fun <T : Dialog> setDevDialog(dialog: T): T {
         return setDevDialog(true, dialog)
     }
 
-    override fun <T : Dialog?> setDevDialog(
+    override fun <T : Dialog> setDevDialog(
         isClose: Boolean,
         dialog: T
     ): T {
@@ -130,11 +130,11 @@ class DevBaseAssist : IDevBaseUIOperation {
         return mDevDialogFragment
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T {
+    override fun <T : DialogFragment> setDevDialogFragment(dialog: T): T {
         return setDevDialogFragment(true, dialog)
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(
+    override fun <T : DialogFragment> setDevDialogFragment(
         isClose: Boolean,
         dialog: T
     ): T {
