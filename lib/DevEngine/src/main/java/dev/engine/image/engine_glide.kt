@@ -203,7 +203,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
         listener: LoadListener<T>?
@@ -211,7 +211,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), null, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
         listener: LoadListener<T>?
@@ -219,7 +219,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, source, null, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
         config: ImageConfig?,
@@ -228,7 +228,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), config, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
         config: ImageConfig?,
@@ -293,7 +293,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -302,7 +302,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), null, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -311,7 +311,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, source, null, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -321,7 +321,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), config, listener)
     }
 
-    override fun <T : Any?> display(
+    override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -346,7 +346,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = load =
     // ========
 
-    override fun <T : Any?> loadImage(
+    override fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -381,7 +381,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
-    override fun <T : Any?> loadImage(
+    override fun <T : Any> loadImage(
         fragment: Fragment?,
         source: DevSource?,
         config: ImageConfig?,
@@ -416,7 +416,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
-    override fun <T : Any?> loadImage(
+    override fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -430,7 +430,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         return null
     }
 
-    override fun <T : Any?> loadImageThrows(
+    override fun <T : Any> loadImageThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,

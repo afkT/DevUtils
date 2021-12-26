@@ -411,14 +411,14 @@ internal object MMKVUtils {
             return mmkv?.decodeBytes(key, defaultValue) ?: defaultValue
         }
 
-        fun <T : Parcelable?> decodeParcelable(
+        fun <T : Parcelable> decodeParcelable(
             key: String?,
             tClass: Class<T>?
         ): T? {
             return decodeParcelable(key, tClass, null)
         }
 
-        fun <T : Parcelable?> decodeParcelable(
+        fun <T : Parcelable> decodeParcelable(
             key: String?,
             tClass: Class<T>?,
             defaultValue: T?

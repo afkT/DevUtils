@@ -23,14 +23,14 @@ class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.toJson(obj)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?
     ): T? {
         return FastjsonUtils.fromJson(json, classOfT)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?,
         config: JSONConfig?
@@ -38,14 +38,14 @@ class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.fromJson(json, classOfT)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?
     ): T? {
         return FastjsonUtils.fromJson(json, typeOfT)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?,
         config: JSONConfig?

@@ -213,7 +213,7 @@ object GlideUtils {
 
     // =
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
         listener: LoadListener<T>?
@@ -221,7 +221,7 @@ object GlideUtils {
         display(imageView, DevSource.create(url), null, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
         listener: LoadListener<T>?
@@ -229,7 +229,7 @@ object GlideUtils {
         display(imageView, source, null, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
         config: ImageConfig?,
@@ -238,7 +238,7 @@ object GlideUtils {
         display(imageView, DevSource.create(url), config, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
         config: ImageConfig?,
@@ -303,7 +303,7 @@ object GlideUtils {
 
     // =
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -312,7 +312,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), null, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -321,7 +321,7 @@ object GlideUtils {
         display(fragment, imageView, source, null, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -331,7 +331,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), config, listener)
     }
 
-    fun <T : Any?> display(
+    fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -356,7 +356,7 @@ object GlideUtils {
     // = load =
     // ========
 
-    fun <T : Any?> loadImage(
+    fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -391,7 +391,7 @@ object GlideUtils {
         }
     }
 
-    fun <T : Any?> loadImage(
+    fun <T : Any> loadImage(
         fragment: Fragment?,
         source: DevSource?,
         config: ImageConfig?,
@@ -426,7 +426,7 @@ object GlideUtils {
         }
     }
 
-    fun <T : Any?> loadImage(
+    fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -440,7 +440,7 @@ object GlideUtils {
         return null
     }
 
-    fun <T : Any?> loadImageThrows(
+    fun <T : Any> loadImageThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,

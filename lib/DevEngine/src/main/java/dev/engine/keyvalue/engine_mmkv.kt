@@ -114,7 +114,7 @@ class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, content)
     }
 
-    override fun <T : Any?> putEntity(
+    override fun <T : Any> putEntity(
         key: String?,
         value: T
     ): Boolean {
@@ -149,7 +149,7 @@ class MMKVKeyValueEngineImpl(
         return getString(key, null)
     }
 
-    override fun <T : Any?> getEntity(
+    override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?
     ): T? {
@@ -205,11 +205,11 @@ class MMKVKeyValueEngineImpl(
         return content
     }
 
-    override fun <T : Any?> getEntity(
+    override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?,
-        defaultValue: T
-    ): T {
+        defaultValue: T?
+    ): T? {
         val json = getString(key, null)
         return mJSONEngine?.fromJson<T>(
             json, typeOfT

@@ -219,7 +219,7 @@ class DevCacheEngineImpl(
         return mConfig.mDevCache.put(key, value, validTime)
     }
 
-    override fun <T : Any?> put(
+    override fun <T : Any> put(
         key: String?,
         value: T,
         validTime: Long
@@ -272,7 +272,7 @@ class DevCacheEngineImpl(
         return mConfig.mDevCache.getSerializable(key)
     }
 
-    override fun <T : Any?> getParcelable(
+    override fun <T : Any> getParcelable(
         key: String?,
         creator: Parcelable.Creator<T>?
     ): T {
@@ -287,7 +287,7 @@ class DevCacheEngineImpl(
         return mConfig.mDevCache.getJSONArray(key)
     }
 
-    override fun <T : Any?> getEntity(
+    override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?
     ): T? {
@@ -366,7 +366,7 @@ class DevCacheEngineImpl(
         return mConfig.mDevCache.getSerializable(key, defaultValue)
     }
 
-    override fun <T : Any?> getParcelable(
+    override fun <T : Any> getParcelable(
         key: String?,
         creator: Parcelable.Creator<T>?,
         defaultValue: T
@@ -388,11 +388,11 @@ class DevCacheEngineImpl(
         return mConfig.mDevCache.getJSONArray(key, defaultValue)
     }
 
-    override fun <T : Any?> getEntity(
+    override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?,
-        defaultValue: T
-    ): T {
+        defaultValue: T?
+    ): T? {
         val json = getString(key, null)
         return mJSONEngine?.fromJson<T>(
             json, typeOfT

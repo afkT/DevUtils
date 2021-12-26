@@ -23,14 +23,14 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
         return GsonUtils.toJson(obj, config?.gson)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?
     ): T? {
         return GsonUtils.fromJson(json, classOfT)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?,
         config: JSONConfig?
@@ -38,14 +38,14 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
         return GsonUtils.fromJson(json, classOfT, config?.gson)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?
     ): T? {
         return GsonUtils.fromJson(json, typeOfT)
     }
 
-    override fun <T : Any?> fromJson(
+    override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?,
         config: JSONConfig?
