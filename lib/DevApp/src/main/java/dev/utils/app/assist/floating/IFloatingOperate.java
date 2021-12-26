@@ -1,5 +1,7 @@
 package dev.utils.app.assist.floating;
 
+import android.view.View;
+
 /**
  * detail: 悬浮窗操作辅助类接口
  * @author Ttt
@@ -27,6 +29,16 @@ public interface IFloatingOperate {
      * 移除所有悬浮窗 View
      */
     void removeAllFloatingView();
+
+    /**
+     * 更新悬浮窗 View Layout
+     * @param floatingActivity 悬浮窗辅助类接口
+     * @param view             {@link View}
+     */
+    void updateViewLayout(
+            IFloatingActivity floatingActivity,
+            View view
+    );
 
     /**
      * 是否处理悬浮 View 添加操作

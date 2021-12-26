@@ -22,7 +22,7 @@ import dev.utils.app.IntentUtils;
  *     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
  * </pre>
  */
-public final class FloatingWindowManagerAssist {
+public class FloatingWindowManagerAssist {
 
     // 日志 TAG
     private final       String TAG          = FloatingWindowManagerAssist.class.getSimpleName();

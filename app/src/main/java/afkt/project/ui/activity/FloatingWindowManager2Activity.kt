@@ -73,30 +73,20 @@ internal class Utils2 private constructor() : IFloatingOperate {
     }
 
     // 悬浮窗管理辅助类
-    private val mAssist = FloatingWindowManagerAssist2().apply {
+    private val mAssist = object : FloatingWindowManagerAssist2() {
+        override fun updateViewLayout(
+            floatingActivity: IFloatingActivity,
+            view: View
+        ) {
+            instance.updateViewLayout(floatingActivity, view)
+        }
+    }.apply {
         // 默认不添加悬浮处理
         isNeedsAdd = false
     }
 
-    private var x: Int = 0
-    private var y: Int = 0
-
     // 悬浮窗触摸辅助类实现
-    private val mTouchAssist: IFloatingTouch by lazy {
-        object : DevFloatingTouchIMPL() {
-            override fun updateViewLayout(
-                view: View?,
-                dx: Int,
-                dy: Int
-            ) {
-                x += dx
-                y += dy
-                ViewUtils.setMargin(
-                    view, x, y, 0, 0
-                )
-            }
-        }
-    }
+    private val mTouchAssist = DevFloatingTouchIMPL2()
 
     /**
      * 创建悬浮 View
@@ -117,7 +107,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
             FrameLayout.LayoutParams.WRAP_CONTENT,
             FrameLayout.LayoutParams.WRAP_CONTENT
         ).apply {
-            setMargins(x, y, 0, 0)
+            setMargins(mTouchAssist.x, mTouchAssist.y, 0, 0)
         }
     }
 
@@ -125,16 +115,23 @@ internal class Utils2 private constructor() : IFloatingOperate {
     // = IFloatingOperate =
     // ====================
 
-    override fun removeFloatingView(floatingActivity: IFloatingActivity?): Boolean {
+    override fun removeFloatingView(floatingActivity: IFloatingActivity): Boolean {
         return mAssist.removeFloatingView(floatingActivity)
     }
 
-    override fun addFloatingView(floatingActivity: IFloatingActivity?): Boolean {
+    override fun addFloatingView(floatingActivity: IFloatingActivity): Boolean {
         return mAssist.addFloatingView(floatingActivity)
     }
 
     override fun removeAllFloatingView() {
         mAssist.removeAllFloatingView()
+    }
+
+    override fun updateViewLayout(
+        floatingActivity: IFloatingActivity,
+        view: View
+    ) {
+        ViewUtils.setMargin(view, mTouchAssist.x, mTouchAssist.y, 0, 0)
     }
 
     override fun isNeedsAdd(): Boolean {

@@ -20,7 +20,7 @@ import dev.utils.app.ViewUtils;
  *     添加到 Activity content View 中
  * </pre>
  */
-public final class FloatingWindowManagerAssist2
+public class FloatingWindowManagerAssist2
         implements IFloatingOperate {
 
     // 日志 TAG
@@ -78,6 +78,9 @@ public final class FloatingWindowManagerAssist2
                     }
                 }
                 return true;
+            } else {
+                // 更新悬浮窗 View Layout
+                updateViewLayout(floatingActivity, view);
             }
         }
         return false;
@@ -95,6 +98,22 @@ public final class FloatingWindowManagerAssist2
             ViewUtils.removeSelfFromParent(iterator.next());
             iterator.remove();
         }
+    }
+
+    /**
+     * 更新悬浮窗 View Layout
+     * <pre>
+     *     如需更新 View 位置
+     *     则重写该方法, 搭配 {@link DevFloatingTouchIMPL2} 使用
+     * </pre>
+     * @param floatingActivity 悬浮窗辅助类接口
+     * @param view             {@link View}
+     */
+    @Override
+    public void updateViewLayout(
+            IFloatingActivity floatingActivity,
+            View view
+    ) {
     }
 
     // ===========
