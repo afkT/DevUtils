@@ -222,6 +222,9 @@ class ButtonValue(
         // RecyclerView MultiType Adapter
         const val BTN_RECYCLERVIEW_MULTITYPE_ADAPTER = MODULE_UI + 2700
 
+        // 购物车加入动画
+        const val BTN_SHOP_CARD_ADD_ANIM = MODULE_UI + 2800
+
         // ==========
         // = 其他功能 =
         // ==========
@@ -536,7 +539,7 @@ class ButtonValue(
         // ========================
 
         // DevAssist Engine
-        const val BTN_ENGINE = MODULE_DEV_ASSIST_ENGINE
+        private const val BTN_ENGINE = MODULE_DEV_ASSIST_ENGINE
 
         // Analytics Engine 数据统计 ( 埋点 )
         const val BTN_ENGINE_ANALYTICS = BTN_ENGINE + 100

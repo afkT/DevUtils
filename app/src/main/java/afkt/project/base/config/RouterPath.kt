@@ -6,6 +6,8 @@ package afkt.project.base.config
  */
 object RouterPath {
 
+    const val EMPTY = ""
+
     const val ModuleActivity_PATH = "/activity/ModuleActivity"
 
     const val ButtonItemActivity_PATH = "/activity/ButtonItemActivity"
@@ -149,4 +151,7 @@ object RouterPath {
     const val FlipCardActivity_PATH = "/activity/FlipCardActivity"
 
     const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
+
+    const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
+
 }
