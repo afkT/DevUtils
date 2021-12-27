@@ -1,10 +1,10 @@
 package dev.utils.app.assist.floating;
 
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
 
-import dev.utils.app.ScreenUtils;
 import dev.utils.app.ViewUtils;
 
 /**
@@ -15,10 +15,11 @@ public class DevFloatingTouchIMPL2
         implements IFloatingTouch {
 
     public DevFloatingTouchIMPL2() {
+        this(new DevFloatingEdgeIMPL());
     }
 
-    public DevFloatingTouchIMPL2(boolean edgeCheck) {
-        this.mEdgeCheck = edgeCheck;
+    public DevFloatingTouchIMPL2(final IFloatingEdge floatingEdge) {
+        this.mFloatingEdge = floatingEdge;
     }
 
     // ==========
@@ -66,21 +67,12 @@ public class DevFloatingTouchIMPL2
         mX += dx;
         mY += dy;
 
-        if (mX <= 0) mX = 0;
-        if (mY <= 0) mY = 0;
-
-        // 是否边缘检测
-        if (mEdgeCheck) {
-            int viewWidth    = ViewUtils.getWidth(view);
-            int viewHeight   = ViewUtils.getHeight(view);
-            int screenWidth  = ScreenUtils.getScreenWidth();
-            int screenHeight = ScreenUtils.getScreenHeight();
-
-            int diffWidth  = screenWidth - viewWidth;
-            int diffHeight = screenHeight - viewHeight;
-
-            if (mX > diffWidth) mX = diffWidth;
-            if (viewHeight + mY > diffHeight) mY = diffHeight + viewHeight;
+        if (mFloatingEdge != null) {
+            Point edgePoint = mFloatingEdge.calculateEdge(view, mX, mY);
+            if (edgePoint != null) {
+                mX = edgePoint.x;
+                mY = edgePoint.y;
+            }
         }
         // 设置边距
         ViewUtils.setMargin(view, mX, mY, 0, 0);
@@ -90,24 +82,42 @@ public class DevFloatingTouchIMPL2
     // = get/set =
     // ===========
 
-    // 当前 X 轴位置
+    // 当前 X 轴坐标
     private int mX = 0;
-    // 当前 Y 轴位置
+    // 当前 Y 轴坐标
     private int mY = 0;
 
+    /**
+     * 获取 X 轴坐标
+     * @return X 轴坐标
+     */
     public int getX() {
         return mX;
     }
 
+    /**
+     * 设置 X 轴坐标
+     * @param x X 轴坐标
+     * @return DevFloatingTouchIMPL2
+     */
     public DevFloatingTouchIMPL2 setX(final int x) {
         this.mX = x;
         return this;
     }
 
+    /**
+     * 获取 Y 轴坐标
+     * @return Y 轴坐标
+     */
     public int getY() {
         return mY;
     }
 
+    /**
+     * 设置 Y 轴坐标
+     * @param y Y 轴坐标
+     * @return DevFloatingTouchIMPL2
+     */
     public DevFloatingTouchIMPL2 setY(final int y) {
         this.mY = y;
         return this;
@@ -115,15 +125,24 @@ public class DevFloatingTouchIMPL2
 
     // =
 
-    // 是否边缘检测
-    private boolean mEdgeCheck = true;
+    // 悬浮窗边缘检测接口
+    private IFloatingEdge mFloatingEdge;
 
-    public boolean hasEdgeCheck() {
-        return mEdgeCheck;
+    /**
+     * 获取悬浮窗边缘检测接口实现
+     * @return IFloatingEdge
+     */
+    public IFloatingEdge getFloatingEdge() {
+        return mFloatingEdge;
     }
 
-    public DevFloatingTouchIMPL2 setEdgeCheck(final boolean edgeCheck) {
-        this.mEdgeCheck = edgeCheck;
+    /**
+     * 设置悬浮窗边缘检测接口实现
+     * @param floatingEdge 悬浮窗边缘检测接口
+     * @return DevFloatingTouchIMPL2
+     */
+    public DevFloatingTouchIMPL2 setFloatingEdge(final IFloatingEdge floatingEdge) {
+        this.mFloatingEdge = floatingEdge;
         return this;
     }
 }
