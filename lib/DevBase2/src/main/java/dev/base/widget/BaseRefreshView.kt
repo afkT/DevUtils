@@ -140,7 +140,7 @@ class BaseRefreshView : LinearLayout {
     }
 
     fun <T : RecyclerView.Adapter<*>> getAdapter(): T? {
-        return mAssist.getAdapter<T>()
+        return mAssist.getAdapter()
     }
 
     fun setAdapter(adapter: RecyclerView.Adapter<*>?): BaseRefreshView {
