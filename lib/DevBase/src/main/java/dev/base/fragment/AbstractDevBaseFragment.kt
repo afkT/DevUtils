@@ -26,7 +26,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
     // ==========
 
     @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
-    protected var TAG = AbstractDevBaseFragment::class.java.simpleName
+    protected var TAG: String = AbstractDevBaseFragment::class.java.simpleName
 
     @JvmField // Content View
     protected var mContentView: View? = null

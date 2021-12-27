@@ -55,10 +55,10 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         adapter = MultiSelectAdapter(lists)
             .setSelectListener(object : OnSelectListener {
                 override fun onClickSelect(
-                    pos: Int,
+                    position: Int,
                     now: Boolean
                 ) {
-                    val item = adapter.getDataItem(pos)
+                    val item = adapter.getDataItem(position)
                     DevEngine.getLog()
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
@@ -71,22 +71,22 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     // =============
 
     // 编辑按钮
-    var editView: BaseTextView? = null
+    private var editView: BaseTextView? = null
 
     // 取消编辑按钮
-    var cancelView: BaseTextView? = null
+    private var cancelView: BaseTextView? = null
 
     // 确定按钮
-    var confirmView: BaseTextView? = null
+    private var confirmView: BaseTextView? = null
 
     // 全选按钮
-    var allSelectView: BaseTextView? = null
+    private var allSelectView: BaseTextView? = null
 
     // 非全选按钮
-    var unAllSelectView: BaseTextView? = null
+    private var unAllSelectView: BaseTextView? = null
 
     // 反选按钮
-    var inverseSelectView: BaseTextView? = null
+    private var inverseSelectView: BaseTextView? = null
 
     /**
      * 增加 Toolbar 按钮

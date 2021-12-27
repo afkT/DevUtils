@@ -115,7 +115,7 @@ object ButtonList {
      * 获取 Framework Module Button Value 集合
      * @return [List]
      */
-    val moduleFrameworkButtonValues: List<ButtonValue>
+    private val moduleFrameworkButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
@@ -1280,7 +1280,7 @@ object ButtonList {
      * 获取 DevWidget Module Button Value 集合
      * @return [List]
      */
-    val moduleDevWidgetButtonValues: List<ButtonValue>
+    private val moduleDevWidgetButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
@@ -1367,7 +1367,7 @@ object ButtonList {
      * 获取 ViewAssist Button Value 集合
      * @return [List]
      */
-    val viewAssistButtonValues: List<ButtonValue>
+    private  val viewAssistButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
