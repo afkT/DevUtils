@@ -12,4 +12,5 @@
    - DemoKtx                               | 临时测试代码、库调用调试 Demo
    - GTPushKtx                             | 个推推送 ( 逻辑 ) 处理 ( 含设备管理 )
    - JPushKtx                              | 极光推送 ( 逻辑 ) 处理 ( 含设备管理 )
+   - UMShareKtx                            | 友盟分享 ( 逻辑 ) 处理
 ```
