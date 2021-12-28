@@ -201,45 +201,61 @@ public final class DevFinal {
     @Deprecated
     public static final class TIME_DEPRECATED {
 
-        public static final String yy   = "yy";
-        public static final String yyyy = "yyyy";
-        public static final String MM   = "MM";
-        public static final String dd   = "dd";
-        public static final String HH   = "HH";
-        public static final String mm   = "mm";
-        public static final String ss   = "ss";
+        // 一分钟 60 秒
+        public static final int  MINUTE_S = TIME.MINUTE_S;
+        // 一小时 60 * 60 秒
+        public static final int  HOUR_S   = TIME.HOUR_S;
+        // 一天 24 * 60 * 60 秒
+        public static final int  DAY_S    = TIME.DAY_S;
+        // 秒与毫秒的倍数
+        public static final long SECOND   = TIME.SECOND_MS;
+        // 分与毫秒的倍数
+        public static final long MINUTE   = TIME.MINUTE_MS;
+        // 时与毫秒的倍数
+        public static final long HOUR     = TIME.HOUR_MS;
+        // 天与毫秒的倍数
+        public static final long DAY      = TIME.DAY_MS;
+        // 周与毫秒的倍数
+        public static final long WEEK     = TIME.WEEK_MS;
+        // 月与毫秒的倍数
+        public static final long MONTH    = TIME.MONTH_MS;
+        // 年与毫秒的倍数
+        public static final long YEAR     = TIME.YEAR_MS;
 
-        public static final String yyMMdd    = "yy-MM-dd";
-        public static final String yyMMdd2   = "yyMMdd";
-        public static final String yyyyMMdd  = "yyyy-MM-dd";
-        public static final String yyyyMMdd2 = "yyyyMMdd";
-        public static final String yyyyMMdd3 = "yyyy年MM月dd日";
-        public static final String yyyyMMdd4 = "yyyy_MM_dd";
-        public static final String yyyyMMdd5 = "yyyy.MM.dd";
+        public static final String yyyy      = TIME.yyyy;
+        public static final String yyMMdd    = TIME.yyMMdd_HYPHEN;
+        public static final String yyMMdd2   = TIME.yyMMdd;
+        public static final String yyyyMMdd  = TIME.yyyyMMdd_HYPHEN;
+        public static final String yyyyMMdd2 = TIME.yyyyMMdd;
+        public static final String yyyyMMdd3 = TIME.ZH_yyyyMMdd;
+        public static final String yyyyMMdd4 = TIME.yyyyMMdd_UNDERSCORE;
+        public static final String yyyyMMdd5 = TIME.yyyyMMdd_POINT;
 
-        public static final String yyyyMMddHHmm  = "yyyy-MM-dd HH:mm";
+        public static final String yyyyMMddHHmm  = TIME.yyyyMMddHHmm_HYPHEN;
         public static final String yyyyMMddHHmm2 = "yyyy年M月d日 HH:mm";
-        public static final String yyyyMMddHHmm3 = "yyyy.MM.dd HH:mm";
+        public static final String yyyyMMddHHmm3 = TIME.yyyyMMddHHmm_POINT;
 
-        public static final String yyyyMMddHHmmss  = "yyyy-MM-dd HH:mm:ss";
+        public static final String yyyyMMddHHmmss  = TIME.yyyyMMddHHmmss_HYPHEN;
         public static final String yyyyMMddHHmmss2 = "yyyy年M月d日 HH:mm:ss";
         public static final String yyyyMMddHHmmss3 = "yyyyMMdd_HHmmss";
         public static final String yyyyMMddHHmmss4 = "yyyyMMdd.HHmmss";
 
-        public static final String MMdd  = "MM-dd";
-        public static final String MMdd2 = "MM月dd日";
-        public static final String MMdd3 = "MMdd";
-        public static final String MMdd4 = "Md";
-        public static final String MMdd5 = "M月d日";
-
-        public static final String HHmm    = "HH:mm";
-        public static final String HHmm2   = "HHmm";
-        public static final String HHmmss  = "HH:mm:ss";
-        public static final String HHmmss2 = "HHmmss";
-
+        public static final String MMdd           = TIME.MMdd_HYPHEN;
+        public static final String MMdd2          = TIME.ZH_MMdd;
+        public static final String MMdd3          = TIME.MMdd;
+        public static final String yy             = TIME.yy;
+        public static final String MM             = TIME.MM;
+        public static final String dd             = TIME.dd;
+        public static final String hh             = "hh";
+        public static final String HH             = TIME.HH;
+        public static final String mm             = TIME.mm;
+        public static final String HHmm           = TIME.HHmm_COLON;
+        public static final String HHmm2          = TIME.HHmm;
+        public static final String HHmmss         = TIME.HHmmss_COLON;
+        public static final String HHmmss2        = TIME.HHmmss;
         public static final String hhmmMMDDyyyy   = "hh:mm M月d日 yyyy";
         public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
-        public static final String mmddHHmmyyyyss = "MMddHHmmyyyy.ss";
+        public static final String mmddHHmmyyyyss = TIME.SPECIAL_mmddHHmmyyyyss;
     }
 
     /**
