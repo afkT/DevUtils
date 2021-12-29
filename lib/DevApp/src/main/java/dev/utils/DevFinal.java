@@ -264,7 +264,6 @@ public final class DevFinal {
      */
     public static final class STR {
 
-        public static final String ABOUT        = "about";
         public static final String ACCESS       = "access";
         public static final String ACCOUNT      = "account";
         public static final String ADDRESS      = "address";
@@ -286,12 +285,13 @@ public final class DevFinal {
         public static final String CONTENT      = "content";
         public static final String CYCLE        = "cycle";
         public static final String DATA         = "data";
+        public static final String DATE         = "date";
+        public static final String DEFAULT      = "default";
         public static final String DELAY        = "delay";
         public static final String DENIED       = "denied";
         public static final String DEVICE       = "device";
         public static final String DIALOG       = "dialog";
         public static final String DISCONNECT   = "disconnect";
-        public static final String DATE      = "date";
         public static final String DISK         = "disk";
         public static final String DOWNLOAD     = "download";
         public static final String DURATION     = "duration";
@@ -340,7 +340,6 @@ public final class DevFinal {
         public static final String LAYOUT       = "layout";
         public static final String LEFT         = "left";
         public static final String LEVEL        = "level";
-        public static final String DEFAULT     = "default";
         public static final String LIB          = "lib";
         public static final String LIFECYCLE    = "lifecycle";
         public static final String LIMIT        = "limit";
@@ -370,6 +369,7 @@ public final class DevFinal {
         public static final String NAME         = "name";
         public static final String NONE         = "none";
         public static final String NUMBER       = "number";
+        public static final String OBJECT       = "object";
         public static final String OPERATE      = "operate";
         public static final String OPTIONS      = "options";
         public static final String OTHER        = "other";
@@ -456,6 +456,7 @@ public final class DevFinal {
         public static final String TRANSFORM    = "transform";
         public static final String TRY          = "try";
         public static final String TXT          = "txt";
+        public static final String TYPE         = "type";
         public static final String UN_BINDER    = "un_binder";
         public static final String UNCONNECT    = "unconnect";
         public static final String UNIQUE       = "unique";
@@ -487,8 +488,6 @@ public final class DevFinal {
         public static final String X            = "x";
         public static final String XML          = "xml";
         public static final String Y            = "y";
-        public static final String TYPE         = "type";
-        public static final String OBJECT       = "object";
 
         public static final String DAY          = "day";
         public static final String HOUR         = "hour";
