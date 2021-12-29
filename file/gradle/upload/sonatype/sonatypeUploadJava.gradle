@@ -34,6 +34,13 @@ def ossrhPassword = properties.getProperty("ossrhPassword")
 
 def javadocName = properties.getProperty("javadoc.name")
 
+// 适配 macOS 非使用绝对路径
+if (!new File(signingSecretKeyRingFile).exists()) {
+    signingSecretKeyRingFile = new File(
+            rootDir, signingSecretKeyRingFile
+    ).getAbsolutePath()
+}
+
 ext["signing.keyId"] = signingKeyId
 ext["signing.password"] = signingPassword
 ext["signing.secretKeyRingFile"] = signingSecretKeyRingFile
