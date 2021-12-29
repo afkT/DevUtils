@@ -639,6 +639,7 @@ public final class DevFinal {
         public static final String DATA    = "data";
         public static final String FILE    = "file";
         public static final String FOLD    = "fold";
+        public static final String IGNORE  = "ignore";
         public static final String INPUT   = "input";
         public static final String KEY     = "key";
         public static final String KEYWORD = "keyword";
