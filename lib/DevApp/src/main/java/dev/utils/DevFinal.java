@@ -514,6 +514,7 @@ public final class DevFinal {
 
         public static final String DEBUG        = "debug";
         public static final String RELEASE      = "release";
+        public static final String UPGRADE      = "upgrade";
         public static final String VERSION      = "version";
         public static final String VERSION_CODE = "version_code";
         public static final String VERSION_NAME = "version_name";
