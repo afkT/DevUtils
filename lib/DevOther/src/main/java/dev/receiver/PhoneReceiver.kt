@@ -31,7 +31,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
         // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
         // 通话号码
-        var number: String?
+        val number: String?
         // 判断类型
         when (action) {
             // 拨出电话意图

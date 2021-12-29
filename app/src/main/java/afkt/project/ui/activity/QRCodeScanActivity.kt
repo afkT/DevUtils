@@ -127,7 +127,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             }
             R.id.vid_ass_image_igview -> {
                 // 初始化图片配置
-                var config = MediaConfig()
+                val config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)
                     .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)

@@ -345,7 +345,7 @@ class DecodeHandler(
             } else {
                 try {
                     // 获取裁减识别区域
-                    var rect = mDecodeConfig.getCropRect() as Rect
+                    val rect = mDecodeConfig.getCropRect() as Rect
                     PlanarYUVLuminanceSource(
                         data, width, height,
                         rect.left, rect.top, rect.width(), rect.height(), false

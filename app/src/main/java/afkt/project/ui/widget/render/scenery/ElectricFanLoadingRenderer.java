@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -128,6 +129,7 @@ public class ElectricFanLoadingRenderer
         addRenderListener(mAnimatorListener);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void initialize(Context context) {
         mMode = MODE_NORMAL;
 

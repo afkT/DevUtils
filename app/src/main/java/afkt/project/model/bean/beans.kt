@@ -37,7 +37,7 @@ open class AdapterBean(
          */
         private fun newAdapterBean(position: Int): AdapterBean {
             val number = RandomUtils.getRandom(10, 100) + (10 + position / 3) * 3
-            var content = "${position + 1}." + ChineseUtils.randomWord(
+            val content = "${position + 1}." + ChineseUtils.randomWord(
                 RandomUtils.getRandom(number)
             )
             return AdapterBean(

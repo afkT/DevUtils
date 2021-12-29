@@ -66,8 +66,8 @@ class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
     private fun getBitmap(): Bitmap {
         var bitmap = wallpaper?.get()
         if (bitmap != null) return bitmap
-        var rawId = ResourceUtils.getRawId("wallpaper_${position}")
-        var stream = ResourceUtils.openRawResource(rawId)
+        val rawId = ResourceUtils.getRawId("wallpaper_${position}")
+        val stream = ResourceUtils.openRawResource(rawId)
         bitmap = ImageUtils.decodeStream(stream)
         wallpaper = WeakReference<Bitmap>(bitmap)
         return bitmap

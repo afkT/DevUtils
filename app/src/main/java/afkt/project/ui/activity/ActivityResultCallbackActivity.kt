@@ -28,7 +28,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
             AppUtils.startActivityForResult(object : ActivityUtils.ResultCallback {
                 override fun onStartActivityForResult(activity: Activity): Boolean {
                     // 初始化图片配置
-                    var config = MediaConfig()
+                    val config = MediaConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false)
                         .setMimeType(MediaConfig.MimeType.ofImage())
                         .setCamera(true).setGif(false)

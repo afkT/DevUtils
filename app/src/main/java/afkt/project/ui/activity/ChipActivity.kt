@@ -58,11 +58,11 @@ class ChipActivity : BaseActivity<ActivityChipBinding>() {
             val randomText =
                 i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
 
-            var chip = ViewUtils.inflate(this, R.layout.inflate_chip) as? Chip
+            val chip = ViewUtils.inflate(this, R.layout.inflate_chip) as? Chip
             chip?.run {
                 // 随机颜色
-                var pressed = ColorUtils.getRandomColorString()
-                var normal = ColorUtils.getRandomColorString()
+                val pressed = ColorUtils.getRandomColorString()
+                val normal = ColorUtils.getRandomColorString()
 
                 chip.text = randomText
                 chip.chipBackgroundColor = StateListUtils.createColorStateList(pressed, normal)

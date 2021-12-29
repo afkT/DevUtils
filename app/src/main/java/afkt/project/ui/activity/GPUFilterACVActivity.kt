@@ -91,7 +91,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         super.initListener()
         binding.vidAgfSelectBtn.setOnClickListener {
             // 初始化图片配置
-            var config = MediaConfig()
+            val config = MediaConfig()
                 .setCompress(false).setMaxSelectNum(1).setCrop(false)
                 .setMimeType(MediaConfig.MimeType.ofImage())
                 .setCamera(true).setGif(false)

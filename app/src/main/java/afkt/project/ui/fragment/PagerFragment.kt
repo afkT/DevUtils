@@ -42,8 +42,8 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
     }
 
     private fun getBitmap(): Bitmap {
-        var rawId = ResourceUtils.getRawId("wallpaper_${position}")
-        var stream = ResourceUtils.openRawResource(rawId)
+        val rawId = ResourceUtils.getRawId("wallpaper_${position}")
+        val stream = ResourceUtils.openRawResource(rawId)
         return ImageUtils.decodeStream(stream)
     }
 }
