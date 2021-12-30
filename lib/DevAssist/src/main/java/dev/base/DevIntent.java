@@ -1,5 +1,8 @@
 package dev.base;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,6 +21,12 @@ import dev.utils.common.StringUtils;
  *     可存储 key、value 为 null 数据 ( 提供方法清除 null 数据 )
  *     <p></p>
  *     根据 DevFinal.STR 自动生成通用方法
+ *     <p></p>
+ *     自动读取 Intent、Bundle 数据进行填充
+ *     仅支持 String、Boolean、Integer、Long、Double、Float 类型
+ *     并自动存储为 String
+ *     <p></p>
+ *     通过 {@link #insert()} 可将 Map 数据插入到 Intent、Bundle 中
  * </pre>
  */
 public final class DevIntent {
@@ -25,13 +34,122 @@ public final class DevIntent {
     // 存储数据 Map
     private final LinkedHashMap<String, String> mDataMaps = new LinkedHashMap<>();
 
+    private DevIntent() {
+    }
+
     // ==========
-    // = 内部方法 =
+    // = 静态方法 =
     // ==========
+
+    /**
+     * 创建 DevIntent
+     * @return {@link DevIntent}
+     */
+    public static DevIntent with() {
+        return new DevIntent();
+    }
+
+    /**
+     * 创建 DevIntent
+     * @param intent {@link Intent}
+     * @return {@link DevIntent}
+     */
+    public static DevIntent with(final Intent intent) {
+        return new DevIntent().reader(intent);
+    }
+
+    /**
+     * 创建 DevIntent
+     * @param bundle {@link Bundle}
+     * @return {@link DevIntent}
+     */
+    public static DevIntent with(final Bundle bundle) {
+        return new DevIntent().reader(bundle);
+    }
 
     // =============
     // = 对外公开方法 =
     // =============
+
+    /**
+     * 插入数据
+     * @param intent {@link Intent}
+     * @return {@link Intent}
+     */
+    public Intent insert(final Intent intent) {
+        if (intent != null) {
+            for (Map.Entry<String, String> entry : mDataMaps.entrySet()) {
+                intent.putExtra(entry.getKey(), entry.getValue());
+            }
+        }
+        return intent;
+    }
+
+    /**
+     * 插入数据
+     * @return {@link Bundle}
+     */
+    public Bundle insert() {
+        return insert(new Bundle());
+    }
+
+    /**
+     * 插入数据
+     * @param bundle {@link Bundle}
+     * @return {@link Bundle}
+     */
+    public Bundle insert(final Bundle bundle) {
+        if (bundle != null) {
+            for (Map.Entry<String, String> entry : mDataMaps.entrySet()) {
+                bundle.putString(entry.getKey(), entry.getValue());
+            }
+        }
+        return bundle;
+    }
+
+    // =
+
+    /**
+     * 读取数据并存储
+     * @param intent {@link Intent}
+     * @return {@link DevIntent}
+     */
+    public DevIntent reader(final Intent intent) {
+        if (intent != null) {
+            return reader(intent.getExtras());
+        }
+        return this;
+    }
+
+    /**
+     * 读取数据并存储
+     * @param bundle {@link Bundle}
+     * @return {@link DevIntent}
+     */
+    public DevIntent reader(final Bundle bundle) {
+        if (bundle != null) {
+            for (String key : bundle.keySet()) {
+                Object value = bundle.get(key);
+                if (value == null) {
+                    continue;
+                }
+                if (value instanceof String) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Boolean) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Integer) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Long) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Double) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Float) {
+                    put(key, String.valueOf(value));
+                }
+            }
+        }
+        return this;
+    }
 
     // =======
     // = 通用 =
@@ -52,6 +170,15 @@ public final class DevIntent {
      */
     public boolean containsKey(final String key) {
         return mDataMaps.containsKey(key);
+    }
+
+    /**
+     * 对应 Key 保存的 Value 是否为 null
+     * @param key 保存的 key
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isNullValue(final String key) {
+        return get(key) == null;
     }
 
     /**
