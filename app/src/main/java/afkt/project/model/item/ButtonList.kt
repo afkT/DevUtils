@@ -1367,7 +1367,7 @@ object ButtonList {
      * 获取 ViewAssist Button Value 集合
      * @return [List]
      */
-    private  val viewAssistButtonValues: List<ButtonValue>
+    private val viewAssistButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
