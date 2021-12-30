@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![MavenCentral](https://img.shields.io/badge/DevUtils-2.3.1-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+[![MavenCentral](https://img.shields.io/badge/DevUtils-2.3.2-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-200+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -95,38 +95,38 @@
 ```gradle
 
 // DevApp Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.3.1'
+implementation 'io.github.afkt:DevAppX:2.3.2'
 
 // DevAssist 快捷功能辅助类库
-implementation 'io.github.afkt:DevAssist:1.2.9'
+implementation 'io.github.afkt:DevAssist:1.3.0'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'io.github.afkt:DevBase:1.0.7'
+implementation 'io.github.afkt:DevBase:1.0.8'
 
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.0.5'
+implementation 'io.github.afkt:DevBaseMVVM:1.0.6'
 
 // DevEngine 第三方框架解耦、一键替换第三方库
-implementation 'io.github.afkt:DevEngine:1.0.1'
+implementation 'io.github.afkt:DevEngine:1.0.2'
 
 // DevHttpCapture OKHttp 抓包工具库
-implementation 'io.github.afkt:DevHttpCapture:1.0.5'
+implementation 'io.github.afkt:DevHttpCapture:1.0.6'
 
 // DevHttpCaptureCompiler OKHttp 抓包工具库 ( 可视化功能 )
-debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.5'
-releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.5'
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.6'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.6'
 
 // DevWidget 自定义 View UI 库
-implementation 'io.github.afkt:DevWidgetX:1.1.2'
+implementation 'io.github.afkt:DevWidgetX:1.1.3'
 
 // DevEnvironment Android 环境配置切换库
-implementation 'io.github.afkt:DevEnvironment:1.0.5'
-debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.5' // kaptDebug
-releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.5' // kaptRelease
-//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.5' // kapt
+implementation 'io.github.afkt:DevEnvironment:1.0.6'
+debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.6' // kaptDebug
+releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.6' // kaptRelease
+//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.6' // kapt
 
 // DevJava Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.3.8' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+implementation 'io.github.afkt:DevJava:1.3.9' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
 ## [APK Demo](https://github.com/afkT/Resources/tree/main/APK)

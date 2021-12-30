@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevHttpCapture:1.0.5'
+implementation 'io.github.afkt:DevHttpCapture:1.0.6'
 ```
 
 ## 目录结构

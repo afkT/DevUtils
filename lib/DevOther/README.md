@@ -531,13 +531,12 @@
 ## <span id="javadevenginemedia">**`java.dev.engine.media`**</span>
 
 
-* **Glide 加载引擎 ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
+* ** ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | loadImage | 加载图片 |
 | loadFolderImage | 加载相册目录 |
-| loadAsGifImage | 加载 gif |
 | loadGridImage | 加载图片列表图片 |
 | createGlideEngine | createGlideEngine |
 

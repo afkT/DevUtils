@@ -8,11 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import dev.utils.DevFinal;
 import dev.utils.common.StringUtils;
 
 /**
- * detail: DevFinal.STR Intent 传参读写辅助类
+ * detail: Intent 传参读写辅助类
  * @author Ttt
  * <pre>
  *     统一存储为 String 需要转换其他类型则可通过
@@ -20,8 +19,6 @@ import dev.utils.common.StringUtils;
  *     或者自行通过 JSON 映射实体类等
  *     <p></p>
  *     可存储 key、value 为 null 数据 ( 提供方法清除 null 数据 )
- *     <p></p>
- *     根据 DevFinal.STR 自动生成通用方法
  *     <p></p>
  *     自动读取 Intent、Bundle 数据进行填充
  *     仅支持 String、Integer、Long、Double、Float、Boolean 类型
