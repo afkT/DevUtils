@@ -1,20 +1,35 @@
 Change Log
 ==========
 
+Version 2.3.2 *(2021-12-30)*
+----------------------------
+
+* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+
+* `[Add]` IFloatingEdge、DevFloatingEdgeIMPL、DevFloatingTouchIMPL2 等悬浮窗边缘检测、触摸实现类
+
+* `[Add]` QuickHelper#setX、setY
+
+* `[Add]` ViewHelper#setX、setY
+
+* `[Add]` ActivityUtils#isDestroyed、isNotDestroyed、assertValidActivity
+
+* `[Add]` ViewUtils#setX、setY、getX、getY
+
 Version 2.3.1 *(2021-12-20)*
 ----------------------------
 
 * `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
 
-* `[Add]` 新增 FloatingWindowManagerAssist、FloatingWindowManagerAssist2 悬浮窗两种实现方案辅助类
+* `[Add]` FloatingWindowManagerAssist、FloatingWindowManagerAssist2 悬浮窗两种实现方案辅助类
 
-* `[Add]` 新增 ActivityLifecycleAssist Activity 生命周期监听辅助类
+* `[Add]` ActivityLifecycleAssist Activity 生命周期监听辅助类
   
-* `[Add]` 新增 WindowAssist Window 辅助类
+* `[Add]` WindowAssist Window 辅助类
   
-* `[Add]` 新增 WindowUtils Window 工具类
+* `[Add]` WindowUtils Window 工具类
 
-* `[Add]` 新增 DevHelper Dev 工具类链式调用类
+* `[Add]` DevHelper Dev 工具类链式调用类
 
 * `[Add]` FlagsValue 标记值计算存储 ( 位运算符 )
 
@@ -153,7 +168,7 @@ Version 2.1.6 *(2021-02-08)*
 
 * `[Add]` DevFinal 新增部分常量
 
-* `[Add]` 新增 DevicePolicyUtils 设备管理工具类
+* `[Add]` DevicePolicyUtils 设备管理工具类
 
 Version 2.1.5 *(2021-01-24)*
 ----------------------------
@@ -200,7 +215,7 @@ Version 2.1.1 *(2020-12-10)*
 
 * `[Add]` DevFinal 新增部分常量
 
-* `[Delete]` 删除 PermissionConstants 类
+* `[Delete]` PermissionConstants 类
 
 * `[Add]` ViewUtils#getChildAtLast、getId、setId
 
@@ -219,7 +234,7 @@ Version 2.0.8 *(2020-10-29)*
 
 * `[Feature]` 适配 Android 11 ( R )
 
-* `[Add]` 新增 VersionHelper ( Android 版本适配 Helper 类 ), 方便快捷使用并简化需多工具类组合使用的功能
+* `[Add]` VersionHelper ( Android 版本适配 Helper 类 ), 方便快捷使用并简化需多工具类组合使用的功能
 
 * `[Add]` MediaStoreUtils#createWriteRequest、createFavoriteRequest、createTrashRequest、createDeleteRequest
 
@@ -264,9 +279,9 @@ Version 2.0.6 *(2020-10-12)*
 Version 2.0.5 *(2020-09-30)*
 ----------------------------
 
-* `[Add]` 新增 ResourceAssist ( Resources 辅助类 )
+* `[Add]` ResourceAssist ( Resources 辅助类 )
 
-* `[Add]` 新增 ResourcePluginUtils ( 从 APK 中读取 Resources 可实现换肤等功能 )
+* `[Add]` ResourcePluginUtils ( 从 APK 中读取 Resources 可实现换肤等功能 )
 
 * `[Update]` 修改部分方法 obtain 为 get、newCache ( DevCache )
 
@@ -286,7 +301,7 @@ Version 2.0.3 *(2020-09-20)*
 
 * `[Fix]` PermissionUtils 内存泄露问题
 
-* `[Delete]` 删除 DevCommonUtils 中其他工具类快捷方法
+* `[Delete]` DevCommonUtils 中其他工具类快捷方法
 
 * `[Update]` 更新部分代码注释
 
@@ -493,7 +508,7 @@ Version 1.8.6 *(2019-12-25)*
 
 * `[Add]` DevCommonUtils、StringUtils#appendsIgnoreLast
 
-* `[Update]` 删除 DevCommonUtils、StringUtils 几个重载方法 appends
+* `[Update]` DevCommonUtils、StringUtils 几个重载方法 appends
 
 * `[Update]` 更新部分工具类、方法注释代码、代码间距等
 
