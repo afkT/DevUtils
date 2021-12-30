@@ -1,18 +1,23 @@
 Change Log
 ==========
 
+Version 1.3.0 *(2021-12-30)*
+----------------------------
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
 Version 1.2.9 *(2021-12-20)*
 ----------------------------
 
-* `[Add]` 新增 CommonState 通用状态类
+* `[Add]` CommonState 通用状态类
 
-* `[Add]` 新增 DevHistory 历史数据记录功类
+* `[Add]` DevHistory 历史数据记录功类
 
-* `[Add]` 新增 DevPage#getDefault 方法
+* `[Add]` DevPage#getDefault 方法
 
-* `[Add]` 新增 DevDataAdapter#initialize 方法
+* `[Add]` DevDataAdapter#initialize 方法
 
-* `[Add]` 新增 DevDataAdapter 相关类默认初始化处理
+* `[Add]` DevDataAdapter 相关类默认初始化处理
 
 Version 1.2.8 *(2021-11-26)*
 ----------------------------
@@ -38,18 +43,18 @@ Version 1.2.6 *(2021-09-20)*
 Version 1.2.5 *(2021-06-28)*
 ----------------------------
 
-* `[Update]` 更新 DevStorageEngine 支持 OnInsertListener 插入结果监听
+* `[Update]` DevStorageEngine 支持 OnInsertListener 插入结果监听
 
-* `[Add]` 新增 DevSource Bitmap、Drawable 字段
+* `[Add]` DevSource Bitmap、Drawable 字段
 
 Version 1.2.4 *(2021-06-21)*
 ----------------------------
 
-* `[Update]` 更新 DevStorageEngine 为 DevKeyValueEngine 用于键值对存储 Engine
+* `[Update]` DevStorageEngine 为 DevKeyValueEngine 用于键值对存储 Engine
 
-* `[Add]` 新增 DevSource mInputStream 字段
+* `[Add]` DevSource mInputStream 字段
 
-* `[Add]` 新增 DevStorageEngine 用于多媒体资源存储 ( 高低版本适配 ) Engine
+* `[Add]` DevStorageEngine 用于多媒体资源存储 ( 高低版本适配 ) Engine
 
 Version 1.2.2-3 *(2021-06-04)*
 ----------------------------
