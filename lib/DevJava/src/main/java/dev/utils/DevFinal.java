@@ -291,6 +291,7 @@ public final class DevFinal {
         public static final String MODULE   = "module";
         public static final String RESET    = "reset";
         public static final String ROUTER   = "router";
+        public static final String SHARE    = "share";
         public static final String STANDARD = "standard";
         public static final String TARGET   = "target";
         public static final String TO       = "to";
@@ -385,6 +386,7 @@ public final class DevFinal {
         public static final String IMAGES     = "images";
         public static final String MEDIA      = "media";
         public static final String MEDIA_TYPE = "media_type";
+        public static final String TEXT       = "text";
         public static final String VIDEO      = "video";
 
         public static final String AAC  = "aac";
@@ -394,7 +396,6 @@ public final class DevFinal {
         public static final String MP3  = "mp3";
         public static final String MP4  = "mp4";
         public static final String PNG  = "png";
-        public static final String TEXT = "text";
         public static final String TXT  = "txt";
         public static final String WEBP = "webp";
         public static final String XML  = "xml";
@@ -508,7 +509,6 @@ public final class DevFinal {
 
         public static final String GRADIENT = "gradient";
         public static final String SHAPE    = "shape";
-        public static final String SHARE    = "share";
         public static final String SOLID    = "solid";
         public static final String STROKE   = "stroke";
 
@@ -658,8 +658,10 @@ public final class DevFinal {
         public static final String CONTROL  = "control";
         public static final String CONVERT  = "convert";
         public static final String INSTANCE = "instance";
+        public static final String PADDING  = "padding";
         public static final String PARENT   = "parent";
         public static final String PARSER   = "parser";
+        public static final String MARGIN   = "margin";
 
         public static final String BUFFER    = "buffer";
         public static final String BUILD     = "build";
