@@ -24,7 +24,7 @@ import dev.utils.common.StringUtils;
  *     根据 DevFinal.STR 自动生成通用方法
  *     <p></p>
  *     自动读取 Intent、Bundle 数据进行填充
- *     仅支持 String、Boolean、Integer、Long、Double、Float 类型
+ *     仅支持 String、Integer、Long、Double、Float、Boolean 类型
  *     并自动存储为 String
  *     <p></p>
  *     通过 {@link #insert()} 可将 Map 数据插入到 Intent、Bundle 中
@@ -136,8 +136,6 @@ public final class DevIntent {
                 }
                 if (value instanceof String) {
                     put(key, String.valueOf(value));
-                } else if (value instanceof Boolean) {
-                    put(key, String.valueOf(value));
                 } else if (value instanceof Integer) {
                     put(key, String.valueOf(value));
                 } else if (value instanceof Long) {
@@ -145,6 +143,8 @@ public final class DevIntent {
                 } else if (value instanceof Double) {
                     put(key, String.valueOf(value));
                 } else if (value instanceof Float) {
+                    put(key, String.valueOf(value));
+                } else if (value instanceof Boolean) {
                     put(key, String.valueOf(value));
                 }
             }
@@ -174,21 +174,21 @@ public final class DevIntent {
     }
 
     /**
-     * 对应 Key 保存的 Value 是否为 null
-     * @param key 保存的 key
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isNullValue(final String key) {
-        return get(key) == null;
-    }
-
-    /**
      * 是否存在 Value
      * @param value 保存的 value
      * @return {@code true} yes, {@code false} no
      */
     public boolean containsValue(final String value) {
         return mDataMaps.containsValue(value);
+    }
+
+    /**
+     * 对应 Key 保存的 Value 是否为 null
+     * @param key 保存的 key
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isNullValue(final String key) {
+        return get(key) == null;
     }
 
     /**
