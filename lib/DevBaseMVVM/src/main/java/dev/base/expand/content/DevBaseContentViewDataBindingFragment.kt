@@ -27,7 +27,7 @@ abstract class DevBaseContentViewDataBindingFragment<VDB : ViewDataBinding> :
         super.onCreateView(inflater, container, savedInstanceState)
         if (isViewBinding()) {
             // ViewDataBinding 初始化处理
-            _binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
+            _binding = DataBindingUtil.bind(getBindingView()!!)!!
             // 支持 LiveData 绑定 xml 数据改变 UI 自动会更新
             _binding?.lifecycleOwner = this
         }

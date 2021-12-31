@@ -408,7 +408,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
                             if (StringUtils.isNotEmpty(extension)) {
                                 // fileName.extension ( 小写后缀 )
                                 val fileName =
-                                    params.getFileName() + "." + extension.toLowerCase()
+                                    params.getFileName() + "." + extension.lowercase()
                                 // SDCard/folder/fileName.extension
                                 return params.getExternalFile(fileName)
                             }

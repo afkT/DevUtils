@@ -35,7 +35,7 @@ class DevBaseViewModelAssist {
         modelClass: Class<T>
     ): T? {
         if (activity == null) return null
-        return ViewModelProvider(activity).get(modelClass)
+        return ViewModelProvider(activity)[modelClass]
     }
 
     /**
@@ -52,7 +52,7 @@ class DevBaseViewModelAssist {
         if (mActivityProvider == null) {
             mActivityProvider = ViewModelProvider(activity)
         }
-        return mActivityProvider!!.get(modelClass)
+        return mActivityProvider!![modelClass]
     }
 
     // =====================
@@ -70,7 +70,7 @@ class DevBaseViewModelAssist {
         modelClass: Class<T>
     ): T? {
         if (fragment == null) return null
-        return ViewModelProvider(fragment).get(modelClass)
+        return ViewModelProvider(fragment)[modelClass]
     }
 
     /**
@@ -87,7 +87,7 @@ class DevBaseViewModelAssist {
         if (mFragmentProvider == null) {
             mFragmentProvider = ViewModelProvider(fragment)
         }
-        return mFragmentProvider!!.get(modelClass)
+        return mFragmentProvider!![modelClass]
     }
 
     // ========================

@@ -49,7 +49,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 val size = SizeUtils.dipConvertPx(200f)
                 // 创建二维码
                 DevEngine.getBarCode().encodeBarCode(
-                    BarCodeData.get(text, size).setIcon(selectBitmap)
+                    BarCodeData[text, size].setIcon(selectBitmap)
                 ) { success, bitmap, error ->
                     if (success) {
                         HandlerUtils.postRunnable {

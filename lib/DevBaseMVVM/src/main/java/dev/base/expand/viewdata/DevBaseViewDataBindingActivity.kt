@@ -20,7 +20,7 @@ abstract class DevBaseViewDataBindingActivity<VDB : ViewDataBinding> : DevBaseAc
         super.onCreate(savedInstanceState)
         if (isViewBinding()) {
             // ViewDataBinding 初始化处理
-            binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
+            binding = DataBindingUtil.bind(getBindingView()!!)!!
             // 支持 LiveData 绑定 xml 数据改变 UI 自动会更新
             binding.lifecycleOwner = this
         }

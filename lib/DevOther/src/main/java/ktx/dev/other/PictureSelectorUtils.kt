@@ -14,6 +14,7 @@ import dev.utils.common.StringUtils
 import ktx.dev.other.PictureSelectorUtils.MediaConfig.MimeType
 import java.dev.engine.media.GlideEngine
 import java.util.*
+import kotlin.math.max
 
 /**
  * detail: Android 平台下的图片选择器
@@ -672,7 +673,7 @@ object PictureSelectorUtils {
          * @return [MediaConfig]
          */
         fun setImageSpanCount(imageSpanCount: Int): MediaConfig {
-            this.mImageSpanCount = Math.max(imageSpanCount, 1)
+            this.mImageSpanCount = max(imageSpanCount, 1)
             return this
         }
 

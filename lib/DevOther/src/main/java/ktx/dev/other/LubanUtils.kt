@@ -120,7 +120,7 @@ object LubanUtils {
             .setTargetDir(config.targetDir)
             .filter { path ->
                 if (predicate != null) return@filter predicate.apply(path)
-                return@filter !(TextUtils.isEmpty(path) || path.toLowerCase().endsWith(".gif"))
+                return@filter !(TextUtils.isEmpty(path) || path.lowercase().endsWith(".gif"))
             }
             .setRenameListener(renameListener)
             .setCompressListener(object : top.zibin.luban.OnCompressListener {

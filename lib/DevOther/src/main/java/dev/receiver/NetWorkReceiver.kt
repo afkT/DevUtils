@@ -30,7 +30,7 @@ class NetWorkReceiver private constructor() : BroadcastReceiver() {
         // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
         // 网络连接状态改变时通知
-        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
+        if (ConnectivityManager.CONNECTIVITY_ACTION == action) {
             try {
                 // 设置连接类型
                 mConnectState = getConnectType()

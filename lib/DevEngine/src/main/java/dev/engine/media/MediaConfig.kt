@@ -1,5 +1,7 @@
 package dev.engine.media
 
+import kotlin.math.max
+
 /**
  * detail: Media Selector Config
  * @author Ttt
@@ -280,7 +282,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setImageSpanCount(imageSpanCount: Int): MediaConfig {
-        this.mImageSpanCount = Math.max(imageSpanCount, 1)
+        this.mImageSpanCount = max(imageSpanCount, 1)
         return this
     }
 

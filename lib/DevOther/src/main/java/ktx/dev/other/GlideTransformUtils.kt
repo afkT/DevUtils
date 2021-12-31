@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils
 import dev.utils.app.image.ImageFilterUtils
 import java.security.MessageDigest
+import kotlin.math.min
 
 /**
  * detail: Glide 图形处理工具类
@@ -54,7 +55,7 @@ class GlideTransformUtils private constructor() {
             outWidth: Int,
             outHeight: Int
         ): Bitmap {
-            val size = Math.min(toTransform.width, toTransform.height)
+            val size = min(toTransform.width, toTransform.height)
             val x = (toTransform.width - size) / 2
             val y = (toTransform.height - size) / 2
             val squared = Bitmap.createBitmap(toTransform, x, y, size, size)
