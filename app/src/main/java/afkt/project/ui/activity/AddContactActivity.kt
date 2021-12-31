@@ -5,6 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityAddContactBinding
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.DialogInterface
@@ -208,7 +209,7 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
      * @param name        姓名
      * @param phoneNumber 手机号
      */
-    fun addContact(
+    private fun addContact(
         name: String?,
         phoneNumber: String?
     ) {
@@ -248,7 +249,8 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
         }
     }
 
-    var handler: Handler = object : Handler() {
+    @SuppressLint("HandlerLeak")
+    private var handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             val value = index.getAndIncrement()

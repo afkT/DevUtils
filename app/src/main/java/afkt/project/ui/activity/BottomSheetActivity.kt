@@ -20,7 +20,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_bottom_sheet
 
-    lateinit var mBehavior: BottomSheetBehavior<LinearLayout>
+    private lateinit var mBehavior: BottomSheetBehavior<LinearLayout>
 
     override fun initValue() {
         super.initValue()

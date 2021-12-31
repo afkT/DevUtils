@@ -19,7 +19,7 @@ import dev.engine.DevEngine
  * @author Ttt
  */
 class BannerConcatAdapter(
-    val owner: LifecycleOwner,
+    private val owner: LifecycleOwner,
     private val bannerLists: List<BannerBean>
 ) : RecyclerView.Adapter<BannerConcatAdapter.ItemHolder>() {
 

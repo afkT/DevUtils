@@ -119,14 +119,14 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
         }
     }
 
-    var convertPx = 0f
-    var mText1Index = 3
-    var mText1Height = 12f
-    var mText2Index = 3
-    var mText2Height = 8f
-    var mIsLeft = true
-    var mIsTop = true
-    var mIsTriangle = false
+    private var convertPx = 0f
+    private var mText1Index = 3
+    private var mText1Height = 12f
+    private var mText2Index = 3
+    private var mText2Height = 8f
+    private var mIsLeft = true
+    private var mIsTop = true
+    private var mIsTriangle = false
 
     companion object {
         val TEXTS = arrayOf("滿減", "赠品", "满送", "包邮", "拼图", "新人", "砍价", "预售", "众筹")

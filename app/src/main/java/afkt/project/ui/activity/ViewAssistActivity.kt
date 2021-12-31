@@ -22,7 +22,7 @@ import dev.widget.assist.ViewAssist
 @Route(path = RouterPath.ViewAssistActivity_PATH)
 class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
 
-    lateinit var viewAssist: ViewAssist
+    private lateinit var viewAssist: ViewAssist
 
     override fun baseLayoutId(): Int = R.layout.activity_view_assist
 

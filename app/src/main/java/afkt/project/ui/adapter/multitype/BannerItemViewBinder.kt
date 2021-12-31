@@ -23,7 +23,7 @@ import dev.engine.DevEngine
  * @author Ttt
  */
 class BannerItemViewBinder(
-    val owner: LifecycleOwner
+    private val owner: LifecycleOwner
 ) : ItemViewBinder<BannerBeanItem, DevBaseViewBindingVH<AdapterConcatBannerBinding>>() {
 
     var context: Context? = null

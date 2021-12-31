@@ -24,7 +24,7 @@ import dev.utils.common.ThrowableUtils
 class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
 
     // 图片 Bitmap
-    var selectBitmap: Bitmap? = null
+    private var selectBitmap: Bitmap? = null
 
     override fun baseLayoutId(): Int = R.layout.activity_qrcode_create
 

@@ -30,7 +30,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
     lateinit var gpuFilterAdapter: GPUFilterAdapter
 
     // 图片 Bitmap
-    var selectBitmap: Bitmap? = null
+    private var selectBitmap: Bitmap? = null
 
     companion object {
         // 滤镜线程
