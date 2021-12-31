@@ -28,7 +28,7 @@ object ProjectUtils {
      * @return 圆角 [ImageConfig]
      */
     @JvmStatic
-    val roundConfig3: ImageConfig?
+    val roundConfig3: ImageConfig
         get() = roundConfig(3)
 
     /**
@@ -36,7 +36,7 @@ object ProjectUtils {
      * @return 圆角 [ImageConfig]
      */
     @JvmStatic
-    val roundConfig10: ImageConfig?
+    val roundConfig10: ImageConfig
         get() = roundConfig(10)
 
     /**
@@ -45,7 +45,7 @@ object ProjectUtils {
      * @return [ImageConfig]
      */
     @JvmStatic
-    fun roundConfig(roundDP: Int): ImageConfig? {
+    fun roundConfig(roundDP: Int): ImageConfig {
         var config = sConfigVariable.getVariableValue(roundDP)
         if (config != null) return config
         config = ImageConfig.create()

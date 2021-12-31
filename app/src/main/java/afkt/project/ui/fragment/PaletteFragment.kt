@@ -99,42 +99,42 @@ class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
             it.vibrantSwatch?.run {
                 QuickHelper.get(binding.vidFpTv1)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
             // 获取活跃明亮的颜色信息
             it.lightVibrantSwatch?.run {
                 QuickHelper.get(binding.vidFpTv2)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
             // 获取活跃深色的颜色信息
             it.darkVibrantSwatch?.run {
                 QuickHelper.get(binding.vidFpTv3)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
             // 获取柔和的颜色信息
             it.mutedSwatch?.run {
                 QuickHelper.get(binding.vidFpTv4)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
             // 获取柔和明亮的颜色信息
             it.lightMutedSwatch?.run {
                 QuickHelper.get(binding.vidFpTv5)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
             // 获取柔和深色的颜色信息
             it.darkMutedSwatch?.run {
                 QuickHelper.get(binding.vidFpTv6)
                     .setBackgroundColor(rgb)
-                    .setText(ColorUtils.intToRgbString(rgb).toUpperCase())
+                    .setText(ColorUtils.intToRgbString(rgb).uppercase())
                     .setTextColors(bodyTextColor)
             }
         }

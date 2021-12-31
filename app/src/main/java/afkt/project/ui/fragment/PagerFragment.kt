@@ -34,9 +34,10 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
         /**
          * 竖屏需要使用 [VerticalScrollView]
          */
+        val titleText = "${position}.${ChineseUtils.randomWord(5)}"
 
         binding.vidFpPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
-        binding.vidFpTitleTv.text = "${position}.${ChineseUtils.randomWord(5)}"
+        binding.vidFpTitleTv.text = titleText
         binding.vidFpContentTv.text = ChineseUtils.randomWord(400)
         binding.vidFpIgview.setImageBitmap(getBitmap())
     }

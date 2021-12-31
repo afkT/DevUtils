@@ -47,9 +47,12 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
 
         // 商品名
         holder.binding.vidAieNameTv.text = commodity.commodityName
-        // 商品价格
-        holder.binding.vidAiePriceTv.text =
+
+        val priceText =
             "￥${BigDecimalUtils.round(commodity.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
+        // 商品价格
+        holder.binding.vidAiePriceTv.text = priceText
+
         // 商品图片
         DevEngine.getImage()?.display(
             holder.binding.vidAiePicIgview,

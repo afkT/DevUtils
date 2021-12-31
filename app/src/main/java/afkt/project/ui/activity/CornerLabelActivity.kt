@@ -51,7 +51,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                 mIsLeft = !mIsLeft
                 layoutParams = labelView.layoutParams as FrameLayout.LayoutParams
                 layoutParams.gravity =
-                    (if (mIsLeft) Gravity.LEFT else Gravity.RIGHT) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
+                    (if (mIsLeft) Gravity.START else Gravity.END) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
             R.id.vid_btn_top -> {
@@ -63,7 +63,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                 mIsTop = !mIsTop
                 layoutParams = labelView.layoutParams as FrameLayout.LayoutParams
                 layoutParams.gravity =
-                    (if (mIsLeft) Gravity.LEFT else Gravity.RIGHT) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
+                    (if (mIsLeft) Gravity.START else Gravity.END) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
             R.id.vid_btn_triangle -> {

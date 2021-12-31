@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityProgressbarBinding
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -49,6 +50,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
         handler.sendEmptyMessageDelayed(0, 100)
     }
 
+    @SuppressLint("HandlerLeak")
     private val handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)

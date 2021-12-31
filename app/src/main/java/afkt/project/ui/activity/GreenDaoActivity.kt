@@ -20,6 +20,7 @@ import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import gen.greendao.NotePictureDao
 import java.util.*
+import kotlin.math.abs
 
 /**
  * detail: GreenDao 使用
@@ -227,7 +228,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                 offset = page * pageSize
                 limit = pageSize
             } else {
-                val diff = Math.abs(page * pageSize - size)
+                val diff = abs(page * pageSize - size)
                 offset = size
                 limit = pageSize * 2 - diff
             }

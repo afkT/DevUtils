@@ -161,7 +161,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
             ) {
                 ListenerUtils.setOnClicks(
                     { ToastTintUtils.normal("Custom Type") },
-                    view.findViewById<View>(R.id.vid_vac_cardview)
+                    view.findViewById(R.id.vid_vac_cardview)
                 )
             }
         }).showIng()

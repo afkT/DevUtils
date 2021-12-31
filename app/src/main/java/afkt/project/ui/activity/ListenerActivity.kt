@@ -7,6 +7,7 @@ import afkt.project.databinding.ActivityCommonTipsBinding
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
 import android.telephony.SmsMessage
@@ -390,6 +391,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
      * 屏幕旋转监听 ( 重力传感器 )
      * @param isBind 是否绑定
      */
+    @SuppressLint("HandlerLeak")
     private fun rotaListener(isBind: Boolean) {
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销屏幕旋转监听 ( 重力传感器 ) 成功")

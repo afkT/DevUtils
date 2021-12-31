@@ -335,7 +335,7 @@ class DecodeHandler(
         data: ByteArray?,
         width: Int,
         height: Int
-    ): PlanarYUVLuminanceSource? {
+    ): PlanarYUVLuminanceSource {
         DevEngine.getLog()?.dTag(TAG, "buildLuminanceSource 解析摄像头数据")
         // 判断是否裁减
         return if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {

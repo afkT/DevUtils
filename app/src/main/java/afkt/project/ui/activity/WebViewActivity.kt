@@ -33,7 +33,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
 
         // 长按监听事件
         binding.vidAwWebview.setOnLongClickListener(OnLongClickListener { view ->
-            ((view as WebView).hitTestResult)?.let { result ->
+            ((view as WebView).hitTestResult).let { result ->
                 when (result.type) {
                     HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra

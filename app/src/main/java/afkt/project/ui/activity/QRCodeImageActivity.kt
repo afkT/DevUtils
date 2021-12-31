@@ -78,7 +78,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
-            MainScope().launch() {
+            MainScope().launch {
                 // 获取图片地址
                 val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
 

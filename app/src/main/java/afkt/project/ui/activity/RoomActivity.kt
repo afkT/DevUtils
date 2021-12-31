@@ -21,6 +21,7 @@ import dev.utils.common.ChineseUtils
 import dev.utils.common.CollectionUtils
 import dev.utils.common.RandomUtils
 import java.util.*
+import kotlin.math.abs
 
 /**
  * detail: Room 使用
@@ -223,7 +224,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                 offset = page * pageSize
                 limit = pageSize
             } else {
-                val diff = Math.abs(page * pageSize - size)
+                val diff = abs(page * pageSize - size)
                 offset = size
                 limit = pageSize * 2 - diff
             }

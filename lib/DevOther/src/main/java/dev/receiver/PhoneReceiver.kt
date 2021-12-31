@@ -50,7 +50,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
                 // 通话状态
                 intent.getStringExtra("state")?.let { state ->
                     // 判断状态
-                    when (state.toUpperCase()) {
+                    when (state.uppercase()) {
                         RINGING -> { // 未接
                             mDialOut = false
                             // 接入电话铃响

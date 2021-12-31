@@ -40,6 +40,7 @@ class QuickWifiHotUtils(
     // 操作接口
     var operate: Operate? = null
 
+    @SuppressLint("HandlerLeak")
     private val hotHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
