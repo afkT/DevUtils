@@ -232,7 +232,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
                 if (!typeResult.isNone()) return typeResult
             }
             // 其他未知都放到 Download 文件夹下
-            return StorageType.DOWNLOAD;
+            return StorageType.DOWNLOAD
         }
         return type
     }
@@ -315,8 +315,8 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 //                if (type == StorageType.DOWNLOAD) {
 //                    // 低版本直接创建 SDCard/Download File
-//                    val file = getOutputFile(params, source, external, type);
-//                    return MediaStoreUtils.createUriByFile(file);
+//                    val file = getOutputFile(params, source, external, type)
+//                    return MediaStoreUtils.createUriByFile(file)
 //                }
                 // 目前属于 IMAGE、VIDEO、AUDIO、DOWNLOAD 低版本都通过 File 读写
                 // 如果需要 IMAGE、VIDEO、AUDIO 使用 MediaStore 则放开上面注释

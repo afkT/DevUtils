@@ -30,7 +30,7 @@ class FlipCardActivity : BaseActivity<ActivityFlipCardBinding>() {
 //        binding.vidAfcView1.setInOutAnimator(
 //            AnimatorInflater.loadAnimator(mContext, R.animator.dev_flip_card_in),
 //            AnimatorInflater.loadAnimator(mContext, R.animator.dev_flip_card_out)
-//        );
+//        )
 
 //        binding.vidAfcView1.adapter = FlipCardAdapter(
 //            mutableListOf(

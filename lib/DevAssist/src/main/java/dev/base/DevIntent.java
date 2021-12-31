@@ -27,7 +27,7 @@ import dev.utils.common.StringUtils;
  *     通过 {@link #insert()} 可将 Map 数据插入到 Intent、Bundle 中
  * </pre>
  */
-public final class DevIntent {
+public class DevIntent {
 
     // 存储数据 Map
     private final LinkedHashMap<String, String> mDataMaps = new LinkedHashMap<>();

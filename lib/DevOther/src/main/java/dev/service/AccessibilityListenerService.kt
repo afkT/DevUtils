@@ -9,7 +9,6 @@ import dev.utils.app.ServiceUtils
 /**
  * detail: 无障碍功能监听服务
  * @author Ttt
- * <pre>
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
  * 具体配合 [AccessibilityUtils] 使用
