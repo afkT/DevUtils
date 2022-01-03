@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.utils.app.ListViewUtils
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
@@ -34,7 +35,7 @@ class LinearSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.onCreate(savedInstanceState)
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(0, parent)
+        QuickHelper.get(parent).setPadding(0)
     }
 
     override fun initValue() {

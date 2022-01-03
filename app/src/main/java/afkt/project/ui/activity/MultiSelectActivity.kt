@@ -41,8 +41,8 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(0, parent)
-            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
+        QuickHelper.get(parent).setPadding(0)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
     }
 
     override fun initValue() {

@@ -8,6 +8,7 @@ import afkt.project.ui.adapter.RecyclerLoadingAdapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.RandomUtils
 import java.util.*
@@ -25,7 +26,8 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
         super.initValue()
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(0, parent)
+        QuickHelper.get(parent).setPadding(0)
+
         val url = "https://picsum.photos/id/%s/1080/1920"
         val lists: MutableList<String> = ArrayList()
         for (i in 0..19) {

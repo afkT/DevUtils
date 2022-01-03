@@ -4,6 +4,8 @@ import afkt.project.ui.activity.Utils2
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import dev.base.expand.mvp.MVP
 import dev.utils.app.assist.floating.IFloatingActivity
@@ -23,6 +25,20 @@ abstract class BaseActivity<VB : ViewBinding> :
     // =====================
     // = IFloatingActivity =
     // =====================
+
+    // ========
+    // = 方式一 =
+    // ========
+
+    val floatingLifecycle: FloatingLifecycle by lazy {
+        FloatingLifecycle(this).apply {
+            lifecycle.addObserver(this)
+        }
+    }
+
+    // ========
+    // = 方式二 =
+    // ========
 
     override fun getAttachActivity(): Activity {
         return this
@@ -50,6 +66,50 @@ abstract class BaseActivity<VB : ViewBinding> :
 
     override fun onDestroy() {
         super.onDestroy()
+        // 移除悬浮窗 View
+        Utils2.instance.removeFloatingView(this)
+    }
+}
+
+// ========
+// = 方式一 =
+// ========
+
+class FloatingLifecycle(val activity: Activity) : DefaultLifecycleObserver,
+    IFloatingActivity {
+
+    // =====================
+    // = IFloatingActivity =
+    // =====================
+
+    override fun getAttachActivity(): Activity {
+        return activity
+    }
+
+    override fun getMapFloatingKey(): String {
+        return this.toString()
+    }
+
+    override fun getMapFloatingView(): View {
+        return Utils2.instance.createFloatingView(this)
+    }
+
+    override fun getMapFloatingViewLayoutParams(): ViewGroup.LayoutParams {
+        return Utils2.instance.createLayoutParams(this)
+    }
+
+    // ============================
+    // = DefaultLifecycleObserver =
+    // ============================
+
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
+        // 添加悬浮窗 View
+        Utils2.instance.addFloatingView(this)
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        super.onDestroy(owner)
         // 移除悬浮窗 View
         Utils2.instance.removeFloatingView(this)
     }

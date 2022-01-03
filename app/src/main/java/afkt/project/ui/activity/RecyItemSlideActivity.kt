@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ResourceUtils
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
@@ -32,9 +33,11 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val parent = binding.vidBvrRecy.parent as? ViewGroup
-        ViewHelper.get().setPadding(0, parent)
-            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
+        // 根布局处理
+        QuickHelper.get(parent).setPadding(0)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
     }
 
     override fun initValue() {

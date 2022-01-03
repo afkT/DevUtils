@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
@@ -29,7 +30,7 @@ class RecyConcatAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.onCreate(savedInstanceState)
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(0, parent)
+        QuickHelper.get(parent).setPadding(0)
 
         convertAdapter()
     }

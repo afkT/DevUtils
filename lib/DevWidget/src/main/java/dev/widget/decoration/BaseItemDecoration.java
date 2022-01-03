@@ -18,7 +18,7 @@ public class BaseItemDecoration
     // 分割线画笔
     protected final Paint   mLinePaint;
     // 单条数据是否绘制分割线
-    protected       boolean mSingleLineDraw = false;
+    protected       boolean mSingleLineDraw = true;
     // 分割线距左边距 ( 横向为上边距 )
     protected       float   mLineLeft       = 0.0f;
     // 分割线距右边距 ( 横向为下边距 )

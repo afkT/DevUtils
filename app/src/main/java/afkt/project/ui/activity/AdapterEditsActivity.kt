@@ -55,8 +55,9 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         toolbar?.addView(view)
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
-        ViewHelper.get().setPadding(0, parent)
-            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33), parent)
+        // 根布局处理
+        QuickHelper.get(parent).setPadding(0)
+            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
     }
 
     override fun initValue() {

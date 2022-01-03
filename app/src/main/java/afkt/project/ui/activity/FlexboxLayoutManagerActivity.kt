@@ -38,9 +38,10 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         super.onCreate(savedInstanceState)
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
-        ViewHelper.get().setPadding(
+        // 根布局处理
+        QuickHelper.get(parent).setPadding(
             0, 0, SizeUtils.dipConvertPx(5F),
-            SizeUtils.dipConvertPx(5F), parent
+            SizeUtils.dipConvertPx(5F)
         )
 
         val view = QuickHelper.get(BaseTextView(this))

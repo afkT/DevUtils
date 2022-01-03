@@ -18,6 +18,7 @@ import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
@@ -42,7 +43,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(0, parent)
+        QuickHelper.get(parent).setPadding(0)
 
         // ====================
         // = 使用自定义悬浮 View =
