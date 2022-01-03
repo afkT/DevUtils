@@ -1,8 +1,6 @@
 package dev;
 
-import android.content.Context;
-
-import dev.capture.UrlFunctionGet;
+import dev.http.BuildConfig;
 
 /**
  * detail: OKHttp 抓包工具库
@@ -32,62 +30,47 @@ import dev.capture.UrlFunctionGet;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
  * </pre>
  */
-public final class DevHttpCaptureCompiler {
+public final class DevHttpManager {
 
-    private DevHttpCaptureCompiler() {
+    private DevHttpManager() {
     }
 
-    // =============
-    // = 对外提供方法 =
-    // =============
+    // 日志 TAG
+    public static final String TAG = DevHttpManager.class.getSimpleName();
+
+    // ============
+    // = 工具类版本 =
+    // ============
 
     /**
-     * 结束所有 Activity
+     * 获取 DevHttpManager 版本号
+     * @return DevHttpManager versionCode
      */
-    public static void finishAllActivity() {
-    }
-
-    // ==========
-    // = 跳转方法 =
-    // ==========
-
-    /**
-     * 跳转抓包数据可视化 Activity
-     * @param context {@link Context}
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean start(final Context context) {
-        return false;
+    public static int getDevHttpManagerVersionCode() {
+        return BuildConfig.DevHttpManager_VersionCode;
     }
 
     /**
-     * 跳转抓包数据可视化 Activity
-     * @param context    {@link Context}
-     * @param moduleName 模块名 ( 要求唯一性 )
-     * @return {@code true} success, {@code false} fail
+     * 获取 DevHttpManager 版本
+     * @return DevHttpManager versionName
      */
-    public static boolean start(
-            final Context context,
-            final String moduleName
-    ) {
-        return false;
+    public static String getDevHttpManagerVersion() {
+        return BuildConfig.DevHttpManager_Version;
     }
 
     /**
-     * 添加接口所属功能注释
-     * @param moduleName 模块名 ( 要求唯一性 )
-     * @param function   接口所属功能注释获取
+     * 获取 DevApp 版本号
+     * @return DevApp versionCode
      */
-    public static void putUrlFunction(
-            final String moduleName,
-            final UrlFunctionGet function
-    ) {
+    public static int getDevAppVersionCode() {
+        return BuildConfig.DevApp_VersionCode;
     }
 
     /**
-     * 移除接口所属功能注释
-     * @param moduleName 模块名 ( 要求唯一性 )
+     * 获取 DevApp 版本
+     * @return DevApp versionName
      */
-    public static void removeUrlFunction(final String moduleName) {
+    public static String getDevAppVersion() {
+        return BuildConfig.DevApp_Version;
     }
 }

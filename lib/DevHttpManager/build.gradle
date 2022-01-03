@@ -1,0 +1,31 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_http_manager_versionCode
+    versionName versions.dev_http_manager_versionName
+    // DevHttpManager Module Version
+    buildConfigField "int", "DevHttpManager_VersionCode", "${versions.dev_http_manager_versionCode}"
+    buildConfigField "String", "DevHttpManager_Version", "\"${versions.dev_http_manager_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+}
+
+dependencies {
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+    api deps.lib.okhttp3
+    api deps.lib.okhttp3_logging
+    // Gson https://github.com/google/gson
+    api deps.lib.gson
+
+    // 编译时使用
+    api project(':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.bintray_upload_android)
+//apply from : rootProject.file(files.sonatype_upload_android)

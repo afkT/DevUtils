@@ -51,6 +51,10 @@ ext {
             dev_http_capture_compiler_version        : "1.0.6",
             dev_http_capture_compiler_release_version: "1.0.6",
 
+            // DevHttpManager Okhttp 管理类
+            dev_http_manager_versionCode             : 100,
+            dev_http_manager_versionName             : "1.0.0",
+
             // DevWidget 自定义 View UI 库
             dev_widget_versionCode                   : 113,
             dev_widget_versionName                   : "1.1.3",

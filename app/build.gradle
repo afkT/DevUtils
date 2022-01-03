@@ -60,6 +60,8 @@ dependencies {
     debugImplementation project(':DevHttpCaptureCompiler')
     releaseImplementation project(':DevHttpCaptureCompilerRelease')
 
+    implementation project(':DevHttpManager')
+
     implementation project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor

@@ -38,5 +38,6 @@ dependencies {
     implementation project(':DevBaseMVVM')
     implementation project(':DevEngine')
     implementation project(':DevHttpCapture')
+    implementation project(':DevHttpManager')
     implementation project(':DevWidget')
 }

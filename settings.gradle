@@ -11,6 +11,7 @@ def libs = [
         "DevBaseMVVM",
         "DevEngine",
         "DevHttpCapture",
+        "DevHttpManager",
         "DevJava",
         "DevWidget",
 ]
