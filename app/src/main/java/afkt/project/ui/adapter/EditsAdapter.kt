@@ -69,9 +69,9 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // ==========
 
         // 评价内容字数
-        val vid_aie_number_tv = holder.binding.vidNumberTv
+        val numberTv = holder.binding.vidNumberTv
         // 计算已经输入的内容长度
-        vid_aie_number_tv.text = "${120 - StringUtils.length(item.evaluateContent)}"
+        numberTv.text = "${120 - StringUtils.length(item.evaluateContent)}"
         // 绑定监听事件
         mTextWatcherAssist.bindListener(
             item.evaluateContent,
@@ -85,7 +85,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
             }
             try {
                 // 计算已经输入的内容长度
-                vid_aie_number_tv.text = "${120 - StringUtils.length(item.evaluateContent)}"
+                numberTv.text = "${120 - StringUtils.length(item.evaluateContent)}"
             } catch (e: Exception) {
             }
         }
