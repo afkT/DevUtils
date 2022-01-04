@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/un_dp_50">
 
     <dev.base.widget.BaseButton
-        android:id="@+id/vid_asb_toggle_btn"
+        android:id="@+id/vid_toggle_btn"
         style="@style/AppTheme.Base_Button"
         android:layout_gravity="center"
         android:text="点击 ( 显示 / 隐藏 ) 切换" />

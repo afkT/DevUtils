@@ -37,12 +37,12 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
     ) {
         val item = getDataItem(position)
         // 标题
-        TextViewUtils.setHtmlText(holder.binding.vidAaTitleTv, item.title)
+        TextViewUtils.setHtmlText(holder.binding.vidTitleTv, item.title)
         // 时间
-        holder.binding.vidAaTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
+        holder.binding.vidTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
         // 随机图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAaPicIgview,
+            holder.binding.vidPicIgview,
             "https://picsum.photos/2${NumberUtils.addZero(position)}",
             ProjectUtils.roundConfig3
         )
@@ -54,6 +54,6 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 AppUtils.startActivity(intent)
             }
-        }, holder.binding.vidAaCardview)
+        }, holder.binding.vidCardview)
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.base.widget.BaseButton xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_bvb_btn"
+    android:id="@+id/vid_btn"
     style="@style/AppTheme.Base_Button"
     android:ellipsize="end"
     android:maxLines="1" />

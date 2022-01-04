@@ -54,7 +54,7 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
                         "recy.jpg"
                     ),
                     DevSource.create(
-                        CapturePictureUtils.snapshotByRecyclerView(binding.vidAcpRecy)
+                        CapturePictureUtils.snapshotByRecyclerView(binding.vidRecy)
                     ),
                     object : OnDevInsertListener {
                         override fun onResult(
@@ -77,20 +77,20 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
     override fun initValue() {
         super.initValue()
 
-//        binding.vidAcpRecy.layoutManager = LinearLayoutManager(this)
-//        binding.vidAcpRecy.layoutManager =
+//        binding.vidRecy.layoutManager = LinearLayoutManager(this)
+//        binding.vidRecy.layoutManager =
 //            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 //
-//        binding.vidAcpRecy.layoutManager = GridLayoutManager(this, 3)
-//        binding.vidAcpRecy.layoutManager =
+//        binding.vidRecy.layoutManager = GridLayoutManager(this, 3)
+//        binding.vidRecy.layoutManager =
 //            GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
 
-        binding.vidAcpRecy.layoutManager =
+        binding.vidRecy.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-//        binding.vidAcpRecy.layoutManager =
+//        binding.vidRecy.layoutManager =
 //            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
 
-        binding.vidAcpRecy.adapter =
+        binding.vidRecy.adapter =
             object : DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
 
                 init {
@@ -110,8 +110,8 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
                 ) {
                     val item = getDataItem(position)
                     ViewHelper.get()
-                        .setText(item.title, holder.binding.vidAcpTitleTv)
-                        .setText(item.content, holder.binding.vidAcpContentTv)
+                        .setText(item.title, holder.binding.vidTitleTv)
+                        .setText(item.content, holder.binding.vidContentTv)
                 }
             }
     }

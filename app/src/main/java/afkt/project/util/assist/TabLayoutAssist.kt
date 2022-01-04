@@ -162,7 +162,7 @@ class TabLayoutAssist private constructor(
      */
     private fun createTabView(position: Int): View {
         val view = LayoutInflater.from(mTabLayout.context).inflate(R.layout.tab_item_view, null)
-        val textView: BaseTextView = view.findViewById(R.id.vid_tiv_tv)
+        val textView: BaseTextView = view.findViewById(R.id.vid_tv)
         textView.text = mListTabs[position].title
         return view
     }
@@ -178,8 +178,8 @@ class TabLayoutAssist private constructor(
     ) {
         tab?.customView?.let { view ->
             ViewHelper.get()
-                .setBold(isSelect, view.findViewById(R.id.vid_tiv_tv))
-                .setVisibilitys(isSelect, view.findViewById(R.id.vid_tiv_line))
+                .setBold(isSelect, view.findViewById(R.id.vid_tv))
+                .setVisibilitys(isSelect, view.findViewById(R.id.vid_line))
         }
     }
 

@@ -11,12 +11,12 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_aw_save_btn"
+            android:id="@+id/vid_save_btn"
             style="@style/AppTheme.Base_Button"
             android:text="保存壁纸" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_aw_igview"
+            android:id="@+id/vid_igview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_10"

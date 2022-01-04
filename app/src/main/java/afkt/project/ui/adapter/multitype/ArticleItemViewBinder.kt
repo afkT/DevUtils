@@ -30,9 +30,9 @@ class ArticleItemViewBinder : ItemViewBinder<ArticleBean1Item, DevBaseViewBindin
         val itemObj = item.obj
 
         ViewHelper.get()
-            .setText(itemObj.title, holder.binding.vidAcaTitleTv)
-            .setText(itemObj.content, holder.binding.vidAcaContentTv)
-            .setImageBitmap(itemObj.pictures, holder.binding.vidAcaIgview)
+            .setText(itemObj.title, holder.binding.vidTitleTv)
+            .setText(itemObj.content, holder.binding.vidContentTv)
+            .setImageBitmap(itemObj.pictures, holder.binding.vidIgview)
             .setBackgroundColor(itemObj.background, holder.itemView)
     }
 }

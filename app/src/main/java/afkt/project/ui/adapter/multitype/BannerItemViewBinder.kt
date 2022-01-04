@@ -40,7 +40,7 @@ class BannerItemViewBinder(
         holder: DevBaseViewBindingVH<AdapterConcatBannerBinding>,
         item: BannerBeanItem
     ) {
-        holder.binding.vidAcbBanner.setAdapter(
+        holder.binding.vidBanner.setAdapter(
             object : BannerAdapter<BannerBean, BannerViewHolder>(item.obj) {
                 override fun onCreateHolder(
                     parent: ViewGroup,
@@ -61,7 +61,7 @@ class BannerItemViewBinder(
                     size: Int
                 ) {
                     DevEngine.getImage()?.display(
-                        holder.binding.vidAcbiIgview,
+                        holder.binding.vidIgview,
                         data.imageUrl,
                         ProjectUtils.roundConfig10
                     )

@@ -31,7 +31,7 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val parent = binding.vidBvrRecy.parent as? ViewGroup
+        val parent = binding.vidRecy.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
@@ -55,6 +55,6 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
             })
-        adapter.bindAdapter(binding.vidBvrRecy)
+        adapter.bindAdapter(binding.vidRecy)
     }
 }

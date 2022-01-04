@@ -151,7 +151,7 @@
                 android:background="@drawable/img_commodity" />
 
             <dev.widget.ui.CornerLabelView
-                android:id="@+id/vid_acl_labelview"
+                android:id="@+id/vid_labelview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dev_fillColor="#FFC107"

@@ -32,9 +32,9 @@ class ArticleConcatAdapter(data: List<ArticleBean1>) : DevDataAdapter<ArticleBea
     ) {
         val item = getDataItem(position)
         ViewHelper.get()
-            .setText(item.title, holder.binding.vidAcaTitleTv)
-            .setText(item.content, holder.binding.vidAcaContentTv)
-            .setImageBitmap(item.pictures, holder.binding.vidAcaIgview)
+            .setText(item.title, holder.binding.vidTitleTv)
+            .setText(item.content, holder.binding.vidContentTv)
+            .setImageBitmap(item.pictures, holder.binding.vidIgview)
             .setBackgroundColor(item.background, holder.itemView)
     }
 

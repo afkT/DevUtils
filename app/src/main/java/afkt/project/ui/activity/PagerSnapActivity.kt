@@ -27,7 +27,7 @@ class PagerSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val parent = binding.vidBvrRecy.parent as? ViewGroup
+        val parent = binding.vidRecy.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
     }
@@ -39,11 +39,11 @@ class PagerSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
 
         // 初始化布局管理器、适配器
-        binding.vidBvrRecy.layoutManager =
+        binding.vidRecy.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
-        PagerSnapAdapter(lists).bindAdapter(binding.vidBvrRecy)
+        PagerSnapAdapter(lists).bindAdapter(binding.vidRecy)
 
         val helper = PagerSnapHelper()
-        helper.attachToRecyclerView(binding.vidBvrRecy)
+        helper.attachToRecyclerView(binding.vidRecy)
     }
 }

@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_al_tv"
+            android:id="@+id/vid_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_height="@dimen/un_dp_100"
             android:gravity="center"
@@ -21,7 +21,7 @@
             android:background="@color/gray" />
 
         <dev.widget.function.LineTextView
-            android:id="@+id/vid_al_content_tv"
+            android:id="@+id/vid_content_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_margin="@dimen/un_dp_15"
             android:gravity="center"

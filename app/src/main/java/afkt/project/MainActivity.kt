@@ -84,7 +84,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initValue() {
         super.initValue()
         // 设置 Android 版本信息
-        binding.vidAmAndroidTv.text = VersionUtils.convertSDKVersion()
+        binding.vidAndroidTv.text = VersionUtils.convertSDKVersion()
         // 初始化布局管理器、适配器
         ButtonAdapter(ButtonList.mainButtonValues)
             .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
@@ -94,6 +94,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 ) {
                     routerActivity(buttonValue)
                 }
-            }).bindAdapter(binding.vidBaseRecy.vidBvrRecy)
+            }).bindAdapter(binding.vidInclude.vidRecy)
     }
 }

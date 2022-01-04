@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <dev.base.widget.BaseImageView
-        android:id="@+id/vid_fp_bg_igview"
+        android:id="@+id/vid_bg_igview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
@@ -24,12 +24,12 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toRightOf="@id/vid_fp_bg_igview"
+        app:layout_constraintLeft_toRightOf="@id/vid_bg_igview"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.5">
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv1"
+            android:id="@+id/vid_tv1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -39,7 +39,7 @@
             android:gravity="center" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv2"
+            android:id="@+id/vid_tv2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -49,7 +49,7 @@
             android:gravity="center" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv3"
+            android:id="@+id/vid_tv3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -59,7 +59,7 @@
             android:gravity="center" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv4"
+            android:id="@+id/vid_tv4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:gravity="center" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv5"
+            android:id="@+id/vid_tv5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -79,7 +79,7 @@
             android:gravity="center" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_tv6"
+            android:id="@+id/vid_tv6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

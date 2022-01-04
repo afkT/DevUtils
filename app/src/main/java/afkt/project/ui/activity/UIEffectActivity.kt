@@ -37,16 +37,16 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
 
         // 默认选中
         ViewHelper.get()
-            .setSelected(true, binding.vidAue10Tv)
-            .setSelected(false, binding.vidAue11Tv)
-        changeTab1(binding.vidAue20Tv, binding.vidAue21Tv)
-        changeTab2(binding.vidAue31Tv, binding.vidAue30Tv)
+            .setSelected(true, binding.vid10Tv)
+            .setSelected(false, binding.vid11Tv)
+        changeTab1(binding.vid20Tv, binding.vid21Tv)
+        changeTab2(binding.vid31Tv, binding.vid30Tv)
 
         // 动态设置
         StateListUtils.newSelector(R.drawable.btn_pressed, R.drawable.btn_normal)
-            .also { binding.vidAue40Btn.background = it }
+            .also { binding.vid40Btn.background = it }
 
-        binding.vidAue40Btn.setTextColor(
+        binding.vid40Btn.setTextColor(
             StateListUtils.createColorStateList(
                 R.color.black, R.color.white
             )
@@ -56,7 +56,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         ShapeUtils.newShape()
             .setCornerRadiusLeft(10.0f)
             .setColor(Color.BLACK)
-            .drawable.also { binding.vidAue41Btn.background = it }
+            .drawable.also { binding.vid41Btn.background = it }
 
         // 设置点击效果
         val drawable1 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.black))
@@ -65,9 +65,9 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             .setStroke(5, ResourceUtils.getColor(R.color.gray)).drawable
 
         StateListUtils.newSelector(drawable2, drawable1)
-            .also { binding.vidAue41Btn.background = it }
+            .also { binding.vid41Btn.background = it }
 
-        binding.vidAue41Btn.setTextColor(
+        binding.vid41Btn.setTextColor(
             StateListUtils.createColorStateList(
                 R.color.red, R.color.white
             )
@@ -80,7 +80,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         ShapeUtils.newShape(
             GradientDrawable.Orientation.BR_TL,
             intArrayOf(Color.RED, Color.BLUE, Color.GREEN)
-        ).setDrawable(binding.vidAue50View)
+        ).setDrawable(binding.vid50View)
 
         val colors = IntArray(3)
         colors[0] = ContextCompat.getColor(this, R.color.black)
@@ -90,7 +90,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
 //        drawable.gradientType = GradientDrawable.LINEAR_GRADIENT   // 线性渐变, 这是默认设置
 //        drawable.gradientType = GradientDrawable.RADIAL_GRADIENT   // 放射性渐变, 以开始色为中心
         drawable.gradientType = GradientDrawable.SWEEP_GRADIENT     // 扫描线式的渐变
-        binding.vidAue60View.background = drawable
+        binding.vid60View.background = drawable
 
         // ============================
         // = HorizontalScrollView Tab =
@@ -119,33 +119,33 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     ViewHelper.get()
                         .setBold(
                             false,
-                            ViewUtils.getChildAt(binding.vidAue70Linear, selectTabIndex)
+                            ViewUtils.getChildAt(binding.vid70Linear, selectTabIndex)
                         )
                         .setTextColors(
                             ResourceUtils.getColor(R.color.black),
                             ViewUtils.getChildAt(
-                                binding.vidAue70Linear, selectTabIndex
+                                binding.vid70Linear, selectTabIndex
                             )
                         )
-                        .setBold(true, ViewUtils.getChildAt(binding.vidAue70Linear, i))
+                        .setBold(true, ViewUtils.getChildAt(binding.vid70Linear, i))
                         .setTextColors(
                             ResourceUtils.getColor(R.color.red),
-                            ViewUtils.getChildAt(binding.vidAue70Linear, i)
+                            ViewUtils.getChildAt(binding.vid70Linear, i)
                         )
                     // 修改索引
                     selectTabIndex = i
                     // 滑动 Tab 处理
                     scrollTab(i)
                 }.getView<View>()
-            binding.vidAue70Linear.addView(view)
+            binding.vid70Linear.addView(view)
         }
-        ViewUtils.getChildAt<View>(binding.vidAue70Linear).performClick()
+        ViewUtils.getChildAt<View>(binding.vid70Linear).performClick()
 
         // =================
         // = TabLayout Tab =
         // =================
 
-        TabLayoutAssist[binding.vidAue80Tab]?.apply {
+        TabLayoutAssist[binding.vid80Tab]?.apply {
             setListTabs(listTabs, object : TabChangeListener {
                 override fun onTabChange(
                     tabItem: TabItem,
@@ -158,7 +158,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             }).setSelect(tabCount - 1)
         }
 
-        TabLayoutAssist[binding.vidAue90Tab]?.apply {
+        TabLayoutAssist[binding.vid90Tab]?.apply {
             setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toTypedArray(), 0, 3)),
                 object : TabChangeListener {
                     override fun onTabChange(
@@ -177,29 +177,29 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidAue10Tv, binding.vidAue11Tv,
-            binding.vidAue20Tv, binding.vidAue21Tv,
-            binding.vidAue30Tv, binding.vidAue31Tv
+            binding.vid10Tv, binding.vid11Tv,
+            binding.vid20Tv, binding.vid21Tv,
+            binding.vid30Tv, binding.vid31Tv
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_aue_1_0_tv -> {
+            R.id.vid_1_0_tv -> {
                 ViewHelper.get()
-                    .setSelected(true, binding.vidAue10Tv)
-                    .setSelected(false, binding.vidAue11Tv)
+                    .setSelected(true, binding.vid10Tv)
+                    .setSelected(false, binding.vid11Tv)
             }
-            R.id.vid_aue_1_1_tv -> {
+            R.id.vid_1_1_tv -> {
                 ViewHelper.get()
-                    .setSelected(true, binding.vidAue11Tv)
-                    .setSelected(false, binding.vidAue10Tv)
+                    .setSelected(true, binding.vid11Tv)
+                    .setSelected(false, binding.vid10Tv)
             }
-            R.id.vid_aue_2_0_tv -> changeTab1(binding.vidAue20Tv, binding.vidAue21Tv)
-            R.id.vid_aue_2_1_tv -> changeTab1(binding.vidAue21Tv, binding.vidAue20Tv)
-            R.id.vid_aue_3_0_tv -> changeTab2(binding.vidAue30Tv, binding.vidAue31Tv)
-            R.id.vid_aue_3_1_tv -> changeTab2(binding.vidAue31Tv, binding.vidAue30Tv)
+            R.id.vid_2_0_tv -> changeTab1(binding.vid20Tv, binding.vid21Tv)
+            R.id.vid_2_1_tv -> changeTab1(binding.vid21Tv, binding.vid20Tv)
+            R.id.vid_3_0_tv -> changeTab2(binding.vid30Tv, binding.vid31Tv)
+            R.id.vid_3_1_tv -> changeTab2(binding.vid31Tv, binding.vid30Tv)
         }
     }
 
@@ -217,7 +217,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         unClickTab: BaseTextView
     ) {
         // 判断点击的是左边还是右边
-        if (clickTab.id == R.id.vid_aue_2_0_tv) { // 点击左边
+        if (clickTab.id == R.id.vid_2_0_tv) { // 点击左边
             clickTab.setBackgroundResource(R.drawable.shape_tab_left_pressed)
             unClickTab.setBackgroundResource(R.drawable.shape_tab_right_selector)
         } else {
@@ -241,7 +241,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         unClickTab: BaseTextView
     ) {
         // 判断点击的是左边还是右边
-        if (clickTab.id == R.id.vid_aue_3_0_tv) { // 点击左边
+        if (clickTab.id == R.id.vid_3_0_tv) { // 点击左边
             // 设置选中颜色
             ShapeUtils.newShape().setCornerRadiusLeft(10f)
                 .setColor(ResourceUtils.getColor(R.color.sky_blue))
@@ -291,13 +291,13 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             var x = 0
             // 循环遍历
             for (i in 1 until position) {
-                binding.vidAue70Linear.getChildAt(i)?.apply {
+                binding.vid70Linear.getChildAt(i)?.apply {
                     // 累加宽度
                     x += width
                 }
             }
             // 开始移动位置
-            binding.vidAue70Scroll.scrollTo(x, 0)
+            binding.vid70Scroll.scrollTo(x, 0)
         }, 50)
     }
 }

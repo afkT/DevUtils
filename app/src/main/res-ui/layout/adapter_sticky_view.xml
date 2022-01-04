@@ -14,7 +14,7 @@
         android:background="@drawable/icon_live_brow_4" />
 
     <dev.base.widget.BaseTextView
-        android:id="@+id/vid_asv_title_tv"
+        android:id="@+id/vid_title_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

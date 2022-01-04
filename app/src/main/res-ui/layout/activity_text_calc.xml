@@ -5,7 +5,7 @@
     android:scrollbars="none">
 
     <LinearLayout
-        android:id="@+id/vid_atc_linear"
+        android:id="@+id/vid_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />

@@ -36,10 +36,10 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
          */
         val titleText = "${position}.${ChineseUtils.randomWord(5)}"
 
-        binding.vidFpPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
-        binding.vidFpTitleTv.text = titleText
-        binding.vidFpContentTv.text = ChineseUtils.randomWord(400)
-        binding.vidFpIgview.setImageBitmap(getBitmap())
+        binding.vidPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
+        binding.vidTitleTv.text = titleText
+        binding.vidContentTv.text = ChineseUtils.randomWord(400)
+        binding.vidIgview.setImageBitmap(getBitmap())
     }
 
     private fun getBitmap(): Bitmap {

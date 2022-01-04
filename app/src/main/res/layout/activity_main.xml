@@ -33,12 +33,12 @@
         </androidx.cardview.widget.CardView>
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_am_android_tv"
+            android:id="@+id/vid_android_tv"
             style="@style/AppTheme.Base_TextView"
             android:gravity="center" />
 
         <include
-            android:id="@+id/vid_base_recy"
+            android:id="@+id/vid_include"
             layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

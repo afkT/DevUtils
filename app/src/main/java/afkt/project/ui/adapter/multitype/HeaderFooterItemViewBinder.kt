@@ -26,6 +26,6 @@ class HeaderFooterItemViewBinder : ItemViewBinder<HeaderFooterItem, DevBaseViewB
         holder: DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>,
         item: HeaderFooterItem
     ) {
-        holder.binding.vidAchfTitleTv.text = item.title
+        holder.binding.vidTitleTv.text = item.title
     }
 }

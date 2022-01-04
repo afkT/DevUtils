@@ -25,7 +25,7 @@
                 android:scaleType="fitXY" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_acp_title_tv"
+                android:id="@+id/vid_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -34,7 +34,7 @@
         </LinearLayout>
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_acp_content_tv"
+            android:id="@+id/vid_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_10"

@@ -20,7 +20,7 @@ class ViewPagerAdapter(
     ): Any {
         val binding = ViewPagerItemViewBinding.inflate(LayoutInflater.from(container.context))
         // 设置文本
-        binding.vidVpivContentTv.text = lists[position % lists.size]
+        binding.vidContentTv.text = lists[position % lists.size]
         // 保存 View
         container.addView(binding.root)
         return binding.root

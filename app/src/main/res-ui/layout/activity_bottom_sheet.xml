@@ -8,7 +8,7 @@
     <include layout="@layout/activity_shapeable_image_view" />
 
     <View
-        android:id="@+id/vid_abs_bg_view"
+        android:id="@+id/vid_bg_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black_tran40"
@@ -21,7 +21,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/vid_abs_sheet_linear"
+            android:id="@+id/vid_sheet_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

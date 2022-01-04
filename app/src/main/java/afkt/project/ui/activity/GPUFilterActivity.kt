@@ -51,10 +51,10 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
         filterThread = Runnable { setFilter() }
 
         // 设置适配器
-        binding.vidAgfGallery.adapter = GPUFilterAdapter(this).also {
+        binding.vidGallery.adapter = GPUFilterAdapter(this).also {
             gpuFilterAdapter = it
         }
-        binding.vidAgfGallery.onItemSelectedListener =
+        binding.vidGallery.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
@@ -71,12 +71,12 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
         // 默认选中第一个
-        binding.vidAgfGallery.setSelection(0)
+        binding.vidGallery.setSelection(0)
     }
 
     override fun initListener() {
         super.initListener()
-        binding.vidAgfSelectBtn.setOnClickListener {
+        binding.vidSelectBtn.setOnClickListener {
             // 初始化图片配置
             val config = MediaConfig()
                 .setCompress(false).setMaxSelectNum(1).setCrop(false)
@@ -127,14 +127,14 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
         try {
             if (selectBitmap == null) return
             // 获取选中的滤镜
-            val position = binding.vidAgfGallery.selectedItemPosition
+            val position = binding.vidGallery.selectedItemPosition
             // 获取滤镜 Item
             val filterItem = gpuFilterAdapter.getItem(position)
             // 设置滤镜效果
             val bitmapFilter = getFilterBitmap(
                 this, selectBitmap, createFilterForType(filterItem.filterType)
             )
-            binding.vidAgfIgview.setImageBitmap(bitmapFilter)
+            binding.vidIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")
         }

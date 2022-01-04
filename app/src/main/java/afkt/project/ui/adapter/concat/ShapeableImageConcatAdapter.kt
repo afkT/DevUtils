@@ -38,19 +38,19 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
         val item = getDataItem(position)
 
         DevEngine.getImage()?.display(
-            holder.binding.vidAcsiIgview,
+            holder.binding.vidIgview,
             item.imageUrl
         )
 
         when (item.type) {
             1 -> { // 圆形
-                holder.binding.vidAcsiIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
+                holder.binding.vidIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(RoundedCornerTreatment())
                     .setAllCornerSizes(RelativeCornerSize(0.5f))
                     .build()
             }
             2 -> { // 圆角
-                holder.binding.vidAcsiIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
+                holder.binding.vidIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
                         CornerFamily.ROUNDED,
                         ResourceUtils.getDimension(R.dimen.un_dp_30)
@@ -58,7 +58,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                     .build()
             }
             3 -> { // 水滴形
-                holder.binding.vidAcsiIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
+                holder.binding.vidIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
                         CornerFamily.ROUNDED,
                         ResourceUtils.getDimension(R.dimen.un_dp_25)
@@ -68,7 +68,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                     .build()
             }
             4 -> { // 叶子形状
-                holder.binding.vidAcsiIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
+                holder.binding.vidIgview.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setTopRightCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5f))
                     .setBottomLeftCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5f))
                     .build()

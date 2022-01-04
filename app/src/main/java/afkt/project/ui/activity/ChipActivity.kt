@@ -50,7 +50,7 @@ class ChipActivity : BaseActivity<ActivityChipBinding>() {
     override fun initValue() {
         super.initValue()
 
-        binding.vidAcGroup.removeAllViews()
+        binding.vidGroup.removeAllViews()
 
         for (i in 1..20) {
             val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
@@ -66,7 +66,7 @@ class ChipActivity : BaseActivity<ActivityChipBinding>() {
 
                 chip.text = randomText
                 chip.chipBackgroundColor = StateListUtils.createColorStateList(pressed, normal)
-                binding.vidAcGroup.addView(this)
+                binding.vidGroup.addView(this)
             }
         }
     }

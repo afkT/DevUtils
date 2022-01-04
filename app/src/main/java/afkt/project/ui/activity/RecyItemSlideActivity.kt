@@ -34,7 +34,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val parent = binding.vidBvrRecy.parent as? ViewGroup
+        val parent = binding.vidRecy.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
@@ -47,9 +47,9 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         itemSlideAdapter = ItemSlideAdapter(lists)
-        itemSlideAdapter.bindAdapter(binding.vidBvrRecy)
+        itemSlideAdapter.bindAdapter(binding.vidRecy)
 
-        QuickHelper.get(binding.vidBvrRecy)
+        QuickHelper.get(binding.vidRecy)
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(
@@ -114,6 +114,6 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 }
             }
         })
-        itemTouchHelper.attachToRecyclerView(binding.vidBvrRecy)
+        itemTouchHelper.attachToRecyclerView(binding.vidRecy)
     }
 }

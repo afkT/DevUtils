@@ -61,7 +61,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
         val view = ViewUtils.inflate(this, R.layout.base_view_textview)
         ViewHelper.get().setText("单击绑定, 长按注销", view)
             .setTextColors(ResourceUtils.getColor(R.color.gray), view)
-        binding.vidActLinear.addView(view)
+        binding.vidLinear.addView(view)
 
         // 初始化布局管理器、适配器
         ButtonAdapter(listenerButtonValues)
@@ -103,7 +103,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidBaseRecy.vidBvrRecy)
+            }).bindAdapter(binding.vidInclude.vidRecy)
     }
 
     // ============

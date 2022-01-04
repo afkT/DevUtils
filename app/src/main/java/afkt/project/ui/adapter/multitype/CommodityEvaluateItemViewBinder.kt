@@ -42,28 +42,28 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
 
         ViewHelper.get()
             // 判断是否显示边距
-            .setVisibilitys(itemObj.isFirst, holder.binding.vidAieLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidLine)
             // 商品名
-            .setText(itemObj.commodityName, holder.binding.vidAieNameTv)
+            .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
             .setText(
                 "￥" + BigDecimalUtils.round(
                     itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidAiePriceTv
+                ), holder.binding.vidPriceTv
             )
             // 评价内容
-            .setText(itemObj.evaluateContent, holder.binding.vidAieContentEdit)
+            .setText(itemObj.evaluateContent, holder.binding.vidContentEdit)
             // 禁止点击评价输入框
-            .setEnabled(false, holder.binding.vidAieContentEdit)
+            .setEnabled(false, holder.binding.vidContentEdit)
 
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAiePicIgview,
+            holder.binding.vidPicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3
         )
         // 评星等级
-        val ratingBar = holder.binding.vidAieRatingbar
+        val ratingBar = holder.binding.vidRatingbar
         ratingBar.setOnRatingChangeListener { ratingCount ->
             itemObj.evaluateLevel = ratingCount
         }

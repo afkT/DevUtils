@@ -30,7 +30,7 @@ class ItemStickyAdapter(data: List<ItemStickyBean>) : DevDataAdapter<ItemStickyB
         position: Int
     ) {
         val item = getDataItem(position)
-        holder.binding.vidAisTitleTv.text = item.title
-        holder.binding.vidAisTimeTv.text = item.timeFormat
+        holder.binding.vidTitleTv.text = item.title
+        holder.binding.vidTimeTv.text = item.timeFormat
     }
 }

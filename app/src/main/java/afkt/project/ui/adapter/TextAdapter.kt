@@ -28,6 +28,6 @@ class TextAdapter(data: MutableList<String>) : DevDataAdapter<String, DevBaseVie
         holder: DevBaseViewBindingVH<AdapterTextBinding>,
         position: Int
     ) {
-        holder.binding.vidAtTitleTv.text = getDataItem(position)
+        holder.binding.vidTitleTv.text = getDataItem(position)
     }
 }

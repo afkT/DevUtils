@@ -51,7 +51,7 @@ class FloatingWindowManager2Activity : BaseActivity<BaseViewRecyclerviewBinding>
                         }
                     }
                 }
-            }).bindAdapter(binding.vidBvrRecy)
+            }).bindAdapter(binding.vidRecy)
     }
 }
 

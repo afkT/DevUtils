@@ -77,7 +77,7 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             .showIndefinite(builder.toString())
                     }
                 }
-            }).bindAdapter(binding.vidBvrRecy)
+            }).bindAdapter(binding.vidRecy)
 
         // =================
         // = 模拟初始化、使用 =

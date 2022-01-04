@@ -56,7 +56,7 @@ class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                     }
                 }
-            }).bindAdapter(binding.vidBvrRecy)
+            }).bindAdapter(binding.vidRecy)
 
         // 环境改变通知
         DevEnvironment.addOnEnvironmentChangeListener { module, oldEnvironment, newEnvironment -> // 可以进行重新请求等操作

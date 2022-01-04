@@ -29,7 +29,7 @@ class HeaderFooterConcatAdapter(data: List<HeaderFooterItem>) : DevDataAdapter<H
         holder: DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>,
         position: Int
     ) {
-        holder.binding.vidAchfTitleTv.text = getDataItem(position).title
+        holder.binding.vidTitleTv.text = getDataItem(position).title
     }
 
     override fun getItemViewType(position: Int): Int {

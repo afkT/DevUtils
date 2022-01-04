@@ -26,12 +26,12 @@
             android:orientation="vertical">
 
             <dev.base.widget.BaseImageView
-                android:id="@+id/vid_als_igview"
+                android:id="@+id/vid_igview"
                 android:layout_width="@dimen/un_dp_200"
                 android:layout_height="@dimen/un_dp_200" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_als_title_tv"
+                android:id="@+id/vid_title_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 tools:text="这是标题" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_als_subtitle_tv"
+                android:id="@+id/vid_subtitle_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 tools:text="这是副标题" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_als_time_tv"
+                android:id="@+id/vid_time_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         </LinearLayout>
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_als_index_tv"
+            android:id="@+id/vid_index_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

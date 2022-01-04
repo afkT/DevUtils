@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <dev.base.widget.BaseButton
-        android:id="@+id/vid_aarc_select_btn"
+        android:id="@+id/vid_select_btn"
         style="@style/AppTheme.Base_Button"
         android:ellipsize="end"
         android:maxLines="1"

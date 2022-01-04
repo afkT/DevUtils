@@ -42,13 +42,13 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
         super.initView()
         // 初始化 View
         val view = stateLayout.getView(ViewAssist.TYPE_ING)
-        loadView = ViewUtils.findViewById(view, R.id.vid_sli_load_view)
+        loadView = ViewUtils.findViewById(view, R.id.vid_load_view)
     }
 
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        adapter.bindAdapter(binding.vidBvrRecy)
+        adapter.bindAdapter(binding.vidRecy)
     }
 
     override fun initListener() {

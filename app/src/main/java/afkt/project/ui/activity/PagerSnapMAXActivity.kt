@@ -31,7 +31,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val parent = binding.vidBvrRecy.parent as? ViewGroup
+        val parent = binding.vidRecy.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
     }
@@ -44,23 +44,23 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         adapter = PagerSnapMAXAdapter(lists)
-        binding.vidBvrRecy.layoutManager =
+        binding.vidRecy.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
-        adapter.bindAdapter(binding.vidBvrRecy)
+        adapter.bindAdapter(binding.vidRecy)
         val helper = PagerSnapHelper()
-        helper.attachToRecyclerView(binding.vidBvrRecy)
+        helper.attachToRecyclerView(binding.vidRecy)
         val size = lists.size
         // 滑动到中间 ( 无滑动过程 )
-        (binding.vidBvrRecy.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(
+        (binding.vidRecy.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(
             size * 100 - 1, 10
         )
         // 复位到中间
-        ListViewUtils.smoothScrollToPosition(binding.vidBvrRecy, size * 100 + 1)
+        ListViewUtils.smoothScrollToPosition(binding.vidRecy, size * 100 + 1)
     }
 
     override fun initListener() {
         super.initListener()
-        binding.vidBvrRecy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.vidRecy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(
                 recyclerView: RecyclerView,
                 newState: Int

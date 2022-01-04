@@ -47,7 +47,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun onDestroy() {
         // 销毁处理
-        binding.vidAssScanview.destroy()
+        binding.vidScanview.destroy()
         // 结束计时
         mInactivityTimerAssist.onDestroy()
         super.onDestroy()
@@ -56,17 +56,17 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun onResume() {
         super.onResume()
         // 开始动画
-        binding.vidAssScanview.startAnim()
+        binding.vidScanview.startAnim()
         // 开始计时
         mInactivityTimerAssist.onResume()
         // 准备扫描
-        zxingDecodeAssist.onResume(binding.vidAssSurface)
+        zxingDecodeAssist.onResume(binding.vidSurface)
     }
 
     override fun onPause() {
         super.onPause()
         // 停止动画
-        binding.vidAssScanview.stopAnim()
+        binding.vidScanview.stopAnim()
         // 暂停计时
         mInactivityTimerAssist.onPause()
         // 暂停扫描
@@ -77,55 +77,55 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         super.initValue()
 
         // 设置扫描类型
-        refShape(binding.vidAssScanview, ScanShapeView.Shape.Square)
+        refShape(binding.vidScanview, ScanShapeView.Shape.Square)
         // 显示图片识别按钮
-        ViewUtils.setVisibility(true, findViewById(R.id.vid_ass_image_igview))
+        ViewUtils.setVisibility(true, findViewById(R.id.vid_image_igview))
     }
 
     override fun initListener() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidAssFlashlightIgview,
-            binding.vidAssSquareIgview,
-            binding.vidAssHexagonIgview,
-            binding.vidAssAnnulusIgview,
-            binding.vidAssImageIgview
+            binding.vidFlashlightIgview,
+            binding.vidSquareIgview,
+            binding.vidHexagonIgview,
+            binding.vidAnnulusIgview,
+            binding.vidImageIgview
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_ass_flashlight_igview -> {
+            R.id.vid_flashlight_igview -> {
                 if (!FlashlightUtils.isFlashlightEnable()) {
                     showToast(false, "暂不支持开启手电筒")
                     return
                 }
                 // 设置手电筒开关
                 zxingDecodeAssist.setFlashlight(
-                    !ViewUtils.isSelected(binding.vidAssFlashlightIgview)
+                    !ViewUtils.isSelected(binding.vidFlashlightIgview)
                 )
             }
-            R.id.vid_ass_square_igview -> {
+            R.id.vid_square_igview -> {
                 refShape(
-                    binding.vidAssScanview,
+                    binding.vidScanview,
                     ScanShapeView.Shape.Square
                 )
             }
-            R.id.vid_ass_hexagon_igview -> {
+            R.id.vid_hexagon_igview -> {
                 refShape(
-                    binding.vidAssScanview,
+                    binding.vidScanview,
                     ScanShapeView.Shape.Hexagon
                 )
             }
-            R.id.vid_ass_annulus_igview -> {
+            R.id.vid_annulus_igview -> {
                 refShape(
-                    binding.vidAssScanview,
+                    binding.vidScanview,
                     ScanShapeView.Shape.Annulus
                 )
             }
-            R.id.vid_ass_image_igview -> {
+            R.id.vid_image_igview -> {
                 // 初始化图片配置
                 val config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)
@@ -223,7 +223,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                     Manifest.permission.CAMERA
                 ), object : IPermissionEngine.Callback {
                     override fun onGranted() {
-                        zxingDecodeAssist.startPreview(binding.vidAssSurface)
+                        zxingDecodeAssist.startPreview(binding.vidSurface)
                     }
 
                     override fun onDenied(
@@ -237,7 +237,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
 
         override fun switchFlashlight(state: Boolean) {
-            ViewUtils.setSelected(state, binding.vidAssFlashlightIgview)
+            ViewUtils.setSelected(state, binding.vidFlashlightIgview)
         }
     }
 
@@ -276,7 +276,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         override fun getCropRect(): Rect? {
             // 优化专门识别指定区域需 isCropRect() 返回 true
             mCropRect?.let {
-                val rectF = binding.vidAssScanview.region
+                val rectF = binding.vidScanview.region
                 val rect = Rect()
                 rect.left = rectF.left.toInt()
                 rect.top = rectF.top.toInt()

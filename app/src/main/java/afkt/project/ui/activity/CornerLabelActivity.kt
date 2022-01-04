@@ -36,7 +36,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
 
     override fun onClick(v: View) {
         super.onClick(v)
-        val labelView = binding.vidAclLabelview
+        val labelView = binding.vidLabelview
         val layoutParams: FrameLayout.LayoutParams
         when (v.id) {
             R.id.vid_btn_color -> labelView.setFillColor(

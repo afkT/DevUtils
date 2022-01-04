@@ -103,7 +103,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/vid_ac_group"
+            android:id="@+id/vid_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:chipSpacingHorizontal="@dimen/un_dp_5"

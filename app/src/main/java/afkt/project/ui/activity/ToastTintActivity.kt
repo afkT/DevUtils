@@ -50,7 +50,7 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidBvrRecy)
+            }).bindAdapter(binding.vidRecy)
     }
 
     /**

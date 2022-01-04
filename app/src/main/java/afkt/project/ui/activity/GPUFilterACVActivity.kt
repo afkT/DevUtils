@@ -64,10 +64,10 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
 
         // 设置适配器
-        binding.vidAgfGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
+        binding.vidGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
             gpuFilterACVAdapter = it
         }
-        binding.vidAgfGallery.onItemSelectedListener =
+        binding.vidGallery.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
@@ -84,12 +84,12 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
         // 默认选中第一个
-        binding.vidAgfGallery.setSelection(0)
+        binding.vidGallery.setSelection(0)
     }
 
     override fun initListener() {
         super.initListener()
-        binding.vidAgfSelectBtn.setOnClickListener {
+        binding.vidSelectBtn.setOnClickListener {
             // 初始化图片配置
             val config = MediaConfig()
                 .setCompress(false).setMaxSelectNum(1).setCrop(false)
@@ -140,13 +140,13 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         try {
             if (selectBitmap == null) return
             // 获取选中的滤镜
-            val position = binding.vidAgfGallery.selectedItemPosition
+            val position = binding.vidGallery.selectedItemPosition
             // 获取滤镜文件实体类
             val acvFileBean = gpuFilterACVAdapter.getItem(position)
             // 设置滤镜效果
             val gpuFilter = getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath))
             val bitmapFilter = getFilterBitmap(this, selectBitmap, gpuFilter)
-            binding.vidAgfIgview.setImageBitmap(bitmapFilter)
+            binding.vidIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")
         }

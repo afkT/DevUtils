@@ -214,7 +214,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      */
     private fun initToolBar() {
         val titleView = ViewUtils.inflate(this, R.layout.base_toolbar, null)
-        toolbar = titleView.findViewById(R.id.vid_bt_toolbar)
+        toolbar = titleView.findViewById(R.id.vid_toolbar)
         contentAssist.addTitleView(titleView)
 
         setSupportActionBar(toolbar)

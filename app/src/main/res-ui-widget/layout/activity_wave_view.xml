@@ -24,14 +24,14 @@
                 android:textColor="@color/white" />
 
             <RadioGroup
-                android:id="@+id/vid_awv_shape_choice"
+                android:id="@+id/vid_shape_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/un_dp_15"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/vid_awv_shape_circle"
+                    android:id="@+id/vid_shape_circle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/sky_blue"
@@ -40,7 +40,7 @@
                     android:textColor="@color/white" />
 
                 <RadioButton
-                    android:id="@+id/vid_awv_shape_square"
+                    android:id="@+id/vid_shape_square"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/un_dp_15"
@@ -63,7 +63,7 @@
                 android:textColor="@color/white" />
 
             <SeekBar
-                android:id="@+id/vid_awv_seekbar"
+                android:id="@+id/vid_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:max="50"
@@ -86,13 +86,13 @@
                 android:textColor="@color/white" />
 
             <RadioGroup
-                android:id="@+id/vid_awv_color_choice"
+                android:id="@+id/vid_color_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/vid_awv_color_default"
+                    android:id="@+id/vid_color_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/white"
@@ -101,7 +101,7 @@
                     android:textColor="@color/white" />
 
                 <RadioButton
-                    android:id="@+id/vid_awv_color_red"
+                    android:id="@+id/vid_color_red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/un_dp_15"
@@ -110,7 +110,7 @@
                     android:textColor="@color/red" />
 
                 <RadioButton
-                    android:id="@+id/vid_awv_color_green"
+                    android:id="@+id/vid_color_green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/un_dp_15"
@@ -119,7 +119,7 @@
                     android:textColor="@color/green" />
 
                 <RadioButton
-                    android:id="@+id/vid_awv_color_blue"
+                    android:id="@+id/vid_color_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/un_dp_15"
@@ -130,7 +130,7 @@
         </LinearLayout>
 
         <dev.widget.ui.WaveView
-            android:id="@+id/vid_awv_wave"
+            android:id="@+id/vid_wave"
             android:layout_width="@dimen/un_dp_300"
             android:layout_height="@dimen/un_dp_300"
             android:layout_marginTop="@dimen/un_dp_20" />

@@ -23,7 +23,7 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
 
     override fun initValue() {
         super.initValue()
-        val parent = binding.vidBvrRecy.parent as? ViewGroup
+        val parent = binding.vidRecy.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
 
@@ -33,7 +33,7 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
             lists.add(String.format(url, RandomUtils.getRandom(1, 1000)))
         }
         // 初始化布局管理器、适配器
-        binding.vidBvrRecy.layoutManager = GridLayoutManager(this, 2)
-        RecyclerLoadingAdapter(lists).bindAdapter(binding.vidBvrRecy)
+        binding.vidRecy.layoutManager = GridLayoutManager(this, 2)
+        RecyclerLoadingAdapter(lists).bindAdapter(binding.vidRecy)
     }
 }

@@ -46,8 +46,8 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> routerActivity(buttonValue)
                     }
                 }
-            }).bindAdapter(binding.vidBvrRecy)
+            }).bindAdapter(binding.vidRecy)
         // 注册观察者
-        registerAdapterDataObserver(binding.vidBvrRecy, true)
+        registerAdapterDataObserver(binding.vidRecy, true)
     }
 }

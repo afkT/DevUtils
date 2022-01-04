@@ -26,7 +26,7 @@
             android:padding="@dimen/un_dp_15">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_adb_title_tv"
+                android:id="@+id/vid_title_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 tools:text="这是标题" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_adb_content_tv"
+                android:id="@+id/vid_content_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 tools:text="这是内容" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/vid_adb_recy"
+                android:id="@+id/vid_recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/un_dp_5"
@@ -56,7 +56,7 @@
                 app:spanCount="4" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_adb_time_tv"
+                android:id="@+id/vid_time_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

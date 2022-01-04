@@ -66,7 +66,7 @@
             android:layout_marginTop="@dimen/un_dp_15">
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_aac_start_edit"
+                android:id="@+id/vid_start_edit"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="@dimen/un_dp_40"
                 android:layout_marginRight="@dimen/un_dp_150"
@@ -82,7 +82,7 @@
                 android:textSize="@dimen/un_sp_15" />
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_aac_end_edit"
+                android:id="@+id/vid_end_edit"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="@dimen/un_dp_40"
                 android:layout_marginLeft="@dimen/un_dp_150"
@@ -104,14 +104,14 @@
             android:background="@color/gray" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_aac_add_btn"
+            android:id="@+id/vid_add_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="添加联系人" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_aac_tips_tv"
+            android:id="@+id/vid_tips_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="@dimen/un_dp_20"
             android:gravity="left"

@@ -41,15 +41,15 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
 
         // 商品信息
         ViewHelper.get()
-            .setText(item?.commodityName, holder.binding.vidAmsNameTv)
+            .setText(item?.commodityName, holder.binding.vidNameTv)
             .setText(
                 "￥" + BigDecimalUtils.round(
                     item?.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidAmsPriceTv
+                ), holder.binding.vidPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAmsPicIgview,
+            holder.binding.vidPicIgview,
             item?.commodityPicture,
             ProjectUtils.roundConfig3
         )
@@ -59,7 +59,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
         // ==========
 
         val key = getMultiSelectKey(item, position)
-        val selectIGView = holder.binding.vidAmsIgview
+        val selectIGView = holder.binding.vidIgview
         // 是否显示编辑按钮、以及是否选中
         ViewHelper.get().setVisibilitys(isEditState, selectIGView)
             .setSelected(mMultiSelectMap.isSelectKey(key), selectIGView)
@@ -71,7 +71,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
                 ViewUtils.setSelected(mMultiSelectMap.isSelectKey(key), selectIGView)
                 // 触发回调
                 selectListener?.onClickSelect(position, mMultiSelectMap.isSelectKey(key))
-            }, holder.itemView.findViewById(R.id.vid_ams_linear))
+            }, holder.itemView.findViewById(R.id.vid_linear))
     }
 
     // =======

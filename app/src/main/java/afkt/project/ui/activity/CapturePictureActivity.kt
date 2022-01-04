@@ -54,44 +54,44 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidAcpScreenBtn, binding.vidAcpScreen1Btn,
-            binding.vidAcpLinearBtn, binding.vidAcpScrollBtn,
-            binding.vidAcpListBtn, binding.vidAcpGridBtn,
-            binding.vidAcpRecyBtn, binding.vidAcpWebviewBtn
+            binding.vidScreenBtn, binding.vidScreen1Btn,
+            binding.vidLinearBtn, binding.vidScrollBtn,
+            binding.vidListBtn, binding.vidGridBtn,
+            binding.vidRecyBtn, binding.vidWebviewBtn
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_acp_screen_btn -> {
+            R.id.vid_screen_btn -> {
                 saveBitmap(
                     "screen.jpg",
                     CapturePictureUtils.snapshotWithStatusBar(mActivity)
                 )
             }
-            R.id.vid_acp_screen1_btn -> {
+            R.id.vid_screen1_btn -> {
                 saveBitmap(
                     "screen1.jpg",
                     CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
                 )
             }
-            R.id.vid_acp_linear_btn -> {
+            R.id.vid_linear_btn -> {
                 // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
                 // 以上方法都是使用 snapshotByView
                 saveBitmap(
                     "linear.jpg",
-                    CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear)
+                    CapturePictureUtils.snapshotByLinearLayout(binding.vidLinear)
                 )
             }
-            R.id.vid_acp_scroll_btn -> {
+            R.id.vid_scroll_btn -> {
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
                 saveBitmap(
                     "scroll.jpg",
-                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll)
+                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidScroll)
                 )
             }
-            R.id.vid_acp_list_btn -> {
+            R.id.vid_list_btn -> {
                 routerActivity(
                     ButtonValue(
                         1, "CapturePictureUtils ListView 截图",
@@ -99,7 +99,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
-            R.id.vid_acp_grid_btn -> {
+            R.id.vid_grid_btn -> {
                 routerActivity(
                     ButtonValue(
                         2, "CapturePictureUtils GridView 截图",
@@ -107,7 +107,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
-            R.id.vid_acp_recy_btn -> {
+            R.id.vid_recy_btn -> {
                 routerActivity(
                     ButtonValue(
                         3, "CapturePictureUtils RecyclerView 截图",
@@ -115,7 +115,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
-            R.id.vid_acp_webview_btn -> {
+            R.id.vid_webview_btn -> {
                 routerActivity(
                     ButtonValue(
                         4, "CapturePictureUtils WebView 截图",

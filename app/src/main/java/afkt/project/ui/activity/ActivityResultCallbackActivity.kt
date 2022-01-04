@@ -24,7 +24,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
 
     override fun initListener() {
         super.initListener()
-        binding.vidAarcSelectBtn.setOnClickListener {
+        binding.vidSelectBtn.setOnClickListener {
             AppUtils.startActivityForResult(object : ActivityUtils.ResultCallback {
                 override fun onStartActivityForResult(activity: Activity): Boolean {
                     // 初始化图片配置

@@ -38,7 +38,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置")
 
         // 初始化布局管理器、适配器
-        binding.vidAdbRefresh.setAdapter(adapter)
+        binding.vidRefresh.setAdapter(adapter)
         // 加载数据
         loadData(true)
     }
@@ -46,7 +46,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
     override fun initListener() {
         super.initListener()
         // 刷新事件
-        binding.vidAdbRefresh.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+        binding.vidRefresh.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onRefresh(refreshlayout: RefreshLayout) {
                 loadData(true)
             }
@@ -121,8 +121,8 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                 }
             }
         })
-        itemTouchHelper.attachToRecyclerView(binding.vidAdbRefresh.getRecyclerView())
-        binding.vidAdbAddBtn.setOnClickListener {
+        itemTouchHelper.attachToRecyclerView(binding.vidRefresh.getRecyclerView())
+        binding.vidAddBtn.setOnClickListener {
             var addNumber: Int // 添加数据量
             if (adapter.isDataEmpty) { // 不存在数据
                 randomData(13.also { addNumber = it })
@@ -199,7 +199,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
         // 设置数据源
         adapter.addLists(!refresh, notes)
         // 结束刷新、加载
-        binding.vidAdbRefresh.finishRefreshOrLoad(refresh)
+        binding.vidRefresh.finishRefreshOrLoad(refresh)
     }
 
     /**

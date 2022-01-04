@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_adb_add_btn"
+            android:id="@+id/vid_add_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
@@ -19,7 +19,7 @@
     </LinearLayout>
 
     <dev.base.widget.BaseRefreshView
-        android:id="@+id/vid_adb_refresh"
+        android:id="@+id/vid_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

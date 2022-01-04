@@ -32,15 +32,15 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidAqcCreateBtn, binding.vidAqcSelectBtn
+            binding.vidCreateBtn, binding.vidSelectBtn
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_aqc_create_btn -> {
-                val text = EditTextUtils.getText(binding.vidAqcContentEdit)
+            R.id.vid_create_btn -> {
+                val text = EditTextUtils.getText(binding.vidContentEdit)
                 // 判断是否存在内容
                 if (TextUtils.isEmpty(text)) {
                     showToast(false, "请输入生成二维码内容")
@@ -54,7 +54,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     if (success) {
                         HandlerUtils.postRunnable {
                             ImageViewUtils.setImageBitmap(
-                                binding.vidAqcIgview,
+                                binding.vidIgview,
                                 bitmap
                             )
                         }
@@ -63,7 +63,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     }
                 }
             }
-            R.id.vid_aqc_select_btn -> {
+            R.id.vid_select_btn -> {
                 // 初始化图片配置
                 val config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)

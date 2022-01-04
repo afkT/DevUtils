@@ -40,7 +40,7 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
     override fun initView() {
         super.initView()
 
-        setSupportActionBar(binding.vidAamToolbar)
+        setSupportActionBar(binding.vidToolbar)
         supportActionBar?.apply {
             // 给左上角图标的左边加上一个返回的图标
             setDisplayHomeAsUpEnabled(true)
@@ -49,7 +49,7 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
         }
 
         // 设置点击事件
-        binding.vidAamToolbar.setNavigationOnClickListener { v: View? -> finish() }
+        binding.vidToolbar.setNavigationOnClickListener { v: View? -> finish() }
 
         // 获取标题
         val title = intent.getStringExtra(DevFinal.STR.TITLE)
@@ -58,20 +58,20 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
         binding.setVariable(BR.title, title) // 设置后, 会动态刷新
 
         // 初始化 View
-        val view = binding.vidAamState.getView(ViewAssist.TYPE_ING)
-        loadView = ViewUtils.findViewById(view, R.id.vid_sli_load_view)
+        val view = binding.vidState.getView(ViewAssist.TYPE_ING)
+        loadView = ViewUtils.findViewById(view, R.id.vid_load_view)
     }
 
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        adapter.bindAdapter(binding.vidAamRecy)
+        adapter.bindAdapter(binding.vidRecy)
     }
 
     override fun initListener() {
         super.initListener()
         // 设置监听
-        binding.vidAamState.setListener(object : StateLayout.Listener {
+        binding.vidState.setListener(object : StateLayout.Listener {
             override fun onRemove(
                 layout: StateLayout,
                 type: Int,
@@ -85,7 +85,7 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
             ) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidAamRecy, binding.vidAamState)
+                    ViewUtils.reverseVisibilitys(true, binding.vidRecy, binding.vidState)
                 }
             }
 
@@ -100,8 +100,8 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
                 // 切换 View 操作
                 if (ViewUtils.reverseVisibilitys(
                         success,
-                        binding.vidAamRecy,
-                        binding.vidAamState
+                        binding.vidRecy,
+                        binding.vidState
                     )
                 ) {
                     // 属于请求成功
@@ -121,20 +121,20 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
     override fun initOther() {
         super.initOther()
         // 表示请求中
-        binding.vidAamState.showIng()
+        binding.vidState.showIng()
         // 开始请求
         viewModel.requestArticleLists().observe(this, Observer { articleBean: ArticleBean? ->
             articleBean?.data?.apply {
                 if (CollectionUtils.isEmpty(datas)) { // 无数据
-                    binding.vidAamState.showEmptyData()
+                    binding.vidState.showEmptyData()
                 } else { // 请求成功
-                    binding.vidAamState.showSuccess()
+                    binding.vidState.showSuccess()
                     // 设置数据源
                     adapter.setDataList(datas)
                 }
                 return@Observer
             }
-            binding.vidAamState.showFailed()
+            binding.vidState.showFailed()
         })
     }
 

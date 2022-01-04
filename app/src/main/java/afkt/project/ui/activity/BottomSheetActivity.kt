@@ -24,7 +24,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
     override fun initValue() {
         super.initValue()
-        mBehavior = BottomSheetBehavior.from(binding.vidAbsSheetLinear)
+        mBehavior = BottomSheetBehavior.from(binding.vidSheetLinear)
     }
 
     override fun initListener() {
@@ -41,25 +41,25 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                         // 显示高度可以通过 app:behavior_peekHeight 设置
                         DevEngine.getLog()?.dTag(TAG, "STATE_COLLAPSED")
 
-                        ViewUtils.setVisibility(false, binding.vidAbsBgView)
+                        ViewUtils.setVisibility(false, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
                         DevEngine.getLog()?.dTag(TAG, "STATE_DRAGGING")
 
-                        ViewUtils.setVisibility(true, binding.vidAbsBgView)
+                        ViewUtils.setVisibility(true, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         // 完全展开的状态
                         DevEngine.getLog()?.dTag(TAG, "STATE_EXPANDED")
 
-                        ViewUtils.setVisibility(true, binding.vidAbsBgView)
+                        ViewUtils.setVisibility(true, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
                         DevEngine.getLog()?.dTag(TAG, "STATE_HIDDEN")
 
-                        ViewUtils.setVisibility(false, binding.vidAbsBgView)
+                        ViewUtils.setVisibility(false, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
                         // 视图从脱离手指自由滑动到最终停下的这一小段时间

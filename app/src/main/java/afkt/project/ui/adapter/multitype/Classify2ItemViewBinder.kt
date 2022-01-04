@@ -30,7 +30,7 @@ class Classify2ItemViewBinder : ItemViewBinder<ClassifyBeanItem2, DevBaseViewBin
     ) {
         val itemObj = item.obj
 
-        QuickHelper.get(holder.binding.vidAccTitleTv)
+        QuickHelper.get(holder.binding.vidTitleTv)
             .setText(itemObj.name)
             .setBackgroundColor(itemObj.background)
             .setPaddingLeft(ResourceUtils.getDimensionInt(R.dimen.un_dp_40))

@@ -10,7 +10,7 @@
         android:layout_gravity="center">
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_tiv_tv"
+            android:id="@+id/vid_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -19,11 +19,11 @@
             android:textColor="@color/color_33" />
 
         <View
-            android:id="@+id/vid_tiv_line"
+            android:id="@+id/vid_line"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/un_dp_3"
-            android:layout_alignLeft="@id/vid_tiv_tv"
-            android:layout_alignRight="@id/vid_tiv_tv"
+            android:layout_alignLeft="@id/vid_tv"
+            android:layout_alignRight="@id/vid_tv"
             android:layout_alignParentBottom="true"
             android:background="@color/red"
             android:visibility="gone" />

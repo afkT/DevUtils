@@ -185,11 +185,11 @@ class BaseApplication : MultiDexApplication() {
                 view: View
             ) {
                 if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
-                    val vid_slnd_tips_tv = ViewUtils.findViewById<View>(view, R.id.vid_slnd_tips_tv)
-                    TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据")
+                    val vidTipsTv = ViewUtils.findViewById<View>(view, R.id.vid_tips_tv)
+                    TextViewUtils.setText(vidTipsTv, "暂无数据")
                 } else if (type == ViewAssist.TYPE_FAILED) { // FAIL
-                    val vid_slf_tips_tv = ViewUtils.findViewById<View>(view, R.id.vid_slf_tips_tv)
-                    TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!")
+                    val vidTipsTv = ViewUtils.findViewById<View>(view, R.id.vid_tips_tv)
+                    TextViewUtils.setText(vidTipsTv, "请求失败, 请稍后重试!")
                 }
             }
         })

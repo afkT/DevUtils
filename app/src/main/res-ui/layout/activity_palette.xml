@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/vid_ap_tab"
+        android:id="@+id/vid_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vid_ap_viewPager"
+        android:id="@+id/vid_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

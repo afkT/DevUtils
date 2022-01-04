@@ -42,20 +42,20 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
 
         ViewHelper.get()
             // 是否显示编辑按钮
-            .setVisibilitys(false, holder.binding.vidAmsIgview)
+            .setVisibilitys(false, holder.binding.vidIgview)
             // 判断是否显示边距
-            .setVisibilitys(itemObj.isFirst, holder.binding.vidAmsLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidLine)
             // 商品名
-            .setText(itemObj.commodityName, holder.binding.vidAmsNameTv)
+            .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
             .setText(
                 "￥" + BigDecimalUtils.round(
                     itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidAmsPriceTv
+                ), holder.binding.vidPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAmsPicIgview,
+            holder.binding.vidPicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3
         )

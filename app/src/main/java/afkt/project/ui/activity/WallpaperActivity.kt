@@ -27,7 +27,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
 
         val wallpaper = WallpaperUtils.getDrawable()
 
-        binding.vidAwSaveBtn.setOnClickListener {
+        binding.vidSaveBtn.setOnClickListener {
             if (wallpaper == null) {
                 showToast(false, "获取壁纸失败")
                 return@setOnClickListener
@@ -55,7 +55,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
             )
         }
         wallpaper?.let {
-            binding.vidAwIgview.background = it
+            binding.vidIgview.background = it
         }
     }
 }

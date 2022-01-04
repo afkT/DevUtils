@@ -50,7 +50,7 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
     override fun initValue() {
         super.initValue()
 
-        binding.vidAacAddBtn.setOnClickListener(View.OnClickListener {
+        binding.vidAddBtn.setOnClickListener(View.OnClickListener {
             if (running) {
                 ToastTintUtils.warning("运行中")
                 return@OnClickListener
@@ -81,8 +81,8 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
      */
     private fun createCheck() {
         // 获取手机号码开头、结尾
-        val start = EditTextUtils.getText(binding.vidAacStartEdit)
-        val end = EditTextUtils.getText(binding.vidAacEndEdit)
+        val start = EditTextUtils.getText(binding.vidStartEdit)
+        val end = EditTextUtils.getText(binding.vidEndEdit)
         // 判断是否符合条件
         val temp = start + end
         if (!ValidatorUtils.isNumber(temp)) {
@@ -135,7 +135,7 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
         count: Int
     ) {
         ToastTintUtils.normal("创建中...")
-        ViewUtils.setVisibility(true, binding.vidAacTipsTv)
+        ViewUtils.setVisibility(true, binding.vidTipsTv)
         KeyBoardUtils.closeKeyboard()
         this.count = count
         running = true
@@ -256,12 +256,12 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
             val value = index.getAndIncrement()
             if (count == value + 1) {
                 val tips = "$count 条数据, 创建成功"
-                TextViewUtils.setText(binding.vidAacTipsTv, tips)
+                TextViewUtils.setText(binding.vidTipsTv, tips)
                 ToastTintUtils.success(tips)
                 running = false
             } else {
                 TextViewUtils.setText(
-                    binding.vidAacTipsTv,
+                    binding.vidTipsTv,
                     "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条"
                 )
             }

@@ -12,7 +12,7 @@
     tools:paddingTop="@dimen/un_dp_10">
 
     <View
-        android:id="@+id/vid_aie_line"
+        android:id="@+id/vid_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/un_dp_10"
         android:visibility="gone" />
@@ -33,7 +33,7 @@
             android:layout_marginBottom="@dimen/un_dp_10">
 
             <FrameLayout
-                android:id="@+id/vid_aie_pic_frame"
+                android:id="@+id/vid_pic_frame"
                 android:layout_width="@dimen/un_dp_70"
                 android:layout_height="@dimen/un_dp_70"
                 android:layout_alignParentLeft="true"
@@ -42,7 +42,7 @@
                 android:padding="@dimen/un_dp_5">
 
                 <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_aie_pic_igview"
+                    android:id="@+id/vid_pic_igview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -52,11 +52,11 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/un_dp_8"
-                android:layout_toRightOf="@id/vid_aie_pic_frame"
+                android:layout_toRightOf="@id/vid_pic_frame"
                 android:orientation="vertical">
 
                 <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_aie_name_tv"
+                    android:id="@+id/vid_name_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                     tools:text="商品名" />
 
                 <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_aie_price_tv"
+                    android:id="@+id/vid_price_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     <!-- 评星控件 -->
 
                     <com.hedgehog.ratingbar.RatingBar
-                        android:id="@+id/vid_aie_ratingbar"
+                        android:id="@+id/vid_ratingbar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
@@ -127,11 +127,11 @@
             <!-- 输入的评价内容 -->
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_aie_content_edit"
+                android:id="@+id/vid_content_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@id/vid_aie_number_tv"
+                android:layout_toLeftOf="@id/vid_number_tv"
                 android:background="@null"
                 android:gravity="start"
                 android:hint="分享你的评价"
@@ -144,7 +144,7 @@
             <!-- 输入的字数数量 -->
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aie_number_tv"
+                android:id="@+id/vid_number_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
         <!-- 选择的图片 -->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vid_aie_pic_recy"
+            android:id="@+id/vid_pic_recy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_10"

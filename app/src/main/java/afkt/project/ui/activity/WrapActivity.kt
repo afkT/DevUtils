@@ -43,7 +43,7 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
 
     override fun initValue() {
         super.initValue()
-        binding.vidAwWrapview
+        binding.vidWrapview
 //            // 设置最大行数
 //            .setMaxLine(RandomUtils.getRandom(10, 30))
 //            // 设置每一行向上的边距 ( 行间隔 )
@@ -65,7 +65,7 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
                     RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
             val randomText =
                 i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
-            binding.vidAwWrapview.addView(createView(randomText, layoutParams, drawable))
+            binding.vidWrapview.addView(createView(randomText, layoutParams, drawable))
         }
     }
 

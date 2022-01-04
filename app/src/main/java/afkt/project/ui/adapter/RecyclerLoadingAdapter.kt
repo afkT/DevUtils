@@ -36,11 +36,11 @@ class RecyclerLoadingAdapter(data: List<String>) : DevDataAdapter<String, DevBas
         position: Int
     ) {
         val url = getDataItem(position)
-        val viewAssist = ViewAssist.wrap(holder.binding.vidArlFrame)
+        val viewAssist = ViewAssist.wrap(holder.binding.vidFrame)
         ViewAssistUtils.registerRecyclerLoading(viewAssist) {
-            loadImage(holder.binding.vidArlIgview, viewAssist, url)
+            loadImage(holder.binding.vidIgview, viewAssist, url)
         }
-        loadImage(holder.binding.vidArlIgview, viewAssist, url)
+        loadImage(holder.binding.vidIgview, viewAssist, url)
     }
 
     private fun loadImage(

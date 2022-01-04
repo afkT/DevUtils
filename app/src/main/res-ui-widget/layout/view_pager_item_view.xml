@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <dev.base.widget.BaseTextView
-        android:id="@+id/vid_vpiv_content_tv"
+        android:id="@+id/vid_content_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

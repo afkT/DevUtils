@@ -12,14 +12,14 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_aqi_select_btn"
+            android:id="@+id/vid_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="选择图片" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_aqi_tv"
+            android:id="@+id/vid_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="@dimen/un_dp_10"
             android:textSize="@dimen/un_sp_17"

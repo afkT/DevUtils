@@ -40,7 +40,7 @@ class StatusBarActivity : BaseActivity<ActivityStatusBarBinding>() {
         contentAssist.rootLinear?.addView(statusView, 0)
         // 设置全屏显示, 但是会被状态栏覆盖
         contentAssist.rootLinear?.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        binding.vidAsbToggleBtn.setOnClickListener { // 设置是否显示
+        binding.vidToggleBtn.setOnClickListener { // 设置是否显示
             BarUtils.setStatusBarVisibility(mActivity, !display.also { display = !it })
         }
     }

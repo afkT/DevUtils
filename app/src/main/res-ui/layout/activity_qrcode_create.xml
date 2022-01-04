@@ -11,21 +11,21 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_aqc_create_btn"
+            android:id="@+id/vid_create_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="生成二维码" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_aqc_select_btn"
+            android:id="@+id/vid_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="选择 Logo 图片" />
 
         <dev.base.widget.BaseEditText
-            android:id="@+id/vid_aqc_content_edit"
+            android:id="@+id/vid_content_edit"
             android:layout_width="match_parent"
             android:layout_height="@dimen/un_dp_150"
             android:layout_marginTop="@dimen/un_dp_10"
@@ -39,7 +39,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_aqc_igview"
+            android:id="@+id/vid_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

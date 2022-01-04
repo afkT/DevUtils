@@ -20,7 +20,7 @@ import dev.widget.utils.WaveHelper
 class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
 
     val helper: WaveHelper by lazy {
-        val lazyObj = WaveHelper.get(binding.vidAwvWave)
+        val lazyObj = WaveHelper.get(binding.vidWave)
         // 通过属性动画进行设置波浪 View 动画效果
         lazyObj.buildPropertyAnimation(
             WaveHelper.WaveProperty.Builder()
@@ -59,15 +59,15 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
         super.initListener()
 
         // 设置波浪外形形状
-        binding.vidAwvShapeChoice.setOnCheckedChangeListener { group, checkedId ->
+        binding.vidShapeChoice.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.vid_awv_shape_circle -> helper.shapeType = WaveView.ShapeType.CIRCLE
-                R.id.vid_awv_shape_square -> helper.shapeType = WaveView.ShapeType.SQUARE
+                R.id.vid_shape_circle -> helper.shapeType = WaveView.ShapeType.CIRCLE
+                R.id.vid_shape_square -> helper.shapeType = WaveView.ShapeType.SQUARE
             }
         }
 
         // 设置波浪边框信息
-        binding.vidAwvSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.vidSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(
                 seekBar: SeekBar?,
                 progress: Int,
@@ -84,9 +84,9 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
         })
 
         // 设置波浪颜色
-        binding.vidAwvColorChoice.setOnCheckedChangeListener { group, checkedId ->
+        binding.vidColorChoice.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.vid_awv_color_default -> {
+                R.id.vid_color_default -> {
                     helper.setBorder(
                         helper.borderWidth, WaveView.DEFAULT_BORDER_COLOR
                     ).setWaveColor(
@@ -94,7 +94,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         WaveView.DEFAULT_FRONT_WAVE_COLOR,
                     )
                 }
-                R.id.vid_awv_color_red -> {
+                R.id.vid_color_red -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#44f16d7a")
                     ).setWaveColor(
@@ -102,7 +102,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         Color.parseColor("#3cf16d7a")
                     )
                 }
-                R.id.vid_awv_color_green -> {
+                R.id.vid_color_green -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#B0b7d28d")
                     ).setWaveColor(
@@ -110,7 +110,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         Color.parseColor("#80b7d28d")
                     )
                 }
-                R.id.vid_awv_color_blue -> {
+                R.id.vid_color_blue -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#b8f1ed")
                     ).setWaveColor(

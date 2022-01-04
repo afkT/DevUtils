@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/vid_act_linear"
+            android:id="@+id/vid_linear"
             style="@style/AppTheme.padding_lr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:orientation="vertical" />
 
         <include
-            android:id="@+id/vid_base_recy"
+            android:id="@+id/vid_include"
             layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

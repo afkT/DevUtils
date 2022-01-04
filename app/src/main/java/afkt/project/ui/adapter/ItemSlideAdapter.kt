@@ -36,14 +36,14 @@ class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<Commo
     ) {
         val item = getDataItem(position)
         ViewHelper.get()
-            .setText(item.commodityName, holder.binding.vidAmsNameTv)
+            .setText(item.commodityName, holder.binding.vidNameTv)
             .setText(
                 "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}",
-                holder.binding.vidAmsPriceTv
+                holder.binding.vidPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAmsIgview,
+            holder.binding.vidIgview,
             item.commodityPicture,
             ProjectUtils.roundConfig3
         )

@@ -45,7 +45,7 @@ class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>
                         "web.jpg"
                     ),
                     DevSource.create(
-                        CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview)
+                        CapturePictureUtils.snapshotByWebView(binding.vidWebview)
                     ),
                     object : OnDevInsertListener {
                         override fun onResult(
@@ -68,6 +68,6 @@ class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>
     override fun initValue() {
         super.initValue()
         // 加载网页
-        binding.vidAcpWebview.loadUrl("https://www.csdn.net/")
+        binding.vidWebview.loadUrl("https://www.csdn.net/")
     }
 }

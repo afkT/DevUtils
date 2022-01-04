@@ -62,20 +62,20 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
         if (holder is CommodityHolder) {
             ViewHelper.get()
                 // 是否显示编辑按钮
-                .setVisibilitys(false, holder.binding.vidAmsIgview)
+                .setVisibilitys(false, holder.binding.vidIgview)
                 // 判断是否显示边距
-                .setVisibilitys(position == 0, holder.binding.vidAmsLine)
+                .setVisibilitys(position == 0, holder.binding.vidLine)
                 // 商品名
-                .setText(item.commodityName, holder.binding.vidAmsNameTv)
+                .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
                     "￥" + BigDecimalUtils.round(
                         item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    ), holder.binding.vidAmsPriceTv
+                    ), holder.binding.vidPriceTv
                 )
             // 商品图片
             DevEngine.getImage()?.display(
-                holder.binding.vidAmsPicIgview,
+                holder.binding.vidPicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
             )
@@ -83,28 +83,28 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
         } else if (holder is CommodityEvaluateHolder) {
             ViewHelper.get()
                 // 判断是否显示边距
-                .setVisibilitys(position == 0, holder.binding.vidAieLine)
+                .setVisibilitys(position == 0, holder.binding.vidLine)
                 // 商品名
-                .setText(item.commodityName, holder.binding.vidAieNameTv)
+                .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
                     "￥" + BigDecimalUtils.round(
                         item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    ), holder.binding.vidAiePriceTv
+                    ), holder.binding.vidPriceTv
                 )
                 // 评价内容
-                .setText(item.evaluateContent, holder.binding.vidAieContentEdit)
+                .setText(item.evaluateContent, holder.binding.vidContentEdit)
                 // 禁止点击评价输入框
-                .setEnabled(false, holder.binding.vidAieContentEdit)
+                .setEnabled(false, holder.binding.vidContentEdit)
 
             // 商品图片
             DevEngine.getImage()?.display(
-                holder.binding.vidAiePicIgview,
+                holder.binding.vidPicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
             )
             // 评星等级
-            val ratingBar = holder.binding.vidAieRatingbar
+            val ratingBar = holder.binding.vidRatingbar
             ratingBar.setOnRatingChangeListener { ratingCount ->
                 item.evaluateLevel = ratingCount
             }

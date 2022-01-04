@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_preface_tv"
+            android:id="@+id/vid_preface_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_15"
@@ -21,7 +21,7 @@
             tools:text="前言" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_title_tv"
+            android:id="@+id/vid_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_15"
@@ -30,7 +30,7 @@
             tools:text="标题" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_fp_igview"
+            android:id="@+id/vid_igview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_15"
@@ -38,7 +38,7 @@
             tools:background="@drawable/bg_wallpaper" />
 
         <dev.base.widget.BaseTextView
-            android:id="@+id/vid_fp_content_tv"
+            android:id="@+id/vid_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_15"

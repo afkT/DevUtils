@@ -9,7 +9,6 @@ import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
-import dev.utils.app.ViewUtils
 import dev.utils.common.BigDecimalUtils
 import dev.utils.common.StringUtils
 import java.math.BigDecimal
@@ -44,21 +43,21 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         val commodity = item.commodityEvaluateBean
 
         // 商品名
-        holder.binding.vidAieNameTv.text = commodity.commodityName
+        holder.binding.vidNameTv.text = commodity.commodityName
 
         val priceText =
             "￥${BigDecimalUtils.round(commodity.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
         // 商品价格
-        holder.binding.vidAiePriceTv.text = priceText
+        holder.binding.vidPriceTv.text = priceText
 
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidAiePicIgview,
+            holder.binding.vidPicIgview,
             commodity.commodityPicture,
             ProjectUtils.roundConfig3
         )
         // 评星等级
-        val ratingBar = holder.binding.vidAieRatingbar
+        val ratingBar = holder.binding.vidRatingbar
         ratingBar.setOnRatingChangeListener { ratingCount ->
             item.evaluateLevel = ratingCount
         }
@@ -70,14 +69,14 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // ==========
 
         // 评价内容字数
-        val vid_aie_number_tv = holder.binding.vidAieNumberTv
+        val vid_aie_number_tv = holder.binding.vidNumberTv
         // 计算已经输入的内容长度
         vid_aie_number_tv.text = "${120 - StringUtils.length(item.evaluateContent)}"
         // 绑定监听事件
         mTextWatcherAssist.bindListener(
             item.evaluateContent,
             position,
-            holder.binding.vidAieContentEdit
+            holder.binding.vidContentEdit
         ) { charSequence, _, pos, _ ->
             try {
                 // 保存评价内容

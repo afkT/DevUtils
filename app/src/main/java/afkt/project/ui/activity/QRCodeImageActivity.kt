@@ -39,14 +39,14 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidAqiSelectBtn, binding.vidAqiTv
+            binding.vidSelectBtn, binding.vidTv
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_aqi_select_btn -> {
+            R.id.vid_select_btn -> {
                 // 初始化图片配置
                 val config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)
@@ -55,8 +55,8 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                 // 打开图片选择器
                 DevEngine.getMedia()?.openGallery(mActivity, config)
             }
-            R.id.vid_aqi_tv -> {
-                val text = TextViewUtils.getText(binding.vidAqiTv)
+            R.id.vid_tv -> {
+                val text = TextViewUtils.getText(binding.vidTv)
                 if (TextUtils.isEmpty(text)) return
                 // 复制到剪切板
                 ClipboardUtils.copyText(text)
@@ -117,12 +117,12 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                                         )
                                                     )
                                                 TextViewUtils.setText(
-                                                    binding.vidAqiTv,
+                                                    binding.vidTv,
                                                     builder.toString()
                                                 )
                                             } else {
                                                 TextViewUtils.setText(
-                                                    binding.vidAqiTv, "图片非二维码 / 识别失败\n" +
+                                                    binding.vidTv, "图片非二维码 / 识别失败\n" +
                                                             ThrowableUtils.getThrowableStackTrace(
                                                                 error
                                                             )
@@ -139,7 +139,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                             throwable: Throwable?
                         ) {
                             TextViewUtils.setText(
-                                binding.vidAqiTv, "图片非二维码 / 识别失败\n"
+                                binding.vidTv, "图片非二维码 / 识别失败\n"
                                         + ThrowableUtils.getThrowableStackTrace(throwable)
                             )
                         }

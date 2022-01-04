@@ -11,19 +11,19 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_agf_select_btn"
+            android:id="@+id/vid_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="选择图片" />
 
         <dev.widget.custom.CustomGallery
-            android:id="@+id/vid_agf_gallery"
+            android:id="@+id/vid_gallery"
             android:layout_width="match_parent"
             android:layout_height="@dimen/un_dp_70" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_agf_igview"
+            android:id="@+id/vid_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />

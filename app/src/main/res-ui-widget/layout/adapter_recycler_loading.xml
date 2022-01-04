@@ -6,13 +6,13 @@
     tools:background="@color/white">
 
     <dev.base.widget.BaseImageView
-        android:id="@+id/vid_arl_igview"
+        android:id="@+id/vid_igview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <FrameLayout
-        android:id="@+id/vid_arl_frame"
+        android:id="@+id/vid_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

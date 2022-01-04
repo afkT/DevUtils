@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_1_0_tv"
+                android:id="@+id/vid_1_0_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_tab_left_selector"
@@ -28,7 +28,7 @@
                 android:textColor="@color/selector_tab_text_color" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_1_1_tv"
+                android:id="@+id/vid_1_1_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_tab_right_selector"
@@ -45,14 +45,14 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_2_0_tv"
+                android:id="@+id/vid_2_0_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="文章" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_2_1_tv"
+                android:id="@+id/vid_2_1_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -67,14 +67,14 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_3_0_tv"
+                android:id="@+id/vid_3_0_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="精选" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_aue_3_1_tv"
+                android:id="@+id/vid_3_1_tv"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -89,14 +89,14 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseButton
-                android:id="@+id/vid_aue_4_0_btn"
+                android:id="@+id/vid_4_0_btn"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/un_dp_5"
                 android:text="登录" />
 
             <dev.base.widget.BaseButton
-                android:id="@+id/vid_aue_4_1_btn"
+                android:id="@+id/vid_4_1_btn"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/un_dp_5"
@@ -111,7 +111,7 @@
             android:orientation="horizontal">
 
             <View
-                android:id="@+id/vid_aue_5_0_view"
+                android:id="@+id/vid_5_0_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
@@ -124,7 +124,7 @@
             android:orientation="horizontal">
 
             <View
-                android:id="@+id/vid_aue_6_0_view"
+                android:id="@+id/vid_6_0_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
@@ -143,13 +143,13 @@
                 android:text="HorizontalScrollView Tab" />
 
             <HorizontalScrollView
-                android:id="@+id/vid_aue_7_0_scroll"
+                android:id="@+id/vid_7_0_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/vid_aue_7_0_linear"
+                    android:id="@+id/vid_7_0_linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" />
@@ -170,7 +170,7 @@
                 android:text="TabLayout Tab" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/vid_aue_8_0_tab"
+                android:id="@+id/vid_8_0_tab"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/un_dp_44"
                 android:background="@color/white"
@@ -183,7 +183,7 @@
                 app:tabMode="scrollable" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/vid_aue_9_0_tab"
+                android:id="@+id/vid_9_0_tab"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/un_dp_44"
                 android:layout_marginTop="@dimen/un_dp_20"
