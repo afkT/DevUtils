@@ -504,7 +504,7 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_SHOP_CARD_ADD_ANIM,
                     "购物车加入动画",
-                    RouterPath.MultiSelectActivity_PATH
+                    RouterPath.ShopCartAddAnimActivity_PATH
                 )
             )
             return lists

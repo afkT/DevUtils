@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/un_dp_10"
+    android:paddingRight="@dimen/un_dp_10"
+    android:paddingBottom="@dimen/un_dp_10"
+    tools:background="@color/color_f5"
+    tools:paddingTop="@dimen/un_dp_10">
+
+    <dev.widget.ui.round.RoundFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/un_dp_10"
+        app:dev_backgroundColor="@color/white"
+        app:dev_radius="@dimen/un_dp_10">
+
+        <FrameLayout
+            android:id="@+id/vid_pic_frame"
+            android:layout_width="@dimen/un_dp_70"
+            android:layout_height="@dimen/un_dp_70"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_border_image"
+            android:padding="@dimen/un_dp_5">
+
+            <dev.base.widget.BaseImageView
+                android:id="@+id/vid_pic_igview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/un_dp_70"
+            android:layout_marginLeft="@dimen/un_dp_80"
+            android:orientation="vertical">
+
+            <dev.base.widget.BaseTextView
+                android:id="@+id/vid_name_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/un_sp_16"
+                tools:text="商品名" />
+
+            <dev.base.widget.BaseTextView
+                android:id="@+id/vid_price_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:textColor="@color/red"
+                android:textSize="@dimen/un_sp_15"
+                tools:text="￥17.2" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/vid_add_igview"
+            android:layout_width="@dimen/un_dp_25"
+            android:layout_height="@dimen/un_dp_25"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/icon_add_cart" />
+    </dev.widget.ui.round.RoundFrameLayout>
+</LinearLayout>
