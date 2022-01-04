@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import dev.assist.NumberControlAssist
+import dev.base.number.INumberListener
 import dev.utils.app.ResourceUtils
 import dev.utils.app.assist.floating.FloatingWindowManagerAssist2
 import dev.utils.app.assist.floating.IFloatingActivity
 import dev.utils.app.assist.floating.IFloatingOperate
+import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: 购物车悬浮对外公开类
@@ -25,7 +27,23 @@ import dev.utils.app.assist.floating.IFloatingOperate
 class ShopCartFloating(private val activity: AppCompatActivity) {
 
     // 数量控制辅助类
-    private val numberControl = NumberControlAssist(0, Int.MAX_VALUE)
+    private val numberControl = NumberControlAssist(0, Int.MAX_VALUE).setNumberListener(
+        object : INumberListener {
+            override fun onPrepareChanged(
+                isAdd: Boolean,
+                curNumber: Int,
+                afterNumber: Int
+            ): Boolean {
+                return true
+            }
+
+            override fun onNumberChanged(
+                isAdd: Boolean,
+                curNumber: Int
+            ) {
+            }
+        }
+    )
 
     // 购物车悬浮 View
     private val binding: IncludeBottomShopCartFloatingBinding by lazy {
@@ -35,7 +53,9 @@ class ShopCartFloating(private val activity: AppCompatActivity) {
         ).apply {
             numberControl.currentNumber = 0
             // 设置购买数量
-            vidCartNumberTv.text = numberControl.currentNumber.toString()
+            QuickHelper.get(vidCartNumberTv)
+                .setText(numberControl.currentNumber.toString())
+                .setVisibilitys(true)
         }
     }
 
@@ -47,9 +67,12 @@ class ShopCartFloating(private val activity: AppCompatActivity) {
      * @param view View
      */
     fun executeAnim(view: View) {
-        // 设置购买数量
-        numberControl.addNumber()
-        binding.vidCartNumberTv.text = numberControl.currentNumber.toString()
+        numberControl.addNumber().apply {
+            val numberTxt = if (currentNumber > 99) "99+" else currentNumber.toString()
+            // 设置购买数量
+            QuickHelper.get(binding.vidCartNumberTv)
+                .setText(numberTxt)
+        }
     }
 }
 
