@@ -40,9 +40,9 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         for (i in 0..14) lists.add(newCommodityEvaluateBean())
 
         // 初始化布局管理器、适配器
-        ShopCartAnimAdapter(lists).apply {
+        ShopCartAnimAdapter(lists).setClickListener({
 
-        }.bindAdapter(binding.vidRecy)
+        }).bindAdapter(binding.vidRecy)
 
         QuickHelper.get(binding.vidRecy)
             .removeAllItemDecoration()

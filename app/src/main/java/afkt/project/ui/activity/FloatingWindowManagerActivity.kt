@@ -137,7 +137,7 @@ internal class Utils private constructor() {
 @SuppressLint("ViewConstructor")
 class FloatingView(
     thisContext: Context,
-    private val assist: IFloatingTouch
+    private val assist: IFloatingTouch?
 ) : LinearLayout(thisContext) {
 
     init {
@@ -150,7 +150,7 @@ class FloatingView(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        assist.onTouchEvent(this, event)
+        assist?.onTouchEvent(this, event)
         return true
     }
 

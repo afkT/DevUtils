@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemShopCartAnimBinding
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.util.ProjectUtils
+import android.view.View
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
@@ -51,5 +52,19 @@ class ShopCartAnimAdapter(data: List<CommodityEvaluateBean?>) :
             item?.commodityPicture,
             ProjectUtils.roundConfig3
         )
+        // 点击加入购物车
+        ViewHelper.get()
+            .setOnClick({
+                mClick?.onClick(it)
+            }, holder.binding.vidAddIgview)
+    }
+
+    // =
+
+    private var mClick: View.OnClickListener? = null
+
+    fun setClickListener(click: View.OnClickListener): ShopCartAnimAdapter {
+        mClick = click
+        return this
     }
 }
