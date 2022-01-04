@@ -36,8 +36,6 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         position: Int
     ) {
         val item = getDataItem(position)
-        // 判断是否显示边距
-        ViewUtils.setVisibility(position == 0, holder.binding.vidAieLine)
 
         // ==========
         // = 商品信息 =

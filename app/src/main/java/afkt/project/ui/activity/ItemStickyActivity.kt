@@ -19,7 +19,6 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import java.util.*
@@ -89,8 +88,8 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         itemStickyAdapter = ItemStickyAdapter(list)
-        binding.vidBvrRecy.adapter = itemStickyAdapter
         binding.vidBvrRecy.addItemDecoration(decoration)
+        itemStickyAdapter.bindAdapter(binding.vidBvrRecy)
     }
 
     private val list: List<ItemStickyBean>

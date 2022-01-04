@@ -38,8 +38,6 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
         position: Int
     ) {
         val item: CommodityEvaluateBean? = getDataItem(position)
-        // 判断是否显示边距
-        ViewUtils.setVisibility(position == 0, holder.binding.vidAmsLine)
 
         // 商品信息
         ViewHelper.get()

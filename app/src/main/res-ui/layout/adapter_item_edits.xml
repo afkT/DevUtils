@@ -8,12 +8,14 @@
     android:paddingLeft="@dimen/un_dp_10"
     android:paddingRight="@dimen/un_dp_10"
     android:paddingBottom="@dimen/un_dp_10"
-    tools:background="@color/color_f5">
+    tools:background="@color/color_f5"
+    tools:paddingTop="@dimen/un_dp_10">
 
     <View
         android:id="@+id/vid_aie_line"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/un_dp_10" />
+        android:layout_height="@dimen/un_dp_10"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -15,8 +15,8 @@ import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
+import dev.widget.decoration.FirstLineItemDecoration
 import java.util.*
 
 /**
@@ -70,6 +70,14 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         adapter = EditsAdapter(lists)
-        binding.vidBvrRecy.adapter = adapter
+        adapter.bindAdapter(binding.vidBvrRecy)
+
+        QuickHelper.get(binding.vidBvrRecy)
+            .removeAllItemDecoration()
+            .addItemDecoration(
+                FirstLineItemDecoration(
+                    ResourceUtils.getDimension(R.dimen.un_dp_10)
+                )
+            )
     }
 }

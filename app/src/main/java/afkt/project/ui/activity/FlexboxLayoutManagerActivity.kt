@@ -16,7 +16,6 @@ import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import java.util.*
@@ -71,7 +70,7 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        binding.vidBvrRecy.adapter = TextAdapter(lists)
         binding.vidBvrRecy.layoutManager = layoutManager
+        TextAdapter(lists).bindAdapter(binding.vidBvrRecy)
     }
 }

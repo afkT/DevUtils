@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
+import dev.widget.decoration.FirstLineItemDecoration
 import java.util.*
 
 /**
@@ -47,7 +47,15 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         itemSlideAdapter = ItemSlideAdapter(lists)
-        binding.vidBvrRecy.adapter = itemSlideAdapter
+        itemSlideAdapter.bindAdapter(binding.vidBvrRecy)
+
+        QuickHelper.get(binding.vidBvrRecy)
+            .removeAllItemDecoration()
+            .addItemDecoration(
+                FirstLineItemDecoration(
+                    ResourceUtils.getDimension(R.dimen.un_dp_10)
+                )
+            )
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
             /**

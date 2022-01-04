@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.RandomUtils
 import java.util.*
 
@@ -35,6 +34,6 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
         }
         // 初始化布局管理器、适配器
         binding.vidBvrRecy.layoutManager = GridLayoutManager(this, 2)
-        binding.vidBvrRecy.adapter = RecyclerLoadingAdapter(lists)
+        RecyclerLoadingAdapter(lists).bindAdapter(binding.vidBvrRecy)
     }
 }

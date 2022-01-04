@@ -36,7 +36,6 @@ class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<Commo
     ) {
         val item = getDataItem(position)
         ViewHelper.get()
-            .setVisibilitys(position == 0, holder.binding.vidAmsLine)
             .setText(item.commodityName, holder.binding.vidAmsNameTv)
             .setText(
                 "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}",

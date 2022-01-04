@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
 /**
@@ -43,7 +42,8 @@ class LinearSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 初始化布局管理器、适配器
         binding.vidBvrRecy.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
-        binding.vidBvrRecy.adapter = LinearSnapAdapter(lists)
+        LinearSnapAdapter(lists).bindAdapter(binding.vidBvrRecy)
+
         val helper = LinearSnapHelper()
         helper.attachToRecyclerView(binding.vidBvrRecy)
     }

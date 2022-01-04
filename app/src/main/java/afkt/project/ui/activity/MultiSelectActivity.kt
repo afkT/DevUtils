@@ -17,8 +17,8 @@ import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
+import dev.widget.decoration.FirstLineItemDecoration
 import java.util.*
 
 /**
@@ -63,7 +63,15 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
             })
-        binding.vidBvrRecy.adapter = adapter
+        adapter.bindAdapter(binding.vidBvrRecy)
+
+        QuickHelper.get(binding.vidBvrRecy)
+            .removeAllItemDecoration()
+            .addItemDecoration(
+                FirstLineItemDecoration(
+                    ResourceUtils.getDimension(R.dimen.un_dp_10)
+                )
+            )
     }
 
     // =============

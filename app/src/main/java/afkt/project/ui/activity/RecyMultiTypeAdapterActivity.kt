@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drakeet.multitype.MultiTypeAdapter
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
 
 /**
  * detail: RecyclerView MultiType Adapter

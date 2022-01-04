@@ -55,6 +55,6 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
             })
-        binding.vidBvrRecy.adapter = adapter
+        adapter.bindAdapter(binding.vidBvrRecy)
     }
 }

@@ -48,7 +48,7 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        binding.vidBvrRecy.adapter = adapter
+        adapter.bindAdapter(binding.vidBvrRecy)
     }
 
     override fun initListener() {
