@@ -250,6 +250,7 @@ class ShopCartAnimation {
         // 悬浮 View - 用于获取宽高
         val rootView = binding.root
 
+        startPoints[1] -= startView.height
         // 动画 View - 小红点
         val animBinding = IncludeBottomShopCartFloatingAnimViewBinding.inflate(
             activity.layoutInflater, ViewUtils.getContentView(activity), true
