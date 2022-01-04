@@ -7,6 +7,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
 import afkt.project.ui.adapter.ShopCartAnimAdapter
+import afkt.project.util.ShopCartFloating
 import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -22,6 +23,9 @@ import java.util.*
 @Route(path = RouterPath.ShopCartAddAnimActivity_PATH)
 class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
+    // 购物车悬浮对外公开类
+    lateinit var shopCartFloating: ShopCartFloating
+
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,9 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
+
+        // 创建购物车悬浮
+        shopCartFloating = ShopCartFloating(this)
     }
 
     override fun initValue() {
@@ -40,9 +47,9 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         for (i in 0..14) lists.add(newCommodityEvaluateBean())
 
         // 初始化布局管理器、适配器
-        ShopCartAnimAdapter(lists).setClickListener({
-
-        }).bindAdapter(binding.vidRecy)
+        ShopCartAnimAdapter(lists).setClickListener {
+            shopCartFloating.executeAnim(it)
+        }.bindAdapter(binding.vidRecy)
 
         QuickHelper.get(binding.vidRecy)
             .removeAllItemDecoration()

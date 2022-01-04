@@ -4,6 +4,7 @@ import afkt.project.ui.activity.Utils2
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
@@ -31,9 +32,7 @@ abstract class BaseActivity<VB : ViewBinding> :
     // ========
 
     val floatingLifecycle: FloatingLifecycle by lazy {
-        FloatingLifecycle(this).apply {
-            lifecycle.addObserver(this)
-        }
+        FloatingLifecycle(this)
     }
 
     // ========
@@ -75,8 +74,12 @@ abstract class BaseActivity<VB : ViewBinding> :
 // = 方式一 =
 // ========
 
-class FloatingLifecycle(val activity: Activity) : DefaultLifecycleObserver,
+class FloatingLifecycle(val activity: AppCompatActivity) : DefaultLifecycleObserver,
     IFloatingActivity {
+
+    init {
+        activity.lifecycle.addObserver(this)
+    }
 
     // =====================
     // = IFloatingActivity =

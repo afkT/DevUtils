@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.ui.round.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|left"
+    android:orientation="horizontal"
+    app:dev_backgroundColor="@color/black_tran40"
+    app:dev_radiusRightBottom="@dimen/un_dp_10"
+    app:dev_radiusRightTop="@dimen/un_dp_10"
+    tools:layout_marginBottom="@dimen/un_dp_70">
+
+    <FrameLayout
+        android:id="@+id/vid_cart_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/un_dp_40"
+            android:layout_height="@dimen/un_dp_40"
+            android:layout_marginRight="@dimen/un_dp_10"
+            android:padding="@dimen/un_dp_8"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_shop_cart_white" />
+
+        <dev.widget.ui.round.RoundTextView
+            android:id="@+id/vid_cart_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/un_dp_25"
+            android:layout_marginTop="@dimen/un_dp_2"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="@dimen/un_dp_3"
+            android:paddingRight="@dimen/un_dp_3"
+            android:textColor="@color/white"
+            android:textSize="@dimen/un_sp_12"
+            android:visibility="gone"
+            app:dev_backgroundColor="@color/color_ff2e42"
+            app:dev_borderColor="@color/white"
+            app:dev_borderWidth="@dimen/un_dp_1"
+            app:dev_radius="@dimen/un_dp_10"
+            tools:text="0"
+            tools:visibility="visible" />
+    </FrameLayout>
+</dev.widget.ui.round.RoundLinearLayout>

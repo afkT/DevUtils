@@ -58,7 +58,7 @@ class ChipActivity : BaseActivity<ActivityChipBinding>() {
             val randomText =
                 i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
 
-            val chip = ViewUtils.inflate(this, R.layout.inflate_chip) as? Chip
+            val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
             chip?.run {
                 // 随机颜色
                 val pressed = ColorUtils.getRandomColorString()

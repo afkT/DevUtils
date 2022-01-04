@@ -72,6 +72,6 @@
             android:layout_width="@dimen/un_dp_25"
             android:layout_height="@dimen/un_dp_25"
             android:layout_gravity="bottom|right"
-            android:background="@drawable/icon_add_cart" />
+            android:background="@drawable/icon_shop_cart_add_red" />
     </dev.widget.ui.round.RoundFrameLayout>
 </LinearLayout>
