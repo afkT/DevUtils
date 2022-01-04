@@ -51,7 +51,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             .setVisibilitys(note.type != NoteType.TEXT, holder.binding.vidAdbRecy)
         val imgRecy = holder.binding.vidAdbRecy
         if (ViewUtils.isVisibility(imgRecy)) {
-            imgRecy.adapter = ImageAdapter(item.pictures)
+            ImageAdapter(item.pictures).bindAdapter(imgRecy)
         }
     }
 

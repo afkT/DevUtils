@@ -50,7 +50,7 @@ class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterData
             .setVisibilitys(note.type != NoteType.TEXT, holder.binding.vidAdbRecy)
         val imgRecy = holder.binding.vidAdbRecy
         if (ViewUtils.isVisibility(imgRecy)) {
-            imgRecy.adapter = ImageAdapter(note.pictures)
+            ImageAdapter(note.pictures).bindAdapter(imgRecy)
         }
     }
 

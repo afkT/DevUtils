@@ -65,7 +65,7 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        binding.vidAamRecy.adapter = adapter
+        adapter.bindAdapter(binding.vidAamRecy)
     }
 
     override fun initListener() {
