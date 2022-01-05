@@ -7,6 +7,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList.wifiButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import afkt.project.util.QuickWifiHotUtils
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration

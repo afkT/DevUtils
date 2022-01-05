@@ -219,7 +219,6 @@ class DecodeHandler(
 
     /**
      * 构造函数
-     * @param decodeConfig 解码配置
      * @param hints        解码参数
      */
     init {

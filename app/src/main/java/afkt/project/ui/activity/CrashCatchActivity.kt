@@ -1,6 +1,7 @@
 package afkt.project.ui.activity
 
 import afkt.project.R
+import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding

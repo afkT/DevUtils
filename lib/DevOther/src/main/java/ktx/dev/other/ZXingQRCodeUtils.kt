@@ -225,7 +225,6 @@ object ZXingQRCodeUtils {
     /**
      * 解码 ( 解析 ) 二维码图片
      * @param bitmap   待解析的二维码图片
-     * @param callback 解析结果回调
      */
     fun decodeQRCodeSync(bitmap: Bitmap?): Result? {
         if (bitmap != null) {
