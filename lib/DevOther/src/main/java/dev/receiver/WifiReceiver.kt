@@ -197,7 +197,9 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
             // 发送 Wifi 连接的过程信息, 如果出错 ERROR 信息才会收到, 连接 Wifi 时触发, 触发多次
             WifiManager.SUPPLICANT_STATE_CHANGED_ACTION -> {
                 // 出现错误状态, 则获取错误状态
-                val wifiErrorCode = intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR, 0)
+                val wifiErrorCode = intent.getIntExtra(
+                    WifiManager.EXTRA_SUPPLICANT_ERROR, 0
+                )
                 // 判断错误状态
                 when (wifiErrorCode) {
                     // 认证错误, 如密码错误等
@@ -213,8 +215,9 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
             // 监听 Wifi 的打开与关闭等状态, 与 Wifi 的连接无关
             WifiManager.WIFI_STATE_CHANGED_ACTION -> {
                 // 获取 Wifi 状态
-                val wifiState =
-                    intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN)
+                val wifiState = intent.getIntExtra(
+                    WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN
+                )
                 when (wifiState) {
                     // 已打开
                     WifiManager.WIFI_STATE_ENABLED -> sListener?.onTrigger(WIFI_STATE_ENABLED)

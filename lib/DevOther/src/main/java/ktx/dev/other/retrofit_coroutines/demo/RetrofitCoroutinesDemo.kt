@@ -157,7 +157,7 @@ suspend fun uploadImage(lists: List<File>) {
         .setType(MultipartBody.FORM).apply {
             lists.forEach {
                 addFormDataPart(
-                    "images", it.getName(),
+                    "images", it.name,
                     RequestBody.create("image/*".toMediaTypeOrNull(), it)
                 )
             }
@@ -195,7 +195,7 @@ suspend fun uploadImage2(lists: List<File>) {
         .setType(MultipartBody.FORM).apply {
             lists.forEach {
                 addFormDataPart(
-                    "images", it.getName(),
+                    "images", it.name,
                     RequestBody.create("image/*".toMediaTypeOrNull(), it)
                 )
             }

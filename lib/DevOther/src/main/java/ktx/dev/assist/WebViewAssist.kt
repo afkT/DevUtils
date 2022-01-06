@@ -380,7 +380,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      */
     fun setUserAgentString(ua: String?): WebViewAssist {
         val webSettings = getSettings()
-        webSettings?.setUserAgentString(ua)
+        webSettings?.userAgentString = ua
         return this
     }
 
@@ -1117,7 +1117,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
                     webSettings.setGeolocationEnabled(mGeolocationEnabled)
                     // 设置浏览器标识 UA
                     if (mUserAgentString != null) {
-                        webSettings.setUserAgentString(mUserAgentString)
+                        webSettings.userAgentString = mUserAgentString
                     }
 
                     // 是否可以访问文件

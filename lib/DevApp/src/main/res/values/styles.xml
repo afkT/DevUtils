@@ -5,10 +5,10 @@
     <!-- android:theme="Theme.Translucent.NoTitleBar" 透明背景并无标题 -->
 
     <!-- 白色 背景 无标题样式 -->
-    <style name="DevNoTitleTheme" parent="android:Theme.Light.NoTitleBar"></style>
+    <style name="DevNoTitleTheme" parent="android:Theme.Light.NoTitleBar" />
 
     <!-- 全屏 白色背景 无标题 样式 -->
-    <style name="DevFullscreenTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen"></style>
+    <style name="DevFullscreenTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen" />
 
     <!-- Activity 样式 - 背景透明、跳转无动画 -->
     <style name="DevActivityNoAnimTheme" parent="DevNoTitleTheme">
@@ -57,7 +57,7 @@
     <!-- AppCompatActivity -->
 
     <!-- 白色 背景 无标题、ActionBar 样式 -->
-    <style name="DevNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="DevNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
     <!-- 全屏 白色背景 无标题、ActionBar 样式 -->
     <style name="DevNoActionBarFullscreenTheme" parent="DevNoActionBarTheme">
