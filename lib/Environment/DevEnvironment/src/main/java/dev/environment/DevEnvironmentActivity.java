@@ -121,12 +121,12 @@ public final class DevEnvironmentActivity
         }
         setContentView(R.layout.dev_environment_activity);
         // back
-        findViewById(R.id.vid_dea_back_igview).setOnClickListener(v -> finish());
+        findViewById(R.id.vid_back_iv).setOnClickListener(v -> finish());
         // restart
-        TextView vid_dea_restart_tv = findViewById(R.id.vid_dea_restart_tv);
+        TextView vid_restart_tv = findViewById(R.id.vid_restart_tv);
         if (Utils.sCallback != null) {
-            vid_dea_restart_tv.setVisibility(View.VISIBLE);
-            vid_dea_restart_tv.setOnClickListener(v -> {
+            vid_restart_tv.setVisibility(View.VISIBLE);
+            vid_restart_tv.setOnClickListener(v -> {
                 finish();
                 if (Utils.sCallback != null) {
                     Utils.sCallback.onRestart();
@@ -135,8 +135,8 @@ public final class DevEnvironmentActivity
         }
         AdapterItem.refreshHashCode(this);
         // 初始化适配器并绑定
-        ListView vid_dea_listview = findViewById(R.id.vid_dea_listview);
-        vid_dea_listview.setAdapter(new Adapter(AdapterItem.getAdapterItems(this)));
+        ListView vid_lv = findViewById(R.id.vid_lv);
+        vid_lv.setAdapter(new Adapter(AdapterItem.getAdapterItems(this)));
     }
 
     // =========
@@ -177,31 +177,35 @@ public final class DevEnvironmentActivity
                 View convertView,
                 ViewGroup parent
         ) {
+            TextView vid_name_tv;
+            TextView vid_value_tv;
+            TextView vid_mark_iv;
+
             final AdapterItem item = getItem(position);
             switch (item.itemType) {
                 case AdapterItem.MODULE_TYPE: // Module Type
                     convertView = LayoutInflater.from(parent.getContext()).inflate(
                             R.layout.dev_environment_item_module, parent, false);
-                    TextView vid_deim_name_tv = convertView.findViewById(R.id.vid_deim_name_tv);
+                    vid_name_tv = convertView.findViewById(R.id.vid_name_tv);
 
                     ModuleBean moduleBean = item.moduleBean;
                     String moduleName = moduleBean.getName();
                     String moduleAlias = moduleBean.getAlias();
-                    vid_deim_name_tv.setText(TextUtils.isEmpty(moduleAlias) ? moduleName : moduleAlias);
+                    vid_name_tv.setText(TextUtils.isEmpty(moduleAlias) ? moduleName : moduleAlias);
                     break;
                 case AdapterItem.ENVIRONMENT_TYPE: // Environment Type
                     convertView = LayoutInflater.from(parent.getContext()).inflate(
                             R.layout.dev_environment_item_environment, parent, false);
-                    TextView vid_deie_name_tv = convertView.findViewById(R.id.vid_deie_name_tv);
-                    TextView vid_deie_value_tv = convertView.findViewById(R.id.vid_deie_value_tv);
-                    ImageView vid_deie_mark_igview = convertView.findViewById(R.id.vid_deie_mark_igview);
+                    vid_name_tv = convertView.findViewById(R.id.vid_name_tv);
+                    vid_value_tv = convertView.findViewById(R.id.vid_value_tv);
+                    vid_mark_iv = convertView.findViewById(R.id.vid_mark_iv);
 
                     final EnvironmentBean environmentBean = item.environmentBean;
                     String environmentName = environmentBean.getName();
                     String environmentAlias = environmentBean.getAlias();
-                    vid_deie_name_tv.setText(TextUtils.isEmpty(environmentAlias) ? environmentName : environmentAlias);
-                    vid_deie_value_tv.setText(environmentBean.getValue());
-                    vid_deie_mark_igview.setVisibility(item.isSelect() ? View.VISIBLE : View.INVISIBLE);
+                    vid_name_tv.setText(TextUtils.isEmpty(environmentAlias) ? environmentName : environmentAlias);
+                    vid_value_tv.setText(environmentBean.getValue());
+                    vid_mark_iv.setVisibility(item.isSelect() ? View.VISIBLE : View.INVISIBLE);
 
                     convertView.setOnClickListener(v -> {
                         // 设置选中的环境

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/vid_deim_name_tv"
+        android:id="@+id/vid_name_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

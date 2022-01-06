@@ -31,14 +31,14 @@ class Dialogs {
             );
             setContentView(mBinding.getRoot());
 
-            mBinding.vidAll.setOnClickListener(view -> callback(Items.DataType.T_ALL));
-            mBinding.vid09.setOnClickListener(view -> callback(Items.DataType.T_0_9));
-            mBinding.vid1019.setOnClickListener(view -> callback(Items.DataType.T_10_19));
-            mBinding.vid2029.setOnClickListener(view -> callback(Items.DataType.T_20_29));
-            mBinding.vid3039.setOnClickListener(view -> callback(Items.DataType.T_30_39));
-            mBinding.vid4049.setOnClickListener(view -> callback(Items.DataType.T_40_49));
-            mBinding.vid5059.setOnClickListener(view -> callback(Items.DataType.T_50_59));
-            mBinding.vidCancel.setOnClickListener(view -> dismiss());
+            mBinding.vidAllTv.setOnClickListener(view -> callback(Items.DataType.T_ALL));
+            mBinding.vid09Tv.setOnClickListener(view -> callback(Items.DataType.T_0_9));
+            mBinding.vid1019Tv.setOnClickListener(view -> callback(Items.DataType.T_10_19));
+            mBinding.vid2029Tv.setOnClickListener(view -> callback(Items.DataType.T_20_29));
+            mBinding.vid3039Tv.setOnClickListener(view -> callback(Items.DataType.T_30_39));
+            mBinding.vid4049Tv.setOnClickListener(view -> callback(Items.DataType.T_40_49));
+            mBinding.vid5059Tv.setOnClickListener(view -> callback(Items.DataType.T_50_59));
+            mBinding.vidCancelTv.setOnClickListener(view -> dismiss());
         }
 
         private void callback(final Items.DataType dataType) {
@@ -69,9 +69,9 @@ class Dialogs {
             );
             setContentView(mBinding.getRoot());
 
-            mBinding.vidTime.setOnClickListener(view -> callback(Items.GroupType.T_TIME));
-            mBinding.vidUrl.setOnClickListener(view -> callback(Items.GroupType.T_URL));
-            mBinding.vidCancel.setOnClickListener(view -> dismiss());
+            mBinding.vidTimeTv.setOnClickListener(view -> callback(Items.GroupType.T_TIME));
+            mBinding.vidUrlTv.setOnClickListener(view -> callback(Items.GroupType.T_URL));
+            mBinding.vidCancelTv.setOnClickListener(view -> dismiss());
         }
 
         private void callback(final Items.GroupType dataType) {

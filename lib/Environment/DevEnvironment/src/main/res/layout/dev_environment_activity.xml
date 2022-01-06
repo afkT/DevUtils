@@ -13,7 +13,7 @@
         android:background="@color/dev_environment_color">
 
         <ImageView
-            android:id="@+id/vid_dea_back_igview"
+            android:id="@+id/vid_back_iv"
             android:layout_width="56.0dp"
             android:layout_height="56.0dp"
             android:layout_alignParentLeft="true"
@@ -23,8 +23,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/vid_dea_restart_tv"
-            android:layout_toRightOf="@id/vid_dea_back_igview"
+            android:layout_toLeftOf="@id/vid_restart_tv"
+            android:layout_toRightOf="@id/vid_back_iv"
             android:ellipsize="end"
             android:gravity="center"
             android:includeFontPadding="false"
@@ -35,7 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_dea_restart_tv"
+            android:id="@+id/vid_restart_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -51,7 +51,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/vid_dea_listview"
+        android:id="@+id/vid_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"

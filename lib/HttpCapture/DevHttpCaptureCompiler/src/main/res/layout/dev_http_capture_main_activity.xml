@@ -10,7 +10,7 @@
     android:scrollbars="none">
 
     <include
-        android:id="@+id/vid_title"
+        android:id="@+id/vid_title_include"
         layout="@layout/dev_http_capture_include_title" />
 
     <FrameLayout
@@ -18,12 +18,12 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/vid_tips"
+            android:id="@+id/vid_tips_include"
             layout="@layout/dev_http_capture_include_tips"
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vid_recycler"
+            android:id="@+id/vid_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -33,7 +33,7 @@
             tools:listitem="@layout/dev_http_capture_main_module_adapter" />
 
         <FrameLayout
-            android:id="@+id/vid_refresh"
+            android:id="@+id/vid_refresh_fl"
             android:layout_width="50.0dp"
             android:layout_height="50.0dp"
             android:layout_gravity="bottom|right"

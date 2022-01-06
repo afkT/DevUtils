@@ -24,7 +24,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_all"
+            android:id="@+id/vid_all_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -37,7 +37,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_0_9"
+            android:id="@+id/vid_0_9_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -50,7 +50,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_10_19"
+            android:id="@+id/vid_10_19_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -63,7 +63,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_20_29"
+            android:id="@+id/vid_20_29_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -76,7 +76,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_30_39"
+            android:id="@+id/vid_30_39_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -89,7 +89,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_40_49"
+            android:id="@+id/vid_40_49_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -102,7 +102,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_50_59"
+            android:id="@+id/vid_50_59_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -115,7 +115,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_cancel"
+            android:id="@+id/vid_cancel_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

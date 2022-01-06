@@ -59,8 +59,8 @@ class AdapterMainModule
         Items.MainItem item = getDataItem(position);
         // 判断对应模块是否展开
         boolean unfold = mMultiSelectMap.isSelectKey(item.moduleName);
-        if (ViewUtils.setVisibility(unfold, holder.binding.vidRecycler)) {
-            new AdapterMainModuleList(item, holder.binding.vidRecycler);
+        if (ViewUtils.setVisibility(unfold, holder.binding.vidRv)) {
+            new AdapterMainModuleList(item, holder.binding.vidRv);
         }
         QuickHelper.get(holder.binding.vidTitleTv)
                 .setText(item.moduleName)

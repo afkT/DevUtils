@@ -62,8 +62,8 @@ class AdapterDateModuleList
         Items.GroupItem item = getDataItem(position);
         // 判断对应模块是否展开
         boolean unfold = mMultiSelectMap.isSelectKey(item.title);
-        if (ViewUtils.setVisibility(unfold, holder.binding.vidRecycler)) {
-            new AdapterDateModuleListItem(item, holder.binding.vidRecycler);
+        if (ViewUtils.setVisibility(unfold, holder.binding.vidRv)) {
+            new AdapterDateModuleListItem(item, holder.binding.vidRv);
         }
         QuickHelper.get(holder.binding.vidTitleTv)
                 .setText(item.title)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_bcv_root_linear"
+    android:id="@+id/vid_root_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -9,7 +9,7 @@
     <!-- Status Bar -->
 
     <LinearLayout
-        android:id="@+id/vid_bcv_status_bar_linear"
+        android:id="@+id/vid_status_bar_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
@@ -17,7 +17,7 @@
     <!-- Title -->
 
     <LinearLayout
-        android:id="@+id/vid_bcv_title_linear"
+        android:id="@+id/vid_title_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
@@ -31,14 +31,14 @@
         <!-- 内容主体 -->
 
         <FrameLayout
-            android:id="@+id/vid_bcv_body_frame"
+            android:id="@+id/vid_body_fl"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <!-- 填充容器 -->
 
             <LinearLayout
-                android:id="@+id/vid_bcv_content_linear"
+                android:id="@+id/vid_content_ll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" />
@@ -46,7 +46,7 @@
             <!-- 状态布局容器 -->
 
             <LinearLayout
-                android:id="@+id/vid_bcv_state_linear"
+                android:id="@+id/vid_state_ll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -56,7 +56,7 @@
         <!-- 悬浮容器 -->
 
         <FrameLayout
-            android:id="@+id/vid_bcv_float_frame"
+            android:id="@+id/vid_float_fl"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>

@@ -59,13 +59,13 @@ public class DevHttpCaptureFileActivity
         String json = intent.getStringExtra(DevFinal.STR.JSON);
 
         // 设置点击事件
-        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitleInclude.vidBackIv.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.vidTitle.vidTitleTv.setText("Http Capture Details");
+        mBinding.vidTitleInclude.vidTitleTv.setText("Http Capture Details");
         // 绑定适配器
-        mAdapter.bindAdapter(mBinding.vidRecycler);
+        mAdapter.bindAdapter(mBinding.vidRv);
         // 设置数据源
-        mBinding.vidRecycler.post(() -> {
+        mBinding.vidRv.post(() -> {
             if (!isFinishing()) {
                 mAdapter.setDataList(UtilsCompiler.getInstance().getFileData(json));
             }

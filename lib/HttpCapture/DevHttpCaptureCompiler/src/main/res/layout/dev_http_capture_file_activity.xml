@@ -10,11 +10,11 @@
     android:scrollbars="none">
 
     <include
-        android:id="@+id/vid_title"
+        android:id="@+id/vid_title_include"
         layout="@layout/dev_http_capture_include_title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vid_recycler"
+        android:id="@+id/vid_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

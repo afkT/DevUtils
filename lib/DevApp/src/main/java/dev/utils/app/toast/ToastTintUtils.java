@@ -1266,10 +1266,10 @@ public final class ToastTintUtils {
                 );
                 // 初始化 View
                 final ImageView toastIcon = toastLayout.findViewById(
-                        dev.utils.R.id.vid_dtl_toast_igview
+                        dev.utils.R.id.vid_toast_iv
                 );
                 final TextView toastTextView = toastLayout.findViewById(
-                        dev.utils.R.id.vid_dtl_toast_tv
+                        dev.utils.R.id.vid_toast_tv
                 );
 
                 // ================

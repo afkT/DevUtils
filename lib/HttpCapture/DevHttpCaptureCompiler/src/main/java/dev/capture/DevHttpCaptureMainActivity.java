@@ -54,8 +54,8 @@ public class DevHttpCaptureMainActivity
                 // 判断是否存在数据
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
-                        mBinding.vidRecycler,
-                        mBinding.vidTips.vidTipsFrame
+                        mBinding.vidRv,
+                        mBinding.vidTipsInclude.vidTipsFl
                 );
                 ToastTintUtils.success(
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
@@ -112,13 +112,13 @@ public class DevHttpCaptureMainActivity
         mModule = intent.getStringExtra(DevFinal.STR.MODULE);
 
         // 设置点击事件
-        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitleInclude.vidBackIv.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.vidTitle.vidTitleTv.setText(DevHttpCapture.TAG);
+        mBinding.vidTitleInclude.vidTitleTv.setText(DevHttpCapture.TAG);
         // 设置提示文案
-        mBinding.vidTips.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
+        mBinding.vidTipsInclude.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
         // 绑定适配器
-        mAdapter.bindAdapter(mBinding.vidRecycler);
+        mAdapter.bindAdapter(mBinding.vidRv);
         // 判断是否选择指定模块
         if (StringUtils.isNotEmpty(mModule)) {
             // 默认展开该模块
@@ -159,6 +159,6 @@ public class DevHttpCaptureMainActivity
                                 ResourceUtils.getString(R.string.dev_http_capture_querying)
                         );
                     }
-                }, mBinding.vidRefresh);
+                }, mBinding.vidRefreshFl);
     }
 }

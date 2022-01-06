@@ -49,26 +49,26 @@ class DevBaseContentAssist {
 
     fun bind(activity: Activity): DevBaseContentAssist {
         // R.layout.base_content_view
-        this.rootLinear = activity.findViewById(R.id.vid_bcv_root_linear)
-        this.statusBarLinear = activity.findViewById(R.id.vid_bcv_status_bar_linear)
-        this.titleLinear = activity.findViewById(R.id.vid_bcv_title_linear)
-        this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
-        this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
-        this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
-        this.floatFrame = activity.findViewById(R.id.vid_bcv_float_frame)
+        this.rootLinear = activity.findViewById(R.id.vid_root_ll)
+        this.statusBarLinear = activity.findViewById(R.id.vid_status_bar_ll)
+        this.titleLinear = activity.findViewById(R.id.vid_title_ll)
+        this.bodyFrame = activity.findViewById(R.id.vid_body_fl)
+        this.contentLinear = activity.findViewById(R.id.vid_content_ll)
+        this.stateLinear = activity.findViewById(R.id.vid_state_ll)
+        this.floatFrame = activity.findViewById(R.id.vid_float_fl)
         return this
     }
 
     fun bind(view: View?): DevBaseContentAssist {
         if (view != null) {
             // R.layout.base_content_view
-            this.rootLinear = view.findViewById(R.id.vid_bcv_root_linear)
-            this.statusBarLinear = view.findViewById(R.id.vid_bcv_status_bar_linear)
-            this.titleLinear = view.findViewById(R.id.vid_bcv_title_linear)
-            this.bodyFrame = view.findViewById(R.id.vid_bcv_body_frame)
-            this.contentLinear = view.findViewById(R.id.vid_bcv_content_linear)
-            this.stateLinear = view.findViewById(R.id.vid_bcv_state_linear)
-            this.floatFrame = view.findViewById(R.id.vid_bcv_float_frame)
+            this.rootLinear = view.findViewById(R.id.vid_root_ll)
+            this.statusBarLinear = view.findViewById(R.id.vid_status_bar_ll)
+            this.titleLinear = view.findViewById(R.id.vid_title_ll)
+            this.bodyFrame = view.findViewById(R.id.vid_body_fl)
+            this.contentLinear = view.findViewById(R.id.vid_content_ll)
+            this.stateLinear = view.findViewById(R.id.vid_state_ll)
+            this.floatFrame = view.findViewById(R.id.vid_float_fl)
         }
         return this
     }

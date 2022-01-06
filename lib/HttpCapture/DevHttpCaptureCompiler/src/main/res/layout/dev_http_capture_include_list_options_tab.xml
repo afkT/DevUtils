@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/vid_data_tab"
+        android:id="@+id/vid_data_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -31,7 +31,7 @@
             android:textSize="12.0sp" />
 
         <TextView
-            android:id="@+id/vid_data_type"
+            android:id="@+id/vid_data_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7.0dp"
@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/vid_group_tab"
+        android:id="@+id/vid_group_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -70,7 +70,7 @@
             android:textSize="12.0sp" />
 
         <TextView
-            android:id="@+id/vid_group_type"
+            android:id="@+id/vid_group_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7.0dp"

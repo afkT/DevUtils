@@ -24,7 +24,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_time"
+            android:id="@+id/vid_time_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -37,7 +37,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_url"
+            android:id="@+id/vid_url_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -50,7 +50,7 @@
             android:textSize="17.0sp" />
 
         <TextView
-            android:id="@+id/vid_cancel"
+            android:id="@+id/vid_cancel_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

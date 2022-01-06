@@ -8,7 +8,7 @@
     android:scrollbars="none">
 
     <ImageView
-        android:id="@+id/vid_back_igview"
+        android:id="@+id/vid_back_iv"
         android:layout_width="56.0dp"
         android:layout_height="56.0dp"
         android:background="@drawable/dev_http_capture_back"

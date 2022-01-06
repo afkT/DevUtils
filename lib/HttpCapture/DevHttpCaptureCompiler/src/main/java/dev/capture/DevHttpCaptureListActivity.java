@@ -69,8 +69,8 @@ public class DevHttpCaptureListActivity
                 // 判断是否存在数据
                 ViewUtils.reverseVisibilitys(
                         mAdapter.isDataNotEmpty(),
-                        mBinding.vidRecycler,
-                        mBinding.vidTips.vidTipsFrame
+                        mBinding.vidRv,
+                        mBinding.vidTipsInclude.vidTipsFl
                 );
                 ToastTintUtils.success(
                         ResourceUtils.getString(R.string.dev_http_capture_query_complete)
@@ -122,13 +122,13 @@ public class DevHttpCaptureListActivity
         mDate = intent.getStringExtra(DevFinal.STR.DATE);
 
         // 设置点击事件
-        mBinding.vidTitle.vidBackIgview.setOnClickListener(view -> finishOperate());
+        mBinding.vidTitleInclude.vidBackIv.setOnClickListener(view -> finishOperate());
         // 设置标题
-        mBinding.vidTitle.vidTitleTv.setText(mDate + " - " + mModule);
+        mBinding.vidTitleInclude.vidTitleTv.setText(mDate + " - " + mModule);
         // 设置提示文案
-        mBinding.vidTips.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
+        mBinding.vidTipsInclude.vidTipsTv.setText(R.string.dev_http_capture_query_no_data);
         // 绑定适配器
-        mAdapter.bindAdapter(mBinding.vidRecycler);
+        mAdapter.bindAdapter(mBinding.vidRv);
 
         // 刷新选项 View 文本
         refreshOptionsText();
@@ -167,8 +167,8 @@ public class DevHttpCaptureListActivity
      */
     private void refreshOptionsText() {
         ViewHelper.get()
-                .setText(mDataType.getTitle(), mBinding.vidTab.vidDataType)
-                .setText(mGroupType.getTitle(), mBinding.vidTab.vidGroupType);
+                .setText(mDataType.getTitle(), mBinding.vidTabInclude.vidDataTypeTv)
+                .setText(mGroupType.getTitle(), mBinding.vidTabInclude.vidGroupTypeTv);
     }
 
     // ==========
@@ -191,14 +191,14 @@ public class DevHttpCaptureListActivity
                         DialogUtils.closeDialog(mDataTypeDialog);
                         DialogUtils.showDialog(mDataTypeDialog);
                     }
-                }, mBinding.vidTab.vidDataTab)
+                }, mBinding.vidTabInclude.vidDataLl)
                 .setOnClick(new ClickUtils.OnDebouncingClickListener(mOptionsClick) {
                     @Override
                     public void doClick(View view) {
                         DialogUtils.closeDialog(mGroupTypeDialog);
                         DialogUtils.showDialog(mGroupTypeDialog);
                     }
-                }, mBinding.vidTab.vidGroupTab)
+                }, mBinding.vidTabInclude.vidGroupLl)
                 .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
                     @Override
                     public void doClick(View view) {
@@ -218,7 +218,7 @@ public class DevHttpCaptureListActivity
                                 ResourceUtils.getString(R.string.dev_http_capture_querying)
                         );
                     }
-                }, mBinding.vidRefresh);
+                }, mBinding.vidRefreshFl);
     }
 
     // ==========
