@@ -41,7 +41,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_MMKV,
                         ButtonValue.BTN_DATA_STORE,
                         ButtonValue.BTN_WORK_MANAGER -> ToastTintUtils.info(
-                            "具体请查看: lib\\DevOther\\other\\" + buttonValue.text
+                            "具体请查看: lib/DevOther/other/" + buttonValue.text
                         )
                         else -> routerActivity(buttonValue)
                     }
