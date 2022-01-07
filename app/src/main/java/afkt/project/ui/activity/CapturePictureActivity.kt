@@ -81,14 +81,14 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                 // 以上方法都是使用 snapshotByView
                 saveBitmap(
                     "linear.jpg",
-                    CapturePictureUtils.snapshotByLinearLayout(binding.vidLinear)
+                    CapturePictureUtils.snapshotByLinearLayout(binding.vidLl)
                 )
             }
             R.id.vid_scroll_btn -> {
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
                 saveBitmap(
                     "scroll.jpg",
-                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidScroll)
+                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidNsv)
                 )
             }
             R.id.vid_list_btn -> {

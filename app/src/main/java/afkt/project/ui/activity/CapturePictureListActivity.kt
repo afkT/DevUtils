@@ -50,7 +50,7 @@ class CapturePictureListActivity : BaseActivity<ActivityCapturePictureListBindin
                         "list.jpg"
                     ),
                     DevSource.create(
-                        CapturePictureUtils.snapshotByListView(binding.vidList)
+                        CapturePictureUtils.snapshotByListView(binding.vidLv)
                     ),
                     object : OnDevInsertListener {
                         override fun onResult(
@@ -75,7 +75,7 @@ class CapturePictureListActivity : BaseActivity<ActivityCapturePictureListBindin
 
         val lists = newAdapterBeanList(15)
         // 设置适配器
-        binding.vidList.adapter = object : BaseAdapter() {
+        binding.vidLv.adapter = object : BaseAdapter() {
             override fun getCount(): Int {
                 return lists.size
             }

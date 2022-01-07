@@ -31,14 +31,14 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun onDestroy() {
         // 销毁处理
-        binding.vidScanview.destroy()
+        binding.vidSsv.destroy()
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
         // 开始动画
-        binding.vidScanview.startAnim()
+        binding.vidSsv.startAnim()
         // 添加回调
         binding.vidSurface.holder?.addCallback(mHolderCallback)
     }
@@ -46,7 +46,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun onPause() {
         super.onPause()
         // 停止动画
-        binding.vidScanview.stopAnim()
+        binding.vidSsv.stopAnim()
         try {// 停止预览
             cameraAssist.stopPreview()
         } catch (e: Exception) {
@@ -56,41 +56,41 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun initValue() {
         super.initValue()
         // 设置扫描类型
-        refShape(binding.vidScanview, ScanShapeView.Shape.Square)
+        refShape(binding.vidSsv, ScanShapeView.Shape.Square)
     }
 
     override fun initListener() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidFlashlightIgview,
-            binding.vidSquareIgview,
-            binding.vidHexagonIgview,
-            binding.vidAnnulusIgview
+            binding.vidFlashlightIv,
+            binding.vidSquareIv,
+            binding.vidHexagonIv,
+            binding.vidAnnulusIv
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_flashlight_igview -> {
+            R.id.vid_flashlight_iv -> {
                 if (!FlashlightUtils.isFlashlightEnable()) {
                     showToast(false, "暂不支持开启手电筒")
                     return
                 }
                 // 设置开关
-                setFlashlight(!ViewUtils.isSelected(binding.vidFlashlightIgview))
+                setFlashlight(!ViewUtils.isSelected(binding.vidFlashlightIv))
             }
-            R.id.vid_square_igview -> refShape(
-                binding.vidScanview,
+            R.id.vid_square_iv -> refShape(
+                binding.vidSsv,
                 ScanShapeView.Shape.Square
             )
-            R.id.vid_hexagon_igview -> refShape(
-                binding.vidScanview,
+            R.id.vid_hexagon_iv -> refShape(
+                binding.vidSsv,
                 ScanShapeView.Shape.Hexagon
             )
-            R.id.vid_annulus_igview -> refShape(
-                binding.vidScanview,
+            R.id.vid_annulus_iv -> refShape(
+                binding.vidSsv,
                 ScanShapeView.Shape.Annulus
             )
         }
@@ -190,6 +190,6 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
         } else {
             cameraAssist.setFlashlightOff()
         }
-        ViewUtils.setSelected(open, binding.vidFlashlightIgview)
+        ViewUtils.setSelected(open, binding.vidFlashlightIv)
     }
 }

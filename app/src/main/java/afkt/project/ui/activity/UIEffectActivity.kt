@@ -119,33 +119,33 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     ViewHelper.get()
                         .setBold(
                             false,
-                            ViewUtils.getChildAt(binding.vid70Linear, selectTabIndex)
+                            ViewUtils.getChildAt(binding.vid70Ll, selectTabIndex)
                         )
                         .setTextColors(
                             ResourceUtils.getColor(R.color.black),
                             ViewUtils.getChildAt(
-                                binding.vid70Linear, selectTabIndex
+                                binding.vid70Ll, selectTabIndex
                             )
                         )
-                        .setBold(true, ViewUtils.getChildAt(binding.vid70Linear, i))
+                        .setBold(true, ViewUtils.getChildAt(binding.vid70Ll, i))
                         .setTextColors(
                             ResourceUtils.getColor(R.color.red),
-                            ViewUtils.getChildAt(binding.vid70Linear, i)
+                            ViewUtils.getChildAt(binding.vid70Ll, i)
                         )
                     // 修改索引
                     selectTabIndex = i
                     // 滑动 Tab 处理
                     scrollTab(i)
                 }.getView<View>()
-            binding.vid70Linear.addView(view)
+            binding.vid70Ll.addView(view)
         }
-        ViewUtils.getChildAt<View>(binding.vid70Linear).performClick()
+        ViewUtils.getChildAt<View>(binding.vid70Ll).performClick()
 
         // =================
         // = TabLayout Tab =
         // =================
 
-        TabLayoutAssist[binding.vid80Tab]?.apply {
+        TabLayoutAssist[binding.vid80Tl]?.apply {
             setListTabs(listTabs, object : TabChangeListener {
                 override fun onTabChange(
                     tabItem: TabItem,
@@ -158,7 +158,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             }).setSelect(tabCount - 1)
         }
 
-        TabLayoutAssist[binding.vid90Tab]?.apply {
+        TabLayoutAssist[binding.vid90Tl]?.apply {
             setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toTypedArray(), 0, 3)),
                 object : TabChangeListener {
                     override fun onTabChange(
@@ -291,13 +291,13 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             var x = 0
             // 循环遍历
             for (i in 1 until position) {
-                binding.vid70Linear.getChildAt(i)?.apply {
+                binding.vid70Ll.getChildAt(i)?.apply {
                     // 累加宽度
                     x += width
                 }
             }
             // 开始移动位置
-            binding.vid70Scroll.scrollTo(x, 0)
+            binding.vid70Sv.scrollTo(x, 0)
         }, 50)
     }
 }

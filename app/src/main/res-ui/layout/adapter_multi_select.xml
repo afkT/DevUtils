@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/vid_linear"
+    android:id="@+id/vid_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,7 +12,7 @@
     tools:paddingTop="@dimen/un_dp_10">
 
     <View
-        android:id="@+id/vid_line"
+        android:id="@+id/vid_line_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/un_dp_10"
         android:visibility="gone" />
@@ -26,7 +26,7 @@
         android:paddingRight="@dimen/un_dp_10">
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_igview"
+            android:id="@+id/vid_iv"
             android:layout_width="@dimen/un_dp_20"
             android:layout_height="@dimen/un_dp_20"
             android:layout_gravity="center"
@@ -42,7 +42,7 @@
             android:layout_marginBottom="@dimen/un_dp_10">
 
             <FrameLayout
-                android:id="@+id/vid_pic_frame"
+                android:id="@+id/vid_pic_fl"
                 android:layout_width="@dimen/un_dp_70"
                 android:layout_height="@dimen/un_dp_70"
                 android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
                 android:padding="@dimen/un_dp_5">
 
                 <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_pic_igview"
+                    android:id="@+id/vid_pic_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/un_dp_8"
-                android:layout_toRightOf="@id/vid_pic_frame"
+                android:layout_toRightOf="@id/vid_pic_fl"
                 android:orientation="vertical">
 
                 <dev.base.widget.BaseTextView

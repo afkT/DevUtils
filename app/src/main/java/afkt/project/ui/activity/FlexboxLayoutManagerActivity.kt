@@ -36,7 +36,7 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(
             0, 0, SizeUtils.dipConvertPx(5F),
@@ -70,7 +70,7 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        binding.vidRecy.layoutManager = layoutManager
-        TextAdapter(lists).bindAdapter(binding.vidRecy)
+        binding.vidRv.layoutManager = layoutManager
+        TextAdapter(lists).bindAdapter(binding.vidRv)
     }
 }

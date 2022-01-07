@@ -25,7 +25,7 @@
             android:text="选择 Logo 图片" />
 
         <dev.base.widget.BaseEditText
-            android:id="@+id/vid_content_edit"
+            android:id="@+id/vid_content_et"
             android:layout_width="match_parent"
             android:layout_height="@dimen/un_dp_150"
             android:layout_marginTop="@dimen/un_dp_10"
@@ -39,7 +39,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_igview"
+            android:id="@+id/vid_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

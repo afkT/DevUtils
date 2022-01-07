@@ -55,7 +55,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
             )
         }
         wallpaper?.let {
-            binding.vidIgview.background = it
+            binding.vidIv.background = it
         }
     }
 }

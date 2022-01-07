@@ -179,7 +179,7 @@ class TabLayoutAssist private constructor(
         tab?.customView?.let { view ->
             ViewHelper.get()
                 .setBold(isSelect, view.findViewById(R.id.vid_tv))
-                .setVisibilitys(isSelect, view.findViewById(R.id.vid_line))
+                .setVisibilitys(isSelect, view.findViewById(R.id.vid_line_view))
         }
     }
 

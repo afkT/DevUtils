@@ -79,7 +79,7 @@ class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
                 viewModel.postPalette(it)
             }
             // 设置图片
-            binding.vidBgIgview.setImageBitmap(getBitmap())
+            binding.vidBgIv.setImageBitmap(getBitmap())
 
 //            // 获取某种特性颜色的样品
 //            it.vibrantSwatch?.run {

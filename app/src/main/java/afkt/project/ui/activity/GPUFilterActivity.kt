@@ -134,7 +134,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
             val bitmapFilter = getFilterBitmap(
                 this, selectBitmap, createFilterForType(filterItem.filterType)
             )
-            binding.vidIgview.setImageBitmap(bitmapFilter)
+            binding.vidIv.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")
         }

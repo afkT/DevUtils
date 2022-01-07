@@ -30,8 +30,8 @@ class ButtonItemActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 ) {
                     routerActivity(buttonValue)
                 }
-            }).bindAdapter(binding.vidRecy)
+            }).bindAdapter(binding.vidRv)
         // 注册观察者
-        registerAdapterDataObserver(binding.vidRecy, true)
+        registerAdapterDataObserver(binding.vidRv, true)
     }
 }

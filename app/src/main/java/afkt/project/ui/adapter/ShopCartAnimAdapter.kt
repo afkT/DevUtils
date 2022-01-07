@@ -48,7 +48,7 @@ class ShopCartAnimAdapter(data: List<CommodityEvaluateBean?>) :
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidPicIgview,
+            holder.binding.vidPicIv,
             item?.commodityPicture,
             ProjectUtils.roundConfig3
         )
@@ -56,7 +56,7 @@ class ShopCartAnimAdapter(data: List<CommodityEvaluateBean?>) :
         ViewHelper.get()
             .setOnClick({
                 mClick?.onClick(it)
-            }, holder.binding.vidAddIgview)
+            }, holder.binding.vidAddIv)
     }
 
     // =

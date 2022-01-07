@@ -23,11 +23,11 @@ class FlowLikeActivity : BaseActivity<ActivityFlowLikeBinding>() {
 //        app:dev_iconWidth="30.0dp"
 
 //        // 设置动画时间
-//        binding.vidFlowlike.animDuration = 2000
+//        binding.vidFlv.animDuration = 2000
 //        // 设置图标宽度
-//        binding.vidFlowlike.iconWidth = SizeUtils.dipConvertPx(30f)
+//        binding.vidFlv.iconWidth = SizeUtils.dipConvertPx(30f)
 //        // 设置图标高度
-//        binding.vidFlowlike.iconHeight = SizeUtils.dipConvertPx(30f)
+//        binding.vidFlv.iconHeight = SizeUtils.dipConvertPx(30f)
 //
 //        // 设置漂浮图标
 //        val lists: MutableList<Drawable> = ArrayList()
@@ -36,16 +36,16 @@ class FlowLikeActivity : BaseActivity<ActivityFlowLikeBinding>() {
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_3))
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_4))
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_5))
-//        binding.vidFlowlike.drawables = lists
+//        binding.vidFlv.drawables = lists
 
         // 设置漂浮图标
-        binding.vidFlowlike.setDrawablesById(
+        binding.vidFlv.setDrawablesById(
             R.drawable.icon_live_brow_1, R.drawable.icon_live_brow_2,
             R.drawable.icon_live_brow_3, R.drawable.icon_live_brow_4, R.drawable.icon_live_brow_5
         )
-        binding.vidFlowlike.setOnClickListener {
-            binding.vidFlowlike.like()
-            binding.vidFlowlike.like() // 演示效果
+        binding.vidFlv.setOnClickListener {
+            binding.vidFlv.like()
+            binding.vidFlv.like() // 演示效果
         }
     }
 }

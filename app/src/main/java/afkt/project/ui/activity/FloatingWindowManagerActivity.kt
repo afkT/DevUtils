@@ -52,7 +52,7 @@ class FloatingWindowManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>(
                         }
                     }
                 }
-            }).bindAdapter(binding.vidRecy)
+            }).bindAdapter(binding.vidRv)
     }
 
     override fun onActivityResult(

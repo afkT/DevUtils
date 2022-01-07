@@ -6,7 +6,7 @@
     android:background="@color/color_e9">
 
     <dev.widget.ui.FlowLikeView
-        android:id="@+id/vid_flowlike"
+        android:id="@+id/vid_flv"
         android:layout_width="@dimen/un_dp_200"
         android:layout_height="@dimen/un_dp_200"
         android:layout_gravity="right|bottom"

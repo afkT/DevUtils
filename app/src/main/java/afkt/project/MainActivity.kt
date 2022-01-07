@@ -94,6 +94,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 ) {
                     routerActivity(buttonValue)
                 }
-            }).bindAdapter(binding.vidInclude.vidRecy)
+            }).bindAdapter(binding.vidInclude.vidRv)
     }
 }

@@ -54,7 +54,7 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
                         "recy.jpg"
                     ),
                     DevSource.create(
-                        CapturePictureUtils.snapshotByRecyclerView(binding.vidRecy)
+                        CapturePictureUtils.snapshotByRecyclerView(binding.vidRv)
                     ),
                     object : OnDevInsertListener {
                         override fun onResult(
@@ -77,20 +77,20 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
     override fun initValue() {
         super.initValue()
 
-//        binding.vidRecy.layoutManager = LinearLayoutManager(this)
-//        binding.vidRecy.layoutManager =
+//        binding.vidRv.layoutManager = LinearLayoutManager(this)
+//        binding.vidRv.layoutManager =
 //            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 //
-//        binding.vidRecy.layoutManager = GridLayoutManager(this, 3)
-//        binding.vidRecy.layoutManager =
+//        binding.vidRv.layoutManager = GridLayoutManager(this, 3)
+//        binding.vidRv.layoutManager =
 //            GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
 
-        binding.vidRecy.layoutManager =
+        binding.vidRv.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-//        binding.vidRecy.layoutManager =
+//        binding.vidRv.layoutManager =
 //            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
 
-        binding.vidRecy.adapter =
+        binding.vidRv.adapter =
             object : DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
 
                 init {

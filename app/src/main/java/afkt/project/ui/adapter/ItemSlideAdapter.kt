@@ -43,7 +43,7 @@ class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<Commo
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidIgview,
+            holder.binding.vidIv,
             item.commodityPicture,
             ProjectUtils.roundConfig3
         )

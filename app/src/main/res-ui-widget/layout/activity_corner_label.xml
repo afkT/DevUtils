@@ -151,7 +151,7 @@
                 android:background="@drawable/img_commodity" />
 
             <dev.widget.ui.CornerLabelView
-                android:id="@+id/vid_labelview"
+                android:id="@+id/vid_clv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dev_fillColor="#FFC107"
@@ -168,7 +168,7 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_color"
+                android:id="@+id/vid_btn_color_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -179,7 +179,7 @@
                 android:text="color" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_left"
+                android:id="@+id/vid_btn_left_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -190,7 +190,7 @@
                 android:text="left" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_top"
+                android:id="@+id/vid_btn_top_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -201,7 +201,7 @@
                 android:text="top" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_triangle"
+                android:id="@+id/vid_btn_triangle_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -220,7 +220,7 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text1_minus"
+                android:id="@+id/vid_btn_text1_minus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -231,7 +231,7 @@
                 android:text="text1-" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text1_plus"
+                android:id="@+id/vid_btn_text1_plus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -242,7 +242,7 @@
                 android:text="text1+" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height1_minus"
+                android:id="@+id/vid_btn_height1_minus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -253,7 +253,7 @@
                 android:text="height1-" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height1_plus"
+                android:id="@+id/vid_btn_height1_plus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -272,7 +272,7 @@
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text2_minus"
+                android:id="@+id/vid_btn_text2_minus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -283,7 +283,7 @@
                 android:text="text2-" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text2_plus"
+                android:id="@+id/vid_btn_text2_plus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -294,7 +294,7 @@
                 android:text="text2+" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height2_minus"
+                android:id="@+id/vid_btn_height2_minus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
@@ -305,7 +305,7 @@
                 android:text="height2-" />
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height2_plus"
+                android:id="@+id/vid_btn_height2_plus_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"

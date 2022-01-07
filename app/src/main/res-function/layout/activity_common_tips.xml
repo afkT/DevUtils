@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/vid_linear"
+            android:id="@+id/vid_ll"
             style="@style/AppTheme.padding_lr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

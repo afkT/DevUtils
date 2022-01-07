@@ -42,9 +42,9 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
 
         ViewHelper.get()
             // 是否显示编辑按钮
-            .setVisibilitys(false, holder.binding.vidIgview)
+            .setVisibilitys(false, holder.binding.vidIv)
             // 判断是否显示边距
-            .setVisibilitys(itemObj.isFirst, holder.binding.vidLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidLineView)
             // 商品名
             .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
@@ -55,7 +55,7 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
             )
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidPicIgview,
+            holder.binding.vidPicIv,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3
         )

@@ -27,12 +27,12 @@ class FlipCardActivity : BaseActivity<ActivityFlipCardBinding>() {
         super.initView()
 
 //        // 也可以自定义动画效果
-//        binding.vidView1.setInOutAnimator(
+//        binding.vidFcv1.setInOutAnimator(
 //            AnimatorInflater.loadAnimator(mContext, R.animator.dev_flip_card_in),
 //            AnimatorInflater.loadAnimator(mContext, R.animator.dev_flip_card_out)
 //        )
 
-//        binding.vidView1.adapter = FlipCardAdapter(
+//        binding.vidFcv1.adapter = FlipCardAdapter(
 //            mutableListOf(
 //                DevSource.create(R.drawable.bg_wallpaper),
 //                DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_1)),
@@ -41,7 +41,7 @@ class FlipCardActivity : BaseActivity<ActivityFlipCardBinding>() {
 //            )
 //        )
 //
-//        binding.vidView2.adapter = FlipCardAdapter(
+//        binding.vidFcv2.adapter = FlipCardAdapter(
 //            mutableListOf(
 //                DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_5)),
 //                DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_4)),
@@ -50,22 +50,22 @@ class FlipCardActivity : BaseActivity<ActivityFlipCardBinding>() {
 //            )
 //        )
 
-        binding.vidView3.adapter = FlipCardAdapter(
+        binding.vidFcv3.adapter = FlipCardAdapter(
             mutableListOf(
                 DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_3))
             )
         )
         HandlerUtils.postRunnable({
-            binding.vidView3.flip()
+            binding.vidFcv3.flip()
         }, 1000 * 10)
 
 //        flipTimer = DevTimer.Builder(5000L, 5000L, -1)
 //            .build().setHandler(Handler())
 //            .setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
 //                if (!ActivityUtils.isFinishing(mActivity)) {
-////                    binding.vidView1.flip()
-////                    binding.vidView2.flip()
-//                    binding.vidView3.flip()
+////                    binding.vidFcv1.flip()
+////                    binding.vidFcv2.flip()
+//                    binding.vidFcv3.flip()
 //                }
 //            }.start()
     }

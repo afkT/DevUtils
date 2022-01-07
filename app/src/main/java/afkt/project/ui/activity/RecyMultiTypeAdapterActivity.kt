@@ -23,7 +23,7 @@ class RecyMultiTypeAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
 
@@ -61,6 +61,6 @@ class RecyMultiTypeAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         adapter.register(ClassifyBeanItem3::class.java, Classify3ItemViewBinder())
 
         // 绑定适配器
-        binding.vidRecy.adapter = adapter
+        binding.vidRv.adapter = adapter
     }
 }

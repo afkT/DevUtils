@@ -12,7 +12,7 @@
     tools:layout_marginBottom="@dimen/un_dp_70">
 
     <FrameLayout
-        android:id="@+id/vid_cart_frame"
+        android:id="@+id/vid_cart_fl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

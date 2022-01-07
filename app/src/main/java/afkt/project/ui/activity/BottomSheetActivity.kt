@@ -24,7 +24,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
     override fun initValue() {
         super.initValue()
-        mBehavior = BottomSheetBehavior.from(binding.vidSheetLinear)
+        mBehavior = BottomSheetBehavior.from(binding.vidSheetLl)
     }
 
     override fun initListener() {

@@ -30,7 +30,7 @@
             tools:text="标题" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_igview"
+            android:id="@+id/vid_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_15"

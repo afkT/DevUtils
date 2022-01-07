@@ -81,8 +81,8 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
      */
     private fun createCheck() {
         // 获取手机号码开头、结尾
-        val start = EditTextUtils.getText(binding.vidStartEdit)
-        val end = EditTextUtils.getText(binding.vidEndEdit)
+        val start = EditTextUtils.getText(binding.vidStartEt)
+        val end = EditTextUtils.getText(binding.vidEndEt)
         // 判断是否符合条件
         val temp = start + end
         if (!ValidatorUtils.isNumber(temp)) {

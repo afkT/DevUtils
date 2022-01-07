@@ -40,6 +40,6 @@ class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRecy)
+            }).bindAdapter(binding.vidRv)
     }
 }

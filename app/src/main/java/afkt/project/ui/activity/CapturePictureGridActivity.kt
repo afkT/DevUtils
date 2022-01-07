@@ -45,10 +45,10 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClick { v: View? ->
-                val bitmap = CapturePictureUtils.snapshotByGridView(binding.vidGrid)
+                val bitmap = CapturePictureUtils.snapshotByGridView(binding.vidGv)
 //                // 保存 ListView 一样效果
 //                bitmap = CapturePictureUtils.snapshotByGridView(
-//                    binding.vidGrid,
+//                    binding.vidGv,
 //                    Bitmap.Config.ARGB_8888,
 //                    true
 //                )
@@ -83,7 +83,7 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
 
         val lists = newAdapterBeanList(15)
         // 设置适配器
-        binding.vidGrid.adapter = object : BaseAdapter() {
+        binding.vidGv.adapter = object : BaseAdapter() {
             override fun getCount(): Int {
                 return lists.size
             }

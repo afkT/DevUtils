@@ -42,7 +42,7 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
 
         ViewHelper.get()
             // 判断是否显示边距
-            .setVisibilitys(itemObj.isFirst, holder.binding.vidLine)
+            .setVisibilitys(itemObj.isFirst, holder.binding.vidLineView)
             // 商品名
             .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
@@ -52,13 +52,13 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
                 ), holder.binding.vidPriceTv
             )
             // 评价内容
-            .setText(itemObj.evaluateContent, holder.binding.vidContentEdit)
+            .setText(itemObj.evaluateContent, holder.binding.vidContentEt)
             // 禁止点击评价输入框
-            .setEnabled(false, holder.binding.vidContentEdit)
+            .setEnabled(false, holder.binding.vidContentEt)
 
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidPicIgview,
+            holder.binding.vidPicIv,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3
         )

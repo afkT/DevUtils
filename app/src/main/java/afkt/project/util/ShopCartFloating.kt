@@ -88,7 +88,7 @@ class ShopCartFloating(private val activity: AppCompatActivity) {
         }
         // 开始动画
         shopCartAnimation.startAnim(
-            view, binding.vidCartFrame, binding, activity
+            view, binding.vidCartFl, binding, activity
         )
     }
 }

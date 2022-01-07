@@ -34,19 +34,19 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
         list.add(newPagerFragment(3))
         list.add(newPagerFragment(4))
 
-        binding.vidViewPager.adapter = MyPagerAdapter(this, list)
+        binding.vidVp.adapter = MyPagerAdapter(this, list)
     }
 
     override fun initListener() {
         super.initListener()
-        binding.vidTab.setTabTextColors(
+        binding.vidTl.setTabTextColors(
             ResourceUtils.getColor(R.color.black),
             ResourceUtils.getColor(R.color.white)
         )
 
         // TabLayout 与 ViewPager2 联动
         TabLayoutMediator(
-            binding.vidTab, binding.vidViewPager
+            binding.vidTl, binding.vidVp
         ) { tab, position ->
             tab.text = "Pager-${position + 1}"
         }.attach()
@@ -74,26 +74,26 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.vid_menu_ltr -> {
-                binding.vidTab.layoutDirection = View.LAYOUT_DIRECTION_LTR
-                binding.vidViewPager.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_LTR
             }
             R.id.vid_menu_rtl -> {
-                binding.vidTab.layoutDirection = View.LAYOUT_DIRECTION_RTL
-                binding.vidViewPager.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_RTL
             }
             R.id.vid_menu_horizontal -> {
-                binding.vidViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+                binding.vidVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
             R.id.vid_menu_vertical -> {
-                binding.vidViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+                binding.vidVp.orientation = ViewPager2.ORIENTATION_VERTICAL
             }
             R.id.vid_menu_reset -> {
-                binding.vidTab.layoutDirection = View.LAYOUT_DIRECTION_LTR
-                binding.vidViewPager.layoutDirection = View.LAYOUT_DIRECTION_LTR
-                binding.vidViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+                binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
         }
-        binding.vidViewPager.adapter?.notifyDataSetChanged()
+        binding.vidVp.adapter?.notifyDataSetChanged()
         return true
     }
 }

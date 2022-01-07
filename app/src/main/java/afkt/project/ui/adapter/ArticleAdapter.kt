@@ -42,7 +42,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         holder.binding.vidTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
         // 随机图片
         DevEngine.getImage()?.display(
-            holder.binding.vidPicIgview,
+            holder.binding.vidPicIv,
             "https://picsum.photos/2${NumberUtils.addZero(position)}",
             ProjectUtils.roundConfig3
         )
@@ -54,6 +54,6 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 AppUtils.startActivity(intent)
             }
-        }, holder.binding.vidCardview)
+        }, holder.binding.vidCv)
     }
 }

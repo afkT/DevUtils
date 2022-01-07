@@ -34,7 +34,7 @@ class ArticleConcatAdapter(data: List<ArticleBean1>) : DevDataAdapter<ArticleBea
         ViewHelper.get()
             .setText(item.title, holder.binding.vidTitleTv)
             .setText(item.content, holder.binding.vidContentTv)
-            .setImageBitmap(item.pictures, holder.binding.vidIgview)
+            .setImageBitmap(item.pictures, holder.binding.vidIv)
             .setBackgroundColor(item.background, holder.itemView)
     }
 

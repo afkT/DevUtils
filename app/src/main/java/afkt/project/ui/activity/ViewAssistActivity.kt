@@ -29,7 +29,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
     override fun initValue() {
         super.initValue()
 
-        viewAssist = ViewAssist.wrap(binding.vidFrame)
+        viewAssist = ViewAssist.wrap(binding.vidFl)
 
         when (moduleType) {
             ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
@@ -39,7 +39,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
     }
 
     private fun errorType() {
-        ViewUtils.setPadding(binding.vidFrame, SizeUtils.dipConvertPx(50f))
+        ViewUtils.setPadding(binding.vidFl, SizeUtils.dipConvertPx(50f))
         viewAssist.register(ViewAssist.TYPE_ING, object : ViewAssist.Adapter {
             override fun onCreateView(
                 assist: ViewAssist,
@@ -161,7 +161,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
             ) {
                 ListenerUtils.setOnClicks(
                     { ToastTintUtils.normal("Custom Type") },
-                    view.findViewById(R.id.vid_cardview)
+                    view.findViewById(R.id.vid_cv)
                 )
             }
         }).showIng()

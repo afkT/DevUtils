@@ -38,7 +38,7 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
             .setText(item.subtitle, holder.binding.vidSubtitleTv)
             .setText(item.timeFormat, holder.binding.vidTimeTv)
         DevEngine.getImage()?.display(
-            holder.binding.vidIgview,
+            holder.binding.vidIv,
             item.imageUrl,
             ProjectUtils.roundConfig10
         )

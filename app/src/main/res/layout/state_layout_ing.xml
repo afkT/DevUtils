@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <com.tt.whorlviewlibrary.WhorlView
-            android:id="@+id/vid_load_view"
+            android:id="@+id/vid_whv"
             android:layout_width="@dimen/un_dp_50"
             android:layout_height="@dimen/un_dp_50"
             app:whorlview_circle_colors="#F14336_#ffffff_#5677fc_#F44336_#4CAF50"

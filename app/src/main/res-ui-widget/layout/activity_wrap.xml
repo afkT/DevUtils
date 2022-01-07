@@ -12,7 +12,7 @@
         android:padding="@dimen/un_dp_20">
 
         <dev.widget.ui.WrapView
-            android:id="@+id/vid_wrapview"
+            android:id="@+id/vid_wrap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/deepskyblue" />

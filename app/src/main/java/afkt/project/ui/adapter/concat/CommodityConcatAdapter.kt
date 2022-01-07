@@ -62,9 +62,9 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
         if (holder is CommodityHolder) {
             ViewHelper.get()
                 // 是否显示编辑按钮
-                .setVisibilitys(false, holder.binding.vidIgview)
+                .setVisibilitys(false, holder.binding.vidIv)
                 // 判断是否显示边距
-                .setVisibilitys(position == 0, holder.binding.vidLine)
+                .setVisibilitys(position == 0, holder.binding.vidLineView)
                 // 商品名
                 .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
@@ -75,7 +75,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 )
             // 商品图片
             DevEngine.getImage()?.display(
-                holder.binding.vidPicIgview,
+                holder.binding.vidPicIv,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
             )
@@ -83,7 +83,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
         } else if (holder is CommodityEvaluateHolder) {
             ViewHelper.get()
                 // 判断是否显示边距
-                .setVisibilitys(position == 0, holder.binding.vidLine)
+                .setVisibilitys(position == 0, holder.binding.vidLineView)
                 // 商品名
                 .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
@@ -93,13 +93,13 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                     ), holder.binding.vidPriceTv
                 )
                 // 评价内容
-                .setText(item.evaluateContent, holder.binding.vidContentEdit)
+                .setText(item.evaluateContent, holder.binding.vidContentEt)
                 // 禁止点击评价输入框
-                .setEnabled(false, holder.binding.vidContentEdit)
+                .setEnabled(false, holder.binding.vidContentEt)
 
             // 商品图片
             DevEngine.getImage()?.display(
-                holder.binding.vidPicIgview,
+                holder.binding.vidPicIv,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
             )

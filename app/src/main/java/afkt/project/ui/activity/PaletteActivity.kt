@@ -35,7 +35,7 @@ class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
 
         viewModel.paletteColor.observe(this) {
             it.vibrantSwatch?.run {
-                binding.vidTab.setBackgroundColor(rgb)
+                binding.vidTl.setBackgroundColor(rgb)
                 toolbar?.let { bar ->
                     bar.setBackgroundColor(rgb)
                     BarUtils.addMarginTopEqualStatusBarHeight(bar)
@@ -51,13 +51,13 @@ class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
         list.add(newPaletteFragment(4))
         list.add(newPaletteFragment(5))
 
-        binding.vidViewPager.adapter = MyPagerAdapter(this, list)
+        binding.vidVp.adapter = MyPagerAdapter(this, list)
     }
 
     override fun initListener() {
         super.initListener()
 
-        binding.vidViewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+        binding.vidVp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 viewModel.postItemPosition(position + 1)
@@ -66,7 +66,7 @@ class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
 
         // TabLayout 与 ViewPager2 联动
         TabLayoutMediator(
-            binding.vidTab, binding.vidViewPager
+            binding.vidTl, binding.vidVp
         ) { tab, position ->
             tab.text = "Wallpaper-${position}"
         }.attach()

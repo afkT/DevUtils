@@ -23,9 +23,9 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
         super.initValue()
         val lists: MutableList<String> = ArrayList()
         for (i in 0..4) lists.add((i + 1).toString())
-        binding.vidViewpager.adapter = ViewPagerAdapter(lists)
-        binding.vidViewpager.setCurrentItem(lists.size * 100, false)
-        binding.vidViewpager.setOnPageChangeListener(object : OnDirectionListener() {
+        binding.vidVp.adapter = ViewPagerAdapter(lists)
+        binding.vidVp.setCurrentItem(lists.size * 100, false)
+        binding.vidVp.setOnPageChangeListener(object : OnDirectionListener() {
             override fun onSlideDirection(
                 left: Boolean,
                 right: Boolean
@@ -47,11 +47,11 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
             }
         })
         binding.vidAllowBtn.setOnClickListener {
-            binding.vidViewpager.isSlide = true
+            binding.vidVp.isSlide = true
             showToast(true, "已允许滑动")
         }
         binding.vidBanBtn.setOnClickListener {
-            binding.vidViewpager.isSlide = false
+            binding.vidVp.isSlide = false
             showToast(false, "已禁止滑动")
         }
     }

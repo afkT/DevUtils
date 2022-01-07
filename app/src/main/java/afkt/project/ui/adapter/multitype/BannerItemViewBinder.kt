@@ -61,7 +61,7 @@ class BannerItemViewBinder(
                     size: Int
                 ) {
                     DevEngine.getImage()?.display(
-                        holder.binding.vidIgview,
+                        holder.binding.vidIv,
                         data.imageUrl,
                         ProjectUtils.roundConfig10
                     )

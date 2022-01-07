@@ -52,7 +52,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
 
         // 商品图片
         DevEngine.getImage()?.display(
-            holder.binding.vidPicIgview,
+            holder.binding.vidPicIv,
             commodity.commodityPicture,
             ProjectUtils.roundConfig3
         )
@@ -76,7 +76,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         mTextWatcherAssist.bindListener(
             item.evaluateContent,
             position,
-            holder.binding.vidContentEdit
+            holder.binding.vidContentEt
         ) { charSequence, _, pos, _ ->
             try {
                 // 保存评价内容

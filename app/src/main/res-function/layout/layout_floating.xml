@@ -6,7 +6,7 @@
     tools:background="@color/sky_blue">
 
     <ImageView
-        android:id="@+id/vid_icon"
+        android:id="@+id/vid_icon_iv"
         android:layout_width="@dimen/un_dp_80"
         android:layout_height="@dimen/un_dp_80"
         android:background="@drawable/icon_tips" />

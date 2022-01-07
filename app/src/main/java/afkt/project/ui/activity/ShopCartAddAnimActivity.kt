@@ -31,7 +31,7 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
@@ -49,9 +49,9 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 初始化布局管理器、适配器
         ShopCartAnimAdapter(lists).setClickListener {
             shopCartFloating.executeAnim(it)
-        }.bindAdapter(binding.vidRecy)
+        }.bindAdapter(binding.vidRv)
 
-        QuickHelper.get(binding.vidRecy)
+        QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(

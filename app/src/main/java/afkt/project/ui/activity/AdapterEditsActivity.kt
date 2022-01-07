@@ -54,7 +54,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }.getView<View>()
         toolbar?.addView(view)
 
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
@@ -70,9 +70,9 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         adapter = EditsAdapter(lists)
-        adapter.bindAdapter(binding.vidRecy)
+        adapter.bindAdapter(binding.vidRv)
 
-        QuickHelper.get(binding.vidRecy)
+        QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(

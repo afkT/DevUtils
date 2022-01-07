@@ -143,13 +143,13 @@
                 android:text="HorizontalScrollView Tab" />
 
             <HorizontalScrollView
-                android:id="@+id/vid_7_0_scroll"
+                android:id="@+id/vid_7_0_sv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/vid_7_0_linear"
+                    android:id="@+id/vid_7_0_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" />
@@ -170,7 +170,7 @@
                 android:text="TabLayout Tab" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/vid_8_0_tab"
+                android:id="@+id/vid_8_0_tl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/un_dp_44"
                 android:background="@color/white"
@@ -183,7 +183,7 @@
                 app:tabMode="scrollable" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/vid_9_0_tab"
+                android:id="@+id/vid_9_0_tl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/un_dp_44"
                 android:layout_marginTop="@dimen/un_dp_20"

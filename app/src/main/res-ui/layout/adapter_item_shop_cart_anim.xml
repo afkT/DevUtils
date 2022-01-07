@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/vid_linear"
+    android:id="@+id/vid_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -21,7 +21,7 @@
         app:dev_radius="@dimen/un_dp_10">
 
         <FrameLayout
-            android:id="@+id/vid_pic_frame"
+            android:id="@+id/vid_pic_fl"
             android:layout_width="@dimen/un_dp_70"
             android:layout_height="@dimen/un_dp_70"
             android:layout_gravity="center_vertical"
@@ -29,7 +29,7 @@
             android:padding="@dimen/un_dp_5">
 
             <dev.base.widget.BaseImageView
-                android:id="@+id/vid_pic_igview"
+                android:id="@+id/vid_pic_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
@@ -68,7 +68,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/vid_add_igview"
+            android:id="@+id/vid_add_iv"
             android:layout_width="@dimen/un_dp_25"
             android:layout_height="@dimen/un_dp_25"
             android:layout_gravity="bottom|right"

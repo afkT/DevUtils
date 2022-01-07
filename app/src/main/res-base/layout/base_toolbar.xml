@@ -7,7 +7,7 @@
     app:elevation="@dimen/un_dp_0">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/vid_toolbar"
+        android:id="@+id/vid_tb"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"

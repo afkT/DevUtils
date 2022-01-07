@@ -10,7 +10,7 @@
         android:layout_height="match_parent" />
 
     <dev.widget.ui.ScanShapeView
-        android:id="@+id/vid_scanview"
+        android:id="@+id/vid_ssv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
@@ -23,7 +23,7 @@
         android:orientation="horizontal">
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_image_igview"
+            android:id="@+id/vid_image_iv"
             android:layout_width="@dimen/un_dp_30"
             android:layout_height="@dimen/un_dp_30"
             android:background="@drawable/icon_image"
@@ -31,28 +31,28 @@
             tools:visibility="visible" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_flashlight_igview"
+            android:id="@+id/vid_flashlight_iv"
             android:layout_width="@dimen/un_dp_30"
             android:layout_height="@dimen/un_dp_30"
             android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/shape_flashlight_selector" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_square_igview"
+            android:id="@+id/vid_square_iv"
             android:layout_width="@dimen/un_dp_30"
             android:layout_height="@dimen/un_dp_30"
             android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/icon_square" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_hexagon_igview"
+            android:id="@+id/vid_hexagon_iv"
             android:layout_width="@dimen/un_dp_30"
             android:layout_height="@dimen/un_dp_30"
             android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/icon_hexagon" />
 
         <dev.base.widget.BaseImageView
-            android:id="@+id/vid_annulus_igview"
+            android:id="@+id/vid_annulus_iv"
             android:layout_width="@dimen/un_dp_30"
             android:layout_height="@dimen/un_dp_30"
             android:layout_marginLeft="@dimen/un_dp_20"

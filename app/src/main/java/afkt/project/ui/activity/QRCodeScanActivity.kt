@@ -47,7 +47,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun onDestroy() {
         // 销毁处理
-        binding.vidScanview.destroy()
+        binding.vidSsv.destroy()
         // 结束计时
         mInactivityTimerAssist.onDestroy()
         super.onDestroy()
@@ -56,7 +56,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun onResume() {
         super.onResume()
         // 开始动画
-        binding.vidScanview.startAnim()
+        binding.vidSsv.startAnim()
         // 开始计时
         mInactivityTimerAssist.onResume()
         // 准备扫描
@@ -66,7 +66,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun onPause() {
         super.onPause()
         // 停止动画
-        binding.vidScanview.stopAnim()
+        binding.vidSsv.stopAnim()
         // 暂停计时
         mInactivityTimerAssist.onPause()
         // 暂停扫描
@@ -77,55 +77,55 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         super.initValue()
 
         // 设置扫描类型
-        refShape(binding.vidScanview, ScanShapeView.Shape.Square)
+        refShape(binding.vidSsv, ScanShapeView.Shape.Square)
         // 显示图片识别按钮
-        ViewUtils.setVisibility(true, findViewById(R.id.vid_image_igview))
+        ViewUtils.setVisibility(true, findViewById(R.id.vid_image_iv))
     }
 
     override fun initListener() {
         super.initListener()
         ListenerUtils.setOnClicks(
             this,
-            binding.vidFlashlightIgview,
-            binding.vidSquareIgview,
-            binding.vidHexagonIgview,
-            binding.vidAnnulusIgview,
-            binding.vidImageIgview
+            binding.vidFlashlightIv,
+            binding.vidSquareIv,
+            binding.vidHexagonIv,
+            binding.vidAnnulusIv,
+            binding.vidImageIv
         )
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.vid_flashlight_igview -> {
+            R.id.vid_flashlight_iv -> {
                 if (!FlashlightUtils.isFlashlightEnable()) {
                     showToast(false, "暂不支持开启手电筒")
                     return
                 }
                 // 设置手电筒开关
                 zxingDecodeAssist.setFlashlight(
-                    !ViewUtils.isSelected(binding.vidFlashlightIgview)
+                    !ViewUtils.isSelected(binding.vidFlashlightIv)
                 )
             }
-            R.id.vid_square_igview -> {
+            R.id.vid_square_iv -> {
                 refShape(
-                    binding.vidScanview,
+                    binding.vidSsv,
                     ScanShapeView.Shape.Square
                 )
             }
-            R.id.vid_hexagon_igview -> {
+            R.id.vid_hexagon_iv -> {
                 refShape(
-                    binding.vidScanview,
+                    binding.vidSsv,
                     ScanShapeView.Shape.Hexagon
                 )
             }
-            R.id.vid_annulus_igview -> {
+            R.id.vid_annulus_iv -> {
                 refShape(
-                    binding.vidScanview,
+                    binding.vidSsv,
                     ScanShapeView.Shape.Annulus
                 )
             }
-            R.id.vid_image_igview -> {
+            R.id.vid_image_iv -> {
                 // 初始化图片配置
                 val config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)
@@ -237,7 +237,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
 
         override fun switchFlashlight(state: Boolean) {
-            ViewUtils.setSelected(state, binding.vidFlashlightIgview)
+            ViewUtils.setSelected(state, binding.vidFlashlightIv)
         }
     }
 
@@ -276,7 +276,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         override fun getCropRect(): Rect? {
             // 优化专门识别指定区域需 isCropRect() 返回 true
             mCropRect?.let {
-                val rectF = binding.vidScanview.region
+                val rectF = binding.vidSsv.region
                 val rect = Rect()
                 rect.left = rectF.left.toInt()
                 rect.top = rectF.top.toInt()

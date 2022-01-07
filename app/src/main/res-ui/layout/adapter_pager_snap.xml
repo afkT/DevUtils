@@ -39,7 +39,7 @@
                 android:orientation="vertical">
 
                 <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_igview"
+                    android:id="@+id/vid_iv"
                     android:layout_width="@dimen/un_dp_220"
                     android:layout_height="@dimen/un_dp_391"
                     app:imageUrl="@{item.imageUrl}" />

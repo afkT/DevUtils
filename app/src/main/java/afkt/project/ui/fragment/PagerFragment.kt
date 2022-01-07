@@ -39,7 +39,7 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
         binding.vidPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
         binding.vidTitleTv.text = titleText
         binding.vidContentTv.text = ChineseUtils.randomWord(400)
-        binding.vidIgview.setImageBitmap(getBitmap())
+        binding.vidIv.setImageBitmap(getBitmap())
     }
 
     private fun getBitmap(): Bitmap {

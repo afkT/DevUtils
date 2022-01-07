@@ -48,8 +48,8 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
                 holder.binding.vidTimeTv
             )
             .setVisibilitys(note.type != NoteType.PICTURE, holder.binding.vidContentTv)
-            .setVisibilitys(note.type != NoteType.TEXT, holder.binding.vidRecy)
-        val imgRecy = holder.binding.vidRecy
+            .setVisibilitys(note.type != NoteType.TEXT, holder.binding.vidRv)
+        val imgRecy = holder.binding.vidRv
         if (ViewUtils.isVisibility(imgRecy)) {
             ImageAdapter(item.pictures).bindAdapter(imgRecy)
         }
@@ -73,7 +73,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             position: Int
         ) {
             DevEngine.getImage()?.display(
-                holder.binding.vidIgview,
+                holder.binding.vidIv,
                 getDataItem(position).picture
             )
         }

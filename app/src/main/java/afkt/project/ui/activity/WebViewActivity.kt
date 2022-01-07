@@ -33,7 +33,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
         super.initValue()
 
         // 长按监听事件
-        binding.vidWebview.setOnLongClickListener(OnLongClickListener { view ->
+        binding.vidWv.setOnLongClickListener(OnLongClickListener { view ->
             ((view as WebView).hitTestResult).let { result ->
                 when (result.type) {
                     HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
@@ -49,7 +49,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
         })
 
         // 设置 WebView
-        mWebViewAssist.setWebView(binding.vidWebview)
+        mWebViewAssist.setWebView(binding.vidWv)
         // 设置辅助 WebView 处理 Javascript 对话框、标题等对象
         mWebViewAssist.setWebChromeClient(object : WebChromeClient() {
             override fun onProgressChanged(

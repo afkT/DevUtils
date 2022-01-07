@@ -23,7 +23,7 @@
             app:elevation="@dimen/un_dp_0">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/vid_toolbar"
+                android:id="@+id/vid_tb"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
@@ -38,7 +38,7 @@
             android:background="@android:color/white">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/vid_recy"
+                android:id="@+id/vid_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
@@ -46,7 +46,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <dev.widget.function.StateLayout
-                android:id="@+id/vid_state"
+                android:id="@+id/vid_state_sl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone" />

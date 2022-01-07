@@ -60,7 +60,7 @@ class TextCalcActivity : BaseActivity<ActivityTextCalcBinding>() {
                     val content = builder.toString()
                     ToastTintUtils.normal(content)
                 }.getView()
-            binding.vidLinear.addView(view)
+            binding.vidLl.addView(view)
         }
     }
 }

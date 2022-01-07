@@ -40,7 +40,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         super.onClick(v)
         when (v.id) {
             R.id.vid_create_btn -> {
-                val text = EditTextUtils.getText(binding.vidContentEdit)
+                val text = EditTextUtils.getText(binding.vidContentEt)
                 // 判断是否存在内容
                 if (TextUtils.isEmpty(text)) {
                     showToast(false, "请输入生成二维码内容")
@@ -54,7 +54,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     if (success) {
                         HandlerUtils.postRunnable {
                             ImageViewUtils.setImageBitmap(
-                                binding.vidIgview,
+                                binding.vidIv,
                                 bitmap
                             )
                         }

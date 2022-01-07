@@ -39,7 +39,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 增加 Toolbar 按钮
         addToolbarButton()
 
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
             .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
@@ -63,9 +63,9 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
             })
-        adapter.bindAdapter(binding.vidRecy)
+        adapter.bindAdapter(binding.vidRv)
 
-        QuickHelper.get(binding.vidRecy)
+        QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(

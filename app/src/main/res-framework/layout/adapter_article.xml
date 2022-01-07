@@ -8,7 +8,7 @@
     tools:background="@color/color_f5">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/vid_cardview"
+        android:id="@+id/vid_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -26,7 +26,7 @@
             android:layout_margin="@dimen/un_dp_10">
 
             <FrameLayout
-                android:id="@+id/vid_pic_frame"
+                android:id="@+id/vid_pic_fl"
                 android:layout_width="@dimen/un_dp_70"
                 android:layout_height="@dimen/un_dp_70"
                 android:layout_alignParentLeft="true"
@@ -35,7 +35,7 @@
                 android:padding="@dimen/un_dp_5">
 
                 <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_pic_igview"
+                    android:id="@+id/vid_pic_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/un_dp_8"
-                android:layout_toRightOf="@id/vid_pic_frame"
+                android:layout_toRightOf="@id/vid_pic_fl"
                 android:orientation="vertical">
 
                 <dev.base.widget.BaseTextView

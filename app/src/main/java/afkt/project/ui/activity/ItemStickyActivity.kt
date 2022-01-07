@@ -40,7 +40,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val parent = binding.vidRecy.parent as? ViewGroup
+        val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(0)
 
@@ -88,8 +88,8 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         // 初始化布局管理器、适配器
         itemStickyAdapter = ItemStickyAdapter(list)
-        binding.vidRecy.addItemDecoration(decoration)
-        itemStickyAdapter.bindAdapter(binding.vidRecy)
+        binding.vidRv.addItemDecoration(decoration)
+        itemStickyAdapter.bindAdapter(binding.vidRv)
     }
 
     private val list: List<ItemStickyBean>

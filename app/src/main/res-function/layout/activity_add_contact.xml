@@ -66,7 +66,7 @@
             android:layout_marginTop="@dimen/un_dp_15">
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_start_edit"
+                android:id="@+id/vid_start_et"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="@dimen/un_dp_40"
                 android:layout_marginRight="@dimen/un_dp_150"
@@ -82,7 +82,7 @@
                 android:textSize="@dimen/un_sp_15" />
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_end_edit"
+                android:id="@+id/vid_end_et"
                 android:layout_width="@dimen/un_dp_120"
                 android:layout_height="@dimen/un_dp_40"
                 android:layout_marginLeft="@dimen/un_dp_150"
