@@ -177,8 +177,8 @@ public final class DevEnvironmentActivity
                 View convertView,
                 ViewGroup parent
         ) {
-            TextView vid_name_tv;
-            TextView vid_value_tv;
+            TextView  vid_name_tv;
+            TextView  vid_value_tv;
             ImageView vid_mark_iv;
 
             final AdapterItem item = getItem(position);
