@@ -8,6 +8,7 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -54,6 +55,19 @@ public final class FileUtils {
             final String fileName
     ) {
         return (filePath != null && fileName != null) ? new File(filePath, fileName) : null;
+    }
+
+    /**
+     * 获取文件
+     * @param parent   文件路径
+     * @param fileName 文件名
+     * @return 文件 {@link File}
+     */
+    public static File getFile(
+            final File parent,
+            final String fileName
+    ) {
+        return (parent != null && fileName != null) ? new File(parent, fileName) : null;
     }
 
     /**
@@ -2227,6 +2241,84 @@ public final class FileUtils {
             }
         }
         return list;
+    }
+
+    // =
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dirPath 目录路径
+     * @return 文件目录列表
+     */
+    public static List<String> listOrEmpty(final String dirPath) {
+        return listOrEmpty(getFile(dirPath));
+    }
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dir 目录
+     * @return 文件目录列表
+     */
+    public static List<String> listOrEmpty(final File dir) {
+        if (isFileExists(dir)) {
+            List<String> list = ArrayUtils.asList(dir.list());
+            if (list != null) return list;
+        }
+        return new ArrayList<>();
+    }
+
+    // =
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dirPath 目录路径
+     * @return 文件目录列表
+     */
+    public static List<File> listFilesOrEmpty(final String dirPath) {
+        return listFilesOrEmpty(getFile(dirPath));
+    }
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dir 目录
+     * @return 文件目录列表
+     */
+    public static List<File> listFilesOrEmpty(final File dir) {
+        if (isFileExists(dir)) {
+            List<File> list = ArrayUtils.asList(dir.listFiles());
+            if (list != null) return list;
+        }
+        return new ArrayList<>();
+    }
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dirPath 目录路径
+     * @param filter  文件过滤
+     * @return 文件目录列表
+     */
+    public static List<File> listFilesOrEmpty(
+            final String dirPath,
+            final FilenameFilter filter
+    ) {
+        return listFilesOrEmpty(getFile(dirPath), filter);
+    }
+
+    /**
+     * 获取文件夹下的文件目录列表 ( 非全部子目录 )
+     * @param dir    目录
+     * @param filter 文件过滤
+     * @return 文件目录列表
+     */
+    public static List<File> listFilesOrEmpty(
+            final File dir,
+            final FilenameFilter filter
+    ) {
+        if (isFileExists(dir)) {
+            List<File> list = ArrayUtils.asList(dir.listFiles(filter));
+            if (list != null) return list;
+        }
+        return new ArrayList<>();
     }
 
     // =============
