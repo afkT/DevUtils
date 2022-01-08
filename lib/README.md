@@ -17,12 +17,12 @@
    - DevJava                               | Java 工具类库 ( 不依赖 android api )
    - DevOther                              | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
    - DevWidget                             | 自定义 View UI 库
-   - Environment                           | 环境配置切换库
+   - Environment                           | Android 环境配置切换库
       - DevEnvironment                     | 环境切换可视化 UI 操作
       - DevEnvironmentBase                 | 注解类、实体类、监听事件等通用基础
       - DevEnvironmentCompiler             | Debug ( 打包 / 编译 ) 生成实现代码
       - DevEnvironmentCompilerRelease      | Release ( 打包 / 编译 ) 生成实现代码
-   - HttpCapture                           | OKHttp 抓包工具库可视化
+   - HttpCapture                           | OKHttp 抓包工具库 ( 可视化功能 )
       - DevHttpCaptureCompiler             | Debug ( 打包 / 编译 ) 实现代码
       - DevHttpCaptureCompilerRelease      | Release ( 打包 / 编译 ) 实现代码
 ```
