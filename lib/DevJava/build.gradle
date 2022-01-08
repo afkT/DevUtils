@@ -7,8 +7,14 @@ compileJava {
     targetCompatibility JavaVersion.VERSION_1_8.toString()
 }
 
+// 是否发布版本
+def isPublishing = false
+
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.bintray_upload_java)
-//apply from : rootProject.file(files.sonatype_upload_java)
+//apply from: rootProject.file(files.bintray_upload_java)
+//apply from: rootProject.file(files.sonatype_upload_java)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_java)
+}

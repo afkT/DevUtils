@@ -11,6 +11,9 @@ android.defaultConfig {
     buildConfigField "String", "DevJava_Version", "\"${versions.dev_java_version}\""
 }
 
+// 是否发布版本
+def isPublishing = false
+
 dependencies {
     api deps.androidx.design
     api deps.androidx.appcompat
@@ -19,5 +22,8 @@ dependencies {
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.bintray_upload_android)
-//apply from : rootProject.file(files.sonatype_upload_android)
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

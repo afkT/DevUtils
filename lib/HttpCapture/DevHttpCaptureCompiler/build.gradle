@@ -12,17 +12,26 @@ android {
     }
 }
 
+// 是否发布版本
+def isPublishing = false
+
 dependencies {
-    // 编译时使用
-    api project(':DevHttpCapture')
-    api project(':DevAssist')
-//    // 打包时使用
-//    api deps.dev.dev_http_capture
-//    api deps.dev.dev_assist
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_http_capture
+        api deps.dev.dev_assist
+    } else {
+        // 编译时使用
+        api project(':DevHttpCapture')
+        api project(':DevAssist')
+    }
 }
 
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.bintray_upload_android)
-//apply from : rootProject.file(files.sonatype_upload_android)
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

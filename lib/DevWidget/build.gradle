@@ -11,19 +11,28 @@ android.defaultConfig {
     buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
 }
 
+// 是否发布版本
+def isPublishing = false
+
 dependencies {
     api deps.androidx.design
     api deps.androidx.appcompat
     api deps.androidx.constraint_layout
 
-    // 编译时使用
-    api project(':DevApp')
-//    // 打包时使用
-//    api deps.dev.dev_app_x
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_app_x
+    } else {
+        // 编译时使用
+        api project(':DevApp')
+    }
 }
 
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.bintray_upload_android)
-//apply from : rootProject.file(files.sonatype_upload_android)
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

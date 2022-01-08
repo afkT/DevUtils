@@ -7,19 +7,28 @@ compileJava {
     targetCompatibility JavaVersion.VERSION_1_8.toString()
 }
 
+// 是否发布版本
+def isPublishing = false
+
 dependencies {
     api deps.aop.javapoet
     compileOnly deps.aop.auto_service
     annotationProcessor deps.aop.auto_service
 
-    // 编译时使用
-    api project(':DevEnvironmentBase')
-//    // 打包时使用
-//    api deps.dev.dev_environment_base
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_environment_base
+    } else {
+        // 编译时使用
+        api project(':DevEnvironmentBase')
+    }
 }
 
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.bintray_upload_java)
-//apply from : rootProject.file(files.sonatype_upload_java)
+//apply from: rootProject.file(files.bintray_upload_java)
+//apply from: rootProject.file(files.sonatype_upload_java)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_java)
+}
