@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.3.9'
+implementation 'io.github.afkt:DevJava:1.4.0'
 ```
 
 ## 目录结构
@@ -14,6 +14,8 @@ implementation 'io.github.afkt:DevJava:1.3.9'
          - record                                     | 文件记录分析类
          - search                                     | 搜索相关 ( 文件搜索等 )
       - cipher                                        | 编 / 解码工具类
+      - comparator                                    | 排序比较器
+         - sort                                       | 各种类型比较器排序实现
       - encrypt                                       | 加密工具类
       - file                                          | 文件分片相关
       - random                                        | 随机概率算法工具类
@@ -51,6 +53,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
          - [record](#devutilscommonassistrecord)      | 文件记录分析类
          - [search](#devutilscommonassistsearch)      | 搜索相关 ( 文件搜索等 )
       - [cipher](#devutilscommoncipher)               | 编 / 解码工具类
+      - [comparator](#devutilscommoncomparator)       | 排序比较器
+         - [sort](#devutilscommoncomparatorsort)      | 各种类型比较器排序实现
       - [encrypt](#devutilscommonencrypt)             | 加密工具类
       - [file](#devutilscommonfile)                   | 文件分片相关
       - [random](#devutilscommonrandom)               | 随机概率算法工具类
@@ -621,6 +625,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | listFilesInDirWithFilter | 获取目录下所有过滤的文件 ( 不递归进子目录 ) |
 | listFilesInDirBean | 获取目录下所有文件 ( 不递归进子目录 ) |
 | listFilesInDirWithFilterBean | 获取目录下所有过滤的文件 ( 不递归进子目录 ) |
+| listOrEmpty | 获取文件夹下的文件目录列表 ( 非全部子目录 ) |
+| listFilesOrEmpty | 获取文件夹下的文件目录列表 ( 非全部子目录 ) |
 | isImageFormats | 根据文件名判断文件是否为图片 |
 | isAudioFormats | 根据文件名判断文件是否为音频 |
 | isVideoFormats | 根据文件名判断文件是否为视频 |
@@ -1191,6 +1197,208 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | decrypt | 解密方法 |
 
 
+## <span id="devutilscommoncomparator">**`dev.utils.common.comparator`**</span>
+
+
+* **排序比较器工具类 ->** [ComparatorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/ComparatorUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| reverse | List 反转处理 |
+| sort | List 排序处理 |
+| sortAsc | List 升序处理 |
+| sortDesc | List 降序处理 |
+| sortFileLastModifiedAsc | 文件修改时间升序排序 |
+| sortFileLastModifiedDesc | 文件修改时间降序排序 |
+| sortFileLengthAsc | 文件大小升序排序 |
+| sortFileLengthDesc | 文件大小降序排序 |
+| sortFileNameAsc | 文件名升序排序 |
+| sortFileNameDesc | 文件名降序排序 |
+| sortDateAsc | Date 升序排序 |
+| sortDateDesc | Date 降序排序 |
+| sortStringAsc | String 升序排序 |
+| sortStringDesc | String 降序排序 |
+| sortDoubleAsc | Double 升序排序 |
+| sortDoubleDesc | Double 降序排序 |
+| sortFloatAsc | Float 升序排序 |
+| sortFloatDesc | Float 降序排序 |
+| sortIntAsc | Int 升序排序 |
+| sortIntDesc | Int 降序排序 |
+| sortLongAsc | Long 升序排序 |
+| sortLongDesc | Long 降序排序 |
+
+
+## <span id="devutilscommoncomparatorsort">**`dev.utils.common.comparator.sort`**</span>
+
+
+* **Date 排序值 ->** [DateSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DateSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDateSortValue | getDateSortValue |
+
+
+* **Date 升序排序 ->** [DateSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DateSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Date 降序排序 ->** [DateSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DateSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Double 排序值 ->** [DoubleSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DoubleSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDoubleSortValue | getDoubleSortValue |
+
+
+* **Double 升序排序 ->** [DoubleSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DoubleSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Double 降序排序 ->** [DoubleSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/DoubleSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件修改时间升序排序 ->** [FileLastModifiedSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileLastModifiedSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件修改时间降序排序 ->** [FileLastModifiedSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileLastModifiedSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件大小升序排序 ->** [FileLengthSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileLengthSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件大小降序排序 ->** [FileLengthSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileLengthSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件名升序排序 ->** [FileNameSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileNameSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件名降序排序 ->** [FileNameSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileNameSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Float 排序值 ->** [FloatSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FloatSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getFloatSortValue | getFloatSortValue |
+
+
+* **Float 升序排序 ->** [FloatSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FloatSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Float 降序排序 ->** [FloatSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FloatSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Int 排序值 ->** [IntSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/IntSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getIntSortValue | getIntSortValue |
+
+
+* **Int 升序排序 ->** [IntSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/IntSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Int 降序排序 ->** [IntSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/IntSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Long 排序值 ->** [LongSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/LongSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getLongSortValue | getLongSortValue |
+
+
+* **Long 升序排序 ->** [LongSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/LongSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Long 降序排序 ->** [LongSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/LongSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **String 排序值 ->** [StringSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSort.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getStringSortValue | getStringSortValue |
+
+
+* **String 升序排序 ->** [StringSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **String 降序排序 ->** [StringSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
 ## <span id="devutilscommonencrypt">**`dev.utils.common.encrypt`**</span>
 
 
@@ -1458,6 +1666,19 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getCheckCode18 | 将 POWER 和值与 11 取模获取余数进行校验码判断 |
 
 
+* **检验联系 ( 手机号、座机 ) 工具类 ->** [ValiToPhoneUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValiToPhoneUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isPhoneCheck | 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone |
+| isPhone | 是否中国手机号 |
+| isPhoneToChinaTelecom | 是否中国电信手机号码 |
+| isPhoneToChinaUnicom | 是否中国联通手机号码 |
+| isPhoneToChinaMobile | 是否中国移动手机号码 |
+| isPhoneToHkMobile | 判断是否香港手机号 |
+| isPhoneCallNum | 验证电话号码的格式 |
+
+
 * **校验工具类 ->** [ValidatorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValidatorUtils.java)
 
 | 方法 | 注释 |
@@ -1480,16 +1701,3 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isChinese | 校验汉字 ( 无符号, 纯汉字 ) |
 | isChineseAll | 判断字符串是不是全是中文 |
 | isContainChinese | 判断字符串中包含中文、包括中文字符标点等 |
-
-
-* **检验联系 ( 手机号、座机 ) 工具类 ->** [ValiToPhoneUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValiToPhoneUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| isPhoneCheck | 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone |
-| isPhone | 是否中国手机号 |
-| isPhoneToChinaTelecom | 是否中国电信手机号码 |
-| isPhoneToChinaUnicom | 是否中国联通手机号码 |
-| isPhoneToChinaMobile | 是否中国移动手机号码 |
-| isPhoneToHkMobile | 判断是否香港手机号 |
-| isPhoneCallNum | 验证电话号码的格式 |

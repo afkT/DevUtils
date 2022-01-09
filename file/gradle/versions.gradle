@@ -67,7 +67,7 @@ ext {
             dev_environment_compiler_release_version : "1.0.6",
 
             // DevJava Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 139,
-            dev_java_version                         : "1.3.9",
+            dev_java_versionCode                     : 140,
+            dev_java_version                         : "1.4.0",
     ]
 }

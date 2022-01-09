@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.4.0 *(2022-01-10)*
+----------------------------
+
+* `[Add]` ComparatorUtils 排序比较器工具类
+
+* `[Add]` FileUtils#getFile、listOrEmpty、listFilesOrEmpty
+
 Version 1.3.9 *(2021-12-30)*
 ----------------------------
 
