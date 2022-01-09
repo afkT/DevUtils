@@ -20,6 +20,8 @@ import dev.utils.common.comparator.sort.FileLengthSortAsc;
 import dev.utils.common.comparator.sort.FileLengthSortDesc;
 import dev.utils.common.comparator.sort.FileNameSortAsc;
 import dev.utils.common.comparator.sort.FileNameSortDesc;
+import dev.utils.common.comparator.sort.FileSortAsc;
+import dev.utils.common.comparator.sort.FileSortDesc;
 import dev.utils.common.comparator.sort.FloatSort;
 import dev.utils.common.comparator.sort.FloatSortAsc;
 import dev.utils.common.comparator.sort.FloatSortDesc;
@@ -171,6 +173,26 @@ public final class ComparatorUtils {
      */
     public static <T extends File> boolean sortFileNameDesc(final List<T> list) {
         return sort(list, new FileNameSortDesc());
+    }
+
+    /**
+     * 文件升序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends File> boolean sortFileAsc(final List<T> list) {
+        return sort(list, new FileSortAsc());
+    }
+
+    /**
+     * 文件降序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends File> boolean sortFileDesc(final List<T> list) {
+        return sort(list, new FileSortDesc());
     }
 
     // ========
