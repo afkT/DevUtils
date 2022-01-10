@@ -36,6 +36,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://blog.csdn.net/shibin1990_/article/list/2"/>
  *     Android 动效开篇
  *     @see <a href="https://blog.csdn.net/tianjian4592/article/details/44155147"/>
+ *     插值器 ( Interpolator ) 的使用说明
+ *     @see <a href="https://www.jianshu.com/p/06278cdf6fbf"/>
  *     <p></p>
  *     setInterpolator:
  *     {@link AccelerateInterpolator} 先减速后加速
