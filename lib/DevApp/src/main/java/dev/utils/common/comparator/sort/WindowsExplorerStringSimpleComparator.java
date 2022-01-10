@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dev.utils.common.ConvertUtils;
+import dev.utils.common.StringUtils;
+
 /**
  * detail: Windows 目录资源文件名排序比较器
  * @author Ttt
@@ -81,14 +84,10 @@ public class WindowsExplorerStringSimpleComparator
                 String numberText,
                 String ext
         ) {
-            this.name = name;
-            if ("".equals(numberText)) {
-                this.number = -1L;
-            } else {
-                this.number = Long.valueOf(numberText);
-            }
-            this.numberText = numberText;
-            this.ext        = ext;
+            this.name       = StringUtils.checkValue(name);
+            this.number     = ConvertUtils.toLong(numberText, -1L);
+            this.numberText = StringUtils.checkValue(numberText);
+            this.ext        = StringUtils.checkValue(ext);
         }
     }
 }
