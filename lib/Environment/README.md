@@ -50,7 +50,7 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.6-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.6-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.6-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.7-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.7-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.7-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 
 
 ### Gradle
@@ -58,18 +58,18 @@ version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.6-brightgreen.
 ```groovy
 dependencies {
     // Java
-    implementation 'io.github.afkt:DevEnvironment:1.0.6'
-    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.6'
-    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.6'
+    implementation 'io.github.afkt:DevEnvironment:1.0.7'
+    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.7'
+    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.7'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.6'
+    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.7'
 
     // Kotlin
-    implementation 'io.github.afkt:DevEnvironment:1.0.6'
-    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.0.6'
-    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.6'
+    implementation 'io.github.afkt:DevEnvironment:1.0.7'
+    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.0.7'
+    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.7'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.0.6'
+    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.0.7'
 }
 ```
 

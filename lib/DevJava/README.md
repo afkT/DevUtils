@@ -1214,10 +1214,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | sortFileLengthDesc | 文件大小降序排序 |
 | sortFileNameAsc | 文件名升序排序 |
 | sortFileNameDesc | 文件名降序排序 |
+| sortFileAsc | 文件升序排序 |
+| sortFileDesc | 文件降序排序 |
 | sortDateAsc | Date 升序排序 |
 | sortDateDesc | Date 降序排序 |
-| sortStringAsc | String 升序排序 |
-| sortStringDesc | String 降序排序 |
 | sortDoubleAsc | Double 升序排序 |
 | sortDoubleDesc | Double 降序排序 |
 | sortFloatAsc | Float 升序排序 |
@@ -1226,6 +1226,20 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | sortIntDesc | Int 降序排序 |
 | sortLongAsc | Long 升序排序 |
 | sortLongDesc | Long 降序排序 |
+| sortStringAsc | String 升序排序 |
+| sortStringDesc | String 降序排序 |
+| sortStringWindowsSimpleAsc | String Windows 排序比较器简单实现升序排序 |
+| sortStringWindowsSimpleDesc | String Windows 排序比较器简单实现降序排序 |
+| sortStringWindowsSimple2Asc | String Windows 排序比较器简单实现升序排序 ( 实现方式二 ) |
+| sortStringWindowsSimple2Desc | String Windows 排序比较器简单实现降序排序 ( 实现方式二 ) |
+| sortWindowsExplorerFileSimpleComparatorAsc | Windows 目录资源文件升序排序 |
+| sortWindowsExplorerFileSimpleComparatorDesc | Windows 目录资源文件降序排序 |
+| sortWindowsExplorerFileSimpleComparator2Asc | Windows 目录资源文件升序排序 ( 实现方式二 ) |
+| sortWindowsExplorerFileSimpleComparator2Desc | Windows 目录资源文件降序排序 ( 实现方式二 ) |
+| sortWindowsExplorerStringSimpleComparatorAsc | Windows 目录资源文件名升序排序 |
+| sortWindowsExplorerStringSimpleComparatorDesc | Windows 目录资源文件名降序排序 |
+| sortWindowsExplorerStringSimpleComparator2Asc | Windows 目录资源文件名升序排序 ( 实现方式二 ) |
+| sortWindowsExplorerStringSimpleComparator2Desc | Windows 目录资源文件名降序排序 ( 实现方式二 ) |
 
 
 ## <span id="devutilscommoncomparatorsort">**`dev.utils.common.comparator.sort`**</span>
@@ -1315,6 +1329,20 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | compare | compare |
 
 
+* **文件升序排序 ->** [FileSortAsc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileSortAsc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **文件降序排序 ->** [FileSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FileSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
 * **Float 排序值 ->** [FloatSort.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/FloatSort.java)
 
 | 方法 | 注释 |
@@ -1393,6 +1421,48 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 
 * **String 降序排序 ->** [StringSortDesc.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSortDesc.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **String Windows 排序比较器简单实现 ->** [StringSortWindowsSimple.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSortWindowsSimple.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **String Windows 排序比较器简单实现 ->** [StringSortWindowsSimple2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/StringSortWindowsSimple2.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Windows 目录资源文件排序比较器 ->** [WindowsExplorerFileSimpleComparator.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/WindowsExplorerFileSimpleComparator.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Windows 目录资源文件排序比较器 ->** [WindowsExplorerFileSimpleComparator2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/WindowsExplorerFileSimpleComparator2.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Windows 目录资源文件名排序比较器 ->** [WindowsExplorerStringSimpleComparator.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/WindowsExplorerStringSimpleComparator.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compare | compare |
+
+
+* **Windows 目录资源文件名排序比较器 ->** [WindowsExplorerStringSimpleComparator2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/comparator/sort/WindowsExplorerStringSimpleComparator2.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1666,19 +1736,6 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getCheckCode18 | 将 POWER 和值与 11 取模获取余数进行校验码判断 |
 
 
-* **检验联系 ( 手机号、座机 ) 工具类 ->** [ValiToPhoneUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValiToPhoneUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| isPhoneCheck | 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone |
-| isPhone | 是否中国手机号 |
-| isPhoneToChinaTelecom | 是否中国电信手机号码 |
-| isPhoneToChinaUnicom | 是否中国联通手机号码 |
-| isPhoneToChinaMobile | 是否中国移动手机号码 |
-| isPhoneToHkMobile | 判断是否香港手机号 |
-| isPhoneCallNum | 验证电话号码的格式 |
-
-
 * **校验工具类 ->** [ValidatorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValidatorUtils.java)
 
 | 方法 | 注释 |
@@ -1701,3 +1758,16 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isChinese | 校验汉字 ( 无符号, 纯汉字 ) |
 | isChineseAll | 判断字符串是不是全是中文 |
 | isContainChinese | 判断字符串中包含中文、包括中文字符标点等 |
+
+
+* **检验联系 ( 手机号、座机 ) 工具类 ->** [ValiToPhoneUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/validator/ValiToPhoneUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isPhoneCheck | 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone |
+| isPhone | 是否中国手机号 |
+| isPhoneToChinaTelecom | 是否中国电信手机号码 |
+| isPhoneToChinaUnicom | 是否中国联通手机号码 |
+| isPhoneToChinaMobile | 是否中国移动手机号码 |
+| isPhoneToHkMobile | 判断是否香港手机号 |
+| isPhoneCallNum | 验证电话号码的格式 |
