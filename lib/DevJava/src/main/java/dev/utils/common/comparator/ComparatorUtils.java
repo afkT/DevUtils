@@ -20,6 +20,8 @@ import dev.utils.common.comparator.sort.FileLengthSortAsc;
 import dev.utils.common.comparator.sort.FileLengthSortDesc;
 import dev.utils.common.comparator.sort.FileNameSortAsc;
 import dev.utils.common.comparator.sort.FileNameSortDesc;
+import dev.utils.common.comparator.sort.FileSortAsc;
+import dev.utils.common.comparator.sort.FileSortDesc;
 import dev.utils.common.comparator.sort.FloatSort;
 import dev.utils.common.comparator.sort.FloatSortAsc;
 import dev.utils.common.comparator.sort.FloatSortDesc;
@@ -32,6 +34,12 @@ import dev.utils.common.comparator.sort.LongSortDesc;
 import dev.utils.common.comparator.sort.StringSort;
 import dev.utils.common.comparator.sort.StringSortAsc;
 import dev.utils.common.comparator.sort.StringSortDesc;
+import dev.utils.common.comparator.sort.StringSortWindowsSimple;
+import dev.utils.common.comparator.sort.StringSortWindowsSimple2;
+import dev.utils.common.comparator.sort.WindowsExplorerFileSimpleComparator;
+import dev.utils.common.comparator.sort.WindowsExplorerFileSimpleComparator2;
+import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator;
+import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator2;
 
 /**
  * detail: 排序比较器工具类
@@ -173,6 +181,26 @@ public final class ComparatorUtils {
         return sort(list, new FileNameSortDesc());
     }
 
+    /**
+     * 文件升序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends File> boolean sortFileAsc(final List<T> list) {
+        return sort(list, new FileSortAsc());
+    }
+
+    /**
+     * 文件降序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends File> boolean sortFileDesc(final List<T> list) {
+        return sort(list, new FileSortDesc());
+    }
+
     // ========
     // = Date =
     // ========
@@ -195,30 +223,6 @@ public final class ComparatorUtils {
      */
     public static <T extends DateSort> boolean sortDateDesc(final List<T> list) {
         return sort(list, new DateSortDesc<>());
-    }
-
-    // =========
-    // = String =
-    // =========
-
-    /**
-     * String 升序排序
-     * @param list 集合
-     * @param <T>  泛型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static <T extends StringSort> boolean sortStringAsc(final List<T> list) {
-        return sort(list, new StringSortAsc<>());
-    }
-
-    /**
-     * String 降序排序
-     * @param list 集合
-     * @param <T>  泛型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static <T extends StringSort> boolean sortStringDesc(final List<T> list) {
-        return sort(list, new StringSortDesc<>());
     }
 
     // =========
@@ -315,5 +319,161 @@ public final class ComparatorUtils {
      */
     public static <T extends LongSort> boolean sortLongDesc(final List<T> list) {
         return sort(list, new LongSortDesc<>());
+    }
+
+    // =========
+    // = String =
+    // =========
+
+    /**
+     * String 升序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringAsc(final List<T> list) {
+        return sort(list, new StringSortAsc<>());
+    }
+
+    /**
+     * String 降序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringDesc(final List<T> list) {
+        return sort(list, new StringSortDesc<>());
+    }
+
+    // =
+
+    /**
+     * String Windows 排序比较器简单实现升序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringWindowsSimpleAsc(final List<T> list) {
+        return sort(list, new StringSortWindowsSimple<>());
+    }
+
+    /**
+     * String Windows 排序比较器简单实现降序排序
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringWindowsSimpleDesc(final List<T> list) {
+        boolean result = sortStringWindowsSimpleAsc(list);
+        if (result) reverse(list);
+        return result;
+    }
+
+    /**
+     * String Windows 排序比较器简单实现升序排序 ( 实现方式二 )
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringWindowsSimple2Asc(final List<T> list) {
+        return sort(list, new StringSortWindowsSimple2<>());
+    }
+
+    /**
+     * String Windows 排序比较器简单实现降序排序 ( 实现方式二 )
+     * @param list 集合
+     * @param <T>  泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends StringSort> boolean sortStringWindowsSimple2Desc(final List<T> list) {
+        boolean result = sortStringWindowsSimple2Asc(list);
+        if (result) reverse(list);
+        return result;
+    }
+
+    // ====================
+    // = Windows Explorer =
+    // ====================
+
+    /**
+     * Windows 目录资源文件升序排序
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerFileSimpleComparatorAsc(final List<File> list) {
+        return sort(list, new WindowsExplorerFileSimpleComparator());
+    }
+
+    /**
+     * Windows 目录资源文件降序排序
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerFileSimpleComparatorDesc(final List<File> list) {
+        boolean result = sortWindowsExplorerFileSimpleComparatorAsc(list);
+        if (result) reverse(list);
+        return result;
+    }
+
+    /**
+     * Windows 目录资源文件升序排序 ( 实现方式二 )
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerFileSimpleComparator2Asc(final List<File> list) {
+        return sort(list, new WindowsExplorerFileSimpleComparator2());
+    }
+
+    /**
+     * Windows 目录资源文件降序排序 ( 实现方式二 )
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerFileSimpleComparator2Desc(final List<File> list) {
+        boolean result = sortWindowsExplorerFileSimpleComparator2Asc(list);
+        if (result) reverse(list);
+        return result;
+    }
+
+    // =
+
+    /**
+     * Windows 目录资源文件名升序排序
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerStringSimpleComparatorAsc(final List<String> list) {
+        return sort(list, new WindowsExplorerStringSimpleComparator());
+    }
+
+    /**
+     * Windows 目录资源文件名降序排序
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerStringSimpleComparatorDesc(final List<String> list) {
+        boolean result = sortWindowsExplorerStringSimpleComparatorAsc(list);
+        if (result) reverse(list);
+        return result;
+    }
+
+    /**
+     * Windows 目录资源文件名升序排序 ( 实现方式二 )
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerStringSimpleComparator2Asc(final List<String> list) {
+        return sort(list, new WindowsExplorerStringSimpleComparator2());
+    }
+
+    /**
+     * Windows 目录资源文件名降序排序 ( 实现方式二 )
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sortWindowsExplorerStringSimpleComparator2Desc(final List<String> list) {
+        boolean result = sortWindowsExplorerStringSimpleComparator2Asc(list);
+        if (result) reverse(list);
+        return result;
     }
 }
