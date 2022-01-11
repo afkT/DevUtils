@@ -8,9 +8,9 @@
 
 ## 一、Java 中的命名规范
 
-好的命名能体现出代码的特征、含义或者是用途，让阅读者可以根据名称的含义快速厘清程序的脉络，不同语言中采用的命名形式大相径庭，Java 中常用到的命名形式共有三种
+好的命名能体现出代码的特征、含义或者是用途，让阅读者可以根据名称的含义快速厘清程序的脉络，不同语言中采用的命名形式大相径庭
 
-既首字母大写的 UpperCamelCase、首字母小写的 lowerCamelCase 以及全部大写的并用下划线分割单词的 UPPER_CAMEL_UNSER_SCORE
+Java 中常用到的命名形式共有三种，既首字母大写的 UpperCamelCase、首字母小写的 lowerCamelCase 以及全部大写的并用下划线分割单词的 UPPER_CAMEL_UNSER_SCORE
 
 通常约定，**类一般采用大驼峰命名，方法和局部变量使用小驼峰命名，而大写下划线命名通常是常量和枚举中使用**
 
@@ -28,17 +28,17 @@
 ## 二、包命名
 
 **包名** 统一使用 **小写**，**点分隔符** 之间有且仅有一个自然语义的英文单词或者多个单词自然连接到一块
-（如 springFramework，deepSpace 不需要使用任何分割）包名统一使用单数形式，如果类命有复数含义，则可以使用复数形式
+（如 springFramework、deepSpace 不需要使用任何分割）包名统一使用单数形式，如果类命有复数含义，则可以使用复数形式
 
 包名的构成可以分为以下几四部分【前缀】、【发起者名】、【项目名】、【模块名】常见的前缀可以分为以下几种：
 
 |     前缀名       |               例               |                             含义                                            |
 | --------------- | ------------------------------ | -------------------------------------------------------------------------- |
-| indi（或 onem ） | indi.发起者名.项目名.模块名.xxx    | 个体项目，指个人发起，但非自己独自完成的项目，可公开或私有项目，copyright 主要属于发起者 |
-|      pers       | pers.个人名.项目名.模块名.xxx      | 个人项目，指个人发起，独自完成，可分享的项目，copyright 主要属于个人                 |
-|      priv       | priv.个人名.项目名.模块名.xxx      | 私有项目，指个人发起，独自完成，非公开的私人使用的项目，copyright 属于个人            |
-|      team       | team.团队名.项目名.模块名.xxx      | 团队项目，指由团队发起，并由该团队开发的项目，copyright 属于该团队所有               |
-|    顶级域名      | com.公司名.项目名.模块名.xxx       | 公司项目，copyright 由项目发起的公司所有                                         |
+| indi 或 onem    | indi.发起者名.项目名.模块名.xxx    | 个体项目，指个人发起，但非自己独自完成的项目，可公开或私有项目 copyright 主要属于发起者  |
+|      pers       | pers.个人名.项目名.模块名.xxx      | 个人项目，指个人发起，独自完成，可分享的项目 copyright 主要属于个人                  |
+|      priv       | priv.个人名.项目名.模块名.xxx      | 私有项目，指个人发起，独自完成，非公开的私人使用的项目 copyright 属于个人             |
+|      team       | team.团队名.项目名.模块名.xxx      | 团队项目，指由团队发起，并由该团队开发的项目 copyright 属于该团队所有                |
+|    顶级域名      | com.公司名.项目名.模块名.xxx       | 公司项目 copyright 由项目发起的公司所有                                         |
 
 
 
@@ -47,21 +47,21 @@
 **类名使用大驼峰命名形式**，类命通常时 **名词或名词短语**，接口名除了用名词和名词短语以外，
 还可以使用形容词或形容词短语，如 Cloneable、Callable 等，表示实现该接口的类有某种功能或能力，对于测试类则以它要测试的类开头，以 Test 结尾，如 HashMapTest
 
-对于一些特殊特有名词缩写也可以使用全大写命名，比如 XMLHttpRequest，不过缩写三个字母以内都大写，超过三个字母则按照要给单词算
+对于一些特殊特有名词缩写也可以使用全大写命名，比如 XMLHttpRequest 不过缩写三个字母以内都大写，超过三个字母则按照要给单词算
 
 这个没有标准如阿里巴巴中 fastjson 用 JSONObject 作为类命，而 google 则使用 JsonObjectRequest 命名，对于这种特殊的缩写，原则是统一就好
 
-| 属性           | 约束                                         | 例                                                                       |
-| -------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
-| 抽象类          | Abstract 或者 Base 开头                      | BaseUserService                                                          |
-| 枚举类          | Enum 作为后缀                                | GenderEnum                                                               |
-| 工具类          | Utils 作为后缀                               | StringUtils                                                              |
-| 异常类          | Exception 结尾                              | RuntimeException                                                         |
-| 接口实现类       | 接口名 + Impl                               | UserServiceImpl                                                          |
+| 属性           | 约束                                          | 例                                                                       |
+| -------------- | -------------------------------------------- | ------------------------------------------------------------------------ |
+| 抽象类          | Abstract 或者 Base 开头                       | BaseUserService                                                          |
+| 枚举类          | Enum 作为后缀                                 | GenderEnum                                                               |
+| 工具类          | Utils 作为后缀                                | StringUtils                                                              |
+| 异常类          | Exception 结尾                               | RuntimeException                                                         |
+| 接口实现类       | 接口名 + Impl                                | UserServiceImpl                                                          |
 | 领域模型相关     | /DO/DTO/VO/DAO                              | 正例：UserDAO、反例：UserDo、UserDao                                        |
 | 设计模式相关类    | Builder、Factory 等                         | 当使用到设计模式时、需要使用对应的设计模式作为后缀，如 ThreadFactory              |
 | 处理特定功能的    | Handler、Predicate、Validator               | 表示处理器、校验器、断言，这些类工厂还有配套的方法名如 handle、predicate、validate |
-| 测试类           | Test 结尾                                   | UserServiceTest，表示用来测试 UserService 类的                              |
+| 测试类           | Test 结尾                                   | UserServiceTest 表示用来测试 UserService 类的                              |
 | MVC 分层        | Controller、Service、ServiceImpl、DAO 后缀    | UserManageController、UserManageDAO                                      |
 
 
@@ -254,7 +254,7 @@ pojo 中的布尔变量，都不要加 is（数据库中的布尔字段全都要
 
 ### 5.2 常量命名
 
-常量命名 CONSTANT_CASE，一般采用全部大写（作为方法参数时除外），单词间用下划线分割
+常量命名 CONSTANT_CASE 一般采用全部大写（作为方法参数时除外），单词间用下划线分割
 
 > 那么什么是常量呢？
 
@@ -309,7 +309,7 @@ public class HelloWorld {
 2. 命名过程中尽量不要出现特殊的字符，常量除外
 3. 尽量不要和 jdk 或者框架中已存在的类重名，也不能使用 java 中的关键字命名
 4. 妙用介词，如 for（可以用同音的 4 代替）、to（可用同音的 2 代替）、from、with、of 等
-   如类名采用 User4RedisDO，方法名 getUserInfoFromRedis、convertJson2Map 等
+   如类名采用 User4RedisDO 方法名 getUserInfoFromRedis、convertJson2Map 等
 
 
 
@@ -366,7 +366,7 @@ javadoc 注解中，每个类都必须有注解
 
 ```java
 /**
- * Copyright (C)，2019-2020，Xxx
+ * Copyright (C) 2019-2020 Author
  *
  * 类的介绍：这是一个用来做什么事情的类，有哪些功能、用到的技术
  *
