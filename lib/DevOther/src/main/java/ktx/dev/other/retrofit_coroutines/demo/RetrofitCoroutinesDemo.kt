@@ -240,10 +240,10 @@ fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
     }
 }
 
-data class UploadBean(
-    val code: String,
+class UploadBean(
+    val code: String?,
     val `data`: List<String?>?,
-    val msg: String,
+    val msg: String?,
     val success: Boolean
 )
 
