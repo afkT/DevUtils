@@ -95,13 +95,13 @@ class CapturePictureListActivity : BaseActivity<ActivityCapturePictureListBindin
             ): View {
                 val adapterBean = getItem(position)
                 // 初始化 View 设置 TextView
-                val _binding = AdapterCapturePictureBinding.inflate(
+                val itemBinding = AdapterCapturePictureBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
                 ViewHelper.get()
-                    .setText(adapterBean.title, _binding.vidTitleTv)
-                    .setText(adapterBean.content, _binding.vidContentTv)
-                return _binding.root
+                    .setText(adapterBean.title, itemBinding.vidTitleTv)
+                    .setText(adapterBean.content, itemBinding.vidContentTv)
+                return itemBinding.root
             }
         }
     }

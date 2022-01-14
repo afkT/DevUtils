@@ -173,7 +173,7 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @param value Value
          */
-        private suspend fun <T> _put(
+        private suspend fun <T> innerPut(
             key: Key<T>,
             value: T
         ) {
@@ -188,7 +188,7 @@ object DataStoreUtils {
          * @param defaultValue 不存在 key 返回默认 Value
          * @return [Flow]
          */
-        private fun <T> _getFlow(
+        private fun <T> innerGetFlow(
             key: Key<T>,
             defaultValue: T
         ): Flow<T>? {
@@ -210,11 +210,11 @@ object DataStoreUtils {
          * @param defaultValue 不存在 key 返回默认 Value
          * @return Value
          */
-        private suspend fun <T> _getValue(
+        private suspend fun <T> innerGetValue(
             key: Key<T>,
             defaultValue: T
         ): T {
-            return _getFlow(key, defaultValue)?.first()!!
+            return innerGetFlow(key, defaultValue)?.first()!!
         }
 
         // =============
@@ -242,7 +242,7 @@ object DataStoreUtils {
             key: String,
             value: Int
         ) {
-            _put(key = intPreferencesKey(key), value = value)
+            innerPut(key = intPreferencesKey(key), value = value)
         }
 
         /**
@@ -254,7 +254,7 @@ object DataStoreUtils {
             key: Key<Int>,
             value: Int
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         /**
@@ -266,7 +266,7 @@ object DataStoreUtils {
             key: String,
             value: String
         ) {
-            _put(key = stringPreferencesKey(key), value = value)
+            innerPut(key = stringPreferencesKey(key), value = value)
         }
 
         /**
@@ -278,7 +278,7 @@ object DataStoreUtils {
             key: Key<String>,
             value: String
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         /**
@@ -290,7 +290,7 @@ object DataStoreUtils {
             key: String,
             value: Boolean
         ) {
-            _put(key = booleanPreferencesKey(key), value = value)
+            innerPut(key = booleanPreferencesKey(key), value = value)
         }
 
         /**
@@ -302,7 +302,7 @@ object DataStoreUtils {
             key: Key<Boolean>,
             value: Boolean
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         /**
@@ -314,7 +314,7 @@ object DataStoreUtils {
             key: String,
             value: Float
         ) {
-            _put(key = floatPreferencesKey(key), value = value)
+            innerPut(key = floatPreferencesKey(key), value = value)
         }
 
         /**
@@ -326,7 +326,7 @@ object DataStoreUtils {
             key: Key<Float>,
             value: Float
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         /**
@@ -338,7 +338,7 @@ object DataStoreUtils {
             key: String,
             value: Long
         ) {
-            _put(key = longPreferencesKey(key), value = value)
+            innerPut(key = longPreferencesKey(key), value = value)
         }
 
         /**
@@ -350,7 +350,7 @@ object DataStoreUtils {
             key: Key<Long>,
             value: Long
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         /**
@@ -362,7 +362,7 @@ object DataStoreUtils {
             key: String,
             value: Double
         ) {
-            _put(key = doublePreferencesKey(key), value = value)
+            innerPut(key = doublePreferencesKey(key), value = value)
         }
 
         /**
@@ -374,7 +374,7 @@ object DataStoreUtils {
             key: Key<Double>,
             value: Double
         ) {
-            _put(key = key, value = value)
+            innerPut(key = key, value = value)
         }
 
         // ========
@@ -391,7 +391,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Int = INT_VALUE
         ): Flow<Int>? {
-            return _getFlow(key = intPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = intPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -404,7 +404,7 @@ object DataStoreUtils {
             key: Key<Int>,
             defaultValue: Int = INT_VALUE
         ): Flow<Int>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -417,7 +417,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: String = STRING_VALUE
         ): Flow<String>? {
-            return _getFlow(key = stringPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = stringPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -430,7 +430,7 @@ object DataStoreUtils {
             key: Key<String>,
             defaultValue: String = STRING_VALUE
         ): Flow<String>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -443,7 +443,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Flow<Boolean>? {
-            return _getFlow(key = booleanPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = booleanPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -456,7 +456,7 @@ object DataStoreUtils {
             key: Key<Boolean>,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Flow<Boolean>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -469,7 +469,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Float = FLOAT_VALUE
         ): Flow<Float>? {
-            return _getFlow(key = floatPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = floatPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -482,7 +482,7 @@ object DataStoreUtils {
             key: Key<Float>,
             defaultValue: Float = FLOAT_VALUE
         ): Flow<Float>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -495,7 +495,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Long = LONG_VALUE
         ): Flow<Long>? {
-            return _getFlow(key = longPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = longPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -508,7 +508,7 @@ object DataStoreUtils {
             key: Key<Long>,
             defaultValue: Long = LONG_VALUE
         ): Flow<Long>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -521,7 +521,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Double = DOUBLE_VALUE
         ): Flow<Double>? {
-            return _getFlow(key = doublePreferencesKey(key), defaultValue = defaultValue)
+            return innerGetFlow(key = doublePreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -534,7 +534,7 @@ object DataStoreUtils {
             key: Key<Double>,
             defaultValue: Double = DOUBLE_VALUE
         ): Flow<Double>? {
-            return _getFlow(key = key, defaultValue = defaultValue)
+            return innerGetFlow(key = key, defaultValue = defaultValue)
         }
 
         // =========
@@ -551,7 +551,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Int = INT_VALUE
         ): Int {
-            return _getValue(key = intPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = intPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -564,7 +564,7 @@ object DataStoreUtils {
             key: Key<Int>,
             defaultValue: Int = INT_VALUE
         ): Int {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -577,7 +577,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: String = STRING_VALUE
         ): String {
-            return _getValue(key = stringPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = stringPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -590,7 +590,7 @@ object DataStoreUtils {
             key: Key<String>,
             defaultValue: String = STRING_VALUE
         ): String {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -603,7 +603,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Boolean {
-            return _getValue(key = booleanPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = booleanPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -616,7 +616,7 @@ object DataStoreUtils {
             key: Key<Boolean>,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Boolean {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -629,7 +629,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Float = FLOAT_VALUE
         ): Float {
-            return _getValue(key = floatPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = floatPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -642,7 +642,7 @@ object DataStoreUtils {
             key: Key<Float>,
             defaultValue: Float = FLOAT_VALUE
         ): Float {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -655,7 +655,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Long = LONG_VALUE
         ): Long {
-            return _getValue(key = longPreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = longPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -668,7 +668,7 @@ object DataStoreUtils {
             key: Key<Long>,
             defaultValue: Long = LONG_VALUE
         ): Long {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
 
         /**
@@ -681,7 +681,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Double = DOUBLE_VALUE
         ): Double {
-            return _getValue(key = doublePreferencesKey(key), defaultValue = defaultValue)
+            return innerGetValue(key = doublePreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -694,7 +694,7 @@ object DataStoreUtils {
             key: Key<Double>,
             defaultValue: Double = DOUBLE_VALUE
         ): Double {
-            return _getValue(key = key, defaultValue = defaultValue)
+            return innerGetValue(key = key, defaultValue = defaultValue)
         }
     }
 }

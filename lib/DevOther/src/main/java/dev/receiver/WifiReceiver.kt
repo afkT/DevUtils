@@ -35,7 +35,7 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
         // 触发回调通知 ( 每次进入都通知 )
         sListener?.onIntoTrigger()
         // 内部处理
-        _receive(context, intent)
+        innerReceive(context, intent)
     }
 
     // =======
@@ -180,7 +180,7 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
      * @param intent Intent
      */
     @SuppressLint("MissingPermission")
-    private fun _receive(
+    private fun innerReceive(
         context: Context,
         intent: Intent
     ) {
