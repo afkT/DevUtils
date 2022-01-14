@@ -107,11 +107,10 @@ public class ImageConfig
 
     /**
      * 克隆配置信息
-     * @param config {@link ImageConfig}
      * @return {@link ImageConfig}
      */
-    public ImageConfig clone(final ImageConfig config) {
-        return new ImageConfig(config);
+    public ImageConfig clone() {
+        return new ImageConfig(this);
     }
 
     // ===========

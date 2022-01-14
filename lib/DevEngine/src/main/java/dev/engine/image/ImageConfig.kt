@@ -112,11 +112,10 @@ class ImageConfig private constructor(
 
     /**
      * 克隆配置信息
-     * @param config [ImageConfig]
      * @return [ImageConfig]
      */
-    fun clone(config: ImageConfig?): ImageConfig {
-        return ImageConfig(config)
+    fun clone(): ImageConfig {
+        return ImageConfig(this)
     }
 
     // ===========
