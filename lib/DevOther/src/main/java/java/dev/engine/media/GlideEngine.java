@@ -31,7 +31,7 @@ import dev.other.R;
 /**
  * @author luck
  * @date 2019-11-13 17:02
- * @describe Glide加载引擎
+ * @describe Glide 加载引擎
  */
 public class GlideEngine
         implements ImageEngine {
@@ -39,7 +39,7 @@ public class GlideEngine
     /**
      * 加载图片
      * @param context   上下文
-     * @param url       资源url
+     * @param url       资源 url
      * @param imageView 图片承载控件
      */
     @Override
@@ -59,7 +59,7 @@ public class GlideEngine
     /**
      * 加载网络图片适配长图方案
      * @param context       上下文
-     * @param url           资源url
+     * @param url           资源 url
      * @param imageView     图片承载控件
      * @param longImageView 长图承载控件
      * @param callback      网络图片加载回调监听
@@ -138,7 +138,7 @@ public class GlideEngine
      * 加载相册目录
      * @param context   上下文
      * @param url       图片路径
-     * @param imageView 承载图片ImageView
+     * @param imageView 承载图片 ImageView
      */
     @Override
     public void loadFolderImage(
@@ -176,7 +176,7 @@ public class GlideEngine
      * 加载图片列表图片
      * @param context   上下文
      * @param url       图片路径
-     * @param imageView 承载图片ImageView
+     * @param imageView 承载图片 ImageView
      */
     @Override
     public void loadGridImage(
