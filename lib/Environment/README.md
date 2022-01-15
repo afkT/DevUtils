@@ -78,7 +78,7 @@ dependencies {
 
 > 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 
-正常会在 `\build\generated\ap_generated_sources\debug\out\dev\environment` 内创建 DevEnvironment.java
+正常会在 `/build/generated/ap_generated_sources/debug/out/dev/environment` 内创建 DevEnvironment.java
 
 
 --------
