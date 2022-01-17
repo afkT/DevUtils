@@ -157,7 +157,7 @@ public final class ListenerUtils {
             final View.OnClickListener listener,
             final View... views
     ) {
-        if (listener != null && views != null) {
+        if (views != null) {
             for (View view : views) {
                 if (view != null) {
                     view.setOnClickListener(listener);
@@ -230,7 +230,7 @@ public final class ListenerUtils {
             final View.OnLongClickListener listener,
             final View... views
     ) {
-        if (listener != null && views != null) {
+        if (views != null) {
             for (View view : views) {
                 if (view != null) {
                     view.setOnLongClickListener(listener);
@@ -303,7 +303,7 @@ public final class ListenerUtils {
             final View.OnTouchListener listener,
             final View... views
     ) {
-        if (listener != null && views != null) {
+        if (views != null) {
             for (View view : views) {
                 if (view != null) {
                     view.setOnTouchListener(listener);
