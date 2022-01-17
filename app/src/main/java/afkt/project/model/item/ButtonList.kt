@@ -72,7 +72,7 @@ object ButtonList {
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_HTTP_CAPTURE,
-                    "DevHttpCapture OKHttp 抓包工具库",
+                    "DevHttpCapture OkHttp 抓包工具库",
                     RouterPath.DevHttpCaptureActivity_PATH
                 )
             )

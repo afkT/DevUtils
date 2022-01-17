@@ -10,7 +10,7 @@ import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: OKHttp 抓包工具库
+ * detail: OkHttp 抓包工具库
  * @author Ttt
  * <pre>
  *     GitHub

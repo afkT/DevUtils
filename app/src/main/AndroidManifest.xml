@@ -658,7 +658,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- DevHttpCapture OKHttp 抓包工具库 -->
+        <!-- DevHttpCapture OkHttp 抓包工具库 -->
 
         <activity
             android:name=".ui.activity.DevHttpCaptureActivity"

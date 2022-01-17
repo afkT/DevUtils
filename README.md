@@ -47,13 +47,13 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/CHANGELOG.md)
 
-### DevHttpCapture - OKHttp 抓包工具库
+### DevHttpCapture - OkHttp 抓包工具库
 
 - [README](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md)
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
 
-### DevHttpCaptureCompiler - OKHttp 抓包工具库 ( 可视化功能 )
+### DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
 
 - [README](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/README.md)
 
@@ -109,10 +109,10 @@ implementation 'io.github.afkt:DevBaseMVVM:1.0.7'
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.0.3'
 
-// DevHttpCapture - OKHttp 抓包工具库
+// DevHttpCapture - OkHttp 抓包工具库
 implementation 'io.github.afkt:DevHttpCapture:1.0.7'
 
-// DevHttpCaptureCompiler - OKHttp 抓包工具库 ( 可视化功能 )
+// DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
 debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.7'
 releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.7'
 

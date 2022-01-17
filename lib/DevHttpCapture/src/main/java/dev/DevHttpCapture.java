@@ -16,7 +16,7 @@ import dev.utils.common.cipher.Encrypt;
 import okhttp3.OkHttpClient;
 
 /**
- * detail: OKHttp 抓包工具库
+ * detail: OkHttp 抓包工具库
  * @author Ttt
  * <pre>
  *     GitHub

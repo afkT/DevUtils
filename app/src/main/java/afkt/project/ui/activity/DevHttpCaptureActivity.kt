@@ -25,7 +25,7 @@ class DevHttpCaptureActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         val span = SpanUtils().apply {
-            append("该库主要对使用 Okhttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。")
+            append("该库主要对使用 OkHttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。")
             append(DevFinal.SYMBOL.NEW_LINE_X2)
             appendLine("并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能，")
             setBold().setForegroundColor(Color.RED)

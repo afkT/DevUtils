@@ -45,13 +45,13 @@ ext {
             dev_engine_versionCode                   : 103,
             dev_engine_versionName                   : "1.0.3",
 
-            // DevHttpCapture - OKHttp 抓包工具库
+            // DevHttpCapture - OkHttp 抓包工具库
             dev_http_capture_versionCode             : 107,
             dev_http_capture_versionName             : "1.0.7",
             dev_http_capture_compiler_version        : "1.0.7",
             dev_http_capture_compiler_release_version: "1.0.7",
 
-            // DevHttpManager - Okhttp 管理类
+            // DevHttpManager - OkHttp 管理类
             dev_http_manager_versionCode             : 100,
             dev_http_manager_versionName             : "1.0.0",
 

@@ -42,7 +42,7 @@ class ButtonValue(
         // DevAssist Engine 实现
         const val MODULE_DEV_ASSIST_ENGINE = BASE + 70000
 
-        // DevHttpCapture OKHttp 抓包工具库
+        // DevHttpCapture OkHttp 抓包工具库
         const val MODULE_DEV_HTTP_CAPTURE = BASE + 80000
 
         // =============

@@ -1,7 +1,7 @@
 
 ## DevHttpCapture
 
-> 该库主要对使用 Okhttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
+> 该库主要对使用 OkHttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
 >
 > **并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能**，支持实时开关抓包功能、可控 Http 拦截过滤器。
 >
@@ -63,7 +63,7 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 ## <span id="dev">**`dev`**</span>
 
 
-* **OKHttp 抓包工具库 ->** [DevHttpCaptureCompiler.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.java)
+* **OkHttp 抓包工具库 ->** [DevHttpCaptureCompiler.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.java)
 
 | 方法 | 注释 |
 | :- | :- |

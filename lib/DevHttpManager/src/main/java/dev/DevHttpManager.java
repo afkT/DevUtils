@@ -3,7 +3,7 @@ package dev;
 import dev.http.BuildConfig;
 
 /**
- * detail: OKHttp 抓包工具库
+ * detail: OkHttp 抓包工具库
  * @author Ttt
  * <pre>
  *     GitHub

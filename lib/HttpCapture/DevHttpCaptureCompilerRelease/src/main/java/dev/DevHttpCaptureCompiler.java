@@ -5,7 +5,7 @@ import android.content.Context;
 import dev.capture.UrlFunctionGet;
 
 /**
- * detail: OKHttp 抓包工具库
+ * detail: OkHttp 抓包工具库
  * @author Ttt
  * <pre>
  *     GitHub
