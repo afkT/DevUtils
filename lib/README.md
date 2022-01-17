@@ -14,6 +14,7 @@
    - DevBaseMVVM                           | MVVM ( ViewDataBinding + ViewModel ) 基类库
    - DevEngine                             | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
    - DevHttpCapture                        | OKHttp 抓包工具库
+   - DevHttpManager                        | Okhttp 管理类
    - DevJava                               | Java 工具类库 ( 不依赖 android api )
    - DevOther                              | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
    - DevWidget                             | 自定义 View UI 库
