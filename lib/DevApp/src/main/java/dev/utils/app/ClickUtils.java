@@ -785,7 +785,7 @@ public final class ClickUtils {
             final View view,
             final View.OnClickListener listener
     ) {
-        if (view != null && listener != null) {
+        if (view != null) {
             view.setOnClickListener(listener);
             return true;
         }
@@ -802,7 +802,7 @@ public final class ClickUtils {
             final View view,
             final View.OnLongClickListener listener
     ) {
-        if (view != null && listener != null) {
+        if (view != null) {
             view.setOnLongClickListener(listener);
             return true;
         }
@@ -819,7 +819,7 @@ public final class ClickUtils {
             final View view,
             final View.OnTouchListener listener
     ) {
-        if (view != null && listener != null) {
+        if (view != null) {
             view.setOnTouchListener(listener);
             return true;
         }

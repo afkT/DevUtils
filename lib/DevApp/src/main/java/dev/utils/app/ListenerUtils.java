@@ -111,7 +111,7 @@ public final class ListenerUtils {
             final View.OnClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && listener != null && viewIds != null) {
+        if (view != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
@@ -135,7 +135,7 @@ public final class ListenerUtils {
             final View.OnClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (activity != null && listener != null && viewIds != null) {
+        if (activity != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
@@ -184,7 +184,7 @@ public final class ListenerUtils {
             final View.OnLongClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && listener != null && viewIds != null) {
+        if (view != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
@@ -208,7 +208,7 @@ public final class ListenerUtils {
             final View.OnLongClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (activity != null && listener != null && viewIds != null) {
+        if (activity != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
@@ -257,7 +257,7 @@ public final class ListenerUtils {
             final View.OnTouchListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && listener != null && viewIds != null) {
+        if (view != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
@@ -281,7 +281,7 @@ public final class ListenerUtils {
             final View.OnTouchListener listener,
             @IdRes final int... viewIds
     ) {
-        if (activity != null && listener != null && viewIds != null) {
+        if (activity != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
