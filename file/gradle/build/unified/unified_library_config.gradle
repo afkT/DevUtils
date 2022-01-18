@@ -1,0 +1,85 @@
+// =======================
+// = 第三方库版本强制统一处理 =
+// =======================
+
+allprojects {
+    repositories {
+        configurations.all {
+            // 强制统一版本 => 可通过 file/json/deps.gradle 获取, 视情况选择
+            resolutionStrategy.force(
+
+                    // = kotlin =
+
+                    // stdlib
+                    "org.jetbrains.kotlin:kotlin-stdlib:1.6.10",
+                    // core
+                    "androidx.core:core-ktx:1.7.0",
+                    // coroutines
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2",
+                    // lifecycle_runtime
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0",
+                    // lifecycle_viewmodel
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0",
+                    // lifecycle_livedata
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0",
+                    // lifecycle_viewmodel_savedstate
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0",
+                    // lifecycle_common_java8
+                    "androidx.lifecycle:lifecycle-common-java8:2.4.0",
+                    // room_runtime
+                    "androidx.room:room-runtime:2.4.0",
+                    // room_compiler
+                    "androidx.room:room-compiler:2.4.0",
+                    // room_ktx
+                    "androidx.room:room-ktx:2.4.0",
+                    // work_runtime_ktx
+                    "androidx.work:work-runtime-ktx:2.7.1",
+                    // work_runtime
+                    "androidx.work:work-runtime:2.7.1",
+                    // datastore_preferences
+                    "androidx.datastore:datastore-preferences:1.0.0",
+                    // fragment_ktx
+                    "androidx.fragment:fragment-ktx:1.4.0",
+                    // activity_ktx
+                    "androidx.activity:activity-ktx:1.4.0",
+
+                    // = androidx =
+
+                    // appcompat
+                    "androidx.appcompat:appcompat:1.4.0",
+                    // appcompat_resources
+                    "androidx.appcompat:appcompat-resources:1.4.0",
+                    // cardview
+                    "androidx.cardview:cardview:1.0.0",
+                    // recyclerview
+                    "androidx.recyclerview:recyclerview:1.2.0",
+                    // multidex
+                    "androidx.multidex:multidex:2.0.1",
+                    // constraint_layout
+                    "androidx.constraintlayout:constraintlayout:2.1.2",
+                    // viewpager2
+                    "androidx.viewpager2:viewpager2:1.0.0",
+                    // sqlite
+                    "androidx.sqlite:sqlite:2.2.0",
+                    // design
+                    "com.google.android.material:material:1.4.0",
+                    // fragment
+                    "androidx.fragment:fragment:1.4.0",
+                    // activity
+                    "androidx.activity:activity:1.4.0",
+                    // palette
+                    "androidx.palette:palette:1.0.0",
+                    // flexbox
+                    "com.google.android.flexbox:flexbox:3.0.0",
+                    // hilt_android
+                    "com.google.dagger:hilt-android:2.40.5",
+                    // hilt_android_compiler
+                    "com.google.dagger:hilt-android-compiler:2.40.5",
+                    // startup
+                    "androidx.startup:startup-runtime:1.1.0",
+                    // swiperefreshlayout
+                    "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+            )
+        }
+    }
+}

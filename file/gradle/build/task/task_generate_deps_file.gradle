@@ -1,0 +1,50 @@
+// =================
+// = config.gradle =
+// =================
+
+import groovy.json.JsonOutput
+
+// 存储 config.gradle json 数据
+task saveConfigGradleJSON() {
+//    println deps.toString()
+    // 获取 ext.deps json 数据
+    def depsJSON = JsonOutput.toJson(deps)
+    // 格式化 JSON
+    def formatJSON = JsonOutput.prettyPrint(depsJSON)
+    // 写入 ext.deps 配置信息
+    def file = new File(rootDir, "file/json/deps.json")
+    file.withPrintWriter { it.print(formatJSON) }
+}
+
+// 生成 deps dependencies gradle
+task generateDepsDependencies() {
+    def newline = System.getProperty("line.separator")
+    def newline2 = newline + newline
+    def importSymbol = "implementation"
+    // 拼接 string
+    def builder = new StringBuilder()
+    builder.append("dependencies {")
+    for (String module : deps.keySet()) {
+        builder.append("${newline2}\t// = ${module} =${newline}")
+        // 循环拼接处理
+        def valueMaps = deps.get(module) as LinkedHashMap<String, String>
+        for (String name : valueMaps.keySet()) {
+            def value = valueMaps.get(name)
+            builder.append("${newline}\t// ${name}")
+            builder.append("${newline}\t${importSymbol} '${value}'")
+        }
+    }
+    builder.append("${newline}}")
+    // 写入 ext.deps 配置信息
+    def file = new File(rootDir, "file/json/deps_gradle") // deps.gradle 防止每次生成显示 gradle sync
+    file.withPrintWriter { it.print(builder.toString()) }
+
+    // 写入 deps force config copy 记事本
+    def forceFile = new File(rootDir, "file/json/deps_force.txt")
+    forceFile.withPrintWriter {
+        def txt = builder.toString()
+        txt = txt.replaceAll("implementation ", "")
+        txt = txt.replaceAll("'", "\",").replaceAll("\t\",", "\t\"")
+        it.print(txt)
+    }
+}
