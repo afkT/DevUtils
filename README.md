@@ -10,6 +10,8 @@
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
 >
 > 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
+>
+> **[Android 规范](https://github.com/afkT/DevUtils/blob/master/README/android_standard.md)** 、 **[Java 规范](https://github.com/afkT/DevUtils/blob/master/README/java_standard.md)**
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
