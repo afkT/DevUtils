@@ -715,7 +715,7 @@ object PictureSelectorUtils {
 
         /**
          * 获取已选择的本地资源
-         * @return 已选择的本地资源 [<]
+         * @return 已选择的本地资源
          */
         fun getLocalMedia(): List<LocalMedia>? {
             return mLocalMedia
@@ -723,7 +723,7 @@ object PictureSelectorUtils {
 
         /**
          * 设置已选择的本地资源
-         * @param localMedia [<]
+         * @param localMedia 已选择的本地资源
          * @return [MediaConfig]
          */
         fun setLocalMedia(localMedia: List<LocalMedia>?): MediaConfig {

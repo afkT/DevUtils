@@ -32,13 +32,15 @@ public class RightIconEditText
     // drawable ( left、top、right、bottom 四个方向图片 )
     private Drawable mLeft, mTop, mRight, mBottom;
     // Right Drawable 自身坐标信息
-    private Rect        mRightBounds;
+    private Rect            mRightBounds;
     // 右边 Icon 触发范围倍数
-    private float       mRangeMultiple   = 2.0f;
+    private float           mRangeMultiple = 2.0f;
     // 是否绘制右边 Icon
-    private boolean     mIsDrawRightIcon = true;
+    private boolean         mDrawRightIcon = true;
+    // 右边 Icon 点击事件
+    private OnClickListener mRightClickListener;
     // 输入监听回调
-    private TextWatcher mTextWatcher;
+    private TextWatcher     mTextWatcher;
 
     public RightIconEditText(Context context) {
         super(context);
@@ -79,8 +81,8 @@ public class RightIconEditText
             TypedArray a = context.obtainStyledAttributes(
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
-            mRangeMultiple   = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
-            mIsDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
+            mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
+            mDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
             a.recycle();
         }
         drawOperate();
@@ -98,13 +100,13 @@ public class RightIconEditText
         if (mTop == null) this.mTop = top;
         if (mRight == null) this.mRight = right;
         if (mBottom == null) this.mBottom = bottom;
-        super.setCompoundDrawables(left, top, mIsDrawRightIcon ? right : null, bottom);
+        super.setCompoundDrawables(left, top, mDrawRightIcon ? right : null, bottom);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // 判断抬起时, 是否在 right drawable 上
-        if (mIsDrawRightIcon && mRight != null && event.getAction() == MotionEvent.ACTION_UP) {
+        if (mDrawRightIcon && mRight != null && event.getAction() == MotionEvent.ACTION_UP) {
             // 获取 drawable 自身坐标信息
             this.mRightBounds = mRight.getBounds();
             mRight.getIntrinsicWidth();
@@ -119,6 +121,9 @@ public class RightIconEditText
             if (eventX > (right - left - iconRange)) {
                 setText(""); // 清空内容
                 event.setAction(MotionEvent.ACTION_CANCEL);
+                if (mRightClickListener != null) {
+                    mRightClickListener.onClick(this);
+                }
             }
         }
         return super.onTouchEvent(event);
@@ -159,7 +164,7 @@ public class RightIconEditText
      * @return {@code true} yes, {@code false} no
      */
     public boolean isDrawRightIcon() {
-        return mIsDrawRightIcon;
+        return mDrawRightIcon;
     }
 
     /**
@@ -168,8 +173,26 @@ public class RightIconEditText
      * @return {@link RightIconEditText}
      */
     public RightIconEditText setDrawRightIcon(boolean drawRightIcon) {
-        this.mIsDrawRightIcon = drawRightIcon;
+        this.mDrawRightIcon = drawRightIcon;
         postInvalidate();
+        return this;
+    }
+
+    /**
+     * 设置右边 Icon 点击事件
+     * @return 右边 Icon 点击事件
+     */
+    public OnClickListener getRightClickListener() {
+        return mRightClickListener;
+    }
+
+    /**
+     * 设置右边 Icon 点击事件
+     * @param listener {@link OnClickListener}
+     * @return {@link RightIconEditText}
+     */
+    public RightIconEditText setRightClickListener(final OnClickListener listener) {
+        this.mRightClickListener = listener;
         return this;
     }
 

@@ -101,10 +101,7 @@ public final class CallbackInterceptor
         Headers headers = request.headers();
         for (int i = 0, len = headers.size(); i < len; i++) {
             String name = headers.name(i);
-            // Skip headers from the request body as they are explicitly logged above.
-            if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
-                captureInfo.requestHeader.put(name, headers.value(i));
-            }
+            captureInfo.requestHeader.put(name, headers.value(i));
         }
 
         if (!bodyEncoded(request.headers())) {

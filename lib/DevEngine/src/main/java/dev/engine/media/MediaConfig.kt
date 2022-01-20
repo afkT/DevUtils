@@ -324,7 +324,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
 
     /**
      * 获取已选择的本地资源
-     * @return 已选择的本地资源 [<]
+     * @return 已选择的本地资源
      */
     fun getLocalMedia(): List<LocalMediaData>? {
         return mLocalMedia
@@ -332,7 +332,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
 
     /**
      * 设置已选择的本地资源
-     * @param localMedia [<]
+     * @param localMedia 已选择的本地资源
      * @return [MediaConfig]
      */
     fun setLocalMedia(localMedia: List<LocalMediaData>?): MediaConfig {
