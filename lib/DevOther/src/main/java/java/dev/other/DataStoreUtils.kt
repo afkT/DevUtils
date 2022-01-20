@@ -113,7 +113,7 @@ object DataStoreUtils {
     /**
      * 移除 InnerDataStore 缓存
      * @param key storeName
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     fun removeCache(key: String?): Boolean {
         if (cacheMap.containsKey(key)) {
@@ -136,7 +136,7 @@ object DataStoreUtils {
 
     /**
      * 获取全局 Context
-     * @return {@link Context}
+     * @return Context
      */
     private fun getContext(): Context {
         return DevUtils.getContext()

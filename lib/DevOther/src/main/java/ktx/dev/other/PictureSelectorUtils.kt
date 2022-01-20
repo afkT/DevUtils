@@ -139,7 +139,7 @@ object PictureSelectorUtils {
      * 是否图片选择 ( onActivityResult )
      * @param requestCode 请求 code
      * @param resultCode  resultCode
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     fun isMediaSelectorResult(
         requestCode: Int,
