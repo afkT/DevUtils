@@ -12,6 +12,7 @@ import dev.DevUtils
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
+import ktx.dev.assist.WebViewAssist.Builder.OnApplyListener
 
 /**
  * detail: WebView 辅助类

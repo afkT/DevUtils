@@ -29,4 +29,4 @@ Version 1.0.3 *(2021-10-11)*
 Version 1.0.2 *(2021-10-06)*
 ----------------------------
 
- Initial release
+* Initial release

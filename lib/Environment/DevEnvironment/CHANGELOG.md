@@ -41,4 +41,4 @@ Version 1.0.1 *(2020-11-27)*
 Version 1.0.0 *(2020-02-04)*
 ----------------------------
 
- Initial release
+* Initial release
