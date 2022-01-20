@@ -37,7 +37,7 @@ public final class BeepVibrateAssist
     // 播放资源对象
     private       MediaPlayer             mMediaPlayer     = null;
     // 是否需要震动
-    private       boolean                 mIsVibrate       = true;
+    private       boolean                 mVibrate         = true;
     // 震动时间
     private       long                    mVibrateDuration = 200L;
 
@@ -124,7 +124,7 @@ public final class BeepVibrateAssist
      * @return {@code true} 允许, {@code false} 不允许
      */
     public boolean isVibrate() {
-        return mIsVibrate;
+        return mVibrate;
     }
 
     /**
@@ -146,7 +146,7 @@ public final class BeepVibrateAssist
             final boolean vibrate,
             final long vibrateDuration
     ) {
-        this.mIsVibrate       = vibrate;
+        this.mVibrate         = vibrate;
         this.mVibrateDuration = vibrateDuration;
         return this;
     }
@@ -172,7 +172,7 @@ public final class BeepVibrateAssist
         // 判断是否允许播放
         if (shouldBeep() && mMediaPlayer != null) {
             // 判断是否允许震动
-            if (mIsVibrate) {
+            if (mVibrate) {
                 VibrationUtils.vibrate(mVibrateDuration);
             }
             try {

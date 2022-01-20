@@ -236,9 +236,9 @@ public final class PermissionUtils {
     // 回调方法 Handler
     private final        Handler            mHandler                       = new Handler(Looper.getMainLooper());
     // 判断是否请求过
-    private              boolean            mIsRequest                     = false;
+    private              boolean            mRequest                       = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
-    private              boolean            mIsRequestPermissionsResult    = false; // 默认使用内部 PermissionActivity
+    private              boolean            mRequestPermissionsResult      = false; // 默认使用内部 PermissionActivity
     // Permission 请求 Code
     public static final  int                P_REQUEST_CODE                 = 10101;
 
@@ -278,7 +278,7 @@ public final class PermissionUtils {
      * @return {@link PermissionUtils}
      */
     public PermissionUtils callback(final PermissionCallback callback) {
-        if (mIsRequest) return this;
+        if (mRequest) return this;
         this.mCallback = callback;
         return this;
     }
@@ -289,8 +289,8 @@ public final class PermissionUtils {
      * @return {@link PermissionUtils}
      */
     public PermissionUtils setRequestPermissionsResult(final boolean requestPermissionsResult) {
-        if (mIsRequest) return this;
-        this.mIsRequestPermissionsResult = requestPermissionsResult;
+        if (mRequest) return this;
+        this.mRequestPermissionsResult = requestPermissionsResult;
         return this;
     }
 
@@ -318,7 +318,7 @@ public final class PermissionUtils {
                 // 请求权限
                 String[] permissions = mPermissionsRequestLists.toArray(new String[0]);
                 // 判断请求方式
-                if (this.mIsRequestPermissionsResult) {
+                if (this.mRequestPermissionsResult) {
                     // 请求权限
                     ActivityCompat.requestPermissions(activity, permissions, requestCode);
                 } else {
@@ -495,10 +495,10 @@ public final class PermissionUtils {
             // 不处理
             return 0;
         }
-        if (mIsRequest) {
+        if (mRequest) {
             return -1; // 已经请求 ( 中 ) 过
         }
-        mIsRequest = true;
+        mRequest = true;
         // 如果 SDK 版本小于 23 则直接通过
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // 表示全部权限都通过

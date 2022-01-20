@@ -200,7 +200,7 @@ public final class ActivityLifecycleAssist {
         // Activity Configuration 改变次数
         private int     mConfigCount     = 0;
         // 是否后台 Activity
-        private boolean mIsBackground    = false;
+        private boolean mBackground      = false;
 
         // ==============================
         // = ActivityLifecycleCallbacks =
@@ -220,7 +220,7 @@ public final class ActivityLifecycleAssist {
 
         @Override
         public void onActivityStarted(Activity activity) {
-            if (!mIsBackground) {
+            if (!mBackground) {
                 setTopActivity(activity);
             }
             if (mConfigCount < 0) {
@@ -238,8 +238,8 @@ public final class ActivityLifecycleAssist {
         public void onActivityResumed(Activity activity) {
             setTopActivity(activity);
             // Activity 准备可见, 设置为非后台 Activity
-            if (mIsBackground) {
-                mIsBackground = false;
+            if (mBackground) {
+                mBackground = false;
                 postStatus(true);
             }
 
@@ -263,7 +263,7 @@ public final class ActivityLifecycleAssist {
             } else {
                 --mForegroundCount;
                 if (mForegroundCount <= 0) {
-                    mIsBackground = true;
+                    mBackground = true;
                     postStatus(false);
                 }
             }
@@ -406,7 +406,7 @@ public final class ActivityLifecycleAssist {
          */
         @Override
         public boolean isBackground() {
-            return mIsBackground;
+            return mBackground;
         }
 
         /**

@@ -107,7 +107,7 @@ public final class FileDepthFirstSearchUtils {
                 long endTime
         ) {
             // 表示非搜索中
-            mIsRunning = false;
+            mRunning = false;
             // 触发回调
             if (mSearchHandler != null) {
                 mSearchHandler.onEndListener(lists, startTime, endTime);
@@ -130,14 +130,14 @@ public final class FileDepthFirstSearchUtils {
      * @return {@code true} 搜索 / 运行中, {@code false} 非搜索 / 运行中
      */
     public boolean isRunning() {
-        return mIsRunning;
+        return mRunning;
     }
 
     /**
      * 停止搜索
      */
     public void stop() {
-        mIsStop = true;
+        mStop = true;
     }
 
     /**
@@ -145,7 +145,7 @@ public final class FileDepthFirstSearchUtils {
      * @return {@code true} 已停止搜索, {@code false} 搜索中
      */
     public boolean isStop() {
-        return mIsStop;
+        return mStop;
     }
 
     /**
@@ -167,9 +167,9 @@ public final class FileDepthFirstSearchUtils {
     // =
 
     // 判断是否运行中
-    private boolean mIsRunning = false;
+    private boolean mRunning   = false;
     // 是否停止搜索
-    private boolean mIsStop    = false;
+    private boolean mStop      = false;
     // 开始搜索时间
     private long    mStartTime = 0L;
     // 结束搜索时间
@@ -184,7 +184,7 @@ public final class FileDepthFirstSearchUtils {
             final String path,
             final boolean isRelation
     ) {
-        if (mIsRunning) {
+        if (mRunning) {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
@@ -192,8 +192,8 @@ public final class FileDepthFirstSearchUtils {
             return;
         }
         // 表示运行中
-        mIsRunning = true;
-        mIsStop    = false;
+        mRunning = true;
+        mStop    = false;
         // 设置开始搜索时间
         mStartTime = System.currentTimeMillis();
         try {
@@ -245,7 +245,7 @@ public final class FileDepthFirstSearchUtils {
             final boolean isRelation
     ) {
         try {
-            if (mIsStop) {
+            if (mStop) {
                 return;
             }
             if (file != null && file.exists()) {
