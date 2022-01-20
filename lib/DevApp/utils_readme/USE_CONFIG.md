@@ -1,4 +1,3 @@
-
 ## 初始化
 
 ```java
@@ -6,7 +5,8 @@
  * detail: 全局 Application
  * @author Ttt
  */
-public class BaseApplication extends Application {
+public class BaseApplication
+        extends Application {
 
     // 日志 TAG
     private final String LOG_TAG = BaseApplication.class.getSimpleName();
@@ -16,13 +16,13 @@ public class BaseApplication extends Application {
         super.onCreate();
 
 //        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-//        DevUtils.initialize(this.getApplicationContext());
+//        DevUtils.init(this.getApplicationContext());
         // = 初始化日志配置 =
         // 设置默认 Logger 配置
         LogConfig logConfig = new LogConfig();
-        logConfig.logLevel = LogLevel.DEBUG;
-        logConfig.tag = LOG_TAG;
-        logConfig.sortLog = true; // 美化日志, 边框包围
+        logConfig.logLevel    = LogLevel.DEBUG;
+        logConfig.tag         = LOG_TAG;
+        logConfig.sortLog     = true; // 美化日志, 边框包围
         logConfig.methodCount = 0;
         DevLogger.initialize(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法

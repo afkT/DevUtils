@@ -36,11 +36,11 @@ public final class ToastUtils {
     // Toast 判断过滤
     private static       ToastUtils.Filter sToastFilter = null;
     // 内部持有单个 Toast
-    private static       Toast   sToast      = null;
+    private static       Toast             sToast       = null;
     // 判断是否使用 Handler
-    private static       boolean sUseHandler = true;
+    private static       boolean           sUseHandler  = true;
     // 内部 Handler
-    private static final Handler sHandler    = new Handler(Looper.getMainLooper());
+    private static final Handler           sHandler     = new Handler(Looper.getMainLooper());
     // Null 值 ( null 提示值 )
     private static       String            sNullText    = null;
 
@@ -59,8 +59,8 @@ public final class ToastUtils {
      * 重置默认参数
      */
     public static void reset() {
-        sUseHandler = true;
-        sUseConfig  = true;
+        sUseHandler       = true;
+        sUseConfig        = true;
         sNullText         = null;
         sGravity          = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;

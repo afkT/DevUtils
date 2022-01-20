@@ -14,23 +14,23 @@ public class MediaConfig
     // 相册选择类型
     private int                  mMimeType            = MimeType.ofImage();
     // 相册选择模式
-    private int     mSelectionMode = MimeType.MULTIPLE;
+    private int                  mSelectionMode       = MimeType.MULTIPLE;
     // 是否显示拍照
-    private boolean mCamera        = true;
+    private boolean              mCamera              = true;
     // 是否裁减
-    private boolean mCrop          = false;
+    private boolean              mCrop                = false;
     // 是否圆形裁减 true = 圆形, false = 矩形
-    private boolean mCircleCrop          = false;
+    private boolean              mCircleCrop          = false;
     // 是否压缩
-    private boolean mCompress            = false;
+    private boolean              mCompress            = false;
     // 图片大于多少才进行压缩 ( kb )
-    private int     mMinimumCompressSize = 2048;
+    private int                  mMinimumCompressSize = 2048;
     // 裁减比例
-    private int[]   mWithAspectRatio = new int[]{0, 0};
+    private int[]                mWithAspectRatio     = new int[]{0, 0};
     // 是否显示 Gif
-    private boolean mGif             = false;
+    private boolean              mGif                 = false;
     // 每行显示个数
-    private int     mImageSpanCount  = 4;
+    private int                  mImageSpanCount      = 4;
     // 最小选择数量
     private int                  mMinSelectNum        = 1;
     // 最大选择数量
@@ -380,15 +380,15 @@ public class MediaConfig
     public MediaConfig clone() {
         MediaConfig config = new MediaConfig();
         config.mMimeType            = mMimeType;
-        config.mSelectionMode = mSelectionMode;
-        config.mCamera        = mCamera;
-        config.mCrop          = mCrop;
+        config.mSelectionMode       = mSelectionMode;
+        config.mCamera              = mCamera;
+        config.mCrop                = mCrop;
         config.mCircleCrop          = mCircleCrop;
         config.mCompress            = mCompress;
         config.mMinimumCompressSize = mMinimumCompressSize;
-        config.mWithAspectRatio = mWithAspectRatio;
-        config.mGif             = mGif;
-        config.mImageSpanCount  = mImageSpanCount;
+        config.mWithAspectRatio     = mWithAspectRatio;
+        config.mGif                 = mGif;
+        config.mImageSpanCount      = mImageSpanCount;
         config.mMinSelectNum        = mMinSelectNum;
         config.mMaxSelectNum        = mMaxSelectNum;
         config.mLocalMedia          = mLocalMedia;
@@ -405,15 +405,15 @@ public class MediaConfig
     public MediaConfig set(final MediaConfig config) {
         if (config != null) {
             mMimeType            = config.mMimeType;
-            mSelectionMode = config.mSelectionMode;
-            mCamera        = config.mCamera;
-            mCrop          = config.mCrop;
+            mSelectionMode       = config.mSelectionMode;
+            mCamera              = config.mCamera;
+            mCrop                = config.mCrop;
             mCircleCrop          = config.mCircleCrop;
             mCompress            = config.mCompress;
             mMinimumCompressSize = config.mMinimumCompressSize;
-            mWithAspectRatio = config.mWithAspectRatio;
-            mGif             = config.mGif;
-            mImageSpanCount  = config.mImageSpanCount;
+            mWithAspectRatio     = config.mWithAspectRatio;
+            mGif                 = config.mGif;
+            mImageSpanCount      = config.mImageSpanCount;
             mMinSelectNum        = config.mMinSelectNum;
             mMaxSelectNum        = config.mMaxSelectNum;
             mLocalMedia          = config.mLocalMedia;
