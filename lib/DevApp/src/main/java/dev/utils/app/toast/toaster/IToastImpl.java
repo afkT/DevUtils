@@ -46,11 +46,11 @@ final class IToastImpl
     // Toast 默认样式
     private final IToast.Style              mDefaultStyle              = new DefaultToastStyle();
     // 每个线程的 Toast 样式
-    private final ThreadLocal<IToast.Style> LOCAL_TOAST_STYLES         = new ThreadLocal<>();
+    private final ThreadLocal<IToast.Style> LOCAL_TOAST_STYLES = new ThreadLocal<>();
     // 判断是否使用 Handler
-    private       boolean                   mIsHandler                 = true;
+    private       boolean                   mUseHandler        = true;
     // 内部 Handler
-    private final Handler                   mHandler                   = new Handler(Looper.getMainLooper());
+    private final Handler                   mHandler           = new Handler(Looper.getMainLooper());
     // Null 值 ( null 提示值 )
     private       String                    mNullText                  = null;
     // Toast 文案长度转换 显示时间
@@ -67,11 +67,11 @@ final class IToastImpl
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler {@code true} 使用, {@code false} 不使用
+     * @param useHandler {@code true} 使用, {@code false} 不使用
      */
     @Override
-    public void setIsHandler(final boolean isHandler) {
-        this.mIsHandler = isHandler;
+    public void setUseHandler(final boolean useHandler) {
+        this.mUseHandler = useHandler;
     }
 
     /**
@@ -105,8 +105,8 @@ final class IToastImpl
         if (context != null) {
             this.mContext = context.getApplicationContext();
             // 初始化默认参数
-            mIsHandler = true;
-            mNullText  = null;
+            mUseHandler = true;
+            mNullText   = null;
             // 初始化 Toast
             mConfigToast = new ToastFactory.BaseToast(mContext);
             mConfigToast.setView(createView());
@@ -379,7 +379,7 @@ final class IToastImpl
     private void priShowToastText(final String text) {
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
-        if (mIsHandler) {
+        if (mUseHandler) {
             mHandler.post(() -> {
                 try {
                     Toast toast = newToastText(style, text);
@@ -521,7 +521,7 @@ final class IToastImpl
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         // =
-        if (mIsHandler) {
+        if (mUseHandler) {
             mHandler.post(() -> {
                 try {
                     Toast toast = newToastView(style, view, duration);

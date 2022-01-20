@@ -42,7 +42,7 @@
 | 方法 | 注释 |
 | :- | :- |
 | reset | 重置默认参数 |
-| setIsHandler | 设置是否使用 Handler 显示 Toast |
+| setUseHandler | 设置是否使用 Handler 显示 Toast |
 | setNullText | 设置 Text 为 null 的文本 |
 | setTextLength | 设置 Toast 文案长度转换 显示时间 |
 | init | Application 初始化调用 (内部已调用) |
@@ -69,7 +69,7 @@ DevToast.initialize(application); // 必须调用
 DevToast.setNullText("text is null");
 
 // 是否设置 Handler 显示 Toast - 默认 true, 支持子线程显示 Toast
-DevToast.setIsHandler(true);
+DevToast.setUseHandler(true);
 
 // 设置文本长度限制, 超过设置的位数则 为 LENGTH_LONG
 DevToast.setTextLength(15);

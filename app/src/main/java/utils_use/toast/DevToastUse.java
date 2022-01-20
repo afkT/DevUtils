@@ -41,7 +41,7 @@ public final class DevToastUse {
         DevToast.setNullText("text is null");
 
         // 是否设置 Handler 显示 Toast - 默认 true, 支持子线程显示 Toast
-        DevToast.setIsHandler(true);
+        DevToast.setUseHandler(true);
 
         // 设置文本长度限制, 超过设置的位数则 为 LENGTH_LONG
         DevToast.setTextLength(15);

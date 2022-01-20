@@ -74,7 +74,7 @@ public final class ToastTintUse {
         ToastTintUtils.setNullText("text is null");
 
         // 是否设置 Handler 显示 Toast - 默认 true, 支持子线程显示 Toast
-        ToastTintUtils.setIsHandler(true);
+        ToastTintUtils.setUseHandler(true);
 
         // 设置 HorizontalMargin、VerticalMargin 边距
         ToastTintUtils.setMargin(0f, 0f);

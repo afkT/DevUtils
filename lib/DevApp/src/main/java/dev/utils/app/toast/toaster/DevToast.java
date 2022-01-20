@@ -35,10 +35,10 @@ public final class DevToast {
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler {@code true} 使用, {@code false} 不使用
+     * @param useHandler {@code true} 使用, {@code false} 不使用
      */
-    public static void setIsHandler(final boolean isHandler) {
-        sToast.setIsHandler(isHandler);
+    public static void setUseHandler(final boolean useHandler) {
+        sToast.setUseHandler(useHandler);
     }
 
     /**

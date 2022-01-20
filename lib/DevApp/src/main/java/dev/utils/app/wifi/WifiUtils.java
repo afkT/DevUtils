@@ -306,16 +306,16 @@ public final class WifiUtils {
 
     /**
      * 格式化处理 SSID
-     * @param ssid     待处理的 SSID
-     * @param isAppend {@code true} 添加引号, {@code false} 删除引号
+     * @param ssid         待处理的 SSID
+     * @param appendQuotes {@code true} 添加引号, {@code false} 删除引号
      * @return 处理后的 SSID
      */
     public static String formatSSID(
             final String ssid,
-            final boolean isAppend
+            final boolean appendQuotes
     ) {
         if (ssid == null) return null;
-        if (isAppend) {
+        if (appendQuotes) {
             return "\"" + ssid + "\"";
         } else {
             return formatSSID(ssid);
@@ -778,17 +778,17 @@ public final class WifiUtils {
 
     /**
      * 创建 Wifi 配置信息
-     * @param ssid      Wifi ssid
-     * @param pwd       Wifi 密码
-     * @param type      Wifi 加密类型
-     * @param isHandler 是否处理双引号
+     * @param ssid         Wifi ssid
+     * @param pwd          Wifi 密码
+     * @param type         Wifi 加密类型
+     * @param appendQuotes 是否追加双引号
      * @return {@link WifiConfiguration}
      */
     public static WifiConfiguration createWifiConfig(
             final String ssid,
             final String pwd,
             final int type,
-            final boolean isHandler
+            final boolean appendQuotes
     ) {
         try {
             // 创建一个新的网络配置
@@ -800,7 +800,7 @@ public final class WifiUtils {
             wifiConfig.allowedProtocols.clear();
             wifiConfig.priority = 0;
             // 设置连接的 SSID
-            if (isHandler) {
+            if (appendQuotes) {
                 wifiConfig.SSID = formatSSID(ssid, true);
             } else {
                 wifiConfig.SSID = ssid;
@@ -812,7 +812,7 @@ public final class WifiUtils {
                     break;
                 case WifiUtils.WEP: // WEP 加密方式
                     wifiConfig.hiddenSSID = true;
-                    if (isHandler) {
+                    if (appendQuotes) {
                         if (isHexWepKey(pwd)) {
                             wifiConfig.wepKeys[0] = pwd;
                         } else {
@@ -831,7 +831,7 @@ public final class WifiUtils {
                     wifiConfig.wepTxKeyIndex = 0;
                     break;
                 case WifiUtils.WPA: // WPA 加密方式
-                    if (isHandler) {
+                    if (appendQuotes) {
                         wifiConfig.preSharedKey = "\"" + pwd + "\"";
                     } else {
                         wifiConfig.preSharedKey = pwd;

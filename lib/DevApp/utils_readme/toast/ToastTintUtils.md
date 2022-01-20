@@ -31,7 +31,7 @@
 | :- | :- |
 | reset | 重置默认参数 |
 | setToastFilter | 设置 Toast 过滤器 |
-| setIsHandler | 设置是否使用 Handler 显示 Toast |
+| setUseHandler | 设置是否使用 Handler 显示 Toast |
 | setNullText | 设置 Text 为 null 的文本 |
 | setUseConfig | 设置是否使用配置 |
 | setGravity | 设置 Toast 显示在屏幕上的位置 |
@@ -108,7 +108,7 @@ ToastTintUtils.setGravity(Gravity.BOTTOM, 0, 0);
 ToastTintUtils.setNullText("text is null");
 
 // 是否设置 Handler 显示 Toast - 默认 true, 支持子线程显示 Toast
-ToastTintUtils.setIsHandler(true);
+ToastTintUtils.setUseHandler(true);
 
 // 设置 HorizontalMargin、VerticalMargin 边距
 ToastTintUtils.setMargin(0f, 0f);

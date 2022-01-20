@@ -45,11 +45,11 @@ public final class ToastTintUtils {
     // Toast 判断过滤
     private static       ToastTintUtils.Filter sToastFilter = null;
     // 内部持有单个 Toast
-    private static       Toast                 sToast       = null;
+    private static       Toast   sToast      = null;
     // 判断是否使用 Handler
-    private static       boolean               sIsHandler   = true;
+    private static       boolean sUseHandler = true;
     // 内部 Handler
-    private static final Handler               sHandler     = new Handler(Looper.getMainLooper());
+    private static final Handler sHandler    = new Handler(Looper.getMainLooper());
     // Null 值 ( null 提示值 )
     private static       String                sNullText    = null;
 
@@ -94,8 +94,8 @@ public final class ToastTintUtils {
      * 重置默认参数
      */
     public static void reset() {
-        sIsHandler        = true;
-        sUseConfig        = true;
+        sUseHandler = true;
+        sUseConfig  = true;
         sNullText         = null;
         sGravity          = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;
@@ -111,10 +111,10 @@ public final class ToastTintUtils {
 
     /**
      * 设置是否使用 Handler 显示 Toast
-     * @param isHandler {@code true} 使用, {@code false} 不使用
+     * @param useHandler {@code true} 使用, {@code false} 不使用
      */
-    public static void setIsHandler(final boolean isHandler) {
-        ToastTintUtils.sIsHandler = isHandler;
+    public static void setUseHandler(final boolean useHandler) {
+        ToastTintUtils.sUseHandler = useHandler;
     }
 
     /**
@@ -1129,7 +1129,7 @@ public final class ToastTintUtils {
             final int duration
     ) {
         if (view == null) return;
-        if (sIsHandler) {
+        if (sUseHandler) {
             sHandler.post(() -> {
                 try {
                     Toast toast = newToastView(isSingle, context, view, duration);

@@ -33,9 +33,9 @@ public final class IToast {
 
         /**
          * 设置是否使用 Handler 显示 Toast
-         * @param isHandler {@code true} 使用, {@code false} 不使用
+         * @param useHandler {@code true} 使用, {@code false} 不使用
          */
-        void setIsHandler(boolean isHandler);
+        void setUseHandler(boolean useHandler);
 
         /**
          * 设置 Text 为 null 的文本
