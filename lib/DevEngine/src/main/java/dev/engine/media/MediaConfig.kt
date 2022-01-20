@@ -15,16 +15,16 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     private var mSelectionMode: Int = MimeType.MULTIPLE
 
     // 是否显示拍照
-    private var mIsCamera = true
+    private var mCamera = true
 
     // 是否裁减
-    private var mIsCrop = false
+    private var mCrop = false
 
     // 是否圆形裁减 true = 圆形, false = 矩形
-    private var mIsCircleCrop = false
+    private var mCircleCrop = false
 
     // 是否压缩
-    private var mIsCompress = false
+    private var mCompress = false
 
     // 图片大于多少才进行压缩 ( kb )
     private var mMinimumCompressSize = 2048
@@ -33,7 +33,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     private var mWithAspectRatio = intArrayOf(0, 0)
 
     // 是否显示 Gif
-    private var mIsGif = false
+    private var mGif = false
 
     // 每行显示个数
     private var mImageSpanCount = 4
@@ -142,7 +142,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCamera(): Boolean {
-        return mIsCamera
+        return mCamera
     }
 
     /**
@@ -151,7 +151,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCamera(camera: Boolean): MediaConfig {
-        mIsCamera = camera
+        mCamera = camera
         return this
     }
 
@@ -160,7 +160,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCrop(): Boolean {
-        return mIsCrop
+        return mCrop
     }
 
     /**
@@ -169,7 +169,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCrop(crop: Boolean): MediaConfig {
-        mIsCrop = crop
+        mCrop = crop
         return this
     }
 
@@ -178,7 +178,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCircleCrop(): Boolean {
-        return mIsCircleCrop
+        return mCircleCrop
     }
 
     /**
@@ -187,7 +187,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCircleCrop(circleCrop: Boolean): MediaConfig {
-        mIsCircleCrop = circleCrop
+        mCircleCrop = circleCrop
         return this
     }
 
@@ -196,7 +196,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCompress(): Boolean {
-        return mIsCompress
+        return mCompress
     }
 
     /**
@@ -205,7 +205,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCompress(compress: Boolean): MediaConfig {
-        mIsCompress = compress
+        mCompress = compress
         return this
     }
 
@@ -255,7 +255,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isGif(): Boolean {
-        return mIsGif
+        return mGif
     }
 
     /**
@@ -264,7 +264,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setGif(gif: Boolean): MediaConfig {
-        mIsGif = gif
+        mGif = gif
         return this
     }
 
@@ -386,13 +386,13 @@ class MediaConfig : IMediaEngine.EngineConfig() {
         val config = MediaConfig()
         config.mMimeType = mMimeType
         config.mSelectionMode = mSelectionMode
-        config.mIsCamera = mIsCamera
-        config.mIsCrop = mIsCrop
-        config.mIsCircleCrop = mIsCircleCrop
-        config.mIsCompress = mIsCompress
+        config.mCamera = mCamera
+        config.mCrop = mCrop
+        config.mCircleCrop = mCircleCrop
+        config.mCompress = mCompress
         config.mMinimumCompressSize = mMinimumCompressSize
         config.mWithAspectRatio = mWithAspectRatio
-        config.mIsGif = mIsGif
+        config.mGif = mGif
         config.mImageSpanCount = mImageSpanCount
         config.mMinSelectNum = mMinSelectNum
         config.mMaxSelectNum = mMaxSelectNum
@@ -411,13 +411,13 @@ class MediaConfig : IMediaEngine.EngineConfig() {
         config?.let {
             mMimeType = it.mMimeType
             mSelectionMode = it.mSelectionMode
-            mIsCamera = it.mIsCamera
-            mIsCrop = it.mIsCrop
-            mIsCircleCrop = it.mIsCircleCrop
-            mIsCompress = it.mIsCompress
+            mCamera = it.mCamera
+            mCrop = it.mCrop
+            mCircleCrop = it.mCircleCrop
+            mCompress = it.mCompress
             mMinimumCompressSize = it.mMinimumCompressSize
             mWithAspectRatio = it.mWithAspectRatio
-            mIsGif = it.mIsGif
+            mGif = it.mGif
             mImageSpanCount = it.mImageSpanCount
             mMinSelectNum = it.mMinSelectNum
             mMaxSelectNum = it.mMaxSelectNum

@@ -43,32 +43,32 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
                 -0x1000000 or RandomUtils.getRandom(0, 0xffffff)
             )
             R.id.vid_btn_left_tv -> {
-                if (mIsLeft) {
+                if (mLeft) {
                     labelView.right()
                 } else {
                     labelView.left()
                 }
-                mIsLeft = !mIsLeft
+                mLeft = !mLeft
                 layoutParams = labelView.layoutParams as FrameLayout.LayoutParams
                 layoutParams.gravity =
-                    (if (mIsLeft) Gravity.START else Gravity.END) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
+                    (if (mLeft) Gravity.START else Gravity.END) or if (mTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
             R.id.vid_btn_top_tv -> {
-                if (mIsTop) {
+                if (mTop) {
                     labelView.bottom()
                 } else {
                     labelView.top()
                 }
-                mIsTop = !mIsTop
+                mTop = !mTop
                 layoutParams = labelView.layoutParams as FrameLayout.LayoutParams
                 layoutParams.gravity =
-                    (if (mIsLeft) Gravity.START else Gravity.END) or if (mIsTop) Gravity.TOP else Gravity.BOTTOM
+                    (if (mLeft) Gravity.START else Gravity.END) or if (mTop) Gravity.TOP else Gravity.BOTTOM
                 labelView.layoutParams = layoutParams
             }
             R.id.vid_btn_triangle_tv -> {
-                mIsTriangle = !mIsTriangle
-                labelView.triangle(mIsTriangle)
+                mTriangle = !mTriangle
+                labelView.triangle(mTriangle)
             }
             R.id.vid_btn_text1_minus_tv -> {
                 mText1Index = (mText1Index - 1 + TEXTS.size) % TEXTS.size
@@ -124,9 +124,9 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
     private var mText1Height = 12f
     private var mText2Index = 3
     private var mText2Height = 8f
-    private var mIsLeft = true
-    private var mIsTop = true
-    private var mIsTriangle = false
+    private var mLeft = true
+    private var mTop = true
+    private var mTriangle = false
 
     companion object {
         val TEXTS = arrayOf("滿減", "赠品", "满送", "包邮", "拼图", "新人", "砍价", "预售", "众筹")

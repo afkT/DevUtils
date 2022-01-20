@@ -428,23 +428,23 @@ public final class PictureSelectorUtils {
         // 相册选择类型
         private int              mMimeType            = MimeType.ofImage();
         // 相册选择模式
-        private int              mSelectionMode       = MimeType.MULTIPLE;
+        private int     mSelectionMode = MimeType.MULTIPLE;
         // 是否显示拍照
-        private boolean          mIsCamera            = true;
+        private boolean mCamera        = true;
         // 是否裁减
-        private boolean          mIsCrop              = false;
+        private boolean mCrop          = false;
         // 是否圆形裁减 true = 圆形, false = 矩形
-        private boolean          mIsCircleCrop        = false;
+        private boolean mCircleCrop          = false;
         // 是否压缩
-        private boolean          mIsCompress          = false;
+        private boolean mCompress            = false;
         // 图片大于多少才进行压缩 ( kb )
-        private int              mMinimumCompressSize = 2048;
+        private int     mMinimumCompressSize = 2048;
         // 裁减比例
-        private int[]            mWithAspectRatio     = new int[]{0, 0};
+        private int[]   mWithAspectRatio = new int[]{0, 0};
         // 是否显示 Gif
-        private boolean          mIsGif               = false;
+        private boolean mGif             = false;
         // 每行显示个数
-        private int              mImageSpanCount      = 4;
+        private int     mImageSpanCount  = 4;
         // 最小选择数量
         private int              mMinSelectNum        = 1;
         // 最大选择数量
@@ -551,7 +551,7 @@ public final class PictureSelectorUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isCamera() {
-            return mIsCamera;
+            return mCamera;
         }
 
         /**
@@ -560,7 +560,7 @@ public final class PictureSelectorUtils {
          * @return {@link MediaConfig}
          */
         public MediaConfig setCamera(final boolean camera) {
-            mIsCamera = camera;
+            mCamera = camera;
             return this;
         }
 
@@ -569,7 +569,7 @@ public final class PictureSelectorUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isCrop() {
-            return mIsCrop;
+            return mCrop;
         }
 
         /**
@@ -578,7 +578,7 @@ public final class PictureSelectorUtils {
          * @return {@link MediaConfig}
          */
         public MediaConfig setCrop(final boolean crop) {
-            mIsCrop = crop;
+            mCrop = crop;
             return this;
         }
 
@@ -587,7 +587,7 @@ public final class PictureSelectorUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isCircleCrop() {
-            return mIsCircleCrop;
+            return mCircleCrop;
         }
 
         /**
@@ -596,7 +596,7 @@ public final class PictureSelectorUtils {
          * @return {@link MediaConfig}
          */
         public MediaConfig setCircleCrop(final boolean circleCrop) {
-            mIsCircleCrop = circleCrop;
+            mCircleCrop = circleCrop;
             return this;
         }
 
@@ -605,7 +605,7 @@ public final class PictureSelectorUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isCompress() {
-            return mIsCompress;
+            return mCompress;
         }
 
         /**
@@ -614,7 +614,7 @@ public final class PictureSelectorUtils {
          * @return {@link MediaConfig}
          */
         public MediaConfig setCompress(final boolean compress) {
-            mIsCompress = compress;
+            mCompress = compress;
             return this;
         }
 
@@ -664,7 +664,7 @@ public final class PictureSelectorUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isGif() {
-            return mIsGif;
+            return mGif;
         }
 
         /**
@@ -673,7 +673,7 @@ public final class PictureSelectorUtils {
          * @return {@link MediaConfig}
          */
         public MediaConfig setGif(final boolean gif) {
-            mIsGif = gif;
+            mGif = gif;
             return this;
         }
 
@@ -794,15 +794,15 @@ public final class PictureSelectorUtils {
         public MediaConfig clone() {
             MediaConfig config = new MediaConfig();
             config.mMimeType            = mMimeType;
-            config.mSelectionMode       = mSelectionMode;
-            config.mIsCamera            = mIsCamera;
-            config.mIsCrop              = mIsCrop;
-            config.mIsCircleCrop        = mIsCircleCrop;
-            config.mIsCompress          = mIsCompress;
+            config.mSelectionMode = mSelectionMode;
+            config.mCamera        = mCamera;
+            config.mCrop          = mCrop;
+            config.mCircleCrop          = mCircleCrop;
+            config.mCompress            = mCompress;
             config.mMinimumCompressSize = mMinimumCompressSize;
-            config.mWithAspectRatio     = mWithAspectRatio;
-            config.mIsGif               = mIsGif;
-            config.mImageSpanCount      = mImageSpanCount;
+            config.mWithAspectRatio = mWithAspectRatio;
+            config.mGif             = mGif;
+            config.mImageSpanCount  = mImageSpanCount;
             config.mMinSelectNum        = mMinSelectNum;
             config.mMaxSelectNum        = mMaxSelectNum;
             config.mLocalMedia          = mLocalMedia;
@@ -819,15 +819,15 @@ public final class PictureSelectorUtils {
         public MediaConfig set(final MediaConfig config) {
             if (config != null) {
                 mMimeType            = config.mMimeType;
-                mSelectionMode       = config.mSelectionMode;
-                mIsCamera            = config.mIsCamera;
-                mIsCrop              = config.mIsCrop;
-                mIsCircleCrop        = config.mIsCircleCrop;
-                mIsCompress          = config.mIsCompress;
+                mSelectionMode = config.mSelectionMode;
+                mCamera        = config.mCamera;
+                mCrop          = config.mCrop;
+                mCircleCrop          = config.mCircleCrop;
+                mCompress            = config.mCompress;
                 mMinimumCompressSize = config.mMinimumCompressSize;
-                mWithAspectRatio     = config.mWithAspectRatio;
-                mIsGif               = config.mIsGif;
-                mImageSpanCount      = config.mImageSpanCount;
+                mWithAspectRatio = config.mWithAspectRatio;
+                mGif             = config.mGif;
+                mImageSpanCount  = config.mImageSpanCount;
                 mMinSelectNum        = config.mMinSelectNum;
                 mMaxSelectNum        = config.mMaxSelectNum;
                 mLocalMedia          = config.mLocalMedia;
