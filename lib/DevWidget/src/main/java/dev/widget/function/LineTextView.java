@@ -17,7 +17,7 @@ public class LineTextView
         extends AppCompatTextView {
 
     // 是否换行
-    private boolean           mIsNewLine = false;
+    private boolean           mNewLine = false;
     // 换行监听回调
     private OnNewLineCallback mCallback;
 
@@ -52,11 +52,11 @@ public class LineTextView
                 getWidth() - getPaddingLeft() - getPaddingRight()
         );
         // 是否换行
-        mIsNewLine = line > 1;
+        mNewLine = line > 1;
 
         // 触发回调
         if (mCallback != null) {
-            mCallback.onNewLine(mIsNewLine, line);
+            mCallback.onNewLine(mNewLine, line);
         }
     }
 
@@ -65,7 +65,7 @@ public class LineTextView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isNewLine() {
-        return mIsNewLine;
+        return mNewLine;
     }
 
     /**

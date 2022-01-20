@@ -14,7 +14,7 @@ import dev.widget.R;
 public class WidgetAttrs {
 
     // 是否允许滑动
-    private boolean mIsSlide   = true;
+    private boolean mSlide     = true;
     // 最大显示宽度
     private int     mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
@@ -37,7 +37,7 @@ public class WidgetAttrs {
             TypedArray a = context.obtainStyledAttributes(
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
-            mIsSlide   = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+            mSlide     = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
             mMaxWidth  = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
             mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
             a.recycle();
@@ -85,7 +85,7 @@ public class WidgetAttrs {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mIsSlide;
+        return mSlide;
     }
 
     /**
@@ -94,7 +94,7 @@ public class WidgetAttrs {
      * @return {@link WidgetAttrs}
      */
     public WidgetAttrs setSlide(boolean isSlide) {
-        this.mIsSlide = isSlide;
+        this.mSlide = isSlide;
         return this;
     }
 
@@ -103,7 +103,7 @@ public class WidgetAttrs {
      * @return {@link WidgetAttrs}
      */
     public WidgetAttrs toggleSlide() {
-        this.mIsSlide = !this.mIsSlide;
+        this.mSlide = !this.mSlide;
         return this;
     }
 }

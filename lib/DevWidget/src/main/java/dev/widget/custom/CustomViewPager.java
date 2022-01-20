@@ -165,9 +165,9 @@ public class CustomViewPager
         // 最后滑动的位置
         private int     mLastValue = -1;
         // 是否滑动中
-        private boolean mIsScrolling;
+        private boolean mScrolling;
         // 是否滑向左边、右边
-        private boolean mIsLeft, mIsRight;
+        private boolean mLeft, mRight;
         // 是否向左滑动
         protected boolean mLeftScroll = false;
 
@@ -181,20 +181,20 @@ public class CustomViewPager
             // arg1 当前页面偏移的百分比
             // arg2 当前页面偏移的像素位置
 
-            if (mIsScrolling) {
+            if (mScrolling) {
                 if (mLastValue > arg2) {
-                    mIsRight    = true;
-                    mIsLeft     = false;
+                    mRight      = true;
+                    mLeft       = false;
                     mLeftScroll = false;
                 } else if (mLastValue < arg2) {
-                    mIsRight    = false;
-                    mIsLeft     = true;
+                    mRight      = false;
+                    mLeft       = true;
                     mLeftScroll = true;
                 } else {
-                    mIsRight = mIsLeft = false;
+                    mRight = mLeft = false;
                 }
                 // 触发滑动方向回调
-                onSlideDirection(mIsLeft, mIsRight);
+                onSlideDirection(mLeft, mRight);
             }
             mLastValue = arg2;
         }
@@ -207,13 +207,13 @@ public class CustomViewPager
             // state == 2 表示滑动完毕了
 
             // 判断是否滑动中
-            mIsScrolling = (state == 1);
+            mScrolling = (state == 1);
 
             if (state == 2) {
                 // 触发滑动方向回调
-                onSlideDirection(mIsLeft, mIsRight);
+                onSlideDirection(mLeft, mRight);
                 // 重置方向
-                mIsRight = mIsLeft = false;
+                mRight = mLeft = false;
             }
         }
 

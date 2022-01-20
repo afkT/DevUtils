@@ -85,7 +85,7 @@ public class ScanShapeView
     // 形状类型 ( 默认正方形 )
     private       Shape        mShapeType    = Shape.Square;
     // 是否需要重新处理动画
-    private       boolean      mIsReAnim     = true;
+    private       boolean      mReAnim       = true;
     // 默认通用 DP
     private       float        mDFCommonDP;
     // 空白画笔 ( 绘制边框使用, 不绘制边框时 )
@@ -98,16 +98,16 @@ public class ScanShapeView
     // ==========
 
     // 是否绘制背景
-    private       boolean mIsDrawBackground = true;
+    private       boolean mDrawBackground  = true;
     // 绘制背景画笔
-    private final Paint   mBackgroundPaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint   mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     // ===============
     // = 绘制扫描 View =
     // ===============
 
     // 是否绘制扫描区域边框
-    private       boolean mIsDrawBorder = true;
+    private       boolean mDrawBorder   = true;
     // 扫描边框 View
     private final Paint   mBorderPaint  = new Paint();
     // 边框边距
@@ -154,9 +154,9 @@ public class ScanShapeView
     // ==========
 
     // 是否绘制动画
-    private boolean mIsDrawAnim = true;
+    private boolean mDrawAnim = true;
     // 是否自动开启动画
-    private boolean mIsAutoAnim = true;
+    private boolean mAutoAnim = true;
 
     // =====================
     // = 正方形 ( 动画 ) 相关 =
@@ -211,7 +211,7 @@ public class ScanShapeView
     // 动画效果临时变量
     private float         mAnimOffsetToAnnulus      = 0f;
     // 是否达到偏移值最大值
-    private boolean       mIsOffsetMaxToAnnulus     = true;
+    private boolean       mOffsetMaxToAnnulus       = true;
     // 线条向上 ( 下 ) 边距
     private float         mLineOffsetToAnnulus      = 0f;
     // 扫描线条 Bitmap
@@ -362,7 +362,7 @@ public class ScanShapeView
         // = 判断是否绘制背景 =
         // ================
 
-        if (mIsDrawBackground) { // 绘制计算背景
+        if (mDrawBackground) { // 绘制计算背景
             makeBackground(calcShapeRegion(mBorderMargin), canvas);
         }
 
@@ -371,22 +371,22 @@ public class ScanShapeView
         // =========================
 
         // 绘制计算边框
-        makeShape(calcShapeRegion(), canvas, mIsDrawBorder ? mBorderPaint : mEmptyPaint, true);
+        makeShape(calcShapeRegion(), canvas, mDrawBorder ? mBorderPaint : mEmptyPaint, true);
 
         // ==========
         // = 动画相关 =
         // ==========
 
         // 判断是否需要重新处理动画
-        if (mIsReAnim) { // 为了节省资源, 只用绘制一次
-            mIsReAnim = false;
+        if (mReAnim) { // 为了节省资源, 只用绘制一次
+            mReAnim = false;
 
             // 判断是否需要动画
-            if (mIsDrawAnim) {
+            if (mDrawAnim) {
                 // 计算动画信息
                 makeAnim(canvas);
                 // 判断是否自动开启动画
-                if (mIsAutoAnim) {
+                if (mAutoAnim) {
                     // 开始动画
                     startAnim();
                 }
@@ -398,7 +398,7 @@ public class ScanShapeView
         // =============
 
         // 判断是否需要动画
-        if (mIsDrawAnim) {
+        if (mDrawAnim) {
             drawAnim(canvas);
         }
     }
@@ -652,7 +652,7 @@ public class ScanShapeView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isDrawBorder() {
-        return mIsDrawBorder;
+        return mDrawBorder;
     }
 
     /**
@@ -661,7 +661,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setDrawBorder(boolean drawBorder) {
-        mIsDrawBorder = drawBorder;
+        mDrawBorder = drawBorder;
         return this;
     }
 
@@ -670,7 +670,7 @@ public class ScanShapeView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isDrawBackground() {
-        return mIsDrawBackground;
+        return mDrawBackground;
     }
 
     /**
@@ -679,7 +679,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setDrawBackground(boolean drawBackground) {
-        mIsDrawBackground = drawBackground;
+        mDrawBackground = drawBackground;
         return this;
     }
 
@@ -706,7 +706,7 @@ public class ScanShapeView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isDrawAnim() {
-        return mIsDrawAnim;
+        return mDrawAnim;
     }
 
     /**
@@ -715,7 +715,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setDrawAnim(boolean drawAnim) {
-        mIsDrawAnim = drawAnim;
+        mDrawAnim = drawAnim;
         // 动画处理
         resetAnim(true);
         return this;
@@ -726,7 +726,7 @@ public class ScanShapeView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isAutoAnim() {
-        return mIsAutoAnim;
+        return mAutoAnim;
     }
 
     /**
@@ -735,7 +735,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setAutoAnim(boolean autoAnim) {
-        mIsAutoAnim = autoAnim;
+        mAutoAnim = autoAnim;
         // 动画处理
         resetAnim(true);
         return this;
@@ -1822,7 +1822,7 @@ public class ScanShapeView
             initAnim();
         }
         // 表示需要重新处理
-        mIsReAnim = true;
+        mReAnim = true;
     }
 
     // 动画操作
@@ -2035,7 +2035,7 @@ public class ScanShapeView
      */
     private void initAnim() {
         // 判断是否绘制动画
-        if (!mIsDrawAnim) return;
+        if (!mDrawAnim) return;
         // 判断形状类型
         switch (mShapeType) {
             case Square: // 正方形
@@ -2140,15 +2140,15 @@ public class ScanShapeView
                         // 动画计算旋转
                         mAnnulusAngles[0] += 4;
                         mAnnulusAngles[1] += 2;
-                        if (mIsOffsetMaxToAnnulus) {
+                        if (mOffsetMaxToAnnulus) {
                             if (mAnnulusAngles[2] == 30) {
-                                mIsOffsetMaxToAnnulus = false;
+                                mOffsetMaxToAnnulus = false;
                             } else {
                                 mAnnulusAngles[2]++;
                             }
                         } else {
                             if (mAnnulusAngles[2] == -30) {
-                                mIsOffsetMaxToAnnulus = true;
+                                mOffsetMaxToAnnulus = true;
                             } else {
                                 mAnnulusAngles[2]--;
                             }

@@ -61,11 +61,11 @@ public class CornerLabelView
     // 底部边距
     private              float   mPaddingBottom = 0;
     // 是否左边显示角标
-    private              boolean mIsLeft        = true;
+    private              boolean mLeft          = true;
     // 是否顶部显示角标
-    private              boolean mIsTop         = true;
+    private              boolean mTop           = true;
     // 是否角标三角形铺满样式
-    private              boolean mIsTriangle    = true;
+    private              boolean mTriangle      = true;
     // 当前 View 高度
     private              int     mHeight;
 
@@ -145,9 +145,9 @@ public class CornerLabelView
             int flags     = a.getInteger(R.styleable.DevWidget_dev_flags, 0);
             a.recycle();
 
-            mIsLeft     = (flags & 1) == 0;
-            mIsTop      = (flags & 2) == 0;
-            mIsTriangle = (flags & 4) > 0;
+            mLeft     = (flags & 1) == 0;
+            mTop      = (flags & 2) == 0;
+            mTriangle = (flags & 4) > 0;
             mPaint.setColor(fillColor);
         }
     }
@@ -172,12 +172,12 @@ public class CornerLabelView
         float xy = mHeight / SQRT2;
         canvas.save();
         canvas.translate(xy, xy);
-        canvas.rotate((mIsTop ? 1 : -1) * (mIsLeft ? -45 : 45));
+        canvas.rotate((mTop ? 1 : -1) * (mLeft ? -45 : 45));
         canvas.drawPath(calcPath(), mPaint);
 
-        mText1.draw(canvas, mPaddingBottom, mIsTop);
-        if (mIsTriangle) {
-            mText2.draw(canvas, mPaddingBottom + mPaddingCenter + mText1.textHeight, mIsTop);
+        mText1.draw(canvas, mPaddingBottom, mTop);
+        if (mTriangle) {
+            mText2.draw(canvas, mPaddingBottom + mPaddingCenter + mText1.textHeight, mTop);
         }
         canvas.restore();
     }
@@ -190,8 +190,8 @@ public class CornerLabelView
         Path path = new Path();
         path.moveTo(-mHeight, 0);
         path.lineTo(mHeight, 0);
-        int factor = mIsTop ? -1 : 1;
-        if (mIsTriangle) {
+        int factor = mTop ? -1 : 1;
+        if (mTriangle) {
             path.lineTo(0, factor * mHeight);
         } else {
             int lineHeight = factor * (int) (mPaddingCenter + mPaddingBottom + mText1.textHeight);
@@ -287,7 +287,7 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView left() {
-        this.mIsLeft = true;
+        this.mLeft = true;
         postInvalidate();
         return this;
     }
@@ -297,7 +297,7 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView right() {
-        this.mIsLeft = false;
+        this.mLeft = false;
         postInvalidate();
         return this;
     }
@@ -307,7 +307,7 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView top() {
-        this.mIsTop = true;
+        this.mTop = true;
         postInvalidate();
         return this;
     }
@@ -317,7 +317,7 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView bottom() {
-        this.mIsTop = false;
+        this.mTop = false;
         postInvalidate();
         return this;
     }
@@ -328,7 +328,7 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView triangle(boolean value) {
-        this.mIsTriangle = value;
+        this.mTriangle = value;
         postInvalidate();
         return this;
     }

@@ -83,13 +83,13 @@ public class LoadProgressBar
     // 画笔
     private       Paint         mPaint;
     // 字体画笔
-    private final Paint         mTextPaint      = new Paint();
+    private final Paint         mTextPaint     = new Paint();
     // 最大进度
-    private       int           mMax            = 100;
+    private       int           mMax           = 100;
     // 当前进度
-    private       int           mProgress       = 0;
+    private       int           mProgress      = 0;
     // 进度条样式
-    private       ProgressStyle mProgressStyle  = ProgressStyle.RINGS;
+    private       ProgressStyle mProgressStyle = ProgressStyle.RINGS;
     // 进度条颜色
     private       int           mProgressColor;
     // 外环进度条颜色
@@ -99,7 +99,7 @@ public class LoadProgressBar
     // 外环进度条宽度
     private       float         mOuterRingWidth;
     // 是否绘制数字
-    private       boolean       mIsCanvasNumber = false;
+    private       boolean       mCanvasNumber  = false;
     // 绘制的字体大小
     private       float         mNumberTextSize;
     // 绘制的数字颜色
@@ -157,7 +157,7 @@ public class LoadProgressBar
             TypedArray a = context.obtainStyledAttributes(
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
-            mIsCanvasNumber    = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
+            mCanvasNumber      = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mCanvasNumber);
             mProgressColor     = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
             mOuterRingColor    = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
             mInsideCircleWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_insideCircleWidth, (int) mInsideCircleWidth);
@@ -209,7 +209,7 @@ public class LoadProgressBar
         // 初始化处理
         mNumberTextSize    = 0;
         mInsideCircleWidth = 0;
-        mIsCanvasNumber    = false;
+        mCanvasNumber      = false;
         return this;
     }
 
@@ -217,7 +217,7 @@ public class LoadProgressBar
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // 是否绘制数字
-        boolean isDrawNumber = mIsCanvasNumber;
+        boolean isDrawNumber = mCanvasNumber;
         // 防止没有设置样式
         if (mProgressStyle == null) mProgressStyle = ProgressStyle.RINGS;
         // 属于默认类型
@@ -551,7 +551,7 @@ public class LoadProgressBar
      * @return {@code true} yes, {@code false} no
      */
     public boolean isCanvasNumber() {
-        return mIsCanvasNumber;
+        return mCanvasNumber;
     }
 
     /**
@@ -560,7 +560,7 @@ public class LoadProgressBar
      * @return {@link LoadProgressBar}
      */
     public LoadProgressBar setCanvasNumber(boolean canvasNumber) {
-        this.mIsCanvasNumber = canvasNumber;
+        this.mCanvasNumber = canvasNumber;
         return this;
     }
 

@@ -34,7 +34,7 @@ public class SignView
     // 绘制路径 X、Y ( 临时变量 )
     private float mX, mY;
     // 是否清空画布
-    private boolean        mIsClearCanvas = false;
+    private boolean        mClearCanvas = false;
     // 绘制回调事件
     private OnDrawCallback mCallback;
 
@@ -75,11 +75,11 @@ public class SignView
         Paint paint = getPaint();
         // 触发回调
         if (mCallback != null) {
-            if (mCallback.onDraw(canvas, path, paint, mIsClearCanvas)) {
+            if (mCallback.onDraw(canvas, path, paint, mClearCanvas)) {
                 // 绘制路径
                 canvas.drawPath(path, paint);
             }
-            mIsClearCanvas = false;
+            mClearCanvas = false;
         } else {
             // 绘制路径
             canvas.drawPath(path, paint);
@@ -115,10 +115,10 @@ public class SignView
      * @param canvas 画布
      */
     private void _resetCanvas(Canvas canvas) {
-        if (mIsClearCanvas && canvas != null) {
+        if (mClearCanvas && canvas != null) {
             canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
         }
-        mIsClearCanvas = false;
+        mClearCanvas = false;
     }
 
     // =
@@ -128,9 +128,9 @@ public class SignView
      * @return {@link SignView}
      */
     public SignView clearCanvas() {
-        mX             = mY = 0;
-        mPath          = null;
-        mIsClearCanvas = true;
+        mX           = mY = 0;
+        mPath        = null;
+        mClearCanvas = true;
         postInvalidate();
         return this;
     }
