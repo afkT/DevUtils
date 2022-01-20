@@ -107,7 +107,7 @@ object PictureSelectorUtils {
 
     /**
      * 删除缓存文件
-     * @param context {@link Context}
+     * @param context Context
      * @param type    类型 ( 图片、视频 )
      * 包括裁剪和压缩后的缓存, 要在上传成功后调用, 注意: 需要系统 SDCard 权限
      * type [MimeType.ofImage]、[MimeType.ofVideo]
@@ -125,7 +125,7 @@ object PictureSelectorUtils {
 
     /**
      * 删除全部缓存文件
-     * @param context {@link Context}
+     * @param context Context
      */
     fun deleteAllCacheDirFile(context: Context?) {
         try {

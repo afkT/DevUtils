@@ -813,7 +813,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
     /**
      * detail: WebView 常用配置构建类
      * @author Ttt
-     * 有特殊配置可在 {@link OnApplyListener#onApply(WebViewAssist, Builder)} 回调中进行增加配置设置
+     * 有特殊配置可在 [OnApplyListener.onApply] 回调中进行增加配置设置
      */
     open class Builder @JvmOverloads constructor(listener: OnApplyListener? = null) {
 

@@ -35,9 +35,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一张图片到外部存储空间 ( SDCard )
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertImageToExternal(
         params: StorageItem?,
@@ -51,9 +51,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条视频到外部存储空间 ( SDCard )
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertVideoToExternal(
         params: StorageItem?,
@@ -67,9 +67,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条音频到外部存储空间 ( SDCard )
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertAudioToExternal(
         params: StorageItem?,
@@ -83,9 +83,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条文件资源到外部存储空间 ( SDCard )
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertDownloadToExternal(
         params: StorageItem?,
@@ -99,9 +99,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条多媒体资源到外部存储空间 ( SDCard )
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      * 并不局限于多媒体, 如文本存储、其他文件写入等
      */
     override fun insertMediaToExternal(
@@ -120,9 +120,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一张图片到内部存储空间
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertImageToInternal(
         params: StorageItem?,
@@ -136,9 +136,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条视频到内部存储空间
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertVideoToInternal(
         params: StorageItem?,
@@ -152,9 +152,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条音频到内部存储空间
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertAudioToInternal(
         params: StorageItem?,
@@ -168,9 +168,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条文件资源到内部存储空间
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      */
     override fun insertDownloadToInternal(
         params: StorageItem?,
@@ -184,9 +184,9 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     /**
      * 插入一条多媒体资源到内部存储空间
-     * @param params   {@link EngineItem}
-     * @param source   {@link DevSource}
-     * @param listener {@link OnInsertListener}
+     * @param params   EngineItem
+     * @param source   DevSource
+     * @param listener OnInsertListener
      * 并不局限于多媒体, 如文本存储、其他文件写入等
      */
     override fun insertMediaToInternal(
