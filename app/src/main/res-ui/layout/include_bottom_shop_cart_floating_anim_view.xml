@@ -6,8 +6,8 @@
     android:orientation="horizontal">
 
     <dev.widget.ui.round.RoundTextView
-        android:layout_width="@dimen/un_dp_10"
-        android:layout_height="@dimen/un_dp_10"
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_10"
         app:dev_backgroundColor="@color/color_ff2e42"
         app:dev_isRadiusAdjustBounds="true" />
 </dev.widget.ui.round.RoundLinearLayout>

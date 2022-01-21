@@ -23,6 +23,6 @@
         android:id="@+id/vid_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/un_dp_20" />
+        android:layout_marginTop="@dimen/dp_20" />
 
 </LinearLayout>

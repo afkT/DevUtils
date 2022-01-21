@@ -12,13 +12,13 @@
 
         <dev.base.widget.BaseTextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_60"
+            android:layout_height="@dimen/dp_60"
             android:background="@drawable/shape_bg_black_top_r10"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="ShapeableImageView"
             android:textColor="@color/white"
-            android:textSize="@dimen/un_sp_28" />
+            android:textSize="@dimen/sp_28" />
 
         <include layout="@layout/activity_shapeable_image_view" />
     </LinearLayout>

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:behavior_hideable="true"
-            app:behavior_peekHeight="@dimen/un_dp_60"
+            app:behavior_peekHeight="@dimen/dp_60"
             app:layout_behavior="@string/bottom_sheet_behavior">
 
             <LinearLayout
@@ -37,13 +37,13 @@
 
                 <dev.base.widget.BaseTextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/un_dp_60"
+                    android:layout_height="@dimen/dp_60"
                     android:background="@drawable/shape_bg_black_top_r10"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="ShapeableImageView"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/un_sp_28" />
+                    android:textSize="@dimen/sp_28" />
 
                 <include layout="@layout/activity_shapeable_image_view" />
             </LinearLayout>

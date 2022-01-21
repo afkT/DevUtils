@@ -27,22 +27,22 @@
         <dev.base.widget.BaseEditText
             android:id="@+id/vid_content_et"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_150"
-            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_height="@dimen/dp_150"
+            android:layout_marginTop="@dimen/dp_10"
             android:background="@color/white"
             android:gravity="left|top"
             android:hint="最多输入120个字作为生成二维码内容"
             android:inputType="textMultiLine"
             android:maxLength="120"
             android:maxLines="6"
-            android:padding="@dimen/un_dp_10"
-            android:textSize="@dimen/un_sp_15" />
+            android:padding="@dimen/dp_10"
+            android:textSize="@dimen/sp_15" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/un_dp_10" />
+            android:layout_marginTop="@dimen/dp_10" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

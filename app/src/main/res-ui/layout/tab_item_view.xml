@@ -21,7 +21,7 @@
         <View
             android:id="@+id/vid_line_view"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/un_dp_3"
+            android:layout_height="@dimen/dp_3"
             android:layout_alignLeft="@id/vid_tv"
             android:layout_alignRight="@id/vid_tv"
             android:layout_alignParentBottom="true"

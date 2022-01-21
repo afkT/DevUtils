@@ -16,9 +16,9 @@
         <!-- 设置铺满 -->
         <item name="android:layout_width">match_parent</item>
         <!-- 设置高度 -->
-        <item name="android:layout_height">@dimen/un_dp_50</item>
+        <item name="android:layout_height">@dimen/dp_50</item>
         <!-- 设置向上边距 -->
-        <item name="android:layout_marginTop">@dimen/un_dp_10</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
         <!-- 解决控件字母自动大写问题 -->
@@ -54,9 +54,9 @@
         <!-- 设置高度 -->
         <item name="android:layout_height">wrap_content</item>
         <!-- 设置向上边距 -->
-        <item name="android:layout_marginTop">@dimen/un_dp_20</item>
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
         <!-- 设置向下边距 -->
-        <item name="android:layout_marginBottom">@dimen/un_dp_10</item>
+        <item name="android:layout_marginBottom">@dimen/dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
         <!-- 解决控件字母自动大写问题 -->
@@ -66,15 +66,15 @@
     <!-- 左右 Margin 样式 -->
 
     <style name="AppTheme.margin_lr">
-        <item name="android:layout_marginLeft">@dimen/un_dp_10</item>
-        <item name="android:layout_marginRight">@dimen/un_dp_10</item>
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_marginRight">@dimen/dp_10</item>
     </style>
 
     <!-- 左右 padding 样式 -->
 
     <style name="AppTheme.padding_lr">
-        <item name="android:paddingLeft">@dimen/un_dp_10</item>
-        <item name="android:paddingRight">@dimen/un_dp_10</item>
+        <item name="android:paddingLeft">@dimen/dp_10</item>
+        <item name="android:paddingRight">@dimen/dp_10</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -119,14 +119,14 @@
         <!-- 设置铺满 -->
         <item name="android:layout_width">match_parent</item>
         <!-- 设置高度 -->
-        <item name="android:layout_height">@dimen/un_dp_0_5</item>
+        <item name="android:layout_height">@dimen/dp_0_5</item>
     </style>
 
     <!-- 分割线样式 -->
 
     <style name="AppTheme.Base_Line_Horizontal">
         <!-- 设置铺满 -->
-        <item name="android:layout_width">@dimen/un_dp_0_5</item>
+        <item name="android:layout_width">@dimen/dp_0_5</item>
         <!-- 设置高度 -->
         <item name="android:layout_height">match_parent</item>
     </style>

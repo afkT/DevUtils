@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="@dimen/un_dp_15">
+        android:padding="@dimen/dp_15">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,8 +17,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="@dimen/un_dp_60"
-                android:layout_height="@dimen/un_dp_35"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_35"
                 android:gravity="center_vertical"
                 android:text="Shape"
                 android:textColor="@color/white" />
@@ -27,7 +27,7 @@
                 android:id="@+id/vid_shape_choice_rg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/un_dp_15"
+                android:layout_marginLeft="@dimen/dp_15"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -43,7 +43,7 @@
                     android:id="@+id/vid_shape_square_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:layout_marginLeft="@dimen/dp_15"
                     android:buttonTint="@color/sky_blue"
                     android:text="Square"
                     android:textColor="@color/white" />
@@ -56,8 +56,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="@dimen/un_dp_60"
-                android:layout_height="@dimen/un_dp_35"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_35"
                 android:gravity="center_vertical"
                 android:text="Border"
                 android:textColor="@color/white" />
@@ -79,8 +79,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="@dimen/un_dp_60"
-                android:layout_height="@dimen/un_dp_35"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_35"
                 android:gravity="center_vertical"
                 android:text="Color"
                 android:textColor="@color/white" />
@@ -104,7 +104,7 @@
                     android:id="@+id/vid_color_red_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:layout_marginLeft="@dimen/dp_15"
                     android:buttonTint="@color/red"
                     android:text="Red"
                     android:textColor="@color/red" />
@@ -113,7 +113,7 @@
                     android:id="@+id/vid_color_green_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:layout_marginLeft="@dimen/dp_15"
                     android:buttonTint="@color/green"
                     android:text="Green"
                     android:textColor="@color/green" />
@@ -122,7 +122,7 @@
                     android:id="@+id/vid_color_blue_rb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:layout_marginLeft="@dimen/dp_15"
                     android:buttonTint="@color/blue"
                     android:text="Blue"
                     android:textColor="@color/blue" />
@@ -131,8 +131,8 @@
 
         <dev.widget.ui.WaveView
             android:id="@+id/vid_wave"
-            android:layout_width="@dimen/un_dp_300"
-            android:layout_height="@dimen/un_dp_300"
-            android:layout_marginTop="@dimen/un_dp_20" />
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_300"
+            android:layout_marginTop="@dimen/dp_20" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -4,23 +4,23 @@
     android:layout_height="wrap_content"
     android:background="@color/grey_tran50"
     android:orientation="vertical"
-    android:padding="@dimen/un_dp_10">
+    android:padding="@dimen/dp_10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg_white_r10"
         android:orientation="vertical"
-        android:padding="@dimen/un_dp_10">
+        android:padding="@dimen/dp_10">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_70"
+            android:layout_height="@dimen/dp_70"
             android:orientation="horizontal">
 
             <dev.base.widget.BaseImageView
-                android:layout_width="@dimen/un_dp_70"
-                android:layout_height="@dimen/un_dp_70"
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_70"
                 android:background="@mipmap/icon_launcher_round"
                 android:scaleType="fitXY" />
 
@@ -30,18 +30,18 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/un_sp_28" />
+                android:textSize="@dimen/sp_28" />
         </LinearLayout>
 
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_marginTop="@dimen/dp_10"
             android:lineSpacingExtra="10px"
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black"
-            android:textSize="@dimen/un_sp_20" />
+            android:textSize="@dimen/sp_20" />
     </LinearLayout>
 
 </LinearLayout>

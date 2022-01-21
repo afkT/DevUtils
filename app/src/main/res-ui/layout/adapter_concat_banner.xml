@@ -2,5 +2,5 @@
 <com.youth.banner.Banner xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vid_banner"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/un_dp_180"
+    android:layout_height="@dimen/dp_180"
     android:background="@color/powderblue" />

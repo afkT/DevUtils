@@ -11,15 +11,15 @@
         android:orientation="vertical">
 
         <dev.base.widget.BaseImageView
-            android:layout_width="@dimen/un_dp_180"
-            android:layout_height="@dimen/un_dp_180"
+            android:layout_width="@dimen/dp_180"
+            android:layout_height="@dimen/dp_180"
             android:background="@drawable/icon_tips" />
 
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_tips_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="@dimen/un_dp_20"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
-            android:textSize="@dimen/un_sp_15" />
+            android:textSize="@dimen/sp_15" />
     </LinearLayout>
 </FrameLayout>

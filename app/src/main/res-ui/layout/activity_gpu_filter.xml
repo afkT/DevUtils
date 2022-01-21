@@ -20,7 +20,7 @@
         <dev.widget.custom.CustomGallery
             android:id="@+id/vid_gallery"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_70" />
+            android:layout_height="@dimen/dp_70" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_iv"

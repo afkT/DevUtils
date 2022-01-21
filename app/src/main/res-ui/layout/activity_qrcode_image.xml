@@ -21,8 +21,8 @@
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="@dimen/un_dp_10"
-            android:textSize="@dimen/un_sp_17"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_17"
             tools:text="解析结果" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

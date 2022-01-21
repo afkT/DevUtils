@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/un_dp_50"
-    android:paddingRight="@dimen/un_dp_50">
+    android:paddingLeft="@dimen/dp_50"
+    android:paddingRight="@dimen/dp_50">
 
     <dev.base.widget.BaseButton
         android:id="@+id/vid_toggle_btn"

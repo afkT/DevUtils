@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@null"
-    android:horizontalSpacing="@dimen/un_dp_1"
+    android:horizontalSpacing="@dimen/dp_1"
     android:listSelector="@null"
     android:numColumns="@integer/grid_columns"
-    android:verticalSpacing="@dimen/un_dp_1" />
+    android:verticalSpacing="@dimen/dp_1" />

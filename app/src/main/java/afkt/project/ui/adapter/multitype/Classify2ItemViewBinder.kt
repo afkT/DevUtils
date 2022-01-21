@@ -33,6 +33,6 @@ class Classify2ItemViewBinder : ItemViewBinder<ClassifyBeanItem2, DevBaseViewBin
         QuickHelper.get(holder.binding.vidTitleTv)
             .setText(itemObj.name)
             .setBackgroundColor(itemObj.background)
-            .setPaddingLeft(ResourceUtils.getDimensionInt(R.dimen.un_dp_40))
+            .setPaddingLeft(ResourceUtils.getDimensionInt(R.dimen.dp_40))
     }
 }

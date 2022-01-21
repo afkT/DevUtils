@@ -10,6 +10,6 @@
         android:layout_gravity="center"
         android:text="content view"
         android:textColor="@color/color_88"
-        android:textSize="@dimen/un_sp_20" />
+        android:textSize="@dimen/sp_20" />
 
 </FrameLayout>

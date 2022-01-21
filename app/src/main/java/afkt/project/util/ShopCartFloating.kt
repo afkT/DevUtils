@@ -195,7 +195,7 @@ internal class InnerUtils private constructor() : IFloatingOperate {
             // 设置边距
             setMargins(
                 0, 0, 0,
-                ResourceUtils.getDimensionInt(R.dimen.un_dp_70)
+                ResourceUtils.getDimensionInt(R.dimen.dp_70)
             )
         }
     }
@@ -319,8 +319,8 @@ class ShopCartAnimation {
         val endOffsetX = ArrayUtils.get(wh, 0) / 2
         val endOffsetY = -ArrayUtils.get(wh, 1) / 3
         // 中间点偏移值
-        val controlOffsetX: Int = ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
-        val controlOffsetY: Int = ResourceUtils.getDimensionInt(R.dimen.un_dp_200)
+        val controlOffsetX: Int = ResourceUtils.getDimensionInt(R.dimen.dp_50)
+        val controlOffsetY: Int = ResourceUtils.getDimensionInt(R.dimen.dp_200)
         // 开始、结束位置
         val startPosition = Point(cX, cY)
         val endPosition = Point(toX + endOffsetX, toY + endOffsetY)

@@ -51,8 +51,8 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setTextColors(ResourceUtils.getColor(R.color.black))
             .setTextSizeBySp(15.0f)
             .setLineSpacingAndMultiplier(15.0f, 1.1f)
-            .setPadding(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))
-            .setPaddingBottom(ResourceUtils.getDimensionInt(R.dimen.un_dp_10), false)
+            .setPadding(ResourceUtils.getDimensionInt(R.dimen.dp_20))
+            .setPaddingBottom(ResourceUtils.getDimensionInt(R.dimen.dp_10), false)
             .getView<BaseTextView>()
         // 添加 View
         contentAssist.addContentView(view = view, index = 0)

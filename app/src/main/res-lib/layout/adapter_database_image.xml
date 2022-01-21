@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.base.widget.BaseImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vid_iv"
-    android:layout_width="@dimen/un_dp_70"
-    android:layout_height="@dimen/un_dp_70"
-    android:layout_marginRight="@dimen/un_dp_5"
+    android:layout_width="@dimen/dp_70"
+    android:layout_height="@dimen/dp_70"
+    android:layout_marginRight="@dimen/dp_5"
     android:scaleType="fitXY" />

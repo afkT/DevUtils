@@ -50,7 +50,7 @@ class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevB
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
                         CornerFamily.ROUNDED,
-                        ResourceUtils.getDimension(R.dimen.un_dp_30)
+                        ResourceUtils.getDimension(R.dimen.dp_30)
                     )
                     .build()
             }
@@ -58,7 +58,7 @@ class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevB
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
                         CornerFamily.ROUNDED,
-                        ResourceUtils.getDimension(R.dimen.un_dp_25)
+                        ResourceUtils.getDimension(R.dimen.dp_25)
                     )
                     .setTopRightCornerSize(RelativeCornerSize(0.7f))
                     .setTopLeftCornerSize(RelativeCornerSize(0.7f))

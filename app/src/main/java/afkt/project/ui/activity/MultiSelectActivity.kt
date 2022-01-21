@@ -69,7 +69,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(
-                    ResourceUtils.getDimension(R.dimen.un_dp_10)
+                    ResourceUtils.getDimension(R.dimen.dp_10)
                 )
             )
     }

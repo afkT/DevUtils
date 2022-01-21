@@ -11,18 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/un_dp_30"
-        android:layout_marginBottom="@dimen/un_dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_20"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="@dimen/un_dp_25"
-        app:cardElevation="@dimen/un_dp_10"
+        app:cardCornerRadius="@dimen/dp_25"
+        app:cardElevation="@dimen/dp_10"
         tools:targetApi="lollipop">
 
         <dev.base.widget.BaseImageView
-            android:layout_width="@dimen/un_dp_120"
-            android:layout_height="@dimen/un_dp_120"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
             android:layout_gravity="center"
             android:background="@mipmap/icon" />
     </androidx.cardview.widget.CardView>

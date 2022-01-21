@@ -6,10 +6,10 @@
     <solid android:color="@color/white" />
 
     <stroke
-        android:width="@dimen/un_dp_1"
+        android:width="@dimen/dp_1"
         android:color="@color/sky_blue" />
 
     <size
-        android:width="@dimen/un_dp_20"
-        android:height="@dimen/un_dp_20" />
+        android:width="@dimen/dp_20"
+        android:height="@dimen/dp_20" />
 </shape>

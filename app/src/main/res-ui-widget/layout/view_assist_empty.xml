@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <dev.base.widget.BaseImageView
-        android:layout_width="@dimen/un_dp_60"
+        android:layout_width="@dimen/dp_60"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_empty" />
 
@@ -14,9 +14,9 @@
         style="@style/AppTheme.Base_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/un_dp_20"
+        android:layout_marginTop="@dimen/dp_20"
         android:text="empty data"
         android:textColor="@color/color_88"
-        android:textSize="@dimen/un_sp_20" />
+        android:textSize="@dimen/sp_20" />
 
 </LinearLayout>

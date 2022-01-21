@@ -12,27 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/un_dp_10"
+        android:layout_margin="@dimen/dp_10"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="@dimen/un_dp_5"
-        app:cardElevation="@dimen/un_dp_5"
+        app:cardCornerRadius="@dimen/dp_5"
+        app:cardElevation="@dimen/dp_5"
         tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_70"
-            android:layout_margin="@dimen/un_dp_10">
+            android:layout_height="@dimen/dp_70"
+            android:layout_margin="@dimen/dp_10">
 
             <FrameLayout
                 android:id="@+id/vid_pic_fl"
-                android:layout_width="@dimen/un_dp_70"
-                android:layout_height="@dimen/un_dp_70"
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_70"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/shape_border_image"
-                android:padding="@dimen/un_dp_5">
+                android:padding="@dimen/dp_5">
 
                 <dev.base.widget.BaseImageView
                     android:id="@+id/vid_pic_iv"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/un_dp_8"
+                android:layout_marginLeft="@dimen/dp_8"
                 android:layout_toRightOf="@id/vid_pic_fl"
                 android:orientation="vertical">
 
@@ -58,7 +58,7 @@
                     android:gravity="center|left"
                     android:maxLines="1"
                     android:textColor="@color/color_33"
-                    android:textSize="@dimen/un_sp_16"
+                    android:textSize="@dimen/sp_16"
                     tools:text="标题" />
 
                 <dev.base.widget.BaseTextView
@@ -71,7 +71,7 @@
                     android:gravity="center|left"
                     android:maxLines="1"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/un_sp_15"
+                    android:textSize="@dimen/sp_15"
                     tools:text="时间" />
             </LinearLayout>
         </RelativeLayout>

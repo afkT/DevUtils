@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vid_title_tv"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/un_dp_90"
+    android:layout_height="@dimen/dp_90"
     android:background="@color/lightcoral"
     android:gravity="center"
-    android:textSize="@dimen/un_sp_40"
+    android:textSize="@dimen/sp_40"
     tools:text="Android" />

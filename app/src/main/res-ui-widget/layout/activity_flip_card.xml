@@ -10,25 +10,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:padding="@dimen/un_dp_10"
+        android:padding="@dimen/dp_10"
         app:dev_backgroundColor="@color/color_d2"
-        app:dev_radius="@dimen/un_dp_10">
+        app:dev_radius="@dimen/dp_10">
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_fcv1"
-            android:layout_width="@dimen/un_dp_100"
-            android:layout_height="@dimen/un_dp_100" />
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_fcv2"
-            android:layout_width="@dimen/un_dp_100"
-            android:layout_height="@dimen/un_dp_100"
-            android:layout_marginLeft="@dimen/un_dp_10"
-            android:layout_marginRight="@dimen/un_dp_10" />
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10" />
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_fcv3"
-            android:layout_width="@dimen/un_dp_100"
-            android:layout_height="@dimen/un_dp_100" />
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
     </dev.widget.ui.round.RoundLinearLayout>
 </FrameLayout>

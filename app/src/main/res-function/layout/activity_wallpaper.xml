@@ -19,7 +19,7 @@
             android:id="@+id/vid_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_marginTop="@dimen/dp_10"
             android:scaleType="fitXY" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

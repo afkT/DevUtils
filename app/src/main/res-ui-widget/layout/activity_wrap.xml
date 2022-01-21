@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/paleturquoise"
         android:orientation="vertical"
-        android:padding="@dimen/un_dp_20">
+        android:padding="@dimen/dp_20">
 
         <dev.widget.ui.WrapView
             android:id="@+id/vid_wrap"
