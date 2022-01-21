@@ -64,7 +64,7 @@ class GPUFilterACVAdapter(
     private fun createTextView(position: Int): BaseTextView {
         val acvFileBean = getItem(position)
         val isSelect = (selectPosition == position)
-        val width = SizeUtils.dipConvertPx(100f)
+        val width = SizeUtils.dp2px(100f)
         val layoutParams = Gallery.LayoutParams(
             width, Gallery.LayoutParams.MATCH_PARENT
         )

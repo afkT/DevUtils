@@ -43,7 +43,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
             mBehavior = BottomSheetBehavior.from(this)
             // 默认显示高度
-            mBehavior.peekHeight = SizeUtils.dipConvertPx(290F)
+            mBehavior.peekHeight = SizeUtils.dp2px(290F)
             mBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }

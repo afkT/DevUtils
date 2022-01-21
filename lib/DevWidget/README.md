@@ -52,7 +52,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.4'
 ```java
 // 内外圆环 + 数字 + 无扇形
 view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
-         .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
+         .setOuterRingWidth(SizeUtils.dp2px(5)) // 内环宽度
          .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
          .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
          .setCanvasNumber(true); // 是否绘制数字
@@ -78,7 +78,7 @@ view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
 
 // 扇形 + 数字 + 外圆环
 view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
-         .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
+         .setOuterRingWidth(SizeUtils.dp2px(1)) // 内环宽度
          .setOuterRingColor(Color.RED) // 内环颜色
          .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
          .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
@@ -179,7 +179,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         // 设置扫描区域边框颜色
         scanView.setBorderColor(Color.WHITE);
         // 设置扫描区域边框宽度
-        scanView.setBorderWidth(SizeUtils.dipConvertPxf(2));
+        scanView.setBorderWidth(SizeUtils.dp2pxf(2));
         // 是否绘制边框
         scanView.setDrawBorder(true);
 
@@ -190,9 +190,9 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
         scanView.setBorderToSquare(0);
         // 设置四个角落与边框共存时, 对应边框宽度
-        scanView.setBorderWidthToSquare(SizeUtils.dipConvertPxf(1));
+        scanView.setBorderWidthToSquare(SizeUtils.dp2pxf(1));
         // 设置每个角的点距离 ( 长度 )
-        scanView.setTriAngleLength(SizeUtils.dipConvertPxf(20));
+        scanView.setTriAngleLength(SizeUtils.dp2pxf(20));
         // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
         scanView.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
         // 设置正方形扫描动画速度 ( 毫秒 )
@@ -236,9 +236,9 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         // 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环
         scanView.setAnnulusLengths(20, 30, 85);
         // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
-        scanView.setAnnulusWidths(SizeUtils.dipConvertPx(3), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+        scanView.setAnnulusWidths(SizeUtils.dp2px(3), SizeUtils.dp2px(7), SizeUtils.dp2px(7));
         // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
-        scanView.setAnnulusMargins(SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+        scanView.setAnnulusMargins(SizeUtils.dp2px(7), SizeUtils.dp2px(7), SizeUtils.dp2px(7));
     }
 
     // 设置是否需要阴影背景
@@ -294,9 +294,9 @@ app:dev_iconWidth="30.0dp"
 // 设置动画时间
 flowLikeView.setAnimDuration(2000);
 // 设置图标宽度
-flowLikeView.setIconWidth(SizeUtils.dipConvertPx(30));
+flowLikeView.setIconWidth(SizeUtils.dp2px(30));
 // 设置图标高度
-flowLikeView.setIconHeight(SizeUtils.dipConvertPx(30));
+flowLikeView.setIconHeight(SizeUtils.dp2px(30));
 
 // 设置漂浮图标
 List<Drawable> lists = new ArrayList<>();

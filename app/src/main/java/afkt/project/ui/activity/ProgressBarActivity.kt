@@ -24,7 +24,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
 
 //        // 内外圆环 + 数字 + 无扇形
 //        binding.vidLpb1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
-//            .setOuterRingWidth(SizeUtils.dipConvertPx(5f).toFloat()) // 内环宽度
+//            .setOuterRingWidth(SizeUtils.dp2px(5f).toFloat()) // 内环宽度
 //            .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
 //            .setProgressColor(ResourceUtils.getColor(R.color.color_88)).isCanvasNumber =
 //            true // 是否绘制数字
@@ -36,7 +36,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
 //
 //        // 扇形 + 数字 + 外圆环
 //        binding.vidLpb3.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
-//            .setOuterRingWidth(SizeUtils.dipConvertPx(1f).toFloat()) // 内环宽度
+//            .setOuterRingWidth(SizeUtils.dp2px(1f).toFloat()) // 内环宽度
 //            .setOuterRingColor(Color.RED) // 内环颜色
 //            .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
 //            .setNumberTextColor(Color.parseColor("#FB7D00")).isCanvasNumber = true // 是否绘制数字

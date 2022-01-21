@@ -101,8 +101,8 @@ public abstract class LoadingRenderer {
     }
 
     private void initParams(Context context) {
-        mWidth  = SizeUtils.dipConvertPx(DEFAULT_SIZE);
-        mHeight = SizeUtils.dipConvertPx(DEFAULT_SIZE);
+        mWidth  = SizeUtils.dp2px(DEFAULT_SIZE);
+        mHeight = SizeUtils.dp2px(DEFAULT_SIZE);
 
         mDuration = ANIMATION_DURATION;
     }

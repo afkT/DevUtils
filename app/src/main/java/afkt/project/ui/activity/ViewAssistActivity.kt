@@ -39,7 +39,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
     }
 
     private fun errorType() {
-        ViewUtils.setPadding(binding.vidFl, SizeUtils.dipConvertPx(50f))
+        ViewUtils.setPadding(binding.vidFl, SizeUtils.dp2px(50f))
         viewAssist.register(ViewAssist.TYPE_ING, object : ViewAssist.Adapter {
             override fun onCreateView(
                 assist: ViewAssist,

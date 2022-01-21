@@ -25,8 +25,8 @@ public final class SizeUtils {
      * @param dpValue 待转换值
      * @return 转换后的值
      */
-    public static int dipConvertPx(final float dpValue) {
-        return dipConvertPx(DevUtils.getContext(), dpValue);
+    public static int dp2px(final float dpValue) {
+        return dp2px(DevUtils.getContext(), dpValue);
     }
 
     /**
@@ -34,8 +34,8 @@ public final class SizeUtils {
      * @param dpValue 待转换值
      * @return 转换后的值
      */
-    public static float dipConvertPxf(final float dpValue) {
-        return dipConvertPxf(DevUtils.getContext(), dpValue);
+    public static float dp2pxf(final float dpValue) {
+        return dp2pxf(DevUtils.getContext(), dpValue);
     }
 
     /**
@@ -43,8 +43,8 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static int pxConvertDip(final float pxValue) {
-        return pxConvertDip(DevUtils.getContext(), pxValue);
+    public static int px2dp(final float pxValue) {
+        return px2dp(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -52,8 +52,8 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static float pxConvertDipf(final float pxValue) {
-        return pxConvertDipf(DevUtils.getContext(), pxValue);
+    public static float px2dpf(final float pxValue) {
+        return px2dpf(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -61,8 +61,8 @@ public final class SizeUtils {
      * @param spValue 待转换值
      * @return 转换后的值
      */
-    public static int spConvertPx(final float spValue) {
-        return spConvertPx(DevUtils.getContext(), spValue);
+    public static int sp2px(final float spValue) {
+        return sp2px(DevUtils.getContext(), spValue);
     }
 
     /**
@@ -70,8 +70,8 @@ public final class SizeUtils {
      * @param spValue 待转换值
      * @return 转换后的值
      */
-    public static float spConvertPxf(final float spValue) {
-        return spConvertPxf(DevUtils.getContext(), spValue);
+    public static float sp2pxf(final float spValue) {
+        return sp2pxf(DevUtils.getContext(), spValue);
     }
 
     /**
@@ -79,8 +79,8 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static int pxConvertSp(final float pxValue) {
-        return pxConvertSp(DevUtils.getContext(), pxValue);
+    public static int px2sp(final float pxValue) {
+        return px2sp(DevUtils.getContext(), pxValue);
     }
 
     /**
@@ -88,8 +88,8 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static float pxConvertSpf(final float pxValue) {
-        return pxConvertSpf(DevUtils.getContext(), pxValue);
+    public static float px2spf(final float pxValue) {
+        return px2spf(DevUtils.getContext(), pxValue);
     }
 
     // =
@@ -100,11 +100,11 @@ public final class SizeUtils {
      * @param dpValue 待转换值
      * @return 转换后的值
      */
-    public static int dipConvertPx(
+    public static int dp2px(
             final Context context,
             final float dpValue
     ) {
-        return dipConvertPx(dpValue, ResourceUtils.getDisplayMetrics(context));
+        return dp2px(dpValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -113,11 +113,11 @@ public final class SizeUtils {
      * @param dpValue 待转换值
      * @return 转换后的值
      */
-    public static float dipConvertPxf(
+    public static float dp2pxf(
             final Context context,
             final float dpValue
     ) {
-        return dipConvertPxf(dpValue, ResourceUtils.getDisplayMetrics(context));
+        return dp2pxf(dpValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -126,11 +126,11 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static int pxConvertDip(
+    public static int px2dp(
             final Context context,
             final float pxValue
     ) {
-        return pxConvertDip(pxValue, ResourceUtils.getDisplayMetrics(context));
+        return px2dp(pxValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -139,11 +139,11 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static float pxConvertDipf(
+    public static float px2dpf(
             final Context context,
             final float pxValue
     ) {
-        return pxConvertDipf(pxValue, ResourceUtils.getDisplayMetrics(context));
+        return px2dpf(pxValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -152,11 +152,11 @@ public final class SizeUtils {
      * @param spValue 待转换值
      * @return 转换后的值
      */
-    public static int spConvertPx(
+    public static int sp2px(
             final Context context,
             final float spValue
     ) {
-        return spConvertPx(spValue, ResourceUtils.getDisplayMetrics(context));
+        return sp2px(spValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -165,11 +165,11 @@ public final class SizeUtils {
      * @param spValue 待转换值
      * @return 转换后的值
      */
-    public static float spConvertPxf(
+    public static float sp2pxf(
             final Context context,
             final float spValue
     ) {
-        return spConvertPxf(spValue, ResourceUtils.getDisplayMetrics(context));
+        return sp2pxf(spValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -178,11 +178,11 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static int pxConvertSp(
+    public static int px2sp(
             final Context context,
             final float pxValue
     ) {
-        return pxConvertSp(pxValue, ResourceUtils.getDisplayMetrics(context));
+        return px2sp(pxValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     /**
@@ -191,11 +191,11 @@ public final class SizeUtils {
      * @param pxValue 待转换值
      * @return 转换后的值
      */
-    public static float pxConvertSpf(
+    public static float px2spf(
             final Context context,
             final float pxValue
     ) {
-        return pxConvertSpf(pxValue, ResourceUtils.getDisplayMetrics(context));
+        return px2spf(pxValue, ResourceUtils.getDisplayMetrics(context));
     }
 
     // ==================
@@ -208,11 +208,11 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static int dipConvertPx(
+    public static int dp2px(
             final float dpValue,
             final DisplayMetrics metrics
     ) {
-        return (int) dipConvertPxf(dpValue, metrics);
+        return (int) dp2pxf(dpValue, metrics);
     }
 
     /**
@@ -221,7 +221,7 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static float dipConvertPxf(
+    public static float dp2pxf(
             final float dpValue,
             final DisplayMetrics metrics
     ) {
@@ -234,11 +234,11 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static int pxConvertDip(
+    public static int px2dp(
             final float pxValue,
             final DisplayMetrics metrics
     ) {
-        return (int) pxConvertDipf(pxValue, metrics);
+        return (int) px2dpf(pxValue, metrics);
     }
 
     /**
@@ -247,7 +247,7 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static float pxConvertDipf(
+    public static float px2dpf(
             final float pxValue,
             final DisplayMetrics metrics
     ) {
@@ -256,7 +256,7 @@ public final class SizeUtils {
                 float scale = metrics.density;
                 return (pxValue / scale);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
+                LogPrintUtils.eTag(TAG, e, "px2dpf");
             }
         }
         return 0f;
@@ -268,11 +268,11 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static int spConvertPx(
+    public static int sp2px(
             final float spValue,
             final DisplayMetrics metrics
     ) {
-        return (int) spConvertPxf(spValue, metrics);
+        return (int) sp2pxf(spValue, metrics);
     }
 
     /**
@@ -281,7 +281,7 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static float spConvertPxf(
+    public static float sp2pxf(
             final float spValue,
             final DisplayMetrics metrics
     ) {
@@ -294,11 +294,11 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static int pxConvertSp(
+    public static int px2sp(
             final float pxValue,
             final DisplayMetrics metrics
     ) {
-        return (int) pxConvertSpf(pxValue, metrics);
+        return (int) px2spf(pxValue, metrics);
     }
 
     /**
@@ -307,7 +307,7 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static float pxConvertSpf(
+    public static float px2spf(
             final float pxValue,
             final DisplayMetrics metrics
     ) {
@@ -316,7 +316,7 @@ public final class SizeUtils {
                 float scale = metrics.scaledDensity;
                 return (pxValue / scale);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
+                LogPrintUtils.eTag(TAG, e, "px2spf");
             }
         }
         return 0f;

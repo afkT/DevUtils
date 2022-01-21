@@ -262,18 +262,18 @@ public class ScanShapeView
      * 初始化处理
      */
     private void initialize() {
-        mDFCommonDP          = SizeUtils.dipConvertPx(5);
-        mBorderWidth         = SizeUtils.dipConvertPx(2);
-        mBorderWidthToSquare = SizeUtils.dipConvertPx(1);
-        mTriAngleLength      = SizeUtils.dipConvertPxf(20);
+        mDFCommonDP          = SizeUtils.dp2px(5);
+        mBorderWidth         = SizeUtils.dp2px(2);
+        mBorderWidthToSquare = SizeUtils.dp2px(1);
+        mTriAngleLength      = SizeUtils.dp2pxf(20);
 
-        mAnnulusWidths[0] = SizeUtils.dipConvertPx(3);
-        mAnnulusWidths[1] = SizeUtils.dipConvertPx(7);
-        mAnnulusWidths[2] = SizeUtils.dipConvertPx(7);
+        mAnnulusWidths[0] = SizeUtils.dp2px(3);
+        mAnnulusWidths[1] = SizeUtils.dp2px(7);
+        mAnnulusWidths[2] = SizeUtils.dp2px(7);
 
-        mAnnulusMargins[0] = SizeUtils.dipConvertPx(7);
-        mAnnulusMargins[1] = SizeUtils.dipConvertPx(7);
-        mAnnulusMargins[2] = SizeUtils.dipConvertPx(7);
+        mAnnulusMargins[0] = SizeUtils.dp2px(7);
+        mAnnulusMargins[1] = SizeUtils.dp2px(7);
+        mAnnulusMargins[2] = SizeUtils.dp2px(7);
 
         // 设置背景颜色 ( 黑色 百分之 40 透明度 ) #66000000
         mBackgroundPaint.setColor(Color.argb(102, 0, 0, 0));
@@ -1180,9 +1180,9 @@ public class ScanShapeView
     public ScanShapeView setAnnulusWidths(float... annulusWidths) {
         if (annulusWidths == null) {
             annulusWidths    = new float[3];
-            annulusWidths[0] = SizeUtils.dipConvertPx(3);
-            annulusWidths[1] = SizeUtils.dipConvertPx(7);
-            annulusWidths[2] = SizeUtils.dipConvertPx(7);
+            annulusWidths[0] = SizeUtils.dp2px(3);
+            annulusWidths[1] = SizeUtils.dp2px(7);
+            annulusWidths[2] = SizeUtils.dp2px(7);
         }
         // 设置临时数据
         float[] temp = Arrays.copyOf(annulusWidths, 3);
@@ -1214,7 +1214,7 @@ public class ScanShapeView
      */
     public ScanShapeView setAnnulusMargins(float... annulusMargins) {
         if (annulusMargins == null) {
-            int dp = SizeUtils.dipConvertPx(7);
+            int dp = SizeUtils.dp2px(7);
             annulusMargins = new float[]{dp, dp, dp};
         }
         // 设置临时数据

@@ -90,9 +90,9 @@ public class DanceLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mStrokeWidth     = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
-        mCenterRadius    = SizeUtils.dipConvertPx(DEFAULT_CENTER_RADIUS);
-        mDanceBallRadius = SizeUtils.dipConvertPx(DEFAULT_DANCE_BALL_RADIUS);
+        mStrokeWidth     = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
+        mCenterRadius    = SizeUtils.dp2px(DEFAULT_CENTER_RADIUS);
+        mDanceBallRadius = SizeUtils.dp2px(DEFAULT_DANCE_BALL_RADIUS);
 
         setColor(DEFAULT_COLOR);
         setInsets((int) mWidth, (int) mHeight);

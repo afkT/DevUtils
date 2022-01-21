@@ -23,7 +23,7 @@ import dev.widget.R;
  * <pre>
  *     内外圆环 + 数字 + 无扇形
  *     view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
- *              .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
+ *              .setOuterRingWidth(SizeUtils.dp2px(5)) // 内环宽度
  *              .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
  *              .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
@@ -45,7 +45,7 @@ import dev.widget.R;
  *     <p></p>
  *     扇形 + 数字 + 外圆环
  *     view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
- *              .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
+ *              .setOuterRingWidth(SizeUtils.dp2px(1)) // 内环宽度
  *              .setOuterRingColor(Color.RED) // 内环颜色
  *              .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
  *              .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
@@ -203,7 +203,7 @@ public class LoadProgressBar
         // 设置外环颜色
         mOuterRingColor = Color.argb(30, 255, 255, 255);
         // 设置外环进度条的宽度
-        mOuterRingWidth = SizeUtils.dipConvertPx(4.0f);
+        mOuterRingWidth = SizeUtils.dp2px(4.0f);
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
@@ -310,7 +310,7 @@ public class LoadProgressBar
                 // 计算字体大小
                 mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                         tempWidth, mTextPaint,
-                        SizeUtils.pxConvertSp(tempWidth), "100%"
+                        SizeUtils.px2sp(tempWidth), "100%"
                 );
             }
             // 绘制进度文本
@@ -332,7 +332,7 @@ public class LoadProgressBar
                         // 计算字体大小
                         mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                 tempWidth, mTextPaint,
-                                SizeUtils.pxConvertSp(tempWidth), "100%"
+                                SizeUtils.px2sp(tempWidth), "100%"
                         );
                     }
                     // 绘制进度文本
@@ -350,14 +350,14 @@ public class LoadProgressBar
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                     tempWidth, mTextPaint,
-                                    SizeUtils.pxConvertSp(tempWidth), "100%"
+                                    SizeUtils.px2sp(tempWidth), "100%"
                             );
                         } else {
                             int tempWidth = (int) mInsideCircleWidth / 3 * 2;
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                     tempWidth, mTextPaint,
-                                    SizeUtils.pxConvertSp(tempWidth), "100%"
+                                    SizeUtils.px2sp(tempWidth), "100%"
                             );
                         }
                     }

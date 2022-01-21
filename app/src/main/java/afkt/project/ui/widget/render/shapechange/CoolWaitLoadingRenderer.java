@@ -67,10 +67,10 @@ public class CoolWaitLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mWidth            = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
-        mHeight           = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
-        mStrokeWidth      = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
-        mWaitCircleRadius = SizeUtils.dipConvertPx(WAIT_CIRCLE_RADIUS);
+        mWidth            = SizeUtils.dp2px(DEFAULT_WIDTH);
+        mHeight           = SizeUtils.dp2px(DEFAULT_HEIGHT);
+        mStrokeWidth      = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
+        mWaitCircleRadius = SizeUtils.dp2px(WAIT_CIRCLE_RADIUS);
 
 //        mTopColor = Color.parseColor("#FF1B78DD");
         mTopColor    = Color.WHITE;

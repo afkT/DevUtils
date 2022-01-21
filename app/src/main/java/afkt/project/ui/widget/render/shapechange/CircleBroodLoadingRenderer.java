@@ -113,11 +113,11 @@ public class CircleBroodLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mWidth  = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
-        mHeight = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
+        mWidth  = SizeUtils.dp2px(DEFAULT_WIDTH);
+        mHeight = SizeUtils.dp2px(DEFAULT_HEIGHT);
 
-        mMaxMotherOvalSize    = SizeUtils.dipConvertPx(MAX_MATHER_OVAL_SIZE);
-        mBasicChildOvalRadius = SizeUtils.dipConvertPx(MIN_CHILD_OVAL_RADIUS);
+        mMaxMotherOvalSize    = SizeUtils.dp2px(MAX_MATHER_OVAL_SIZE);
+        mBasicChildOvalRadius = SizeUtils.dp2px(MIN_CHILD_OVAL_RADIUS);
 
         mOvalColor           = DEFAULT_OVAL_COLOR;
         mOvalDeepColor       = DEFAULT_OVAL_DEEP_COLOR;

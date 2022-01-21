@@ -25,9 +25,9 @@ class FlowLikeActivity : BaseActivity<ActivityFlowLikeBinding>() {
 //        // 设置动画时间
 //        binding.vidFlv.animDuration = 2000
 //        // 设置图标宽度
-//        binding.vidFlv.iconWidth = SizeUtils.dipConvertPx(30f)
+//        binding.vidFlv.iconWidth = SizeUtils.dp2px(30f)
 //        // 设置图标高度
-//        binding.vidFlv.iconHeight = SizeUtils.dipConvertPx(30f)
+//        binding.vidFlv.iconHeight = SizeUtils.dp2px(30f)
 //
 //        // 设置漂浮图标
 //        val lists: MutableList<Drawable> = ArrayList()

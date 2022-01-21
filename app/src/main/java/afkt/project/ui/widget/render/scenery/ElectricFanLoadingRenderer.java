@@ -133,12 +133,12 @@ public class ElectricFanLoadingRenderer
     private void initialize(Context context) {
         mMode = MODE_NORMAL;
 
-        mWidth                = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
-        mHeight               = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
-        mTextSize             = SizeUtils.dipConvertPx(DEFAULT_TEXT_SIZE);
-        mStrokeWidth          = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
-        mCenterRadius         = SizeUtils.dipConvertPx(DEFAULT_CENTER_RADIUS);
-        mProgressCenterRadius = SizeUtils.dipConvertPx(DEFAULT_PROGRESS_CENTER_RADIUS);
+        mWidth                = SizeUtils.dp2px(DEFAULT_WIDTH);
+        mHeight               = SizeUtils.dp2px(DEFAULT_HEIGHT);
+        mTextSize             = SizeUtils.dp2px(DEFAULT_TEXT_SIZE);
+        mStrokeWidth          = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
+        mCenterRadius         = SizeUtils.dp2px(DEFAULT_CENTER_RADIUS);
+        mProgressCenterRadius = SizeUtils.dp2px(DEFAULT_PROGRESS_CENTER_RADIUS);
 
         mProgressColor           = DEFAULT_PROGRESS_COLOR;
         mProgressBgColor         = DEFAULT_PROGRESS_BGCOLOR;

@@ -66,7 +66,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val decoration1 = PowerfulStickyDecoration.Builder
             .init(listener)
-            .setGroupHeight(SizeUtils.dipConvertPx(50.0f))
+            .setGroupHeight(SizeUtils.dp2px(50.0f))
 //            // 重置 span ( 注意 : 使用 GridLayoutManager 时必须调用 )
 //            .resetSpan(mRecyclerView, (GridLayoutManager) manager)
             .build()
@@ -82,8 +82,8 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val decoration = StickyDecoration.Builder.init(groupListener)
             .setGroupBackground(ResourceUtils.getColor(R.color.color_f7))
             .setGroupTextColor(ResourceUtils.getColor(R.color.color_33))
-            .setGroupTextSize(SizeUtils.spConvertPx(15.0f))
-            .setTextSideMargin(SizeUtils.dipConvertPx(10.0f))
+            .setGroupTextSize(SizeUtils.sp2px(15.0f))
+            .setTextSideMargin(SizeUtils.dp2px(10.0f))
             .build()
 
         // 初始化布局管理器、适配器
