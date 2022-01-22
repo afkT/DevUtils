@@ -134,7 +134,7 @@ class MMKVKeyValueEngineImpl(
     }
 
     override fun getFloat(key: String?): Float {
-        return getFloat(key, 0f)
+        return getFloat(key, 0F)
     }
 
     override fun getDouble(key: String?): Double {

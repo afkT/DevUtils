@@ -794,7 +794,7 @@ object GlideUtils {
             val options = buildRequestOptions(config)
             val req = it.apply(options)
             config?.let { config ->
-                if (config.getThumbnail() > 0f) {
+                if (config.getThumbnail() > 0F) {
                     return req.thumbnail(config.getThumbnail())
                 }
             }

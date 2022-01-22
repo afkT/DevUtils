@@ -61,7 +61,7 @@ class GPUFilterAdapter(
     private fun createTextView(position: Int): BaseTextView {
         val filterItem = getItem(position)
         val isSelect = (selectPosition == position)
-        val width = AppSize.dp2px(100f)
+        val width = AppSize.dp2px(100F)
         val layoutParams = Gallery.LayoutParams(
             width, Gallery.LayoutParams.MATCH_PARENT
         )
@@ -71,7 +71,7 @@ class GPUFilterAdapter(
             .setBold(isSelect)
             .setGravity(Gravity.CENTER)
             .setTextColors(ResourceUtils.getColor(if (isSelect) R.color.red else R.color.black))
-            .setTextSizeBySp(if (isSelect) 18.0f else 13.0f)
+            .setTextSizeBySp(if (isSelect) 18.0f else 13.0F)
             .setLayoutParams(layoutParams)
             .getView()
     }

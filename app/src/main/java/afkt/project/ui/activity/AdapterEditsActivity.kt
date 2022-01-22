@@ -38,7 +38,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setText("提交")
             .setBold()
             .setTextColors(ResourceUtils.getColor(R.color.white))
-            .setTextSizeBySp(13.0f)
+            .setTextSizeBySp(13.0F)
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClick {

@@ -1398,7 +1398,7 @@ public final class TextViewUtils {
             final T textView,
             final float lineSpacing
     ) {
-        return setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
+        return setLineSpacingAndMultiplier(textView, lineSpacing, 1.0F);
     }
 
     /**
@@ -1432,7 +1432,7 @@ public final class TextViewUtils {
             final View view,
             final float lineSpacing
     ) {
-        setLineSpacingAndMultiplier(getTextView(view), lineSpacing, 1.0f);
+        setLineSpacingAndMultiplier(getTextView(view), lineSpacing, 1.0F);
         return view;
     }
 
@@ -2491,7 +2491,7 @@ public final class TextViewUtils {
      * @return 字体大小
      */
     public static float reckonTextSizeByHeight(final int height) {
-        return reckonTextSizeByHeight(height, 40.0f);
+        return reckonTextSizeByHeight(height, 40.0F);
     }
 
     /**
@@ -2758,7 +2758,7 @@ public final class TextViewUtils {
             // 判断是否超过
             if (allTextWidth <= width) return 1;
             int result = (int) (allTextWidth / width);
-            return ((allTextWidth - width * result == 0f) ? result : result + 1);
+            return ((allTextWidth - width * result == 0F) ? result : result + 1);
         }
         return 0;
     }

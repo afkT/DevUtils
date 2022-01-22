@@ -322,7 +322,7 @@ public final class DevMediaManager
             // 设置循环播放
             mMediaPlayer.setLooping(mediaSet.isLooping());
             // 设置播放音量
-            if (mediaSet.getVolume() >= 0f) {
+            if (mediaSet.getVolume() >= 0F) {
                 mMediaPlayer.setVolume(mediaSet.getVolume(), mediaSet.getVolume());
             }
             // 设置播放路径

@@ -47,7 +47,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     showToast(false, "请输入生成二维码内容")
                     return
                 }
-                val size = AppSize.dp2px(200f)
+                val size = AppSize.dp2px(200F)
                 // 创建二维码
                 DevEngine.getBarCode().encodeBarCode(
                     BarCodeData[text, size].setIcon(selectBitmap)

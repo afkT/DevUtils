@@ -60,7 +60,7 @@ import dev.widget.R;
  *     <p></p>
  *     单独字体
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
- *              .setNumberTextSize(20f) // 字体大小
+ *              .setNumberTextSize(20F) // 字体大小
  *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
  *     <dev.widget.ui.LoadProgressBar
  *        app:dev_numberTextColor="@color/deeppink"
@@ -203,7 +203,7 @@ public class LoadProgressBar
         // 设置外环颜色
         mOuterRingColor = Color.argb(30, 255, 255, 255);
         // 设置外环进度条的宽度
-        mOuterRingWidth = SizeUtils.dp2px(getContext(), 4.0f);
+        mOuterRingWidth = SizeUtils.dp2px(getContext(), 4.0F);
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
@@ -345,7 +345,7 @@ public class LoadProgressBar
                     // 判断是否存在计算的字体大小
                     if (mNumberTextSize <= 0) {
                         // 计算字体大小
-                        if (mInsideCircleWidth < 0f) {
+                        if (mInsideCircleWidth < 0F) {
                             int tempWidth = getWidth() / 3 * 2;
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(

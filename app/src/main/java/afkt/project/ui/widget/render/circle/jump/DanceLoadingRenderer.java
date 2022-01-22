@@ -131,7 +131,7 @@ public class DanceLoadingRenderer
             mPaint.setColor(mArcColor);
             mPaint.setStyle(Paint.Style.STROKE);
             //strokeWidth / 2.0f + mStrokeWidth / 2.0f is the center of the inter circle width
-            mTempBounds.inset(centerRingWidth / 2.0f + mStrokeWidth / 2.0f, centerRingWidth / 2.0f + mStrokeWidth / 2.0f);
+            mTempBounds.inset(centerRingWidth / 2.0f + mStrokeWidth / 2.0f, centerRingWidth / 2.0f + mStrokeWidth / 2.0F);
             mPaint.setStrokeWidth(centerRingWidth);
             canvas.drawArc(mTempBounds, RING_START_ANGLE, mRotation, false, mPaint);
         }
@@ -173,7 +173,7 @@ public class DanceLoadingRenderer
                 float k = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
                 // progress[-1, 1]
                 float progress = (ACCELERATE_INTERPOLATOR.getInterpolation(ballForwardEnterProgress) / 2.0f - 0.5f) * 2.0f * DIRECTION[i];
-                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
+                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0F) + 1.0F)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
 
                 POINT_X[i] += originCoordinateX;
@@ -190,9 +190,9 @@ public class DanceLoadingRenderer
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET);
 
             if (centerCircleScaleProgress <= 0.5f) {
-                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0f) * 0.2f;
+                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0f) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0F) * 0.2f;
             }
 
         }
@@ -203,8 +203,8 @@ public class DanceLoadingRenderer
             mShapeChangeWidth  = -mShapeChangeHeight;
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
-                float progress = (DECELERATE_INTERPOLATOR.getInterpolation(ballForwardExitProgress) / 2.0f) * 2.0f * DIRECTION[i];
-                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
+                float progress = (DECELERATE_INTERPOLATOR.getInterpolation(ballForwardExitProgress) / 2.0F) * 2.0f * DIRECTION[i];
+                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0F) + 1.0F)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
 
                 POINT_X[i] += originCoordinateX;
@@ -226,8 +226,8 @@ public class DanceLoadingRenderer
 
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
-                float progress = (0.5f - ACCELERATE_INTERPOLATOR.getInterpolation(ballReversalEnterProgress) / 2.0f) * 2.0f * DIRECTION[i];
-                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
+                float progress = (0.5f - ACCELERATE_INTERPOLATOR.getInterpolation(ballReversalEnterProgress) / 2.0F) * 2.0f * DIRECTION[i];
+                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0F) + 1.0F)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
 
                 POINT_X[i] += originCoordinateX;
@@ -239,9 +239,9 @@ public class DanceLoadingRenderer
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET);
 
             if (centerCircleScaleProgress <= 0.5f) {
-                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0f) * 0.2f;
+                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0f) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0F) * 0.2f;
             }
 
         }
@@ -253,8 +253,8 @@ public class DanceLoadingRenderer
 
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
-                float progress = (0.0f - DECELERATE_INTERPOLATOR.getInterpolation(ballReversalExitProgress) / 2.0f) * 2.0f * DIRECTION[i];
-                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
+                float progress = (0.0f - DECELERATE_INTERPOLATOR.getInterpolation(ballReversalExitProgress) / 2.0F) * 2.0f * DIRECTION[i];
+                POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0F) + 1.0F)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
 
                 POINT_X[i] += originCoordinateX;
@@ -311,7 +311,7 @@ public class DanceLoadingRenderer
         final float minEdge = (float) Math.min(width, height);
         float       insets;
         if (mCenterRadius <= 0 || minEdge < 0) {
-            insets = (float) Math.ceil(mStrokeWidth / 2.0f);
+            insets = (float) Math.ceil(mStrokeWidth / 2.0F);
         } else {
             insets = minEdge / 2.0f - mCenterRadius;
         }

@@ -56,7 +56,7 @@ public class SlideImageView
         paint.setAntiAlias(true); // 抗锯齿
         paint.setDither(true); // 防抖动
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(1.0f);
+        paint.setStrokeWidth(1.0F);
     }
 
     public SlideImageView(Context context) {
@@ -528,9 +528,9 @@ public class SlideImageView
             // 清空比例
             slideCalcScale = -1f;
             // 超过限制, 则默认为 1 倍
-            if (tScalc > 1.0f) {
+            if (tScalc > 1.0F) {
                 tScalc = 1.0f;
-            } else if (tScalc < 0f) {
+            } else if (tScalc < 0F) {
                 tScalc = 0f; // 默认为 0 倍
             }
             // 计算滑动的距离

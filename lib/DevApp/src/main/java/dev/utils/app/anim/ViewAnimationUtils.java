@@ -579,7 +579,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         if (view != null) {
-            Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+            Interpolator interpolator = (cycles > 0.0F) ? new CycleInterpolator(cycles) : null;
             return translate(
                     view, fromXDelta, toXDelta, fromYDelta, toYDelta,
                     interpolator, durationMillis, isBanClick

@@ -54,7 +54,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
 
         // 默认就设置背景色
         ShapeUtils.newShape()
-            .setCornerRadiusLeft(10.0f)
+            .setCornerRadiusLeft(10.0F)
             .setColor(Color.BLACK)
             .drawable.also { binding.vid41Btn.background = it }
 
@@ -243,33 +243,33 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         // 判断点击的是左边还是右边
         if (clickTab.id == R.id.vid_3_0_tv) { // 点击左边
             // 设置选中颜色
-            ShapeUtils.newShape().setCornerRadiusLeft(10f)
+            ShapeUtils.newShape().setCornerRadiusLeft(10F)
                 .setColor(ResourceUtils.getColor(R.color.sky_blue))
                 .setDrawable(clickTab)
 
             // 设置未选中颜色
             val drawable1 = ShapeUtils.newShape()
-                .setCornerRadiusRight(10f)
+                .setCornerRadiusRight(10F)
                 .setColor(ResourceUtils.getColor(R.color.sky_blue))
                 .drawable
             val drawable2 = ShapeUtils.newShape()
-                .setCornerRadiusRight(10f)
+                .setCornerRadiusRight(10F)
                 .setColor(ResourceUtils.getColor(R.color.color_33))
                 .drawable
             unClickTab.background = StateListUtils.newSelector(drawable1, drawable2)
         } else {
             // 设置选中颜色
-            ShapeUtils.newShape().setCornerRadiusRight(10f)
+            ShapeUtils.newShape().setCornerRadiusRight(10F)
                 .setColor(ResourceUtils.getColor(R.color.sky_blue))
                 .setDrawable(clickTab)
 
             // 设置未选中颜色
             val drawable1 = ShapeUtils.newShape()
-                .setCornerRadiusLeft(10f)
+                .setCornerRadiusLeft(10F)
                 .setColor(ResourceUtils.getColor(R.color.sky_blue))
                 .drawable
             val drawable2 = ShapeUtils.newShape()
-                .setCornerRadiusLeft(10f)
+                .setCornerRadiusLeft(10F)
                 .setColor(ResourceUtils.getColor(R.color.color_33))
                 .drawable
             unClickTab.background = StateListUtils.newSelector(drawable1, drawable2)

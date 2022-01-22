@@ -397,7 +397,7 @@ public class RoundImageView
             } else {
                 Rect bounds = new Rect();
                 mBorderRect.roundOut(bounds);
-                outline.setRoundRect(bounds, bounds.width() / 2.0f);
+                outline.setRoundRect(bounds, bounds.width() / 2.0F);
             }
         }
     }
@@ -434,7 +434,7 @@ public class RoundImageView
         );
         mDrawableRect.set(mBorderRect);
         if (!mBorderOverlay && mBorderWidth > 0) {
-            mDrawableRect.inset(mBorderWidth - 1.0f, mBorderWidth - 1.0f);
+            mDrawableRect.inset(mBorderWidth - 1.0f, mBorderWidth - 1.0F);
         }
         mDrawableRadius = Math.min(
                 mDrawableRect.height() / 2.0f,

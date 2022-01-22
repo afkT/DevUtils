@@ -1293,7 +1293,7 @@ public final class SpanUtils {
                         sBulletPath.addCircle(0.0f, 0.0f, radius, Path.Direction.CW);
                     }
                     c.save();
-                    c.translate(x + dir * radius, (top + bottom) / 2.0f);
+                    c.translate(x + dir * radius, (top + bottom) / 2.0F);
                     c.drawPath(sBulletPath, p);
                     c.restore();
                 } else {

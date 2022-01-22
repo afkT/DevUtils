@@ -40,7 +40,7 @@ class ChipActivity : BaseActivity<ActivityChipBinding>() {
             .setText("刷新")
             .setBold()
             .setTextColors(ResourceUtils.getColor(R.color.red))
-            .setTextSizeBySp(15.0f)
+            .setTextSizeBySp(15.0F)
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClick { initValue() }.getView<View>()

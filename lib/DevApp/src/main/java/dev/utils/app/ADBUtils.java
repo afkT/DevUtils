@@ -1841,7 +1841,7 @@ public final class ADBUtils {
 
         // 循环处理
         for (int i = 0; i <= number; i++) {
-            if (averageX != 0f) {
+            if (averageX != 0F) {
                 // 进行判断处理
                 int calcX = (int) (x + averageX * i);
                 if (oldX != calcX) {
@@ -1850,7 +1850,7 @@ public final class ADBUtils {
                 }
             }
 
-            if (averageY != 0f) {
+            if (averageY != 0F) {
                 // 进行判断处理
                 int calcY = (int) (y + averageY * i);
                 if (oldY != calcY) {

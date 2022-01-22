@@ -46,7 +46,7 @@ class DevHttpCaptureActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val view = QuickHelper.get(BaseTextView(this))
             .setText(span.create())
             .setTextColors(ResourceUtils.getColor(R.color.black))
-            .setTextSizeBySp(15.0f)
+            .setTextSizeBySp(15.0F)
             .setLineSpacingAndMultiplier(15.0f, 1.1f)
             .setPadding(ResourceUtils.getDimensionInt(R.dimen.dp_20))
             .setPaddingBottom(ResourceUtils.getDimensionInt(R.dimen.dp_10), false)

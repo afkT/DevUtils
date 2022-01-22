@@ -253,7 +253,7 @@ public class ElectricFanLoadingRenderer
         canvas.restoreToCount(rotateSaveCount);
 
         //draw 100% text
-        if (mScale < 1.0f) {
+        if (mScale < 1.0F) {
             mPaint.setTextSize(mTextSize * (1 - mScale));
             mPaint.setColor(mElectricFanOutlineColor);
             Rect textRect = new Rect();
@@ -349,11 +349,11 @@ public class ElectricFanLoadingRenderer
         final float minEdge = (float) Math.min(width, height);
         float       insetXs;
         if (mCenterRadius <= 0 || minEdge < 0) {
-            insetXs = (float) Math.ceil(mCenterRadius / 2.0f);
+            insetXs = (float) Math.ceil(mCenterRadius / 2.0F);
         } else {
             insetXs = mCenterRadius;
         }
-        mStrokeYInset = (float) Math.ceil(mCenterRadius / 2.0f);
+        mStrokeYInset = (float) Math.ceil(mCenterRadius / 2.0F);
         mStrokeXInset = insetXs;
     }
 

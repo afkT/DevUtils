@@ -888,7 +888,7 @@ public final class AnimationUtils {
             final float cycles,
             final long durationMillis
     ) {
-        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        Interpolator interpolator = (cycles > 0.0F) ? new CycleInterpolator(cycles) : null;
         return getTranslateAnimation(
                 fromXDelta, toXDelta, 0.0f, 0.0f,
                 interpolator, durationMillis
@@ -905,7 +905,7 @@ public final class AnimationUtils {
             final float cycles,
             final long durationMillis
     ) {
-        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        Interpolator interpolator = (cycles > 0.0F) ? new CycleInterpolator(cycles) : null;
         return getTranslateAnimation(
                 0.0f, 10.0f, 0.0f, 0.0f,
                 interpolator, durationMillis
@@ -918,7 +918,7 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final float cycles) {
-        Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
+        Interpolator interpolator = (cycles > 0.0F) ? new CycleInterpolator(cycles) : null;
         return getTranslateAnimation(
                 0.0f, 10.0f, 0.0f, 0.0f,
                 interpolator, 700

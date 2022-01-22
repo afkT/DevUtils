@@ -344,7 +344,7 @@ object MMKVUtils {
         }
 
         fun decodeFloat(key: String?): Float {
-            return decodeFloat(key, 0.0f)
+            return decodeFloat(key, 0.0F)
         }
 
         fun decodeFloat(

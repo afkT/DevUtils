@@ -285,7 +285,7 @@ public final class ConvertUtils {
      * @return Float
      */
     public static Float toFloat(final Object value) {
-        return toFloat(value, 0f);
+        return toFloat(value, 0F);
     }
 
     /**

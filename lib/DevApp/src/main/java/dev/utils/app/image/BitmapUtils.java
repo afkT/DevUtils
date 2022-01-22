@@ -659,7 +659,7 @@ public final class BitmapUtils {
      * @return 裁剪指定比例的图片
      */
     public static Bitmap crop(final Bitmap bitmap) {
-        return crop(bitmap, 16.0f, 9.0f);
+        return crop(bitmap, 16.0f, 9.0F);
     }
 
     /**

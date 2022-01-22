@@ -1232,9 +1232,9 @@ public final class SnackbarUtils {
         }
 
         // 设置 RootView 透明度
-        if (style.getRootAlpha() >= 0f) {
+        if (style.getRootAlpha() >= 0F) {
             float rootAlpha = style.getRootAlpha();
-            rootAlpha = rootAlpha >= 1.0f ? 1.0f : Math.max(rootAlpha, 0.0f);
+            rootAlpha = rootAlpha >= 1.0f ? 1.0f : Math.max(rootAlpha, 0.0F);
             rootView.setAlpha(rootAlpha);
         }
 
@@ -1279,7 +1279,7 @@ public final class SnackbarUtils {
             }
 
             // TextView 字体大小
-            if (style.getTextSize() != 0f) {
+            if (style.getTextSize() != 0F) {
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getTextSize());
             }
 
@@ -1327,7 +1327,7 @@ public final class SnackbarUtils {
             }
 
             // Action Button 字体大小
-            if (style.getActionSize() != 0f) {
+            if (style.getActionSize() != 0F) {
                 actionButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getActionSize());
             }
 

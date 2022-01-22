@@ -25,12 +25,12 @@ public class CircleBroodLoadingRenderer
     private final Interpolator ACCELERATE_INTERPOLATOR03 = new AccelerateInterpolator(0.3f);
     private final Interpolator ACCELERATE_INTERPOLATOR05 = new AccelerateInterpolator(0.5f);
     private final Interpolator ACCELERATE_INTERPOLATOR08 = new AccelerateInterpolator(0.8f);
-    private final Interpolator ACCELERATE_INTERPOLATOR10 = new AccelerateInterpolator(1.0f);
+    private final Interpolator ACCELERATE_INTERPOLATOR10 = new AccelerateInterpolator(1.0F);
 
     private final Interpolator DECELERATE_INTERPOLATOR03 = new DecelerateInterpolator(0.3f);
     private final Interpolator DECELERATE_INTERPOLATOR05 = new DecelerateInterpolator(0.5f);
     private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8f);
-    private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0f);
+    private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0F);
 
     private final float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
     private final float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5f;
@@ -135,7 +135,7 @@ public class CircleBroodLoadingRenderer
     private void setupPaint() {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1.0f);
+        mPaint.setStrokeWidth(1.0F);
     }
 
     @Override
@@ -220,7 +220,7 @@ public class CircleBroodLoadingRenderer
         Path  path         = new Path();
         float bezierOffset = mMotherOvalHalfWidth * OVAL_BEZIER_FACTOR;
 
-        float distance = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mChildPosition[0], 2.0f) + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0f));
+        float distance = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mChildPosition[0], 2.0F) + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0F));
         if (distance <= mMotherOvalHalfWidth + mChildOvalRadius * 1.2f
                 && distance >= mMotherOvalHalfWidth - mChildOvalRadius * 1.2f) {
             float maxOffsetY = 2 * mChildOvalRadius * 1.2f;
@@ -233,10 +233,10 @@ public class CircleBroodLoadingRenderer
             ), Path.Direction.CW);
 
             float mMotherXOffset = distance - mMotherOvalHalfWidth + mChildOvalRadius;
-            float distanceUltraLeft = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mMotherOvalHalfWidth - mChildPosition[0], 2.0f)
-                    + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0f));
-            float distanceUltraRight = (float) Math.sqrt(Math.pow(mMotherPosition[0] + mMotherOvalHalfWidth - mChildPosition[0], 2.0f)
-                    + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0f));
+            float distanceUltraLeft = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mMotherOvalHalfWidth - mChildPosition[0], 2.0F)
+                    + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0F));
+            float distanceUltraRight = (float) Math.sqrt(Math.pow(mMotherPosition[0] + mMotherOvalHalfWidth - mChildPosition[0], 2.0F)
+                    + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0F));
 
             path.moveTo(mMotherPosition[0], mMotherPosition[1] + mMotherOvalOffsetY);
             if (distanceUltraRight < distanceUltraLeft) {
@@ -376,7 +376,7 @@ public class CircleBroodLoadingRenderer
         float currentStateStartProgress = 0.0f;
         float currentStateEndProgress   = 0.0f;
 
-        if (input > 0.0f) {
+        if (input > 0.0F) {
             currentStartDistance += currentStageDistance;
             currentStageDistance      = mStageMotherForwardTopLeftLength;
             currentStateStartProgress = 0.0f;
@@ -418,7 +418,7 @@ public class CircleBroodLoadingRenderer
         float currentStateStartProgress = 0.0f;
         float currentStateEndProgress   = 0.0f;
 
-        if (input > 0.0f) {
+        if (input > 0.0F) {
             currentStartDistance += currentStageDistance;
             currentStageDistance      = mStageChildPreForwardTopLeftLength;
             currentStateStartProgress = 0.0f;
@@ -680,9 +680,9 @@ public class CircleBroodLoadingRenderer
             } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
                 result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42f) * 12.5f) / 12.5f;
             } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
-                result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5f) * 5.0f) / 5.0f;
+                result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5f) * 5.0F) / 5.0f;
             } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
-                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7f) * 5.0f) / 3.33f;
+                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7f) * 5.0F) / 3.33f;
             } else {
                 result = 1.0f;
             }

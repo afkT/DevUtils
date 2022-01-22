@@ -188,7 +188,7 @@ public final class CapturePictureUtils {
      * @return {@link Bitmap}
      */
     public static Bitmap snapshotByWebView(final WebView webView) {
-        return snapshotByWebView(webView, Integer.MAX_VALUE, BITMAP_CONFIG, 0f);
+        return snapshotByWebView(webView, Integer.MAX_VALUE, BITMAP_CONFIG, 0F);
     }
 
     /**
@@ -201,7 +201,7 @@ public final class CapturePictureUtils {
             final WebView webView,
             final int maxHeight
     ) {
-        return snapshotByWebView(webView, maxHeight, BITMAP_CONFIG, 0f);
+        return snapshotByWebView(webView, maxHeight, BITMAP_CONFIG, 0F);
     }
 
     /**
@@ -229,7 +229,7 @@ public final class CapturePictureUtils {
             final int maxHeight,
             final Bitmap.Config config
     ) {
-        return snapshotByWebView(webView, maxHeight, config, 0f);
+        return snapshotByWebView(webView, maxHeight, config, 0F);
     }
 
     /**

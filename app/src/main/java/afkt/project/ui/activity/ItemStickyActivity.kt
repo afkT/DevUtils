@@ -82,8 +82,8 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val decoration = StickyDecoration.Builder.init(groupListener)
             .setGroupBackground(ResourceUtils.getColor(R.color.color_f7))
             .setGroupTextColor(ResourceUtils.getColor(R.color.color_33))
-            .setGroupTextSize(AppSize.sp2px(15.0f))
-            .setTextSideMargin(AppSize.dp2px(10.0f))
+            .setGroupTextSize(AppSize.sp2px(15.0F))
+            .setTextSideMargin(AppSize.dp2px(10.0F))
             .build()
 
         // 初始化布局管理器、适配器

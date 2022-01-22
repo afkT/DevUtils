@@ -885,7 +885,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setLineMarginTopToSquare(float lineMarginTopToSquare) {
-        if (lineMarginTopToSquare < 0f) {
+        if (lineMarginTopToSquare < 0F) {
             lineMarginTopToSquare = 0f;
         }
         this.mLineMarginTopToSquare = lineMarginTopToSquare;
@@ -906,7 +906,7 @@ public class ScanShapeView
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setLineMarginLeftToSquare(float lineMarginLeftToSquare) {
-        if (lineMarginLeftToSquare < 0f) {
+        if (lineMarginLeftToSquare < 0F) {
             lineMarginLeftToSquare = 0f;
         }
         this.mLineMarginLeftToSquare = lineMarginLeftToSquare;
@@ -1286,7 +1286,7 @@ public class ScanShapeView
      * @return 扫描区域信息
      */
     private RectF calcShapeRegion() {
-        return calcShapeRegion(0f);
+        return calcShapeRegion(0F);
     }
 
     /**
@@ -1456,7 +1456,7 @@ public class ScanShapeView
                         float middleSpace = mAnnulusWidths[0] + mAnnulusWidths[1] + mAnnulusMargins[0] + mAnimOffsetToAnnulus;
                         canvas.drawCircle(mX, mY, r - middleSpace, mAnnulusPaints[1]);
                         // 中间层, 两个弧
-                        if (mAnimOffsetToAnnulus == 0f && mAnnulusMargins[0] / 2 > 0f) { // 小于 0 则不绘制
+                        if (mAnimOffsetToAnnulus == 0f && mAnnulusMargins[0] / 2 > 0F) { // 小于 0 则不绘制
                             // 计算中间层边距
                             float middleMargin = mAnnulusWidths[0] + mAnnulusWidths[1] + mAnnulusMargins[0] / 2;
                             // 计算新的路径

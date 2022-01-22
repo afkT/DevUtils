@@ -443,7 +443,7 @@ final class IToastImpl
                 toastTextView.setTextColor(style.getTextColor());
             }
             // 设置字体大小
-            if (style.getTextSize() != 0f) {
+            if (style.getTextSize() != 0F) {
                 toastTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getTextSize());
             }
             // 设置最大行数

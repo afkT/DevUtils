@@ -81,7 +81,7 @@ public class RightIconEditText
             TypedArray a = context.obtainStyledAttributes(
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
-            mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
+            mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0F);
             mDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
             a.recycle();
         }

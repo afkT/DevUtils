@@ -43,7 +43,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
 //
 //        // 单独字体
 //        binding.vidLpb4.setProgressStyle(LoadProgressBar.ProgressStyle.NUMBER)
-//            .setNumberTextSize(20f).numberTextColor =
+//            .setNumberTextSize(20F).numberTextColor =
 //            ResourceUtils.getColor(R.color.deeppink) // 字体颜色
 
         // 延迟发送通知

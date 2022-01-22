@@ -173,7 +173,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setText(text)
             .setBold()
             .setTextColors(ResourceUtils.getColor(R.color.white))
-            .setTextSizeBySp(13.0f)
+            .setTextSizeBySp(13.0F)
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClick(onClickListener)
