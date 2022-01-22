@@ -271,13 +271,13 @@ class ShopCartAnimation {
                     val zoomAnim = ScaleAnimation(
                         1.0F, 1.1F, 1.0F, 1.1F,
                         ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
-                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f
+                        ScaleAnimation.RELATIVE_TO_SELF, 0.5F
                     )
                     zoomAnim.duration = zoomTime
                     val zoomOutAnim = ScaleAnimation(
                         1.1F, 1.0F, 1.1F, 1.0F,
                         ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
-                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f
+                        ScaleAnimation.RELATIVE_TO_SELF, 0.5F
                     )
                     zoomOutAnim.duration = zoomTime
                     val animatorSet = AnimationSet(false)

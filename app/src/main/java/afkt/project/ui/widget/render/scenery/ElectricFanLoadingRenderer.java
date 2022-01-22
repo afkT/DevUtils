@@ -70,7 +70,7 @@ public class ElectricFanLoadingRenderer
     private static final int LEAF_COUNT          = 28;
     private static final int DEGREE_180          = 180;
     private static final int DEGREE_360          = 360;
-    private static final int FULL_GROUP_ROTATION = (int) (5.25f * DEGREE_360);
+    private static final int FULL_GROUP_ROTATION = (int) (5.25F * DEGREE_360);
 
     private static final int DEFAULT_PROGRESS_COLOR             = 0XFFFCA72E;
     private static final int DEFAULT_PROGRESS_BGCOLOR           = 0XFFFCD49F;

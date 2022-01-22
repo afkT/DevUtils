@@ -196,7 +196,7 @@ public final class GlideTransformUtils {
             // 创建 Allocation 对象的时候其实内存是空的, 需要使用 copyTo() 将数据填充进去
             Allocation tmpIn  = Allocation.createFromBitmap(rs, inputBitmap);
             Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-            // 设置渲染的模糊程度, 25f 是最大模糊度
+            // 设置渲染的模糊程度, 25F 是最大模糊度
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 blurScript.setRadius(blurRadius);
             }

@@ -80,7 +80,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             }
             R.id.vid_btn_height1_minus_tv -> {
                 if (mText1Height < 8) return
-                mText1Height -= 2f
+                mText1Height -= 2F
                 convertPx = AppSize.sp2pxf(mText1Height)
                 labelView.setTextHeight1(convertPx)
                 labelView.setPaddingTop(convertPx)
@@ -89,7 +89,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             }
             R.id.vid_btn_height1_plus_tv -> {
                 if (mText1Height > 30) return
-                mText1Height += 2f
+                mText1Height += 2F
                 convertPx = AppSize.sp2pxf(mText1Height)
                 labelView.setTextHeight1(convertPx)
                 labelView.setPaddingTop(convertPx)
@@ -106,13 +106,13 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             }
             R.id.vid_btn_height2_minus_tv -> {
                 if (mText2Height < 4) return
-                mText2Height -= 2f
+                mText2Height -= 2F
                 convertPx = AppSize.sp2pxf(mText2Height)
                 labelView.setTextHeight2(convertPx)
             }
             R.id.vid_btn_height2_plus_tv -> {
                 if (mText2Height > 20) return
-                mText2Height += 2f
+                mText2Height += 2F
                 convertPx = AppSize.sp2pxf(mText2Height)
                 labelView.setTextHeight2(convertPx)
             }
@@ -121,9 +121,9 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
 
     private var convertPx = 0F
     private var mText1Index = 3
-    private var mText1Height = 12f
+    private var mText1Height = 12F
     private var mText2Index = 3
-    private var mText2Height = 8f
+    private var mText2Height = 8F
     private var mLeft = true
     private var mTop = true
     private var mTriangle = false

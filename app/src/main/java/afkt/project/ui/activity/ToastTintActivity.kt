@@ -72,7 +72,7 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         /**
          * 字体大小
          */
-        override fun getTextSize(): Float = 16f
+        override fun getTextSize(): Float = 16F
 
         /**
          * 背景着色颜色

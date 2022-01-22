@@ -158,7 +158,7 @@ object ProjectUtils {
             // ===============
 
             // 设置六边形线条动画 - 线条宽度
-            scanView.lineWidthToHexagon = 4f
+            scanView.lineWidthToHexagon = 4F
             // 置六边形线条动画 - 线条边距
             scanView.lineMarginToHexagon = 20F
             // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
@@ -175,7 +175,7 @@ object ProjectUtils {
             // 设置环形线条动画 ( 着色 )
             scanView.lineColorToAnnulus = Color.WHITE
             // 设置环形扫描线条速度
-            scanView.lineOffsetSpeedToAnnulus = 4f
+            scanView.lineOffsetSpeedToAnnulus = 4F
             // 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环
             scanView.setAnnulusDraws(false, true, true)
             // 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环
@@ -233,7 +233,7 @@ object ProjectUtils {
                 // 设置是否需要阴影背景
                 scanView.isDrawBackground = false
 //                // 设置环形扫描线条速度
-//                scanView.lineOffsetSpeedToAnnulus = 6f
+//                scanView.lineOffsetSpeedToAnnulus = 6F
             }
         }
         // 重新绘制

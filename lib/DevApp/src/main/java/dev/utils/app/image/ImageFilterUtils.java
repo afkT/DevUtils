@@ -65,7 +65,7 @@ public final class ImageFilterUtils {
 
             // 设置 blur 对象的输入内存
             blur.setInput(input);
-            // 设置渲染的模糊程度, 25f 是最大模糊度
+            // 设置渲染的模糊程度, 25F 是最大模糊度
             blur.setRadius(radius);
             // 将输出数据保存到输出内存中
             blur.forEach(output);

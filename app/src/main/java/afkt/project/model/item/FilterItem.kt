@@ -155,8 +155,8 @@ class FilterItem(
                 FilterType.WHITE_BALANCE -> GPUImageWhiteBalanceFilter(5000.0F, 0.0F)
                 FilterType.VIGNETTE -> {
                     val centerPoint = PointF()
-                    centerPoint.x = 0.5f
-                    centerPoint.y = 0.5f
+                    centerPoint.x = 0.5F
+                    centerPoint.y = 0.5F
                     GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0F, 0.0F, 0.0F), 0.3F, 0.75F)
                 }
                 FilterType.TONE_CURVE -> GPUImageToneCurveFilter()

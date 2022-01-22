@@ -213,11 +213,11 @@ public class WaveView
                     if (borderWidth > 0) {
                         canvas.drawCircle(
                                 getWidth() / 2F, getHeight() / 2F,
-                                (getWidth() - borderWidth) / 2f - 1F,
+                                (getWidth() - borderWidth) / 2F - 1F,
                                 mBorderPaint
                         );
                     }
-                    float radius = getWidth() / 2f - borderWidth;
+                    float radius = getWidth() / 2F - borderWidth;
                     canvas.drawCircle(
                             getWidth() / 2F, getHeight() / 2F,
                             radius, mViewPaint
@@ -227,8 +227,8 @@ public class WaveView
                     if (borderWidth > 0) {
                         canvas.drawRect(
                                 borderWidth / 2F, borderWidth / 2F,
-                                getWidth() - borderWidth / 2f - 0.5F,
-                                getHeight() - borderWidth / 2f - 0.5F,
+                                getWidth() - borderWidth / 2F - 0.5F,
+                                getHeight() - borderWidth / 2F - 0.5F,
                                 mBorderPaint
                         );
                     }

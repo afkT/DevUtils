@@ -117,10 +117,10 @@ public class CoolWaitLoadingRenderer
         //create w
         path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5F,
                 bounds.centerX() + mWaitCircleRadius * 0.3F, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5F
         );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5F
         );
         path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75F, bounds.centerY() - mWaitCircleRadius * 0.2F);
 
@@ -142,10 +142,10 @@ public class CoolWaitLoadingRenderer
         //create w
         path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5F,
                 bounds.centerX() + mWaitCircleRadius * 0.3F, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5F
         );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5F
         );
         path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75F, bounds.centerY() - mWaitCircleRadius * 0.2F);
 
@@ -179,55 +179,55 @@ public class CoolWaitLoadingRenderer
         //draw the first half : top
         if (renderProgress <= WAIT_TRIM_DURATION_OFFSET) {
             float topTrimProgress  = ACCELERATE_DECELERATE_INTERPOLATOR.getInterpolation(renderProgress / WAIT_TRIM_DURATION_OFFSET);
-            float topEndDistance   = mOriginEndDistance + mWaitPathLength * 0.3f * topTrimProgress;
-            float topStartDistance = mOriginStartDistance + mWaitPathLength * 0.48f * topTrimProgress;
+            float topEndDistance   = mOriginEndDistance + mWaitPathLength * 0.3F * topTrimProgress;
+            float topStartDistance = mOriginStartDistance + mWaitPathLength * 0.48F * topTrimProgress;
             mWaitPathMeasure.getSegment(topStartDistance, topEndDistance, mCurrentTopWaitPath, true);
         }
 
         //draw the first half : middle
-        if (renderProgress > 0.02f * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET * 0.75F) {
-            float middleStartTrimProgress = ACCELERATE_INTERPOLATOR10.getInterpolation((renderProgress - 0.02f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.73F));
-            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR08.getInterpolation((renderProgress - 0.02f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.73F));
+        if (renderProgress > 0.02F * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET * 0.75F) {
+            float middleStartTrimProgress = ACCELERATE_INTERPOLATOR10.getInterpolation((renderProgress - 0.02F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.73F));
+            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR08.getInterpolation((renderProgress - 0.02F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.73F));
 
-            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.42f * middleEndTrimProgress;
-            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.42f * middleStartTrimProgress;
+            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.42F * middleEndTrimProgress;
+            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.42F * middleStartTrimProgress;
             mWaitPathMeasure.getSegment(middleStartDistance, middleEndDistance, mCurrentMiddleWaitPath, true);
         }
 
         //draw the first half : bottom
-        if (renderProgress > 0.04f * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET * 0.75F) {
-            float bottomStartTrimProgress = ACCELERATE_INTERPOLATOR15.getInterpolation((renderProgress - 0.04f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.71F));
-            float bottomEndTrimProgress   = DECELERATE_INTERPOLATOR05.getInterpolation((renderProgress - 0.04f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.71F));
+        if (renderProgress > 0.04F * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET * 0.75F) {
+            float bottomStartTrimProgress = ACCELERATE_INTERPOLATOR15.getInterpolation((renderProgress - 0.04F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.71F));
+            float bottomEndTrimProgress   = DECELERATE_INTERPOLATOR05.getInterpolation((renderProgress - 0.04F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.71F));
 
-            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.42f * bottomEndTrimProgress;
-            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.42f * bottomStartTrimProgress;
+            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.42F * bottomEndTrimProgress;
+            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.42F * bottomStartTrimProgress;
             mWaitPathMeasure.getSegment(bottomStartDistance, bottomEndDistance, mCurrentBottomWaitPath, true);
         }
 
         //draw the last half : top
         if (renderProgress <= END_TRIM_DURATION_OFFSET && renderProgress > WAIT_TRIM_DURATION_OFFSET) {
             float trimProgress     = ACCELERATE_DECELERATE_INTERPOLATOR.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET) / (END_TRIM_DURATION_OFFSET - WAIT_TRIM_DURATION_OFFSET));
-            float topEndDistance   = mOriginEndDistance + mWaitPathLength * 0.3f + mWaitPathLength * 0.45f * trimProgress;
-            float topStartDistance = mOriginStartDistance + mWaitPathLength * 0.48f + mWaitPathLength * 0.27f * trimProgress;
+            float topEndDistance   = mOriginEndDistance + mWaitPathLength * 0.3F + mWaitPathLength * 0.45F * trimProgress;
+            float topStartDistance = mOriginStartDistance + mWaitPathLength * 0.48F + mWaitPathLength * 0.27F * trimProgress;
             mWaitPathMeasure.getSegment(topStartDistance, topEndDistance, mCurrentTopWaitPath, true);
         }
 
         //draw the last half : middle
-        if (renderProgress > WAIT_TRIM_DURATION_OFFSET + 0.02f * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET + WAIT_TRIM_DURATION_OFFSET * 0.62F) {
-            float middleStartTrimProgress = ACCELERATE_INTERPOLATOR08.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.02f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
-            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.02f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
+        if (renderProgress > WAIT_TRIM_DURATION_OFFSET + 0.02F * WAIT_TRIM_DURATION_OFFSET && renderProgress <= WAIT_TRIM_DURATION_OFFSET + WAIT_TRIM_DURATION_OFFSET * 0.62F) {
+            float middleStartTrimProgress = ACCELERATE_INTERPOLATOR08.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.02F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
+            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.02F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
 
-            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.48f + mWaitPathLength * 0.20F * middleEndTrimProgress;
-            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.48f + mWaitPathLength * 0.10F * middleStartTrimProgress;
+            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.48F + mWaitPathLength * 0.20F * middleEndTrimProgress;
+            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.48F + mWaitPathLength * 0.10F * middleStartTrimProgress;
             mWaitPathMeasure.getSegment(middleStartDistance, middleEndDistance, mCurrentMiddleWaitPath, true);
         }
 
-        if (renderProgress > WAIT_TRIM_DURATION_OFFSET + 0.62f * WAIT_TRIM_DURATION_OFFSET && renderProgress <= END_TRIM_DURATION_OFFSET) {
-            float middleStartTrimProgress = DECELERATE_INTERPOLATOR10.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.62f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.38F));
-            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.62f * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.38F));
+        if (renderProgress > WAIT_TRIM_DURATION_OFFSET + 0.62F * WAIT_TRIM_DURATION_OFFSET && renderProgress <= END_TRIM_DURATION_OFFSET) {
+            float middleStartTrimProgress = DECELERATE_INTERPOLATOR10.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.62F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.38F));
+            float middleEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.62F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.38F));
 
-            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.68f + mWaitPathLength * 0.325f * middleEndTrimProgress;
-            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.58f + mWaitPathLength * 0.17f * middleStartTrimProgress;
+            float middleEndDistance   = mOriginStartDistance + mWaitPathLength * 0.68F + mWaitPathLength * 0.325F * middleEndTrimProgress;
+            float middleStartDistance = mOriginStartDistance + mWaitPathLength * 0.58F + mWaitPathLength * 0.17F * middleStartTrimProgress;
             mWaitPathMeasure.getSegment(middleStartDistance, middleEndDistance, mCurrentMiddleWaitPath, true);
         }
 
@@ -236,8 +236,8 @@ public class CoolWaitLoadingRenderer
             float bottomStartTrimProgress = ACCELERATE_INTERPOLATOR15.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.10F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
             float bottomEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.10F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.60F));
 
-            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.48f + mWaitPathLength * 0.20F * bottomEndTrimProgress;
-            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.48f + mWaitPathLength * 0.10F * bottomStartTrimProgress;
+            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.48F + mWaitPathLength * 0.20F * bottomEndTrimProgress;
+            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.48F + mWaitPathLength * 0.10F * bottomStartTrimProgress;
             mWaitPathMeasure.getSegment(bottomStartDistance, bottomEndDistance, mCurrentBottomWaitPath, true);
         }
 
@@ -245,8 +245,8 @@ public class CoolWaitLoadingRenderer
             float bottomStartTrimProgress = DECELERATE_INTERPOLATOR05.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.70F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.30F));
             float bottomEndTrimProgress   = DECELERATE_INTERPOLATOR03.getInterpolation((renderProgress - WAIT_TRIM_DURATION_OFFSET - 0.70F * WAIT_TRIM_DURATION_OFFSET) / (WAIT_TRIM_DURATION_OFFSET * 0.30F));
 
-            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.68f + mWaitPathLength * 0.325f * bottomEndTrimProgress;
-            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.58f + mWaitPathLength * 0.17f * bottomStartTrimProgress;
+            float bottomEndDistance   = mOriginStartDistance + mWaitPathLength * 0.68F + mWaitPathLength * 0.325F * bottomEndTrimProgress;
+            float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.58F + mWaitPathLength * 0.17F * bottomStartTrimProgress;
             mWaitPathMeasure.getSegment(bottomStartDistance, bottomEndDistance, mCurrentBottomWaitPath, true);
         }
 

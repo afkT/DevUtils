@@ -148,7 +148,7 @@ class GlideEngine private constructor() : ImageEngine {
                         val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(
                             context.resources, resource
                         )
-                        circularBitmapDrawable.cornerRadius = 8f
+                        circularBitmapDrawable.cornerRadius = 8F
                         imageView.setImageDrawable(circularBitmapDrawable)
                     } catch (e: Exception) {
                     }

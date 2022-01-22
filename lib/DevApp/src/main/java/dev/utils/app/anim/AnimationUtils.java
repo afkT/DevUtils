@@ -615,7 +615,7 @@ public final class AnimationUtils {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
                 fromX, toX, fromY, toY,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5F
         );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {

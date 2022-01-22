@@ -64,7 +64,7 @@ class GlideTransformUtils private constructor() {
             val paint = Paint()
             paint.shader = BitmapShader(squared, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
             paint.isAntiAlias = true
-            val r = size / 2f
+            val r = size / 2F
             canvas.drawCircle(r, r, r, paint)
             return result
         }

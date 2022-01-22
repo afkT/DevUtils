@@ -736,7 +736,7 @@ public final class ColorUtils {
     public static int grayLevel(final String colorStr) {
         int   color = parseColor(colorStr);
         int[] argb  = getARGB(color);
-        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
+        return (int) (argb[1] * 0.299F + argb[2] * 0.587F + argb[3] * 0.114F);
     }
 
     /**
@@ -747,7 +747,7 @@ public final class ColorUtils {
     public static int grayLevel(final int color) {
         // [] { alpha, red, green, blue }
         int[] argb = getARGB(color);
-        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
+        return (int) (argb[1] * 0.299F + argb[2] * 0.587F + argb[3] * 0.114F);
     }
 
     // =
@@ -989,7 +989,7 @@ public final class ColorUtils {
             green = argb[2];
             blue  = argb[3];
             // 获取灰度值
-            grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
+            grayLevel = (int) (argb[1] * 0.299F + argb[2] * 0.587F + argb[3] * 0.114F);
             // 获取 HSB
             float[] hsbArrays = RGBtoHSB(red, green, blue, null);
             hue        = hsbArrays[0]; // 色调
