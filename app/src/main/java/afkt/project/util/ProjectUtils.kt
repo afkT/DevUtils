@@ -6,6 +6,7 @@ import android.graphics.Rect
 import dev.base.DevVariable
 import dev.engine.image.ImageConfig
 import dev.utils.app.ResourceUtils
+import dev.utils.app.ScreenUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
 
@@ -70,6 +71,8 @@ object ProjectUtils {
     ) {
         // 设置扫描 View 类型
         scanView.shapeType = scanShape
+        // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
+        scanView.setRegion(ScreenUtils.getScreenWidth() * 0.66f)
 
         val isExecute = false
         if (isExecute) {
@@ -102,9 +105,9 @@ object ProjectUtils {
             // 设置拐角效果
             scanView.setCornerEffect(CornerEffect(10.0F))
             // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
-            scanView.setRegion(700f)
-            scanView.setRegion(700f, 700f)
-            scanView.setRegion(Rect(0, 0, 700, 700))
+            scanView.setRegion(500f)
+            scanView.setRegion(500f, 500f)
+            scanView.setRegion(Rect(0, 0, 500, 500))
             // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
             scanView.regionLeft
             // 获取扫描区域 距离 整个 View 的上 / 下边距 距离
