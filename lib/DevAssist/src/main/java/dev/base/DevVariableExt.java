@@ -27,13 +27,13 @@ public class DevVariableExt<K, V, P> {
 
         /**
          * 创建存储值
-         * @param param 额外参数
          * @param key   存储 key
+         * @param param 额外参数
          * @return 存储值
          */
         V create(
-                P param,
-                K key
+                K key,
+                P param
         );
     }
 
@@ -69,18 +69,27 @@ public class DevVariableExt<K, V, P> {
 
     /**
      * 通过 key 获取 value
+     * @param key Key
+     * @return Value
+     */
+    public V getVariableValue(final K key) {
+        return getVariableValue(key, null);
+    }
+
+    /**
+     * 通过 key 获取 value
      * @param key   Key
      * @param param 额外参数
      * @return Value
      */
     public V getVariableValue(
-            final P param,
-            final K key
+            final K key,
+            final P param
     ) {
         V value = mVariable.getVariableValue(key);
         if (value != null) return value;
         if (mCreator != null) {
-            value = mCreator.create(param, key);
+            value = mCreator.create(key, param);
             if (value != null) {
                 mVariable.putVariable(key, value);
             }

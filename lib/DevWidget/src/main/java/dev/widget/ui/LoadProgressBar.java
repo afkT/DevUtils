@@ -203,7 +203,7 @@ public class LoadProgressBar
         // 设置外环颜色
         mOuterRingColor = Color.argb(30, 255, 255, 255);
         // 设置外环进度条的宽度
-        mOuterRingWidth = SizeUtils.dp2px(4.0f);
+        mOuterRingWidth = SizeUtils.dp2px(getContext(), 4.0f);
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
@@ -310,7 +310,7 @@ public class LoadProgressBar
                 // 计算字体大小
                 mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                         tempWidth, mTextPaint,
-                        SizeUtils.px2sp(tempWidth), "100%"
+                        SizeUtils.px2sp(getContext(), tempWidth), "100%"
                 );
             }
             // 绘制进度文本
@@ -332,7 +332,7 @@ public class LoadProgressBar
                         // 计算字体大小
                         mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                 tempWidth, mTextPaint,
-                                SizeUtils.px2sp(tempWidth), "100%"
+                                SizeUtils.px2sp(getContext(), tempWidth), "100%"
                         );
                     }
                     // 绘制进度文本
@@ -350,14 +350,14 @@ public class LoadProgressBar
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                     tempWidth, mTextPaint,
-                                    SizeUtils.px2sp(tempWidth), "100%"
+                                    SizeUtils.px2sp(getContext(), tempWidth), "100%"
                             );
                         } else {
                             int tempWidth = (int) mInsideCircleWidth / 3 * 2;
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
                                     tempWidth, mTextPaint,
-                                    SizeUtils.px2sp(tempWidth), "100%"
+                                    SizeUtils.px2sp(getContext(), tempWidth), "100%"
                             );
                         }
                     }

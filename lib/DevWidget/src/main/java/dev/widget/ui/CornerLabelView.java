@@ -125,19 +125,19 @@ public class CornerLabelView
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
 
-            mPaddingTop    = a.getDimension(R.styleable.DevWidget_dev_paddingTop, SizeUtils.dp2px(10));
+            mPaddingTop    = a.getDimension(R.styleable.DevWidget_dev_paddingTop, SizeUtils.dp2px(getContext(), 10));
             mPaddingCenter = a.getDimension(R.styleable.DevWidget_dev_paddingCenter, 0);
-            mPaddingBottom = a.getDimension(R.styleable.DevWidget_dev_paddingBottom, SizeUtils.dp2px(3));
+            mPaddingBottom = a.getDimension(R.styleable.DevWidget_dev_paddingBottom, SizeUtils.dp2px(getContext(), 3));
 
             mText1.text       = a.getString(R.styleable.DevWidget_dev_text1);
             mText1.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor1, 0xffffffff);
-            mText1.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight1, SizeUtils.dp2px(12));
+            mText1.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight1, SizeUtils.dp2px(getContext(), 12));
             mText1.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold1, false);
             mText1.initialize();
 
             mText2.text       = a.getString(R.styleable.DevWidget_dev_text2);
             mText2.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor2, 0x66ffffff);
-            mText2.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight2, SizeUtils.dp2px(8));
+            mText2.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight2, SizeUtils.dp2px(getContext(), 8));
             mText2.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold2, false);
             mText2.initialize();
 
