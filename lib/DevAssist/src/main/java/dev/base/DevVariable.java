@@ -8,8 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * detail: 变量基类 ( 方便判断处理 )
+ * detail: 变量操作基类
  * @author Ttt
+ * <pre>
+ *     内部封装逻辑, 对外提供快捷方法
+ *     减少逻辑实现代码
+ * </pre>
  */
 public class DevVariable<K, V> {
 
