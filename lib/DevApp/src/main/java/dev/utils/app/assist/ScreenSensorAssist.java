@@ -233,7 +233,7 @@ public final class ScreenSensorAssist {
             // Don't trust the angle if the magnitude is small compared to the y value
             if (magnitude * 4 >= Z * Z) {
                 // 屏幕旋转时
-                float OneEightyOverPi = 57.29577957855f;
+                float OneEightyOverPi = 57.29577957855F;
                 float angle           = (float) Math.atan2(-Y, X) * OneEightyOverPi;
                 orientation = 90 - Math.round(angle);
                 // normalize to 0 - 359 range
@@ -274,7 +274,7 @@ public final class ScreenSensorAssist {
             // Don't trust the angle if the magnitude is small compared to the y value
             if (magnitude * 4 >= Z * Z) {
                 // 屏幕旋转时
-                float OneEightyOverPi = 57.29577957855f;
+                float OneEightyOverPi = 57.29577957855F;
                 float angle           = (float) Math.atan2(-Y, X) * OneEightyOverPi;
                 orientation = 90 - Math.round(angle);
                 // normalize to 0 - 359 range

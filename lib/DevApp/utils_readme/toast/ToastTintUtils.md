@@ -200,7 +200,7 @@ private static class TempStyle implements ToastTintUtils.Style {
      */
     @Override
     public float getTextSize() {
-        return 16f;
+        return 16F;
     }
     
     /**

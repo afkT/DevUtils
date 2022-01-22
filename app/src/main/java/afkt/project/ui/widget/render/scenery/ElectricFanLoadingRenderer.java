@@ -72,24 +72,24 @@ public class ElectricFanLoadingRenderer
     private static final int DEGREE_360          = 360;
     private static final int FULL_GROUP_ROTATION = (int) (5.25f * DEGREE_360);
 
-    private static final int DEFAULT_PROGRESS_COLOR             = 0xfffca72e;
-    private static final int DEFAULT_PROGRESS_BGCOLOR           = 0xfffcd49f;
-    private static final int DEFAULT_ELECTRIC_FAN_BGCOLOR       = 0xfffccc59;
+    private static final int DEFAULT_PROGRESS_COLOR             = 0XFFFCA72E;
+    private static final int DEFAULT_PROGRESS_BGCOLOR           = 0XFFFCD49F;
+    private static final int DEFAULT_ELECTRIC_FAN_BGCOLOR       = 0XFFFCCC59;
     private static final int DEFAULT_ELECTRIC_FAN_OUTLINE_COLOR = Color.WHITE;
 
     private static final float DEFAULT_WIDTH                  = 182.0F;
     private static final float DEFAULT_HEIGHT                 = 65.0F;
     private static final float DEFAULT_TEXT_SIZE              = 11.0F;
     private static final float DEFAULT_STROKE_WIDTH           = 2.0F;
-    private static final float DEFAULT_STROKE_INTERVAL        = .2f;
+    private static final float DEFAULT_STROKE_INTERVAL        = .2F;
     private static final float DEFAULT_CENTER_RADIUS          = 16.0F;
     private static final float DEFAULT_PROGRESS_CENTER_RADIUS = 11.0F;
 
-    private static final float DEFAULT_LEAF_FLY_DURATION_FACTOR = 0.1f;
+    private static final float DEFAULT_LEAF_FLY_DURATION_FACTOR = 0.1F;
 
     private static final float LEAF_CREATE_DURATION_INTERVAL  = 1.0f / LEAF_COUNT;
-    private static final float DECELERATE_DURATION_PERCENTAGE = 0.4f;
-    private static final float ACCELERATE_DURATION_PERCENTAGE = 0.6f;
+    private static final float DECELERATE_DURATION_PERCENTAGE = 0.4F;
+    private static final float ACCELERATE_DURATION_PERCENTAGE = 0.6F;
 
     private final Paint mPaint                 = new Paint();
     private final RectF mTempBounds            = new RectF();

@@ -32,26 +32,26 @@ public class CircleBroodLoadingRenderer
     private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8F);
     private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0F);
 
-    private final float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
-    private final float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5f;
-    private final float STAGE_MOTHER_FORWARD_BOTTOM_LEFT  = 0.65f;
-    private final float STAGE_MOTHER_BACKWARD_BOTTOM_LEFT = 0.833f;
+    private final float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34F;
+    private final float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5F;
+    private final float STAGE_MOTHER_FORWARD_BOTTOM_LEFT  = 0.65F;
+    private final float STAGE_MOTHER_BACKWARD_BOTTOM_LEFT = 0.833F;
 
-    private final float STAGE_CHILD_DELAY                 = 0.1f;
-    private final float STAGE_CHILD_PRE_FORWARD_TOP_LEFT  = 0.26f;
-    private final float STAGE_CHILD_FORWARD_TOP_LEFT      = 0.34f;
-    private final float STAGE_CHILD_PRE_BACKWARD_TOP_LEFT = 0.42f;
-    private final float STAGE_CHILD_BACKWARD_TOP_LEFT     = 0.5f;
-    private final float STAGE_CHILD_FORWARD_BOTTOM_LEFT   = 0.7f;
-    private final float STAGE_CHILD_BACKWARD_BOTTOM_LEFT  = 0.9f;
+    private final float STAGE_CHILD_DELAY                 = 0.1F;
+    private final float STAGE_CHILD_PRE_FORWARD_TOP_LEFT  = 0.26F;
+    private final float STAGE_CHILD_FORWARD_TOP_LEFT      = 0.34F;
+    private final float STAGE_CHILD_PRE_BACKWARD_TOP_LEFT = 0.42F;
+    private final float STAGE_CHILD_BACKWARD_TOP_LEFT     = 0.5F;
+    private final float STAGE_CHILD_FORWARD_BOTTOM_LEFT   = 0.7F;
+    private final float STAGE_CHILD_BACKWARD_BOTTOM_LEFT  = 0.9F;
 
-    private final float OVAL_BEZIER_FACTOR = 0.55152f;
+    private final float OVAL_BEZIER_FACTOR = 0.55152F;
 
     private final float DEFAULT_WIDTH                  = 200.0F;
     private final float DEFAULT_HEIGHT                 = 150.0F;
     private final float MAX_MATHER_OVAL_SIZE           = 19;
     private final float MIN_CHILD_OVAL_RADIUS          = 5;
-    private final float MAX_MATHER_SHAPE_CHANGE_FACTOR = 0.8452f;
+    private final float MAX_MATHER_SHAPE_CHANGE_FACTOR = 0.8452F;
 
     private final int DEFAULT_OVAL_COLOR            = Color.parseColor("#FFBE1C23");
     private final int DEFAULT_OVAL_DEEP_COLOR       = Color.parseColor("#FFB21721");
@@ -223,10 +223,10 @@ public class CircleBroodLoadingRenderer
         float distance = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mChildPosition[0], 2.0F) + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0F));
         if (distance <= mMotherOvalHalfWidth + mChildOvalRadius * 1.2f
                 && distance >= mMotherOvalHalfWidth - mChildOvalRadius * 1.2F) {
-            float maxOffsetY = 2 * mChildOvalRadius * 1.2f;
+            float maxOffsetY = 2 * mChildOvalRadius * 1.2F;
             float offsetRate = (distance - (mMotherOvalHalfWidth - mChildOvalRadius * 1.2F)) / maxOffsetY;
 
-            float mMotherOvalOffsetY = mMotherOvalHalfHeight - offsetRate * (mMotherOvalHalfHeight - mChildOvalRadius) * 0.85f;
+            float mMotherOvalOffsetY = mMotherOvalHalfHeight - offsetRate * (mMotherOvalHalfHeight - mChildOvalRadius) * 0.85F;
 
             mMotherOvalPath.addOval(new RectF(mMotherPosition[0] - mMotherOvalHalfWidth, mMotherPosition[1] - mMotherOvalOffsetY,
                     mMotherPosition[0] + mMotherOvalHalfWidth, mMotherPosition[1] + mMotherOvalOffsetY
@@ -309,45 +309,45 @@ public class CircleBroodLoadingRenderer
 
         if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
             if (input >= 0.25) {
-                float shapeProgress = (input - 0.25F) / 0.01f;
-                mChildLeftXOffset = (1.0f - shapeProgress) * mChildOvalRadius * 0.25f;
+                float shapeProgress = (input - 0.25F) / 0.01F;
+                mChildLeftXOffset = (1.0f - shapeProgress) * mChildOvalRadius * 0.25F;
             } else {
-                mChildLeftXOffset = mChildOvalRadius * 0.25f;
+                mChildLeftXOffset = mChildOvalRadius * 0.25F;
             }
         } else if (input <= STAGE_CHILD_FORWARD_TOP_LEFT) {
             if (input > 0.275f && input < 0.285F) {
-                float shapeProgress = (input - 0.275F) / 0.01f;
-                mChildLeftXOffset = shapeProgress * mChildOvalRadius * 0.25f;
+                float shapeProgress = (input - 0.275F) / 0.01F;
+                mChildLeftXOffset = shapeProgress * mChildOvalRadius * 0.25F;
             } else if (input > 0.285F) {
-                mChildLeftXOffset = mChildOvalRadius * 0.25f;
+                mChildLeftXOffset = mChildOvalRadius * 0.25F;
             }
         } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
             if (input > 0.38F) {
-                float radiusProgress = (input - 0.38F) / 0.04f;
+                float radiusProgress = (input - 0.38F) / 0.04F;
                 mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
             if (input < 0.46F) {
-                float radiusProgress = (input - 0.42F) / 0.04f;
+                float radiusProgress = (input - 0.42F) / 0.04F;
                 mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
             }
         } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
             if (input > 0.65F) {
-                float radiusProgress = (input - 0.65F) / 0.05f;
+                float radiusProgress = (input - 0.65F) / 0.05F;
                 mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
             if (input < 0.71F) {
                 mChildOvalRadius = mBasicChildOvalRadius * 2.0F;
             } else if (input < 0.76F) {
-                float radiusProgress = (input - 0.71F) / 0.05f;
+                float radiusProgress = (input - 0.71F) / 0.05F;
                 mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
             }
         } else {
         }
 
-        mChildRightYOffset = mChildRightXOffset / 2.5f;
-        mChildLeftYOffset  = mChildLeftXOffset / 2.5f;
+        mChildRightYOffset = mChildRightXOffset / 2.5F;
+        mChildLeftYOffset  = mChildLeftXOffset / 2.5F;
     }
 
     private float getMotherShapeFactor(float input) {
@@ -577,12 +577,12 @@ public class CircleBroodLoadingRenderer
         if (input < 0.5F) {
             result = mOvalColor;
         } else if (input < 0.75F) {
-            float colorProgress = (input - 0.5F) / 0.2f;
+            float colorProgress = (input - 0.5F) / 0.2F;
             result = evaluateColorChange(colorProgress, mOvalColor, mOvalDeepColor);
         } else if (input < 0.85F) {
             result = mOvalDeepColor;
         } else {
-            float colorProgress = (input - 0.9F) / 0.1f;
+            float colorProgress = (input - 0.9F) / 0.1F;
             result = evaluateColorChange(colorProgress, mOvalDeepColor, mOvalColor);
         }
 
@@ -647,9 +647,9 @@ public class CircleBroodLoadingRenderer
             float result;
 
             if (input <= STAGE_MOTHER_FORWARD_TOP_LEFT) {
-                result = ACCELERATE_INTERPOLATOR10.getInterpolation(input * 2.941F) / 2.941f;
+                result = ACCELERATE_INTERPOLATOR10.getInterpolation(input * 2.941F) / 2.941F;
             } else if (input <= STAGE_MOTHER_BACKWARD_TOP_LEFT) {
-                result = 0.34f + DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.34F) * 6.25F) / 6.25f;
+                result = 0.34f + DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.34F) * 6.25F) / 6.25F;
             } else if (input <= STAGE_MOTHER_FORWARD_BOTTOM_LEFT) {
                 result = 0.5f + ACCELERATE_INTERPOLATOR03.getInterpolation((input - 0.5F) * 6.666F) / 4.0F;
             } else if (input <= STAGE_MOTHER_BACKWARD_BOTTOM_LEFT) {
@@ -672,17 +672,17 @@ public class CircleBroodLoadingRenderer
             if (input < STAGE_CHILD_DELAY) {
                 return 0.0F;
             } else if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
-                result = DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.1F) * 6.25F) / 3.846f;
+                result = DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.1F) * 6.25F) / 3.846F;
             } else if (input <= STAGE_CHILD_FORWARD_TOP_LEFT) {
-                result = 0.26f + ACCELERATE_INTERPOLATOR10.getInterpolation((input - 0.26F) * 12.5F) / 12.5f;
+                result = 0.26f + ACCELERATE_INTERPOLATOR10.getInterpolation((input - 0.26F) * 12.5F) / 12.5F;
             } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
-                result = 0.34f + DECELERATE_INTERPOLATOR08.getInterpolation((input - 0.34F) * 12.5F) / 12.5f;
+                result = 0.34f + DECELERATE_INTERPOLATOR08.getInterpolation((input - 0.34F) * 12.5F) / 12.5F;
             } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
-                result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42F) * 12.5F) / 12.5f;
+                result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42F) * 12.5F) / 12.5F;
             } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
                 result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5F) * 5.0F) / 5.0F;
             } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
-                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7F) * 5.0F) / 3.33f;
+                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7F) * 5.0F) / 3.33F;
             } else {
                 result = 1.0F;
             }

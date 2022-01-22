@@ -1300,7 +1300,7 @@ public final class WindowAssist {
         if (window == null) return false;
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         if (layoutParams == null) return false;
-        layoutParams.screenBrightness = brightness / 255f;
+        layoutParams.screenBrightness = brightness / 255F;
         return setAttributes(window, layoutParams);
     }
 

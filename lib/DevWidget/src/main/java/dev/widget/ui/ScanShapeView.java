@@ -196,7 +196,7 @@ public class ScanShapeView
     // 线条中心点
     private       float         mCenterToHexagon     = 0;
     // 线条宽度
-    private final float         mLineWidthToHexagon  = 4f;
+    private final float         mLineWidthToHexagon  = 4F;
     // 绘制线条边距 ( 针对绘制区域 )
     private       float         mLineMarginToHexagon = 20F;
     // 动画方向 ( 六边形线条 ) - true = 左, false = 右
@@ -219,7 +219,7 @@ public class ScanShapeView
     // 线条颜色
     private int           mLineColorToAnnulus       = 0;
     // 绘制扫描线条偏移速度
-    private float         mLineOffsetSpeedToAnnulus = 4f;
+    private float         mLineOffsetSpeedToAnnulus = 4F;
 
     // ==========
     // = 构造函数 =
@@ -1073,7 +1073,7 @@ public class ScanShapeView
      */
     public ScanShapeView setLineOffsetSpeedToAnnulus(float lineOffsetSpeedToAnnulus) {
         if (lineOffsetSpeedToAnnulus < 0) {
-            lineOffsetSpeedToAnnulus = 4f;
+            lineOffsetSpeedToAnnulus = 4F;
         }
         this.mLineOffsetSpeedToAnnulus = lineOffsetSpeedToAnnulus;
         return this;
@@ -2081,15 +2081,15 @@ public class ScanShapeView
                     if (mLineAnimDirection) {
                         mStartLinePoint = value / 360F;
                         if (mStartLinePoint >= 0.25F) {
-                            mStartLinePoint = mStartLinePoint - 0.25f;
+                            mStartLinePoint = mStartLinePoint - 0.25F;
                         } else {
-                            mStartLinePoint = mStartLinePoint + 0.75f;
+                            mStartLinePoint = mStartLinePoint + 0.75F;
                         }
                         // 计算结束点的位置
-                        mEndLinePoint = mStartLinePoint + 0.5f;
+                        mEndLinePoint = mStartLinePoint + 0.5F;
                         if (mStartLinePoint > 0.5F) {
                             // 计算移动距离, 对应的透明度
-                            mOffsetLinePoint = mStartLinePoint - 0.5f;
+                            mOffsetLinePoint = mStartLinePoint - 0.5F;
                             // 转换 argb
                             int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5F)), mLineRed, mLineGreen, mLineBlue);
                             // 设置线条颜色
@@ -2105,15 +2105,15 @@ public class ScanShapeView
                     } else { // 从右向左动画
                         mStartLinePoint = (360 - value) / 360F;
                         if (mStartLinePoint >= 0.25F) {
-                            mStartLinePoint = mStartLinePoint - 0.25f;
+                            mStartLinePoint = mStartLinePoint - 0.25F;
                         } else {
-                            mStartLinePoint = mStartLinePoint + 0.75f;
+                            mStartLinePoint = mStartLinePoint + 0.75F;
                         }
                         // 计算结束点的位置
-                        mEndLinePoint = mStartLinePoint + 0.5f;
+                        mEndLinePoint = mStartLinePoint + 0.5F;
                         if (mStartLinePoint > 0.5F) {
                             // 计算移动距离, 对应的透明度
-                            mOffsetLinePoint = mStartLinePoint - 0.5f;
+                            mOffsetLinePoint = mStartLinePoint - 0.5F;
                             // 转换 argb
                             int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5F)), mLineRed, mLineGreen, mLineBlue);
                             // 设置线条颜色

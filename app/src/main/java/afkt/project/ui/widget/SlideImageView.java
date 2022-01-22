@@ -507,7 +507,7 @@ public class SlideImageView
     }
 
     // 设置滑动比例
-    private float slideCalcScale = -1f;
+    private float slideCalcScale = -1F;
 
     /**
      * 设置滑动比例
@@ -526,7 +526,7 @@ public class SlideImageView
             // 临时处理
             float tScalc = slideCalcScale;
             // 清空比例
-            slideCalcScale = -1f;
+            slideCalcScale = -1F;
             // 超过限制, 则默认为 1 倍
             if (tScalc > 1.0F) {
                 tScalc = 1.0F;

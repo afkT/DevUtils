@@ -388,12 +388,12 @@ public class WaveHelper {
 
             // 波浪移动方向效果属性值
             private float waveShiftRatioStart  = 0F;
-            private float waveShiftRatioEnd    = 1f;
+            private float waveShiftRatioEnd    = 1F;
             private long  waveShiftRatioMillis = 1000L;
 
             // 波浪大小 ( 上下波动 ) 效果属性值
-            private float amplitudeRatioStart  = 0.0001f;
-            private float amplitudeRatioEnd    = 0.05f;
+            private float amplitudeRatioStart  = 0.0001F;
+            private float amplitudeRatioEnd    = 0.05F;
             private long  amplitudeRatioMillis = 5000L;
 
             // 水位高度属性值

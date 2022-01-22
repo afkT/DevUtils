@@ -35,7 +35,7 @@ public class CoolWaitLoadingRenderer
     private final float DEFAULT_STROKE_WIDTH = 8.0F;
     private final float WAIT_CIRCLE_RADIUS   = 50.0F;
 
-    private static final float WAIT_TRIM_DURATION_OFFSET = 0.5f;
+    private static final float WAIT_TRIM_DURATION_OFFSET = 0.5F;
     private static final float END_TRIM_DURATION_OFFSET  = 1.0F;
 
     private final long ANIMATION_DURATION = 2222;
@@ -168,8 +168,8 @@ public class CoolWaitLoadingRenderer
             mWaitPathMeasure.setPath(mWaitPath, false);
             mWaitPathLength = mWaitPathMeasure.getLength();
 
-            mOriginEndDistance   = mWaitPathLength * 0.255f;
-            mOriginStartDistance = mWaitPathLength * 0.045f;
+            mOriginEndDistance   = mWaitPathLength * 0.255F;
+            mOriginStartDistance = mWaitPathLength * 0.045F;
         }
 
         mCurrentTopWaitPath.reset();

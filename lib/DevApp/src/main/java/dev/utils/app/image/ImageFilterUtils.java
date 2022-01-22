@@ -546,7 +546,7 @@ public final class ImageFilterUtils {
 
             int idx;
 
-            float alpha  = 0.3f;
+            float alpha  = 0.3F;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 1, length = height - 1; i < length; i++) {

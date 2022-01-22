@@ -141,7 +141,7 @@ public final class ToastTintUse {
          */
         @Override
         public float getTextSize() {
-            return 16f;
+            return 16F;
         }
 
         /**

@@ -93,7 +93,7 @@ public final class GlideTransformUtils {
             Paint  paint  = new Paint();
             paint.setShader(new BitmapShader(squared, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
             paint.setAntiAlias(true);
-            float r = size / 2f;
+            float r = size / 2F;
             canvas.drawCircle(r, r, r, paint);
             return result;
         }

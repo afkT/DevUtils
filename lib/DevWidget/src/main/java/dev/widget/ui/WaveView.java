@@ -51,9 +51,9 @@ public class WaveView
      */
 
     // Amplitude ( 振幅 ) - 波浪垂直振动时偏离水面的最大距离
-    public static final float     DEFAULT_AMPLITUDE_RATIO   = 0.05f;
+    public static final float     DEFAULT_AMPLITUDE_RATIO   = 0.05F;
     // Water Level ( 水位 ) - 波浪静止时水面距离底部的高度
-    public static final float     DEFAULT_WATER_LEVEL_RATIO = 0.5f;
+    public static final float     DEFAULT_WATER_LEVEL_RATIO = 0.5F;
     // Wave Length ( 波长 ) - 一个完整的波浪的水平长度
     public static final float     DEFAULT_WAVE_LENGTH_RATIO = 1.0F;
     // Wave Shift ( 偏移 ) - 波浪相对于初始位置的水平偏移

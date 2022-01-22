@@ -174,7 +174,7 @@ private static class TempStyle implements IToast.Style {
      */
     @Override
     public float getCornerRadius() {
-        return 5f;
+        return 5F;
     }
     
     /**
@@ -212,7 +212,7 @@ private static class TempStyle implements IToast.Style {
      */
     @Override
     public float getTextSize() {
-        return 16f;
+        return 16F;
     }
     
     /**

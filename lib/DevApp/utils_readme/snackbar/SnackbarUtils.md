@@ -271,7 +271,7 @@ class NightStyle extends SnackbarUtils.Style {
 
     @Override
     public float getRootAlpha() {
-        return 0.5f;
+        return 0.5F;
     }
 }
 ```

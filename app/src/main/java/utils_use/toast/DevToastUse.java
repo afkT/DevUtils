@@ -151,7 +151,7 @@ public final class DevToastUse {
          */
         @Override
         public float getCornerRadius() {
-            return 5f;
+            return 5F;
         }
 
         /**
@@ -189,7 +189,7 @@ public final class DevToastUse {
          */
         @Override
         public float getTextSize() {
-            return 16f;
+            return 16F;
         }
 
         /**

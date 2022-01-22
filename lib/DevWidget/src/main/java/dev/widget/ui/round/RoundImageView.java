@@ -453,8 +453,8 @@ public class RoundImageView
 
         int sideLength = Math.min(availableWidth, availableHeight);
 
-        float left = getPaddingLeft() + (availableWidth - sideLength) / 2f;
-        float top  = getPaddingTop() + (availableHeight - sideLength) / 2f;
+        float left = getPaddingLeft() + (availableWidth - sideLength) / 2F;
+        float top  = getPaddingTop() + (availableHeight - sideLength) / 2F;
 
         return new RectF(left, top, left + sideLength, top + sideLength);
     }
@@ -474,10 +474,10 @@ public class RoundImageView
 
         if (bitmapWidth * mDrawableRect.height() > mDrawableRect.width() * bitmapHeight) {
             scale = mDrawableRect.height() / (float) bitmapHeight;
-            dx    = (mDrawableRect.width() - bitmapWidth * scale) * 0.5f;
+            dx    = (mDrawableRect.width() - bitmapWidth * scale) * 0.5F;
         } else {
             scale = mDrawableRect.width() / (float) bitmapWidth;
-            dy    = (mDrawableRect.height() - bitmapHeight * scale) * 0.5f;
+            dy    = (mDrawableRect.height() - bitmapHeight * scale) * 0.5F;
         }
         mShaderMatrix.setScale(scale, scale);
         mShaderMatrix.postTranslate(

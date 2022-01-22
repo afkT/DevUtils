@@ -1140,7 +1140,7 @@ public final class BitmapUtils {
         int size   = Math.min(width, height);
 
         Paint paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
-        float center = size / 2f;
+        float center = size / 2F;
         RectF rectF  = new RectF(0, 0, width, height);
         rectF.inset((width - size) / 2f, (height - size) / 2F);
 
@@ -1164,7 +1164,7 @@ public final class BitmapUtils {
             paint.setColor(borderColor);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(borderSize);
-            float radius = center - borderSize / 2f;
+            float radius = center - borderSize / 2F;
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         }
         return newBitmap;
@@ -1234,7 +1234,7 @@ public final class BitmapUtils {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(borderSize);
         if (isCircle) {
-            float radius = Math.min(width, height) / 2f - borderSize / 2f;
+            float radius = Math.min(width, height) / 2f - borderSize / 2F;
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         } else {
             int halfBorderSize = borderSize >> 1;

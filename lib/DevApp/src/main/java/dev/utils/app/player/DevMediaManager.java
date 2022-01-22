@@ -684,7 +684,7 @@ public final class DevMediaManager
     // 视频高度
     private int    mVideoHeight = 0;
     // 播放音量
-    private float  mVolume      = -1f;
+    private float  mVolume      = -1F;
 
     /**
      * 清空播放信息

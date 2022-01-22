@@ -24,8 +24,8 @@ public class DanceLoadingRenderer
 
     private static final long ANIMATION_DURATION = 1888;
 
-    private static final float DEFAULT_CENTER_RADIUS     = 12.5f;
-    private static final float DEFAULT_STROKE_WIDTH      = 1.5f;
+    private static final float DEFAULT_CENTER_RADIUS     = 12.5F;
+    private static final float DEFAULT_STROKE_WIDTH      = 1.5F;
     private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0F;
 
     private static final int NUM_POINTS           = 3;
@@ -43,27 +43,27 @@ public class DanceLoadingRenderer
     private static final int[]   DIRECTION = new int[]{1, 1, -1};
 
     private static final float BALL_FORWARD_START_ENTER_DURATION_OFFSET = 0F;
-    private static final float BALL_FORWARD_END_ENTER_DURATION_OFFSET   = 0.125f;
+    private static final float BALL_FORWARD_END_ENTER_DURATION_OFFSET   = 0.125F;
 
-    private static final float RING_FORWARD_START_ROTATE_DURATION_OFFSET = 0.125f;
-    private static final float RING_FORWARD_END_ROTATE_DURATION_OFFSET   = 0.375f;
+    private static final float RING_FORWARD_START_ROTATE_DURATION_OFFSET = 0.125F;
+    private static final float RING_FORWARD_END_ROTATE_DURATION_OFFSET   = 0.375F;
 
-    private static final float CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET = 0.225f;
-    private static final float CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET   = 0.475f;
+    private static final float CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET = 0.225F;
+    private static final float CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET   = 0.475F;
 
-    private static final float BALL_FORWARD_START_EXIT_DURATION_OFFSET = 0.375f;
-    private static final float BALL_FORWARD_END_EXIT_DURATION_OFFSET   = 0.54f;
+    private static final float BALL_FORWARD_START_EXIT_DURATION_OFFSET = 0.375F;
+    private static final float BALL_FORWARD_END_EXIT_DURATION_OFFSET   = 0.54F;
 
-    private static final float RING_REVERSAL_START_ROTATE_DURATION_OFFSET = 0.5f;
-    private static final float RING_REVERSAL_END_ROTATE_DURATION_OFFSET   = 0.75f;
+    private static final float RING_REVERSAL_START_ROTATE_DURATION_OFFSET = 0.5F;
+    private static final float RING_REVERSAL_END_ROTATE_DURATION_OFFSET   = 0.75F;
 
-    private static final float BALL_REVERSAL_START_ENTER_DURATION_OFFSET = 0.6f;
-    private static final float BALL_REVERSAL_END_ENTER_DURATION_OFFSET   = 0.725f;
+    private static final float BALL_REVERSAL_START_ENTER_DURATION_OFFSET = 0.6F;
+    private static final float BALL_REVERSAL_END_ENTER_DURATION_OFFSET   = 0.725F;
 
-    private static final float CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET = 0.675f;
-    private static final float CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET   = 0.875f;
+    private static final float CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET = 0.675F;
+    private static final float CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET   = 0.875F;
 
-    private static final float BALL_REVERSAL_START_EXIT_DURATION_OFFSET = 0.875f;
+    private static final float BALL_REVERSAL_START_EXIT_DURATION_OFFSET = 0.875F;
     private static final float BALL_REVERSAL_END_EXIT_DURATION_OFFSET   = 1.0F;
 
     private final Paint mPaint         = new Paint();
@@ -190,9 +190,9 @@ public class DanceLoadingRenderer
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET);
 
             if (centerCircleScaleProgress <= 0.5F) {
-                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
+                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2F;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2F;
             }
 
         }
@@ -239,9 +239,9 @@ public class DanceLoadingRenderer
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET);
 
             if (centerCircleScaleProgress <= 0.5F) {
-                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
+                mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2F;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2F;
             }
 
         }

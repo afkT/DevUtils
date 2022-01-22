@@ -1010,7 +1010,7 @@ public final class TextViewUtils {
         if (textView != null) {
             return textView.getTextSize();
         }
-        return -1f;
+        return -1F;
     }
 
     /**
@@ -2333,7 +2333,7 @@ public final class TextViewUtils {
         if (paint != null && text != null) {
             return paint.measureText(text);
         }
-        return -1f;
+        return -1F;
     }
 
     // =
@@ -2412,7 +2412,7 @@ public final class TextViewUtils {
                 LogPrintUtils.eTag(TAG, e, "getTextWidth");
             }
         }
-        return -1f;
+        return -1F;
     }
 
     /**
@@ -2436,7 +2436,7 @@ public final class TextViewUtils {
                 LogPrintUtils.eTag(TAG, e, "getTextWidth");
             }
         }
-        return -1f;
+        return -1F;
     }
 
     /**
@@ -2460,7 +2460,7 @@ public final class TextViewUtils {
                 LogPrintUtils.eTag(TAG, e, "getTextWidth");
             }
         }
-        return -1f;
+        return -1F;
     }
 
     // =
@@ -2524,10 +2524,10 @@ public final class TextViewUtils {
             if (calcTextHeight == height) {
                 return textSize;
             } else if (calcTextHeight > height) { // 如果计算的字体高度大于
-                textSize -= 0.5f;
+                textSize -= 0.5F;
                 state = 1;
             } else {
-                textSize += 0.5f;
+                textSize += 0.5F;
                 if (state == 1) {
                     return textSize;
                 }
@@ -2617,10 +2617,10 @@ public final class TextViewUtils {
             if (calcTextWidth == width) {
                 return textSize;
             } else if (calcTextWidth > width) { // 如果计算的字体宽度大于
-                textSize -= 0.5f;
+                textSize -= 0.5F;
                 state = 1;
             } else {
-                textSize += 0.5f;
+                textSize += 0.5F;
                 if (state == 1) {
                     return textSize;
                 }
