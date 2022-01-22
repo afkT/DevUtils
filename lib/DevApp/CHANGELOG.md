@@ -31,9 +31,9 @@ Version 2.3.1 *(2021-12-20)*
 * `[Add]` FloatingWindowManagerAssist、FloatingWindowManagerAssist2 悬浮窗两种实现方案辅助类
 
 * `[Add]` ActivityLifecycleAssist Activity 生命周期监听辅助类
-  
+
 * `[Add]` WindowAssist Window 辅助类
-  
+
 * `[Add]` WindowUtils Window 工具类
 
 * `[Add]` DevHelper Dev 工具类链式调用类
@@ -46,7 +46,7 @@ Version 2.3.0 *(2021-11-26)*
 * `[Refactor]` 检查整个项目新增部分方法支持传入 Context 参数 ( 以便屏幕适配等 )
 
 * `[Add]` ActivityManagerAssist Activity 栈管理辅助类
-  
+
 * `[Add]` WeakReferenceAssist 弱引用辅助类
 
 * `[Add]` MapUtils#mapToString
@@ -67,11 +67,11 @@ Version 2.2.9 *(2021-09-20)*
 * `[Add]` SharedPreferences 操作监听器 OnSPOperateListener
 
 * `[Add]` ViewUtils#setVisibilityIN、setVisibilityINs、getGlobalVisibleRect、getLocalVisibleRect、getLocationInWindow、getLocationOnScreen、setBarProgress、setBarMax、setBarValue
-  
+
 * `[Add]` KeyBoardUtils#openKeyboardByFocus
 
 * `[Add]` ImageViewUtils#setImageLevel
-  
+
 * `[Add]` VersionUtils#isEclair、isKitkat_Watch、isLollipop_MR1、convertSDKVersionName
 
 * `[Refactor]` 重构 QuickHelper、ViewHelper、VersionHelper
@@ -523,7 +523,7 @@ Version 1.8.5 *(2019-11-25)*
 ----------------------------
 
 * `[Refactor]` 重构整个项目, 优化代码逻辑判断、代码风格、合并工具类减少包大小等, 并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
- 
+
 * `[Add]` JSONObjectUtils#isJSONObject、isJSONArray、jsonToMap、jsonToList、getJSONObject、getJSONArray、get、opt
 
 * `[Add]` AppCommonUtils#getAppDeviceInfo、refreshAppDeviceInfo
@@ -540,7 +540,7 @@ Version 1.8.5 *(2019-11-25)*
 
 Version 1.8.4 *(2019-11-05)*
 ----------------------------
- 
+
 * `[Add]` FileUtils#isImageFormats、isAudioFormats、isVideoFormats、isFileFormats
 
 * `[Add]` ViewUtils#getWidthHeight、getNextFocusUpId、getNextFocusRightId、getNextFocusLeftId、getNextFocusDownId、getNextFocusForwardId、isScrollContainer、getChildCount、getRotation、getRotationX、getRotationY、getScaleX、getScaleY、getTextAlignment、getTextDirection、getPivotX、getPivotY、getTranslationX、getTranslationY、getLayerType、isFocusable、isSelected、isEnabled、isClickable、isLongClickable、findFocus、isFocused、hasFocus、hasFocusable、isFocusableInTouchMode、setFocusableInTouchMode、scrollTo、scrollBy、setScrollX、setScrollY、getScrollX、getScrollY、isHorizontalScrollBarEnabled、setHorizontalScrollBarEnabled、isVerticalScrollBarEnabled、setVerticalScrollBarEnabled、setDescendantFocusability、setOverScrollMode
@@ -557,7 +557,7 @@ Version 1.8.4 *(2019-11-05)*
 
 Version 1.8.3 *(2019-10-31)*
 ----------------------------
- 
+
 * `[Add]` ArrayUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumarray
 
 * `[Add]` CollectionUtils#getMinimum、getMaximum、、getMinimumIndex、getMaximumIndex、sumlist

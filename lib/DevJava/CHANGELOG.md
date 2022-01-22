@@ -24,7 +24,7 @@ Version 1.3.7 *(2021-11-26)*
 ----------------------------
 
 * `[Add]` WeakReferenceAssist 弱引用辅助类
-  
+
 * `[Add]` MapUtils#mapToString
 
 Version 1.3.6 *(2021-09-20)*
@@ -251,7 +251,7 @@ Version 1.0.6 *(2019-11-25)*
 ----------------------------
 
 * `[Refactor]` 重构整个项目, 优化代码逻辑判断、代码风格、合并工具类减少包大小等, 并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
- 
+
 * `[Add]` FileRecordUtils 文件记录结果回调
 
 * `[Add]` MapUtils、CollectionUtils 获取泛型数组 toArrayT
@@ -260,12 +260,12 @@ Version 1.0.6 *(2019-11-25)*
 
 Version 1.0.5 *(2019-11-05)*
 ----------------------------
- 
+
 * `[Add]` FileUtils#isImageFormats、isAudioFormats、isVideoFormats、isFileFormats
 
 Version 1.0.4 *(2019-10-31)*
 ----------------------------
- 
+
 * `[Add]` ArrayUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumarray
 
 * `[Add]` CollectionUtils#getMinimum、getMaximum、getMinimumIndex、getMaximumIndex、sumlist
