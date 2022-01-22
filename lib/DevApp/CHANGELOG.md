@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.3.4 *(2022-01-23)*
+----------------------------
+
+* `[Update]` SizeUtils#dipConvertPx、dipConvertPxf、pxConvertDip、pxConvertDipf、spConvertPx、spConvertPxf、pxConvertSp、pxConvertSpf 方法重命名为 dp2px、dp2pxf、px2dp、px2dpf、sp2px、sp2pxf、px2sp、px2spf
+
+* `[Update]` ClickUtils、ListenerUtils 移除 listener 判 null 处理
+
 Version 2.3.3 *(2022-01-10)*
 ----------------------------
 

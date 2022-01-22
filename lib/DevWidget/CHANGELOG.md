@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.5 *(2022-01-23)*
+----------------------------
+
+* `[Add]` RightIconEditText Icon ClickListener
+
 Version 1.1.4 *(2022-01-10)*
 ----------------------------
 
