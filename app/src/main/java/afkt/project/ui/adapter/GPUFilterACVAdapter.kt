@@ -2,6 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.model.bean.ACVFileBean
+import afkt.project.util.AppSize
 import android.content.Context
 import android.view.Gravity
 import android.view.View
@@ -10,7 +11,6 @@ import android.widget.BaseAdapter
 import android.widget.Gallery
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
-import dev.utils.app.SizeUtils
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
@@ -64,7 +64,7 @@ class GPUFilterACVAdapter(
     private fun createTextView(position: Int): BaseTextView {
         val acvFileBean = getItem(position)
         val isSelect = (selectPosition == position)
-        val width = SizeUtils.dp2px(100f)
+        val width = AppSize.dp2px(100f)
         val layoutParams = Gallery.LayoutParams(
             width, Gallery.LayoutParams.MATCH_PARENT
         )

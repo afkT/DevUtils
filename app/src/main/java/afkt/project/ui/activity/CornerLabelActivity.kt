@@ -4,12 +4,12 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
+import afkt.project.util.AppSize
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ListenerUtils
-import dev.utils.app.SizeUtils
 import dev.utils.common.RandomUtils
 
 /**
@@ -81,7 +81,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             R.id.vid_btn_height1_minus_tv -> {
                 if (mText1Height < 8) return
                 mText1Height -= 2f
-                convertPx = SizeUtils.sp2px(mText1Height).toFloat()
+                convertPx = AppSize.sp2pxf(mText1Height)
                 labelView.setTextHeight1(convertPx)
                 labelView.setPaddingTop(convertPx)
                 labelView.setPaddingCenter(convertPx / 3)
@@ -90,7 +90,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             R.id.vid_btn_height1_plus_tv -> {
                 if (mText1Height > 30) return
                 mText1Height += 2f
-                convertPx = SizeUtils.sp2px(mText1Height).toFloat()
+                convertPx = AppSize.sp2pxf(mText1Height)
                 labelView.setTextHeight1(convertPx)
                 labelView.setPaddingTop(convertPx)
                 labelView.setPaddingCenter(convertPx / 3)
@@ -107,13 +107,13 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
             R.id.vid_btn_height2_minus_tv -> {
                 if (mText2Height < 4) return
                 mText2Height -= 2f
-                convertPx = SizeUtils.sp2px(mText2Height).toFloat()
+                convertPx = AppSize.sp2pxf(mText2Height)
                 labelView.setTextHeight2(convertPx)
             }
             R.id.vid_btn_height2_plus_tv -> {
                 if (mText2Height > 20) return
                 mText2Height += 2f
-                convertPx = SizeUtils.sp2px(mText2Height).toFloat()
+                convertPx = AppSize.sp2pxf(mText2Height)
                 labelView.setTextHeight2(convertPx)
             }
         }

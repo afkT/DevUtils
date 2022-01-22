@@ -33,7 +33,7 @@ import java.util.Random;
 
 import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingRenderer;
-import dev.utils.app.SizeUtils;
+import afkt.project.util.AppSize;
 
 public class ElectricFanLoadingRenderer
         extends LoadingRenderer {
@@ -133,12 +133,12 @@ public class ElectricFanLoadingRenderer
     private void initialize(Context context) {
         mMode = MODE_NORMAL;
 
-        mWidth                = SizeUtils.dp2px(DEFAULT_WIDTH);
-        mHeight               = SizeUtils.dp2px(DEFAULT_HEIGHT);
-        mTextSize             = SizeUtils.dp2px(DEFAULT_TEXT_SIZE);
-        mStrokeWidth          = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
-        mCenterRadius         = SizeUtils.dp2px(DEFAULT_CENTER_RADIUS);
-        mProgressCenterRadius = SizeUtils.dp2px(DEFAULT_PROGRESS_CENTER_RADIUS);
+        mWidth                = AppSize.INSTANCE.dp2px(DEFAULT_WIDTH);
+        mHeight               = AppSize.INSTANCE.dp2px(DEFAULT_HEIGHT);
+        mTextSize             = AppSize.INSTANCE.dp2px(DEFAULT_TEXT_SIZE);
+        mStrokeWidth          = AppSize.INSTANCE.dp2px(DEFAULT_STROKE_WIDTH);
+        mCenterRadius         = AppSize.INSTANCE.dp2px(DEFAULT_CENTER_RADIUS);
+        mProgressCenterRadius = AppSize.INSTANCE.dp2px(DEFAULT_PROGRESS_CENTER_RADIUS);
 
         mProgressColor           = DEFAULT_PROGRESS_COLOR;
         mProgressBgColor         = DEFAULT_PROGRESS_BGCOLOR;

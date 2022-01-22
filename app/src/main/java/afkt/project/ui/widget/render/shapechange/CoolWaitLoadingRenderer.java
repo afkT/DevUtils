@@ -15,7 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import dev.utils.app.SizeUtils;
+import afkt.project.util.AppSize;
 
 public class CoolWaitLoadingRenderer
         extends LoadingRenderer {
@@ -67,10 +67,10 @@ public class CoolWaitLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mWidth            = SizeUtils.dp2px(DEFAULT_WIDTH);
-        mHeight           = SizeUtils.dp2px(DEFAULT_HEIGHT);
-        mStrokeWidth      = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
-        mWaitCircleRadius = SizeUtils.dp2px(WAIT_CIRCLE_RADIUS);
+        mWidth            = AppSize.INSTANCE.dp2px(DEFAULT_WIDTH);
+        mHeight           = AppSize.INSTANCE.dp2px(DEFAULT_HEIGHT);
+        mStrokeWidth      = AppSize.INSTANCE.dp2px(DEFAULT_STROKE_WIDTH);
+        mWaitCircleRadius = AppSize.INSTANCE.dp2px(WAIT_CIRCLE_RADIUS);
 
 //        mTopColor = Color.parseColor("#FF1B78DD");
         mTopColor    = Color.WHITE;

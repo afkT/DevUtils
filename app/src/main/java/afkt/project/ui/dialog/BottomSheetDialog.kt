@@ -1,6 +1,7 @@
 package afkt.project.ui.dialog
 
 import afkt.project.R
+import afkt.project.util.AppSize
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.utils.app.ResourceUtils
-import dev.utils.app.SizeUtils
 
 /**
  * detail: Material BottomSheetDialog
@@ -43,7 +43,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
             mBehavior = BottomSheetBehavior.from(this)
             // 默认显示高度
-            mBehavior.peekHeight = SizeUtils.dp2px(290F)
+            mBehavior.peekHeight = AppSize.dp2px(290F)
             mBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }

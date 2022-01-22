@@ -6,6 +6,7 @@ import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ItemStickyBean
 import afkt.project.ui.adapter.ItemStickyAdapter
+import afkt.project.util.AppSize
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -16,7 +17,6 @@ import com.gavin.com.library.listener.PowerGroupListener
 import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
-import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
@@ -66,7 +66,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         val decoration1 = PowerfulStickyDecoration.Builder
             .init(listener)
-            .setGroupHeight(SizeUtils.dp2px(50.0f))
+            .setGroupHeight(AppSize.dp2px(50F))
 //            // 重置 span ( 注意 : 使用 GridLayoutManager 时必须调用 )
 //            .resetSpan(mRecyclerView, (GridLayoutManager) manager)
             .build()
@@ -82,8 +82,8 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val decoration = StickyDecoration.Builder.init(groupListener)
             .setGroupBackground(ResourceUtils.getColor(R.color.color_f7))
             .setGroupTextColor(ResourceUtils.getColor(R.color.color_33))
-            .setGroupTextSize(SizeUtils.sp2px(15.0f))
-            .setTextSideMargin(SizeUtils.dp2px(10.0f))
+            .setGroupTextSize(AppSize.sp2px(15.0f))
+            .setTextSideMargin(AppSize.dp2px(10.0f))
             .build()
 
         // 初始化布局管理器、适配器

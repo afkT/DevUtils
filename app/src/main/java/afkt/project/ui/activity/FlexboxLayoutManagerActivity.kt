@@ -5,6 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.ui.adapter.TextAdapter
+import afkt.project.util.AppSize
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,6 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
-import dev.utils.app.SizeUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
@@ -39,8 +39,8 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         val parent = binding.vidRv.parent as? ViewGroup
         // 根布局处理
         QuickHelper.get(parent).setPadding(
-            0, 0, SizeUtils.dp2px(5F),
-            SizeUtils.dp2px(5F)
+            0, 0, AppSize.dp2px(5F),
+            AppSize.dp2px(5F)
         )
 
         val view = QuickHelper.get(BaseTextView(this))

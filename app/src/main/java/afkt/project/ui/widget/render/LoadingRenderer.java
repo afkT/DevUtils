@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
-import dev.utils.app.SizeUtils;
+import afkt.project.util.AppSize;
 
 public abstract class LoadingRenderer {
     private static final long  ANIMATION_DURATION = 1333;
@@ -101,8 +101,8 @@ public abstract class LoadingRenderer {
     }
 
     private void initParams(Context context) {
-        mWidth  = SizeUtils.dp2px(DEFAULT_SIZE);
-        mHeight = SizeUtils.dp2px(DEFAULT_SIZE);
+        mWidth  = AppSize.INSTANCE.dp2px(DEFAULT_SIZE);
+        mHeight = AppSize.INSTANCE.dp2px(DEFAULT_SIZE);
 
         mDuration = ANIMATION_DURATION;
     }

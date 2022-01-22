@@ -14,7 +14,7 @@ import android.view.animation.Interpolator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import dev.utils.app.SizeUtils;
+import afkt.project.util.AppSize;
 
 public class DanceLoadingRenderer
         extends LoadingRenderer {
@@ -90,9 +90,9 @@ public class DanceLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mStrokeWidth     = SizeUtils.dp2px(DEFAULT_STROKE_WIDTH);
-        mCenterRadius    = SizeUtils.dp2px(DEFAULT_CENTER_RADIUS);
-        mDanceBallRadius = SizeUtils.dp2px(DEFAULT_DANCE_BALL_RADIUS);
+        mStrokeWidth     = AppSize.INSTANCE.dp2px(DEFAULT_STROKE_WIDTH);
+        mCenterRadius    = AppSize.INSTANCE.dp2px(DEFAULT_CENTER_RADIUS);
+        mDanceBallRadius = AppSize.INSTANCE.dp2px(DEFAULT_DANCE_BALL_RADIUS);
 
         setColor(DEFAULT_COLOR);
         setInsets((int) mWidth, (int) mHeight);

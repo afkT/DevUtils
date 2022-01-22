@@ -15,6 +15,17 @@ public class DevVariableExt<K, V, P> {
     // 变量创建器
     private       Creator<K, V, P>  mCreator  = null;
 
+    // ==========
+    // = 构造函数 =
+    // ==========
+
+    public DevVariableExt() {
+    }
+
+    public DevVariableExt(final Creator<K, V, P> creator) {
+        this.mCreator = creator;
+    }
+
     // ========
     // = 创建器 =
     // ========

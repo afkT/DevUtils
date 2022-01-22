@@ -5,12 +5,12 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityViewAssistBinding
 import afkt.project.model.item.ButtonValue
+import afkt.project.util.AppSize
 import android.view.LayoutInflater
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
-import dev.utils.app.SizeUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.assist.ViewAssist
@@ -39,7 +39,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
     }
 
     private fun errorType() {
-        ViewUtils.setPadding(binding.vidFl, SizeUtils.dp2px(50f))
+        ViewUtils.setPadding(binding.vidFl, AppSize.dp2px(50f))
         viewAssist.register(ViewAssist.TYPE_ING, object : ViewAssist.Adapter {
             override fun onCreateView(
                 assist: ViewAssist,

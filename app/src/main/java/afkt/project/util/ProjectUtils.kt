@@ -6,7 +6,6 @@ import android.graphics.Rect
 import dev.base.DevVariable
 import dev.engine.image.ImageConfig
 import dev.utils.app.ResourceUtils
-import dev.utils.app.SizeUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
 
@@ -49,7 +48,7 @@ object ProjectUtils {
         var config = sConfigVariable.getVariableValue(roundDP)
         if (config != null) return config
         config = ImageConfig.create()
-        config.setRoundedCornersRadius(SizeUtils.dp2px(roundDP.toFloat()))
+        config.setRoundedCornersRadius(AppSize.dp2px(roundDP.toFloat()))
         config.setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
         sConfigVariable.putVariable(roundDP, config)
         return config
@@ -123,7 +122,7 @@ object ProjectUtils {
             // 设置扫描区域边框颜色
             scanView.borderColor = Color.WHITE
             // 设置扫描区域边框宽度
-            scanView.borderWidth = SizeUtils.dp2pxf(2f)
+            scanView.borderWidth = AppSize.dp2pxf(2F)
             // 是否绘制边框
             scanView.isDrawBorder = true
 
@@ -134,9 +133,9 @@ object ProjectUtils {
             // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
             scanView.borderToSquare = 0
             // 设置四个角落与边框共存时, 对应边框宽度
-            scanView.borderWidthToSquare = SizeUtils.dp2pxf(1f)
+            scanView.borderWidthToSquare = AppSize.dp2pxf(1F)
             // 设置每个角的点距离 ( 长度 )
-            scanView.triAngleLength = SizeUtils.dp2pxf(20f)
+            scanView.triAngleLength = AppSize.dp2pxf(20F)
             // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
             scanView.isSpecialToSquare =
                 false // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
@@ -182,15 +181,15 @@ object ProjectUtils {
             scanView.setAnnulusLengths(20, 30, 85)
             // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
             scanView.setAnnulusWidths(
-                SizeUtils.dp2px(3f).toFloat(),
-                SizeUtils.dp2px(7f).toFloat(),
-                SizeUtils.dp2px(7f).toFloat()
+                AppSize.dp2pxf(3f),
+                AppSize.dp2pxf(7f),
+                AppSize.dp2pxf(7f)
             )
             // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
             scanView.setAnnulusMargins(
-                SizeUtils.dp2px(7f).toFloat(),
-                SizeUtils.dp2px(7f).toFloat(),
-                SizeUtils.dp2px(7f).toFloat()
+                AppSize.dp2pxf(7f),
+                AppSize.dp2pxf(7f),
+                AppSize.dp2pxf(7f)
             )
         }
 

@@ -14,7 +14,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import dev.utils.app.SizeUtils;
+import afkt.project.util.AppSize;
 
 public class CircleBroodLoadingRenderer
         extends LoadingRenderer {
@@ -113,11 +113,11 @@ public class CircleBroodLoadingRenderer
     }
 
     private void initialize(Context context) {
-        mWidth  = SizeUtils.dp2px(DEFAULT_WIDTH);
-        mHeight = SizeUtils.dp2px(DEFAULT_HEIGHT);
+        mWidth  = AppSize.INSTANCE.dp2px(DEFAULT_WIDTH);
+        mHeight = AppSize.INSTANCE.dp2px(DEFAULT_HEIGHT);
 
-        mMaxMotherOvalSize    = SizeUtils.dp2px(MAX_MATHER_OVAL_SIZE);
-        mBasicChildOvalRadius = SizeUtils.dp2px(MIN_CHILD_OVAL_RADIUS);
+        mMaxMotherOvalSize    = AppSize.INSTANCE.dp2px(MAX_MATHER_OVAL_SIZE);
+        mBasicChildOvalRadius = AppSize.INSTANCE.dp2px(MIN_CHILD_OVAL_RADIUS);
 
         mOvalColor           = DEFAULT_OVAL_COLOR;
         mOvalDeepColor       = DEFAULT_OVAL_DEEP_COLOR;
