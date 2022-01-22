@@ -75,7 +75,7 @@ Version 1.0.2 *(2020-06-08)*
 ----------------------------
 
 * `[Add]` ViewAssist
- 
+
 * `[Add]` StateLayout
 
 Version 1.0.1 *(2020-05-18)*
