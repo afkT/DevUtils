@@ -250,9 +250,9 @@ public final class ColorUtils {
             final float blue
     ) {
         return 0xff000000 |
-                ((int) (red * 255.0f + 0.5f) << 16) |
-                ((int) (green * 255.0f + 0.5f) << 8) |
-                (int) (blue * 255.0f + 0.5f);
+                ((int) (red * 255.0f + 0.5F) << 16) |
+                ((int) (green * 255.0f + 0.5F) << 8) |
+                (int) (blue * 255.0f + 0.5F);
     }
 
     // =
@@ -288,10 +288,10 @@ public final class ColorUtils {
             final float green,
             final float blue
     ) {
-        return ((int) (alpha * 255.0f + 0.5f) << 24) |
-                ((int) (red * 255.0f + 0.5f) << 16) |
-                ((int) (green * 255.0f + 0.5f) << 8) |
-                (int) (blue * 255.0f + 0.5f);
+        return ((int) (alpha * 255.0f + 0.5F) << 24) |
+                ((int) (red * 255.0f + 0.5F) << 16) |
+                ((int) (green * 255.0f + 0.5F) << 8) |
+                (int) (blue * 255.0f + 0.5F);
     }
 
     // =
@@ -351,7 +351,7 @@ public final class ColorUtils {
             final int color,
             final float alpha
     ) {
-        return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5f) << 24);
+        return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5F) << 24);
     }
 
     /**
@@ -377,7 +377,7 @@ public final class ColorUtils {
             final int color,
             final float red
     ) {
-        return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5f) << 16);
+        return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5F) << 16);
     }
 
     /**
@@ -403,7 +403,7 @@ public final class ColorUtils {
             final int color,
             final float green
     ) {
-        return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5f) << 8);
+        return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5F) << 8);
     }
 
     /**
@@ -429,7 +429,7 @@ public final class ColorUtils {
             final int color,
             final float blue
     ) {
-        return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
+        return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5F);
     }
 
     // =
@@ -736,7 +736,7 @@ public final class ColorUtils {
     public static int grayLevel(final String colorStr) {
         int   color = parseColor(colorStr);
         int[] argb  = getARGB(color);
-        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
     }
 
     /**
@@ -747,7 +747,7 @@ public final class ColorUtils {
     public static int grayLevel(final int color) {
         // [] { alpha, red, green, blue }
         int[] argb = getARGB(color);
-        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
     }
 
     // =
@@ -989,7 +989,7 @@ public final class ColorUtils {
             green = argb[2];
             blue  = argb[3];
             // 获取灰度值
-            grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+            grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114F);
             // 获取 HSB
             float[] hsbArrays = RGBtoHSB(red, green, blue, null);
             hue        = hsbArrays[0]; // 色调

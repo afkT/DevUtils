@@ -63,7 +63,7 @@ switch (type) {
     case INTEGER:
         return preferences.getInt(key, -1);
     case FLOAT:
-        return preferences.getFloat(key, -1f);
+        return preferences.getFloat(key, -1F);
     case BOOLEAN:
         return preferences.getBoolean(key, false);
     case LONG:

@@ -1142,7 +1142,7 @@ public final class BitmapUtils {
         Paint paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
         float center = size / 2f;
         RectF rectF  = new RectF(0, 0, width, height);
-        rectF.inset((width - size) / 2f, (height - size) / 2f);
+        rectF.inset((width - size) / 2f, (height - size) / 2F);
 
         Matrix matrix = new Matrix();
         matrix.setTranslate(rectF.left, rectF.top);

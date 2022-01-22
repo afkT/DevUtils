@@ -206,7 +206,7 @@ public final class BeepVibrateAssist
      * @return {@link MediaPlayer}
      */
     public static MediaPlayer buildMediaPlayer(@RawRes final int rawId) {
-        return buildMediaPlayer(rawId, 0.1f);
+        return buildMediaPlayer(rawId, 0.1F);
     }
 
     /**
@@ -266,7 +266,7 @@ public final class BeepVibrateAssist
      * @return {@link MediaPlayer}
      */
     public static MediaPlayer buildMediaPlayer(final String filePath) {
-        return buildMediaPlayer(filePath, 0.1f);
+        return buildMediaPlayer(filePath, 0.1F);
     }
 
     /**

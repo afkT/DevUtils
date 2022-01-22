@@ -37,7 +37,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         bottomSheet?.apply {
 //            val layoutParams = layoutParams as CoordinatorLayout.LayoutParams
 //            // 最大高度
-//            layoutParams.height = (ScreenUtils.getScreenHeight() * 0.7f).toInt()
+//            layoutParams.height = (ScreenUtils.getScreenHeight() * 0.7F).toInt()
 
             setBackgroundColor(ResourceUtils.getColor(R.color.transparent))
 

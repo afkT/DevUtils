@@ -154,7 +154,7 @@ public class GlideEngine
                 .load(url)
                 .override(180, 180)
                 .centerCrop()
-                .sizeMultiplier(0.5f)
+                .sizeMultiplier(0.5F)
                 .placeholder(R.drawable.picture_image_placeholder)
                 .into(new BitmapImageViewTarget(imageView) {
                     @Override

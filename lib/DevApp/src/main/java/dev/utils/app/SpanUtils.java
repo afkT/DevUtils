@@ -1348,7 +1348,7 @@ public final class SpanUtils {
             }
 
             if ((fake & Typeface.ITALIC) != 0) {
-                paint.setTextSkewX(-0.25f);
+                paint.setTextSkewX(-0.25F);
             }
 //            paint.getShader();
             paint.setTypeface(tf);

@@ -140,7 +140,7 @@ class GlideEngine private constructor() : ImageEngine {
             .load(url)
             .override(180, 180)
             .centerCrop()
-            .sizeMultiplier(0.5f)
+            .sizeMultiplier(0.5F)
             .placeholder(R.drawable.picture_image_placeholder)
             .into(object : BitmapImageViewTarget(imageView) {
                 override fun setResource(resource: Bitmap?) {

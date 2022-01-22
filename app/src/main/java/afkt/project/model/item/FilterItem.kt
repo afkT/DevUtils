@@ -114,7 +114,7 @@ class FilterItem(
                 FilterType.INVERT -> GPUImageColorInvertFilter()
                 FilterType.PIXELATION -> GPUImagePixelationFilter()
                 FilterType.HUE -> GPUImageHueFilter(90.0F)
-                FilterType.BRIGHTNESS -> GPUImageBrightnessFilter(1.5f)
+                FilterType.BRIGHTNESS -> GPUImageBrightnessFilter(1.5F)
                 FilterType.GRAYSCALE -> GPUImageGrayscaleFilter()
                 FilterType.SEPIA -> GPUImageSepiaToneFilter()
                 FilterType.SHARPEN -> {
@@ -157,7 +157,7 @@ class FilterItem(
                     val centerPoint = PointF()
                     centerPoint.x = 0.5f
                     centerPoint.y = 0.5f
-                    GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0f, 0.0f, 0.0F), 0.3f, 0.75f)
+                    GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0f, 0.0f, 0.0F), 0.3f, 0.75F)
                 }
                 FilterType.TONE_CURVE -> GPUImageToneCurveFilter()
                 FilterType.BLEND_DIFFERENCE -> createBlendFilter(

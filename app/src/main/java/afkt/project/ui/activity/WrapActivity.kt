@@ -81,7 +81,7 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
             .setMaxLines(1)
             .setEllipsize(TextUtils.TruncateAt.END)
             .setTextColors(Color.WHITE)
-            .setTextSizeBySp(15f)
+            .setTextSizeBySp(15F)
             .setBold(RandomUtils.nextBoolean())
             .setText(text)
             .getView()

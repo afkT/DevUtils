@@ -522,7 +522,7 @@ public class SlideImageView
      * 计算滑动比例
      */
     private void calcSlideScale() {
-        if (slideCalcScale != -1f) {
+        if (slideCalcScale != -1F) {
             // 临时处理
             float tScalc = slideCalcScale;
             // 清空比例

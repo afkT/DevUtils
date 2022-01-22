@@ -172,7 +172,7 @@ public class DanceLoadingRenderer
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
                 // progress[-1, 1]
-                float progress = (ACCELERATE_INTERPOLATOR.getInterpolation(ballForwardEnterProgress) / 2.0f - 0.5f) * 2.0f * DIRECTION[i];
+                float progress = (ACCELERATE_INTERPOLATOR.getInterpolation(ballForwardEnterProgress) / 2.0f - 0.5F) * 2.0f * DIRECTION[i];
                 POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0F) + 1.0F)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
 
@@ -189,17 +189,17 @@ public class DanceLoadingRenderer
         if (renderProgress <= CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET && renderProgress > CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET) {
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET);
 
-            if (centerCircleScaleProgress <= 0.5f) {
+            if (centerCircleScaleProgress <= 0.5F) {
                 mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0F) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2f;
             }
 
         }
 
         if (renderProgress <= BALL_FORWARD_END_EXIT_DURATION_OFFSET && renderProgress > BALL_FORWARD_START_EXIT_DURATION_OFFSET) {
             final float ballForwardExitProgress = (renderProgress - BALL_FORWARD_START_EXIT_DURATION_OFFSET) / (BALL_FORWARD_END_EXIT_DURATION_OFFSET - BALL_FORWARD_START_EXIT_DURATION_OFFSET);
-            mShapeChangeHeight = (ballForwardExitProgress - 0.5f) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (ballForwardExitProgress - 0.5F) * mDanceBallRadius / 2.0f;
             mShapeChangeWidth  = -mShapeChangeHeight;
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
@@ -238,17 +238,17 @@ public class DanceLoadingRenderer
         if (renderProgress <= CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET && renderProgress > CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET) {
             final float centerCircleScaleProgress = (renderProgress - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET) / (CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET - CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET);
 
-            if (centerCircleScaleProgress <= 0.5f) {
+            if (centerCircleScaleProgress <= 0.5F) {
                 mScale = 1.0f + DECELERATE_INTERPOLATOR.getInterpolation(centerCircleScaleProgress * 2.0F) * 0.2f;
             } else {
-                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5f) * 2.0F) * 0.2f;
+                mScale = 1.2f - ACCELERATE_INTERPOLATOR.getInterpolation((centerCircleScaleProgress - 0.5F) * 2.0F) * 0.2f;
             }
 
         }
 
         if (renderProgress <= BALL_REVERSAL_END_EXIT_DURATION_OFFSET && renderProgress > BALL_REVERSAL_START_EXIT_DURATION_OFFSET) {
             final float ballReversalExitProgress = (renderProgress - BALL_REVERSAL_START_EXIT_DURATION_OFFSET) / (BALL_REVERSAL_END_EXIT_DURATION_OFFSET - BALL_REVERSAL_START_EXIT_DURATION_OFFSET);
-            mShapeChangeHeight = (ballReversalExitProgress - 0.5f) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (ballReversalExitProgress - 0.5F) * mDanceBallRadius / 2.0f;
             mShapeChangeWidth  = -mShapeChangeHeight;
 
             for (int i = 0; i < NUM_POINTS; i++) {

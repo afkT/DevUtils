@@ -46,7 +46,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
             1 -> { // 圆形
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(RoundedCornerTreatment())
-                    .setAllCornerSizes(RelativeCornerSize(0.5f))
+                    .setAllCornerSizes(RelativeCornerSize(0.5F))
                     .build()
             }
             2 -> { // 圆角
@@ -63,14 +63,14 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                         CornerFamily.ROUNDED,
                         ResourceUtils.getDimension(R.dimen.dp_25)
                     )
-                    .setTopRightCornerSize(RelativeCornerSize(0.7f))
-                    .setTopLeftCornerSize(RelativeCornerSize(0.7f))
+                    .setTopRightCornerSize(RelativeCornerSize(0.7F))
+                    .setTopLeftCornerSize(RelativeCornerSize(0.7F))
                     .build()
             }
             4 -> { // 叶子形状
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
-                    .setTopRightCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5f))
-                    .setBottomLeftCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5f))
+                    .setTopRightCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5F))
+                    .setBottomLeftCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5F))
                     .build()
             }
         }

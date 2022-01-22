@@ -2080,18 +2080,18 @@ public class ScanShapeView
                     // 从左往右动画
                     if (mLineAnimDirection) {
                         mStartLinePoint = value / 360f;
-                        if (mStartLinePoint >= 0.25f) {
+                        if (mStartLinePoint >= 0.25F) {
                             mStartLinePoint = mStartLinePoint - 0.25f;
                         } else {
                             mStartLinePoint = mStartLinePoint + 0.75f;
                         }
                         // 计算结束点的位置
                         mEndLinePoint = mStartLinePoint + 0.5f;
-                        if (mStartLinePoint > 0.5f) {
+                        if (mStartLinePoint > 0.5F) {
                             // 计算移动距离, 对应的透明度
                             mOffsetLinePoint = mStartLinePoint - 0.5f;
                             // 转换 argb
-                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
+                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5F)), mLineRed, mLineGreen, mLineBlue);
                             // 设置线条颜色
                             mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
                             // 设置线条动画路径
@@ -2104,18 +2104,18 @@ public class ScanShapeView
                         }
                     } else { // 从右向左动画
                         mStartLinePoint = (360 - value) / 360f;
-                        if (mStartLinePoint >= 0.25f) {
+                        if (mStartLinePoint >= 0.25F) {
                             mStartLinePoint = mStartLinePoint - 0.25f;
                         } else {
                             mStartLinePoint = mStartLinePoint + 0.75f;
                         }
                         // 计算结束点的位置
                         mEndLinePoint = mStartLinePoint + 0.5f;
-                        if (mStartLinePoint > 0.5f) {
+                        if (mStartLinePoint > 0.5F) {
                             // 计算移动距离, 对应的透明度
                             mOffsetLinePoint = mStartLinePoint - 0.5f;
                             // 转换 argb
-                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
+                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5F)), mLineRed, mLineGreen, mLineBlue);
                             // 设置线条颜色
                             mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
                             // 设置线条动画路径

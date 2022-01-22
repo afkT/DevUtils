@@ -481,8 +481,8 @@ public class RoundImageView
         }
         mShaderMatrix.setScale(scale, scale);
         mShaderMatrix.postTranslate(
-                (int) (dx + 0.5f) + mDrawableRect.left,
-                (int) (dy + 0.5f) + mDrawableRect.top
+                (int) (dx + 0.5F) + mDrawableRect.left,
+                (int) (dy + 0.5F) + mDrawableRect.top
         );
         mRebuildShader = true;
     }

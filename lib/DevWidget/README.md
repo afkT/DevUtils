@@ -211,7 +211,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         // ===============
 
         // 设置六边形线条动画 - 线条宽度
-        scanView.setLineWidthToHexagon(4f);
+        scanView.setLineWidthToHexagon(4F);
         // 置六边形线条动画 - 线条边距
         scanView.setLineMarginToHexagon(20F);
         // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
@@ -276,7 +276,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
             // 设置是否需要阴影背景
             scanView.setDrawBackground(false);
 //            // 设置环形扫描线条速度
-//            scanView.setLineOffsetSpeedToAnnulus(6f);
+//            scanView.setLineOffsetSpeedToAnnulus(6F);
             break;
     }
     // 重新绘制

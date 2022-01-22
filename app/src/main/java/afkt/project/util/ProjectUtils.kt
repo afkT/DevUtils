@@ -72,7 +72,7 @@ object ProjectUtils {
         // 设置扫描 View 类型
         scanView.shapeType = scanShape
         // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
-        scanView.setRegion(ScreenUtils.getScreenWidth() * 0.66f)
+        scanView.setRegion(ScreenUtils.getScreenWidth() * 0.66F)
 
         val isExecute = false
         if (isExecute) {
@@ -184,15 +184,15 @@ object ProjectUtils {
             scanView.setAnnulusLengths(20, 30, 85)
             // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
             scanView.setAnnulusWidths(
-                AppSize.dp2pxf(3f),
-                AppSize.dp2pxf(7f),
-                AppSize.dp2pxf(7f)
+                AppSize.dp2pxf(3F),
+                AppSize.dp2pxf(7F),
+                AppSize.dp2pxf(7F)
             )
             // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
             scanView.setAnnulusMargins(
-                AppSize.dp2pxf(7f),
-                AppSize.dp2pxf(7f),
-                AppSize.dp2pxf(7f)
+                AppSize.dp2pxf(7F),
+                AppSize.dp2pxf(7F),
+                AppSize.dp2pxf(7F)
             )
         }
 

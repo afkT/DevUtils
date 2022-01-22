@@ -22,14 +22,14 @@ public class CircleBroodLoadingRenderer
     private final Interpolator MOTHER_MOVE_INTERPOLATOR = new MotherMoveInterpolator();
     private final Interpolator CHILD_MOVE_INTERPOLATOR  = new ChildMoveInterpolator();
 
-    private final Interpolator ACCELERATE_INTERPOLATOR03 = new AccelerateInterpolator(0.3f);
-    private final Interpolator ACCELERATE_INTERPOLATOR05 = new AccelerateInterpolator(0.5f);
-    private final Interpolator ACCELERATE_INTERPOLATOR08 = new AccelerateInterpolator(0.8f);
+    private final Interpolator ACCELERATE_INTERPOLATOR03 = new AccelerateInterpolator(0.3F);
+    private final Interpolator ACCELERATE_INTERPOLATOR05 = new AccelerateInterpolator(0.5F);
+    private final Interpolator ACCELERATE_INTERPOLATOR08 = new AccelerateInterpolator(0.8F);
     private final Interpolator ACCELERATE_INTERPOLATOR10 = new AccelerateInterpolator(1.0F);
 
-    private final Interpolator DECELERATE_INTERPOLATOR03 = new DecelerateInterpolator(0.3f);
-    private final Interpolator DECELERATE_INTERPOLATOR05 = new DecelerateInterpolator(0.5f);
-    private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8f);
+    private final Interpolator DECELERATE_INTERPOLATOR03 = new DecelerateInterpolator(0.3F);
+    private final Interpolator DECELERATE_INTERPOLATOR05 = new DecelerateInterpolator(0.5F);
+    private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8F);
     private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0F);
 
     private final float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
@@ -222,9 +222,9 @@ public class CircleBroodLoadingRenderer
 
         float distance = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mChildPosition[0], 2.0F) + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0F));
         if (distance <= mMotherOvalHalfWidth + mChildOvalRadius * 1.2f
-                && distance >= mMotherOvalHalfWidth - mChildOvalRadius * 1.2f) {
+                && distance >= mMotherOvalHalfWidth - mChildOvalRadius * 1.2F) {
             float maxOffsetY = 2 * mChildOvalRadius * 1.2f;
-            float offsetRate = (distance - (mMotherOvalHalfWidth - mChildOvalRadius * 1.2f)) / maxOffsetY;
+            float offsetRate = (distance - (mMotherOvalHalfWidth - mChildOvalRadius * 1.2F)) / maxOffsetY;
 
             float mMotherOvalOffsetY = mMotherOvalHalfHeight - offsetRate * (mMotherOvalHalfHeight - mChildOvalRadius) * 0.85f;
 
@@ -309,38 +309,38 @@ public class CircleBroodLoadingRenderer
 
         if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
             if (input >= 0.25) {
-                float shapeProgress = (input - 0.25f) / 0.01f;
+                float shapeProgress = (input - 0.25F) / 0.01f;
                 mChildLeftXOffset = (1.0f - shapeProgress) * mChildOvalRadius * 0.25f;
             } else {
                 mChildLeftXOffset = mChildOvalRadius * 0.25f;
             }
         } else if (input <= STAGE_CHILD_FORWARD_TOP_LEFT) {
-            if (input > 0.275f && input < 0.285f) {
-                float shapeProgress = (input - 0.275f) / 0.01f;
+            if (input > 0.275f && input < 0.285F) {
+                float shapeProgress = (input - 0.275F) / 0.01f;
                 mChildLeftXOffset = shapeProgress * mChildOvalRadius * 0.25f;
-            } else if (input > 0.285f) {
+            } else if (input > 0.285F) {
                 mChildLeftXOffset = mChildOvalRadius * 0.25f;
             }
         } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
-            if (input > 0.38f) {
-                float radiusProgress = (input - 0.38f) / 0.04f;
+            if (input > 0.38F) {
+                float radiusProgress = (input - 0.38F) / 0.04f;
                 mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
-            if (input < 0.46f) {
-                float radiusProgress = (input - 0.42f) / 0.04f;
+            if (input < 0.46F) {
+                float radiusProgress = (input - 0.42F) / 0.04f;
                 mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
             }
         } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
-            if (input > 0.65f) {
-                float radiusProgress = (input - 0.65f) / 0.05f;
+            if (input > 0.65F) {
+                float radiusProgress = (input - 0.65F) / 0.05f;
                 mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
-            if (input < 0.71f) {
+            if (input < 0.71F) {
                 mChildOvalRadius = mBasicChildOvalRadius * 2.0f;
-            } else if (input < 0.76f) {
-                float radiusProgress = (input - 0.71f) / 0.05f;
+            } else if (input < 0.76F) {
+                float radiusProgress = (input - 0.71F) / 0.05f;
                 mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
             }
         } else {
@@ -367,7 +367,7 @@ public class CircleBroodLoadingRenderer
 
         return shapeProgress < 0.5f ?
                 1.0f - (1.0f - MAX_MATHER_SHAPE_CHANGE_FACTOR) * shapeProgress * 2.0f :
-                MAX_MATHER_SHAPE_CHANGE_FACTOR + (1.0f - MAX_MATHER_SHAPE_CHANGE_FACTOR) * (shapeProgress - 0.5f) * 2.0f;
+                MAX_MATHER_SHAPE_CHANGE_FACTOR + (1.0f - MAX_MATHER_SHAPE_CHANGE_FACTOR) * (shapeProgress - 0.5F) * 2.0f;
     }
 
     private float getCurrentMotherMoveLength(float input) {
@@ -556,12 +556,12 @@ public class CircleBroodLoadingRenderer
 
     private int getCurrentRevealCircleRadius(float input) {
         int result = 0;
-        if (input > 0.44f && input < 0.48f) {
-            result = (int) ((input - 0.44f) / 0.04f * mMaxRevealCircleRadius);
+        if (input > 0.44f && input < 0.48F) {
+            result = (int) ((input - 0.44F) / 0.04f * mMaxRevealCircleRadius);
         }
 
-        if (input > 0.81f && input < 0.85f) {
-            result = (int) ((input - 0.81f) / 0.04f * mMaxRevealCircleRadius);
+        if (input > 0.81f && input < 0.85F) {
+            result = (int) ((input - 0.81F) / 0.04f * mMaxRevealCircleRadius);
         }
 
         return result;
@@ -574,15 +574,15 @@ public class CircleBroodLoadingRenderer
     private int getCurrentOvalColor(float input) {
         int result;
 
-        if (input < 0.5f) {
+        if (input < 0.5F) {
             result = mOvalColor;
-        } else if (input < 0.75f) {
-            float colorProgress = (input - 0.5f) / 0.2f;
+        } else if (input < 0.75F) {
+            float colorProgress = (input - 0.5F) / 0.2f;
             result = evaluateColorChange(colorProgress, mOvalColor, mOvalDeepColor);
-        } else if (input < 0.85f) {
+        } else if (input < 0.85F) {
             result = mOvalDeepColor;
         } else {
-            float colorProgress = (input - 0.9f) / 0.1f;
+            float colorProgress = (input - 0.9F) / 0.1f;
             result = evaluateColorChange(colorProgress, mOvalDeepColor, mOvalColor);
         }
 
@@ -647,13 +647,13 @@ public class CircleBroodLoadingRenderer
             float result;
 
             if (input <= STAGE_MOTHER_FORWARD_TOP_LEFT) {
-                result = ACCELERATE_INTERPOLATOR10.getInterpolation(input * 2.941f) / 2.941f;
+                result = ACCELERATE_INTERPOLATOR10.getInterpolation(input * 2.941F) / 2.941f;
             } else if (input <= STAGE_MOTHER_BACKWARD_TOP_LEFT) {
-                result = 0.34f + DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.34f) * 6.25f) / 6.25f;
+                result = 0.34f + DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.34F) * 6.25F) / 6.25f;
             } else if (input <= STAGE_MOTHER_FORWARD_BOTTOM_LEFT) {
-                result = 0.5f + ACCELERATE_INTERPOLATOR03.getInterpolation((input - 0.5f) * 6.666f) / 4.0f;
+                result = 0.5f + ACCELERATE_INTERPOLATOR03.getInterpolation((input - 0.5F) * 6.666F) / 4.0f;
             } else if (input <= STAGE_MOTHER_BACKWARD_BOTTOM_LEFT) {
-                result = 0.75f + DECELERATE_INTERPOLATOR03.getInterpolation((input - 0.65f) * 5.46f) / 4.0f;
+                result = 0.75f + DECELERATE_INTERPOLATOR03.getInterpolation((input - 0.65F) * 5.46F) / 4.0f;
             } else {
                 result = 1.0f;
             }
@@ -672,17 +672,17 @@ public class CircleBroodLoadingRenderer
             if (input < STAGE_CHILD_DELAY) {
                 return 0.0f;
             } else if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
-                result = DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.1f) * 6.25f) / 3.846f;
+                result = DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.1F) * 6.25F) / 3.846f;
             } else if (input <= STAGE_CHILD_FORWARD_TOP_LEFT) {
-                result = 0.26f + ACCELERATE_INTERPOLATOR10.getInterpolation((input - 0.26f) * 12.5f) / 12.5f;
+                result = 0.26f + ACCELERATE_INTERPOLATOR10.getInterpolation((input - 0.26F) * 12.5F) / 12.5f;
             } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
-                result = 0.34f + DECELERATE_INTERPOLATOR08.getInterpolation((input - 0.34f) * 12.5f) / 12.5f;
+                result = 0.34f + DECELERATE_INTERPOLATOR08.getInterpolation((input - 0.34F) * 12.5F) / 12.5f;
             } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
-                result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42f) * 12.5f) / 12.5f;
+                result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42F) * 12.5F) / 12.5f;
             } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
-                result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5f) * 5.0F) / 5.0f;
+                result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5F) * 5.0F) / 5.0f;
             } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
-                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7f) * 5.0F) / 3.33f;
+                result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7F) * 5.0F) / 3.33f;
             } else {
                 result = 1.0f;
             }
