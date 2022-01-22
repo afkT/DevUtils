@@ -1378,7 +1378,7 @@ public final class ConvertUtils {
      * @return float[]
      */
     public static float[] stringsToFloats(final String... datas) {
-        return stringsToFloats(0, (datas != null) ? datas.length : 0, -1f, datas);
+        return stringsToFloats(0, (datas != null) ? datas.length : 0, -1F, datas);
     }
 
     /**
@@ -1391,7 +1391,7 @@ public final class ConvertUtils {
             final int off,
             final String... datas
     ) {
-        return stringsToFloats(off, (datas != null) ? datas.length : 0, -1f, datas);
+        return stringsToFloats(off, (datas != null) ? datas.length : 0, -1F, datas);
     }
 
     /**
@@ -1406,7 +1406,7 @@ public final class ConvertUtils {
             final int length,
             final String... datas
     ) {
-        return stringsToFloats(off, length, -1f, datas);
+        return stringsToFloats(off, length, -1F, datas);
     }
 
     /**

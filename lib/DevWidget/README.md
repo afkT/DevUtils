@@ -168,7 +168,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         scanView.getRegionTop();
         // 获取扫描区域位置信息
         scanView.getRegion(); // 获取扫描区域位置信息
-        scanView.getRegion(100f, 200F); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
+        scanView.getRegion(100F, 200F); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
         scanView.getRegionParent(); // 获取扫描区域在 View 中的位置
         scanView.getRegionWidth();
         scanView.getRegionHeight();

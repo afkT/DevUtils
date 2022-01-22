@@ -131,7 +131,7 @@ public class DanceLoadingRenderer
             mPaint.setColor(mArcColor);
             mPaint.setStyle(Paint.Style.STROKE);
             //strokeWidth / 2.0f + mStrokeWidth / 2.0f is the center of the inter circle width
-            mTempBounds.inset(centerRingWidth / 2.0f + mStrokeWidth / 2.0f, centerRingWidth / 2.0f + mStrokeWidth / 2.0F);
+            mTempBounds.inset(centerRingWidth / 2.0f + mStrokeWidth / 2.0F, centerRingWidth / 2.0f + mStrokeWidth / 2.0F);
             mPaint.setStrokeWidth(centerRingWidth);
             canvas.drawArc(mTempBounds, RING_START_ANGLE, mRotation, false, mPaint);
         }
@@ -141,9 +141,9 @@ public class DanceLoadingRenderer
         for (int i = 0; i < NUM_POINTS; i++) {
             canvas.rotate(i * DANCE_INTERVAL_ANGLE, POINT_X[i], POINT_Y[i]);
             RectF rectF = new RectF(
-                    POINT_X[i] - mDanceBallRadius - mShapeChangeWidth / 2.0f,
-                    POINT_Y[i] - mDanceBallRadius - mShapeChangeHeight / 2.0f,
-                    POINT_X[i] + mDanceBallRadius + mShapeChangeWidth / 2.0f,
+                    POINT_X[i] - mDanceBallRadius - mShapeChangeWidth / 2.0F,
+                    POINT_Y[i] - mDanceBallRadius - mShapeChangeHeight / 2.0F,
+                    POINT_X[i] + mDanceBallRadius + mShapeChangeWidth / 2.0F,
                     POINT_Y[i] + mDanceBallRadius + mShapeChangeHeight / 2.0f
             );
             canvas.drawOval(rectF, mPaint);

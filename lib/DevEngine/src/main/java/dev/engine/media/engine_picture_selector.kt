@@ -108,7 +108,7 @@ class GlideEngine private constructor() : ImageEngine {
                             setDoubleTapZoomDpi(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER)
                             setImage(
                                 ImageSource.cachedBitmap(resource),
-                                ImageViewState(0f, PointF(0f, 0F), 0)
+                                ImageViewState(0F, PointF(0F, 0F), 0)
                             )
                         }
                     } else {

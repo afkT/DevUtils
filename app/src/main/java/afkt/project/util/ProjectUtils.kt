@@ -106,7 +106,7 @@ object ProjectUtils {
             scanView.setCornerEffect(CornerEffect(10.0F))
             // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
             scanView.setRegion(500F)
-            scanView.setRegion(500f, 500F)
+            scanView.setRegion(500F, 500F)
             scanView.setRegion(Rect(0, 0, 500, 500))
             // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
             scanView.regionLeft
@@ -114,7 +114,7 @@ object ProjectUtils {
             scanView.regionTop
             // 获取扫描区域位置信息
             scanView.region // 获取扫描区域位置信息
-            scanView.getRegion(100f, 200F) // 获取纠偏 ( 偏差 ) 位置后的扫描区域
+            scanView.getRegion(100F, 200F) // 获取纠偏 ( 偏差 ) 位置后的扫描区域
             scanView.regionParent // 获取扫描区域在 View 中的位置
             scanView.regionWidth
             scanView.regionHeight

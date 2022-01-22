@@ -267,7 +267,7 @@ object ZXingQRCodeUtils {
         var bitmap = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888)
         try {
             val canvas = Canvas(bitmap)
-            canvas.drawBitmap(src, 0f, 0f, null)
+            canvas.drawBitmap(src, 0F, 0F, null)
             canvas.scale(
                 scaleFactor,
                 scaleFactor,

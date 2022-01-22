@@ -109,7 +109,7 @@ public abstract class LoadingRenderer {
 
     @SuppressLint("WrongConstant")
     private void setupAnimators() {
-        mRenderAnimator = ValueAnimator.ofFloat(0.0f, 1.0F);
+        mRenderAnimator = ValueAnimator.ofFloat(0.0F, 1.0F);
         mRenderAnimator.setRepeatCount(Animation.INFINITE);
         mRenderAnimator.setRepeatMode(Animation.RESTART);
         mRenderAnimator.setDuration(mDuration);

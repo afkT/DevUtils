@@ -129,7 +129,7 @@ public final class GlideTransformUtils {
             Paint  paint  = new Paint();
             paint.setShader(new BitmapShader(toTransform, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
             paint.setAntiAlias(true);
-            RectF rectF = new RectF(0f, 0f, toTransform.getWidth(), toTransform.getHeight());
+            RectF rectF = new RectF(0F, 0F, toTransform.getWidth(), toTransform.getHeight());
             canvas.drawRoundRect(rectF, radius, radius, paint);
             return result;
         }

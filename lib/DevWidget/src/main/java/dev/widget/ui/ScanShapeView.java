@@ -2095,12 +2095,12 @@ public class ScanShapeView
                             // 设置线条颜色
                             mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
                             // 设置线条动画路径
-                            mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
+                            mLinePathArray = new float[]{0F, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
                         } else {
                             // 设置线条颜色
                             mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
                             // 设置线条动画路径
-                            mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
+                            mLinePathArray = new float[]{0F, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
                         }
                     } else { // 从右向左动画
                         mStartLinePoint = (360 - value) / 360F;
@@ -2119,12 +2119,12 @@ public class ScanShapeView
                             // 设置线条颜色
                             mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
                             // 设置线条动画路径
-                            mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
+                            mLinePathArray = new float[]{0F, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
                         } else {
                             // 设置线条颜色
                             mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
                             // 设置线条动画路径
-                            mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
+                            mLinePathArray = new float[]{0F, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
                         }
                     }
                     // 绘制线条渐变效果

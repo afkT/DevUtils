@@ -269,14 +269,14 @@ class ShopCartAnimation {
                     // 动画结束抖动数量
                     val zoomTime: Long = 100
                     val zoomAnim = ScaleAnimation(
-                        1.0f, 1.1f, 1.0f, 1.1f,
-                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
+                        1.0F, 1.1F, 1.0F, 1.1F,
+                        ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
                         ScaleAnimation.RELATIVE_TO_SELF, 0.5f
                     )
                     zoomAnim.duration = zoomTime
                     val zoomOutAnim = ScaleAnimation(
-                        1.1f, 1.0f, 1.1f, 1.0f,
-                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
+                        1.1F, 1.0F, 1.1F, 1.0F,
+                        ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
                         ScaleAnimation.RELATIVE_TO_SELF, 0.5f
                     )
                     zoomOutAnim.duration = zoomTime

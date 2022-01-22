@@ -26,7 +26,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
             WaveHelper.WaveProperty.Builder()
                 // 设置水位高度属性值
                 .setWaterLevelRatio(
-                    0f, 0.7f, 10000L
+                    0F, 0.7F, 10000L
                 ).build()
         )
         lazyObj

@@ -115,17 +115,17 @@ public class CoolWaitLoadingRenderer
         path.moveTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY());
 
         //create w
-        path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5f,
-                bounds.centerX() + mWaitCircleRadius * 0.3f, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5F,
+                bounds.centerX() + mWaitCircleRadius * 0.3F, bounds.centerY() - mWaitCircleRadius,
+                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5f
         );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5f
         );
-        path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75f, bounds.centerY() - mWaitCircleRadius * 0.2F);
+        path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75F, bounds.centerY() - mWaitCircleRadius * 0.2F);
 
-        path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1f,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4f,
+        path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1F,
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4F,
                 bounds.centerX() + mWaitCircleRadius, bounds.centerY()
         );
 
@@ -140,17 +140,17 @@ public class CoolWaitLoadingRenderer
                 bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius
         ), 2, -2);
         //create w
-        path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5f,
-                bounds.centerX() + mWaitCircleRadius * 0.3f, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5F,
+                bounds.centerX() + mWaitCircleRadius * 0.3F, bounds.centerY() - mWaitCircleRadius,
+                bounds.centerX() - mWaitCircleRadius * 0.35F, bounds.centerY() + mWaitCircleRadius * 0.5f
         );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f
+                bounds.centerX() + mWaitCircleRadius * 0.05F, bounds.centerY() + mWaitCircleRadius * 0.5f
         );
-        path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75f, bounds.centerY() - mWaitCircleRadius * 0.2F);
+        path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75F, bounds.centerY() - mWaitCircleRadius * 0.2F);
 
-        path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1f,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4f,
+        path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1F,
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4F,
                 bounds.centerX() + mWaitCircleRadius, bounds.centerY()
         );
 

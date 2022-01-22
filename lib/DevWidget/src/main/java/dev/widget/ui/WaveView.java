@@ -212,23 +212,23 @@ public class WaveView
                 case CIRCLE:
                     if (borderWidth > 0) {
                         canvas.drawCircle(
-                                getWidth() / 2f, getHeight() / 2f,
-                                (getWidth() - borderWidth) / 2f - 1f,
+                                getWidth() / 2F, getHeight() / 2F,
+                                (getWidth() - borderWidth) / 2f - 1F,
                                 mBorderPaint
                         );
                     }
                     float radius = getWidth() / 2f - borderWidth;
                     canvas.drawCircle(
-                            getWidth() / 2f, getHeight() / 2f,
+                            getWidth() / 2F, getHeight() / 2F,
                             radius, mViewPaint
                     );
                     break;
                 case SQUARE:
                     if (borderWidth > 0) {
                         canvas.drawRect(
-                                borderWidth / 2f, borderWidth / 2f,
-                                getWidth() - borderWidth / 2f - 0.5f,
-                                getHeight() - borderWidth / 2f - 0.5f,
+                                borderWidth / 2F, borderWidth / 2F,
+                                getWidth() - borderWidth / 2f - 0.5F,
+                                getHeight() - borderWidth / 2f - 0.5F,
                                 mBorderPaint
                         );
                     }

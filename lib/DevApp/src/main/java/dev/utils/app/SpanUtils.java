@@ -1290,14 +1290,14 @@ public final class SpanUtils {
                     if (sBulletPath == null) {
                         sBulletPath = new Path();
                         // Bullet is slightly better to avoid aliasing artifacts on mdpi devices.
-                        sBulletPath.addCircle(0.0f, 0.0f, radius, Path.Direction.CW);
+                        sBulletPath.addCircle(0.0F, 0.0F, radius, Path.Direction.CW);
                     }
                     c.save();
                     c.translate(x + dir * radius, (top + bottom) / 2.0F);
                     c.drawPath(sBulletPath, p);
                     c.restore();
                 } else {
-                    c.drawCircle(x + dir * radius, (top + bottom) / 2.0f, radius, p);
+                    c.drawCircle(x + dir * radius, (top + bottom) / 2.0F, radius, p);
                 }
                 p.setColor(oldColor);
                 p.setStyle(style);

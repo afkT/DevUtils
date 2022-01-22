@@ -59,7 +59,7 @@ class WrapActivity : BaseActivity<ActivityWrapBinding>() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
         // 设置点击效果
-        val drawable = ShapeUtils.newShape(30f, ResourceUtils.getColor(R.color.color_88)).drawable
+        val drawable = ShapeUtils.newShape(30F, ResourceUtils.getColor(R.color.color_88)).drawable
         for (i in 1..20) {
             val text = ChineseUtils.randomWord(RandomUtils.getRandom(7)) +
                     RandomUtils.getRandomLetters(RandomUtils.getRandom(5))

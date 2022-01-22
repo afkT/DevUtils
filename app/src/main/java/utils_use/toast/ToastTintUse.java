@@ -77,7 +77,7 @@ public final class ToastTintUse {
         ToastTintUtils.setUseHandler(true);
 
         // 设置 HorizontalMargin、VerticalMargin 边距
-        ToastTintUtils.setMargin(0f, 0F);
+        ToastTintUtils.setMargin(0F, 0F);
 
         // 配置 Toast 过滤, 判断是否显示 Toast、以及内容处理
         // ToastTintUtils.setToastFilter(new ToastTintUtils.Filter() {});

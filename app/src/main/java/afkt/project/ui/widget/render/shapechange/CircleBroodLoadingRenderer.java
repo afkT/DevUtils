@@ -242,22 +242,22 @@ public class CircleBroodLoadingRenderer
             if (distanceUltraRight < distanceUltraLeft) {
                 //right_bottom arc
                 path.cubicTo(mMotherPosition[0] + bezierOffset + mMotherXOffset, mMotherPosition[1] + mMotherOvalOffsetY,
-                        mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5f,
+                        mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5F,
                         mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1]
                 );
                 //right_top arc
-                path.cubicTo(mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5f,
+                path.cubicTo(mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5F,
                         mMotherPosition[0] + bezierOffset + mMotherXOffset, mMotherPosition[1] - mMotherOvalOffsetY,
                         mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY
                 );
             } else {
                 //left_bottom arc
                 path.cubicTo(mMotherPosition[0] - bezierOffset - mMotherXOffset, mMotherPosition[1] + mMotherOvalOffsetY,
-                        mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5f,
+                        mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5F,
                         mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1]
                 );
                 //left_top arc
-                path.cubicTo(mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5f,
+                path.cubicTo(mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5F,
                         mMotherPosition[0] - bezierOffset - mMotherXOffset, mMotherPosition[1] - mMotherOvalOffsetY,
                         mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY
                 );
@@ -477,14 +477,14 @@ public class CircleBroodLoadingRenderer
 
         path.moveTo(centerX, centerY);
         //forward top left
-        path.quadTo(centerX - mMotherOvalHalfWidth * 2.0f, centerY,
-                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight
+        path.quadTo(centerX - mMotherOvalHalfWidth * 2.0F, centerY,
+                centerX - mMotherOvalHalfWidth * 2.0F, centerY - mMotherOvalHalfHeight
         );
         mStageMotherForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageMotherForwardTopLeftLength;
 
         //backward top left
-        path.quadTo(centerX - mMotherOvalHalfWidth * 1.0f, centerY - mMotherOvalHalfHeight,
+        path.quadTo(centerX - mMotherOvalHalfWidth * 1.0F, centerY - mMotherOvalHalfHeight,
                 centerX, centerY
         );
         mStageMotherBackwardTopLeftLength = getRestLength(path, currentPathLength);
@@ -496,7 +496,7 @@ public class CircleBroodLoadingRenderer
         mStageMotherForwardBottomLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageMotherForwardBottomLeftLength;
         //backward bottom left
-        path.quadTo(centerX - mMotherOvalHalfWidth / 2, centerY + mMotherOvalHalfHeight * 0.6f,
+        path.quadTo(centerX - mMotherOvalHalfWidth / 2, centerY + mMotherOvalHalfHeight * 0.6F,
                 centerX, centerY
         );
         mStageMotherBackwardBottomLeftLength = getRestLength(path, currentPathLength);
@@ -514,39 +514,39 @@ public class CircleBroodLoadingRenderer
         //start
         path.moveTo(centerX, centerY);
         //pre forward top left
-        path.lineTo(centerX + mMotherOvalHalfWidth * 0.75f, centerY);
+        path.lineTo(centerX + mMotherOvalHalfWidth * 0.75F, centerY);
         mStageChildPreForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildPreForwardTopLeftLength;
         //forward top left
-        path.quadTo(centerX - mMotherOvalHalfWidth * 0.5f, centerY,
-                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight
+        path.quadTo(centerX - mMotherOvalHalfWidth * 0.5F, centerY,
+                centerX - mMotherOvalHalfWidth * 2.0F, centerY - mMotherOvalHalfHeight
         );
         mStageChildForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildForwardTopLeftLength;
         //pre backward top left
-        path.lineTo(centerX - mMotherOvalHalfWidth * 2.0f + mMotherOvalHalfWidth * 0.2f, centerY - mMotherOvalHalfHeight);
-        path.quadTo(centerX - mMotherOvalHalfWidth * 2.5f, centerY - mMotherOvalHalfHeight * 2,
-                centerX - mMotherOvalHalfWidth * 1.5f, centerY - mMotherOvalHalfHeight * 2.25f
+        path.lineTo(centerX - mMotherOvalHalfWidth * 2.0f + mMotherOvalHalfWidth * 0.2F, centerY - mMotherOvalHalfHeight);
+        path.quadTo(centerX - mMotherOvalHalfWidth * 2.5F, centerY - mMotherOvalHalfHeight * 2,
+                centerX - mMotherOvalHalfWidth * 1.5F, centerY - mMotherOvalHalfHeight * 2.25f
         );
         mStageChildPreBackwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildPreBackwardTopLeftLength;
         //backward top left
-        path.quadTo(centerX - mMotherOvalHalfWidth * 0.2f, centerY - mMotherOvalHalfHeight * 2.25f,
+        path.quadTo(centerX - mMotherOvalHalfWidth * 0.2F, centerY - mMotherOvalHalfHeight * 2.25F,
                 centerX, centerY
         );
         mStageChildBackwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildBackwardTopLeftLength;
         //forward bottom left
         path.cubicTo(centerX, centerY + mMotherOvalHalfHeight,
-                centerX - mMotherOvalHalfWidth, centerY + mMotherOvalHalfHeight * 2.5f,
-                centerX - mMotherOvalHalfWidth * 1.5f, centerY + mMotherOvalHalfHeight * 2.5f
+                centerX - mMotherOvalHalfWidth, centerY + mMotherOvalHalfHeight * 2.5F,
+                centerX - mMotherOvalHalfWidth * 1.5F, centerY + mMotherOvalHalfHeight * 2.5f
         );
         mStageChildForwardBottomLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildForwardBottomLeftLength;
         //backward bottom left
         path.cubicTo(
-                centerX - mMotherOvalHalfWidth * 2.0f, centerY + mMotherOvalHalfHeight * 2.5f,
-                centerX - mMotherOvalHalfWidth * 3.0f, centerY + mMotherOvalHalfHeight * 0.8f,
+                centerX - mMotherOvalHalfWidth * 2.0F, centerY + mMotherOvalHalfHeight * 2.5F,
+                centerX - mMotherOvalHalfWidth * 3.0F, centerY + mMotherOvalHalfHeight * 0.8F,
                 centerX, centerY
         );
         mStageChildBackwardBottomLeftLength = getRestLength(path, currentPathLength);

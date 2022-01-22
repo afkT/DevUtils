@@ -127,9 +127,9 @@ class FilterItem(
                     val convolution = GPUImage3x3ConvolutionFilter()
                     convolution.setConvolutionKernel(
                         floatArrayOf(
-                            -1.0f, 0.0f, 1.0f,
-                            -2.0f, 0.0f, 2.0f,
-                            -1.0f, 0.0f, 1.0f
+                            -1.0F, 0.0F, 1.0F,
+                            -2.0F, 0.0F, 2.0F,
+                            -1.0F, 0.0F, 1.0f
                         )
                     )
                     convolution
@@ -145,19 +145,19 @@ class FilterItem(
                 }
                 FilterType.SATURATION -> GPUImageSaturationFilter(1.0F)
                 FilterType.EXPOSURE -> GPUImageExposureFilter(0.0F)
-                FilterType.HIGHLIGHT_SHADOW -> GPUImageHighlightShadowFilter(0.0f, 1.0F)
+                FilterType.HIGHLIGHT_SHADOW -> GPUImageHighlightShadowFilter(0.0F, 1.0F)
                 FilterType.MONOCHROME -> GPUImageMonochromeFilter(
-                    1.0f,
-                    floatArrayOf(0.6f, 0.45f, 0.3f, 1.0F)
+                    1.0F,
+                    floatArrayOf(0.6F, 0.45F, 0.3F, 1.0F)
                 )
                 FilterType.OPACITY -> GPUImageOpacityFilter(1.0F)
-                FilterType.RGB -> GPUImageRGBFilter(1.0f, 1.0f, 1.0F)
-                FilterType.WHITE_BALANCE -> GPUImageWhiteBalanceFilter(5000.0f, 0.0F)
+                FilterType.RGB -> GPUImageRGBFilter(1.0F, 1.0F, 1.0F)
+                FilterType.WHITE_BALANCE -> GPUImageWhiteBalanceFilter(5000.0F, 0.0F)
                 FilterType.VIGNETTE -> {
                     val centerPoint = PointF()
                     centerPoint.x = 0.5f
                     centerPoint.y = 0.5f
-                    GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0f, 0.0f, 0.0F), 0.3f, 0.75F)
+                    GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0F, 0.0F, 0.0F), 0.3F, 0.75F)
                 }
                 FilterType.TONE_CURVE -> GPUImageToneCurveFilter()
                 FilterType.BLEND_DIFFERENCE -> createBlendFilter(
@@ -255,7 +255,7 @@ class FilterItem(
                 FilterType.COLOR_BALANCE -> GPUImageColorBalanceFilter()
                 FilterType.LEVELS_FILTER_MIN -> {
                     val levelsFilter = GPUImageLevelsFilter()
-                    levelsFilter.setMin(0.0f, 3.0f, 1.0F)
+                    levelsFilter.setMin(0.0F, 3.0F, 1.0F)
                     levelsFilter
                 }
                 FilterType.HALFTONE -> GPUImageHalftoneFilter()

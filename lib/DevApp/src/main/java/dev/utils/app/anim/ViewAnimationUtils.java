@@ -635,7 +635,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         return translate(
-                view, fromXDelta, toXDelta, 0.0f, 0.0f,
+                view, fromXDelta, toXDelta, 0.0F, 0.0F,
                 cycles, durationMillis, isBanClick
         );
     }
@@ -657,7 +657,7 @@ public final class ViewAnimationUtils {
             final long durationMillis
     ) {
         return translate(
-                view, fromXDelta, toXDelta, 0.0f, 0.0f,
+                view, fromXDelta, toXDelta, 0.0F, 0.0F,
                 cycles, durationMillis, false
         );
     }
@@ -677,7 +677,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 cycles, durationMillis, isBanClick
         );
     }
@@ -695,7 +695,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 cycles, 700, isBanClick
         );
     }
@@ -713,7 +713,7 @@ public final class ViewAnimationUtils {
             final long durationMillis
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 cycles, durationMillis, false
         );
     }
@@ -731,7 +731,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 7, durationMillis, isBanClick
         );
     }
@@ -747,7 +747,7 @@ public final class ViewAnimationUtils {
             final float cycles
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 cycles, 700, false
         );
     }
@@ -763,7 +763,7 @@ public final class ViewAnimationUtils {
             final long durationMillis
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 7, durationMillis, false
         );
     }
@@ -781,7 +781,7 @@ public final class ViewAnimationUtils {
             final boolean isBanClick
     ) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 7, 700, isBanClick
         );
     }
@@ -793,7 +793,7 @@ public final class ViewAnimationUtils {
      */
     public static boolean shake(final View view) {
         return translate(
-                view, 0.0f, 10.0f, 0.0f, 0.0f,
+                view, 0.0F, 10.0F, 0.0F, 0.0F,
                 7, 700, false
         );
     }

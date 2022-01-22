@@ -270,9 +270,9 @@ public class FlowLikeView
      * @return 动画集合
      */
     private AnimatorSet generateEnterAnimation(View target) {
-        ObjectAnimator alpha          = ObjectAnimator.ofFloat(target, "alpha", 0.2f, 1F);
-        ObjectAnimator scaleX         = ObjectAnimator.ofFloat(target, "scaleX", 0.5f, 1F);
-        ObjectAnimator scaleY         = ObjectAnimator.ofFloat(target, "scaleY", 0.5f, 1F);
+        ObjectAnimator alpha          = ObjectAnimator.ofFloat(target, "alpha", 0.2F, 1F);
+        ObjectAnimator scaleX         = ObjectAnimator.ofFloat(target, "scaleX", 0.5F, 1F);
+        ObjectAnimator scaleY         = ObjectAnimator.ofFloat(target, "scaleY", 0.5F, 1F);
         AnimatorSet    enterAnimation = new AnimatorSet();
         enterAnimation.playTogether(alpha, scaleX, scaleY);
         enterAnimation.setDuration(10);

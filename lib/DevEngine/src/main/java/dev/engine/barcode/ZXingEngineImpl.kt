@@ -186,7 +186,7 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
             Bitmap.Config.ARGB_8888
         )
         val canvas = Canvas(bitmap)
-        canvas.drawBitmap(src, 0f, 0f, null)
+        canvas.drawBitmap(src, 0F, 0F, null)
         canvas.scale(scaleFactor, scaleFactor, srcWidth / 2, srcHeight / 2)
         canvas.drawBitmap(
             icon, (srcWidth - iconWidth) / 2,

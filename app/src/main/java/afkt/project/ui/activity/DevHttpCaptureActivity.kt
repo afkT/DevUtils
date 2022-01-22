@@ -47,7 +47,7 @@ class DevHttpCaptureActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setText(span.create())
             .setTextColors(ResourceUtils.getColor(R.color.black))
             .setTextSizeBySp(15.0F)
-            .setLineSpacingAndMultiplier(15.0f, 1.1F)
+            .setLineSpacingAndMultiplier(15.0F, 1.1F)
             .setPadding(ResourceUtils.getDimensionInt(R.dimen.dp_20))
             .setPaddingBottom(ResourceUtils.getDimensionInt(R.dimen.dp_10), false)
             .getView<BaseTextView>()

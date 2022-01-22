@@ -92,7 +92,7 @@ class GlideTransformUtils private constructor() {
             paint.shader = BitmapShader(toTransform, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
             paint.isAntiAlias = true
             val rectF = RectF(
-                0f, 0f, toTransform.width.toFloat(),
+                0F, 0F, toTransform.width.toFloat(),
                 toTransform.height.toFloat()
             )
             canvas.drawRoundRect(rectF, radius, radius, paint)

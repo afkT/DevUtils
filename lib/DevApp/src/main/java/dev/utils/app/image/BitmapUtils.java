@@ -659,7 +659,7 @@ public final class BitmapUtils {
      * @return 裁剪指定比例的图片
      */
     public static Bitmap crop(final Bitmap bitmap) {
-        return crop(bitmap, 16.0f, 9.0F);
+        return crop(bitmap, 16.0F, 9.0F);
     }
 
     /**
@@ -1142,7 +1142,7 @@ public final class BitmapUtils {
         Paint paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
         float center = size / 2F;
         RectF rectF  = new RectF(0, 0, width, height);
-        rectF.inset((width - size) / 2f, (height - size) / 2F);
+        rectF.inset((width - size) / 2F, (height - size) / 2F);
 
         Matrix matrix = new Matrix();
         matrix.setTranslate(rectF.left, rectF.top);
@@ -1165,7 +1165,7 @@ public final class BitmapUtils {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(borderSize);
             float radius = center - borderSize / 2F;
-            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
+            canvas.drawCircle(width / 2F, height / 2F, radius, paint);
         }
         return newBitmap;
     }
@@ -1234,8 +1234,8 @@ public final class BitmapUtils {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(borderSize);
         if (isCircle) {
-            float radius = Math.min(width, height) / 2f - borderSize / 2F;
-            canvas.drawCircle(width / 2f, height / 2f, radius, paint);
+            float radius = Math.min(width, height) / 2F - borderSize / 2F;
+            canvas.drawCircle(width / 2F, height / 2F, radius, paint);
         } else {
             int halfBorderSize = borderSize >> 1;
             RectF rectF = new RectF(

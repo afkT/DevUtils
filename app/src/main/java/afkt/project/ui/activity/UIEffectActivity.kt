@@ -59,9 +59,9 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             .drawable.also { binding.vid41Btn.background = it }
 
         // 设置点击效果
-        val drawable1 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.black))
+        val drawable1 = ShapeUtils.newShape(10F, ResourceUtils.getColor(R.color.black))
             .setStroke(5, ResourceUtils.getColor(R.color.darkorange)).drawable
-        val drawable2 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.sky_blue))
+        val drawable2 = ShapeUtils.newShape(10F, ResourceUtils.getColor(R.color.sky_blue))
             .setStroke(5, ResourceUtils.getColor(R.color.gray)).drawable
 
         StateListUtils.newSelector(drawable2, drawable1)

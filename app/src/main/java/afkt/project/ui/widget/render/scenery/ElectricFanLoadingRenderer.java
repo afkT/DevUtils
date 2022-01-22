@@ -230,7 +230,7 @@ public class ElectricFanLoadingRenderer
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mStrokeWidth);
         canvas.drawCircle(arcBounds.right - mCenterRadius, arcBounds.bottom - mCenterRadius,
-                mCenterRadius - mStrokeWidth / 2.0f, mPaint
+                mCenterRadius - mStrokeWidth / 2.0F, mPaint
         );
 
         //draw electric background
@@ -258,8 +258,8 @@ public class ElectricFanLoadingRenderer
             mPaint.setColor(mElectricFanOutlineColor);
             Rect textRect = new Rect();
             mPaint.getTextBounds(PERCENTAGE_100, 0, PERCENTAGE_100.length(), textRect);
-            canvas.drawText(PERCENTAGE_100, electricFanCenterX - textRect.width() / 2.0f,
-                    electricFanCenterY + textRect.height() / 2.0f, mPaint
+            canvas.drawText(PERCENTAGE_100, electricFanCenterX - textRect.width() / 2.0F,
+                    electricFanCenterY + textRect.height() / 2.0F, mPaint
             );
         }
 
