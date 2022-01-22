@@ -64,32 +64,32 @@ Version 1.0.5 *(2020-11-15)*
 Version 1.0.4 *(2020-08-23)*
 ----------------------------
 
- * `[Update]` RadiusUtils renamed from RadiusAttrs、RadiusView renamed from RadiusLayout
+* `[Update]` RadiusUtils renamed from RadiusAttrs、RadiusView renamed from RadiusLayout
 
 Version 1.0.3 *(2020-08-04)*
 ----------------------------
 
- * `[Add]` RadiusLayout
+* `[Add]` RadiusLayout
 
 Version 1.0.2 *(2020-06-08)*
 ----------------------------
 
- * `[Add]` ViewAssist
+* `[Add]` ViewAssist
  
- * `[Add]` StateLayout
+* `[Add]` StateLayout
 
 Version 1.0.1 *(2020-05-18)*
 ----------------------------
 
- * `[Add]` CornerLabelView
+* `[Add]` CornerLabelView
 
 Version 1.0.0 *(2020-03-19)*
 ----------------------------
 
- * `[Add]` adjust package View AdjustHeightGridView、AdjustHeightListView、AdjustHeightRecyclerView、AdjustHeightWebView
+* `[Add]` adjust package View AdjustHeightGridView、AdjustHeightListView、AdjustHeightRecyclerView、AdjustHeightWebView
 
- * `[Add]` custom package View CustomGallery、CustomHorizontalScrollView、CustomNestedScrollView、CustomRecyclerView、CustomScrollView、CustomViewPager、CustomWebView
+* `[Add]` custom package View CustomGallery、CustomHorizontalScrollView、CustomNestedScrollView、CustomRecyclerView、CustomScrollView、CustomViewPager、CustomWebView
 
- * `[Add]` function package View LimitLayout、LineTextView、RightIconEditText、SignView
+* `[Add]` function package View LimitLayout、LineTextView、RightIconEditText、SignView
 
- * `[Add]` ui package View FlowLikeView、LoadProgressBar、ScanShapeView、WrapView
+* `[Add]` ui package View FlowLikeView、LoadProgressBar、ScanShapeView、WrapView
