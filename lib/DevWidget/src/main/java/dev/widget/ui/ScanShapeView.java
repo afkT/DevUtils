@@ -173,9 +173,9 @@ public class ScanShapeView
     // 线条偏离值
     private       int           mLineOffsetToSquare     = 0;
     // 线条向上 ( 下 ) 边距
-    private       float         mLineMarginTopToSquare  = 0f;
+    private       float         mLineMarginTopToSquare  = 0F;
     // 线条向左 ( 右 ) 边距
-    private       float         mLineMarginLeftToSquare = 0f;
+    private       float         mLineMarginLeftToSquare = 0F;
     // 线条颜色
     private       int           mLineColorToSquare      = 0;
 
@@ -198,7 +198,7 @@ public class ScanShapeView
     // 线条宽度
     private final float         mLineWidthToHexagon  = 4f;
     // 绘制线条边距 ( 针对绘制区域 )
-    private       float         mLineMarginToHexagon = 20f;
+    private       float         mLineMarginToHexagon = 20F;
     // 动画方向 ( 六边形线条 ) - true = 左, false = 右
     private       boolean       mLineAnimDirection   = true;
 
@@ -209,11 +209,11 @@ public class ScanShapeView
     // 环形动画 对象
     private ValueAnimator mAnimToAnnulus;
     // 动画效果临时变量
-    private float         mAnimOffsetToAnnulus      = 0f;
+    private float         mAnimOffsetToAnnulus      = 0F;
     // 是否达到偏移值最大值
     private boolean       mOffsetMaxToAnnulus       = true;
     // 线条向上 ( 下 ) 边距
-    private float         mLineOffsetToAnnulus      = 0f;
+    private float         mLineOffsetToAnnulus      = 0F;
     // 扫描线条 Bitmap
     private Bitmap        mBitmapToAnnulus;
     // 线条颜色
@@ -462,7 +462,7 @@ public class ScanShapeView
         if (this.mCornerEffect != null) {
             return mCornerEffect.getRadius();
         }
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -886,7 +886,7 @@ public class ScanShapeView
      */
     public ScanShapeView setLineMarginTopToSquare(float lineMarginTopToSquare) {
         if (lineMarginTopToSquare < 0F) {
-            lineMarginTopToSquare = 0f;
+            lineMarginTopToSquare = 0F;
         }
         this.mLineMarginTopToSquare = lineMarginTopToSquare;
         return this;
@@ -907,7 +907,7 @@ public class ScanShapeView
      */
     public ScanShapeView setLineMarginLeftToSquare(float lineMarginLeftToSquare) {
         if (lineMarginLeftToSquare < 0F) {
-            lineMarginLeftToSquare = 0f;
+            lineMarginLeftToSquare = 0F;
         }
         this.mLineMarginLeftToSquare = lineMarginLeftToSquare;
         return this;
@@ -1450,7 +1450,7 @@ public class ScanShapeView
                         if (mAnimOffsetToAnnulus > 0) {
                             mAnimOffsetToAnnulus -= 2;
                         } else {
-                            mAnimOffsetToAnnulus = 0f;
+                            mAnimOffsetToAnnulus = 0F;
                         }
                         // 计算中间层间隔距离
                         float middleSpace = mAnnulusWidths[0] + mAnnulusWidths[1] + mAnnulusMargins[0] + mAnimOffsetToAnnulus;
@@ -2079,7 +2079,7 @@ public class ScanShapeView
                     Integer value = (Integer) animation.getAnimatedValue();
                     // 从左往右动画
                     if (mLineAnimDirection) {
-                        mStartLinePoint = value / 360f;
+                        mStartLinePoint = value / 360F;
                         if (mStartLinePoint >= 0.25F) {
                             mStartLinePoint = mStartLinePoint - 0.25f;
                         } else {
@@ -2103,7 +2103,7 @@ public class ScanShapeView
                             mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
                         }
                     } else { // 从右向左动画
-                        mStartLinePoint = (360 - value) / 360f;
+                        mStartLinePoint = (360 - value) / 360F;
                         if (mStartLinePoint >= 0.25F) {
                             mStartLinePoint = mStartLinePoint - 0.25f;
                         } else {

@@ -49,7 +49,7 @@ public class SlideImageView
     // 绘制的 Bitmap
     private       Bitmap drawBitmap;
     // 设置计算倍数
-    private       float  scale    = 1.0f;
+    private       float  scale    = 1.0F;
 
     {
         // 初始化画笔
@@ -327,7 +327,7 @@ public class SlideImageView
 
     private final Handler handler        = new Handler();
     // 动画滑动距离
-    private       float   slideLenth     = 10f;
+    private       float   slideLenth     = 10F;
     // 滑动速度 -> 时间
     private       long    slideSpeed     = 100L;
     // 检测时间
@@ -529,9 +529,9 @@ public class SlideImageView
             slideCalcScale = -1f;
             // 超过限制, 则默认为 1 倍
             if (tScalc > 1.0F) {
-                tScalc = 1.0f;
+                tScalc = 1.0F;
             } else if (tScalc < 0F) {
-                tScalc = 0f; // 默认为 0 倍
+                tScalc = 0F; // 默认为 0 倍
             }
             // 计算滑动的距离
             float calcDistance = (-1) * (drawBitmap.getHeight() - viewHeight) * tScalc;

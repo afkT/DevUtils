@@ -1074,7 +1074,7 @@ public final class ColorUtils {
             int cmin = Math.min(r, g);
             if (b < cmin) cmin = b;
 
-            brightness = ((float) cmax) / 255.0f;
+            brightness = ((float) cmax) / 255.0F;
             if (cmax != 0) {
                 saturation = ((float) (cmax - cmin)) / ((float) cmax);
             } else {
@@ -1093,9 +1093,9 @@ public final class ColorUtils {
                 } else {
                     hue = 4.0f + greenc - redc;
                 }
-                hue = hue / 6.0f;
+                hue = hue / 6.0F;
                 if (hue < 0) {
-                    hue = hue + 1.0f;
+                    hue = hue + 1.0F;
                 }
             }
             hsbArrays[0] = hue;

@@ -259,7 +259,7 @@ public final class SizeUtils {
                 LogPrintUtils.eTag(TAG, e, "px2dpf");
             }
         }
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -319,7 +319,7 @@ public final class SizeUtils {
                 LogPrintUtils.eTag(TAG, e, "px2spf");
             }
         }
-        return 0f;
+        return 0F;
     }
 
     // ==================
@@ -354,7 +354,7 @@ public final class SizeUtils {
         if (metrics != null) {
             return TypedValue.applyDimension(unit, value, metrics);
         }
-        return 0f;
+        return 0F;
     }
 
     // =

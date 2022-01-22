@@ -387,7 +387,7 @@ public class WaveHelper {
         public static final class Builder {
 
             // 波浪移动方向效果属性值
-            private float waveShiftRatioStart  = 0f;
+            private float waveShiftRatioStart  = 0F;
             private float waveShiftRatioEnd    = 1f;
             private long  waveShiftRatioMillis = 1000L;
 
@@ -397,8 +397,8 @@ public class WaveHelper {
             private long  amplitudeRatioMillis = 5000L;
 
             // 水位高度属性值
-            private float waterLevelRatioStart  = 0f;
-            private float waterLevelRatioEnd    = 0f;
+            private float waterLevelRatioStart  = 0F;
+            private float waterLevelRatioEnd    = 0F;
             private long  waterLevelRatioMillis = 5000L;
 
             // ==========

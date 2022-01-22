@@ -487,7 +487,7 @@ public final class SnackbarUtils {
         // RootView margin 边距 new int[] { left, top, right, bottom }
         private int[]    rootMargin;
         // RootView 透明度
-        private float    rootAlpha = 1.0f;
+        private float    rootAlpha = 1.0F;
 
         // ==============================
         // = snackbar_text TextView 相关 =
@@ -1027,7 +1027,7 @@ public final class SnackbarUtils {
          * @return RootView 背景圆角大小
          */
         public float getRootCornerRadius() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -1060,7 +1060,7 @@ public final class SnackbarUtils {
          * @return RootView 透明度
          */
         public float getRootAlpha() {
-            return 1.0f;
+            return 1.0F;
         }
 
         // ==============================
@@ -1089,7 +1089,7 @@ public final class SnackbarUtils {
          * @return TextView 字体大小
          */
         public float getTextSize() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -1150,7 +1150,7 @@ public final class SnackbarUtils {
          * @return Action Button 字体大小
          */
         public float getActionSize() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -1166,7 +1166,7 @@ public final class SnackbarUtils {
          * @return Action Button 背景圆角大小
          */
         public float getActionCornerRadius() {
-            return 0f;
+            return 0F;
         }
 
         /**

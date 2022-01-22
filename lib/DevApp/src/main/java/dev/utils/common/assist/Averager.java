@@ -46,7 +46,7 @@ public class Averager {
         if (mNumLists.size() == 0) {
             return 0;
         } else {
-            float sum = 0f;
+            float sum = 0F;
             for (int i = 0, len = mNumLists.size(); i < len; i++) {
                 sum = sum + mNumLists.get(i).floatValue();
             }

@@ -260,7 +260,7 @@ public final class SnackbarUse {
          * @return
          */
         public float getRootCornerRadius() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -292,7 +292,7 @@ public final class SnackbarUse {
          * @return
          */
         public float getRootAlpha() {
-            return 1.0f;
+            return 1.0F;
         }
 
         // = snackbar_text TextView 相关 =
@@ -318,7 +318,7 @@ public final class SnackbarUse {
          * @return
          */
         public float getTextSize() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -376,7 +376,7 @@ public final class SnackbarUse {
          * @return
          */
         public float getActionSize() {
-            return 0f;
+            return 0F;
         }
 
         /**
@@ -392,7 +392,7 @@ public final class SnackbarUse {
          * @return
          */
         public float getActionCornerRadius() {
-            return 0f;
+            return 0F;
         }
 
         /**

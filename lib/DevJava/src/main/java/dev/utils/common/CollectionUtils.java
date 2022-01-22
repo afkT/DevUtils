@@ -1697,7 +1697,7 @@ public final class CollectionUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMinimumF");
         }
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -1757,7 +1757,7 @@ public final class CollectionUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMaximumF");
         }
-        return 0f;
+        return 0F;
     }
 
     /**

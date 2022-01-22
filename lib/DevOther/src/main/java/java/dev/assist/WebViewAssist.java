@@ -614,7 +614,7 @@ public class WebViewAssist {
         if (isWebViewNotEmpty()) {
             return mWebView.getScale();
         }
-        return 1.0f;
+        return 1.0F;
     }
 
     /**

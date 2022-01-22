@@ -20,9 +20,9 @@ public class BaseItemDecoration
     // 单条数据是否绘制分割线
     protected       boolean mSingleLineDraw = true;
     // 分割线距左边距 ( 横向为上边距 )
-    protected       float   mLineLeft       = 0.0f;
+    protected       float   mLineLeft       = 0.0F;
     // 分割线距右边距 ( 横向为下边距 )
-    protected       float   mLineRight      = 0.0f;
+    protected       float   mLineRight      = 0.0F;
 
     public BaseItemDecoration(float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);

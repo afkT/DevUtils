@@ -301,7 +301,7 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
      * @return
      */
     public float getRootCornerRadius() {
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -333,7 +333,7 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
      * @return
      */
     public float getRootAlpha() {
-        return 1.0f;
+        return 1.0F;
     }
 
     // = snackbar_text TextView 相关 =
@@ -359,7 +359,7 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
      * @return
      */
     public float getTextSize() {
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -417,7 +417,7 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
      * @return
      */
     public float getActionSize() {
-        return 0f;
+        return 0F;
     }
 
     /**
@@ -433,7 +433,7 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
      * @return
      */
     public float getActionCornerRadius() {
-        return 0f;
+        return 0F;
     }
 
     /**

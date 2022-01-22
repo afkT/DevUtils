@@ -26,7 +26,7 @@ public class DanceLoadingRenderer
 
     private static final float DEFAULT_CENTER_RADIUS     = 12.5f;
     private static final float DEFAULT_STROKE_WIDTH      = 1.5f;
-    private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0f;
+    private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0F;
 
     private static final int NUM_POINTS           = 3;
     private static final int DEGREE_360           = 360;
@@ -42,7 +42,7 @@ public class DanceLoadingRenderer
     //1: the coordinate x from small to large; -1: the coordinate x from large to small
     private static final int[]   DIRECTION = new int[]{1, 1, -1};
 
-    private static final float BALL_FORWARD_START_ENTER_DURATION_OFFSET = 0f;
+    private static final float BALL_FORWARD_START_ENTER_DURATION_OFFSET = 0F;
     private static final float BALL_FORWARD_END_ENTER_DURATION_OFFSET   = 0.125f;
 
     private static final float RING_FORWARD_START_ROTATE_DURATION_OFFSET = 0.125f;
@@ -64,7 +64,7 @@ public class DanceLoadingRenderer
     private static final float CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET   = 0.875f;
 
     private static final float BALL_REVERSAL_START_EXIT_DURATION_OFFSET = 0.875f;
-    private static final float BALL_REVERSAL_END_EXIT_DURATION_OFFSET   = 1.0f;
+    private static final float BALL_REVERSAL_END_EXIT_DURATION_OFFSET   = 1.0F;
 
     private final Paint mPaint         = new Paint();
     private final RectF mTempBounds    = new RectF();
@@ -116,8 +116,8 @@ public class DanceLoadingRenderer
         mTempBounds.inset(mStrokeInset, mStrokeInset);
         mCurrentBounds.set(mTempBounds);
 
-        float outerCircleRadius = Math.min(mTempBounds.height(), mTempBounds.width()) / 2.0f;
-        float interCircleRadius = outerCircleRadius / 2.0f;
+        float outerCircleRadius = Math.min(mTempBounds.height(), mTempBounds.width()) / 2.0F;
+        float interCircleRadius = outerCircleRadius / 2.0F;
         float centerRingWidth   = interCircleRadius - mStrokeWidth / 2;
 
         mPaint.setStyle(Paint.Style.STROKE);
@@ -155,7 +155,7 @@ public class DanceLoadingRenderer
 
     @Override
     protected void computeRender(float renderProgress) {
-        float radius = Math.min(mCurrentBounds.height(), mCurrentBounds.width()) / 2.0f;
+        float radius = Math.min(mCurrentBounds.height(), mCurrentBounds.width()) / 2.0F;
         //the origin coordinate is the centerLeft of the field mCurrentBounds
         float originCoordinateX = mCurrentBounds.left;
         float originCoordinateY = mCurrentBounds.top + radius;
@@ -163,7 +163,7 @@ public class DanceLoadingRenderer
         if (renderProgress <= BALL_FORWARD_END_ENTER_DURATION_OFFSET && renderProgress > BALL_FORWARD_START_ENTER_DURATION_OFFSET) {
             final float ballForwardEnterProgress = (renderProgress - BALL_FORWARD_START_ENTER_DURATION_OFFSET) / (BALL_FORWARD_END_ENTER_DURATION_OFFSET - BALL_FORWARD_START_ENTER_DURATION_OFFSET);
 
-            mShapeChangeHeight = (0.5f - ballForwardEnterProgress) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (0.5f - ballForwardEnterProgress) * mDanceBallRadius / 2.0F;
             mShapeChangeWidth  = -mShapeChangeHeight;
             //y = k(x - r)--> k = tan(angle)
             //(x - r)^2 + y^2 = r^2
@@ -199,7 +199,7 @@ public class DanceLoadingRenderer
 
         if (renderProgress <= BALL_FORWARD_END_EXIT_DURATION_OFFSET && renderProgress > BALL_FORWARD_START_EXIT_DURATION_OFFSET) {
             final float ballForwardExitProgress = (renderProgress - BALL_FORWARD_START_EXIT_DURATION_OFFSET) / (BALL_FORWARD_END_EXIT_DURATION_OFFSET - BALL_FORWARD_START_EXIT_DURATION_OFFSET);
-            mShapeChangeHeight = (ballForwardExitProgress - 0.5F) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (ballForwardExitProgress - 0.5F) * mDanceBallRadius / 2.0F;
             mShapeChangeWidth  = -mShapeChangeHeight;
             for (int i = 0; i < NUM_POINTS; i++) {
                 float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
@@ -216,12 +216,12 @@ public class DanceLoadingRenderer
             float scaledTime = (renderProgress - RING_REVERSAL_START_ROTATE_DURATION_OFFSET) / (RING_REVERSAL_END_ROTATE_DURATION_OFFSET - RING_REVERSAL_START_ROTATE_DURATION_OFFSET);
             mRotation = DEGREE_360 * MATERIAL_INTERPOLATOR.getInterpolation(scaledTime) - 360;
         } else if (renderProgress > RING_REVERSAL_END_ROTATE_DURATION_OFFSET) {
-            mRotation = 0.0f;
+            mRotation = 0.0F;
         }
 
         if (renderProgress <= BALL_REVERSAL_END_ENTER_DURATION_OFFSET && renderProgress > BALL_REVERSAL_START_ENTER_DURATION_OFFSET) {
             final float ballReversalEnterProgress = (renderProgress - BALL_REVERSAL_START_ENTER_DURATION_OFFSET) / (BALL_REVERSAL_END_ENTER_DURATION_OFFSET - BALL_REVERSAL_START_ENTER_DURATION_OFFSET);
-            mShapeChangeHeight = (0.5f - ballReversalEnterProgress) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (0.5f - ballReversalEnterProgress) * mDanceBallRadius / 2.0F;
             mShapeChangeWidth  = -mShapeChangeHeight;
 
             for (int i = 0; i < NUM_POINTS; i++) {
@@ -248,7 +248,7 @@ public class DanceLoadingRenderer
 
         if (renderProgress <= BALL_REVERSAL_END_EXIT_DURATION_OFFSET && renderProgress > BALL_REVERSAL_START_EXIT_DURATION_OFFSET) {
             final float ballReversalExitProgress = (renderProgress - BALL_REVERSAL_START_EXIT_DURATION_OFFSET) / (BALL_REVERSAL_END_EXIT_DURATION_OFFSET - BALL_REVERSAL_START_EXIT_DURATION_OFFSET);
-            mShapeChangeHeight = (ballReversalExitProgress - 0.5F) * mDanceBallRadius / 2.0f;
+            mShapeChangeHeight = (ballReversalExitProgress - 0.5F) * mDanceBallRadius / 2.0F;
             mShapeChangeWidth  = -mShapeChangeHeight;
 
             for (int i = 0; i < NUM_POINTS; i++) {
@@ -277,7 +277,7 @@ public class DanceLoadingRenderer
 
     @Override
     protected void reset() {
-        mScale    = 1.0f;
+        mScale    = 1.0F;
         mRotation = 0;
     }
 

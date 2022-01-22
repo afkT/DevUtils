@@ -173,7 +173,7 @@ public final class ScreenUtils {
     public static float getDensity() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
         // 屏幕密度, 如 (0.75 / 1.0 / 1.5 / 2.0)
-        return (displayMetrics != null) ? displayMetrics.density : 0f;
+        return (displayMetrics != null) ? displayMetrics.density : 0F;
     }
 
     /**
@@ -192,7 +192,7 @@ public final class ScreenUtils {
      */
     public static float getScaledDensity() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        return (displayMetrics != null) ? displayMetrics.scaledDensity : 0f;
+        return (displayMetrics != null) ? displayMetrics.scaledDensity : 0F;
     }
 
     /**
@@ -201,7 +201,7 @@ public final class ScreenUtils {
      */
     public static float getXDpi() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        return (displayMetrics != null) ? displayMetrics.xdpi : 0f;
+        return (displayMetrics != null) ? displayMetrics.xdpi : 0F;
     }
 
     /**
@@ -210,7 +210,7 @@ public final class ScreenUtils {
      */
     public static float getYDpi() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        return (displayMetrics != null) ? displayMetrics.ydpi : 0f;
+        return (displayMetrics != null) ? displayMetrics.ydpi : 0F;
     }
 
     /**
@@ -219,7 +219,7 @@ public final class ScreenUtils {
      */
     public static float getWidthDpi() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        return (displayMetrics != null) ? (displayMetrics.widthPixels / displayMetrics.density) : 0f;
+        return (displayMetrics != null) ? (displayMetrics.widthPixels / displayMetrics.density) : 0F;
     }
 
     /**
@@ -228,7 +228,7 @@ public final class ScreenUtils {
      */
     public static float getHeightDpi() {
         DisplayMetrics displayMetrics = getDisplayMetrics();
-        return (displayMetrics != null) ? (displayMetrics.heightPixels / displayMetrics.density) : 0f;
+        return (displayMetrics != null) ? (displayMetrics.heightPixels / displayMetrics.density) : 0F;
     }
 
     /**

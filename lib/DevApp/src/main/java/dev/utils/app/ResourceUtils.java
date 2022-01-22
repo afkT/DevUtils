@@ -1326,7 +1326,7 @@ public final class ResourceUtils {
             final ResourceAssist assist,
             final String resName
     ) {
-        if (assist == null) return 0f;
+        if (assist == null) return 0F;
         return assist.getDimension(resName);
     }
 
@@ -1354,7 +1354,7 @@ public final class ResourceUtils {
             final ResourceAssist assist,
             @DimenRes final int id
     ) {
-        if (assist == null) return 0f;
+        if (assist == null) return 0F;
         return assist.getDimension(id);
     }
 

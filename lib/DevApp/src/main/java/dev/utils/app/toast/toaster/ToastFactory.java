@@ -312,10 +312,10 @@ final class ToastFactory {
                         params.gravity = gravity;
                         // 判断是否铺满整个方向
                         if ((gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
-                            params.horizontalWeight = 1.0f;
+                            params.horizontalWeight = 1.0F;
                         }
                         if ((gravity & Gravity.VERTICAL_GRAVITY_MASK) == Gravity.FILL_VERTICAL) {
-                            params.verticalWeight = 1.0f;
+                            params.verticalWeight = 1.0F;
                         }
                     }
                     // 设置 X、Y 轴偏移

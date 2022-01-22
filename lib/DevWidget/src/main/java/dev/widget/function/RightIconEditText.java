@@ -34,7 +34,7 @@ public class RightIconEditText
     // Right Drawable 自身坐标信息
     private Rect            mRightBounds;
     // 右边 Icon 触发范围倍数
-    private float           mRangeMultiple = 2.0f;
+    private float           mRangeMultiple = 2.0F;
     // 是否绘制右边 Icon
     private boolean         mDrawRightIcon = true;
     // 右边 Icon 点击事件

@@ -593,7 +593,7 @@ public final class ResourceAssist {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDimension");
         }
-        return 0f;
+        return 0F;
     }
 
     /**

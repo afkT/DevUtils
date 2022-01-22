@@ -63,7 +63,7 @@ public final class ToastUtils {
         sUseConfig        = true;
         sNullText         = null;
         sGravity          = sX = sY = 0;
-        sHorizontalMargin = sVerticalMargin = 0.0f;
+        sHorizontalMargin = sVerticalMargin = 0.0F;
     }
 
     /**

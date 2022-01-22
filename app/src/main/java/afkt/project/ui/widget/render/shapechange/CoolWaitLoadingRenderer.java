@@ -30,13 +30,13 @@ public class CoolWaitLoadingRenderer
 
     private static final Interpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-    private final float DEFAULT_WIDTH        = 200.0f;
-    private final float DEFAULT_HEIGHT       = 150.0f;
-    private final float DEFAULT_STROKE_WIDTH = 8.0f;
-    private final float WAIT_CIRCLE_RADIUS   = 50.0f;
+    private final float DEFAULT_WIDTH        = 200.0F;
+    private final float DEFAULT_HEIGHT       = 150.0F;
+    private final float DEFAULT_STROKE_WIDTH = 8.0F;
+    private final float WAIT_CIRCLE_RADIUS   = 50.0F;
 
     private static final float WAIT_TRIM_DURATION_OFFSET = 0.5f;
-    private static final float END_TRIM_DURATION_OFFSET  = 1.0f;
+    private static final float END_TRIM_DURATION_OFFSET  = 1.0F;
 
     private final long ANIMATION_DURATION = 2222;
 

@@ -77,13 +77,13 @@ public class ElectricFanLoadingRenderer
     private static final int DEFAULT_ELECTRIC_FAN_BGCOLOR       = 0xfffccc59;
     private static final int DEFAULT_ELECTRIC_FAN_OUTLINE_COLOR = Color.WHITE;
 
-    private static final float DEFAULT_WIDTH                  = 182.0f;
-    private static final float DEFAULT_HEIGHT                 = 65.0f;
-    private static final float DEFAULT_TEXT_SIZE              = 11.0f;
-    private static final float DEFAULT_STROKE_WIDTH           = 2.0f;
+    private static final float DEFAULT_WIDTH                  = 182.0F;
+    private static final float DEFAULT_HEIGHT                 = 65.0F;
+    private static final float DEFAULT_TEXT_SIZE              = 11.0F;
+    private static final float DEFAULT_STROKE_WIDTH           = 2.0F;
     private static final float DEFAULT_STROKE_INTERVAL        = .2f;
-    private static final float DEFAULT_CENTER_RADIUS          = 16.0f;
-    private static final float DEFAULT_PROGRESS_CENTER_RADIUS = 11.0f;
+    private static final float DEFAULT_CENTER_RADIUS          = 16.0F;
+    private static final float DEFAULT_PROGRESS_CENTER_RADIUS = 11.0F;
 
     private static final float DEFAULT_LEAF_FLY_DURATION_FACTOR = 0.1f;
 
@@ -215,7 +215,7 @@ public class ElectricFanLoadingRenderer
         //after drawing the leaves and then draw the outline of the progress background can
         //prevent the leaves from flying to the outside
         RectF progressOutlineRect        = new RectF(mCurrentProgressBounds);
-        float progressOutlineStrokeInset = (mCenterRadius - mProgressCenterRadius) / 2.0f;
+        float progressOutlineStrokeInset = (mCenterRadius - mProgressCenterRadius) / 2.0F;
         progressOutlineRect.inset(progressOutlineStrokeInset, progressOutlineStrokeInset);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mProgressBgColor);
@@ -336,9 +336,9 @@ public class ElectricFanLoadingRenderer
 
     @Override
     protected void reset() {
-        mScale                   = 1.0f;
+        mScale                   = 1.0F;
         mCurrentLeafCount        = 0;
-        mNextLeafCreateThreshold = 0.0f;
+        mNextLeafCreateThreshold = 0.0F;
         mLeafHolders.clear();
     }
 
@@ -498,7 +498,7 @@ public class ElectricFanLoadingRenderer
 
     private class LeafHolder {
         public Rect  mLeafRect     = new Rect();
-        public float mLeafRotation = 0.0f;
+        public float mLeafRotation = 0.0F;
 
         public float mMaxRotation = mRandom.nextInt(120);
     }
