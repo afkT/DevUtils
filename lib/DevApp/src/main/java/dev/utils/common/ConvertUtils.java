@@ -326,7 +326,7 @@ public final class ConvertUtils {
      * @return Double
      */
     public static Double toDouble(final Object value) {
-        return toDouble(value, 0d);
+        return toDouble(value, 0D);
     }
 
     /**

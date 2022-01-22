@@ -269,7 +269,7 @@ public final class NumberUtils {
             final double value,
             final double divisor
     ) {
-        if (value <= 0d || divisor <= 0d) return 0d;
+        if (value <= 0d || divisor <= 0D) return 0d;
         return value / divisor;
     }
 
@@ -331,7 +331,7 @@ public final class NumberUtils {
         if (value <= 0 || divisor <= 0) return 0;
         if (value <= divisor) return 1;
         int result = (int) (value / divisor);
-        return ((value - divisor * result == 0d) ? result : result + 1);
+        return ((value - divisor * result == 0D) ? result : result + 1);
     }
 
     // =========

@@ -1028,10 +1028,10 @@ public final class FileUtils {
             fileSizeStr = df.format(fileSize / 1024) + "KB";
         } else if (fileSize < 1073741824) {
             fileSizeStr = df.format(fileSize / 1048576) + "MB";
-        } else if (fileSize < 1099511627776d) {
+        } else if (fileSize < 1099511627776D) {
             fileSizeStr = df.format(fileSize / 1073741824) + "GB";
         } else {
-            fileSizeStr = df.format(fileSize / 1099511627776d) + "TB";
+            fileSizeStr = df.format(fileSize / 1099511627776D) + "TB";
         }
         return fileSizeStr;
     }
@@ -1055,18 +1055,18 @@ public final class FileUtils {
             final int number,
             final double byteSize
     ) {
-        if (byteSize < 0d) {
+        if (byteSize < 0D) {
             return "0B";
-        } else if (byteSize < 1024d) {
+        } else if (byteSize < 1024D) {
             return String.format("%." + number + "fB", byteSize);
-        } else if (byteSize < 1048576d) {
-            return String.format("%." + number + "fKB", byteSize / 1024d);
-        } else if (byteSize < 1073741824d) {
-            return String.format("%." + number + "fMB", byteSize / 1048576d);
-        } else if (byteSize < 1099511627776d) {
-            return String.format("%." + number + "fGB", byteSize / 1073741824d);
+        } else if (byteSize < 1048576D) {
+            return String.format("%." + number + "fKB", byteSize / 1024D);
+        } else if (byteSize < 1073741824D) {
+            return String.format("%." + number + "fMB", byteSize / 1048576D);
+        } else if (byteSize < 1099511627776D) {
+            return String.format("%." + number + "fGB", byteSize / 1073741824D);
         } else {
-            return String.format("%." + number + "fTB", byteSize / 1099511627776d);
+            return String.format("%." + number + "fTB", byteSize / 1099511627776D);
         }
     }
 

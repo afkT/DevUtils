@@ -98,7 +98,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 预览分辨率
      */
     public Camera.Size getPreviewSize() {
-        return getPreviewSize(null, -1d);
+        return getPreviewSize(null, -1D);
     }
 
     /**
@@ -107,7 +107,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size}  预览分辨率
      */
     public Camera.Size getPreviewSize(final Point point) {
-        return getPreviewSize(point, -1d);
+        return getPreviewSize(point, -1D);
     }
 
     /**
@@ -191,7 +191,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize() {
-        return getPictureSize(false, null, -1d);
+        return getPictureSize(false, null, -1D);
     }
 
     /**
@@ -200,7 +200,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final boolean max) {
-        return getPictureSize(max, null, -1d);
+        return getPictureSize(max, null, -1D);
     }
 
     /**
@@ -210,7 +210,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 拍照分辨率
      */
     public Camera.Size getPictureSize(final Point point) {
-        return getPictureSize(false, point, -1d);
+        return getPictureSize(false, point, -1D);
     }
 
     /**

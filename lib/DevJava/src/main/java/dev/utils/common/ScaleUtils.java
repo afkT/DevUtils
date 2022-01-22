@@ -71,7 +71,7 @@ public final class ScaleUtils {
             final double currentHeight
     ) {
         try {
-            if (currentWidth == 0d) {
+            if (currentWidth == 0D) {
                 return new double[]{0d, 0d};
             }
             // 计算比例
@@ -99,7 +99,7 @@ public final class ScaleUtils {
             final double currentHeight
     ) {
         try {
-            if (currentHeight == 0d) {
+            if (currentHeight == 0D) {
                 return new double[]{0d, 0d};
             }
             // 计算比例
