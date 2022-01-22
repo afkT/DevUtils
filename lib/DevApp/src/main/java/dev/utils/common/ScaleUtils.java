@@ -33,7 +33,7 @@ public final class ScaleUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScale");
         }
-        return -1d;
+        return -1D;
     }
 
     /**
@@ -51,7 +51,7 @@ public final class ScaleUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScaleToMath");
         }
-        return -1d;
+        return -1D;
     }
 
     // ==========
@@ -72,7 +72,7 @@ public final class ScaleUtils {
     ) {
         try {
             if (currentWidth == 0D) {
-                return new double[]{0d, 0d};
+                return new double[]{0D, 0D};
             }
             // 计算比例
             double scale = targetWidth / currentWidth;
@@ -100,7 +100,7 @@ public final class ScaleUtils {
     ) {
         try {
             if (currentHeight == 0D) {
-                return new double[]{0d, 0d};
+                return new double[]{0D, 0D};
             }
             // 计算比例
             double scale = targetHeight / currentHeight;

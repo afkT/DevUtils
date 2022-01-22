@@ -30,7 +30,7 @@ public final class CameraSizeAssist {
     // 摄像头对象
     private final        Camera mCamera;
     // 默认最大的偏差
-    private static final double MAX_ASPECT_DISTORTION = 0.15d;
+    private static final double MAX_ASPECT_DISTORTION = 0.15D;
     // 最小尺寸, 小于该尺寸则不处理
     private static final int    MIN_PREVIEW_PIXELS    = 153600; // 480 * 320;
 
@@ -270,7 +270,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize() {
-        return getVideoSize(false, null, -1d, false);
+        return getVideoSize(false, null, -1D, false);
     }
 
     /**
@@ -279,7 +279,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final boolean max) {
-        return getVideoSize(max, null, -1d, false);
+        return getVideoSize(max, null, -1D, false);
     }
 
     /**
@@ -288,7 +288,7 @@ public final class CameraSizeAssist {
      * @return {@link Camera.Size} 视频分辨率
      */
     public Camera.Size getVideoSize(final Point point) {
-        return getVideoSize(false, point, -1d, false);
+        return getVideoSize(false, point, -1D, false);
     }
 
     /**

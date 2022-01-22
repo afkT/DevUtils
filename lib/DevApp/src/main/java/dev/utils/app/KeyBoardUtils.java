@@ -244,7 +244,7 @@ public final class KeyBoardUtils {
                         // 获取键盘高度
                         int keyboardHeight = height - displayHeight;
                         // 计算一定比例
-                        boolean visible = ((double) displayHeight / (double) height) < 0.8d;
+                        boolean visible = ((double) displayHeight / (double) height) < 0.8D;
                         // 判断是否显示
                         listener.onSoftInputChanged(visible, keyboardHeight);
                     } catch (Exception e) {

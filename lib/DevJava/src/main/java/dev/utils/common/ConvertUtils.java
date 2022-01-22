@@ -1244,7 +1244,7 @@ public final class ConvertUtils {
      * @return double[]
      */
     public static double[] stringsToDoubles(final String... datas) {
-        return stringsToDoubles(0, (datas != null) ? datas.length : 0, -1d, datas);
+        return stringsToDoubles(0, (datas != null) ? datas.length : 0, -1D, datas);
     }
 
     /**
@@ -1257,7 +1257,7 @@ public final class ConvertUtils {
             final int off,
             final String... datas
     ) {
-        return stringsToDoubles(off, (datas != null) ? datas.length : 0, -1d, datas);
+        return stringsToDoubles(off, (datas != null) ? datas.length : 0, -1D, datas);
     }
 
     /**
@@ -1272,7 +1272,7 @@ public final class ConvertUtils {
             final int length,
             final String... datas
     ) {
-        return stringsToDoubles(off, length, -1d, datas);
+        return stringsToDoubles(off, length, -1D, datas);
     }
 
     /**

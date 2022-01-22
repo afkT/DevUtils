@@ -1711,7 +1711,7 @@ public final class CollectionUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMinimumD");
         }
-        return 0d;
+        return 0D;
     }
 
     // ============
@@ -1771,7 +1771,7 @@ public final class CollectionUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMaximumD");
         }
-        return 0d;
+        return 0D;
     }
 
     // =============

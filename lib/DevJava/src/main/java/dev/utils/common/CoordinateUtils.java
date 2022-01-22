@@ -238,7 +238,7 @@ public final class CoordinateUtils {
                 + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;
         // 保留两位小数
-        s = Math.round(s * 100D) / 100d;
+        s = Math.round(s * 100D) / 100D;
         s = s * 1000;
         return s;
     }
