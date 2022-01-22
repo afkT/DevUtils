@@ -121,7 +121,7 @@ object ProjectUtils {
             // 获取边框边距
             scanView.borderMargin
             // 设置扫描区域绘制边框边距
-            scanView.borderMargin = 0f
+            scanView.borderMargin = 0F
             // 设置扫描区域边框颜色
             scanView.borderColor = Color.WHITE
             // 设置扫描区域边框宽度
@@ -149,9 +149,9 @@ object ProjectUtils {
             // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
             scanView.lineColorToSquare = Color.WHITE
             // 设置正方形扫描线条向上 ( 下 ) 边距
-            scanView.lineMarginTopToSquare = 0f
+            scanView.lineMarginTopToSquare = 0F
             // 设置正方形扫描线条向左 ( 右 ) 边距
-            scanView.lineMarginLeftToSquare = 0f
+            scanView.lineMarginLeftToSquare = 0F
 
             // ===============
             // = 六边形特殊配置 =
@@ -160,7 +160,7 @@ object ProjectUtils {
             // 设置六边形线条动画 - 线条宽度
             scanView.lineWidthToHexagon = 4f
             // 置六边形线条动画 - 线条边距
-            scanView.lineMarginToHexagon = 20f
+            scanView.lineMarginToHexagon = 20F
             // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
             scanView.isLineAnimDirection = true
             // 设置六边形线条动画颜色

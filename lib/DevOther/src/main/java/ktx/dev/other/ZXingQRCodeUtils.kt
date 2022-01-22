@@ -263,7 +263,7 @@ object ZXingQRCodeUtils {
         val logoWidth = logo.width
         val logoHeight = logo.height
         // 缩放图片
-        val scaleFactor = srcWidth * 1.0f / 4 / logoWidth // 这里的 4 决定 Logo 在图片的比例 四分之一
+        val scaleFactor = srcWidth * 1.0F / 4 / logoWidth // 这里的 4 决定 Logo 在图片的比例 四分之一
         var bitmap = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888)
         try {
             val canvas = Canvas(bitmap)

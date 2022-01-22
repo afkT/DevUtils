@@ -33,7 +33,7 @@ class ImageConfig private constructor(
     private var mHeight = 0
 
     // 加载缩略图时应用尺寸的乘数
-    private var mThumbnail = 0f
+    private var mThumbnail = 0F
 
     // 图片保存质量
     private var mQuality = QUALITY

@@ -1234,7 +1234,7 @@ public final class SnackbarUtils {
         // 设置 RootView 透明度
         if (style.getRootAlpha() >= 0F) {
             float rootAlpha = style.getRootAlpha();
-            rootAlpha = rootAlpha >= 1.0f ? 1.0f : Math.max(rootAlpha, 0.0F);
+            rootAlpha = rootAlpha >= 1.0F ? 1.0F : Math.max(rootAlpha, 0.0F);
             rootView.setAlpha(rootAlpha);
         }
 

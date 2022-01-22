@@ -430,7 +430,7 @@ public class RoundImageView
         mBorderRect.set(calculateBounds());
         mBorderRadius = Math.min(
                 (mBorderRect.height() - mBorderWidth) / 2.0F,
-                (mBorderRect.width() - mBorderWidth) / 2.0f
+                (mBorderRect.width() - mBorderWidth) / 2.0F
         );
         mDrawableRect.set(mBorderRect);
         if (!mBorderOverlay && mBorderWidth > 0) {
@@ -438,7 +438,7 @@ public class RoundImageView
         }
         mDrawableRadius = Math.min(
                 mDrawableRect.height() / 2.0F,
-                mDrawableRect.width() / 2.0f
+                mDrawableRect.width() / 2.0F
         );
         updateShaderMatrix();
     }

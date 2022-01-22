@@ -250,9 +250,9 @@ public final class ColorUtils {
             final float blue
     ) {
         return 0xff000000 |
-                ((int) (red * 255.0f + 0.5F) << 16) |
-                ((int) (green * 255.0f + 0.5F) << 8) |
-                (int) (blue * 255.0f + 0.5F);
+                ((int) (red * 255.0F + 0.5F) << 16) |
+                ((int) (green * 255.0F + 0.5F) << 8) |
+                (int) (blue * 255.0F + 0.5F);
     }
 
     // =
@@ -288,10 +288,10 @@ public final class ColorUtils {
             final float green,
             final float blue
     ) {
-        return ((int) (alpha * 255.0f + 0.5F) << 24) |
-                ((int) (red * 255.0f + 0.5F) << 16) |
-                ((int) (green * 255.0f + 0.5F) << 8) |
-                (int) (blue * 255.0f + 0.5F);
+        return ((int) (alpha * 255.0F + 0.5F) << 24) |
+                ((int) (red * 255.0F + 0.5F) << 16) |
+                ((int) (green * 255.0F + 0.5F) << 8) |
+                (int) (blue * 255.0F + 0.5F);
     }
 
     // =
@@ -351,7 +351,7 @@ public final class ColorUtils {
             final int color,
             final float alpha
     ) {
-        return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5F) << 24);
+        return (color & 0x00ffffff) | ((int) (alpha * 255.0F + 0.5F) << 24);
     }
 
     /**
@@ -377,7 +377,7 @@ public final class ColorUtils {
             final int color,
             final float red
     ) {
-        return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5F) << 16);
+        return (color & 0xff00ffff) | ((int) (red * 255.0F + 0.5F) << 16);
     }
 
     /**
@@ -403,7 +403,7 @@ public final class ColorUtils {
             final int color,
             final float green
     ) {
-        return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5F) << 8);
+        return (color & 0xffff00ff) | ((int) (green * 255.0F + 0.5F) << 8);
     }
 
     /**
@@ -429,7 +429,7 @@ public final class ColorUtils {
             final int color,
             final float blue
     ) {
-        return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5F);
+        return (color & 0xffffff00) | (int) (blue * 255.0F + 0.5F);
     }
 
     // =
@@ -1089,9 +1089,9 @@ public final class ColorUtils {
                 if (r == cmax) {
                     hue = bluec - greenc;
                 } else if (g == cmax) {
-                    hue = 2.0f + redc - bluec;
+                    hue = 2.0F + redc - bluec;
                 } else {
-                    hue = 4.0f + greenc - redc;
+                    hue = 4.0F + greenc - redc;
                 }
                 hue = hue / 6.0F;
                 if (hue < 0) {

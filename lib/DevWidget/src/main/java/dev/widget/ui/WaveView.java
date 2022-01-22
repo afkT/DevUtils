@@ -207,7 +207,7 @@ public class WaveView
 
             mWaveShader.setLocalMatrix(mShaderMatrix);
 
-            float borderWidth = mBorderPaint == null ? 0f : mBorderPaint.getStrokeWidth();
+            float borderWidth = mBorderPaint == null ? 0F : mBorderPaint.getStrokeWidth();
             switch (mShapeType) {
                 case CIRCLE:
                     if (borderWidth > 0) {
@@ -253,7 +253,7 @@ public class WaveView
      * Create the shader with default waves which repeat horizontally, and clamp vertically
      */
     private void createShader() {
-        mDefaultAngularFrequency = 2.0f * Math.PI / DEFAULT_WAVE_LENGTH_RATIO / getWidth();
+        mDefaultAngularFrequency = 2.0F * Math.PI / DEFAULT_WAVE_LENGTH_RATIO / getWidth();
         mDefaultAmplitude        = getHeight() * DEFAULT_AMPLITUDE_RATIO;
         mDefaultWaterLevel       = getHeight() * DEFAULT_WATER_LEVEL_RATIO;
         mDefaultWaveLength       = getWidth();

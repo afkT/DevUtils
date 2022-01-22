@@ -310,7 +310,7 @@ public class CircleBroodLoadingRenderer
         if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
             if (input >= 0.25) {
                 float shapeProgress = (input - 0.25F) / 0.01F;
-                mChildLeftXOffset = (1.0f - shapeProgress) * mChildOvalRadius * 0.25F;
+                mChildLeftXOffset = (1.0F - shapeProgress) * mChildOvalRadius * 0.25F;
             } else {
                 mChildLeftXOffset = mChildOvalRadius * 0.25F;
             }
@@ -324,24 +324,24 @@ public class CircleBroodLoadingRenderer
         } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
             if (input > 0.38F) {
                 float radiusProgress = (input - 0.38F) / 0.04F;
-                mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
+                mChildOvalRadius = mBasicChildOvalRadius * (1.0F + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
             if (input < 0.46F) {
                 float radiusProgress = (input - 0.42F) / 0.04F;
-                mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
+                mChildOvalRadius = mBasicChildOvalRadius * (2.0F - radiusProgress);
             }
         } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
             if (input > 0.65F) {
                 float radiusProgress = (input - 0.65F) / 0.05F;
-                mChildOvalRadius = mBasicChildOvalRadius * (1.0f + radiusProgress);
+                mChildOvalRadius = mBasicChildOvalRadius * (1.0F + radiusProgress);
             }
         } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
             if (input < 0.71F) {
                 mChildOvalRadius = mBasicChildOvalRadius * 2.0F;
             } else if (input < 0.76F) {
                 float radiusProgress = (input - 0.71F) / 0.05F;
-                mChildOvalRadius = mBasicChildOvalRadius * (2.0f - radiusProgress);
+                mChildOvalRadius = mBasicChildOvalRadius * (2.0F - radiusProgress);
             }
         } else {
         }
@@ -366,8 +366,8 @@ public class CircleBroodLoadingRenderer
         }
 
         return shapeProgress < 0.5f ?
-                1.0f - (1.0f - MAX_MATHER_SHAPE_CHANGE_FACTOR) * shapeProgress * 2.0f :
-                MAX_MATHER_SHAPE_CHANGE_FACTOR + (1.0f - MAX_MATHER_SHAPE_CHANGE_FACTOR) * (shapeProgress - 0.5F) * 2.0F;
+                1.0F - (1.0F - MAX_MATHER_SHAPE_CHANGE_FACTOR) * shapeProgress * 2.0F :
+                MAX_MATHER_SHAPE_CHANGE_FACTOR + (1.0F - MAX_MATHER_SHAPE_CHANGE_FACTOR) * (shapeProgress - 0.5F) * 2.0F;
     }
 
     private float getCurrentMotherMoveLength(float input) {
@@ -524,7 +524,7 @@ public class CircleBroodLoadingRenderer
         mStageChildForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildForwardTopLeftLength;
         //pre backward top left
-        path.lineTo(centerX - mMotherOvalHalfWidth * 2.0f + mMotherOvalHalfWidth * 0.2F, centerY - mMotherOvalHalfHeight);
+        path.lineTo(centerX - mMotherOvalHalfWidth * 2.0F + mMotherOvalHalfWidth * 0.2F, centerY - mMotherOvalHalfHeight);
         path.quadTo(centerX - mMotherOvalHalfWidth * 2.5F, centerY - mMotherOvalHalfHeight * 2,
                 centerX - mMotherOvalHalfWidth * 1.5F, centerY - mMotherOvalHalfHeight * 2.25f
         );

@@ -61,7 +61,7 @@ class BarCodeData private constructor(
     private var mIcon: Bitmap? = null
 
     // icon 占比
-    private var mIconScale = 4.0f
+    private var mIconScale = 4.0F
 
     // ===========
     // = get/set =

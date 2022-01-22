@@ -119,7 +119,7 @@ class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
         }
     }
 
-    private var convertPx = 0f
+    private var convertPx = 0F
     private var mText1Index = 3
     private var mText1Height = 12f
     private var mText2Index = 3

@@ -31,7 +31,7 @@ class SignActivity : BaseActivity<ViewBinding>() {
         // 设置画笔
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = 30f
+        paint.strokeWidth = 30F
         paint.color = Color.BLACK
         signView.paint = paint
         return signView

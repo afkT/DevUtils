@@ -87,7 +87,7 @@ public class ElectricFanLoadingRenderer
 
     private static final float DEFAULT_LEAF_FLY_DURATION_FACTOR = 0.1F;
 
-    private static final float LEAF_CREATE_DURATION_INTERVAL  = 1.0f / LEAF_COUNT;
+    private static final float LEAF_CREATE_DURATION_INTERVAL  = 1.0F / LEAF_COUNT;
     private static final float DECELERATE_DURATION_PERCENTAGE = 0.4F;
     private static final float ACCELERATE_DURATION_PERCENTAGE = 0.6F;
 
@@ -408,7 +408,7 @@ public class ElectricFanLoadingRenderer
         animator.addUpdateListener(new BezierListener(target));
         animator.setTarget(target);
 
-        animator.setDuration((long) ((mRandom.nextInt(300) + mDuration * DEFAULT_LEAF_FLY_DURATION_FACTOR) * (1.0f - progress)));
+        animator.setDuration((long) ((mRandom.nextInt(300) + mDuration * DEFAULT_LEAF_FLY_DURATION_FACTOR) * (1.0F - progress)));
 
         return animator;
     }
@@ -452,7 +452,7 @@ public class ElectricFanLoadingRenderer
         ) {
 
             float t     = fraction;
-            float tLeft = 1.0f - t;
+            float tLeft = 1.0F - t;
 
             float x = (float) (point0.x * Math.pow(tLeft, 3) + 3 * point1.x * t * Math.pow(tLeft, 2) + 3 * point2.x * Math.pow(t, 2) * tLeft + point3.x * Math.pow(t, 3));
             float y = (float) (point0.y * Math.pow(tLeft, 3) + 3 * point1.y * t * Math.pow(tLeft, 2) + 3 * point2.y * Math.pow(t, 2) * tLeft + point3.y * Math.pow(t, 3));

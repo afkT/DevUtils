@@ -223,7 +223,7 @@ public class FlowLikeView
                 PointF startValue,
                 PointF endValue
         ) {
-            float  leftTime     = 1.0f - fraction;
+            float  leftTime     = 1.0F - fraction;
             PointF resultPointF = new PointF();
             // 二阶贝塞儿曲线
             resultPointF.x = (float) Math.pow(leftTime, 2) * startValue.x + 2 * fraction * leftTime * ctrlPointF.x

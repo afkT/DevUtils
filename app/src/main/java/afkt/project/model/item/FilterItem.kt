@@ -129,7 +129,7 @@ class FilterItem(
                         floatArrayOf(
                             -1.0F, 0.0F, 1.0F,
                             -2.0F, 0.0F, 2.0F,
-                            -1.0F, 0.0F, 1.0f
+                            -1.0F, 0.0F, 1.0F
                         )
                     )
                     convolution

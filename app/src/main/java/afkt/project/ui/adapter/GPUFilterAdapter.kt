@@ -71,7 +71,7 @@ class GPUFilterAdapter(
             .setBold(isSelect)
             .setGravity(Gravity.CENTER)
             .setTextColors(ResourceUtils.getColor(if (isSelect) R.color.red else R.color.black))
-            .setTextSizeBySp(if (isSelect) 18.0f else 13.0F)
+            .setTextSizeBySp(if (isSelect) 18.0F else 13.0F)
             .setLayoutParams(layoutParams)
             .getView()
     }

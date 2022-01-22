@@ -300,7 +300,7 @@ public final class ZXingQRCodeUtils {
         int logoWidth  = logo.getWidth();
         int logoHeight = logo.getHeight();
         // 缩放图片
-        float  scaleFactor = srcWidth * 1.0f / 4 / logoWidth; // 这里的 4 决定 Logo 在图片的比例 四分之一
+        float  scaleFactor = srcWidth * 1.0F / 4 / logoWidth; // 这里的 4 决定 Logo 在图片的比例 四分之一
         Bitmap bitmap      = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
         try {
             Canvas canvas = new Canvas(bitmap);

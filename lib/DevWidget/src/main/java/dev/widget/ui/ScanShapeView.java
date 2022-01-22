@@ -1456,7 +1456,7 @@ public class ScanShapeView
                         float middleSpace = mAnnulusWidths[0] + mAnnulusWidths[1] + mAnnulusMargins[0] + mAnimOffsetToAnnulus;
                         canvas.drawCircle(mX, mY, r - middleSpace, mAnnulusPaints[1]);
                         // 中间层, 两个弧
-                        if (mAnimOffsetToAnnulus == 0f && mAnnulusMargins[0] / 2 > 0F) { // 小于 0 则不绘制
+                        if (mAnimOffsetToAnnulus == 0F && mAnnulusMargins[0] / 2 > 0F) { // 小于 0 则不绘制
                             // 计算中间层边距
                             float middleMargin = mAnnulusWidths[0] + mAnnulusWidths[1] + mAnnulusMargins[0] / 2;
                             // 计算新的路径
