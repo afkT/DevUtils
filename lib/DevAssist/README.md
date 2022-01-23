@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevAssist:1.3.1'
+implementation 'io.github.afkt:DevAssist:1.3.2'
 ```
 
 ## 目录结构
@@ -609,7 +609,7 @@ implementation 'io.github.afkt:DevAssist:1.3.1'
 | isSource | 是否有效资源 |
 
 
-* **变量基类 ( 方便判断处理 ) ->** [DevVariable.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevVariable.java)
+* **变量操作基类 ->** [DevVariable.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevVariable.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -632,6 +632,17 @@ implementation 'io.github.afkt:DevAssist:1.3.1'
 | getVariableKey | 通过 value 获取 key |
 | getVariableKeys | 获取变量数据 key list |
 | getVariableKeysToReverse | 获取变量数据 key list ( 倒序 ) |
+
+
+* **变量操作基类扩展类 ->** [DevVariableExt.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevVariableExt.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getCreator | 获取变量创建器 |
+| setCreator | 设置变量创建器 |
+| getVariable | 获取变量操作基类 |
+| getVariableValue | 通过 key 获取 value |
+| create | 创建存储值 |
 
 
 ## <span id="devbasedata">**`dev.base.data`**</span>

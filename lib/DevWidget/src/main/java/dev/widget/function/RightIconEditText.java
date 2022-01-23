@@ -179,7 +179,7 @@ public class RightIconEditText
     }
 
     /**
-     * 设置右边 Icon 点击事件
+     * 获取右边 Icon 点击事件
      * @return 右边 Icon 点击事件
      */
     public OnClickListener getRightClickListener() {

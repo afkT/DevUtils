@@ -7,7 +7,7 @@
 
 ```gradle
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.1.4'
+implementation 'io.github.afkt:DevWidgetX:1.1.5'
 ```
 
 ## README

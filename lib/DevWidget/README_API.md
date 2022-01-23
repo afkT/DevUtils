@@ -3,7 +3,7 @@
 
 ```gradle
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.1.4'
+implementation 'io.github.afkt:DevWidgetX:1.1.5'
 ```
 
 ## 目录结构
@@ -373,6 +373,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.4'
 | setRangeMultiple | 设置右边 Icon 触发范围倍数 |
 | isDrawRightIcon | 是否绘制右边 Icon |
 | setDrawRightIcon | 设置是否绘制右边 Icon |
+| getRightClickListener | 获取右边 Icon 点击事件 |
+| setRightClickListener | 设置右边 Icon 点击事件 |
 | getRightIcon | 获取右边 Icon Drawable |
 | setRightIcon | 设置右边 Icon Drawable |
 | setTextWatcher | 设置输入监听回调 |

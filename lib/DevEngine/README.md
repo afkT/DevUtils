@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevEngine:1.0.3'
+implementation 'io.github.afkt:DevEngine:1.0.4'
 ```
 
 ## 目录结构
