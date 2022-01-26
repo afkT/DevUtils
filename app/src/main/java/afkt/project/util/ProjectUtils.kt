@@ -7,6 +7,7 @@ import dev.base.DevVariable
 import dev.engine.image.ImageConfig
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
+import dev.utils.app.SizeUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
 
@@ -21,36 +22,35 @@ object ProjectUtils {
     // ==================
 
     // GlideConfig 配置变量
-    private val sConfigVariable = DevVariable<Int, ImageConfig?>()
+    private val sConfigVariable = DevVariable<Float, ImageConfig?>()
 
     /**
      * 获取圆角 GlideConfig
      * @return 圆角 [ImageConfig]
      */
-    @JvmStatic
     val roundConfig3: ImageConfig
-        get() = roundConfig(3)
+        get() = roundConfig(3F)
 
     /**
      * 获取圆角 GlideConfig
      * @return 圆角 [ImageConfig]
      */
-    @JvmStatic
     val roundConfig10: ImageConfig
-        get() = roundConfig(10)
+        get() = roundConfig(10F)
 
     /**
      * 获取圆角 GlideConfig
      * @param roundDP 圆角 dp 值
      * @return [ImageConfig]
      */
-    @JvmStatic
-    fun roundConfig(roundDP: Int): ImageConfig {
-        var config = sConfigVariable.getVariableValue(roundDP)
-        if (config != null) return config
-        config = ImageConfig.create()
-        config.setRoundedCornersRadius(AppSize.dp2px(roundDP.toFloat()))
-        config.setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
+    fun roundConfig(roundDP: Float): ImageConfig {
+        sConfigVariable.getVariableValue(roundDP)?.let {
+            return it
+        }
+        val config = ImageConfig.create().apply {
+            setRoundedCornersRadius(SizeUtils.dp2px(roundDP))
+            setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
+        }
         sConfigVariable.putVariable(roundDP, config)
         return config
     }

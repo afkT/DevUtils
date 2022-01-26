@@ -232,9 +232,9 @@ class BaseApplication : MultiDexApplication() {
     private fun initWebViewBuilder() {
         WebViewAssist.Builder().apply {
             // 显示内置缩放工具
-            setBuiltInZoomControls(true)
+            setBuiltInZoomControls(false)
             // 显示缩放工具
-            setDisplayZoomControls(true)
+            setDisplayZoomControls(false)
             // Application Caches 地址
             setAppCachePath(PathUtils.getInternal().getAppCachePath("cache"))
             // 数据库缓存路径
