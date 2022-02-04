@@ -12,7 +12,6 @@ import dev.engine.permission.IPermissionEngine
 import dev.utils.app.VersionUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.HttpURLConnectionUtils
-import java.util.*
 import kotlin.math.abs
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {

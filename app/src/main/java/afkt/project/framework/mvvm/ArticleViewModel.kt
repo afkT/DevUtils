@@ -18,7 +18,7 @@ class ArticleViewModel : ViewModel(),
     val article = MutableLiveData<ArticleBean?>()
 
     // Repository
-    val repository = ArticleRepository()
+    private val repository = ArticleRepository()
 
     // LifecycleOwner
     private lateinit var lifecycleOwner: LifecycleOwner

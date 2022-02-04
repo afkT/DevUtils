@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import dev.utils.JCLogUtils
 import java.io.StringReader
+import java.lang.reflect.Modifier
 import java.lang.reflect.Type
 
 /**

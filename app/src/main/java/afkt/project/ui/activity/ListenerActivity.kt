@@ -434,7 +434,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
     }
 
     // 判断是否竖屏
-    private var isPortrait = true
+    private var mPortrait = true
 
     // 录制角度记录值
     private var mRotationFlag = 90
@@ -453,9 +453,9 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
         if (mOrientationEventListener == null) {
             mOrientationEventListener = object : OrientationEventListener(mContext) {
                 override fun onOrientationChanged(rotation: Int) {
-                    if (rotation >= 0 && rotation <= 30 || rotation >= 330) {
+                    if (rotation in 0..30 || rotation >= 330) {
                         DevEngine.getLog()?.dTag(TAG, "竖屏拍摄")
-                        isPortrait = true
+                        mPortrait = true
                         // 竖屏拍摄
                         if (mRotationFlag != 0) {
                             // 这是竖屏视频需要的角度
@@ -463,9 +463,9 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             // 这是记录当前角度的 flag
                             mRotationFlag = 0
                         }
-                    } else if (rotation >= 230 && rotation <= 310) {
+                    } else if (rotation in 230..310) {
                         DevEngine.getLog()?.dTag(TAG, "横屏拍摄")
-                        isPortrait = false
+                        mPortrait = false
                         // 横屏拍摄
                         if (mRotationFlag != 90) {
                             // 这是正横屏视频需要的角度
@@ -473,9 +473,9 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             // 这是记录当前角度的 flag
                             mRotationFlag = 90
                         }
-                    } else if (rotation > 30 && rotation < 135) {
+                    } else if (rotation in 31..134) {
                         DevEngine.getLog()?.dTag(TAG, "反横屏拍摄")
-                        isPortrait = false
+                        mPortrait = false
                         // 反横屏拍摄
                         if (mRotationFlag != 270) {
                             // 这是反横屏视频需要的角度
@@ -483,9 +483,9 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             // 这是记录当前角度的 flag
                             mRotationFlag = 270
                         }
-                    } else if (rotation > 135 && rotation < 230) {
+                    } else if (rotation in 136..229) {
                         DevEngine.getLog()?.dTag(TAG, "反竖屏拍摄")
-                        isPortrait = true
+                        mPortrait = true
                         // 竖屏拍摄
                         if (mRotationFlag != 360) {
                             // 这是竖屏视频需要的角度

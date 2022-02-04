@@ -217,10 +217,6 @@ class DecodeHandler(
     // 读取图像数据对象
     private val mMultiFormatReader: MultiFormatReader = MultiFormatReader()
 
-    /**
-     * 构造函数
-     * @param hints        解码参数
-     */
     init {
         mMultiFormatReader.setHints(hints)
     }

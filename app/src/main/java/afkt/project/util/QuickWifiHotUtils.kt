@@ -23,33 +23,33 @@ class QuickWifiHotUtils(
     private val TAG = QuickWifiHotUtils::class.java.simpleName
 
     // 是否停止线程检查
-    private var isStop = false
+    private var mStop = false
 
     // 是否停止开启检查
-    private var isCheck = false
+    private var mCheck = false
 
     // 是否线程检查热点连接状态
-    private var isThreadCheckHot = false
+    private var mThreadCheckHot = false
 
     // 热点 SSID
-    private var hotSSID: String? = null
+    private var mHotSSID: String? = null
 
     // 热点密码
-    private var hotPwd: String? = null
+    private var mHotPwd: String? = null
 
     // 操作接口
-    var operate: Operate? = null
+    var mOperate: Operate? = null
 
     @SuppressLint("HandlerLeak")
     private val hotHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             // 如果属于需要销毁, 则全部不处理
-            operate?.let {
+            mOperate?.let {
                 if (it.isFinishing) {
-                    isStop = true
-                    isCheck = false
-                    isThreadCheckHot = false
+                    mStop = true
+                    mCheck = false
+                    mThreadCheckHot = false
                     return
                 }
             }
@@ -70,7 +70,7 @@ class QuickWifiHotUtils(
                     // 停止线程检查
                     setWifiApCheck(false)
                     // 需要检查连接状态
-                    isThreadCheckHot = true
+                    mThreadCheckHot = true
                     // 开启线程检查
                     Thread(hotCheckThread).start()
                 }
@@ -80,9 +80,9 @@ class QuickWifiHotUtils(
                     // 判断是否存在设备连接热点
                     val isConnectHot = wifiHotUtils.isConnectHot
                     // 如果存在, 则尝试连接
-                    if (isConnectHot && isThreadCheckHot) {
+                    if (isConnectHot && mThreadCheckHot) {
                         // 表示不需要进行检查了
-                        isThreadCheckHot = false
+                        mThreadCheckHot = false
                         // 通过获取是否存在其他设备 - 手机连接上该热点
                         // 打印日志
                         DevEngine.getLog()?.dTag(TAG, "存在设备连接热点")
@@ -99,10 +99,10 @@ class QuickWifiHotUtils(
     private fun setWifiCheck(isCheck: Boolean) {
         if (isCheck) {
             // 需要进行线程检查
-            isStop = false
+            mStop = false
         } else {
             // 停止线程检查
-            isStop = true
+            mStop = true
             // 删除上一个任务, 并且重新绑定任务
             hotHandler.removeCallbacks(closeWifiThread)
         }
@@ -115,10 +115,10 @@ class QuickWifiHotUtils(
     private fun setWifiApCheck(isCheck: Boolean) {
         if (isCheck) {
             // 需要进行线程检查
-            this.isCheck = false
+            this.mCheck = false
         } else {
             // 停止线程检查
-            this.isCheck = true
+            this.mCheck = true
             // 删除上一个任务, 并且重新绑定任务
             hotHandler.removeCallbacks(startWifiSpotThread)
         }
@@ -129,13 +129,13 @@ class QuickWifiHotUtils(
      */
     private val closeWifiThread: Thread = object : Thread() {
         override fun run() {
-            if (isStop) return
+            if (mStop) return
             // 如果属于需要销毁, 则全部不处理
-            operate?.let {
+            mOperate?.let {
                 if (it.isFinishing) {
-                    isStop = true
-                    isCheck = false
-                    isThreadCheckHot = false
+                    mStop = true
+                    mCheck = false
+                    mThreadCheckHot = false
                     return
                 }
             }
@@ -176,13 +176,13 @@ class QuickWifiHotUtils(
     private val startWifiSpotThread: Thread = object : Thread() {
         @SuppressLint("MissingPermission")
         override fun run() {
-            if (isCheck) return
+            if (mCheck) return
             // 如果属于需要销毁, 则全部不处理
-            operate?.let {
+            mOperate?.let {
                 if (it.isFinishing) {
-                    isStop = true
-                    isCheck = false
-                    isThreadCheckHot = false
+                    mStop = true
+                    mCheck = false
+                    mThreadCheckHot = false
                     return
                 }
             }
@@ -195,7 +195,7 @@ class QuickWifiHotUtils(
                 WifiHotUtils.WIFI_AP_STATE_DISABLED -> {
                     DevEngine.getLog()?.dTag(TAG, "Wifi 热点已关闭")
                     // 开启热点
-                    val wifiConfiguration = WifiHotUtils.createWifiConfigToAp(hotSSID, hotPwd)
+                    val wifiConfiguration = WifiHotUtils.createWifiConfigToAp(mHotSSID, mHotPwd)
                     wifiHotUtils.startWifiAp(wifiConfiguration)
                 }
                 WifiHotUtils.WIFI_AP_STATE_ENABLING -> {
@@ -226,13 +226,13 @@ class QuickWifiHotUtils(
      */
     private val hotCheckThread: Thread = object : Thread() {
         override fun run() {
-            while (isThreadCheckHot) {
+            while (mThreadCheckHot) {
                 // 如果属于需要销毁, 则全部不处理
-                operate?.let {
+                mOperate?.let {
                     if (it.isFinishing) {
-                        isStop = true
-                        isCheck = false
-                        isThreadCheckHot = false
+                        mStop = true
+                        mCheck = false
+                        mThreadCheckHot = false
                         return
                     }
                 }
@@ -261,8 +261,8 @@ class QuickWifiHotUtils(
     ) {
         // 打印日志
         DevEngine.getLog()?.dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd)
-        hotSSID = ssid
-        hotPwd = pwd
+        mHotSSID = ssid
+        mHotPwd = pwd
         // 如果开启了 Wifi 则进行关闭 Wifi
         if (wifiUtils.isOpenWifi) {
             // 开始进行线程检查
@@ -279,9 +279,9 @@ class QuickWifiHotUtils(
      */
     fun closeHotspot() {
         // 全部不处理
-        isStop = true
-        isCheck = false
-        isThreadCheckHot = false
+        mStop = true
+        mCheck = false
+        mThreadCheckHot = false
         // 关闭热点
         wifiHotUtils.closeWifiAp()
     }
