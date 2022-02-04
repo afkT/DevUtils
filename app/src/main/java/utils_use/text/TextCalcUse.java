@@ -47,7 +47,6 @@ public final class TextCalcUse {
 
     /**
      * 打印信息
-     * @param textView
      */
     private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();

@@ -429,7 +429,7 @@ public class ElectricFanLoadingRenderer
         return point;
     }
 
-    private class BezierEvaluator
+    private static class BezierEvaluator
             implements TypeEvaluator<PointF> {
 
         private final PointF point1;
@@ -496,7 +496,7 @@ public class ElectricFanLoadingRenderer
         }
     }
 
-    private class LeafHolder {
+    private static class LeafHolder {
         public Rect  mLeafRect     = new Rect();
         public float mLeafRotation = 0.0F;
 

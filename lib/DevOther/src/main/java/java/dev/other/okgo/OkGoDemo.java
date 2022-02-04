@@ -13,7 +13,7 @@ import java.util.List;
 @Deprecated
 public class OkGoDemo {
 
-    public class UserBean {
+    public static class UserBean {
 
         public String userId;
         public String userName;
