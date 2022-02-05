@@ -16,29 +16,6 @@ import dev.widget.utils.WidgetAttrs;
  *     app:dev_slide=""
  *     app:dev_maxWidth=""
  *     app:dev_maxHeight=""
- *     <p></p>
- *     解决 ScrollView 嵌套 RecyclerView 的显示及滑动问题
- *     @see <a href="https://segmentfault.com/a/1190000011553735"/>
- *     RecyclerView 使用 GridLayoutManager 间距设置
- *     @see <a href="https://www.jianshu.com/p/f85923bd14ba"/>
- *     Android 可伸缩布局 - FlexboxLayout ( 支持 RecyclerView 集成 )
- *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
- *     android Recycleview 中 item 没有填满屏幕的问题
- *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79363971"/>
- *     android RecyclerView 悬浮吸顶效果
- *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6"/>
- *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
- *     <p></p>
- *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 {@link CustomNestedScrollView}
- *     <p></p>
- *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
- *     int findFirstCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findFirstCompletelyVisibleItemPosition();
- *     // 最后一个完整的可见的 item 位置
- *     int findLastCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findLastCompletelyVisibleItemPosition();
- *     // 最后一个可见的位置
- *     int findLastVisibleItemPosition = ((LinearLayoutManager) manager).findLastVisibleItemPosition();
- *     // 第一个可见的位置
- *     int firstPosition = ((LinearLayoutManager) manager).findFirstVisibleItemPosition();
  * </pre>
  */
 public class CustomRecyclerView
