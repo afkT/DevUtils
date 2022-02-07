@@ -677,8 +677,8 @@ public final class ScaleUtils {
             return getXY(":");
         }
 
-        public String getXY(String joint) {
-            return x + joint + y;
+        public String getXY(String delimiter) {
+            return x + delimiter + y;
         }
 
         @Override

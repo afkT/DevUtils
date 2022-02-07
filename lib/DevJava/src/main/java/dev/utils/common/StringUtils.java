@@ -2,6 +2,7 @@ package dev.utils.common;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -742,13 +743,13 @@ public final class StringUtils {
     }
 
     /**
-     * 循环追加
-     * @param joint  待追加对象
-     * @param values 待追加值
-     * @return 追加后的值
+     * 循环拼接
+     * @param delimiter 拼接符号
+     * @param values    待拼接对象
+     * @return 拼接后的值
      */
-    public static String forJoint(
-            final Object joint,
+    public static String joinArgs(
+            final Object delimiter,
             final Object... values
     ) {
         if (values != null) {
@@ -757,10 +758,62 @@ public final class StringUtils {
                 StringBuilder builder = new StringBuilder();
                 builder.append(values[0]);
                 for (int i = 1; i < length; i++) {
-                    builder.append(joint).append(values[i]);
+                    builder.append(delimiter);
+                    builder.append(values[i]);
                 }
                 return builder.toString();
             }
+        }
+        return null;
+    }
+
+    /**
+     * 循环拼接
+     * @param delimiter 拼接符号
+     * @param values    待拼接对象
+     * @return 拼接后的值
+     */
+    public static String join(
+            final Object delimiter,
+            final Object[] values
+    ) {
+        if (values != null) {
+            int length = values.length;
+            if (length != 0) {
+                StringBuilder builder = new StringBuilder();
+                builder.append(values[0]);
+                for (int i = 1; i < length; i++) {
+                    builder.append(delimiter);
+                    builder.append(values[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 循环拼接
+     * @param delimiter 拼接符号
+     * @param iterable  待拼接对象
+     * @return 拼接后的值
+     */
+    public static String join(
+            final Object delimiter,
+            final Iterable iterable
+    ) {
+        if (iterable != null) {
+            final Iterator<?> it = iterable.iterator();
+            if (!it.hasNext()) {
+                return "";
+            }
+            StringBuilder builder = new StringBuilder();
+            builder.append(it.next());
+            while (it.hasNext()) {
+                builder.append(delimiter);
+                builder.append(it.next());
+            }
+            return builder.toString();
         }
         return null;
     }
