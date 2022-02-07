@@ -130,6 +130,10 @@ public class CustomGallery
         return e2.getX() > e1.getX();
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 获取 View 最大显示宽度
      * @return View 最大显示宽度

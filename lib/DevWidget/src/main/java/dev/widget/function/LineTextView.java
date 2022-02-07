@@ -60,6 +60,10 @@ public class LineTextView
         }
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 判断是否换行
      * @return {@code true} yes, {@code false} no

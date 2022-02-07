@@ -83,6 +83,10 @@ public class LimitLayout
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 获取 View 最大显示宽度
      * @return View 最大显示宽度

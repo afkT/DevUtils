@@ -112,6 +112,10 @@ public class CustomWebView
         return super.onInterceptTouchEvent(arg0);
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 获取 View 最大显示宽度
      * @return View 最大显示宽度

@@ -117,6 +117,10 @@ public class CustomRecyclerView
         return super.onInterceptTouchEvent(arg0);
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 获取 View 最大显示宽度
      * @return View 最大显示宽度
@@ -221,5 +225,21 @@ public class CustomRecyclerView
                 int scrollX,
                 int scrollY
         );
+    }
+
+    /**
+     * 获取距离左边距离
+     * @return 距离左边距离
+     */
+    public int getCustomScrollX() {
+        return mScrollX;
+    }
+
+    /**
+     * 获取距离顶部距离
+     * @return 距离顶部距离
+     */
+    public int getCustomScrollY() {
+        return mScrollY;
     }
 }

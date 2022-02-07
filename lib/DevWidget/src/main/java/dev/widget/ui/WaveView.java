@@ -296,9 +296,9 @@ public class WaveView
         mViewPaint.setShader(mWaveShader);
     }
 
-    // ==============
+    // =============
     // = 对外公开方法 =
-    // ==============
+    // =============
 
     /**
      * 获取波浪垂直振幅比率

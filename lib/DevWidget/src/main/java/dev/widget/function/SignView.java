@@ -121,7 +121,9 @@ public class SignView
         mClearCanvas = false;
     }
 
-    // =
+    // =============
+    // = 对外公开方法 =
+    // =============
 
     /**
      * 清空画布

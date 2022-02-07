@@ -141,6 +141,10 @@ public class RightIconEditText
         this.mRightBounds = null;
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
      * 获取右边 Icon 触发范围倍数
      * @return 右边 Icon 触发范围倍数
