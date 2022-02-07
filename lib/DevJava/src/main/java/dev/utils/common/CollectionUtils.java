@@ -630,6 +630,20 @@ public final class CollectionUtils {
     }
 
     /**
+     * 添加一条数据 ( value 不允许为 null )
+     * @param collection {@link Collection}
+     * @param value      值
+     * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean addNotNull(
+            final Collection<T> collection,
+            final T value
+    ) {
+        return add(collection, value, true);
+    }
+
+    /**
      * 添加一条数据
      * @param collection {@link Collection}
      * @param value      值
@@ -662,20 +676,6 @@ public final class CollectionUtils {
         return false;
     }
 
-    /**
-     * 添加一条数据 ( value 不允许为 null )
-     * @param collection {@link Collection}
-     * @param value      值
-     * @param <T>        泛型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static <T> boolean addNotNull(
-            final Collection<T> collection,
-            final T value
-    ) {
-        return add(collection, value, true);
-    }
-
     // =
 
     /**
@@ -690,6 +690,20 @@ public final class CollectionUtils {
             final Collection<T> values
     ) {
         return addAll(collection, values, false);
+    }
+
+    /**
+     * 添加集合数据 ( values 内的值不允许为 null )
+     * @param collection {@link Collection}
+     * @param values     准备添加的值 ( 集合 )
+     * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean addAllNotNull(
+            final Collection<T> collection,
+            final Collection<T> values
+    ) {
+        return addAll(collection, values, true);
     }
 
     /**
@@ -728,18 +742,51 @@ public final class CollectionUtils {
         return false;
     }
 
+    // =
+
     /**
-     * 添加集合数据 ( values 内的值不允许为 null )
+     * 移除全部数据并添加集合数据
      * @param collection {@link Collection}
      * @param values     准备添加的值 ( 集合 )
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAllNotNull(
+    public static <T> boolean clearAndAddAll(
             final Collection<T> collection,
             final Collection<T> values
     ) {
-        return addAll(collection, values, true);
+        return clearAndAddAll(collection, values, false);
+    }
+
+    /**
+     * 移除全部数据并添加集合数据 ( values 内的值不允许为 null )
+     * @param collection {@link Collection}
+     * @param values     准备添加的值 ( 集合 )
+     * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean clearAndAddAllNotNull(
+            final Collection<T> collection,
+            final Collection<T> values
+    ) {
+        return clearAndAddAll(collection, values, true);
+    }
+
+    /**
+     * 移除全部数据并添加集合数据
+     * @param collection {@link Collection}
+     * @param values     准备添加的值 ( 集合 )
+     * @param notNull    是否不允许添加 null 值
+     * @param <T>        泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean clearAndAddAll(
+            final Collection<T> collection,
+            final Collection<T> values,
+            final boolean notNull
+    ) {
+        clearAll(collection);
+        return addAll(collection, values, notNull);
     }
 
     // =========================
@@ -760,6 +807,22 @@ public final class CollectionUtils {
             final T value
     ) {
         return add(index, list, value, false);
+    }
+
+    /**
+     * 添加一条数据到指定索引后 ( value 不允许为 null )
+     * @param index 索引
+     * @param list  集合
+     * @param value 值
+     * @param <T>   泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean addNotNull(
+            final int index,
+            final List<T> list,
+            final T value
+    ) {
+        return add(index, list, value, true);
     }
 
     /**
@@ -799,22 +862,6 @@ public final class CollectionUtils {
         return false;
     }
 
-    /**
-     * 添加一条数据到指定索引后 ( value 不允许为 null )
-     * @param index 索引
-     * @param list  集合
-     * @param value 值
-     * @param <T>   泛型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static <T> boolean addNotNull(
-            final int index,
-            final List<T> list,
-            final T value
-    ) {
-        return add(index, list, value, true);
-    }
-
     // =
 
     /**
@@ -831,6 +878,22 @@ public final class CollectionUtils {
             final List<T> values
     ) {
         return addAll(index, list, values, false);
+    }
+
+    /**
+     * 添加集合数据到指定索引后 ( values 内的值不允许为 null )
+     * @param index  索引
+     * @param list   集合
+     * @param values 准备添加的值 ( 集合 )
+     * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean addAllNotNull(
+            final int index,
+            final List<T> list,
+            final List<T> values
+    ) {
+        return addAll(index, list, values, true);
     }
 
     /**
@@ -873,22 +936,6 @@ public final class CollectionUtils {
             }
         }
         return false;
-    }
-
-    /**
-     * 添加集合数据到指定索引后 ( values 内的值不允许为 null )
-     * @param index  索引
-     * @param list   集合
-     * @param values 准备添加的值 ( 集合 )
-     * @param <T>    泛型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static <T> boolean addAllNotNull(
-            final int index,
-            final List<T> list,
-            final List<T> values
-    ) {
-        return addAll(index, list, values, true);
     }
 
     // ==========

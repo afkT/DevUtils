@@ -935,7 +935,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | appendLine | 追加换行 |
 | appendLine2 | 追加换行 |
 | forString | 循环指定数量字符串 |
-| forJoint | 循环追加 |
+| joinArgs | 循环拼接 |
+| join | 循环拼接 |
 | colonSplit | 冒号分割处理 |
 | getString | 获取字符串 ( 判 null ) |
 | checkValue | 检查字符串 |
