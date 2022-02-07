@@ -11,9 +11,9 @@ public class PageAssist<T>
         extends RequestState<T> {
 
     // 全局页数配置
-    public static int DF_PAGE      = 1;
+    public static int DF_PAGE      = DevPage.DF_PAGE;
     // 全局每页请求条数配置
-    public static int DF_PAGE_SIZE = 20;
+    public static int DF_PAGE_SIZE = DevPage.DF_PAGE_SIZE;
 
     // Page Object
     private final DevPage<T> mPage;
