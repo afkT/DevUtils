@@ -1,7 +1,6 @@
 package afkt.project.model.item
 
 import afkt.project.base.config.RouterPath
-import java.util.*
 
 /**
  * detail: Button List
@@ -74,6 +73,13 @@ object ButtonList {
                     ButtonValue.MODULE_DEV_HTTP_CAPTURE,
                     "DevHttpCapture OkHttp 抓包工具库",
                     RouterPath.DevHttpCaptureActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_DEV_SKU,
+                    "DevSKU 商品 SKU 组合封装实现",
+                    RouterPath.DevSKUActivity_PATH
                 )
             )
             return lists
@@ -1523,6 +1529,28 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_ENGINE_STORAGE,
                     "Storage Engine 外部、内部文件存储",
+                    RouterPath.EMPTY
+                )
+            )
+            return lists
+        }
+
+    // =============================
+    // = DevSKU 商品 SKU 组合封装实现 =
+    // =============================
+
+    /**
+     * 获取 DevSKU Module Button Value 集合
+     * @return [List]
+     */
+    @JvmStatic
+    val moduleDevSKUButtonValues: List<ButtonValue>
+        get() {
+            val lists: MutableList<ButtonValue> = ArrayList()
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_SKU_DIALOG,
+                    "显示商品 SKU Dialog",
                     RouterPath.EMPTY
                 )
             )

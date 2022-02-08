@@ -18,6 +18,8 @@ object RouterPath {
 
     const val DevHttpCaptureActivity_PATH = "/activity/DevHttpCaptureActivity"
 
+    const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
+
     const val ViewAssistRecyclerViewLoadActivity_PATH =
         "/activity/ViewAssistRecyclerViewLoadActivity"
 

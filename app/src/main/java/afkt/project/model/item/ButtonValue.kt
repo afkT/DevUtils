@@ -45,6 +45,9 @@ class ButtonValue(
         // DevHttpCapture OkHttp 抓包工具库
         const val MODULE_DEV_HTTP_CAPTURE = BASE + 80000
 
+        // DevSKU 商品 SKU 组合封装实现
+        const val MODULE_DEV_SKU = BASE + 90000
+
         // =============
         // = Framework =
         // =============
@@ -576,5 +579,15 @@ class ButtonValue(
 
         // Storage Engine 外部、内部文件存储
         const val BTN_ENGINE_STORAGE = BTN_ENGINE + 1200
+
+        // =============================
+        // = DevSKU 商品 SKU 组合封装实现 =
+        // =============================
+
+        // DevSKU
+        const val BTN_DEV_SKU = MODULE_DEV_SKU
+
+        // 显示商品 SKU Dialog
+        const val BTN_SKU_DIALOG = BTN_DEV_SKU + 100
     }
 }
