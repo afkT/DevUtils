@@ -52,6 +52,7 @@ environment_libs.forEach {
 def libs_modules = [
         "DevBase2",
         "DevOther",
+        "DevSKU",
 ]
 
 libs_modules.forEach {
