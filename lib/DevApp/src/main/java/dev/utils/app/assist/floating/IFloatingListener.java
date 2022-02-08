@@ -6,6 +6,10 @@ import android.view.View;
 /**
  * detail: 悬浮窗触摸事件接口
  * @author Ttt
+ * <pre>
+ *     用于解决 onTouchEvent 与 click、longCLick 冲突处理
+ *     可搭配 {@link dev.utils.app.ViewUtils#isTouchInView(MotionEvent, View)} 判断
+ * </pre>
  */
 public interface IFloatingListener {
 
