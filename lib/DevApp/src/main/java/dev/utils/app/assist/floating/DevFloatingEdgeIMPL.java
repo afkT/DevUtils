@@ -14,6 +14,13 @@ import dev.utils.app.ViewUtils;
 public class DevFloatingEdgeIMPL
         implements IFloatingEdge {
 
+    // 最大显示高度
+    private int mMaxHeight    = 0;
+    // 向上边距 ( 可自行定义 )
+    private int mMarginTop    = 0;
+    // 向下边距 ( 可自行定义 )
+    private int mMarginBottom = 0;
+
     @Override
     public Point calculateEdge(
             View view,
@@ -28,16 +35,88 @@ public class DevFloatingEdgeIMPL
         int screenWidth = ScreenUtils.getScreenWidth();
 
         // 高度 ( Y 轴 ) 计算
-        int viewHeight      = ViewUtils.getHeight(view);
-        int screenHeight    = ScreenUtils.getScreenHeight();
-        int statusBarHeight = BarUtils.getStatusBarHeight2();
+        int viewHeight   = ViewUtils.getHeight(view);
+        int screenHeight = ScreenUtils.getScreenHeight();
+        // View 最大显示高度计算
+        int viewMaxHeight = Math.max(mMaxHeight, viewHeight);
+        this.mMaxHeight = viewMaxHeight;
 
         int diffWidth  = screenWidth - viewWidth;
-        int diffHeight = screenHeight - statusBarHeight - viewHeight;
+        int diffHeight = screenHeight - viewMaxHeight - mMarginTop - mMarginBottom;
 
         if (x >= diffWidth) x = diffWidth;
         if (y >= diffHeight) y = diffHeight;
 
         return new Point(x, y);
+    }
+
+    // =============
+    // = 对外公开方法 =
+    // =============
+
+    /**
+     * 获取 View 最大显示高度
+     * @return View 最大显示高度
+     */
+    public int getMaxHeight() {
+        return mMaxHeight;
+    }
+
+    /**
+     * 设置 View 最大显示高度
+     * @param maxHeight View 最大显示高度
+     * @return {@link DevFloatingEdgeIMPL}
+     */
+    public DevFloatingEdgeIMPL setMaxHeight(final int maxHeight) {
+        this.mMaxHeight = maxHeight;
+        return this;
+    }
+
+    /**
+     * 获取向上边距
+     * @return 向上边距
+     */
+    public int getMarginTop() {
+        return mMarginTop;
+    }
+
+    /**
+     * 设置向上边距
+     * @param margin 向上边距
+     * @return {@link DevFloatingEdgeIMPL}
+     */
+    public DevFloatingEdgeIMPL setMarginTop(final int margin) {
+        this.mMarginTop = margin;
+        return this;
+    }
+
+    /**
+     * 获取向下边距
+     * @return 向下边距
+     */
+    public int getMarginBottom() {
+        return mMarginBottom;
+    }
+
+    /**
+     * 设置向下边距
+     * @param margin 向下边距
+     * @return {@link DevFloatingEdgeIMPL}
+     */
+    public DevFloatingEdgeIMPL setMarginBottom(final int margin) {
+        this.mMarginBottom = margin;
+        return this;
+    }
+
+    // ==========
+    // = 快捷方法 =
+    // ==========
+
+    /**
+     * 设置向上边距为状态栏高度
+     * @return {@link DevFloatingEdgeIMPL}
+     */
+    public DevFloatingEdgeIMPL setStatusBarHeightMargin() {
+        return setMarginTop(BarUtils.getStatusBarHeight2());
     }
 }

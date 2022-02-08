@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
+import dev.utils.app.ScreenUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
 
@@ -86,7 +87,15 @@ internal class Utils2 private constructor() : IFloatingOperate {
     }
 
     // 悬浮窗触摸辅助类实现
-    private val mTouchAssist = DevFloatingTouchIMPL2()
+    private val mTouchAssist = DevFloatingTouchIMPL2().apply {
+        (floatingEdge as? DevFloatingEdgeIMPL)?.let { edge ->
+            edge.setStatusBarHeightMargin()
+            // 设置底部导航栏高度
+            if (ScreenUtils.checkDeviceHasNavigationBar()) {
+                edge.setMarginBottom(ScreenUtils.getNavigationBarHeight())
+            }
+        }
+    }
 
     /**
      * 创建悬浮 View
