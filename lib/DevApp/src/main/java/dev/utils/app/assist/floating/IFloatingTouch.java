@@ -13,7 +13,7 @@ public interface IFloatingTouch {
      * 悬浮窗 View 触摸事件
      * @param view  {@link View}
      * @param event 触摸事件
-     * @return True if the event was handled, false otherwise.
+     * @return {@code true} 消费事件, {@code false} 不消费事件
      */
     boolean onTouchEvent(
             View view,
@@ -31,4 +31,20 @@ public interface IFloatingTouch {
             int dx,
             int dy
     );
+
+    // ==========
+    // = 事件相关 =
+    // ==========
+
+    /**
+     * 获取悬浮窗触摸事件接口
+     * @return 悬浮窗触摸事件接口
+     */
+    IFloatingListener getFloatingListener();
+
+    /**
+     * 获取悬浮窗触摸事件接口
+     * @param listener 悬浮窗触摸事件接口
+     */
+    void setFloatingListener(IFloatingListener listener);
 }

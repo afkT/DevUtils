@@ -42,4 +42,21 @@ public abstract class DevFloatingTouchIMPL
         }
         return false;
     }
+
+    // ==========
+    // = 事件相关 =
+    // ==========
+
+    // 悬浮窗触摸事件接口
+    private IFloatingListener mListener;
+
+    @Override
+    public IFloatingListener getFloatingListener() {
+        return mListener;
+    }
+
+    @Override
+    public void setFloatingListener(IFloatingListener listener) {
+        this.mListener = listener;
+    }
 }
