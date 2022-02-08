@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <dev.base.widget.BaseTextView
+        android:id="@+id/vid_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:includeFontPadding="false"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_4_5"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_4_5"
+        android:textSize="@dimen/sp_15"
+        tools:background="@drawable/sku_shape_f6f6f6_corners6"
+        tools:text="800g"
+        tools:textColor="@color/color_999999" />
+</LinearLayout>

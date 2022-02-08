@@ -39,6 +39,7 @@ android {
                     'src/main/res-framework', // Framework 架构
                     'src/main/res-function', // 其他功能
                     'src/main/res-lib', // Lib 框架
+                    'src/main/res-sku', // 商品 SKU
                     'src/main/res-ui', // UI 效果
                     'src/main/res-ui-widget', // DevWidget UI 库
             ]

@@ -125,6 +125,7 @@ class SKUData<T> {
         attrs: List<SKU.Attr>,
         skuModels: Map<List<Int>, SKU.Model<T>>
     ): SKUData<T> {
+        mSelect.clearSelects()
         mSKUController.initialize(attrs, skuModels)
         return this
     }

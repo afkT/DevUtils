@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <dev.base.widget.BaseImageView
+            android:id="@+id/vid_close_iv"
+            android:layout_width="@dimen/dp_44"
+            android:layout_height="@dimen/dp_44"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_2"
+            android:padding="@dimen/dp_12"
+            android:src="@drawable/sku_icon_close" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_80"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseImageView
+                android:id="@+id/vid_pic_iv"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                tools:background="@mipmap/icon_launcher" />
+
+            <dev.base.widget.BaseTextView
+                android:id="@+id/vid_price_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_6_5"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_ff2e42"
+                android:textSize="@dimen/sp_18"
+                tools:text="¥199.9" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_250"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/vid_recy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@null"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_18"
+                    android:orientation="horizontal">
+
+                    <dev.base.widget.BaseTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="购买数量"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+                    <dev.widget.ui.round.RoundLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_32"
+                        android:layout_gravity="right"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dp_1"
+                        app:dev_borderColor="@color/color_c7c7c7"
+                        app:dev_borderWidth="@dimen/dp_1"
+                        app:dev_radius="@dimen/dp_8">
+
+                        <dev.base.widget.BaseImageView
+                            android:id="@+id/vid_left_iv"
+                            android:layout_width="@dimen/dp_35"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/dp_9"
+                            android:src="@drawable/sku_selector_reduce_icon" />
+
+                        <View
+                            android:layout_width="@dimen/dp_1"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_c7c7c7" />
+
+                        <dev.base.widget.BaseEditText
+                            android:id="@+id/vid_number_et"
+                            android:layout_width="@dimen/dp_61_5"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/color_33"
+                            android:textCursorDrawable="@drawable/sku_edit_cursor_color_style"
+                            android:textSize="@dimen/sp_14"
+                            tools:text="99999" />
+
+                        <View
+                            android:layout_width="@dimen/dp_1"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_c7c7c7" />
+
+                        <dev.base.widget.BaseImageView
+                            android:id="@+id/vid_right_iv"
+                            android:layout_width="@dimen/dp_35"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/dp_9"
+                            android:src="@drawable/sku_selector_add_icon" />
+                    </dev.widget.ui.round.RoundLinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_confirm_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:background="@drawable/sku_gradient_92ba37_bfe076_corners10"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+</FrameLayout>

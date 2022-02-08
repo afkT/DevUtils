@@ -3,7 +3,7 @@
         {
             "specId": 1045,
             "specName": "黑色 500g 2",
-            "picUrl": "https://picsum.photos/500",
+            "picUrl": "https://picsum.photos/300",
             "inventory": 15,
             "salePrice": 1.5,
             "attrValueIdList": [
@@ -15,7 +15,7 @@
         {
             "specId": 1046,
             "specName": "白色 500g 2",
-            "picUrl": "https://picsum.photos/501",
+            "picUrl": "https://picsum.photos/301",
             "inventory": 16,
             "salePrice": 2.5,
             "attrValueIdList": [
@@ -27,7 +27,7 @@
         {
             "specId": 1047,
             "specName": "红色 500g 2",
-            "picUrl": "https://picsum.photos/502",
+            "picUrl": "https://picsum.photos/302",
             "inventory": 17,
             "salePrice": 3.5,
             "attrValueIdList": [
@@ -39,7 +39,7 @@
         {
             "specId": 1049,
             "specName": "白色 800g 2",
-            "picUrl": "https://picsum.photos/504",
+            "picUrl": "https://picsum.photos/304",
             "inventory": 19,
             "salePrice": 5.5,
             "attrValueIdList": [
@@ -51,7 +51,7 @@
         {
             "specId": 1051,
             "specName": "黑色 500g 3",
-            "picUrl": "https://picsum.photos/506",
+            "picUrl": "https://picsum.photos/306",
             "inventory": 21,
             "salePrice": 7.5,
             "attrValueIdList": [
@@ -63,7 +63,7 @@
         {
             "specId": 1052,
             "specName": "白色 500g 3",
-            "picUrl": "https://picsum.photos/507",
+            "picUrl": "https://picsum.photos/307",
             "inventory": 22,
             "salePrice": 8.5,
             "attrValueIdList": [
@@ -75,7 +75,7 @@
         {
             "specId": 1053,
             "specName": "红色 500g 3",
-            "picUrl": "https://picsum.photos/508",
+            "picUrl": "https://picsum.photos/308",
             "inventory": 23,
             "salePrice": 9.5,
             "attrValueIdList": [
@@ -87,7 +87,7 @@
         {
             "specId": 1057,
             "specName": "黑色 500g 4",
-            "picUrl": "https://picsum.photos/512",
+            "picUrl": "https://picsum.photos/312",
             "inventory": 27,
             "salePrice": 13.5,
             "attrValueIdList": [
@@ -99,7 +99,7 @@
         {
             "specId": 1058,
             "specName": "白色 500g 4",
-            "picUrl": "https://picsum.photos/513",
+            "picUrl": "https://picsum.photos/313",
             "inventory": 28,
             "salePrice": 14.5,
             "attrValueIdList": [
@@ -111,7 +111,7 @@
         {
             "specId": 1059,
             "specName": "红色 500g 4",
-            "picUrl": "https://picsum.photos/514",
+            "picUrl": "https://picsum.photos/314",
             "inventory": 29,
             "salePrice": 15.5,
             "attrValueIdList": [
@@ -123,7 +123,7 @@
         {
             "specId": 1060,
             "specName": "黑色 800g 4",
-            "picUrl": "https://picsum.photos/515",
+            "picUrl": "https://picsum.photos/315",
             "inventory": 30,
             "salePrice": 16.5,
             "attrValueIdList": [
@@ -135,7 +135,7 @@
         {
             "specId": 1061,
             "specName": "白色 800g 4",
-            "picUrl": "https://picsum.photos/516",
+            "picUrl": "https://picsum.photos/316",
             "inventory": 31,
             "salePrice": 17.5,
             "attrValueIdList": [
@@ -147,7 +147,7 @@
         {
             "specId": 1062,
             "specName": "红色 800g 4",
-            "picUrl": "https://picsum.photos/517",
+            "picUrl": "https://picsum.photos/317",
             "inventory": 32,
             "salePrice": 18.5,
             "attrValueIdList": [
@@ -159,7 +159,7 @@
         {
             "specId": 1063,
             "specName": "黑色 500g 5",
-            "picUrl": "https://picsum.photos/518",
+            "picUrl": "https://picsum.photos/318",
             "inventory": 33,
             "salePrice": 19.5,
             "attrValueIdList": [
@@ -171,7 +171,7 @@
         {
             "specId": 1064,
             "specName": "白色 500g 5",
-            "picUrl": "https://picsum.photos/519",
+            "picUrl": "https://picsum.photos/319",
             "inventory": 34,
             "salePrice": 20.5,
             "attrValueIdList": [
@@ -183,7 +183,7 @@
         {
             "specId": 1065,
             "specName": "红色 500g 5",
-            "picUrl": "https://picsum.photos/520",
+            "picUrl": "https://picsum.photos/320",
             "inventory": 35,
             "salePrice": 21.5,
             "attrValueIdList": [
@@ -195,7 +195,7 @@
         {
             "specId": 1066,
             "specName": "黑色 800g 5",
-            "picUrl": "https://picsum.photos/521",
+            "picUrl": "https://picsum.photos/321",
             "inventory": 36,
             "salePrice": 22.5,
             "attrValueIdList": [
@@ -207,7 +207,7 @@
         {
             "specId": 1067,
             "specName": "白色 800g 5",
-            "picUrl": "https://picsum.photos/522",
+            "picUrl": "https://picsum.photos/322",
             "inventory": 37,
             "salePrice": 23.5,
             "attrValueIdList": [
@@ -219,7 +219,7 @@
         {
             "specId": 1068,
             "specName": "红色 800g 5",
-            "picUrl": "https://picsum.photos/523",
+            "picUrl": "https://picsum.photos/323",
             "inventory": 38,
             "salePrice": 24.5,
             "attrValueIdList": [
@@ -231,7 +231,7 @@
         {
             "specId": 1069,
             "specName": "黑色 500g 6",
-            "picUrl": "https://picsum.photos/524",
+            "picUrl": "https://picsum.photos/324",
             "inventory": 39,
             "salePrice": 25.5,
             "attrValueIdList": [
@@ -243,7 +243,7 @@
         {
             "specId": 1070,
             "specName": "白色 500g 6",
-            "picUrl": "https://picsum.photos/525",
+            "picUrl": "https://picsum.photos/325",
             "inventory": 40,
             "salePrice": 26.5,
             "attrValueIdList": [
@@ -255,7 +255,7 @@
         {
             "specId": 1071,
             "specName": "红色 500g 6",
-            "picUrl": "https://picsum.photos/526",
+            "picUrl": "https://picsum.photos/326",
             "inventory": 41,
             "salePrice": 27.5,
             "attrValueIdList": [
@@ -267,7 +267,7 @@
         {
             "specId": 1072,
             "specName": "黑色 800g 6",
-            "picUrl": "https://picsum.photos/527",
+            "picUrl": "https://picsum.photos/327",
             "inventory": 42,
             "salePrice": 28.5,
             "attrValueIdList": [

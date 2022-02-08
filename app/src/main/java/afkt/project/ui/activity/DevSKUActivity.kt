@@ -7,12 +7,17 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import afkt.project.ui.dialog.BuyType
+import afkt.project.ui.dialog.SKUCallback
+import afkt.project.ui.dialog.SKUDialog
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
 import dev.sku.SKU
 import dev.sku.SKUData
+import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
+import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.CollectionUtils
 
 /**
@@ -37,9 +42,41 @@ class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_SKU_DIALOG -> {
                             val skuFileName = "sku_test.json" // sku.json
                             val skuFileContent = ResourceUtils.readStringFromAssets(skuFileName)
-                            val commoditySKU = DevEngine.getJSON().fromJson<CommoditySKU>(
+                            val commoditySKU = DevEngine.getJSON()?.fromJson<CommoditySKU>(
                                 skuFileContent, CommoditySKU::class.java
-                            )
+                            ) as? CommoditySKU
+
+                            // ==============
+                            // = SKU Dialog =
+                            // ==============
+
+                            commoditySKU?.let { model ->
+                                SKUDialog(this@DevSKUActivity, object : SKUCallback {
+                                    override fun callback(
+                                        spec: Spec,
+                                        number: Int,
+                                        buyType: BuyType
+                                    ) {
+                                        ToastTintUtils.success(StringBuilder().apply {
+                                            append("购买数量: ")
+                                            append(number)
+                                            append(DevFinal.SYMBOL.NEW_LINE)
+                                            append("购买方式: ")
+                                            append(buyType.desc)
+                                            append(DevFinal.SYMBOL.NEW_LINE)
+                                            append("规格名: ")
+                                            append(spec.specName)
+                                            append(DevFinal.SYMBOL.NEW_LINE)
+                                            append("规格 id: ")
+                                            append(spec.specId)
+                                        }.toString())
+                                    }
+                                }).apply {
+                                    // 显示 SKU Dialog
+                                    assist.setDevDialog(this)
+                                        .showDialog(BuyType.BUY, model, 1045)
+                                }
+                            }
                         }
                         else -> routerActivity(buttonValue)
                     }
@@ -118,8 +155,8 @@ class SKUConvert {
         // 清空 null 数据 ( 可不添加该操作, 视自身情况而定 )
         CollectionUtils.clearNull(model.specList)
         CollectionUtils.clearNull(model.attributeList)
-        model.attributeList.forEach {
-            CollectionUtils.clearNull(it.attrValueList)
+        model.attributeList.forEach { attr ->
+            CollectionUtils.clearNull(attr.attrValueList)
         }
         // 初始化操作
         init(model, specId)
