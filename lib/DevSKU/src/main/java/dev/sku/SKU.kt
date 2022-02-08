@@ -104,7 +104,7 @@ class SKU {
 }
 
 /**
- * detail: SKU 数据处理 ( 对外公开快捷使用 )
+ * detail: SKU 数据处理包装 ( 对外公开快捷使用 )
  * @author Ttt
  */
 class SKUData<T> {
