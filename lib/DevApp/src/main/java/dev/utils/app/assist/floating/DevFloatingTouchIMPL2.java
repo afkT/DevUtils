@@ -33,10 +33,13 @@ public class DevFloatingTouchIMPL2
             View view,
             MotionEvent event
     ) {
+        mCommon.update(view, event);
         if (event != null) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     mCommon.actionDown(event);
+                    // 开始校验长按
+                    mCommon.postLongClick(mListener);
                     break;
                 case MotionEvent.ACTION_MOVE:
                     int[] points = mCommon.actionMove(event);
@@ -44,15 +47,9 @@ public class DevFloatingTouchIMPL2
                     int dy = points[1];
                     // 更新 View Layout
                     updateViewLayout(view, dx, dy);
-                    /*
-                     * 该实现方式的优缺点
-                     * 缺点:
-                     */
-                    if (mCommon.onLongClick(view, event, mListener)) {
-                        return true;
-                    }
                     break;
                 case MotionEvent.ACTION_UP:
+                    mCommon.actionUp(event);
                     if (mCommon.onClick(view, event, mListener)) {
                         return true;
                     }
