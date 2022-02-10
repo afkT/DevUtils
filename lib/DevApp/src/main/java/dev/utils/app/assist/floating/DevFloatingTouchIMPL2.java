@@ -26,7 +26,7 @@ public class DevFloatingTouchIMPL2
     // ==========
 
     // 悬浮窗通用代码
-    private DevFloatingCommon mCommon = new DevFloatingCommon();
+    private final DevFloatingCommon mCommon = new DevFloatingCommon();
 
     @Override
     public boolean onTouchEvent(
@@ -42,9 +42,20 @@ public class DevFloatingTouchIMPL2
                     int[] points = mCommon.actionMove(event);
                     int dx = points[0];
                     int dy = points[1];
-
                     // 更新 View Layout
                     updateViewLayout(view, dx, dy);
+                    /*
+                     * 该实现方式的优缺点
+                     * 缺点:
+                     */
+                    if (mCommon.onLongClick(view, event, mListener)) {
+                        return true;
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (mCommon.onClick(view, event, mListener)) {
+                        return true;
+                    }
                     break;
             }
         }
@@ -152,7 +163,13 @@ public class DevFloatingTouchIMPL2
     }
 
     @Override
-    public void setFloatingListener(IFloatingListener listener) {
+    public void setFloatingListener(final IFloatingListener listener) {
         this.mListener = listener;
+    }
+
+    // =
+
+    public DevFloatingCommon getCommon() {
+        return mCommon;
     }
 }

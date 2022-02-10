@@ -11,7 +11,7 @@ public abstract class DevFloatingTouchIMPL
         implements IFloatingTouch {
 
     // 悬浮窗通用代码
-    private DevFloatingCommon mCommon = new DevFloatingCommon();
+    private final DevFloatingCommon mCommon = new DevFloatingCommon();
 
     @Override
     public boolean onTouchEvent(
@@ -49,7 +49,13 @@ public abstract class DevFloatingTouchIMPL
     }
 
     @Override
-    public void setFloatingListener(IFloatingListener listener) {
+    public void setFloatingListener(final IFloatingListener listener) {
         this.mListener = listener;
+    }
+
+    // =
+
+    public DevFloatingCommon getCommon() {
+        return mCommon;
     }
 }

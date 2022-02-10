@@ -7,6 +7,9 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import android.graphics.PointF
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -15,6 +18,7 @@ import dev.callback.DevItemClickCallback
 import dev.utils.app.ScreenUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
+import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
@@ -95,6 +99,25 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 edge.setMarginBottom(ScreenUtils.getNavigationBarHeight())
             }
         }
+        setFloatingListener(object : DevFloatingListener() {
+            override fun onClick(
+                view: View?,
+                event: MotionEvent?,
+                firstPoint: PointF?
+            ): Boolean {
+                ToastTintUtils.error("点击了")
+                return true
+            }
+
+            override fun onLongClick(
+                view: View?,
+                event: MotionEvent?,
+                firstPoint: PointF?
+            ): Boolean {
+                Log.d("Qqweqweq", "进入了")
+                return true
+            }
+        })
     }
 
     /**

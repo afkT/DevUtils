@@ -54,8 +54,6 @@ public interface IFloatingListener {
      */
     void setClickIntervalTime(long time);
 
-    // =
-
     /**
      * 获取长按事件间隔时间
      * @return 长按事件间隔时间
