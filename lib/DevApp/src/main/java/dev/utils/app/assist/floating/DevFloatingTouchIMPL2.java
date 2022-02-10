@@ -166,6 +166,10 @@ public class DevFloatingTouchIMPL2
 
     // =
 
+    /**
+     * 获取悬浮窗通用代码
+     * @return 悬浮窗通用代码
+     */
     public DevFloatingCommon getCommon() {
         return mCommon;
     }

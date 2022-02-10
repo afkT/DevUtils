@@ -8,7 +8,6 @@ import dev.utils.app.assist.DelayAssist;
 
 /**
  * detail: 悬浮窗通用代码
- *
  * @author Ttt
  */
 public class DevFloatingCommon
@@ -28,7 +27,7 @@ public class DevFloatingCommon
     // 触摸时间
     private       long        mDownTime    = 0L;
     // 延迟触发辅助类
-    private       DelayAssist mDelayAssist = new DelayAssist();
+    private       DelayAssist mDelayAssist = new DelayAssist(this);
 
     // =============
     // = 对外公开方法 =
@@ -40,7 +39,6 @@ public class DevFloatingCommon
      *     通过 {@link IFloatingTouch#onTouchEvent(View, MotionEvent)} 方法回调
      *     实时调用此方法进行更新
      * </pre>
-     *
      * @param view  触摸 View
      * @param event 触摸事件
      * @return DevFloatingCommon
@@ -76,7 +74,6 @@ public class DevFloatingCommon
 
     /**
      * 手势按下
-     *
      * @param event 触摸事件
      */
     public void actionDown(final MotionEvent event) {
@@ -91,7 +88,6 @@ public class DevFloatingCommon
 
     /**
      * 手势移动
-     *
      * @param event 触摸事件
      * @return 移动误差值
      */
@@ -109,7 +105,6 @@ public class DevFloatingCommon
 
     /**
      * 手势抬起
-     *
      * @param event 触摸事件
      */
     public void actionUp(final MotionEvent event) {
@@ -120,7 +115,6 @@ public class DevFloatingCommon
 
     /**
      * 悬浮窗 View 点击事件
-     *
      * @param view     {@link View}
      * @param event    触摸事件
      * @param listener 悬浮窗触摸事件
@@ -139,7 +133,6 @@ public class DevFloatingCommon
 
     /**
      * 悬浮窗 View 长按事件
-     *
      * @param view     {@link View}
      * @param event    触摸事件
      * @param listener 悬浮窗触摸事件
@@ -162,7 +155,6 @@ public class DevFloatingCommon
 
     /**
      * 获取时间差 ( 当前时间 - 触摸时间 )
-     *
      * @return 时间差
      */
     public long getDiffTime() {
@@ -171,7 +163,6 @@ public class DevFloatingCommon
 
     /**
      * 是否有效间隔时间
-     *
      * @param time 时间间隔
      * @return {@code true} yes, {@code false} no
      */
@@ -182,7 +173,6 @@ public class DevFloatingCommon
 
     /**
      * 通过时间判断点击是否有效
-     *
      * @param listener 悬浮窗触摸事件
      * @return {@code true} yes, {@code false} no
      */
@@ -195,7 +185,6 @@ public class DevFloatingCommon
 
     /**
      * 通过时间判断长按是否有效
-     *
      * @param listener 悬浮窗触摸事件
      * @return {@code true} yes, {@code false} no
      */
@@ -212,12 +201,12 @@ public class DevFloatingCommon
 
     /**
      * 开始校验长按
-     *
      * @param listener 悬浮窗触摸事件
      */
     public void postLongClick(final IFloatingListener listener) {
         mDelayAssist.remove();
         if (listener != null) {
+            this.mListener = listener;
             long time = listener.getLongClickIntervalTime();
             if (time > 0) mDelayAssist.post();
         }
@@ -229,6 +218,8 @@ public class DevFloatingCommon
 
     @Override
     public void callback(Object object) {
-
+        if (mListener != null && mView != null && mEvent != null) {
+            mListener.onLongClick(mView, mEvent, mFirstPoint);
+        }
     }
 }
