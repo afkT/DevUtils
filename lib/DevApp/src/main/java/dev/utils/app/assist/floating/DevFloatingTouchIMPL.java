@@ -1,6 +1,5 @@
 package dev.utils.app.assist.floating;
 
-import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -11,8 +10,8 @@ import android.view.View;
 public abstract class DevFloatingTouchIMPL
         implements IFloatingTouch {
 
-    // 触摸点记录
-    private final PointF mPoint = new PointF();
+    // 悬浮窗通用代码
+    private DevFloatingCommon mCommon = new DevFloatingCommon();
 
     @Override
     public boolean onTouchEvent(
@@ -22,18 +21,12 @@ public abstract class DevFloatingTouchIMPL
         if (event != null) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    mPoint.x = event.getRawX();
-                    mPoint.y = event.getRawY();
+                    mCommon.actionDown(event);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    float x = event.getRawX();
-                    float y = event.getRawY();
-
-                    int dx = (int) (x - mPoint.x);
-                    int dy = (int) (y - mPoint.y);
-
-                    mPoint.x = x;
-                    mPoint.y = y;
+                    int[] points = mCommon.actionMove(event);
+                    int dx = points[0];
+                    int dy = points[1];
 
                     // 更新 View Layout
                     updateViewLayout(view, dx, dy);

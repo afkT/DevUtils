@@ -1,5 +1,6 @@
 package dev.utils.app.assist.floating;
 
+import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -15,24 +16,28 @@ public interface IFloatingListener {
 
     /**
      * 悬浮窗 View 点击事件
-     * @param view  {@link View}
-     * @param event 触摸事件
+     * @param view       {@link View}
+     * @param event      触摸事件
+     * @param firstPoint 首次触摸点记录
      * @return {@code true} 消费事件, {@code false} 不消费事件
      */
     boolean onClick(
             View view,
-            MotionEvent event
+            MotionEvent event,
+            PointF firstPoint
     );
 
     /**
      * 悬浮窗 View 长按事件
-     * @param view  {@link View}
-     * @param event 触摸事件
+     * @param view       {@link View}
+     * @param event      触摸事件
+     * @param firstPoint 首次触摸点记录
      * @return {@code true} 消费事件, {@code false} 不消费事件
      */
     boolean onLongClick(
             View view,
-            MotionEvent event
+            MotionEvent event,
+            PointF firstPoint
     );
 
     // =
