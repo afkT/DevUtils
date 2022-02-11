@@ -119,4 +119,15 @@ public class DevFloatingEdgeIMPL
     public DevFloatingEdgeIMPL setStatusBarHeightMargin() {
         return setMarginTop(BarUtils.getStatusBarHeight2());
     }
+
+    /**
+     * 设置向下边距为底部导航栏高度
+     * @return {@link DevFloatingEdgeIMPL}
+     */
+    public DevFloatingEdgeIMPL setNavigationBarHeightMargin() {
+        if (ScreenUtils.checkDeviceHasNavigationBar()) {
+            return setMarginBottom(ScreenUtils.getNavigationBarHeight());
+        }
+        return this;
+    }
 }

@@ -8,17 +8,15 @@ import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
 import android.graphics.PointF
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.utils.app.ScreenUtils
+import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
-import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
@@ -94,30 +92,32 @@ internal class Utils2 private constructor() : IFloatingOperate {
     private val mTouchAssist = DevFloatingTouchIMPL2().apply {
         (floatingEdge as? DevFloatingEdgeIMPL)?.let { edge ->
             edge.setStatusBarHeightMargin()
-            // 设置底部导航栏高度
-            if (ScreenUtils.checkDeviceHasNavigationBar()) {
-                edge.setMarginBottom(ScreenUtils.getNavigationBarHeight())
-            }
+            edge.setNavigationBarHeightMargin()
         }
-        setFloatingListener(object : DevFloatingListener() {
+        // 悬浮窗触摸事件接口 ( 如果不需要触发点击、长按则可不设置 )
+        floatingListener = object : DevFloatingListener() {
             override fun onClick(
                 view: View?,
-                event: MotionEvent?,
-                firstPoint: PointF?
+                event: MotionEvent,
+                firstPoint: PointF
             ): Boolean {
-                Log.d("Qqweqweq", "触发【点击】")
+                if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
+                    DevEngine.getLog()?.d("触发【点击】")
+                }
                 return true
             }
 
             override fun onLongClick(
                 view: View?,
-                event: MotionEvent?,
-                firstPoint: PointF?
+                event: MotionEvent,
+                firstPoint: PointF
             ): Boolean {
-                Log.d("Qqweqweq", "触发【长按】")
+                if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
+                    DevEngine.getLog()?.d("触发【长按】")
+                }
                 return true
             }
-        })
+        }
     }
 
     /**

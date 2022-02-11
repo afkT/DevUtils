@@ -10,15 +10,15 @@ import afkt.project.ui.adapter.ButtonAdapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
 import dev.callback.DevItemClickCallback
-import dev.utils.app.assist.floating.DevFloatingTouchIMPL
-import dev.utils.app.assist.floating.FloatingWindowManagerAssist
-import dev.utils.app.assist.floating.IFloatingTouch
+import dev.engine.DevEngine
+import dev.utils.app.assist.floating.*
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastUtils
 
@@ -106,6 +106,31 @@ internal class Utils private constructor() {
                 dy: Int
             ) {
                 mAssist.updateViewLayout(view, dx, dy)
+            }
+        }.apply {
+            // 悬浮窗触摸事件接口 ( 如果不需要触发点击、长按则可不设置 )
+            floatingListener = object : DevFloatingListener() {
+                override fun onClick(
+                    view: View?,
+                    event: MotionEvent,
+                    firstPoint: PointF
+                ): Boolean {
+                    if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
+                        DevEngine.getLog()?.d("触发【点击】")
+                    }
+                    return true
+                }
+
+                override fun onLongClick(
+                    view: View?,
+                    event: MotionEvent,
+                    firstPoint: PointF
+                ): Boolean {
+                    if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
+                        DevEngine.getLog()?.d("触发【长按】")
+                    }
+                    return true
+                }
             }
         }
     }

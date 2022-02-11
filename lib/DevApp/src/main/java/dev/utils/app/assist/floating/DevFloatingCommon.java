@@ -4,6 +4,7 @@ import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import dev.utils.app.ViewUtils;
 import dev.utils.app.assist.DelayAssist;
 
 /**
@@ -208,6 +209,59 @@ public class DevFloatingCommon
             return isValidTime(listener.getLongClickIntervalTime());
         }
         return false;
+    }
+
+    /**
+     * 是否有效事件 ( 是否在小范围内移动 )
+     * @param event      触摸事件
+     * @param firstPoint 首次触摸点记录
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isValidEvent(
+            final MotionEvent event,
+            final PointF firstPoint
+    ) {
+        return isValidEvent(event, firstPoint, 5);
+    }
+
+    /**
+     * 是否有效事件 ( 是否在小范围内移动 )
+     * <pre>
+     *     判断触摸范围是否在误差值内
+     * </pre>
+     * @param event      触摸事件
+     * @param firstPoint 首次触摸点记录
+     * @param value      x、y 误差值
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isValidEvent(
+            final MotionEvent event,
+            final PointF firstPoint,
+            final int value
+    ) {
+        if (event != null && firstPoint != null && value > 0) {
+            return (
+                    Math.abs(event.getRawX() - firstPoint.x) <= value &&
+                            Math.abs(event.getRawY() - firstPoint.y) <= value
+            );
+        }
+        return false;
+    }
+
+    /**
+     * 判断触点是否落在该 View 上
+     * <pre>
+     *     可用于判断是否在悬浮窗内部子 View 上
+     * </pre>
+     * @param event {@link MotionEvent}
+     * @param view  待判断 {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isTouchInView(
+            final MotionEvent event,
+            final View view
+    ) {
+        return ViewUtils.isTouchInView(event, view);
     }
 
     // =================
