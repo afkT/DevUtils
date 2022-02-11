@@ -1,5 +1,6 @@
 package dev.widget.function;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -8,8 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
-import androidx.appcompat.widget.AppCompatEditText;
+import android.widget.EditText;
 
 import dev.widget.R;
 
@@ -26,8 +26,9 @@ import dev.widget.R;
  *     输入监听可调用 {@link #addTextChangedListener} 或 {@link #setTextWatcher}
  * </pre>
  */
+@SuppressLint("AppCompatCustomView")
 public class RightIconEditText
-        extends AppCompatEditText {
+        extends EditText {
 
     // drawable ( left、top、right、bottom 四个方向图片 )
     private Drawable mLeft, mTop, mRight, mBottom;
