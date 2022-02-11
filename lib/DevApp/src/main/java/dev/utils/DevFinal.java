@@ -292,6 +292,7 @@ public final class DevFinal {
         public static final String MODEL     = "model";
         public static final String MODULE    = "module";
         public static final String OBTAIN    = "obtain";
+        public static final String PLUGIN    = "plugin";
         public static final String RESET     = "reset";
         public static final String ROUTER    = "router";
         public static final String SHARE     = "share";
@@ -444,6 +445,7 @@ public final class DevFinal {
         public static final String BIND      = "bind";
         public static final String UN_BINDER = "un_binder";
 
+        public static final String ACCEPT     = "accept";
         public static final String AFTER      = "after";
         public static final String ASYNC      = "async";
         public static final String BEFORE     = "before";
@@ -456,9 +458,12 @@ public final class DevFinal {
         public static final String DOWNLOAD   = "download";
         public static final String END        = "end";
         public static final String FAIL       = "fail";
+        public static final String FOUND      = "found";
         public static final String GRANTED    = "granted";
         public static final String LOAD       = "load";
         public static final String LOADING    = "loading";
+        public static final String NEXT       = "next";
+        public static final String NOT_FOUND  = "not_found";
         public static final String PAUSE      = "pause";
         public static final String PERIOD     = "period";
         public static final String PLAY       = "play";
@@ -1074,5 +1079,22 @@ public final class DevFinal {
                 "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座",
                 "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座"
         };
+    }
+
+    /**
+     * detail: 校验接受常量
+     * @author Ttt
+     */
+    public static final class ACCEPT {
+
+        public static final String NUMBERS = "0123456789";
+
+        public static final String LOWER_CASE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
+
+        public static final String CAPITAL_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        public static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        public static final String NUMBERS_AND_LETTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
 }

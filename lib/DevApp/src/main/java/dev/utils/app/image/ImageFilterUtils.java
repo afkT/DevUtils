@@ -747,11 +747,11 @@ public final class ImageFilterUtils {
         if (bitmap == null) return null;
         try {
             // 计算出符合要求的亮度值
-            float newlumValue = lumValue * 1.0F / 127;
+            float newLumValue = lumValue * 1.0F / 127;
             // 创建一个颜色矩阵
             ColorMatrix lumColorMatrix = new ColorMatrix();
             // 设置亮度值
-            lumColorMatrix.setScale(newlumValue, newlumValue, newlumValue, 1);
+            lumColorMatrix.setScale(newLumValue, newLumValue, newLumValue, 1);
             // 创建一个画笔并设置其颜色过滤器
             Paint paint = new Paint();
             paint.setColorFilter(new ColorMatrixColorFilter(lumColorMatrix));
@@ -829,7 +829,7 @@ public final class ImageFilterUtils {
             // 计算出符合要求的饱和度值
             float newSaturationValue = saturationValue * 1.0F / 127;
             // 计算出符合要求的亮度值
-            float newlumValue = lumValue * 1.0F / 127;
+            float newLumValue = lumValue * 1.0F / 127;
             // 计算出符合要求的色相值
             float newHueValue = (hueValue - 127) * 1.0F / 127 * 180;
             // 创建一个颜色矩阵并设置其饱和度
@@ -837,7 +837,7 @@ public final class ImageFilterUtils {
             // 设置饱和度值
             colorMatrix.setSaturation(newSaturationValue);
             // 设置亮度值
-            colorMatrix.setScale(newlumValue, newlumValue, newlumValue, 1);
+            colorMatrix.setScale(newLumValue, newLumValue, newLumValue, 1);
             // 控制让红色区在色轮上旋转的角度
             colorMatrix.setRotate(0, newHueValue);
             // 控制让绿红色区在色轮上旋转的角度
