@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import dev.base.widget.BaseTextView
 import dev.utils.app.HandlerUtils
 import dev.utils.app.helper.view.ViewHelper
-import java.util.*
 
 /**
  * detail: TabLayout 辅助类

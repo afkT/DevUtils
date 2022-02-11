@@ -8,7 +8,6 @@ import afkt.project.ui.adapter.ViewPagerAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.widget.custom.CustomViewPager.OnDirectionListener
-import java.util.*
 
 /**
  * detail: ViewPager 滑动监听、控制滑动

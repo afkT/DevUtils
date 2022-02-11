@@ -879,6 +879,8 @@ public final class DevFinal {
         public static final int OPEN         = BASE + 34;
         // 退出
         public static final int EXIT         = BASE + 35;
+        // 下一步
+        public static final int NEXT         = BASE + 36;
 
         // ===========
         // = Request =

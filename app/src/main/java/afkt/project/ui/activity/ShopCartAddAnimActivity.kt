@@ -13,8 +13,7 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.widget.decoration.FirstLineItemDecoration
-import java.util.*
+import dev.widget.decoration.linear.FirstLineItemDecoration
 
 /**
  * detail: 购物车加入动画

@@ -18,8 +18,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
-import dev.widget.decoration.FirstLineItemDecoration
-import java.util.*
+import dev.widget.decoration.linear.FirstLineItemDecoration
 
 /**
  * detail: 多选辅助类 MultiSelectAssist

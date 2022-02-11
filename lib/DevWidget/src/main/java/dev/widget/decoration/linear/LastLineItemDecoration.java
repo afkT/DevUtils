@@ -1,4 +1,4 @@
-package dev.widget.decoration.horizontal;
+package dev.widget.decoration.linear;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -8,24 +8,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.widget.decoration.BaseItemDecoration;
-import dev.widget.decoration.LastLineItemDecoration;
 
 /**
  * detail: RecyclerView 分割线 ( 在结尾添加一条分割线 )
  * @author Ttt
  * <pre>
- *     {@link LastLineItemDecoration} 横向滑动版实现
- *     不合并为一个实现类是防止在 {@link #onDrawOver} 中多次获取方向并进行判断处理
+ *     可自行改造 {@link #onDrawOver(Canvas, RecyclerView, RecyclerView.State)}
+ *     通过 Canvas 绘制所需样式
  * </pre>
  */
-public class LastLineHorizontalItemDecoration
+public class LastLineItemDecoration
         extends BaseItemDecoration {
 
-    public LastLineHorizontalItemDecoration(float lineHeight) {
+    public LastLineItemDecoration(float lineHeight) {
         super(lineHeight);
     }
 
-    public LastLineHorizontalItemDecoration(
+    public LastLineItemDecoration(
             float lineHeight,
             int lineColor
     ) {
@@ -48,7 +47,7 @@ public class LastLineHorizontalItemDecoration
             if (!mSingleLineDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set(0, 0, (int) mLineHeight, 0);
+            outRect.set(0, 0, 0, (int) mLineHeight);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -77,10 +76,10 @@ public class LastLineHorizontalItemDecoration
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
                     canvas.drawRect(
-                            child.getRight(),
-                            child.getTop() + mLineLeft,
-                            child.getRight() + mLineHeight,
-                            child.getBottom() - mLineRight,
+                            child.getLeft() + mLineLeft,
+                            child.getBottom(),
+                            child.getRight() - mLineRight,
+                            child.getBottom() + mLineHeight,
                             mLinePaint
                     );
                 }

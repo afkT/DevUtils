@@ -18,7 +18,6 @@ import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ArrayUtils
-import java.util.*
 
 /**
  * detail: 常见 UI、GradientDrawable 效果等

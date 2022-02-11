@@ -16,8 +16,7 @@ import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
-import dev.widget.decoration.FirstLineItemDecoration
-import java.util.*
+import dev.widget.decoration.linear.FirstLineItemDecoration
 
 /**
  * detail: Adapter Item EditText 输入监听

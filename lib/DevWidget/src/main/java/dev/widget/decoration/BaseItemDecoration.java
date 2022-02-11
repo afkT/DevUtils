@@ -23,6 +23,8 @@ public class BaseItemDecoration
     protected       float   mLineLeft       = 0.0F;
     // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0F;
+    // Span 总数 ( Grid )
+    protected       int     mSpanCount      = 0;
 
     public BaseItemDecoration(float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
@@ -115,6 +117,24 @@ public class BaseItemDecoration
     ) {
         this.mLineLeft  = lineLeft;
         this.mLineRight = lineRight;
+        return this;
+    }
+
+    /**
+     * 获取 Span 总数
+     * @return Span 总数
+     */
+    public int getSpanCount() {
+        return mSpanCount;
+    }
+
+    /**
+     * 设置 Span 总数
+     * @param spanCount Span 总数
+     * @return {@link BaseItemDecoration}
+     */
+    public BaseItemDecoration setSpanCount(int spanCount) {
+        this.mSpanCount = spanCount;
         return this;
     }
 }

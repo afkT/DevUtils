@@ -1,4 +1,4 @@
-package dev.widget.decoration;
+package dev.widget.decoration.linear.horizontal;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -7,22 +7,25 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import dev.widget.decoration.BaseItemDecoration;
+import dev.widget.decoration.linear.FirstLineItemDecoration;
+
 /**
  * detail: RecyclerView 分割线 ( 在开头添加一条分割线 )
  * @author Ttt
  * <pre>
- *     可自行改造 {@link #onDrawOver(Canvas, RecyclerView, RecyclerView.State)}
- *     通过 Canvas 绘制所需样式
+ *     {@link FirstLineItemDecoration} 横向滑动版实现
+ *     不合并为一个实现类是防止在 {@link #onDrawOver} 中多次获取方向并进行判断处理
  * </pre>
  */
-public class FirstLineItemDecoration
+public class FirstLineHorizontalItemDecoration
         extends BaseItemDecoration {
 
-    public FirstLineItemDecoration(float lineHeight) {
+    public FirstLineHorizontalItemDecoration(float lineHeight) {
         super(lineHeight);
     }
 
-    public FirstLineItemDecoration(
+    public FirstLineHorizontalItemDecoration(
             float lineHeight,
             int lineColor
     ) {
@@ -45,7 +48,7 @@ public class FirstLineItemDecoration
             if (!mSingleLineDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set(0, (int) mLineHeight, 0, 0);
+            outRect.set((int) mLineHeight, 0, 0, 0);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -68,10 +71,10 @@ public class FirstLineItemDecoration
         int  position = parent.getChildAdapterPosition(child);
         if (position == 0) {
             canvas.drawRect(
-                    child.getLeft() + mLineLeft,
-                    child.getTop() - mLineHeight,
-                    child.getRight() - mLineRight,
-                    child.getTop(),
+                    child.getLeft() - mLineHeight,
+                    child.getTop() + mLineLeft,
+                    child.getLeft(),
+                    child.getBottom() - mLineRight,
                     mLinePaint
             );
         }

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.quick.QuickHelper
-import java.util.*
 
 /**
  * detail: LinearSnapHelper - RecyclerView

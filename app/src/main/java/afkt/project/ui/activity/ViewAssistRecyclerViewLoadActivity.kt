@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.RandomUtils
-import java.util.*
 
 /**
  * detail: ViewAssist RecyclerView Loading

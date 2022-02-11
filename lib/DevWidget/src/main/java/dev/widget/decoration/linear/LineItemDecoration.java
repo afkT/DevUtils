@@ -1,4 +1,4 @@
-package dev.widget.decoration;
+package dev.widget.decoration.linear;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
+
+import dev.widget.decoration.BaseItemDecoration;
 
 /**
  * detail: RecyclerView 分割线
