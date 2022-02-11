@@ -14,20 +14,19 @@ public class DevFloatingCommon
         implements DelayAssist.Callback {
 
     // 触摸 View
-    private View              mView;
+    private       View              mView;
     // 触摸事件
-    private MotionEvent       mEvent;
+    private       MotionEvent       mEvent;
     // 悬浮窗触摸事件接口
-    private IFloatingListener mListener;
-
-    // 触摸点记录
-    private final PointF      mPoint       = new PointF();
-    // 首次触摸点记录
-    private final PointF      mFirstPoint  = new PointF();
+    private       IFloatingListener mListener;
     // 触摸时间
-    private       long        mDownTime    = 0L;
+    private       long              mDownTime    = 0L;
+    // 触摸点记录
+    private final PointF            mPoint       = new PointF();
+    // 首次触摸点记录
+    private final PointF            mFirstPoint  = new PointF();
     // 延迟触发辅助类
-    private       DelayAssist mDelayAssist = new DelayAssist(this);
+    private final DelayAssist       mDelayAssist = new DelayAssist(this);
 
     // =============
     // = 对外公开方法 =
@@ -60,12 +59,28 @@ public class DevFloatingCommon
         return mView;
     }
 
+    public MotionEvent getEvent() {
+        return mEvent;
+    }
+
+    public IFloatingListener getListener() {
+        return mListener;
+    }
+
+    public long getDownTime() {
+        return mDownTime;
+    }
+
     public PointF getPoint() {
         return mPoint;
     }
 
     public PointF getFirstPoint() {
         return mFirstPoint;
+    }
+
+    public DelayAssist getDelayAssist() {
+        return mDelayAssist;
     }
 
     // =============

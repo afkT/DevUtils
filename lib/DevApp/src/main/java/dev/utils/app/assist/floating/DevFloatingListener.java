@@ -16,7 +16,7 @@ public abstract class DevFloatingListener
     // 点击事件间隔时间
     private long mClickIntervalTime     = 150L;
     // 长按事件间隔时间
-    private long mLongClickIntervalTime = 400L;
+    private long mLongClickIntervalTime = 500L;
 
     /**
      * 获取点击事件间隔时间
@@ -32,7 +32,7 @@ public abstract class DevFloatingListener
      * @param time 点击事件间隔时间
      */
     @Override
-    public void setClickIntervalTime(long time) {
+    public void setClickIntervalTime(final long time) {
         this.mClickIntervalTime = time;
     }
 
@@ -50,7 +50,7 @@ public abstract class DevFloatingListener
      * @param time 长按事件间隔时间
      */
     @Override
-    public void setLongClickIntervalTime(long time) {
+    public void setLongClickIntervalTime(final long time) {
         this.mLongClickIntervalTime = time;
     }
 }

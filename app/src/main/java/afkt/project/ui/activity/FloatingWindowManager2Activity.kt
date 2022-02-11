@@ -105,7 +105,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 event: MotionEvent?,
                 firstPoint: PointF?
             ): Boolean {
-                ToastTintUtils.error("点击了")
+                Log.d("Qqweqweq", "触发【点击】")
                 return true
             }
 
@@ -114,7 +114,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 event: MotionEvent?,
                 firstPoint: PointF?
             ): Boolean {
-                Log.d("Qqweqweq", "进入了")
+                Log.d("Qqweqweq", "触发【长按】")
                 return true
             }
         })

@@ -49,6 +49,7 @@ public class DevFloatingTouchIMPL2
                     updateViewLayout(view, dx, dy);
                     break;
                 case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
                     mCommon.actionUp(event);
                     if (mCommon.onClick(view, event, mListener)) {
                         return true;
@@ -59,6 +60,12 @@ public class DevFloatingTouchIMPL2
         return false;
     }
 
+    /**
+     * 更新 View Layout
+     * @param view {@link View}
+     * @param dx   累加 X 轴坐标
+     * @param dy   累加 Y 轴坐标
+     */
     @Override
     public void updateViewLayout(
             View view,
@@ -154,11 +161,19 @@ public class DevFloatingTouchIMPL2
     // 悬浮窗触摸事件接口
     private IFloatingListener mListener;
 
+    /**
+     * 获取悬浮窗触摸事件接口
+     * @return 悬浮窗触摸事件接口
+     */
     @Override
     public IFloatingListener getFloatingListener() {
         return mListener;
     }
 
+    /**
+     * 获取悬浮窗触摸事件接口
+     * @param listener 悬浮窗触摸事件接口
+     */
     @Override
     public void setFloatingListener(final IFloatingListener listener) {
         this.mListener = listener;
