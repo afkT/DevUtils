@@ -238,7 +238,94 @@ public final class RecyclerViewUtils {
         return null;
     }
 
+    // =============
+    // = Grid Span =
+    // =============
+
+    /**
+     * 设置 GridLayoutManager SpanCount
+     * @param view      {@link View}
+     * @param spanCount Span Count
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setSpanCount(
+            final View view,
+            final int spanCount
+    ) {
+        return setSpanCount(getLayoutManager(view), spanCount);
+    }
+
+    /**
+     * 设置 GridLayoutManager SpanCount
+     * @param recyclerView {@link RecyclerView}
+     * @param spanCount    Span Count
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setSpanCount(
+            final RecyclerView recyclerView,
+            final int spanCount
+    ) {
+        return setSpanCount(getLayoutManager(recyclerView), spanCount);
+    }
+
+    /**
+     * 设置 GridLayoutManager SpanCount
+     * @param layoutManager LayoutManager
+     * @param spanCount     Span Count
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setSpanCount(
+            final RecyclerView.LayoutManager layoutManager,
+            final int spanCount
+    ) {
+        if (spanCount < 1) return false;
+        if (layoutManager instanceof GridLayoutManager) {
+            ((GridLayoutManager) layoutManager).setSpanCount(spanCount);
+            return true;
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            ((StaggeredGridLayoutManager) layoutManager).setSpanCount(spanCount);
+            return true;
+        }
+        return false;
+    }
+
     // =
+
+    /**
+     * 获取 GridLayoutManager SpanCount
+     * @param view {@link View}
+     * @return Span Count
+     */
+    public static int getSpanCount(final View view) {
+        return getSpanCount(getLayoutManager(view));
+    }
+
+    /**
+     * 获取 GridLayoutManager SpanCount
+     * @param recyclerView {@link RecyclerView}
+     * @return Span Count
+     */
+    public static int getSpanCount(final RecyclerView recyclerView) {
+        return getSpanCount(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 GridLayoutManager SpanCount
+     * @param layoutManager LayoutManager
+     * @return Span Count
+     */
+    public static int getSpanCount(final RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager instanceof GridLayoutManager) {
+            return ((GridLayoutManager) layoutManager).getSpanCount();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
+        }
+        return 0;
+    }
+
+    // ============
+    // = Position =
+    // ============
 
     /**
      * 获取 RecyclerView 对应 Item View 索引

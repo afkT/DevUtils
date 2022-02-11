@@ -1919,6 +1919,13 @@ public interface IHelperByQuick<T>
     T setLayoutManager(RecyclerView.LayoutManager layoutManager);
 
     /**
+     * 设置 GridLayoutManager SpanCount
+     * @param spanCount Span Count
+     * @return Helper
+     */
+    T setSpanCount(int spanCount);
+
+    /**
      * 设置 RecyclerView Orientation
      * @param orientation 方向
      * @return Helper

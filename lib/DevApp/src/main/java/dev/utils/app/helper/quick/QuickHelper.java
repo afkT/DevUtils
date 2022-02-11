@@ -3068,6 +3068,17 @@ public final class QuickHelper
     }
 
     /**
+     * 设置 GridLayoutManager SpanCount
+     * @param spanCount Span Count
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setSpanCount(int spanCount) {
+        ViewHelper.get().setSpanCount(targetView(), spanCount);
+        return this;
+    }
+
+    /**
      * 设置 RecyclerView Orientation
      * @param orientation 方向
      * @return Helper

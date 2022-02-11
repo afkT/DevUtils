@@ -2702,6 +2702,28 @@ public interface IHelperByView<T>
     );
 
     /**
+     * 设置 GridLayoutManager SpanCount
+     * @param view      {@link View}
+     * @param spanCount Span Count
+     * @return Helper
+     */
+    T setSpanCount(
+            View view,
+            int spanCount
+    );
+
+    /**
+     * 设置 GridLayoutManager SpanCount
+     * @param layoutManager LayoutManager
+     * @param spanCount     Span Count
+     * @return Helper
+     */
+    T setSpanCount(
+            RecyclerView.LayoutManager layoutManager,
+            int spanCount
+    );
+
+    /**
      * 设置 RecyclerView Orientation
      * @param view        {@link View}
      * @param orientation 方向
