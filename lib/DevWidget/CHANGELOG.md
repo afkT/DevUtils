@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.1.6 *(2022-02-12)*
+----------------------------
+
+* `[Update]` RightIconEditText 继承 EditText
+
+* `[Update]` 移动 DevWidget ItemDecoration 位置
+
+* `[Fix]` 修复 RoundImageView 重复绘制问题
+
 Version 1.1.5 *(2022-01-23)*
 ----------------------------
 

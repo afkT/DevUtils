@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.3.5 *(2022-02-12)*
+----------------------------
+
+* `[Add]` StringUtils#join、joinArgs
+
+* `[Add]` CollectionUtils#clearAndAddAll、clearAndAddAllNotNull
+
+* `[Add]` RecyclerViewUtils#setSpanCount、getSpanCount
+
+* `[Add]` ViewHelper、QuickHelper#setSpanCount
+
+* `[Add]` IFloatingListener、DevFloatingListener、DevFloatingCommon 解决悬浮窗 onTouchEvent 与 click、longClick 冲突处理
+
 Version 2.3.4 *(2022-01-23)*
 ----------------------------
 

@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.4.2 *(2022-02-12)*
+----------------------------
+
+* `[Add]` StringUtils#join、joinArgs
+
+* `[Add]` CollectionUtils#clearAndAddAll、clearAndAddAllNotNull
+
 Version 1.4.1 *(2022-01-23)*
 ----------------------------
 
