@@ -7,7 +7,7 @@ buildscript {
     // Kotlin 版本
     ext.kotlin_version = "1.6.10"
     ext.kotlin_stdlib = "1.6.10"
-    ext.matrix_version = "2.0.2"
+    ext.matrix_version = "2.0.5"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
