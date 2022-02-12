@@ -68,10 +68,10 @@ public class CustomHorizontalScrollView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -135,7 +135,7 @@ public class CustomHorizontalScrollView
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomHorizontalScrollView}
      */
-    public CustomHorizontalScrollView setMaxWidth(int maxWidth) {
+    public CustomHorizontalScrollView setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
@@ -153,7 +153,7 @@ public class CustomHorizontalScrollView
      * @param maxHeight View 最大显示高度
      * @return {@link CustomHorizontalScrollView}
      */
-    public CustomHorizontalScrollView setMaxHeight(int maxHeight) {
+    public CustomHorizontalScrollView setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -171,7 +171,7 @@ public class CustomHorizontalScrollView
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomHorizontalScrollView}
      */
-    public CustomHorizontalScrollView setSlide(boolean isSlide) {
+    public CustomHorizontalScrollView setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }
@@ -190,7 +190,7 @@ public class CustomHorizontalScrollView
      * @param callback {@link ScrollCallback}
      * @return {@link CustomHorizontalScrollView}
      */
-    public CustomHorizontalScrollView setScrollCallback(ScrollCallback callback) {
+    public CustomHorizontalScrollView setScrollCallback(final ScrollCallback callback) {
         this.mCallback = callback;
         return this;
     }

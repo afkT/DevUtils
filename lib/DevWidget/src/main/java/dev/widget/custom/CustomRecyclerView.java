@@ -59,10 +59,10 @@ public class CustomRecyclerView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -134,7 +134,7 @@ public class CustomRecyclerView
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomRecyclerView}
      */
-    public CustomRecyclerView setMaxWidth(int maxWidth) {
+    public CustomRecyclerView setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
@@ -152,7 +152,7 @@ public class CustomRecyclerView
      * @param maxHeight View 最大显示高度
      * @return {@link CustomRecyclerView}
      */
-    public CustomRecyclerView setMaxHeight(int maxHeight) {
+    public CustomRecyclerView setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -170,7 +170,7 @@ public class CustomRecyclerView
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomRecyclerView}
      */
-    public CustomRecyclerView setSlide(boolean isSlide) {
+    public CustomRecyclerView setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }
@@ -189,7 +189,7 @@ public class CustomRecyclerView
      * @param callback {@link ScrollCallback}
      * @return {@link CustomRecyclerView}
      */
-    public CustomRecyclerView setScrollCallback(ScrollCallback callback) {
+    public CustomRecyclerView setScrollCallback(final ScrollCallback callback) {
         this.mCallback = callback;
         return this;
     }

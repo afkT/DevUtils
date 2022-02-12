@@ -110,10 +110,10 @@ public class CornerLabelView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);

@@ -63,10 +63,10 @@ public class LimitLayout
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -118,7 +118,7 @@ public class LimitLayout
      * @param maxHeight View 最大显示高度
      * @return {@link LimitLayout}
      */
-    public LimitLayout setMaxHeight(int maxHeight) {
+    public LimitLayout setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }

@@ -67,10 +67,10 @@ public class CustomWebView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -147,7 +147,7 @@ public class CustomWebView
      * @param maxHeight View 最大显示高度
      * @return {@link CustomWebView}
      */
-    public CustomWebView setMaxHeight(int maxHeight) {
+    public CustomWebView setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -165,7 +165,7 @@ public class CustomWebView
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomWebView}
      */
-    public CustomWebView setSlide(boolean isSlide) {
+    public CustomWebView setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }
@@ -184,7 +184,7 @@ public class CustomWebView
      * @param callback {@link ScrollCallback}
      * @return {@link CustomWebView}
      */
-    public CustomWebView setScrollCallback(ScrollCallback callback) {
+    public CustomWebView setScrollCallback(final ScrollCallback callback) {
         this.mCallback = callback;
         return this;
     }

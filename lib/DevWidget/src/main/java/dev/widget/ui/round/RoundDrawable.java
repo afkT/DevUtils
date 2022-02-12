@@ -178,10 +178,10 @@ public class RoundDrawable
      * @return {@link RoundDrawable}
      */
     public static RoundDrawable fromAttributeSet(
-            final Context context,
-            final AttributeSet attrs,
-            final int defStyleAttr,
-            final int defStyleRes
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes

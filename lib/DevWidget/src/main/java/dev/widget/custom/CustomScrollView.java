@@ -70,10 +70,10 @@ public class CustomScrollView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -137,7 +137,7 @@ public class CustomScrollView
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomScrollView}
      */
-    public CustomScrollView setMaxWidth(int maxWidth) {
+    public CustomScrollView setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
@@ -155,7 +155,7 @@ public class CustomScrollView
      * @param maxHeight View 最大显示高度
      * @return {@link CustomScrollView}
      */
-    public CustomScrollView setMaxHeight(int maxHeight) {
+    public CustomScrollView setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -173,7 +173,7 @@ public class CustomScrollView
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomScrollView}
      */
-    public CustomScrollView setSlide(boolean isSlide) {
+    public CustomScrollView setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }
@@ -192,7 +192,7 @@ public class CustomScrollView
      * @param callback {@link ScrollCallback}
      * @return {@link CustomScrollView}
      */
-    public CustomScrollView setScrollCallback(ScrollCallback callback) {
+    public CustomScrollView setScrollCallback(final ScrollCallback callback) {
         this.mCallback = callback;
         return this;
     }

@@ -68,10 +68,10 @@ public class CustomGallery
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -147,7 +147,7 @@ public class CustomGallery
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomGallery}
      */
-    public CustomGallery setMaxWidth(int maxWidth) {
+    public CustomGallery setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
@@ -165,7 +165,7 @@ public class CustomGallery
      * @param maxHeight View 最大显示高度
      * @return {@link CustomGallery}
      */
-    public CustomGallery setMaxHeight(int maxHeight) {
+    public CustomGallery setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -183,7 +183,7 @@ public class CustomGallery
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomGallery}
      */
-    public CustomGallery setSlide(boolean isSlide) {
+    public CustomGallery setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }

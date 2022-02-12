@@ -73,10 +73,10 @@ public class RightIconEditText
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(

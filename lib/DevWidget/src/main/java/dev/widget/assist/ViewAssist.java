@@ -38,7 +38,7 @@ public final class ViewAssist {
      * @param wrapper 包裹 View
      * @return {@link ViewAssist}
      */
-    public static ViewAssist wrap(ViewGroup wrapper) {
+    public static ViewAssist wrap(final ViewGroup wrapper) {
         return wrap(wrapper, null);
     }
 
@@ -49,8 +49,8 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public static ViewAssist wrap(
-            ViewGroup wrapper,
-            Object tag
+            final ViewGroup wrapper,
+            final Object tag
     ) {
         if (wrapper == null) return null;
         ViewAssist assist = new ViewAssist();
@@ -133,7 +133,7 @@ public final class ViewAssist {
      * 显示 Type Adapter View
      * @param type Type
      */
-    public void showType(int type) {
+    public void showType(final int type) {
         if (mWrapper == null) return;
         Adapter adapter = mMapAdapters.get(type);
         if (adapter != null) {
@@ -192,8 +192,8 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist register(
-            int type,
-            Adapter adapter
+            final int type,
+            final Adapter adapter
     ) {
         if (adapter == null) return this;
         mMapAdapters.put(type, adapter);
@@ -205,7 +205,7 @@ public final class ViewAssist {
      * @param type Type
      * @return {@link ViewAssist}
      */
-    public ViewAssist unregister(int type) {
+    public ViewAssist unregister(final int type) {
         return unregister(type, true);
     }
 
@@ -216,8 +216,8 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist unregister(
-            int type,
-            boolean remove
+            final int type,
+            final boolean remove
     ) {
         mTypeViews.remove(type);
         mMapAdapters.remove(type);
@@ -263,7 +263,7 @@ public final class ViewAssist {
         return mTag;
     }
 
-    public ViewAssist setTag(Object tag) {
+    public ViewAssist setTag(final Object tag) {
         this.mTag = tag;
         return this;
     }
@@ -277,12 +277,12 @@ public final class ViewAssist {
         return null;
     }
 
-    public ViewAssist setData(Object data) {
+    public ViewAssist setData(final Object data) {
         this.mData = data;
         return this;
     }
 
-    public <T> T getData(String key) {
+    public <T> T getData(final String key) {
         try {
             return (T) mMapDatas.get(key);
         } catch (Exception e) {
@@ -292,18 +292,18 @@ public final class ViewAssist {
     }
 
     public ViewAssist setData(
-            String key,
-            Object data
+            final String key,
+            final Object data
     ) {
         mMapDatas.put(key, data);
         return this;
     }
 
-    public <T extends Adapter> T getAdapter(int type) {
+    public <T extends Adapter> T getAdapter(final int type) {
         return (T) mMapAdapters.get(type);
     }
 
-    public View getView(int type) {
+    public View getView(final int type) {
         View view = mTypeViews.get(type);
         if (view != null) return view;
         Adapter adapter = mMapAdapters.get(type);
@@ -321,7 +321,7 @@ public final class ViewAssist {
         return mCurrentView;
     }
 
-    public ViewAssist setListener(Listener listener) {
+    public ViewAssist setListener(final Listener listener) {
         this.mListener = listener;
         return this;
     }

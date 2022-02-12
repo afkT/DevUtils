@@ -46,10 +46,10 @@ public class CustomViewPager
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -113,7 +113,7 @@ public class CustomViewPager
      * @param maxHeight View 最大显示高度
      * @return {@link CustomViewPager}
      */
-    public CustomViewPager setMaxHeight(int maxHeight) {
+    public CustomViewPager setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -131,7 +131,7 @@ public class CustomViewPager
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomViewPager}
      */
-    public CustomViewPager setSlide(boolean isSlide) {
+    public CustomViewPager setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }

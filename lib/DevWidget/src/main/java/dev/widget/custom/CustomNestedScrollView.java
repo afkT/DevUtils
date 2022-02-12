@@ -59,10 +59,10 @@ public class CustomNestedScrollView
      * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -126,7 +126,7 @@ public class CustomNestedScrollView
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomNestedScrollView}
      */
-    public CustomNestedScrollView setMaxWidth(int maxWidth) {
+    public CustomNestedScrollView setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
@@ -144,7 +144,7 @@ public class CustomNestedScrollView
      * @param maxHeight View 最大显示高度
      * @return {@link CustomNestedScrollView}
      */
-    public CustomNestedScrollView setMaxHeight(int maxHeight) {
+    public CustomNestedScrollView setMaxHeight(final int maxHeight) {
         mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
@@ -162,7 +162,7 @@ public class CustomNestedScrollView
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link CustomNestedScrollView}
      */
-    public CustomNestedScrollView setSlide(boolean isSlide) {
+    public CustomNestedScrollView setSlide(final boolean isSlide) {
         mWidgetAttrs.setSlide(isSlide);
         return this;
     }
@@ -181,7 +181,7 @@ public class CustomNestedScrollView
      * @param callback {@link ScrollCallback}
      * @return {@link CustomNestedScrollView}
      */
-    public CustomNestedScrollView setScrollCallback(ScrollCallback callback) {
+    public CustomNestedScrollView setScrollCallback(final ScrollCallback callback) {
         this.mCallback = callback;
         return this;
     }

@@ -75,7 +75,7 @@ public class WidgetAttrs {
      * @param maxHeight View 最大显示高度
      * @return {@link WidgetAttrs}
      */
-    public WidgetAttrs setMaxHeight(int maxHeight) {
+    public WidgetAttrs setMaxHeight(final int maxHeight) {
         this.mMaxHeight = maxHeight;
         return this;
     }
@@ -93,7 +93,7 @@ public class WidgetAttrs {
      * @param isSlide {@code true} yes, {@code false} no
      * @return {@link WidgetAttrs}
      */
-    public WidgetAttrs setSlide(boolean isSlide) {
+    public WidgetAttrs setSlide(final boolean isSlide) {
         this.mSlide = isSlide;
         return this;
     }
