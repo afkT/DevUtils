@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * detail: 基础 RecyclerView Grid 分割线处理
  * @author Ttt
  */
-public class BaseGridItemDecoration
+class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // 分割线高度

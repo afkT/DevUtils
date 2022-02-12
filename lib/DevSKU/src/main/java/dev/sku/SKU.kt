@@ -353,6 +353,7 @@ internal class SKUController<T> {
             putAll(complementSKUModel(mOriginal, mSKUModel))
             // 组合 SKU 数据集基本模型 ( 全部组合数添加 )
             putAll(combineSKUModel())
+            // 可以考虑接着循环所有库存为 0 的 key, 判断接着的子节点是否存在库存, 存在的话则进行重置库存
         }
         return this
     }
