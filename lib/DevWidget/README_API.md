@@ -3,7 +3,7 @@
 
 ```gradle
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.1.5'
+implementation 'io.github.afkt:DevWidgetX:1.1.6'
 ```
 
 ## 目录结构
@@ -15,7 +15,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
       - assist                                                           | View 辅助类
       - custom                                                           | 自定义 View
       - decoration                                                       | RecyclerView ItemDecoration
-         - horizontal                                                    | Horizontal ItemDecoration
+         - linear                                                        | Linear ItemDecoration
+            - horizontal                                                 | Linear Horizontal ItemDecoration
       - function                                                         | 需求功能 View
       - ui                                                               | UI View
          - round                                                         | 圆角相关 View
@@ -51,7 +52,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
       - [assist](#devwidgetassist)                                       | View 辅助类
       - [custom](#devwidgetcustom)                                       | 自定义 View
       - [decoration](#devwidgetdecoration)                               | RecyclerView ItemDecoration
-         - [horizontal](#devwidgetdecorationhorizontal)                  | Horizontal ItemDecoration
+         - [linear](#devwidgetdecorationlinear)                          | Linear ItemDecoration
+            - [horizontal](#devwidgetdecorationlinearhorizontal)         | Linear Horizontal ItemDecoration
       - [function](#devwidgetfunction)                                   | 需求功能 View
       - [ui](#devwidgetui)                                               | UI View
          - [round](#devwidgetuiround)                                    | 圆角相关 View
@@ -211,6 +213,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
 | setScrollCallback | 设置滑动监听回调 |
+| getCustomScrollX | 获取距离左边距离 |
+| getCustomScrollY | 获取距离顶部距离 |
 | onScrollChanged | 滑动改变通知 |
 
 
@@ -287,7 +291,10 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | setLineLeftRight | 设置分割线距左、右边距 |
 
 
-* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/FirstLineItemDecoration.java)
+## <span id="devwidgetdecorationlinear">**`dev.widget.decoration.linear`**</span>
+
+
+* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/FirstLineItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -295,7 +302,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | onDrawOver | onDrawOver |
 
 
-* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/LastLineItemDecoration.java)
+* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LastLineItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -303,7 +310,7 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | onDrawOver | onDrawOver |
 
 
-* **RecyclerView 分割线 ->** [LineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/LineItemDecoration.java)
+* **RecyclerView 分割线 ->** [LineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LineItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -311,18 +318,10 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | onDrawOver | onDrawOver |
 
 
-## <span id="devwidgetdecorationhorizontal">**`dev.widget.decoration.horizontal`**</span>
+## <span id="devwidgetdecorationlinearhorizontal">**`dev.widget.decoration.linear.horizontal`**</span>
 
 
-* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/FirstLineHorizontalItemDecoration.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
-
-
-* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/LastLineHorizontalItemDecoration.java)
+* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/FirstLineHorizontalItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -330,7 +329,15 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | onDrawOver | onDrawOver |
 
 
-* **RecyclerView 分割线 ->** [LineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/horizontal/LineHorizontalItemDecoration.java)
+* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/LastLineHorizontalItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDrawOver | onDrawOver |
+
+
+* **RecyclerView 分割线 ->** [LineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/LineHorizontalItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -704,7 +711,6 @@ implementation 'io.github.afkt:DevWidgetX:1.1.5'
 | setScaleType | setScaleType |
 | setAdjustViewBounds | setAdjustViewBounds |
 | onDraw | onDraw |
-| invalidateDrawable | invalidateDrawable |
 | onSizeChanged | onSizeChanged |
 | setPadding | setPadding |
 | setPaddingRelative | setPaddingRelative |

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.4.1'
+implementation 'io.github.afkt:DevJava:1.4.2'
 ```
 
 ## 目录结构
@@ -247,6 +247,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | addNotNull | 添加一条数据 ( value 不允许为 null ) |
 | addAll | 添加集合数据 |
 | addAllNotNull | 添加集合数据 ( values 内的值不允许为 null ) |
+| clearAndAddAll | 移除全部数据并添加集合数据 |
+| clearAndAddAllNotNull | 移除全部数据并添加集合数据 ( values 内的值不允许为 null ) |
 | remove | 移除一条数据 |
 | removeAll | 移除集合数据 |
 | clear | 清空集合中符合指定 value 的全部数据 |
