@@ -14,9 +14,9 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
+import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
@@ -102,7 +102,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    DevEngine.getLog()?.d("触发【点击】")
+                    ToastTintUtils.info("触发点击")
                 }
                 return true
             }
@@ -113,7 +113,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    DevEngine.getLog()?.d("触发【长按】")
+                    ToastTintUtils.info("触发长按")
                 }
                 return true
             }

@@ -16,7 +16,7 @@ public abstract class DevFloatingListener
     // 点击事件间隔时间
     private long mClickIntervalTime     = 150L;
     // 长按事件间隔时间
-    private long mLongClickIntervalTime = 500L;
+    private long mLongClickIntervalTime = 600L;
 
     /**
      * 获取点击事件间隔时间

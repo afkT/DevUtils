@@ -17,9 +17,9 @@ import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.utils.app.assist.floating.*
 import dev.utils.app.logger.DevLogger
+import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.toast.ToastUtils
 
 /**
@@ -116,7 +116,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        DevEngine.getLog()?.d("触发【点击】")
+                        ToastTintUtils.info("触发点击")
                     }
                     return true
                 }
@@ -127,7 +127,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        DevEngine.getLog()?.d("触发【长按】")
+                        ToastTintUtils.info("触发长按")
                     }
                     return true
                 }

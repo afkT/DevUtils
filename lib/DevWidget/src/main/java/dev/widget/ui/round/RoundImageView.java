@@ -26,7 +26,6 @@ import android.view.ViewOutlineProvider;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -80,7 +79,6 @@ public class RoundImageView
     private       int    mImageAlpha            = DEFAULT_IMAGE_ALPHA;
     // 待绘制资源信息
     private       Bitmap mBitmap;
-    private       Canvas mBitmapCanvas;
     // 绘制圆角数据
     private       float  mDrawableRadius;
     private       float  mBorderRadius;
@@ -89,7 +87,6 @@ public class RoundImageView
 
     private boolean mInitialized;
     private boolean mRebuildShader;
-    private boolean mDrawableDirty;
     private boolean mBorderOverlay;
     private boolean mDisableCircularTransformation;
 
@@ -202,15 +199,6 @@ public class RoundImageView
         }
 
         if (mBitmap != null) {
-            if (mDrawableDirty && mBitmapCanvas != null) {
-                mDrawableDirty = false;
-                Drawable drawable = getDrawable();
-                drawable.setBounds(
-                        0, 0, mBitmapCanvas.getWidth(), mBitmapCanvas.getHeight()
-                );
-                drawable.draw(mBitmapCanvas);
-            }
-
             if (mRebuildShader) {
                 mRebuildShader = false;
 
@@ -233,12 +221,6 @@ public class RoundImageView
                     mBorderRadius, mBorderPaint
             );
         }
-    }
-
-    @Override
-    public void invalidateDrawable(@NonNull Drawable dr) {
-        mDrawableDirty = true;
-        invalidate();
     }
 
     // =
@@ -407,12 +389,6 @@ public class RoundImageView
      */
     private void initializeBitmap() {
         mBitmap = getBitmapFromDrawable(getDrawable());
-
-        if (mBitmap != null && mBitmap.isMutable()) {
-            mBitmapCanvas = new Canvas(mBitmap);
-        } else {
-            mBitmapCanvas = null;
-        }
 
         if (!mInitialized) return;
 
@@ -643,8 +619,7 @@ public class RoundImageView
         mDisableCircularTransformation = disableCircularTransformation;
 
         if (disableCircularTransformation) {
-            mBitmap       = null;
-            mBitmapCanvas = null;
+            mBitmap = null;
             mBitmapPaint.setShader(null);
         } else {
             initializeBitmap();
