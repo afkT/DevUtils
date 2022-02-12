@@ -95,7 +95,7 @@ public class CustomViewPager
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomViewPager}
      */
-    public CustomViewPager setMaxWidth(int maxWidth) {
+    public CustomViewPager setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }

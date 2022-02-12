@@ -188,7 +188,7 @@ public class FlowLikeView
 
         private final View target;
 
-        public CurveUpdateLister(View target) {
+        public CurveUpdateLister(final View target) {
             this.target = target;
         }
 
@@ -213,7 +213,7 @@ public class FlowLikeView
 
         private final PointF ctrlPointF;
 
-        public CurveEvaluator(PointF ctrlPointF) {
+        public CurveEvaluator(final PointF ctrlPointF) {
             this.ctrlPointF = ctrlPointF;
         }
 
@@ -239,7 +239,7 @@ public class FlowLikeView
      * @param value 设置控制点 y 轴上取值区域
      * @return 控制点的 x y 坐标
      */
-    private PointF generateCTRLPointF(int value) {
+    private PointF generateCTRLPointF(final int value) {
         PointF pointF = new PointF();
         pointF.x = mViewWidth / 2 - mRandom.nextInt(100);
         pointF.y = mRandom.nextInt(mViewHeight / value);
@@ -251,7 +251,7 @@ public class FlowLikeView
      * @param target 动画作用 View
      * @return 动画集合
      */
-    private ValueAnimator generateCurveAnimation(View target) {
+    private ValueAnimator generateCurveAnimation(final View target) {
         CurveEvaluator evaluator = new CurveEvaluator(generateCTRLPointF(1));
         ValueAnimator valueAnimator = ValueAnimator.ofObject(
                 evaluator,
@@ -269,7 +269,7 @@ public class FlowLikeView
      * @param target 动画作用 View
      * @return 动画集合
      */
-    private AnimatorSet generateEnterAnimation(View target) {
+    private AnimatorSet generateEnterAnimation(final View target) {
         ObjectAnimator alpha          = ObjectAnimator.ofFloat(target, "alpha", 0.2F, 1F);
         ObjectAnimator scaleX         = ObjectAnimator.ofFloat(target, "scaleX", 0.5F, 1F);
         ObjectAnimator scaleY         = ObjectAnimator.ofFloat(target, "scaleY", 0.5F, 1F);
@@ -284,7 +284,7 @@ public class FlowLikeView
      * 开始动画处理
      * @param target 动画作用 View
      */
-    private void startAnimation(View target) {
+    private void startAnimation(final View target) {
         // 进入动画
         AnimatorSet enterAnimator = generateEnterAnimation(target);
         // 路径动画
@@ -340,7 +340,7 @@ public class FlowLikeView
      * @param drawables Icon 集合
      * @return {@link FlowLikeView}
      */
-    public FlowLikeView setDrawables(List<Drawable> drawables) {
+    public FlowLikeView setDrawables(final List<Drawable> drawables) {
         this.mDrawables.clear();
         if (drawables != null) {
             this.mDrawables.addAll(drawables);
@@ -389,7 +389,7 @@ public class FlowLikeView
      * @param iconWidth 点赞 Icon 宽度
      * @return {@link FlowLikeView}
      */
-    public FlowLikeView setIconWidth(int iconWidth) {
+    public FlowLikeView setIconWidth(final int iconWidth) {
         this.mIconWidth = iconWidth;
         resetLayoutParams();
         return this;
@@ -408,7 +408,7 @@ public class FlowLikeView
      * @param iconHeight 点赞 Icon 高度
      * @return {@link FlowLikeView}
      */
-    public FlowLikeView setIconHeight(int iconHeight) {
+    public FlowLikeView setIconHeight(final int iconHeight) {
         this.mIconHeight = iconHeight;
         resetLayoutParams();
         return this;
@@ -427,7 +427,7 @@ public class FlowLikeView
      * @param animDuration 点赞动画执行时间
      * @return {@link FlowLikeView}
      */
-    public FlowLikeView setAnimDuration(long animDuration) {
+    public FlowLikeView setAnimDuration(final long animDuration) {
         this.mAnimDuration = animDuration;
         return this;
     }

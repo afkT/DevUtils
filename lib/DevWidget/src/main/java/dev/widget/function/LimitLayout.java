@@ -100,7 +100,7 @@ public class LimitLayout
      * @param maxWidth View 最大显示宽度
      * @return {@link LimitLayout}
      */
-    public LimitLayout setMaxWidth(int maxWidth) {
+    public LimitLayout setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }

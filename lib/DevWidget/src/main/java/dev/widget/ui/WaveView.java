@@ -316,7 +316,7 @@ public class WaveView
      * @param amplitudeRatio 波浪垂直振幅比率
      * @return {@link WaveView}
      */
-    public WaveView setAmplitudeRatio(float amplitudeRatio) {
+    public WaveView setAmplitudeRatio(final float amplitudeRatio) {
         if (mAmplitudeRatio != amplitudeRatio) {
             mAmplitudeRatio = amplitudeRatio;
             invalidate();
@@ -340,7 +340,7 @@ public class WaveView
      * @param waterLevelRatio 波浪水位比率
      * @return {@link WaveView}
      */
-    public WaveView setWaterLevelRatio(float waterLevelRatio) {
+    public WaveView setWaterLevelRatio(final float waterLevelRatio) {
         if (mWaterLevelRatio != waterLevelRatio) {
             mWaterLevelRatio = waterLevelRatio;
             invalidate();
@@ -364,7 +364,7 @@ public class WaveView
      * @param waveLengthRatio 波浪波长比率
      * @return {@link WaveView}
      */
-    public WaveView setWaveLengthRatio(float waveLengthRatio) {
+    public WaveView setWaveLengthRatio(final float waveLengthRatio) {
         if (mWaveLengthRatio != waveLengthRatio) {
             mWaveLengthRatio = waveLengthRatio;
             invalidate();
@@ -388,7 +388,7 @@ public class WaveView
      * @param waveShiftRatio 波浪水平偏移比率
      * @return {@link WaveView}
      */
-    public WaveView setWaveShiftRatio(float waveShiftRatio) {
+    public WaveView setWaveShiftRatio(final float waveShiftRatio) {
         if (mWaveShiftRatio != waveShiftRatio) {
             mWaveShiftRatio = waveShiftRatio;
             invalidate();
@@ -419,8 +419,8 @@ public class WaveView
      * @return {@link WaveView}
      */
     public WaveView setBorder(
-            float width,
-            int color
+            final float width,
+            final int color
     ) {
         mBorderWidth = width;
         mBorderColor = color;
@@ -460,8 +460,8 @@ public class WaveView
      * @return {@link WaveView}
      */
     public WaveView setWaveColor(
-            int behindWaveColor,
-            int frontWaveColor
+            final int behindWaveColor,
+            final int frontWaveColor
     ) {
         mBehindWaveColor = behindWaveColor;
         mFrontWaveColor  = frontWaveColor;
@@ -488,7 +488,7 @@ public class WaveView
      * @param shapeType 波浪外形形状
      * @return {@link WaveView}
      */
-    public WaveView setShapeType(ShapeType shapeType) {
+    public WaveView setShapeType(final ShapeType shapeType) {
         if (shapeType != null) {
             mShapeType = shapeType;
             invalidate();
@@ -509,7 +509,7 @@ public class WaveView
      * @param showWave {@code true} yes, {@code false} no
      * @return {@link WaveView}
      */
-    public WaveView setShowWave(boolean showWave) {
+    public WaveView setShowWave(final boolean showWave) {
         mShowWave = showWave;
         return this;
     }

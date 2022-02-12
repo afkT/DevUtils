@@ -37,10 +37,10 @@ public class RadiusAttrs {
      * @param defStyleRes  默认样式资源
      */
     public RadiusAttrs(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(
@@ -79,8 +79,8 @@ public class RadiusAttrs {
      * @param h 高度
      */
     public void onSizeChanged(
-            int w,
-            int h
+            final int w,
+            final int h
     ) {
         mRectF = new RectF(0, 0, w, h);
     }
@@ -105,7 +105,7 @@ public class RadiusAttrs {
      * 设置圆角值
      * @param radius 圆角值
      */
-    public void setRadius(float radius) {
+    public void setRadius(final float radius) {
         this.mRadius            = radius;
         this.mRadiusLeftTop     = radius;
         this.mRadiusLeftBottom  = radius;
@@ -118,7 +118,7 @@ public class RadiusAttrs {
      * 设置左上圆角值
      * @param radiusLeftTop 左上圆角值
      */
-    public void setRadiusLeftTop(float radiusLeftTop) {
+    public void setRadiusLeftTop(final float radiusLeftTop) {
         this.mRadiusLeftTop = radiusLeftTop;
         resetRadius();
     }
@@ -127,7 +127,7 @@ public class RadiusAttrs {
      * 设置左下圆角值
      * @param radiusLeftBottom 左下圆角值
      */
-    public void setRadiusLeftBottom(float radiusLeftBottom) {
+    public void setRadiusLeftBottom(final float radiusLeftBottom) {
         this.mRadiusLeftBottom = radiusLeftBottom;
         resetRadius();
     }
@@ -136,7 +136,7 @@ public class RadiusAttrs {
      * 设置右上圆角值
      * @param radiusRightTop 右上圆角值
      */
-    public void setRadiusRightTop(float radiusRightTop) {
+    public void setRadiusRightTop(final float radiusRightTop) {
         this.mRadiusRightTop = radiusRightTop;
         resetRadius();
     }
@@ -145,7 +145,7 @@ public class RadiusAttrs {
      * 设置右下圆角值
      * @param radiusRightBottom 右下圆角值
      */
-    public void setRadiusRightBottom(float radiusRightBottom) {
+    public void setRadiusRightBottom(final float radiusRightBottom) {
         this.mRadiusRightBottom = radiusRightBottom;
         resetRadius();
     }
@@ -156,7 +156,7 @@ public class RadiusAttrs {
      * 设置左上、左下圆角值
      * @param radiusLeft 左边圆角值
      */
-    public void setRadiusLeft(int radiusLeft) {
+    public void setRadiusLeft(final int radiusLeft) {
         this.mRadiusLeftTop    = radiusLeft;
         this.mRadiusLeftBottom = radiusLeft;
         resetRadius();
@@ -166,7 +166,7 @@ public class RadiusAttrs {
      * 设置右上、右下圆角值
      * @param radiusRight 右边圆角值
      */
-    public void setRadiusRight(int radiusRight) {
+    public void setRadiusRight(final int radiusRight) {
         this.mRadiusRightTop    = radiusRight;
         this.mRadiusRightBottom = radiusRight;
         resetRadius();
@@ -176,7 +176,7 @@ public class RadiusAttrs {
      * 设置左上、右上圆角值
      * @param radiusTop 上边圆角值
      */
-    public void setRadiusTop(int radiusTop) {
+    public void setRadiusTop(final int radiusTop) {
         this.mRadiusLeftTop  = radiusTop;
         this.mRadiusRightTop = radiusTop;
         resetRadius();
@@ -186,7 +186,7 @@ public class RadiusAttrs {
      * 设置左下、右下圆角值
      * @param radiusBottom 下边圆角值
      */
-    public void setRadiusBottom(int radiusBottom) {
+    public void setRadiusBottom(final int radiusBottom) {
         this.mRadiusLeftBottom  = radiusBottom;
         this.mRadiusRightBottom = radiusBottom;
         resetRadius();
@@ -241,14 +241,14 @@ public class RadiusAttrs {
     private static final String SUPER_DATA = "super_data";
     private static final String DATA_RADII = "data_radii";
 
-    public Parcelable onSaveInstanceState(Parcelable superState) {
+    public Parcelable onSaveInstanceState(final Parcelable superState) {
         Bundle data = new Bundle();
         data.putParcelable(SUPER_DATA, superState);
         data.putFloatArray(DATA_RADII, mRadii);
         return data;
     }
 
-    public Parcelable onRestoreInstanceState(Parcelable state) {
+    public Parcelable onRestoreInstanceState(final Parcelable state) {
         Bundle bundle = (Bundle) state;
         mRadii = bundle.getFloatArray(DATA_RADII);
         if (mRadii != null) {

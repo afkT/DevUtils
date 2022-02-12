@@ -92,7 +92,7 @@ public class WaveHelper {
      * @param amplitudeRatio 波浪垂直振幅比率
      * @return {@link WaveHelper}
      */
-    public WaveHelper setAmplitudeRatio(float amplitudeRatio) {
+    public WaveHelper setAmplitudeRatio(final float amplitudeRatio) {
         if (mWaveView != null) {
             mWaveView.setAmplitudeRatio(amplitudeRatio);
         }
@@ -118,7 +118,7 @@ public class WaveHelper {
      * @param waterLevelRatio 波浪水位比率
      * @return {@link WaveHelper}
      */
-    public WaveHelper setWaterLevelRatio(float waterLevelRatio) {
+    public WaveHelper setWaterLevelRatio(final float waterLevelRatio) {
         if (mWaveView != null) {
             mWaveView.setWaterLevelRatio(waterLevelRatio);
         }
@@ -144,7 +144,7 @@ public class WaveHelper {
      * @param waveLengthRatio 波浪波长比率
      * @return {@link WaveHelper}
      */
-    public WaveHelper setWaveLengthRatio(float waveLengthRatio) {
+    public WaveHelper setWaveLengthRatio(final float waveLengthRatio) {
         if (mWaveView != null) {
             mWaveView.setWaveLengthRatio(waveLengthRatio);
         }
@@ -170,7 +170,7 @@ public class WaveHelper {
      * @param waveShiftRatio 波浪水平偏移比率
      * @return {@link WaveHelper}
      */
-    public WaveHelper setWaveShiftRatio(float waveShiftRatio) {
+    public WaveHelper setWaveShiftRatio(final float waveShiftRatio) {
         if (mWaveView != null) {
             mWaveView.setWaveShiftRatio(waveShiftRatio);
         }
@@ -206,8 +206,8 @@ public class WaveHelper {
      * @return {@link WaveHelper}
      */
     public WaveHelper setBorder(
-            float width,
-            int color
+            final float width,
+            final int color
     ) {
         if (mWaveView != null) {
             mWaveView.setBorder(width, color);
@@ -244,8 +244,8 @@ public class WaveHelper {
      * @return {@link WaveHelper}
      */
     public WaveHelper setWaveColor(
-            int behindWaveColor,
-            int frontWaveColor
+            final int behindWaveColor,
+            final int frontWaveColor
     ) {
         if (mWaveView != null) {
             mWaveView.setWaveColor(behindWaveColor, frontWaveColor);
@@ -269,7 +269,7 @@ public class WaveHelper {
      * @param shapeType 波浪外形形状
      * @return {@link WaveHelper}
      */
-    public WaveHelper setShapeType(WaveView.ShapeType shapeType) {
+    public WaveHelper setShapeType(final WaveView.ShapeType shapeType) {
         if (mWaveView != null) {
             mWaveView.setShapeType(shapeType);
         }
@@ -292,7 +292,7 @@ public class WaveHelper {
      * @param showWave {@code true} yes, {@code false} no
      * @return {@link WaveHelper}
      */
-    public WaveHelper setShowWave(boolean showWave) {
+    public WaveHelper setShowWave(final boolean showWave) {
         if (mWaveView != null) {
             mWaveView.setShowWave(showWave);
         }
@@ -465,7 +465,7 @@ public class WaveHelper {
              * @param waveShiftRatioMillis 动画时间
              * @return {@link Builder}
              */
-            public Builder setWaveShiftRatioMillis(long waveShiftRatioMillis) {
+            public Builder setWaveShiftRatioMillis(final long waveShiftRatioMillis) {
                 this.waveShiftRatioMillis = waveShiftRatioMillis;
                 return this;
             }
@@ -477,8 +477,8 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setWaveShiftRatio(
-                    float waveShiftRatioStart,
-                    float waveShiftRatioEnd
+                    final float waveShiftRatioStart,
+                    final float waveShiftRatioEnd
             ) {
                 return setWaveShiftRatio(
                         waveShiftRatioStart,
@@ -495,9 +495,9 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setWaveShiftRatio(
-                    float waveShiftRatioStart,
-                    float waveShiftRatioEnd,
-                    long waveShiftRatioMillis
+                    final float waveShiftRatioStart,
+                    final float waveShiftRatioEnd,
+                    final long waveShiftRatioMillis
             ) {
                 this.waveShiftRatioStart  = waveShiftRatioStart;
                 this.waveShiftRatioEnd    = waveShiftRatioEnd;
@@ -526,7 +526,7 @@ public class WaveHelper {
              * @param amplitudeRatioMillis 动画时间
              * @return {@link Builder}
              */
-            public Builder setAmplitudeRatioMillis(long amplitudeRatioMillis) {
+            public Builder setAmplitudeRatioMillis(final long amplitudeRatioMillis) {
                 this.amplitudeRatioMillis = amplitudeRatioMillis;
                 return this;
             }
@@ -538,8 +538,8 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setAmplitudeRatio(
-                    float amplitudeRatioStart,
-                    float amplitudeRatioEnd
+                    final float amplitudeRatioStart,
+                    final float amplitudeRatioEnd
             ) {
                 return setAmplitudeRatio(
                         amplitudeRatioStart,
@@ -556,9 +556,9 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setAmplitudeRatio(
-                    float amplitudeRatioStart,
-                    float amplitudeRatioEnd,
-                    long amplitudeRatioMillis
+                    final float amplitudeRatioStart,
+                    final float amplitudeRatioEnd,
+                    final long amplitudeRatioMillis
             ) {
                 this.amplitudeRatioStart  = amplitudeRatioStart;
                 this.amplitudeRatioEnd    = amplitudeRatioEnd;
@@ -587,7 +587,7 @@ public class WaveHelper {
              * @param waterLevelRatioMillis 动画时间
              * @return {@link Builder}
              */
-            public Builder setWaterLevelRatioMillis(long waterLevelRatioMillis) {
+            public Builder setWaterLevelRatioMillis(final long waterLevelRatioMillis) {
                 this.waterLevelRatioMillis = waterLevelRatioMillis;
                 return this;
             }
@@ -599,8 +599,8 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setWaterLevelRatio(
-                    float waterLevelRatioStart,
-                    float waterLevelRatioEnd
+                    final float waterLevelRatioStart,
+                    final float waterLevelRatioEnd
             ) {
                 return setWaterLevelRatio(
                         waterLevelRatioStart,
@@ -617,9 +617,9 @@ public class WaveHelper {
              * @return {@link Builder}
              */
             public Builder setWaterLevelRatio(
-                    float waterLevelRatioStart,
-                    float waterLevelRatioEnd,
-                    long waterLevelRatioMillis
+                    final float waterLevelRatioStart,
+                    final float waterLevelRatioEnd,
+                    final long waterLevelRatioMillis
             ) {
                 this.waterLevelRatioStart  = waterLevelRatioStart;
                 this.waterLevelRatioEnd    = waterLevelRatioEnd;

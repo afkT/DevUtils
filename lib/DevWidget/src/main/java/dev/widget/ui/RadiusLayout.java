@@ -122,7 +122,7 @@ public class RadiusLayout
      * @param radius 圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadius(float radius) {
+    public RadiusLayout setRadius(final float radius) {
         mRadiusAttrs.setRadius(radius);
         postInvalidate();
         return this;
@@ -133,7 +133,7 @@ public class RadiusLayout
      * @param radiusLeftTop 左上圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusLeftTop(float radiusLeftTop) {
+    public RadiusLayout setRadiusLeftTop(final float radiusLeftTop) {
         mRadiusAttrs.setRadiusLeftTop(radiusLeftTop);
         postInvalidate();
         return this;
@@ -144,7 +144,7 @@ public class RadiusLayout
      * @param radiusLeftBottom 左下圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusLeftBottom(float radiusLeftBottom) {
+    public RadiusLayout setRadiusLeftBottom(final float radiusLeftBottom) {
         mRadiusAttrs.setRadiusLeftBottom(radiusLeftBottom);
         postInvalidate();
         return this;
@@ -155,7 +155,7 @@ public class RadiusLayout
      * @param radiusRightTop 右上圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusRightTop(float radiusRightTop) {
+    public RadiusLayout setRadiusRightTop(final float radiusRightTop) {
         mRadiusAttrs.setRadiusRightTop(radiusRightTop);
         postInvalidate();
         return this;
@@ -166,7 +166,7 @@ public class RadiusLayout
      * @param radiusRightBottom 右下圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusRightBottom(float radiusRightBottom) {
+    public RadiusLayout setRadiusRightBottom(final float radiusRightBottom) {
         mRadiusAttrs.setRadiusRightBottom(radiusRightBottom);
         postInvalidate();
         return this;
@@ -179,7 +179,7 @@ public class RadiusLayout
      * @param radiusLeft 左边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusLeft(int radiusLeft) {
+    public RadiusLayout setRadiusLeft(final int radiusLeft) {
         mRadiusAttrs.setRadiusLeft(radiusLeft);
         postInvalidate();
         return this;
@@ -190,7 +190,7 @@ public class RadiusLayout
      * @param radiusRight 右边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusRight(int radiusRight) {
+    public RadiusLayout setRadiusRight(final int radiusRight) {
         mRadiusAttrs.setRadiusRight(radiusRight);
         postInvalidate();
         return this;
@@ -201,7 +201,7 @@ public class RadiusLayout
      * @param radiusTop 上边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusTop(int radiusTop) {
+    public RadiusLayout setRadiusTop(final int radiusTop) {
         mRadiusAttrs.setRadiusTop(radiusTop);
         postInvalidate();
         return this;
@@ -212,7 +212,7 @@ public class RadiusLayout
      * @param radiusBottom 下边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusBottom(int radiusBottom) {
+    public RadiusLayout setRadiusBottom(final int radiusBottom) {
         mRadiusAttrs.setRadiusBottom(radiusBottom);
         postInvalidate();
         return this;

@@ -133,7 +133,7 @@ public class FlipCardView
      * @param adapter {@link Adapter}
      * @return {@link FlipCardView}
      */
-    public FlipCardView setAdapter(Adapter adapter) {
+    public FlipCardView setAdapter(final Adapter adapter) {
         // 取消动画
         mOutAnim.cancel();
         mInAnim.cancel();
@@ -198,8 +198,8 @@ public class FlipCardView
      * @return {@link FlipCardView}
      */
     public FlipCardView setInOutAnimator(
-            Animator inAnim,
-            Animator outAnim
+            final Animator inAnim,
+            final Animator outAnim
     ) {
         this.mInAnim  = inAnim;
         this.mOutAnim = outAnim;
@@ -211,7 +211,7 @@ public class FlipCardView
      * @param distance 翻转角度
      * @return {@link FlipCardView}
      */
-    public FlipCardView setFlipDistance(int distance) {
+    public FlipCardView setFlipDistance(final int distance) {
         float scale = getResources().getDisplayMetrics().density * distance;
         mFrontLayout.setCameraDistance(scale);
         mBackLayout.setCameraDistance(scale);
@@ -270,7 +270,7 @@ public class FlipCardView
      * @param front 是否显示正面 View
      * @return {@link FlipCardView}
      */
-    private FlipCardView loadView(boolean front) {
+    private FlipCardView loadView(final boolean front) {
         if (mAdapter != null) {
             int size = mAdapter.getItemCount();
             if (size == 0) return this;
@@ -307,7 +307,7 @@ public class FlipCardView
      * @param size {@link Adapter#getItemCount()}
      * @return 计算后的索引
      */
-    private int calculatePosition(int size) {
+    private int calculatePosition(final int size) {
         if (mPosition >= size) {
             mPosition = 1;
             return 0;

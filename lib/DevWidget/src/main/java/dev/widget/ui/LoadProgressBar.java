@@ -379,10 +379,10 @@ public class LoadProgressBar
      * @param progressText 绘制文本
      */
     private void drawProgressText(
-            Canvas canvas,
-            float textSize,
-            @ColorInt int textColor,
-            String progressText
+            final Canvas canvas,
+            final float textSize,
+            @ColorInt final int textColor,
+            final String progressText
     ) {
         drawProgressText(canvas, getWidth(), getHeight(), textSize, textColor, progressText);
     }
@@ -397,12 +397,12 @@ public class LoadProgressBar
      * @param progressText 绘制文本
      */
     private void drawProgressText(
-            Canvas canvas,
-            int width,
-            int height,
-            float textSize,
-            @ColorInt int textColor,
-            String progressText
+            final Canvas canvas,
+            final int width,
+            final int height,
+            final float textSize,
+            @ColorInt final int textColor,
+            final String progressText
     ) {
         mPaint.setColor(textColor);  // 设置进度的颜色
         mPaint.setTextSize(textSize); // 设置字体大小
@@ -445,7 +445,7 @@ public class LoadProgressBar
      * @param max 最大值
      * @return {@link LoadProgressBar}
      */
-    public synchronized LoadProgressBar setMax(int max) {
+    public synchronized LoadProgressBar setMax(final int max) {
         if (max <= 0) throw new IllegalArgumentException("max not less than 0");
         this.mMax = max;
         return this;
@@ -487,7 +487,7 @@ public class LoadProgressBar
      * @param progressColor 进度条颜色
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setProgressColor(@ColorInt int progressColor) {
+    public LoadProgressBar setProgressColor(@ColorInt final int progressColor) {
         this.mProgressColor = progressColor;
         return this;
     }
@@ -505,7 +505,7 @@ public class LoadProgressBar
      * @param outerRingColor 外环进度条颜色
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
+    public LoadProgressBar setOuterRingColor(@ColorInt final int outerRingColor) {
         this.mOuterRingColor = outerRingColor;
         return this;
     }
@@ -523,7 +523,7 @@ public class LoadProgressBar
      * @param insideCircleWidth 内环进度条宽度
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setInsideCircleWidth(float insideCircleWidth) {
+    public LoadProgressBar setInsideCircleWidth(final float insideCircleWidth) {
         this.mInsideCircleWidth = Math.abs(insideCircleWidth);
         return this;
     }
@@ -541,7 +541,7 @@ public class LoadProgressBar
      * @param outerRingWidth 外环进度条宽度
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setOuterRingWidth(float outerRingWidth) {
+    public LoadProgressBar setOuterRingWidth(final float outerRingWidth) {
         this.mOuterRingWidth = Math.abs(outerRingWidth);
         return this;
     }
@@ -559,7 +559,7 @@ public class LoadProgressBar
      * @param canvasNumber {@code true} yes, {@code false} no
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setCanvasNumber(boolean canvasNumber) {
+    public LoadProgressBar setCanvasNumber(final boolean canvasNumber) {
         this.mCanvasNumber = canvasNumber;
         return this;
     }
@@ -577,7 +577,7 @@ public class LoadProgressBar
      * @param numberTextSize 绘制的字体大小
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setNumberTextSize(float numberTextSize) {
+    public LoadProgressBar setNumberTextSize(final float numberTextSize) {
         this.mNumberTextSize = numberTextSize;
         return this;
     }
@@ -595,7 +595,7 @@ public class LoadProgressBar
      * @param numberTextColor 绘制的数字颜色
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
+    public LoadProgressBar setNumberTextColor(@ColorInt final int numberTextColor) {
         this.mNumberTextColor = numberTextColor;
         return this;
     }
@@ -613,7 +613,7 @@ public class LoadProgressBar
      * @param progressStyle {@link ProgressStyle}
      * @return {@link LoadProgressBar}
      */
-    public LoadProgressBar setProgressStyle(ProgressStyle progressStyle) {
+    public LoadProgressBar setProgressStyle(final ProgressStyle progressStyle) {
         this.mProgressStyle = (progressStyle == null) ? ProgressStyle.RINGS : progressStyle;
         return this;
     }

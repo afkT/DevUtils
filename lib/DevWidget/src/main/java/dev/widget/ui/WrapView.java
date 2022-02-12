@@ -285,7 +285,7 @@ public class WrapView
      * @param maxLine 最大行数
      * @return {@link WrapView}
      */
-    public WrapView setMaxLine(int maxLine) {
+    public WrapView setMaxLine(final int maxLine) {
         this.mMaxLine = maxLine;
         return this;
     }
@@ -303,7 +303,7 @@ public class WrapView
      * @param rowTopMargin 每一行向上的边距 ( 行间隔 )
      * @return {@link WrapView}
      */
-    public WrapView setRowTopMargin(int rowTopMargin) {
+    public WrapView setRowTopMargin(final int rowTopMargin) {
         this.mRowTopMargin = rowTopMargin;
         return this;
     }
@@ -321,7 +321,7 @@ public class WrapView
      * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return {@link WrapView}
      */
-    public WrapView setViewLeftMargin(int viewLeftMargin) {
+    public WrapView setViewLeftMargin(final int viewLeftMargin) {
         this.mViewLeftMargin = viewLeftMargin;
         return this;
     }
@@ -333,8 +333,8 @@ public class WrapView
      * @return {@link WrapView}
      */
     public WrapView setRowViewMargin(
-            int rowTopMargin,
-            int viewLeftMargin
+            final int rowTopMargin,
+            final int viewLeftMargin
     ) {
         this.mRowTopMargin   = rowTopMargin;
         this.mViewLeftMargin = viewLeftMargin;

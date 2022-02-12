@@ -229,7 +229,7 @@ public class CornerLabelView
      * @param px 边距值 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setPaddingTop(float px) {
+    public CornerLabelView setPaddingTop(final float px) {
         this.mPaddingTop = px;
         requestLayout();
         postInvalidate();
@@ -241,7 +241,7 @@ public class CornerLabelView
      * @param px 边距值 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setPaddingCenter(float px) {
+    public CornerLabelView setPaddingCenter(final float px) {
         this.mPaddingCenter = px;
         requestLayout();
         postInvalidate();
@@ -253,7 +253,7 @@ public class CornerLabelView
      * @param px 边距值 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setPaddingBottom(float px) {
+    public CornerLabelView setPaddingBottom(final float px) {
         this.mPaddingBottom = px;
         requestLayout();
         postInvalidate();
@@ -265,7 +265,7 @@ public class CornerLabelView
      * @param color Color
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setFillColor(@ColorInt int color) {
+    public CornerLabelView setFillColor(@ColorInt final int color) {
         this.mPaint.setColor(color);
         postInvalidate();
         return this;
@@ -276,7 +276,7 @@ public class CornerLabelView
      * @param shader {@link Shader}
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setFillShader(Shader shader) {
+    public CornerLabelView setFillShader(final Shader shader) {
         this.mPaint.setShader(shader);
         postInvalidate();
         return this;
@@ -327,7 +327,7 @@ public class CornerLabelView
      * @param value {@code true} 展示 text1、text2, {@code false} 展示 text1
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView triangle(boolean value) {
+    public CornerLabelView triangle(final boolean value) {
         this.mTriangle = value;
         postInvalidate();
         return this;
@@ -342,7 +342,7 @@ public class CornerLabelView
      * @param text 文本
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setText1(String text) {
+    public CornerLabelView setText1(final String text) {
         mText1.text = text;
         mText1.initialize();
         requestLayout();
@@ -355,7 +355,7 @@ public class CornerLabelView
      * @param textColor 字体颜色
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextColor1(@ColorInt int textColor) {
+    public CornerLabelView setTextColor1(@ColorInt final int textColor) {
         mText1.textColor = textColor;
         mText1.initialize();
         postInvalidate();
@@ -367,7 +367,7 @@ public class CornerLabelView
      * @param textHeight 字体高度 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextHeight1(float textHeight) {
+    public CornerLabelView setTextHeight1(final float textHeight) {
         mText1.textHeight = textHeight;
         mText1.initialize();
         requestLayout();
@@ -380,7 +380,7 @@ public class CornerLabelView
      * @param textBold {@code true} yes, {@code false} no
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextBold1(boolean textBold) {
+    public CornerLabelView setTextBold1(final boolean textBold) {
         mText1.textBold = textBold;
         mText1.initialize();
         requestLayout();
@@ -397,7 +397,7 @@ public class CornerLabelView
      * @param text 文本
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setText2(String text) {
+    public CornerLabelView setText2(final String text) {
         mText2.text = text;
         mText2.initialize();
         requestLayout();
@@ -410,7 +410,7 @@ public class CornerLabelView
      * @param textColor 字体颜色
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextColor2(@ColorInt int textColor) {
+    public CornerLabelView setTextColor2(@ColorInt final int textColor) {
         mText2.textColor = textColor;
         mText2.initialize();
         postInvalidate();
@@ -422,7 +422,7 @@ public class CornerLabelView
      * @param textHeight 字体高度 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextHeight2(float textHeight) {
+    public CornerLabelView setTextHeight2(final float textHeight) {
         mText2.textHeight = textHeight;
         mText2.initialize();
         requestLayout();
@@ -435,7 +435,7 @@ public class CornerLabelView
      * @param textBold {@code true} yes, {@code false} no
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextBold2(boolean textBold) {
+    public CornerLabelView setTextBold2(final boolean textBold) {
         mText2.textBold = textBold;
         mText2.initialize();
         requestLayout();
@@ -503,9 +503,9 @@ public class CornerLabelView
          * @param isTop  是否顶部绘制
          */
         void draw(
-                Canvas canvas,
-                float y,
-                boolean isTop
+                final Canvas canvas,
+                final float y,
+                final boolean isTop
         ) {
             canvas.drawText(text, 0, (isTop ? -1 : 1) * (y + textHeight / 2) + offset, paint);
         }

@@ -347,8 +347,8 @@ public class RoundImageView
     }
 
     private boolean inTouchableArea(
-            float x,
-            float y
+            final float x,
+            final float y
     ) {
         if (mBorderRect.isEmpty()) {
             return true;
@@ -475,7 +475,7 @@ public class RoundImageView
      * @param drawable 待转换图片
      * @return {@link Bitmap}
      */
-    private Bitmap getBitmapFromDrawable(Drawable drawable) {
+    private Bitmap getBitmapFromDrawable(final Drawable drawable) {
         if (drawable == null) return null;
 
         if (drawable instanceof BitmapDrawable) {
@@ -519,7 +519,7 @@ public class RoundImageView
      * @param borderWidth 边框宽度
      * @return {@link RoundImageView}
      */
-    public RoundImageView setBorderWidth(int borderWidth) {
+    public RoundImageView setBorderWidth(final int borderWidth) {
         if (borderWidth == mBorderWidth) {
             return this;
         }
@@ -543,7 +543,7 @@ public class RoundImageView
      * @param borderColor 边框颜色
      * @return {@link RoundImageView}
      */
-    public RoundImageView setBorderColor(@ColorInt int borderColor) {
+    public RoundImageView setBorderColor(@ColorInt final int borderColor) {
         if (borderColor == mBorderColor) {
             return this;
         }
@@ -566,7 +566,7 @@ public class RoundImageView
      * @param circleBackgroundColor 圆圈背景颜色
      * @return {@link RoundImageView}
      */
-    public RoundImageView setCircleBackgroundColor(@ColorInt int circleBackgroundColor) {
+    public RoundImageView setCircleBackgroundColor(@ColorInt final int circleBackgroundColor) {
         if (circleBackgroundColor == mCircleBackgroundColor) {
             return this;
         }
@@ -589,7 +589,7 @@ public class RoundImageView
      * @param borderOverlay {@code true} yes, {@code false} no
      * @return {@link RoundImageView}
      */
-    public RoundImageView setBorderOverlay(boolean borderOverlay) {
+    public RoundImageView setBorderOverlay(final boolean borderOverlay) {
         if (borderOverlay == mBorderOverlay) {
             return this;
         }
@@ -612,7 +612,7 @@ public class RoundImageView
      * @param disableCircularTransformation {@code true} yes, {@code false} no
      * @return {@link RoundImageView}
      */
-    public RoundImageView setDisableCircularTransformation(boolean disableCircularTransformation) {
+    public RoundImageView setDisableCircularTransformation(final boolean disableCircularTransformation) {
         if (disableCircularTransformation == mDisableCircularTransformation) {
             return this;
         }

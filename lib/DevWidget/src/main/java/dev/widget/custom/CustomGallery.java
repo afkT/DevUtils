@@ -124,8 +124,8 @@ public class CustomGallery
      * @return {@code true} yes, {@code false} no
      */
     private boolean isScrollingLeft(
-            MotionEvent e1,
-            MotionEvent e2
+            final MotionEvent e1,
+            final MotionEvent e2
     ) {
         return e2.getX() > e1.getX();
     }

@@ -57,7 +57,7 @@ public class WidgetAttrs {
      * @param maxWidth View 最大显示宽度
      * @return {@link WidgetAttrs}
      */
-    public WidgetAttrs setMaxWidth(int maxWidth) {
+    public WidgetAttrs setMaxWidth(final int maxWidth) {
         this.mMaxWidth = maxWidth;
         return this;
     }

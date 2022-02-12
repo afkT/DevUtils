@@ -184,7 +184,7 @@ public class StateLayout
         // 类型改变接口
         private final Listener              listener;
 
-        public Global(Listener listener) {
+        public Global(final Listener listener) {
             this.listener = listener;
         }
 
@@ -195,8 +195,8 @@ public class StateLayout
          * @return {@link Global}
          */
         public Global register(
-                int type,
-                @LayoutRes int layout
+                final int type,
+                @LayoutRes final int layout
         ) {
             mapLayouts.put(type, layout);
             return this;
@@ -207,7 +207,7 @@ public class StateLayout
          * @param type Type
          * @return {@link Global}
          */
-        public Global unregister(int type) {
+        public Global unregister(final int type) {
             mapLayouts.remove(type);
             return this;
         }
@@ -218,7 +218,7 @@ public class StateLayout
 
         private final int resource;
 
-        public TypeAdapter(int layout) {
+        public TypeAdapter(final int layout) {
             this.resource = layout;
         }
 
@@ -248,11 +248,11 @@ public class StateLayout
     // = 对外公开方法 =
     // =============
 
-    public static void setGlobal(Global global) {
+    public static void setGlobal(final Global global) {
         StateLayout.sGlobal = global;
     }
 
-    public StateLayout setListener(Listener listener) {
+    public StateLayout setListener(final Listener listener) {
         this.mListener = listener;
         return this;
     }
@@ -273,7 +273,7 @@ public class StateLayout
         mAssist.showEmptyData();
     }
 
-    public void showType(int type) {
+    public void showType(final int type) {
         mAssist.showType(type);
     }
 
@@ -299,8 +299,8 @@ public class StateLayout
      * @return {@link StateLayout}
      */
     public StateLayout register(
-            int type,
-            @LayoutRes int layout
+            final int type,
+            @LayoutRes final int layout
     ) {
         mAssist.register(type, new TypeAdapter(layout));
         return this;
@@ -311,7 +311,7 @@ public class StateLayout
      * @param type Type
      * @return {@link StateLayout}
      */
-    public StateLayout unregister(int type) {
+    public StateLayout unregister(final int type) {
         return unregister(type, true);
     }
 
@@ -322,8 +322,8 @@ public class StateLayout
      * @return {@link StateLayout}
      */
     public StateLayout unregister(
-            int type,
-            boolean remove
+            final int type,
+            final boolean remove
     ) {
         mAssist.unregister(type, remove);
         return this;
@@ -333,7 +333,7 @@ public class StateLayout
         return mAssist.getTag();
     }
 
-    public StateLayout setAssistTag(Object tag) {
+    public StateLayout setAssistTag(final Object tag) {
         mAssist.setTag(tag);
         return this;
     }
@@ -342,24 +342,24 @@ public class StateLayout
         return mAssist.getData();
     }
 
-    public StateLayout setData(Object data) {
+    public StateLayout setData(final Object data) {
         mAssist.setData(data);
         return this;
     }
 
-    public <T> T getData(String key) {
+    public <T> T getData(final String key) {
         return mAssist.getData(key);
     }
 
     public StateLayout setData(
-            String key,
-            Object data
+            final String key,
+            final Object data
     ) {
         mAssist.setData(key, data);
         return this;
     }
 
-    public View getView(int type) {
+    public View getView(final int type) {
         return mAssist.getView(type);
     }
 

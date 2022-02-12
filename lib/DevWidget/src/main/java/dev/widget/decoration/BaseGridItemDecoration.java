@@ -60,7 +60,7 @@ public class BaseGridItemDecoration
      * @param spanCount Span 总数
      * @return {@link BaseGridItemDecoration}
      */
-    public BaseGridItemDecoration setSpanCount(int spanCount) {
+    public BaseGridItemDecoration setSpanCount(final int spanCount) {
         this.mSpanCount = spanCount;
         return this;
     }

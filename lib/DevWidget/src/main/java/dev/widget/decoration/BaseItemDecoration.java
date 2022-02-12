@@ -24,13 +24,13 @@ public class BaseItemDecoration
     // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0F;
 
-    public BaseItemDecoration(float lineHeight) {
+    public BaseItemDecoration(final float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
     }
 
     public BaseItemDecoration(
-            float lineHeight,
-            @ColorInt int lineColor
+            final float lineHeight,
+            @ColorInt final int lineColor
     ) {
         this.mLineHeight = lineHeight;
         this.mLinePaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -62,7 +62,7 @@ public class BaseItemDecoration
      * @param singleLineDraw {@code true} yes, {@code false} no
      * @return {@link BaseItemDecoration}
      */
-    public BaseItemDecoration setSingleLineDraw(boolean singleLineDraw) {
+    public BaseItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
         this.mSingleLineDraw = singleLineDraw;
         return this;
     }
@@ -80,7 +80,7 @@ public class BaseItemDecoration
      * @param lineLeft 分割线距左边距 ( 横向为上边距 )
      * @return {@link BaseItemDecoration}
      */
-    public BaseItemDecoration setLineLeft(float lineLeft) {
+    public BaseItemDecoration setLineLeft(final float lineLeft) {
         this.mLineLeft = lineLeft;
         return this;
     }
@@ -98,7 +98,7 @@ public class BaseItemDecoration
      * @param lineRight 分割线距右边距 ( 横向为下边距 )
      * @return {@link BaseItemDecoration}
      */
-    public BaseItemDecoration setLineRight(float lineRight) {
+    public BaseItemDecoration setLineRight(final float lineRight) {
         this.mLineRight = lineRight;
         return this;
     }
@@ -110,8 +110,8 @@ public class BaseItemDecoration
      * @return {@link BaseItemDecoration}
      */
     public BaseItemDecoration setLineLeftRight(
-            float lineLeft,
-            float lineRight
+            final float lineLeft,
+            final float lineRight
     ) {
         this.mLineLeft  = lineLeft;
         this.mLineRight = lineRight;

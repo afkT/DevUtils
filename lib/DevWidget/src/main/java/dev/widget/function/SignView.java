@@ -114,7 +114,7 @@ public class SignView
      * 重置画布处理
      * @param canvas 画布
      */
-    private void _resetCanvas(Canvas canvas) {
+    private void _resetCanvas(final Canvas canvas) {
         if (mClearCanvas && canvas != null) {
             canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
         }
@@ -163,7 +163,7 @@ public class SignView
      * @param path {@link Path}
      * @return {@link SignView}
      */
-    public SignView setPath(Path path) {
+    public SignView setPath(final Path path) {
         this.mPath = path;
         return this;
     }
@@ -186,7 +186,7 @@ public class SignView
      * @param paint {@link Paint}
      * @return {@link SignView}
      */
-    public SignView setPaint(Paint paint) {
+    public SignView setPaint(final Paint paint) {
         this.mPaint = paint;
         return this;
     }
@@ -196,7 +196,7 @@ public class SignView
      * @param callback 绘制回调事件
      * @return {@link SignView}
      */
-    public SignView setDrawCallback(OnDrawCallback callback) {
+    public SignView setDrawCallback(final OnDrawCallback callback) {
         this.mCallback = callback;
         return this;
     }

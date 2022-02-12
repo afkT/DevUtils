@@ -129,7 +129,7 @@ public class CustomWebView
      * @param maxWidth View 最大显示宽度
      * @return {@link CustomWebView}
      */
-    public CustomWebView setMaxWidth(int maxWidth) {
+    public CustomWebView setMaxWidth(final int maxWidth) {
         mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }

@@ -77,7 +77,7 @@ public class LineTextView
      * @param callback {@link OnNewLineCallback}
      * @return {@link LineTextView}
      */
-    public LineTextView setNewLineCallback(OnNewLineCallback callback) {
+    public LineTextView setNewLineCallback(final OnNewLineCallback callback) {
         this.mCallback = callback;
         return this;
     }

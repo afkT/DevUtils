@@ -108,7 +108,7 @@ public class RoundDrawable
      * @param colors 描边颜色
      * @return {@link RoundDrawable}
      */
-    public RoundDrawable setStrokeColors(@Nullable ColorStateList colors) {
+    public RoundDrawable setStrokeColors(@Nullable final ColorStateList colors) {
         return setStrokeData(mStrokeWidth, colors);
     }
 
@@ -178,10 +178,10 @@ public class RoundDrawable
      * @return {@link RoundDrawable}
      */
     public static RoundDrawable fromAttributeSet(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
+            final Context context,
+            final AttributeSet attrs,
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes

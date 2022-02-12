@@ -159,7 +159,7 @@ public class RightIconEditText
      * @param rangeMultiple 触发范围倍数
      * @return {@link RightIconEditText}
      */
-    public RightIconEditText setRangeMultiple(float rangeMultiple) {
+    public RightIconEditText setRangeMultiple(final float rangeMultiple) {
         this.mRangeMultiple = rangeMultiple;
         return this;
     }
@@ -177,7 +177,7 @@ public class RightIconEditText
      * @param drawRightIcon {@code true} yes, {@code false} no
      * @return {@link RightIconEditText}
      */
-    public RightIconEditText setDrawRightIcon(boolean drawRightIcon) {
+    public RightIconEditText setDrawRightIcon(final boolean drawRightIcon) {
         this.mDrawRightIcon = drawRightIcon;
         postInvalidate();
         return this;
@@ -214,7 +214,7 @@ public class RightIconEditText
      * @param right 右边 Icon
      * @return {@link RightIconEditText}
      */
-    public RightIconEditText setRightIcon(Drawable right) {
+    public RightIconEditText setRightIcon(final Drawable right) {
         this.mRight = right;
         drawOperate();
         return this;
@@ -225,7 +225,7 @@ public class RightIconEditText
      * @param textWatcher {@link TextWatcher}
      * @return {@link RightIconEditText}
      */
-    public RightIconEditText setTextWatcher(TextWatcher textWatcher) {
+    public RightIconEditText setTextWatcher(final TextWatcher textWatcher) {
         this.mTextWatcher = textWatcher;
         return this;
     }
