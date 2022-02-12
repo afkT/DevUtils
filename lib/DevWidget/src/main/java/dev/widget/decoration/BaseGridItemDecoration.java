@@ -14,13 +14,13 @@ public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // 分割线高度
-    protected final float   mLineHeight;
-//    // 分割线宽度
+    protected final float mLineHeight;
+    //    // 分割线宽度
 //    protected final float   mLineWidth;
     // 分割线画笔
-    protected final Paint   mLinePaint;
+    protected final Paint mLinePaint;
     // Span 总数 ( Grid )
-    protected       int     mSpanCount      = 0;
+    protected       int   mSpanCount = 0;
 
     public BaseGridItemDecoration(float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
