@@ -7,9 +7,6 @@ import java.util.Map;
 /**
  * detail: 抓包存储 Item
  * @author Ttt
- * <pre>
- *     存储间隔以 10 分钟为单位
- * </pre>
  */
 public class CaptureItem {
 

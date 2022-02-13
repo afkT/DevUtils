@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * detail: 抓包数据
+ * detail: 抓包信息封装类
  * @author Ttt
  */
 public final class CaptureInfo {

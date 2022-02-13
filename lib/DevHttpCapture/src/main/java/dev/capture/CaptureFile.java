@@ -18,8 +18,6 @@ public final class CaptureFile {
     private String  url;
     // 请求方法
     private String  method;
-    // 请求数据 ( 抓包数据 )
-    private String  httpCaptureData;
     // 是否加密
     private boolean isEncrypt;
     // 创建时间 ( 本地时间戳 )
@@ -39,10 +37,6 @@ public final class CaptureFile {
 
     public String getMethod() {
         return method;
-    }
-
-    public String getHttpCaptureData() {
-        return httpCaptureData;
     }
 
     public boolean isEncrypt() {
@@ -75,11 +69,6 @@ public final class CaptureFile {
         return this;
     }
 
-    CaptureFile setHttpCaptureData(String httpCaptureData) {
-        this.httpCaptureData = httpCaptureData;
-        return this;
-    }
-
     CaptureFile setEncrypt(boolean encrypt) {
         isEncrypt = encrypt;
         return this;
@@ -101,20 +90,36 @@ public final class CaptureFile {
     }
 
     // ==========
+    // = 抓包数据 =
+    // ==========
+
+    // 请求数据 ( 抓包数据 )
+    private transient String httpCaptureData = null;
+
+    public String getHttpCaptureData() {
+        return httpCaptureData;
+    }
+
+    CaptureFile setHttpCaptureData(String httpCaptureData) {
+        this.httpCaptureData = httpCaptureData;
+        return this;
+    }
+
+    // ==========
     // = 其他处理 =
     // ==========
 
-    // 抓包数据
+    // 抓包信息封装类
     private transient CaptureInfo captureInfo = null;
 
     /**
-     * 获取抓包数据实体类
-     * @return 抓包数据实体类
+     * 获取抓包信息封装类
+     * @return 抓包信息封装类
      */
     public CaptureInfo getCaptureInfo() {
         if (!isEncrypt) {
             captureInfo = Utils.fromJson(
-                    httpCaptureData, CaptureInfo.class
+                    getHttpCaptureData(), CaptureInfo.class
             );
         }
         return captureInfo;
