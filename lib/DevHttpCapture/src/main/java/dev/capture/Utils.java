@@ -113,7 +113,10 @@ class Utils {
     // =============
 
     // Http Capture Storage Path
-    private static String sStoragePath;
+    private static       String sStoragePath;
+    // 文件后缀
+    private static final String FILE_EXTENSION      = ".json";
+    private static final String DATA_FILE_EXTENSION = "_data.json";
 
     /**
      * 获取抓包存储路径
@@ -160,10 +163,24 @@ class Utils {
     protected static File getModuleHttpCaptureFile(
             final CaptureFile captureFile
     ) {
-        return getModuleHttpCaptureFile(
-                getModulePath(captureFile.getModuleName()),
-                captureFile.getFileName()
+        String modulePath = getModulePath(captureFile.getModuleName());
+        String filePath   = getTimeFile(modulePath, captureFile.getTime());
+        return getModuleHttpCaptureFile(filePath, captureFile.getFileName());
+    }
+
+    /**
+     * 获取指定模块指定抓包数据存储文件
+     * @param captureFile 抓包存储文件
+     * @return 指定模块指定抓包数据存储文件
+     */
+    protected static File getModuleHttpCaptureDataFile(
+            final CaptureFile captureFile
+    ) {
+        String filePath = StringUtils.replaceEndsWith(
+                FileUtils.getAbsolutePath(getModuleHttpCaptureFile(captureFile)),
+                FILE_EXTENSION, DATA_FILE_EXTENSION
         );
+        return FileUtils.getFile(filePath);
     }
 
     // =
@@ -184,9 +201,9 @@ class Utils {
             String fileName;
             // 属于加密的文件名前加前缀
             if (isEncrypt) {
-                fileName = "encrypt_" + md5Value + ".json";
+                fileName = "encrypt_" + md5Value + FILE_EXTENSION;
             } else {
-                fileName = md5Value + ".json";
+                fileName = md5Value + FILE_EXTENSION;
             }
             // 文件不存在才返回文件名
             if (!FileUtils.isFileExists(filePath, fileName)) {
@@ -248,6 +265,11 @@ class Utils {
                 captureFile.setFileName(fileName);
                 // 将对象转换为 JSON String
                 String json = captureFile.toJson();
+                // 存储抓包数据文件
+                FileUtils.saveFile(
+                        captureFile.getDataFile(),
+                        StringUtils.getBytes(captureFile.innerHttpCaptureData)
+                );
                 // 存储处理
                 return FileUtils.saveFile(
                         getModuleHttpCaptureFile(filePath, fileName),
@@ -311,22 +333,25 @@ class Utils {
                                                 if (FileUtils.isFile(file)) {
                                                     // 获取文件名
                                                     String fileName = file.getName();
-                                                    // 判断是否加密文件
-                                                    boolean isEncryptFile = fileName.startsWith("encrypt_");
-                                                    if (isEncrypt) {
-                                                        // 要求获取加密文件并且属于加密文件才处理
-                                                        if (isEncryptFile) {
-                                                            CaptureFile captureFile = fromCaptureFile(file);
-                                                            if (captureFile != null) {
-                                                                captureList.add(captureFile);
+                                                    // 不属于数据文件才读取
+                                                    if (!fileName.endsWith(DATA_FILE_EXTENSION)) {
+                                                        // 判断是否加密文件
+                                                        boolean isEncryptFile = fileName.startsWith("encrypt_");
+                                                        if (isEncrypt) {
+                                                            // 要求获取加密文件并且属于加密文件才处理
+                                                            if (isEncryptFile) {
+                                                                CaptureFile captureFile = fromCaptureFile(file);
+                                                                if (captureFile != null) {
+                                                                    captureList.add(captureFile);
+                                                                }
                                                             }
-                                                        }
-                                                    } else {
-                                                        // 要求获取非加密文件并且属于非加密文件才处理
-                                                        if (!isEncryptFile) {
-                                                            CaptureFile captureFile = fromCaptureFile(file);
-                                                            if (captureFile != null) {
-                                                                captureList.add(captureFile);
+                                                        } else {
+                                                            // 要求获取非加密文件并且属于非加密文件才处理
+                                                            if (!isEncryptFile) {
+                                                                CaptureFile captureFile = fromCaptureFile(file);
+                                                                if (captureFile != null) {
+                                                                    captureList.add(captureFile);
+                                                                }
                                                             }
                                                         }
                                                     }

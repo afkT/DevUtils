@@ -97,11 +97,17 @@ public final class CaptureFile {
     private transient String httpCaptureData = null;
 
     public String getHttpCaptureData() {
+        if (httpCaptureData == null) {
+            httpCaptureData = FileUtils.readFile(getDataFile());
+        }
         return httpCaptureData;
     }
 
+    // 内部抓包数据存储字段
+    transient String innerHttpCaptureData = null;
+
     CaptureFile setHttpCaptureData(String httpCaptureData) {
-        this.httpCaptureData = httpCaptureData;
+        this.innerHttpCaptureData = httpCaptureData;
         return this;
     }
 
@@ -142,6 +148,7 @@ public final class CaptureFile {
      * @return {@code true} success, {@code false} fail
      */
     public boolean deleteFile() {
+        FileUtils.deleteFile(getDataFile());
         return FileUtils.deleteFile(getFile());
     }
 
@@ -151,5 +158,13 @@ public final class CaptureFile {
      */
     public File getFile() {
         return Utils.getModuleHttpCaptureFile(this);
+    }
+
+    /**
+     * 获取该对象抓包数据存储文件
+     * @return 该对象抓包数据存储文件
+     */
+    public File getDataFile() {
+        return Utils.getModuleHttpCaptureDataFile(this);
     }
 }
