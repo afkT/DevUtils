@@ -112,11 +112,11 @@ implementation 'io.github.afkt:DevBaseMVVM:1.0.8'
 implementation 'io.github.afkt:DevEngine:1.0.4'
 
 // DevHttpCapture - OkHttp 抓包工具库
-implementation 'io.github.afkt:DevHttpCapture:1.0.8'
+implementation 'io.github.afkt:DevHttpCapture:1.0.9'
 
 // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.8'
-releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.8'
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.9'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.9'
 
 // DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.1.6'

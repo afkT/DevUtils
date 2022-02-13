@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevHttpCapture:1.0.8'
+implementation 'io.github.afkt:DevHttpCapture:1.0.9'
 ```
 
 ## 目录结构
@@ -99,18 +99,19 @@ DevHttpCapture.updateInterceptor(moduleName, isCapture);
 | :- | :- |
 | getUrl | getUrl |
 | getMethod | getMethod |
-| getHttpCaptureData | getHttpCaptureData |
 | isEncrypt | isEncrypt |
 | getTime | getTime |
 | getFileName | getFileName |
 | getModuleName | getModuleName |
-| getCaptureInfo | 获取抓包数据实体类 |
+| getHttpCaptureData | getHttpCaptureData |
+| getCaptureInfo | 获取抓包信息封装类 |
 | toJson | 将对象转换为 JSON String |
 | deleteFile | 删除该对象抓包存储文件 |
 | getFile | 获取该对象抓包存储文件 |
+| getDataFile | 获取该对象抓包数据存储文件 |
 
 
-* **抓包数据 ->** [CaptureInfo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CaptureInfo.java)
+* **抓包信息封装类 ->** [CaptureInfo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CaptureInfo.java)
 
 | 方法 | 注释 |
 | :- | :- |
