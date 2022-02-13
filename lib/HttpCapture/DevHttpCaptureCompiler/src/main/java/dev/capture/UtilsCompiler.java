@@ -11,6 +11,7 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -31,6 +32,7 @@ import dev.utils.common.CollectionUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.MapUtils;
 import dev.utils.common.StringUtils;
+import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator;
 
 public final class UtilsCompiler {
 
@@ -342,6 +344,9 @@ public final class UtilsCompiler {
     // = 数据转换 =
     // ==========
 
+    // Windows 目录资源文件名排序比较器
+    private final WindowsExplorerStringSimpleComparator COMPARATOR = new WindowsExplorerStringSimpleComparator();
+
     /**
      * 获取首页数据源
      * @param moduleName 模块名 ( 要求唯一性 )
@@ -362,6 +367,8 @@ public final class UtilsCompiler {
                 lists.add(new Items.MainItem(moduleName, data));
             }
         }
+        // 进行排序
+        Collections.sort(lists, (o1, o2) -> COMPARATOR.compare(o1.moduleName, o2.moduleName));
         return lists;
     }
 
