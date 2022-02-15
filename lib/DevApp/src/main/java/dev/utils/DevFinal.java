@@ -1,5 +1,7 @@
 package dev.utils;
 
+import java.util.Set;
+
 /**
  * detail: 常量类
  * @author Ttt
@@ -1098,5 +1100,22 @@ public final class DevFinal {
         public static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public static final String NUMBERS_AND_LETTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }
+
+    /**
+     * detail: 默认值常量
+     * @author Ttt
+     */
+    public static final class DEFAULT {
+
+        public static final int         INTEGER    = -1;
+        public static final long        LONG       = -1L;
+        public static final float       FLOAT      = -1F;
+        public static final double      DOUBLE     = -1D;
+        public static final boolean     BOOLEAN    = false;
+        public static final String      STRING     = null;
+        public static final Set<String> STRING_SET = null;
+        public static final Object      ENTITY     = null;
+        public static final Object      OBJECT     = null;
     }
 }

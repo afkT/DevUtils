@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: SharedPreferences 操作接口具体实现类
  * @author Ttt
@@ -30,13 +32,13 @@ final class PreferenceImpl
     // SharedPreferences 操作监听器
     private              OnSPOperateListener mListener;
     // 默认值
-    private final        int                 INTEGER_DEFAULT    = -1;
-    private final        long                LONG_DEFAULT       = -1L;
-    private final        float               FLOAT_DEFAULT      = -1F;
-    private final        double              DOUBLE_DEFAULT     = -1D;
-    private final        boolean             BOOLEAN_DEFAULT    = false;
-    private final        String              STRING_DEFAULT     = null;
-    private final        Set<String>         STRING_SET_DEFAULT = null;
+    private final        int                 INTEGER_DEFAULT    = DevFinal.DEFAULT.INTEGER;
+    private final        long                LONG_DEFAULT       = DevFinal.DEFAULT.LONG;
+    private final        float               FLOAT_DEFAULT      = DevFinal.DEFAULT.FLOAT;
+    private final        double              DOUBLE_DEFAULT     = DevFinal.DEFAULT.DOUBLE;
+    private final        boolean             BOOLEAN_DEFAULT    = DevFinal.DEFAULT.BOOLEAN;
+    private final        String              STRING_DEFAULT     = DevFinal.DEFAULT.STRING;
+    private final        Set<String>         STRING_SET_DEFAULT = DevFinal.DEFAULT.STRING_SET;
 
     // ==========
     // = 构造函数 =
