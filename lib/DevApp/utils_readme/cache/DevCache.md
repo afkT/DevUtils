@@ -69,13 +69,13 @@
 // 初始化
 CacheVo cacheVo = new CacheVo("测试持久化");
 // 打印信息
-DevLogEngine.getEngine().dTag(TAG, "保存前: %s", cacheVo.toString());
+DevEngine.getLog().dTag(TAG, "保存前: %s", cacheVo.toString());
 // 保存数据
 DevCache.newCache().put("ctv", cacheVo, -1);
 // 重新获取
 CacheVo ctv = (CacheVo) DevCache.newCache().getSerializable("ctv");
 // 打印获取后的数据
-DevLogEngine.getEngine().dTag(TAG, "保存后: %s", ctv.toString());
+DevEngine.getLog().dTag(TAG, "保存后: %s", ctv.toString());
 // 设置保存有效时间 5秒
 DevCache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
 
@@ -94,7 +94,7 @@ new Thread(new Runnable() {
             // 获取数据
             CacheVo ctva = (CacheVo) DevCache.newCache().getSerializable("ctva");
             // 判断是否过期
-            DevLogEngine.getEngine().dTag(TAG, "是否过期: %s", (ctva == null));
+            DevEngine.getLog().dTag(TAG, "是否过期: %s", (ctva == null));
         } catch (Exception ignored) {
         }
     }

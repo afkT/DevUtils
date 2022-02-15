@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import dev.engine.log.DevLogEngine;
+import dev.engine.DevEngine;
 import dev.utils.app.TextViewUtils;
 
 /**
@@ -59,6 +59,6 @@ public final class TextCalcUse {
         builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
         builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
         // 打印日志
-        DevLogEngine.getEngine().dTag(TAG, builder.toString());
+        DevEngine.INSTANCE.getLog().dTag(TAG, builder.toString());
     }
 }

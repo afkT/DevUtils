@@ -86,7 +86,7 @@ timer.setCallback(new DevTimer.Callback() {
             boolean end,
             boolean infinite
     ) {
-        DevLogEngine.getEngine().dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread());
+        DevEngine.getLog().dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread());
     }
 });
 // 设置了 Handler 则属于 UI 线程触发回调
