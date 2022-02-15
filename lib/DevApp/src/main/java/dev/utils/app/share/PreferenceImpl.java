@@ -32,7 +32,7 @@ final class PreferenceImpl
     // SharedPreferences 操作监听器
     private              OnSPOperateListener mListener;
     // 默认值
-    private final        int                 INTEGER_DEFAULT    = DevFinal.DEFAULT.INTEGER;
+    private final        int                 INT_DEFAULT        = DevFinal.DEFAULT.INT;
     private final        long                LONG_DEFAULT       = DevFinal.DEFAULT.LONG;
     private final        float               FLOAT_DEFAULT      = DevFinal.DEFAULT.FLOAT;
     private final        double              DOUBLE_DEFAULT     = DevFinal.DEFAULT.DOUBLE;
@@ -139,7 +139,7 @@ final class PreferenceImpl
     ) {
         switch (type) {
             case INTEGER:
-                int intValue = INTEGER_DEFAULT;
+                int intValue = INT_DEFAULT;
                 if (defaultValue instanceof Integer) intValue = (Integer) defaultValue;
                 return mPreferences.getInt(key, intValue);
             case LONG:
@@ -415,7 +415,7 @@ final class PreferenceImpl
      */
     @Override
     public int getInt(final String key) {
-        return getInt(key, INTEGER_DEFAULT);
+        return getInt(key, INT_DEFAULT);
     }
 
     /**

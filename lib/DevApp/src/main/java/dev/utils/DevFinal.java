@@ -1163,11 +1163,24 @@ public final class DevFinal {
      */
     public static final class DEFAULT {
 
-        public static final int         INTEGER    = -1;
-        public static final long        LONG       = -1L;
-        public static final float       FLOAT      = -1F;
-        public static final double      DOUBLE     = -1D;
-        public static final boolean     BOOLEAN    = false;
+        public static final int     ERROR_INT     = -1;
+        public static final long    ERROR_LONG    = -1L;
+        public static final float   ERROR_FLOAT   = -1F;
+        public static final double  ERROR_DOUBLE  = -1D;
+        public static final boolean ERROR_BOOLEAN = false;
+        public static final short   ERROR_SHORT   = -1;
+        public static final char    ERROR_CHAR    = (char) -1;
+        public static final byte    ERROR_BYTE    = (byte) -1;
+
+        public static final int     INT     = 0;
+        public static final long    LONG    = 0L;
+        public static final float   FLOAT   = 0F;
+        public static final double  DOUBLE  = 0D;
+        public static final boolean BOOLEAN = false;
+        public static final short   SHORT   = 0;
+        public static final char    CHAR    = (char) 0;
+        public static final byte    BYTE    = (byte) 0;
+
         public static final String      STRING     = null;
         public static final Set<String> STRING_SET = null;
         public static final Object      ENTITY     = null;

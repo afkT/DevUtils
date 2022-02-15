@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -190,7 +191,7 @@ public final class ConvertUtils {
      * @return Integer
      */
     public static Integer toInt(final Object value) {
-        return toInt(value, 0);
+        return toInt(value, DevFinal.DEFAULT.INT);
     }
 
     /**
@@ -234,7 +235,7 @@ public final class ConvertUtils {
      * @return Boolean
      */
     public static Boolean toBoolean(final Object value) {
-        return toBoolean(value, false);
+        return toBoolean(value, DevFinal.DEFAULT.BOOLEAN);
     }
 
     /**
@@ -285,7 +286,7 @@ public final class ConvertUtils {
      * @return Float
      */
     public static Float toFloat(final Object value) {
-        return toFloat(value, 0F);
+        return toFloat(value, DevFinal.DEFAULT.FLOAT);
     }
 
     /**
@@ -326,7 +327,7 @@ public final class ConvertUtils {
      * @return Double
      */
     public static Double toDouble(final Object value) {
-        return toDouble(value, 0D);
+        return toDouble(value, DevFinal.DEFAULT.DOUBLE);
     }
 
     /**
@@ -367,7 +368,7 @@ public final class ConvertUtils {
      * @return Long
      */
     public static Long toLong(final Object value) {
-        return toLong(value, 0L);
+        return toLong(value, DevFinal.DEFAULT.LONG);
     }
 
     /**
@@ -408,7 +409,7 @@ public final class ConvertUtils {
      * @return Short
      */
     public static Short toShort(final Object value) {
-        return toShort(value, (short) 0);
+        return toShort(value, DevFinal.DEFAULT.SHORT);
     }
 
     /**
@@ -446,7 +447,7 @@ public final class ConvertUtils {
      * @return Character
      */
     public static Character toChar(final Object value) {
-        return toChar(value, (char) 0);
+        return toChar(value, DevFinal.DEFAULT.CHAR);
     }
 
     /**
@@ -483,7 +484,7 @@ public final class ConvertUtils {
      * @return Byte
      */
     public static byte toByte(final Object value) {
-        return toByte(value, (byte) 0);
+        return toByte(value, DevFinal.DEFAULT.BYTE);
     }
 
     /**
