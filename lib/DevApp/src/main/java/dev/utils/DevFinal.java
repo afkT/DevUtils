@@ -1,5 +1,6 @@
 package dev.utils;
 
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -1025,34 +1026,34 @@ public final class DevFinal {
     public static final class ARRAY {
 
         // 用于建立十六进制字符的输出的小写字符数组
-        public static final char[] HEX_DIGITS = {
+        private static final char[] HEX_DIGITS = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
         };
 
         // 用于建立十六进制字符的输出的大写字符数组
-        public static final char[] HEX_DIGITS_UPPER = {
+        private static final char[] HEX_DIGITS_UPPER = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
         };
 
         // 0123456789
-        public static final char[] NUMBERS = {
+        private static final char[] NUMBERS = {
                 48, 49, 50, 51, 52, 53, 54, 55, 56, 57
         };
 
         // abcdefghijklmnopqrstuvwxyz
-        public static final char[] LOWER_CASE_LETTERS = {
+        private static final char[] LOWER_CASE_LETTERS = {
                 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
                 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122
         };
 
         // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static final char[] CAPITAL_LETTERS = {
+        private static final char[] CAPITAL_LETTERS = {
                 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
                 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
         };
 
         // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static final char[] LETTERS = {
+        private static final char[] LETTERS = {
                 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
                 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 65, 66,
                 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
@@ -1060,7 +1061,7 @@ public final class DevFinal {
         };
 
         // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static final char[] NUMBERS_AND_LETTERS = {
+        private static final char[] NUMBERS_AND_LETTERS = {
                 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102,
                 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
                 116, 117, 118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71, 72,
@@ -1068,21 +1069,75 @@ public final class DevFinal {
         };
 
         // 生肖数组
-        public static final String[] ZODIAC = {
+        private static final String[] ZODIAC = {
                 "猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"
         };
 
         // 星座对应日期
-        public static final String[] CONSTELLATION_DATE = {
+        private static final String[] CONSTELLATION_DATE = {
                 "01.20-02.18", "02.19-03.20", "03.21-04.19", "04.20-05.20", "05.21-06.21", "06.22-07.22",
                 "07.23-08.22", "08.23-09.22", "09.23-10.23", "10.24-11.22", "11.23-12.21", "12.22-01.19"
         };
 
         // 星座数组
-        public static final String[] CONSTELLATION = {
+        private static final String[] CONSTELLATION = {
                 "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座",
                 "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座"
         };
+
+        // ==========
+        // = 对外公开 =
+        // ==========
+
+        // 用于建立十六进制字符的输出的小写字符数组
+        public static char[] HEX_DIGITS() {
+            return Arrays.copyOf(HEX_DIGITS, HEX_DIGITS.length);
+        }
+
+        // 用于建立十六进制字符的输出的大写字符数组
+        public static char[] HEX_DIGITS_UPPER() {
+            return Arrays.copyOf(HEX_DIGITS_UPPER, HEX_DIGITS_UPPER.length);
+        }
+
+        // 0123456789
+        public static char[] NUMBERS() {
+            return Arrays.copyOf(NUMBERS, NUMBERS.length);
+        }
+
+        // abcdefghijklmnopqrstuvwxyz
+        public static char[] LOWER_CASE_LETTERS() {
+            return Arrays.copyOf(LOWER_CASE_LETTERS, LOWER_CASE_LETTERS.length);
+        }
+
+        // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        public static char[] CAPITAL_LETTERS() {
+            return Arrays.copyOf(CAPITAL_LETTERS, CAPITAL_LETTERS.length);
+        }
+
+        // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        public static char[] LETTERS() {
+            return Arrays.copyOf(LETTERS, LETTERS.length);
+        }
+
+        // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        public static char[] NUMBERS_AND_LETTERS() {
+            return Arrays.copyOf(NUMBERS_AND_LETTERS, NUMBERS_AND_LETTERS.length);
+        }
+
+        // 生肖数组
+        public static String[] ZODIAC() {
+            return Arrays.copyOf(ZODIAC, ZODIAC.length);
+        }
+
+        // 星座对应日期
+        public static String[] CONSTELLATION_DATE() {
+            return Arrays.copyOf(CONSTELLATION_DATE, CONSTELLATION_DATE.length);
+        }
+
+        // 星座数组
+        public static String[] CONSTELLATION() {
+            return Arrays.copyOf(CONSTELLATION, CONSTELLATION.length);
+        }
     }
 
     /**
