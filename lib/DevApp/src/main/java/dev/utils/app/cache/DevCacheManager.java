@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.CloseUtils;
@@ -327,23 +328,23 @@ final class DevCacheManager {
     // =======
 
     public int getInt(String key) {
-        return getInt(key, DevCache.INT_DEFAULT);
+        return getInt(key, DevFinal.DEFAULT.INT);
     }
 
     public long getLong(String key) {
-        return getLong(key, DevCache.LONG_DEFAULT);
+        return getLong(key, DevFinal.DEFAULT.LONG);
     }
 
     public float getFloat(String key) {
-        return getFloat(key, DevCache.FLOAT_DEFAULT);
+        return getFloat(key, DevFinal.DEFAULT.FLOAT);
     }
 
     public double getDouble(String key) {
-        return getDouble(key, DevCache.DOUBLE_DEFAULT);
+        return getDouble(key, DevFinal.DEFAULT.DOUBLE);
     }
 
     public boolean getBoolean(String key) {
-        return getBoolean(key, DevCache.BOOLEAN_DEFAULT);
+        return getBoolean(key, DevFinal.DEFAULT.BOOLEAN);
     }
 
     public String getString(String key) {

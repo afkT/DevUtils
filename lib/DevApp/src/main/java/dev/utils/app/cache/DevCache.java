@@ -38,25 +38,19 @@ public final class DevCache {
     }
 
     // 数据类型
-    public static final int     INT             = 1;
-    public static final int     LONG            = 2;
-    public static final int     FLOAT           = 3;
-    public static final int     DOUBLE          = 4;
-    public static final int     BOOLEAN         = 5;
-    public static final int     STRING          = 6;
-    public static final int     BYTES           = 7;
-    public static final int     BITMAP          = 8;
-    public static final int     DRAWABLE        = 9;
-    public static final int     SERIALIZABLE    = 10;
-    public static final int     PARCELABLE      = 11;
-    public static final int     JSON_OBJECT     = 12;
-    public static final int     JSON_ARRAY      = 13;
-    // 默认值
-    public static final int     INT_DEFAULT     = 0;
-    public static final long    LONG_DEFAULT    = 0L;
-    public static final float   FLOAT_DEFAULT   = 0F;
-    public static final double  DOUBLE_DEFAULT  = 0D;
-    public static final boolean BOOLEAN_DEFAULT = false;
+    public static final int INT          = 1;
+    public static final int LONG         = 2;
+    public static final int FLOAT        = 3;
+    public static final int DOUBLE       = 4;
+    public static final int BOOLEAN      = 5;
+    public static final int STRING       = 6;
+    public static final int BYTES        = 7;
+    public static final int BITMAP       = 8;
+    public static final int DRAWABLE     = 9;
+    public static final int SERIALIZABLE = 10;
+    public static final int PARCELABLE   = 11;
+    public static final int JSON_OBJECT  = 12;
+    public static final int JSON_ARRAY   = 13;
 
     // =============
     // = 对外公开方法 =
