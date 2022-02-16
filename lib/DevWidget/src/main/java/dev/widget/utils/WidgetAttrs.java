@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-import dev.utils.app.WidgetUtils;
+import dev.utils.app.ViewUtils;
 import dev.widget.R;
 
 /**
@@ -16,9 +16,9 @@ public class WidgetAttrs {
     // 是否允许滑动
     private boolean mSlide     = true;
     // 最大显示宽度
-    private int     mMaxWidth  = WidgetUtils.DEF_VALUE;
+    private int     mMaxWidth  = ViewUtils.MATCH_PARENT;
     // 最大显示高度
-    private int     mMaxHeight = WidgetUtils.DEF_VALUE;
+    private int     mMaxHeight = ViewUtils.MATCH_PARENT;
 
     /**
      * 初始化
@@ -38,8 +38,8 @@ public class WidgetAttrs {
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
             mSlide     = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-            mMaxWidth  = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
-            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
+            mMaxWidth  = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, ViewUtils.MATCH_PARENT);
+            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, ViewUtils.MATCH_PARENT);
             a.recycle();
         }
     }

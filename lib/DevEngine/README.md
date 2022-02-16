@@ -152,13 +152,26 @@ private fun initEngine(appContext: Application) {
     // =========
     // = 初始化 =
     // =========
+    
+    // =============
+    // = 完整版初始化 =
+    // =============
+    
+    // 完整初始化 ( 全面使用该库调用该方法初始化即可 )
+    DevEngine.completeInitialize(appContext)
+
+    // ============
+    // = 部分初始化 =
+    // ============
+
+    // 如不需使用 MMKV Key-Value 则直接调用以下方法即可
+    DevEngine.defaultEngine()
+    
+    // 如果需要使用 MMKV Key-Value 则需要如下初始化
 
     // 使用内部默认实现 Engine ( 使用 MMKV 必须调用 defaultMMKVInitialize() )
     DevEngine.defaultMMKVInitialize(appContext)
-        .defaultEngine(DevEngine.getMMKVConfig())
-
-    // 如不需使用 MMKV Key-Value 则直接调用即可
-    DevEngine.defaultEngine()
+        .defaultEngine(MMKVConfig(cipher, mmkv))
 
     // 如不想内部默认初始化全部 Engine 也可单独调用进行初始化覆盖 ( 参考下方【设置】 )
 
