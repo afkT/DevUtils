@@ -100,27 +100,39 @@ object DevEngine {
     // ==========
 
     /**
-     * 获取 MMKV 对象
-     * @return MMKV
-     */
-    fun getMMKVByHolder(): MMKV? {
-        return MMKVUtils.defaultHolder().mmkv
-    }
-
-    /**
-     * 获取 MMKV Config
+     * 创建 MMKV Config
      * @param cipher 加解密中间层
+     * @param mmkv [MMKV]
      * @return [MMKVConfig]
      * <p></p>
      * 需先调用 [defaultMMKVInitialize]
      */
-    fun getMMKVConfig(cipher: Cipher? = null): MMKVConfig {
-        return MMKVConfig(cipher, getMMKVByHolder()!!)
+    fun createMMKVConfig(
+        cipher: Cipher? = null,
+        mmkv: MMKV
+    ): MMKVConfig {
+        return MMKVConfig(cipher, mmkv)
     }
 
     // ============
     // = 初始化方法 =
     // ============
+
+    /**
+     * 完整初始化 ( 全面使用该库调用该方法初始化即可 )
+     * @param context Context
+     */
+    fun completeInitialize(context: Context) {
+        defaultMMKVInitialize(context)
+        // 如果 MMKV 不为 null 则进行初始化
+        MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
+            defaultEngine(createMMKVConfig(cipher = null, mmkv = mmkv))
+            return
+        }
+        defaultEngine()
+    }
+
+    // =
 
     /**
      * 使用 DevEngine 库内部默认实现 MMKV 初始化
@@ -138,6 +150,8 @@ object DevEngine {
      * 使用 DevEngine 库内部默认实现 Engine
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
+     * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
+     * 接着调用该方法 [defaultEngine] 传入 [MMKVConfig] or [createMMKVConfig]
      */
     fun defaultEngine(
         keyValueConfig: IKeyValueEngine.EngineConfig? = null

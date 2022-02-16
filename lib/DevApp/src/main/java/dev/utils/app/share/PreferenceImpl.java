@@ -26,19 +26,17 @@ final class PreferenceImpl
         implements IPreference {
 
     // 文件名
-    private static final String              NAME               = "SPConfig";
+    private static final String              NAME            = "SPConfig";
     // SharedPreferences 对象
     private final        SharedPreferences   mPreferences;
     // SharedPreferences 操作监听器
     private              OnSPOperateListener mListener;
     // 默认值
-    private final        int                 INT_DEFAULT        = DevFinal.DEFAULT.INT;
-    private final        long                LONG_DEFAULT       = DevFinal.DEFAULT.LONG;
-    private final        float               FLOAT_DEFAULT      = DevFinal.DEFAULT.FLOAT;
-    private final        double              DOUBLE_DEFAULT     = DevFinal.DEFAULT.DOUBLE;
-    private final        boolean             BOOLEAN_DEFAULT    = DevFinal.DEFAULT.BOOLEAN;
-    private final        String              STRING_DEFAULT     = DevFinal.DEFAULT.STRING;
-    private final        Set<String>         STRING_SET_DEFAULT = DevFinal.DEFAULT.STRING_SET;
+    private final        int                 INT_DEFAULT     = DevFinal.DEFAULT.INT;
+    private final        long                LONG_DEFAULT    = DevFinal.DEFAULT.LONG;
+    private final        float               FLOAT_DEFAULT   = DevFinal.DEFAULT.FLOAT;
+    private final        double              DOUBLE_DEFAULT  = DevFinal.DEFAULT.DOUBLE;
+    private final        boolean             BOOLEAN_DEFAULT = DevFinal.DEFAULT.BOOLEAN;
 
     // ==========
     // = 构造函数 =
@@ -160,11 +158,11 @@ final class PreferenceImpl
                 if (defaultValue instanceof Boolean) booleanValue = (Boolean) defaultValue;
                 return mPreferences.getBoolean(key, booleanValue);
             case STRING:
-                String stringValue = STRING_DEFAULT;
+                String stringValue = null;
                 if (defaultValue instanceof String) stringValue = (String) defaultValue;
                 return mPreferences.getString(key, stringValue);
             case STRING_SET:
-                Set<String> stringSetValue = STRING_SET_DEFAULT;
+                Set<String> stringSetValue = null;
                 try {
                     if (defaultValue instanceof Set) stringSetValue = (Set<String>) defaultValue;
                 } catch (Exception ignored) {
@@ -465,7 +463,7 @@ final class PreferenceImpl
      */
     @Override
     public String getString(final String key) {
-        return getString(key, STRING_DEFAULT);
+        return getString(key, null);
     }
 
     /**
@@ -475,7 +473,7 @@ final class PreferenceImpl
      */
     @Override
     public Set<String> getSet(final String key) {
-        return getSet(key, STRING_SET_DEFAULT);
+        return getSet(key, null);
     }
 
     // =
