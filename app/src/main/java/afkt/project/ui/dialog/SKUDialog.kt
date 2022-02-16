@@ -18,8 +18,6 @@ import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.BigDecimalUtils
 import dev.utils.common.ConvertUtils
-import dev.utils.common.NumberUtils
-import java.math.BigDecimal
 import kotlin.math.max
 import kotlin.math.min
 
@@ -185,7 +183,8 @@ class SKUDialog(
      */
     private fun refreshPrice() {
         binding.vidPriceTv.text = adapter.getModel()?.value?.let { spec ->
-            roundPriceStr(mNumberAssist.currentNumber * spec.salePrice)
+            val price = (mNumberAssist.currentNumber * spec.salePrice)
+            BigDecimalUtils.round(price).toString()
         }
     }
 
@@ -302,22 +301,5 @@ class SKUDialog(
         }
         // 设置购买数量 ( 初始化设置最小购买数量 )
         mNumberAssist.currentNumber = MIN_NUMBER // 该代码可不加用于在计算前就更新底部 UI
-    }
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param price 需要四舍五入的数值
-     * @param symbol 默认添加符号
-     * @param defValue 默认值
-     * @return 四舍五入后的结果
-     */
-    private fun roundPriceStr(
-        price: Any,
-        symbol: String = "¥",
-        defValue: String = ""
-    ): String {
-        val value = BigDecimalUtils.round(price, 2, BigDecimal.ROUND_DOWN)
-        if (value == BigDecimalUtils.ERROR_VALUE) return defValue
-        return symbol + NumberUtils.subZeroAndDot(value)
     }
 }
