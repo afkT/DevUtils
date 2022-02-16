@@ -18,9 +18,6 @@ public final class WidgetUtils {
     // 日志 TAG
     private static final String TAG = WidgetUtils.class.getSimpleName();
 
-    // 默认值
-    public static final int DEF_VALUE = -1;
-
     /**
      * View Measure
      * @param view              待计算 View
@@ -39,7 +36,8 @@ public final class WidgetUtils {
     ) {
         return viewMeasure(
                 view, widthMeasureSpec, heightMeasureSpec,
-                maximumWidth, maximumHeight, DEF_VALUE
+                maximumWidth, maximumHeight,
+                ViewUtils.MATCH_PARENT
         );
     }
 
@@ -94,7 +92,8 @@ public final class WidgetUtils {
         return viewMeasure(
                 widthMeasureSpec, heightMeasureSpec,
                 minimumWidth, maximumWidth,
-                minimumHeight, maximumHeight, DEF_VALUE
+                minimumHeight, maximumHeight,
+                ViewUtils.MATCH_PARENT
         );
     }
 
@@ -146,7 +145,7 @@ public final class WidgetUtils {
             final int minimum,
             final int maximum
     ) {
-        return calculateSize(size, minimum, maximum, DEF_VALUE);
+        return calculateSize(size, minimum, maximum, ViewUtils.MATCH_PARENT);
     }
 
     /**
