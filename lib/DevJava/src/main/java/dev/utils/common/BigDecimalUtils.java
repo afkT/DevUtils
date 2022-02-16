@@ -821,9 +821,6 @@ public final class BigDecimalUtils {
     // = 快捷方法 =
     // ==========
 
-    // 异常值
-    public static final double ERROR_VALUE = -123456.0D;
-
     // =====
     // = 加 =
     // =====
@@ -837,7 +834,8 @@ public final class BigDecimalUtils {
     public static double add(
             final Object v1,
             final Object v2
-    ) {
+    )
+            throws Exception {
         return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -852,7 +850,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    ) {
+    )
+            throws Exception {
         return add(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -867,7 +866,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return add(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
@@ -888,15 +888,11 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .add(v2).setScale(scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "add");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .add(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // =====
@@ -912,7 +908,8 @@ public final class BigDecimalUtils {
     public static double subtract(
             final Object v1,
             final Object v2
-    ) {
+    )
+            throws Exception {
         return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -927,7 +924,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    ) {
+    )
+            throws Exception {
         return subtract(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -942,7 +940,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return subtract(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
@@ -963,15 +962,11 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .subtract(v2).setScale(scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "subtract");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .subtract(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // =====
@@ -987,7 +982,8 @@ public final class BigDecimalUtils {
     public static double multiply(
             final Object v1,
             final Object v2
-    ) {
+    )
+            throws Exception {
         return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -1002,7 +998,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    ) {
+    )
+            throws Exception {
         return multiply(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -1017,7 +1014,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return multiply(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
@@ -1038,15 +1036,11 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .multiply(v2).setScale(scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "multiply");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .multiply(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // =====
@@ -1062,7 +1056,8 @@ public final class BigDecimalUtils {
     public static double divide(
             final Object v1,
             final Object v2
-    ) {
+    )
+            throws Exception {
         return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -1077,7 +1072,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    ) {
+    )
+            throws Exception {
         return divide(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -1092,7 +1088,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return divide(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
@@ -1113,15 +1110,11 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .divide(v2, scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "divide");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .divide(v2, scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // =======
@@ -1137,7 +1130,8 @@ public final class BigDecimalUtils {
     public static double remainder(
             final Object v1,
             final Object v2
-    ) {
+    )
+            throws Exception {
         return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -1152,7 +1146,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    ) {
+    )
+            throws Exception {
         return remainder(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -1167,7 +1162,8 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return remainder(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
@@ -1188,15 +1184,11 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .remainder(v2).setScale(scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "remainder");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .remainder(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // ==========
@@ -1208,7 +1200,8 @@ public final class BigDecimalUtils {
      * @param v1 需要四舍五入的数值
      * @return 四舍五入后的结果
      */
-    public static double round(final Object v1) {
+    public static double round(final Object v1)
+            throws Exception {
         return round(v1, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -1221,7 +1214,8 @@ public final class BigDecimalUtils {
     public static double round(
             final Object v1,
             final int scale
-    ) {
+    )
+            throws Exception {
         return round(v1, scale, ROUNDING_MODE);
     }
 
@@ -1234,7 +1228,8 @@ public final class BigDecimalUtils {
     public static double round(
             final Object v1,
             final Config config
-    ) {
+    )
+            throws Exception {
         if (config != null) {
             return round(v1, config.getScale(), config.getRoundingMode());
         } else {
@@ -1253,15 +1248,11 @@ public final class BigDecimalUtils {
             final Object v1,
             final int scale,
             final int roundingMode
-    ) {
-        try {
-            return operation(v1).setThrowError(true)
-                    .round(scale, roundingMode)
-                    .requireNonNull().doubleValue();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "round");
-        }
-        return ERROR_VALUE;
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .round(scale, roundingMode)
+                .requireNonNull().doubleValue();
     }
 
     // ==========
