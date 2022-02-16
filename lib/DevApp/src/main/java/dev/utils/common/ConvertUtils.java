@@ -522,7 +522,7 @@ public final class ConvertUtils {
      * @return BigDecimal
      */
     public static BigDecimal toBigDecimal(final Object value) {
-        return toBigDecimal(value, BigDecimal.ZERO);
+        return toBigDecimal(value, DevFinal.DEFAULT.BIG_DECIMAL);
     }
 
     /**
@@ -560,7 +560,7 @@ public final class ConvertUtils {
      * @return BigInteger
      */
     public static BigInteger toBigInteger(final Object value) {
-        return toBigInteger(value, BigInteger.valueOf(0L));
+        return toBigInteger(value, DevFinal.DEFAULT.BIG_INTEGER);
     }
 
     /**
