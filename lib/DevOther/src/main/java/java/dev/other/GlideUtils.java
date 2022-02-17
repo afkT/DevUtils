@@ -19,7 +19,7 @@ import dev.engine.image.listener.OnConvertListener;
 /**
  * detail: Glide 工具类
  * @author Ttt
- * @deprecated 推荐使用 {@link dev.engine.image.DevImageEngine} 实现类 {@link GlideEngineImpl}
+ * @deprecated 推荐使用 DevImageEngine 实现类 GlideEngineImpl
  */
 @Deprecated
 public final class GlideUtils {
