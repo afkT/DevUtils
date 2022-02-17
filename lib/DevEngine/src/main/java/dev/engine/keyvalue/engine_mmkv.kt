@@ -126,27 +126,27 @@ class MMKVKeyValueEngineImpl(
     // =======
 
     override fun getInt(key: String?): Int {
-        return getInt(key, 0)
+        return mHolder.decodeInt(key)
     }
 
     override fun getLong(key: String?): Long {
-        return getLong(key, 0L)
+        return mHolder.decodeLong(key)
     }
 
     override fun getFloat(key: String?): Float {
-        return getFloat(key, 0F)
+        return mHolder.decodeFloat(key)
     }
 
     override fun getDouble(key: String?): Double {
-        return getDouble(key, 0.0)
+        return mHolder.decodeDouble(key)
     }
 
     override fun getBoolean(key: String?): Boolean {
-        return getBoolean(key, false)
+        return mHolder.decodeBool(key)
     }
 
     override fun getString(key: String?): String? {
-        return getString(key, null)
+        return mHolder.decodeString(key)
     }
 
     override fun <T : Any> getEntity(
@@ -210,9 +210,8 @@ class MMKVKeyValueEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        val json = getString(key, null)
         return mJSONEngine?.fromJson<T>(
-            json, typeOfT
+            getString(key, null), typeOfT
         ) ?: return defaultValue
     }
 }

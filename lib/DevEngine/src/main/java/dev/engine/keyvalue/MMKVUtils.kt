@@ -7,6 +7,7 @@ import com.tencent.mmkv.MMKV
 import com.tencent.mmkv.MMKVLogLevel
 import dev.engine.keyvalue.MMKVUtils.defaultHolder
 import dev.engine.keyvalue.MMKVUtils.get
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import java.util.*
 import kotlin.collections.set
@@ -308,7 +309,7 @@ internal object MMKVUtils {
         // =======
 
         fun decodeBool(key: String?): Boolean {
-            return decodeBool(key, false)
+            return decodeBool(key, DevFinal.DEFAULT.BOOLEAN)
         }
 
         fun decodeBool(
@@ -320,7 +321,7 @@ internal object MMKVUtils {
         }
 
         fun decodeInt(key: String?): Int {
-            return decodeInt(key, 0)
+            return decodeInt(key, DevFinal.DEFAULT.INT)
         }
 
         fun decodeInt(
@@ -332,7 +333,7 @@ internal object MMKVUtils {
         }
 
         fun decodeLong(key: String?): Long {
-            return decodeLong(key, 0L)
+            return decodeLong(key, DevFinal.DEFAULT.LONG)
         }
 
         fun decodeLong(
@@ -344,7 +345,7 @@ internal object MMKVUtils {
         }
 
         fun decodeFloat(key: String?): Float {
-            return decodeFloat(key, 0.0F)
+            return decodeFloat(key, DevFinal.DEFAULT.FLOAT)
         }
 
         fun decodeFloat(
@@ -356,7 +357,7 @@ internal object MMKVUtils {
         }
 
         fun decodeDouble(key: String?): Double {
-            return decodeDouble(key, 0.0)
+            return decodeDouble(key, DevFinal.DEFAULT.DOUBLE)
         }
 
         fun decodeDouble(

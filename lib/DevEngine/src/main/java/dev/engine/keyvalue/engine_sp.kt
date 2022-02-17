@@ -132,27 +132,27 @@ class SPKeyValueEngineImpl(
     // =======
 
     override fun getInt(key: String?): Int {
-        return getInt(key, 0)
+        return mPreference.getInt(key)
     }
 
     override fun getLong(key: String?): Long {
-        return getLong(key, 0L)
+        return mPreference.getLong(key)
     }
 
     override fun getFloat(key: String?): Float {
-        return getFloat(key, 0F)
+        return mPreference.getFloat(key)
     }
 
     override fun getDouble(key: String?): Double {
-        return getDouble(key, 0.0)
+        return mPreference.getDouble(key)
     }
 
     override fun getBoolean(key: String?): Boolean {
-        return getBoolean(key, false)
+        return mPreference.getBoolean(key)
     }
 
     override fun getString(key: String?): String? {
-        return getString(key, null)
+        return mPreference.getString(key)
     }
 
     override fun <T : Any> getEntity(
@@ -216,9 +216,8 @@ class SPKeyValueEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        val json = getString(key, null)
         return mJSONEngine?.fromJson<T>(
-            json, typeOfT
+            getString(key, null), typeOfT
         ) ?: return defaultValue
     }
 }

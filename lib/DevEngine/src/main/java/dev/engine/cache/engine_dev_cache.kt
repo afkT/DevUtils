@@ -392,9 +392,8 @@ class DevCacheEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        val json = getString(key, null)
         return mJSONEngine?.fromJson<T>(
-            json, typeOfT
+            getString(key, null), typeOfT
         ) ?: return defaultValue
     }
 }
