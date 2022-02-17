@@ -916,7 +916,7 @@
 | ofAudio | ofAudio |
 
 
-* **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ZXingQRCodeUtils.java)
+* **ZXing 条形码、二维码工具类 ->** [ZXingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ZXingUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |

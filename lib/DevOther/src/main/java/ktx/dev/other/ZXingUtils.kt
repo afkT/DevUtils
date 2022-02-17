@@ -12,14 +12,14 @@ import dev.utils.common.thread.DevThreadManager
 import java.util.*
 
 /**
- * detail: ZXing 二维码工具类
+ * detail: ZXing 条形码、二维码工具类
  * @author Ttt
  */
 @Deprecated("推荐使用 DevBarCodeEngine 实现类 ZXingEngineImpl")
-object ZXingQRCodeUtils {
+object ZXingUtils {
 
     // 日志 TAG
-    private val TAG = ZXingQRCodeUtils::class.java.simpleName
+    private val TAG = ZXingUtils::class.java.simpleName
 
     // ============
     // = 生成二维码 =

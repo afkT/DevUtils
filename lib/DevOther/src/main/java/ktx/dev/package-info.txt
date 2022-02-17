@@ -30,16 +30,16 @@ internal object XXXXUtils
 // 方便快捷搜索定位, 直接单行搜索即可
 
 
-internal object MMKVUtils
+internal object FastjsonUtils
 
 
 internal object GsonUtils
 
 
-internal object FastjsonUtils
-
-
 internal object LubanUtils
+
+
+internal object MMKVUtils
 
 
 

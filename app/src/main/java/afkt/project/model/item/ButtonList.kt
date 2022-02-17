@@ -204,7 +204,7 @@ object ButtonList {
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ZXING,
-                    "ZXingQRCodeUtils",
+                    "ZXingUtils",
                     RouterPath.EMPTY
                 )
             )

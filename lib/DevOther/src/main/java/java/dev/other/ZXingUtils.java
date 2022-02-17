@@ -24,18 +24,18 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.thread.DevThreadManager;
 
 /**
- * detail: ZXing 二维码工具类
+ * detail: ZXing 条形码、二维码工具类
  * @author Ttt
  * @deprecated 推荐使用 {@link dev.engine.barcode.DevBarCodeEngine} 实现类
  */
 @Deprecated
-public final class ZXingQRCodeUtils {
+public final class ZXingUtils {
 
-    private ZXingQRCodeUtils() {
+    private ZXingUtils() {
     }
 
     // 日志 TAG
-    private static final String TAG = ZXingQRCodeUtils.class.getSimpleName();
+    private static final String TAG = ZXingUtils.class.getSimpleName();
 
     // ============
     // = 生成二维码 =

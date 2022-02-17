@@ -98,7 +98,7 @@ class ButtonValue(
         // FastjsonUtils
         const val BTN_FASTJSON = MODULE_LIB + 6
 
-        // ZXingQRCodeUtils
+        // ZXingUtils
         const val BTN_ZXING = MODULE_LIB + 7
 
         // PictureSelectorUtils
