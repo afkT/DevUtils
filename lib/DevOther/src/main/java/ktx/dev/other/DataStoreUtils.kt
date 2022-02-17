@@ -1,4 +1,4 @@
-package java.dev.other
+package ktx.dev.other
 
 import android.content.Context
 import android.text.TextUtils
@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.core.Preferences.Key
 import androidx.datastore.preferences.preferencesDataStoreFile
 import dev.DevUtils
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -44,12 +45,12 @@ object DataStoreUtils {
     private val cacheMap = HashMap<String, InnerDataStore>()
 
     // 默认值
-    const val INT_VALUE: Int = -1
-    const val STRING_VALUE: String = ""
-    const val BOOLEAN_VALUE: Boolean = false
-    const val FLOAT_VALUE: Float = -1F
-    const val LONG_VALUE: Long = -1L
-    const val DOUBLE_VALUE: Double = -1.0
+    const val INT_VALUE: Int = DevFinal.DEFAULT.INT
+    const val LONG_VALUE: Long = DevFinal.DEFAULT.LONG
+    const val FLOAT_VALUE: Float = DevFinal.DEFAULT.FLOAT
+    const val DOUBLE_VALUE: Double = DevFinal.DEFAULT.DOUBLE
+    const val BOOLEAN_VALUE: Boolean = DevFinal.DEFAULT.BOOLEAN
+    const val STRING_VALUE: String = DevFinal.DEFAULT.STRING
 
     /**
      * 获取 DataStore 操作类

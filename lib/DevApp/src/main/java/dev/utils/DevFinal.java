@@ -3,7 +3,6 @@ package dev.utils;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Set;
 
 /**
  * detail: 常量类
@@ -1175,6 +1174,7 @@ public final class DevFinal {
         public static final byte       ERROR_BYTE        = (byte) -1;
         public static final BigDecimal ERROR_BIG_DECIMAL = BigDecimal.valueOf(-1L);
         public static final BigInteger ERROR_BIG_INTEGER = BigInteger.valueOf(-1L);
+        public static final String     ERROR_STRING      = null;
 
         public static final int        INT         = 0;
         public static final long       LONG        = 0L;
@@ -1186,10 +1186,9 @@ public final class DevFinal {
         public static final byte       BYTE        = (byte) 0;
         public static final BigDecimal BIG_DECIMAL = BigDecimal.ZERO;
         public static final BigInteger BIG_INTEGER = BigInteger.ZERO;
+        public static final String     STRING      = "";
 
-        public static final String      STRING     = null;
-        public static final Set<String> STRING_SET = null;
-        public static final Object      ENTITY     = null;
-        public static final Object      OBJECT     = null;
+        public static final Object ENTITY = null;
+        public static final Object OBJECT = null;
     }
 }
