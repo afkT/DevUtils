@@ -152,32 +152,32 @@ public class SPKeyValueEngineImpl
 
     @Override
     public int getInt(String key) {
-        return getInt(key, 0);
+        return mPreference.getInt(key);
     }
 
     @Override
     public long getLong(String key) {
-        return getLong(key, 0L);
+        return mPreference.getLong(key);
     }
 
     @Override
     public float getFloat(String key) {
-        return getFloat(key, 0F);
+        return mPreference.getFloat(key);
     }
 
     @Override
     public double getDouble(String key) {
-        return getDouble(key, 0D);
+        return mPreference.getDouble(key);
     }
 
     @Override
     public boolean getBoolean(String key) {
-        return getBoolean(key, false);
+        return mPreference.getBoolean(key);
     }
 
     @Override
     public String getString(String key) {
-        return getString(key, null);
+        return mPreference.getString(key);
     }
 
     @Override
@@ -250,9 +250,9 @@ public class SPKeyValueEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json = getString(key, null);
         if (mJSONEngine != null) {
-            T object = (T) mJSONEngine.fromJson(json, typeOfT);
+            String json   = getString(key, null);
+            T      object = (T) mJSONEngine.fromJson(json, typeOfT);
             if (object == null) return defaultValue;
             return object;
         }

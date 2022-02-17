@@ -473,9 +473,9 @@ public class DevCacheEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json = getString(key, null);
         if (mJSONEngine != null) {
-            T object = (T) mJSONEngine.fromJson(json, typeOfT);
+            String json   = getString(key, null);
+            T      object = (T) mJSONEngine.fromJson(json, typeOfT);
             if (object == null) return defaultValue;
             return object;
         }

@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -337,7 +338,7 @@ public final class MMKVUtils {
         // =======
 
         public boolean decodeBool(String key) {
-            return decodeBool(key, false);
+            return decodeBool(key, DevFinal.DEFAULT.BOOLEAN);
         }
 
         public boolean decodeBool(
@@ -350,7 +351,7 @@ public final class MMKVUtils {
         }
 
         public int decodeInt(String key) {
-            return decodeInt(key, 0);
+            return decodeInt(key, DevFinal.DEFAULT.INT);
         }
 
         public int decodeInt(
@@ -363,7 +364,7 @@ public final class MMKVUtils {
         }
 
         public long decodeLong(String key) {
-            return decodeLong(key, 0L);
+            return decodeLong(key, DevFinal.DEFAULT.LONG);
         }
 
         public long decodeLong(
@@ -376,7 +377,7 @@ public final class MMKVUtils {
         }
 
         public float decodeFloat(String key) {
-            return decodeFloat(key, 0.0F);
+            return decodeFloat(key, DevFinal.DEFAULT.FLOAT);
         }
 
         public float decodeFloat(
@@ -389,7 +390,7 @@ public final class MMKVUtils {
         }
 
         public double decodeDouble(String key) {
-            return decodeDouble(key, 0.0D);
+            return decodeDouble(key, DevFinal.DEFAULT.DOUBLE);
         }
 
         public double decodeDouble(
