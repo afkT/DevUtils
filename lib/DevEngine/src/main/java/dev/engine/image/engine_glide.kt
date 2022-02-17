@@ -35,6 +35,14 @@ import java.util.*
 /**
  * detail: Glide Image Engine 实现
  * @author Ttt
+ * Glide 详细使用
+ * @see https://www.jianshu.com/p/7cfe2653a1fb
+ * Glide 文档
+ * @see https://muyangmin.github.io/glide-docs-cn
+ * 解决 Glide 加载图片闪烁的问题 ( 圆角处理 ) - transform(new RoundedCorners(xx))
+ * @see https://blog.csdn.net/andcisco/article/details/96487800
+ * 解决圆角 + centerCrop 效果叠加处理
+ * transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)))
  */
 class GlideEngineImpl : IImageEngine<ImageConfig> {
 
