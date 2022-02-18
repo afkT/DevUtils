@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.corner_label
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -16,7 +16,7 @@ import dev.utils.common.RandomUtils
  * detail: 自定义角标 View
  * @author Ttt
  */
-@Route(path = RouterPath.CornerLabelActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.CornerLabelActivity_PATH)
 class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_corner_label

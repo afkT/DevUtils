@@ -130,18 +130,6 @@ object RouterPath {
 
     const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
 
-    const val ScanShapeActivity_PATH = "/activity/ScanShapeActivity"
-
-    const val WrapActivity_PATH = "/activity/WrapActivity"
-
-    const val SignActivity_PATH = "/activity/SignActivity"
-
-    const val LineActivity_PATH = "/activity/LineActivity"
-
-    const val FlowLikeActivity_PATH = "/activity/FlowLikeActivity"
-
-    const val CornerLabelActivity_PATH = "/activity/CornerLabelActivity"
-
     const val RecyConcatAdapterActivity_PATH = "/activity/RecyConcatAdapterActivity"
 
     const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
@@ -159,9 +147,21 @@ object RouterPath {
      */
     object DEV_WIDGET {
 
+        const val ViewPagerActivity_PATH = "/activity/ViewPagerActivity"
+
         const val ProgressBarActivity_PATH = "/activity/ProgressBarActivity"
 
-        const val ViewPagerActivity_PATH = "/activity/ViewPagerActivity"
+        const val ScanShapeActivity_PATH = "/activity/ScanShapeActivity"
+
+        const val WrapActivity_PATH = "/activity/WrapActivity"
+
+        const val SignActivity_PATH = "/activity/SignActivity"
+
+        const val LineActivity_PATH = "/activity/LineActivity"
+
+        const val FlowLikeActivity_PATH = "/activity/FlowLikeActivity"
+
+        const val CornerLabelActivity_PATH = "/activity/CornerLabelActivity"
     }
 
 }

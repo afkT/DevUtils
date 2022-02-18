@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.sign
 
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
@@ -14,7 +14,7 @@ import dev.widget.function.SignView
  * detail: 签名 View
  * @author Ttt
  */
-@Route(path = RouterPath.SignActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.SignActivity_PATH)
 class SignActivity : BaseActivity<ViewBinding>() {
 
     override fun isViewBinding(): Boolean = false

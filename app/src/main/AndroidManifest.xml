@@ -90,7 +90,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Module -->
+        <!-- Module 列表 Activity -->
 
         <activity
             android:name=".feature.ModuleActivity"
@@ -98,7 +98,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- Button -->
+        <!-- Button 列表 Activity -->
 
         <activity
             android:name=".feature.ButtonItemActivity"
@@ -277,7 +277,7 @@
         <!-- 自定义扫描 View ( QRCode、AR ) -->
 
         <activity
-            android:name=".ui.activity.ScanShapeActivity"
+            android:name=".feature.dev_widget.scan_shape.ScanShapeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -309,7 +309,7 @@
         <!-- 自动换行 View -->
 
         <activity
-            android:name=".ui.activity.WrapActivity"
+            android:name=".feature.dev_widget.wrap.WrapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -317,7 +317,7 @@
         <!-- 签名 View -->
 
         <activity
-            android:name=".ui.activity.SignActivity"
+            android:name=".feature.dev_widget.sign.SignActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -325,7 +325,7 @@
         <!-- 换行监听 View -->
 
         <activity
-            android:name=".ui.activity.LineActivity"
+            android:name=".feature.dev_widget.line.LineActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -333,7 +333,7 @@
         <!-- 自定义点赞效果 View -->
 
         <activity
-            android:name=".ui.activity.FlowLikeActivity"
+            android:name=".feature.dev_widget.flow_like.FlowLikeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -341,7 +341,7 @@
         <!-- 自定义角标 View -->
 
         <activity
-            android:name=".ui.activity.CornerLabelActivity"
+            android:name=".feature.dev_widget.corner_label.CornerLabelActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

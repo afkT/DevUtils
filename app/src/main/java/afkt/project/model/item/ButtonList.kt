@@ -1307,42 +1307,42 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_SCAN_VIEW,
                     "自定义扫描 View ( QRCode、AR )",
-                    RouterPath.ScanShapeActivity_PATH
+                    RouterPath.DEV_WIDGET.ScanShapeActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WRAP_VIEW,
                     "自动换行 View",
-                    RouterPath.WrapActivity_PATH
+                    RouterPath.DEV_WIDGET.WrapActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_SIGN_VIEW,
                     "签名 View",
-                    RouterPath.SignActivity_PATH
+                    RouterPath.DEV_WIDGET.SignActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LINE_VIEW,
                     "换行监听 View",
-                    RouterPath.LineActivity_PATH
+                    RouterPath.DEV_WIDGET.LineActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LIKE_VIEW,
                     "自定义点赞效果 View",
-                    RouterPath.FlowLikeActivity_PATH
+                    RouterPath.DEV_WIDGET.FlowLikeActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CORNER_LABEL_VIEW,
                     "自定义角标 View",
-                    RouterPath.CornerLabelActivity_PATH
+                    RouterPath.DEV_WIDGET.CornerLabelActivity_PATH
                 )
             )
             lists.add(

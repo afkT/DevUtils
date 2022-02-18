@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.scan_shape
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -24,7 +24,7 @@ import dev.widget.ui.ScanShapeView
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
-@Route(path = RouterPath.ScanShapeActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.ScanShapeActivity_PATH)
 class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_scan_shape

@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.line
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -14,7 +14,7 @@ import dev.utils.common.RandomUtils
  * detail: 换行监听 View
  * @author Ttt
  */
-@Route(path = RouterPath.LineActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.LineActivity_PATH)
 class LineActivity : BaseActivity<ActivityLineBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_line

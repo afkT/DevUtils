@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.wrap
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -22,7 +22,7 @@ import dev.utils.common.RandomUtils
  * detail: 自动换行 View
  * @author Ttt
  */
-@Route(path = RouterPath.WrapActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.WrapActivity_PATH)
 class WrapActivity : BaseActivity<ActivityWrapBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_wrap
