@@ -58,7 +58,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="afkt.project.base.BaseApplication"
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
@@ -93,7 +93,7 @@
         <!-- Module -->
 
         <activity
-            android:name=".ui.ModuleActivity"
+            android:name=".feature.ModuleActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -101,7 +101,7 @@
         <!-- Button -->
 
         <activity
-            android:name=".ui.ButtonItemActivity"
+            android:name=".feature.ButtonItemActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -445,7 +445,7 @@
         <!-- 文章 MVP Activity -->
 
         <activity
-            android:name=".framework.mvp.ArticleMVPActivity"
+            android:name=".feature.framework.mvp.ArticleMVPActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -453,7 +453,7 @@
         <!-- 文章 MVVM Activity -->
 
         <activity
-            android:name=".framework.mvvm.ArticleMVVMActivity"
+            android:name=".feature.framework.mvvm.ArticleMVVMActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

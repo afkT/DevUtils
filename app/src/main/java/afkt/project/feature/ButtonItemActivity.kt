@@ -1,4 +1,4 @@
-package afkt.project.ui
+package afkt.project.feature
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity

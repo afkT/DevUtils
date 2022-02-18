@@ -1,4 +1,4 @@
-package afkt.project.framework.mvp
+package afkt.project.feature.framework.mvp
 
 import afkt.project.R
 import afkt.project.base.app.BaseMVPActivity

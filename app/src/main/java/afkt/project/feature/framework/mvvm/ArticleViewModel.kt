@@ -1,4 +1,4 @@
-package afkt.project.framework.mvvm
+package afkt.project.feature.framework.mvvm
 
 import afkt.project.model.bean.ArticleBean
 import androidx.lifecycle.DefaultLifecycleObserver
