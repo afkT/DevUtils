@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.flip_card
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -15,7 +15,7 @@ import dev.utils.app.timer.DevTimer
  * detail: 翻转卡片 View
  * @author Ttt
  */
-@Route(path = RouterPath.FlipCardActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.FlipCardActivity_PATH)
 class FlipCardActivity : BaseActivity<ActivityFlipCardBinding>() {
 
     // 翻转定时器

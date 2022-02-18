@@ -349,7 +349,7 @@
         <!-- ViewAssist Activity -->
 
         <activity
-            android:name=".ui.activity.ViewAssistActivity"
+            android:name=".feature.dev_widget.view_assist.ViewAssistActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -357,7 +357,7 @@
         <!-- ViewAssist RecyclerView Loading -->
 
         <activity
-            android:name=".ui.activity.ViewAssistRecyclerViewLoadActivity"
+            android:name=".feature.dev_widget.view_assist.ViewAssistRecyclerViewLoadActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -365,7 +365,7 @@
         <!-- 翻转卡片 View -->
 
         <activity
-            android:name=".ui.activity.FlipCardActivity"
+            android:name=".feature.dev_widget.flip_card.FlipCardActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -373,7 +373,7 @@
         <!-- 波浪 View -->
 
         <activity
-            android:name=".ui.activity.WaveViewActivity"
+            android:name=".feature.dev_widget.wave.WaveViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

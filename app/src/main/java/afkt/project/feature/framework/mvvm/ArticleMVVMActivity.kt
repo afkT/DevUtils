@@ -21,7 +21,7 @@ import dev.widget.function.StateLayout
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
-@Route(path = RouterPath.ArticleMVVMActivity_PATH)
+@Route(path = RouterPath.FRAMEWORK.ArticleMVVMActivity_PATH)
 class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel>() {
 
     // 加载动画

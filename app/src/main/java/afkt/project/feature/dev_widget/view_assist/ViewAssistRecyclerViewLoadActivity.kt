@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -15,7 +15,7 @@ import dev.utils.common.RandomUtils
  * detail: ViewAssist RecyclerView Loading
  * @author Ttt
  */
-@Route(path = RouterPath.ViewAssistRecyclerViewLoadActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.ViewAssistRecyclerViewLoadActivity_PATH)
 class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

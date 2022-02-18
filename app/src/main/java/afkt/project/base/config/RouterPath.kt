@@ -20,15 +20,6 @@ object RouterPath {
 
     const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
 
-    const val ViewAssistRecyclerViewLoadActivity_PATH =
-        "/activity/ViewAssistRecyclerViewLoadActivity"
-
-    const val ViewAssistActivity_PATH = "/activity/ViewAssistActivity"
-
-    const val ArticleMVPActivity_PATH = "/activity/ArticleMVPActivity"
-
-    const val ArticleMVVMActivity_PATH = "/activity/ArticleMVVMActivity"
-
     const val EventBusActivity_PATH = "/activity/EventBusActivity"
 
     const val GreenDaoActivity_PATH = "/activity/GreenDaoActivity"
@@ -134,13 +125,17 @@ object RouterPath {
 
     const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
 
-    const val FlipCardActivity_PATH = "/activity/FlipCardActivity"
-
-    const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
-
     const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
 
-    const val LineItemDecorationActivity_PATH = "/activity/LineItemDecorationActivity"
+    /**
+     * Framework 架构
+     */
+    object FRAMEWORK {
+
+        const val ArticleMVPActivity_PATH = "/activity/ArticleMVPActivity"
+
+        const val ArticleMVVMActivity_PATH = "/activity/ArticleMVVMActivity"
+    }
 
     /**
      * DevWidget UI 库
@@ -162,6 +157,17 @@ object RouterPath {
         const val FlowLikeActivity_PATH = "/activity/FlowLikeActivity"
 
         const val CornerLabelActivity_PATH = "/activity/CornerLabelActivity"
+
+        const val ViewAssistRecyclerViewLoadActivity_PATH =
+            "/activity/ViewAssistRecyclerViewLoadActivity"
+
+        const val ViewAssistActivity_PATH = "/activity/ViewAssistActivity"
+
+        const val FlipCardActivity_PATH = "/activity/FlipCardActivity"
+
+        const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
+
+        const val LineItemDecorationActivity_PATH = "/activity/LineItemDecorationActivity"
     }
 
 }

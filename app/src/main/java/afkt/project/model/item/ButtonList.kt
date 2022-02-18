@@ -128,14 +128,14 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_MVP,
                     "MVP",
-                    RouterPath.ArticleMVPActivity_PATH
+                    RouterPath.FRAMEWORK.ArticleMVPActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_MVVM,
                     "MVVM",
-                    RouterPath.ArticleMVVMActivity_PATH
+                    RouterPath.FRAMEWORK.ArticleMVVMActivity_PATH
                 )
             )
             return lists
@@ -1356,21 +1356,21 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_FLIP_CARD_VIEW,
                     "翻转卡片 View",
-                    RouterPath.FlipCardActivity_PATH
+                    RouterPath.DEV_WIDGET.FlipCardActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WAVE_VIEW,
                     "波浪 View",
-                    RouterPath.WaveViewActivity_PATH
+                    RouterPath.DEV_WIDGET.WaveViewActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LINE_ITEM_DECORATION,
                     "Linear ItemDecoration",
-                    RouterPath.LineItemDecorationActivity_PATH
+                    RouterPath.DEV_WIDGET.LineItemDecorationActivity_PATH
                 )
             )
             return lists
@@ -1387,28 +1387,28 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_VIEW_ASSIST_RECYCLER,
                     "RecyclerView ( loading )",
-                    RouterPath.ViewAssistRecyclerViewLoadActivity_PATH
+                    RouterPath.DEV_WIDGET.ViewAssistRecyclerViewLoadActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEW_ASSIST_ERROR,
                     "Error ( failed )",
-                    RouterPath.ViewAssistActivity_PATH
+                    RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEW_ASSIST_EMPTY,
                     "Empty ( data )",
-                    RouterPath.ViewAssistActivity_PATH
+                    RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEW_ASSIST_CUSTOM,
                     "Custom Type",
-                    RouterPath.ViewAssistActivity_PATH
+                    RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
                 )
             )
             return lists

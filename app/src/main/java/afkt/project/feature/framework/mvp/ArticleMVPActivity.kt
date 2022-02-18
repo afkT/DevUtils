@@ -20,7 +20,7 @@ import ktx.dev.other.retrofit_rxjava.RxJavaManager
  * detail: 文章 MVP Activity
  * @author Ttt
  */
-@Route(path = RouterPath.ArticleMVPActivity_PATH)
+@Route(path = RouterPath.FRAMEWORK.ArticleMVPActivity_PATH)
 class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding>(),
     ArticleMVP.View {
 

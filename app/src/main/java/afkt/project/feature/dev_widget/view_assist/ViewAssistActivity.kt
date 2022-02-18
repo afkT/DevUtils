@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -19,7 +19,7 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist Activity
  * @author Ttt
  */
-@Route(path = RouterPath.ViewAssistActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.ViewAssistActivity_PATH)
 class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
 
     private lateinit var viewAssist: ViewAssist

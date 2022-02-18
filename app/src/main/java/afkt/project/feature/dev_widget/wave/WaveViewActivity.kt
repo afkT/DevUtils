@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.wave
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -16,7 +16,7 @@ import dev.widget.utils.WaveHelper
  * detail: 波浪 View
  * @author Ttt
  */
-@Route(path = RouterPath.WaveViewActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.WaveViewActivity_PATH)
 class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
 
     val helper: WaveHelper by lazy {
