@@ -469,7 +469,7 @@
         <!-- 两个 TextView 显示效果 -->
 
         <activity
-            android:name=".feature.ui_effect.textview.TextViewActivity"
+            android:name=".feature.ui_effect.text_view.TextViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

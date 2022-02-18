@@ -5,7 +5,6 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.EvaluateItem
-import afkt.project.ui.adapter.EditsAdapter
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.feature.ui_effect.recy_adapter_concat.adapter.*
 import afkt.project.model.bean.HeaderFooterItem
 import afkt.project.model.bean.createMainData
 import afkt.project.ui.adapter.concat.*

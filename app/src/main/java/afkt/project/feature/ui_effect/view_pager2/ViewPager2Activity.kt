@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityViewpager2Binding
-import afkt.project.ui.fragment.newPagerFragment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View

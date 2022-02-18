@@ -4,10 +4,9 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
-import afkt.project.ui.adapter.MultiSelectAdapter
-import afkt.project.ui.adapter.MultiSelectAdapter.OnSelectListener
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

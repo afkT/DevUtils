@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.feature.ui_effect.recy_adapter_multitype.adapter.*
 import afkt.project.model.bean.*
-import afkt.project.ui.adapter.multitype.*
 import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route

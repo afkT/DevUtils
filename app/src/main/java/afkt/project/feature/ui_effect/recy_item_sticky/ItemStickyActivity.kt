@@ -5,7 +5,6 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ItemStickyBean
-import afkt.project.ui.adapter.ItemStickyAdapter
 import afkt.project.utils.AppSize
 import android.view.View
 import android.view.ViewGroup
