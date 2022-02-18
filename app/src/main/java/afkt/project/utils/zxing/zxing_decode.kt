@@ -1,4 +1,4 @@
-package afkt.project.util.zxing
+package afkt.project.utils.zxing
 
 import android.graphics.Bitmap
 import android.graphics.Rect

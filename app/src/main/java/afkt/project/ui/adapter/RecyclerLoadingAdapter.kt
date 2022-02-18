@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
-import afkt.project.util.ViewAssistUtils
+import afkt.project.utils.ViewAssistUtils
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

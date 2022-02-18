@@ -1,4 +1,4 @@
-package afkt.project.util.assist
+package afkt.project.utils.assist
 
 import afkt.project.R
 import afkt.project.model.item.TabItem

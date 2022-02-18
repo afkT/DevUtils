@@ -7,7 +7,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
 import afkt.project.ui.adapter.ShopCartAnimAdapter
-import afkt.project.util.ShopCartFloating
+import afkt.project.utils.ShopCartFloating
 import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route

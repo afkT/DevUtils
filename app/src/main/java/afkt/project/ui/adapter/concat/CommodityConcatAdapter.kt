@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityBean
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

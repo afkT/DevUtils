@@ -6,7 +6,7 @@ import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.model.item.FilterItem.Companion.createFilterForType
 import afkt.project.ui.adapter.GPUFilterAdapter
-import afkt.project.util.GPUFilterUtils.getFilterBitmap
+import afkt.project.utils.GPUFilterUtils.getFilterBitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View

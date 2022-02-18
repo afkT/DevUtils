@@ -1,6 +1,6 @@
 package afkt.project.ui.adapter
 
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.content.Context
 import android.view.View
 import dev.base.DevSource

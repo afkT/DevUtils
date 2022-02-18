@@ -3,7 +3,7 @@ package afkt.project.ui.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.model.item.EvaluateItem
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH

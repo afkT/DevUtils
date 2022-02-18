@@ -1366,6 +1366,13 @@ object ButtonList {
                     RouterPath.WaveViewActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_LINE_ITEM_DECORATION,
+                    "Linear ItemDecoration",
+                    RouterPath.LineItemDecorationActivity_PATH
+                )
+            )
             return lists
         }
 

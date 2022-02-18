@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
-import afkt.project.util.ProjectUtils.refShape
+import afkt.project.utils.ProjectUtils.refShape
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View

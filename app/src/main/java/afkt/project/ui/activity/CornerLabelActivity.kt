@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
-import afkt.project.util.AppSize
+import afkt.project.utils.AppSize
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout

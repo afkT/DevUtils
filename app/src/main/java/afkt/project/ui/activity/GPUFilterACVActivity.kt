@@ -6,8 +6,8 @@ import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.model.bean.ACVFileBean
 import afkt.project.ui.adapter.GPUFilterACVAdapter
-import afkt.project.util.GPUFilterUtils.getFilterBitmap
-import afkt.project.util.GPUFilterUtils.getGPUImageToneCurveFilter
+import afkt.project.utils.GPUFilterUtils.getFilterBitmap
+import afkt.project.utils.GPUFilterUtils.getGPUImageToneCurveFilter
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View

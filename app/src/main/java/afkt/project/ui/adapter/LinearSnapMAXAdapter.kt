@@ -3,7 +3,7 @@ package afkt.project.ui.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter

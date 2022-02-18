@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityQrcodeCreateBinding
-import afkt.project.util.AppSize
+import afkt.project.utils.AppSize
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils

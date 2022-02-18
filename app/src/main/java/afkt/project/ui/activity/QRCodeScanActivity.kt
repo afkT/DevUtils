@@ -4,11 +4,11 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
-import afkt.project.util.ProjectUtils.refShape
-import afkt.project.util.zxing.DecodeConfig
-import afkt.project.util.zxing.DecodeResult
-import afkt.project.util.zxing.Operate
-import afkt.project.util.zxing.ZXingDecodeAssist
+import afkt.project.utils.ProjectUtils.refShape
+import afkt.project.utils.zxing.DecodeConfig
+import afkt.project.utils.zxing.DecodeResult
+import afkt.project.utils.zxing.Operate
+import afkt.project.utils.zxing.ZXingDecodeAssist
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect

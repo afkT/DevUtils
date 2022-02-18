@@ -3,7 +3,7 @@ package afkt.project.ui.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils

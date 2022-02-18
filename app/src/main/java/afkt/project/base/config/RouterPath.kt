@@ -156,4 +156,6 @@ object RouterPath {
 
     const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
 
+    const val LineItemDecorationActivity_PATH = "/activity/LineItemDecorationActivity"
+
 }

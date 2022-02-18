@@ -1,4 +1,4 @@
-package afkt.project.util
+package afkt.project.utils
 
 import afkt.project.R
 import android.view.LayoutInflater

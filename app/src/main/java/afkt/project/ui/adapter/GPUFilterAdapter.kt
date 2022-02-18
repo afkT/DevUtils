@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.model.item.FilterItem
-import afkt.project.util.AppSize
+import afkt.project.utils.AppSize
 import android.content.Context
 import android.view.Gravity
 import android.view.View

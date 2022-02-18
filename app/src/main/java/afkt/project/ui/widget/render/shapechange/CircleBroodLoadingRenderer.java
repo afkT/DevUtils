@@ -14,7 +14,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import afkt.project.util.AppSize;
+import afkt.project.utils.AppSize;
 
 public class CircleBroodLoadingRenderer
         extends LoadingRenderer {

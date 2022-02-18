@@ -1,4 +1,4 @@
-package afkt.project.util
+package afkt.project.utils
 
 import android.annotation.SuppressLint
 import android.net.wifi.WifiManager

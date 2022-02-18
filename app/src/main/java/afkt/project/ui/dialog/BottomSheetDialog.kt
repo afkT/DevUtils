@@ -1,7 +1,7 @@
 package afkt.project.ui.dialog
 
 import afkt.project.R
-import afkt.project.util.AppSize
+import afkt.project.utils.AppSize
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

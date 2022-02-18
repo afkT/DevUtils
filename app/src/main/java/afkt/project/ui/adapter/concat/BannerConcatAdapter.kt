@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.model.bean.BannerBean
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,6 +1,6 @@
-package afkt.project.util.zxing
+package afkt.project.utils.zxing
 
-import afkt.project.util.zxing.DecodeFormat.DecodeMode
+import afkt.project.utils.zxing.DecodeFormat.DecodeMode
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler

@@ -3,7 +3,7 @@ package afkt.project.ui.adapter.multitype
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityBeanItem
-import afkt.project.util.ProjectUtils
+import afkt.project.utils.ProjectUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
