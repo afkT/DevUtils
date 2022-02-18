@@ -4,17 +4,6 @@ import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: Tab 模型类
- * @author Ttt
- */
-class TabItem(
-    // 标题
-    val title: String,
-    // 类型
-    val type: Int
-)
-
-/**
  * detail: 评价 Item
  * @author Ttt
  */

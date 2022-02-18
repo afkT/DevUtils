@@ -1,6 +1,6 @@
 package afkt.project.base.app
 
-import afkt.project.ui.activity.Utils2
+import afkt.project.feature.other_function.Utils2
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup

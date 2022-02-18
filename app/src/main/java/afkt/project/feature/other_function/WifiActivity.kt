@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.other_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -7,7 +7,6 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.wifiButtonValues
 import afkt.project.model.item.ButtonValue
-import afkt.project.utils.QuickWifiHotUtils
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration

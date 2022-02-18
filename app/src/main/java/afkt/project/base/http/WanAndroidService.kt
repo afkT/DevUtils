@@ -1,4 +1,4 @@
-package afkt.project.function.http
+package afkt.project.base.http
 
 import afkt.project.model.bean.ArticleBean
 import io.reactivex.rxjava3.core.Flowable

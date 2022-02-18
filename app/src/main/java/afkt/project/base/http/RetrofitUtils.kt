@@ -1,4 +1,4 @@
-package afkt.project.function.http
+package afkt.project.base.http
 
 import dev.DevUtils
 import dev.capture.CallbackInterceptor

@@ -109,7 +109,7 @@
         <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
 
         <activity
-            android:name=".ui.activity.ListenerActivity"
+            android:name=".feature.other_function.ListenerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -117,7 +117,7 @@
         <!-- 通知栏监听服务 ( NotificationService ) -->
 
         <activity
-            android:name=".ui.activity.NotificationServiceActivity"
+            android:name=".feature.other_function.NotificationServiceActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -125,7 +125,7 @@
         <!-- 无障碍监听服务 ( AccessibilityListenerService ) -->
 
         <activity
-            android:name=".ui.activity.AccessibilityListenerServiceActivity"
+            android:name=".feature.other_function.AccessibilityListenerServiceActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -133,7 +133,7 @@
         <!-- Wifi 相关 ( 热点 ) -->
 
         <activity
-            android:name=".ui.activity.WifiActivity"
+            android:name=".feature.other_function.WifiActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -141,7 +141,7 @@
         <!-- 铃声、震动、通知栏等功能 -->
 
         <activity
-            android:name=".ui.activity.FunctionActivity"
+            android:name=".feature.other_function.FunctionActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -149,7 +149,7 @@
         <!-- TimerManager 定时器工具类 -->
 
         <activity
-            android:name=".ui.activity.TimerActivity"
+            android:name=".feature.other_function.TimerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -157,7 +157,7 @@
         <!-- DevCache 缓存工具类 -->
 
         <activity
-            android:name=".ui.activity.CacheActivity"
+            android:name=".feature.other_function.CacheActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -165,7 +165,7 @@
         <!-- DevLogger 日志工具类 -->
 
         <activity
-            android:name=".ui.activity.LoggerActivity"
+            android:name=".feature.other_function.LoggerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -173,7 +173,7 @@
         <!-- 日志、异常文件记录保存 -->
 
         <activity
-            android:name=".ui.activity.FileRecordActivity"
+            android:name=".feature.other_function.FileRecordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -181,7 +181,7 @@
         <!-- 奔溃日志捕获 -->
 
         <activity
-            android:name=".ui.activity.CrashCatchActivity"
+            android:name=".feature.other_function.CrashCatchActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -189,7 +189,7 @@
         <!-- 路径信息 -->
 
         <activity
-            android:name=".ui.activity.PathActivity"
+            android:name=".feature.other_function.PathActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -461,7 +461,7 @@
         <!-- WebView 辅助类 -->
 
         <activity
-            android:name=".ui.activity.WebViewActivity"
+            android:name=".feature.other_function.WebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -597,7 +597,7 @@
         <!-- startActivityForResult Callback -->
 
         <activity
-            android:name=".ui.activity.ActivityResultCallbackActivity"
+            android:name=".feature.other_function.ActivityResultCallbackActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -605,7 +605,7 @@
         <!-- 添加联系人 -->
 
         <activity
-            android:name=".ui.activity.AddContactActivity"
+            android:name=".feature.other_function.AddContactActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -613,7 +613,7 @@
         <!-- 手机壁纸 -->
 
         <activity
-            android:name=".ui.activity.WallpaperActivity"
+            android:name=".feature.other_function.WallpaperActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -621,7 +621,7 @@
         <!-- 悬浮窗管理辅助类 ( 需权限 ) -->
 
         <activity
-            android:name=".ui.activity.FloatingWindowManagerActivity"
+            android:name=".feature.other_function.FloatingWindowManagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -629,7 +629,7 @@
         <!-- 悬浮窗管理辅助类 ( 无需权限依赖 Activity ) -->
 
         <activity
-            android:name=".ui.activity.FloatingWindowManager2Activity"
+            android:name=".feature.other_function.FloatingWindowManager2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

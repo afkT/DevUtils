@@ -1,4 +1,4 @@
-package afkt.project.base.constants
+package afkt.project.base.http
 
 import dev.environment.annotation.Environment
 import dev.environment.annotation.Module

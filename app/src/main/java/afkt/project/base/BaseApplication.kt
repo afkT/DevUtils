@@ -2,7 +2,7 @@ package afkt.project.base
 
 import afkt.project.R
 import afkt.project.base.config.AppConfig
-import afkt.project.function.http.RetrofitUtils
+import afkt.project.base.http.RetrofitUtils
 import android.content.Context
 import android.net.Uri
 import android.os.Build

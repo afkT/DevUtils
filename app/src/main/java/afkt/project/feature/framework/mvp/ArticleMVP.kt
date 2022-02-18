@@ -1,6 +1,6 @@
 package afkt.project.feature.framework.mvp
 
-import afkt.project.function.http.RetrofitUtils
+import afkt.project.base.http.RetrofitUtils
 import afkt.project.model.bean.ArticleBean
 import dev.base.expand.mvp.MVP
 import dev.base.expand.mvp.MVP.IModel
