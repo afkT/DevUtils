@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.lib_frame.room
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -9,7 +9,6 @@ import afkt.project.database.room.module.note.bean.NoteAndPicture
 import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.ActivityDatabaseBinding
-import afkt.project.ui.adapter.RoomAdapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -27,7 +26,7 @@ import kotlin.math.abs
  * detail: Room 使用
  * @author Ttt
  */
-@Route(path = RouterPath.RoomActivity_PATH)
+@Route(path = RouterPath.LIB_FRAME.RoomActivity_PATH)
 class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
 
     val adapter = RoomAdapter()

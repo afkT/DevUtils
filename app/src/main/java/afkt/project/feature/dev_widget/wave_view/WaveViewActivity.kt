@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.wave
+package afkt.project.feature.dev_widget.wave_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity

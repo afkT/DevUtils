@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.line
+package afkt.project.feature.dev_widget.line_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity

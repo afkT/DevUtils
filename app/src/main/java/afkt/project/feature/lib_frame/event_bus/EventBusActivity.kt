@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.lib_frame.event_bus
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -22,7 +22,7 @@ import utils_use.toast.ToastTintUse
  * @author Ttt
  * [ToastTintUse]
  */
-@Route(path = RouterPath.EventBusActivity_PATH)
+@Route(path = RouterPath.LIB_FRAME.EventBusActivity_PATH)
 class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

@@ -156,21 +156,21 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_GREEN_DAO,
                     "GreenDAO",
-                    RouterPath.GreenDaoActivity_PATH
+                    RouterPath.LIB_FRAME.GreenDaoActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ROOM,
                     "Room",
-                    RouterPath.RoomActivity_PATH
+                    RouterPath.LIB_FRAME.RoomActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_EVENT_BUS,
                     "EventBusUtils",
-                    RouterPath.EventBusActivity_PATH
+                    RouterPath.LIB_FRAME.EventBusActivity_PATH
                 )
             )
             lists.add(

@@ -1,9 +1,9 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.lib_frame.green_dao
 
 import afkt.project.R
-import afkt.project.database.room.module.note.bean.NoteAndPicture
-import afkt.project.database.room.module.note.bean.NotePicture
-import afkt.project.database.room.module.note.bean.NoteType
+import afkt.project.database.green.module.note.bean.Note
+import afkt.project.database.green.module.note.bean.NotePicture
+import afkt.project.database.green.module.note.bean.NoteType
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
 import android.view.ViewGroup
@@ -18,10 +18,10 @@ import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.DateUtils
 
 /**
- * detail: Room 适配器
+ * detail: GreenDao 适配器
  * @author Ttt
  */
-class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
+class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
 
     init {
         setPage(0, 8)
@@ -38,8 +38,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
         holder: DevBaseViewBindingVH<AdapterDatabaseBinding>,
         position: Int
     ) {
-        val item = getDataItem(position)
-        val note = item.note
+        val note = getDataItem(position)
         ViewHelper.get()
             .setText(note.text, holder.binding.vidTitleTv)
             .setText(note.comment, holder.binding.vidContentTv)
@@ -51,7 +50,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             .setVisibilitys(note.type != NoteType.TEXT, holder.binding.vidRv)
         val imgRecy = holder.binding.vidRv
         if (ViewUtils.isVisibility(imgRecy)) {
-            ImageAdapter(item.pictures).bindAdapter(imgRecy)
+            ImageAdapter(note.pictures).bindAdapter(imgRecy)
         }
     }
 

@@ -20,12 +20,6 @@ object RouterPath {
 
     const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
 
-    const val EventBusActivity_PATH = "/activity/EventBusActivity"
-
-    const val GreenDaoActivity_PATH = "/activity/GreenDaoActivity"
-
-    const val RoomActivity_PATH = "/activity/RoomActivity"
-
     const val ToastTintActivity_PATH = "/activity/ToastTintActivity"
 
     const val UIEffectActivity_PATH = "/activity/UIEffectActivity"
@@ -135,6 +129,18 @@ object RouterPath {
         const val ArticleMVPActivity_PATH = "/activity/ArticleMVPActivity"
 
         const val ArticleMVVMActivity_PATH = "/activity/ArticleMVVMActivity"
+    }
+
+    /**
+     * Lib 框架
+     */
+    object LIB_FRAME {
+
+        const val GreenDaoActivity_PATH = "/activity/GreenDaoActivity"
+
+        const val RoomActivity_PATH = "/activity/RoomActivity"
+
+        const val EventBusActivity_PATH = "/activity/EventBusActivity"
     }
 
     /**

@@ -309,7 +309,7 @@
         <!-- 自动换行 View -->
 
         <activity
-            android:name=".feature.dev_widget.wrap.WrapActivity"
+            android:name=".feature.dev_widget.wrap_view.WrapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -317,7 +317,7 @@
         <!-- 签名 View -->
 
         <activity
-            android:name=".feature.dev_widget.sign.SignActivity"
+            android:name=".feature.dev_widget.sign_view.SignActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -325,7 +325,7 @@
         <!-- 换行监听 View -->
 
         <activity
-            android:name=".feature.dev_widget.line.LineActivity"
+            android:name=".feature.dev_widget.line_view.LineActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -373,7 +373,7 @@
         <!-- 波浪 View -->
 
         <activity
-            android:name=".feature.dev_widget.wave.WaveViewActivity"
+            android:name=".feature.dev_widget.wave_view.WaveViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -421,7 +421,7 @@
         <!-- EventBusUtils -->
 
         <activity
-            android:name=".ui.activity.EventBusActivity"
+            android:name=".feature.lib_frame.event_bus.EventBusActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -429,7 +429,7 @@
         <!-- GreenDao -->
 
         <activity
-            android:name=".ui.activity.GreenDaoActivity"
+            android:name=".feature.lib_frame.green_dao.GreenDaoActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -437,7 +437,7 @@
         <!-- Room -->
 
         <activity
-            android:name=".ui.activity.RoomActivity"
+            android:name=".feature.lib_frame.room.RoomActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

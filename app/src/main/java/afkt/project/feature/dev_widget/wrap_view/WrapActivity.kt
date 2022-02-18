@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.wrap
+package afkt.project.feature.dev_widget.wrap_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity

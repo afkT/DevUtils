@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.sign
+package afkt.project.feature.dev_widget.sign_view
 
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
