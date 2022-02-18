@@ -1,4 +1,4 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.dev_widget.view_pager
 
 import afkt.project.databinding.ViewPagerItemViewBinding
 import android.view.LayoutInflater

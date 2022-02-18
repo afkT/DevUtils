@@ -205,7 +205,7 @@
         <!-- 自定义 ProgressBar 样式 View -->
 
         <activity
-            android:name=".ui.activity.ProgressBarActivity"
+            android:name=".feature.dev_widget.progress_bar.ProgressBarActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -221,7 +221,7 @@
         <!-- ViewPager 滑动监听、控制滑动 -->
 
         <activity
-            android:name=".ui.activity.ViewPagerActivity"
+            android:name=".feature.dev_widget.view_pager.ViewPagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

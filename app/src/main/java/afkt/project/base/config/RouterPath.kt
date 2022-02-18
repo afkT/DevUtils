@@ -130,10 +130,6 @@ object RouterPath {
 
     const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
 
-    const val ViewPagerActivity_PATH = "/activity/ViewPagerActivity"
-
-    const val ProgressBarActivity_PATH = "/activity/ProgressBarActivity"
-
     const val ScanShapeActivity_PATH = "/activity/ScanShapeActivity"
 
     const val WrapActivity_PATH = "/activity/WrapActivity"
@@ -157,5 +153,15 @@ object RouterPath {
     const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
 
     const val LineItemDecorationActivity_PATH = "/activity/LineItemDecorationActivity"
+
+    /**
+     * DevWidget UI 库
+     */
+    object DEV_WIDGET {
+
+        const val ProgressBarActivity_PATH = "/activity/ProgressBarActivity"
+
+        const val ViewPagerActivity_PATH = "/activity/ViewPagerActivity"
+    }
 
 }

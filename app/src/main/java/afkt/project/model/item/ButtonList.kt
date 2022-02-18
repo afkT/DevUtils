@@ -1293,14 +1293,14 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_VIEW_PAGER,
                     "ViewPager 滑动监听、控制滑动",
-                    RouterPath.ViewPagerActivity_PATH
+                    RouterPath.DEV_WIDGET.ViewPagerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CUSTOM_PROGRESS_BAR,
                     "自定义 ProgressBar 样式 View",
-                    RouterPath.ProgressBarActivity_PATH
+                    RouterPath.DEV_WIDGET.ProgressBarActivity_PATH
                 )
             )
             lists.add(

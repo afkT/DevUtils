@@ -1,10 +1,9 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.view_pager
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityViewPagerBinding
-import afkt.project.ui.adapter.ViewPagerAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.widget.custom.CustomViewPager.OnDirectionListener
@@ -13,7 +12,7 @@ import dev.widget.custom.CustomViewPager.OnDirectionListener
  * detail: ViewPager 滑动监听、控制滑动
  * @author Ttt
  */
-@Route(path = RouterPath.ViewPagerActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.ViewPagerActivity_PATH)
 class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_view_pager

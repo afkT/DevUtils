@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_widget.progress_bar
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -14,7 +14,7 @@ import dev.utils.app.ActivityUtils
  * detail: 自定义 ProgressBar 样式 View
  * @author Ttt
  */
-@Route(path = RouterPath.ProgressBarActivity_PATH)
+@Route(path = RouterPath.DEV_WIDGET.ProgressBarActivity_PATH)
 class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_progressbar
