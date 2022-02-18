@@ -12,74 +12,6 @@ object RouterPath {
 
     const val ButtonItemActivity_PATH = "/activity/ButtonItemActivity"
 
-    const val DevEnvironmentLibActivity_PATH = "/activity/DevEnvironmentLibActivity"
-
-    const val DevAssistEngineActivity_PATH = "/activity/DevAssistEngineActivity"
-
-    const val DevHttpCaptureActivity_PATH = "/activity/DevHttpCaptureActivity"
-
-    const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
-
-    const val ToastTintActivity_PATH = "/activity/ToastTintActivity"
-
-    const val UIEffectActivity_PATH = "/activity/UIEffectActivity"
-
-    const val StatusBarActivity_PATH = "/activity/StatusBarActivity"
-
-    const val TextCalcActivity_PATH = "/activity/TextCalcActivity"
-
-    const val AdapterEditsActivity_PATH = "/activity/AdapterEditsActivity"
-
-    const val MultiSelectActivity_PATH = "/activity/MultiSelectActivity"
-
-    const val GPUFilterACVActivity_PATH = "/activity/GPUFilterACVActivity"
-
-    const val GPUFilterActivity_PATH = "/activity/GPUFilterActivity"
-
-    const val QRCodeCreateActivity_PATH = "/activity/QRCodeCreateActivity"
-
-    const val QRCodeImageActivity_PATH = "/activity/QRCodeImageActivity"
-
-    const val QRCodeScanActivity_PATH = "/activity/QRCodeScanActivity"
-
-    const val CapturePictureActivity_PATH = "/activity/CapturePictureActivity"
-
-    const val CapturePictureListActivity_PATH = "/activity/CapturePictureListActivity"
-
-    const val CapturePictureGridActivity_PATH = "/activity/CapturePictureGridActivity"
-
-    const val CapturePictureRecyActivity_PATH = "/activity/CapturePictureRecyActivity"
-
-    const val CapturePictureWebActivity_PATH = "/activity/CapturePictureWebActivity"
-
-    const val TextViewActivity_PATH = "/activity/TextViewActivity"
-
-    const val ItemStickyActivity_PATH = "/activity/ItemStickyActivity"
-
-    const val RecyItemSlideActivity_PATH = "/activity/RecyItemSlideActivity"
-
-    const val LinearSnapActivity_PATH = "/activity/LinearSnapActivity"
-
-    const val LinearSnapMAXActivity_PATH = "/activity/LinearSnapMAXActivity"
-
-    const val PagerSnapActivity_PATH = "/activity/PagerSnapActivity"
-
-    const val PagerSnapMAXActivity_PATH = "/activity/PagerSnapMAXActivity"
-
-    const val ShapeableImageViewActivity_PATH = "/activity/ShapeableImageViewActivity"
-
-    const val BottomSheetActivity_PATH = "/activity/BottomSheetActivity"
-
-    const val BottomSheetDialogActivity_PATH = "/activity/BottomSheetDialogActivity"
-
-    const val PaletteActivity_PATH = "/activity/PaletteActivity"
-
-    const val FlexboxLayoutManagerActivity_PATH = "/activity/FlexboxLayoutManagerActivity"
-
-    const val ChipActivity_PATH = "/activity/ChipActivity"
-
-    const val ViewPager2Activity_PATH = "/activity/ViewPager2Activity"
-
     const val ListenerActivity_PATH = "/activity/ListenerActivity"
 
     const val NotificationServiceActivity_PATH = "/activity/NotificationServiceActivity"
@@ -115,12 +47,6 @@ object RouterPath {
 
     const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
 
-    const val RecyConcatAdapterActivity_PATH = "/activity/RecyConcatAdapterActivity"
-
-    const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
-
-    const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
-
     /**
      * Framework 架构
      */
@@ -141,6 +67,78 @@ object RouterPath {
         const val RoomActivity_PATH = "/activity/RoomActivity"
 
         const val EventBusActivity_PATH = "/activity/EventBusActivity"
+    }
+
+    /**
+     * UI 效果
+     */
+    object UI_EFFECT {
+
+        const val ToastTintActivity_PATH = "/activity/ToastTintActivity"
+
+        const val UIEffectActivity_PATH = "/activity/UIEffectActivity"
+
+        const val StatusBarActivity_PATH = "/activity/StatusBarActivity"
+
+        const val TextCalcActivity_PATH = "/activity/TextCalcActivity"
+
+        const val AdapterEditsActivity_PATH = "/activity/AdapterEditsActivity"
+
+        const val MultiSelectActivity_PATH = "/activity/MultiSelectActivity"
+
+        const val GPUFilterACVActivity_PATH = "/activity/GPUFilterACVActivity"
+
+        const val GPUFilterActivity_PATH = "/activity/GPUFilterActivity"
+
+        const val QRCodeCreateActivity_PATH = "/activity/QRCodeCreateActivity"
+
+        const val QRCodeImageActivity_PATH = "/activity/QRCodeImageActivity"
+
+        const val QRCodeScanActivity_PATH = "/activity/QRCodeScanActivity"
+
+        const val CapturePictureActivity_PATH = "/activity/CapturePictureActivity"
+
+        const val CapturePictureListActivity_PATH = "/activity/CapturePictureListActivity"
+
+        const val CapturePictureGridActivity_PATH = "/activity/CapturePictureGridActivity"
+
+        const val CapturePictureRecyActivity_PATH = "/activity/CapturePictureRecyActivity"
+
+        const val CapturePictureWebActivity_PATH = "/activity/CapturePictureWebActivity"
+
+        const val TextViewActivity_PATH = "/activity/TextViewActivity"
+
+        const val ItemStickyActivity_PATH = "/activity/ItemStickyActivity"
+
+        const val RecyItemSlideActivity_PATH = "/activity/RecyItemSlideActivity"
+
+        const val LinearSnapActivity_PATH = "/activity/LinearSnapActivity"
+
+        const val LinearSnapMAXActivity_PATH = "/activity/LinearSnapMAXActivity"
+
+        const val PagerSnapActivity_PATH = "/activity/PagerSnapActivity"
+
+        const val PagerSnapMAXActivity_PATH = "/activity/PagerSnapMAXActivity"
+
+        const val ShapeableImageViewActivity_PATH = "/activity/ShapeableImageViewActivity"
+
+        const val BottomSheetActivity_PATH = "/activity/BottomSheetActivity"
+
+        const val BottomSheetDialogActivity_PATH = "/activity/BottomSheetDialogActivity"
+
+        const val PaletteActivity_PATH = "/activity/PaletteActivity"
+
+        const val FlexboxLayoutManagerActivity_PATH = "/activity/FlexboxLayoutManagerActivity"
+
+        const val ChipActivity_PATH = "/activity/ChipActivity"
+
+        const val ViewPager2Activity_PATH = "/activity/ViewPager2Activity"
+
+        const val RecyConcatAdapterActivity_PATH = "/activity/RecyConcatAdapterActivity"
+
+        const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
+
+        const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
     }
 
     /**
@@ -174,6 +172,20 @@ object RouterPath {
         const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
 
         const val LineItemDecorationActivity_PATH = "/activity/LineItemDecorationActivity"
+    }
+
+    /**
+     * Dev Libs
+     */
+    object DEV_LIB {
+
+        const val DevEnvironmentLibActivity_PATH = "/activity/DevEnvironmentLibActivity"
+
+        const val DevAssistEngineActivity_PATH = "/activity/DevAssistEngineActivity"
+
+        const val DevHttpCaptureActivity_PATH = "/activity/DevHttpCaptureActivity"
+
+        const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
     }
 
 }

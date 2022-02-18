@@ -58,28 +58,28 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.MODULE_DEV_ENVIRONMENT,
                     "DevEnvironment 环境配置切换库",
-                    RouterPath.DevEnvironmentLibActivity_PATH
+                    RouterPath.DEV_LIB.DevEnvironmentLibActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_ASSIST_ENGINE,
                     "DevAssist Engine 实现",
-                    RouterPath.DevAssistEngineActivity_PATH
+                    RouterPath.DEV_LIB.DevAssistEngineActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_HTTP_CAPTURE,
                     "DevHttpCapture OkHttp 抓包工具库",
-                    RouterPath.DevHttpCaptureActivity_PATH
+                    RouterPath.DEV_LIB.DevHttpCaptureActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_SKU,
                     "DevSKU 商品 SKU 组合封装实现",
-                    RouterPath.DevSKUActivity_PATH
+                    RouterPath.DEV_LIB.DevSKUActivity_PATH
                 )
             )
             return lists
@@ -314,203 +314,203 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_TOAST_TINT,
                     "ToastTint ( 着色美化 Toast )",
-                    RouterPath.ToastTintActivity_PATH
+                    RouterPath.UI_EFFECT.ToastTintActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_UI_EFFECT,
                     "常见 UI、GradientDrawable 效果等",
-                    RouterPath.UIEffectActivity_PATH
+                    RouterPath.UI_EFFECT.UIEffectActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_STATUS_BAR,
                     "点击 显示/隐藏 ( 状态栏 )",
-                    RouterPath.StatusBarActivity_PATH
+                    RouterPath.UI_EFFECT.StatusBarActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TEXT_CALC,
                     "计算字体宽度、高度",
-                    RouterPath.TextCalcActivity_PATH
+                    RouterPath.UI_EFFECT.TextCalcActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ADAPTER_EDITS,
                     "Adapter Item EditText 输入监听",
-                    RouterPath.AdapterEditsActivity_PATH
+                    RouterPath.UI_EFFECT.AdapterEditsActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_MULTI_SELECT,
                     "多选辅助类 MultiSelectAssist",
-                    RouterPath.MultiSelectActivity_PATH
+                    RouterPath.UI_EFFECT.MultiSelectActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GPU_ACV,
                     "GPU ACV 文件滤镜效果",
-                    RouterPath.GPUFilterACVActivity_PATH
+                    RouterPath.UI_EFFECT.GPUFilterACVActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GPU_FILTER,
                     "GPU 滤镜效果",
-                    RouterPath.GPUFilterActivity_PATH
+                    RouterPath.UI_EFFECT.GPUFilterActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_QRCODE_CREATE,
                     "创建二维码",
-                    RouterPath.QRCodeCreateActivity_PATH
+                    RouterPath.UI_EFFECT.QRCodeCreateActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_QRCODE_IMAGE,
                     "二维码图片解析",
-                    RouterPath.QRCodeImageActivity_PATH
+                    RouterPath.UI_EFFECT.QRCodeImageActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_QRCODE_SCAN,
                     "二维码扫描解析",
-                    RouterPath.QRCodeScanActivity_PATH
+                    RouterPath.UI_EFFECT.QRCodeScanActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CAPTURE_PICTURE,
                     "CapturePictureUtils 截图工具类",
-                    RouterPath.CapturePictureActivity_PATH
+                    RouterPath.UI_EFFECT.CapturePictureActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TEXTVIEW,
                     "两个 TextView 显示效果",
-                    RouterPath.TextViewActivity_PATH
+                    RouterPath.UI_EFFECT.TextViewActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ITEM_STICKY,
                     "RecyclerView 吸附效果",
-                    RouterPath.ItemStickyActivity_PATH
+                    RouterPath.UI_EFFECT.ItemStickyActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECY_ITEM_SLIDE,
                     "RecyclerView 滑动删除、上下滑动",
-                    RouterPath.RecyItemSlideActivity_PATH
+                    RouterPath.UI_EFFECT.RecyItemSlideActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECY_LINEAR_SNAP,
                     "LinearSnapHelper - RecyclerView",
-                    RouterPath.LinearSnapActivity_PATH
+                    RouterPath.UI_EFFECT.LinearSnapActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECY_LINEAR_SNAP_MAX,
                     "LinearSnapHelper - 无限滑动",
-                    RouterPath.LinearSnapMAXActivity_PATH
+                    RouterPath.UI_EFFECT.LinearSnapMAXActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECY_PAGER_SNAP,
                     "PagerSnapHelper - RecyclerView",
-                    RouterPath.PagerSnapActivity_PATH
+                    RouterPath.UI_EFFECT.PagerSnapActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECY_PAGER_SNAP_MAX,
                     "PagerSnapHelper - 无限滑动",
-                    RouterPath.PagerSnapMAXActivity_PATH
+                    RouterPath.UI_EFFECT.PagerSnapMAXActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW,
                     "Material ShapeableImageView",
-                    RouterPath.ShapeableImageViewActivity_PATH
+                    RouterPath.UI_EFFECT.ShapeableImageViewActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_BOTTOM_SHEET,
                     "Material BottomSheet",
-                    RouterPath.BottomSheetActivity_PATH
+                    RouterPath.UI_EFFECT.BottomSheetActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_BOTTOM_SHEET_DIALOG,
                     "Material BottomSheetDialog",
-                    RouterPath.BottomSheetDialogActivity_PATH
+                    RouterPath.UI_EFFECT.BottomSheetDialogActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_PALETTE,
                     "Palette 调色板",
-                    RouterPath.PaletteActivity_PATH
+                    RouterPath.UI_EFFECT.PaletteActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FLEXBOX_LAYOUTMANAGER,
                     "Flexbox LayoutManager",
-                    RouterPath.FlexboxLayoutManagerActivity_PATH
+                    RouterPath.UI_EFFECT.FlexboxLayoutManagerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CHIP,
                     "Material Chip、ChipGroups、ChipDrawable",
-                    RouterPath.ChipActivity_PATH
+                    RouterPath.UI_EFFECT.ChipActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEWPAGER2,
                     "ViewPager2",
-                    RouterPath.ViewPager2Activity_PATH
+                    RouterPath.UI_EFFECT.ViewPager2Activity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECYCLERVIEW_CONCATADAPTER,
                     "RecyclerView - ConcatAdapter",
-                    RouterPath.RecyConcatAdapterActivity_PATH
+                    RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_RECYCLERVIEW_MULTITYPE_ADAPTER,
                     "RecyclerView MultiType Adapter",
-                    RouterPath.RecyMultiTypeAdapterActivity_PATH
+                    RouterPath.UI_EFFECT.RecyMultiTypeAdapterActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_SHOP_CARD_ADD_ANIM,
                     "购物车加入动画",
-                    RouterPath.ShopCartAddAnimActivity_PATH
+                    RouterPath.UI_EFFECT.ShopCartAddAnimActivity_PATH
                 )
             )
             return lists

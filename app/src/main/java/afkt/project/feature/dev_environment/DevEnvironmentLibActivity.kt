@@ -20,7 +20,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: DevEnvironment 环境配置切换库
  * @author Ttt
  */
-@Route(path = RouterPath.DevEnvironmentLibActivity_PATH)
+@Route(path = RouterPath.DEV_LIB.DevEnvironmentLibActivity_PATH)
 class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

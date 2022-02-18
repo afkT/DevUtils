@@ -25,7 +25,7 @@ import dev.utils.app.helper.quick.QuickHelper
  * detail: DevAssist Engine 实现
  * @author Ttt
  */
-@Route(path = RouterPath.DevAssistEngineActivity_PATH)
+@Route(path = RouterPath.DEV_LIB.DevAssistEngineActivity_PATH)
 class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
