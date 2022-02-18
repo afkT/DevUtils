@@ -645,7 +645,7 @@
         <!-- DevEnvironment 环境配置切换库 -->
 
         <activity
-            android:name=".ui.activity.DevEnvironmentLibActivity"
+            android:name=".feature.dev_environment.DevEnvironmentLibActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -653,7 +653,7 @@
         <!-- DevAssist Engine 实现 -->
 
         <activity
-            android:name=".ui.activity.DevAssistEngineActivity"
+            android:name=".feature.dev_engine.DevAssistEngineActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -661,7 +661,7 @@
         <!-- DevHttpCapture OkHttp 抓包工具库 -->
 
         <activity
-            android:name=".ui.activity.DevHttpCaptureActivity"
+            android:name=".feature.dev_http_capture.DevHttpCaptureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -669,7 +669,7 @@
         <!-- DevSKU 商品 SKU 组合封装实现 -->
 
         <activity
-            android:name=".ui.activity.DevSKUActivity"
+            android:name=".feature.dev_sku.DevSKUActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -1,10 +1,8 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuAdapterSpecBinding
 import afkt.project.databinding.SkuAdapterSpecItemBinding
-import afkt.project.ui.activity.SKUConvert
-import afkt.project.ui.activity.Spec
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

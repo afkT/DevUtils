@@ -1,4 +1,4 @@
-package afkt.project.ui.activity
+package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -7,9 +7,6 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import afkt.project.ui.dialog.BuyType
-import afkt.project.ui.dialog.SKUCallback
-import afkt.project.ui.dialog.SKUDialog
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine

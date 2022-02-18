@@ -1,11 +1,7 @@
-package afkt.project.ui.dialog
+package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuDialogSpecBinding
-import afkt.project.ui.activity.CommoditySKU
-import afkt.project.ui.activity.SKUConvert
-import afkt.project.ui.activity.Spec
-import afkt.project.ui.adapter.SKUAdapter
 import afkt.project.utils.ProjectUtils
 import android.app.Dialog
 import android.view.Gravity
