@@ -229,7 +229,7 @@
         <!-- 点击 显示/隐藏 ( 状态栏 ) -->
 
         <activity
-            android:name=".feature.ui_effect.StatusBarActivity"
+            android:name=".feature.ui_effect.status_bar.StatusBarActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -237,7 +237,7 @@
         <!-- 计算字体宽度、高度 -->
 
         <activity
-            android:name=".feature.ui_effect.TextCalcActivity"
+            android:name=".feature.ui_effect.text_calc.TextCalcActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -245,7 +245,7 @@
         <!-- Adapter Item EditText 输入监听 -->
 
         <activity
-            android:name=".feature.ui_effect.AdapterEditsActivity"
+            android:name=".feature.ui_effect.adapter_edits.AdapterEditsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -253,7 +253,7 @@
         <!-- 多选辅助类 MultiSelectAssist -->
 
         <activity
-            android:name=".feature.ui_effect.MultiSelectActivity"
+            android:name=".feature.ui_effect.multi_select.MultiSelectActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -261,7 +261,7 @@
         <!-- GPU ACV 文件滤镜效果 -->
 
         <activity
-            android:name=".feature.ui_effect.GPUFilterACVActivity"
+            android:name=".feature.ui_effect.gpu.GPUFilterACVActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -269,7 +269,7 @@
         <!-- GPU 滤镜效果 -->
 
         <activity
-            android:name=".feature.ui_effect.GPUFilterActivity"
+            android:name=".feature.ui_effect.gpu.GPUFilterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -285,7 +285,7 @@
         <!-- 创建二维码 -->
 
         <activity
-            android:name=".feature.ui_effect.QRCodeCreateActivity"
+            android:name=".feature.ui_effect.qrcode.QRCodeCreateActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -293,7 +293,7 @@
         <!-- 二维码图片解析 -->
 
         <activity
-            android:name=".feature.ui_effect.QRCodeImageActivity"
+            android:name=".feature.ui_effect.qrcode.QRCodeImageActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -301,7 +301,7 @@
         <!-- 二维码扫描解析 -->
 
         <activity
-            android:name=".feature.ui_effect.QRCodeScanActivity"
+            android:name=".feature.ui_effect.qrcode.QRCodeScanActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -381,7 +381,7 @@
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity
-            android:name=".feature.ui_effect.CapturePictureActivity"
+            android:name=".feature.ui_effect.capture_picture.CapturePictureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -389,7 +389,7 @@
         <!-- CapturePictureUtils ListView 截图 -->
 
         <activity
-            android:name=".feature.ui_effect.CapturePictureListActivity"
+            android:name=".feature.ui_effect.capture_picture.CapturePictureListActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -397,7 +397,7 @@
         <!-- CapturePictureUtils GridView 截图 -->
 
         <activity
-            android:name=".feature.ui_effect.CapturePictureGridActivity"
+            android:name=".feature.ui_effect.capture_picture.CapturePictureGridActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -405,7 +405,7 @@
         <!-- CapturePictureUtils RecyclerView 截图 -->
 
         <activity
-            android:name=".feature.ui_effect.CapturePictureRecyActivity"
+            android:name=".feature.ui_effect.capture_picture.CapturePictureRecyActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -413,7 +413,7 @@
         <!-- CapturePictureUtils WebView 截图 -->
 
         <activity
-            android:name=".feature.ui_effect.CapturePictureWebActivity"
+            android:name=".feature.ui_effect.capture_picture.CapturePictureWebActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -469,7 +469,7 @@
         <!-- 两个 TextView 显示效果 -->
 
         <activity
-            android:name=".feature.ui_effect.TextViewActivity"
+            android:name=".feature.ui_effect.textview.TextViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -477,7 +477,7 @@
         <!-- RecyclerView 吸附效果 -->
 
         <activity
-            android:name=".feature.ui_effect.ItemStickyActivity"
+            android:name=".feature.ui_effect.recy_item_sticky.ItemStickyActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -485,7 +485,7 @@
         <!-- RecyclerView 滑动删除、上下滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.RecyItemSlideActivity"
+            android:name=".feature.ui_effect.recy_item_slide.RecyItemSlideActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -493,7 +493,7 @@
         <!-- LinearSnapHelper - RecyclerView -->
 
         <activity
-            android:name=".feature.ui_effect.LinearSnapActivity"
+            android:name=".feature.ui_effect.recy_linear_snap.LinearSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -501,7 +501,7 @@
         <!-- LinearSnapHelper - 无线滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.LinearSnapMAXActivity"
+            android:name=".feature.ui_effect.recy_linear_snap.LinearSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -509,7 +509,7 @@
         <!-- PagerSnapHelper - RecyclerView -->
 
         <activity
-            android:name=".feature.ui_effect.PagerSnapActivity"
+            android:name=".feature.ui_effect.recy_pager_snap.PagerSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -517,7 +517,7 @@
         <!-- PagerSnapHelper - 无线滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.PagerSnapMAXActivity"
+            android:name=".feature.ui_effect.recy_pager_snap.PagerSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -525,7 +525,7 @@
         <!-- Material ShapeableImageView -->
 
         <activity
-            android:name=".feature.ui_effect.ShapeableImageViewActivity"
+            android:name=".feature.ui_effect.material.ShapeableImageViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -533,7 +533,7 @@
         <!-- Material BottomSheet -->
 
         <activity
-            android:name=".feature.ui_effect.BottomSheetActivity"
+            android:name=".feature.ui_effect.material.BottomSheetActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -541,7 +541,7 @@
         <!-- Material BottomSheetDialog -->
 
         <activity
-            android:name=".feature.ui_effect.BottomSheetDialogActivity"
+            android:name=".feature.ui_effect.material.BottomSheetDialogActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -549,7 +549,7 @@
         <!-- Palette 调色板 -->
 
         <activity
-            android:name=".feature.ui_effect.PaletteActivity"
+            android:name=".feature.ui_effect.palette.PaletteActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -557,7 +557,7 @@
         <!-- Flexbox LayoutManager -->
 
         <activity
-            android:name=".feature.ui_effect.FlexboxLayoutManagerActivity"
+            android:name=".feature.ui_effect.flexbox_layout.FlexboxLayoutManagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -565,7 +565,7 @@
         <!-- Material Chip、ChipGroups、ChipDrawable -->
 
         <activity
-            android:name=".feature.ui_effect.ChipActivity"
+            android:name=".feature.ui_effect.material.ChipActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Material" />
@@ -573,7 +573,7 @@
         <!-- ViewPager2 -->
 
         <activity
-            android:name=".feature.ui_effect.ViewPager2Activity"
+            android:name=".feature.ui_effect.view_pager2.ViewPager2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -581,7 +581,7 @@
         <!-- RecyclerView - ConcatAdapter -->
 
         <activity
-            android:name=".feature.ui_effect.RecyConcatAdapterActivity"
+            android:name=".feature.ui_effect.recy_adapter_concat.RecyConcatAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -589,7 +589,7 @@
         <!-- RecyclerView MultiType Adapter -->
 
         <activity
-            android:name=".feature.ui_effect.RecyMultiTypeAdapterActivity"
+            android:name=".feature.ui_effect.recy_adapter_multitype.RecyMultiTypeAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -637,7 +637,7 @@
         <!-- 购物车加入动画 -->
 
         <activity
-            android:name=".feature.ui_effect.ShopCartAddAnimActivity"
+            android:name=".feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
