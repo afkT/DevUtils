@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
-import afkt.project.model.item.EvaluateItem
+import afkt.project.model.bean.EvaluateItem
 import afkt.project.utils.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
@@ -40,7 +40,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // = 商品信息 =
         // ==========
 
-        val commodity = item.commodityEvaluateBean
+        val commodity = item.commodityItem
 
         // 商品名
         holder.binding.vidNameTv.text = commodity.commodityName

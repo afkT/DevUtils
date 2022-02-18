@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.recy_item_slide
 
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
-import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
 import afkt.project.utils.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
@@ -17,7 +17,7 @@ import java.math.BigDecimal
  * detail: Item Slide Adapter
  * @author Ttt
  */
-class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<CommodityEvaluateBean, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+class ItemSlideAdapter(data: List<CommodityItem>) : DevDataAdapter<CommodityItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
     init {
         setDataList(data, false)

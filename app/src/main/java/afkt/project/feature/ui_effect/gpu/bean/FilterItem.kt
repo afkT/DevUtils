@@ -1,4 +1,4 @@
-package afkt.project.model.item
+package afkt.project.feature.ui_effect.gpu.bean
 
 import android.graphics.PointF
 import dev.engine.DevEngine

@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.common
 
 import afkt.project.R
-import afkt.project.model.item.TabItem
+import afkt.project.model.bean.TabItem
 import android.view.LayoutInflater
 import android.view.View
 import com.google.android.material.tabs.TabLayout

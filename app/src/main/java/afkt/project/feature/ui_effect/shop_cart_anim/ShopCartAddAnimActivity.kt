@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.bean.CommodityEvaluateBean
-import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
+import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem
 import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -40,8 +40,8 @@ class ShopCartAddAnimActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val lists: MutableList<CommodityEvaluateBean> = ArrayList()
-        for (i in 0..14) lists.add(newCommodityEvaluateBean())
+        val lists: MutableList<CommodityItem> = ArrayList()
+        for (i in 0..14) lists.add(newCommodityItem())
 
         // 初始化布局管理器、适配器
         ShopCartAnimAdapter(lists).setClickListener {

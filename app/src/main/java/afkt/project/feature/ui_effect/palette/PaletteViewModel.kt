@@ -1,4 +1,4 @@
-package afkt.project.model.vm
+package afkt.project.feature.ui_effect.palette
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData

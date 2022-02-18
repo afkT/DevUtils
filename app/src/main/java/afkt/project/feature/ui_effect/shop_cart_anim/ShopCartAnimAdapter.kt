@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
 import afkt.project.databinding.AdapterItemShopCartAnimBinding
-import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
 import afkt.project.utils.ProjectUtils
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +18,8 @@ import java.math.BigDecimal
  * detail: 购物车动画 Adapter
  * @author Ttt
  */
-class ShopCartAnimAdapter(data: List<CommodityEvaluateBean?>) :
-    DevDataAdapterExt<CommodityEvaluateBean?, DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>>() {
+class ShopCartAnimAdapter(data: List<CommodityItem?>) :
+    DevDataAdapterExt<CommodityItem?, DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>>() {
 
     init {
         setDataList(data, false)
@@ -36,7 +36,7 @@ class ShopCartAnimAdapter(data: List<CommodityEvaluateBean?>) :
         holder: DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>,
         position: Int
     ) {
-        val item: CommodityEvaluateBean? = getDataItem(position)
+        val item: CommodityItem? = getDataItem(position)
 
         // 商品信息
         ViewHelper.get()

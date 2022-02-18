@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
-import afkt.project.model.item.TabItem
+import afkt.project.model.bean.TabItem
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View

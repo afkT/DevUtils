@@ -5,8 +5,8 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
-import afkt.project.model.bean.CommodityEvaluateBean
-import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
+import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +46,8 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val lists: MutableList<CommodityEvaluateBean> = ArrayList()
-        for (i in 0..14) lists.add(newCommodityEvaluateBean())
+        val lists: MutableList<CommodityItem> = ArrayList()
+        for (i in 0..14) lists.add(newCommodityItem())
 
         // 初始化布局管理器、适配器
         adapter = MultiSelectAdapter(lists)

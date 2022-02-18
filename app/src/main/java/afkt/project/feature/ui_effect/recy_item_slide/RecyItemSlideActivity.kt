@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -41,8 +41,8 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun initValue() {
         super.initValue()
-        val lists: MutableList<CommodityEvaluateBean> = ArrayList()
-        for (i in 0..39) lists.add(CommodityEvaluateBean.newCommodityEvaluateBean())
+        val lists: MutableList<CommodityItem> = ArrayList()
+        for (i in 0..39) lists.add(CommodityItem.newCommodityItem())
 
         // 初始化布局管理器、适配器
         itemSlideAdapter = ItemSlideAdapter(lists)

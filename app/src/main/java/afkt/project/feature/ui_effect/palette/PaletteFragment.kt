@@ -3,7 +3,6 @@ package afkt.project.feature.ui_effect.palette
 import afkt.project.R
 import afkt.project.base.app.BaseFragment
 import afkt.project.databinding.FragmentPaletteBinding
-import afkt.project.model.vm.PaletteViewModel
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View

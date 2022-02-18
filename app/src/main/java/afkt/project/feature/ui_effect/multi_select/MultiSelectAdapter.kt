@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
-import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityItem
 import afkt.project.utils.ProjectUtils
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +19,8 @@ import java.math.BigDecimal
  * detail: 多选 Adapter
  * @author Ttt
  */
-class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
-    DevDataAdapterExt2<CommodityEvaluateBean?, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+class MultiSelectAdapter(data: List<CommodityItem?>) :
+    DevDataAdapterExt2<CommodityItem?, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
     init {
         setDataList(data, false)
@@ -37,7 +37,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
         holder: DevBaseViewBindingVH<AdapterMultiSelectBinding>,
         position: Int
     ) {
-        val item: CommodityEvaluateBean? = getDataItem(position)
+        val item: CommodityItem? = getDataItem(position)
 
         // 商品信息
         ViewHelper.get()
@@ -79,7 +79,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
     // =======
 
     override fun getMultiSelectKey(
-        item: CommodityEvaluateBean?,
+        item: CommodityItem?,
         position: Int
     ): String {
         return position.toString()

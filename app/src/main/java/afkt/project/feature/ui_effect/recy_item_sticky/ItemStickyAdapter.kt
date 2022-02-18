@@ -2,7 +2,6 @@ package afkt.project.feature.ui_effect.recy_item_sticky
 
 import afkt.project.R
 import afkt.project.databinding.AdapterItemStickyBinding
-import afkt.project.model.bean.ItemStickyBean
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH

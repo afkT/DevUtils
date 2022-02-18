@@ -6,17 +6,6 @@ import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: ACV 文件实体类
- * @author Ttt
- */
-class ACVFileBean(
-    // ACV 名
-    val acvName: String,
-    // 文件地址
-    val acvPath: String
-)
-
-/**
  * detail: 适配器实体类
  * @author Ttt
  */
@@ -56,38 +45,6 @@ open class AdapterBean(
                 lists.add(newAdapterBean(i))
             }
             return lists
-        }
-    }
-}
-
-/**
- * detail: Item 实体类
- * @author Ttt
- */
-class ItemStickyBean(
-    // 标题
-    title: String,
-    // 时间
-    time: Long
-) : AdapterBean(title, "") {
-
-    // 时间格式化
-    val timeFormat: String
-
-    // 吸附标题
-    val timeTile: String
-
-    init {
-        val format = DevFinal.TIME.yyyyMMdd_POINT
-        // 进行格式化
-        timeFormat = DateUtils.formatTime(time, format)
-        // 获取当前时间
-        val currentTime = DateUtils.getDateNow(format)
-        // 设置标题
-        timeTile = if (currentTime == timeFormat) {
-            "今日"
-        } else {
-            DateUtils.formatTime(time, DevFinal.TIME.ZH_MMdd)
         }
     }
 }
@@ -143,34 +100,6 @@ class ItemBean(
                     RandomUtils.getRandom(1, 50)
                 )
             }
-        }
-    }
-}
-
-/**
- * detail: 商品评价实体类
- * @author Ttt
- */
-class CommodityEvaluateBean(
-    // 商品名
-    val commodityName: String? = null,
-    // 商品图片
-    val commodityPicture: String? = null,
-    // 商品价格
-    val commodityPrice: Double
-) {
-
-    companion object {
-        /**
-         * 创建商品评价实体类
-         * @return [CommodityEvaluateBean]
-         */
-        fun newCommodityEvaluateBean(): CommodityEvaluateBean {
-            return CommodityEvaluateBean(
-                commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
-                commodityPicture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
-                commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3)
-            )
         }
     }
 }
