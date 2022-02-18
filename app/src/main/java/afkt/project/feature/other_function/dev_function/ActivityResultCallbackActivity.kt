@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -17,7 +17,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
-@Route(path = RouterPath.ActivityResultCallbackActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.ActivityResultCallbackActivity_PATH)
 class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallbackBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_activity_result_callback

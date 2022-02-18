@@ -1,5 +1,6 @@
 package afkt.project.base.http
 
+import dev.DevHttpCapture
 import dev.DevUtils
 import dev.capture.CallbackInterceptor
 import dev.engine.DevEngine
@@ -66,8 +67,8 @@ class RetrofitUtils private constructor() {
 
         val builder = OkHttpClient.Builder()
 
-//        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 抓包数据存储 )
-//        DevHttpCapture.addInterceptor(builder, "ModuleName")
+        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 抓包数据存储 )
+        DevHttpCapture.addInterceptor(builder, "ModuleName")
 
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->

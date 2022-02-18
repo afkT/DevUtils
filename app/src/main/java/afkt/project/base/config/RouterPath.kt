@@ -12,41 +12,6 @@ object RouterPath {
 
     const val ButtonItemActivity_PATH = "/activity/ButtonItemActivity"
 
-    const val ListenerActivity_PATH = "/activity/ListenerActivity"
-
-    const val NotificationServiceActivity_PATH = "/activity/NotificationServiceActivity"
-
-    const val AccessibilityListenerServiceActivity_PATH =
-        "/activity/AccessibilityListenerServiceActivity"
-
-    const val WifiActivity_PATH = "/activity/WifiActivity"
-
-    const val FunctionActivity_PATH = "/activity/FunctionActivity"
-
-    const val TimerActivity_PATH = "/activity/TimerActivity"
-
-    const val CacheActivity_PATH = "/activity/CacheActivity"
-
-    const val LoggerActivity_PATH = "/activity/LoggerActivity"
-
-    const val FileRecordActivity_PATH = "/activity/FileRecordActivity"
-
-    const val CrashCatchActivity_PATH = "/activity/CrashCatchActivity"
-
-    const val PathActivity_PATH = "/activity/PathActivity"
-
-    const val WebViewActivity_PATH = "/activity/WebViewActivity"
-
-    const val ActivityResultCallbackActivity_PATH = "/activity/ActivityResultCallbackActivity"
-
-    const val AddContactActivity_PATH = "/activity/AddContactActivity"
-
-    const val WallpaperActivity_PATH = "/activity/WallpaperActivity"
-
-    const val FloatingWindowManagerActivity_PATH = "/activity/FloatingWindowManagerActivity"
-
-    const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
-
     /**
      * Framework 架构
      */
@@ -139,6 +104,47 @@ object RouterPath {
         const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
 
         const val ShopCartAddAnimActivity_PATH = "/activity/ShopCartAddAnimActivity"
+    }
+
+    /**
+     * 其他功能
+     */
+    object OTHER_FUNCTION {
+
+        const val ListenerActivity_PATH = "/activity/ListenerActivity"
+
+        const val NotificationServiceActivity_PATH = "/activity/NotificationServiceActivity"
+
+        const val AccessibilityListenerServiceActivity_PATH =
+            "/activity/AccessibilityListenerServiceActivity"
+
+        const val WifiActivity_PATH = "/activity/WifiActivity"
+
+        const val FunctionActivity_PATH = "/activity/FunctionActivity"
+
+        const val TimerActivity_PATH = "/activity/TimerActivity"
+
+        const val CacheActivity_PATH = "/activity/CacheActivity"
+
+        const val LoggerActivity_PATH = "/activity/LoggerActivity"
+
+        const val FileRecordActivity_PATH = "/activity/FileRecordActivity"
+
+        const val CrashCatchActivity_PATH = "/activity/CrashCatchActivity"
+
+        const val PathActivity_PATH = "/activity/PathActivity"
+
+        const val WebViewActivity_PATH = "/activity/WebViewActivity"
+
+        const val ActivityResultCallbackActivity_PATH = "/activity/ActivityResultCallbackActivity"
+
+        const val AddContactActivity_PATH = "/activity/AddContactActivity"
+
+        const val WallpaperActivity_PATH = "/activity/WallpaperActivity"
+
+        const val FloatingWindowManagerActivity_PATH = "/activity/FloatingWindowManagerActivity"
+
+        const val FloatingWindowManager2Activity_PATH = "/activity/FloatingWindowManager2Activity"
     }
 
     /**

@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.listener
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -35,7 +35,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
  * @author Ttt
  */
-@Route(path = RouterPath.ListenerActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.ListenerActivity_PATH)
 class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_common_tips

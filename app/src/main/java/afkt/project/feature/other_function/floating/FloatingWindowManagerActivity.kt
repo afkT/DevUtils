@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.floating
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -26,7 +26,7 @@ import dev.utils.app.toast.ToastUtils
  * detail: 悬浮窗管理辅助类 ( 需权限 )
  * @author Ttt
  */
-@Route(path = RouterPath.FloatingWindowManagerActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.FloatingWindowManagerActivity_PATH)
 class FloatingWindowManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

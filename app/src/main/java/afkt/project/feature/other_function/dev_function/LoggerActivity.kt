@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -19,7 +19,7 @@ import utils_use.logger.LoggerUse
  * @author Ttt
  * [LoggerUse]
  */
-@Route(path = RouterPath.LoggerActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.LoggerActivity_PATH)
 class LoggerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

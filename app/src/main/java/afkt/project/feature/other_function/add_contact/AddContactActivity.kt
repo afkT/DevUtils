@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.add_contact
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * detail: 添加联系人
  * @author Ttt
  */
-@Route(path = RouterPath.AddContactActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.AddContactActivity_PATH)
 class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
 
     // 待创建总数

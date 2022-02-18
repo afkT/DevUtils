@@ -1,41 +1,45 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ButtonAdapter
-import afkt.project.model.item.ButtonList.fileRecordButtonValues
+import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.toast.ToastTintUtils
-import utils_use.record.FileRecordUse
 
 /**
- * detail: 日志、异常文件记录保存
+ * detail: 奔溃日志捕获
  * @author Ttt
- * [FileRecordUse]
  */
-@Route(path = RouterPath.FileRecordActivity_PATH)
-class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+@Route(path = RouterPath.OTHER_FUNCTION.CrashCatchActivity_PATH)
+class CrashCatchActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
     override fun initValue() {
         super.initValue()
 
+        /**
+         * 捕获异常处理 CrashUtils.getInstance().initialize()
+         * 参考 [BaseApplication.initCrash]
+         */
+
         // 初始化布局管理器、适配器
-        ButtonAdapter(fileRecordButtonValues)
+        ButtonAdapter(ButtonList.crashButtonValues)
             .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
                 override fun onItemClick(
                     buttonValue: ButtonValue,
                     param: Int
                 ) {
                     when (buttonValue.type) {
-                        ButtonValue.BTN_FILE_RECORD_UTILS -> {
-                            showToast(true, "保存成功")
-                            FileRecordUse.fileRecordUse()
+                        ButtonValue.BTN_CRASH_CLICK_CATCH -> {
+                            val data: String? = null
+                            data!!.split(",".toRegex()).toTypedArray()
                         }
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }

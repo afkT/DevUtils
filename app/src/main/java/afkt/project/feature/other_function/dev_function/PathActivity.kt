@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -19,7 +19,7 @@ import dev.utils.common.StringUtils
  * detail: 路径信息
  * @author Ttt
  */
-@Route(path = RouterPath.PathActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.PathActivity_PATH)
 class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

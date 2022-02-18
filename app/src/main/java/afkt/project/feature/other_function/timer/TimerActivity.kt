@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.timer
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -20,7 +20,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: TimerManager 定时器工具类
  * @author Ttt
  */
-@Route(path = RouterPath.TimerActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.TimerActivity_PATH)
 class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // UI Handler

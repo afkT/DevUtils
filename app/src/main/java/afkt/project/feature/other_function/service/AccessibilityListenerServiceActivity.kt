@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.service
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -22,7 +22,7 @@ import dev.utils.app.toast.ToastTintUtils
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
-@Route(path = RouterPath.AccessibilityListenerServiceActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.AccessibilityListenerServiceActivity_PATH)
 class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

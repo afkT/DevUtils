@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.MainActivity
 import afkt.project.R
@@ -24,7 +24,7 @@ import dev.utils.app.toast.ToastUtils
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-@Route(path = RouterPath.FunctionActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.FunctionActivity_PATH)
 class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

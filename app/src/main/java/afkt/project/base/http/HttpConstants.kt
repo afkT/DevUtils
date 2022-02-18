@@ -7,7 +7,7 @@ import dev.environment.annotation.Module
  * detail: Http 常量
  * @author Ttt
  */
-class HttpConstants private constructor() {
+private class HttpConstants private constructor() {
 
     @Module(alias = "服务器请求地址")
     private inner class Service {

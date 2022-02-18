@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -17,7 +17,7 @@ import dev.utils.common.FileUtils
  * detail: 手机壁纸
  * @author Ttt
  */
-@Route(path = RouterPath.WallpaperActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH)
 class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_wallpaper

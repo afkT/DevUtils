@@ -12,5 +12,5 @@ import retrofit2.http.Path
 interface WanAndroidService {
 
     @GET("/article/list/{page}/json")
-    fun getArticleList(@Path("page") page: Int): Flowable<ArticleBean?>
+    fun getArticleList(@Path("page") page: Int): Flowable<ArticleBean>
 }

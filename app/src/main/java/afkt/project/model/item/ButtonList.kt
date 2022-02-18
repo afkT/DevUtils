@@ -583,119 +583,119 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_LISTENER,
                     "事件 / 广播监听 ( 网络状态、屏幕旋转等 )",
-                    RouterPath.ListenerActivity_PATH
+                    RouterPath.OTHER_FUNCTION.ListenerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_NOTIFICATION_SERVICE,
                     "通知栏监听服务 ( NotificationService )",
-                    RouterPath.NotificationServiceActivity_PATH
+                    RouterPath.OTHER_FUNCTION.NotificationServiceActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ACCESSIBILITY_SERVICE,
                     "无障碍监听服务 ( AccessibilityListenerService )",
-                    RouterPath.AccessibilityListenerServiceActivity_PATH
+                    RouterPath.OTHER_FUNCTION.AccessibilityListenerServiceActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WIFI,
                     "Wifi 相关 ( 热点 )",
-                    RouterPath.WifiActivity_PATH
+                    RouterPath.OTHER_FUNCTION.WifiActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FUNCTION,
                     "铃声、震动、通知栏等功能",
-                    RouterPath.FunctionActivity_PATH
+                    RouterPath.OTHER_FUNCTION.FunctionActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TIMER,
                     "TimerManager 定时器工具类",
-                    RouterPath.TimerActivity_PATH
+                    RouterPath.OTHER_FUNCTION.TimerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CACHE,
                     "DevCache 缓存工具类",
-                    RouterPath.CacheActivity_PATH
+                    RouterPath.OTHER_FUNCTION.CacheActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LOGGER,
                     "DevLogger 日志工具类",
-                    RouterPath.LoggerActivity_PATH
+                    RouterPath.OTHER_FUNCTION.LoggerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FILE_RECORD,
                     "日志、异常文件记录保存",
-                    RouterPath.FileRecordActivity_PATH
+                    RouterPath.OTHER_FUNCTION.FileRecordActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CRASH,
                     "奔溃日志捕获",
-                    RouterPath.CrashCatchActivity_PATH
+                    RouterPath.OTHER_FUNCTION.CrashCatchActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_PATH,
                     "路径信息",
-                    RouterPath.PathActivity_PATH
+                    RouterPath.OTHER_FUNCTION.PathActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WEBVIEW,
                     "WebView 辅助类",
-                    RouterPath.WebViewActivity_PATH
+                    RouterPath.OTHER_FUNCTION.WebViewActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK,
                     "startActivityForResult Callback",
-                    RouterPath.ActivityResultCallbackActivity_PATH
+                    RouterPath.OTHER_FUNCTION.ActivityResultCallbackActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ADD_CONTACT,
                     "添加联系人",
-                    RouterPath.AddContactActivity_PATH
+                    RouterPath.OTHER_FUNCTION.AddContactActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WALLPAPER,
                     "手机壁纸",
-                    RouterPath.WallpaperActivity_PATH
+                    RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FLOATING_WINDOW_MANAGER,
                     "悬浮窗管理辅助类 ( 需权限 )",
-                    RouterPath.FloatingWindowManagerActivity_PATH
+                    RouterPath.OTHER_FUNCTION.FloatingWindowManagerActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FLOATING_WINDOW_MANAGER2,
                     "悬浮窗管理辅助类 ( 无需权限依赖 Activity )",
-                    RouterPath.FloatingWindowManager2Activity_PATH
+                    RouterPath.OTHER_FUNCTION.FloatingWindowManager2Activity_PATH
                 )
             )
             return lists

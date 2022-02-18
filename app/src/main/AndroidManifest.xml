@@ -106,90 +106,42 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
+        <!-- 文章 MVP Activity -->
 
         <activity
-            android:name=".feature.other_function.ListenerActivity"
+            android:name=".feature.framework.mvp.ArticleMVPActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 通知栏监听服务 ( NotificationService ) -->
+        <!-- 文章 MVVM Activity -->
 
         <activity
-            android:name=".feature.other_function.NotificationServiceActivity"
+            android:name=".feature.framework.mvvm.ArticleMVVMActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 无障碍监听服务 ( AccessibilityListenerService ) -->
+        <!-- EventBusUtils -->
 
         <activity
-            android:name=".feature.other_function.AccessibilityListenerServiceActivity"
+            android:name=".feature.lib_frame.event_bus.EventBusActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- Wifi 相关 ( 热点 ) -->
+        <!-- GreenDao -->
 
         <activity
-            android:name=".feature.other_function.WifiActivity"
+            android:name=".feature.lib_frame.green_dao.GreenDaoActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 铃声、震动、通知栏等功能 -->
+        <!-- Room -->
 
         <activity
-            android:name=".feature.other_function.FunctionActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- TimerManager 定时器工具类 -->
-
-        <activity
-            android:name=".feature.other_function.TimerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- DevCache 缓存工具类 -->
-
-        <activity
-            android:name=".feature.other_function.CacheActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- DevLogger 日志工具类 -->
-
-        <activity
-            android:name=".feature.other_function.LoggerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 日志、异常文件记录保存 -->
-
-        <activity
-            android:name=".feature.other_function.FileRecordActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 奔溃日志捕获 -->
-
-        <activity
-            android:name=".feature.other_function.CrashCatchActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 路径信息 -->
-
-        <activity
-            android:name=".feature.other_function.PathActivity"
+            android:name=".feature.lib_frame.room.RoomActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -202,26 +154,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 自定义 ProgressBar 样式 View -->
-
-        <activity
-            android:name=".feature.dev_widget.progress_bar.ProgressBarActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- 常见 UI、GradientDrawable 效果等 -->
 
         <activity
             android:name=".feature.ui_effect.common.UIEffectActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- ViewPager 滑动监听、控制滑动 -->
-
-        <activity
-            android:name=".feature.dev_widget.view_pager.ViewPagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -274,14 +210,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 自定义扫描 View ( QRCode、AR ) -->
-
-        <activity
-            android:name=".feature.dev_widget.scan_shape.ScanShapeActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- 创建二维码 -->
 
         <activity
@@ -302,6 +230,326 @@
 
         <activity
             android:name=".feature.ui_effect.qrcode.QRCodeScanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils 截图工具类 -->
+
+        <activity
+            android:name=".feature.ui_effect.capture_picture.CapturePictureActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils ListView 截图 -->
+
+        <activity
+            android:name=".feature.ui_effect.capture_picture.CapturePictureListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils GridView 截图 -->
+
+        <activity
+            android:name=".feature.ui_effect.capture_picture.CapturePictureGridActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils RecyclerView 截图 -->
+
+        <activity
+            android:name=".feature.ui_effect.capture_picture.CapturePictureRecyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- CapturePictureUtils WebView 截图 -->
+
+        <activity
+            android:name=".feature.ui_effect.capture_picture.CapturePictureWebActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 两个 TextView 显示效果 -->
+
+        <activity
+            android:name=".feature.ui_effect.text_view.TextViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- RecyclerView 吸附效果 -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.item_sticky.ItemStickyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- RecyclerView 滑动删除、上下滑动 -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.item_slide.RecyItemSlideActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- LinearSnapHelper - RecyclerView -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.linear_snap.LinearSnapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- LinearSnapHelper - 无线滑动 -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.linear_snap.LinearSnapMAXActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- PagerSnapHelper - RecyclerView -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.pager_snap.PagerSnapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- PagerSnapHelper - 无线滑动 -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.pager_snap.PagerSnapMAXActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Material ShapeableImageView -->
+
+        <activity
+            android:name=".feature.ui_effect.material.ShapeableImageViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Material BottomSheet -->
+
+        <activity
+            android:name=".feature.ui_effect.material.BottomSheetActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Material BottomSheetDialog -->
+
+        <activity
+            android:name=".feature.ui_effect.material.BottomSheetDialogActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Palette 调色板 -->
+
+        <activity
+            android:name=".feature.ui_effect.palette.PaletteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Flexbox LayoutManager -->
+
+        <activity
+            android:name=".feature.ui_effect.flexbox_layout.FlexboxLayoutManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Material Chip、ChipGroups、ChipDrawable -->
+
+        <activity
+            android:name=".feature.ui_effect.material.ChipActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Material" />
+
+        <!-- ViewPager2 -->
+
+        <activity
+            android:name=".feature.ui_effect.view_pager2.ViewPager2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- RecyclerView - ConcatAdapter -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.adapter_concat.RecyConcatAdapterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- RecyclerView MultiType Adapter -->
+
+        <activity
+            android:name=".feature.ui_effect.recy_adapter.adapter_multitype.RecyMultiTypeAdapterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 购物车加入动画 -->
+
+        <activity
+            android:name=".feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
+
+        <activity
+            android:name=".feature.other_function.listener.ListenerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 通知栏监听服务 ( NotificationService ) -->
+
+        <activity
+            android:name=".feature.other_function.service.NotificationServiceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 无障碍监听服务 ( AccessibilityListenerService ) -->
+
+        <activity
+            android:name=".feature.other_function.service.AccessibilityListenerServiceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Wifi 相关 ( 热点 ) -->
+
+        <activity
+            android:name=".feature.other_function.wifi.WifiActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 铃声、震动、通知栏等功能 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.FunctionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- TimerManager 定时器工具类 -->
+
+        <activity
+            android:name=".feature.other_function.timer.TimerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- DevCache 缓存工具类 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.CacheActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- DevLogger 日志工具类 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.LoggerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 日志、异常文件记录保存 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.FileRecordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 奔溃日志捕获 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.CrashCatchActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 路径信息 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.PathActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- WebView 辅助类 -->
+
+        <activity
+            android:name=".feature.other_function.web_view.WebViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- startActivityForResult Callback -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.ActivityResultCallbackActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 添加联系人 -->
+
+        <activity
+            android:name=".feature.other_function.add_contact.AddContactActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 手机壁纸 -->
+
+        <activity
+            android:name=".feature.other_function.dev_function.WallpaperActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 悬浮窗管理辅助类 ( 需权限 ) -->
+
+        <activity
+            android:name=".feature.other_function.floating.FloatingWindowManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 悬浮窗管理辅助类 ( 无需权限依赖 Activity ) -->
+
+        <activity
+            android:name=".feature.other_function.floating.FloatingWindowManager2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 自定义扫描 View ( QRCode、AR ) -->
+
+        <activity
+            android:name=".feature.dev_widget.scan_shape.ScanShapeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -378,266 +626,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- CapturePictureUtils 截图工具类 -->
+        <!-- 自定义 ProgressBar 样式 View -->
 
         <activity
-            android:name=".feature.ui_effect.capture_picture.CapturePictureActivity"
+            android:name=".feature.dev_widget.progress_bar.ProgressBarActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- CapturePictureUtils ListView 截图 -->
+        <!-- ViewPager 滑动监听、控制滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.capture_picture.CapturePictureListActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- CapturePictureUtils GridView 截图 -->
-
-        <activity
-            android:name=".feature.ui_effect.capture_picture.CapturePictureGridActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- CapturePictureUtils RecyclerView 截图 -->
-
-        <activity
-            android:name=".feature.ui_effect.capture_picture.CapturePictureRecyActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- CapturePictureUtils WebView 截图 -->
-
-        <activity
-            android:name=".feature.ui_effect.capture_picture.CapturePictureWebActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- EventBusUtils -->
-
-        <activity
-            android:name=".feature.lib_frame.event_bus.EventBusActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- GreenDao -->
-
-        <activity
-            android:name=".feature.lib_frame.green_dao.GreenDaoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Room -->
-
-        <activity
-            android:name=".feature.lib_frame.room.RoomActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 文章 MVP Activity -->
-
-        <activity
-            android:name=".feature.framework.mvp.ArticleMVPActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 文章 MVVM Activity -->
-
-        <activity
-            android:name=".feature.framework.mvvm.ArticleMVVMActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- WebView 辅助类 -->
-
-        <activity
-            android:name=".feature.other_function.WebViewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 两个 TextView 显示效果 -->
-
-        <activity
-            android:name=".feature.ui_effect.text_view.TextViewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- RecyclerView 吸附效果 -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.item_sticky.ItemStickyActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- RecyclerView 滑动删除、上下滑动 -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.item_slide.RecyItemSlideActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- LinearSnapHelper - RecyclerView -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- LinearSnapHelper - 无线滑动 -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapMAXActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- PagerSnapHelper - RecyclerView -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- PagerSnapHelper - 无线滑动 -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapMAXActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Material ShapeableImageView -->
-
-        <activity
-            android:name=".feature.ui_effect.material.ShapeableImageViewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Material BottomSheet -->
-
-        <activity
-            android:name=".feature.ui_effect.material.BottomSheetActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Material BottomSheetDialog -->
-
-        <activity
-            android:name=".feature.ui_effect.material.BottomSheetDialogActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Palette 调色板 -->
-
-        <activity
-            android:name=".feature.ui_effect.palette.PaletteActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Flexbox LayoutManager -->
-
-        <activity
-            android:name=".feature.ui_effect.flexbox_layout.FlexboxLayoutManagerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Material Chip、ChipGroups、ChipDrawable -->
-
-        <activity
-            android:name=".feature.ui_effect.material.ChipActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.Material" />
-
-        <!-- ViewPager2 -->
-
-        <activity
-            android:name=".feature.ui_effect.view_pager2.ViewPager2Activity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- RecyclerView - ConcatAdapter -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.adapter_concat.RecyConcatAdapterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- RecyclerView MultiType Adapter -->
-
-        <activity
-            android:name="afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.RecyMultiTypeAdapterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- startActivityForResult Callback -->
-
-        <activity
-            android:name=".feature.other_function.ActivityResultCallbackActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 添加联系人 -->
-
-        <activity
-            android:name=".feature.other_function.AddContactActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 手机壁纸 -->
-
-        <activity
-            android:name=".feature.other_function.WallpaperActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 悬浮窗管理辅助类 ( 需权限 ) -->
-
-        <activity
-            android:name=".feature.other_function.FloatingWindowManagerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 悬浮窗管理辅助类 ( 无需权限依赖 Activity ) -->
-
-        <activity
-            android:name=".feature.other_function.FloatingWindowManager2Activity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 购物车加入动画 -->
-
-        <activity
-            android:name=".feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity"
+            android:name=".feature.dev_widget.view_pager.ViewPagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

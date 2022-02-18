@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.wifi
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -34,7 +34,7 @@ import dev.utils.app.wifi.WifiUtils
  * @author Ttt
  * Wifi 热点状态监听等可参考 [QuickWifiHotUtils]
  */
-@Route(path = RouterPath.WifiActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.WifiActivity_PATH)
 class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // Wifi 工具类

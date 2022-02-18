@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.web_view
 
 import afkt.project.R
 import afkt.project.base.BaseApplication
@@ -21,7 +21,7 @@ import ktx.dev.assist.WebViewAssist
  * detail: WebView 辅助类
  * @author Ttt
  */
-@Route(path = RouterPath.WebViewActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.WebViewActivity_PATH)
 class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
 
     // WebView 辅助类

@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function
+package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
@@ -20,7 +20,7 @@ import java.io.Serializable
  * @author Ttt
  * [CacheUse]
  */
-@Route(path = RouterPath.CacheActivity_PATH)
+@Route(path = RouterPath.OTHER_FUNCTION.CacheActivity_PATH)
 class CacheActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
