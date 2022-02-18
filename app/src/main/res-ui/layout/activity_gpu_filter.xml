@@ -24,8 +24,8 @@
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_iv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_marginBottom="@dimen/dp_20" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

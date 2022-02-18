@@ -16,8 +16,11 @@ import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
+import dev.utils.app.ScreenUtils
 import dev.utils.app.UriUtils
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.image.ImageUtils
+import dev.utils.common.ScaleUtils
 
 /**
  * detail: GPU ACV 文件滤镜效果
@@ -144,7 +147,15 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
             // 设置滤镜效果
             val gpuFilter = getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath))
             val bitmapFilter = getFilterBitmap(this, selectBitmap, gpuFilter)
-            binding.vidIv.setImageBitmap(bitmapFilter)
+            bitmapFilter?.let {
+                val wh = ScaleUtils.calcScaleToWidthI(
+                    ScreenUtils.getScreenWidth().toDouble(),
+                    it.width.toDouble(), it.height.toDouble()
+                )
+                QuickHelper.get(binding.vidIv)
+                    .setWidthHeight(wh[0], wh[1])
+                    .setImageBitmap(it)
+            }
         } catch (e: Exception) {
             DevEngine.getLog()?.eTag(TAG, e, "setFilter")
         }

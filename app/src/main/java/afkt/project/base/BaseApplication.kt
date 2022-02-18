@@ -19,8 +19,6 @@ import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
-import dev.environment.bean.EnvironmentBean
-import dev.environment.bean.ModuleBean
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.*
@@ -76,10 +74,10 @@ class BaseApplication : MultiDexApplication() {
         // 可进行日志拦截编码
         // DevLogger.setPrint(new DevLogger.Print())
         // JCLogUtils.setPrint(new JCLogUtils.Print())
-        LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, message ->
-            var message: String? = message ?: return@Print
+        LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, msg ->
+            if (msg == null) return@Print
             // 进行编码处理
-            message = StringUtils.strEncode(message, DevFinal.ENCODE.UTF_8)
+            val message = StringUtils.strEncode(msg, DevFinal.ENCODE.UTF_8)
             when (logType) {
                 Log.VERBOSE -> Log.v(tag, message)
                 Log.DEBUG -> Log.d(tag, message)
@@ -99,7 +97,7 @@ class BaseApplication : MultiDexApplication() {
         initialize()
 
         // 属于 Debug 才打印信息
-        if (isDebug) printProInfo(timeCounter)
+        if (isDebug()) printProInfo(timeCounter)
     }
 
     /**
@@ -272,9 +270,7 @@ class BaseApplication : MultiDexApplication() {
         RetrofitUtils.instance.initRetrofit()
 
         // 环境 ( 服务器地址 ) 改变通知
-        DevEnvironment.addOnEnvironmentChangeListener { module: ModuleBean?,
-                                                        oldEnvironment: EnvironmentBean?,
-                                                        newEnvironment: EnvironmentBean? ->
+        DevEnvironment.addOnEnvironmentChangeListener { _, _, _ ->
             // 改变地址重新初始化
             RetrofitUtils.instance.resetAPIService()
         }
@@ -305,7 +301,8 @@ class BaseApplication : MultiDexApplication() {
          * 是否 Debug 模式
          * @return `true` yes, `false` no
          */
-        val isDebug: Boolean
-            get() = DevUtils.isDebug()
+        fun isDebug(): Boolean {
+            return DevUtils.isDebug()
+        }
     }
 }

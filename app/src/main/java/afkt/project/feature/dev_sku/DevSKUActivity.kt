@@ -21,7 +21,7 @@ import dev.utils.common.CollectionUtils
  * detail: DevSKU 商品 SKU 组合封装实现
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_LIB.DevSKUActivity_PATH)
+@Route(path = RouterPath.DEV_LIBS.DevSKUActivity_PATH)
 class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

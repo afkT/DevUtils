@@ -58,28 +58,28 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.MODULE_DEV_ENVIRONMENT,
                     "DevEnvironment 环境配置切换库",
-                    RouterPath.DEV_LIB.DevEnvironmentLibActivity_PATH
+                    RouterPath.DEV_LIBS.DevEnvironmentLibActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_ASSIST_ENGINE,
                     "DevAssist Engine 实现",
-                    RouterPath.DEV_LIB.DevAssistEngineActivity_PATH
+                    RouterPath.DEV_LIBS.DevAssistEngineActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_HTTP_CAPTURE,
                     "DevHttpCapture OkHttp 抓包工具库",
-                    RouterPath.DEV_LIB.DevHttpCaptureActivity_PATH
+                    RouterPath.DEV_LIBS.DevHttpCaptureActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_DEV_SKU,
                     "DevSKU 商品 SKU 组合封装实现",
-                    RouterPath.DEV_LIB.DevSKUActivity_PATH
+                    RouterPath.DEV_LIBS.DevSKUActivity_PATH
                 )
             )
             return lists

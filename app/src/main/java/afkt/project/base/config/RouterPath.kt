@@ -6,11 +6,19 @@ package afkt.project.base.config
  */
 object RouterPath {
 
+    // =================
+    // = 默认通用、根目录 =
+    // =================
+
     const val EMPTY = ""
 
     const val ModuleActivity_PATH = "/activity/ModuleActivity"
 
     const val ButtonItemActivity_PATH = "/activity/ButtonItemActivity"
+
+    // ==================
+    // = 按功能模块列表循序 =
+    // ==================
 
     /**
      * Framework 架构
@@ -183,7 +191,7 @@ object RouterPath {
     /**
      * Dev Libs
      */
-    object DEV_LIB {
+    object DEV_LIBS {
 
         const val DevEnvironmentLibActivity_PATH = "/activity/DevEnvironmentLibActivity"
 
