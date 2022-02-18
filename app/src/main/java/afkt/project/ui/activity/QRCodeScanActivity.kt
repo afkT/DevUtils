@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
-import afkt.project.utils.ProjectUtils.refShape
+import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.utils.zxing.DecodeConfig
 import afkt.project.utils.zxing.DecodeResult
 import afkt.project.utils.zxing.Operate
@@ -77,7 +77,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         super.initValue()
 
         // 设置扫描类型
-        refShape(binding.vidSsv, ScanShapeView.Shape.Square)
+        ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
         // 显示图片识别按钮
         ViewUtils.setVisibility(true, findViewById(R.id.vid_image_iv))
     }
@@ -108,19 +108,19 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                 )
             }
             R.id.vid_square_iv -> {
-                refShape(
+                ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Square
                 )
             }
             R.id.vid_hexagon_iv -> {
-                refShape(
+                ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Hexagon
                 )
             }
             R.id.vid_annulus_iv -> {
-                refShape(
+                ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Annulus
                 )

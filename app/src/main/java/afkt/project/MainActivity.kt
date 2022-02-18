@@ -2,9 +2,9 @@ package afkt.project
 
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityMainBinding
+import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine

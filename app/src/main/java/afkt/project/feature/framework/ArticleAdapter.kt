@@ -1,4 +1,4 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.framework
 
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding

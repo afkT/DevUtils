@@ -1,4 +1,4 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.dev_widget.flip_card
 
 import afkt.project.utils.ProjectUtils
 import android.content.Context

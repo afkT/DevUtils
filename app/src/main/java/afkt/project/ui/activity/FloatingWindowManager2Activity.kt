@@ -4,9 +4,9 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import afkt.project.ui.adapter.ButtonAdapter
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View

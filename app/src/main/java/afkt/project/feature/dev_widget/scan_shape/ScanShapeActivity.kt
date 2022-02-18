@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
-import afkt.project.utils.ProjectUtils.refShape
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
@@ -56,7 +55,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
     override fun initValue() {
         super.initValue()
         // 设置扫描类型
-        refShape(binding.vidSsv, ScanShapeView.Shape.Square)
+        ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
     }
 
     override fun initListener() {
@@ -81,15 +80,15 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
                 // 设置开关
                 setFlashlight(!ViewUtils.isSelected(binding.vidFlashlightIv))
             }
-            R.id.vid_square_iv -> refShape(
+            R.id.vid_square_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Square
             )
-            R.id.vid_hexagon_iv -> refShape(
+            R.id.vid_hexagon_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Hexagon
             )
-            R.id.vid_annulus_iv -> refShape(
+            R.id.vid_annulus_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Annulus
             )

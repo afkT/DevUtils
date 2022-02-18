@@ -1,8 +1,7 @@
-package afkt.project.ui.adapter
+package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
-import afkt.project.utils.ViewAssistUtils
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

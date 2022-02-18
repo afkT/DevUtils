@@ -5,9 +5,9 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.functionButtonValues
 import afkt.project.model.item.ButtonValue
-import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
 import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route
