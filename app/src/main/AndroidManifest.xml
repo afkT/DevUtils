@@ -477,7 +477,7 @@
         <!-- RecyclerView 吸附效果 -->
 
         <activity
-            android:name=".feature.ui_effect.recy_item_sticky.ItemStickyActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.item_sticky.ItemStickyActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -485,7 +485,7 @@
         <!-- RecyclerView 滑动删除、上下滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.recy_item_slide.RecyItemSlideActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.item_slide.RecyItemSlideActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -493,7 +493,7 @@
         <!-- LinearSnapHelper - RecyclerView -->
 
         <activity
-            android:name=".feature.ui_effect.recy_linear_snap.LinearSnapActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -501,7 +501,7 @@
         <!-- LinearSnapHelper - 无线滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.recy_linear_snap.LinearSnapMAXActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -509,7 +509,7 @@
         <!-- PagerSnapHelper - RecyclerView -->
 
         <activity
-            android:name=".feature.ui_effect.recy_pager_snap.PagerSnapActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -517,7 +517,7 @@
         <!-- PagerSnapHelper - 无线滑动 -->
 
         <activity
-            android:name=".feature.ui_effect.recy_pager_snap.PagerSnapMAXActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -581,7 +581,7 @@
         <!-- RecyclerView - ConcatAdapter -->
 
         <activity
-            android:name=".feature.ui_effect.recy_adapter_concat.RecyConcatAdapterActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.adapter_concat.RecyConcatAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -589,7 +589,7 @@
         <!-- RecyclerView MultiType Adapter -->
 
         <activity
-            android:name=".feature.ui_effect.recy_adapter_multitype.RecyMultiTypeAdapterActivity"
+            android:name="afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.RecyMultiTypeAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
