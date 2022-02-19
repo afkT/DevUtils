@@ -3,11 +3,11 @@ package afkt.project.feature.other_function.dev_function
 import afkt.project.MainActivity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.functionButtonValues
 import afkt.project.model.item.ButtonValue
+import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route

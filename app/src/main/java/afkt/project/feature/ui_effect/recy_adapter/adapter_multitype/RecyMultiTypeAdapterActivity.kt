@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.*
 import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.*
+import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route

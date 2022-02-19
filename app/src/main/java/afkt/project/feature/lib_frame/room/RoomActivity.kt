@@ -2,13 +2,13 @@ package afkt.project.feature.lib_frame.room
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.database.room.RoomManager
 import afkt.project.database.room.module.note.bean.Note
 import afkt.project.database.room.module.note.bean.NoteAndPicture
 import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.ActivityDatabaseBinding
+import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route

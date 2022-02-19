@@ -2,10 +2,10 @@ package afkt.project.feature.framework.mvp
 
 import afkt.project.R
 import afkt.project.base.app.BaseMVPActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.framework.ArticleAdapter
 import afkt.project.model.bean.ArticleBean
+import afkt.project.model.item.RouterPath
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.tt.whorlviewlibrary.WhorlView

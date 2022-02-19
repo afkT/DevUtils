@@ -2,12 +2,12 @@ package afkt.project.feature.lib_frame.green_dao
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.database.green.GreenManager
 import afkt.project.database.green.module.note.bean.Note
 import afkt.project.database.green.module.note.bean.NotePicture
 import afkt.project.database.green.module.note.bean.NoteType
 import afkt.project.databinding.ActivityDatabaseBinding
+import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route

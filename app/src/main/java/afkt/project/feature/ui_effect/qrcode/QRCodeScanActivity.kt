@@ -2,13 +2,13 @@ package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
+import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect

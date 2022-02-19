@@ -3,8 +3,8 @@ package afkt.project.feature.other_function.web_view
 import afkt.project.R
 import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityWebviewBinding
+import afkt.project.model.item.RouterPath
 import android.net.http.SslError
 import android.view.KeyEvent
 import android.view.View.OnLongClickListener

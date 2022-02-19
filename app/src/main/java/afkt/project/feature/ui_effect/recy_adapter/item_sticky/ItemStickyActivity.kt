@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.recy_adapter.item_sticky
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.RouterPath
 import afkt.project.utils.AppSize
 import android.view.View
 import android.view.ViewGroup

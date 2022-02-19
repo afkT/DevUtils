@@ -107,7 +107,8 @@ object ButtonList {
     fun getButtonValues(type: Int): List<ButtonValue> {
         when (type) {
             ButtonValue.BTN_VIEW_ASSIST -> return viewAssistButtonValues
-            ButtonValue.BTN_LINEAR_ITEM_DECORATION -> return viewAssistButtonValues
+            ButtonValue.BTN_LINEAR_ITEM_DECORATION -> return linearItemDecorationButtonValues
+            ButtonValue.BTN_GRID_ITEM_DECORATION -> return gridItemDecorationButtonValues
         }
         return emptyList()
     }
@@ -1372,6 +1373,13 @@ object ButtonList {
                     RouterPath.ButtonItemActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_GRID_ITEM_DECORATION,
+                    "Grid ItemDecoration",
+                    RouterPath.ButtonItemActivity_PATH
+                )
+            )
             return lists
         }
 
@@ -1408,6 +1416,54 @@ object ButtonList {
                     ButtonValue.BTN_VIEW_ASSIST_CUSTOM,
                     "Custom Type",
                     RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
+                )
+            )
+            return lists
+        }
+
+    /**
+     * 获取 Linear ItemDecoration Button Value 集合
+     * @return [List]
+     */
+    private val linearItemDecorationButtonValues: List<ButtonValue>
+        get() {
+            val lists: MutableList<ButtonValue> = ArrayList()
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_LINEAR_ITEM_VERTICAL,
+                    "Linear Vertical ItemDecoration",
+                    RouterPath.DEV_WIDGET.LinearItemDecorationActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL,
+                    "Linear Horizontal ItemDecoration",
+                    RouterPath.DEV_WIDGET.LinearItemDecorationActivity_PATH
+                )
+            )
+            return lists
+        }
+
+    /**
+     * 获取 Grid ItemDecoration Button Value 集合
+     * @return [List]
+     */
+    private val gridItemDecorationButtonValues: List<ButtonValue>
+        get() {
+            val lists: MutableList<ButtonValue> = ArrayList()
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_GRID_ITEM_VERTICAL,
+                    "Grid Vertical ItemDecoration",
+                    RouterPath.DEV_WIDGET.GridItemDecorationActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_GRID_ITEM_HORIZONTAL,
+                    "Grid Horizontal ItemDecoration",
+                    RouterPath.DEV_WIDGET.GridItemDecorationActivity_PATH
                 )
             )
             return lists

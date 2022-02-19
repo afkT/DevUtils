@@ -536,6 +536,15 @@ class ButtonValue(
         // Linear Horizontal ItemDecoration
         const val BTN_LINEAR_ITEM_HORIZONTAL = BTN_LINEAR_ITEM_DECORATION + 2
 
+        // Grid ItemDecoration
+        const val BTN_GRID_ITEM_DECORATION = BTN_DEV_WIDGET + 1300
+
+        // Grid Vertical ItemDecoration
+        const val BTN_GRID_ITEM_VERTICAL = BTN_GRID_ITEM_DECORATION + 1
+
+        // Grid Horizontal ItemDecoration
+        const val BTN_GRID_ITEM_HORIZONTAL = BTN_GRID_ITEM_DECORATION + 2
+
         // ==============================
         // = DevEnvironment 环境配置切换库 =
         // ==============================

@@ -2,11 +2,11 @@ package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityCapturePictureGridBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
 import afkt.project.model.bean.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

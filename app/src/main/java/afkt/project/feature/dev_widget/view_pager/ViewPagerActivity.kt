@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.view_pager
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityViewPagerBinding
+import afkt.project.model.item.RouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.widget.custom.CustomViewPager.OnDirectionListener

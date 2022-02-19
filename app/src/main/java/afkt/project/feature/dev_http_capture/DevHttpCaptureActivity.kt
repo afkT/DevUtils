@@ -2,8 +2,8 @@ package afkt.project.feature.dev_http_capture
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.RouterPath
 import android.graphics.Color
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView

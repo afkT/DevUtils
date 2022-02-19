@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
+import afkt.project.model.item.RouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
 import dev.engine.DevEngine

@@ -2,11 +2,11 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.fileRecordButtonValues
 import afkt.project.model.item.ButtonValue
+import afkt.project.model.item.RouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.toast.ToastTintUtils
