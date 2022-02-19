@@ -650,6 +650,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Grid ItemDecoration -->
+
+        <activity
+            android:name=".feature.dev_widget.recy_item_decoration.grid.GridItemDecorationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- DevEnvironment 环境配置切换库 -->
 
         <activity

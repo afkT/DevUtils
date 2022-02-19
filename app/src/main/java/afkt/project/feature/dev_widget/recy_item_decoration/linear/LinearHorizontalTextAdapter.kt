@@ -29,6 +29,6 @@ class LinearHorizontalTextAdapter(data: MutableList<String>) :
         holder: DevBaseViewBindingVH<AdapterLinearHorizontalTextBinding>,
         position: Int
     ) {
-        holder.binding.vidTitleTv.text = getDataItem(position)
+        holder.binding.vidTv.text = getDataItem(position)
     }
 }

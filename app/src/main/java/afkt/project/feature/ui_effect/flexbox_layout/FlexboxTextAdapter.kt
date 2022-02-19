@@ -28,6 +28,6 @@ class FlexboxTextAdapter(data: MutableList<String>) : DevDataAdapter<String, Dev
         holder: DevBaseViewBindingVH<AdapterFlexboxTextBinding>,
         position: Int
     ) {
-        holder.binding.vidTitleTv.text = getDataItem(position)
+        holder.binding.vidTv.text = getDataItem(position)
     }
 }
