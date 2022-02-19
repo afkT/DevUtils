@@ -8,7 +8,7 @@
 
     <dev.base.widget.BaseTextView
         android:layout_width="wrap_content"
-        android:text="First"
+        android:text="First ItemDecoration"
         android:paddingTop="@dimen/dp_10"
         android:layout_height="wrap_content" />
 
@@ -38,7 +38,7 @@
 
     <dev.base.widget.BaseTextView
         android:layout_width="wrap_content"
-        android:text="Last"
+        android:text="Last ItemDecoration"
         android:layout_height="wrap_content" />
 
     <LinearLayout
@@ -67,7 +67,7 @@
 
     <dev.base.widget.BaseTextView
         android:layout_width="wrap_content"
-        android:text="Item"
+        android:text="Line ItemDecoration"
         android:layout_height="wrap_content" />
 
     <LinearLayout
@@ -76,7 +76,7 @@
         android:layout_height="@dimen/dp_50">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_item_add_btn"
+            android:id="@+id/vid_line_add_btn"
             style="@style/AppTheme.Base_Button"
             android:text="Add"
             android:layout_marginRight="@dimen/dp_10"
@@ -85,7 +85,7 @@
             android:layout_height="match_parent" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_item_remove_btn"
+            android:id="@+id/vid_line_remove_btn"
             style="@style/AppTheme.Base_Button"
             android:text="Remove"
             android:layout_width="match_parent"
