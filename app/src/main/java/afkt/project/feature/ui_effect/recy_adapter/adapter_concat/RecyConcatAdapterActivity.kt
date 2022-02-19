@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_concat
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
 import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter.*

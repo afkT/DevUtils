@@ -1,7 +1,6 @@
 package afkt.project.base
 
 import afkt.project.R
-import afkt.project.base.config.AppConfig
 import afkt.project.base.http.RetrofitUtils
 import android.content.Context
 import android.net.Uri

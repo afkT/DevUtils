@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.flexbox_layout
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.utils.AppSize
 import android.os.Bundle
@@ -70,6 +70,6 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
         binding.vidRv.layoutManager = layoutManager
-        TextAdapter(lists).bindAdapter(binding.vidRv)
+        FlexboxTextAdapter(lists).bindAdapter(binding.vidRv)
     }
 }

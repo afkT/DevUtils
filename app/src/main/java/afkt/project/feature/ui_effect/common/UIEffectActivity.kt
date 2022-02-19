@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.common
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import android.graphics.Color

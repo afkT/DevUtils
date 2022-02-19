@@ -2,7 +2,7 @@ package afkt.project.feature.dev_widget.flow_like
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityFlowLikeBinding
 import com.alibaba.android.arouter.facade.annotation.Route
 

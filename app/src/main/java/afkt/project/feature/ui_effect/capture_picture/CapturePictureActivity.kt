@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
 import afkt.project.model.item.ButtonValue
 import android.graphics.Bitmap

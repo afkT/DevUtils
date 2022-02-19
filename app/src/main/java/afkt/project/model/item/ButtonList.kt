@@ -1,7 +1,5 @@
 package afkt.project.model.item
 
-import afkt.project.base.config.RouterPath
-
 /**
  * detail: Button List
  * @author Ttt
@@ -109,6 +107,7 @@ object ButtonList {
     fun getButtonValues(type: Int): List<ButtonValue> {
         when (type) {
             ButtonValue.BTN_VIEW_ASSIST -> return viewAssistButtonValues
+            ButtonValue.BTN_LINEAR_ITEM_DECORATION -> return viewAssistButtonValues
         }
         return emptyList()
     }
@@ -1368,9 +1367,9 @@ object ButtonList {
             )
             lists.add(
                 ButtonValue(
-                    ButtonValue.BTN_LINE_ITEM_DECORATION,
+                    ButtonValue.BTN_LINEAR_ITEM_DECORATION,
                     "Linear ItemDecoration",
-                    RouterPath.DEV_WIDGET.LineItemDecorationActivity_PATH
+                    RouterPath.ButtonItemActivity_PATH
                 )
             )
             return lists

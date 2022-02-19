@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
 import afkt.project.model.bean.CommodityItem

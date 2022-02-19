@@ -2,7 +2,7 @@ package afkt.project.feature.lib_frame.room
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.database.room.RoomManager
 import afkt.project.database.room.module.note.bean.Note
 import afkt.project.database.room.module.note.bean.NoteAndPicture

@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig

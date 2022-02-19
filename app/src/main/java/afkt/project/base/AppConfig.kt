@@ -1,4 +1,4 @@
-package afkt.project.base.config
+package afkt.project.base
 
 /**
  * detail: App 配置

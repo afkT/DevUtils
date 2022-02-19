@@ -1,4 +1,4 @@
-package afkt.project.base.config
+package afkt.project.model.item
 
 /**
  * detail: ARouter Path
@@ -201,5 +201,4 @@ object RouterPath {
 
         const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
     }
-
 }

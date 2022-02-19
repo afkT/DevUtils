@@ -3,7 +3,7 @@ package afkt.project.feature.framework.mvvm
 import afkt.project.BR
 import afkt.project.R
 import afkt.project.base.app.BaseMVVMActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityArticleMvvmBinding
 import afkt.project.feature.framework.ArticleAdapter
 import afkt.project.model.bean.ArticleBean

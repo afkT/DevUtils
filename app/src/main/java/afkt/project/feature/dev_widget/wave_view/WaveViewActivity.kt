@@ -2,7 +2,7 @@ package afkt.project.feature.dev_widget.wave_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityWaveViewBinding
 import android.graphics.Color
 import android.widget.SeekBar

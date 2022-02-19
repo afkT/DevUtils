@@ -528,7 +528,13 @@ class ButtonValue(
         const val BTN_WAVE_VIEW = BTN_DEV_WIDGET + 1100
 
         // Linear ItemDecoration
-        const val BTN_LINE_ITEM_DECORATION = BTN_DEV_WIDGET + 1200
+        const val BTN_LINEAR_ITEM_DECORATION = BTN_DEV_WIDGET + 1200
+
+        // Linear Vertical ItemDecoration
+        const val BTN_LINEAR_ITEM_VERTICAL = BTN_LINEAR_ITEM_DECORATION + 1
+
+        // Linear Horizontal ItemDecoration
+        const val BTN_LINEAR_ITEM_HORIZONTAL = BTN_LINEAR_ITEM_DECORATION + 2
 
         // ==============================
         // = DevEnvironment 环境配置切换库 =

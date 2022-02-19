@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.CommodityItem
 import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem

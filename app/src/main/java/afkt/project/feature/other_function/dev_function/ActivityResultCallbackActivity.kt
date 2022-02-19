@@ -2,7 +2,7 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import android.app.Activity
 import android.content.Intent

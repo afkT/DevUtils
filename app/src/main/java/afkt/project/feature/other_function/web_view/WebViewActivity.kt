@@ -3,7 +3,7 @@ package afkt.project.feature.other_function.web_view
 import afkt.project.R
 import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityWebviewBinding
 import android.net.http.SslError
 import android.view.KeyEvent

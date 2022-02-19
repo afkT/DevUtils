@@ -2,7 +2,7 @@ package afkt.project.feature.lib_frame.green_dao
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.database.green.GreenManager
 import afkt.project.database.green.module.note.bean.Note
 import afkt.project.database.green.module.note.bean.NotePicture

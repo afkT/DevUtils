@@ -2,7 +2,7 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager

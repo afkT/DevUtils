@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.text_calc
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityTextCalcBinding
 import android.graphics.Color
 import com.alibaba.android.arouter.facade.annotation.Route

@@ -2,7 +2,7 @@ package afkt.project.feature.other_function.listener
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityCommonTipsBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.listenerButtonValues

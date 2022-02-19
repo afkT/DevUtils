@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.RouterPath
+import afkt.project.model.item.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getGPUImageToneCurveFilter
