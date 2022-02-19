@@ -581,9 +581,8 @@ public final class RecyclerViewUtils {
      * @param view {@link View}
      * @return Orientation
      */
-    @RecyclerView.Orientation
     public static int getOrientation(final View view) {
-        return getOrientation(getRecyclerView(view));
+        return getOrientation(getLayoutManager(view));
     }
 
     /**
@@ -591,16 +590,52 @@ public final class RecyclerViewUtils {
      * @param recyclerView {@link RecyclerView}
      * @return Orientation
      */
-    @RecyclerView.Orientation
     public static int getOrientation(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return getOrientation(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView Orientation
+     * @param layoutManager LayoutManager
+     * @return Orientation
+     */
+    public static int getOrientation(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof LinearLayoutManager) {
             return ((LinearLayoutManager) layoutManager).getOrientation();
         }
         if (layoutManager instanceof StaggeredGridLayoutManager) {
             return ((StaggeredGridLayoutManager) layoutManager).getOrientation();
         }
-        return RecyclerView.VERTICAL;
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 校验 RecyclerView Orientation 是否为 VERTICAL
+     * @param view {@link View}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canScrollVertically(final View view) {
+        return canScrollVertically(getLayoutManager(view));
+    }
+
+    /**
+     * 校验 RecyclerView Orientation 是否为 VERTICAL
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canScrollVertically(final RecyclerView recyclerView) {
+        return canScrollVertically(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 校验 RecyclerView Orientation 是否为 VERTICAL
+     * @param layoutManager LayoutManager
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canScrollVertically(final RecyclerView.LayoutManager layoutManager) {
+        return getOrientation(layoutManager) == RecyclerView.VERTICAL;
     }
 
     // =
@@ -611,7 +646,7 @@ public final class RecyclerViewUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean canScrollHorizontally(final View view) {
-        return canScrollHorizontally(getRecyclerView(view));
+        return canScrollHorizontally(getLayoutManager(view));
     }
 
     /**
@@ -620,25 +655,16 @@ public final class RecyclerViewUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean canScrollHorizontally(final RecyclerView recyclerView) {
-        return getOrientation(recyclerView) == RecyclerView.HORIZONTAL;
+        return canScrollHorizontally(getLayoutManager(recyclerView));
     }
 
     /**
-     * 校验 RecyclerView Orientation 是否为 VERTICAL
-     * @param view {@link View}
+     * 校验 RecyclerView Orientation 是否为 HORIZONTAL
+     * @param layoutManager LayoutManager
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean canScrollVertically(final View view) {
-        return canScrollVertically(getRecyclerView(view));
-    }
-
-    /**
-     * 校验 RecyclerView Orientation 是否为 VERTICAL
-     * @param recyclerView {@link RecyclerView}
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean canScrollVertically(final RecyclerView recyclerView) {
-        return getOrientation(recyclerView) == RecyclerView.VERTICAL;
+    public static boolean canScrollHorizontally(final RecyclerView.LayoutManager layoutManager) {
+        return getOrientation(layoutManager) == RecyclerView.HORIZONTAL;
     }
 
     // ===========

@@ -997,7 +997,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-            boolean           vertical          = (gridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
+            boolean           vertical          = RecyclerViewUtils.canScrollVertically(gridLayoutManager);
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -1206,7 +1206,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            boolean             vertical            = (linearLayoutManager.getOrientation() == RecyclerView.VERTICAL);
+            boolean             vertical            = RecyclerViewUtils.canScrollVertically(linearLayoutManager);
             if (vertical) {
 
                 // ==========
@@ -1322,7 +1322,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
-            boolean                    vertical                   = (staggeredGridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
+            boolean                    vertical                   = RecyclerViewUtils.canScrollVertically(staggeredGridLayoutManager);
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
