@@ -43,13 +43,13 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
  *     <p></p>
  *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
- *     int findFirstCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findFirstCompletelyVisibleItemPosition();
+ *     int findFirstCompletelyVisibleItemPosition = linearManager.findFirstCompletelyVisibleItemPosition();
  *     // 最后一个完整的可见的 item 位置
- *     int findLastCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findLastCompletelyVisibleItemPosition();
+ *     int findLastCompletelyVisibleItemPosition = linearManager.findLastCompletelyVisibleItemPosition();
  *     // 最后一个可见的位置
- *     int findLastVisibleItemPosition = ((LinearLayoutManager) manager).findLastVisibleItemPosition();
+ *     int findLastVisibleItemPosition = linearManager.findLastVisibleItemPosition();
  *     // 第一个可见的位置
- *     int findFirstVisibleItemPosition = ((LinearLayoutManager) manager).findFirstVisibleItemPosition();
+ *     int findFirstVisibleItemPosition = linearManager.findFirstVisibleItemPosition();
  * </pre>
  */
 public final class RecyclerViewUtils {
@@ -457,6 +457,38 @@ public final class RecyclerViewUtils {
     // =
 
     /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引数组
+     * @param view {@link View}
+     * @return 第一条完全显示 Item 索引数组
+     */
+    public static int[] findFirstCompletelyVisibleItemPositions(final View view) {
+        return findFirstCompletelyVisibleItemPositions(getLayoutManager(view));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引数组
+     * @param recyclerView {@link RecyclerView}
+     * @return 第一条完全显示 Item 索引数组
+     */
+    public static int[] findFirstCompletelyVisibleItemPositions(final RecyclerView recyclerView) {
+        return findFirstCompletelyVisibleItemPositions(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引数组
+     * @param layoutManager LayoutManager
+     * @return 第一条完全显示 Item 索引数组
+     */
+    public static int[] findFirstCompletelyVisibleItemPositions(final RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) layoutManager).findFirstCompletelyVisibleItemPositions(null);
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 获取 RecyclerView 最后一条完全显示 Item 索引
      * @param view {@link View}
      * @return 最后一条完全显示 Item 索引
@@ -484,6 +516,38 @@ public final class RecyclerViewUtils {
             return ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
         }
         return -1;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引数组
+     * @param view {@link View}
+     * @return 最后一条完全显示 Item 索引数组
+     */
+    public static int[] findLastCompletelyVisibleItemPositions(final View view) {
+        return findLastCompletelyVisibleItemPositions(getLayoutManager(view));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引数组
+     * @param recyclerView {@link RecyclerView}
+     * @return 最后一条完全显示 Item 索引数组
+     */
+    public static int[] findLastCompletelyVisibleItemPositions(final RecyclerView recyclerView) {
+        return findLastCompletelyVisibleItemPositions(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引数组
+     * @param layoutManager LayoutManager
+     * @return 最后一条完全显示 Item 索引数组
+     */
+    public static int[] findLastCompletelyVisibleItemPositions(final RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) layoutManager).findLastCompletelyVisibleItemPositions(null);
+        }
+        return null;
     }
 
     // =
@@ -521,38 +585,6 @@ public final class RecyclerViewUtils {
     // =
 
     /**
-     * 获取 RecyclerView 最后一条显示 Item 索引
-     * @param view {@link View}
-     * @return 最后一条显示 Item 索引
-     */
-    public static int findLastVisibleItemPosition(final View view) {
-        return findLastVisibleItemPosition(getLayoutManager(view));
-    }
-
-    /**
-     * 获取 RecyclerView 最后一条显示 Item 索引
-     * @param recyclerView {@link RecyclerView}
-     * @return 最后一条显示 Item 索引
-     */
-    public static int findLastVisibleItemPosition(final RecyclerView recyclerView) {
-        return findLastVisibleItemPosition(getLayoutManager(recyclerView));
-    }
-
-    /**
-     * 获取 RecyclerView 最后一条显示 Item 索引
-     * @param layoutManager LayoutManager
-     * @return 最后一条显示 Item 索引
-     */
-    public static int findLastVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
-        if (layoutManager instanceof LinearLayoutManager) {
-            return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
-        }
-        return -1;
-    }
-
-    // =
-
-    /**
      * 获取 RecyclerView 第一条显示 Item 索引数组
      * @param view {@link View}
      * @return 第一条显示 Item 索引数组
@@ -580,6 +612,38 @@ public final class RecyclerViewUtils {
             return ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param view {@link View}
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final View view) {
+        return findLastVisibleItemPosition(getLayoutManager(view));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param recyclerView {@link RecyclerView}
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final RecyclerView recyclerView) {
+        return findLastVisibleItemPosition(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param layoutManager LayoutManager
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        }
+        return -1;
     }
 
     // =
@@ -809,6 +873,38 @@ public final class RecyclerViewUtils {
             }
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Adapter ItemCount
+     * @param view {@link View}
+     * @return ItemCount
+     */
+    public static int getItemCount(final View view) {
+        return getItemCount(getAdapter(view));
+    }
+
+    /**
+     * 获取 Adapter ItemCount
+     * @param recyclerView {@link RecyclerView}
+     * @return ItemCount
+     */
+    public static int getItemCount(final RecyclerView recyclerView) {
+        return getItemCount(getAdapter(recyclerView));
+    }
+
+    /**
+     * 获取 Adapter ItemCount
+     * @param adapter RecyclerView.Adapter
+     * @return ItemCount
+     */
+    public static int getItemCount(final RecyclerView.Adapter<?> adapter) {
+        if (adapter != null) {
+            return adapter.getItemCount();
+        }
+        return 0;
     }
 
     // =
@@ -1320,7 +1416,7 @@ public final class RecyclerViewUtils {
             final RecyclerView recyclerView,
             final RecyclerView.OnScrollListener listener
     ) {
-        if (recyclerView != null && listener != null) {
+        if (recyclerView != null) {
             try {
                 recyclerView.setOnScrollListener(listener);
                 return true;
