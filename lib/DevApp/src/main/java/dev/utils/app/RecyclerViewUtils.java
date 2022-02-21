@@ -910,6 +910,102 @@ public final class RecyclerViewUtils {
     // =
 
     /**
+     * 获取 Adapter 指定索引 Item Id
+     * @param view     {@link View}
+     * @param position 索引
+     * @return Item Id
+     */
+    public static long getItemId(
+            final View view,
+            final int position
+    ) {
+        return getItemId(getAdapter(view), position);
+    }
+
+    /**
+     * 获取 Adapter 指定索引 Item Id
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     * @return Item Id
+     */
+    public static long getItemId(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        return getItemId(getAdapter(recyclerView), position);
+    }
+
+    /**
+     * 获取 Adapter 指定索引 Item Id
+     * @param adapter  RecyclerView.Adapter
+     * @param position 索引
+     * @return Item Id
+     */
+    public static long getItemId(
+            final RecyclerView.Adapter<?> adapter,
+            final int position
+    ) {
+        if (adapter != null) {
+            try {
+                return adapter.getItemId(position);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getItemId");
+            }
+        }
+        return RecyclerView.NO_ID;
+    }
+
+    // =
+
+    /**
+     * 获取 Adapter 指定索引 Item Type
+     * @param view     {@link View}
+     * @param position 索引
+     * @return Item Type
+     */
+    public static int getItemViewType(
+            final View view,
+            final int position
+    ) {
+        return getItemViewType(getAdapter(view), position);
+    }
+
+    /**
+     * 获取 Adapter 指定索引 Item Type
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     * @return Item Type
+     */
+    public static int getItemViewType(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        return getItemViewType(getAdapter(recyclerView), position);
+    }
+
+    /**
+     * 获取 Adapter 指定索引 Item Type
+     * @param adapter  RecyclerView.Adapter
+     * @param position 索引
+     * @return Item Type
+     */
+    public static int getItemViewType(
+            final RecyclerView.Adapter<?> adapter,
+            final int position
+    ) {
+        if (adapter != null) {
+            try {
+                return adapter.getItemViewType(position);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getItemViewType");
+            }
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
      * RecyclerView notifyItemRemoved
      * @param view     {@link View}
      * @param position 索引
