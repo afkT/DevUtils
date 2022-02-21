@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -337,7 +338,7 @@ public final class RecyclerViewUtils {
             final View view,
             final View itemView
     ) {
-        return getPosition(getRecyclerView(view), itemView);
+        return getPosition(getLayoutManager(view), itemView);
     }
 
     /**
@@ -350,7 +351,19 @@ public final class RecyclerViewUtils {
             final RecyclerView recyclerView,
             final View itemView
     ) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return getPosition(getLayoutManager(recyclerView), itemView);
+    }
+
+    /**
+     * 获取 RecyclerView 对应 Item View 索引
+     * @param layoutManager LayoutManager
+     * @param itemView      Item View
+     * @return 对应 Item View 索引
+     */
+    public static int getPosition(
+            final RecyclerView.LayoutManager layoutManager,
+            final View itemView
+    ) {
         if (layoutManager != null && itemView != null) {
             try {
                 return layoutManager.getPosition(itemView);
@@ -373,7 +386,7 @@ public final class RecyclerViewUtils {
             final View view,
             final int position
     ) {
-        return findViewByPosition(getRecyclerView(view), position);
+        return findViewByPosition(getLayoutManager(view), position);
     }
 
     /**
@@ -386,7 +399,19 @@ public final class RecyclerViewUtils {
             final RecyclerView recyclerView,
             final int position
     ) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findViewByPosition(getLayoutManager(recyclerView), position);
+    }
+
+    /**
+     * 获取 RecyclerView 对应索引 Item View
+     * @param layoutManager LayoutManager
+     * @param position      索引
+     * @return 对应索引 Item View
+     */
+    public static View findViewByPosition(
+            final RecyclerView.LayoutManager layoutManager,
+            final int position
+    ) {
         if (layoutManager != null && position >= 0) {
             try {
                 return layoutManager.findViewByPosition(position);
@@ -405,7 +430,7 @@ public final class RecyclerViewUtils {
      * @return 第一条完全显示 Item 索引
      */
     public static int findFirstCompletelyVisibleItemPosition(final View view) {
-        return findFirstCompletelyVisibleItemPosition(getRecyclerView(view));
+        return findFirstCompletelyVisibleItemPosition(getLayoutManager(view));
     }
 
     /**
@@ -414,12 +439,22 @@ public final class RecyclerViewUtils {
      * @return 第一条完全显示 Item 索引
      */
     public static int findFirstCompletelyVisibleItemPosition(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findFirstCompletelyVisibleItemPosition(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引
+     * @param layoutManager LayoutManager
+     * @return 第一条完全显示 Item 索引
+     */
+    public static int findFirstCompletelyVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof LinearLayoutManager) {
             return ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
         }
         return -1;
     }
+
+    // =
 
     /**
      * 获取 RecyclerView 最后一条完全显示 Item 索引
@@ -427,7 +462,7 @@ public final class RecyclerViewUtils {
      * @return 最后一条完全显示 Item 索引
      */
     public static int findLastCompletelyVisibleItemPosition(final View view) {
-        return findLastCompletelyVisibleItemPosition(getRecyclerView(view));
+        return findLastCompletelyVisibleItemPosition(getLayoutManager(view));
     }
 
     /**
@@ -436,7 +471,15 @@ public final class RecyclerViewUtils {
      * @return 最后一条完全显示 Item 索引
      */
     public static int findLastCompletelyVisibleItemPosition(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findLastCompletelyVisibleItemPosition(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引
+     * @param layoutManager LayoutManager
+     * @return 最后一条完全显示 Item 索引
+     */
+    public static int findLastCompletelyVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof LinearLayoutManager) {
             return ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
         }
@@ -451,7 +494,7 @@ public final class RecyclerViewUtils {
      * @return 第一条显示 Item 索引
      */
     public static int findFirstVisibleItemPosition(final View view) {
-        return findFirstVisibleItemPosition(getRecyclerView(view));
+        return findFirstVisibleItemPosition(getLayoutManager(view));
     }
 
     /**
@@ -460,12 +503,22 @@ public final class RecyclerViewUtils {
      * @return 第一条显示 Item 索引
      */
     public static int findFirstVisibleItemPosition(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findFirstVisibleItemPosition(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引
+     * @param layoutManager LayoutManager
+     * @return 第一条显示 Item 索引
+     */
+    public static int findFirstVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof LinearLayoutManager) {
             return ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
         }
         return -1;
     }
+
+    // =
 
     /**
      * 获取 RecyclerView 最后一条显示 Item 索引
@@ -473,7 +526,7 @@ public final class RecyclerViewUtils {
      * @return 最后一条显示 Item 索引
      */
     public static int findLastVisibleItemPosition(final View view) {
-        return findLastVisibleItemPosition(getRecyclerView(view));
+        return findLastVisibleItemPosition(getLayoutManager(view));
     }
 
     /**
@@ -482,7 +535,15 @@ public final class RecyclerViewUtils {
      * @return 最后一条显示 Item 索引
      */
     public static int findLastVisibleItemPosition(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findLastVisibleItemPosition(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param layoutManager LayoutManager
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof LinearLayoutManager) {
             return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
         }
@@ -497,7 +558,7 @@ public final class RecyclerViewUtils {
      * @return 第一条显示 Item 索引数组
      */
     public static int[] findFirstVisibleItemPositions(final View view) {
-        return findFirstVisibleItemPositions(getRecyclerView(view));
+        return findFirstVisibleItemPositions(getLayoutManager(view));
     }
 
     /**
@@ -506,12 +567,22 @@ public final class RecyclerViewUtils {
      * @return 第一条显示 Item 索引数组
      */
     public static int[] findFirstVisibleItemPositions(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findFirstVisibleItemPositions(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引数组
+     * @param layoutManager LayoutManager
+     * @return 第一条显示 Item 索引数组
+     */
+    public static int[] findFirstVisibleItemPositions(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof StaggeredGridLayoutManager) {
             return ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
         }
         return null;
     }
+
+    // =
 
     /**
      * 获取 RecyclerView 最后一条显示 Item 索引数组
@@ -519,7 +590,7 @@ public final class RecyclerViewUtils {
      * @return 最后一条显示 Item 索引数组
      */
     public static int[] findLastVisibleItemPositions(final View view) {
-        return findLastVisibleItemPositions(getRecyclerView(view));
+        return findLastVisibleItemPositions(getLayoutManager(view));
     }
 
     /**
@@ -528,7 +599,15 @@ public final class RecyclerViewUtils {
      * @return 最后一条显示 Item 索引数组
      */
     public static int[] findLastVisibleItemPositions(final RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        return findLastVisibleItemPositions(getLayoutManager(recyclerView));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引数组
+     * @param layoutManager LayoutManager
+     * @return 最后一条显示 Item 索引数组
+     */
+    public static int[] findLastVisibleItemPositions(final RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof StaggeredGridLayoutManager) {
             return ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(null);
         }
@@ -744,7 +823,7 @@ public final class RecyclerViewUtils {
             final View view,
             final int position
     ) {
-        return notifyItemRemoved(getRecyclerView(view), position);
+        return notifyItemRemoved(getAdapter(view), position);
     }
 
     /**
@@ -757,15 +836,25 @@ public final class RecyclerViewUtils {
             final RecyclerView recyclerView,
             final int position
     ) {
-        if (recyclerView != null) {
-            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
-            if (adapter != null) {
-                try {
-                    adapter.notifyItemRemoved(position);
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "notifyItemRemoved");
-                }
+        return notifyItemRemoved(getAdapter(recyclerView), position);
+    }
+
+    /**
+     * RecyclerView notifyItemRemoved
+     * @param adapter  RecyclerView.Adapter
+     * @param position 索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyItemRemoved(
+            final RecyclerView.Adapter<?> adapter,
+            final int position
+    ) {
+        if (adapter != null) {
+            try {
+                adapter.notifyItemRemoved(position);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyItemRemoved");
             }
         }
         return false;
@@ -783,7 +872,7 @@ public final class RecyclerViewUtils {
             final View view,
             final int position
     ) {
-        return notifyItemInserted(getRecyclerView(view), position);
+        return notifyItemInserted(getAdapter(view), position);
     }
 
     /**
@@ -796,15 +885,25 @@ public final class RecyclerViewUtils {
             final RecyclerView recyclerView,
             final int position
     ) {
-        if (recyclerView != null) {
-            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
-            if (adapter != null) {
-                try {
-                    adapter.notifyItemInserted(position);
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "notifyItemInserted");
-                }
+        return notifyItemInserted(getAdapter(recyclerView), position);
+    }
+
+    /**
+     * RecyclerView notifyItemInserted
+     * @param adapter  RecyclerView.Adapter
+     * @param position 索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyItemInserted(
+            final RecyclerView.Adapter<?> adapter,
+            final int position
+    ) {
+        if (adapter != null) {
+            try {
+                adapter.notifyItemInserted(position);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyItemInserted");
             }
         }
         return false;
@@ -824,7 +923,7 @@ public final class RecyclerViewUtils {
             final int fromPosition,
             final int toPosition
     ) {
-        return notifyItemMoved(getRecyclerView(view), fromPosition, toPosition);
+        return notifyItemMoved(getAdapter(view), fromPosition, toPosition);
     }
 
     /**
@@ -839,15 +938,27 @@ public final class RecyclerViewUtils {
             final int fromPosition,
             final int toPosition
     ) {
-        if (recyclerView != null) {
-            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
-            if (adapter != null) {
-                try {
-                    adapter.notifyItemMoved(fromPosition, toPosition);
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "notifyItemMoved");
-                }
+        return notifyItemMoved(getAdapter(recyclerView), fromPosition, toPosition);
+    }
+
+    /**
+     * RecyclerView notifyItemMoved
+     * @param adapter      RecyclerView.Adapter
+     * @param fromPosition 当前索引
+     * @param toPosition   更新后索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyItemMoved(
+            final RecyclerView.Adapter<?> adapter,
+            final int fromPosition,
+            final int toPosition
+    ) {
+        if (adapter != null) {
+            try {
+                adapter.notifyItemMoved(fromPosition, toPosition);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyItemMoved");
             }
         }
         return false;
@@ -861,7 +972,7 @@ public final class RecyclerViewUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean notifyDataSetChanged(final View view) {
-        return notifyDataSetChanged(getRecyclerView(view));
+        return notifyDataSetChanged(getAdapter(view));
     }
 
     /**
@@ -870,15 +981,22 @@ public final class RecyclerViewUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean notifyDataSetChanged(final RecyclerView recyclerView) {
-        if (recyclerView != null) {
-            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
-            if (adapter != null) {
-                try {
-                    adapter.notifyDataSetChanged();
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "notifyDataSetChanged");
-                }
+        return notifyDataSetChanged(getAdapter(recyclerView));
+    }
+
+    /**
+     * RecyclerView notifyDataSetChanged
+     * @param adapter RecyclerView.Adapter
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    public static boolean notifyDataSetChanged(final RecyclerView.Adapter<?> adapter) {
+        if (adapter != null) {
+            try {
+                adapter.notifyDataSetChanged();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyDataSetChanged");
             }
         }
         return false;
@@ -1333,7 +1451,7 @@ public final class RecyclerViewUtils {
         if (recyclerView != null) {
             return recyclerView.getScrollState();
         }
-        return RecyclerView.SCROLL_STATE_IDLE;
+        return -1;
     }
 
     // =
