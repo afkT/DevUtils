@@ -16,18 +16,22 @@ public class BaseItemDecoration
 
     // 边界测算
     protected final Rect    mBounds         = new Rect();
+    // 分割线画笔
+    protected final Paint   mLinePaint      = new Paint(Paint.ANTI_ALIAS_FLAG);
     // 分割线高度 ( 横向为宽度 )
     protected final float   mLineHeight;
-    // 分割线画笔
-    protected final Paint   mLinePaint;
-    // 单条数据是否绘制分割线
-    protected       boolean mSingleLineDraw = true;
     // 分割线距左边距 ( 横向为上边距 )
     protected       float   mLineLeft       = 0.0F;
     // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0F;
     // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
     protected       float   mOffset         = 0.0F;
+    // 单条数据是否绘制分割线
+    protected       boolean mSingleLineDraw = true;
+
+    // ==========
+    // = 构造函数 =
+    // ==========
 
     public BaseItemDecoration(final float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
@@ -38,7 +42,6 @@ public class BaseItemDecoration
             @ColorInt final int lineColor
     ) {
         this.mLineHeight = lineHeight;
-        this.mLinePaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
         this.mLinePaint.setColor(lineColor);
     }
 
@@ -60,24 +63,6 @@ public class BaseItemDecoration
      */
     public float getLineHeight() {
         return mLineHeight;
-    }
-
-    /**
-     * 获取单条数据是否绘制分割线
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSingleLineDraw() {
-        return mSingleLineDraw;
-    }
-
-    /**
-     * 设置单条数据是否绘制分割线
-     * @param singleLineDraw {@code true} yes, {@code false} no
-     * @return {@link BaseItemDecoration}
-     */
-    public BaseItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
-        this.mSingleLineDraw = singleLineDraw;
-        return this;
     }
 
     /**
@@ -146,6 +131,24 @@ public class BaseItemDecoration
      */
     public BaseItemDecoration setOffset(float offset) {
         this.mOffset = offset;
+        return this;
+    }
+
+    /**
+     * 获取单条数据是否绘制分割线
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isSingleLineDraw() {
+        return mSingleLineDraw;
+    }
+
+    /**
+     * 设置单条数据是否绘制分割线
+     * @param singleLineDraw {@code true} yes, {@code false} no
+     * @return {@link BaseItemDecoration}
+     */
+    public BaseItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
+        this.mSingleLineDraw = singleLineDraw;
         return this;
     }
 }
