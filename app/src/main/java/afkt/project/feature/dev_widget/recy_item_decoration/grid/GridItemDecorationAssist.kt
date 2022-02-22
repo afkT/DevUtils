@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ColorUtils
+import dev.utils.common.RandomUtils
+import dev.widget.decoration.BaseItemDecoration
 import dev.widget.decoration.linear.FirstLineItemDecoration
 import dev.widget.decoration.linear.LastLineItemDecoration
 import dev.widget.decoration.linear.LineItemDecoration
@@ -27,18 +29,18 @@ internal class GridItemDecorationAssist(
     private val MAX = 3
 
     // 首条数据顶部添加 ItemDecoration
-    private val firstList = mutableListOf<RecyclerView.ItemDecoration>()
+    private val firstList = mutableListOf<BaseItemDecoration>()
 
     // 最后一条数据底部添加 ItemDecoration
-    private val lastList = mutableListOf<RecyclerView.ItemDecoration>()
+    private val lastList = mutableListOf<BaseItemDecoration>()
 
     // 每条数据底部添加 ItemDecoration
-    private val lineList = mutableListOf<RecyclerView.ItemDecoration>()
+    private val lineList = mutableListOf<BaseItemDecoration>()
 
     // 递增数
-    var firstIndex = AtomicInteger()
-    var lastIndex = AtomicInteger()
-    var lineIndex = AtomicInteger()
+    private var firstIndex = AtomicInteger()
+    private var lastIndex = AtomicInteger()
+    private var lineIndex = AtomicInteger()
 
     // ============
     // = 初始化数据 =
@@ -73,7 +75,35 @@ internal class GridItemDecorationAssist(
             lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.CYAN))
             lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.ORANGE))
         }
+        // 通用设置 ItemDecoration 左右边距
+        if (RandomUtils.nextBoolean()) {
+            setItemLeftRight()
+        }
         initListener()
+    }
+
+    /**
+     * 通用设置 ItemDecoration 左右边距
+     */
+    private fun setItemLeftRight() {
+        firstList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 3.0F),
+                AppSize.dp2pxf((index + 1) * 3.0F),
+            )
+        }
+        lastList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 4.0F),
+                AppSize.dp2pxf((index + 1) * 4.0F),
+            )
+        }
+        lineList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 5.0F),
+                AppSize.dp2pxf((index + 1) * 5.0F),
+            )
+        }
     }
 
     /**
@@ -81,63 +111,93 @@ internal class GridItemDecorationAssist(
      */
     private fun initListener() {
         binding.vidFirstAddBtn.setOnClickListener {
-            if (firstIndex.get() >= MAX) {
-                return@setOnClickListener
-            }
-            QuickHelper.get(recyclerView)
-                .addItemDecoration(firstList[firstIndex.get()])
-                .notifyDataSetChanged()
-            firstIndex.incrementAndGet()
+            addItemDecoration(firstList, firstIndex)
         }
         binding.vidFirstRemoveBtn.setOnClickListener {
-            if (firstIndex.get() <= 0) {
-                return@setOnClickListener
-            }
-            firstIndex.decrementAndGet()
-
-            QuickHelper.get(recyclerView)
-                .removeItemDecoration(firstList[firstIndex.get()])
-                .notifyDataSetChanged()
+            removeItemDecoration(firstList, firstIndex)
         }
 
         binding.vidLastAddBtn.setOnClickListener {
-            if (lastIndex.get() >= MAX) {
-                return@setOnClickListener
-            }
-            QuickHelper.get(recyclerView)
-                .addItemDecoration(lastList[lastIndex.get()])
-                .notifyDataSetChanged()
-            lastIndex.incrementAndGet()
+            addItemDecoration(lastList, lastIndex)
         }
         binding.vidLastRemoveBtn.setOnClickListener {
-            if (lastIndex.get() <= 0) {
-                return@setOnClickListener
-            }
-            lastIndex.decrementAndGet()
-
-            QuickHelper.get(recyclerView)
-                .removeItemDecoration(lastList[lastIndex.get()])
-                .notifyDataSetChanged()
+            removeItemDecoration(lastList, lastIndex)
         }
 
         binding.vidLineAddBtn.setOnClickListener {
-            if (lineIndex.get() >= MAX) {
-                return@setOnClickListener
-            }
-            QuickHelper.get(recyclerView)
-                .addItemDecoration(lineList[lineIndex.get()])
-                .notifyDataSetChanged()
-            lineIndex.incrementAndGet()
+            addItemDecoration(lineList, lineIndex)
         }
         binding.vidLineRemoveBtn.setOnClickListener {
-            if (lineIndex.get() <= 0) {
-                return@setOnClickListener
-            }
-            lineIndex.decrementAndGet()
+            removeItemDecoration(lineList, lineIndex)
+        }
+    }
 
-            QuickHelper.get(recyclerView)
-                .removeItemDecoration(lineList[lineIndex.get()])
-                .notifyDataSetChanged()
+    /**
+     * 通用添加 ItemDecoration 方法
+     * @param list List<BaseItemDecoration>
+     * @param index AtomicInteger
+     */
+    private fun addItemDecoration(
+        list: List<BaseItemDecoration>,
+        index: AtomicInteger
+    ) {
+        if (index.get() >= MAX) {
+            return
+        }
+        // 计算偏差值
+        calcOffset(list, index.get() + 1)
+        // 添加 ItemDecoration
+        QuickHelper.get(recyclerView)
+            .addItemDecoration(list[index.get()])
+            .notifyDataSetChanged()
+        index.incrementAndGet()
+    }
+
+    /**
+     * 通用移除 ItemDecoration 方法
+     * @param list List<BaseItemDecoration>
+     * @param index AtomicInteger
+     */
+    private fun removeItemDecoration(
+        list: List<BaseItemDecoration>,
+        index: AtomicInteger
+    ) {
+        if (index.get() <= 0) {
+            return
+        }
+        index.decrementAndGet()
+        // 计算偏差值
+        calcOffset(list, index.get())
+        // 移除 ItemDecoration
+        QuickHelper.get(recyclerView)
+            .removeItemDecoration(list[index.get()])
+            .notifyDataSetChanged()
+    }
+
+    // =
+
+    /**
+     * 计算 Item 偏差值
+     * @param list List<BaseItemDecoration>
+     * @param number Int
+     */
+    private fun calcOffset(
+        list: List<BaseItemDecoration>,
+        number: Int
+    ) {
+        val numberIndex = number - 1
+        list.forEachIndexed { index, item ->
+            // 先重置为 0
+            item.offset = 0.0F
+            if (numberIndex >= index) {
+                // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+                var offset = 0.0F
+                for (i in (index + 1)..numberIndex) {
+                    offset += list[i].lineHeight
+                }
+                // 设置偏差值
+                item.offset = offset
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ColorUtils
+import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseItemDecoration
 import dev.widget.decoration.linear.FirstLineItemDecoration
 import dev.widget.decoration.linear.LastLineItemDecoration
@@ -74,7 +75,35 @@ internal class LinearItemDecorationAssist(
             lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.CYAN))
             lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.ORANGE))
         }
+        // 通用设置 ItemDecoration 左右边距
+        if (RandomUtils.nextBoolean()) {
+            setItemLeftRight()
+        }
         initListener()
+    }
+
+    /**
+     * 通用设置 ItemDecoration 左右边距
+     */
+    private fun setItemLeftRight() {
+        firstList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 3.0F),
+                AppSize.dp2pxf((index + 1) * 3.0F),
+            )
+        }
+        lastList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 4.0F),
+                AppSize.dp2pxf((index + 1) * 4.0F),
+            )
+        }
+        lineList.forEachIndexed { index, item ->
+            item.setLineLeftRight(
+                AppSize.dp2pxf((index + 1) * 5.0F),
+                AppSize.dp2pxf((index + 1) * 5.0F),
+            )
+        }
     }
 
     /**
