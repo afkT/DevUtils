@@ -17,9 +17,6 @@ import dev.widget.decoration.BaseItemDecoration;
  *     效果:
  *     每个 Item 下面绘制 Line, 最后一条数据不绘制 ( 绘制 ItemCount - 1 条 Line 效果 )
  *     <p></p>
- *     使用:
- *     {@link RecyclerView#addItemDecoration(RecyclerView.ItemDecoration)}
- *     <p></p>
  *     也可以使用内置 {@link DividerItemDecoration}
  *     自定义分割线使用方法
  *     DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -63,12 +60,12 @@ public class LineItemDecoration
     }
 
     @Override
-    public void onDrawOver(
+    public void onDraw(
             @NonNull Canvas canvas,
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        super.onDrawOver(canvas, parent, state);
+        super.onDraw(canvas, parent, state);
 
         int itemCount = state.getItemCount();
         if (itemCount <= 1) return;

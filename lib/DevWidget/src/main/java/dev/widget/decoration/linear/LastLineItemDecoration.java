@@ -12,10 +12,6 @@ import dev.widget.decoration.BaseItemDecoration;
 /**
  * detail: RecyclerView 分割线 ( 在结尾添加一条分割线 )
  * @author Ttt
- * <pre>
- *     可自行改造 {@link #onDrawOver(Canvas, RecyclerView, RecyclerView.State)}
- *     通过 Canvas 绘制所需样式
- * </pre>
  */
 public class LastLineItemDecoration
         extends BaseItemDecoration {
@@ -54,12 +50,12 @@ public class LastLineItemDecoration
     }
 
     @Override
-    public void onDrawOver(
+    public void onDraw(
             @NonNull Canvas canvas,
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        super.onDrawOver(canvas, parent, state);
+        super.onDraw(canvas, parent, state);
 
         int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {

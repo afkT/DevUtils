@@ -15,7 +15,7 @@ import dev.widget.decoration.linear.LineItemDecoration;
  * @author Ttt
  * <pre>
  *     {@link LineItemDecoration} 横向滑动版实现
- *     不合并为一个实现类是防止在 {@link #onDrawOver} 中多次获取方向并进行判断处理
+ *     不合并为一个实现类是防止在 {@link #onDraw} 中多次获取方向并进行判断处理
  * </pre>
  */
 public class LineHorizontalItemDecoration
@@ -54,12 +54,12 @@ public class LineHorizontalItemDecoration
     }
 
     @Override
-    public void onDrawOver(
+    public void onDraw(
             @NonNull Canvas canvas,
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        super.onDrawOver(canvas, parent, state);
+        super.onDraw(canvas, parent, state);
 
         int itemCount = state.getItemCount();
         if (itemCount <= 1) return;
