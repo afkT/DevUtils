@@ -69,11 +69,15 @@ public class LastLineItemDecoration
                 View child    = parent.getChildAt(last);
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
+                    parent.getDecoratedBoundsWithMargins(child, mBounds);
+                    final float bottom = mBounds.bottom;
+                    final float top    = bottom - mLineHeight;
+
                     canvas.drawRect(
                             child.getLeft() + mLineLeft,
-                            child.getBottom() - this.getOffset(),
+                            top - this.getOffset(),
                             child.getRight() - mLineRight,
-                            child.getBottom() + mLineHeight - this.getOffset(),
+                            bottom - this.getOffset(),
                             mLinePaint
                     );
                 }

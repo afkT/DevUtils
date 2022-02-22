@@ -2,6 +2,7 @@ package dev.widget.decoration;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import androidx.annotation.ColorInt;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseItemDecoration
         extends RecyclerView.ItemDecoration {
 
+    // 边界测算
+    protected final Rect    mBounds         = new Rect();
     // 分割线高度 ( 横向为宽度 )
     protected final float   mLineHeight;
     // 分割线画笔

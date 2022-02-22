@@ -71,9 +71,9 @@ public class FirstLineHorizontalItemDecoration
         int  position = parent.getChildAdapterPosition(child);
         if (position == 0) {
             canvas.drawRect(
-                    child.getLeft() - mLineHeight,
+                    child.getLeft() - mLineHeight - this.getOffset(),
                     child.getTop() + mLineLeft,
-                    child.getLeft(),
+                    child.getLeft() - this.getOffset(),
                     child.getBottom() - mLineRight,
                     mLinePaint
             );
