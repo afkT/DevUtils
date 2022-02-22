@@ -55,8 +55,6 @@ public class FirstLineItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        super.onDraw(canvas, parent, state);
-
         int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {
             return;
@@ -67,9 +65,9 @@ public class FirstLineItemDecoration
         if (position == 0) {
             canvas.drawRect(
                     child.getLeft() + mLineLeft,
-                    child.getTop() - mLineHeight,
+                    child.getTop() - mLineHeight - this.getOffset(),
                     child.getRight() - mLineRight,
-                    child.getTop(),
+                    child.getTop() - this.getOffset(),
                     mLinePaint
             );
         }

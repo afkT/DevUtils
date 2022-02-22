@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseItemDecoration
         extends RecyclerView.ItemDecoration {
 
-    // 分割线高度
+    // 分割线高度 ( 横向为宽度 )
     protected final float   mLineHeight;
     // 分割线画笔
     protected final Paint   mLinePaint;
@@ -23,6 +23,8 @@ public class BaseItemDecoration
     protected       float   mLineLeft       = 0.0F;
     // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0F;
+    // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+    protected       float   mOffset         = 0.0F;
 
     public BaseItemDecoration(final float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
@@ -47,6 +49,14 @@ public class BaseItemDecoration
      */
     public Paint getLinePaint() {
         return mLinePaint;
+    }
+
+    /**
+     * 获取分割线高度
+     * @return 分割线高度
+     */
+    public float getLineHeight() {
+        return mLineHeight;
     }
 
     /**
@@ -115,6 +125,24 @@ public class BaseItemDecoration
     ) {
         this.mLineLeft  = lineLeft;
         this.mLineRight = lineRight;
+        return this;
+    }
+
+    /**
+     * 获取 Item 偏差值
+     * @return Item 偏差值
+     */
+    public float getOffset() {
+        return mOffset;
+    }
+
+    /**
+     * 设置 Item 偏差值
+     * @param offset 偏差值
+     * @return {@link BaseItemDecoration}
+     */
+    public BaseItemDecoration setOffset(float offset) {
+        this.mOffset = offset;
         return this;
     }
 }

@@ -55,8 +55,6 @@ public class LastLineItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        super.onDraw(canvas, parent, state);
-
         int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {
             return;
@@ -73,9 +71,9 @@ public class LastLineItemDecoration
                 if (position == lastPosition) {
                     canvas.drawRect(
                             child.getLeft() + mLineLeft,
-                            child.getBottom(),
+                            child.getBottom() - this.getOffset(),
                             child.getRight() - mLineRight,
-                            child.getBottom() + mLineHeight,
+                            child.getBottom() + mLineHeight - this.getOffset(),
                             mLinePaint
                     );
                 }
