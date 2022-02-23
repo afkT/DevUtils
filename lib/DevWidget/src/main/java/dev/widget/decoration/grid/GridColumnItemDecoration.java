@@ -50,17 +50,13 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        int itemCount = state.getItemCount();
-        if (itemCount <= 1) return;
-
-        float value = mColumnHeight / mSpanCount;
-        int   index = parent.getChildAdapterPosition(view) % mSpanCount;
-        if (index == 0) {
-            outRect.left  = 0;
-            outRect.right = 0;
+        float value     = mColumnHeight / mSpanCount;
+        int   index     = parent.getChildAdapterPosition(view);
+        int   spanIndex = index % mSpanCount;
+        if (spanIndex == 0) {
+            outRect.set(0, 0, 0, 0);
         } else {
-            outRect.left  = (int) (index * value);
-            outRect.right = 0;
+            outRect.set((int) (value * spanIndex), 0, 0, 0);
         }
     }
 
@@ -70,21 +66,5 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-//        int itemCount = state.getItemCount();
-//        if (!mSingleLineDraw && itemCount <= 1) {
-//            return;
-//        }
-//
-//        View child    = parent.getChildAt(0);
-//        int  position = parent.getChildAdapterPosition(child);
-//        if (position == 0) {
-//            canvas.drawRect(
-//                    child.getLeft() + mLineLeft,
-//                    child.getTop() - mLineHeight - this.getOffset(),
-//                    child.getRight() - mLineRight,
-//                    child.getTop() - this.getOffset(),
-//                    mLinePaint
-//            );
-//        }
     }
 }
