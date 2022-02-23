@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * detail: 基础 RecyclerView Grid 分割线处理
  * @author Ttt
  */
-class BaseGridItemDecoration
+public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // Span 总数 ( Grid 列 )

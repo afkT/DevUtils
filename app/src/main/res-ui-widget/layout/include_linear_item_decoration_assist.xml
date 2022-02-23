@@ -4,12 +4,12 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/dp_20"
     android:paddingRight="@dimen/dp_20"
+    android:paddingTop="@dimen/dp_10"
     android:orientation="vertical">
 
     <dev.base.widget.BaseTextView
         android:layout_width="wrap_content"
         android:text="First ItemDecoration"
-        android:paddingTop="@dimen/dp_10"
         android:layout_height="wrap_content" />
 
     <LinearLayout

@@ -1,6 +1,6 @@
 package afkt.project.feature.dev_widget.recy_item_decoration.linear
 
-import afkt.project.databinding.IncludeItemDecorationAssistBinding
+import afkt.project.databinding.IncludeLinearItemDecorationAssistBinding
 import afkt.project.utils.AppSize
 import androidx.recyclerview.widget.RecyclerView
 import dev.utils.app.RecyclerViewUtils
@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 internal class LinearItemDecorationAssist(
     private val recyclerView: RecyclerView,
-    private val binding: IncludeItemDecorationAssistBinding
+    private val binding: IncludeLinearItemDecorationAssistBinding
 ) {
 
     // 最大添加数量

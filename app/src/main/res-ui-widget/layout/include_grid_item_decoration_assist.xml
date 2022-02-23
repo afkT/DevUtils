@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_20"
+    android:paddingRight="@dimen/dp_20"
+    android:paddingTop="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <dev.base.widget.BaseTextView
+        android:layout_width="wrap_content"
+        android:text="Column ItemDecoration"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/dp_50">
+
+        <dev.base.widget.BaseButton
+            android:id="@+id/vid_column_add_btn"
+            style="@style/AppTheme.Base_Button"
+            android:text="Add"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <dev.base.widget.BaseButton
+            android:id="@+id/vid_column_remove_btn"
+            style="@style/AppTheme.Base_Button"
+            android:text="Remove"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

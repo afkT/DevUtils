@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/vid_include"
-        layout="@layout/include_item_decoration_assist" />
+        layout="@layout/include_linear_item_decoration_assist" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vid_rv"
