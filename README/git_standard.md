@@ -2,7 +2,7 @@
 ## 摘要
 
 * [1 前言](#1-前言)
-* [2 Commit Message 格式](#2commit-message-格式)
+* [2 Commit Message 格式](#2-commit-message-格式)
 * [3 命名规范](#3-命名规范)
 * [4 代码样式规范](#4-代码样式规范)
 * [5 资源文件规范](#5-资源文件规范)
@@ -17,21 +17,25 @@
 ### 1 前言
 
 在团队协作开发时，每个人提交代码时都会写 commit message。
+
 每个人都有自己的书写风格，可以说是五花八门，十分不利于阅读和维护。
+
 一般来说，大厂都有一套的自己的提交规范，尤其是在一些大型开源项目中，commit message 都是十分一致的。
+
 因此，我们需要制定统一标准，促使团队形成一致的代码提交风格、规范。
 
 
 ### 2 Commit Message 格式
 
+> #[type]<scope> : subject
 
-> \[type\]\[scope\] : subject
+1. type（必须）: commit 的类别，只允许使用下面几个标识；
+2. scope（可选）: 用于说明 commit 影响的范围，比如数据层、控制层、视图层、功能模块等等；
+3. subject（必须）: commit 的简短描述，推荐以动词开头，比如设置、修改、增加、删减、撤销等；
 
-1. 尽量使用最新的稳定版的 IDE 进行开发；
-2. 编码格式统一为 **UTF-8**；
-3. 编辑完 .java、.xml 等文件后一定要 **格式化，格式化，格式化**（如果团队有公共的样式包，那就遵循它，否则统一使用 AS 默认模板即可）；
-4. 删除多余的 import，减少警告出现，可利用 AS 的 Optimize Imports（Settings -> Keymap -> Optimize Imports）快捷键；
-5. Android 开发者工具可以参考这里：**[Android 开发者工具][Android 开发者工具]**；
+例如：
+
+`[feat]<DevEngine> : 新增 completeInitialize 完整初始化方法，移除 getMMKVConfig、getMMKVByHolder 方法`
 
 
 ### 3 命名规范
