@@ -328,6 +328,32 @@ public final class NotificationUtils {
             final Params params,
             final Callback callback
     ) {
+        Notification.Builder builder = createNotificationBuilder(context, params);
+        if (builder == null) return null;
+        // 额外操作触发
+        if (callback != null) {
+            callback.callback(params, builder);
+        }
+        // 初始化 Notification 对象
+        Notification baseNF;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            baseNF = builder.getNotification();
+        } else {
+            baseNF = builder.build();
+        }
+        return baseNF;
+    }
+
+    /**
+     * 创建通知栏 Builder 对象
+     * @param context {@link Context}
+     * @param params  Notification 参数
+     * @return {@link Notification.Builder}
+     */
+    public static Notification.Builder createNotificationBuilder(
+            final Context context,
+            final Params params
+    ) {
         if (params == null) return null;
         Notification.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -339,9 +365,9 @@ public final class NotificationUtils {
             if (TextUtils.isEmpty(channelId)) {
                 channelId = getNotificationChannel().getId();
             }
-            builder = new Notification.Builder(DevUtils.getContext(), channelId);
+            builder = new Notification.Builder(DevUtils.getContext(context), channelId);
         } else {
-            builder = new Notification.Builder(DevUtils.getContext());
+            builder = new Notification.Builder(DevUtils.getContext(context));
         }
         // 点击通知执行 intent
         builder.setContentIntent(params.getPendingIntent());
@@ -372,18 +398,7 @@ public final class NotificationUtils {
         if (lightPattern != null) {
             builder.setLights(lightPattern.argb, lightPattern.durationMS, lightPattern.startOffMS);
         }
-        // 额外操作触发
-        if (callback != null) {
-            callback.callback(params, builder);
-        }
-        // 初始化 Notification 对象
-        Notification baseNF;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            baseNF = builder.getNotification();
-        } else {
-            baseNF = builder.build();
-        }
-        return baseNF;
+        return builder;
     }
 
     /**
