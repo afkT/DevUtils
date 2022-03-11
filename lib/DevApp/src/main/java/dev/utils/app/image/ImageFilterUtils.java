@@ -867,7 +867,7 @@ public final class ImageFilterUtils {
     /**
      * 将 YUV 格式的图片的源数据从横屏模式转为竖屏模式
      * <pre>
-     *     注: 将源图片的宽高互换一下就是新图片的宽高
+     *     注: 将源图片的宽高互换就是新图片的宽高
      * </pre>
      * @param sourceData YUV 格式的图片的源数据
      * @param width      宽

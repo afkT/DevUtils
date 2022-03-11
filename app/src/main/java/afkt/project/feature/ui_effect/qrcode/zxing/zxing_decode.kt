@@ -274,7 +274,7 @@ class DecodeHandler(
         mDecodeConfig.getHandler() ?: return
         // 获取 Camera 预览大小
         val size = mDecodeConfig.getPreviewSize() ?: return
-        // 这里需要将获取的 data 翻转一下, 因为相机默认拿的的横屏的数据
+        // 这里需要将获取的 data 翻转, 因为相机默认拿的的横屏的数据
         val rotatedData = ByteArray(data.size)
         for (y in 0 until size.height) {
             for (x in 0 until size.width) {
