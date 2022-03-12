@@ -69,9 +69,9 @@ public class LineHorizontalItemDecoration
             View child = parent.getChildAt(i);
             if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
-                        child.getLeft() - mLineHeight - this.getOffset(),
+                        child.getLeft() - mLineHeight - mOffset,
                         child.getTop() + mLineLeft,
-                        child.getLeft() - this.getOffset(),
+                        child.getLeft() - mOffset,
                         child.getBottom() - mLineRight,
                         mLinePaint
                 );

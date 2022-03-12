@@ -75,9 +75,9 @@ public class LastLineItemDecoration
 
                     canvas.drawRect(
                             child.getLeft() + mLineLeft,
-                            top - this.getOffset(),
+                            top - mOffset,
                             child.getRight() - mLineRight,
-                            bottom - this.getOffset(),
+                            bottom - mOffset,
                             mLinePaint
                     );
                 }

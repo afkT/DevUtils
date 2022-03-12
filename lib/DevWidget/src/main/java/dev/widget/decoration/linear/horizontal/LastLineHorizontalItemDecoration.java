@@ -81,9 +81,9 @@ public class LastLineHorizontalItemDecoration
                     final float left  = right - mLineHeight;
 
                     canvas.drawRect(
-                            left - this.getOffset(),
+                            left - mOffset,
                             child.getTop() + mLineLeft,
-                            right - this.getOffset(),
+                            right - mOffset,
                             child.getBottom() - mLineRight,
                             mLinePaint
                     );

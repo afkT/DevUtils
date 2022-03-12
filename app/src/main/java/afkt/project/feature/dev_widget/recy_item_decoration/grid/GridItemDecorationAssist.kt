@@ -129,21 +129,32 @@ internal class GridItemDecorationAssist(
         list: List<BaseGridItemDecoration>,
         number: Int
     ) {
+        val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
-//            if (item is GridColumnItemDecoration) {
-//                // 先重置为 0
-//                item.offset = 0.0F
-//            }
-//            if (numberIndex >= index) {
-//                // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
-//                var offset = 0.0F
-//                for (i in (index + 1)..numberIndex) {
-//                    offset += list[i].lineHeight
-//                }
-//                // 设置偏差值
-//                item.offset = offset
-//            }
+            if (vertical) {
+                item.columnOffset = 0.0F
+                if (numberIndex >= index) {
+                    // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+                    var offset = 0.0F
+                    for (i in (index + 1)..numberIndex) {
+                        offset += list[i].columnHeight
+                    }
+                    // 设置偏差值
+                    item.columnOffset = offset
+                }
+            } else {
+                item.rowOffset = 0.0F
+                if (numberIndex >= index) {
+                    // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+                    var offset = 0.0F
+                    for (i in (index + 1)..numberIndex) {
+                        offset += list[i].rowHeight
+                    }
+                    // 设置偏差值
+                    item.rowOffset = offset
+                }
+            }
         }
     }
 }

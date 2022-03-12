@@ -63,4 +63,96 @@ public class BaseGridItemDecoration
     // ==========
     // = 对外公开 =
     // ==========
+
+    public int getSpanCount() {
+        return mSpanCount;
+    }
+
+    // =====
+    // = 行 =
+    // =====
+
+    public Paint getRowPaint() {
+        return mRowPaint;
+    }
+
+    public float getRowHeight() {
+        return mRowHeight;
+    }
+
+    public BaseGridItemDecoration setRowHeight(final float rowHeight) {
+        this.mRowHeight = rowHeight;
+        return this;
+    }
+
+    public float getRowLeft() {
+        return mRowLeft;
+    }
+
+    public BaseGridItemDecoration setRowLeft(final float rowLeft) {
+        this.mRowLeft = rowLeft;
+        return this;
+    }
+
+    public float getRowRight() {
+        return mRowRight;
+    }
+
+    public BaseGridItemDecoration setRowRight(final float rowRight) {
+        this.mRowRight = rowRight;
+        return this;
+    }
+
+    public float getRowOffset() {
+        return mRowOffset;
+    }
+
+    public BaseGridItemDecoration setRowOffset(final float rowOffset) {
+        this.mRowOffset = rowOffset;
+        return this;
+    }
+
+    // =====
+    // = 列 =
+    // =====
+
+    public Paint getColumnPaint() {
+        return mColumnPaint;
+    }
+
+    public float getColumnHeight() {
+        return mColumnHeight;
+    }
+
+    public BaseGridItemDecoration setColumnHeight(final float columnHeight) {
+        this.mColumnHeight = columnHeight;
+        return this;
+    }
+
+    public float getColumnLeft() {
+        return mColumnLeft;
+    }
+
+    public BaseGridItemDecoration setColumnLeft(final float columnLeft) {
+        this.mColumnLeft = columnLeft;
+        return this;
+    }
+
+    public float getColumnRight() {
+        return mColumnRight;
+    }
+
+    public BaseGridItemDecoration setColumnRight(final float columnRight) {
+        this.mColumnRight = columnRight;
+        return this;
+    }
+
+    public float getColumnOffset() {
+        return mColumnOffset;
+    }
+
+    public BaseGridItemDecoration setColumnOffset(final float columnOffset) {
+        this.mColumnOffset = columnOffset;
+        return this;
+    }
 }

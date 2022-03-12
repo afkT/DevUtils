@@ -66,5 +66,23 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
+        float value = mColumnHeight / mSpanCount;
+
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child     = parent.getChildAt(i);
+            int  index     = parent.getChildAdapterPosition(child);
+            int  spanIndex = index % mSpanCount;
+            if (spanIndex != 0) {
+                float spacing = (value * spanIndex);
+                canvas.drawRect(
+                        child.getLeft() - mColumnHeight - mColumnOffset,
+                        child.getTop() + mColumnLeft,
+                        child.getLeft() - mColumnOffset,
+                        child.getBottom() - mColumnRight,
+                        mColumnPaint
+                );
+            }
+        }
     }
 }

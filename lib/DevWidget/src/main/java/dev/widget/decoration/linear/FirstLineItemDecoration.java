@@ -65,9 +65,9 @@ public class FirstLineItemDecoration
         if (position == 0) {
             canvas.drawRect(
                     child.getLeft() + mLineLeft,
-                    child.getTop() - mLineHeight - this.getOffset(),
+                    child.getTop() - mLineHeight - mOffset,
                     child.getRight() - mLineRight,
-                    child.getTop() - this.getOffset(),
+                    child.getTop() - mOffset,
                     mLinePaint
             );
         }
