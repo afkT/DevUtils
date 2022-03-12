@@ -50,14 +50,13 @@ public class GridRowHorizontalItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        int itemCount = state.getItemCount();
-        if (itemCount <= mSpanCount) return;
-
-        int index = parent.getChildAdapterPosition(view);
-        if (index < mSpanCount) {
+        float value     = mRowHeight / mSpanCount;
+        int   index     = parent.getChildAdapterPosition(view);
+        int   spanIndex = index % mSpanCount;
+        if (spanIndex == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set(0, (int) mRowHeight, 0, 0);
+            outRect.set(0, (int) (value * spanIndex), 0, 0);
         }
     }
 
@@ -69,9 +68,10 @@ public class GridRowHorizontalItemDecoration
     ) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            int  index = parent.getChildAdapterPosition(child);
-            if (index >= mSpanCount) {
+            View child     = parent.getChildAt(i);
+            int  index     = parent.getChildAdapterPosition(child);
+            int  spanIndex = index % mSpanCount;
+            if (spanIndex != 0) {
                 canvas.drawRect(
                         child.getLeft() + mRowLeft,
                         child.getTop() - mRowHeight - mRowOffset,
