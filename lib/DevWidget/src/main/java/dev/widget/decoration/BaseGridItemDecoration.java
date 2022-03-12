@@ -103,6 +103,15 @@ public class BaseGridItemDecoration
         return this;
     }
 
+    public BaseGridItemDecoration setRowLeftRight(
+            final float rowLeft,
+            final float rowRight
+    ) {
+        this.mRowLeft  = rowLeft;
+        this.mRowRight = rowRight;
+        return this;
+    }
+
     public float getRowOffset() {
         return mRowOffset;
     }
@@ -143,6 +152,15 @@ public class BaseGridItemDecoration
     }
 
     public BaseGridItemDecoration setColumnRight(final float columnRight) {
+        this.mColumnRight = columnRight;
+        return this;
+    }
+
+    public BaseGridItemDecoration setColumnLeftRight(
+            final float columnLeft,
+            final float columnRight
+    ) {
+        this.mColumnLeft  = columnLeft;
         this.mColumnRight = columnRight;
         return this;
     }

@@ -12,31 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import dev.widget.decoration.BaseGridItemDecoration;
 
 /**
- * detail: RecyclerView Grid 列分割线处理
+ * detail: RecyclerView Grid 行分割线处理
  * @author Ttt
  * <pre>
  *     方便基类复用统一继承 {@link BaseGridItemDecoration}
- *     不会使用到 行 ( row ) 相关的任何字段
+ *     不会使用到 列 ( Column ) 相关的任何字段
  * </pre>
  */
-public class GridColumnItemDecoration
+public class GridRowItemDecoration
         extends BaseGridItemDecoration {
 
-    public GridColumnItemDecoration(
+    public GridRowItemDecoration(
             final int spanCount,
-            final float columnHeight
+            final float rowHeight
     ) {
-        this(spanCount, columnHeight, Color.TRANSPARENT);
+        this(spanCount, rowHeight, Color.TRANSPARENT);
     }
 
-    public GridColumnItemDecoration(
+    public GridRowItemDecoration(
             final int spanCount,
-            final float columnHeight,
-            @ColorInt final int columnColor
+            final float rowHeight,
+            @ColorInt final int rowColor
     ) {
         super(spanCount);
-        this.mColumnHeight = columnHeight;
-        this.mColumnPaint.setColor(columnColor);
+        this.mRowHeight = rowHeight;
+        this.mRowPaint.setColor(rowColor);
     }
 
     // ==========
@@ -50,7 +50,7 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        float value     = mColumnHeight / mSpanCount;
+        float value     = mRowHeight / mSpanCount;
         int   index     = parent.getChildAdapterPosition(view);
         int   spanIndex = index % mSpanCount;
         if (spanIndex == 0) {
@@ -66,7 +66,7 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        float value = mColumnHeight / mSpanCount;
+        float value = mRowHeight / mSpanCount;
 
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -75,11 +75,11 @@ public class GridColumnItemDecoration
             int  spanIndex = index % mSpanCount;
             if (spanIndex != 0) {
                 canvas.drawRect(
-                        child.getLeft() - mColumnHeight - mColumnOffset,
-                        child.getTop() + mColumnLeft,
-                        child.getLeft() - mColumnOffset,
-                        child.getBottom() - mColumnRight,
-                        mColumnPaint
+                        child.getLeft() - mRowHeight - mRowOffset,
+                        child.getTop() + mRowLeft,
+                        child.getLeft() - mRowOffset,
+                        child.getBottom() - mRowRight,
+                        mRowPaint
                 );
             }
         }

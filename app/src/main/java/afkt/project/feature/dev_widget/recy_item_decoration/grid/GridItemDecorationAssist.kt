@@ -56,12 +56,21 @@ internal class GridItemDecorationAssist(
      * 通用设置 ItemDecoration 左右边距
      */
     private fun setItemLeftRight() {
-//        columnList.forEachIndexed { index, item ->
-//            item.setLineLeftRight(
-//                AppSize.dp2pxf((index + 1) * 5.0F),
-//                AppSize.dp2pxf((index + 1) * 5.0F),
-//            )
-//        }
+        val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
+
+        columnList.forEachIndexed { index, item ->
+            if (vertical) {
+                item.setColumnLeftRight(
+                    AppSize.dp2pxf((index + 1) * 5.0F),
+                    AppSize.dp2pxf((index + 1) * 5.0F),
+                )
+            } else {
+                item.setRowLeftRight(
+                    AppSize.dp2pxf((index + 1) * 5.0F),
+                    AppSize.dp2pxf((index + 1) * 5.0F),
+                )
+            }
+        }
     }
 
     /**
@@ -130,6 +139,7 @@ internal class GridItemDecorationAssist(
         number: Int
     ) {
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
+
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
             if (vertical) {
