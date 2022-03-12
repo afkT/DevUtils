@@ -66,8 +66,6 @@ public class GridColumnItemDecoration
             @NonNull RecyclerView parent,
             @NonNull RecyclerView.State state
     ) {
-        float value = mColumnHeight / mSpanCount;
-
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View child     = parent.getChildAt(i);
