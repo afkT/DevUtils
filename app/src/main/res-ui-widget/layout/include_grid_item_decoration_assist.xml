@@ -7,61 +7,216 @@
     android:paddingTop="@dimen/dp_10"
     android:paddingRight="@dimen/dp_20">
 
-    <dev.base.widget.BaseTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Column ItemDecoration" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_column_add_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Add" />
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="First"
+            android:textStyle="bold" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_column_remove_btn"
-            style="@style/AppTheme.Base_Button"
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Column ItemDecoration" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Remove" />
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_first_column_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_first_column_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
+
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row ItemDecoration" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_first_row_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_first_row_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
     </LinearLayout>
 
-    <dev.base.widget.BaseTextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Row ItemDecoration" />
+        android:orientation="vertical">
+
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="Line"
+            android:textStyle="bold" />
+
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Column ItemDecoration" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_line_column_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_line_column_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
+
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row ItemDecoration" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_line_row_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_line_row_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_row_add_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Add" />
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="Last"
+            android:textStyle="bold" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_row_remove_btn"
-            style="@style/AppTheme.Base_Button"
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Column ItemDecoration" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Remove" />
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_last_column_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_last_column_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
+
+        <dev.base.widget.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row ItemDecoration" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_last_row_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
+
+            <dev.base.widget.BaseButton
+                android:id="@+id/vid_last_row_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

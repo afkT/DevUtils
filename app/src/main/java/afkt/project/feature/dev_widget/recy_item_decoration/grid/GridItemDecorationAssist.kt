@@ -26,15 +26,31 @@ internal class GridItemDecorationAssist(
     // 最大添加数量
     private val MAX = 3
 
-    // 列分割线处理 ItemDecoration
-    private val columnList = mutableListOf<BaseGridItemDecoration>()
+    // 首条数据顶部添加 列分割线处理 ItemDecoration
+    private val firstColumnList = mutableListOf<BaseGridItemDecoration>()
 
-    // 行分割线处理 ItemDecoration
-    private val rowList = mutableListOf<BaseGridItemDecoration>()
+    // 首条数据顶部添加 行分割线处理 ItemDecoration
+    private val firstRowList = mutableListOf<BaseGridItemDecoration>()
+
+    // 最后一条数据底部添加 列分割线处理 ItemDecoration
+    private val lastColumnList = mutableListOf<BaseGridItemDecoration>()
+
+    // 最后一条数据底部添加 行分割线处理 ItemDecoration
+    private val lastRowList = mutableListOf<BaseGridItemDecoration>()
+
+    // 每条数据底部添加 列分割线处理 ItemDecoration
+    private val lineColumnList = mutableListOf<BaseGridItemDecoration>()
+
+    // 每条数据底部添加 行分割线处理 ItemDecoration
+    private val lineRowList = mutableListOf<BaseGridItemDecoration>()
 
     // 递增数
-    private var columnIndex = AtomicInteger()
-    private var rowIndex = AtomicInteger()
+    private var firstColumnIndex = AtomicInteger()
+    private var firstRowIndex = AtomicInteger()
+    private var lastColumnIndex = AtomicInteger()
+    private var lastRowIndex = AtomicInteger()
+    private var lineColumnIndex = AtomicInteger()
+    private var lineRowIndex = AtomicInteger()
 
     // ============
     // = 初始化数据 =
@@ -47,21 +63,45 @@ internal class GridItemDecorationAssist(
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
         if (vertical) {
-            columnList.add(GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE))
-            columnList.add(GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CYAN))
-            columnList.add(GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE))
+            lineColumnList.add(
+                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE)
+            )
+            lineColumnList.add(
+                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CYAN)
+            )
+            lineColumnList.add(
+                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE)
+            )
 
-            rowList.add(GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE))
-            rowList.add(GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CYAN))
-            rowList.add(GridRowItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE))
+            lineRowList.add(
+                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE)
+            )
+            lineRowList.add(
+                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CYAN)
+            )
+            lineRowList.add(
+                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE)
+            )
         } else {
-            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE))
-            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CYAN))
-            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE))
+            lineColumnList.add(
+                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE)
+            )
+            lineColumnList.add(
+                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CYAN)
+            )
+            lineColumnList.add(
+                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE)
+            )
 
-            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE))
-            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CYAN))
-            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE))
+            lineRowList.add(
+                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE)
+            )
+            lineRowList.add(
+                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CYAN)
+            )
+            lineRowList.add(
+                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE)
+            )
         }
         // 通用设置 ItemDecoration 左右边距
         if (RandomUtils.nextBoolean()) {
@@ -74,18 +114,32 @@ internal class GridItemDecorationAssist(
      * 通用设置 ItemDecoration 左右边距
      */
     private fun setItemLeftRight() {
-        columnList.forEachIndexed { index, item ->
-            item.setColumnLeftRight(
-                AppSize.dp2pxf((index + 1) * 5.0F),
-                AppSize.dp2pxf((index + 1) * 5.0F),
-            )
-        }
+        forItemLeftRight(firstColumnList, true)
+        forItemLeftRight(firstRowList, false)
 
-        rowList.forEachIndexed { index, item ->
-            item.setRowLeftRight(
-                AppSize.dp2pxf((index + 1) * 5.0F),
-                AppSize.dp2pxf((index + 1) * 5.0F),
-            )
+        forItemLeftRight(lastColumnList, true)
+        forItemLeftRight(lastRowList, false)
+
+        forItemLeftRight(lineColumnList, true)
+        forItemLeftRight(lineRowList, false)
+    }
+
+    /**
+     * 循环设置 Item Left、Right
+     * @param list List<BaseGridItemDecoration>
+     * @param column Boolean
+     */
+    private fun forItemLeftRight(
+        list: List<BaseGridItemDecoration>,
+        column: Boolean
+    ) {
+        list.forEachIndexed { index, item ->
+            val value = AppSize.dp2pxf((index + 1) * 5.0F)
+            if (column) {
+                item.setColumnLeftRight(value, value)
+            } else {
+                item.setRowLeftRight(value, value)
+            }
         }
     }
 
@@ -93,17 +147,56 @@ internal class GridItemDecorationAssist(
      * 初始化事件
      */
     private fun initListener() {
-        binding.vidColumnAddBtn.setOnClickListener {
-            addItemDecoration(columnList, columnIndex)
+
+        // ========
+        // = First =
+        // ========
+
+        binding.vidFirstColumnAddBtn.setOnClickListener {
+            addItemDecoration(firstColumnList, firstColumnIndex)
         }
-        binding.vidColumnRemoveBtn.setOnClickListener {
-            removeItemDecoration(columnList, columnIndex)
+        binding.vidFirstColumnRemoveBtn.setOnClickListener {
+            removeItemDecoration(firstColumnList, firstColumnIndex)
         }
-        binding.vidRowAddBtn.setOnClickListener {
-            addItemDecoration(rowList, rowIndex)
+        binding.vidFirstRowAddBtn.setOnClickListener {
+            addItemDecoration(firstRowList, firstRowIndex)
         }
-        binding.vidRowRemoveBtn.setOnClickListener {
-            removeItemDecoration(rowList, rowIndex)
+        binding.vidFirstRowRemoveBtn.setOnClickListener {
+            removeItemDecoration(firstRowList, firstRowIndex)
+        }
+
+        // ========
+        // = Last =
+        // ========
+
+        binding.vidLastColumnAddBtn.setOnClickListener {
+            addItemDecoration(lastColumnList, lastColumnIndex)
+        }
+        binding.vidLastColumnRemoveBtn.setOnClickListener {
+            removeItemDecoration(lastColumnList, lastColumnIndex)
+        }
+        binding.vidLastRowAddBtn.setOnClickListener {
+            addItemDecoration(lastRowList, lastRowIndex)
+        }
+        binding.vidLastRowRemoveBtn.setOnClickListener {
+            removeItemDecoration(lastRowList, lastRowIndex)
+        }
+
+        // ========
+        // = Line =
+        // ========
+
+        binding.vidLineColumnAddBtn.setOnClickListener {
+            addItemDecoration(lineColumnList, lineColumnIndex)
+        }
+        binding.vidLineColumnRemoveBtn.setOnClickListener {
+            removeItemDecoration(lineColumnList, lineColumnIndex)
+        }
+        binding.vidLineRowAddBtn.setOnClickListener {
+            addItemDecoration(lineRowList, lineRowIndex)
+        }
+        binding.vidLineRowRemoveBtn.setOnClickListener {
+            removeItemDecoration(lineRowList, lineRowIndex)
         }
     }
 

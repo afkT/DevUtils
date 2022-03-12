@@ -86,23 +86,19 @@ internal class LinearItemDecorationAssist(
      * 通用设置 ItemDecoration 左右边距
      */
     private fun setItemLeftRight() {
-        firstList.forEachIndexed { index, item ->
-            item.setLineLeftRight(
-                AppSize.dp2pxf((index + 1) * 3.0F),
-                AppSize.dp2pxf((index + 1) * 3.0F),
-            )
-        }
-        lastList.forEachIndexed { index, item ->
-            item.setLineLeftRight(
-                AppSize.dp2pxf((index + 1) * 4.0F),
-                AppSize.dp2pxf((index + 1) * 4.0F),
-            )
-        }
-        lineList.forEachIndexed { index, item ->
-            item.setLineLeftRight(
-                AppSize.dp2pxf((index + 1) * 5.0F),
-                AppSize.dp2pxf((index + 1) * 5.0F),
-            )
+        forItemLeftRight(firstList)
+        forItemLeftRight(lastList)
+        forItemLeftRight(lineList)
+    }
+
+    /**
+     * 循环设置 Item Left、Right
+     * @param list List<BaseItemDecoration>
+     */
+    private fun forItemLeftRight(list: List<BaseItemDecoration>) {
+        list.forEachIndexed { index, item ->
+            val value = AppSize.dp2pxf((index + 1) * 5.0F)
+            item.setLineLeftRight(value, value)
         }
     }
 
