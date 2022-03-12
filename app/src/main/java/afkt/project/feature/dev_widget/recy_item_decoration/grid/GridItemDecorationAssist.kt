@@ -10,6 +10,8 @@ import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseGridItemDecoration
 import dev.widget.decoration.grid.GridColumnItemDecoration
 import dev.widget.decoration.grid.GridRowItemDecoration
+import dev.widget.decoration.grid.horizontal.GridColumnHorizontalItemDecoration
+import dev.widget.decoration.grid.horizontal.GridRowHorizontalItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -53,6 +55,13 @@ internal class GridItemDecorationAssist(
             rowList.add(GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CYAN))
             rowList.add(GridRowItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE))
         } else {
+            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE))
+            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CYAN))
+            columnList.add(GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE))
+
+            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE))
+            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CYAN))
+            rowList.add(GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE))
         }
         // 通用设置 ItemDecoration 左右边距
         if (RandomUtils.nextBoolean()) {
@@ -154,7 +163,8 @@ internal class GridItemDecorationAssist(
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
             when (item) {
-                is GridColumnItemDecoration -> {
+                is GridColumnItemDecoration,
+                is GridColumnHorizontalItemDecoration -> {
                     item.columnOffset = 0.0F
                     if (numberIndex >= index) {
                         // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
@@ -166,7 +176,8 @@ internal class GridItemDecorationAssist(
                         item.columnOffset = offset
                     }
                 }
-                is GridRowItemDecoration -> {
+                is GridRowItemDecoration,
+                is GridRowHorizontalItemDecoration -> {
                     item.rowOffset = 0.0F
                     if (numberIndex >= index) {
                         // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )

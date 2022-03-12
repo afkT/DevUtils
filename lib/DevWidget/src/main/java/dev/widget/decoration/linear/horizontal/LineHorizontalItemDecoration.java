@@ -15,7 +15,6 @@ import dev.widget.decoration.linear.LineItemDecoration;
  * @author Ttt
  * <pre>
  *     {@link LineItemDecoration} 横向滑动版实现
- *     不合并为一个实现类是防止在 {@link #onDraw} 中多次获取方向并进行判断处理
  * </pre>
  */
 public class LineHorizontalItemDecoration
