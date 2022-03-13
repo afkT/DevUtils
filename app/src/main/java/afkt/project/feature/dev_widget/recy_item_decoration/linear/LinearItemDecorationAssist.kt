@@ -11,9 +11,6 @@ import dev.widget.decoration.BaseLinearItemDecoration
 import dev.widget.decoration.linear.FirstLineItemDecoration
 import dev.widget.decoration.linear.LastLineItemDecoration
 import dev.widget.decoration.linear.LineItemDecoration
-import dev.widget.decoration.linear.horizontal.FirstLineHorizontalItemDecoration
-import dev.widget.decoration.linear.horizontal.LastLineHorizontalItemDecoration
-import dev.widget.decoration.linear.horizontal.LineHorizontalItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -50,31 +47,18 @@ internal class LinearItemDecorationAssist(
         val lineHeight = AppSize.dp2pxf(10.0F)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
-        if (vertical) {
-            firstList.add(FirstLineItemDecoration(lineHeight, ColorUtils.RED))
-            firstList.add(FirstLineItemDecoration(lineHeight, ColorUtils.BLUE))
-            firstList.add(FirstLineItemDecoration(lineHeight, ColorUtils.GREEN))
+        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.RED))
+        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.BLUE))
+        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.GREEN))
 
-            lastList.add(LastLineItemDecoration(lineHeight, ColorUtils.GOLD))
-            lastList.add(LastLineItemDecoration(lineHeight, ColorUtils.PINK))
-            lastList.add(LastLineItemDecoration(lineHeight, ColorUtils.PURPLE))
+        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.GOLD))
+        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.PINK))
+        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.PURPLE))
 
-            lineList.add(LineItemDecoration(lineHeight, ColorUtils.CHOCOLATE))
-            lineList.add(LineItemDecoration(lineHeight, ColorUtils.CYAN))
-            lineList.add(LineItemDecoration(lineHeight, ColorUtils.ORANGE))
-        } else {
-            firstList.add(FirstLineHorizontalItemDecoration(lineHeight, ColorUtils.RED))
-            firstList.add(FirstLineHorizontalItemDecoration(lineHeight, ColorUtils.BLUE))
-            firstList.add(FirstLineHorizontalItemDecoration(lineHeight, ColorUtils.GREEN))
+        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.CHOCOLATE))
+        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.CYAN))
+        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.ORANGE))
 
-            lastList.add(LastLineHorizontalItemDecoration(lineHeight, ColorUtils.GOLD))
-            lastList.add(LastLineHorizontalItemDecoration(lineHeight, ColorUtils.PINK))
-            lastList.add(LastLineHorizontalItemDecoration(lineHeight, ColorUtils.PURPLE))
-
-            lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.CHOCOLATE))
-            lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.CYAN))
-            lineList.add(LineHorizontalItemDecoration(lineHeight, ColorUtils.ORANGE))
-        }
         // 通用设置 ItemDecoration 左右边距
         if (RandomUtils.nextBoolean()) {
             setItemLeftRight()

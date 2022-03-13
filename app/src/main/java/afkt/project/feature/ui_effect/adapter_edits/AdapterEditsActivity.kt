@@ -74,7 +74,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .removeAllItemDecoration()
             .addItemDecoration(
                 FirstLineItemDecoration(
-                    ResourceUtils.getDimension(R.dimen.dp_10)
+                    true, ResourceUtils.getDimension(R.dimen.dp_10)
                 )
             )
     }
