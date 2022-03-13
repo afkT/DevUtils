@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseItemDecoration;
+import dev.widget.decoration.BaseLinearItemDecoration;
 
 /**
  * detail: RecyclerView 分割线
@@ -25,7 +25,7 @@ import dev.widget.decoration.BaseItemDecoration;
  * </pre>
  */
 public class LineItemDecoration
-        extends BaseItemDecoration {
+        extends BaseLinearItemDecoration {
 
     public LineItemDecoration(float lineHeight) {
         super(lineHeight);
@@ -74,9 +74,9 @@ public class LineItemDecoration
             if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
                         child.getLeft() + mLineLeft,
-                        child.getTop() - mLineHeight - mOffset,
+                        child.getTop() - mLineHeight - mLineOffset,
                         child.getRight() - mLineRight,
-                        child.getTop() - mOffset,
+                        child.getTop() - mLineOffset,
                         mLinePaint
                 );
             }

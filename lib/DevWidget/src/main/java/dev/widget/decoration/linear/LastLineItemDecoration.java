@@ -7,14 +7,14 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseItemDecoration;
+import dev.widget.decoration.BaseLinearItemDecoration;
 
 /**
  * detail: RecyclerView 分割线 ( 在结尾添加一条分割线 )
  * @author Ttt
  */
 public class LastLineItemDecoration
-        extends BaseItemDecoration {
+        extends BaseLinearItemDecoration {
 
     public LastLineItemDecoration(float lineHeight) {
         super(lineHeight);
@@ -69,15 +69,15 @@ public class LastLineItemDecoration
                 View child    = parent.getChildAt(last);
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
-                    parent.getDecoratedBoundsWithMargins(child, mBounds);
-                    final float bottom = mBounds.bottom;
+                    parent.getDecoratedBoundsWithMargins(child, mLineBounds);
+                    final float bottom = mLineBounds.bottom;
                     final float top    = bottom - mLineHeight;
 
                     canvas.drawRect(
                             child.getLeft() + mLineLeft,
-                            top - mOffset,
+                            top - mLineOffset,
                             child.getRight() - mLineRight,
-                            bottom - mOffset,
+                            bottom - mLineOffset,
                             mLinePaint
                     );
                 }

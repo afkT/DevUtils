@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * detail: 基础 RecyclerView Grid 分割线处理
  * @author Ttt
+ * <pre>
+ *     纯色值绘制 行、列 分割线
+ * </pre>
  */
 public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {

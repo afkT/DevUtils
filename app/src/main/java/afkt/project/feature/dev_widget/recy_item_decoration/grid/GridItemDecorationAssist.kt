@@ -126,7 +126,7 @@ internal class GridItemDecorationAssist(
 
     /**
      * 循环设置 Item Left、Right
-     * @param list List<BaseGridItemDecoration>
+     * @param list ItemDecoration List
      * @param column Boolean
      */
     private fun forItemLeftRight(
@@ -202,7 +202,7 @@ internal class GridItemDecorationAssist(
 
     /**
      * 通用添加 ItemDecoration 方法
-     * @param list List<BaseGridItemDecoration>
+     * @param list ItemDecoration List
      * @param index AtomicInteger
      */
     private fun addItemDecoration(
@@ -223,7 +223,7 @@ internal class GridItemDecorationAssist(
 
     /**
      * 通用移除 ItemDecoration 方法
-     * @param list List<BaseGridItemDecoration>
+     * @param list ItemDecoration List
      * @param index AtomicInteger
      */
     private fun removeItemDecoration(
@@ -246,7 +246,7 @@ internal class GridItemDecorationAssist(
 
     /**
      * 计算 Item 偏差值
-     * @param list List<BaseGridItemDecoration>
+     * @param list ItemDecoration List
      * @param number Int
      */
     private fun calcOffset(

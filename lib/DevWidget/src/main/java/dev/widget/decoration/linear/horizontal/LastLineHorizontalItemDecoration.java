@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseItemDecoration;
+import dev.widget.decoration.BaseLinearItemDecoration;
 import dev.widget.decoration.linear.LastLineItemDecoration;
 
 /**
@@ -18,7 +18,7 @@ import dev.widget.decoration.linear.LastLineItemDecoration;
  * </pre>
  */
 public class LastLineHorizontalItemDecoration
-        extends BaseItemDecoration {
+        extends BaseLinearItemDecoration {
 
     public LastLineHorizontalItemDecoration(float lineHeight) {
         super(lineHeight);
@@ -75,14 +75,14 @@ public class LastLineHorizontalItemDecoration
                 View child    = parent.getChildAt(last);
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
-                    parent.getDecoratedBoundsWithMargins(child, mBounds);
-                    final float right = mBounds.right;
+                    parent.getDecoratedBoundsWithMargins(child, mLineBounds);
+                    final float right = mLineBounds.right;
                     final float left  = right - mLineHeight;
 
                     canvas.drawRect(
-                            left - mOffset,
+                            left - mLineOffset,
                             child.getTop() + mLineLeft,
-                            right - mOffset,
+                            right - mLineOffset,
                             child.getBottom() - mLineRight,
                             mLinePaint
                     );

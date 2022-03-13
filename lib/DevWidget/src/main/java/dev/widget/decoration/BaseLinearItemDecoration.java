@@ -8,14 +8,17 @@ import androidx.annotation.ColorInt;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * detail: 基础 RecyclerView 分割线处理
+ * detail: 基础 RecyclerView Linear 分割线处理
  * @author Ttt
+ * <pre>
+ *     纯色值绘制分割线
+ * </pre>
  */
-public class BaseItemDecoration
+public class BaseLinearItemDecoration
         extends RecyclerView.ItemDecoration {
 
-    // 边界测算
-    protected final Rect    mBounds         = new Rect();
+    // 分割线边界测算
+    protected final Rect    mLineBounds     = new Rect();
     // 分割线画笔
     protected final Paint   mLinePaint      = new Paint(Paint.ANTI_ALIAS_FLAG);
     // 分割线高度 ( 横向为宽度 )
@@ -24,8 +27,8 @@ public class BaseItemDecoration
     protected       float   mLineLeft       = 0.0F;
     // 分割线距右边距 ( 横向为下边距 )
     protected       float   mLineRight      = 0.0F;
-    // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
-    protected       float   mOffset         = 0.0F;
+    // 分割线偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+    protected       float   mLineOffset     = 0.0F;
     // 单条数据是否绘制分割线
     protected       boolean mSingleLineDraw = true;
 
@@ -33,11 +36,11 @@ public class BaseItemDecoration
     // = 构造函数 =
     // ==========
 
-    public BaseItemDecoration(final float lineHeight) {
+    public BaseLinearItemDecoration(final float lineHeight) {
         this(lineHeight, Color.TRANSPARENT);
     }
 
-    public BaseItemDecoration(
+    public BaseLinearItemDecoration(
             final float lineHeight,
             @ColorInt final int lineColor
     ) {
@@ -66,48 +69,48 @@ public class BaseItemDecoration
     }
 
     /**
-     * 获取分割线距左边距 ( 横向为上边距 )
-     * @return 分割线距左边距 ( 横向为上边距 )
+     * 获取分割线距左边距
+     * @return 分割线距左边距
      */
     public float getLineLeft() {
         return mLineLeft;
     }
 
     /**
-     * 设置分割线距左边距 ( 横向为上边距 )
-     * @param lineLeft 分割线距左边距 ( 横向为上边距 )
-     * @return {@link BaseItemDecoration}
+     * 设置分割线距左边距
+     * @param lineLeft 分割线距左边距
+     * @return {@link BaseLinearItemDecoration}
      */
-    public BaseItemDecoration setLineLeft(final float lineLeft) {
+    public BaseLinearItemDecoration setLineLeft(final float lineLeft) {
         this.mLineLeft = lineLeft;
         return this;
     }
 
     /**
-     * 获取分割线距右边距 ( 横向为下边距 )
-     * @return 分割线距右边距 ( 横向为下边距 )
+     * 获取分割线距右边距
+     * @return 分割线距右边距
      */
     public float getLineRight() {
         return mLineRight;
     }
 
     /**
-     * 设置分割线距右边距 ( 横向为下边距 )
-     * @param lineRight 分割线距右边距 ( 横向为下边距 )
-     * @return {@link BaseItemDecoration}
+     * 设置分割线距右边距
+     * @param lineRight 分割线距右边距
+     * @return {@link BaseLinearItemDecoration}
      */
-    public BaseItemDecoration setLineRight(final float lineRight) {
+    public BaseLinearItemDecoration setLineRight(final float lineRight) {
         this.mLineRight = lineRight;
         return this;
     }
 
     /**
      * 设置分割线距左、右边距
-     * @param lineLeft  分割线距左边距 ( 横向为上边距 )
-     * @param lineRight 分割线距右边距 ( 横向为下边距 )
-     * @return {@link BaseItemDecoration}
+     * @param lineLeft  分割线距左边距
+     * @param lineRight 分割线距右边距
+     * @return {@link BaseLinearItemDecoration}
      */
-    public BaseItemDecoration setLineLeftRight(
+    public BaseLinearItemDecoration setLineLeftRight(
             final float lineLeft,
             final float lineRight
     ) {
@@ -117,20 +120,20 @@ public class BaseItemDecoration
     }
 
     /**
-     * 获取 Item 偏差值
-     * @return Item 偏差值
+     * 获取 Item 分割线偏差值
+     * @return Item 分割线偏差值
      */
-    public float getOffset() {
-        return mOffset;
+    public float getLineOffset() {
+        return mLineOffset;
     }
 
     /**
-     * 设置 Item 偏差值
-     * @param offset 偏差值
-     * @return {@link BaseItemDecoration}
+     * 设置 Item 分割线偏差值
+     * @param lineOffset 分割线偏差值
+     * @return {@link BaseLinearItemDecoration}
      */
-    public BaseItemDecoration setOffset(float offset) {
-        this.mOffset = offset;
+    public BaseLinearItemDecoration setLineOffset(float lineOffset) {
+        this.mLineOffset = lineOffset;
         return this;
     }
 
@@ -145,9 +148,9 @@ public class BaseItemDecoration
     /**
      * 设置单条数据是否绘制分割线
      * @param singleLineDraw {@code true} yes, {@code false} no
-     * @return {@link BaseItemDecoration}
+     * @return {@link BaseLinearItemDecoration}
      */
-    public BaseItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
+    public BaseLinearItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
         this.mSingleLineDraw = singleLineDraw;
         return this;
     }
