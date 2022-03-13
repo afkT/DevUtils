@@ -15,24 +15,21 @@ import dev.widget.decoration.BaseGridItemDecoration;
  * detail: RecyclerView Grid 行分割线处理
  * @author Ttt
  * <pre>
- *     效果:
- *     每行下面绘制分割线 ( 最后一行不绘制 )
- *     <p></p>
  *     方便基类复用统一继承 {@link BaseGridItemDecoration}
  *     不会使用到 列 ( Column ) 相关的任何字段
  * </pre>
  */
-public class GridRowItemDecoration
+public class FirstGridRowItemDecoration
         extends BaseGridItemDecoration {
 
-    public GridRowItemDecoration(
+    public FirstGridRowItemDecoration(
             final int spanCount,
             final float rowHeight
     ) {
         this(spanCount, rowHeight, Color.TRANSPARENT);
     }
 
-    public GridRowItemDecoration(
+    public FirstGridRowItemDecoration(
             final int spanCount,
             final float rowHeight,
             @ColorInt final int rowColor
