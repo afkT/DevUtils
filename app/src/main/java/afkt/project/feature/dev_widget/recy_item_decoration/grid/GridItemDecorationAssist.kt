@@ -8,6 +8,8 @@ import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseGridItemDecoration
+import dev.widget.decoration.grid.FirstGridColumnItemDecoration
+import dev.widget.decoration.grid.FirstGridRowItemDecoration
 import dev.widget.decoration.grid.GridColumnItemDecoration
 import dev.widget.decoration.grid.GridRowItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
@@ -59,6 +61,26 @@ internal class GridItemDecorationAssist(
         val rowHeight = AppSize.dp2pxf(10.0F)
         val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
+
+        firstColumnList.add(
+            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.RED)
+        )
+        firstColumnList.add(
+            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.BLUE)
+        )
+        firstColumnList.add(
+            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.GREEN)
+        )
+
+        firstRowList.add(
+            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.RED)
+        )
+        firstRowList.add(
+            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.BLUE)
+        )
+        firstRowList.add(
+            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.GREEN)
+        )
 
         lineColumnList.add(
             GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.CHOCOLATE)
@@ -233,6 +255,7 @@ internal class GridItemDecorationAssist(
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
             when (item) {
+                is FirstGridColumnItemDecoration,
                 is GridColumnItemDecoration -> {
                     item.columnOffset = 0.0F
                     if (numberIndex >= index) {
@@ -245,6 +268,7 @@ internal class GridItemDecorationAssist(
                         item.columnOffset = offset
                     }
                 }
+                is FirstGridRowItemDecoration,
                 is GridRowItemDecoration -> {
                     item.rowOffset = 0.0F
                     if (numberIndex >= index) {
