@@ -10,8 +10,6 @@ import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseGridItemDecoration
 import dev.widget.decoration.grid.GridColumnItemDecoration
 import dev.widget.decoration.grid.GridRowItemDecoration
-import dev.widget.decoration.grid.horizontal.GridColumnHorizontalItemDecoration
-import dev.widget.decoration.grid.horizontal.GridRowHorizontalItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -62,47 +60,26 @@ internal class GridItemDecorationAssist(
         val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
-        if (vertical) {
-            lineColumnList.add(
-                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE)
-            )
-            lineColumnList.add(
-                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.CYAN)
-            )
-            lineColumnList.add(
-                GridColumnItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE)
-            )
+        lineColumnList.add(
+            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.CHOCOLATE)
+        )
+        lineColumnList.add(
+            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.CYAN)
+        )
+        lineColumnList.add(
+            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.ORANGE)
+        )
 
-            lineRowList.add(
-                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE)
-            )
-            lineRowList.add(
-                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.CYAN)
-            )
-            lineRowList.add(
-                GridRowItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE)
-            )
-        } else {
-            lineColumnList.add(
-                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CHOCOLATE)
-            )
-            lineColumnList.add(
-                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.CYAN)
-            )
-            lineColumnList.add(
-                GridColumnHorizontalItemDecoration(spanCount, columnHeight, ColorUtils.ORANGE)
-            )
+        lineRowList.add(
+            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.CHOCOLATE)
+        )
+        lineRowList.add(
+            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.CYAN)
+        )
+        lineRowList.add(
+            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.ORANGE)
+        )
 
-            lineRowList.add(
-                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CHOCOLATE)
-            )
-            lineRowList.add(
-                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.CYAN)
-            )
-            lineRowList.add(
-                GridRowHorizontalItemDecoration(spanCount, rowHeight, ColorUtils.ORANGE)
-            )
-        }
         // 通用设置 ItemDecoration 左右边距
         if (RandomUtils.nextBoolean()) {
             setItemLeftRight()
@@ -256,8 +233,7 @@ internal class GridItemDecorationAssist(
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
             when (item) {
-                is GridColumnItemDecoration,
-                is GridColumnHorizontalItemDecoration -> {
+                is GridColumnItemDecoration -> {
                     item.columnOffset = 0.0F
                     if (numberIndex >= index) {
                         // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
@@ -269,8 +245,7 @@ internal class GridItemDecorationAssist(
                         item.columnOffset = offset
                     }
                 }
-                is GridRowItemDecoration,
-                is GridRowHorizontalItemDecoration -> {
+                is GridRowItemDecoration -> {
                     item.rowOffset = 0.0F
                     if (numberIndex >= index) {
                         // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )

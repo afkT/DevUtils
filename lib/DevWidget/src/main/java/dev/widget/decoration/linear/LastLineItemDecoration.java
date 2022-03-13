@@ -72,10 +72,10 @@ public class LastLineItemDecoration
     // ============
 
     private void verticalItemOffsets(
-            Rect outRect,
-            View view,
-            RecyclerView parent,
-            RecyclerView.State state
+            final Rect outRect,
+            final View view,
+            final RecyclerView parent,
+            final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
         if (parent.getChildAdapterPosition(view) == itemCount - 1) {
@@ -89,9 +89,9 @@ public class LastLineItemDecoration
     }
 
     private void verticalDraw(
-            Canvas canvas,
-            RecyclerView parent,
-            RecyclerView.State state
+            final Canvas canvas,
+            final RecyclerView parent,
+            final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {
@@ -128,10 +128,10 @@ public class LastLineItemDecoration
     // ==============
 
     private void horizontalItemOffsets(
-            Rect outRect,
-            View view,
-            RecyclerView parent,
-            RecyclerView.State state
+            final Rect outRect,
+            final View view,
+            final RecyclerView parent,
+            final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
         if (parent.getChildAdapterPosition(view) == itemCount - 1) {
@@ -145,9 +145,9 @@ public class LastLineItemDecoration
     }
 
     private void horizontalDraw(
-            Canvas canvas,
-            RecyclerView parent,
-            RecyclerView.State state
+            final Canvas canvas,
+            final RecyclerView parent,
+            final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
         if (!mSingleLineDraw && itemCount <= 1) {

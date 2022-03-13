@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
-    // RecyclerView 方向
-    protected       int mOrientation = RecyclerView.VERTICAL;
+    // 分割线绘制方向 ( RecyclerView Orientation )
+    private   int mOrientation = RecyclerView.VERTICAL;
     // Span 总数 ( Grid 列 )
-    protected final int mSpanCount;
+    protected int mSpanCount;
 
     // =====
     // = 行 =
@@ -59,7 +59,15 @@ public class BaseGridItemDecoration
     // = 构造函数 =
     // ==========
 
-    public BaseGridItemDecoration(int spanCount) {
+    public BaseGridItemDecoration(
+            final boolean vertical,
+            final int spanCount
+    ) {
+        if (vertical) {
+            setVertical();
+        } else {
+            setHorizontal();
+        }
         this.mSpanCount = spanCount;
         this.mRowPaint.setColor(Color.TRANSPARENT);
         this.mColumnPaint.setColor(Color.TRANSPARENT);
@@ -71,6 +79,45 @@ public class BaseGridItemDecoration
 
     public int getSpanCount() {
         return mSpanCount;
+    }
+
+    public BaseGridItemDecoration setSpanCount(final int spanCount) {
+        this.mSpanCount = spanCount;
+        return this;
+    }
+
+    /**
+     * 是否分割线绘制方向为 VERTICAL
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isVertical() {
+        return this.mOrientation == RecyclerView.VERTICAL;
+    }
+
+    /**
+     * 设置分割线绘制方向为 VERTICAL
+     * @return {@link BaseGridItemDecoration}
+     */
+    public BaseGridItemDecoration setVertical() {
+        this.mOrientation = RecyclerView.VERTICAL;
+        return this;
+    }
+
+    /**
+     * 是否分割线绘制方向为 HORIZONTAL
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isHorizontal() {
+        return this.mOrientation == RecyclerView.HORIZONTAL;
+    }
+
+    /**
+     * 设置分割线绘制方向为 HORIZONTAL
+     * @return {@link BaseGridItemDecoration}
+     */
+    public BaseGridItemDecoration setHorizontal() {
+        this.mOrientation = RecyclerView.HORIZONTAL;
+        return this;
     }
 
     // =====
