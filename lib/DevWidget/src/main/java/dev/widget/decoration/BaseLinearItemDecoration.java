@@ -17,33 +17,49 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseLinearItemDecoration
         extends RecyclerView.ItemDecoration {
 
-    // 分割线边界测算
-    protected final Rect    mLineBounds     = new Rect();
-    // 分割线画笔
-    protected final Paint   mLinePaint      = new Paint(Paint.ANTI_ALIAS_FLAG);
-    // 分割线高度 ( 横向为宽度 )
-    protected final float   mLineHeight;
-    // 分割线距左边距 ( 横向为上边距 )
-    protected       float   mLineLeft       = 0.0F;
-    // 分割线距右边距 ( 横向为下边距 )
-    protected       float   mLineRight      = 0.0F;
-    // 分割线偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
-    protected       float   mLineOffset     = 0.0F;
+    // 分割线绘制方向 ( RecyclerView Orientation )
+    private   int     mOrientation    = RecyclerView.VERTICAL;
     // 单条数据是否绘制分割线
-    protected       boolean mSingleLineDraw = true;
+    protected boolean mSingleLineDraw = true;
+
+    // ========
+    // = Line =
+    // ========
+
+    // 分割线边界测算
+    protected final Rect  mLineBounds = new Rect();
+    // 分割线画笔
+    protected final Paint mLinePaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
+    // 分割线高度 ( 横向为宽度 )
+    protected       float mLineHeight;
+    // 分割线距左边距 ( 横向为上边距 )
+    protected       float mLineLeft   = 0.0F;
+    // 分割线距右边距 ( 横向为下边距 )
+    protected       float mLineRight  = 0.0F;
+    // 分割线偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+    protected       float mLineOffset = 0.0F;
 
     // ==========
     // = 构造函数 =
     // ==========
 
-    public BaseLinearItemDecoration(final float lineHeight) {
-        this(lineHeight, Color.TRANSPARENT);
+    public BaseLinearItemDecoration(
+            final boolean vertical,
+            final float lineHeight
+    ) {
+        this(vertical, lineHeight, Color.TRANSPARENT);
     }
 
     public BaseLinearItemDecoration(
+            final boolean vertical,
             final float lineHeight,
             @ColorInt final int lineColor
     ) {
+        if (vertical) {
+            setVertical();
+        } else {
+            setHorizontal();
+        }
         this.mLineHeight = lineHeight;
         this.mLinePaint.setColor(lineColor);
     }
@@ -51,6 +67,64 @@ public class BaseLinearItemDecoration
     // ==========
     // = 对外公开 =
     // ==========
+
+    /**
+     * 是否分割线绘制方向为 VERTICAL
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isVertical() {
+        return this.mOrientation == RecyclerView.VERTICAL;
+    }
+
+    /**
+     * 设置分割线绘制方向为 VERTICAL
+     * @return {@link BaseLinearItemDecoration}
+     */
+    public BaseLinearItemDecoration setVertical() {
+        this.mOrientation = RecyclerView.VERTICAL;
+        return this;
+    }
+
+    /**
+     * 是否分割线绘制方向为 HORIZONTAL
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isHorizontal() {
+        return this.mOrientation == RecyclerView.HORIZONTAL;
+    }
+
+    /**
+     * 设置分割线绘制方向为 HORIZONTAL
+     * @return {@link BaseLinearItemDecoration}
+     */
+    public BaseLinearItemDecoration setHorizontal() {
+        this.mOrientation = RecyclerView.HORIZONTAL;
+        return this;
+    }
+
+    // =
+
+    /**
+     * 获取单条数据是否绘制分割线
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isSingleLineDraw() {
+        return mSingleLineDraw;
+    }
+
+    /**
+     * 设置单条数据是否绘制分割线
+     * @param singleLineDraw {@code true} yes, {@code false} no
+     * @return {@link BaseLinearItemDecoration}
+     */
+    public BaseLinearItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
+        this.mSingleLineDraw = singleLineDraw;
+        return this;
+    }
+
+    // ========
+    // = Line =
+    // ========
 
     /**
      * 获取分割线画笔
@@ -66,6 +140,16 @@ public class BaseLinearItemDecoration
      */
     public float getLineHeight() {
         return mLineHeight;
+    }
+
+    /**
+     * 设置分割线高度
+     * @param lineHeight 分割线高度
+     * @return {@link BaseLinearItemDecoration}
+     */
+    public BaseLinearItemDecoration setLineHeight(final float lineHeight) {
+        this.mLineHeight = lineHeight;
+        return this;
     }
 
     /**
@@ -132,26 +216,8 @@ public class BaseLinearItemDecoration
      * @param lineOffset 分割线偏差值
      * @return {@link BaseLinearItemDecoration}
      */
-    public BaseLinearItemDecoration setLineOffset(float lineOffset) {
+    public BaseLinearItemDecoration setLineOffset(final float lineOffset) {
         this.mLineOffset = lineOffset;
-        return this;
-    }
-
-    /**
-     * 获取单条数据是否绘制分割线
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSingleLineDraw() {
-        return mSingleLineDraw;
-    }
-
-    /**
-     * 设置单条数据是否绘制分割线
-     * @param singleLineDraw {@code true} yes, {@code false} no
-     * @return {@link BaseLinearItemDecoration}
-     */
-    public BaseLinearItemDecoration setSingleLineDraw(final boolean singleLineDraw) {
-        this.mSingleLineDraw = singleLineDraw;
         return this;
     }
 }

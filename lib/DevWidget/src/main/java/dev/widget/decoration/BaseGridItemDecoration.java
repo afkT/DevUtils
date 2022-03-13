@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
+    // RecyclerView 方向
+    protected       int mOrientation = RecyclerView.VERTICAL;
     // Span 总数 ( Grid 列 )
     protected final int mSpanCount;
 
