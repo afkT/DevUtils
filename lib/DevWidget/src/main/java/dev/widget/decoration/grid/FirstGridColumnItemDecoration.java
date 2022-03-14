@@ -39,7 +39,7 @@ public class FirstGridColumnItemDecoration
             final float columnHeight,
             @ColorInt final int columnColor
     ) {
-        super(vertical, spanCount);
+        super(true, vertical, spanCount);
         this.mColumnHeight = columnHeight;
         this.mColumnPaint.setColor(columnColor);
     }

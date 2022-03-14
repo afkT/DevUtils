@@ -17,9 +17,11 @@ public class BaseGridItemDecoration
         extends RecyclerView.ItemDecoration {
 
     // 分割线绘制方向 ( RecyclerView Orientation )
-    private   int mOrientation = RecyclerView.VERTICAL;
+    private       int     mOrientation = RecyclerView.VERTICAL;
+    // 是否 Grid Column ItemDecoration
+    private final boolean mColumnItemDecoration;
     // Span 总数 ( Grid 列 )
-    protected int mSpanCount;
+    protected     int     mSpanCount;
 
     // =====
     // = 行 =
@@ -60,6 +62,7 @@ public class BaseGridItemDecoration
     // ==========
 
     public BaseGridItemDecoration(
+            final boolean columnItemDecoration,
             final boolean vertical,
             final int spanCount
     ) {
@@ -68,7 +71,8 @@ public class BaseGridItemDecoration
         } else {
             setHorizontal();
         }
-        this.mSpanCount = spanCount;
+        this.mColumnItemDecoration = columnItemDecoration;
+        this.mSpanCount            = spanCount;
         this.mRowPaint.setColor(Color.TRANSPARENT);
         this.mColumnPaint.setColor(Color.TRANSPARENT);
     }
@@ -76,15 +80,6 @@ public class BaseGridItemDecoration
     // ==========
     // = 对外公开 =
     // ==========
-
-    public int getSpanCount() {
-        return mSpanCount;
-    }
-
-    public BaseGridItemDecoration setSpanCount(final int spanCount) {
-        this.mSpanCount = spanCount;
-        return this;
-    }
 
     /**
      * 是否分割线绘制方向为 VERTICAL
@@ -117,6 +112,31 @@ public class BaseGridItemDecoration
      */
     public BaseGridItemDecoration setHorizontal() {
         this.mOrientation = RecyclerView.HORIZONTAL;
+        return this;
+    }
+
+    /**
+     * 是否 Grid Row ItemDecoration
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isRowItemDecoration() {
+        return !mColumnItemDecoration;
+    }
+
+    /**
+     * 是否 Grid Column ItemDecoration
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isColumnItemDecoration() {
+        return mColumnItemDecoration;
+    }
+
+    public int getSpanCount() {
+        return mSpanCount;
+    }
+
+    public BaseGridItemDecoration setSpanCount(final int spanCount) {
+        this.mSpanCount = spanCount;
         return this;
     }
 

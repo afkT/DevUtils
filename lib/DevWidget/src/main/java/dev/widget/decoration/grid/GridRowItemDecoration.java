@@ -39,7 +39,7 @@ public class GridRowItemDecoration
             final float rowHeight,
             @ColorInt final int rowColor
     ) {
-        super(vertical, spanCount);
+        super(false, vertical, spanCount);
         this.mRowHeight = rowHeight;
         this.mRowPaint.setColor(rowColor);
     }
