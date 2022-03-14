@@ -7,10 +7,10 @@ import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
-import dev.widget.decoration.BaseLinearItemDecoration
-import dev.widget.decoration.linear.FirstLineItemDecoration
-import dev.widget.decoration.linear.LastLineItemDecoration
-import dev.widget.decoration.linear.LineItemDecoration
+import dev.widget.decoration.BaseColorItemDecoration
+import dev.widget.decoration.linear.FirstLinearItemDecoration
+import dev.widget.decoration.linear.LastLinearItemDecoration
+import dev.widget.decoration.linear.LinearItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -26,13 +26,13 @@ internal class LinearItemDecorationAssist(
     private val MAX = 3
 
     // 首条数据顶部添加 ItemDecoration
-    private val firstList = mutableListOf<BaseLinearItemDecoration>()
+    private val firstList = mutableListOf<BaseColorItemDecoration>()
 
     // 最后一条数据底部添加 ItemDecoration
-    private val lastList = mutableListOf<BaseLinearItemDecoration>()
+    private val lastList = mutableListOf<BaseColorItemDecoration>()
 
     // 每条数据底部添加 ItemDecoration
-    private val lineList = mutableListOf<BaseLinearItemDecoration>()
+    private val lineList = mutableListOf<BaseColorItemDecoration>()
 
     // 递增数
     private var firstIndex = AtomicInteger()
@@ -44,20 +44,38 @@ internal class LinearItemDecorationAssist(
     // ============
 
     init {
-        val lineHeight = AppSize.dp2pxf(10.0F)
+        val height = AppSize.dp2pxf(10.0F)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
-        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.RED))
-        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.BLUE))
-        firstList.add(FirstLineItemDecoration(vertical, lineHeight, ColorUtils.GREEN))
+        firstList.add(
+            FirstLinearItemDecoration(vertical, height, ColorUtils.RED)
+        )
+        firstList.add(
+            FirstLinearItemDecoration(vertical, height, ColorUtils.BLUE)
+        )
+        firstList.add(
+            FirstLinearItemDecoration(vertical, height, ColorUtils.GREEN)
+        )
 
-        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.GOLD))
-        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.PINK))
-        lastList.add(LastLineItemDecoration(vertical, lineHeight, ColorUtils.PURPLE))
+        lastList.add(
+            LastLinearItemDecoration(vertical, height, ColorUtils.GOLD)
+        )
+        lastList.add(
+            LastLinearItemDecoration(vertical, height, ColorUtils.PINK)
+        )
+        lastList.add(
+            LastLinearItemDecoration(vertical, height, ColorUtils.PURPLE)
+        )
 
-        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.CHOCOLATE))
-        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.CYAN))
-        lineList.add(LineItemDecoration(vertical, lineHeight, ColorUtils.ORANGE))
+        lineList.add(
+            LinearItemDecoration(vertical, height, ColorUtils.CHOCOLATE)
+        )
+        lineList.add(
+            LinearItemDecoration(vertical, height, ColorUtils.CYAN)
+        )
+        lineList.add(
+            LinearItemDecoration(vertical, height, ColorUtils.ORANGE)
+        )
 
         // 通用设置 ItemDecoration 左右边距
         if (RandomUtils.nextBoolean()) {
@@ -79,10 +97,10 @@ internal class LinearItemDecorationAssist(
      * 循环设置 Item Left、Right
      * @param list ItemDecoration List
      */
-    private fun forItemLeftRight(list: List<BaseLinearItemDecoration>) {
+    private fun forItemLeftRight(list: List<BaseColorItemDecoration>) {
         list.forEachIndexed { index, item ->
             val value = AppSize.dp2pxf((index + 1) * 5.0F)
-            item.setLineLeftRight(value, value)
+            item.setLeftRight(value, value)
         }
     }
 
@@ -118,7 +136,7 @@ internal class LinearItemDecorationAssist(
      * @param index AtomicInteger
      */
     private fun addItemDecoration(
-        list: List<BaseLinearItemDecoration>,
+        list: List<BaseColorItemDecoration>,
         index: AtomicInteger
     ) {
         if (index.get() >= MAX) {
@@ -139,7 +157,7 @@ internal class LinearItemDecorationAssist(
      * @param index AtomicInteger
      */
     private fun removeItemDecoration(
-        list: List<BaseLinearItemDecoration>,
+        list: List<BaseColorItemDecoration>,
         index: AtomicInteger
     ) {
         if (index.get() <= 0) {
@@ -162,21 +180,21 @@ internal class LinearItemDecorationAssist(
      * @param number Int
      */
     private fun calcOffset(
-        list: List<BaseLinearItemDecoration>,
+        list: List<BaseColorItemDecoration>,
         number: Int
     ) {
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
             // 先重置为 0
-            item.lineOffset = 0.0F
+            item.offset = 0.0F
             if (numberIndex >= index) {
                 // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
                 var offset = 0.0F
                 for (i in (index + 1)..numberIndex) {
-                    offset += list[i].lineHeight
+                    offset += list[i].height
                 }
                 // 设置偏差值
-                item.lineOffset = offset
+                item.offset = offset
             }
         }
     }

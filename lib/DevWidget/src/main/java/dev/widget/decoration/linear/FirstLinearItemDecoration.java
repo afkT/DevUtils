@@ -8,7 +8,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseLinearItemDecoration;
+import dev.widget.decoration.BaseColorItemDecoration;
 
 /**
  * detail: RecyclerView Linear 分割线处理 ( 第一条数据 )
@@ -18,17 +18,17 @@ import dev.widget.decoration.BaseLinearItemDecoration;
  *     第一条数据顶部添加一条分割线
  * </pre>
  */
-public class FirstLineItemDecoration
-        extends BaseLinearItemDecoration {
+public class FirstLinearItemDecoration
+        extends BaseColorItemDecoration {
 
-    public FirstLineItemDecoration(
+    public FirstLinearItemDecoration(
             final boolean vertical,
             final float lineHeight
     ) {
         super(vertical, lineHeight);
     }
 
-    public FirstLineItemDecoration(
+    public FirstLinearItemDecoration(
             final boolean vertical,
             final float lineHeight,
             @ColorInt final int lineColor
@@ -79,10 +79,10 @@ public class FirstLineItemDecoration
     ) {
         if (parent.getChildAdapterPosition(view) == 0) {
             int itemCount = state.getItemCount();
-            if (!mSingleLineDraw && itemCount <= 1) {
+            if (!mSingleDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set(0, (int) mLineHeight, 0, 0);
+            outRect.set(0, (int) mHeight, 0, 0);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -94,7 +94,7 @@ public class FirstLineItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (!mSingleLineDraw && itemCount <= 1) {
+        if (!mSingleDraw && itemCount <= 1) {
             return;
         }
 
@@ -102,11 +102,11 @@ public class FirstLineItemDecoration
         int  position = parent.getChildAdapterPosition(child);
         if (position == 0) {
             canvas.drawRect(
-                    child.getLeft() + mLineLeft,
-                    child.getTop() - mLineHeight - mLineOffset,
-                    child.getRight() - mLineRight,
-                    child.getTop() - mLineOffset,
-                    mLinePaint
+                    child.getLeft() + mLeft,
+                    child.getTop() - mHeight - mOffset,
+                    child.getRight() - mRight,
+                    child.getTop() - mOffset,
+                    mPaint
             );
         }
     }
@@ -123,10 +123,10 @@ public class FirstLineItemDecoration
     ) {
         if (parent.getChildAdapterPosition(view) == 0) {
             int itemCount = state.getItemCount();
-            if (!mSingleLineDraw && itemCount <= 1) {
+            if (!mSingleDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set((int) mLineHeight, 0, 0, 0);
+            outRect.set((int) mHeight, 0, 0, 0);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -138,7 +138,7 @@ public class FirstLineItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (!mSingleLineDraw && itemCount <= 1) {
+        if (!mSingleDraw && itemCount <= 1) {
             return;
         }
 
@@ -146,11 +146,11 @@ public class FirstLineItemDecoration
         int  position = parent.getChildAdapterPosition(child);
         if (position == 0) {
             canvas.drawRect(
-                    child.getLeft() - mLineHeight - mLineOffset,
-                    child.getTop() + mLineLeft,
-                    child.getLeft() - mLineOffset,
-                    child.getBottom() - mLineRight,
-                    mLinePaint
+                    child.getLeft() - mHeight - mOffset,
+                    child.getTop() + mLeft,
+                    child.getLeft() - mOffset,
+                    child.getBottom() - mRight,
+                    mPaint
             );
         }
     }

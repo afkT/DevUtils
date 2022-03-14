@@ -15,7 +15,7 @@ import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
-import dev.widget.decoration.linear.FirstLineItemDecoration
+import dev.widget.decoration.linear.FirstLinearItemDecoration
 
 /**
  * detail: Adapter Item EditText 输入监听
@@ -73,7 +73,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
-                FirstLineItemDecoration(
+                FirstLinearItemDecoration(
                     true, ResourceUtils.getDimension(R.dimen.dp_10)
                 )
             )

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseLinearItemDecoration;
+import dev.widget.decoration.BaseColorItemDecoration;
 
 /**
  * detail: RecyclerView Linear 分割线处理 ( 每一条数据 )
@@ -25,17 +25,17 @@ import dev.widget.decoration.BaseLinearItemDecoration;
  *     recyclerView.addItemDecoration(decoration)
  * </pre>
  */
-public class LineItemDecoration
-        extends BaseLinearItemDecoration {
+public class LinearItemDecoration
+        extends BaseColorItemDecoration {
 
-    public LineItemDecoration(
+    public LinearItemDecoration(
             final boolean vertical,
             final float lineHeight
     ) {
         super(vertical, lineHeight);
     }
 
-    public LineItemDecoration(
+    public LinearItemDecoration(
             final boolean vertical,
             final float lineHeight,
             @ColorInt final int lineColor
@@ -90,7 +90,7 @@ public class LineItemDecoration
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set(0, (int) mLineHeight, 0, 0);
+            outRect.set(0, (int) mHeight, 0, 0);
         }
     }
 
@@ -107,11 +107,11 @@ public class LineItemDecoration
             View child = parent.getChildAt(i);
             if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
-                        child.getLeft() + mLineLeft,
-                        child.getTop() - mLineHeight - mLineOffset,
-                        child.getRight() - mLineRight,
-                        child.getTop() - mLineOffset,
-                        mLinePaint
+                        child.getLeft() + mLeft,
+                        child.getTop() - mHeight - mOffset,
+                        child.getRight() - mRight,
+                        child.getTop() - mOffset,
+                        mPaint
                 );
             }
         }
@@ -133,7 +133,7 @@ public class LineItemDecoration
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set((int) mLineHeight, 0, 0, 0);
+            outRect.set((int) mHeight, 0, 0, 0);
         }
     }
 
@@ -150,11 +150,11 @@ public class LineItemDecoration
             View child = parent.getChildAt(i);
             if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
-                        child.getLeft() - mLineHeight - mLineOffset,
-                        child.getTop() + mLineLeft,
-                        child.getLeft() - mLineOffset,
-                        child.getBottom() - mLineRight,
-                        mLinePaint
+                        child.getLeft() - mHeight - mOffset,
+                        child.getTop() + mLeft,
+                        child.getLeft() - mOffset,
+                        child.getBottom() - mRight,
+                        mPaint
                 );
             }
         }

@@ -8,7 +8,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseLinearItemDecoration;
+import dev.widget.decoration.BaseColorItemDecoration;
 
 /**
  * detail: RecyclerView Linear 分割线处理 ( 最后一条数据 )
@@ -18,17 +18,17 @@ import dev.widget.decoration.BaseLinearItemDecoration;
  *     最后一条数据底部添加一条分割线
  * </pre>
  */
-public class LastLineItemDecoration
-        extends BaseLinearItemDecoration {
+public class LastLinearItemDecoration
+        extends BaseColorItemDecoration {
 
-    public LastLineItemDecoration(
+    public LastLinearItemDecoration(
             final boolean vertical,
             final float lineHeight
     ) {
         super(vertical, lineHeight);
     }
 
-    public LastLineItemDecoration(
+    public LastLinearItemDecoration(
             final boolean vertical,
             final float lineHeight,
             @ColorInt final int lineColor
@@ -79,10 +79,10 @@ public class LastLineItemDecoration
     ) {
         int itemCount = state.getItemCount();
         if (parent.getChildAdapterPosition(view) == itemCount - 1) {
-            if (!mSingleLineDraw && itemCount <= 1) {
+            if (!mSingleDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set(0, 0, 0, (int) mLineHeight);
+            outRect.set(0, 0, 0, (int) mHeight);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -94,7 +94,7 @@ public class LastLineItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (!mSingleLineDraw && itemCount <= 1) {
+        if (!mSingleDraw && itemCount <= 1) {
             return;
         }
 
@@ -107,16 +107,16 @@ public class LastLineItemDecoration
                 View child    = parent.getChildAt(last);
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
-                    parent.getDecoratedBoundsWithMargins(child, mLineBounds);
-                    final float bottom = mLineBounds.bottom;
-                    final float top    = bottom - mLineHeight;
+                    parent.getDecoratedBoundsWithMargins(child, mBounds);
+                    final float bottom = mBounds.bottom;
+                    final float top    = bottom - mHeight;
 
                     canvas.drawRect(
-                            child.getLeft() + mLineLeft,
-                            top - mLineOffset,
-                            child.getRight() - mLineRight,
-                            bottom - mLineOffset,
-                            mLinePaint
+                            child.getLeft() + mLeft,
+                            top - mOffset,
+                            child.getRight() - mRight,
+                            bottom - mOffset,
+                            mPaint
                     );
                 }
             }
@@ -135,10 +135,10 @@ public class LastLineItemDecoration
     ) {
         int itemCount = state.getItemCount();
         if (parent.getChildAdapterPosition(view) == itemCount - 1) {
-            if (!mSingleLineDraw && itemCount <= 1) {
+            if (!mSingleDraw && itemCount <= 1) {
                 return;
             }
-            outRect.set(0, 0, (int) mLineHeight, 0);
+            outRect.set(0, 0, (int) mHeight, 0);
         } else {
             outRect.set(0, 0, 0, 0);
         }
@@ -150,7 +150,7 @@ public class LastLineItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (!mSingleLineDraw && itemCount <= 1) {
+        if (!mSingleDraw && itemCount <= 1) {
             return;
         }
 
@@ -163,16 +163,16 @@ public class LastLineItemDecoration
                 View child    = parent.getChildAt(last);
                 int  position = parent.getChildAdapterPosition(child);
                 if (position == lastPosition) {
-                    parent.getDecoratedBoundsWithMargins(child, mLineBounds);
-                    final float right = mLineBounds.right;
-                    final float left  = right - mLineHeight;
+                    parent.getDecoratedBoundsWithMargins(child, mBounds);
+                    final float right = mBounds.right;
+                    final float left  = right - mHeight;
 
                     canvas.drawRect(
-                            left - mLineOffset,
-                            child.getTop() + mLineLeft,
-                            right - mLineOffset,
-                            child.getBottom() - mLineRight,
-                            mLinePaint
+                            left - mOffset,
+                            child.getTop() + mLeft,
+                            right - mOffset,
+                            child.getBottom() - mRight,
+                            mPaint
                     );
                 }
             }
