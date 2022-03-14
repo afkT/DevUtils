@@ -23,17 +23,17 @@ public class FirstLinearItemDecoration
 
     public FirstLinearItemDecoration(
             final boolean vertical,
-            final float lineHeight
+            final float height
     ) {
-        super(vertical, lineHeight);
+        super(vertical, height);
     }
 
     public FirstLinearItemDecoration(
             final boolean vertical,
-            final float lineHeight,
-            @ColorInt final int lineColor
+            final float height,
+            @ColorInt final int color
     ) {
-        super(vertical, lineHeight, lineColor);
+        super(vertical, height, color);
     }
 
     // ==========
