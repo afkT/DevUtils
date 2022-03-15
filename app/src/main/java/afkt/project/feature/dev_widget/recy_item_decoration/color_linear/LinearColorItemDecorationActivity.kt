@@ -1,8 +1,10 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.linear
+package afkt.project.feature.dev_widget.recy_item_decoration.color_linear
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityLinearItemDecorationBinding
+import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearHorizontalTextAdapter
+import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearVerticalTextAdapter
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +12,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.RecyclerViewUtils
 
 /**
- * detail: Linear ItemDecoration
+ * detail: Linear Color ItemDecoration
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.LinearItemDecorationActivity_PATH)
-class LinearItemDecorationActivity : BaseActivity<ActivityLinearItemDecorationBinding>() {
+@Route(path = RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH)
+class LinearColorItemDecorationActivity : BaseActivity<ActivityLinearItemDecorationBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_linear_item_decoration
 
@@ -44,6 +46,6 @@ class LinearItemDecorationActivity : BaseActivity<ActivityLinearItemDecorationBi
                 )
             }
         }
-        LinearItemDecorationAssist(binding.vidRv, binding.vidInclude)
+        LinearColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
     }
 }

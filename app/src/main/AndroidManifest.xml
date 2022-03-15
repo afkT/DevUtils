@@ -642,18 +642,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- Linear ItemDecoration -->
+        <!-- Linear Color ItemDecoration -->
 
         <activity
-            android:name=".feature.dev_widget.recy_item_decoration.linear.LinearItemDecorationActivity"
+            android:name=".feature.dev_widget.recy_item_decoration.color_linear.LinearColorItemDecorationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- Grid ItemDecoration -->
+        <!-- Grid Color ItemDecoration -->
 
         <activity
-            android:name=".feature.dev_widget.recy_item_decoration.grid.GridItemDecorationActivity"
+            android:name=".feature.dev_widget.recy_item_decoration.color_grid.GridColorItemDecorationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

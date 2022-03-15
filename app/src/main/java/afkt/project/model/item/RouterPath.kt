@@ -185,9 +185,10 @@ object RouterPath {
 
         const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
 
-        const val LinearItemDecorationActivity_PATH = "/activity/LinearItemDecorationActivity"
+        const val LinearColorItemDecorationActivity_PATH =
+            "/activity/LinearColorItemDecorationActivity"
 
-        const val GridItemDecorationActivity_PATH = "/activity/GridItemDecorationActivity"
+        const val GridColorItemDecorationActivity_PATH = "/activity/GridColorItemDecorationActivity"
     }
 
     /**

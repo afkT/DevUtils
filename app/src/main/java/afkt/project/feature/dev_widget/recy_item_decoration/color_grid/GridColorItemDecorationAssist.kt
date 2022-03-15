@@ -1,7 +1,7 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.grid
+package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.databinding.IncludeGridItemDecorationAssistBinding
-import afkt.project.feature.dev_widget.recy_item_decoration.CommonItemDecorationAssist
+import afkt.project.feature.dev_widget.recy_item_decoration.CommonColorItemDecorationAssist
 import afkt.project.utils.AppSize
 import androidx.recyclerview.widget.RecyclerView
 import dev.utils.app.RecyclerViewUtils
@@ -15,17 +15,17 @@ import dev.widget.decoration.grid.GridRowColorItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * detail: DevWidget ItemDecoration 演示通用处理辅助类
+ * detail: DevWidget Color ItemDecoration 演示通用处理辅助类
  * @author Ttt
  */
-internal class GridItemDecorationAssist(
+internal class GridColorItemDecorationAssist(
     private val recyclerView: RecyclerView,
     private val binding: IncludeGridItemDecorationAssistBinding
 ) {
 
-    // DevWidget ItemDecoration 演示通用处理辅助类
-    private val assist: CommonItemDecorationAssist by lazy {
-        CommonItemDecorationAssist(recyclerView)
+    // DevWidget Color ItemDecoration 演示通用处理辅助类
+    private val assist: CommonColorItemDecorationAssist by lazy {
+        CommonColorItemDecorationAssist(recyclerView)
     }
 
     // 首条数据顶部添加 列分割线处理 ItemDecoration

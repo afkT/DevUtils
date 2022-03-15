@@ -527,7 +527,7 @@ class ButtonValue(
         // 波浪 View
         const val BTN_WAVE_VIEW = BTN_DEV_WIDGET + 1100
 
-        // Linear ItemDecoration
+        // Linear Color ItemDecoration
         const val BTN_LINEAR_ITEM_DECORATION = BTN_DEV_WIDGET + 1200
 
         // Linear Vertical ItemDecoration
@@ -536,7 +536,7 @@ class ButtonValue(
         // Linear Horizontal ItemDecoration
         const val BTN_LINEAR_ITEM_HORIZONTAL = BTN_LINEAR_ITEM_DECORATION + 2
 
-        // Grid ItemDecoration
+        // Grid Color ItemDecoration
         const val BTN_GRID_ITEM_DECORATION = BTN_DEV_WIDGET + 1300
 
         // Grid Vertical ItemDecoration

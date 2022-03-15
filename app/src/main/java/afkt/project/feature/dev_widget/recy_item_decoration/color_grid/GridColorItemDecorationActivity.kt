@@ -1,8 +1,10 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.grid
+package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityGridItemDecorationBinding
+import afkt.project.feature.dev_widget.recy_item_decoration.common.GridHorizontalTextAdapter
+import afkt.project.feature.dev_widget.recy_item_decoration.common.GridVerticalTextAdapter
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +12,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.RecyclerViewUtils
 
 /**
- * detail: Grid ItemDecoration
+ * detail: Grid Color ItemDecoration
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.GridItemDecorationActivity_PATH)
-class GridItemDecorationActivity : BaseActivity<ActivityGridItemDecorationBinding>() {
+@Route(path = RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH)
+class GridColorItemDecorationActivity : BaseActivity<ActivityGridItemDecorationBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_grid_item_decoration
 
@@ -44,6 +46,6 @@ class GridItemDecorationActivity : BaseActivity<ActivityGridItemDecorationBindin
                 )
             }
         }
-        GridItemDecorationAssist(binding.vidRv, binding.vidInclude)
+        GridColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
     }
 }

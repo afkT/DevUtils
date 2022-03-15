@@ -7,10 +7,10 @@ import dev.widget.decoration.BaseColorItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * detail: DevWidget ItemDecoration 演示通用处理辅助类
+ * detail: DevWidget Color ItemDecoration 演示通用处理辅助类
  * @author Ttt
  */
-class CommonItemDecorationAssist(
+class CommonColorItemDecorationAssist(
     private val recyclerView: RecyclerView,
     // 最大添加数量
     private val MAX: Int = 3

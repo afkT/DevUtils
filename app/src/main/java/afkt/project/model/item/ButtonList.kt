@@ -1369,14 +1369,14 @@ object ButtonList {
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LINEAR_ITEM_DECORATION,
-                    "Linear ItemDecoration",
+                    "Linear Color ItemDecoration",
                     RouterPath.ButtonItemActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GRID_ITEM_DECORATION,
-                    "Grid ItemDecoration",
+                    "Grid Color ItemDecoration",
                     RouterPath.ButtonItemActivity_PATH
                 )
             )
@@ -1422,7 +1422,7 @@ object ButtonList {
         }
 
     /**
-     * 获取 Linear ItemDecoration Button Value 集合
+     * 获取 Linear Color ItemDecoration Button Value 集合
      * @return [List]
      */
     private val linearItemDecorationButtonValues: List<ButtonValue>
@@ -1432,21 +1432,21 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_LINEAR_ITEM_VERTICAL,
                     "Linear Vertical ItemDecoration",
-                    RouterPath.DEV_WIDGET.LinearItemDecorationActivity_PATH
+                    RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL,
                     "Linear Horizontal ItemDecoration",
-                    RouterPath.DEV_WIDGET.LinearItemDecorationActivity_PATH
+                    RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH
                 )
             )
             return lists
         }
 
     /**
-     * 获取 Grid ItemDecoration Button Value 集合
+     * 获取 Grid Color ItemDecoration Button Value 集合
      * @return [List]
      */
     private val gridItemDecorationButtonValues: List<ButtonValue>
@@ -1456,14 +1456,14 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_GRID_ITEM_VERTICAL,
                     "Grid Vertical ItemDecoration",
-                    RouterPath.DEV_WIDGET.GridItemDecorationActivity_PATH
+                    RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH
                 )
             )
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GRID_ITEM_HORIZONTAL,
                     "Grid Horizontal ItemDecoration",
-                    RouterPath.DEV_WIDGET.GridItemDecorationActivity_PATH
+                    RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH
                 )
             )
             return lists
