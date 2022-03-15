@@ -1,4 +1,4 @@
-package dev.widget.decoration.grid;
+package dev.widget.decoration.linear;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -6,36 +6,41 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseColorGridItemDecoration;
+import dev.widget.decoration.BaseColorItemDecoration;
 
 /**
- * detail: RecyclerView Grid 行分割线处理 ( 每一行数据 )
+ * detail: RecyclerView Linear 分割线处理 ( 每一条数据 )
  * @author Ttt
  * <pre>
  *     效果:
- *     每一行数据底部绘制分割线 ( 最后一行不绘制 )
+ *     每一条数据底部添加一条分割线, 最后一条数据不绘制 ( 绘制 ItemCount - 1 条分割线 )
+ *     <p></p>
+ *     也可以使用内置 {@link DividerItemDecoration}
+ *     自定义分割线使用方法
+ *     DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+ *     decoration.setDrawable(Drawable)
+ *     recyclerView.addItemDecoration(decoration)
  * </pre>
  */
-public class GridRowItemDecoration
-        extends BaseColorGridItemDecoration {
+public class LinearColorItemDecoration
+        extends BaseColorItemDecoration {
 
-    public GridRowItemDecoration(
-            final int spanCount,
+    public LinearColorItemDecoration(
             final boolean vertical,
             final float height
     ) {
-        super(false, spanCount, vertical, height);
+        super(vertical, height);
     }
 
-    public GridRowItemDecoration(
-            final int spanCount,
+    public LinearColorItemDecoration(
             final boolean vertical,
             final float height,
             @ColorInt final int color
     ) {
-        super(false, spanCount, vertical, height, color);
+        super(vertical, height, color);
     }
 
     // ==========
@@ -80,10 +85,9 @@ public class GridRowItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (itemCount <= mSpanCount) return;
+        if (itemCount <= 1) return;
 
-        int index = parent.getChildAdapterPosition(view);
-        if (index < mSpanCount) {
+        if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
             outRect.set(0, (int) mHeight, 0, 0);
@@ -95,11 +99,13 @@ public class GridRowItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
+        int itemCount = state.getItemCount();
+        if (itemCount <= 1) return;
+
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
-            int  index = parent.getChildAdapterPosition(child);
-            if (index >= mSpanCount) {
+            if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
                         child.getLeft() + mLeft,
                         child.getTop() - mHeight - mOffset,
@@ -121,13 +127,13 @@ public class GridRowItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        float value     = mHeight / mSpanCount;
-        int   index     = parent.getChildAdapterPosition(view);
-        int   spanIndex = index % mSpanCount;
-        if (spanIndex == 0) {
+        int itemCount = state.getItemCount();
+        if (itemCount <= 1) return;
+
+        if (parent.getChildAdapterPosition(view) == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set(0, (int) (value * spanIndex), 0, 0);
+            outRect.set((int) mHeight, 0, 0, 0);
         }
     }
 
@@ -136,17 +142,18 @@ public class GridRowItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
+        int itemCount = state.getItemCount();
+        if (itemCount <= 1) return;
+
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child     = parent.getChildAt(i);
-            int  index     = parent.getChildAdapterPosition(child);
-            int  spanIndex = index % mSpanCount;
-            if (spanIndex != 0) {
+            View child = parent.getChildAt(i);
+            if (parent.getChildAdapterPosition(child) != 0) {
                 canvas.drawRect(
-                        child.getLeft() + mLeft,
-                        child.getTop() - mHeight - mOffset,
-                        child.getRight() - mRight,
-                        child.getTop() - mOffset,
+                        child.getLeft() - mHeight - mOffset,
+                        child.getTop() + mLeft,
+                        child.getLeft() - mOffset,
+                        child.getBottom() - mRight,
                         mPaint
                 );
             }

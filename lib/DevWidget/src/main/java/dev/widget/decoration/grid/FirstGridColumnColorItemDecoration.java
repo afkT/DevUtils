@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import dev.widget.decoration.BaseColorGridItemDecoration;
 
 /**
- * detail: RecyclerView Grid 列分割线处理 ( 每一列数据 )
+ * detail: RecyclerView Grid 列分割线处理 ( 第一列数据 )
  * @author Ttt
  * <pre>
  *     效果:
- *     每一列数据底部绘制分割线 ( 最后一列不绘制 )
+ *     第一列数据顶部绘制分割线
  * </pre>
  */
-public class GridColumnItemDecoration
+public class FirstGridColumnColorItemDecoration
         extends BaseColorGridItemDecoration {
 
-    public GridColumnItemDecoration(
+    public FirstGridColumnColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height
@@ -29,7 +29,7 @@ public class GridColumnItemDecoration
         super(true, spanCount, vertical, height);
     }
 
-    public GridColumnItemDecoration(
+    public FirstGridColumnColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height,

@@ -17,7 +17,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
-import dev.widget.decoration.linear.FirstLinearItemDecoration
+import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 
 /**
  * detail: 多选辅助类 MultiSelectAssist
@@ -66,7 +66,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
-                FirstLinearItemDecoration(
+                FirstLinearColorItemDecoration(
                     true, ResourceUtils.getDimension(R.dimen.dp_10)
                 )
             )

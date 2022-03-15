@@ -6,36 +6,29 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.widget.decoration.BaseColorItemDecoration;
 
 /**
- * detail: RecyclerView Linear 分割线处理 ( 每一条数据 )
+ * detail: RecyclerView Linear 分割线处理 ( 第一条数据 )
  * @author Ttt
  * <pre>
  *     效果:
- *     每一条数据底部添加一条分割线, 最后一条数据不绘制 ( 绘制 ItemCount - 1 条分割线 )
- *     <p></p>
- *     也可以使用内置 {@link DividerItemDecoration}
- *     自定义分割线使用方法
- *     DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
- *     decoration.setDrawable(Drawable)
- *     recyclerView.addItemDecoration(decoration)
+ *     第一条数据顶部添加一条分割线
  * </pre>
  */
-public class LinearItemDecoration
+public class FirstLinearColorItemDecoration
         extends BaseColorItemDecoration {
 
-    public LinearItemDecoration(
+    public FirstLinearColorItemDecoration(
             final boolean vertical,
             final float height
     ) {
         super(vertical, height);
     }
 
-    public LinearItemDecoration(
+    public FirstLinearColorItemDecoration(
             final boolean vertical,
             final float height,
             @ColorInt final int color
@@ -84,13 +77,14 @@ public class LinearItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        int itemCount = state.getItemCount();
-        if (itemCount <= 1) return;
-
         if (parent.getChildAdapterPosition(view) == 0) {
-            outRect.set(0, 0, 0, 0);
-        } else {
+            int itemCount = state.getItemCount();
+            if (!mSingleDraw && itemCount <= 1) {
+                return;
+            }
             outRect.set(0, (int) mHeight, 0, 0);
+        } else {
+            outRect.set(0, 0, 0, 0);
         }
     }
 
@@ -100,20 +94,20 @@ public class LinearItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (itemCount <= 1) return;
+        if (!mSingleDraw && itemCount <= 1) {
+            return;
+        }
 
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            if (parent.getChildAdapterPosition(child) != 0) {
-                canvas.drawRect(
-                        child.getLeft() + mLeft,
-                        child.getTop() - mHeight - mOffset,
-                        child.getRight() - mRight,
-                        child.getTop() - mOffset,
-                        mPaint
-                );
-            }
+        View child    = parent.getChildAt(0);
+        int  position = parent.getChildAdapterPosition(child);
+        if (position == 0) {
+            canvas.drawRect(
+                    child.getLeft() + mLeft,
+                    child.getTop() - mHeight - mOffset,
+                    child.getRight() - mRight,
+                    child.getTop() - mOffset,
+                    mPaint
+            );
         }
     }
 
@@ -127,13 +121,14 @@ public class LinearItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        int itemCount = state.getItemCount();
-        if (itemCount <= 1) return;
-
         if (parent.getChildAdapterPosition(view) == 0) {
-            outRect.set(0, 0, 0, 0);
-        } else {
+            int itemCount = state.getItemCount();
+            if (!mSingleDraw && itemCount <= 1) {
+                return;
+            }
             outRect.set((int) mHeight, 0, 0, 0);
+        } else {
+            outRect.set(0, 0, 0, 0);
         }
     }
 
@@ -143,20 +138,20 @@ public class LinearItemDecoration
             final RecyclerView.State state
     ) {
         int itemCount = state.getItemCount();
-        if (itemCount <= 1) return;
+        if (!mSingleDraw && itemCount <= 1) {
+            return;
+        }
 
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            if (parent.getChildAdapterPosition(child) != 0) {
-                canvas.drawRect(
-                        child.getLeft() - mHeight - mOffset,
-                        child.getTop() + mLeft,
-                        child.getLeft() - mOffset,
-                        child.getBottom() - mRight,
-                        mPaint
-                );
-            }
+        View child    = parent.getChildAt(0);
+        int  position = parent.getChildAdapterPosition(child);
+        if (position == 0) {
+            canvas.drawRect(
+                    child.getLeft() - mHeight - mOffset,
+                    child.getTop() + mLeft,
+                    child.getLeft() - mOffset,
+                    child.getBottom() - mRight,
+                    mPaint
+            );
         }
     }
 }

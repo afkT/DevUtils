@@ -11,31 +11,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import dev.widget.decoration.BaseColorGridItemDecoration;
 
 /**
- * detail: RecyclerView Grid 列分割线处理 ( 第一列数据 )
+ * detail: RecyclerView Grid 行分割线处理 ( 每一行数据 )
  * @author Ttt
  * <pre>
  *     效果:
- *     第一列数据顶部绘制分割线
+ *     每一行数据底部绘制分割线 ( 最后一行不绘制 )
  * </pre>
  */
-public class FirstGridColumnItemDecoration
+public class GridRowColorItemDecoration
         extends BaseColorGridItemDecoration {
 
-    public FirstGridColumnItemDecoration(
+    public GridRowColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height
     ) {
-        super(true, spanCount, vertical, height);
+        super(false, spanCount, vertical, height);
     }
 
-    public FirstGridColumnItemDecoration(
+    public GridRowColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height,
             @ColorInt final int color
     ) {
-        super(true, spanCount, vertical, height, color);
+        super(false, spanCount, vertical, height, color);
     }
 
     // ==========
@@ -79,13 +79,14 @@ public class FirstGridColumnItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        float value     = mHeight / mSpanCount;
-        int   index     = parent.getChildAdapterPosition(view);
-        int   spanIndex = index % mSpanCount;
-        if (spanIndex == 0) {
+        int itemCount = state.getItemCount();
+        if (itemCount <= mSpanCount) return;
+
+        int index = parent.getChildAdapterPosition(view);
+        if (index < mSpanCount) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set((int) (value * spanIndex), 0, 0, 0);
+            outRect.set(0, (int) mHeight, 0, 0);
         }
     }
 
@@ -96,15 +97,14 @@ public class FirstGridColumnItemDecoration
     ) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child     = parent.getChildAt(i);
-            int  index     = parent.getChildAdapterPosition(child);
-            int  spanIndex = index % mSpanCount;
-            if (spanIndex != 0) {
+            View child = parent.getChildAt(i);
+            int  index = parent.getChildAdapterPosition(child);
+            if (index >= mSpanCount) {
                 canvas.drawRect(
-                        child.getLeft() - mHeight - mOffset,
-                        child.getTop() + mLeft,
-                        child.getLeft() - mOffset,
-                        child.getBottom() - mRight,
+                        child.getLeft() + mLeft,
+                        child.getTop() - mHeight - mOffset,
+                        child.getRight() - mRight,
+                        child.getTop() - mOffset,
                         mPaint
                 );
             }
@@ -121,14 +121,13 @@ public class FirstGridColumnItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        int itemCount = state.getItemCount();
-        if (itemCount <= mSpanCount) return;
-
-        int index = parent.getChildAdapterPosition(view);
-        if (index < mSpanCount) {
+        float value     = mHeight / mSpanCount;
+        int   index     = parent.getChildAdapterPosition(view);
+        int   spanIndex = index % mSpanCount;
+        if (spanIndex == 0) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set((int) mHeight, 0, 0, 0);
+            outRect.set(0, (int) (value * spanIndex), 0, 0);
         }
     }
 
@@ -139,14 +138,15 @@ public class FirstGridColumnItemDecoration
     ) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            int  index = parent.getChildAdapterPosition(child);
-            if (index >= mSpanCount) {
+            View child     = parent.getChildAt(i);
+            int  index     = parent.getChildAdapterPosition(child);
+            int  spanIndex = index % mSpanCount;
+            if (spanIndex != 0) {
                 canvas.drawRect(
-                        child.getLeft() - mHeight - mOffset,
-                        child.getTop() + mLeft,
-                        child.getLeft() - mOffset,
-                        child.getBottom() - mRight,
+                        child.getLeft() + mLeft,
+                        child.getTop() - mHeight - mOffset,
+                        child.getRight() - mRight,
+                        child.getTop() - mOffset,
                         mPaint
                 );
             }

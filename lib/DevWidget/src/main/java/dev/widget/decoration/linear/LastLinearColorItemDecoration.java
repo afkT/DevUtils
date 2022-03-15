@@ -18,17 +18,17 @@ import dev.widget.decoration.BaseColorItemDecoration;
  *     最后一条数据底部添加一条分割线
  * </pre>
  */
-public class LastLinearItemDecoration
+public class LastLinearColorItemDecoration
         extends BaseColorItemDecoration {
 
-    public LastLinearItemDecoration(
+    public LastLinearColorItemDecoration(
             final boolean vertical,
             final float height
     ) {
         super(vertical, height);
     }
 
-    public LastLinearItemDecoration(
+    public LastLinearColorItemDecoration(
             final boolean vertical,
             final float height,
             @ColorInt final int color

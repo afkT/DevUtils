@@ -18,10 +18,10 @@ import dev.widget.decoration.BaseColorGridItemDecoration;
  *     第一行数据顶部绘制分割线
  * </pre>
  */
-public class FirstGridRowItemDecoration
+public class FirstGridRowColorItemDecoration
         extends BaseColorGridItemDecoration {
 
-    public FirstGridRowItemDecoration(
+    public FirstGridRowColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height
@@ -29,7 +29,7 @@ public class FirstGridRowItemDecoration
         super(false, spanCount, vertical, height);
     }
 
-    public FirstGridRowItemDecoration(
+    public FirstGridRowColorItemDecoration(
             final int spanCount,
             final boolean vertical,
             final float height,

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.widget.decoration.linear.FirstLinearItemDecoration
+import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 import java.util.*
 
 /**
@@ -51,7 +51,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         QuickHelper.get(binding.vidRv)
             .removeAllItemDecoration()
             .addItemDecoration(
-                FirstLinearItemDecoration(
+                FirstLinearColorItemDecoration(
                     true, ResourceUtils.getDimension(R.dimen.dp_10)
                 )
             )
