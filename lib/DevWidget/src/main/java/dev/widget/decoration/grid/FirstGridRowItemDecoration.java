@@ -1,7 +1,6 @@
 package dev.widget.decoration.grid;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.View;
 
@@ -9,7 +8,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import dev.widget.decoration.BaseGridItemDecoration;
+import dev.widget.decoration.BaseColorGridItemDecoration;
 
 /**
  * detail: RecyclerView Grid 行分割线处理 ( 第一行数据 )
@@ -17,31 +16,26 @@ import dev.widget.decoration.BaseGridItemDecoration;
  * <pre>
  *     效果:
  *     第一行数据顶部绘制分割线
- *     <p></p>
- *     方便基类复用统一继承 {@link BaseGridItemDecoration}
- *     不会使用到 列 ( Column ) 相关的任何字段
  * </pre>
  */
 public class FirstGridRowItemDecoration
-        extends BaseGridItemDecoration {
+        extends BaseColorGridItemDecoration {
 
     public FirstGridRowItemDecoration(
-            final boolean vertical,
             final int spanCount,
-            final float rowHeight
+            final boolean vertical,
+            final float height
     ) {
-        this(vertical, spanCount, rowHeight, Color.TRANSPARENT);
+        super(false, spanCount, vertical, height);
     }
 
     public FirstGridRowItemDecoration(
-            final boolean vertical,
             final int spanCount,
-            final float rowHeight,
-            @ColorInt final int rowColor
+            final boolean vertical,
+            final float height,
+            @ColorInt final int color
     ) {
-        super(false, vertical, spanCount);
-        this.mRowHeight = rowHeight;
-        this.mRowPaint.setColor(rowColor);
+        super(false, spanCount, vertical, height, color);
     }
 
     // ==========
@@ -92,7 +86,7 @@ public class FirstGridRowItemDecoration
         if (index < mSpanCount) {
             outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set(0, (int) mRowHeight, 0, 0);
+            outRect.set(0, (int) mHeight, 0, 0);
         }
     }
 
@@ -107,11 +101,11 @@ public class FirstGridRowItemDecoration
             int  index = parent.getChildAdapterPosition(child);
             if (index >= mSpanCount) {
                 canvas.drawRect(
-                        child.getLeft() + mRowLeft,
-                        child.getTop() - mRowHeight - mRowOffset,
-                        child.getRight() - mRowRight,
-                        child.getTop() - mRowOffset,
-                        mRowPaint
+                        child.getLeft() + mLeft,
+                        child.getTop() - mHeight - mOffset,
+                        child.getRight() - mRight,
+                        child.getTop() - mOffset,
+                        mPaint
                 );
             }
         }
@@ -127,7 +121,7 @@ public class FirstGridRowItemDecoration
             final RecyclerView parent,
             final RecyclerView.State state
     ) {
-        float value     = mRowHeight / mSpanCount;
+        float value     = mHeight / mSpanCount;
         int   index     = parent.getChildAdapterPosition(view);
         int   spanIndex = index % mSpanCount;
         if (spanIndex == 0) {
@@ -149,11 +143,11 @@ public class FirstGridRowItemDecoration
             int  spanIndex = index % mSpanCount;
             if (spanIndex != 0) {
                 canvas.drawRect(
-                        child.getLeft() + mRowLeft,
-                        child.getTop() - mRowHeight - mRowOffset,
-                        child.getRight() - mRowRight,
-                        child.getTop() - mRowOffset,
-                        mRowPaint
+                        child.getLeft() + mLeft,
+                        child.getTop() - mHeight - mOffset,
+                        child.getRight() - mRight,
+                        child.getTop() - mOffset,
+                        mPaint
                 );
             }
         }

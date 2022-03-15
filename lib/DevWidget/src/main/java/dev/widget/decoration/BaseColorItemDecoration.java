@@ -24,12 +24,12 @@ public class BaseColorItemDecoration
     // = 通用属性 =
     // ==========
 
-    // 分割线绘制方向 ( RecyclerView Orientation )
-    private         int   mOrientation = RecyclerView.VERTICAL;
     // 分割线边界测算
     protected final Rect  mBounds      = new Rect();
     // 分割线画笔
     protected final Paint mPaint       = new Paint(Paint.ANTI_ALIAS_FLAG);
+    // 分割线绘制方向 ( RecyclerView Orientation )
+    private         int   mOrientation = RecyclerView.VERTICAL;
     // 分割线高度 ( Horizontal 为宽度 )
     protected       float mHeight;
     // 分割线距左边距 ( Horizontal 为上边距 )
@@ -89,6 +89,14 @@ public class BaseColorItemDecoration
     // =
 
     /**
+     * 获取分割线画笔
+     * @return 分割线画笔
+     */
+    public Paint getPaint() {
+        return mPaint;
+    }
+
+    /**
      * 判断分割线绘制方向是否为 VERTICAL
      * @return {@code true} yes, {@code false} no
      */
@@ -120,16 +128,6 @@ public class BaseColorItemDecoration
     public BaseColorItemDecoration setHorizontal() {
         this.mOrientation = RecyclerView.HORIZONTAL;
         return this;
-    }
-
-    // =
-
-    /**
-     * 获取分割线画笔
-     * @return 分割线画笔
-     */
-    public Paint getPaint() {
-        return mPaint;
     }
 
     /**

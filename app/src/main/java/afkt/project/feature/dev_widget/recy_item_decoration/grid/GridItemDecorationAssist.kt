@@ -7,7 +7,7 @@ import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
-import dev.widget.decoration.BaseGridItemDecoration
+import dev.widget.decoration.BaseColorGridItemDecoration
 import dev.widget.decoration.grid.FirstGridColumnItemDecoration
 import dev.widget.decoration.grid.FirstGridRowItemDecoration
 import dev.widget.decoration.grid.GridColumnItemDecoration
@@ -27,22 +27,22 @@ internal class GridItemDecorationAssist(
     private val MAX = 3
 
     // 首条数据顶部添加 列分割线处理 ItemDecoration
-    private val firstColumnList = mutableListOf<BaseGridItemDecoration>()
+    private val firstColumnList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 首条数据顶部添加 行分割线处理 ItemDecoration
-    private val firstRowList = mutableListOf<BaseGridItemDecoration>()
+    private val firstRowList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 最后一条数据底部添加 列分割线处理 ItemDecoration
-    private val lastColumnList = mutableListOf<BaseGridItemDecoration>()
+    private val lastColumnList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 最后一条数据底部添加 行分割线处理 ItemDecoration
-    private val lastRowList = mutableListOf<BaseGridItemDecoration>()
+    private val lastRowList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 每条数据底部添加 列分割线处理 ItemDecoration
-    private val lineColumnList = mutableListOf<BaseGridItemDecoration>()
+    private val lineColumnList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 每条数据底部添加 行分割线处理 ItemDecoration
-    private val lineRowList = mutableListOf<BaseGridItemDecoration>()
+    private val lineRowList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 递增数
     private var firstColumnIndex = AtomicInteger()
@@ -57,49 +57,48 @@ internal class GridItemDecorationAssist(
     // ============
 
     init {
-        val columnHeight = AppSize.dp2pxf(10.0F)
-        val rowHeight = AppSize.dp2pxf(10.0F)
+        val height = AppSize.dp2pxf(10.0F)
         val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
         firstColumnList.add(
-            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.RED)
+            FirstGridColumnItemDecoration(spanCount, vertical, height, ColorUtils.RED)
         )
         firstColumnList.add(
-            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.BLUE)
+            FirstGridColumnItemDecoration(spanCount, vertical, height, ColorUtils.BLUE)
         )
         firstColumnList.add(
-            FirstGridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.GREEN)
+            FirstGridColumnItemDecoration(spanCount, vertical, height, ColorUtils.GREEN)
         )
 
         firstRowList.add(
-            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.RED)
+            FirstGridRowItemDecoration(spanCount, vertical, height, ColorUtils.RED)
         )
         firstRowList.add(
-            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.BLUE)
+            FirstGridRowItemDecoration(spanCount, vertical, height, ColorUtils.BLUE)
         )
         firstRowList.add(
-            FirstGridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.GREEN)
+            FirstGridRowItemDecoration(spanCount, vertical, height, ColorUtils.GREEN)
         )
 
         lineColumnList.add(
-            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.CHOCOLATE)
+            GridColumnItemDecoration(spanCount, vertical, height, ColorUtils.CHOCOLATE)
         )
         lineColumnList.add(
-            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.CYAN)
+            GridColumnItemDecoration(spanCount, vertical, height, ColorUtils.CYAN)
         )
         lineColumnList.add(
-            GridColumnItemDecoration(vertical, spanCount, columnHeight, ColorUtils.ORANGE)
+            GridColumnItemDecoration(spanCount, vertical, height, ColorUtils.ORANGE)
         )
 
         lineRowList.add(
-            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.CHOCOLATE)
+            GridRowItemDecoration(spanCount, vertical, height, ColorUtils.CHOCOLATE)
         )
         lineRowList.add(
-            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.CYAN)
+            GridRowItemDecoration(spanCount, vertical, height, ColorUtils.CYAN)
         )
         lineRowList.add(
-            GridRowItemDecoration(vertical, spanCount, rowHeight, ColorUtils.ORANGE)
+            GridRowItemDecoration(spanCount, vertical, height, ColorUtils.ORANGE)
         )
 
         // 通用设置 ItemDecoration 左右边距
@@ -113,32 +112,24 @@ internal class GridItemDecorationAssist(
      * 通用设置 ItemDecoration 左右边距
      */
     private fun setItemLeftRight() {
-        forItemLeftRight(firstColumnList, true)
-        forItemLeftRight(firstRowList, false)
+        forItemLeftRight(firstColumnList)
+        forItemLeftRight(firstRowList)
 
-        forItemLeftRight(lastColumnList, true)
-        forItemLeftRight(lastRowList, false)
+        forItemLeftRight(lastColumnList)
+        forItemLeftRight(lastRowList)
 
-        forItemLeftRight(lineColumnList, true)
-        forItemLeftRight(lineRowList, false)
+        forItemLeftRight(lineColumnList)
+        forItemLeftRight(lineRowList)
     }
 
     /**
      * 循环设置 Item Left、Right
      * @param list ItemDecoration List
-     * @param column Boolean
      */
-    private fun forItemLeftRight(
-        list: List<BaseGridItemDecoration>,
-        column: Boolean
-    ) {
+    private fun forItemLeftRight(list: List<BaseColorGridItemDecoration>) {
         list.forEachIndexed { index, item ->
             val value = AppSize.dp2pxf((index + 1) * 5.0F)
-            if (column) {
-                item.setColumnLeftRight(value, value)
-            } else {
-                item.setRowLeftRight(value, value)
-            }
+            item.setLeftRight(value, value)
         }
     }
 
@@ -205,7 +196,7 @@ internal class GridItemDecorationAssist(
      * @param index AtomicInteger
      */
     private fun addItemDecoration(
-        list: List<BaseGridItemDecoration>,
+        list: List<BaseColorGridItemDecoration>,
         index: AtomicInteger
     ) {
         if (index.get() >= MAX) {
@@ -226,7 +217,7 @@ internal class GridItemDecorationAssist(
      * @param index AtomicInteger
      */
     private fun removeItemDecoration(
-        list: List<BaseGridItemDecoration>,
+        list: List<BaseColorGridItemDecoration>,
         index: AtomicInteger
     ) {
         if (index.get() <= 0) {
@@ -249,38 +240,21 @@ internal class GridItemDecorationAssist(
      * @param number Int
      */
     private fun calcOffset(
-        list: List<BaseGridItemDecoration>,
+        list: List<BaseColorGridItemDecoration>,
         number: Int
     ) {
         val numberIndex = number - 1
         list.forEachIndexed { index, item ->
-            when (item) {
-                is FirstGridColumnItemDecoration,
-                is GridColumnItemDecoration -> {
-                    item.columnOffset = 0.0F
-                    if (numberIndex >= index) {
-                        // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
-                        var offset = 0.0F
-                        for (i in (index + 1)..numberIndex) {
-                            offset += list[i].columnHeight
-                        }
-                        // 设置偏差值
-                        item.columnOffset = offset
-                    }
+            // 先重置为 0
+            item.offset = 0.0F
+            if (numberIndex >= index) {
+                // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
+                var offset = 0.0F
+                for (i in (index + 1)..numberIndex) {
+                    offset += list[i].height
                 }
-                is FirstGridRowItemDecoration,
-                is GridRowItemDecoration -> {
-                    item.rowOffset = 0.0F
-                    if (numberIndex >= index) {
-                        // 偏差值 ( 用于解决多个 ItemDecoration 叠加覆盖问题 )
-                        var offset = 0.0F
-                        for (i in (index + 1)..numberIndex) {
-                            offset += list[i].rowHeight
-                        }
-                        // 设置偏差值
-                        item.rowOffset = offset
-                    }
-                }
+                // 设置偏差值
+                item.offset = offset
             }
         }
     }
