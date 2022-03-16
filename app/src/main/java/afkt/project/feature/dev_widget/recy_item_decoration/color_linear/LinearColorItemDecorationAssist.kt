@@ -27,7 +27,7 @@ internal class LinearColorItemDecorationAssist(
         CommonColorItemDecorationAssist(recyclerView)
     }
 
-    // 首条数据顶部添加 ItemDecoration
+    // 第一条数据顶部添加 ItemDecoration
     private val firstList = mutableListOf<BaseColorItemDecoration>()
 
     // 最后一条数据底部添加 ItemDecoration
@@ -49,6 +49,10 @@ internal class LinearColorItemDecorationAssist(
         val height = AppSize.dp2pxf(10.0F)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
 
+        // ========
+        // = First =
+        // ========
+
         firstList.add(
             FirstLinearColorItemDecoration(
                 vertical, height, ColorUtils.RED
@@ -64,6 +68,10 @@ internal class LinearColorItemDecorationAssist(
                 vertical, height, ColorUtils.GREEN
             )
         )
+
+        // ========
+        // = Last =
+        // ========
 
         lastList.add(
             LastLinearColorItemDecoration(
@@ -81,6 +89,10 @@ internal class LinearColorItemDecorationAssist(
             )
         )
 
+        // ========
+        // = Line =
+        // ========
+
         lineList.add(
             LinearColorItemDecoration(
                 vertical, height, ColorUtils.CHOCOLATE
@@ -97,7 +109,10 @@ internal class LinearColorItemDecorationAssist(
             )
         )
 
-        // 通用设置 ItemDecoration 左右边距
+        // =================================
+        // = 通用设置 ItemDecoration 左右边距 =
+        // =================================
+
         if (RandomUtils.nextBoolean()) {
             setItemLeftRight()
         }
@@ -117,6 +132,11 @@ internal class LinearColorItemDecorationAssist(
      * 初始化事件
      */
     private fun initListener() {
+
+        // ========
+        // = First =
+        // ========
+
         binding.vidFirstAddBtn.setOnClickListener {
             assist.addItemDecoration(firstList, firstIndex)
         }
@@ -124,12 +144,20 @@ internal class LinearColorItemDecorationAssist(
             assist.removeItemDecoration(firstList, firstIndex)
         }
 
+        // ========
+        // = Last =
+        // ========
+
         binding.vidLastAddBtn.setOnClickListener {
             assist.addItemDecoration(lastList, lastIndex)
         }
         binding.vidLastRemoveBtn.setOnClickListener {
             assist.removeItemDecoration(lastList, lastIndex)
         }
+
+        // ========
+        // = Line =
+        // ========
 
         binding.vidLineAddBtn.setOnClickListener {
             assist.addItemDecoration(lineList, lineIndex)

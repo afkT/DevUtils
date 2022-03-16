@@ -8,10 +8,7 @@ import dev.utils.app.RecyclerViewUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseColorGridItemDecoration
-import dev.widget.decoration.grid.FirstGridColumnColorItemDecoration
-import dev.widget.decoration.grid.FirstGridRowColorItemDecoration
-import dev.widget.decoration.grid.GridColumnColorItemDecoration
-import dev.widget.decoration.grid.GridRowColorItemDecoration
+import dev.widget.decoration.grid.*
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -28,10 +25,10 @@ internal class GridColorItemDecorationAssist(
         CommonColorItemDecorationAssist(recyclerView)
     }
 
-    // 首条数据顶部添加 列分割线处理 ItemDecoration
+    // 第一条数据顶部添加 列分割线处理 ItemDecoration
     private val firstColumnList = mutableListOf<BaseColorGridItemDecoration>()
 
-    // 首条数据顶部添加 行分割线处理 ItemDecoration
+    // 第一条数据顶部添加 行分割线处理 ItemDecoration
     private val firstRowList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 最后一条数据底部添加 列分割线处理 ItemDecoration
@@ -60,8 +57,12 @@ internal class GridColorItemDecorationAssist(
 
     init {
         val height = AppSize.dp2pxf(10.0F)
-        val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
+        val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
+
+        // ========
+        // = First =
+        // ========
 
         firstColumnList.add(
             FirstGridColumnColorItemDecoration(
@@ -95,6 +96,46 @@ internal class GridColorItemDecorationAssist(
             )
         )
 
+        // ========
+        // = Last =
+        // ========
+
+        lastColumnList.add(
+            LastGridColumnColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.GOLD
+            )
+        )
+        lastColumnList.add(
+            LastGridColumnColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.PINK
+            )
+        )
+        lastColumnList.add(
+            LastGridColumnColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.PURPLE
+            )
+        )
+
+        lastRowList.add(
+            LastGridRowColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.GOLD
+            )
+        )
+        lastRowList.add(
+            LastGridRowColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.PINK
+            )
+        )
+        lastRowList.add(
+            LastGridRowColorItemDecoration(
+                spanCount, vertical, height, ColorUtils.PURPLE
+            )
+        )
+
+        // ========
+        // = Line =
+        // ========
+
         lineColumnList.add(
             GridColumnColorItemDecoration(
                 spanCount, vertical, height, ColorUtils.CHOCOLATE
@@ -127,7 +168,10 @@ internal class GridColorItemDecorationAssist(
             )
         )
 
-        // 通用设置 ItemDecoration 左右边距
+        // =================================
+        // = 通用设置 ItemDecoration 左右边距 =
+        // =================================
+
         if (RandomUtils.nextBoolean()) {
             setItemLeftRight()
         }
