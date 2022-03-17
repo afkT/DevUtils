@@ -8,7 +8,8 @@ import dev.utils.app.RecyclerViewUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
 import dev.widget.decoration.BaseColorGridItemDecoration
-import dev.widget.decoration.grid.*
+import dev.widget.decoration.grid.GridColumnColorItemDecoration
+import dev.widget.decoration.grid.GridRowColorItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -25,18 +26,6 @@ internal class GridColorItemDecorationAssist(
         CommonColorItemDecorationAssist(recyclerView)
     }
 
-    // 第一条数据顶部添加 列分割线处理 ItemDecoration
-    private val firstColumnList = mutableListOf<BaseColorGridItemDecoration>()
-
-    // 第一条数据顶部添加 行分割线处理 ItemDecoration
-    private val firstRowList = mutableListOf<BaseColorGridItemDecoration>()
-
-    // 最后一条数据底部添加 列分割线处理 ItemDecoration
-    private val lastColumnList = mutableListOf<BaseColorGridItemDecoration>()
-
-    // 最后一条数据底部添加 行分割线处理 ItemDecoration
-    private val lastRowList = mutableListOf<BaseColorGridItemDecoration>()
-
     // 每条数据底部添加 列分割线处理 ItemDecoration
     private val lineColumnList = mutableListOf<BaseColorGridItemDecoration>()
 
@@ -44,10 +33,6 @@ internal class GridColorItemDecorationAssist(
     private val lineRowList = mutableListOf<BaseColorGridItemDecoration>()
 
     // 递增数
-    private var firstColumnIndex = AtomicInteger()
-    private var firstRowIndex = AtomicInteger()
-    private var lastColumnIndex = AtomicInteger()
-    private var lastRowIndex = AtomicInteger()
     private var lineColumnIndex = AtomicInteger()
     private var lineRowIndex = AtomicInteger()
 
@@ -59,78 +44,6 @@ internal class GridColorItemDecorationAssist(
         val height = AppSize.dp2pxf(10.0F)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
         val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
-
-        // ========
-        // = First =
-        // ========
-
-        firstColumnList.add(
-            FirstGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.RED
-            )
-        )
-        firstColumnList.add(
-            FirstGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.BLUE
-            )
-        )
-        firstColumnList.add(
-            FirstGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.GREEN
-            )
-        )
-
-        firstRowList.add(
-            FirstGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.RED
-            )
-        )
-        firstRowList.add(
-            FirstGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.BLUE
-            )
-        )
-        firstRowList.add(
-            FirstGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.GREEN
-            )
-        )
-
-        // ========
-        // = Last =
-        // ========
-
-        lastColumnList.add(
-            LastGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.GOLD
-            )
-        )
-        lastColumnList.add(
-            LastGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.PINK
-            )
-        )
-        lastColumnList.add(
-            LastGridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.PURPLE
-            )
-        )
-
-        lastRowList.add(
-            LastGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.GOLD
-            )
-        )
-        lastRowList.add(
-            LastGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.PINK
-            )
-        )
-        lastRowList.add(
-            LastGridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.PURPLE
-            )
-        )
 
         // ========
         // = Line =
@@ -183,8 +96,6 @@ internal class GridColorItemDecorationAssist(
      */
     private fun setItemLeftRight() {
         assist.forItemLeftRight(
-            firstColumnList, firstRowList,
-            lastColumnList, lastRowList,
             lineColumnList, lineRowList
         )
     }
@@ -193,40 +104,6 @@ internal class GridColorItemDecorationAssist(
      * 初始化事件
      */
     private fun initListener() {
-
-        // ========
-        // = First =
-        // ========
-
-        binding.vidFirstColumnAddBtn.setOnClickListener {
-            assist.addItemDecoration(firstColumnList, firstColumnIndex)
-        }
-        binding.vidFirstColumnRemoveBtn.setOnClickListener {
-            assist.removeItemDecoration(firstColumnList, firstColumnIndex)
-        }
-        binding.vidFirstRowAddBtn.setOnClickListener {
-            assist.addItemDecoration(firstRowList, firstRowIndex)
-        }
-        binding.vidFirstRowRemoveBtn.setOnClickListener {
-            assist.removeItemDecoration(firstRowList, firstRowIndex)
-        }
-
-        // ========
-        // = Last =
-        // ========
-
-        binding.vidLastColumnAddBtn.setOnClickListener {
-            assist.addItemDecoration(lastColumnList, lastColumnIndex)
-        }
-        binding.vidLastColumnRemoveBtn.setOnClickListener {
-            assist.removeItemDecoration(lastColumnList, lastColumnIndex)
-        }
-        binding.vidLastRowAddBtn.setOnClickListener {
-            assist.addItemDecoration(lastRowList, lastRowIndex)
-        }
-        binding.vidLastRowRemoveBtn.setOnClickListener {
-            assist.removeItemDecoration(lastRowList, lastRowIndex)
-        }
 
         // ========
         // = Line =
