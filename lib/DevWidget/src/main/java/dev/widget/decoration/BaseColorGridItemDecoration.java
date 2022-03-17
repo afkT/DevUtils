@@ -4,8 +4,6 @@ import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 
-import dev.utils.common.NumberUtils;
-
 /**
  * detail: 基础 RecyclerView Grid 分割线处理
  * @author Ttt
@@ -82,17 +80,5 @@ public class BaseColorGridItemDecoration
     public BaseColorGridItemDecoration setSpanCount(final int spanCount) {
         this.mSpanCount = spanCount;
         return this;
-    }
-
-    // =
-
-    /**
-     * 获取最后一行 ( 列 ) 索引
-     * @param itemCount Item 总数
-     * @return 最后一行 ( 列 ) 索引
-     */
-    public int getLastPosition(final int itemCount) {
-        int multiple = NumberUtils.multiple(itemCount, mSpanCount);
-        return Math.max(multiple - 1, 1) * mSpanCount;
     }
 }

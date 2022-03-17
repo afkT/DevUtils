@@ -11,7 +11,7 @@
 >
 > 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
 >
-> **[Android 规范](https://github.com/afkT/DevUtils/blob/master/README/android_standard.md)** 、 **[Java 规范](https://github.com/afkT/DevUtils/blob/master/README/java_standard.md)**
+> **[Android 规范](https://github.com/afkT/DevUtils/blob/master/README/android_standard.md)** 、 **[Java 规范](https://github.com/afkT/DevUtils/blob/master/README/java_standard.md)** 、 **[Git 规范](https://github.com/afkT/DevUtils/blob/master/README/git_standard.md)**
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 

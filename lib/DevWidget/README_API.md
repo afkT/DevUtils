@@ -15,8 +15,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.6'
       - assist                                                           | View 辅助类
       - custom                                                           | 自定义 View
       - decoration                                                       | RecyclerView ItemDecoration
+         - grid                                                          | Grid ItemDecoration
          - linear                                                        | Linear ItemDecoration
-            - horizontal                                                 | Linear Horizontal ItemDecoration
       - function                                                         | 需求功能 View
       - ui                                                               | UI View
          - round                                                         | 圆角相关 View
@@ -52,8 +52,8 @@ implementation 'io.github.afkt:DevWidgetX:1.1.6'
       - [assist](#devwidgetassist)                                       | View 辅助类
       - [custom](#devwidgetcustom)                                       | 自定义 View
       - [decoration](#devwidgetdecoration)                               | RecyclerView ItemDecoration
+         - [grid](#devwidgetdecorationgrid)                              | Grid ItemDecoration
          - [linear](#devwidgetdecorationlinear)                          | Linear ItemDecoration
-            - [horizontal](#devwidgetdecorationlinearhorizontal)         | Linear Horizontal ItemDecoration
       - [function](#devwidgetfunction)                                   | 需求功能 View
       - [ui](#devwidgetui)                                               | UI View
          - [round](#devwidgetuiround)                                    | 圆角相关 View
@@ -277,72 +277,82 @@ implementation 'io.github.afkt:DevWidgetX:1.1.6'
 ## <span id="devwidgetdecoration">**`dev.widget.decoration`**</span>
 
 
-* **基础 RecyclerView 分割线处理 ->** [BaseItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/BaseItemDecoration.java)
+* **基础 RecyclerView Grid 分割线处理 ->** [BaseColorGridItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/BaseColorGridItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| getLinePaint | 获取分割线画笔 |
-| isSingleLineDraw | 获取单条数据是否绘制分割线 |
-| setSingleLineDraw | 设置单条数据是否绘制分割线 |
-| getLineLeft | 获取分割线距左边距 ( 横向为上边距 ) |
-| setLineLeft | 设置分割线距左边距 ( 横向为上边距 ) |
-| getLineRight | 获取分割线距右边距 ( 横向为下边距 ) |
-| setLineRight | 设置分割线距右边距 ( 横向为下边距 ) |
-| setLineLeftRight | 设置分割线距左、右边距 |
+| isRowItemDecoration | 是否 Grid Row ItemDecoration |
+| isColumnItemDecoration | 是否 Grid Column ItemDecoration |
+| getSpanCount | 获取 Span 总数 ( Grid 列 ) |
+| setSpanCount | 设置 Span 总数 ( Grid 列 ) |
+
+
+* **RecyclerView 分割线绘制基类 ->** [BaseColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/BaseColorItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isSingleDraw | 获取单条数据是否绘制分割线 |
+| setSingleDraw | 设置单条数据是否绘制分割线 |
+| getPaint | 获取分割线画笔 |
+| isVertical | 判断分割线绘制方向是否为 VERTICAL |
+| isHorizontal | 判断分割线绘制方向是否为 HORIZONTAL |
+| setVertical | 设置分割线绘制方向为 VERTICAL |
+| setHorizontal | 设置分割线绘制方向为 HORIZONTAL |
+| getHeight | 获取分割线高度 |
+| setHeight | 设置分割线高度 |
+| getLeft | 获取分割线距左边距 |
+| setLeft | 设置分割线距左边距 |
+| getRight | 获取分割线距右边距 |
+| setRight | 设置分割线距右边距 |
+| setLeftRight | 设置分割线距左、右边距 |
+| getOffset | 获取分割线偏差值 |
+| setOffset | 设置分割线偏差值 |
+
+
+## <span id="devwidgetdecorationgrid">**`dev.widget.decoration.grid`**</span>
+
+
+* **RecyclerView Grid 列分割线处理 ( 每一列数据 ) ->** [GridColumnColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/grid/GridColumnColorItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDraw | onDraw |
+
+
+* **RecyclerView Grid 行分割线处理 ( 每一行数据 ) ->** [GridRowColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/grid/GridRowColorItemDecoration.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemOffsets | getItemOffsets |
+| onDraw | onDraw |
 
 
 ## <span id="devwidgetdecorationlinear">**`dev.widget.decoration.linear`**</span>
 
 
-* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/FirstLineItemDecoration.java)
+* **RecyclerView Linear 分割线处理 ( 第一条数据 ) ->** [FirstLinearColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/FirstLinearColorItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
+| onDraw | onDraw |
 
 
-* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LastLineItemDecoration.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
-
-
-* **RecyclerView 分割线 ->** [LineItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LineItemDecoration.java)
+* **RecyclerView Linear 分割线处理 ( 最后一条数据 ) ->** [LastLinearColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LastLinearColorItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
+| onDraw | onDraw |
 
 
-## <span id="devwidgetdecorationlinearhorizontal">**`dev.widget.decoration.linear.horizontal`**</span>
-
-
-* **RecyclerView 分割线 ( 在开头添加一条分割线 ) ->** [FirstLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/FirstLineHorizontalItemDecoration.java)
+* **RecyclerView Linear 分割线处理 ( 每一条数据 ) ->** [LinearColorItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/LinearColorItemDecoration.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
-
-
-* **RecyclerView 分割线 ( 在结尾添加一条分割线 ) ->** [LastLineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/LastLineHorizontalItemDecoration.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
-
-
-* **RecyclerView 分割线 ->** [LineHorizontalItemDecoration.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/decoration/linear/horizontal/LineHorizontalItemDecoration.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getItemOffsets | getItemOffsets |
-| onDrawOver | onDrawOver |
+| onDraw | onDraw |
 
 
 ## <span id="devwidgetfunction">**`dev.widget.function`**</span>
