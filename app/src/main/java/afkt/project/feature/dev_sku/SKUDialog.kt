@@ -2,7 +2,8 @@ package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuDialogSpecBinding
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.toImageConfig
 import android.app.Dialog
 import android.view.Gravity
 import androidx.fragment.app.FragmentActivity
@@ -205,7 +206,8 @@ class SKUDialog(
             refreshPrice()
             // 加载图片
             DevEngine.getImage()?.display(
-                binding.vidPicIv, spec.picUrl, ProjectUtils.roundConfig10
+                binding.vidPicIv, spec.picUrl,
+                IMAGE_ROUND_10.toImageConfig()
             )
             return
         }

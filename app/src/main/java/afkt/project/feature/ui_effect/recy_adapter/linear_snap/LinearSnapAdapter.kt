@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.linear_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.toImageConfig
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
@@ -40,7 +41,7 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
         DevEngine.getImage()?.display(
             holder.binding.vidIv,
             item.imageUrl,
-            ProjectUtils.roundConfig10
+            IMAGE_ROUND_10.toImageConfig()
         )
     }
 }

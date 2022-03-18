@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.linear_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.toImageConfig
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
@@ -65,7 +66,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
             DevEngine.getImage()?.display(
                 holder.binding.vidIv,
                 itemBean.imageUrl,
-                ProjectUtils.roundConfig10
+                IMAGE_ROUND_10.toImageConfig()
             )
         }
     }

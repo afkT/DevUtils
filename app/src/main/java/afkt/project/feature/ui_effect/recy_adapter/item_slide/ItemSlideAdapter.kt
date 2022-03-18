@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.item_slide
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityItem
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.ViewGroup
@@ -45,7 +46,7 @@ class ItemSlideAdapter(data: List<CommodityItem>) : DevDataAdapter<CommodityItem
         DevEngine.getImage()?.display(
             holder.binding.vidIv,
             item.commodityPicture,
-            ProjectUtils.roundConfig3
+            IMAGE_ROUND_3.toImageConfig()
         )
     }
 }

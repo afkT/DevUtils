@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterPagerSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.toImageConfig
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -73,7 +74,7 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
         ) {
             DevEngine.getImage()?.display(
                 view, imageUrl,
-                ProjectUtils.roundConfig10
+                IMAGE_ROUND_10.toImageConfig()
             )
         }
     }

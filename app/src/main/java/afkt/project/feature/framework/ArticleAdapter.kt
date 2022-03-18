@@ -3,7 +3,8 @@ package afkt.project.feature.framework
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.toImageConfig
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
@@ -44,7 +45,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         DevEngine.getImage()?.display(
             holder.binding.vidPicIv,
             "https://picsum.photos/2${NumberUtils.addZero(position)}",
-            ProjectUtils.roundConfig3
+            IMAGE_ROUND_3.toImageConfig()
         )
         // 绑定点击事件
         ListenerUtils.setOnClicks({

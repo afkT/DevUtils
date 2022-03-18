@@ -4,7 +4,8 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.LayoutInflater
@@ -76,7 +77,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
             DevEngine.getImage()?.display(
                 holder.binding.vidPicIv,
                 item.commodityPicture,
-                ProjectUtils.roundConfig3
+                IMAGE_ROUND_3.toImageConfig()
             )
 
         } else if (holder is CommodityEvaluateHolder) {
@@ -99,7 +100,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
             DevEngine.getImage()?.display(
                 holder.binding.vidPicIv,
                 item.commodityPicture,
-                ProjectUtils.roundConfig3
+                IMAGE_ROUND_3.toImageConfig()
             )
             // 评星等级
             val ratingBar = holder.binding.vidRatingbar

@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.adapter_edits
 import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.model.bean.EvaluateItem
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         DevEngine.getImage()?.display(
             holder.binding.vidPicIv,
             commodity.commodityPicture,
-            ProjectUtils.roundConfig3
+            IMAGE_ROUND_3.toImageConfig()
         )
         // 评星等级
         val ratingBar = holder.binding.vidRatingbar

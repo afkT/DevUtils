@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityViewAssistBinding
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import afkt.project.utils.AppSize
+import afkt_replace.core.lib.utils.size.AppSize
 import android.view.LayoutInflater
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route

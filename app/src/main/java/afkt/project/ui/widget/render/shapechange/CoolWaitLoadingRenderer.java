@@ -15,7 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import afkt.project.utils.AppSize;
+import afkt_replace.core.lib.utils.size.AppSize;
 
 public class CoolWaitLoadingRenderer
         extends LoadingRenderer {

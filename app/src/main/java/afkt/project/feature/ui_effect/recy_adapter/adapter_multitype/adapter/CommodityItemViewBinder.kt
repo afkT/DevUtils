@@ -3,7 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBeanItem
-import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.LayoutInflater
@@ -56,7 +57,7 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
         DevEngine.getImage()?.display(
             holder.binding.vidPicIv,
             itemObj.commodityPicture,
-            ProjectUtils.roundConfig3
+            IMAGE_ROUND_3.toImageConfig()
         )
     }
 }
