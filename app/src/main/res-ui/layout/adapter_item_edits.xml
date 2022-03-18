@@ -77,7 +77,7 @@
                     android:maxLines="1"
                     android:textColor="@color/red"
                     android:textSize="@dimen/sp_14"
-                    tools:text="￥17.2" />
+                    tools:text="@string/tools_price" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

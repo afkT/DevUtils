@@ -47,7 +47,7 @@
                 android:singleLine="true"
                 android:textColor="@color/color_ff2e42"
                 android:textSize="@dimen/sp_18"
-                tools:text="¥199.9" />
+                tools:text="@string/tools_price" />
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView

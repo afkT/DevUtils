@@ -67,4 +67,7 @@ dependencies {
     implementation project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
+
+    // DevComponent /core/libs/lib_utils
+    implementation project(':lib_utils')
 }

@@ -66,6 +66,7 @@ libs_modules.forEach {
 
 def modules = [
         "DevBaseModule",
+        "DevComponent/lib_utils",
         "push/DevGTPush",
         "push/DevJPush",
         "share/DevUMShare",
