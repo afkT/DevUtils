@@ -8,8 +8,8 @@
     android:background="@color/grey_tran20"
     android:ellipsize="end"
     android:gravity="center"
-    android:maxLines="1"
     android:includeFontPadding="false"
+    android:maxLines="1"
     android:textColor="@color/black"
     android:textSize="@dimen/sp_15"
     tools:text="Text" />
