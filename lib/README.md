@@ -17,6 +17,7 @@ Engine 兼容框架等
    - DevHttpManager                        | OkHttp 管理类
    - DevJava                               | Java 工具类库 ( 不依赖 android api )
    - DevOther                              | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
+   - DevSKU                                | 商品 SKU 组合封装实现
    - DevWidget                             | 自定义 View UI 库
    - Environment                           | Android 环境配置切换库
       - DevEnvironment                     | 环境切换可视化 UI 操作
