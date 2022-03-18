@@ -4,6 +4,8 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityEvaluateBeanItem
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -12,8 +14,6 @@ import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.BigDecimalUtils
-import java.math.BigDecimal
 
 /**
  * detail: Commodity Evaluate Adapter
@@ -47,9 +47,8 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
             .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
             .setText(
-                "￥" + BigDecimalUtils.round(
-                    itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidPriceTv
+                itemObj.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                holder.binding.vidPriceTv
             )
             // 评价内容
             .setText(itemObj.evaluateContent, holder.binding.vidContentEt)

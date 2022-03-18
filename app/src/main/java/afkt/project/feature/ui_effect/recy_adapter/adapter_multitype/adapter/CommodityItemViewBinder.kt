@@ -4,6 +4,8 @@ import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBeanItem
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -12,8 +14,6 @@ import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.BigDecimalUtils
-import java.math.BigDecimal
 
 /**
  * detail: Commodity Adapter
@@ -49,9 +49,8 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
             .setText(itemObj.commodityName, holder.binding.vidNameTv)
             // 商品价格
             .setText(
-                "￥" + BigDecimalUtils.round(
-                    itemObj.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidPriceTv
+                itemObj.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                holder.binding.vidPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(

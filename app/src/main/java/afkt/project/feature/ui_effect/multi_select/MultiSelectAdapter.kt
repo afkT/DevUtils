@@ -4,6 +4,8 @@ import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityItem
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.View
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt2
@@ -12,8 +14,6 @@ import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.BigDecimalUtils
-import java.math.BigDecimal
 
 /**
  * detail: 多选 Adapter
@@ -43,9 +43,8 @@ class MultiSelectAdapter(data: List<CommodityItem?>) :
         ViewHelper.get()
             .setText(item?.commodityName, holder.binding.vidNameTv)
             .setText(
-                "￥" + BigDecimalUtils.round(
-                    item?.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                ), holder.binding.vidPriceTv
+                item?.commodityPrice?.toPriceString()?.toRMBSubZeroAndDot(),
+                holder.binding.vidPriceTv
             )
         // 商品图片
         DevEngine.getImage()?.display(

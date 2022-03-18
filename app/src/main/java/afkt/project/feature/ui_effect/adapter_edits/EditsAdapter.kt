@@ -4,14 +4,14 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.model.bean.EvaluateItem
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
-import dev.utils.common.BigDecimalUtils
 import dev.utils.common.StringUtils
-import java.math.BigDecimal
 
 /**
  * detail: Item EditText 输入监听 Adapter
@@ -45,10 +45,9 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // 商品名
         holder.binding.vidNameTv.text = commodity.commodityName
 
-        val priceText =
-            "￥${BigDecimalUtils.round(commodity.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
         // 商品价格
-        holder.binding.vidPriceTv.text = priceText
+        holder.binding.vidPriceTv.text =
+            commodity.commodityPrice.toPriceString()?.toRMBSubZeroAndDot()
 
         // 商品图片
         DevEngine.getImage()?.display(

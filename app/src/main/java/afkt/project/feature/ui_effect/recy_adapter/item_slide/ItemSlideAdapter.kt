@@ -4,14 +4,14 @@ import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityItem
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.DevEngine
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.BigDecimalUtils
-import java.math.BigDecimal
 
 /**
  * detail: Item Slide Adapter
@@ -38,7 +38,7 @@ class ItemSlideAdapter(data: List<CommodityItem>) : DevDataAdapter<CommodityItem
         ViewHelper.get()
             .setText(item.commodityName, holder.binding.vidNameTv)
             .setText(
-                "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}",
+                item.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
                 holder.binding.vidPriceTv
             )
         // 商品图片

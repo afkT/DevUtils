@@ -5,6 +5,8 @@ import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
 import afkt.project.utils.ProjectUtils
+import afkt_replace.core.lib.utils.price.toPriceString
+import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +14,6 @@ import dev.adapter.DevDataAdapter
 import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.BigDecimalUtils
-import java.math.BigDecimal
 
 /**
  * detail: Commodity、Evaluate Adapter
@@ -69,9 +69,8 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
-                    "￥" + BigDecimalUtils.round(
-                        item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    ), holder.binding.vidPriceTv
+                    item.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                    holder.binding.vidPriceTv
                 )
             // 商品图片
             DevEngine.getImage()?.display(
@@ -88,9 +87,8 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 .setText(item.commodityName, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
-                    "￥" + BigDecimalUtils.round(
-                        item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP
-                    ), holder.binding.vidPriceTv
+                    item.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                    holder.binding.vidPriceTv
                 )
                 // 评价内容
                 .setText(item.evaluateContent, holder.binding.vidContentEt)
