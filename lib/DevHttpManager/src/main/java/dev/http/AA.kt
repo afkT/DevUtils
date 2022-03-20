@@ -1,4 +1,3 @@
-package dev.http;
+package dev.http
 
-public class AA {
-}
+class AA 
