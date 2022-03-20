@@ -14,15 +14,15 @@
 
 module | DevHttpCapture | DevHttpCaptureCompiler | DevHttpCaptureCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+version | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 
 
 ### Gradle
 
 ```groovy
 dependencies {
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.0.9'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.0.9'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.0'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.0'
 }
 ```
 

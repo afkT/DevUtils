@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevAssist:1.3.2'
+implementation 'io.github.afkt:DevAssist:1.3.3'
 ```
 
 ## 目录结构
