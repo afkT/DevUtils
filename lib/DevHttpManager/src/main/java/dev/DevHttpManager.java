@@ -3,7 +3,7 @@ package dev;
 import dev.http.BuildConfig;
 
 /**
- * detail: OkHttp 抓包工具库
+ * detail: OkHttp 管理类 ( Retrofit 多 BaseUrl 等 )
  * @author Ttt
  * <pre>
  *     GitHub
