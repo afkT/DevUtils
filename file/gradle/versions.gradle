@@ -26,48 +26,48 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 235,
-            dev_app_versionName                      : "2.3.5",
+            dev_app_versionCode                      : 236,
+            dev_app_versionName                      : "2.3.6",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-            dev_assist_versionCode                   : 132,
-            dev_assist_versionName                   : "1.3.2",
+            dev_assist_versionCode                   : 133,
+            dev_assist_versionName                   : "1.3.3",
 
             // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-            dev_base_versionCode                     : 110,
-            dev_base_versionName                     : "1.1.0",
+            dev_base_versionCode                     : 111,
+            dev_base_versionName                     : "1.1.1",
 
             // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-            dev_base_mvvm_versionCode                : 108,
-            dev_base_mvvm_versionName                : "1.0.8",
+            dev_base_mvvm_versionCode                : 109,
+            dev_base_mvvm_versionName                : "1.0.9",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 104,
-            dev_engine_versionName                   : "1.0.4",
+            dev_engine_versionCode                   : 105,
+            dev_engine_versionName                   : "1.0.5",
 
             // DevHttpCapture - OkHttp 抓包工具库
-            dev_http_capture_versionCode             : 109,
-            dev_http_capture_versionName             : "1.0.9",
-            dev_http_capture_compiler_version        : "1.0.9",
-            dev_http_capture_compiler_release_version: "1.0.9",
+            dev_http_capture_versionCode             : 110,
+            dev_http_capture_versionName             : "1.1.0",
+            dev_http_capture_compiler_version        : "1.1.0",
+            dev_http_capture_compiler_release_version: "1.1.0",
 
             // DevHttpManager - OkHttp 管理类
             dev_http_manager_versionCode             : 100,
             dev_http_manager_versionName             : "1.0.0",
 
             // DevWidget - 自定义 View UI 库
-            dev_widget_versionCode                   : 116,
-            dev_widget_versionName                   : "1.1.6",
+            dev_widget_versionCode                   : 117,
+            dev_widget_versionName                   : "1.1.7",
 
             // DevEnvironment - Android 环境配置切换库
-            dev_environment_versionCode              : 108,
-            dev_environment_version                  : "1.0.8",
-            dev_environment_base_version             : "1.0.8",
-            dev_environment_compiler_version         : "1.0.8",
-            dev_environment_compiler_release_version : "1.0.8",
+            dev_environment_versionCode              : 109,
+            dev_environment_version                  : "1.0.9",
+            dev_environment_base_version             : "1.0.9",
+            dev_environment_compiler_version         : "1.0.9",
+            dev_environment_compiler_release_version : "1.0.9",
 
             // DevJava - Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 142,
-            dev_java_version                         : "1.4.2",
+            dev_java_versionCode                     : 143,
+            dev_java_version                         : "1.4.3",
     ]
 }

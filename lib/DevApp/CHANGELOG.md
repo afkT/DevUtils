@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.3.6 *(2022-03-20)*
+----------------------------
+
+* `[Add]` 新增 DevFinal#DEFAULT 默认值，并全局统一该库默认值
+
+* `[Add]` 新增 BigDecimalUtils 快捷方法抛出异常便于自定义异常值
+
+* `[Add]` 新增 RecyclerViewUtils#getOrientation、canScrollVertically、canScrollHorizontally LayoutManager 参数
+
+* `[Add]` 新增 NotificationUtils#createNotificationBuilder 方法
+
 Version 2.3.5 *(2022-02-12)*
 ----------------------------
 

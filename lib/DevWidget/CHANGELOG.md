@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.7 *(2022-03-20)*
+----------------------------
+
+* `[Remove]` 移除 RecyclerView ItemDecoration ( FirstLineHorizontalItemDecoration、LastLineHorizontalItemDecoration、LineHorizontalItemDecoration、FirstLineItemDecoration、LastLineItemDecoration、LineItemDecoration )
+
+* `[Add]` 新增 RecyclerView ItemDecoration ( GridColumnColorItemDecoration、GridRowColorItemDecoration、FirstLinearColorItemDecoration、LastLinearColorItemDecoration、LinearColorItemDecoration )
+
 Version 1.1.6 *(2022-02-12)*
 ----------------------------
 
