@@ -1,4 +1,5 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply from: rootProject.file(files.unified_use_view_binding_gradle)
 
 android.defaultConfig {
     versionCode versions.dev_base_versionCode

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
 apply from: rootProject.file(files.deps_android_lib)
+apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 
 android {
 
@@ -23,13 +24,6 @@ android {
 //            // 'armeabi'
 //            abiFilters 'armeabi-v7a', 'arm64-v8a'
 //        }
-    }
-
-    buildFeatures {
-        // Data Binding
-        dataBinding = true
-        // View Binding
-        viewBinding = true
     }
 
     lintOptions {
