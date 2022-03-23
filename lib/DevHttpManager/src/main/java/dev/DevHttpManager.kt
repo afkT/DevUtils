@@ -66,4 +66,8 @@ object DevHttpManager {
     fun getDevAppVersion(): String {
         return BuildConfig.DevApp_Version
     }
+
+    // =============
+    // = 对外公开方法 =
+    // =============
 }

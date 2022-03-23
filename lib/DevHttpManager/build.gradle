@@ -18,8 +18,8 @@ dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     api deps.lib.okhttp3
     api deps.lib.okhttp3_logging
-    // Gson https://github.com/google/gson
-    api deps.lib.gson
+    // Retrofit 网络请求库  https://github.com/square/retrofit
+    api deps.lib.retrofit
 
     if (isPublishing) {
         // 打包时使用
