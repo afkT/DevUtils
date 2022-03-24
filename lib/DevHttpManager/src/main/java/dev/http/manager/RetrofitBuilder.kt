@@ -13,7 +13,7 @@ interface RetrofitBuilder {
     /**
      * 获取 Retrofit Builder
      * @param retrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
-     * @param httpUrl BaseUrl ( 如果不为 null, 表示属于上一次的 BaseUrl )
+     * @param httpUrl 构建使用指定 baseUrl
      * @param okHttp OkHttpClient 构建全局复用
      * @return Retrofit.Builder
      */
