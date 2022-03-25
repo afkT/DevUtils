@@ -38,12 +38,13 @@ class RetrofitOperation private constructor(
     /**
      * 构建 Retrofit 方法 ( 最终调用 )
      * @param httpUrl 构建使用指定 baseUrl
-     * @return RetrofitOperation
+     * @return Retrofit Operation
      */
     private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
+        val okHttpBuilder = RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
         // 可以通过 retrofit?.baseUrl() 获取之前的配置
         mRetrofit = builder.createRetrofitBuilder(
-            mRetrofit, httpUrl, null
+            mRetrofit, httpUrl, okHttpBuilder
         ).build()
         return this
     }
@@ -76,16 +77,16 @@ class RetrofitOperation private constructor(
     /**
      * 重置处理 ( 重新构建 Retrofit )
      * @param httpUrl 构建使用指定 baseUrl
-     * @return RetrofitOperation
+     * @return Retrofit Operation
      */
     fun reset(httpUrl: HttpUrl? = null): RetrofitOperation {
         return buildRetrofit(httpUrl)
     }
 
     /**
-     * 重置处理 ( 重新构建 Retrofit )
+     * 重置处理 ( 重新构建 Retrofit ) 并代理创建 Service
      * @param httpUrl 构建使用指定 baseUrl
-     * @return RetrofitOperation
+     * @return Retrofit Operation
      */
     fun <T> resetAndCreate(
         service: Class<T>,

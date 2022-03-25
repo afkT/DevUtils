@@ -40,7 +40,7 @@ object DevHttpManager {
      * @return DevHttpManager versionCode
      */
     fun getDevHttpManagerVersionCode(): Int {
-        return BuildConfig.DevHttpManager_VersionCode;
+        return BuildConfig.DevHttpManager_VersionCode
     }
 
     /**
@@ -48,7 +48,7 @@ object DevHttpManager {
      * @return DevHttpManager versionName
      */
     fun getDevHttpManagerVersion(): String {
-        return BuildConfig.DevHttpManager_Version;
+        return BuildConfig.DevHttpManager_Version
     }
 
     /**

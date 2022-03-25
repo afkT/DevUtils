@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 interface RetrofitBuilder {
 
     /**
-     * 获取 Retrofit Builder
+     * 创建 Retrofit Builder
      * @param retrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
      * @param httpUrl 构建使用指定 baseUrl
      * @param okHttp OkHttpClient 构建全局复用

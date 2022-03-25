@@ -8,12 +8,46 @@ import okhttp3.HttpUrl
  */
 internal object RetrofitManager {
 
+    // 全局通用 OkHttp Builder 接口
+    private var sOkHttpBuilder: OkHttpBuilder? = null
+
     // 存储 Retrofit Operation 操作对象
     private val sOperationMaps: MutableMap<String, RetrofitOperation> = LinkedHashMap()
 
     // =============
     // = 对外公开方法 =
     // =============
+
+    // =================
+    // = OkHttpBuilder =
+    // =================
+
+    /**
+     * 获取全局通用 OkHttp Builder 接口对象
+     * @return OkHttpBuilder
+     */
+    fun getOkHttpBuilder(): OkHttpBuilder? {
+        return sOkHttpBuilder
+    }
+
+    /**
+     * 设置全局通用 OkHttp Builder 接口对象
+     * @param builder [OkHttpBuilder]
+     */
+    fun setOkHttpBuilder(builder: OkHttpBuilder?) {
+        sOkHttpBuilder = builder
+    }
+
+    /**
+     * 移除全局通用 OkHttp Builder 接口对象
+     */
+    fun removeOkHttpBuilder() {
+        setOkHttpBuilder(null)
+    }
+
+    // ===================
+    // = RetrofitBuilder =
+    // ===================
 
     /**
      * 获取 Retrofit Operation 操作对象
@@ -56,13 +90,22 @@ internal object RetrofitManager {
      * 重置处理 ( 重新构建 Retrofit )
      * @param key Key
      * @param httpUrl 构建使用指定 baseUrl
+     * @return Retrofit Operation
      */
     fun reset(
         key: String,
         httpUrl: HttpUrl? = null
-    ) {
-        getOperation(key)?.reset(httpUrl)
+    ): RetrofitOperation? {
+        return getOperation(key)?.reset(httpUrl)
     }
 
-
+    /**
+     * 重置处理 ( 重新构建全部 Retrofit )
+     * @param mapHttpUrl MutableMap<String?, HttpUrl?>?
+     */
+    fun resetAll(mapHttpUrl: MutableMap<String?, HttpUrl?>? = null) {
+        sOperationMaps.forEach {
+            it.value.reset(mapHttpUrl?.get(it.key))
+        }
+    }
 }
