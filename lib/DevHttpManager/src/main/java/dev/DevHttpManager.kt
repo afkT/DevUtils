@@ -1,10 +1,7 @@
 package dev
 
 import dev.http.BuildConfig
-import dev.http.manager.OkHttpBuilder
-import dev.http.manager.RetrofitBuilder
-import dev.http.manager.RetrofitManager
-import dev.http.manager.RetrofitOperation
+import dev.http.manager.*
 import okhttp3.HttpUrl
 
 /**
@@ -85,7 +82,7 @@ object DevHttpManager {
     // =================
 
     /**
-     * 获取全局通用 OkHttp Builder 接口对象
+     * 获取全局 OkHttp Builder 接口对象
      * @return OkHttpBuilder
      */
     fun getOkHttpBuilder(): OkHttpBuilder? {
@@ -93,7 +90,7 @@ object DevHttpManager {
     }
 
     /**
-     * 设置全局通用 OkHttp Builder 接口对象
+     * 设置全局 OkHttp Builder 接口对象
      * @param builder [OkHttpBuilder]
      */
     fun setOkHttpBuilder(builder: OkHttpBuilder?) {
@@ -101,10 +98,37 @@ object DevHttpManager {
     }
 
     /**
-     * 移除全局通用 OkHttp Builder 接口对象
+     * 移除全局 OkHttp Builder 接口对象
      */
     fun removeOkHttpBuilder() {
         RetrofitManager.removeOkHttpBuilder()
+    }
+
+    // ===========================
+    // = OnRetrofitResetListener =
+    // ===========================
+
+    /**
+     * 获取全局 Retrofit 重新构建监听事件
+     * @return OnRetrofitResetListener
+     */
+    fun getRetrofitResetListener(): OnRetrofitResetListener? {
+        return RetrofitManager.getRetrofitResetListener()
+    }
+
+    /**
+     * 设置全局 Retrofit 重新构建监听事件
+     * @param listener [OnRetrofitResetListener]
+     */
+    fun setRetrofitResetListener(listener: OnRetrofitResetListener?) {
+        RetrofitManager.setRetrofitResetListener(listener)
+    }
+
+    /**
+     * 移除全局 Retrofit 重新构建监听事件
+     */
+    fun removeRetrofitResetListener() {
+        RetrofitManager.removeRetrofitResetListener()
     }
 
     // ===================

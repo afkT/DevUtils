@@ -8,11 +8,11 @@ import okhttp3.HttpUrl
  */
 internal object RetrofitManager {
 
-    // 全局通用 OkHttp Builder 接口
+    // 全局 OkHttp Builder 接口
     private var sOkHttpBuilder: OkHttpBuilder? = null
 
-//    // Retrofit 重新构建监听事件
-//    private var sOnRetrofitResetListener: OnRetrofitResetListener? = null
+    // 全局 Retrofit 重新构建监听事件
+    private var sOnRetrofitResetListener: OnRetrofitResetListener? = null
 
     // 存储 Retrofit Operation 操作对象
     private val sOperationMaps: MutableMap<String, RetrofitOperation> = LinkedHashMap()
@@ -26,7 +26,7 @@ internal object RetrofitManager {
     // =================
 
     /**
-     * 获取全局通用 OkHttp Builder 接口对象
+     * 获取全局 OkHttp Builder 接口对象
      * @return OkHttpBuilder
      */
     fun getOkHttpBuilder(): OkHttpBuilder? {
@@ -34,7 +34,7 @@ internal object RetrofitManager {
     }
 
     /**
-     * 设置全局通用 OkHttp Builder 接口对象
+     * 设置全局 OkHttp Builder 接口对象
      * @param builder [OkHttpBuilder]
      */
     fun setOkHttpBuilder(builder: OkHttpBuilder?) {
@@ -42,10 +42,37 @@ internal object RetrofitManager {
     }
 
     /**
-     * 移除全局通用 OkHttp Builder 接口对象
+     * 移除全局 OkHttp Builder 接口对象
      */
     fun removeOkHttpBuilder() {
         setOkHttpBuilder(null)
+    }
+
+    // ===========================
+    // = OnRetrofitResetListener =
+    // ===========================
+
+    /**
+     * 获取全局 Retrofit 重新构建监听事件
+     * @return OnRetrofitResetListener
+     */
+    fun getRetrofitResetListener(): OnRetrofitResetListener? {
+        return sOnRetrofitResetListener
+    }
+
+    /**
+     * 设置全局 Retrofit 重新构建监听事件
+     * @param listener [OnRetrofitResetListener]
+     */
+    fun setRetrofitResetListener(listener: OnRetrofitResetListener?) {
+        sOnRetrofitResetListener = listener
+    }
+
+    /**
+     * 移除全局 Retrofit 重新构建监听事件
+     */
+    fun removeRetrofitResetListener() {
+        setRetrofitResetListener(null)
     }
 
     // ===================

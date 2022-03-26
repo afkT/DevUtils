@@ -3,7 +3,7 @@ package dev.http.manager
 import retrofit2.Retrofit
 
 /**
- * detail: Retrofit 重新构建监听事件
+ * detail: 全局 Retrofit 重新构建监听事件
  * @author Ttt
  */
 interface OnRetrofitResetListener {

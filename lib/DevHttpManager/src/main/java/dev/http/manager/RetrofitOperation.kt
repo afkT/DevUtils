@@ -43,10 +43,25 @@ class RetrofitOperation private constructor(
      * 构建 Retrofit 方法 ( 最终调用 )
      * @param httpUrl 构建使用指定 baseUrl
      * @return Retrofit Operation
+     * 执行循序为
+     * Global onResetBefore
+     * builder ( this ) onResetBefore
+     * Global createOkHttpBuilder
+     * builder ( this ) createRetrofitBuilder
+     * builder ( this ) onReset
+     * Global onReset
+     * 使用全局监听事件、构建操作是为了提供统一管理方法, 方便统一做处理
+     * 并且自身也存在回调方法, 也能够单独处理
      */
     private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
+        try {
+            RetrofitManager.getRetrofitResetListener()?.onResetBefore(
+                key, mRetrofit
+            )
+        } catch (e: Exception) {
+        }
         builder.onResetBefore(key, mRetrofit)
-        // 获取全局通用 OkHttp Builder
+        // 获取全局 OkHttp Builder
         val okHttpBuilder = try {
             RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
         } catch (e: Exception) {
@@ -57,6 +72,12 @@ class RetrofitOperation private constructor(
             mRetrofit, httpUrl, okHttpBuilder
         ).build()
         builder.onReset(key, mRetrofit)
+        try {
+            RetrofitManager.getRetrofitResetListener()?.onReset(
+                key, mRetrofit
+            )
+        } catch (e: Exception) {
+        }
         return this
     }
 
