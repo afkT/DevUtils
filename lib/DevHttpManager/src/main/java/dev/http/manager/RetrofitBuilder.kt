@@ -12,14 +12,40 @@ interface RetrofitBuilder {
 
     /**
      * 创建 Retrofit Builder
-     * @param retrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
+     * @param oldRetrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
      * @param httpUrl 构建使用指定 baseUrl
      * @param okHttp OkHttpClient 构建全局复用
      * @return Retrofit.Builder
      */
     fun createRetrofitBuilder(
-        retrofit: Retrofit?,
+        oldRetrofit: Retrofit?,
         httpUrl: HttpUrl?,
         okHttp: OkHttpClient.Builder?
     ): Retrofit.Builder
+
+    // ==========
+    // = 通知事件 =
+    // ==========
+
+    /**
+     * 重新构建前调用
+     * @param key String
+     * @param oldRetrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
+     * 在 [onResetBefore] 之前调用
+     */
+    fun onResetBefore(
+        key: String,
+        oldRetrofit: Retrofit?
+    )
+
+    /**
+     * 重新构建后调用
+     * @param key String
+     * @param newRetrofit 重新构建的 Retrofit 对象
+     * 在 [onResetBefore] 之后调用
+     */
+    fun onReset(
+        key: String,
+        newRetrofit: Retrofit?
+    )
 }

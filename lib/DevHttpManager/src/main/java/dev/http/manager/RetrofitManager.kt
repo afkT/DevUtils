@@ -11,6 +11,9 @@ internal object RetrofitManager {
     // 全局通用 OkHttp Builder 接口
     private var sOkHttpBuilder: OkHttpBuilder? = null
 
+//    // Retrofit 重新构建监听事件
+//    private var sOnRetrofitResetListener: OnRetrofitResetListener? = null
+
     // 存储 Retrofit Operation 操作对象
     private val sOperationMaps: MutableMap<String, RetrofitOperation> = LinkedHashMap()
 
@@ -59,6 +62,15 @@ internal object RetrofitManager {
     }
 
     /**
+     * 通过 Key 判断是否存在 Retrofit Operation 操作对象
+     * @param key Key
+     * @return `true` yes, `false` no
+     */
+    fun containsOperation(key: String): Boolean {
+        return sOperationMaps.containsKey(key)
+    }
+
+    /**
      * 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象
      * @param key Key
      * @param builder [RetrofitBuilder]
@@ -82,9 +94,9 @@ internal object RetrofitManager {
         return sOperationMaps.remove(key)
     }
 
-    // =========================
-    // = RetrofitOperation 方法 =
-    // =========================
+    // =====================
+    // = RetrofitOperation =
+    // =====================
 
     /**
      * 重置处理 ( 重新构建 Retrofit )
@@ -101,7 +113,7 @@ internal object RetrofitManager {
 
     /**
      * 重置处理 ( 重新构建全部 Retrofit )
-     * @param mapHttpUrl MutableMap<String?, HttpUrl?>?
+     * @param mapHttpUrl MutableMap<String?, HttpUrl?>
      */
     fun resetAll(mapHttpUrl: MutableMap<String?, HttpUrl?>? = null) {
         sOperationMaps.forEach {

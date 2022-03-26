@@ -1,5 +1,6 @@
 package dev.http.manager
 
+import dev.utils.LogPrintUtils
 import okhttp3.HttpUrl
 import retrofit2.Retrofit
 
@@ -28,6 +29,9 @@ class RetrofitOperation private constructor(
         }
     }
 
+    // 日志 TAG
+    private val TAG = RetrofitOperation::class.java.simpleName
+
     // Retrofit
     private var mRetrofit: Retrofit? = null
 
@@ -41,11 +45,18 @@ class RetrofitOperation private constructor(
      * @return Retrofit Operation
      */
     private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
-        val okHttpBuilder = RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
+        builder.onResetBefore(key, mRetrofit)
+        // 获取全局通用 OkHttp Builder
+        val okHttpBuilder = try {
+            RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
+        } catch (e: Exception) {
+            null
+        }
         // 可以通过 retrofit?.baseUrl() 获取之前的配置
         mRetrofit = builder.createRetrofitBuilder(
             mRetrofit, httpUrl, okHttpBuilder
         ).build()
+        builder.onReset(key, mRetrofit)
         return this
     }
 
@@ -56,7 +67,7 @@ class RetrofitOperation private constructor(
     /**
      * 获取 Retrofit 对象
      * @param check 是否需要判断 Retrofit 是否为 null
-     * @return Retrofit?
+     * @return Retrofit
      */
     fun getRetrofit(check: Boolean = true): Retrofit? {
         if (check && mRetrofit == null) {
@@ -71,7 +82,12 @@ class RetrofitOperation private constructor(
      * @return Service Class
      */
     fun <T> create(service: Class<T>): T? {
-        return getRetrofit()?.create(service)
+        try {
+            return getRetrofit()?.create(service)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "create")
+        }
+        return null
     }
 
     /**

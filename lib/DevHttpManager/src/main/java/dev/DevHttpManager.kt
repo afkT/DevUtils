@@ -1,6 +1,11 @@
 package dev
 
 import dev.http.BuildConfig
+import dev.http.manager.OkHttpBuilder
+import dev.http.manager.RetrofitBuilder
+import dev.http.manager.RetrofitManager
+import dev.http.manager.RetrofitOperation
+import okhttp3.HttpUrl
 
 /**
  * detail: OkHttp 管理类 ( Retrofit 多 BaseUrl 等 )
@@ -70,4 +75,104 @@ object DevHttpManager {
     // =============
     // = 对外公开方法 =
     // =============
+
+    // ===================
+    // = RetrofitManager =
+    // ===================
+
+    // =================
+    // = OkHttpBuilder =
+    // =================
+
+    /**
+     * 获取全局通用 OkHttp Builder 接口对象
+     * @return OkHttpBuilder
+     */
+    fun getOkHttpBuilder(): OkHttpBuilder? {
+        return RetrofitManager.getOkHttpBuilder()
+    }
+
+    /**
+     * 设置全局通用 OkHttp Builder 接口对象
+     * @param builder [OkHttpBuilder]
+     */
+    fun setOkHttpBuilder(builder: OkHttpBuilder?) {
+        RetrofitManager.setOkHttpBuilder(builder)
+    }
+
+    /**
+     * 移除全局通用 OkHttp Builder 接口对象
+     */
+    fun removeOkHttpBuilder() {
+        RetrofitManager.removeOkHttpBuilder()
+    }
+
+    // ===================
+    // = RetrofitBuilder =
+    // ===================
+
+    /**
+     * 获取 Retrofit Operation 操作对象
+     * @param key Key
+     * @return Retrofit Operation
+     */
+    fun getOperation(key: String): RetrofitOperation? {
+        return RetrofitManager.getOperation(key)
+    }
+
+    /**
+     * 通过 Key 判断是否存在 Retrofit Operation 操作对象
+     * @param key Key
+     * @return `true` yes, `false` no
+     */
+    fun containsOperation(key: String): Boolean {
+        return RetrofitManager.containsOperation(key)
+    }
+
+    /**
+     * 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象
+     * @param key Key
+     * @param builder [RetrofitBuilder]
+     * @return Retrofit Operation
+     */
+    fun putRetrofitBuilder(
+        key: String,
+        builder: RetrofitBuilder
+    ): RetrofitOperation {
+        return RetrofitManager.putRetrofitBuilder(key, builder)
+    }
+
+    /**
+     * 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象
+     * @param key Key
+     * @return Retrofit Operation
+     */
+    fun removeRetrofitBuilder(key: String): RetrofitOperation? {
+        return RetrofitManager.removeRetrofitBuilder(key)
+    }
+
+    // =====================
+    // = RetrofitOperation =
+    // =====================
+
+    /**
+     * 重置处理 ( 重新构建 Retrofit )
+     * @param key Key
+     * @param httpUrl 构建使用指定 baseUrl
+     * @return Retrofit Operation
+     */
+    fun reset(
+        key: String,
+        httpUrl: HttpUrl? = null
+    ): RetrofitOperation? {
+        return RetrofitManager.reset(key, httpUrl)
+    }
+
+    /**
+     * 重置处理 ( 重新构建全部 Retrofit )
+     * @param mapHttpUrl MutableMap<String?, HttpUrl?>
+     */
+    fun resetAll(mapHttpUrl: MutableMap<String?, HttpUrl?>? = null) {
+        RetrofitManager.resetAll(mapHttpUrl)
+    }
 }
