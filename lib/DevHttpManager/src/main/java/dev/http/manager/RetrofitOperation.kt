@@ -16,7 +16,7 @@ class RetrofitOperation private constructor(
     companion object {
 
         /**
-         * 保存 RetrofitBuilder 并返回 Operation 操作对象
+         * 创建 Retrofit Operation
          * @param key Key
          * @param builder [RetrofitBuilder]
          * @return Retrofit Operation
@@ -34,6 +34,9 @@ class RetrofitOperation private constructor(
 
     // Retrofit
     private var mRetrofit: Retrofit? = null
+
+    // 是否重置操作 ( 首次为初始化 )
+    private var mReset: Boolean = false
 
     // ==========
     // = 内部方法 =
@@ -54,30 +57,38 @@ class RetrofitOperation private constructor(
      * 并且自身也存在回调方法, 也能够单独处理
      */
     private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
-        try {
-            RetrofitManager.getRetrofitResetListener()?.onResetBefore(
-                key, mRetrofit
-            )
-        } catch (e: Exception) {
+        if (mReset) {
+            try {
+                RetrofitManager.getRetrofitResetListener()?.onResetBefore(
+                    key, mRetrofit
+                )
+            } catch (e: Exception) {
+            }
+            builder.onResetBefore(key, mRetrofit)
         }
-        builder.onResetBefore(key, mRetrofit)
+
         // 获取全局 OkHttp Builder
         val okHttpBuilder = try {
             RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
         } catch (e: Exception) {
             null
         }
-        // 可以通过 retrofit?.baseUrl() 获取之前的配置
+        // 可以通过 mRetrofit?.baseUrl() 获取之前的配置
         mRetrofit = builder.createRetrofitBuilder(
             mRetrofit, httpUrl, okHttpBuilder
         ).build()
-        builder.onReset(key, mRetrofit)
-        try {
-            RetrofitManager.getRetrofitResetListener()?.onReset(
-                key, mRetrofit
-            )
-        } catch (e: Exception) {
+
+        if (mReset) {
+            builder.onReset(key, mRetrofit)
+            try {
+                RetrofitManager.getRetrofitResetListener()?.onReset(
+                    key, mRetrofit
+                )
+            } catch (e: Exception) {
+            }
         }
+        // 首次为初始化, 后续操作为重置操作
+        mReset = true
         return this
     }
 

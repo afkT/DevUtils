@@ -11,7 +11,7 @@ interface OnRetrofitResetListener {
     /**
      * 重新构建前调用
      * @param key String
-     * @param oldRetrofit Retrofit ( 如果不为 null, 表示属于上一次构建的 Retrofit )
+     * @param oldRetrofit 上一次构建的 Retrofit
      */
     fun onResetBefore(
         key: String,
