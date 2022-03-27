@@ -5,7 +5,7 @@ import dev.http.manager.*
 import okhttp3.HttpUrl
 
 /**
- * detail: OkHttp 管理类 ( Retrofit 多 BaseUrl 等 )
+ * detail: OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
  * @author Ttt
  * <p></p>
  * GitHub

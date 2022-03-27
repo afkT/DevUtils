@@ -74,10 +74,12 @@ ext {
                     dev_environment_base             : "io.github.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
                     dev_environment_compiler         : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
                     dev_environment_compiler_release : "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}",
-                    // Http 抓包库
+                    // OkHttp 抓包工具库
                     dev_http_capture                 : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
                     dev_http_capture_compiler        : "io.github.afkt:DevHttpCaptureCompiler:${versions.dev_http_capture_compiler_version}",
                     dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
+                    // OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+                    dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
             ],
             "kotlin"    : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
