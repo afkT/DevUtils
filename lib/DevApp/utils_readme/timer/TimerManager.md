@@ -1,6 +1,6 @@
 # 定时器工具类
 
-#### 使用演示类 [TimerActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/TimerActivity.java) 介绍了配置参数及使用
+#### 使用演示类 [TimerActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/other_function/timer/TimerActivity.kt) 介绍了配置参数及使用
 
 ```java
 /**

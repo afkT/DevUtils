@@ -236,7 +236,7 @@ public final class Config {
 
 ### 切换环境方式
 
-示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
+示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt)
 
 > 注：使用 DevEnvironmentCompilerRelease 注解编译生成不支持环境配置切换
 
@@ -322,9 +322,9 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 
 ### 示例参考
 
-DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/constants/http/HttpConstants.kt)
+DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/http/HttpConstants.kt)
 
-DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.kt)
+DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt)
 
 > 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 
