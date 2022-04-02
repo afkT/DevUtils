@@ -57,7 +57,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | reset | 重置处理 ( 重新构建 Retrofit ) |
 | resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
 
-## Retrofit 多 BaseUrl 管理功能
+## Retrofit 多 BaseUrl 管理功能 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager)
 
 * **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
 
