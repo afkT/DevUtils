@@ -15,64 +15,79 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 ```
 
 
-## 库功能介绍
+## 框架功能介绍
 
-> 该库主要对使用 OkHttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
->
-> **并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能**，支持实时开关抓包功能、可控 Http 拦截过滤器。
->
-> 内置两个 Http 抓包拦截器，CallbackInterceptor ( 无存储逻辑，进行回调通知 )、HttpCaptureInterceptor ( 存在存储抓包数据逻辑 )
+* 支持 Retrofit 多 BaseUrl 管理及操作方法封装
 
-### 使用示例
+* 支持 Retrofit BaseUrl Reset 事件全局监听、各个模块单独监听回调
 
-```java
-// 添加 Http 抓包拦截处理
-DevHttpCapture.addInterceptor(
-    OkHttpClient.Builder, moduleName
-);
+* 支持全局 OkHttp Builder 创建方法, 可进行全局管理
 
-// 添加 Http 抓包拦截处理
-DevHttpCapture.addInterceptor(
-    OkHttpClient.Builder, moduleName, isCapture
-);
+* 针对多 Retrofit 管理封装 Operation 对象并支持组件化使用
 
-// 添加 Http 抓包拦截处理
-DevHttpCapture.addInterceptor(
-    OkHttpClient.Builder, moduleName,
-    encrypt, httpFilter, isCapture
-);
+* 支持传参 Map 对多个 Retrofit 同时进行 BaseUrl Reset
 
-// 移除对应 Module Http 抓包拦截
-DevHttpCapture.removeInterceptor(moduleName);
+* 支持对 App 所有链接上传、下载进度监听
 
-// 更新对应 Module Http 抓包拦截处理
-DevHttpCapture.updateInterceptor(moduleName, isCapture);
-```
+* 基于 OkHttp 原生 Api 实现, 不存在兼容问题
 
-## 事项
-
-- 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
-
-- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
-
-- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
-
-## API
+* 侵入性低, 使用本框架不需要更改历史上传、下载实现代码
 
 
-- dev                                                 | 根目录
-   - [http](#devhttp)                                 | 基于 OkHttp 管理实现代码
-      - [manager](#devhttpmanager)                    | Retrofit 多 BaseUrl 管理
-      - [progress](#devhttpprogress)                  | OkHttp 上传、下载进度监听
+### API 文档
+
+* **DevHttpManager 管理库方法 ->** [DevHttpManager.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDevHttpManagerVersionCode | 获取 DevHttpManager 版本号 |
+| getDevHttpManagerVersion | 获取 DevHttpManager 版本 |
+| getDevAppVersionCode | 获取 DevApp 版本号 |
+| getDevAppVersion | 获取 DevApp 版本 |
+| getOkHttpBuilder | 获取全局 OkHttp Builder 接口对象 |
+| setOkHttpBuilder | 设置全局 OkHttp Builder 接口对象 |
+| removeOkHttpBuilder | 移除全局 OkHttp Builder 接口对象 |
+| getRetrofitResetListener | 获取全局 Retrofit 重新构建监听事件 |
+| setRetrofitResetListener | 设置全局 Retrofit 重新构建监听事件 |
+| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件 |
+| getOperation | 获取 Retrofit Operation 操作对象 |
+| containsOperation | 通过 Key 判断是否存在 Retrofit Operation 操作对象 |
+| putRetrofitBuilder | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
+| removeRetrofitBuilder | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
+| reset | 重置处理 ( 重新构建 Retrofit ) |
+| resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
+
+#### Retrofit 多 BaseUrl 管理功能
+
+* **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| createOkHttpBuilder | 创建 OkHttp Builder |
 
 
-## <span id="dev">**`dev`**</span>
+* **全局 Retrofit 重新构建监听事件 ->** [OnRetrofitResetListener.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OnRetrofitResetListener.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| onResetBefore | 重新构建前调用 |
+| onReset | 重新构建后调用 |
 
 
-## <span id="devhttp">**`dev.http`**</span>
+* **Retrofit Builder 接口 ->** [RetrofitBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitBuilder.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| createRetrofitBuilder | 创建 Retrofit Builder |
+| onResetBefore | 重新构建前调用 |
+| onReset | 重新构建后调用 |
 
 
-## <span id="devhttpmanager">**`dev.http.manager`**</span>
+* **RetrofitOperation ->** [RetrofitOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt)
 
-
-## <span id="devhttpprogress">**`dev.http.progress`**</span>
+| 方法 | 注释 |
+| :- | :- |
+| getRetrofit | 获取 Retrofit 对象 |
+| create | 通过 Retrofit 代理创建 Service |
+| reset | 重置处理 ( 重新构建 Retrofit ) |
+| resetAndCreate | 重置处理 ( 重新构建 Retrofit ) 并代理创建 Service |

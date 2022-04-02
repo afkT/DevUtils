@@ -13,7 +13,7 @@ implementation 'io.github.afkt:DevHttpCapture:1.1.0'
 ```
 
 
-## 库功能介绍
+## 框架功能介绍
 
 > 该库主要对使用 OkHttp 网络请求库的项目，提供 Http 抓包功能，并支持抓包数据加密存储。
 >
