@@ -5,8 +5,8 @@ apply from: rootProject.file(files.task_generate_deps_file_gradle)
 buildscript {
 
     // Kotlin 版本
-    ext.kotlin_version = "1.6.10"
-    ext.kotlin_stdlib = "1.6.10"
+    ext.kotlin_version = "1.6.20"
+    ext.kotlin_stdlib = "1.6.20"
     ext.matrix_version = "2.0.5"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
@@ -74,6 +74,15 @@ allprojects {
 
         // 华为 maven
         maven { url "https://developer.huawei.com/repo/" }
+
+        // OPPO maven username、password 是OPPO 官方要求配置的固定值 ( 不可修改 )
+        maven {
+            url "https://maven.columbus.heytapmobi.com/repository/releases/"
+            credentials {
+                username 'nexus'
+                password 'c0b08da17e3ec36c3870fed674a0bcb36abc2e23'
+            }
+        }
     }
 
 //    gradle.projectsEvaluated {
