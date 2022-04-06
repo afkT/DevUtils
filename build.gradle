@@ -52,7 +52,7 @@ buildscript {
         // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
         classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
         // 华为推送所需
-        classpath "com.huawei.agconnect:agcp:1.4.2.300"
+        classpath "com.huawei.agconnect:agcp:1.6.0.300"
     }
 }
 
@@ -79,8 +79,8 @@ allprojects {
         maven {
             url "https://maven.columbus.heytapmobi.com/repository/releases/"
             credentials {
-                username 'nexus'
-                password 'c0b08da17e3ec36c3870fed674a0bcb36abc2e23'
+                username "nexus"
+                password "c0b08da17e3ec36c3870fed674a0bcb36abc2e23"
             }
         }
     }
