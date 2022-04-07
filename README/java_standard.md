@@ -32,10 +32,10 @@ Java 中常用到的命名形式共有三种，既首字母大写的 UpperCamelC
 | ------ | ------------------------------------------------------------ | ----------------------------------------------- |
 | 项目名  |              全部小写，多个单词用中划线分隔 '_'                   |                  spring-cloud                   |
 |  包名   |                           全部小写                            |              com.alibaba.fastjson               |
-|  类名   |                        单词首字母大写                          |  Feature、ParserConfig,DefaultFieldDeserializer  |
+|  类名   |                        单词首字母大写                          | Feature、ParserConfig、DefaultFieldDeserializer |
 | 变量名  | 首字母小写，多个单词组成时，除首个单词，其他单词首字母都要大写          |               password、userName                |
-| 常量名  |                全部大写，多个单词，用 '_' 分隔                    |               CACHE_EXPIRED_TIME                |
-|  方法   |                            同变量                             |        read()、readObject()、getById()           |
+| 常量名  |                全部大写，多个单词，用 '_' 分隔                    |               CACHE_EXPIRED_TIME               |
+|  方法   |                            同变量                             |        read()、readObject()、getById()          |
 
 
 
