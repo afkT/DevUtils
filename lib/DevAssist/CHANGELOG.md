@@ -192,7 +192,7 @@ Version 1.0.3 *(2019-12-25)*
 Version 1.0.2 *(2019-09-19)*
 ----------------------------
 
-* `[Update]` 修改 AbstractCallBack、AdapterDataAssist 部分方法返回值 ( 返回当前对象, 方便链式调用 )
+* `[Update]` 修改 AbstractCallBack、AdapterDataAssist 部分方法返回值 ( 返回当前对象，方便链式调用 )
 
 Version 1.0.1 *(2019-09-12)*
 ----------------------------

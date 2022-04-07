@@ -30,12 +30,12 @@ Version 1.4.0 *(2022-01-10)*
 Version 1.3.9 *(2021-12-30)*
 ----------------------------
 
-* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+* `[Refactor]` 修改整个 DevFinal 常量类，并统一使用该常量类
 
 Version 1.3.8 *(2021-12-20)*
 ----------------------------
 
-* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+* `[Refactor]` 修改整个 DevFinal 常量类，并统一使用该常量类
 
 * `[Add]` FlagsValue 标记值计算存储 ( 位运算符 )
 
@@ -251,12 +251,12 @@ Version 1.0.9 *(2020-01-26)*
 Version 1.0.8 *(2020-01-16)*
 ----------------------------
 
-* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法, 获取文件目录列表集合 FileList
+* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法，获取文件目录列表集合 FileList
 
 Version 1.0.7 *(2019-12-25)*
 ----------------------------
 
-* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo, 支持颜色排序
+* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo，支持颜色排序
 
 * `[Add]` FileIOUtils#copyLarge、DateUtils#yyyyMMdd_HHmmss、CoordinateUtils#getDistance、getAngle、getDirection
 
@@ -269,7 +269,7 @@ Version 1.0.7 *(2019-12-25)*
 Version 1.0.6 *(2019-11-25)*
 ----------------------------
 
-* `[Refactor]` 重构整个项目, 优化代码逻辑判断、代码风格、合并工具类减少包大小等, 并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
+* `[Refactor]` 重构整个项目，优化代码逻辑判断、代码风格、合并工具类减少包大小等，并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
 
 * `[Add]` FileRecordUtils 文件记录结果回调
 
@@ -297,7 +297,7 @@ Version 1.0.3 *(2019-10-09)*
 Version 1.0.2 *(2019-09-19)*
 ----------------------------
 
-* `[Update]` 修改 FileBreadthFirstSearchUtils 部分方法返回值 ( 返回当前对象, 方便链式调用 )
+* `[Update]` 修改 FileBreadthFirstSearchUtils 部分方法返回值 ( 返回当前对象，方便链式调用 )
 
 Version 1.0.1 *(2019-09-12)*
 ----------------------------

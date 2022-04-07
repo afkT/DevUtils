@@ -42,7 +42,7 @@ Version 2.3.3 *(2022-01-10)*
 Version 2.3.2 *(2021-12-30)*
 ----------------------------
 
-* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+* `[Refactor]` 修改整个 DevFinal 常量类，并统一使用该常量类
 
 * `[Add]` IFloatingEdge、DevFloatingEdgeIMPL、DevFloatingTouchIMPL2 等悬浮窗边缘检测、触摸实现类
 
@@ -57,7 +57,7 @@ Version 2.3.2 *(2021-12-30)*
 Version 2.3.1 *(2021-12-20)*
 ----------------------------
 
-* `[Refactor]` 修改整个 DevFinal 常量类, 并统一使用该常量类
+* `[Refactor]` 修改整个 DevFinal 常量类，并统一使用该常量类
 
 * `[Add]` FloatingWindowManagerAssist、FloatingWindowManagerAssist2 悬浮窗两种实现方案辅助类
 
@@ -272,7 +272,7 @@ Version 2.0.8 *(2020-10-29)*
 
 * `[Feature]` 适配 Android 11 ( R )
 
-* `[Add]` VersionHelper ( Android 版本适配 Helper 类 ), 方便快捷使用并简化需多工具类组合使用的功能
+* `[Add]` VersionHelper ( Android 版本适配 Helper 类 )，方便快捷使用并简化需多工具类组合使用的功能
 
 * `[Add]` MediaStoreUtils#createWriteRequest、createFavoriteRequest、createTrashRequest、createDeleteRequest
 
@@ -323,7 +323,7 @@ Version 2.0.5 *(2020-09-30)*
 
 * `[Update]` 修改部分方法 obtain 为 get、newCache ( DevCache )
 
-* `[Refactor]` 整合 DevApp Utils 代码, 统一通过 ResourceAssist 辅助类进行 Resources 获取、适配控制等
+* `[Refactor]` 整合 DevApp Utils 代码，统一通过 ResourceAssist 辅助类进行 Resources 获取、适配控制等
 
 Version 2.0.4 *(2020-09-27)*
 ----------------------------
@@ -352,7 +352,7 @@ Version 2.0.2 *(2020-09-15)*
 
 * `[Add]` HandlerUtils#isMainThread
 
-* `[Add]` HandlerUtils 新增 Key Runnable Map 方便通过 Key 快捷控制 Runnable, 进行 postDelayed、removeCallbacks
+* `[Add]` HandlerUtils 新增 Key Runnable Map 方便通过 Key 快捷控制 Runnable，进行 postDelayed、removeCallbacks
 
 * `[Add]` StringUtils#clearTab、clearTabTrim、clearLine、clearLineTrim、clearSpaceTabLine、clearSpaceTabLineTrim
 
@@ -375,9 +375,9 @@ Version 2.0.1 *(2020-09-07)*
 
 * `[Add]` SnackbarUtils#getSnackbarLayout、getSnackbarContentLayout
 
-* `[Add]` ClickUtils#setCheckViewId 方法, OnDebouncingClickListener、OnCountClickListener 事件
+* `[Add]` ClickUtils#setCheckViewId 方法，OnDebouncingClickListener、OnCountClickListener 事件
 
-* `[Fix]` 修复部分 LayoutParams 操作, 未 setLayoutParams 处理
+* `[Fix]` 修复部分 LayoutParams 操作，未 setLayoutParams 处理
 
 Version 2.0.0 *(2020-08-29)*
 ----------------------------
@@ -508,7 +508,7 @@ Version 1.8.8 *(2020-01-16)*
 
 * `[Add]` BitmapUtils#calculateQuality 计算最佳压缩质量值方法
 
-* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法, 获取文件目录列表集合 FileList
+* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法，获取文件目录列表集合 FileList
 
 * `[Fix]` 修复 AppUtils#isInstalledApp 判断是否安装错误情况
 
@@ -517,18 +517,18 @@ Version 1.8.8 *(2020-01-16)*
 Version 1.8.7 *(2020-01-07)*
 ----------------------------
 
-* `[Update]` PermissionUtils#shouldShowRequestPermissionRationale 方法, 增加可变数组权限传入
+* `[Update]` PermissionUtils#shouldShowRequestPermissionRationale 方法，增加可变数组权限传入
 
 * `[Add]` PermissionUtils#getDeniedPermissionStatus 获取拒绝权限询问状态集合方法、PermissionUtils#againRequest 处理拒绝权限操作方法
 
 * `[Update]` ActivityUtils#appExit 为 exitApplication
 
-* `[Add]` ActivityUtils#startActivityForResult 跳转方法, 支持通过接口回调方式通知
+* `[Add]` ActivityUtils#startActivityForResult 跳转方法，支持通过接口回调方式通知
 
 Version 1.8.6 *(2019-12-25)*
 ----------------------------
 
-* `[Feature]` 适配 Android 10 ( Q ) 并重构 PathUtils 工具类, 提供适配思路以及增加 MediaStoreUtils 多媒体工具类用于外部存储适配操作
+* `[Feature]` 适配 Android 10 ( Q ) 并重构 PathUtils 工具类，提供适配思路以及增加 MediaStoreUtils 多媒体工具类用于外部存储适配操作
 
 * `[Add]` ViewUtils#toggleFocusable、toggleSelected、toggleEnabled、toggleClickable、toggleLongClickable、getChilds
 
@@ -538,9 +538,9 @@ Version 1.8.6 *(2019-12-25)*
 
 * `[Add]` CrashUtils UncaughtException 处理工具类、MediaStoreUtils 多媒体工具类
 
-* `[Change]` 移动 ImageViewUtils 部分方法到 ViewUtils、更新 ContentResolverUtils 工具类代码, 拆分到 UriUtils、MediaStoreUtils
+* `[Change]` 移动 ImageViewUtils 部分方法到 ViewUtils、更新 ContentResolverUtils 工具类代码，拆分到 UriUtils、MediaStoreUtils
 
-* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo, 支持颜色排序
+* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo，支持颜色排序
 
 * `[Add]` FileIOUtils#copyLarge、DateUtils#yyyyMMdd_HHmmss、CoordinateUtils#getDistance、getAngle、getDirection
 
@@ -553,7 +553,7 @@ Version 1.8.6 *(2019-12-25)*
 Version 1.8.5 *(2019-11-25)*
 ----------------------------
 
-* `[Refactor]` 重构整个项目, 优化代码逻辑判断、代码风格、合并工具类减少包大小等, 并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
+* `[Refactor]` 重构整个项目，优化代码逻辑判断、代码风格、合并工具类减少包大小等，并修改 95% 返回值 void 的方法为 boolean 明确获取调用结果
 
 * `[Add]` JSONObjectUtils#isJSONObject、isJSONArray、jsonToMap、jsonToList、getJSONObject、getJSONArray、get、opt
 
@@ -651,7 +651,7 @@ Version 1.7.9 *(2019-09-19)*
 
 * `[Update]` ImageUtils#getImageType、ImageUtils#isImage modify to isImageFormats
 
-* `[Update]` 修改部分方法 void 返回值 ( 返回当前对象, 方便链式调用 )
+* `[Update]` 修改部分方法 void 返回值 ( 返回当前对象，方便链式调用 )
 
 * `[Add]` AppCommonUtils#isQ
 
@@ -683,7 +683,7 @@ Version 1.7.7 *(2019-08-25)*
 
 * `[Add]` ScreenUtils#setWindowSecure
 
-* `[Add]` ViewUtils#set/getMargin、set/getPadding, ViewUtils#set/getLayoutParams
+* `[Add]` ViewUtils#set/getMargin、set/getPadding，ViewUtils#set/getLayoutParams
 
 * `[Add]` AndroidManifest.xml FileProvider config
 
@@ -703,4 +703,4 @@ Version 1.7.6 *(2019-08-02)*
 Version 1.0.0 ~ 1.7.5 *(2019-07-26)*
 ----------------------------
 
-* 整个工具类 review code, 并规范代码风格、检测注释、代码间距等
+* 整个工具类 review code，并规范代码风格、检测注释、代码间距等
