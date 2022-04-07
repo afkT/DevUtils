@@ -4,20 +4,20 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player)
 
-* 多媒体管理类（[DevMediaManager](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevMediaManager.java)）：MediaPlayer 统一管理类, 全局使用一个 MediaPlayer
+* 多媒体管理类（[DevMediaManager](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevMediaManager.java)）：MediaPlayer 统一管理类，全局使用一个 MediaPlayer
 
-* 视频播放控制类（[DevVideoPlayerControl](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)）：视频播放控制器, 快捷播放视频工具类
+* 视频播放控制类（[DevVideoPlayerControl](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java)）：视频播放控制器，快捷播放视频工具类
 
 
 #### 框架亮点
 
-* 单例 MediaPlayer, 全局统一管理, 防止多个多媒体资源同时存在后台播放
+* 单例 MediaPlayer，全局统一管理，防止多个多媒体资源同时存在后台播放
 
-* 快捷封装各种通用方法, 以及监听事件处理, 控制处理 MediaPlayer
+* 快捷封装各种通用方法，以及监听事件处理，控制处理 MediaPlayer
 
-* 支持使用 MediaSet 抽象类设置 MediaPlayer 其他配置方法等, 以及是否循环播放等
+* 支持使用 MediaSet 抽象类设置 MediaPlayer 其他配置方法等，以及是否循环播放等
 
-* 支持快捷播放 raw、assets、本地SDCard、http 等路径, 多媒体文件
+* 支持快捷播放 raw、assets、本地SDCard、http 等路径，多媒体文件
 
 
 ## API 文档

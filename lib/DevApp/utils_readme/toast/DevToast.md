@@ -2,19 +2,19 @@
 
 #### 使用演示类 [DevToastUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/toast/DevToastUse.java) 介绍了配置参数及使用
 
-> 1. 支持子线程弹出 Toast, 可通过开关配置
+> 1. 支持子线程弹出 Toast，可通过开关配置
 > 2. 内部解决 Android 7.1.1 崩溃问题
-> 3. 已处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+> 3. 已处理 部分 ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster)
 
-* Toast 工具类（[DevToast](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DevToast.java)）：Toast 工具类(对外公开直接调用), 直接调用 IToastImpl 类方法
+* Toast 工具类（[DevToast](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DevToast.java)）：Toast 工具类(对外公开直接调用)，直接调用 IToastImpl 类方法
 
 * Toast 接口（[IToast](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/IToast.java)）：主要编写 Operate 操作接口、Style 样式接口、Filter 过滤接口
 
-* Toast 接口实现方法（[IToastImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/IToastImpl.java)）：实现 Toast.Operate 接口, 并且对对应的方法, 进行处理
+* Toast 接口实现方法（[IToastImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/IToastImpl.java)）：实现 Toast.Operate 接口，并且对对应的方法，进行处理
 
-* Toast 工厂模式（[ToastFactory](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/ToastFactory.java)）：用于生成适配不同 Android 版本对应的 Toast, 以及解决无通知权限显示 Toast
+* Toast 工厂模式（[ToastFactory](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/ToastFactory.java)）：用于生成适配不同 Android 版本对应的 Toast，以及解决无通知权限显示 Toast
 
 * Toast 默认样式（[DefaultToastStyle](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DefaultToastStyle.java)）：该类实现 IToast.Style 用于配置自定义 Toast
 
@@ -23,19 +23,19 @@
 
 * 支持无通知权限 Toast 弹出
 
-* 支持不分主次线程都可以弹出 Toast, 并可通过开关控制
+* 支持不分主次线程都可以弹出 Toast，并可通过开关控制
 
-* 支持自动区分资源 stringId, 支持可变参数传参, 自动格式化 Toast 内容
+* 支持自动区分资源 stringId，支持可变参数传参，自动格式化 Toast 内容
 
-* 使用单例 Toast, 避免频繁弹出造成不良的用户体验
+* 使用单例 Toast，避免频繁弹出造成不良的用户体验
 
-* 支持自动适配, 根据不同 Android 版本、是否有通知权限, 生成不同的 Toast 对象
+* 支持自动适配，根据不同 Android 版本、是否有通知权限，生成不同的 Toast 对象
 
-* 支持自定义 View 扩展, 通过 setView, 重新自定义 Toast 布局
+* 支持自定义 View 扩展，通过 setView，重新自定义 Toast 布局
 
 * 支持自定义样式：Toast（Gravity、背景、圆角、边距等）、TextView（样式、颜色、大小、Ellipsize等）
 
-* 支持全局配置样式：可通过配置全局通用样式, 或单独 Toast 特殊样式, 实现整个应用统一替换/设置
+* 支持全局配置样式：可通过配置全局通用样式，或单独 Toast 特殊样式，实现整个应用统一替换/设置
 
 ## API 文档
 

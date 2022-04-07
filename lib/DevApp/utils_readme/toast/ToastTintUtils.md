@@ -2,9 +2,9 @@
 
 #### 使用演示类 [ToastTintUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/toast/ToastTintUse.java) 介绍了配置参数及使用
 
-> 1. 支持子线程弹出 Toast, 可通过开关配置
+> 1. 支持子线程弹出 Toast，可通过开关配置
 > 2. 内部解决 Android 7.1.1 崩溃问题
-> 3. 但无处理 部分 ROM 如魅族、小米、三星等关闭应用通知, 无法显示 Toast 问题
+> 3. 但无处理 部分 ROM 如魅族、小米、三星等关闭应用通知，无法显示 Toast 问题
 
 #### 项目类结构
 
@@ -13,17 +13,17 @@
 
 #### 框架亮点
 
-* 支持不分主次线程都可以弹出 Toast, 并可通过开关控制
+* 支持不分主次线程都可以弹出 Toast，并可通过开关控制
 
-* 支持自动区分资源 stringId, 支持可变参数传参, 自动格式化 Toast 内容
+* 支持自动区分资源 stringId，支持可变参数传参，自动格式化 Toast 内容
 
-* 支持自动适配, 根据不同 Android 版本, 生成不同的 Toast 对象
+* 支持自动适配，根据不同 Android 版本，生成不同的 Toast 对象
 
 * 支持自定义样式：Toast（Gravity、背景、圆角、边距等）、TextView（样式、颜色、大小、Ellipsize等）
 
-* 默认几种样式 Toast (normal、info、warning、success、error), 并且支持统一变更设置样式、以及自定义样式
+* 默认几种样式 Toast (normal、info、warning、success、error)，并且支持统一变更设置样式、以及自定义样式
 
-* 原始 Toast 基础上封装美化, 并且可通过 Style 控制 Toast 效果, 实现全局配置 Style 效果 
+* 原始 Toast 基础上封装美化，并且可通过 Style 控制 Toast 效果，实现全局配置 Style 效果 
 
 ## API 文档
 

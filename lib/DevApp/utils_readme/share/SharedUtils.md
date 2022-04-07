@@ -3,20 +3,20 @@
 #### 使用演示类 [ShareUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/share/ShareUse.java) 介绍了配置参数及使用
 
 > 1.apply 没有返回值而 commit 返回 boolean 表明修改是否提交成功
-> 2.apply 是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而 commit 是同步的提交到硬件磁盘
-> 3.apply 方法不会提示任何失败的提示 apply 的效率高一些, 如果没有必要确认是否提交成功建议使用 apply
+> 2.apply 是将修改数据原子提交到内存，而后异步真正提交到硬件磁盘，而 commit 是同步的提交到硬件磁盘
+> 3.apply 方法不会提示任何失败的提示 apply 的效率高一些，如果没有必要确认是否提交成功建议使用 apply
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share)
 
-* SharedPreferences 工具类（[SPUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/SPUtils.java)）：SP 操作工具类, 实现 IPreferenceHolder 初始化方法
+* SharedPreferences 工具类（[SPUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/SPUtils.java)）：SP 操作工具类，实现 IPreferenceHolder 初始化方法
 
-* IPreference 持有类（[IPreferenceHolder.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/IPreferenceHolder.java)）：IPreference 持有类, 内部返回实现类 IPreference
+* IPreference 持有类（[IPreferenceHolder.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/IPreferenceHolder.java)）：IPreference 持有类，内部返回实现类 IPreference
 
 * IPreference 接口类（[IPreference.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/IPreference.java)）：主要是正常操作方法接口类
 
-* PreferenceImpl 接口实现类（[PreferenceImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/PreferenceImpl.java)）：实现 IPreference 接口, SharedPreferences 操作接口具体实现类
+* PreferenceImpl 接口实现类（[PreferenceImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/PreferenceImpl.java)）：实现 IPreference 接口，SharedPreferences 操作接口具体实现类
 
-* SharedPreferences 快捷使用工具类（[SharedUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/SharedUtils.java)）：内部实现 SPUtils, 直接进行使用 put/get 等
+* SharedPreferences 快捷使用工具类（[SharedUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/SharedUtils.java)）：内部实现 SPUtils，直接进行使用 put/get 等
 
 ## API 文档
 

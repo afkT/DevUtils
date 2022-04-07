@@ -4,7 +4,7 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
 
-* 缓存工具类（[DevCache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java)）：缓存工具类, 提供各种保存数据方法
+* 缓存工具类（[DevCache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java)）：缓存工具类，提供各种保存数据方法
 
 * 缓存管理类（[DevCacheManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCacheManager.java)）：内部缓存管理类
 

@@ -6,25 +6,25 @@
 
 * Snackbar 工具类（[SnackbarUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/SnackbarUtils.java)）：Snackbar 二次封装工具类
 
-* Snackbar Style 样式抽象类（SnackbarUtils.Style）：主要决定 Snackbar 显示效果样式, 可继承该抽象类, 重写需要的方法, 并通过 setStyle 设置
+* Snackbar Style 样式抽象类（SnackbarUtils.Style）：主要决定 Snackbar 显示效果样式，可继承该抽象类，重写需要的方法，并通过 setStyle 设置
 
-* Snackbar Style 样式构建类（SnackbarUtils.StyleBuilder）：该类继承 SnackbarUtils.Style, 并且增加 set 属性方法, 并且可通过 Style 创建 StyleBuilder 并引用其样式配置
+* Snackbar Style 样式构建类（SnackbarUtils.StyleBuilder）：该类继承 SnackbarUtils.Style，并且增加 set 属性方法，并且可通过 Style 创建 StyleBuilder 并引用其样式配置
 
 #### 框架亮点
 
 * 支持通过 view/window/fragment/activity 构建 Snackbar 且可通过链式调用
 
-* 支持自动区分资源 stringId, 支持可变参数传参, 自动格式化显示文本内容
+* 支持自动区分资源 stringId，支持可变参数传参，自动格式化显示文本内容
 
-* 使用 WeakReference 防止内存溢出, 并且支持 Snackbar 释放处理
+* 使用 WeakReference 防止内存溢出，并且支持 Snackbar 释放处理
 
-* 支持 addView, above, bellow, 在指定的 view 上/下 方位置显示, 以及显示区域自动计算处理
+* 支持 addView，above，bellow，在指定的 view 上/下 方位置显示，以及显示区域自动计算处理
 
-* 支持手动关闭 Snackbar, 以及 Snackbar 事件监听处理等
+* 支持手动关闭 Snackbar，以及 Snackbar 事件监听处理等
 
-* 支持自定义样式, 可配置样式属性比较全面, 高度自由可配置
+* 支持自定义样式，可配置样式属性比较全面，高度自由可配置
 
-* 支持样式构建引用, 在统一的样式上构建使用, 并快捷修改全局样式
+* 支持样式构建引用，在统一的样式上构建使用，并快捷修改全局样式
 
 ## API 文档
 

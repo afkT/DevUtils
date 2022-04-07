@@ -4,7 +4,7 @@
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread)
 
-* 线程池管理 - 开发类（[DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java)）：内部封装 DevThreadPool 配置处理, 方便直接使用
+* 线程池管理 - 开发类（[DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java)）：内部封装 DevThreadPool 配置处理，方便直接使用
 
 * 线程池 - 开发类（[DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java)）：具体线程池操作方法、线程处理等
 
