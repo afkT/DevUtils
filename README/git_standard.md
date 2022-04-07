@@ -183,7 +183,6 @@ Git commit 规范也是如此，确实也是很有必要的，几乎不花费额
 
 
 
-
 [AngularJS]: https://github.com/angular/angular/commits/master
 [如何规范你的 Git commit？]: https://www.jianshu.com/p/a1ea85217d07
 [Git commit 代码提交规范]: https://segmentfault.com/a/1190000017205604

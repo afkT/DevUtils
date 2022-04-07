@@ -32,28 +32,47 @@ public class BaseApplication
 }
 ```
 
-# 配置与使用相关 - [目录](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use)
+# 配置与使用相关 - [目录][目录]
 
-## [DevLogger 日志工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md)
+## [DevLogger 日志工具类文档][DevLogger 日志工具类文档]
 
-## [DevToast Toast工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/DevToast.md)
+## [DevToast Toast工具类文档][DevToast Toast工具类文档]
 
-## [ToastTintUtils Toast美化工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/ToastTintUtils.md)
+## [ToastTintUtils Toast美化工具类文档][ToastTintUtils Toast美化工具类文档]
 
-## [SnackbarUtils Snackbar工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/snackbar/SnackbarUtils.md)
+## [SnackbarUtils Snackbar工具类文档][SnackbarUtils Snackbar工具类文档]
 
-## [FileRecordUtils 日志、异常文件记录保存工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/record/FileRecord.md)
+## [FileRecordUtils 日志、异常文件记录保存工具类文档][FileRecordUtils 日志、异常文件记录保存工具类文档]
 
-## [SharedUtils - SharedPreferences工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/share/SharedUtils.md)
+## [SharedUtils - SharedPreferences工具类文档][SharedUtils - SharedPreferences工具类文档]
 
-## [DevCache - 缓存工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/cache/DevCache.md)
+## [DevCache - 缓存工具类文档][DevCache - 缓存工具类文档]
 
-## [TimerManager 定时器工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/timer/TimerManager.md)
+## [TimerManager 定时器工具类文档][TimerManager 定时器工具类文档]
 
-## [DevThreadManager - 线程工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/thread/DevThreadManager.md)
+## [DevThreadManager - 线程工具类文档][DevThreadManager - 线程工具类文档]
 
-## [DevMediaManager 多媒体工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/media/DevMediaManager.md)
+## [DevMediaManager 多媒体工具类文档][DevMediaManager 多媒体工具类文档]
 
-## [WifiHotUtils - Wifi热点工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/wifi/WifiHotUtils.md)
+## [WifiHotUtils - Wifi热点工具类文档][WifiHotUtils - Wifi热点工具类文档]
 
-## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java)
+## [TextViewUtils - 字体计算工具类使用][TextViewUtils - 字体计算工具类使用]
+
+
+
+
+
+
+[目录]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use
+[DevLogger 日志工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md
+[DevToast Toast工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/DevToast.md
+[ToastTintUtils Toast美化工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/ToastTintUtils.md
+[SnackbarUtils Snackbar工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/snackbar/SnackbarUtils.md
+[FileRecordUtils 日志、异常文件记录保存工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/record/FileRecord.md
+[SharedUtils - SharedPreferences工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/share/SharedUtils.md
+[DevCache - 缓存工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/cache/DevCache.md
+[TimerManager 定时器工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/timer/TimerManager.md
+[DevThreadManager - 线程工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/thread/DevThreadManager.md
+[DevMediaManager 多媒体工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/media/DevMediaManager.md
+[WifiHotUtils - Wifi热点工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/wifi/WifiHotUtils.md
+[TextViewUtils - 字体计算工具类使用]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java

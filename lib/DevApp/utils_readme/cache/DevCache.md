@@ -1,12 +1,12 @@
 # Cache 工具类
 
-#### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/cache/CacheUse.java) 介绍了配置参数及使用
+#### 使用演示类 [CacheUse][CacheUse] 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
+#### 项目类结构 - [包目录][包目录]
 
-* 缓存工具类（[DevCache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java)）：缓存工具类，提供各种保存数据方法
+* 缓存工具类（[DevCache][DevCache]）：缓存工具类，提供各种保存数据方法
 
-* 缓存管理类（[DevCacheManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCacheManager.java)）：内部缓存管理类
+* 缓存管理类（[DevCacheManager][DevCacheManager]）：内部缓存管理类
 
 ## API 文档
 
@@ -100,3 +100,12 @@ new Thread(new Runnable() {
     }
 }).start();
 ```
+
+
+
+
+
+[CacheUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/cache/CacheUse.java
+[包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache
+[DevCache]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java
+[DevCacheManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCacheManager.java

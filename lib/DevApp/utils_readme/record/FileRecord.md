@@ -1,10 +1,10 @@
 # 日志、异常文件记录保存工具类文档
 
-#### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/record/FileRecordUse.java) 介绍了配置参数及使用
+#### 使用演示类 [FileRecordUse][FileRecordUse] 介绍了配置参数及使用
 
 #### 项目类结构
 
-* 文件记录分析工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java)）：用于记录信息方便分析，支持存储目录、时间段保存
+* 文件记录分析工具类（[FileRecordUtils][FileRecordUtils]）：用于记录信息方便分析，支持存储目录、时间段保存
 
 ## API 文档
 
@@ -71,3 +71,10 @@ FileRecordUtils.record(config2, nullPointerException);
 // 异常 + 日志
 FileRecordUtils.record(config2, "第一个日志内容", nullPointerException, "其他日志内容");
 ```
+
+
+
+
+
+[FileRecordUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/record/FileRecordUse.java
+[FileRecordUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java

@@ -1,6 +1,6 @@
 # 定时器工具类
 
-#### 使用演示类 [TimerActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/other_function/timer/TimerActivity.kt) 介绍了配置参数及使用
+#### 使用演示类 [TimerActivity][TimerActivity] 介绍了配置参数及使用
 
 ```java
 /**
@@ -10,9 +10,9 @@
 
 #### 项目类结构
 
-* 定时器管理类（[TimerManager](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/TimerManager.java)）：定时器管理类
+* 定时器管理类（[TimerManager][TimerManager]）：定时器管理类
 
-* 定时器（[DevTimer.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/DevTimer.java)）：定时器封装类，配合定时器管理类使用全局控制
+* 定时器（[DevTimer][DevTimer]）：定时器封装类，配合定时器管理类使用全局控制
 
 
 #### 框架亮点
@@ -120,3 +120,11 @@ TimerManager.getTimers(uuid);
 // 获取对应 TAG 定时器集合
 TimerManager.getTimers(TAG);
 ```
+
+
+
+
+
+[TimerActivity]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/other_function/timer/TimerActivity.kt
+[TimerManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/TimerManager.java
+[DevTimer]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/DevTimer.java

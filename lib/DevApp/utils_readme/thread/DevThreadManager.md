@@ -1,12 +1,12 @@
 # 线程工具类
 
-#### 使用演示类 [ThreadUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/thread/ThreadUse.java) 介绍了配置参数及使用
+#### 使用演示类 [ThreadUse][ThreadUse] 介绍了配置参数及使用
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread)
+#### 项目类结构 - [包目录][包目录]
 
-* 线程池管理 - 开发类（[DevThreadManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java)）：内部封装 DevThreadPool 配置处理，方便直接使用
+* 线程池管理 - 开发类（[DevThreadManager][DevThreadManager]）：内部封装 DevThreadPool 配置处理，方便直接使用
 
-* 线程池 - 开发类（[DevThreadPool.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java)）：具体线程池操作方法、线程处理等
+* 线程池 - 开发类（[DevThreadPool][DevThreadPool]）：具体线程池操作方法、线程处理等
 
 ## API 文档
 
@@ -62,3 +62,12 @@ DevThreadManager.putConfig("QQQQQQ", 10);
 // 使用配置的信息
 DevThreadManager.getInstance("QQQQQQ").execute(runnable);
 ```
+
+
+
+
+
+[ThreadUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/thread/ThreadUse.java
+[包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread
+[DevThreadManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java
+[DevThreadPool]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java

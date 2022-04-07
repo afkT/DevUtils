@@ -1,13 +1,13 @@
 # Wifi 热点工具类
 
-#### 使用演示类 [WifiHotUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/wifi/WifiHotUse.java) 介绍了配置参数及使用
+#### 使用演示类 [WifiHotUse][WifiHotUse] 介绍了配置参数及使用
 
 > 1. Android 8.0 开始，热点操作方法，已经变更 - https://blog.csdn.net/bukker/article/details/78649504
 > 2. Android 7.1 系统以上不支持自动开启热点，需要手动开启热点 - https://www.jianshu.com/p/9dbb02c3e21f
 
 #### 项目类结构
 
-* Wifi 热点工具类（[WifiHotUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)）：Wifi 热点工具类，内部适配不同 Android 版本 api
+* Wifi 热点工具类（[WifiHotUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)）：Wifi 热点工具类，内部适配不同 Android 版本 api
 
 ## API 文档
 
@@ -83,3 +83,9 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
     });
 }
 ```
+
+
+
+
+
+[WifiHotUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/wifi/WifiHotUse.java
