@@ -709,7 +709,7 @@ public Observable<Location> syncLocations() {
 
 命名规则：`类型{_模块名}_逻辑名称`、`类型{_模块名}_颜色`。
 
-说明：`{}` 中的内容为可选；`类型` 可以是[可绘制对象资源类型](可绘制对象资源类型)，
+说明：`{}` 中的内容为可选；`类型` 可以是[可绘制对象资源类型][可绘制对象资源类型]，
 也可以是控件类型（具体见附录[UI 控件缩写表](#ui-控件缩写表)）；最后可加后缀 `_small` 表示小图，`_big` 表示大图。
 
 例如：
@@ -1278,7 +1278,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [Android 包命名规范]: http://www.ayqy.net/blog/android%E5%8C%85%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/
 [Android 开发最佳实践]: https://github.com/futurice/android-best-practices/blob/master/translations/Chinese/README.cn.md
 [Android 编码规范]: http://www.jianshu.com/p/0a984f999592
-[阿里巴巴 Java 开发手册]: https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E8%AF%A6%E5%B0%BD%E7%89%88%EF%BC%89.pdf
+[阿里巴巴 Java 开发手册]: https://www.baidu.com/s?wd=%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%20Java%20%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C
 [Project and code style guidelines]: https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md
 [Google Java 编程风格指南]: http://www.hawstein.com/posts/google-java-style.html
 [小细节，大用途，35 个 Java 代码性能优化总结！]: http://www.jianshu.com/p/436943216526

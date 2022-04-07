@@ -23,7 +23,7 @@
 
 ### 2 Commit Message 格式
 
-可查看 [AngularJS](https://github.com/angular/angular/commits/master) 在 GitHub 上的提交记录，
+可查看 [AngularJS][AngularJS] 在 GitHub 上的提交记录，
 它是由 Google 推出的一套 Commit Message 规范标准，也是目前使用范围最广的规范。
 
 ## type(scope): subject
@@ -169,12 +169,24 @@ Git commit 规范也是如此，确实也是很有必要的，几乎不花费额
 
 #### 参考
 
-[如何规范你的 Git commit？](https://www.jianshu.com/p/a1ea85217d07)
+[如何规范你的 Git commit？][如何规范你的 Git commit？]
 
-[Git commit 代码提交规范](https://segmentfault.com/a/1190000017205604)
+[Git commit 代码提交规范][Git commit 代码提交规范]
 
-[Git commit 规范指南](https://segmentfault.com/a/1190000009048911)
+[Git commit 规范指南][Git commit 规范指南]
 
-[Git 分支设计规范](https://zhuanlan.zhihu.com/p/131332462)
+[Git 分支设计规范][Git 分支设计规范]
 
-[Git 分支管理规范](https://www.cnblogs.com/imyalost/p/9301732.html)
+[Git 分支管理规范][Git 分支管理规范]
+
+
+
+
+
+
+[AngularJS]: https://github.com/angular/angular/commits/master
+[如何规范你的 Git commit？]: https://www.jianshu.com/p/a1ea85217d07
+[Git commit 代码提交规范]: https://segmentfault.com/a/1190000017205604
+[Git commit 规范指南]: https://segmentfault.com/a/1190000009048911
+[Git 分支设计规范]: https://zhuanlan.zhihu.com/p/131332462
+[Git 分支管理规范]: https://www.cnblogs.com/imyalost/p/9301732.html
