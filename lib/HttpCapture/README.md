@@ -14,7 +14,7 @@
 
 module | DevHttpCapture | DevHttpCaptureCompiler | DevHttpCaptureCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][maven]
 
 
 ### Gradle
@@ -58,6 +58,8 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 
 - dev                                                 | 根目录
    - [capture](#devcapture)                           | Http 抓包实现代码
+
+
 
 
 ## <span id="dev">**`dev`**</span>
@@ -133,3 +135,10 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 | getDateData | 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据 |
 | getUrlFunctionByFile | 获取接口所属功能 |
 | resetRefreshClick | 重置刷新点击处理 |
+
+
+
+
+
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.0-brightgreen.svg
+[maven]: https://search.maven.org/search?q=io.github.afkt

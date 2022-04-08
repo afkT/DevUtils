@@ -50,7 +50,7 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][maven]
 
 
 ### Gradle
@@ -170,19 +170,19 @@ public final class Config {
 > 每个 `@Module` **必须有且只有一个** `isRelease` 值为 true 的 `@Environment`
 
 
-### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment)
+### 项目类结构 - [包目录][包目录]
 
-* Module 类（[@Module](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java)）：模块 ( 注解标记类 )
+* Module 类（[@Module][@Module]）：模块 ( 注解标记类 )
 
-* Environment 类（[@Environment](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Environment.java)）：环境配置 ( 注解标记类 )
+* Environment 类（[@Environment][@Environment]）：环境配置 ( 注解标记类 )
 
-* 模块环境改变接口（[OnEnvironmentChangeListener](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java)）：模块环境发生变化时触发
+* 模块环境改变接口（[OnEnvironmentChangeListener][OnEnvironmentChangeListener]）：模块环境发生变化时触发
 
 > 每个 `@Module`、`@Environment` 都会生成对应的 **ModuleBean**、**EnvironmentBean** 实体类
 
-* @Module 映射实体类（[ModuleBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java)）：@Module ( 注解标记类 ) 映射实体类
+* @Module 映射实体类（[ModuleBean][ModuleBean]）：@Module ( 注解标记类 ) 映射实体类
 
-* @Environment 映射实体类（[EnvironmentBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java)）：@Environment ( 注解标记类 ) 映射实体类
+* @Environment 映射实体类（[EnvironmentBean][EnvironmentBean]）：@Environment ( 注解标记类 ) 映射实体类
 
 
 --------
@@ -236,7 +236,7 @@ public final class Config {
 
 ### 切换环境方式
 
-示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt)
+示例：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 
 > 注：使用 DevEnvironmentCompilerRelease 注解编译生成不支持环境配置切换
 
@@ -317,15 +317,29 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 
 ### 实现原理
 
-同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md) 技术链接
+同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk][link.mk] 技术链接
 
 
 ### 示例参考
 
-DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/http/HttpConstants.kt)
+DevEnvironment 文件生成配置：[HttpConstants][HttpConstants]
 
-DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt)
+DevEnvironment 使用：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 
 > 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 
 
+
+
+
+[maven_svg]: https://img.shields.io/badge/Maven-1.0.9-brightgreen.svg
+[maven]: https://search.maven.org/search?q=io.github.afkt
+[包目录]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment
+[@Module]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java
+[@Environment]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Environment.java
+[OnEnvironmentChangeListener]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java
+[ModuleBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java
+[EnvironmentBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java
+[DevEnvironmentLibActivity]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt
+[HttpConstants]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/http/HttpConstants.kt
+[link.mk]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md
