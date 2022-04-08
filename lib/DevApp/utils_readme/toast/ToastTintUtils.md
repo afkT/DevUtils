@@ -149,27 +149,27 @@ ToastTintUtils.custom(new TempStyle(), "Custom Style Toast", iconDrawable);
 
 ***Success 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/success.png)
+![][toast_success_png]
 
 ***Error 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/error.png)
+![][toast_error_png]
 
 ***Info 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/info.png)
+![][toast_info_png]
 
 ***Normal 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/normal.png)
+![][toast_normal_png]
 
 ***Warning 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/warning.png)
+![][toast_warning_png]
 
 ***Custom 样式 Toast***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/custom.png)
+![][toast_custom_png]
 
 
 #### 自定义样式
@@ -275,3 +275,9 @@ private static class TempStyle implements ToastTintUtils.Style {
 
 [ToastTintUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/toast/ToastTintUse.java
 [ToastTintUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/ToastTintUtils.java
+[toast_success_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/success.png
+[toast_error_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/error.png
+[toast_info_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/info.png
+[toast_normal_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/normal.png
+[toast_warning_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/warning.png
+[toast_custom_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/custom.png

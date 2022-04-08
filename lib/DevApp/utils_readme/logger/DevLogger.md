@@ -162,19 +162,19 @@ DevLogger.other(logConfig).eTag(tag, "new Config - e");
 
 ***XML、JSON 格式化打印***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_xml_json.png)
+![][log_xml_json_png]
 
 ***打印堆栈信息***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_default.png)
+![][log_default_png]
 
 ***打印异常信息***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_error.png)
+![][log_error_png]
 
 ***正常打印***
 
-![](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_other.png)
+![][log_other_png]
 
 
 
@@ -188,3 +188,7 @@ DevLogger.other(logConfig).eTag(tag, "new Config - e");
 [LogConfig]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConfig.java
 [LogConstants]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogConstants.java
 [LogLevel]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/LogLevel.java
+[log_xml_json_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_xml_json.png
+[log_default_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_default.png
+[log_error_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_error.png
+[log_other_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/log_other.png
