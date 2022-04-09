@@ -90,12 +90,12 @@ modules.forEach {
 // ===========
 
 def projects = [
-        "AccessibilityKtx",
-        "AppInfoKtx",
-        "DemoKtx",
-        "GTPushKtx",
-        "JPushKtx",
-        "UMShareKtx",
+        "Accessibility",
+        "AppInfo",
+        "Demo",
+        "GTPush",
+        "JPush",
+        "UMShare",
 ]
 
 projects.forEach {
