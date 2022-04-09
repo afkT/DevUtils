@@ -1,5 +1,3 @@
-include ':app'
-
 // =======
 // = Lib =
 // =======
@@ -104,6 +102,17 @@ interestings.forEach {
 // ===============
 
 def applications = [
+
+        // ========================
+        // = DevUtils Demo 演示应用 =
+        // ========================
+
+        "DevUtilsApp",
+
+        // ==========
+        // = 其他项目 =
+        // ==========
+
         "Accessibility",
         "AppInfo",
         "Demo",
