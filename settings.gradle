@@ -85,24 +85,6 @@ modules.forEach {
     project(":$itName").projectDir = new File(rootDir, "module/$it")
 }
 
-// ===========
-// = Project =
-// ===========
-
-def projects = [
-        "Accessibility",
-        "AppInfo",
-        "Demo",
-        "GTPush",
-        "JPush",
-        "UMShare",
-]
-
-projects.forEach {
-    include(":$it")
-    project(":$it").projectDir = new File(rootDir, "project/$it")
-}
-
 // ===============
 // = Interesting =
 // ===============
@@ -115,4 +97,22 @@ def interestings = [
 interestings.forEach {
     include(":$it")
     project(":$it").projectDir = new File(rootDir, "interesting/$it")
+}
+
+// ===============
+// = Application =
+// ===============
+
+def applications = [
+        "Accessibility",
+        "AppInfo",
+        "Demo",
+        "GTPush",
+        "JPush",
+        "UMShare",
+]
+
+applications.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "application/$it")
 }
