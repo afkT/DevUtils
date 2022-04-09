@@ -105,7 +105,7 @@ new Thread(new Runnable() {
 
 
 
-[CacheUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/cache/CacheUse.java
+[CacheUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/cache/CacheUse.java
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache
 [DevCache]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCache.java
 [DevCacheManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache/DevCacheManager.java

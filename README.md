@@ -140,7 +140,7 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.9' 
 implementation 'io.github.afkt:DevJava:1.4.3' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
-## [APK Demo](https://github.com/afkT/Resources/tree/main/APK)
+## [APK Demo](https://github.com/afkT/Resources/blob/main/APK)
 
 ## License
 

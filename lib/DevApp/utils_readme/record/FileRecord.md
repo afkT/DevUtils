@@ -76,5 +76,5 @@ FileRecordUtils.record(config2, "第一个日志内容", nullPointerException, "
 
 
 
-[FileRecordUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/record/FileRecordUse.java
+[FileRecordUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/record/FileRecordUse.java
 [FileRecordUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java

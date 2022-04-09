@@ -125,6 +125,6 @@ TimerManager.getTimers(TAG);
 
 
 
-[TimerActivity]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/other_function/timer/TimerActivity.kt
+[TimerActivity]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/feature/other_function/timer/TimerActivity.kt
 [TimerManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/TimerManager.java
 [DevTimer]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/DevTimer.java

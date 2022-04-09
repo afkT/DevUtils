@@ -67,7 +67,7 @@ DevThreadManager.getInstance("QQQQQQ").execute(runnable);
 
 
 
-[ThreadUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/thread/ThreadUse.java
+[ThreadUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/thread/ThreadUse.java
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread
 [DevThreadManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadManager.java
 [DevThreadPool]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/thread/DevThreadPool.java

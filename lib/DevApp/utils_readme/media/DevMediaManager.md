@@ -189,7 +189,7 @@ control.startPlayer(new DevMediaManager.MediaSet() {
 
 
 
-[MediaUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/media/MediaUse.java
+[MediaUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/media/MediaUse.java
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player
 [DevMediaManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevMediaManager.java
 [DevVideoPlayerControl]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player/DevVideoPlayerControl.java

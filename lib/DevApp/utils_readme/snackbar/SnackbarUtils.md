@@ -458,5 +458,5 @@ SnackbarUtils.Style style = new SnackbarUtils.Style() {
 
 
 
-[SnackbarUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/snackbar/SnackbarUse.java
+[SnackbarUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/snackbar/SnackbarUse.java
 [SnackbarUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/SnackbarUtils.java

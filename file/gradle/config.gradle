@@ -176,7 +176,6 @@ ext {
                     rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.3",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.0",
-                    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxkotlin                            : "io.reactivex.rxjava3:rxkotlin:3.0.1",
                     // RxLifecycle https://github.com/trello/RxLifecycle
                     rxlifecycle                         : "com.trello.rxlifecycle4:rxlifecycle:4.0.2",

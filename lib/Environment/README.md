@@ -340,6 +340,6 @@ DevEnvironment 使用：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 [OnEnvironmentChangeListener]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java
 [ModuleBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java
 [EnvironmentBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java
-[DevEnvironmentLibActivity]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt
-[HttpConstants]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/http/HttpConstants.kt
+[DevEnvironmentLibActivity]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt
+[HttpConstants]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/HttpConstants.kt
 [link.mk]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md

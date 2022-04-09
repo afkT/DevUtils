@@ -273,7 +273,7 @@ private static class TempStyle implements ToastTintUtils.Style {
 
 
 
-[ToastTintUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/toast/ToastTintUse.java
+[ToastTintUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/toast/ToastTintUse.java
 [ToastTintUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/ToastTintUtils.java
 [toast_success_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/success.png
 [toast_error_png]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/toast_tint/error.png

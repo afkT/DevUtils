@@ -180,7 +180,7 @@ DevLogger.other(logConfig).eTag(tag, "new Config - e");
 
 
 
-[LoggerUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/logger/LoggerUse.java
+[LoggerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/logger/LoggerUse.java
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger
 [DevLogger]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/DevLogger.java
 [IPrinter]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger/IPrinter.java

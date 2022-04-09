@@ -81,7 +81,7 @@ switch (type) {
 
 
 
-[ShareUse]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/share/ShareUse.java
+[ShareUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/share/ShareUse.java
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share
 [SPUtils]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/SPUtils.java
 [IPreferenceHolder]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share/IPreferenceHolder.java

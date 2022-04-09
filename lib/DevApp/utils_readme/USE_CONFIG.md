@@ -63,7 +63,7 @@ public class BaseApplication
 
 
 
-[目录]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use
+[目录]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use
 [DevLogger 日志工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md
 [DevToast Toast工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/DevToast.md
 [ToastTintUtils Toast美化工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/toast/ToastTintUtils.md
@@ -75,4 +75,4 @@ public class BaseApplication
 [DevThreadManager - 线程工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/thread/DevThreadManager.md
 [DevMediaManager 多媒体工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/media/DevMediaManager.md
 [WifiHotUtils - Wifi热点工具类文档]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/wifi/WifiHotUtils.md
-[TextViewUtils - 字体计算工具类使用]: https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java
+[TextViewUtils - 字体计算工具类使用]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/utils_use/text/TextCalcUse.java
