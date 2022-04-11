@@ -226,7 +226,12 @@ public final class AccessibilityUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static AccessibilityNodeInfo getRootInActiveWindow(final AccessibilityService service) {
         if (service == null) return null;
-        return service.getRootInActiveWindow();
+        try {
+            return service.getRootInActiveWindow();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getRootInActiveWindow");
+        }
+        return null;
     }
 
     // =
@@ -594,6 +599,113 @@ public final class AccessibilityUtils {
         }
     }
 
+    /**
+     * 模拟对应 Action 操作
+     * @param nodeInfo {@link AccessibilityNodeInfo}
+     * @param action   操作意图
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean preformAction(
+            final AccessibilityNodeInfo nodeInfo,
+            final int action
+    ) {
+        if (nodeInfo != null) {
+            return nodeInfo.performAction(action);
+        }
+        return false;
+    }
+
+    // =========
+    // = 包装类 =
+    // =========
+
+    /**
+     * detail: 无障碍节点操作包装类
+     * @author Ttt
+     */
+    public static final class Operation {
+
+        // 无障碍节点
+        private AccessibilityNodeInfo mNode;
+
+        private Operation(final AccessibilityNodeInfo node) {
+            this.mNode = node;
+        }
+
+        /**
+         * 获取 Operation
+         * @param node {@link AccessibilityNodeInfo}
+         * @return {@link Operation}
+         */
+        public static Operation operation(final AccessibilityNodeInfo node) {
+            return new Operation(node);
+        }
+
+        // =============
+        // = 对外公开方法 =
+        // =============
+
+        /**
+         * 获取无障碍节点
+         * @return {@link AccessibilityNodeInfo}
+         */
+        public AccessibilityNodeInfo getNode() {
+            return mNode;
+        }
+
+        // =
+
+        /**
+         * 模拟对应 Action 操作
+         * @param action 操作意图
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean preformAction(final int action) {
+            return preformAction(mNode, action);
+        }
+
+        /**
+         * 模拟对应 Action 操作
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @param action   操作意图
+         * @return {@code true} success, {@code false} fail
+         */
+        public static boolean preformAction(
+                final AccessibilityNodeInfo nodeInfo,
+                final int action
+        ) {
+            if (nodeInfo != null) {
+                try {
+                    return nodeInfo.performAction(action);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "preformAction");
+                }
+            }
+            return false;
+        }
+    }
+
+    // =============
+    // = 对外公开方法 =
+    // =============
+
+    /**
+     * 模拟全局对应 Action 操作
+     * @param service {@link AccessibilityService}
+     * @param action  操作意图
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean performGlobalAction(
+            final AccessibilityService service,
+            final int action
+    ) {
+        if (service != null) {
+            return service.performGlobalAction(action);
+        }
+        return false;
+    }
+
     // =
 
     /**
@@ -765,43 +877,6 @@ public final class AccessibilityUtils {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean preformActionSplitScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
-    }
-
-    // ==========
-    // = 统一调用 =
-    // ==========
-
-    /**
-     * 模拟对应 Action 操作
-     * @param nodeInfo {@link AccessibilityNodeInfo}
-     * @param action   操作意图
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean preformAction(
-            final AccessibilityNodeInfo nodeInfo,
-            final int action
-    ) {
-        if (nodeInfo != null) {
-            return nodeInfo.performAction(action);
-        }
-        return false;
-    }
-
-    /**
-     * 模拟全局对应 Action 操作
-     * @param service {@link AccessibilityService}
-     * @param action  操作意图
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performGlobalAction(
-            final AccessibilityService service,
-            final int action
-    ) {
-        if (service != null) {
-            return service.performGlobalAction(action);
-        }
-        return false;
     }
 
     // ==========
