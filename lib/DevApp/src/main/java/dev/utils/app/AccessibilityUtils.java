@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -26,6 +27,9 @@ import dev.utils.LogPrintUtils;
  *     AccessibilityService 在 API < 18 的时候使用 AccessibilityService
  *     所需权限
  *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
+ *     <p></p>
+ *     // 如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意这个过程发生在系统处理按键事件之前
+ *     AccessibilityService#onKeyEvent(KeyEvent event)
  * </pre>
  */
 public final class AccessibilityUtils {
@@ -126,9 +130,106 @@ public final class AccessibilityUtils {
         return false;
     }
 
+    // ===========
+    // = Service =
+    // ===========
+
+    /**
+     * 禁用无障碍服务
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean disableSelf() {
+        return disableSelf(sService);
+    }
+
+    /**
+     * 禁用无障碍服务
+     * @param service {@link AccessibilityService}
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean disableSelf(final AccessibilityService service) {
+        if (service == null) return false;
+        try {
+            service.disableSelf();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "disableSelf");
+        }
+        return false;
+    }
+
+    /**
+     * 获取无障碍服务信息
+     * @return AccessibilityServiceInfo
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static AccessibilityServiceInfo getServiceInfo() {
+        return getServiceInfo(sService);
+    }
+
+    /**
+     * 获取无障碍服务信息
+     * @param service {@link AccessibilityService}
+     * @return AccessibilityServiceInfo
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static AccessibilityServiceInfo getServiceInfo(final AccessibilityService service) {
+        if (service == null) return null;
+        try {
+            return service.getServiceInfo();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getServiceInfo");
+        }
+        return null;
+    }
+
+    /**
+     * 设置无障碍服务信息 ( 动态配置方式 )
+     * @param service {@link AccessibilityService}
+     * @param info    无障碍服务信息
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setServiceInfo(
+            final AccessibilityService service,
+            final AccessibilityServiceInfo info
+    ) {
+        if (service == null || info == null) return false;
+        try {
+            service.setServiceInfo(info);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setServiceInfo");
+        }
+        return false;
+    }
+
     // ==========
     // = 节点获取 =
     // ==========
+
+    /**
+     * 获取根节点
+     * @return 根节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo getRootInActiveWindow() {
+        return getRootInActiveWindow(sService);
+    }
+
+    /**
+     * 获取根节点
+     * @param service {@link AccessibilityService}
+     * @return 根节点
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static AccessibilityNodeInfo getRootInActiveWindow(final AccessibilityService service) {
+        if (service == null) return null;
+        return service.getRootInActiveWindow();
+    }
+
+    // =
 
     /**
      * 查找符合条件的节点
@@ -151,9 +252,8 @@ public final class AccessibilityUtils {
             final AccessibilityService service,
             final int focus
     ) {
-        if (service == null) return null;
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return null;
         // 通过指定的焦点类型找到当前的节点
@@ -191,7 +291,7 @@ public final class AccessibilityUtils {
     ) {
         if (service == null || className == null) return null;
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return null;
         // 通过指定的焦点类型找到当前的节点
@@ -231,7 +331,7 @@ public final class AccessibilityUtils {
     ) {
         if (service == null || text == null) return null;
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return null;
         // 通过文字找到当前的节点
@@ -270,7 +370,7 @@ public final class AccessibilityUtils {
         if (service == null || text == null || className == null) return null;
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return lists;
         // 通过文字找到当前的节点
@@ -311,7 +411,7 @@ public final class AccessibilityUtils {
     ) {
         if (service == null || id == null) return null;
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return null;
         // 通过 id 找到当前的节点
@@ -350,7 +450,7 @@ public final class AccessibilityUtils {
         if (service == null || id == null || className == null) return null;
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
-        AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
         // 取得当前激活窗体的根节点
         if (nodeInfo == null) return lists;
         // 通过 id 找到当前的节点
@@ -703,34 +803,6 @@ public final class AccessibilityUtils {
         }
         return false;
     }
-
-//    // 获取根节点
-//    AccessibilityNodeInfo rootNode = getRootInActiveWindow();
-//    // 匹配 Text 获取节点
-//    List<AccessibilityNodeInfo> list1 = rootNode.findAccessibilityNodeInfosByText("match_text");
-//    // 匹配 id 获取节点
-//    List<AccessibilityNodeInfo> list2 = rootNode.findAccessibilityNodeInfosByViewId("match_id");
-//    // 获取子节点
-//    AccessibilityNodeInfo infoNode = rootNode.getChild(index);
-
-//    // 模拟输入内容
-//    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-//    ClipData clip = ClipData.newPlainText("label", "");
-//    clipboard.setPrimaryClip(clip);
-//    target.performAction(AccessibilityNodeInfo.ACTION_PASTE);
-
-//    // 向上滑动
-//    performGlobalAction(service, AccessibilityService.GESTURE_SWIPE_UP);
-
-//    disableSelf()	// 禁用当前服务, 也就是在服务可以通过该方法停止运行
-//    onServiceConnected() // 系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
-//    getServiceInfo() // 获取当前服务的配置信息
-//    setServiceInfo(AccessibilityServiceInfo info) // 设置当前服务的配置信息
-//    onAccessibilityEvent(AccessibilityEvent event) // 有关 AccessibilityEvent 事件的回调函数, 系统通过 sendAccessibilityEvent() 不断的发送 AccessibilityEvent 到此处
-//    performGlobalAction(int action) // 执行全局操作, 比如回到主页、打开最近等操作
-//    findFocus(int flag) // 查找拥有特定焦点类型的控件
-//    getRootInActiveWindow() // 如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点
-//    onKeyEvent(KeyEvent event) // 如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意, 这个过程发生了系统处理按键事件之前
 
     // ==========
     // = 打印方法 =
