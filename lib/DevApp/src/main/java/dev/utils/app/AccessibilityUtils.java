@@ -234,6 +234,74 @@ public final class AccessibilityUtils {
         return null;
     }
 
+    // ========
+    // = 包装类 =
+    // ========
+
+    // =============
+    // = Operation =
+    // =============
+
+    /**
+     * 获取 Operation
+     * @param nodeInfo {@link AccessibilityNodeInfo}
+     * @return {@link Operation}
+     */
+    public static Operation operation(final AccessibilityNodeInfo nodeInfo) {
+        return new Operation(nodeInfo);
+    }
+
+    /**
+     * 获取 Operation
+     * @return {@link Operation}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Operation operation() {
+        return new Operation(getRootInActiveWindow());
+    }
+
+    /**
+     * 获取 Operation
+     * @param service {@link AccessibilityService}
+     * @return {@link Operation}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Operation operation(final AccessibilityService service) {
+        return new Operation(getRootInActiveWindow(service));
+    }
+
+    // ========
+    // = Node =
+    // ========
+
+    /**
+     * 获取 Node
+     * @param nodeInfo {@link AccessibilityNodeInfo}
+     * @return {@link Node}
+     */
+    public static Node node(final AccessibilityNodeInfo nodeInfo) {
+        return new Node(nodeInfo);
+    }
+
+    /**
+     * 获取 Node
+     * @return {@link Node}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Node node() {
+        return new Node(getRootInActiveWindow());
+    }
+
+    /**
+     * 获取 Node
+     * @param service {@link AccessibilityService}
+     * @return {@link Node}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Node node(final AccessibilityService service) {
+        return new Node(getRootInActiveWindow(service));
+    }
+
     // =
 
     /**
@@ -482,19 +550,10 @@ public final class AccessibilityUtils {
     public static final class Operation {
 
         // 无障碍节点
-        private AccessibilityNodeInfo mNode;
+        private AccessibilityNodeInfo mNodeInfo;
 
-        private Operation(final AccessibilityNodeInfo node) {
-            this.mNode = node;
-        }
-
-        /**
-         * 获取 Operation
-         * @param node {@link AccessibilityNodeInfo}
-         * @return {@link Operation}
-         */
-        public static Operation operation(final AccessibilityNodeInfo node) {
-            return new Operation(node);
+        private Operation(final AccessibilityNodeInfo nodeInfo) {
+            this.mNodeInfo = nodeInfo;
         }
 
         // =============
@@ -505,8 +564,8 @@ public final class AccessibilityUtils {
          * 获取无障碍节点
          * @return {@link AccessibilityNodeInfo}
          */
-        public AccessibilityNodeInfo getNode() {
-            return mNode;
+        public AccessibilityNodeInfo getNodeInfo() {
+            return mNodeInfo;
         }
 
         // =
@@ -517,7 +576,7 @@ public final class AccessibilityUtils {
          * @return {@code true} success, {@code false} fail
          */
         public boolean performAction(final int action) {
-            return performAction(mNode, action);
+            return performAction(mNodeInfo, action);
         }
 
         /**
@@ -554,7 +613,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performClick() {
-            return performClick(mNode);
+            return performClick(mNodeInfo);
         }
 
         /**
@@ -564,7 +623,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performClick(final boolean clickParent) {
-            return performClick(mNode, clickParent);
+            return performClick(mNodeInfo, clickParent);
         }
 
         /**
@@ -578,7 +637,7 @@ public final class AccessibilityUtils {
                 final boolean clickParent,
                 final boolean clickAll
         ) {
-            return performClick(mNode, clickParent, clickAll);
+            return performClick(mNodeInfo, clickParent, clickAll);
         }
 
         // =
@@ -654,7 +713,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performLongClick() {
-            return performLongClick(mNode);
+            return performLongClick(mNodeInfo);
         }
 
         /**
@@ -664,7 +723,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performLongClick(final boolean clickParent) {
-            return performLongClick(mNode, clickParent);
+            return performLongClick(mNodeInfo, clickParent);
         }
 
         /**
@@ -678,7 +737,7 @@ public final class AccessibilityUtils {
                 final boolean clickParent,
                 final boolean clickAll
         ) {
-            return performLongClick(mNode, clickParent, clickAll);
+            return performLongClick(mNodeInfo, clickParent, clickAll);
         }
 
         // =
@@ -743,6 +802,34 @@ public final class AccessibilityUtils {
                 return performLongClick(nodeInfo);
             }
         }
+    }
+
+    /**
+     * detail: 无障碍节点包装类
+     * @author Ttt
+     */
+    public static final class Node {
+
+        // 无障碍节点
+        private AccessibilityNodeInfo mNodeInfo;
+
+        private Node(final AccessibilityNodeInfo nodeInfo) {
+            this.mNodeInfo = nodeInfo;
+        }
+
+        // =============
+        // = 对外公开方法 =
+        // =============
+
+        /**
+         * 获取无障碍节点
+         * @return {@link AccessibilityNodeInfo}
+         */
+        public AccessibilityNodeInfo getNodeInfo() {
+            return mNodeInfo;
+        }
+
+        // =
     }
 
     // =============
