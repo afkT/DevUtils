@@ -1,7 +1,6 @@
 package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -125,96 +124,6 @@ public final class AccessibilityUtils {
             }
         }
         return false;
-    }
-
-    // ==========
-    // = 打印方法 =
-    // ==========
-
-    /**
-     * 打印 AccessibilityEvent 信息日志
-     * @param event {@link AccessibilityEvent}
-     */
-    public static void printAccessibilityEvent(final AccessibilityEvent event) {
-        printAccessibilityEvent(event, TAG);
-    }
-
-    /**
-     * 打印 AccessibilityEvent 信息日志
-     * @param event {@link AccessibilityEvent}
-     * @param tag   日志 TAG
-     */
-    @SuppressLint("SwitchIntDef")
-    public static void printAccessibilityEvent(
-            final AccessibilityEvent event,
-            final String tag
-    ) {
-        if (event == null || !LogPrintUtils.isPrintLog()) return;
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("=========================");
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        // 响应事件的应用包名
-        builder.append("packageName: ").append(event.getPackageName());
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        // 事件源信息
-        builder.append("source: ").append(event.getSource());
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        // 事件源的类名, 如 android.widget.TextView
-        builder.append("source class: ").append(event.getClassName());
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        // 事件类型
-        int eventType = event.getEventType();
-        builder.append("event type(int): ").append(eventType);
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        switch (eventType) {
-            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED: // 通知栏事件
-                builder.append("event type: TYPE_NOTIFICATION_STATE_CHANGED");
-                break;
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: // 窗体状态改变
-                builder.append("event type: TYPE_WINDOW_STATE_CHANGED");
-                break;
-            case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED: // View 获取到焦点
-                builder.append("event type: TYPE_VIEW_ACCESSIBILITY_FOCUSED");
-                break;
-            case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                builder.append("event type: TYPE_GESTURE_DETECTION_START");
-                break;
-            case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
-                builder.append("event type: TYPE_GESTURE_DETECTION_END");
-                break;
-            case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
-                builder.append("event type: TYPE_WINDOW_CONTENT_CHANGED");
-                break;
-            case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                builder.append("event type: TYPE_VIEW_CLICKED");
-                break;
-            case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
-                builder.append("event type: TYPE_VIEW_TEXT_CHANGED");
-                break;
-            case AccessibilityEvent.TYPE_VIEW_SCROLLED:
-                builder.append("event type: TYPE_VIEW_SCROLLED");
-                break;
-            case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:
-                builder.append("event type: TYPE_VIEW_TEXT_SELECTION_CHANGED");
-                break;
-        }
-        builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-        for (CharSequence text : event.getText()) {
-            // 输出当前事件包含的文本信息
-            builder.append("text: ").append(text);
-            builder.append(DevFinal.SYMBOL.NEW_LINE);
-        }
-        builder.append("=========================");
-
-        // 打印日志
-        LogPrintUtils.dTag(tag, builder.toString());
     }
 
     // ==========
@@ -814,7 +723,6 @@ public final class AccessibilityUtils {
 //    performGlobalAction(service, AccessibilityService.GESTURE_SWIPE_UP);
 
 //    disableSelf()	// 禁用当前服务, 也就是在服务可以通过该方法停止运行
-//    getSystemService(String name)	// 获取系统服务
 //    onServiceConnected() // 系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作
 //    getServiceInfo() // 获取当前服务的配置信息
 //    setServiceInfo(AccessibilityServiceInfo info) // 设置当前服务的配置信息
@@ -823,4 +731,156 @@ public final class AccessibilityUtils {
 //    findFocus(int flag) // 查找拥有特定焦点类型的控件
 //    getRootInActiveWindow() // 如果配置能够获取窗口内容, 则会返回当前活动窗口的根结点
 //    onKeyEvent(KeyEvent event) // 如果允许服务监听按键操作, 该方法是按键事件的回调, 需要注意, 这个过程发生了系统处理按键事件之前
+
+    // ==========
+    // = 打印方法 =
+    // ==========
+
+    /**
+     * detail: 无障碍日志打印
+     * @author Ttt
+     */
+    public static final class Print {
+
+        /**
+         * 拼接 AccessibilityEvent 信息日志
+         * @param event {@link AccessibilityEvent}
+         * @return AccessibilityEvent 信息日志
+         */
+        public static String logEvent(final AccessibilityEvent event) {
+            if (event == null) return null;
+
+            try {
+                StringBuilder builder = new StringBuilder();
+
+                // 响应事件的应用包名
+                builder.append("packageName: ").append(event.getPackageName());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // 事件类型
+                int eventType = event.getEventType();
+                builder.append("eventType: ").append(eventType);
+                builder.append(" ( ").append(AccessibilityEvent.eventTypeToString(eventType));
+                builder.append(" )");
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // 事件时间
+                builder.append("eventTime: ").append(event.getEventTime());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // 响应事件窗口
+                builder.append("windowId: ").append(event.getWindowId());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    builder.append("movementGranularity: ").append(event.getMovementGranularity());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    builder.append("action: ").append(event.getAction());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    int contentChangeTypes = event.getContentChangeTypes();
+                    builder.append("contentChangeTypes: ").append(contentChangeTypes);
+                    builder.append(" ( ").append(contentChangeTypesToString(contentChangeTypes));
+                    builder.append(" )");
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    int windowChanges = event.getWindowChanges();
+                    builder.append("windowChanges: ").append(windowChanges);
+                    builder.append(" ( ").append(windowChangeTypesToString(windowChanges));
+                    builder.append(" )");
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                for (CharSequence text : event.getText()) {
+                    // 输出当前事件包含的文本信息
+                    builder.append("text: ").append(text);
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                // 事件源的类名, 如 android.widget.TextView
+                builder.append("source class: ").append(event.getClassName());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // 事件源信息
+                builder.append("source: ").append(event.getSource());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                return builder.toString();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "Print.logEvent");
+                return null;
+            }
+        }
+
+        // =
+
+        /**
+         * copy AccessibilityEvent singleContentChangeTypeToString
+         * @param type Event ContentChangeTypes
+         * @return type String
+         */
+        public static String contentChangeTypesToString(final int type) {
+            switch (type) {
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_CONTENT_DESCRIPTION:
+                    return "CONTENT_CHANGE_TYPE_CONTENT_DESCRIPTION";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_STATE_DESCRIPTION:
+                    return "CONTENT_CHANGE_TYPE_STATE_DESCRIPTION";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_SUBTREE:
+                    return "CONTENT_CHANGE_TYPE_SUBTREE";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_TEXT:
+                    return "CONTENT_CHANGE_TYPE_TEXT";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_PANE_TITLE:
+                    return "CONTENT_CHANGE_TYPE_PANE_TITLE";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_UNDEFINED:
+                    return "CONTENT_CHANGE_TYPE_UNDEFINED";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_PANE_APPEARED:
+                    return "CONTENT_CHANGE_TYPE_PANE_APPEARED";
+                case AccessibilityEvent.CONTENT_CHANGE_TYPE_PANE_DISAPPEARED:
+                    return "CONTENT_CHANGE_TYPE_PANE_DISAPPEARED";
+                default:
+                    return Integer.toHexString(type);
+            }
+        }
+
+        /**
+         * copy AccessibilityEvent singleWindowChangeTypeToString
+         * @param type Event WindowChanges
+         * @return type String
+         */
+        public static String windowChangeTypesToString(final int type) {
+            switch (type) {
+                case AccessibilityEvent.WINDOWS_CHANGE_ADDED:
+                    return "WINDOWS_CHANGE_ADDED";
+                case AccessibilityEvent.WINDOWS_CHANGE_REMOVED:
+                    return "WINDOWS_CHANGE_REMOVED";
+                case AccessibilityEvent.WINDOWS_CHANGE_TITLE:
+                    return "WINDOWS_CHANGE_TITLE";
+                case AccessibilityEvent.WINDOWS_CHANGE_BOUNDS:
+                    return "WINDOWS_CHANGE_BOUNDS";
+                case AccessibilityEvent.WINDOWS_CHANGE_LAYER:
+                    return "WINDOWS_CHANGE_LAYER";
+                case AccessibilityEvent.WINDOWS_CHANGE_ACTIVE:
+                    return "WINDOWS_CHANGE_ACTIVE";
+                case AccessibilityEvent.WINDOWS_CHANGE_FOCUSED:
+                    return "WINDOWS_CHANGE_FOCUSED";
+                case AccessibilityEvent.WINDOWS_CHANGE_ACCESSIBILITY_FOCUSED:
+                    return "WINDOWS_CHANGE_ACCESSIBILITY_FOCUSED";
+                case AccessibilityEvent.WINDOWS_CHANGE_PARENT:
+                    return "WINDOWS_CHANGE_PARENT";
+                case AccessibilityEvent.WINDOWS_CHANGE_CHILDREN:
+                    return "WINDOWS_CHANGE_CHILDREN";
+                case AccessibilityEvent.WINDOWS_CHANGE_PIP:
+                    return "WINDOWS_CHANGE_PIP";
+                default:
+                    return Integer.toHexString(type);
+            }
+        }
+    }
 }
