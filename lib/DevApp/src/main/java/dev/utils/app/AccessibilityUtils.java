@@ -549,11 +549,14 @@ public final class AccessibilityUtils {
      */
     public static final class Operation {
 
+        // 无障碍节点包装类
+        private Node mNode;
+
         // 无障碍节点
         private AccessibilityNodeInfo mNodeInfo;
 
         private Operation(final AccessibilityNodeInfo nodeInfo) {
-            this.mNodeInfo = nodeInfo;
+            this.mNode = AccessibilityUtils.node(nodeInfo);
         }
 
         // =============
@@ -561,14 +564,24 @@ public final class AccessibilityUtils {
         // =============
 
         /**
+         * 获取 Node
+         * @return {@link Node}
+         */
+        public Node node() {
+            return mNode;
+        }
+
+        /**
          * 获取无障碍节点
          * @return {@link AccessibilityNodeInfo}
          */
         public AccessibilityNodeInfo getNodeInfo() {
-            return mNodeInfo;
+            return mNode.getNodeInfo();
         }
 
-        // =
+        // =======
+        // = 操作 =
+        // =======
 
         /**
          * 模拟对应 Action 操作
@@ -598,10 +611,6 @@ public final class AccessibilityUtils {
             }
             return false;
         }
-
-        // =======
-        // = 操作 =
-        // =======
 
         // =======
         // = 点击 =
@@ -820,6 +829,14 @@ public final class AccessibilityUtils {
         // =============
         // = 对外公开方法 =
         // =============
+
+        /**
+         * 获取 Operation
+         * @return {@link Operation}
+         */
+        public Operation operation() {
+            return AccessibilityUtils.operation(mNodeInfo);
+        }
 
         /**
          * 获取无障碍节点
