@@ -471,150 +471,6 @@ public final class AccessibilityUtils {
         return lists;
     }
 
-    // =======
-    // = 操作 =
-    // =======
-
-    /**
-     * 点击指定的节点
-     * @param nodeInfo {@link AccessibilityNodeInfo}
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performClick(final AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null && nodeInfo.isClickable()) {
-            return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
-        }
-        return false;
-    }
-
-    /**
-     * 点击指定的节点
-     * @param nodeInfo    {@link AccessibilityNodeInfo}
-     * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performClick(
-            final AccessibilityNodeInfo nodeInfo,
-            final boolean clickParent
-    ) {
-        return performClick(nodeInfo, clickParent, false);
-    }
-
-    /**
-     * 点击指定的节点
-     * @param nodeInfo    {@link AccessibilityNodeInfo}
-     * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll    判断是否点击全部节点
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performClick(
-            final AccessibilityNodeInfo nodeInfo,
-            final boolean clickParent,
-            final boolean clickAll
-    ) {
-        if (nodeInfo == null) return false;
-        if (clickParent) {
-            if (nodeInfo.isClickable()) {
-                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-            } else {
-                AccessibilityNodeInfo parent = nodeInfo.getParent();
-                while (parent != null) {
-                    if (performClick(parent)) {
-                        if (!clickAll) {
-                            return true;
-                        }
-                    }
-                    parent = parent.getParent();
-                }
-                return true;
-            }
-        } else {
-            return performClick(nodeInfo);
-        }
-    }
-
-    // =
-
-    /**
-     * 长按指定的节点
-     * @param nodeInfo {@link AccessibilityNodeInfo}
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null && nodeInfo.isClickable()) {
-            return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
-        }
-        return false;
-    }
-
-    /**
-     * 长按指定的节点
-     * @param nodeInfo    {@link AccessibilityNodeInfo}
-     * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performLongClick(
-            final AccessibilityNodeInfo nodeInfo,
-            final boolean clickParent
-    ) {
-        return performLongClick(nodeInfo, clickParent, false);
-    }
-
-    /**
-     * 长按指定的节点
-     * @param nodeInfo    {@link AccessibilityNodeInfo}
-     * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-     * @param clickAll    判断是否点击全部节点
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performLongClick(
-            final AccessibilityNodeInfo nodeInfo,
-            final boolean clickParent,
-            final boolean clickAll
-    ) {
-        if (nodeInfo == null) return false;
-        if (clickParent) {
-            if (nodeInfo.isClickable()) {
-                return nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
-            } else {
-                AccessibilityNodeInfo parent = nodeInfo.getParent();
-                while (parent != null) {
-                    if (performLongClick(parent)) {
-                        if (!clickAll) {
-                            return true;
-                        }
-                    }
-                    parent = parent.getParent();
-                }
-                return true;
-            }
-        } else {
-            return performLongClick(nodeInfo);
-        }
-    }
-
-    /**
-     * 模拟对应 Action 操作
-     * @param nodeInfo {@link AccessibilityNodeInfo}
-     * @param action   操作意图
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean preformAction(
-            final AccessibilityNodeInfo nodeInfo,
-            final int action
-    ) {
-        if (nodeInfo != null) {
-            return nodeInfo.performAction(action);
-        }
-        return false;
-    }
-
     // =========
     // = 包装类 =
     // =========
@@ -660,8 +516,8 @@ public final class AccessibilityUtils {
          * @param action 操作意图
          * @return {@code true} success, {@code false} fail
          */
-        public boolean preformAction(final int action) {
-            return preformAction(mNode, action);
+        public boolean performAction(final int action) {
+            return performAction(mNode, action);
         }
 
         /**
@@ -670,7 +526,7 @@ public final class AccessibilityUtils {
          * @param action   操作意图
          * @return {@code true} success, {@code false} fail
          */
-        public static boolean preformAction(
+        public boolean performAction(
                 final AccessibilityNodeInfo nodeInfo,
                 final int action
         ) {
@@ -678,10 +534,214 @@ public final class AccessibilityUtils {
                 try {
                     return nodeInfo.performAction(action);
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "preformAction");
+                    LogPrintUtils.eTag(TAG, e, "performAction");
                 }
             }
             return false;
+        }
+
+        // =======
+        // = 操作 =
+        // =======
+
+        // =======
+        // = 点击 =
+        // =======
+
+        /**
+         * 点击指定节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick() {
+            return performClick(mNode);
+        }
+
+        /**
+         * 点击指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(final boolean clickParent) {
+            return performClick(mNode, clickParent);
+        }
+
+        /**
+         * 点击指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            return performClick(mNode, clickParent, clickAll);
+        }
+
+        // =
+
+        /**
+         * 点击指定节点
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(final AccessibilityNodeInfo nodeInfo) {
+            if (nodeInfo != null && nodeInfo.isClickable()) {
+                return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
+            }
+            return false;
+        }
+
+        /**
+         * 点击指定节点
+         * @param nodeInfo    {@link AccessibilityNodeInfo}
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(
+                final AccessibilityNodeInfo nodeInfo,
+                final boolean clickParent
+        ) {
+            return performClick(nodeInfo, clickParent, false);
+        }
+
+        /**
+         * 点击指定节点
+         * @param nodeInfo    {@link AccessibilityNodeInfo}
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(
+                final AccessibilityNodeInfo nodeInfo,
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            if (nodeInfo == null) return false;
+            if (clickParent) {
+                if (nodeInfo.isClickable()) {
+                    return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
+                } else {
+                    AccessibilityNodeInfo parent = nodeInfo.getParent();
+                    while (parent != null) {
+                        if (performClick(parent)) {
+                            if (!clickAll) {
+                                return true;
+                            }
+                        }
+                        parent = parent.getParent();
+                    }
+                    return true;
+                }
+            } else {
+                return performClick(nodeInfo);
+            }
+        }
+
+        // =======
+        // = 长按 =
+        // =======
+
+        /**
+         * 长按指定节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick() {
+            return performLongClick(mNode);
+        }
+
+        /**
+         * 长按指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(final boolean clickParent) {
+            return performLongClick(mNode, clickParent);
+        }
+
+        /**
+         * 长按指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            return performLongClick(mNode, clickParent, clickAll);
+        }
+
+        // =
+
+        /**
+         * 长按指定节点
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
+            if (nodeInfo != null && nodeInfo.isClickable()) {
+                return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
+            }
+            return false;
+        }
+
+        /**
+         * 长按指定节点
+         * @param nodeInfo    {@link AccessibilityNodeInfo}
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(
+                final AccessibilityNodeInfo nodeInfo,
+                final boolean clickParent
+        ) {
+            return performLongClick(nodeInfo, clickParent, false);
+        }
+
+        /**
+         * 长按指定节点
+         * @param nodeInfo    {@link AccessibilityNodeInfo}
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(
+                final AccessibilityNodeInfo nodeInfo,
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            if (nodeInfo == null) return false;
+            if (clickParent) {
+                if (nodeInfo.isClickable()) {
+                    return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
+                } else {
+                    AccessibilityNodeInfo parent = nodeInfo.getParent();
+                    while (parent != null) {
+                        if (performLongClick(parent)) {
+                            if (!clickAll) {
+                                return true;
+                            }
+                        }
+                        parent = parent.getParent();
+                    }
+                    return true;
+                }
+            } else {
+                return performLongClick(nodeInfo);
+            }
         }
     }
 
@@ -691,6 +751,22 @@ public final class AccessibilityUtils {
 
     /**
      * 模拟全局对应 Action 操作
+     * @param action 操作意图
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static boolean performGlobalAction(final int action) {
+        return performGlobalAction(sService, action);
+    }
+
+    /**
+     * 模拟全局对应 Action 操作
+     * <pre>
+     *     可自行传入滑动手势
+     *     如:
+     *     向上滑动
+     *     {@link AccessibilityService#GESTURE_SWIPE_UP}
+     * </pre>
      * @param service {@link AccessibilityService}
      * @param action  操作意图
      * @return {@code true} success, {@code false} fail
@@ -701,7 +777,11 @@ public final class AccessibilityUtils {
             final int action
     ) {
         if (service != null) {
-            return service.performGlobalAction(action);
+            try {
+                return service.performGlobalAction(action);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "performGlobalAction");
+            }
         }
         return false;
     }
@@ -713,7 +793,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionBack() {
+    public static boolean performActionBack() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
@@ -723,7 +803,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionBack(final AccessibilityService service) {
+    public static boolean performActionBack(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
@@ -732,7 +812,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionHome() {
+    public static boolean performActionHome() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
@@ -742,7 +822,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionHome(final AccessibilityService service) {
+    public static boolean performActionHome(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
@@ -751,7 +831,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static boolean preformActionPowerDialog() {
+    public static boolean performActionPowerDialog() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
@@ -761,7 +841,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static boolean preformActionPowerDialog(final AccessibilityService service) {
+    public static boolean performActionPowerDialog(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
 
@@ -770,7 +850,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public static boolean preformActionLockScreen() {
+    public static boolean performActionLockScreen() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
@@ -780,7 +860,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public static boolean preformActionLockScreen(final AccessibilityService service) {
+    public static boolean performActionLockScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
 
@@ -789,7 +869,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public static boolean preformActionTakeScreenshot() {
+    public static boolean performActionTakeScreenshot() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
@@ -799,7 +879,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
-    public static boolean preformActionTakeScreenshot(final AccessibilityService service) {
+    public static boolean performActionTakeScreenshot(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
 
@@ -808,7 +888,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionNotifications() {
+    public static boolean performActionNotifications() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
@@ -818,7 +898,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionNotifications(final AccessibilityService service) {
+    public static boolean performActionNotifications(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
     }
 
@@ -827,7 +907,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionRecents() {
+    public static boolean performActionRecents() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
@@ -837,7 +917,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean preformActionRecents(final AccessibilityService service) {
+    public static boolean performActionRecents(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_RECENTS);
     }
 
@@ -846,7 +926,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean preformActionQuickSettings() {
+    public static boolean performActionQuickSettings() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
@@ -856,7 +936,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean preformActionQuickSettings(final AccessibilityService service) {
+    public static boolean performActionQuickSettings(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
 
@@ -865,7 +945,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean preformActionSplitScreen() {
+    public static boolean performActionSplitScreen() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
@@ -875,7 +955,7 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean preformActionSplitScreen(final AccessibilityService service) {
+    public static boolean performActionSplitScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
