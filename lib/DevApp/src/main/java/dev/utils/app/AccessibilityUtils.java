@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 无障碍功能工具类
@@ -1079,6 +1081,19 @@ public final class AccessibilityUtils {
          * @return AccessibilityEvent 信息日志
          */
         public static String logEvent(final AccessibilityEvent event) {
+            return logEvent(event, false);
+        }
+
+        /**
+         * 拼接 AccessibilityEvent 信息日志
+         * @param event       {@link AccessibilityEvent}
+         * @param printSource 是否打印 Source NodeInfo
+         * @return AccessibilityEvent 信息日志
+         */
+        public static String logEvent(
+                final AccessibilityEvent event,
+                final boolean printSource
+        ) {
             if (event == null) return null;
 
             try {
@@ -1086,6 +1101,10 @@ public final class AccessibilityUtils {
 
                 // 响应事件的应用包名
                 builder.append("packageName: ").append(event.getPackageName());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // 响应事件类, 如 android.widget.TextView
+                builder.append("className: ").append(event.getClassName());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 // 事件类型
@@ -1135,17 +1154,220 @@ public final class AccessibilityUtils {
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
-                // 事件源的类名, 如 android.widget.TextView
-                builder.append("source class: ").append(event.getClassName());
-                builder.append(DevFinal.SYMBOL.NEW_LINE);
-
-                // 事件源信息
-                builder.append("source: ").append(event.getSource());
-                builder.append(DevFinal.SYMBOL.NEW_LINE);
+                if (printSource) {
+                    String sourceLog = logNodeInfo(
+                            event.getSource(),
+                            StringUtils.appendSpace(2)
+                    );
+                    if (sourceLog != null) {
+                        builder.append("source NodeInfo: ");
+                        builder.append(DevFinal.SYMBOL.NEW_LINE);
+                        builder.append(sourceLog);
+                    }
+                }
 
                 return builder.toString();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "Print.logEvent");
+                return null;
+            }
+        }
+
+        /**
+         * 拼接 AccessibilityNodeInfo 信息日志
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @return AccessibilityNodeInfo 信息日志
+         */
+        public static String logNodeInfo(final AccessibilityNodeInfo nodeInfo) {
+            return logNodeInfo(nodeInfo, "");
+        }
+
+        /**
+         * 拼接 AccessibilityNodeInfo 信息日志
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @return AccessibilityNodeInfo 信息日志
+         */
+        public static String logNodeInfo(
+                final AccessibilityNodeInfo nodeInfo,
+                final String delimiter
+        ) {
+            if (nodeInfo == null) return null;
+            try {
+                StringBuilder builder = new StringBuilder();
+
+                builder.append(delimiter);
+                builder.append("boundsInParent: ");
+                Rect boundsInParent = new Rect();
+                nodeInfo.getBoundsInParent(boundsInParent);
+                builder.append(boundsInParent);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("boundsInScreen: ");
+                Rect boundsInScreen = new Rect();
+                nodeInfo.getBoundsInScreen(boundsInScreen);
+                builder.append(boundsInScreen);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // ==========
+                // = 分割开始 =
+                // ==========
+
+                builder.append(delimiter);
+                builder.append(DevFinal.SYMBOL.HYPHEN);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // ==========
+                // = 分割结束 =
+                // ==========
+
+                builder.append(delimiter);
+                builder.append("packageName: ");
+                builder.append(nodeInfo.getPackageName());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("className: ");
+                builder.append(nodeInfo.getClassName());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("text: ");
+                builder.append(nodeInfo.getText());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder.append(delimiter);
+                    builder.append("error: ");
+                    builder.append(nodeInfo.getError());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder.append(delimiter);
+                    builder.append("maxTextLength: ");
+                    builder.append(nodeInfo.getMaxTextLength());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    builder.append(delimiter);
+                    builder.append("stateDescription: ");
+                    builder.append(nodeInfo.getStateDescription());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                builder.append(delimiter);
+                builder.append("contentDescription: ");
+                builder.append(nodeInfo.getContentDescription());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    builder.append(delimiter);
+                    builder.append("tooltipText: ");
+                    builder.append(nodeInfo.getTooltipText());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    builder.append(delimiter);
+                    builder.append("viewIdResName: ");
+                    builder.append(nodeInfo.getViewIdResourceName());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                // ==========
+                // = 分割开始 =
+                // ==========
+
+                builder.append(delimiter);
+                builder.append(DevFinal.SYMBOL.HYPHEN);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                // ==========
+                // = 分割结束 =
+                // ==========
+
+                builder.append(delimiter);
+                builder.append("checkable: ");
+                builder.append(nodeInfo.isCheckable());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("checked: ");
+                builder.append(nodeInfo.isChecked());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("focusable: ");
+                builder.append(nodeInfo.isFocusable());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("focused: ");
+                builder.append(nodeInfo.isFocused());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("selected: ");
+                builder.append(nodeInfo.isSelected());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("clickable: ");
+                builder.append(nodeInfo.isClickable());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("longClickable: ");
+                builder.append(nodeInfo.isLongClickable());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    builder.append(delimiter);
+                    builder.append("contextClickable: ");
+                    builder.append(nodeInfo.isContextClickable());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                builder.append(delimiter);
+                builder.append("enabled: ");
+                builder.append(nodeInfo.isEnabled());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("password: ");
+                builder.append(nodeInfo.isPassword());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("scrollable: ");
+                builder.append(nodeInfo.isScrollable());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    builder.append(delimiter);
+                    builder.append("importantForAccessibility: ");
+                    builder.append(nodeInfo.isImportantForAccessibility());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    builder.append(delimiter);
+                    builder.append("visible: ");
+                    builder.append(nodeInfo.isVisibleToUser());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder.append(delimiter);
+                    builder.append("actions: ");
+                    builder.append(nodeInfo.getActionList());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+                return builder.toString();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "Print.logNodeInfo");
                 return null;
             }
         }
