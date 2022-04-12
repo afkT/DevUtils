@@ -1100,57 +1100,73 @@ public final class AccessibilityUtils {
                 StringBuilder builder = new StringBuilder();
 
                 // 响应事件的应用包名
-                builder.append("packageName: ").append(event.getPackageName());
+                builder.append("packageName: ");
+                builder.append(event.getPackageName());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 // 响应事件类, 如 android.widget.TextView
-                builder.append("className: ").append(event.getClassName());
+                builder.append("className: ");
+                builder.append(event.getClassName());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 // 事件类型
                 int eventType = event.getEventType();
-                builder.append("eventType: ").append(eventType);
-                builder.append(" ( ").append(AccessibilityEvent.eventTypeToString(eventType));
+                builder.append("eventType: ");
+                builder.append(eventType);
+                builder.append(" ( ");
+                builder.append(AccessibilityEvent.eventTypeToString(eventType));
                 builder.append(" )");
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 // 事件时间
-                builder.append("eventTime: ").append(event.getEventTime());
+                builder.append("eventTime: ");
+                builder.append(event.getEventTime());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 // 响应事件窗口
-                builder.append("windowId: ").append(event.getWindowId());
+                builder.append("windowId: 0x");
+                builder.append(Long.toHexString(event.getWindowId()));
+                builder.append(" ( ");
+                builder.append(event.getWindowId());
+                builder.append(" )");
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    builder.append("movementGranularity: ").append(event.getMovementGranularity());
+                    builder.append("movementGranularity: ");
+                    builder.append(event.getMovementGranularity());
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    builder.append("action: ").append(event.getAction());
+                    builder.append("action: ");
+                    builder.append(event.getAction());
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     int contentChangeTypes = event.getContentChangeTypes();
-                    builder.append("contentChangeTypes: ").append(contentChangeTypes);
-                    builder.append(" ( ").append(contentChangeTypesToString(contentChangeTypes));
+                    builder.append("contentChangeTypes: ");
+                    builder.append(contentChangeTypes);
+                    builder.append(" ( ");
+                    builder.append(contentChangeTypesToString(contentChangeTypes));
                     builder.append(" )");
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     int windowChanges = event.getWindowChanges();
-                    builder.append("windowChanges: ").append(windowChanges);
-                    builder.append(" ( ").append(windowChangeTypesToString(windowChanges));
+                    builder.append("windowChanges: ");
+                    builder.append(windowChanges);
+                    builder.append(" ( ");
+                    builder.append(windowChangeTypesToString(windowChanges));
                     builder.append(" )");
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
                 for (CharSequence text : event.getText()) {
                     // 输出当前事件包含的文本信息
-                    builder.append("text: ").append(text);
+                    builder.append("text: ");
+                    builder.append(text);
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
@@ -1160,12 +1176,11 @@ public final class AccessibilityUtils {
                             StringUtils.appendSpace(2)
                     );
                     if (sourceLog != null) {
-                        builder.append("source NodeInfo: ");
+                        builder.append("source NodeInfo:");
                         builder.append(DevFinal.SYMBOL.NEW_LINE);
                         builder.append(sourceLog);
                     }
                 }
-
                 return builder.toString();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "Print.logEvent");
@@ -1184,7 +1199,8 @@ public final class AccessibilityUtils {
 
         /**
          * 拼接 AccessibilityNodeInfo 信息日志
-         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @param nodeInfo  {@link AccessibilityNodeInfo}
+         * @param delimiter 拼接符号
          * @return AccessibilityNodeInfo 信息日志
          */
         public static String logNodeInfo(
@@ -1194,6 +1210,19 @@ public final class AccessibilityUtils {
             if (nodeInfo == null) return null;
             try {
                 StringBuilder builder = new StringBuilder();
+
+                builder.append(delimiter);
+                builder.append("windowId: 0x");
+                builder.append(Long.toHexString(nodeInfo.getWindowId()));
+                builder.append(" ( ");
+                builder.append(nodeInfo.getWindowId());
+                builder.append(" )");
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
+
+                builder.append(delimiter);
+                builder.append("childCount: ");
+                builder.append(nodeInfo.getChildCount());
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
 
                 builder.append(delimiter);
                 builder.append("boundsInParent: ");
@@ -1276,6 +1305,14 @@ public final class AccessibilityUtils {
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    builder.append(delimiter);
+                    builder.append("movementGranularities: ");
+                    int granularities = nodeInfo.getMovementGranularities();
+                    builder.append(getMovementGranularitySymbolicName(granularities));
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
                 // ==========
                 // = 分割开始 =
                 // ==========
@@ -1345,6 +1382,34 @@ public final class AccessibilityUtils {
                 builder.append(nodeInfo.isScrollable());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    builder.append(delimiter);
+                    builder.append("editable: ");
+                    builder.append(nodeInfo.isEditable());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    builder.append(delimiter);
+                    builder.append("visible: ");
+                    builder.append(nodeInfo.isVisibleToUser());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    builder.append(delimiter);
+                    builder.append("canOpenPopup: ");
+                    builder.append(nodeInfo.canOpenPopup());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    builder.append(delimiter);
+                    builder.append("dismiss: ");
+                    builder.append(nodeInfo.isDismissable());
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                }
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     builder.append(delimiter);
                     builder.append("importantForAccessibility: ");
@@ -1354,8 +1419,8 @@ public final class AccessibilityUtils {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     builder.append(delimiter);
-                    builder.append("visible: ");
-                    builder.append(nodeInfo.isVisibleToUser());
+                    builder.append("accessibilityFocused: ");
+                    builder.append(nodeInfo.isAccessibilityFocused());
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
 
@@ -1434,6 +1499,50 @@ public final class AccessibilityUtils {
                 default:
                     return Integer.toHexString(type);
             }
+        }
+
+        /**
+         * copy AccessibilityNodeInfo getMovementGranularitySymbolicName
+         * @param granularity NodeInfo granularity
+         * @return granularity String
+         */
+        public static String movementGranularitiesToString(final int granularity) {
+            switch (granularity) {
+                case AccessibilityNodeInfo.MOVEMENT_GRANULARITY_CHARACTER:
+                    return "MOVEMENT_GRANULARITY_CHARACTER";
+                case AccessibilityNodeInfo.MOVEMENT_GRANULARITY_WORD:
+                    return "MOVEMENT_GRANULARITY_WORD";
+                case AccessibilityNodeInfo.MOVEMENT_GRANULARITY_LINE:
+                    return "MOVEMENT_GRANULARITY_LINE";
+                case AccessibilityNodeInfo.MOVEMENT_GRANULARITY_PARAGRAPH:
+                    return "MOVEMENT_GRANULARITY_PARAGRAPH";
+                case AccessibilityNodeInfo.MOVEMENT_GRANULARITY_PAGE:
+                    return "MOVEMENT_GRANULARITY_PAGE";
+                default:
+                    return null;
+            }
+        }
+
+        /**
+         * 封装 AccessibilityNodeInfo#toString() granularity 拼接代码
+         * @param granularities NodeInfo movementGranularities
+         * @return movementGranularities 拼接代码
+         */
+        public static String getMovementGranularitySymbolicName(final int granularities) {
+            StringBuilder builder = new StringBuilder();
+            int           temp    = granularities;
+
+            builder.append("[");
+            while (temp != 0) {
+                final int granularity = 1 << Integer.numberOfTrailingZeros(temp);
+                temp &= ~granularity;
+                builder.append(movementGranularitiesToString(granularity));
+                if (temp != 0) {
+                    builder.append(", ");
+                }
+            }
+            builder.append("]");
+            return builder.toString();
         }
     }
 }
