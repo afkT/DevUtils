@@ -8,6 +8,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityWindowInfo;
 
 import androidx.annotation.RequiresApi;
 
@@ -1075,6 +1076,10 @@ public final class AccessibilityUtils {
      */
     public static final class Print {
 
+        // ==========================
+        // = AccessibilityEvent Log =
+        // ==========================
+
         /**
          * 拼接 AccessibilityEvent 信息日志
          * @param event {@link AccessibilityEvent}
@@ -1188,6 +1193,10 @@ public final class AccessibilityUtils {
             }
         }
 
+        // =============================
+        // = AccessibilityNodeInfo Log =
+        // =============================
+
         /**
          * 拼接 AccessibilityNodeInfo 信息日志
          * @param nodeInfo {@link AccessibilityNodeInfo}
@@ -1224,17 +1233,17 @@ public final class AccessibilityUtils {
                 builder.append(nodeInfo.getChildCount());
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
-                builder.append(delimiter);
-                builder.append("boundsInParent: ");
                 Rect boundsInParent = new Rect();
                 nodeInfo.getBoundsInParent(boundsInParent);
+                builder.append(delimiter);
+                builder.append("boundsInParent: ");
                 builder.append(boundsInParent);
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
-                builder.append(delimiter);
-                builder.append("boundsInScreen: ");
                 Rect boundsInScreen = new Rect();
                 nodeInfo.getBoundsInScreen(boundsInScreen);
+                builder.append(delimiter);
+                builder.append("boundsInScreen: ");
                 builder.append(boundsInScreen);
                 builder.append(DevFinal.SYMBOL.NEW_LINE);
 
@@ -1306,9 +1315,9 @@ public final class AccessibilityUtils {
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    int granularities = nodeInfo.getMovementGranularities();
                     builder.append(delimiter);
                     builder.append("movementGranularities: ");
-                    int granularities = nodeInfo.getMovementGranularities();
                     builder.append(getMovementGranularitySymbolicName(granularities));
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                 }
@@ -1437,7 +1446,98 @@ public final class AccessibilityUtils {
             }
         }
 
-        // =
+        // =============
+        // = 快捷全面方法 =
+        // =============
+
+        /**
+         * 拼接 AccessibilityEvent、AccessibilityService 完整信息日志
+         * <pre>
+         *     打印包含
+         *     AccessibilityEvent Source Node、Source Node All Child
+         *     AccessibilityService RootInActiveWindow or WindowList
+         * </pre>
+         * @param event {@link AccessibilityEvent}
+         * @return AccessibilityEvent、AccessibilityService 完整信息日志
+         */
+        public static String logComplete(
+                final AccessibilityEvent event,
+                final AccessibilityService service
+        ) {
+            if (event == null || service == null) return null;
+            StringBuilder builder = new StringBuilder();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                if (service.getRootInActiveWindow() != null) {
+                    builder.append("rootInActiveWindow:");
+                    builder.append(DevFinal.SYMBOL.NEW_LINE);
+                    logNodeInfoChild(service.getRootInActiveWindow(), builder);
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        List<AccessibilityWindowInfo> windows = service.getWindows();
+                        if (windows != null) {
+                            for (int i = 0, len = windows.size(); i < len; i++) {
+                                builder.append("windows child (");
+                                builder.append(i).append("):");
+                                builder.append(DevFinal.SYMBOL.NEW_LINE);
+                                logNodeInfoChild(service.getRootInActiveWindow(), builder);
+                            }
+                        }
+                    }
+                }
+            }
+            builder.append("logEvent:");
+            builder.append(DevFinal.SYMBOL.NEW_LINE);
+            builder.append(logEvent(event));
+            return builder.toString();
+        }
+
+        /**
+         * 拼接 AccessibilityNodeInfo 以及 Child 信息日志
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @param builder  拼接 Builder
+         */
+        public static void logNodeInfoChild(
+                final AccessibilityNodeInfo nodeInfo,
+                final StringBuilder builder
+        ) {
+            logNodeInfoChild(nodeInfo, builder, 0);
+        }
+
+        /**
+         * 拼接 AccessibilityNodeInfo 以及 Child 信息日志
+         * @param nodeInfo    {@link AccessibilityNodeInfo}
+         * @param builder     拼接 Builder
+         * @param spaceNumber 空格数量
+         */
+        public static void logNodeInfoChild(
+                final AccessibilityNodeInfo nodeInfo,
+                final StringBuilder builder,
+                final int spaceNumber
+        ) {
+            if (nodeInfo != null) {
+                if (nodeInfo.getChildCount() == 0) {
+                    String nodeLog = logNodeInfo(
+                            nodeInfo, StringUtils.appendSpace(spaceNumber)
+                    );
+                    builder.append(nodeLog);
+                } else {
+                    for (int i = 0, len = nodeInfo.getChildCount(); i < len; i++) {
+                        try {
+                            logNodeInfoChild(
+                                    nodeInfo.getChild(i),
+                                    builder, spaceNumber + 2
+                            );
+                        } catch (Exception ignored) {
+                        }
+                    }
+                }
+            }
+        }
+
+        // ==========
+        // = 系统方法 =
+        // ==========
 
         /**
          * copy AccessibilityEvent singleContentChangeTypeToString
