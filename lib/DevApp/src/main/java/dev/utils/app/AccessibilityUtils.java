@@ -431,6 +431,106 @@ public final class AccessibilityUtils {
         ) {
             return mNode.performLongClick(clickParent, clickAll);
         }
+
+        // ==========
+        // = 节点获取 =
+        // ==========
+
+        /**
+         * 查找符合条件的节点
+         * @param focus 焦点类型
+         * @return Operation
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public Operation findFocus(final int focus) {
+            return operation(mNode.findFocus(focus));
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param focus     焦点类型
+         * @param className 节点所属的类 ( 类名 )
+         * @return Operation
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public Operation findFocus(
+                final int focus,
+                final String className
+        ) {
+            return operation(mNode.findFocus(focus, className));
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param text 文本内容 ( 搜索包含该文本内容的节点 )
+         * @return Operation List
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public List<Operation> findAccessibilityNodeInfosByText(final String text) {
+            List<Operation>             lists = new ArrayList<>();
+            List<AccessibilityNodeInfo> nodes = mNode.findAccessibilityNodeInfosByText(text);
+            for (int i = 0, len = nodes.size(); i < len; i++) {
+                lists.add(operation(nodes.get(i)));
+            }
+            return lists;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param text      文本内容 ( 搜索包含该文本内容的节点 )
+         * @param className 节点所属的类 ( 类名 )
+         * @return Operation List
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public List<Operation> findAccessibilityNodeInfosByText(
+                final String text,
+                final String className
+        ) {
+            List<Operation> lists = new ArrayList<>();
+            List<AccessibilityNodeInfo> nodes = mNode.findAccessibilityNodeInfosByText(
+                    text, className
+            );
+            for (int i = 0, len = nodes.size(); i < len; i++) {
+                lists.add(operation(nodes.get(i)));
+            }
+            return lists;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param id viewId
+         * @return Operation List
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+        public List<Operation> findAccessibilityNodeInfosByViewId(final String id) {
+            List<Operation>             lists = new ArrayList<>();
+            List<AccessibilityNodeInfo> nodes = mNode.findAccessibilityNodeInfosByViewId(id);
+            for (int i = 0, len = nodes.size(); i < len; i++) {
+                lists.add(operation(nodes.get(i)));
+            }
+            return lists;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param id        viewId
+         * @param className 节点所属的类 ( 类名 )
+         * @return Operation List
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+        public List<Operation> findAccessibilityNodeInfosByViewId(
+                final String id,
+                final String className
+        ) {
+            List<Operation> lists = new ArrayList<>();
+            List<AccessibilityNodeInfo> nodes = mNode.findAccessibilityNodeInfosByViewId(
+                    id, className
+            );
+            for (int i = 0, len = nodes.size(); i < len; i++) {
+                lists.add(operation(nodes.get(i)));
+            }
+            return lists;
+        }
     }
 
     /**
@@ -788,7 +888,6 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
         public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
-                final AccessibilityService service,
                 final String id,
                 final String className
         ) {
