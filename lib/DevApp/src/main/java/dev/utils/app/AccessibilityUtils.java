@@ -12,7 +12,6 @@ import android.view.accessibility.AccessibilityWindowInfo;
 
 import androidx.annotation.RequiresApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.DevFinal;
@@ -153,12 +152,13 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean disableSelf(final AccessibilityService service) {
-        if (service == null) return false;
-        try {
-            service.disableSelf();
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "disableSelf");
+        if (service != null) {
+            try {
+                service.disableSelf();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "disableSelf");
+            }
         }
         return false;
     }
@@ -179,11 +179,12 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static AccessibilityServiceInfo getServiceInfo(final AccessibilityService service) {
-        if (service == null) return null;
-        try {
-            return service.getServiceInfo();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getServiceInfo");
+        if (service != null) {
+            try {
+                return service.getServiceInfo();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getServiceInfo");
+            }
         }
         return null;
     }
@@ -228,11 +229,12 @@ public final class AccessibilityUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static AccessibilityNodeInfo getRootInActiveWindow(final AccessibilityService service) {
-        if (service == null) return null;
-        try {
-            return service.getRootInActiveWindow();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getRootInActiveWindow");
+        if (service != null) {
+            try {
+                return service.getRootInActiveWindow();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getRootInActiveWindow");
+            }
         }
         return null;
     }
@@ -240,10 +242,6 @@ public final class AccessibilityUtils {
     // ========
     // = 包装类 =
     // ========
-
-    // =============
-    // = Operation =
-    // =============
 
     /**
      * 获取 Operation
@@ -255,291 +253,12 @@ public final class AccessibilityUtils {
     }
 
     /**
-     * 获取 Operation
-     * @return {@link Operation}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static Operation operation() {
-        return new Operation(getRootInActiveWindow());
-    }
-
-    /**
-     * 获取 Operation
-     * @param service {@link AccessibilityService}
-     * @return {@link Operation}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static Operation operation(final AccessibilityService service) {
-        return new Operation(getRootInActiveWindow(service));
-    }
-
-    // ========
-    // = Node =
-    // ========
-
-    /**
      * 获取 Node
      * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@link Node}
      */
     public static Node node(final AccessibilityNodeInfo nodeInfo) {
         return new Node(nodeInfo);
-    }
-
-    /**
-     * 获取 Node
-     * @return {@link Node}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static Node node() {
-        return new Node(getRootInActiveWindow());
-    }
-
-    /**
-     * 获取 Node
-     * @param service {@link AccessibilityService}
-     * @return {@link Node}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static Node node(final AccessibilityService service) {
-        return new Node(getRootInActiveWindow(service));
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param focus 焦点类型
-     * @return 拥有特定焦点类型的节点
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(final int focus) {
-        return findFocus(sService, focus);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service {@link AccessibilityService}
-     * @param focus   焦点类型
-     * @return 拥有特定焦点类型的节点
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(
-            final AccessibilityService service,
-            final int focus
-    ) {
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return null;
-        // 通过指定的焦点类型找到当前的节点
-        return nodeInfo.findFocus(focus);
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param focus     焦点类型
-     * @param className 节点所属的类 ( 类名 )
-     * @return 拥有特定焦点类型的节点
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(
-            final int focus,
-            final String className
-    ) {
-        return findFocus(sService, focus, className);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service   {@link AccessibilityService}
-     * @param focus     焦点类型
-     * @param className 节点所属的类 ( 类名 )
-     * @return 拥有特定焦点类型的节点
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(
-            final AccessibilityService service,
-            final int focus,
-            final String className
-    ) {
-        if (service == null || className == null) return null;
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return null;
-        // 通过指定的焦点类型找到当前的节点
-        AccessibilityNodeInfo node = nodeInfo.findFocus(focus);
-        // 防止为 null
-        if (node != null) {
-            // 判断是否符合的类型
-            if (node.getClassName().equals(className) && node.isEnabled()) {
-                return node;
-            }
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param text 文本内容 ( 搜索包含该文本内容的节点 )
-     * @return 包含该文本内容的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text) {
-        return findAccessibilityNodeInfosByText(sService, text);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service {@link AccessibilityService}
-     * @param text    文本内容 ( 搜索包含该文本内容的节点 )
-     * @return 包含该文本内容的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
-            final AccessibilityService service,
-            final String text
-    ) {
-        if (service == null || text == null) return null;
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return null;
-        // 通过文字找到当前的节点
-        return nodeInfo.findAccessibilityNodeInfosByText(text);
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param text      文本内容 ( 搜索包含该文本内容的节点 )
-     * @param className 节点所属的类 ( 类名 )
-     * @return 包含该文本内容, 且属于指定类的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
-            final String text,
-            final String className
-    ) {
-        return findAccessibilityNodeInfosByText(sService, text, className);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service   {@link AccessibilityService}
-     * @param text      文本内容 ( 搜索包含该文本内容的节点 )
-     * @param className 节点所属的类 ( 类名 )
-     * @return 包含该文本内容, 且属于指定类的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
-            final AccessibilityService service,
-            final String text,
-            final String className
-    ) {
-        if (service == null || text == null || className == null) return null;
-        List<AccessibilityNodeInfo> lists = new ArrayList<>();
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return lists;
-        // 通过文字找到当前的节点
-        List<AccessibilityNodeInfo> nodes = nodeInfo.findAccessibilityNodeInfosByText(text);
-        for (int i = 0; i < nodes.size(); i++) {
-            AccessibilityNodeInfo node = nodes.get(i);
-            // 判断是否符合的类型
-            if (node.getClassName().equals(className) && node.isEnabled()) {
-                // 保存符合条件
-                lists.add(node);
-            }
-        }
-        return lists;
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param id viewId
-     * @return 等于 viewId 的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
-        return findAccessibilityNodeInfosByViewId(sService, id);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service {@link AccessibilityService}
-     * @param id      viewId
-     * @return 等于 viewId 的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
-            final AccessibilityService service,
-            final String id
-    ) {
-        if (service == null || id == null) return null;
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return null;
-        // 通过 id 找到当前的节点
-        return nodeInfo.findAccessibilityNodeInfosByViewId(id);
-    }
-
-    // =
-
-    /**
-     * 查找符合条件的节点
-     * @param id        viewId
-     * @param className 节点所属的类 ( 类名 )
-     * @return 等于 viewId, 且属于指定类的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
-            final String id,
-            final String className
-    ) {
-        return findAccessibilityNodeInfosByViewId(sService, id, className);
-    }
-
-    /**
-     * 查找符合条件的节点
-     * @param service   {@link AccessibilityService}
-     * @param id        viewId
-     * @param className 节点所属的类 ( 类名 )
-     * @return 等于 viewId, 且属于指定类的节点集合
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
-            final AccessibilityService service,
-            final String id,
-            final String className
-    ) {
-        if (service == null || id == null || className == null) return null;
-        List<AccessibilityNodeInfo> lists = new ArrayList<>();
-        // 获取根节点
-        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow(service);
-        // 取得当前激活窗体的根节点
-        if (nodeInfo == null) return lists;
-        // 通过 id 找到当前的节点
-        List<AccessibilityNodeInfo> nodes = nodeInfo.findAccessibilityNodeInfosByViewId(id);
-        for (int i = 0; i < nodes.size(); i++) {
-            AccessibilityNodeInfo node = nodes.get(i);
-            // 判断是否符合的类型
-            if (node.getClassName().equals(className) && node.isEnabled()) {
-                // 保存符合条件
-                lists.add(node);
-            }
-        }
-        return lists;
     }
 
     // =========
@@ -909,6 +628,10 @@ public final class AccessibilityUtils {
                 return performLongClick(nodeInfo);
             }
         }
+
+        // ==========
+        // = 节点获取 =
+        // ==========
     }
 
     // =============
@@ -1528,7 +1251,7 @@ public final class AccessibilityUtils {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 if (service.getRootInActiveWindow() != null) {
-                    builder.append("rootInActiveWindow:");
+                    builder.append("logComplete - rootInActiveWindow:");
                     builder.append(DevFinal.SYMBOL.NEW_LINE);
                     logNodeInfoChild(service.getRootInActiveWindow(), builder);
                 } else {
@@ -1536,7 +1259,7 @@ public final class AccessibilityUtils {
                         List<AccessibilityWindowInfo> windows = service.getWindows();
                         if (windows != null) {
                             for (int i = 0, len = windows.size(); i < len; i++) {
-                                builder.append("windows child (");
+                                builder.append("logComplete - windows child (");
                                 builder.append(i).append("):");
                                 builder.append(DevFinal.SYMBOL.NEW_LINE);
                                 logNodeInfoChild(service.getRootInActiveWindow(), builder);
@@ -1545,7 +1268,7 @@ public final class AccessibilityUtils {
                     }
                 }
             }
-            builder.append("logEvent:");
+            builder.append("logComplete - logEvent:");
             builder.append(DevFinal.SYMBOL.NEW_LINE);
             builder.append(logEvent(event));
             return builder.toString();
