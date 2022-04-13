@@ -199,7 +199,7 @@ public class ElectricFanLoadingRenderer
         canvas.drawPath(createProgressPath(mProgress, mProgressCenterRadius, progressRect), mPaint);
 
         //draw leaves
-        for (int i = 0; i < mLeafHolders.size(); i++) {
+        for (int i = 0, len = mLeafHolders.size(); i < len; i++) {
             int        leafSaveCount = canvas.save();
             LeafHolder leafHolder    = mLeafHolders.get(i);
             Rect       leafBounds    = leafHolder.mLeafRect;

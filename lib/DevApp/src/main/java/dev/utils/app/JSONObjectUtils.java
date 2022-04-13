@@ -247,7 +247,7 @@ public final class JSONObjectUtils {
     public static String stringJSONEscape(final String str) {
         if (str == null) return "";
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0, len = str.length(); i < len; i++) {
             char ch = str.charAt(i);
             switch (ch) {
                 case '"':

@@ -198,7 +198,7 @@ public final class HttpCaptureInterceptor
                 if (isPlaintext(buffer)) {
                     if (requestBody instanceof FormBody) {
                         FormBody formBody = (FormBody) requestBody;
-                        for (int i = 0; i < formBody.size(); i++) {
+                        for (int i = 0, len = formBody.size(); i < len; i++) {
                             captureInfo.requestBody.put(formBody.name(i), formBody.value(i));
                         }
                     }

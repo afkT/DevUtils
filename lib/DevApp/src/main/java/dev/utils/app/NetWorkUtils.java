@@ -535,7 +535,7 @@ public final class NetWorkUtils {
                 NetworkInterface ni = nis.nextElement();
                 if (!ni.isUp() || ni.isLoopback()) continue;
                 List<InterfaceAddress> ias = ni.getInterfaceAddresses();
-                for (int i = 0; i < ias.size(); i++) {
+                for (int i = 0, len = ias.size(); i < len; i++) {
                     InterfaceAddress ia        = ias.get(i);
                     InetAddress      broadcast = ia.getBroadcast();
                     if (broadcast != null) {
