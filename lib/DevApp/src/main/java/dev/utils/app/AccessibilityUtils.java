@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import dev.utils.DevFinal;
@@ -244,6 +245,20 @@ public final class AccessibilityUtils {
     // ========
     // = 包装类 =
     // ========
+
+    /**
+     * detail: AccessibilityNodeInfo 筛选接口
+     * @author Ttt
+     */
+    public interface NodeFilter {
+
+        /**
+         * 是否允许添加
+         * @param nodeInfo 待校验 AccessibilityNodeInfo
+         * @return {@code true} 允许, {@code false} 不允许
+         */
+        boolean accept(AccessibilityNodeInfo nodeInfo);
+    }
 
     // =============
     // = Operation =
@@ -555,6 +570,24 @@ public final class AccessibilityUtils {
             List<AccessibilityNodeInfo> nodes = mNode.findAccessibilityNodeInfosByViewId(
                     id, className
             );
+            for (int i = 0, len = nodes.size(); i < len; i++) {
+                lists.add(operation(nodes.get(i)));
+            }
+            return lists;
+        }
+
+        // ==========
+        // = 循环查找 =
+        // ==========
+
+        /**
+         * 查找全部子节点并进行筛选
+         * @param filter AccessibilityNodeInfo 筛选接口
+         * @return Operation List
+         */
+        public List<Operation> findByFilter(final NodeFilter filter) {
+            List<Operation>             lists = new ArrayList<>();
+            List<AccessibilityNodeInfo> nodes = mNode.findByFilter(filter);
             for (int i = 0, len = nodes.size(); i < len; i++) {
                 lists.add(operation(nodes.get(i)));
             }
@@ -990,6 +1023,47 @@ public final class AccessibilityUtils {
             }
             return lists;
         }
+
+        // ==========
+        // = 循环查找 =
+        // ==========
+
+        /**
+         * 查找全部子节点并进行筛选
+         * @param filter AccessibilityNodeInfo 筛选接口
+         * @return 筛选后的节点集合
+         */
+        public List<AccessibilityNodeInfo> findByFilter(final NodeFilter filter) {
+            LinkedHashSet<AccessibilityNodeInfo> sets = new LinkedHashSet<>();
+            if (mNodeInfo != null && filter != null) {
+                _recursiveNodeChild(mNodeInfo, sets, filter);
+            }
+            return new ArrayList<>(sets);
+        }
+
+        /**
+         * 递归 AccessibilityNodeInfo 子节点并进行过滤添加
+         * @param nodeInfo {@link AccessibilityNodeInfo}
+         * @param data     符合条件数据源存储
+         * @param filter   AccessibilityNodeInfo 筛选接口
+         */
+        private void _recursiveNodeChild(
+                final AccessibilityNodeInfo nodeInfo,
+                final LinkedHashSet<AccessibilityNodeInfo> data,
+                final NodeFilter filter
+        ) {
+            if (nodeInfo != null) {
+                if (nodeInfo.getChildCount() == 0) {
+                    if (filter.accept(nodeInfo)) {
+                        data.add(nodeInfo);
+                    }
+                } else {
+                    for (int i = 0, len = nodeInfo.getChildCount(); i < len; i++) {
+                        _recursiveNodeChild(nodeInfo.getChild(i), data, filter);
+                    }
+                }
+            }
+        }
     }
 
     // =============
@@ -1213,6 +1287,11 @@ public final class AccessibilityUtils {
     /**
      * detail: 无障碍日志打印
      * @author Ttt
+     * <pre>
+     *     该类仅限开发阶段方便调试使用
+     *     视情况使用 {@link Print#logComplete(AccessibilityEvent, AccessibilityService)}
+     *     防止日志量过多 ( 一直循环子节点 )
+     * </pre>
      */
     public static final class Print {
 
@@ -1226,7 +1305,7 @@ public final class AccessibilityUtils {
          * @return AccessibilityEvent 信息日志
          */
         public static String logEvent(final AccessibilityEvent event) {
-            return logEvent(event, false);
+            return logEvent(event, true);
         }
 
         /**
@@ -1628,7 +1707,7 @@ public final class AccessibilityUtils {
             }
             builder.append("logComplete - logEvent:");
             builder.append(DevFinal.SYMBOL.NEW_LINE);
-            builder.append(logEvent(event));
+            builder.append(logEvent(event, false));
             return builder.toString();
         }
 
