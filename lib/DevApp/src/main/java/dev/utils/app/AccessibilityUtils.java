@@ -5,6 +5,7 @@ import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -358,6 +359,20 @@ public final class AccessibilityUtils {
             return mNode.performAction(action);
         }
 
+        /**
+         * 模拟对应 Action 操作
+         * @param action    操作意图
+         * @param arguments 操作参数
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performAction(
+                final int action,
+                final Bundle arguments
+        ) {
+            return mNode.performAction(action, arguments);
+        }
+
         // =======
         // = 点击 =
         // =======
@@ -430,6 +445,20 @@ public final class AccessibilityUtils {
                 final boolean clickAll
         ) {
             return mNode.performLongClick(clickParent, clickAll);
+        }
+
+        // ==========
+        // = 输入内容 =
+        // ==========
+
+        /**
+         * 指定节点输入文本
+         * @param text 文本内容
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        public boolean inputText(final CharSequence text) {
+            return mNode.inputText(text);
         }
 
         // ==========
@@ -599,6 +628,43 @@ public final class AccessibilityUtils {
                     return nodeInfo.performAction(action);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "performAction");
+                }
+            }
+            return false;
+        }
+
+        /**
+         * 模拟对应 Action 操作
+         * @param action    操作意图
+         * @param arguments 操作参数
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performAction(
+                final int action,
+                final Bundle arguments
+        ) {
+            return performAction(mNodeInfo, action, arguments);
+        }
+
+        /**
+         * 模拟对应 Action 操作
+         * @param nodeInfo  {@link AccessibilityNodeInfo}
+         * @param action    操作意图
+         * @param arguments 操作参数
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        private boolean performAction(
+                final AccessibilityNodeInfo nodeInfo,
+                final int action,
+                final Bundle arguments
+        ) {
+            if (nodeInfo != null && arguments != null) {
+                try {
+                    return nodeInfo.performAction(action, arguments);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "performAction - arguments");
                 }
             }
             return false;
@@ -774,6 +840,27 @@ public final class AccessibilityUtils {
             } else {
                 return performLongClick(nodeInfo);
             }
+        }
+
+        // ==========
+        // = 输入内容 =
+        // ==========
+
+        /**
+         * 指定节点输入文本
+         * @param text 文本内容
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        public boolean inputText(final CharSequence text) {
+            if (mNodeInfo != null && text != null) {
+                Bundle arguments = new Bundle();
+                arguments.putCharSequence(
+                        AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, text
+                );
+                return performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
+            }
+            return false;
         }
 
         // ==========
