@@ -12,6 +12,8 @@ import android.view.accessibility.AccessibilityWindowInfo;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dev.utils.DevFinal;
@@ -83,8 +85,6 @@ public final class AccessibilityUtils {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility(final String packageName) {
-        if (packageName == null) return false;
-        // 判断辅助功能是否开启
         if (!isAccessibilitySettingsOn(packageName)) {
             // 跳转至辅助功能设置页面
             AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
@@ -199,12 +199,13 @@ public final class AccessibilityUtils {
             final AccessibilityService service,
             final AccessibilityServiceInfo info
     ) {
-        if (service == null || info == null) return false;
-        try {
-            service.setServiceInfo(info);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setServiceInfo");
+        if (service != null && info != null) {
+            try {
+                service.setServiceInfo(info);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setServiceInfo");
+            }
         }
         return false;
     }
@@ -632,6 +633,131 @@ public final class AccessibilityUtils {
         // ==========
         // = 节点获取 =
         // ==========
+
+        /**
+         * 查找符合条件的节点
+         * @param focus 焦点类型
+         * @return 拥有特定焦点类型的节点
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public AccessibilityNodeInfo findFocus(final int focus) {
+            if (mNodeInfo != null) {
+                try {
+                    // 通过指定的焦点类型找到当前的节点
+                    return mNodeInfo.findFocus(focus);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "findFocus");
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param focus     焦点类型
+         * @param className 节点所属的类 ( 类名 )
+         * @return 拥有特定焦点类型的节点
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public AccessibilityNodeInfo findFocus(
+                final int focus,
+                final String className
+        ) {
+            if (mNodeInfo != null && className != null) {
+                AccessibilityNodeInfo node = findFocus(focus);
+                if (node != null && node.getClassName().equals(className)) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param text 文本内容 ( 搜索包含该文本内容的节点 )
+         * @return 包含该文本内容的节点集合
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text) {
+            if (mNodeInfo != null && text != null) {
+                try {
+                    // 通过文字找到当前的节点
+                    List<AccessibilityNodeInfo> nodes = mNodeInfo.findAccessibilityNodeInfosByText(text);
+                    if (nodes != null) return nodes;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "findAccessibilityNodeInfosByText");
+                }
+            }
+            return Collections.emptyList();
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param text      文本内容 ( 搜索包含该文本内容的节点 )
+         * @param className 节点所属的类 ( 类名 )
+         * @return 包含该文本内容, 且属于指定类的节点集合
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
+                final String text,
+                final String className
+        ) {
+            List<AccessibilityNodeInfo> lists = new ArrayList<>();
+            if (mNodeInfo != null && text != null && className != null) {
+                List<AccessibilityNodeInfo> nodes = findAccessibilityNodeInfosByText(text);
+                for (int i = 0, len = nodes.size(); i < len; i++) {
+                    AccessibilityNodeInfo node = nodes.get(i);
+                    if (node != null && node.getClassName().equals(className)) {
+                        lists.add(node);
+                    }
+                }
+            }
+            return lists;
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param id viewId
+         * @return 等于 viewId 的节点集合
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+        public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id) {
+            if (mNodeInfo != null && id != null) {
+                try {
+                    // 通过 id 找到当前的节点
+                    List<AccessibilityNodeInfo> nodes = mNodeInfo.findAccessibilityNodeInfosByViewId(id);
+                    if (nodes != null) return nodes;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "findAccessibilityNodeInfosByViewId");
+                }
+            }
+            return Collections.emptyList();
+        }
+
+        /**
+         * 查找符合条件的节点
+         * @param id        viewId
+         * @param className 节点所属的类 ( 类名 )
+         * @return 等于 viewId, 且属于指定类的节点集合
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+        public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
+                final AccessibilityService service,
+                final String id,
+                final String className
+        ) {
+            List<AccessibilityNodeInfo> lists = new ArrayList<>();
+            if (mNodeInfo != null && id != null && className != null) {
+                List<AccessibilityNodeInfo> nodes = findAccessibilityNodeInfosByViewId(id);
+                for (int i = 0, len = nodes.size(); i < len; i++) {
+                    AccessibilityNodeInfo node = nodes.get(i);
+                    if (node != null && node.getClassName().equals(className)) {
+                        lists.add(node);
+                    }
+                }
+            }
+            return lists;
+        }
     }
 
     // =============
