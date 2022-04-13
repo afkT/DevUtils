@@ -244,6 +244,10 @@ public final class AccessibilityUtils {
     // = 包装类 =
     // ========
 
+    // =============
+    // = Operation =
+    // =============
+
     /**
      * 获取 Operation
      * @param nodeInfo {@link AccessibilityNodeInfo}
@@ -254,6 +258,29 @@ public final class AccessibilityUtils {
     }
 
     /**
+     * 获取 Operation ( Root Window Node )
+     * @return {@link Operation}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Operation operation() {
+        return new Operation(getRootInActiveWindow());
+    }
+
+    /**
+     * 获取 Operation ( Root Window Node )
+     * @param service {@link AccessibilityService}
+     * @return {@link Operation}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Operation operation(final AccessibilityService service) {
+        return new Operation(getRootInActiveWindow(service));
+    }
+
+    // ========
+    // = Node =
+    // ========
+
+    /**
      * 获取 Node
      * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@link Node}
@@ -262,9 +289,28 @@ public final class AccessibilityUtils {
         return new Node(nodeInfo);
     }
 
-    // =========
-    // = 包装类 =
-    // =========
+    /**
+     * 获取 Node ( Root Window Node )
+     * @return {@link Node}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Node node() {
+        return new Node(getRootInActiveWindow());
+    }
+
+    /**
+     * 获取 Node ( Root Window Node )
+     * @param service {@link AccessibilityService}
+     * @return {@link Node}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static Node node(final AccessibilityService service) {
+        return new Node(getRootInActiveWindow(service));
+    }
+
+    // ============
+    // = 包装类实现 =
+    // ============
 
     /**
      * detail: 无障碍节点操作包装类
