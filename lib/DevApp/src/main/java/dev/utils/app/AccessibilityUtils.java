@@ -555,9 +555,6 @@ public final class AccessibilityUtils {
         // 无障碍节点包装类
         private Node mNode;
 
-        // 无障碍节点
-        private AccessibilityNodeInfo mNodeInfo;
-
         private Operation(final AccessibilityNodeInfo nodeInfo) {
             this.mNode = AccessibilityUtils.node(nodeInfo);
         }
@@ -592,6 +589,132 @@ public final class AccessibilityUtils {
          * @return {@code true} success, {@code false} fail
          */
         public boolean performAction(final int action) {
+            return mNode.performAction(action);
+        }
+
+        // =======
+        // = 点击 =
+        // =======
+
+        /**
+         * 点击指定节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick() {
+            return mNode.performClick();
+        }
+
+        /**
+         * 点击指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(final boolean clickParent) {
+            return mNode.performClick(clickParent);
+        }
+
+        /**
+         * 点击指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performClick(
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            return mNode.performClick(clickParent, clickAll);
+        }
+
+        // =======
+        // = 长按 =
+        // =======
+
+        /**
+         * 长按指定节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick() {
+            return mNode.performLongClick();
+        }
+
+        /**
+         * 长按指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(final boolean clickParent) {
+            return mNode.performLongClick(clickParent);
+        }
+
+        /**
+         * 长按指定节点
+         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
+         * @param clickAll    判断是否点击全部节点
+         * @return {@code true} success, {@code false} fail
+         */
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public boolean performLongClick(
+                final boolean clickParent,
+                final boolean clickAll
+        ) {
+            return mNode.performLongClick(clickParent, clickAll);
+        }
+    }
+
+    /**
+     * detail: 无障碍节点包装类
+     * @author Ttt
+     */
+    public static final class Node {
+
+        // 无障碍节点
+        private AccessibilityNodeInfo mNodeInfo;
+        // 无障碍节点操作包装类
+        private Operation             mOperation;
+
+        private Node(final AccessibilityNodeInfo nodeInfo) {
+            this.mNodeInfo = nodeInfo;
+        }
+
+        // =============
+        // = 对外公开方法 =
+        // =============
+
+        /**
+         * 获取 Operation
+         * @return {@link Operation}
+         */
+        public Operation operation() {
+            if (mOperation == null) {
+                mOperation = AccessibilityUtils.operation(mNodeInfo);
+            }
+            return mOperation;
+        }
+
+        /**
+         * 获取无障碍节点
+         * @return {@link AccessibilityNodeInfo}
+         */
+        public AccessibilityNodeInfo getNodeInfo() {
+            return mNodeInfo;
+        }
+
+        // =======
+        // = 操作 =
+        // =======
+
+        /**
+         * 模拟对应 Action 操作
+         * @param action 操作意图
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean performAction(final int action) {
             return performAction(mNodeInfo, action);
         }
 
@@ -601,7 +724,7 @@ public final class AccessibilityUtils {
          * @param action   操作意图
          * @return {@code true} success, {@code false} fail
          */
-        public boolean performAction(
+        private boolean performAction(
                 final AccessibilityNodeInfo nodeInfo,
                 final int action
         ) {
@@ -635,7 +758,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performClick(final boolean clickParent) {
-            return performClick(mNodeInfo, clickParent);
+            return performClick(mNodeInfo, clickParent, false);
         }
 
         /**
@@ -660,7 +783,7 @@ public final class AccessibilityUtils {
          * @return {@code true} success, {@code false} fail
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performClick(final AccessibilityNodeInfo nodeInfo) {
+        private boolean performClick(final AccessibilityNodeInfo nodeInfo) {
             if (nodeInfo != null && nodeInfo.isClickable()) {
                 return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
             }
@@ -671,25 +794,11 @@ public final class AccessibilityUtils {
          * 点击指定节点
          * @param nodeInfo    {@link AccessibilityNodeInfo}
          * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-         * @return {@code true} success, {@code false} fail
-         */
-        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performClick(
-                final AccessibilityNodeInfo nodeInfo,
-                final boolean clickParent
-        ) {
-            return performClick(nodeInfo, clickParent, false);
-        }
-
-        /**
-         * 点击指定节点
-         * @param nodeInfo    {@link AccessibilityNodeInfo}
-         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
          * @param clickAll    判断是否点击全部节点
          * @return {@code true} success, {@code false} fail
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performClick(
+        private boolean performClick(
                 final AccessibilityNodeInfo nodeInfo,
                 final boolean clickParent,
                 final boolean clickAll
@@ -735,7 +844,7 @@ public final class AccessibilityUtils {
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public boolean performLongClick(final boolean clickParent) {
-            return performLongClick(mNodeInfo, clickParent);
+            return performLongClick(mNodeInfo, clickParent, false);
         }
 
         /**
@@ -760,7 +869,7 @@ public final class AccessibilityUtils {
          * @return {@code true} success, {@code false} fail
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
+        private boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
             if (nodeInfo != null && nodeInfo.isClickable()) {
                 return performAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
             }
@@ -771,25 +880,11 @@ public final class AccessibilityUtils {
          * 长按指定节点
          * @param nodeInfo    {@link AccessibilityNodeInfo}
          * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
-         * @return {@code true} success, {@code false} fail
-         */
-        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performLongClick(
-                final AccessibilityNodeInfo nodeInfo,
-                final boolean clickParent
-        ) {
-            return performLongClick(nodeInfo, clickParent, false);
-        }
-
-        /**
-         * 长按指定节点
-         * @param nodeInfo    {@link AccessibilityNodeInfo}
-         * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
          * @param clickAll    判断是否点击全部节点
          * @return {@code true} success, {@code false} fail
          */
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-        public boolean performLongClick(
+        private boolean performLongClick(
                 final AccessibilityNodeInfo nodeInfo,
                 final boolean clickParent,
                 final boolean clickAll
@@ -814,42 +909,6 @@ public final class AccessibilityUtils {
                 return performLongClick(nodeInfo);
             }
         }
-    }
-
-    /**
-     * detail: 无障碍节点包装类
-     * @author Ttt
-     */
-    public static final class Node {
-
-        // 无障碍节点
-        private AccessibilityNodeInfo mNodeInfo;
-
-        private Node(final AccessibilityNodeInfo nodeInfo) {
-            this.mNodeInfo = nodeInfo;
-        }
-
-        // =============
-        // = 对外公开方法 =
-        // =============
-
-        /**
-         * 获取 Operation
-         * @return {@link Operation}
-         */
-        public Operation operation() {
-            return AccessibilityUtils.operation(mNodeInfo);
-        }
-
-        /**
-         * 获取无障碍节点
-         * @return {@link AccessibilityNodeInfo}
-         */
-        public AccessibilityNodeInfo getNodeInfo() {
-            return mNodeInfo;
-        }
-
-        // =
     }
 
     // =============
