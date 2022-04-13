@@ -2,10 +2,12 @@ package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -18,6 +20,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import dev.DevUtils;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
@@ -1067,7 +1070,7 @@ public final class AccessibilityUtils {
     }
 
     // =============
-    // = 对外公开方法 =
+    // = 全局操作方法 =
     // =============
 
     /**
@@ -1107,7 +1110,67 @@ public final class AccessibilityUtils {
         return false;
     }
 
-    // =
+    /**
+     * 模拟手势操作
+     * @param gesture  模拟手势
+     * @param callback 操作结果回调
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean dispatchGesture(
+            final GestureDescription gesture,
+            final AccessibilityService.GestureResultCallback callback
+    ) {
+        return dispatchGesture(sService, gesture, callback, DevUtils.getHandler());
+    }
+
+    /**
+     * 模拟手势操作
+     * @param gesture  模拟手势
+     * @param callback 操作结果回调
+     * @param handler  是否通过 Handler 回调
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean dispatchGesture(
+            final GestureDescription gesture,
+            final AccessibilityService.GestureResultCallback callback,
+            final Handler handler
+    ) {
+        return dispatchGesture(sService, gesture, callback, handler);
+    }
+
+    /**
+     * 模拟手势操作
+     * <pre>
+     *     需要设置 android:canPerformGestures="true"
+     * </pre>
+     * @param service  {@link AccessibilityService}
+     * @param gesture  模拟手势
+     * @param callback 操作结果回调
+     * @param handler  是否通过 Handler 回调
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean dispatchGesture(
+            final AccessibilityService service,
+            final GestureDescription gesture,
+            final AccessibilityService.GestureResultCallback callback,
+            final Handler handler
+    ) {
+        if (service != null) {
+            try {
+                return service.dispatchGesture(gesture, callback, handler);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "dispatchGesture");
+            }
+        }
+        return false;
+    }
+
+    // =============
+    // = 全局快捷方法 =
+    // =============
 
     /**
      * 触发返回键

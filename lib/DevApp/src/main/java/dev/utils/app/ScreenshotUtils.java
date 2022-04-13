@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 
 import java.util.Arrays;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
@@ -295,7 +296,7 @@ public final class ScreenshotUtils {
      * @return {@code true} success, {@code false} fail
      */
     public boolean startListener() {
-        return startListener(true, HandlerUtils.getMainHandler());
+        return startListener(true, DevUtils.getHandler());
     }
 
     /**
@@ -304,7 +305,7 @@ public final class ScreenshotUtils {
      * @return {@code true} success, {@code false} fail
      */
     public boolean startListener(final boolean notifyForDescendants) {
-        return startListener(notifyForDescendants, HandlerUtils.getMainHandler());
+        return startListener(notifyForDescendants, DevUtils.getHandler());
     }
 
     /**
