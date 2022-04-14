@@ -388,7 +388,7 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 
 [DevComponent]: https://github.com/afkT/DevComponent
 [DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
-[WanAndroidAPI]: https://github.com/afkT/DevComponent/blob/main/component/module/module_wanandroid/src/main/java/afkt_replace/module/wan_android/data/api/WanAndroidAPI.kt
+[WanAndroidAPI]: https://github.com/afkT/DevComponent/blob/main/application/module/module_wanandroid/src/main/java/afkt_replace/module/wan_android/data/api/WanAndroidAPI.kt
 [OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
 [RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
 [Operation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
