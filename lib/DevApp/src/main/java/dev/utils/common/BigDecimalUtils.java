@@ -837,11 +837,25 @@ public final class BigDecimalUtils {
             final Object v2
     ) {
         try {
-            return operation(v1).setThrowError(true).compareTo(v2);
+            return compareToThrow(v1, v2);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "compareTo");
         }
         return -2;
+    }
+
+    /**
+     * 比较大小 ( 抛出异常 )
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]
+     */
+    public static int compareToThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true).compareTo(v2);
     }
 
     // ==========

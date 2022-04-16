@@ -3,6 +3,7 @@ package dev.utils.common;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -821,6 +822,46 @@ public final class BigDecimalUtils {
     // = 快捷方法 =
     // ==========
 
+    // ==========
+    // = 比较大小 =
+    // ==========
+
+    /**
+     * 比较大小
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
+     */
+    public static int compareTo(
+            final Object v1,
+            final Object v2
+    ) {
+        try {
+            return compareToThrow(v1, v2);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "compareTo");
+        }
+        return -2;
+    }
+
+    /**
+     * 比较大小 ( 抛出异常 )
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]
+     */
+    public static int compareToThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true).compareTo(v2);
+    }
+
+    // ==========
+    // = 捕获异常 =
+    // ==========
+
     // =====
     // = 加 =
     // =====
@@ -834,9 +875,12 @@ public final class BigDecimalUtils {
     public static double add(
             final Object v1,
             final Object v2
-    )
-            throws Exception {
-        return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return addThrow(v1, v2);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -850,9 +894,12 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    )
-            throws Exception {
-        return add(v1, v2, scale, ROUNDING_MODE);
+    ) {
+        try {
+            return addThrow(v1, v2, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -866,12 +913,11 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    )
-            throws Exception {
-        if (config != null) {
-            return add(v1, v2, config.getScale(), config.getRoundingMode());
-        } else {
-            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return addThrow(v1, v2, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
         }
     }
 
@@ -888,11 +934,12 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    )
-            throws Exception {
-        return operation(v1).setThrowError(true)
-                .add(v2).setScale(scale, roundingMode)
-                .requireNonNull().doubleValue();
+    ) {
+        try {
+            return addThrow(v1, v2, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     // =====
@@ -908,9 +955,12 @@ public final class BigDecimalUtils {
     public static double subtract(
             final Object v1,
             final Object v2
-    )
-            throws Exception {
-        return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return subtractThrow(v1, v2);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -924,9 +974,12 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    )
-            throws Exception {
-        return subtract(v1, v2, scale, ROUNDING_MODE);
+    ) {
+        try {
+            return subtractThrow(v1, v2, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -940,12 +993,11 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    )
-            throws Exception {
-        if (config != null) {
-            return subtract(v1, v2, config.getScale(), config.getRoundingMode());
-        } else {
-            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return subtractThrow(v1, v2, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
         }
     }
 
@@ -962,11 +1014,12 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    )
-            throws Exception {
-        return operation(v1).setThrowError(true)
-                .subtract(v2).setScale(scale, roundingMode)
-                .requireNonNull().doubleValue();
+    ) {
+        try {
+            return subtractThrow(v1, v2, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     // =====
@@ -982,9 +1035,12 @@ public final class BigDecimalUtils {
     public static double multiply(
             final Object v1,
             final Object v2
-    )
-            throws Exception {
-        return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return multiplyThrow(v1, v2);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -998,9 +1054,12 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    )
-            throws Exception {
-        return multiply(v1, v2, scale, ROUNDING_MODE);
+    ) {
+        try {
+            return multiplyThrow(v1, v2, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -1014,12 +1073,11 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    )
-            throws Exception {
-        if (config != null) {
-            return multiply(v1, v2, config.getScale(), config.getRoundingMode());
-        } else {
-            return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return multiplyThrow(v1, v2, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
         }
     }
 
@@ -1036,11 +1094,12 @@ public final class BigDecimalUtils {
             final Object v2,
             final int scale,
             final int roundingMode
-    )
-            throws Exception {
-        return operation(v1).setThrowError(true)
-                .multiply(v2).setScale(scale, roundingMode)
-                .requireNonNull().doubleValue();
+    ) {
+        try {
+            return multiplyThrow(v1, v2, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     // =====
@@ -1056,9 +1115,12 @@ public final class BigDecimalUtils {
     public static double divide(
             final Object v1,
             final Object v2
-    )
-            throws Exception {
-        return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return divideThrow(v1, v2);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -1072,9 +1134,12 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final int scale
-    )
-            throws Exception {
-        return divide(v1, v2, scale, ROUNDING_MODE);
+    ) {
+        try {
+            return divideThrow(v1, v2, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
     }
 
     /**
@@ -1088,12 +1153,11 @@ public final class BigDecimalUtils {
             final Object v1,
             final Object v2,
             final Config config
-    )
-            throws Exception {
-        if (config != null) {
-            return divide(v1, v2, config.getScale(), config.getRoundingMode());
-        } else {
-            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    ) {
+        try {
+            return divideThrow(v1, v2, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
         }
     }
 
@@ -1106,6 +1170,457 @@ public final class BigDecimalUtils {
      * @return 两个参数的商
      */
     public static double divide(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return divideThrow(v1, v2, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    // =======
+    // = 取余 =
+    // =======
+
+    /**
+     * 提供精确的取余运算
+     * @param v1 被除数
+     * @param v2 除数
+     * @return 两个参数的余数
+     */
+    public static double remainder(
+            final Object v1,
+            final Object v2
+    ) {
+        try {
+            return remainderThrow(v1, v2);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的取余运算
+     * @param v1    被除数
+     * @param v2    除数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的余数
+     */
+    public static double remainder(
+            final Object v1,
+            final Object v2,
+            final int scale
+    ) {
+        try {
+            return remainderThrow(v1, v2, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的取余运算
+     * @param v1     被除数
+     * @param v2     除数
+     * @param config {@link Config}
+     * @return 两个参数的余数
+     */
+    public static double remainder(
+            final Object v1,
+            final Object v2,
+            final Config config
+    ) {
+        try {
+            return remainderThrow(v1, v2, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的取余运算
+     * @param v1           被除数
+     * @param v2           除数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的余数
+     */
+    public static double remainder(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return remainderThrow(v1, v2, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    // ==========
+    // = 四舍五入 =
+    // ==========
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1 需要四舍五入的数值
+     * @return 四舍五入后的结果
+     */
+    public static double round(final Object v1) {
+        try {
+            return roundThrow(v1);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1    需要四舍五入的数值
+     * @param scale 保留 scale 位小数
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final int scale
+    ) {
+        try {
+            return roundThrow(v1, scale);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1     需要四舍五入的数值
+     * @param config {@link Config}
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final Config config
+    ) {
+        try {
+            return roundThrow(v1, config);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1           需要四舍五入的数值
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return roundThrow(v1, scale, roundingMode);
+        } catch (Exception e) {
+            return DevFinal.DEFAULT.DOUBLE;
+        }
+    }
+
+    // ==========
+    // = 抛出异常 =
+    // ==========
+
+    // =====
+    // = 加 =
+    // =====
+
+    /**
+     * 提供精确的加法运算 ( 抛出异常 )
+     * @param v1 被加数
+     * @param v2 加数
+     * @return 两个参数的和
+     */
+    public static double addThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return addThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的加法运算 ( 抛出异常 )
+     * @param v1    被加数
+     * @param v2    加数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的和
+     */
+    public static double addThrow(
+            final Object v1,
+            final Object v2,
+            final int scale
+    )
+            throws Exception {
+        return addThrow(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的加法运算 ( 抛出异常 )
+     * @param v1     被加数
+     * @param v2     加数
+     * @param config {@link Config}
+     * @return 两个参数的和
+     */
+    public static double addThrow(
+            final Object v1,
+            final Object v2,
+            final Config config
+    )
+            throws Exception {
+        if (config != null) {
+            return addThrow(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return addThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的加法运算 ( 抛出异常 )
+     * @param v1           被加数
+     * @param v2           加数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的和
+     */
+    public static double addThrow(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .add(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
+    }
+
+    // =====
+    // = 减 =
+    // =====
+
+    /**
+     * 提供精确的减法运算 ( 抛出异常 )
+     * @param v1 被减数
+     * @param v2 减数
+     * @return 两个参数的差
+     */
+    public static double subtractThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return subtractThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的减法运算 ( 抛出异常 )
+     * @param v1    被减数
+     * @param v2    减数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的差
+     */
+    public static double subtractThrow(
+            final Object v1,
+            final Object v2,
+            final int scale
+    )
+            throws Exception {
+        return subtractThrow(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的减法运算 ( 抛出异常 )
+     * @param v1     被减数
+     * @param v2     减数
+     * @param config {@link Config}
+     * @return 两个参数的差
+     */
+    public static double subtractThrow(
+            final Object v1,
+            final Object v2,
+            final Config config
+    )
+            throws Exception {
+        if (config != null) {
+            return subtractThrow(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return subtractThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的减法运算 ( 抛出异常 )
+     * @param v1           被减数
+     * @param v2           减数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的差
+     */
+    public static double subtractThrow(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .subtract(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
+    }
+
+    // =====
+    // = 乘 =
+    // =====
+
+    /**
+     * 提供精确的乘法运算 ( 抛出异常 )
+     * @param v1 被乘数
+     * @param v2 乘数
+     * @return 两个参数的积
+     */
+    public static double multiplyThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return multiplyThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的乘法运算 ( 抛出异常 )
+     * @param v1    被乘数
+     * @param v2    乘数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的积
+     */
+    public static double multiplyThrow(
+            final Object v1,
+            final Object v2,
+            final int scale
+    )
+            throws Exception {
+        return multiplyThrow(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的乘法运算 ( 抛出异常 )
+     * @param v1     被乘数
+     * @param v2     乘数
+     * @param config {@link Config}
+     * @return 两个参数的积
+     */
+    public static double multiplyThrow(
+            final Object v1,
+            final Object v2,
+            final Config config
+    )
+            throws Exception {
+        if (config != null) {
+            return multiplyThrow(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return multiplyThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的乘法运算 ( 抛出异常 )
+     * @param v1           被乘数
+     * @param v2           乘数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的积
+     */
+    public static double multiplyThrow(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    )
+            throws Exception {
+        return operation(v1).setThrowError(true)
+                .multiply(v2).setScale(scale, roundingMode)
+                .requireNonNull().doubleValue();
+    }
+
+    // =====
+    // = 除 =
+    // =====
+
+    /**
+     * 提供精确的除法运算 ( 抛出异常 )
+     * @param v1 被除数
+     * @param v2 除数
+     * @return 两个参数的商
+     */
+    public static double divideThrow(
+            final Object v1,
+            final Object v2
+    )
+            throws Exception {
+        return divideThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的除法运算 ( 抛出异常 )
+     * @param v1    被除数
+     * @param v2    除数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的商
+     */
+    public static double divideThrow(
+            final Object v1,
+            final Object v2,
+            final int scale
+    )
+            throws Exception {
+        return divideThrow(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的除法运算 ( 抛出异常 )
+     * @param v1     被除数
+     * @param v2     除数
+     * @param config {@link Config}
+     * @return 两个参数的商
+     */
+    public static double divideThrow(
+            final Object v1,
+            final Object v2,
+            final Config config
+    )
+            throws Exception {
+        if (config != null) {
+            return divideThrow(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return divideThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的除法运算 ( 抛出异常 )
+     * @param v1           被除数
+     * @param v2           除数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的商
+     */
+    public static double divideThrow(
             final Object v1,
             final Object v2,
             final int scale,
@@ -1122,64 +1637,64 @@ public final class BigDecimalUtils {
     // =======
 
     /**
-     * 提供精确的取余运算
+     * 提供精确的取余运算 ( 抛出异常 )
      * @param v1 被除数
      * @param v2 除数
      * @return 两个参数的余数
      */
-    public static double remainder(
+    public static double remainderThrow(
             final Object v1,
             final Object v2
     )
             throws Exception {
-        return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        return remainderThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
     /**
-     * 提供精确的取余运算
+     * 提供精确的取余运算 ( 抛出异常 )
      * @param v1    被除数
      * @param v2    除数
      * @param scale 保留 scale 位小数
      * @return 两个参数的余数
      */
-    public static double remainder(
+    public static double remainderThrow(
             final Object v1,
             final Object v2,
             final int scale
     )
             throws Exception {
-        return remainder(v1, v2, scale, ROUNDING_MODE);
+        return remainderThrow(v1, v2, scale, ROUNDING_MODE);
     }
 
     /**
-     * 提供精确的取余运算
+     * 提供精确的取余运算 ( 抛出异常 )
      * @param v1     被除数
      * @param v2     除数
      * @param config {@link Config}
      * @return 两个参数的余数
      */
-    public static double remainder(
+    public static double remainderThrow(
             final Object v1,
             final Object v2,
             final Config config
     )
             throws Exception {
         if (config != null) {
-            return remainder(v1, v2, config.getScale(), config.getRoundingMode());
+            return remainderThrow(v1, v2, config.getScale(), config.getRoundingMode());
         } else {
-            return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
+            return remainderThrow(v1, v2, NEW_SCALE, ROUNDING_MODE);
         }
     }
 
     /**
-     * 提供精确的取余运算
+     * 提供精确的取余运算 ( 抛出异常 )
      * @param v1           被除数
      * @param v2           除数
      * @param scale        保留 scale 位小数
      * @param roundingMode 舍入模式
      * @return 两个参数的余数
      */
-    public static double remainder(
+    public static double remainderThrow(
             final Object v1,
             final Object v2,
             final int scale,
@@ -1196,55 +1711,55 @@ public final class BigDecimalUtils {
     // ==========
 
     /**
-     * 提供精确的小数位四舍五入处理
+     * 提供精确的小数位四舍五入处理 ( 抛出异常 )
      * @param v1 需要四舍五入的数值
      * @return 四舍五入后的结果
      */
-    public static double round(final Object v1)
+    public static double roundThrow(final Object v1)
             throws Exception {
-        return round(v1, NEW_SCALE, ROUNDING_MODE);
+        return roundThrow(v1, NEW_SCALE, ROUNDING_MODE);
     }
 
     /**
-     * 提供精确的小数位四舍五入处理
+     * 提供精确的小数位四舍五入处理 ( 抛出异常 )
      * @param v1    需要四舍五入的数值
      * @param scale 保留 scale 位小数
      * @return 四舍五入后的结果
      */
-    public static double round(
+    public static double roundThrow(
             final Object v1,
             final int scale
     )
             throws Exception {
-        return round(v1, scale, ROUNDING_MODE);
+        return roundThrow(v1, scale, ROUNDING_MODE);
     }
 
     /**
-     * 提供精确的小数位四舍五入处理
+     * 提供精确的小数位四舍五入处理 ( 抛出异常 )
      * @param v1     需要四舍五入的数值
      * @param config {@link Config}
      * @return 四舍五入后的结果
      */
-    public static double round(
+    public static double roundThrow(
             final Object v1,
             final Config config
     )
             throws Exception {
         if (config != null) {
-            return round(v1, config.getScale(), config.getRoundingMode());
+            return roundThrow(v1, config.getScale(), config.getRoundingMode());
         } else {
-            return round(v1, NEW_SCALE, ROUNDING_MODE);
+            return roundThrow(v1, NEW_SCALE, ROUNDING_MODE);
         }
     }
 
     /**
-     * 提供精确的小数位四舍五入处理
+     * 提供精确的小数位四舍五入处理 ( 抛出异常 )
      * @param v1           需要四舍五入的数值
      * @param scale        保留 scale 位小数
      * @param roundingMode 舍入模式
      * @return 四舍五入后的结果
      */
-    public static double round(
+    public static double roundThrow(
             final Object v1,
             final int scale,
             final int roundingMode
@@ -1253,27 +1768,5 @@ public final class BigDecimalUtils {
         return operation(v1).setThrowError(true)
                 .round(scale, roundingMode)
                 .requireNonNull().doubleValue();
-    }
-
-    // ==========
-    // = 比较大小 =
-    // ==========
-
-    /**
-     * 比较大小
-     * @param v1 输入的数值
-     * @param v2 被比较的数字
-     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-     */
-    public static int compareTo(
-            final Object v1,
-            final Object v2
-    ) {
-        try {
-            return operation(v1).setThrowError(true).compareTo(v2);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compareTo");
-        }
-        return -2;
     }
 }
