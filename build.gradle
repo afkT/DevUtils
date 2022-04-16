@@ -75,7 +75,7 @@ allprojects {
         // 华为 maven
         maven { url "https://developer.huawei.com/repo/" }
 
-        // OPPO maven username、password 是OPPO 官方要求配置的固定值 ( 不可修改 )
+        // OPPO maven username、password 是 OPPO 官方要求配置的固定值 ( 不可修改 )
         maven {
             url "https://maven.columbus.heytapmobi.com/repository/releases/"
             credentials {
