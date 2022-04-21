@@ -3,6 +3,7 @@ package dev.http.progress
 import android.os.Parcelable
 import dev.utils.DevFinal
 import dev.utils.common.NumberUtils
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -14,15 +15,15 @@ class Progress private constructor(
     // 进度 id ( 当前时间戳, 值越大说明该请求越新 - 同时可以当做 date 使用 )
     private val id: Long,
     // 数据总长度
-    private var totalSize: Long = 0,
+    private var totalSize: Long,
     // 当前已上传、下载总长度
-    private var currentSize: Long = 0,
+    private var currentSize: Long,
     // 最近一次触发大小 ( 最近一次被调用的间隔时间内上传或下载的 byte 长度 )
-    private var lastSize: Long = 0,
+    private var lastSize: Long,
     // 最近一次刷新、触发时间 ( 毫秒 )
-    private var lastRefreshTime: Long = 0,
+    private var lastRefreshTime: Long,
     // 当前状态
-    private var status: Int = NORMAL,
+    private var status: Int,
     // 上传、下载网速信息
     private val speed: Speed
 ) : Parcelable {
@@ -190,10 +191,15 @@ class Progress private constructor(
     @Parcelize
     class Speed private constructor(
         // 网速 byte/s
-        private val speed: Long = 0,
+        private val speed: Long,
         // 网速做平滑的缓存, 避免抖动过快
-        private val speedBuffer: List<Long> = mutableListOf()
+        private val speedBuffer: List<Long>
     ) : Parcelable {
 
+        constructor() : this(0, mutableListOf())
+
+        // 缓存数量存储限制最多条数
+        @IgnoredOnParcel
+        private val BUFFER_MAX_SIZE = 10
     }
 }
