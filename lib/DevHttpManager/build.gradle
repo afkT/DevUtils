@@ -1,4 +1,5 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply plugin: 'kotlin-parcelize'
 
 android.defaultConfig {
     versionCode versions.dev_http_manager_versionCode

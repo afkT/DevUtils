@@ -77,7 +77,7 @@ object DevHttpManager {
     // = RetrofitManager =
     // ===================
 
-    object Manager {
+    object RM {
 
         // =================
         // = OkHttpBuilder =
@@ -219,7 +219,7 @@ object DevHttpManager {
     // = ProgressManager =
     // ===================
 
-    object Progress {
+    object PM {
 
     }
 }
