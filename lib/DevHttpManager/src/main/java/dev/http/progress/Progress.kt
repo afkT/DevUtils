@@ -10,25 +10,27 @@ import kotlinx.parcelize.Parcelize
  * @author Ttt
  */
 @Parcelize
-class Progress(
+class Progress private constructor(
     // 进度 id ( 当前时间戳, 值越大说明该请求越新 - 同时可以当做 date 使用 )
-    private val id: Long = System.currentTimeMillis()
+    private val id: Long,
+    // 数据总长度
+    private var totalSize: Long = 0,
+    // 当前已上传、下载总长度
+    private var currentSize: Long = 0,
+    // 最近一次触发大小 ( 最近一次被调用的间隔时间内上传或下载的 byte 长度 )
+    private var lastSize: Long = 0,
+    // 最近一次刷新、触发时间 ( 毫秒 )
+    private var lastRefreshTime: Long = 0,
+    // 当前状态
+    private var status: Int = NORMAL,
+    // 上传、下载网速信息
+    private val speed: Speed
 ) : Parcelable {
 
-    // 数据总长度
-    private var totalSize: Long = 0
-
-    // 当前已上传、下载总长度
-    private var currentSize: Long = 0
-
-    // 最近一次触发大小 ( 最近一次被调用的间隔时间内上传或下载的 byte 长度 )
-    private var lastSize: Long = 0
-
-    // 最近一次刷新、触发时间 ( 毫秒 )
-    private var lastRefreshTime: Long = 0
-
-    // 当前状态
-    private var status = NORMAL
+    constructor(id: Long = System.currentTimeMillis()) : this(
+        id, 0, 0, 0, 0,
+        NORMAL, Speed()
+    )
 
     companion object {
 
@@ -175,4 +177,23 @@ class Progress(
     // ==========
     // = 内部方法 =
     // ==========
+
+
+    // ============
+    // = 其他扩展类 =
+    // ============
+
+    /**
+     * detail: 上传、下载网速信息
+     * @author Ttt
+     */
+    @Parcelize
+    class Speed private constructor(
+        // 网速 byte/s
+        private val speed: Long = 0,
+        // 网速做平滑的缓存, 避免抖动过快
+        private val speedBuffer: List<Long> = mutableListOf()
+    ) : Parcelable {
+
+    }
 }
