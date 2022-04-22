@@ -77,13 +77,12 @@ object DataStoreUtils {
 
     /**
      * SharedPreferences 迁移到 DataStore
-     * <pre>
-     *     进行迁移前, 不能使用该 storeName 进行创建 DataStore
-     *     具体看顶部注意事项
-     * </pre>
      * @param storeName DataStore Name
      * @param spNames SharedPreferences Name Array
      * @return [InnerDataStore]
+     * <p></p>
+     * 进行迁移前, 不能使用该 storeName 进行创建 DataStore
+     * 具体看顶部注意事项
      */
     @Throws(Exception::class)
     fun migrationSPToDataStore(
