@@ -9,6 +9,7 @@ import android.os.SystemClock
 internal class ProgressUtils private constructor() {
 
     companion object {
+
         val instance: ProgressUtils by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             ProgressUtils()
         }
@@ -21,11 +22,16 @@ internal class ProgressUtils private constructor() {
     /**
      * 设置为 [Progress.START] 状态
      * @param progress Progress
+     * @param totalSize 数据总长度
      * @return ProgressUtils
      */
-    fun toStart(progress: Progress): ProgressUtils {
+    fun toStart(
+        progress: Progress,
+        totalSize: Long
+    ): ProgressUtils {
         if (progress.isNORMAL()) {
             progress.setStatus(Progress.START)
+                .setTotalSize(totalSize)
                 .setLastRefreshTime(SystemClock.elapsedRealtime())
         }
         return this
@@ -115,11 +121,11 @@ internal class ProgressUtils private constructor() {
         val isNotify = (diffTime >= refreshTime)
         val isFinish = (progress.getCurrentSize() == totalSize)
         if (isNotify || isFinish) {
-            if (diffTime == 0L) diffTime = 1
+            if (diffTime == 0L) diffTime = 1L
             val lastSize = progress.getLastSize()
-            // 存储网速信息并刷新网速信息
+            // 存储网速信息并刷新网速信息 byte/s
             progress.getSpeed().bufferSpeed(
-                lastSize * 1000 / diffTime
+                lastSize * 1000L / diffTime
             )
             progress.setLastSize(0L)
                 .setLastRefreshTime(currentTime)
