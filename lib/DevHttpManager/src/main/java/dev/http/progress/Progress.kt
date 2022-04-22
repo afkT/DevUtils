@@ -24,13 +24,15 @@ class Progress private constructor(
     private var lastRefreshTime: Long,
     // 当前状态
     private var status: Int,
+    // 进度异常信息
+    private var exception: Throwable?,
     // 上传、下载网速信息
     private val speed: Speed
 ) : Parcelable {
 
     constructor(id: Long = System.currentTimeMillis()) : this(
         id, 0L, 0L, 0L, 0L,
-        NORMAL, Speed()
+        NORMAL, null, Speed()
     )
 
     companion object {
@@ -44,16 +46,16 @@ class Progress private constructor(
         // 上传、下载中
         const val ING = DevFinal.INT.ING
 
-        // 出现错误异常 ( 也表示移除结束 )
+        // 出现错误异常 ( 也表示异常结束 )
         const val ERROR = DevFinal.INT.ERROR
 
         // 完成 ( 成功结束 )
         const val FINISH = DevFinal.INT.FINISH
     }
 
-    // =============
-    // = 对外公开方法 =
-    // =============
+    // ========================
+    // = Progress - 对外公开方法 =
+    // ========================
 
     /**
      * 获取进度 id ( timestamp )
@@ -101,6 +103,22 @@ class Progress private constructor(
      */
     fun getStatus(): Int {
         return status
+    }
+
+    /**
+     * 获取进度异常信息
+     * @return 进度异常信息
+     */
+    fun getException(): Throwable? {
+        return exception
+    }
+
+    /**
+     * 获取上传、下载网速信息
+     * @return Speed
+     */
+    fun getSpeed(): Speed {
+        return speed
     }
 
     // =
@@ -175,19 +193,6 @@ class Progress private constructor(
         )
     }
 
-    /**
-     * 获取上传、下载网速信息
-     * @return Speed
-     */
-    fun getSpeed(): Speed {
-        return speed
-    }
-
-    // ==========
-    // = 内部方法 =
-    // ==========
-
-
     // ============
     // = 其他扩展类 =
     // ============
@@ -208,9 +213,9 @@ class Progress private constructor(
 
         constructor() : this(0L, mutableListOf(), 10)
 
-        // =============
-        // = 对外公开方法 =
-        // =============
+        // =====================
+        // = Speed - 对外公开方法 =
+        // =====================
 
         /**
          * 获取上传、下载网速信息 ( byte/s )
@@ -266,9 +271,9 @@ class Progress private constructor(
             }
         }
 
-        // ==========
-        // = 内部方法 =
-        // ==========
+        // ==================
+        // = Speed - 内部方法 =
+        // ==================
 
         /**
          * 存储网速信息并刷新网速信息
@@ -305,5 +310,69 @@ class Progress private constructor(
             }
             return sum / speedBuffer.size
         }
+    }
+
+    // =====================
+    // = Progress - 内部方法 =
+    // =====================
+
+    /**
+     * 设置数据总长度
+     * @param value 数据总长度
+     * @return Progress
+     */
+    internal fun setTotalSize(value: Long): Progress {
+        totalSize = value
+        return this
+    }
+
+    /**
+     * 设置当前已上传、下载总长度
+     * @param value 当前已上传、下载总长度
+     * @return Progress
+     */
+    internal fun setCurrentSize(value: Long): Progress {
+        currentSize = value
+        return this
+    }
+
+    /**
+     * 设置最近一次触发大小 ( 最近一次被调用的间隔时间内上传、下载的 byte 长度 )
+     * @param value 最近一次被调用的间隔时间内上传、下载的 byte 长度
+     * @return Progress
+     */
+    internal fun setLastSize(value: Long): Progress {
+        lastSize = value
+        return this
+    }
+
+    /**
+     * 设置最近一次刷新、触发时间 ( 毫秒 )
+     * @param value 最近一次刷新、触发时间 ( 毫秒 )
+     * @return Progress
+     */
+    internal fun setLastRefreshTime(value: Long): Progress {
+        lastRefreshTime = value
+        return this
+    }
+
+    /**
+     * 设置当前状态
+     * @param value 当前状态
+     * @return Progress
+     */
+    internal fun setStatus(value: Int): Progress {
+        status = value
+        return this
+    }
+
+    /**
+     * 设置进度异常信息
+     * @param value 进度异常信息
+     * @return Progress
+     */
+    internal fun setException(value: Throwable): Progress {
+        exception = value
+        return this
     }
 }
