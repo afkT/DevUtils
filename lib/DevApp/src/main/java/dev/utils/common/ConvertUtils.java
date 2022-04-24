@@ -127,6 +127,30 @@ public final class ConvertUtils {
     }
 
     /**
+     * Object 转 String ( 不进行 Array 解码转 String )
+     * @param value Value
+     * @return {@link String}
+     */
+    public static String newStringNotArrayDecode(final Object value) {
+        return newString(value, null, false);
+    }
+
+    /**
+     * Object 转 String ( 不进行 Array 解码转 String )
+     * @param value      Value
+     * @param defaultStr 默认字符串
+     * @return {@link String} 如果转换失败则返回 defaultStr
+     */
+    public static String newStringNotArrayDecode(
+            final Object value,
+            final String defaultStr
+    ) {
+        return newString(value, defaultStr, false);
+    }
+
+    // =
+
+    /**
      * Object 转 String
      * @param object Object
      * @return {@link String}
@@ -147,7 +171,7 @@ public final class ConvertUtils {
     ) {
         if (object != null) {
             try {
-                String strValue = newString(object, null, false);
+                String strValue = newStringNotArrayDecode(object);
                 if (strValue != null) {
                     return strValue;
                 }
@@ -233,15 +257,15 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).intValue();
             }
+            if (value instanceof Boolean) {
+                return (Boolean) value ? 1 : 0;
+            }
             if (value instanceof String) {
                 String strValue = (String) value;
                 if (strValue.indexOf(',') != 0) {
                     strValue = strValue.replaceAll(",", "");
                 }
                 return Integer.parseInt(strValue);
-            }
-            if (value instanceof Boolean) {
-                return (Boolean) value ? 1 : 0;
             }
             throw new Exception("can not cast to int, value : " + value);
         } catch (Exception e) {
