@@ -3,6 +3,7 @@ package dev.engine.compress
 import android.net.Uri
 import android.text.TextUtils
 import dev.DevUtils
+import dev.utils.common.ConvertUtils
 import top.zibin.luban.CompressionPredicate
 import top.zibin.luban.InputStreamProvider
 import top.zibin.luban.Luban
@@ -97,18 +98,25 @@ internal object LubanUtils {
         var number = 0
         val builder = Luban.with(DevUtils.getContext())
         for (src in lists) {
-            if (src is String) {
-                builder.load(src)
-                number++
-            } else if (src is File) {
-                builder.load(src)
-                number++
-            } else if (src is Uri) {
-                builder.load(src)
-                number++
-            } else if (src is InputStreamProvider) {
-                builder.load(src)
-                number++
+            when (src) {
+                is File -> {
+                    builder.load(src)
+                    number++
+                }
+                is Uri -> {
+                    builder.load(src)
+                    number++
+                }
+                is InputStreamProvider -> {
+                    builder.load(src)
+                    number++
+                }
+                else -> {
+                    ConvertUtils.newStringNotArrayDecode(src)?.let { srcIt ->
+                        builder.load(srcIt)
+                        number++
+                    }
+                }
             }
         }
         if (number == 0) return false

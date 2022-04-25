@@ -250,8 +250,11 @@ public final class HttpParamsUtils {
                 builder.append(entry.getKey());
                 builder.append('=');
                 if (urlEncode) {
-                    if (entry.getValue() instanceof String) {
-                        builder.append(urlEncode((String) entry.getValue()));
+                    String strValue = ConvertUtils.newStringNotArrayDecode(
+                            entry.getValue()
+                    );
+                    if (strValue != null) {
+                        builder.append(urlEncode(strValue));
                     }
                 } else {
                     builder.append(entry.getValue());

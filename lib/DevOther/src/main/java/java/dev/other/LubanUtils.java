@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import dev.DevUtils;
+import dev.utils.common.ConvertUtils;
 import top.zibin.luban.CompressionPredicate;
 import top.zibin.luban.InputStreamProvider;
 import top.zibin.luban.Luban;
@@ -107,10 +108,7 @@ public final class LubanUtils {
         int           number  = 0;
         Luban.Builder builder = Luban.with(DevUtils.getContext());
         for (Object src : lists) {
-            if (src instanceof String) {
-                builder.load((String) src);
-                number++;
-            } else if (src instanceof File) {
+            if (src instanceof File) {
                 builder.load((File) src);
                 number++;
             } else if (src instanceof Uri) {
@@ -119,6 +117,12 @@ public final class LubanUtils {
             } else if (src instanceof InputStreamProvider) {
                 builder.load((InputStreamProvider) src);
                 number++;
+            } else {
+                String strValue = ConvertUtils.newStringNotArrayDecode(src);
+                if (strValue != null) {
+                    builder.load(strValue);
+                    number++;
+                }
             }
         }
         if (number == 0) return false;

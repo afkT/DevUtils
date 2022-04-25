@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: Android 原生 JSONObject 工具类
@@ -62,16 +63,7 @@ public final class JSONObjectUtils {
         // 判断是否格式化
         boolean format = jsonIndent >= 1;
         try {
-            if (object instanceof String) {
-                String json = (String) object;
-                if (json.startsWith("{")) {
-                    JSONObject jsonObject = new JSONObject(json);
-                    return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
-                } else if (json.startsWith("[")) {
-                    JSONArray jsonArray = new JSONArray(json);
-                    return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
-                }
-            } else if (object instanceof JSONObject) {
+            if (object instanceof JSONObject) {
                 JSONObject jsonObject = (JSONObject) object;
                 return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
             } else if (object instanceof JSONArray) {
@@ -107,6 +99,17 @@ public final class JSONObjectUtils {
                     JSONArray jsonArray = (JSONArray) tokenerObj;
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 }
+            } else {
+                String json = ConvertUtils.newStringNotArrayDecode(object);
+                if (json != null) {
+                    if (json.startsWith("{")) {
+                        JSONObject jsonObject = new JSONObject(json);
+                        return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
+                    } else if (json.startsWith("[")) {
+                        JSONArray jsonArray = new JSONArray(json);
+                        return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
+                    }
+                }
             }
             // 抛出不支持的类型
             throw new Exception("Value " + object + " of className" + object.getClass().getName());
@@ -141,18 +144,19 @@ public final class JSONObjectUtils {
             if (type == JSONObject.class) {
                 if (object instanceof JSONObject) {
                     return (T) object;
-                } else if (object instanceof String) {
-                    return (T) new JSONObject((String) object);
                 } else if (object instanceof JSONTokener) {
                     return (T) new JSONObject((JSONTokener) object);
                 } else if (object instanceof Map) {
                     return (T) new JSONObject((Map) object);
+                } else {
+                    String json = ConvertUtils.newStringNotArrayDecode(object);
+                    if (json != null) {
+                        return (T) new JSONObject(json);
+                    }
                 }
             } else if (type == JSONArray.class) {
                 if (object instanceof JSONArray) {
                     return (T) object;
-                } else if (object instanceof String) {
-                    return (T) new JSONArray((String) object);
                 } else if (object instanceof JSONTokener) {
                     return (T) new JSONArray((JSONTokener) object);
                 } else if (object instanceof Collection) {
@@ -168,10 +172,16 @@ public final class JSONObjectUtils {
                         }
                         return (T) jsonArray;
                     }
+                } else {
+                    String json = ConvertUtils.newStringNotArrayDecode(object);
+                    if (json != null) {
+                        return (T) new JSONArray(json);
+                    }
                 }
             } else if (type == JSONTokener.class) {
-                if (object instanceof String) {
-                    return (T) new JSONTokener((String) object);
+                String json = ConvertUtils.newStringNotArrayDecode(object);
+                if (json != null) {
+                    return (T) new JSONTokener(json);
                 }
             }
             // 抛出不支持的类型

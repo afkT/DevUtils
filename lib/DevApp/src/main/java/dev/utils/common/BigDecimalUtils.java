@@ -48,9 +48,7 @@ public final class BigDecimalUtils {
     public static BigDecimal getBigDecimal(final Object value) {
         if (value == null) return null;
         try {
-            if (value instanceof String) {
-                return new BigDecimal((String) value);
-            } else if (value instanceof Double) {
+            if (value instanceof Double) {
                 return BigDecimal.valueOf((Double) value);
             } else if (value instanceof Long) {
                 return new BigDecimal((Long) value);
@@ -62,6 +60,11 @@ public final class BigDecimalUtils {
                 return new BigDecimal((BigInteger) value);
             } else if (value instanceof BigDecimal) {
                 return (BigDecimal) value;
+            } else {
+                String strValue = ConvertUtils.newStringNotArrayDecode(value);
+                if (strValue != null) {
+                    return new BigDecimal(strValue);
+                }
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getBigDecimal");
