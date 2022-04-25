@@ -260,8 +260,8 @@ public final class ConvertUtils {
             if (value instanceof Boolean) {
                 return (Boolean) value ? 1 : 0;
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 if (strValue.indexOf(',') != 0) {
                     strValue = strValue.replaceAll(",", "");
                 }
@@ -301,20 +301,25 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).intValue() == 1;
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
-                if ("true".equalsIgnoreCase(strValue) || "1".equals(strValue)) {
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
+                strValue = strValue.toLowerCase();
+                // true、t、yes、y、1
+                if ("true".equals(strValue)
+                        || "t".equals(strValue)
+                        || "yes".equals(strValue)
+                        || "y".equals(strValue)
+                        || "1".equals(strValue)
+                ) {
                     return Boolean.TRUE;
                 }
-                if ("false".equalsIgnoreCase(strValue) || "0".equals(strValue)) {
-                    return Boolean.FALSE;
-                }
-                // YES、TRUE
-                if ("Y".equalsIgnoreCase(strValue) || "T".equalsIgnoreCase(strValue)) {
-                    return Boolean.TRUE;
-                }
-                // NO、FALSE
-                if ("N".equalsIgnoreCase(strValue) || "F".equalsIgnoreCase(strValue)) {
+                // false、f、no、n、0
+                if ("false".equals(strValue)
+                        || "f".equals(strValue)
+                        || "no".equals(strValue)
+                        || "n".equals(strValue)
+                        || "0".equals(strValue)
+                ) {
                     return Boolean.FALSE;
                 }
             }
@@ -352,8 +357,8 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).floatValue();
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 if (strValue.indexOf(',') != 0) {
                     strValue = strValue.replaceAll(",", "");
                 }
@@ -393,8 +398,8 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).doubleValue();
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 if (strValue.indexOf(',') != 0) {
                     strValue = strValue.replaceAll(",", "");
                 }
@@ -434,8 +439,8 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).longValue();
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 if (strValue.indexOf(',') != 0) {
                     strValue = strValue.replaceAll(",", "");
                 }
@@ -475,8 +480,8 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).shortValue();
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 return Short.parseShort(strValue);
             }
             throw new Exception("can not cast to short, value : " + value);
@@ -510,8 +515,8 @@ public final class ConvertUtils {
             if (value instanceof Character) {
                 return (Character) value;
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 if (strValue.length() == 1) {
                     return strValue.charAt(0);
                 }
@@ -550,8 +555,8 @@ public final class ConvertUtils {
             if (value instanceof Number) {
                 return ((Number) value).byteValue();
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 return Byte.parseByte(strValue);
             }
             throw new Exception("can not cast to byte, value : " + value);
@@ -588,8 +593,8 @@ public final class ConvertUtils {
             if (value instanceof BigInteger) {
                 return new BigDecimal((BigInteger) value);
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 return new BigDecimal(strValue);
             }
             throw new Exception("can not cast to BigDecimal, value : " + value);
@@ -626,8 +631,8 @@ public final class ConvertUtils {
             if (value instanceof Float || value instanceof Double) {
                 return BigInteger.valueOf(((Number) value).longValue());
             }
-            if (value instanceof String) {
-                String strValue = (String) value;
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
                 return new BigInteger(strValue);
             }
             throw new Exception("can not cast to BigInteger, value : " + value);
@@ -647,8 +652,9 @@ public final class ConvertUtils {
             if (value instanceof char[]) {
                 return (char[]) value;
             }
-            if (value instanceof String) {
-                return ((String) value).toCharArray();
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
+                return strValue.toCharArray();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toChars");
@@ -666,8 +672,9 @@ public final class ConvertUtils {
             if (value instanceof byte[]) {
                 return (byte[]) value;
             }
-            if (value instanceof String) {
-                return ((String) value).getBytes();
+            String strValue = newStringNotArrayDecode(value);
+            if (strValue != null) {
+                return strValue.getBytes();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toBytes");

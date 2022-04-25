@@ -885,6 +885,12 @@ public final class DevFinal {
         public static final int EXIT         = BASE + 35;
         // 下一步
         public static final int NEXT         = BASE + 36;
+        // 无任何
+        public static final int NONE         = BASE + 37;
+        // 完成
+        public static final int FINISH       = BASE + 38;
+        // 等待中
+        public static final int WAITING      = BASE + 39;
 
         // ===========
         // = Request =
