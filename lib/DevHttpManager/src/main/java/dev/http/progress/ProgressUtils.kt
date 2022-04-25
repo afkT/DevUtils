@@ -1,19 +1,13 @@
 package dev.http.progress
 
+import android.os.Handler
 import android.os.SystemClock
 
 /**
  * detail: 进度快捷操作内部工具类
  * @author Ttt
  */
-internal class ProgressUtils private constructor() {
-
-    companion object {
-
-        val instance: ProgressUtils by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            ProgressUtils()
-        }
-    }
+internal object ProgressUtils {
 
     // ==========
     // = 更新状态 =
@@ -23,59 +17,51 @@ internal class ProgressUtils private constructor() {
      * 设置为 [Progress.START] 状态
      * @param progress Progress
      * @param totalSize 数据总长度
-     * @return ProgressUtils
      */
     fun toStart(
         progress: Progress,
         totalSize: Long
-    ): ProgressUtils {
+    ) {
         if (progress.isNORMAL()) {
             progress.setStatus(Progress.START)
                 .setTotalSize(totalSize)
                 .setLastRefreshTime(SystemClock.elapsedRealtime())
         }
-        return this
     }
 
     /**
      * 设置为 [Progress.ING] 状态
      * @param progress Progress
-     * @return ProgressUtils
      */
-    fun toIng(progress: Progress): ProgressUtils {
+    fun toIng(progress: Progress) {
         if (progress.isSTART()) {
             progress.setStatus(Progress.ING)
         }
-        return this
     }
 
     /**
      * 设置为 [Progress.ERROR] 状态
      * @param progress Progress
      * @param exception 进度异常信息
-     * @return ProgressUtils
      */
     fun toError(
         progress: Progress,
         exception: Throwable
-    ): ProgressUtils {
+    ) {
         if (progress.isING()) {
             progress.setStatus(Progress.ERROR)
                 .setException(exception)
         }
-        return this
     }
 
     /**
      * 设置为 [Progress.FINISH] 状态
      * @param progress Progress
-     * @return ProgressUtils
      */
-    fun toFinish(progress: Progress): ProgressUtils {
+    fun toFinish(progress: Progress) {
         if (progress.isING()) {
             progress.setStatus(Progress.FINISH)
         }
-        return this
     }
 
     // ==========
@@ -83,7 +69,7 @@ internal class ProgressUtils private constructor() {
     // ==========
 
     /**
-     * 更新进度信息并返回是否进行通知
+     * 更新进度信息并返回是否允许通知
      * @param progress 进度信息存储类
      * @param refreshTime 回调刷新时间 ( 毫秒 )
      * @param writeSize 写入数据大小
@@ -98,7 +84,7 @@ internal class ProgressUtils private constructor() {
     }
 
     /**
-     * 更新进度信息并返回是否进行通知
+     * 更新进度信息并返回是否允许通知
      * @param progress 进度信息存储类
      * @param refreshTime 回调刷新时间 ( 毫秒 )
      * @param writeSize 写入数据大小
@@ -129,8 +115,6 @@ internal class ProgressUtils private constructor() {
             )
             progress.setLastSize(0L)
                 .setLastRefreshTime(currentTime)
-            // 如果完成了则更新完成状态
-            if (isFinish) toFinish(progress)
             return true
         }
         return false
@@ -139,4 +123,49 @@ internal class ProgressUtils private constructor() {
     // ==========
     // = 事件通知 =
     // ==========
+
+    /**
+     * 回调方法
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
+     * @param handler 回调 UI 线程通知
+     */
+    fun callback(
+        progress: Progress,
+        callback: Progress.Callback?,
+        handler: Handler?
+    ) {
+        callback?.let { itCallback ->
+            handler?.post {
+                innerCallback(progress, itCallback)
+            } ?: innerCallback(progress, itCallback)
+        }
+    }
+
+    /**
+     * 回调方法
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
+     */
+    private fun innerCallback(
+        progress: Progress,
+        callback: Progress.Callback
+    ) {
+        when (progress.getStatus()) {
+            Progress.START -> {
+                callback.onStart(progress)
+            }
+            Progress.ING -> {
+                callback.onProgress(progress)
+            }
+            Progress.ERROR -> {
+                callback.onError(progress)
+                callback.onEnd(progress)
+            }
+            Progress.FINISH -> {
+                callback.onFinish(progress)
+                callback.onEnd(progress)
+            }
+        }
+    }
 }

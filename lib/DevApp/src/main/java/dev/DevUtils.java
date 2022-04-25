@@ -144,7 +144,7 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Context ( 判断 null, 视情况返回全局 Context)
+     * 获取 Context ( 判断 null, 视情况返回全局 Context )
      * @param context {@link Context}
      * @return {@link Context}
      */
@@ -197,6 +197,16 @@ public final class DevUtils {
      * @return {@link Handler}
      */
     public static Handler getHandler() {
+        return HandlerUtils.getMainHandler();
+    }
+
+    /**
+     * 获取 Handler ( 判断 null, 视情况返回全局 Handler )
+     * @param handler {@link Handler}
+     * @return {@link Handler}
+     */
+    public static Handler getHandler(final Handler handler) {
+        if (handler != null) return handler;
         return HandlerUtils.getMainHandler();
     }
 

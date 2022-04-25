@@ -46,11 +46,14 @@ class Progress private constructor(
         // 上传、下载中
         const val ING = DevFinal.INT.ING
 
-        // 出现错误异常 ( 也表示异常结束 )
+        // 异常 ( 流程失败 )
         const val ERROR = DevFinal.INT.ERROR
 
-        // 完成 ( 成功结束 )
+        // 完成 ( 流程完成 )
         const val FINISH = DevFinal.INT.FINISH
+
+        // 回调刷新时间 ( 毫秒 )
+        const val REFRESH_TIME = 300L
     }
 
     // ========================
@@ -148,7 +151,7 @@ class Progress private constructor(
     }
 
     /**
-     * 是否错误异常状态
+     * 是否异常状态
      * @return `true` yes, `false` no
      */
     fun isERROR(): Boolean {
@@ -191,6 +194,22 @@ class Progress private constructor(
         return NumberUtils.percentD(
             currentSize.toDouble(), totalSize.toDouble()
         )
+    }
+
+    /**
+     * 判断数据总长度与当前已上传、下载总长度是否一样大小
+     * @return `true` yes, `false` no
+     */
+    fun isSizeSame(): Boolean {
+        return totalSize > 0 && totalSize == currentSize
+    }
+
+    /**
+     * 判断数据长度是否异常
+     * @return `true` yes, `false` no
+     */
+    fun isSizeError(): Boolean {
+        return totalSize < 0 || currentSize > totalSize
     }
 
     // ============
@@ -374,5 +393,48 @@ class Progress private constructor(
     internal fun setException(value: Throwable): Progress {
         exception = value
         return this
+    }
+
+    // ==========
+    // = 接口事件 =
+    // ==========
+
+    /**
+     * detail: 上传、下载回调接口
+     * @author Ttt
+     * 回调不是表示上传、下载结果, 而是表示上传、下载这个操作流程回调
+     */
+    interface Callback {
+
+        /**
+         * 开始回调
+         * @param progress Progress
+         */
+        fun onStart(progress: Progress)
+
+        /**
+         * 进度回调
+         * @param progress Progress
+         */
+        fun onProgress(progress: Progress)
+
+        /**
+         * 流程异常回调
+         * @param progress Progress
+         */
+        fun onError(progress: Progress)
+
+        /**
+         * 流程完成回调
+         * @param progress Progress
+         */
+        fun onFinish(progress: Progress)
+
+        /**
+         * 流程结束回调
+         * @param progress Progress
+         * 不管是 [onError]、[onFinish] 最终都会触发该结束方法
+         */
+        fun onEnd(progress: Progress)
     }
 }
