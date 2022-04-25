@@ -64,9 +64,9 @@ final class ToastFactory {
         }
 
         @Override
-        public final void setText(CharSequence s) {
+        public final void setText(CharSequence text) {
             if (mMessageView != null) {
-                mMessageView.setText(s);
+                mMessageView.setText(text);
             }
         }
 

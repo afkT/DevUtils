@@ -261,13 +261,12 @@ class SKUDialog(
             binding.vidNumberEt
                 .addTextChangedListener(object : EditTextUtils.DevTextWatcher() {
                     override fun onTextChanged(
-                        s: CharSequence,
+                        text: CharSequence,
                         start: Int,
                         before: Int,
                         count: Int
                     ) {
-                        val strNumber = s.toString()
-                        val inputNumber = ConvertUtils.toInt(strNumber)
+                        val inputNumber = ConvertUtils.toInt(text)
                         // 数量相同则不处理
                         if (inputNumber == currentNumber) {
                             return

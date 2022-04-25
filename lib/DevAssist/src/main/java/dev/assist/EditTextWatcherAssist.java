@@ -160,7 +160,7 @@ public class EditTextWatcherAssist<T> {
                     mTextWatcher = new TextWatcher() {
                         @Override
                         public void onTextChanged(
-                                CharSequence charSequence,
+                                CharSequence text,
                                 int start,
                                 int before,
                                 int count
@@ -168,20 +168,20 @@ public class EditTextWatcherAssist<T> {
                             if (mFocusPos == position) {
                                 if (otherListener != null) {
                                     otherListener.onTextChanged(
-                                            charSequence, start, before, count,
+                                            text, start, before, count,
                                             editText, position, object
                                     );
                                 }
 
                                 if (listener != null) { // 触发回调
-                                    listener.onTextChanged(charSequence, editText, position, object);
+                                    listener.onTextChanged(text, editText, position, object);
                                 }
                             }
                         }
 
                         @Override
                         public void beforeTextChanged(
-                                CharSequence s,
+                                CharSequence text,
                                 int start,
                                 int count,
                                 int after
@@ -189,7 +189,7 @@ public class EditTextWatcherAssist<T> {
                             if (mFocusPos == position) {
                                 if (otherListener != null) {
                                     otherListener.beforeTextChanged(
-                                            s, start, count, after,
+                                            text, start, count, after,
                                             editText, position, object
                                     );
                                 }
@@ -197,11 +197,11 @@ public class EditTextWatcherAssist<T> {
                         }
 
                         @Override
-                        public void afterTextChanged(Editable s) {
+                        public void afterTextChanged(Editable text) {
                             if (mFocusPos == position) {
                                 if (otherListener != null) {
                                     otherListener.afterTextChanged(
-                                            s, editText, position, object
+                                            text, editText, position, object
                                     );
                                 }
                             }
@@ -238,13 +238,13 @@ public class EditTextWatcherAssist<T> {
 
         /**
          * 文本改变监听
-         * @param charSequence 改变文本
-         * @param editText     EditText
-         * @param position     索引
-         * @param object       Object
+         * @param text     改变文本
+         * @param editText EditText
+         * @param position 索引
+         * @param object   Object
          */
         void onTextChanged(
-                CharSequence charSequence,
+                CharSequence text,
                 EditText editText,
                 int position,
                 T object
@@ -285,7 +285,7 @@ public class EditTextWatcherAssist<T> {
 
         /**
          * 在文本变化前调用
-         * @param s        修改之前的文字
+         * @param text     修改之前的文字
          * @param start    字符串中即将发生修改的位置
          * @param count    字符串中即将被修改的文字的长度, 如果是新增的话则为 0
          * @param after    被修改的文字修改之后的长度, 如果是删除的话则为 0
@@ -294,7 +294,7 @@ public class EditTextWatcherAssist<T> {
          * @param object   Object
          */
         public void beforeTextChanged(
-                CharSequence s,
+                CharSequence text,
                 int start,
                 int count,
                 int after,
@@ -306,7 +306,7 @@ public class EditTextWatcherAssist<T> {
 
         /**
          * 在文本变化后调用
-         * @param s        改变后的字符串
+         * @param text     改变后的字符串
          * @param start    有变动的字符串的位置
          * @param before   被改变的字符串长度, 如果是新增则为 0
          * @param count    添加的字符串长度, 如果是删除则为 0
@@ -315,7 +315,7 @@ public class EditTextWatcherAssist<T> {
          * @param object   Object
          */
         public void onTextChanged(
-                CharSequence s,
+                CharSequence text,
                 int start,
                 int before,
                 int count,
@@ -327,13 +327,13 @@ public class EditTextWatcherAssist<T> {
 
         /**
          * 在文本变化后调用
-         * @param s        修改后的文字
+         * @param text     修改后的文字
          * @param editText EditText
          * @param position 索引
          * @param object   Object
          */
         public void afterTextChanged(
-                Editable s,
+                Editable text,
                 EditText editText,
                 int position,
                 T object

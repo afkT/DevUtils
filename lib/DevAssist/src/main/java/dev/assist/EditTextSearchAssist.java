@@ -82,10 +82,10 @@ public class EditTextSearchAssist {
 
     /**
      * 发送消息 ( 功能由该方法实现 )
-     * @param charSequence 输入内容
+     * @param text 输入内容
      */
-    public void post(final CharSequence charSequence) {
-        mDelayAssist.post(charSequence);
+    public void post(final CharSequence text) {
+        mDelayAssist.post(text);
     }
 
     // =
@@ -149,17 +149,17 @@ public class EditTextSearchAssist {
         mTextWatcher = new TextWatcher() {
             @Override
             public void onTextChanged(
-                    CharSequence charSequence,
+                    CharSequence text,
                     int start,
                     int before,
                     int count
             ) {
-                post(charSequence);
+                post(text);
             }
 
             @Override
             public void beforeTextChanged(
-                    CharSequence s,
+                    CharSequence text,
                     int start,
                     int count,
                     int after
@@ -167,7 +167,7 @@ public class EditTextSearchAssist {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable text) {
             }
         };
     }

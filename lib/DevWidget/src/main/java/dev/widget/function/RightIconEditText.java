@@ -245,50 +245,50 @@ public class RightIconEditText
     private final TextWatcher _listener = new TextWatcher() {
         /**
          * 在文本变化前调用
-         * @param s     修改之前的文字
+         * @param text  修改之前的文字
          * @param start 字符串中即将发生修改的位置
          * @param count 字符串中即将被修改的文字的长度, 如果是新增的话则为 0
          * @param after 被修改的文字修改之后的长度, 如果是删除的话则为 0
          */
         @Override
         public void beforeTextChanged(
-                CharSequence s,
+                CharSequence text,
                 int start,
                 int count,
                 int after
         ) {
             if (mTextWatcher != null) {
-                mTextWatcher.beforeTextChanged(s, start, count, after);
+                mTextWatcher.beforeTextChanged(text, start, count, after);
             }
         }
 
         /**
          * 在文本变化后调用
-         * @param s      改变后的字符串
+         * @param text   改变后的字符串
          * @param start  有变动的字符串的位置
          * @param before 被改变的字符串长度, 如果是新增则为 0
          * @param count  添加的字符串长度, 如果是删除则为 0
          */
         @Override
         public void onTextChanged(
-                CharSequence s,
+                CharSequence text,
                 int start,
                 int before,
                 int count
         ) {
             if (mTextWatcher != null) {
-                mTextWatcher.onTextChanged(s, start, before, count);
+                mTextWatcher.onTextChanged(text, start, before, count);
             }
         }
 
         /**
          * 在文本变化后调用
-         * @param s 修改后的文字
+         * @param text 修改后的文字
          */
         @Override
-        public void afterTextChanged(Editable s) {
+        public void afterTextChanged(Editable text) {
             if (mTextWatcher != null) {
-                mTextWatcher.afterTextChanged(s);
+                mTextWatcher.afterTextChanged(text);
             }
             drawOperate();
         }
