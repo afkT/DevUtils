@@ -2,12 +2,10 @@ package dev.http.progress
 
 import android.os.Handler
 import dev.DevUtils
+import dev.utils.LogPrintUtils
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import okio.Buffer
-import okio.BufferedSink
-import okio.ForwardingSink
-import okio.Sink
+import okio.*
 import java.io.IOException
 
 /**
@@ -26,12 +24,35 @@ open class ProgressRequestBody(
     protected val refreshTime: Long = Progress.REFRESH_TIME
 ) : RequestBody() {
 
+    // 日志 TAG
+    protected val TAG = ProgressRequestBody::class.java.simpleName
+
+    // ===============
+    // = RequestBody =
+    // ===============
+
     override fun contentType(): MediaType? {
-        TODO("Not yet implemented")
+        return delegate.contentType()
     }
 
+    override fun contentLength(): Long {
+        return try {
+            delegate.contentLength()
+        } catch (e: IOException) {
+            LogPrintUtils.eTag(TAG, e, "contentLength")
+            -1L
+        }
+    }
+
+    @Throws(IOException::class)
     override fun writeTo(sink: BufferedSink) {
-        TODO("Not yet implemented")
+        val countingSink = CountingSink(sink)
+        val bufferedSink = countingSink.buffer()
+        delegate.writeTo(bufferedSink)
+        bufferedSink.flush()
+
+        countingSink.progress.toFinish()
+            .callback(callback, handler)
     }
 
     // ============
@@ -47,6 +68,11 @@ open class ProgressRequestBody(
         // 进度信息存储类
         val progress = Progress()
 
+        init {
+            progress.setTotalSize(contentLength())
+                .toStart().callback(callback, handler)
+        }
+
         // ==================
         // = ForwardingSink =
         // ==================
@@ -59,20 +85,19 @@ open class ProgressRequestBody(
             try {
                 super.write(source, byteCount)
             } catch (e: Exception) {
-                ProgressUtils.toError(progress, e)
-                ProgressUtils.callback(progress, callback, handler)
+                progress.toError(e)
+                    .callback(callback, handler)
                 throw e
             }
             if (progress.getTotalSize() <= 0) {
                 progress.setTotalSize(contentLength())
             }
-            val allowCallback = ProgressUtils.changeProgress(
+            val allowCallback = changeProgress(
                 progress, refreshTime, byteCount
             )
             if (allowCallback) {
-                ProgressUtils.callback(
-                    progress, callback, handler
-                )
+                progress.toIng()
+                    .callback(callback, handler)
             }
         }
     }

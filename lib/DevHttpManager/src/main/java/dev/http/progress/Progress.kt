@@ -1,6 +1,7 @@
 package dev.http.progress
 
 import android.os.Parcelable
+import android.os.SystemClock
 import dev.utils.DevFinal
 import dev.utils.common.FileUtils
 import dev.utils.common.NumberUtils
@@ -376,22 +377,68 @@ class Progress private constructor(
     }
 
     /**
-     * 设置当前状态
-     * @param value 当前状态
-     * @return Progress
-     */
-    internal fun setStatus(value: Int): Progress {
-        status = value
-        return this
-    }
-
-    /**
      * 设置进度异常信息
      * @param value 进度异常信息
      * @return Progress
      */
     internal fun setException(value: Throwable): Progress {
         exception = value
+        return this
+    }
+
+    // ==========
+    // = 更新状态 =
+    // ==========
+
+    /**
+     * 设置当前状态
+     * @param value 当前状态
+     * @return Progress
+     */
+    private fun setStatus(value: Int): Progress {
+        status = value
+        return this
+    }
+
+    /**
+     * 设置为 [Progress.START] 状态
+     * @return Progress
+     */
+    internal fun toStart(): Progress {
+        if (isNORMAL()) {
+            setStatus(START)
+                .setLastRefreshTime(SystemClock.elapsedRealtime())
+        }
+        return this
+    }
+
+    /**
+     * 设置为 [Progress.ING] 状态
+     * @return Progress
+     */
+    internal fun toIng(): Progress {
+        if (isSTART()) setStatus(ING)
+        return this
+    }
+
+    /**
+     * 设置为 [Progress.ERROR] 状态
+     * @param exception 进度异常信息
+     * @return Progress
+     */
+    internal fun toError(
+        exception: Throwable
+    ): Progress {
+        if (isING()) setStatus(ERROR).setException(exception)
+        return this
+    }
+
+    /**
+     * 设置为 [Progress.FINISH] 状态
+     * @return Progress
+     */
+    internal fun toFinish(): Progress {
+        if (isING()) setStatus(FINISH)
         return this
     }
 

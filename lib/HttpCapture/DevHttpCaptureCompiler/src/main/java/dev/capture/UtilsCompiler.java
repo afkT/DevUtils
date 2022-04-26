@@ -23,7 +23,7 @@ import dev.DevHttpCapture;
 import dev.callback.DevCallback;
 import dev.capture.compiler.R;
 import dev.utils.DevFinal;
-import dev.utils.JCLogUtils;
+import dev.utils.LogPrintUtils;
 import dev.utils.app.ClickUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
@@ -148,7 +148,7 @@ public final class UtilsCompiler {
                 JsonElement jsonElement = JsonParser.parseReader(reader);
                 return gson.toJson(jsonElement);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toJsonIndent");
+                LogPrintUtils.eTag(TAG, e, "toJsonIndent");
             }
         }
         return null;
@@ -187,7 +187,7 @@ public final class UtilsCompiler {
             try {
                 return gson.fromJson(json, classOfT);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "fromJson");
+                LogPrintUtils.eTag(TAG, e, "fromJson");
             }
         }
         return null;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 import dev.utils.DevFinal;
-import dev.utils.JCLogUtils;
+import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -614,7 +614,7 @@ public class DevHistory<T> {
                 try {
                     return mBack.get(realIndex);
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "get - Back");
+                    LogPrintUtils.eTag(TAG, e, "get - Back");
                 }
             case FORWARD:
                 realIndex = calculateRealIndex(sizeForward(), index);
@@ -622,7 +622,7 @@ public class DevHistory<T> {
                 try {
                     return mForward.get(realIndex);
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "get - Forward");
+                    LogPrintUtils.eTag(TAG, e, "get - Forward");
                 }
         }
         return null;
@@ -675,7 +675,7 @@ public class DevHistory<T> {
             Collections.reverse(temps);
             lists.addAll(temps);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "gotoBack - subList");
+            LogPrintUtils.eTag(TAG, e, "gotoBack - subList");
         }
         for (int i = realIndex; i < size; i++) {
             try {
@@ -727,7 +727,7 @@ public class DevHistory<T> {
             Collections.reverse(temps);
             lists.addAll(temps);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "gotoForward - subList");
+            LogPrintUtils.eTag(TAG, e, "gotoForward - subList");
         }
         // 是否需要把 beforeCurrent 添加到回退栈中
         if (mListener != null) {
