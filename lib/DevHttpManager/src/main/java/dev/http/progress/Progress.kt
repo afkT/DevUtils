@@ -445,44 +445,52 @@ class Progress private constructor(
 
     /**
      * 设置为 [Progress.START] 状态
-     * @return Progress
+     * @return `true` success, `false` fail
      */
-    internal fun toStart(): Progress {
+    internal fun toStart(): Boolean {
         if (isNORMAL()) {
             setStatus(START)
                 .setLastRefreshTime(SystemClock.elapsedRealtime())
+            return true
         }
-        return this
+        return false
     }
 
     /**
      * 设置为 [Progress.ING] 状态
-     * @return Progress
+     * @return `true` success, `false` fail
      */
-    internal fun toIng(): Progress {
-        if (isSTART()) setStatus(ING)
-        return this
+    internal fun toIng(): Boolean {
+        if (isSTART()) {
+            setStatus(ING)
+            return true
+        }
+        return false
     }
 
     /**
      * 设置为 [Progress.ERROR] 状态
      * @param exception 进度异常信息
-     * @return Progress
+     * @return `true` success, `false` fail
      */
-    internal fun toError(
-        exception: Throwable
-    ): Progress {
-        if (isING()) setStatus(ERROR).setException(exception)
-        return this
+    internal fun toError(exception: Throwable): Boolean {
+        if (isING()) {
+            setStatus(ERROR).setException(exception)
+            return true
+        }
+        return false
     }
 
     /**
      * 设置为 [Progress.FINISH] 状态
-     * @return Progress
+     * @return `true` success, `false` fail
      */
-    internal fun toFinish(): Progress {
-        if (isING()) setStatus(FINISH)
-        return this
+    internal fun toFinish(): Boolean {
+        if (isING()) {
+            setStatus(FINISH)
+            return true
+        }
+        return false
     }
 
     // ==========

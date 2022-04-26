@@ -193,22 +193,26 @@ public final class HttpCaptureInterceptor
         if (!bodyEncoded(request.headers())) {
             Buffer buffer = new Buffer();
             if (requestBody != null) {
-                requestBody.writeTo(buffer);
-
-                if (isPlaintext(buffer)) {
-                    if (requestBody instanceof FormBody) {
-                        FormBody formBody = (FormBody) requestBody;
-                        for (int i = 0, len = formBody.size(); i < len; i++) {
-                            captureInfo.requestBody.put(formBody.name(i), formBody.value(i));
-                        }
-                    }
-                    String bodyBuilder = request.method() +
-                            " (" + requestBody.contentLength() + "- byte body)";
-                    captureInfo.requestBody.put("body length", bodyBuilder);
+                if (requestBody.isOneShot()) {
+                    captureInfo.requestBody.put("end", "one-shot body omitted");
                 } else {
-                    String bodyBuilder = request.method() +
-                            " (binary " + requestBody.contentLength() + "- byte body omitted)";
-                    captureInfo.requestBody.put("body length", bodyBuilder);
+                    requestBody.writeTo(buffer);
+
+                    if (isPlaintext(buffer)) {
+                        if (requestBody instanceof FormBody) {
+                            FormBody formBody = (FormBody) requestBody;
+                            for (int i = 0, len = formBody.size(); i < len; i++) {
+                                captureInfo.requestBody.put(formBody.name(i), formBody.value(i));
+                            }
+                        }
+                        String bodyBuilder = request.method() +
+                                " (" + requestBody.contentLength() + "- byte body)";
+                        captureInfo.requestBody.put("body length", bodyBuilder);
+                    } else {
+                        String bodyBuilder = request.method() +
+                                " (binary " + requestBody.contentLength() + "- byte body omitted)";
+                        captureInfo.requestBody.put("body length", bodyBuilder);
+                    }
                 }
             }
         }

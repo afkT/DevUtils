@@ -68,7 +68,7 @@ internal fun changeProgress(
  * @param callback 上传、下载回调接口
  * @param handler 回调 UI 线程通知
  */
-internal fun Progress.callback(
+private fun Progress.callback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
@@ -100,4 +100,58 @@ private fun Progress.innerCallback(callback: Progress.Callback) {
             callback.onEnd(this)
         }
     }
+}
+
+// =============
+// = 统一调用方法 =
+// =============
+
+/**
+ * 设置为 [Progress.START] 状态并且进行通知
+ * @param callback 上传、下载回调接口
+ * @param handler  回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
+ */
+internal fun Progress.toStartAndCallback(
+    callback: Progress.Callback?,
+    handler: Handler?
+) {
+    if (toStart()) callback(callback, handler)
+}
+
+/**
+ * 设置为 [Progress.ING] 状态并且进行通知
+ * @param callback 上传、下载回调接口
+ * @param handler  回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
+ */
+internal fun Progress.toIngAndCallback(
+    callback: Progress.Callback?,
+    handler: Handler?
+) {
+    if (toIng()) callback(callback, handler)
+}
+
+/**
+ * 设置为 [Progress.ERROR] 状态并且进行通知
+ * @param exception 进度异常信息
+ * @param callback  上传、下载回调接口
+ * @param handler   回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
+ */
+internal fun Progress.toErrorAndCallback(
+    exception: Throwable,
+    callback: Progress.Callback?,
+    handler: Handler?
+) {
+    if (toError(exception)) callback(callback, handler)
+}
+
+/**
+ * 设置为 [Progress.FINISH] 状态并且进行通知
+ * @param callback 上传、下载回调接口
+ * @param handler  回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
+ */
+internal fun Progress.toFinishAndCallback(
+    callback: Progress.Callback?,
+    handler: Handler?
+) {
+    if (toFinish()) callback(callback, handler)
 }

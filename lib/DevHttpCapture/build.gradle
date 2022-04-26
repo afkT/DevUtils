@@ -17,7 +17,6 @@ def isPublishing = false
 dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     api deps.lib.okhttp3
-    api deps.lib.okhttp3_logging
     // Gson https://github.com/google/gson
     api deps.lib.gson
 

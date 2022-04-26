@@ -18,7 +18,6 @@ def isPublishing = false
 dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     api deps.lib.okhttp3
-    api deps.lib.okhttp3_logging
     // Retrofit 网络请求库  https://github.com/square/retrofit
     api deps.lib.retrofit
 

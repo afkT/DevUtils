@@ -7,7 +7,6 @@ dependencies {
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
-    implementation deps.lib.okhttp3_logging
     // Retrofit 网络请求库  https://github.com/square/retrofit
     implementation deps.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
