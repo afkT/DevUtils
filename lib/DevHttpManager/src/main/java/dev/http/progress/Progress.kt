@@ -6,6 +6,7 @@ import dev.utils.DevFinal
 import dev.utils.common.FileUtils
 import dev.utils.common.NumberUtils
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 /**
  * detail: 进度信息存储类
@@ -15,6 +16,8 @@ import kotlinx.parcelize.Parcelize
 class Progress private constructor(
     // 进度 id ( 当前时间戳, 值越大说明该请求越新 - 同时可以当做 date 使用 )
     private val id: Long,
+    // UUID ( 预防 id 时间戳出现一样情况, 视情况考虑 id + uuid 搭配使用 )
+    private val uuid: Long,
     // 数据总长度
     private var totalSize: Long,
     // 当前已上传、下载总长度
@@ -32,7 +35,8 @@ class Progress private constructor(
 ) : Parcelable {
 
     constructor(id: Long = System.currentTimeMillis()) : this(
-        id, 0L, 0L, 0L, 0L,
+        id, UUID.randomUUID().hashCode().toLong(),
+        0L, 0L, 0L, 0L,
         NORMAL, null, Speed()
     )
 
@@ -70,6 +74,14 @@ class Progress private constructor(
     }
 
     /**
+     * 获取 UUID
+     * @return uuid
+     */
+    fun getUUID(): Long {
+        return uuid
+    }
+
+    /**
      * 获取数据总长度
      * @return 数据总长度
      */
@@ -78,11 +90,33 @@ class Progress private constructor(
     }
 
     /**
+     * 获取数据总长度格式化信息
+     * @param number 保留小数位数
+     * @return 数据总长度格式化信息
+     */
+    fun getTotalSizeFormat(number: Int = 1): String {
+        return FileUtils.formatByteMemorySize(
+            number, totalSize.toDouble()
+        )
+    }
+
+    /**
      * 获取当前已上传、下载总长度
      * @return 当前已上传、下载总长度
      */
     fun getCurrentSize(): Long {
         return currentSize
+    }
+
+    /**
+     * 获取当前已上传、下载总长度格式化信息
+     * @param number 保留小数位数
+     * @return 当前已上传、下载总长度格式化信息
+     */
+    fun getCurrentSizeFormat(number: Int = 1): String {
+        return FileUtils.formatByteMemorySize(
+            number, currentSize.toDouble()
+        )
     }
 
     /**
@@ -247,14 +281,23 @@ class Progress private constructor(
         }
 
         /**
-         * 获取上传、下载网速信息 ( byte/s )
+         * 获取上传、下载网速信息格式化信息
          * @param number 保留小数位数
-         * @return 网速信息 ( byte/s )
+         * @return 上传、下载网速信息格式化信息
          */
         fun getSpeedFormat(number: Int = 1): String {
             return FileUtils.formatByteMemorySize(
                 number, speedValue.toDouble()
-            ) + "/s"
+            )
+        }
+
+        /**
+         * 获取上传、下载网速信息格式化信息 ( byte/s )
+         * @param number 保留小数位数
+         * @return 上传、下载网速信息格式化信息 ( byte/s )
+         */
+        fun getSpeedFormatSecond(number: Int = 1): String {
+            return "${getSpeedFormat(number)}/s"
         }
 
         /**
