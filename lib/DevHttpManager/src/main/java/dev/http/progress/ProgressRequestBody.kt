@@ -83,7 +83,7 @@ open class ProgressRequestBody(
      * detail: 内部进度监听包装类
      * @author Ttt
      */
-    inner class CountingSink(sink: Sink) : ForwardingSink(sink) {
+    private inner class CountingSink(sink: Sink) : ForwardingSink(sink) {
 
         // 进度信息存储类
         private val progress = Progress()
@@ -102,6 +102,7 @@ open class ProgressRequestBody(
             source: Buffer,
             byteCount: Long
         ) {
+            progress.toIng()
             try {
                 super.write(source, byteCount)
             } catch (e: Exception) {

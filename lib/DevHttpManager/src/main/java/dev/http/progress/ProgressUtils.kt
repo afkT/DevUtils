@@ -72,19 +72,26 @@ private fun Progress.callback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
+    val status = getStatus()
     callback?.let { itCallback ->
         handler?.post {
-            innerCallback(itCallback)
-        } ?: innerCallback(itCallback)
+            innerCallback(status, itCallback)
+        } ?: innerCallback(status, itCallback)
     }
 }
 
 /**
  * 回调方法
+ * @param status Progress 当前状态
  * @param callback 上传、下载回调接口
+ * status 不通过 [Progress.getStatus] 获取, 而是通过传参判断
+ * 是防止线程触发回调中进行更新状态, 导致跳过 START 回调
  */
-private fun Progress.innerCallback(callback: Progress.Callback) {
-    when (getStatus()) {
+private fun Progress.innerCallback(
+    status: Int,
+    callback: Progress.Callback
+) {
+    when (status) {
         Progress.START -> {
             callback.onStart(this)
         }
@@ -127,7 +134,8 @@ internal fun Progress.toIngAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toIng()) callback(callback, handler)
+    toIng()
+    callback(callback, handler)
 }
 
 /**
