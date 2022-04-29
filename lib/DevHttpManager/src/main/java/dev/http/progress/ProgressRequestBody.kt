@@ -9,7 +9,7 @@ import okio.*
 import java.io.IOException
 
 /**
- * detail: 上行 ( 上传、请求 ) 进度监听请求体 RequestBody
+ * detail: 上行 ( 上传、请求 ) 进度监听请求体
  * @author Ttt
  * 通过此类获取 OkHttp 请求体数据处理进度, 可以处理任何的 RequestBody
  * <p></p>
@@ -71,7 +71,11 @@ open class ProgressRequestBody(
         val bufferedSink = countingSink.buffer()
         delegate.writeTo(bufferedSink)
         bufferedSink.flush()
-
+        /**
+         * 在这里调用 finish 是防止后台异常无限制上传
+         * 而不是通过 [Progress.isSizeSame]
+         * 判断数据总长度与当前已上传、下载总长度是否一样大小
+         */
         countingSink.finishCallback()
     }
 
@@ -113,7 +117,7 @@ open class ProgressRequestBody(
                 progress.setTotalSize(contentLength())
             }
             val allowCallback = changeProgress(
-                progress, refreshTime, byteCount
+                progress, refreshTime, byteCount.coerceAtLeast(0)
             )
             if (allowCallback) {
                 progress.toIngAndCallback(callback, handler)
