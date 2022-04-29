@@ -48,7 +48,7 @@ open class ProgressResponseBody(
     private inner class CountingSource(source: Source) : ForwardingSource(source) {
 
         // 进度信息存储类
-        private val progress = Progress()
+        private val progress = Progress(false)
 
         init {
             progress.setTotalSize(contentLength())

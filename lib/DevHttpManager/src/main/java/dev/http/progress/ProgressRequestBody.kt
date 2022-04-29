@@ -90,7 +90,7 @@ open class ProgressRequestBody(
     private inner class CountingSink(sink: Sink) : ForwardingSink(sink) {
 
         // 进度信息存储类
-        private val progress = Progress()
+        private val progress = Progress(true)
 
         init {
             progress.setTotalSize(contentLength())

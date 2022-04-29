@@ -5,6 +5,7 @@ import android.os.SystemClock
 import dev.utils.DevFinal
 import dev.utils.common.FileUtils
 import dev.utils.common.NumberUtils
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -14,10 +15,12 @@ import java.util.*
  */
 @Parcelize
 class Progress private constructor(
-    // 进度 id ( 当前时间戳, 值越大说明该请求越新 - 同时可以当做 date 使用 )
+    // 是否上行 ( 请求 ) 进度 => `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+    private val isRequest: Boolean,
+    // 进度 id
     private val id: Long,
-    // UUID ( 预防 id 时间戳出现一样情况, 视情况考虑 id + uuid 搭配使用 )
-    private val uuid: Long,
+    // 创建时间 ( 时间戳 )
+    private val date: Long,
     // 数据总长度
     private var totalSize: Long,
     // 当前已上传、下载总长度
@@ -34,8 +37,9 @@ class Progress private constructor(
     private val speed: Speed
 ) : Parcelable {
 
-    constructor(id: Long = System.currentTimeMillis()) : this(
-        id, UUID.randomUUID().hashCode().toLong(),
+    constructor(isRequest: Boolean) : this(
+        isRequest, UUID.randomUUID().hashCode().toLong(),
+        System.currentTimeMillis(),
         0L, 0L, 0L, 0L,
         NORMAL, null, Speed()
     )
@@ -65,8 +69,40 @@ class Progress private constructor(
     // = Progress - 对外公开方法 =
     // ========================
 
+    // 拼接 UUID id-date
+    @IgnoredOnParcel
+    private val uuidString: String by lazy {
+        "$id-$date"
+    }
+
     /**
-     * 获取进度 id ( timestamp )
+     * 获取 UUID
+     * @return uuid
+     */
+    fun getUUID(): String {
+        return uuidString
+    }
+
+    // =
+
+    /**
+     * 是否上行 ( 上传、请求 ) 进度信息
+     * @return `true` yes, `false` no
+     */
+    fun isRequest(): Boolean {
+        return isRequest
+    }
+
+    /**
+     * 是否下行 ( 下载、响应 ) 进度信息
+     * @return `true` yes, `false` no
+     */
+    fun isResponse(): Boolean {
+        return !isRequest
+    }
+
+    /**
+     * 获取进度 id
      * @return id
      */
     fun getId(): Long {
@@ -74,11 +110,11 @@ class Progress private constructor(
     }
 
     /**
-     * 获取 UUID
-     * @return uuid
+     * 获取创建时间 ( 时间戳 )
+     * @return 创建时间 ( 时间戳 )
      */
-    fun getUUID(): Long {
-        return uuid
+    fun getDate(): Long {
+        return date
     }
 
     /**
