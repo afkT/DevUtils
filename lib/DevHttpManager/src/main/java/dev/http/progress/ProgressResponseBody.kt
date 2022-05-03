@@ -18,7 +18,9 @@ open class ProgressResponseBody(
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
     protected val handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
-    protected val refreshTime: Long = Progress.REFRESH_TIME
+    protected val refreshTime: Long = Progress.REFRESH_TIME,
+    // 额外携带信息
+    protected val extras: Progress.Extras?
 ) : ResponseBody() {
 
     // ===============
@@ -51,7 +53,8 @@ open class ProgressResponseBody(
         private val progress = Progress(false)
 
         init {
-            progress.setTotalSize(contentLength())
+            progress.setExtras(extras)
+                .setTotalSize(contentLength())
                 .toStartAndCallback(callback, handler)
         }
 

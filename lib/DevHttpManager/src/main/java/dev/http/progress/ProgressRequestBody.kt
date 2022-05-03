@@ -38,7 +38,9 @@ open class ProgressRequestBody(
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
     protected val refreshTime: Long = Progress.REFRESH_TIME,
     // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
-    protected val shouldOneShot: Boolean = true
+    protected val shouldOneShot: Boolean = true,
+    // 额外携带信息
+    protected val extras: Progress.Extras?
 ) : RequestBody() {
 
     // 日志 TAG
@@ -93,7 +95,8 @@ open class ProgressRequestBody(
         private val progress = Progress(true)
 
         init {
-            progress.setTotalSize(contentLength())
+            progress.setExtras(extras)
+                .setTotalSize(contentLength())
                 .toStartAndCallback(callback, handler)
         }
 

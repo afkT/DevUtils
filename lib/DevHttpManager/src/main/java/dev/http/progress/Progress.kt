@@ -34,14 +34,16 @@ class Progress private constructor(
     // 进度异常信息
     private var exception: Throwable?,
     // 上传、下载网速信息
-    private val speed: Speed
+    private val speed: Speed,
+    // 额外携带信息
+    private var extras: Extras?
 ) : Parcelable {
 
     constructor(isRequest: Boolean) : this(
         isRequest, UUID.randomUUID().hashCode().toLong(),
         System.currentTimeMillis(),
         0L, 0L, 0L, 0L,
-        NORMAL, null, Speed()
+        NORMAL, null, Speed(), null
     )
 
     companion object {
@@ -193,6 +195,14 @@ class Progress private constructor(
      */
     fun getSpeed(): Speed {
         return speed
+    }
+
+    /**
+     * 获取额外携带信息
+     * @return Extras
+     */
+    fun getExtras(): Extras? {
+        return extras
     }
 
     // =
@@ -411,6 +421,53 @@ class Progress private constructor(
         }
     }
 
+    /**
+     * detail: 额外携带信息
+     * @author Ttt
+     */
+    @Parcelize
+    class Extras constructor(
+        // 请求链接
+        private var url: String,
+        // 请求方法
+        private val method: String,
+        // 请求头信息
+        private var headers: Map<String, String>
+    ) : Parcelable {
+
+        // ======================
+        // = Extras - 对外公开方法 =
+        // ======================
+
+        /**
+         * 获取请求链接
+         * @return 请求链接
+         */
+        fun getUrl(): String {
+            return url
+        }
+
+        /**
+         * 获取请求方法
+         * @return 请求方法
+         */
+        fun getMethod(): String {
+            return method
+        }
+
+        /**
+         * 获取请求头信息
+         * @return 请求头信息
+         */
+        fun getHeaders(): Map<String, String> {
+            return headers
+        }
+
+        // ===================
+        // = Extras - 内部方法 =
+        // ===================
+    }
+
     // =====================
     // = Progress - 内部方法 =
     // =====================
@@ -462,6 +519,16 @@ class Progress private constructor(
      */
     internal fun setException(value: Throwable): Progress {
         exception = value
+        return this
+    }
+
+    /**
+     * 设置额外携带信息
+     * @param value 额外携带信息
+     * @return Progress
+     */
+    internal fun setExtras(value: Extras?): Progress {
+        extras = value
         return this
     }
 
