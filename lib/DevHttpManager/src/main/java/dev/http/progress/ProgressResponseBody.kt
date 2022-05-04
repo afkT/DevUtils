@@ -20,7 +20,7 @@ open class ProgressResponseBody(
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
     protected val refreshTime: Long = Progress.REFRESH_TIME,
     // 额外携带信息
-    protected val extras: Progress.Extras?
+    protected val extras: Progress.Extras? = null
 ) : ResponseBody() {
 
     // ===============
