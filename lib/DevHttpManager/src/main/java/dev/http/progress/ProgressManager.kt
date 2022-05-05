@@ -2,6 +2,7 @@ package dev.http.progress
 
 import android.os.Handler
 import dev.DevUtils
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import okhttp3.Request
 import okhttp3.Response
@@ -39,7 +40,7 @@ fun Request.toExtras(): Progress.Extras? {
  */
 fun Request.wrapRequestBody(
     // 上传、下载回调接口
-    callback: Progress.Callback? = ProgressManager.sGlobalCallback,
+    callback: Progress.Callback?,
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
     handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
@@ -68,7 +69,7 @@ fun Request.wrapRequestBody(
  */
 fun Response.wrapResponseBody(
     // 上传、下载回调接口
-    callback: Progress.Callback? = ProgressManager.sGlobalCallback,
+    callback: Progress.Callback?,
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
     handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
@@ -95,61 +96,80 @@ fun Response.wrapResponseBody(
 /**
  * detail: Progress Manager
  * @author Ttt
- * OkHttp API:
- * @see https://square.github.io/okhttp/recipes
  */
 internal object ProgressManager {
 
     // 日志 TAG
     val TAG = ProgressManager::class.java.simpleName
 
-    // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
-    private var mRefreshTime: Long = Progress.REFRESH_TIME
+    // 存储 Progress Operation 操作对象
+    private val sOperationMaps: MutableMap<String, ProgressOperation> = LinkedHashMap()
 
-    // =============
-    // = 对外公开方法 =
-    // =============
+    private val mDefault: ProgressOperation by lazy {
+        ProgressOperation.get(DevFinal.STR.DEFAULT, true)
+    }
+
+    // =====================
+    // = ProgressOperation =
+    // =====================
 
     /**
-     * 获取回调刷新时间 ( 毫秒 )
-     * @return 回调刷新时间 ( 毫秒 )
+     * 获取默认 Progress Operation 操作对象
+     * @return ProgressOperation
      */
-    fun getRefreshTime(): Long {
-        return mRefreshTime
+    fun getDefault(): ProgressOperation {
+        return mDefault
     }
 
     /**
-     * 设置回调刷新时间 ( 毫秒 )
-     * @param refreshTime 回调刷新时间 ( 毫秒 )
+     * 获取 Progress Operation 操作对象
+     * @param key Key
+     * @return Progress Operation
      */
-    fun setRefreshTime(refreshTime: Long) {
-        mRefreshTime = refreshTime.coerceAtLeast(0)
+    fun getOperation(key: String): ProgressOperation? {
+        return sOperationMaps[key]
     }
 
-    // ==========
-    // = 内部方法 =
-    // ==========
+    /**
+     * 通过 Key 判断是否存在 Progress Operation 操作对象
+     * @param key Key
+     * @return `true` yes, `false` no
+     */
+    fun containsOperation(key: String): Boolean {
+        return sOperationMaps.containsKey(key)
+    }
 
     /**
-     * detail: 全局进度回调
-     * @author Ttt
-     * 只要是 DevHttpManager 库内部创建的 [ProgressRequestBody]、[ProgressResponseBody]
-     * 都会统一使用该回调接口实现
+     * 通过 Key 绑定并返回 Operation 操作对象
+     * @param key Key
+     * @return Progress Operation
      */
-    val sGlobalCallback = object : Progress.Callback {
-        override fun onStart(progress: Progress) {
-        }
+    fun putOperation(key: String): ProgressOperation {
+        // 如果存在那么先废弃历史对象
+        getOperation(key)?.markDeprecated()
+        val operation = ProgressOperation.get(key, false)
+        sOperationMaps[key] = operation
+        return operation
+    }
 
-        override fun onProgress(progress: Progress) {
-        }
+    /**
+     * 通过 Key 解绑并返回 Operation 操作对象
+     * @param key Key
+     * @return Progress Operation
+     */
+    fun removeOperation(key: String): ProgressOperation? {
+        return sOperationMaps.remove(key)?.markDeprecated()
+    }
 
-        override fun onError(progress: Progress) {
+    /**
+     * 清空所有 Progress Operation 操作对象
+     */
+    fun clearOperation() {
+        val map = sOperationMaps.toMutableMap()
+        sOperationMaps.clear()
+        map.values.forEach {
+            it.markDeprecated()
         }
-
-        override fun onFinish(progress: Progress) {
-        }
-
-        override fun onEnd(progress: Progress) {
-        }
+        map.clear()
     }
 }

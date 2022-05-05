@@ -13,6 +13,8 @@ import java.io.IOException
  * @author Ttt
  * 通过此类获取 OkHttp 请求体数据处理进度, 可以处理任何的 RequestBody
  * <p></p>
+ * OkHttp API:
+ * @see https://square.github.io/okhttp/recipes
  * shouldOneShot:
  * 避免拦截器调用 writeTo 导致多次触发
  * @see https://square.github.io/okhttp/4.x/okhttp/okhttp3/-request-body/is-one-shot
