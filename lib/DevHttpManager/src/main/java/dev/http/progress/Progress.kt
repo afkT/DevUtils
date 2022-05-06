@@ -5,6 +5,7 @@ import android.os.SystemClock
 import dev.utils.DevFinal
 import dev.utils.common.FileUtils
 import dev.utils.common.NumberUtils
+import dev.utils.common.assist.url.UrlExtras
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
@@ -435,6 +436,12 @@ class Progress private constructor(
         private var headers: Map<String, String>
     ) : Parcelable {
 
+        // Url 携带信息解析
+        @IgnoredOnParcel
+        private val innerUrlExtras: UrlExtras by lazy {
+            UrlExtras(url)
+        }
+
         // ======================
         // = Extras - 对外公开方法 =
         // ======================
@@ -463,9 +470,13 @@ class Progress private constructor(
             return headers
         }
 
-        // ===================
-        // = Extras - 内部方法 =
-        // ===================
+        /**
+         * 获取 Url 携带信息解析
+         * @return UrlExtras
+         */
+        fun getUrlExtras(): UrlExtras {
+            return innerUrlExtras
+        }
     }
 
     // =====================
