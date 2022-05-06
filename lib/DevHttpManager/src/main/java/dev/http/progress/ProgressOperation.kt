@@ -278,6 +278,16 @@ class ProgressOperation private constructor(
     // = 操作方法 - 对外公开 =
     // ====================
 
+    /**
+     * 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态
+     * 会释放所有数据、监听事件且不处理任何监听
+     */
+    fun removeSelfFromManager() {
+        // 默认对象是不存储在 Map 中, 所以属于无效调用直接 return
+        if (isDefault) return
+        ProgressManager.removeOperation(key)
+    }
+
     fun addResponseListener(
         url: String,
         callback: Progress.Callback
@@ -453,8 +463,7 @@ class ProgressOperation private constructor(
                 }
                 return true
             }
-            val list = mutableListOf(callback)
-            map[newUrl] = list
+            map[newUrl] = mutableListOf(callback)
             return true
         }
         return false
