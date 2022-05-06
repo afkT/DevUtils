@@ -41,7 +41,7 @@ open class ProgressRequestBody(
     protected val refreshTime: Long = Progress.REFRESH_TIME,
     // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
     protected val shouldOneShot: Boolean = true,
-    // 额外携带信息
+    // 额外携带信息 ( 可通过 Request.toExtras() 创建 )
     protected val extras: Progress.Extras? = null
 ) : RequestBody() {
 

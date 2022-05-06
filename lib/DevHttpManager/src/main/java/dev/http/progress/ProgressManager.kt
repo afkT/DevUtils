@@ -105,8 +105,12 @@ internal object ProgressManager {
     // 存储 Progress Operation 操作对象
     private val sOperationMaps: MutableMap<String, ProgressOperation> = LinkedHashMap()
 
+    // 默认监听上下行操作对象
     private val mDefault: ProgressOperation by lazy {
-        ProgressOperation.get(DevFinal.STR.DEFAULT, true)
+        ProgressOperation.get(
+            DevFinal.STR.DEFAULT, true,
+            ProgressOperation.TYPE_ALL
+        )
     }
 
     // =====================
@@ -140,19 +144,6 @@ internal object ProgressManager {
     }
 
     /**
-     * 通过 Key 绑定并返回 Operation 操作对象
-     * @param key Key
-     * @return Progress Operation
-     */
-    fun putOperation(key: String): ProgressOperation {
-        // 如果存在那么先废弃历史对象
-        getOperation(key)?.markDeprecated()
-        val operation = ProgressOperation.get(key, false)
-        sOperationMaps[key] = operation
-        return operation
-    }
-
-    /**
      * 通过 Key 解绑并返回 Operation 操作对象
      * @param key Key
      * @return Progress Operation
@@ -171,5 +162,55 @@ internal object ProgressManager {
             it.markDeprecated()
         }
         map.clear()
+    }
+
+    // =
+
+    /**
+     * 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 )
+     * @param key Key
+     * @return Progress Operation
+     */
+    fun putOperationTypeAll(key: String): ProgressOperation {
+        return putOperation(key, ProgressOperation.TYPE_ALL)
+    }
+
+    /**
+     * 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )
+     * @param key Key
+     * @return Progress Operation
+     */
+    fun putOperationTypeRequest(key: String): ProgressOperation {
+        return putOperation(key, ProgressOperation.TYPE_REQUEST)
+    }
+
+    /**
+     * 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
+     * @param key Key
+     * @return Progress Operation
+     */
+    fun putOperationTypeResponse(key: String): ProgressOperation {
+        return putOperation(key, ProgressOperation.TYPE_RESPONSE)
+    }
+
+    // ==========
+    // = 内部方法 =
+    // ==========
+
+    /**
+     * 通过 Key 绑定并返回 Operation 操作对象
+     * @param key Key
+     * @param type 内部拦截器监听类型
+     * @return Progress Operation
+     */
+    private fun putOperation(
+        key: String,
+        type: Int
+    ): ProgressOperation {
+        // 如果存在那么先废弃历史对象
+        getOperation(key)?.markDeprecated()
+        val operation = ProgressOperation.get(key, false, type)
+        sOperationMaps[key] = operation
+        return operation
     }
 }

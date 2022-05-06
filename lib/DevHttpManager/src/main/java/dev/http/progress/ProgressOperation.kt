@@ -9,25 +9,46 @@ import okhttp3.OkHttpClient
  * detail: Progress Operation
  * @author Ttt
  * 通过 key 区分, 支持不同组件模块化网络进度监听
+ * 支持上行、下行、上下行三种类型, 内部拦截器监听回调
  */
 class ProgressOperation private constructor(
     private val key: String,
-    private val isDefault: Boolean
+    private val isDefault: Boolean,
+    private val type: Int
 ) {
 
     companion object {
+
+        // ==================
+        // = 内部拦截器监听类型 =
+        // ==================
+
+        // 监听上下行类型
+        internal const val TYPE_ALL = 0
+
+        // 监听上行 ( 上传、请求 )
+        internal const val TYPE_REQUEST = 1
+
+        // 监听下行 ( 下载、响应 )
+        internal const val TYPE_RESPONSE = 2
+
+        // ==========
+        // = create =
+        // ==========
 
         /**
          * 创建 Progress Operation
          * @param key Key
          * @param isDefault 是否默认操作对象
+         * @param type 内部拦截器监听类型
          * @return Progress Operation
          */
         internal fun get(
             key: String,
-            isDefault: Boolean
+            isDefault: Boolean,
+            type: Int
         ): ProgressOperation {
-            return ProgressOperation(key, isDefault)
+            return ProgressOperation(key, isDefault, type)
         }
     }
 
@@ -85,6 +106,30 @@ class ProgressOperation private constructor(
      */
     fun isDefault(): Boolean {
         return isDefault
+    }
+
+    /**
+     * 是否监听上下行
+     * @return `true` yes, `false` no
+     */
+    fun isTypeAll(): Boolean {
+        return type == TYPE_ALL
+    }
+
+    /**
+     * 是否监听上行
+     * @return `true` yes, `false` no
+     */
+    fun isTypeRequest(): Boolean {
+        return type == TYPE_REQUEST
+    }
+
+    /**
+     * 是否监听下行
+     * @return `true` yes, `false` no
+     */
+    fun isTypeResponse(): Boolean {
+        return type == TYPE_RESPONSE
     }
 
     // =
@@ -258,29 +303,67 @@ class ProgressOperation private constructor(
     /**
      * detail: 内部 Progress 拦截器
      * @author Ttt
-     * DevHttpManager 库内部包装, 拦截监听 上行 ( 上传、请求 )、下行 ( 下载、响应 ) 进度
+     * DevHttpManager 库内部包装, 拦截监听上行 ( 上传、请求 )、下行 ( 下载、响应 ) 进度
      */
     private val innerProgressInterceptor: Interceptor by lazy {
-        Interceptor { chain ->
-            if (mDeprecated) {
-                chain.proceed(chain.request())
-            } else {
-                val request = chain.request()
-                val extras = request.toExtras()
-                val wrapRequest = request.wrapRequestBody(
-                    callback = innerCallback,
-                    handler = mHandler,
-                    refreshTime = mRefreshTime,
-                    shouldOneShot = mOneShot,
-                    extras = extras
-                )
-                val response = chain.proceed(wrapRequest)
-                response.wrapResponseBody(
-                    callback = innerCallback,
-                    handler = mHandler,
-                    refreshTime = mRefreshTime,
-                    extras = extras
-                )
+        if (isTypeRequest()) {
+            // 监听上行类型
+            Interceptor { chain ->
+                if (mDeprecated) {
+                    chain.proceed(chain.request())
+                } else {
+                    val request = chain.request()
+                    val extras = request.toExtras()
+                    val wrapRequest = request.wrapRequestBody(
+                        callback = innerCallback,
+                        handler = mHandler,
+                        refreshTime = mRefreshTime,
+                        shouldOneShot = mOneShot,
+                        extras = extras
+                    )
+                    chain.proceed(wrapRequest)
+                }
+            }
+        } else if (isTypeResponse()) {
+            // 监听下行类型
+            Interceptor { chain ->
+                if (mDeprecated) {
+                    chain.proceed(chain.request())
+                } else {
+                    val request = chain.request()
+                    val extras = request.toExtras()
+                    val response = chain.proceed(request)
+                    response.wrapResponseBody(
+                        callback = innerCallback,
+                        handler = mHandler,
+                        refreshTime = mRefreshTime,
+                        extras = extras
+                    )
+                }
+            }
+        } else {
+            // 监听上下行类型 ( 默认 )
+            Interceptor { chain ->
+                if (mDeprecated) {
+                    chain.proceed(chain.request())
+                } else {
+                    val request = chain.request()
+                    val extras = request.toExtras()
+                    val wrapRequest = request.wrapRequestBody(
+                        callback = innerCallback,
+                        handler = mHandler,
+                        refreshTime = mRefreshTime,
+                        shouldOneShot = mOneShot,
+                        extras = extras
+                    )
+                    val response = chain.proceed(wrapRequest)
+                    response.wrapResponseBody(
+                        callback = innerCallback,
+                        handler = mHandler,
+                        refreshTime = mRefreshTime,
+                        extras = extras
+                    )
+                }
             }
         }
     }
