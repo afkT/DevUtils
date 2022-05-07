@@ -1,20 +1,24 @@
-package dev.utils.common.assist.url;
+package dev.utils.app.assist.url;
+
+import android.net.Uri;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
-import dev.utils.common.HttpParamsUtils;
+import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
+import dev.utils.common.assist.url.UrlExtras;
 
 /**
- * detail: Dev 库 Java 通用 Url 解析器
+ * detail: Android Api 实现 Url 解析器
  * @author Ttt
- * <pre>
- *     不依赖 android api
- * </pre>
  */
-public class DevJavaUrlParser
+public class AndroidUrlParser
         implements UrlExtras.Parser {
+
+    // 日志 TAG
+    private static final String TAG = AndroidUrlParser.class.getSimpleName();
 
     // 完整 Url
     private String              mUrl;
@@ -33,7 +37,7 @@ public class DevJavaUrlParser
 
     @Override
     public UrlExtras.Parser reset(final String url) {
-        return new DevJavaUrlParser().setUrl(url);
+        return new AndroidUrlParser().setUrl(url);
     }
 
     @Override
@@ -86,25 +90,43 @@ public class DevJavaUrlParser
         this.mUrlParamsDecodeMap = null;
 
         if (StringUtils.isNotEmpty(mUrl)) {
-            String[] array = HttpParamsUtils.getUrlParamsArray(mUrl);
-            this.mUrlPrefix = array[0];
-            this.mUrlParams = array[1];
+            try {
+                Uri uri = Uri.parse(mUrl);
+                this.mUrlPrefix = uriToUrlPrefix(uri);
+                this.mUrlParams = uri.getEncodedQuery();
 
-            if (StringUtils.isNotEmpty(mUrlParams)) {
-                this.mUrlParamsMap       = HttpParamsUtils.splitParams(
-                        mUrlParams, false
-                );
-                this.mUrlParamsDecodeMap = new LinkedHashMap<>();
-                for (Map.Entry<String, String> entry : mUrlParamsMap.entrySet()) {
-                    String key   = entry.getKey();
-                    String value = entry.getValue();
+                if (StringUtils.isNotEmpty(mUrlParams)) {
+                    this.mUrlParamsMap       = new LinkedHashMap<>();
+                    this.mUrlParamsDecodeMap = new LinkedHashMap<>();
 
-                    String decode = StringUtils.urlDecodeWhile(value, 10);
-                    this.mUrlParamsDecodeMap.put(
-                            key, StringUtils.checkValue(value, decode)
-                    );
+                    Set<String> keys = uri.getQueryParameterNames();
+                    for (String key : keys) {
+                        String value  = uri.getQueryParameter(key);
+                        String decode = StringUtils.urlDecodeWhile(value, 10);
+
+                        this.mUrlParamsMap.put(key, value);
+                        this.mUrlParamsDecodeMap.put(
+                                key, StringUtils.checkValue(value, decode)
+                        );
+                    }
                 }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "initialize");
             }
         }
+    }
+
+    /**
+     * 通过 Uri 拼接 Url 前缀 ( 去除参数部分 )
+     * <pre>
+     *     参照部分 Uri#toSafeString() 代码
+     * </pre>
+     * @return Url 前缀
+     */
+    private String uriToUrlPrefix(final Uri uri) {
+        String scheme    = StringUtils.checkValue(uri.getScheme());
+        String authority = StringUtils.checkValue(uri.getAuthority());
+        String path      = StringUtils.checkValue(uri.getPath());
+        return scheme + "://" + authority + path;
     }
 }
