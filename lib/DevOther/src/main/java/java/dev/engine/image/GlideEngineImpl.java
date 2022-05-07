@@ -227,7 +227,7 @@ public class GlideEngineImpl
     ) {
         if (imageView != null && imageView.getContext() != null) {
             RequestManager requestManager = Glide.with(imageView.getContext());
-            priDisplayToRequestBuilder(
+            innerDisplayToRequestBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config
@@ -274,7 +274,7 @@ public class GlideEngineImpl
     ) {
         if (imageView != null && imageView.getContext() != null) {
             RequestManager requestManager = Glide.with(imageView.getContext());
-            priDisplayToRequestBuilder(
+            innerDisplayToRequestBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config,
@@ -324,7 +324,7 @@ public class GlideEngineImpl
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 RequestManager requestManager = Glide.with(fragment);
-                priDisplayToRequestBuilder(
+                innerDisplayToRequestBuilder(
                         imageView,
                         setToRequest(requestManager, source),
                         config
@@ -377,7 +377,7 @@ public class GlideEngineImpl
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 RequestManager requestManager = Glide.with(fragment);
-                priDisplayToRequestBuilder(
+                innerDisplayToRequestBuilder(
                         imageView,
                         setToRequest(requestManager, source),
                         config,
@@ -622,7 +622,7 @@ public class GlideEngineImpl
             ImageConfig config,
             OnConvertListener listener
     ) {
-        return priConvertImageFormat(context, sources, config, listener);
+        return innerConvertImageFormat(context, sources, config, listener);
     }
 
     // ==========
@@ -831,7 +831,7 @@ public class GlideEngineImpl
      * @param request   {@link RequestBuilder}
      * @param config    {@link ImageConfig}
      */
-    private void priDisplayToRequestBuilder(
+    private void innerDisplayToRequestBuilder(
             ImageView imageView,
             RequestBuilder request,
             ImageConfig config
@@ -849,7 +849,7 @@ public class GlideEngineImpl
      * @param source    {@link DevSource}
      * @param listener  {@link LoadListener}
      */
-    private <T> void priDisplayToRequestBuilder(
+    private <T> void innerDisplayToRequestBuilder(
             ImageView imageView,
             RequestBuilder request,
             ImageConfig config,
@@ -1053,7 +1053,7 @@ public class GlideEngineImpl
      * @param listener 回调事件
      * @return {@code true} success, {@code false} fail
      */
-    private boolean priConvertImageFormat(
+    private boolean innerConvertImageFormat(
             Context context,
             List<DevSource> sources,
             ImageConfig config,

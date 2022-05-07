@@ -199,7 +199,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     ) {
         if (imageView != null && imageView.context != null) {
             val requestManager = Glide.with(imageView.context)
-            priDisplayToRequestBuilder(
+            innerDisplayToRequestBuilder(
                 imageView,
                 setToRequest(requestManager, source),
                 config
@@ -242,7 +242,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     ) {
         if (imageView != null && imageView.context != null) {
             val requestManager = Glide.with(imageView.context)
-            priDisplayToRequestBuilder(
+            innerDisplayToRequestBuilder(
                 imageView,
                 setToRequest(requestManager, source),
                 config,
@@ -288,7 +288,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 val requestManager = Glide.with(fragment)
-                priDisplayToRequestBuilder(
+                innerDisplayToRequestBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config
@@ -337,7 +337,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 val requestManager = Glide.with(fragment)
-                priDisplayToRequestBuilder(
+                innerDisplayToRequestBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config,
@@ -579,7 +579,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: OnConvertListener?
     ): Boolean {
-        return priConvertImageFormat(context, sources, config, listener)
+        return innerConvertImageFormat(context, sources, config, listener)
     }
 
     // ==========
@@ -817,7 +817,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param request   [RequestBuilder]
      * @param config    [ImageConfig]
      */
-    private fun priDisplayToRequestBuilder(
+    private fun innerDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?
@@ -835,7 +835,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param source    [DevSource]
      * @param listener  [LoadListener]
      */
-    private fun <T> priDisplayToRequestBuilder(
+    private fun <T> innerDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?,
@@ -988,7 +988,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param listener 回调事件
      * @return `true` success, `false` fail
      */
-    private fun priConvertImageFormat(
+    private fun innerConvertImageFormat(
         context: Context?,
         sources: List<DevSource>?,
         config: ImageConfig?,
