@@ -84,7 +84,7 @@ public class SignView
             // 绘制路径
             canvas.drawPath(path, paint);
             // 重置画布操作
-            _resetCanvas(canvas);
+            innerResetCanvas(canvas);
         }
     }
 
@@ -114,7 +114,7 @@ public class SignView
      * 重置画布处理
      * @param canvas 画布
      */
-    private void _resetCanvas(final Canvas canvas) {
+    private void innerResetCanvas(final Canvas canvas) {
         if (mClearCanvas && canvas != null) {
             canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
         }

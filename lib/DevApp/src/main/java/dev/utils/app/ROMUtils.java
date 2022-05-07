@@ -224,7 +224,7 @@ public final class ROMUtils {
      */
     public static RomInfo getRomInfo() {
         if (sBean != null) return sBean;
-        sBean = _getRomInfo();
+        sBean = innerGetRomInfo();
         return sBean;
     }
 
@@ -434,7 +434,7 @@ public final class ROMUtils {
      * 获取 ROM 信息
      * @return {@link RomInfo}
      */
-    private static RomInfo _getRomInfo() {
+    private static RomInfo innerGetRomInfo() {
         RomInfo      bean         = new RomInfo();
         final String brand        = getBrand();
         final String manufacturer = getManufacturer();

@@ -152,7 +152,7 @@ public abstract class OkGoCallback<T>
         LogPrintUtils.dTag(TAG, "请求成功: %s", url);
 
         try {
-            _response(response);
+            innerResponse(response);
         } catch (Exception e) {
             if (response != null) {
                 response.setException(e);
@@ -200,7 +200,7 @@ public abstract class OkGoCallback<T>
      * 内部处理请求响应数据
      * @param response 请求响应数据
      */
-    private void _response(Response<String> response) {
+    private void innerResponse(Response<String> response) {
         String body = response.body();
         // 转换 JSON 对象
         JSONObject jsonObject = JSONObjectUtils.getJSONObject(body);
@@ -227,7 +227,7 @@ public abstract class OkGoCallback<T>
                         new Gson().fromJson(data, type)
                 );
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "_response setData");
+                LogPrintUtils.eTag(TAG, e, "innerResponse setData");
                 builder.setResult(false).setException(e);
             }
         }
