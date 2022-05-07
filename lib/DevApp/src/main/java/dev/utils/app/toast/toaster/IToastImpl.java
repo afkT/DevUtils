@@ -230,7 +230,7 @@ final class IToastImpl
     ) {
         String context = StringUtils.getFormatString(text, formatArgs);
         if (filter(context)) {
-            priShowToastText(handlerContent(context));
+            innerShowToastText(handlerContent(context));
         }
     }
 
@@ -247,7 +247,7 @@ final class IToastImpl
         String context = ResourceUtils.getString(resId, formatArgs);
         if (filter(context)) {
             // 获取处理的内容
-            priShowToastText(handlerContent(context));
+            innerShowToastText(handlerContent(context));
         }
     }
 
@@ -376,7 +376,7 @@ final class IToastImpl
      * 内部私有方法, 最终显示 Toast
      * @param text Toast 提示文本
      */
-    private void priShowToastText(final String text) {
+    private void innerShowToastText(final String text) {
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         if (mUseHandler) {
@@ -387,7 +387,7 @@ final class IToastImpl
                         toast.show();
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "priShowToastText");
+                    LogPrintUtils.eTag(TAG, e, "innerShowToastText - handler");
                 }
             });
         } else {
@@ -397,7 +397,7 @@ final class IToastImpl
                     toast.show();
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "priShowToastText");
+                LogPrintUtils.eTag(TAG, e, "innerShowToastText");
             }
         }
     }
