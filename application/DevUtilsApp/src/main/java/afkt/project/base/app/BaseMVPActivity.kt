@@ -58,7 +58,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         mContext = this
         mActivity = this
         // 内部初始化
-        priInitialize()
+        innerInitialize()
         // 是否需要 ToolBar
         if (isToolBar()) {
             // 初始化 ToolBar
@@ -232,7 +232,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     // = 内部初始化 =
     // ============
 
-    private fun priInitialize() {
+    private fun innerInitialize() {
         try {
             ARouter.getInstance().inject(this)
         } catch (e: Exception) {

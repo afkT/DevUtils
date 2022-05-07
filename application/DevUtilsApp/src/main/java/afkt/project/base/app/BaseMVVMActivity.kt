@@ -17,7 +17,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 内部初始化
-        priInitialize()
+        innerInitialize()
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()
     }
@@ -30,7 +30,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     // = 内部初始化 =
     // ============
 
-    private fun priInitialize() {
+    private fun innerInitialize() {
         try {
             ARouter.getInstance().inject(this)
         } catch (e: Exception) {

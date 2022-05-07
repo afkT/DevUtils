@@ -258,7 +258,7 @@ final class IToastImpl
     @Override
     public void show(final View view) {
         if (filter(view)) {
-            priShowToastView(view, Toast.LENGTH_SHORT);
+            innerShowToastView(view, Toast.LENGTH_SHORT);
         }
     }
 
@@ -273,7 +273,7 @@ final class IToastImpl
             final int duration
     ) {
         if (filter(view)) {
-            priShowToastView(view, duration);
+            innerShowToastView(view, duration);
         }
     }
 
@@ -513,7 +513,7 @@ final class IToastImpl
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    private void priShowToastView(
+    private void innerShowToastView(
             final View view,
             final int duration
     ) {
@@ -529,7 +529,7 @@ final class IToastImpl
                         toast.show();
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "priShowToastView");
+                    LogPrintUtils.eTag(TAG, e, "innerShowToastView - handler");
                 }
             });
         } else {
@@ -539,7 +539,7 @@ final class IToastImpl
                     toast.show();
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "priShowToastView");
+                LogPrintUtils.eTag(TAG, e, "innerShowToastView");
             }
         }
     }

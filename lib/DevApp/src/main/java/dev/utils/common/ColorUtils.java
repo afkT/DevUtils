@@ -439,7 +439,7 @@ public final class ColorUtils {
      * @param colorStr argb/rgb color String
      * @return argb/rgb 颜色值
      */
-    private static int priParseColor(final String colorStr) {
+    private static int innerParseColor(final String colorStr) {
         if (colorStr.charAt(0) == '#') {
             // Use a long to avoid rollovers on #ffXXXXXX
             long color = Long.parseLong(colorStr.substring(1), 16);
@@ -473,7 +473,7 @@ public final class ColorUtils {
     public static int parseColor(final String colorStr) {
         if (colorStr != null) {
             try {
-                return priParseColor(colorStr);
+                return innerParseColor(colorStr);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "parseColor");
             }
@@ -839,7 +839,7 @@ public final class ColorUtils {
         ) {
             this.key   = key;
             this.value = value;
-            priConvert();
+            innerConvert();
         }
 
         /**
@@ -971,7 +971,7 @@ public final class ColorUtils {
         /**
          * 内部转换处理
          */
-        private void priConvert() {
+        private void innerConvert() {
             String temp = value;
             if (sParser != null) {
                 temp = sParser.handleColor(value);
