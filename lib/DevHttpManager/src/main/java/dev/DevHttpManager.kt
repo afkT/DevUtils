@@ -2,6 +2,8 @@ package dev
 
 import dev.http.BuildConfig
 import dev.http.manager.*
+import dev.http.progress.ProgressManager
+import dev.http.progress.ProgressOperation
 import okhttp3.HttpUrl
 
 /**
@@ -221,5 +223,75 @@ object DevHttpManager {
 
     object PM {
 
+        /**
+         * 获取默认 Progress Operation 操作对象
+         * @return ProgressOperation
+         */
+        fun getDefault(): ProgressOperation {
+            return ProgressManager.getDefault()
+        }
+
+        /**
+         * 获取 Progress Operation 操作对象
+         * @param key Key
+         * @return Progress Operation
+         */
+        fun getOperation(key: String): ProgressOperation? {
+            return ProgressManager.getOperation(key)
+        }
+
+        /**
+         * 通过 Key 判断是否存在 Progress Operation 操作对象
+         * @param key Key
+         * @return `true` yes, `false` no
+         */
+        fun containsOperation(key: String): Boolean {
+            return ProgressManager.containsOperation(key)
+        }
+
+        /**
+         * 通过 Key 解绑并返回 Operation 操作对象
+         * @param key Key
+         * @return Progress Operation
+         */
+        fun removeOperation(key: String): ProgressOperation? {
+            return ProgressManager.removeOperation(key)
+        }
+
+        /**
+         * 清空所有 Progress Operation 操作对象
+         */
+        fun clearOperation() {
+            ProgressManager.clearOperation()
+        }
+
+        // =
+
+        /**
+         * 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 )
+         * @param key Key
+         * @return Progress Operation
+         */
+        fun putOperationTypeAll(key: String): ProgressOperation {
+            return ProgressManager.putOperationTypeAll(key)
+        }
+
+        /**
+         * 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )
+         * @param key Key
+         * @return Progress Operation
+         */
+        fun putOperationTypeRequest(key: String): ProgressOperation {
+            return ProgressManager.putOperationTypeRequest(key)
+        }
+
+        /**
+         * 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
+         * @param key Key
+         * @return Progress Operation
+         */
+        fun putOperationTypeResponse(key: String): ProgressOperation {
+            return ProgressManager.putOperationTypeResponse(key)
+        }
     }
 }

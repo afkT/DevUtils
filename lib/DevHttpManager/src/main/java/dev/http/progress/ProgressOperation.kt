@@ -84,10 +84,10 @@ class ProgressOperation private constructor(
     private var mOneShot: Boolean = true
 
     // 上行 ( 上传、请求 ) 监听回调 ( key = url, value = Progress.Callback )
-    private val mRequestListeners = WeakHashMap<String, MutableList<Progress.Callback>>()
+    private val mRequestListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
 
     // 下行 ( 下载、响应 ) 监听回调
-    private val mResponseListeners = WeakHashMap<String, MutableList<Progress.Callback>>()
+    private val mResponseListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
 
     // ============
     // = 初始化方法 =
@@ -288,11 +288,229 @@ class ProgressOperation private constructor(
         ProgressManager.removeOperation(key)
     }
 
-    fun addResponseListener(
+    // ====================
+    // = Request Listener =
+    // ====================
+
+    /**
+     * 添加指定 url 上行 ( 上传、请求 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun addRequestListener(
         url: String,
         callback: Progress.Callback
-    ) {
+    ): Boolean {
+        return addListener(true, url, callback)
+    }
 
+    /**
+     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun clearRequestListener(url: String): Boolean {
+        return clearListener(true, url)
+    }
+
+    /**
+     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun clearRequestListener(progress: Progress?): Boolean {
+        return clearListener(true, progress)
+    }
+
+    /**
+     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun removeRequestListener(
+        url: String,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(true, url, callback)
+    }
+
+    /**
+     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun removeRequestListener(
+        progress: Progress?,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(true, progress, callback)
+    }
+
+    // =====================
+    // = Response Listener =
+    // =====================
+
+    /**
+     * 添加指定 url 下行 ( 下载、响应 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun addResponseListener(
+        url: String,
+        callback: Progress.Callback
+    ): Boolean {
+        return addListener(false, url, callback)
+    }
+
+    /**
+     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun clearResponseListener(url: String): Boolean {
+        return clearListener(false, url)
+    }
+
+    /**
+     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun clearResponseListener(progress: Progress?): Boolean {
+        return clearListener(false, progress)
+    }
+
+    /**
+     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun removeResponseListener(
+        url: String,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(false, url, callback)
+    }
+
+    /**
+     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * @return `true` success, `false` fail
+     */
+    private fun removeResponseListener(
+        progress: Progress?,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(false, progress, callback)
+    }
+
+    // ====================
+    // = 操作方法 - 内部方法 =
+    // ====================
+
+    /**
+     * 获取 Callback Map
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @return WeakHashMap<String, List<Progress.Callback?>>
+     */
+    private fun getMap(isRequest: Boolean): WeakHashMap<String, MutableList<Progress.Callback?>> {
+        return if (isRequest) mRequestListeners else mResponseListeners
+    }
+
+    /**
+     * 获取 Url 前缀 ( 去除参数部分 )
+     * @param progress Progress
+     * @return Url 前缀
+     */
+    private fun getUrlByPrefix(progress: Progress?): String {
+        return progress?.getExtras()?.getUrlExtras()?.urlByPrefix ?: ""
+    }
+
+    // =
+
+    /**
+     * 添加指定 url 监听事件
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
+     * @return `true` success, `false` fail
+     * 会清空 url 字符串全部空格、Tab、换行符, 如有特殊符号需提前自行转义
+     */
+    private fun addListener(
+        isRequest: Boolean,
+        url: String,
+        callback: Progress.Callback
+    ): Boolean {
+        val newUrl = StringUtils.clearSpaceTabLine(url)
+        if (StringUtils.isNotEmpty(newUrl)) {
+            val map = getMap(isRequest)
+            map[newUrl]?.let { list ->
+                if (!list.contains(callback)) {
+                    list.add(callback)
+                }
+                return true
+            }
+            map[newUrl] = mutableListOf(callback)
+            return true
+        }
+        return false
+    }
+
+    /**
+     * 清空指定 url 所有监听事件
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param url 请求 url
+     * @return `true` success, `false` fail
+     */
+    private fun clearListener(
+        isRequest: Boolean,
+        url: String
+    ): Boolean {
+        val newUrl = StringUtils.clearSpaceTabLine(url)
+        if (StringUtils.isNotEmpty(newUrl)) {
+            val map = getMap(isRequest)
+            map.remove(newUrl)?.clear()
+            return true
+        }
+        return false
+    }
+
+    /**
+     * 清空指定 url 所有监听事件
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param progress Progress
+     * @return `true` success, `false` fail
+     */
+    private fun clearListener(
+        isRequest: Boolean,
+        progress: Progress?
+    ): Boolean {
+        return clearListener(isRequest, getUrlByPrefix(progress))
+    }
+
+    /**
+     * 移除指定 url 监听事件
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
+     * @return `true` success, `false` fail
+     */
+    private fun removeListener(
+        isRequest: Boolean,
+        url: String,
+        callback: Progress.Callback
+    ): Boolean {
+        val newUrl = StringUtils.clearSpaceTabLine(url)
+        if (StringUtils.isNotEmpty(newUrl)) {
+            val map = getMap(isRequest)
+            return map[newUrl]?.remove(callback) ?: false
+        }
+        return false
+    }
+
+    /**
+     * 移除指定 url 监听事件
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
+     * @return `true` success, `false` fail
+     */
+    private fun removeListener(
+        isRequest: Boolean,
+        progress: Progress?,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(isRequest, getUrlByPrefix(progress), callback)
     }
 
     // ==========
@@ -325,26 +543,56 @@ class ProgressOperation private constructor(
             override fun onStart(progress: Progress) {
                 if (mDeprecated) return
                 mCallback?.onStart(progress)
+
+                // 根据请求 url 获取对应的监听事件集合
+                val array = innerGetCallbackList(progress)
+                array.forEach {
+                    it?.onStart(progress)
+                }
             }
 
             override fun onProgress(progress: Progress) {
                 if (mDeprecated) return
                 mCallback?.onProgress(progress)
+
+                // 根据请求 url 获取对应的监听事件集合
+                val array = innerGetCallbackList(progress)
+                array.forEach {
+                    it?.onProgress(progress)
+                }
             }
 
             override fun onError(progress: Progress) {
                 if (mDeprecated) return
                 mCallback?.onError(progress)
+
+                // 根据请求 url 获取对应的监听事件集合
+                val array = innerGetCallbackList(progress)
+                array.forEach {
+                    it?.onError(progress)
+                }
             }
 
             override fun onFinish(progress: Progress) {
                 if (mDeprecated) return
                 mCallback?.onFinish(progress)
+
+                // 根据请求 url 获取对应的监听事件集合
+                val array = innerGetCallbackList(progress)
+                array.forEach {
+                    it?.onFinish(progress)
+                }
             }
 
             override fun onEnd(progress: Progress) {
                 if (mDeprecated) return
                 mCallback?.onEnd(progress)
+
+                // 根据请求 url 获取对应的监听事件集合
+                val array = innerGetCallbackList(progress)
+                array.forEach {
+                    it?.onEnd(progress)
+                }
             }
         }
     }
@@ -417,122 +665,23 @@ class ProgressOperation private constructor(
         }
     }
 
-    // ====================
-    // = 操作方法 - 内部方法 =
-    // ====================
+    // =========================
+    // = 内部 Callback List 获取 =
+    // =========================
 
     /**
-     * 获取 Callback Map
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @return WeakHashMap<String, List<Progress.Callback>>
-     */
-    private fun getMap(isRequest: Boolean): WeakHashMap<String, MutableList<Progress.Callback>> {
-        return if (isRequest) mRequestListeners else mResponseListeners
-    }
-
-    /**
-     * 获取 Url 前缀 ( 去除参数部分 )
+     * 根据请求 url 获取对应的监听事件集合
      * @param progress Progress
-     * @return Url 前缀
+     * @return Array<Progress.Callback?>
      */
-    private fun getUrlByPrefix(progress: Progress?): String {
-        return progress?.getExtras()?.getUrlExtras()?.urlByPrefix ?: ""
-    }
-
-    // =
-
-    /**
-     * 添加指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @param url 请求 url
-     * @param callback 上传、下载回调接口
-     * @return `true` success, `false` fail
-     * 会清空 url 字符串全部空格、Tab、换行符, 如有特殊符号需提前自行转义
-     */
-    private fun addListener(
-        isRequest: Boolean,
-        url: String,
-        callback: Progress.Callback
-    ): Boolean {
-        val newUrl = StringUtils.clearSpaceTabLine(url)
-        if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
-            map[newUrl]?.let { list ->
-                if (!list.contains(callback)) {
-                    list.add(callback)
-                }
-                return true
+    private fun innerGetCallbackList(progress: Progress): Array<Progress.Callback?> {
+        val url = getUrlByPrefix(progress)
+        if (StringUtils.isNotEmpty(url)) {
+            val map = getMap(progress.isRequest())
+            map[url]?.let {
+                return it.toTypedArray()
             }
-            map[newUrl] = mutableListOf(callback)
-            return true
         }
-        return false
-    }
-
-    /**
-     * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @param url 请求 url
-     * @return Boolean
-     */
-    private fun clearListener(
-        isRequest: Boolean,
-        url: String
-    ): Boolean {
-        val newUrl = StringUtils.clearSpaceTabLine(url)
-        if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
-            map.remove(newUrl)?.clear()
-            return true
-        }
-        return false
-    }
-
-    /**
-     * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @param progress Progress
-     * @return Boolean
-     */
-    private fun clearListener(
-        isRequest: Boolean,
-        progress: Progress?
-    ): Boolean {
-        return clearListener(isRequest, getUrlByPrefix(progress))
-    }
-
-    /**
-     * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @param url 请求 url
-     * @param callback 上传、下载回调接口
-     * @return Boolean
-     */
-    private fun removeListener(
-        isRequest: Boolean,
-        url: String,
-        callback: Progress.Callback
-    ): Boolean {
-        val newUrl = StringUtils.clearSpaceTabLine(url)
-        if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
-            return map[newUrl]?.remove(callback) ?: false
-        }
-        return false
-    }
-
-    /**
-     * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @param progress Progress
-     * @param callback 上传、下载回调接口
-     * @return Boolean
-     */
-    private fun removeListener(
-        isRequest: Boolean,
-        progress: Progress?,
-        callback: Progress.Callback
-    ): Boolean {
-        return removeListener(isRequest, getUrlByPrefix(progress), callback)
+        return arrayOf()
     }
 }

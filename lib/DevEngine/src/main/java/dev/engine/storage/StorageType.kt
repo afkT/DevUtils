@@ -17,7 +17,9 @@ enum class StorageType {
 
     DOWNLOAD,
 
-    NONE;
+    NONE
+
+    ;
 
     // ==========
     // = 快捷方法 =

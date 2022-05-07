@@ -250,7 +250,7 @@ class Progress private constructor(
 
     /**
      * 是否结束状态 ( 用于表示整个过程已结束 )
-     * @return Boolean
+     * @return `true` yes, `false` no
      */
     fun isEND(): Boolean {
         return isERROR() || isFINISH()
