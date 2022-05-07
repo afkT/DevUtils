@@ -296,7 +296,7 @@ class ProgressOperation private constructor(
      * 添加指定 url 上行 ( 上传、请求 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun addRequestListener(
+    fun addRequestListener(
         url: String,
         callback: Progress.Callback
     ): Boolean {
@@ -307,7 +307,7 @@ class ProgressOperation private constructor(
      * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
      * @return `true` success, `false` fail
      */
-    private fun clearRequestListener(url: String): Boolean {
+    fun clearRequestListener(url: String): Boolean {
         return clearListener(true, url)
     }
 
@@ -315,7 +315,7 @@ class ProgressOperation private constructor(
      * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
      * @return `true` success, `false` fail
      */
-    private fun clearRequestListener(progress: Progress?): Boolean {
+    fun clearRequestListener(progress: Progress?): Boolean {
         return clearListener(true, progress)
     }
 
@@ -323,7 +323,7 @@ class ProgressOperation private constructor(
      * 移除指定 url 上行 ( 上传、请求 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun removeRequestListener(
+    fun removeRequestListener(
         url: String,
         callback: Progress.Callback
     ): Boolean {
@@ -334,7 +334,7 @@ class ProgressOperation private constructor(
      * 移除指定 url 上行 ( 上传、请求 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun removeRequestListener(
+    fun removeRequestListener(
         progress: Progress?,
         callback: Progress.Callback
     ): Boolean {
@@ -349,7 +349,7 @@ class ProgressOperation private constructor(
      * 添加指定 url 下行 ( 下载、响应 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun addResponseListener(
+    fun addResponseListener(
         url: String,
         callback: Progress.Callback
     ): Boolean {
@@ -360,7 +360,7 @@ class ProgressOperation private constructor(
      * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
      * @return `true` success, `false` fail
      */
-    private fun clearResponseListener(url: String): Boolean {
+    fun clearResponseListener(url: String): Boolean {
         return clearListener(false, url)
     }
 
@@ -368,7 +368,7 @@ class ProgressOperation private constructor(
      * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
      * @return `true` success, `false` fail
      */
-    private fun clearResponseListener(progress: Progress?): Boolean {
+    fun clearResponseListener(progress: Progress?): Boolean {
         return clearListener(false, progress)
     }
 
@@ -376,7 +376,7 @@ class ProgressOperation private constructor(
      * 移除指定 url 下行 ( 下载、响应 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun removeResponseListener(
+    fun removeResponseListener(
         url: String,
         callback: Progress.Callback
     ): Boolean {
@@ -387,7 +387,7 @@ class ProgressOperation private constructor(
      * 移除指定 url 下行 ( 下载、响应 ) 监听事件
      * @return `true` success, `false` fail
      */
-    private fun removeResponseListener(
+    fun removeResponseListener(
         progress: Progress?,
         callback: Progress.Callback
     ): Boolean {

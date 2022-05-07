@@ -1,6 +1,6 @@
 package dev.utils.common.assist.url;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * detail: Url 携带信息解析
@@ -18,7 +18,7 @@ public class UrlExtras {
     // ==========
 
     public UrlExtras(final String url) {
-        this(url, null);
+        this(url, new DevJavaUrlParser());
     }
 
     public UrlExtras(
@@ -42,15 +42,16 @@ public class UrlExtras {
         /**
          * 重置并返回一个新的解析器
          * @param url 完整 Url
-         * @return New Parser
+         * @return Parser
          */
         Parser reset(String url);
 
         /**
          * 设置完整 Url
          * @param url Url
+         * @return Parser
          */
-        void setUrl(String url);
+        Parser setUrl(String url);
 
         /**
          * 获取完整 Url
@@ -74,13 +75,13 @@ public class UrlExtras {
          * 获取 Url Params Map
          * @return Url Params Map
          */
-        LinkedHashMap<String, String> getUrlParams();
+        Map<String, String> getUrlParams();
 
         /**
-         * 获取 Url Params Map ( 参数值进行 UrlEncode )
+         * 获取 Url Params Map ( 参数值进行 UrlDecode )
          * @return Url Params Map
          */
-        LinkedHashMap<String, String> getUrlParamsEncode();
+        Map<String, String> getUrlParamsDecode();
     }
 
     // =============
@@ -115,16 +116,16 @@ public class UrlExtras {
      * 获取 Url Params Map
      * @return Url Params Map
      */
-    public LinkedHashMap<String, String> getUrlParams() {
+    public Map<String, String> getUrlParams() {
         return (mParser != null) ? mParser.getUrlParams() : null;
     }
 
     /**
-     * 获取 Url Params Map ( 参数值进行 UrlEncode )
+     * 获取 Url Params Map ( 参数值进行 UrlDecode )
      * @return Url Params Map
      */
-    public LinkedHashMap<String, String> getUrlParamsEncode() {
-        return (mParser != null) ? mParser.getUrlParamsEncode() : null;
+    public Map<String, String> getUrlParamsDecode() {
+        return (mParser != null) ? mParser.getUrlParamsDecode() : null;
     }
 
     // =
