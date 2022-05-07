@@ -1039,7 +1039,7 @@ public final class AccessibilityUtils {
         public List<AccessibilityNodeInfo> findByFilter(final NodeFilter filter) {
             LinkedHashSet<AccessibilityNodeInfo> sets = new LinkedHashSet<>();
             if (mNodeInfo != null && filter != null) {
-                _recursiveNodeChild(mNodeInfo, sets, filter);
+                recursiveNodeChild(mNodeInfo, sets, filter);
             }
             return new ArrayList<>(sets);
         }
@@ -1050,7 +1050,7 @@ public final class AccessibilityUtils {
          * @param data     符合条件数据源存储
          * @param filter   AccessibilityNodeInfo 筛选接口
          */
-        private void _recursiveNodeChild(
+        private void recursiveNodeChild(
                 final AccessibilityNodeInfo nodeInfo,
                 final LinkedHashSet<AccessibilityNodeInfo> data,
                 final NodeFilter filter
@@ -1062,7 +1062,7 @@ public final class AccessibilityUtils {
                     }
                 } else {
                     for (int i = 0, len = nodeInfo.getChildCount(); i < len; i++) {
-                        _recursiveNodeChild(nodeInfo.getChild(i), data, filter);
+                        recursiveNodeChild(nodeInfo.getChild(i), data, filter);
                     }
                 }
             }
