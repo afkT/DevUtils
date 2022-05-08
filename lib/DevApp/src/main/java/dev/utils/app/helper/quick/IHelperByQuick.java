@@ -24,14 +24,12 @@ import androidx.annotation.IdRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.SizeUtils;
-import dev.utils.app.helper.IHelper;
 
 /**
  * detail: QuickHelper 接口
  * @author Ttt
  */
-public interface IHelperByQuick<T>
-        extends IHelper<T> {
+public interface IHelperByQuick<T> {
 
     // ==============
     // = ClickUtils =

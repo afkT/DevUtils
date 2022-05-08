@@ -30,7 +30,8 @@ import java.lang.ref.WeakReference;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.dev.DevHelper;
+import dev.utils.app.helper.BaseHelper;
+import dev.utils.app.helper.flow.FlowHelper;
 import dev.utils.app.helper.view.ViewHelper;
 
 /**
@@ -42,6 +43,7 @@ import dev.utils.app.helper.view.ViewHelper;
  * </pre>
  */
 public final class QuickHelper
+        extends BaseHelper<QuickHelper>
         implements IHelperByQuick<QuickHelper> {
 
     // 持有 View
@@ -143,36 +145,19 @@ public final class QuickHelper
         return null;
     }
 
-    // ===========
-    // = IHelper =
-    // ===========
+    // ========
+    // = Flow =
+    // ========
 
     /**
-     * 获取 DevHelper
-     * @return {@link DevHelper}
+     * 执行 Action 流方法
+     * @param action Action
+     * @return Helper
      */
     @Override
-    public DevHelper devHelper() {
-        return DevHelper.get();
-    }
-
-    /**
-     * 获取 QuickHelper
-     * @param target 目标 View
-     * @return {@link QuickHelper}
-     */
-    @Override
-    public QuickHelper quickHelper(View target) {
-        return QuickHelper.get(target);
-    }
-
-    /**
-     * 获取 ViewHelper
-     * @return {@link ViewHelper}
-     */
-    @Override
-    public ViewHelper viewHelper() {
-        return ViewHelper.get();
+    public QuickHelper flow(FlowHelper.Action action) {
+        if (action != null) action.action();
+        return this;
     }
 
     // ================

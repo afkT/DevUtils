@@ -1,8 +1,7 @@
 package dev.utils.app.helper.flow;
 
-import android.view.View;
-
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.helper.BaseHelper;
 import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.app.helper.view.ViewHelper;
@@ -12,11 +11,11 @@ import dev.utils.app.helper.view.ViewHelper;
  * @author Ttt
  * <pre>
  *     支持连接 {@link DevHelper}、{@link QuickHelper}、{@link ViewHelper} 等类使用
- *     且不局限于上述类, 只需要返回 {@link FlowHelper}、{@link FlowHelper.Action} 即可使用
+ *     且不局限于上述类, 只需要调用 {@link BaseHelper#flowValue(Object, Action)} 即可使用
  * </pre>
  */
 public final class FlowHelper
-        implements IHelperByFlow<FlowHelper> {
+        extends BaseHelper<FlowHelper> {
 
     private FlowHelper() {
     }
@@ -32,40 +31,31 @@ public final class FlowHelper
         return HELPER;
     }
 
+    /**
+     * detail: 操作方法
+     * @author Ttt
+     */
     public interface Action {
 
+        /**
+         * 操作方法
+         */
+        void action();
     }
 
-    // ===========
-    // = IHelper =
-    // ===========
+    // ========
+    // = Flow =
+    // ========
 
     /**
-     * 获取 DevHelper
-     * @return {@link DevHelper}
+     * 执行 Action 流方法
+     * @param action Action
+     * @return Helper
      */
     @Override
-    public DevHelper devHelper() {
-        return DevHelper.get();
-    }
-
-    /**
-     * 获取 QuickHelper
-     * @param target 目标 View
-     * @return {@link QuickHelper}
-     */
-    @Override
-    public QuickHelper quickHelper(View target) {
-        return QuickHelper.get(target);
-    }
-
-    /**
-     * 获取 ViewHelper
-     * @return {@link ViewHelper}
-     */
-    @Override
-    public ViewHelper viewHelper() {
-        return ViewHelper.get();
+    public FlowHelper flow(FlowHelper.Action action) {
+        if (action != null) action.action();
+        return this;
     }
 
     // ================

@@ -45,8 +45,8 @@ import dev.utils.app.ViewUtils;
 import dev.utils.app.WidgetUtils;
 import dev.utils.app.WindowUtils;
 import dev.utils.app.anim.AnimationUtils;
-import dev.utils.app.helper.quick.QuickHelper;
-import dev.utils.app.helper.view.ViewHelper;
+import dev.utils.app.helper.BaseHelper;
+import dev.utils.app.helper.flow.FlowHelper;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.timer.DevTimer;
 import dev.utils.app.timer.TimerManager;
@@ -64,6 +64,7 @@ import dev.utils.common.ForUtils;
  * </pre>
  */
 public final class DevHelper
+        extends BaseHelper<DevHelper>
         implements IHelperByDev<DevHelper> {
 
     private DevHelper() {
@@ -80,36 +81,19 @@ public final class DevHelper
         return HELPER;
     }
 
-    // ===========
-    // = IHelper =
-    // ===========
+    // ========
+    // = Flow =
+    // ========
 
     /**
-     * 获取 DevHelper
-     * @return {@link DevHelper}
+     * 执行 Action 流方法
+     * @param action Action
+     * @return Helper
      */
     @Override
-    public DevHelper devHelper() {
-        return DevHelper.get();
-    }
-
-    /**
-     * 获取 QuickHelper
-     * @param target 目标 View
-     * @return {@link QuickHelper}
-     */
-    @Override
-    public QuickHelper quickHelper(View target) {
-        return QuickHelper.get(target);
-    }
-
-    /**
-     * 获取 ViewHelper
-     * @return {@link ViewHelper}
-     */
-    @Override
-    public ViewHelper viewHelper() {
-        return ViewHelper.get();
+    public DevHelper flow(FlowHelper.Action action) {
+        if (action != null) action.action();
+        return this;
     }
 
     // ================

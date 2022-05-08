@@ -29,15 +29,13 @@ import java.util.Locale;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.IHelper;
 import dev.utils.app.timer.DevTimer;
 
 /**
  * detail: DevHelper 接口
  * @author Ttt
  */
-public interface IHelperByDev<T>
-        extends IHelper<T> {
+public interface IHelperByDev<T> {
 
     // ==================
     // = AnimationUtils =
