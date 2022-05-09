@@ -11,15 +11,15 @@ public class PageAssist<T>
         extends RequestState<T> {
 
     // 全局页数配置
-    public static int DF_PAGE      = DevPage.DF_PAGE;
+    public static int DEF_PAGE      = DevPage.DEF_PAGE;
     // 全局每页请求条数配置
-    public static int DF_PAGE_SIZE = DevPage.DF_PAGE_SIZE;
+    public static int DEF_PAGE_SIZE = DevPage.DEF_PAGE_SIZE;
 
     // Page Object
     private final DevPage<T> mPage;
 
     public PageAssist() {
-        this(DF_PAGE, DF_PAGE_SIZE);
+        this(DEF_PAGE, DEF_PAGE_SIZE);
     }
 
     public PageAssist(final DevPage.PageConfig pageConfig) {
@@ -45,8 +45,8 @@ public class PageAssist<T>
             final int page,
             final int pageSize
     ) {
-        PageAssist.DF_PAGE      = page;
-        PageAssist.DF_PAGE_SIZE = pageSize;
+        PageAssist.DEF_PAGE      = page;
+        PageAssist.DEF_PAGE_SIZE = pageSize;
     }
 
     /**

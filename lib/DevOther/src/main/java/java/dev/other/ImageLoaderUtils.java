@@ -43,7 +43,7 @@ public final class ImageLoaderUtils {
     // 图片 ( 加载 / 解码 ) 失败
     private static final int                 sImageFailRes     = 0;
     // 图片默认加载配置
-    private static final DisplayImageOptions DF_OPTIONS        = defaultOptions();
+    private static final DisplayImageOptions DEF_OPTIONS       = defaultOptions();
 
     // ========
     // = init =
@@ -54,7 +54,7 @@ public final class ImageLoaderUtils {
      * @param context {@link Context}
      */
     public static void initialize(final Context context) {
-        DisplayImageOptions options = DF_OPTIONS;
+        DisplayImageOptions options = DEF_OPTIONS;
         // 针对图片缓存的全局加载配置 ( 主要有线程类、缓存大小、磁盘大小、图片下载与解析、日志方面的配置 )
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                 .defaultDisplayImageOptions(options) // 加载 DisplayImageOptions 参数
@@ -101,7 +101,7 @@ public final class ImageLoaderUtils {
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions getDefaultImageOptions(@DrawableRes final int loadingRes) {
-        DisplayImageOptions.Builder optionsBuilder = cloneImageOptions(DF_OPTIONS);
+        DisplayImageOptions.Builder optionsBuilder = cloneImageOptions(DEF_OPTIONS);
         optionsBuilder.showImageOnLoading(loadingRes) // 设置图片在下载期间显示的图片
                 .showImageForEmptyUri(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
                 .showImageOnFail(loadingRes); // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
@@ -184,7 +184,7 @@ public final class ImageLoaderUtils {
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions getFadeInBitmapDisplayer(final int durationMillis) {
-        return getBitmapDisplayerOptions(cloneImageOptions(DF_OPTIONS).build(), new FadeInBitmapDisplayer(durationMillis));
+        return getBitmapDisplayerOptions(cloneImageOptions(DEF_OPTIONS).build(), new FadeInBitmapDisplayer(durationMillis));
     }
 
     /**
@@ -211,7 +211,7 @@ public final class ImageLoaderUtils {
      * @return {@link DisplayImageOptions}
      */
     public static DisplayImageOptions getRoundedBitmapDisplayer(final int cornerRadiusPixels) {
-        return getBitmapDisplayerOptions(cloneImageOptions(DF_OPTIONS).build(), new RoundedBitmapDisplayer(cornerRadiusPixels));
+        return getBitmapDisplayerOptions(cloneImageOptions(DEF_OPTIONS).build(), new RoundedBitmapDisplayer(cornerRadiusPixels));
     }
 
     /**

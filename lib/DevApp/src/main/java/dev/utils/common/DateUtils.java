@@ -25,7 +25,7 @@ public final class DateUtils {
     private static final String TAG = DateUtils.class.getSimpleName();
 
     // 线程安全 SimpleDateFormat Map
-    private static final ThreadLocal<Map<String, SimpleDateFormat>> SDF_THREAD_LOCAL
+    private static final ThreadLocal<Map<String, SimpleDateFormat>> SDEF_THREAD_LOCAL
             = new ThreadLocal<Map<String, SimpleDateFormat>>() {
         @Override
         protected Map<String, SimpleDateFormat> initialValue() {
@@ -48,7 +48,7 @@ public final class DateUtils {
      */
     public static SimpleDateFormat getSafeDateFormat(final String pattern) {
         if (pattern == null) return null;
-        Map<String, SimpleDateFormat> sdfMap = SDF_THREAD_LOCAL.get();
+        Map<String, SimpleDateFormat> sdfMap = SDEF_THREAD_LOCAL.get();
         SimpleDateFormat              format = sdfMap.get(pattern);
         if (format == null) {
             format = new SimpleDateFormat(pattern);

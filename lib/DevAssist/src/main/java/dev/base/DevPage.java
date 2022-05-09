@@ -250,9 +250,9 @@ public class DevPage<T>
     // ===========
 
     // 默认页数配置
-    public static final int DF_PAGE      = 1;
+    public static final int DEF_PAGE      = 1;
     // 默认每页请求条数配置
-    public static final int DF_PAGE_SIZE = 10;
+    public static final int DEF_PAGE_SIZE = 10;
 
     /**
      * 获取默认配置 Page 实体类
@@ -261,7 +261,7 @@ public class DevPage<T>
      */
     public static <T> DevPage<T> getDefault() {
         return new DevPage<>(
-                DF_PAGE, DF_PAGE_SIZE
+                DEF_PAGE, DEF_PAGE_SIZE
         );
     }
 }
