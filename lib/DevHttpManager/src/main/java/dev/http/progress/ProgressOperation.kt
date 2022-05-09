@@ -37,7 +37,7 @@ import okhttp3.OkHttpClient
  *      listener map 中的 Callback 需要手动进行释放
  * 针对该缺点提供了两个解决方案
  * 1.[Progress.Callback] 提供 isAutoRecycle 方法 ( 默认销毁 ) 可自行判断是否需要销毁
- * 2.提供 [recycleListener] 方法可在 Callback onEnd 中直接调用无需实现逻辑
+ * 2.提供 [recycleListener] 方法可在 Callback onEnd 中直接调用释放资源无需实现逻辑
  */
 class ProgressOperation private constructor(
     private val key: String,
@@ -303,6 +303,19 @@ class ProgressOperation private constructor(
         ProgressManager.removeOperation(key)
     }
 
+    /**
+     * 释放指定监听事件
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
+     * @return `true` success, `false` fail
+     */
+    fun recycleListener(
+        progress: Progress,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(progress.isRequest(), getUrlByPrefix(progress), callback)
+    }
+
     // ====================
     // = Request Listener =
     // ====================
@@ -407,23 +420,6 @@ class ProgressOperation private constructor(
         callback: Progress.Callback
     ): Boolean {
         return removeListener(false, progress, callback)
-    }
-
-    // =======
-    // = 通用 =
-    // =======
-
-    /**
-     * 释放指定监听事件
-     * @param progress Progress
-     * @param callback 上传、下载回调接口
-     * @return `true` success, `false` fail
-     */
-    fun recycleListener(
-        progress: Progress,
-        callback: Progress.Callback
-    ): Boolean {
-        return removeListener(progress.isRequest(), getUrlByPrefix(progress), callback)
     }
 
     // ====================
@@ -564,6 +560,23 @@ class ProgressOperation private constructor(
             }
         }
         return false
+    }
+
+    /**
+     * 根据请求 url 获取对应的监听事件集合
+     * @param progress Progress
+     * @return Array<Progress.Callback?>
+     */
+    private fun innerGetCallbackList(progress: Progress): Array<Progress.Callback?> {
+        val url = getUrlByPrefix(progress)
+        val newUrl = StringUtils.clearSpaceTabLine(url)
+        if (StringUtils.isNotEmpty(newUrl)) {
+            val map = listenerMap(progress.isRequest())
+            map[newUrl]?.let {
+                return it.toTypedArray()
+            }
+        }
+        return arrayOf()
     }
 
     // ==========
@@ -724,25 +737,5 @@ class ProgressOperation private constructor(
                 }
             }
         }
-    }
-
-    // =========================
-    // = 内部 Callback List 获取 =
-    // =========================
-
-    /**
-     * 根据请求 url 获取对应的监听事件集合
-     * @param progress Progress
-     * @return Array<Progress.Callback?>
-     */
-    private fun innerGetCallbackList(progress: Progress): Array<Progress.Callback?> {
-        val url = getUrlByPrefix(progress)
-        if (StringUtils.isNotEmpty(url)) {
-            val map = listenerMap(progress.isRequest())
-            map[url]?.let {
-                return it.toTypedArray()
-            }
-        }
-        return arrayOf()
     }
 }
