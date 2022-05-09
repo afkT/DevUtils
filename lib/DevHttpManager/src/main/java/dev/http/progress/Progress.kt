@@ -619,6 +619,15 @@ class Progress private constructor(
     interface Callback {
 
         /**
+         * 是否自动释放监听对象
+         * @param progress Progress
+         * @return `true` yes, `false` no
+         */
+        fun isAutoRecycle(progress: Progress): Boolean {
+            return true
+        }
+
+        /**
          * 开始回调
          * @param progress Progress
          */

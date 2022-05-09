@@ -65,18 +65,22 @@ internal fun changeProgress(
 
 /**
  * 回调方法
+ * @param notifyStatus 通知状态
  * @param callback 上传、下载回调接口
  * @param handler 回调 UI 线程通知
  */
 private fun Progress.callback(
+    notifyStatus: Int,
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    val status = getStatus()
-    callback?.let { itCallback ->
-        handler?.post {
-            innerCallback(status, itCallback)
-        } ?: innerCallback(status, itCallback)
+    // 准备通知状态与当前状态相同才触发回调, 防止多次触发当前状态回调
+    if (notifyStatus == getStatus()) {
+        callback?.let { itCallback ->
+            handler?.post {
+                innerCallback(notifyStatus, itCallback)
+            } ?: innerCallback(notifyStatus, itCallback)
+        }
     }
 }
 
@@ -122,7 +126,7 @@ internal fun Progress.toStartAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toStart()) callback(callback, handler)
+    if (toStart()) callback(Progress.START, callback, handler)
 }
 
 /**
@@ -135,7 +139,7 @@ internal fun Progress.toIngAndCallback(
     handler: Handler?
 ) {
     toIng()
-    callback(callback, handler)
+    callback(Progress.ING, callback, handler)
 }
 
 /**
@@ -149,7 +153,7 @@ internal fun Progress.toErrorAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toError(exception)) callback(callback, handler)
+    if (toError(exception)) callback(Progress.ERROR, callback, handler)
 }
 
 /**
@@ -161,5 +165,5 @@ internal fun Progress.toFinishAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toFinish()) callback(callback, handler)
+    if (toFinish()) callback(Progress.FINISH, callback, handler)
 }

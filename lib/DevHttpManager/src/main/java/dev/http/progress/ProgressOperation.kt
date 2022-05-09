@@ -6,7 +6,6 @@ import dev.utils.common.StringUtils
 import dev.utils.common.assist.url.UrlExtras
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import java.util.*
 
 /**
  * detail: Progress Operation
@@ -23,6 +22,22 @@ import java.util.*
  * 具体参数信息拆分获取可通过 [UrlExtras] 进行获取
  * 并自行根据 Request 信息进行判断处理回调事件
  * <p></p>
+ * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊。
+ * 方式一:
+ * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 创建一个新的 Callback
+ * 并把 listener map 对应 url 监听的 Callback List toArray 传入进行通知使用
+ * 优点: 可以对 List 进行弱引用处理, 会自动进行释放资源
+ * 缺点: 对 listener map 新增 url add listener 在请求之后添加
+ *      则会无法触发 ( 因为在请求拦截时候就已传入 Callback List toArray )
+ * 方式二 ( 该库实现方式 ):
+ * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [innerCallback] 无需每次 new Callback
+ * 在统一回调内获取 listener map 对应 url 监听的 Callback List 并进行通知
+ * 优点: 支持实时 add listener 并且通知回调
+ * 缺点: 实时通知可能因绑定顺序差异, 需自行根据 [Progress.Extras.getUrlExtras] 进行判断是否需要处理该通知
+ *      listener map 中的 Callback 需要手动进行释放
+ * 针对该缺点提供了两个解决方案
+ * 1.[Progress.Callback] 提供 isAutoRecycle 方法 ( 默认销毁 ) 可自行判断是否需要销毁
+ * 2.提供 [recycleListener] 方法可在 Callback onEnd 中直接调用无需实现逻辑
  */
 class ProgressOperation private constructor(
     private val key: String,
@@ -84,10 +99,10 @@ class ProgressOperation private constructor(
     private var mOneShot: Boolean = true
 
     // 上行 ( 上传、请求 ) 监听回调 ( key = url, value = Progress.Callback )
-    private val mRequestListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
+    private val mRequestListeners = HashMap<String, MutableList<Progress.Callback?>>()
 
     // 下行 ( 下载、响应 ) 监听回调
-    private val mResponseListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
+    private val mResponseListeners = HashMap<String, MutableList<Progress.Callback?>>()
 
     // ============
     // = 初始化方法 =
@@ -394,6 +409,23 @@ class ProgressOperation private constructor(
         return removeListener(false, progress, callback)
     }
 
+    // =======
+    // = 通用 =
+    // =======
+
+    /**
+     * 释放指定监听事件
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
+     * @return `true` success, `false` fail
+     */
+    fun recycleListener(
+        progress: Progress,
+        callback: Progress.Callback
+    ): Boolean {
+        return removeListener(progress.isRequest(), getUrlByPrefix(progress), callback)
+    }
+
     // ====================
     // = 操作方法 - 内部方法 =
     // ====================
@@ -401,9 +433,9 @@ class ProgressOperation private constructor(
     /**
      * 获取 Callback Map
      * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
-     * @return WeakHashMap<String, List<Progress.Callback?>>
+     * @return HashMap<String, List<Progress.Callback?>>
      */
-    private fun getMap(isRequest: Boolean): WeakHashMap<String, MutableList<Progress.Callback?>> {
+    private fun listenerMap(isRequest: Boolean): HashMap<String, MutableList<Progress.Callback?>> {
         return if (isRequest) mRequestListeners else mResponseListeners
     }
 
@@ -433,7 +465,7 @@ class ProgressOperation private constructor(
     ): Boolean {
         val newUrl = StringUtils.clearSpaceTabLine(url)
         if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
+            val map = listenerMap(isRequest)
             map[newUrl]?.let { list ->
                 if (!list.contains(callback)) {
                     list.add(callback)
@@ -458,7 +490,7 @@ class ProgressOperation private constructor(
     ): Boolean {
         val newUrl = StringUtils.clearSpaceTabLine(url)
         if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
+            val map = listenerMap(isRequest)
             map.remove(newUrl)?.clear()
             return true
         }
@@ -492,7 +524,7 @@ class ProgressOperation private constructor(
     ): Boolean {
         val newUrl = StringUtils.clearSpaceTabLine(url)
         if (StringUtils.isNotEmpty(newUrl)) {
-            val map = getMap(isRequest)
+            val map = listenerMap(isRequest)
             return map[newUrl]?.remove(callback) ?: false
         }
         return false
@@ -511,6 +543,27 @@ class ProgressOperation private constructor(
         callback: Progress.Callback
     ): Boolean {
         return removeListener(isRequest, getUrlByPrefix(progress), callback)
+    }
+
+    /**
+     * 移除指定 url 监听事件
+     * @param progress Progress
+     * @param recycleList 待释放回调 List
+     * @return `true` success, `false` fail
+     */
+    private fun removeRecycleList(
+        progress: Progress,
+        recycleList: List<Progress.Callback>
+    ): Boolean {
+        if (recycleList.isNotEmpty()) {
+            val url = getUrlByPrefix(progress)
+            val newUrl = StringUtils.clearSpaceTabLine(url)
+            if (StringUtils.isNotEmpty(newUrl)) {
+                val map = listenerMap(progress.isRequest())
+                return map[newUrl]?.removeAll(recycleList) ?: false
+            }
+        }
+        return false
     }
 
     // ==========
@@ -588,11 +641,19 @@ class ProgressOperation private constructor(
                 if (mDeprecated) return
                 mCallback?.onEnd(progress)
 
+                // 需要自动销毁的 list
+                val recycleList = mutableListOf<Progress.Callback>()
                 // 根据请求 url 获取对应的监听事件集合
                 val array = innerGetCallbackList(progress)
                 array.forEach {
-                    it?.onEnd(progress)
+                    it?.let { callback ->
+                        callback.onEnd(progress)
+                        if (callback.isAutoRecycle(progress)) {
+                            recycleList.add(callback)
+                        }
+                    }
                 }
+                removeRecycleList(progress, recycleList)
             }
         }
     }
@@ -677,7 +738,7 @@ class ProgressOperation private constructor(
     private fun innerGetCallbackList(progress: Progress): Array<Progress.Callback?> {
         val url = getUrlByPrefix(progress)
         if (StringUtils.isNotEmpty(url)) {
-            val map = getMap(progress.isRequest())
+            val map = listenerMap(progress.isRequest())
             map[url]?.let {
                 return it.toTypedArray()
             }
