@@ -31,7 +31,7 @@ internal interface IOperation {
     // =============
 
     /**
-     * 是否废弃不用状态
+     * 是否废弃不使用状态
      * @return `true` yes, `false` no
      */
     fun isDeprecated(): Boolean
@@ -63,6 +63,21 @@ internal interface IOperation {
     // ===========
     // = get/set =
     // ===========
+
+    /**
+     * 获取 Progress Operation 实现方案类型
+     * @return 实现方案类型
+     */
+    fun getPlanType(): Int
+
+    /**
+     * 设置 Progress Operation 实现方案类型
+     * @param planType 实现方案类型
+     * @return IOperation
+     */
+    fun setPlanType(planType: Int): IOperation
+
+    // =
 
     /**
      * 获取回调刷新时间 ( 毫秒 )
@@ -173,6 +188,8 @@ internal interface IOperation {
 
     /**
      * 添加指定 url 上行 ( 上传、请求 ) 监听事件
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun addRequestListener(
@@ -182,18 +199,22 @@ internal interface IOperation {
 
     /**
      * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * @param url 请求 url
      * @return `true` success, `false` fail
      */
     fun clearRequestListener(url: String): Boolean
 
     /**
      * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * @param progress Progress
      * @return `true` success, `false` fail
      */
     fun clearRequestListener(progress: Progress?): Boolean
 
     /**
      * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun removeRequestListener(
@@ -203,6 +224,8 @@ internal interface IOperation {
 
     /**
      * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun removeRequestListener(
@@ -216,6 +239,8 @@ internal interface IOperation {
 
     /**
      * 添加指定 url 下行 ( 下载、响应 ) 监听事件
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun addResponseListener(
@@ -225,18 +250,22 @@ internal interface IOperation {
 
     /**
      * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * @param url 请求 url
      * @return `true` success, `false` fail
      */
     fun clearResponseListener(url: String): Boolean
 
     /**
      * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * @param progress Progress
      * @return `true` success, `false` fail
      */
     fun clearResponseListener(progress: Progress?): Boolean
 
     /**
      * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * @param url 请求 url
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun removeResponseListener(
@@ -246,6 +275,8 @@ internal interface IOperation {
 
     /**
      * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * @param progress Progress
+     * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
      */
     fun removeResponseListener(
