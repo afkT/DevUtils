@@ -80,9 +80,6 @@ class ProgressOperation private constructor(
         }
     }
 
-    // 日志 TAG
-    val TAG = ProgressOperation::class.java.simpleName
-
     // 是否废弃不用 ( true 的情况下不会拦截网络且任何操作都不会赋值 )
     private var mDeprecated = false
 
@@ -111,7 +108,7 @@ class ProgressOperation private constructor(
     /**
      * 进行拦截器包装 ( 必须调用 )
      * @param builder Builder
-     * @return ProgressOperation
+     * @return Builder
      * 必须进行调用, 否则无法进行拦截监听
      * 推荐在 OkHttpClient Builder 最后一步调用
      * 防止中间有其他拦截器导致获取为旧数据
