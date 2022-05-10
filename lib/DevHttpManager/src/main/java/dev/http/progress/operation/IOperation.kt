@@ -31,6 +31,12 @@ internal interface IOperation {
     // =============
 
     /**
+     * 是否已调用 wrap 方法
+     * @return `true` yes, `false` no
+     */
+    fun isUseWrap(): Boolean
+
+    /**
      * 是否废弃不使用状态
      * @return `true` yes, `false` no
      */
