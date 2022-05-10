@@ -15,7 +15,9 @@ internal abstract class BaseOperation constructor(
     // 全局默认操作对象
     private val globalDefault: Boolean,
     // 内部拦截器监听类型
-    private val type: Int
+    private val type: Int,
+    // 实现方式类型
+    private val planType: Int,
 ) : IOperation {
 
     // 是否已调用 wrap 方法
@@ -35,9 +37,6 @@ internal abstract class BaseOperation constructor(
 
     // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
     private var mOneShot: Boolean = true
-
-    // 实现方式类型
-    private var mPlanType: Int = ProgressOperation.PLAN_A
 
     // ==============
     // = IOperation =
@@ -128,27 +127,7 @@ internal abstract class BaseOperation constructor(
      * @return 实现方式类型
      */
     override fun getPlanType(): Int {
-        return mPlanType
-    }
-
-    /**
-     * 设置 Progress Operation 实现方式类型
-     * @param planType 实现方式类型
-     * @return IOperation
-     */
-    override fun setPlanType(planType: Int): IOperation {
-        // 没有调用 wrap 前允许进行切换实现方式
-        if (!mUseWrap) {
-            mPlanType = when (planType) {
-                ProgressOperation.PLAN_B -> {
-                    planType
-                }
-                else -> {
-                    ProgressOperation.PLAN_A
-                }
-            }
-        }
-        return this
+        return planType
     }
 
     // =
@@ -507,6 +486,11 @@ internal abstract class BaseOperation constructor(
      */
     internal abstract fun getCallbackList(progress: Progress): Array<Progress.Callback?>
 
+    /**
+     * 释放废弃资源
+     */
+    internal abstract fun recycleDeprecated()
+
     // ==========
     // = 内部方法 =
     // ==========
@@ -517,7 +501,16 @@ internal abstract class BaseOperation constructor(
      * @return Url 前缀
      */
     internal fun getUrlByPrefix(progress: Progress?): String {
-        return progress?.getExtras()?.getUrlExtras()?.urlByPrefix ?: ""
+        return getUrlByPrefix(progress?.getExtras())
+    }
+
+    /**
+     * 获取 Url 前缀 ( 去除参数部分 )
+     * @param extras 额外携带信息
+     * @return Url 前缀
+     */
+    internal fun getUrlByPrefix(extras: Progress.Extras?): String {
+        return extras?.getUrlExtras()?.urlByPrefix ?: ""
     }
 
     /**
@@ -528,6 +521,7 @@ internal abstract class BaseOperation constructor(
         mDeprecated = true
         mCallback = null
         mHandler = null
+        recycleDeprecated()
         return this
     }
 

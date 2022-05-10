@@ -76,13 +76,6 @@ internal interface IOperation {
      */
     fun getPlanType(): Int
 
-    /**
-     * 设置 Progress Operation 实现方式类型
-     * @param planType 实现方式类型
-     * @return IOperation
-     */
-    fun setPlanType(planType: Int): IOperation
-
     // =
 
     /**
