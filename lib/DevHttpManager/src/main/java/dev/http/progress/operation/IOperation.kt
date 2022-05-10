@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
  * detail: Progress Operation 通用方法定义接口
  * @author Ttt
  */
-internal interface IOperation {
+interface IOperation {
 
     // ============
     // = 初始化方法 =
@@ -18,11 +18,6 @@ internal interface IOperation {
      * 进行拦截器包装 ( 必须调用 )
      * @param builder Builder
      * @return Builder
-     * 必须进行调用, 否则无法进行拦截监听
-     * 推荐在 OkHttpClient Builder 最后一步调用
-     * 防止中间有其他拦截器导致获取为旧数据
-     * 例:
-     * val okhttpClient = wrap(builder).build()
      */
     fun wrap(builder: OkHttpClient.Builder): OkHttpClient.Builder
 

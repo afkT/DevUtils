@@ -50,11 +50,6 @@ internal abstract class BaseOperation constructor(
      * 进行拦截器包装 ( 必须调用 )
      * @param builder Builder
      * @return Builder
-     * 必须进行调用, 否则无法进行拦截监听
-     * 推荐在 OkHttpClient Builder 最后一步调用
-     * 防止中间有其他拦截器导致获取为旧数据
-     * 例:
-     * val okhttpClient = wrap(builder).build()
      */
     override fun wrap(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         mUseWrap = true
