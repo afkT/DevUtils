@@ -113,9 +113,9 @@ private fun Progress.innerCallback(
     }
 }
 
-// =============
-// = 统一调用方法 =
-// =============
+// ===============
+// = 更新状态并通知 =
+// ===============
 
 /**
  * 设置为 [Progress.START] 状态并且进行通知
@@ -166,4 +166,17 @@ internal fun Progress.toFinishAndCallback(
     handler: Handler?
 ) {
     if (toFinish()) callback(Progress.FINISH, callback, handler)
+}
+
+// =============
+// = 流式更新状态 =
+// =============
+
+/**
+ * 设置为 [Progress.ING] 状态
+ * @return Progress
+ */
+internal fun Progress.flowIng(): Progress {
+    toIng()
+    return this
 }

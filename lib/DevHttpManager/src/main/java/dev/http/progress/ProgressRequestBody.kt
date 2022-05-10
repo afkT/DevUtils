@@ -92,7 +92,6 @@ open class ProgressRequestBody(
     // = 内部包装类 =
     // ============
 
-    // 防止多次触发 start Callback
     private var innerBufferedSink: InnerBufferedSink? = null
 
     /**
@@ -131,7 +130,6 @@ open class ProgressRequestBody(
         init {
             progress.setExtras(extras)
                 .setTotalSize(contentLength())
-                .toStartAndCallback(callback, handler)
         }
 
         // ==================
@@ -143,21 +141,28 @@ open class ProgressRequestBody(
             source: Buffer,
             byteCount: Long
         ) {
-            progress.toIng()
-            try {
-                super.write(source, byteCount)
-            } catch (e: Exception) {
-                progress.toErrorAndCallback(e, callback, handler)
-                throw e
-            }
             if (progress.getTotalSize() <= 0) {
                 progress.setTotalSize(contentLength())
             }
-            val allowCallback = changeProgress(
-                progress, refreshTime, byteCount.coerceAtLeast(0)
-            )
-            if (allowCallback) {
-                progress.toIngAndCallback(callback, handler)
+            if (progress.getTotalSize() > 0) {
+                progress.toStartAndCallback(callback, handler)
+            }
+
+            try {
+                super.write(source, byteCount)
+            } catch (e: Exception) {
+                progress.flowIng().toErrorAndCallback(e, callback, handler)
+                throw e
+            }
+            if (progress.getTotalSize() > 0) {
+                progress.flowIng()
+                // 更新进度信息并返回是否允许通知
+                val allowCallback = changeProgress(
+                    progress, refreshTime, byteCount.coerceAtLeast(0)
+                )
+                if (allowCallback) {
+                    progress.toIngAndCallback(callback, handler)
+                }
             }
         }
 
@@ -169,7 +174,64 @@ open class ProgressRequestBody(
          * 流程完成回调
          */
         fun finishCallback() {
-            progress.toFinishAndCallback(callback, handler)
+            if (progress.getTotalSize() > 0) {
+                progress.toFinishAndCallback(callback, handler)
+            }
         }
     }
+
+//    /**
+//     * detail: 内部进度监听包装类
+//     * @author Ttt
+//     * 历史实现代码, 待优化回调顺序
+//     */
+//    private inner class CountingSink(sink: Sink) : ForwardingSink(sink) {
+//
+//        // 进度信息存储类
+//        private val progress = Progress(true)
+//
+//        init {
+//            progress.setExtras(extras)
+//                .setTotalSize(contentLength())
+//                .toStartAndCallback(callback, handler)
+//        }
+//
+//        // ==================
+//        // = ForwardingSink =
+//        // ==================
+//
+//        @Throws(IOException::class)
+//        override fun write(
+//            source: Buffer,
+//            byteCount: Long
+//        ) {
+//            progress.toIng()
+//            try {
+//                super.write(source, byteCount)
+//            } catch (e: Exception) {
+//                progress.toErrorAndCallback(e, callback, handler)
+//                throw e
+//            }
+//            if (progress.getTotalSize() <= 0) {
+//                progress.setTotalSize(contentLength())
+//            }
+//            val allowCallback = changeProgress(
+//                progress, refreshTime, byteCount.coerceAtLeast(0)
+//            )
+//            if (allowCallback) {
+//                progress.toIngAndCallback(callback, handler)
+//            }
+//        }
+//
+//        // =============
+//        // = 对外公开方法 =
+//        // =============
+//
+//        /**
+//         * 流程完成回调
+//         */
+//        fun finishCallback() {
+//            progress.toFinishAndCallback(callback, handler)
+//        }
+//    }
 }

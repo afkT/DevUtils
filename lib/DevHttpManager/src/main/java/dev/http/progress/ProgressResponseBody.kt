@@ -44,7 +44,6 @@ open class ProgressResponseBody(
     // = 内部包装类 =
     // ============
 
-    // 防止调用 source().byteStream() 再次触发 start Callback
     private val bufferedSource: BufferedSource by lazy {
         CountingSource(delegate.source()).buffer()
     }
@@ -61,7 +60,6 @@ open class ProgressResponseBody(
         init {
             progress.setExtras(extras)
                 .setTotalSize(contentLength())
-                .toStartAndCallback(callback, handler)
         }
 
         // ====================
@@ -72,28 +70,84 @@ open class ProgressResponseBody(
             sink: Buffer,
             byteCount: Long
         ): Long {
-            progress.toIng()
+            if (progress.getTotalSize() <= 0) {
+                progress.setTotalSize(contentLength())
+            }
+            if (progress.getTotalSize() > 0) {
+                progress.toStartAndCallback(callback, handler)
+            }
 
             val byteRead: Long
             try {
                 byteRead = super.read(sink, byteCount)
             } catch (e: Exception) {
-                progress.toErrorAndCallback(e, callback, handler)
+                progress.flowIng().toErrorAndCallback(e, callback, handler)
                 throw e
             }
-            if (progress.getTotalSize() <= 0) {
-                progress.setTotalSize(contentLength())
-            }
-            val allowCallback = changeProgress(
-                progress, refreshTime, byteRead.coerceAtLeast(0)
-            )
-            if (allowCallback) {
-                progress.toIngAndCallback(callback, handler)
-            }
-            if (progress.isSizeSame()) {
-                progress.toFinishAndCallback(callback, handler)
+            if (progress.getTotalSize() > 0) {
+                progress.flowIng()
+                // 更新进度信息并返回是否允许通知
+                val allowCallback = changeProgress(
+                    progress, refreshTime, byteRead.coerceAtLeast(0)
+                )
+                if (allowCallback) {
+                    progress.toIngAndCallback(callback, handler)
+                }
+                if (progress.isSizeSame()) {
+                    progress.toFinishAndCallback(callback, handler)
+                }
             }
             return byteRead
         }
     }
+
+//    /**
+//     * detail: 内部进度监听包装类
+//     * @author Ttt
+//     * 历史实现代码, 当 contentLength() 为 -1 时
+//     * 只会触发一次 startCallback 且不会触发其他回调
+//     */
+//    private inner class CountingSource(source: Source) : ForwardingSource(source) {
+//
+//        // 进度信息存储类
+//        private val progress = Progress(false)
+//
+//        init {
+//            progress.setExtras(extras)
+//                .setTotalSize(contentLength())
+//                .toStartAndCallback(callback, handler)
+//        }
+//
+//        // ====================
+//        // = ForwardingSource =
+//        // ====================
+//
+//        override fun read(
+//            sink: Buffer,
+//            byteCount: Long
+//        ): Long {
+//            progress.toIng()
+//
+//            val byteRead: Long
+//            try {
+//                byteRead = super.read(sink, byteCount)
+//            } catch (e: Exception) {
+//                progress.toErrorAndCallback(e, callback, handler)
+//                throw e
+//            }
+//            if (progress.getTotalSize() <= 0) {
+//                progress.setTotalSize(contentLength())
+//            }
+//            val allowCallback = changeProgress(
+//                progress, refreshTime, byteRead.coerceAtLeast(0)
+//            )
+//            if (allowCallback) {
+//                progress.toIngAndCallback(callback, handler)
+//            }
+//            if (progress.isSizeSame()) {
+//                progress.toFinishAndCallback(callback, handler)
+//            }
+//            return byteRead
+//        }
+//    }
 }
