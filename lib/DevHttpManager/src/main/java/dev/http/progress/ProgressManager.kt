@@ -149,7 +149,7 @@ internal object ProgressManager {
      * @return Progress Operation
      */
     fun removeOperation(key: String): ProgressOperation? {
-        return sOperationMaps.remove(key)?.markDeprecated()
+        return sOperationMaps.remove(key)?.recycle()
     }
 
     /**
@@ -159,7 +159,7 @@ internal object ProgressManager {
         val map = sOperationMaps.toMutableMap()
         sOperationMaps.clear()
         map.values.forEach {
-            it.markDeprecated()
+            it.recycle()
         }
         map.clear()
     }
@@ -208,7 +208,7 @@ internal object ProgressManager {
         type: Int
     ): ProgressOperation {
         // 如果存在那么先废弃历史对象
-        getOperation(key)?.markDeprecated()
+        getOperation(key)?.recycle()
         val operation = ProgressOperation.get(key, false, type)
         sOperationMaps[key] = operation
         return operation

@@ -124,6 +124,18 @@ class ProgressOperation private constructor(
         return this
     }
 
+    // ==========
+    // = 内部方法 =
+    // ==========
+
+    /**
+     * 释放资源方法
+     */
+    internal fun recycle(): ProgressOperation {
+        IMPL.markDeprecated()
+        return this
+    }
+
     // ==============
     // = IOperation =
     // ==============

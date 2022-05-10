@@ -38,7 +38,7 @@ interface IOperation {
     fun isDeprecated(): Boolean
 
     /**
-     * 是否默认操作对象
+     * 是否全局默认操作对象
      * @return `true` yes, `false` no
      */
     fun isDefault(): Boolean

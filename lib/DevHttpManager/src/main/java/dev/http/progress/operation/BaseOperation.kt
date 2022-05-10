@@ -396,10 +396,14 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 获取对应方案回调实现
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
      * @param extras 额外携带信息
      * @return Progress.Callback
      */
-    internal abstract fun getPlanCallback(extras: Progress.Extras?): Progress.Callback
+    internal abstract fun getPlanCallback(
+        isRequest: Boolean,
+        extras: Progress.Extras?
+    ): Progress.Callback
 
     /**
      * 添加指定 url 监听事件
@@ -476,6 +480,17 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 根据请求 url 获取对应的监听事件集合
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param url 请求 url
+     * @return Array<Progress.Callback?>
+     */
+    internal abstract fun getCallbackList(
+        isRequest: Boolean,
+        url: String,
+    ): Array<Progress.Callback?>
+
+    /**
+     * 根据请求 url 获取对应的监听事件集合
      * @param progress Progress
      * @return Array<Progress.Callback?>
      */
@@ -535,7 +550,7 @@ internal abstract class BaseOperation constructor(
                     val request = chain.request()
                     val extras = request.toExtras()
                     val wrapRequest = request.wrapRequestBody(
-                        callback = getPlanCallback(extras),
+                        callback = getPlanCallback(true, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
                         shouldOneShot = mOneShot,
@@ -554,7 +569,7 @@ internal abstract class BaseOperation constructor(
                     val extras = request.toExtras()
                     val response = chain.proceed(request)
                     response.wrapResponseBody(
-                        callback = getPlanCallback(extras),
+                        callback = getPlanCallback(false, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
                         extras = extras
@@ -570,7 +585,7 @@ internal abstract class BaseOperation constructor(
                     val request = chain.request()
                     val extras = request.toExtras()
                     val wrapRequest = request.wrapRequestBody(
-                        callback = getPlanCallback(extras),
+                        callback = getPlanCallback(true, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
                         shouldOneShot = mOneShot,
@@ -578,7 +593,7 @@ internal abstract class BaseOperation constructor(
                     )
                     val response = chain.proceed(wrapRequest)
                     response.wrapResponseBody(
-                        callback = getPlanCallback(extras),
+                        callback = getPlanCallback(false, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
                         extras = extras

@@ -29,10 +29,14 @@ internal class OperationPlanA constructor(
 
     /**
      * 获取对应方案回调实现
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
      * @param extras 额外携带信息
      * @return Progress.Callback
      */
-    override fun getPlanCallback(extras: Progress.Extras?): Progress.Callback {
+    override fun getPlanCallback(
+        isRequest: Boolean,
+        extras: Progress.Extras?
+    ): Progress.Callback {
         return innerCallback
     }
 
@@ -154,19 +158,31 @@ internal class OperationPlanA constructor(
 
     /**
      * 根据请求 url 获取对应的监听事件集合
-     * @param progress Progress
+     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param url 请求 url
      * @return Array<Progress.Callback?>
      */
-    override fun getCallbackList(progress: Progress): Array<Progress.Callback?> {
-        val url = getUrlByPrefix(progress)
+    override fun getCallbackList(
+        isRequest: Boolean,
+        url: String
+    ): Array<Progress.Callback?> {
         val newUrl = StringUtils.clearSpaceTabLine(url)
         if (StringUtils.isNotEmpty(newUrl)) {
-            val map = listenerMap(progress.isRequest())
+            val map = listenerMap(isRequest)
             map[newUrl]?.let {
                 return it.toTypedArray()
             }
         }
         return arrayOf()
+    }
+
+    /**
+     * 根据请求 url 获取对应的监听事件集合
+     * @param progress Progress
+     * @return Array<Progress.Callback?>
+     */
+    override fun getCallbackList(progress: Progress): Array<Progress.Callback?> {
+        return getCallbackList(progress.isRequest(), getUrlByPrefix(progress))
     }
 
     /**
