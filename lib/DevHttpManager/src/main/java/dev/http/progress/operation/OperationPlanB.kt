@@ -16,7 +16,7 @@ internal class OperationPlanB constructor(
     globalDefault: Boolean,
     // 内部拦截器监听类型
     type: Int
-) : BaseOperation(key, globalDefault, type, ProgressOperation.PLAN_A) {
+) : BaseOperation(key, globalDefault, type, ProgressOperation.PLAN_B) {
 
     // 上行 ( 上传、请求 ) 监听回调 ( key = url, value = Progress.Callback )
     private val mRequestListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()

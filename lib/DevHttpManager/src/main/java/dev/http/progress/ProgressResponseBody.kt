@@ -36,12 +36,18 @@ open class ProgressResponseBody(
     }
 
     override fun source(): BufferedSource {
-        return CountingSource(delegate.source()).buffer()
+//        return CountingSource(delegate.source()).buffer()
+        return bufferedSource
     }
 
     // ============
     // = 内部包装类 =
     // ============
+
+    // 防止调用 source().byteStream() 再次触发 start Callback
+    private val bufferedSource: BufferedSource by lazy {
+        CountingSource(delegate.source()).buffer()
+    }
 
     /**
      * detail: 内部进度监听包装类

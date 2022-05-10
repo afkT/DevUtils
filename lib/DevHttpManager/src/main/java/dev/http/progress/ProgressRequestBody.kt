@@ -71,21 +71,53 @@ open class ProgressRequestBody(
 
     @Throws(IOException::class)
     override fun writeTo(sink: BufferedSink) {
-        val countingSink = CountingSink(sink)
-        val bufferedSink = countingSink.buffer()
-        delegate.writeTo(bufferedSink)
-        bufferedSink.flush()
-        /**
-         * 在这里调用 finish 是防止后台异常无限制上传
-         * 而不是通过 [Progress.isSizeSame]
-         * 判断数据总长度与当前已上传、下载总长度是否一样大小
-         */
-        countingSink.finishCallback()
+//        val countingSink = CountingSink(sink)
+//        val bufferedSink = countingSink.buffer()
+//        delegate.writeTo(bufferedSink)
+//        bufferedSink.flush()
+//        /**
+//         * 在这里调用 finish 是防止后台异常无限制上传
+//         * 而不是通过 [Progress.isSizeSame]
+//         * 判断数据总长度与当前已上传、下载总长度是否一样大小
+//         */
+//        countingSink.finishCallback()
+
+        if (innerBufferedSink == null) {
+            innerBufferedSink = InnerBufferedSink(sink)
+        }
+        innerBufferedSink?.writeTo(delegate)
     }
 
     // ============
     // = 内部包装类 =
     // ============
+
+    // 防止多次触发 start Callback
+    private var innerBufferedSink: InnerBufferedSink? = null
+
+    /**
+     * detail: writeTo 注释代码二次封装
+     * @author Ttt
+     */
+    private inner class InnerBufferedSink(sink: BufferedSink) {
+
+        val countingSink = CountingSink(sink)
+
+        val bufferedSink: BufferedSink by lazy {
+            countingSink.buffer()
+        }
+
+        fun writeTo(body: RequestBody) {
+            body.writeTo(bufferedSink)
+            bufferedSink.flush()
+            /**
+             * 在这里调用 finish 是防止后台异常无限制上传
+             * 而不是通过 [Progress.isSizeSame]
+             * 判断数据总长度与当前已上传、下载总长度是否一样大小
+             */
+            countingSink.finishCallback()
+        }
+    }
 
     /**
      * detail: 内部进度监听包装类

@@ -24,6 +24,7 @@ import okhttp3.OkHttpClient
  * 并自行根据 Request 信息进行判断处理回调事件
  * <p></p>
  * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊。
+ * 且提供切换实现方式方法 [setPlanType]
  *
  * 方式二:
  * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 创建一个新的 Callback
@@ -70,10 +71,10 @@ class ProgressOperation private constructor(
         // =============
 
         // 实现方式一 ( 默认 )
-        internal const val PLAN_A = 1
+        const val PLAN_A = 1
 
         // 实现方式二
-        internal const val PLAN_B = 2
+        const val PLAN_B = 2
 
         // ==========
         // = create =
@@ -112,7 +113,7 @@ class ProgressOperation private constructor(
 
     /**
      * 设置 Progress Operation 实现方式类型
-     * @param planType 实现方式类型
+     * @param planType 实现方式类型 [ProgressOperation.PLAN_A]、[ProgressOperation.PLAN_B]
      * @return IOperation
      * 在没调用 IOperation 接口任何方法前, 调用该方法切换才有效
      */
