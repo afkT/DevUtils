@@ -71,14 +71,14 @@ internal interface IOperation {
     // ===========
 
     /**
-     * 获取 Progress Operation 实现方案类型
-     * @return 实现方案类型
+     * 获取 Progress Operation 实现方式类型
+     * @return 实现方式类型
      */
     fun getPlanType(): Int
 
     /**
-     * 设置 Progress Operation 实现方案类型
-     * @param planType 实现方案类型
+     * 设置 Progress Operation 实现方式类型
+     * @param planType 实现方式类型
      * @return IOperation
      */
     fun setPlanType(planType: Int): IOperation

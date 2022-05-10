@@ -61,13 +61,13 @@ class ProgressOperation private constructor(
         internal const val TYPE_RESPONSE = 2
 
         // =============
-        // = 实现方案类型 =
+        // = 实现方式类型 =
         // =============
 
-        // 实现方案一 ( 默认 )
+        // 实现方式一 ( 默认 )
         internal const val PLAN_A = 0
 
-        // 实现方案二
+        // 实现方式二
         internal const val PLAN_B = 1
 
         // ==========

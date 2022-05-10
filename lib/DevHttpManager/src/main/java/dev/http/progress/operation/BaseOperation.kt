@@ -12,7 +12,9 @@ import okhttp3.OkHttpClient
  */
 internal abstract class BaseOperation constructor(
     private val key: String,
-    private val isDefault: Boolean,
+    // 全局默认操作对象
+    private val globalDefault: Boolean,
+    // 内部拦截器监听类型
     private val type: Int
 ) : IOperation {
 
@@ -34,7 +36,7 @@ internal abstract class BaseOperation constructor(
     // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
     private var mOneShot: Boolean = true
 
-    // 实现方案类型
+    // 实现方式类型
     private var mPlanType: Int = ProgressOperation.PLAN_A
 
     // ==============
@@ -86,11 +88,11 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 是否默认操作对象
+     * 是否全局默认操作对象
      * @return `true` yes, `false` no
      */
     override fun isDefault(): Boolean {
-        return isDefault
+        return globalDefault
     }
 
     /**
@@ -122,20 +124,20 @@ internal abstract class BaseOperation constructor(
     // ===========
 
     /**
-     * 获取 Progress Operation 实现方案类型
-     * @return 实现方案类型
+     * 获取 Progress Operation 实现方式类型
+     * @return 实现方式类型
      */
     override fun getPlanType(): Int {
         return mPlanType
     }
 
     /**
-     * 设置 Progress Operation 实现方案类型
-     * @param planType 实现方案类型
+     * 设置 Progress Operation 实现方式类型
+     * @param planType 实现方式类型
      * @return IOperation
      */
     override fun setPlanType(planType: Int): IOperation {
-        // 没有调用 wrap 前允许进行切换实现方案
+        // 没有调用 wrap 前允许进行切换实现方式
         if (!mUseWrap) {
             mPlanType = when (planType) {
                 ProgressOperation.PLAN_B -> {
@@ -274,8 +276,8 @@ internal abstract class BaseOperation constructor(
      * 会释放所有数据、监听事件且不处理任何监听
      */
     override fun removeSelfFromManager() {
-        // 默认对象是不存储在 Map 中, 所以属于无效调用直接 return
-        if (isDefault) return
+        // 全局默认对象是不存储在 Map 中, 所以属于无效调用直接 return
+        if (globalDefault) return
         ProgressManager.removeOperation(key)
     }
 
@@ -497,6 +499,13 @@ internal abstract class BaseOperation constructor(
         progress: Progress,
         recycleList: List<Progress.Callback>
     ): Boolean
+
+    /**
+     * 根据请求 url 获取对应的监听事件集合
+     * @param progress Progress
+     * @return Array<Progress.Callback?>
+     */
+    internal abstract fun getCallbackList(progress: Progress): Array<Progress.Callback?>
 
     // ==========
     // = 内部方法 =
