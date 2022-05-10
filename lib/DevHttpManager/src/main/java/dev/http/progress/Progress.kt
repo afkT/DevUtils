@@ -16,7 +16,7 @@ import java.util.*
  */
 @Parcelize
 class Progress private constructor(
-    // 是否上行 ( 请求 ) 进度 => `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+    // 是否上行进度 => `true` 上行, `false` 下行
     private val isRequest: Boolean,
     // 进度 id
     private val id: Long,
@@ -89,7 +89,7 @@ class Progress private constructor(
     // =
 
     /**
-     * 是否上行 ( 上传、请求 ) 进度信息
+     * 是否上行进度信息
      * @return `true` yes, `false` no
      */
     fun isRequest(): Boolean {
@@ -97,7 +97,7 @@ class Progress private constructor(
     }
 
     /**
-     * 是否下行 ( 下载、响应 ) 进度信息
+     * 是否下行进度信息
      * @return `true` yes, `false` no
      */
     fun isResponse(): Boolean {

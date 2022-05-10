@@ -5,7 +5,7 @@ import dev.http.progress.ProgressOperation
 import dev.utils.common.StringUtils
 
 /**
- * detail: Progress Operation 实现方式一
+ * detail: Progress Operation 实现方式一 ( 默认使用 )
  * @author Ttt
  * 实现方式差异可以查看 [ProgressOperation] 类注释
  */
@@ -17,10 +17,10 @@ internal class OperationPlanA constructor(
     type: Int
 ) : BaseOperation(key, globalDefault, type, ProgressOperation.PLAN_A) {
 
-    // 上行 ( 上传、请求 ) 监听回调 ( key = url, value = Progress.Callback )
+    // 上行监听回调 ( key = url, value = Progress.Callback )
     private val mRequestListeners = HashMap<String, MutableList<Progress.Callback?>>()
 
-    // 下行 ( 下载、响应 ) 监听回调
+    // 下行监听回调
     private val mResponseListeners = HashMap<String, MutableList<Progress.Callback?>>()
 
     // =================
@@ -29,7 +29,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 获取对应方案回调实现
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param extras 额外携带信息
      * @return Progress.Callback
      */
@@ -42,7 +42,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 添加指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -70,7 +70,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -89,7 +89,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -102,7 +102,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -122,7 +122,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -158,7 +158,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 根据请求 url 获取对应的监听事件集合
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return Array<Progress.Callback?>
      */
@@ -199,7 +199,7 @@ internal class OperationPlanA constructor(
 
     /**
      * 获取 Callback Map
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @return HashMap<String, List<Progress.Callback?>>
      */
     private fun listenerMap(isRequest: Boolean): HashMap<String, MutableList<Progress.Callback?>> {

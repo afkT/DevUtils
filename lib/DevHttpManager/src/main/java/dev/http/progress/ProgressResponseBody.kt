@@ -7,7 +7,7 @@ import okhttp3.ResponseBody
 import okio.*
 
 /**
- * detail: 下行 ( 下载、响应 ) 进度监听响应体
+ * detail: 下行进度监听响应体
  * @author Ttt
  */
 open class ProgressResponseBody(

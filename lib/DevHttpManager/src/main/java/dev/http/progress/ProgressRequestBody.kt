@@ -9,7 +9,7 @@ import okio.*
 import java.io.IOException
 
 /**
- * detail: 上行 ( 上传、请求 ) 进度监听请求体
+ * detail: 上行进度监听请求体
  * @author Ttt
  * 通过此类获取 OkHttp 请求体数据处理进度, 可以处理任何的 RequestBody
  * <p></p>

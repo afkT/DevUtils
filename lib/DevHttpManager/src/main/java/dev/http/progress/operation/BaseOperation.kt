@@ -273,7 +273,7 @@ internal abstract class BaseOperation constructor(
     // ====================
 
     /**
-     * 添加指定 url 上行 ( 上传、请求 ) 监听事件
+     * 添加指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -286,7 +286,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -295,7 +295,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -304,7 +304,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -317,7 +317,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -334,7 +334,7 @@ internal abstract class BaseOperation constructor(
     // =====================
 
     /**
-     * 添加指定 url 下行 ( 下载、响应 ) 监听事件
+     * 添加指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -347,7 +347,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -356,7 +356,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -365,7 +365,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -378,7 +378,7 @@ internal abstract class BaseOperation constructor(
     }
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -396,7 +396,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 获取对应方案回调实现
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param extras 额外携带信息
      * @return Progress.Callback
      */
@@ -407,7 +407,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 添加指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -421,7 +421,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -432,7 +432,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -443,7 +443,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -456,7 +456,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -480,7 +480,7 @@ internal abstract class BaseOperation constructor(
 
     /**
      * 根据请求 url 获取对应的监听事件集合
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return Array<Progress.Callback?>
      */
@@ -538,7 +538,7 @@ internal abstract class BaseOperation constructor(
     /**
      * detail: 内部 Progress 拦截器
      * @author Ttt
-     * DevHttpManager 库内部包装, 拦截监听上行 ( 上传、请求 )、下行 ( 下载、响应 ) 进度
+     * DevHttpManager 库内部包装, 拦截监听上行、下行进度
      */
     private val innerProgressInterceptor: Interceptor by lazy {
         if (isTypeRequest()) {

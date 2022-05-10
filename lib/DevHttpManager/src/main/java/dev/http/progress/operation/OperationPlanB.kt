@@ -9,7 +9,7 @@ import java.util.*
  * detail: Progress Operation 实现方式二
  * @author Ttt
  * 实现方式差异可以查看 [ProgressOperation] 类注释
- * WeakHashMap 何时释放资源无法进行控制, 如果想要每一个监听都能收到回调, 请使用方式一
+ * WeakHashMap 何时释放资源无法进行控制, 如果想要每一个监听都能收到回调, 请使用方式一 ( 默认使用 )
  */
 internal class OperationPlanB constructor(
     key: String,
@@ -19,10 +19,10 @@ internal class OperationPlanB constructor(
     type: Int
 ) : BaseOperation(key, globalDefault, type, ProgressOperation.PLAN_B) {
 
-    // 上行 ( 上传、请求 ) 监听回调 ( key = url, value = Progress.Callback )
+    // 上行监听回调 ( key = url, value = Progress.Callback )
     private val mRequestListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
 
-    // 下行 ( 下载、响应 ) 监听回调
+    // 下行监听回调
     private val mResponseListeners = WeakHashMap<String, MutableList<Progress.Callback?>>()
 
     // =================
@@ -31,7 +31,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 获取对应方案回调实现
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param extras 额外携带信息
      * @return Progress.Callback
      */
@@ -44,7 +44,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 添加指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -72,7 +72,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -91,7 +91,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 清空指定 url 所有监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -104,7 +104,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -124,7 +124,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 移除指定 url 监听事件
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -160,7 +160,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 根据请求 url 获取对应的监听事件集合
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param url 请求 url
      * @return Array<Progress.Callback?>
      */
@@ -201,7 +201,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 获取 Callback Map
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @return HashMap<String, List<Progress.Callback?>>
      */
     private fun listenerMap(isRequest: Boolean): WeakHashMap<String, MutableList<Progress.Callback?>> {
@@ -210,7 +210,7 @@ internal class OperationPlanB constructor(
 
     /**
      * 创建对应的回调对象
-     * @param isRequest `true` 上行 ( 上传、请求 ), `false` 下行 ( 下载、响应 )
+     * @param isRequest `true` 上行, `false` 下行
      * @param extras 额外携带信息
      * @return Progress.Callback
      */

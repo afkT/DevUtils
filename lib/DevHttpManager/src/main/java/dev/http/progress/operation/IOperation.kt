@@ -181,7 +181,7 @@ interface IOperation {
     // ====================
 
     /**
-     * 添加指定 url 上行 ( 上传、请求 ) 监听事件
+     * 添加指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -192,21 +192,21 @@ interface IOperation {
     ): Boolean
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
     fun clearRequestListener(url: String): Boolean
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
     fun clearRequestListener(progress: Progress?): Boolean
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -217,7 +217,7 @@ interface IOperation {
     ): Boolean
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -232,7 +232,7 @@ interface IOperation {
     // =====================
 
     /**
-     * 添加指定 url 下行 ( 下载、响应 ) 监听事件
+     * 添加指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -243,21 +243,21 @@ interface IOperation {
     ): Boolean
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
     fun clearResponseListener(url: String): Boolean
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
     fun clearResponseListener(progress: Progress?): Boolean
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -268,7 +268,7 @@ interface IOperation {
     ): Boolean
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail

@@ -60,10 +60,10 @@ class ProgressOperation private constructor(
         // 监听上下行类型
         internal const val TYPE_ALL = 0
 
-        // 监听上行 ( 上传、请求 )
+        // 监听上行
         internal const val TYPE_REQUEST = 1
 
-        // 监听下行 ( 下载、响应 )
+        // 监听下行
         internal const val TYPE_RESPONSE = 2
 
         // =============
@@ -361,7 +361,7 @@ class ProgressOperation private constructor(
     // ====================
 
     /**
-     * 添加指定 url 上行 ( 上传、请求 ) 监听事件
+     * 添加指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -374,7 +374,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -383,7 +383,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 清空指定 url 上行 ( 上传、请求 ) 所有监听事件
+     * 清空指定 url 上行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -392,7 +392,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -405,7 +405,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 移除指定 url 上行 ( 上传、请求 ) 监听事件
+     * 移除指定 url 上行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -422,7 +422,7 @@ class ProgressOperation private constructor(
     // =====================
 
     /**
-     * 添加指定 url 下行 ( 下载、响应 ) 监听事件
+     * 添加指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -435,7 +435,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param url 请求 url
      * @return `true` success, `false` fail
      */
@@ -444,7 +444,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 清空指定 url 下行 ( 下载、响应 ) 所有监听事件
+     * 清空指定 url 下行所有监听事件
      * @param progress Progress
      * @return `true` success, `false` fail
      */
@@ -453,7 +453,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param url 请求 url
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
@@ -466,7 +466,7 @@ class ProgressOperation private constructor(
     }
 
     /**
-     * 移除指定 url 下行 ( 下载、响应 ) 监听事件
+     * 移除指定 url 下行监听事件
      * @param progress Progress
      * @param callback 上传、下载回调接口
      * @return `true` success, `false` fail
