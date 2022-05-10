@@ -615,6 +615,9 @@ class Progress private constructor(
      * detail: 上传、下载回调接口
      * @author Ttt
      * 回调不是表示上传、下载结果, 而是表示上传、下载这个操作流程回调
+     * <p></p>
+     * 如何判断是否需要处理各个方法, 只需要在 [onStart] 判断 [Progress.Extras] 信息
+     * 并存储当前的 [Progress.id] 其他方法都用已存储的 id 和传入的 Progress.id 对比即可
      */
     interface Callback {
 

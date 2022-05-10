@@ -9,6 +9,7 @@ import java.util.*
  * detail: Progress Operation 实现方式二
  * @author Ttt
  * 实现方式差异可以查看 [ProgressOperation] 类注释
+ * WeakHashMap 何时释放资源无法进行控制, 如果想要每一个监听都能收到回调, 请使用方式一
  */
 internal class OperationPlanB constructor(
     key: String,
