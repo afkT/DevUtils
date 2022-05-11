@@ -24,19 +24,19 @@ import okhttp3.OkHttpClient
  * 并自行根据 Request 信息进行判断处理回调事件
  * <p></p>
  * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊。
- * 且提供切换实现方式方法 [setPlanType]
+ * 已提供切换实现方式方法 [setPlanType]
  *
- * 方式二:
+ * 方式二: [OperationPlanB]
  * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 创建一个新的 Callback
  * 并把 listener map 对应 url 监听的 Callback List toArray 传入进行通知使用
  * 优点: 可以对 List 进行弱引用处理, 会自动进行释放资源
- * 缺点: 对 listener map 新增 url add listener 在请求之后添加
+ * 缺点: 对 listener map 新增 url key add listener 在请求之后添加
  *      则会无法触发 ( 因为在请求拦截时候就已传入 Callback List toArray )
  *
- * 方式一 ( 默认 ):
- * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [innerCallback] 无需每次 new Callback
+ * 方式一 ( 默认 ): [OperationPlanA]
+ * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [OperationPlanA.innerCallback] 无需每次 new Callback
  * 在统一回调内获取 listener map 对应 url 监听的 Callback List 并进行通知
- * 优点: 支持实时 add listener 并且通知回调
+ * 优点: 支持实时 add listener 并进行通知回调
  * 缺点: 实时通知可能因绑定顺序差异, 需自行根据 [Progress.Extras.getUrlExtras] 进行判断是否需要处理该通知
  *      listener map 中的 Callback 需要手动进行释放
  * 针对该缺点提供了两个解决方案
@@ -70,7 +70,7 @@ class ProgressOperation private constructor(
         // = 实现方式类型 =
         // =============
 
-        // 实现方式一 ( 默认 )
+        // 实现方式一 ( 默认使用 )
         const val PLAN_A = 1
 
         // 实现方式二

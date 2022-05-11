@@ -227,6 +227,7 @@ object DevHttpManager {
          * 获取默认 Progress Operation 操作对象
          * @return ProgressOperation
          */
+        @JvmStatic
         fun getDefault(): ProgressOperation {
             return ProgressManager.getDefault()
         }
@@ -236,6 +237,7 @@ object DevHttpManager {
          * @param key Key
          * @return Progress Operation
          */
+        @JvmStatic
         fun getOperation(key: String): ProgressOperation? {
             return ProgressManager.getOperation(key)
         }
@@ -245,6 +247,7 @@ object DevHttpManager {
          * @param key Key
          * @return `true` yes, `false` no
          */
+        @JvmStatic
         fun containsOperation(key: String): Boolean {
             return ProgressManager.containsOperation(key)
         }
@@ -254,6 +257,7 @@ object DevHttpManager {
          * @param key Key
          * @return Progress Operation
          */
+        @JvmStatic
         fun removeOperation(key: String): ProgressOperation? {
             return ProgressManager.removeOperation(key)
         }
@@ -261,6 +265,7 @@ object DevHttpManager {
         /**
          * 清空所有 Progress Operation 操作对象
          */
+        @JvmStatic
         fun clearOperation() {
             ProgressManager.clearOperation()
         }
@@ -272,6 +277,7 @@ object DevHttpManager {
          * @param key Key
          * @return Progress Operation
          */
+        @JvmStatic
         fun putOperationTypeAll(key: String): ProgressOperation {
             return ProgressManager.putOperationTypeAll(key)
         }
@@ -281,6 +287,7 @@ object DevHttpManager {
          * @param key Key
          * @return Progress Operation
          */
+        @JvmStatic
         fun putOperationTypeRequest(key: String): ProgressOperation {
             return ProgressManager.putOperationTypeRequest(key)
         }
@@ -290,6 +297,7 @@ object DevHttpManager {
          * @param key Key
          * @return Progress Operation
          */
+        @JvmStatic
         fun putOperationTypeResponse(key: String): ProgressOperation {
             return ProgressManager.putOperationTypeResponse(key)
         }

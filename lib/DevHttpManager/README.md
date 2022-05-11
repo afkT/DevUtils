@@ -99,7 +99,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 
 ```kotlin
 // 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象
-DevHttpManager.putRetrofitBuilder(
+DevHttpManager.RM.putRetrofitBuilder(
     stringKey, RetrofitBuilder
 )
 ```
@@ -173,11 +173,11 @@ object HttpCoreLibrary {
      */
     fun initialize(context: Context) {
         // 设置全局 OkHttp Builder 接口对象
-        DevHttpManager.setOkHttpBuilder(
+        DevHttpManager.RM.setOkHttpBuilder(
             mOkHttpBuilderGlobal
         )
         // 设置全局 Retrofit 重新构建监听事件
-        DevHttpManager.setRetrofitResetListener(
+        DevHttpManager.RM.setRetrofitResetListener(
             mRetrofitResetListenerGlobal
         )
     }
@@ -264,7 +264,7 @@ class WanAndroidAPI private constructor() {
 
     // Retrofit Operation
     private val mOperation: RetrofitOperation by lazy {
-        DevHttpManager.putRetrofitBuilder(
+        DevHttpManager.RM.putRetrofitBuilder(
             BuildConfig.MODULE_NAME, mRetrofitBuilder
         )
     }

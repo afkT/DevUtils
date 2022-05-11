@@ -429,11 +429,11 @@ class Progress private constructor(
     @Parcelize
     class Extras constructor(
         // 请求链接
-        private var url: String,
+        private val url: String,
         // 请求方法
         private val method: String,
         // 请求头信息
-        private var headers: Map<String, String>
+        private val headers: Map<String, String>
     ) : Parcelable {
 
         // Url 携带信息解析
