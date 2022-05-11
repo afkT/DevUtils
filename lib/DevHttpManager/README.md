@@ -33,7 +33,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 
 * 侵入性低，使用本框架不需要更改历史上传、下载实现代码
 
-* 对外公开封装 Progress RequestBody、ResponseBody 类, 支持自定义使用
+* 对外公开封装 Progress RequestBody、ResponseBody 类，支持自定义使用
 
 * 支持监听代码，不同实现方式切换，内部内存回收、监听通知方式不同
 
@@ -50,6 +50,11 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | getDevHttpManagerVersion | 获取 DevHttpManager 版本 |
 | getDevAppVersionCode | 获取 DevApp 版本号 |
 | getDevAppVersion | 获取 DevApp 版本 |
+
+* **RetrofitManager 方法 ->** [DevHttpManager.kt#RM](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
+
+| 方法 | 注释 |
+| :- | :- |
 | getOkHttpBuilder | 获取全局 OkHttp Builder 接口对象 |
 | setOkHttpBuilder | 设置全局 OkHttp Builder 接口对象 |
 | removeOkHttpBuilder | 移除全局 OkHttp Builder 接口对象 |
@@ -62,6 +67,19 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | removeRetrofitBuilder | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
 | reset | 重置处理 ( 重新构建 Retrofit ) |
 | resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
+
+* **ProgressManager 方法 ->** [DevHttpManager.kt#PM](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDefault | 获取全局默认 Progress Operation 操作对象 |
+| getOperation | 获取 Progress Operation 操作对象 |
+| containsOperation | 通过 Key 判断是否存在 Progress Operation 操作对象 |
+| removeOperation | 通过 Key 解绑并返回 Operation 操作对象 |
+| clearOperation | 清空所有 Progress Operation 操作对象 |
+| putOperationTypeAll | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
+| putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
+| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
 
 ## Retrofit 多 BaseUrl 管理功能 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager)
 

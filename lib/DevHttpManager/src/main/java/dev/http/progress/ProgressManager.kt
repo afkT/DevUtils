@@ -118,7 +118,7 @@ internal object ProgressManager {
     // =====================
 
     /**
-     * 获取默认 Progress Operation 操作对象
+     * 获取全局默认 Progress Operation 操作对象
      * @return ProgressOperation
      */
     fun getDefault(): ProgressOperation {
