@@ -52,6 +52,7 @@ internal abstract class BaseOperation constructor(
      * @return Builder
      */
     override fun wrap(builder: OkHttpClient.Builder): OkHttpClient.Builder {
+        if (mDeprecated) return builder
         mUseWrap = true
         // 防止多次添加
         if (builder.interceptors().contains(innerProgressInterceptor)) {
@@ -250,7 +251,7 @@ internal abstract class BaseOperation constructor(
      * 会释放所有数据、监听事件且不处理任何监听
      */
     override fun removeSelfFromManager() {
-        // 全局默认对象是不存储在 Map 中, 所以属于无效调用直接 return
+        // 全局默认对象是不存储在 Map 中, 属于无效调用直接 return
         if (globalDefault) return
         ProgressManager.removeOperation(key)
     }
@@ -265,6 +266,7 @@ internal abstract class BaseOperation constructor(
         progress: Progress,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return removeListener(progress.isRequest(), getUrlByPrefix(progress), callback)
     }
 
@@ -282,6 +284,7 @@ internal abstract class BaseOperation constructor(
         url: String,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return addListener(true, url, callback)
     }
 
@@ -313,6 +316,7 @@ internal abstract class BaseOperation constructor(
         url: String,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return removeListener(true, url, callback)
     }
 
@@ -326,6 +330,7 @@ internal abstract class BaseOperation constructor(
         progress: Progress?,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return removeListener(true, progress, callback)
     }
 
@@ -343,6 +348,7 @@ internal abstract class BaseOperation constructor(
         url: String,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return addListener(false, url, callback)
     }
 
@@ -374,6 +380,7 @@ internal abstract class BaseOperation constructor(
         url: String,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return removeListener(false, url, callback)
     }
 
@@ -387,6 +394,7 @@ internal abstract class BaseOperation constructor(
         progress: Progress?,
         callback: Progress.Callback
     ): Boolean {
+        if (mDeprecated) return false
         return removeListener(false, progress, callback)
     }
 

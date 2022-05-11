@@ -33,6 +33,12 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 
 * 侵入性低，使用本框架不需要更改历史上传、下载实现代码
 
+* 对外公开封装 Progress RequestBody、ResponseBody 类, 支持自定义使用
+
+* 支持监听代码，不同实现方式切换，内部内存回收、监听通知方式不同
+
+* 针对多组件模块化封装，内置默认全局通用对象，也可传 Key 创建独立 Progress 管理操作对象
+
 
 ## API 文档
 
