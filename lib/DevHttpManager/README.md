@@ -6,6 +6,7 @@
 * [Retrofit 多 BaseUrl 管理功能](#Retrofit-多-BaseUrl-管理功能)
 * [Retrofit 多 BaseUrl 管理功能使用](#Retrofit-多-BaseUrl-管理功能使用)
 * [OkHttp 上传、下载进度监听](#OkHttp-上传下载进度监听)
+* [OkHttp 上传、下载进度监听使用](#OkHttp-上传下载进度监听使用)
 
 
 ## Gradle
@@ -92,7 +93,27 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
 | putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
 
-## Retrofit 多 BaseUrl 管理功能 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager)
+
+## Retrofit 多 BaseUrl 管理功能
+
+* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
+
+| 方法 | 注释 |
+| :- | :- |
+| getOkHttpBuilder | 获取全局 OkHttp Builder 接口对象 |
+| setOkHttpBuilder | 设置全局 OkHttp Builder 接口对象 |
+| removeOkHttpBuilder | 移除全局 OkHttp Builder 接口对象 |
+| getRetrofitResetListener | 获取全局 Retrofit 重新构建监听事件 |
+| setRetrofitResetListener | 设置全局 Retrofit 重新构建监听事件 |
+| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件 |
+| getOperation | 获取 Retrofit Operation 操作对象 |
+| containsOperation | 通过 Key 判断是否存在 Retrofit Operation 操作对象 |
+| putRetrofitBuilder | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
+| removeRetrofitBuilder | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
+| reset | 重置处理 ( 重新构建 Retrofit ) |
+| resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
+
+### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager)
 
 * **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
 
@@ -281,7 +302,7 @@ class WanAndroidAPI private constructor() {
 
     private fun apiBaseUrl(): HttpUrl {
         return DevEnvironment.getWanAndroidEnvironmentValue(
-            AppContext.content()
+            AppContext.context()
         ).toHttpUrl()
     }
 
@@ -420,8 +441,6 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 
 ## OkHttp 上传、下载进度监听
 
-[代码目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress)
-
 * **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
 | 方法 | 注释 |
@@ -435,6 +454,7 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 | putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
 | putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
 
+### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress)
 
 * **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
 
@@ -466,6 +486,11 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 | addResponseListener | 添加指定 url 下行监听事件 |
 | clearResponseListener | 清空指定 url 下行所有监听事件 |
 | removeResponseListener | 移除指定 url 下行监听事件 |
+
+
+## OkHttp 上传、下载进度监听使用
+
+
 
 
 
