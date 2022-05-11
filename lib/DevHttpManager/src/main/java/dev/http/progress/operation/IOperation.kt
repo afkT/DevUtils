@@ -134,27 +134,6 @@ interface IOperation {
      */
     fun resetHandler(): IOperation
 
-    // =
-
-    /**
-     * 获取 Body 只请求一次开关配置
-     * @return `true` yes, `false` no
-     */
-    fun getOneShot(): Boolean
-
-    /**
-     * 设置 Body 只请求一次开关配置
-     * @param oneShot Body 只请求一次开关配置
-     * @return IOperation
-     */
-    fun setOneShot(oneShot: Boolean): IOperation
-
-    /**
-     * 重置 Body 只请求一次开关配置
-     * @return IOperation
-     */
-    fun resetOneShot(): IOperation
-
     // ====================
     // = 操作方法 - 对外公开 =
     // ====================

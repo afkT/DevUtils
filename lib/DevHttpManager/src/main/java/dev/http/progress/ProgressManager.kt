@@ -45,8 +45,6 @@ fun Request.wrapRequestBody(
     handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
     refreshTime: Long = Progress.REFRESH_TIME,
-    // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
-    shouldOneShot: Boolean = true,
     // 额外携带信息
     extras: Progress.Extras? = this.toExtras()
 ): Request {
@@ -55,7 +53,7 @@ fun Request.wrapRequestBody(
             .method(
                 method, ProgressRequestBody(
                     requestBody, callback, handler,
-                    refreshTime, shouldOneShot, extras
+                    refreshTime, extras
                 )
             )
             .build()
@@ -96,6 +94,8 @@ fun Response.wrapResponseBody(
 /**
  * detail: Progress Manager
  * @author Ttt
+ * OkHttp API:
+ * @see https://square.github.io/okhttp/recipes
  */
 internal object ProgressManager {
 

@@ -35,9 +35,6 @@ internal abstract class BaseOperation constructor(
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
     private var mHandler: Handler? = null
 
-    // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
-    private var mOneShot: Boolean = true
-
     // ==============
     // = IOperation =
     // ==============
@@ -211,35 +208,6 @@ internal abstract class BaseOperation constructor(
      */
     override fun resetHandler(): IOperation {
         return setHandler(DevUtils.getHandler())
-    }
-
-    // =
-
-    /**
-     * 获取 Body 只请求一次开关配置
-     * @return `true` yes, `false` no
-     */
-    override fun getOneShot(): Boolean {
-        return mOneShot
-    }
-
-    /**
-     * 设置 Body 只请求一次开关配置
-     * @param oneShot Body 只请求一次开关配置
-     * @return IOperation
-     */
-    override fun setOneShot(oneShot: Boolean): IOperation {
-        if (mDeprecated) return this
-        mOneShot = oneShot
-        return this
-    }
-
-    /**
-     * 重置 Body 只请求一次开关配置
-     * @return IOperation
-     */
-    override fun resetOneShot(): IOperation {
-        return setOneShot(true)
     }
 
     // ====================
@@ -561,7 +529,6 @@ internal abstract class BaseOperation constructor(
                         callback = getPlanCallback(true, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
-                        shouldOneShot = mOneShot,
                         extras = extras
                     )
                     chain.proceed(wrapRequest)
@@ -596,7 +563,6 @@ internal abstract class BaseOperation constructor(
                         callback = getPlanCallback(true, extras),
                         handler = mHandler,
                         refreshTime = mRefreshTime,
-                        shouldOneShot = mOneShot,
                         extras = extras
                     )
                     val response = chain.proceed(wrapRequest)

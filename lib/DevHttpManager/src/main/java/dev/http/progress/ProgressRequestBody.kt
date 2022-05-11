@@ -12,23 +12,6 @@ import java.io.IOException
  * detail: 上行进度监听请求体
  * @author Ttt
  * 通过此类获取 OkHttp 请求体数据处理进度, 可以处理任何的 RequestBody
- * <p></p>
- * OkHttp API:
- * @see https://square.github.io/okhttp/recipes
- * shouldOneShot:
- * 避免拦截器调用 writeTo 导致多次触发
- * @see https://square.github.io/okhttp/4.x/okhttp/okhttp3/-request-body/is-one-shot
- * 自行传参或重写 [isOneShot] 方法决定是否允许多次触发
- * <p></p>
- * 注意事项:
- * 并非实现该方法就能够避免多次触发, 也需要拦截器内部调用 [isOneShot] 判断
- * 可参考 DevHttpCapture 库的
- * CallbackInterceptor、HttpCaptureInterceptor
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CallbackInterceptor.java
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/HttpCaptureInterceptor.java
- * <p></p>
- * 或 OkHttp logging-interceptor 库的 HttpLoggingInterceptor
- * @see https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
  */
 open class ProgressRequestBody(
     // 原数据请求体
@@ -39,8 +22,6 @@ open class ProgressRequestBody(
     protected val handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
     protected val refreshTime: Long = Progress.REFRESH_TIME,
-    // 是否推荐请求一次 ( isOneShot() return 使用 ) 避免拦截器调用 writeTo 导致多次触发
-    protected val shouldOneShot: Boolean = true,
     // 额外携带信息 ( 可通过 Request.toExtras() 创建 )
     protected val extras: Progress.Extras? = null
 ) : RequestBody() {
@@ -53,7 +34,7 @@ open class ProgressRequestBody(
     // ===============
 
     override fun isOneShot(): Boolean {
-        return shouldOneShot
+        return delegate.isOneShot()
     }
 
     override fun contentType(): MediaType? {

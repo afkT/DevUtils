@@ -304,33 +304,6 @@ class ProgressOperation private constructor(
         return IMPL.resetHandler()
     }
 
-    // =
-
-    /**
-     * 获取 Body 只请求一次开关配置
-     * @return `true` yes, `false` no
-     */
-    override fun getOneShot(): Boolean {
-        return IMPL.getOneShot()
-    }
-
-    /**
-     * 设置 Body 只请求一次开关配置
-     * @param oneShot Body 只请求一次开关配置
-     * @return IOperation
-     */
-    override fun setOneShot(oneShot: Boolean): IOperation {
-        return IMPL.setOneShot(oneShot)
-    }
-
-    /**
-     * 重置 Body 只请求一次开关配置
-     * @return IOperation
-     */
-    override fun resetOneShot(): IOperation {
-        return IMPL.resetOneShot()
-    }
-
     // ====================
     // = 操作方法 - 对外公开 =
     // ====================
