@@ -1,4 +1,13 @@
 
+
+## 摘要
+
+* [框架功能介绍](#框架功能介绍)
+* [Retrofit 多 BaseUrl 管理功能](#Retrofit-多-BaseUrl-管理功能)
+* [Retrofit 多 BaseUrl 管理功能使用](#Retrofit-多-BaseUrl-管理功能使用)
+* [OkHttp 上传、下载进度监听](#OkHttp-上传下载进度监听)
+
+
 ## Gradle
 
 ```gradle
@@ -51,7 +60,8 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | getDevAppVersionCode | 获取 DevApp 版本号 |
 | getDevAppVersion | 获取 DevApp 版本 |
 
-* **RetrofitManager 方法 ->** [DevHttpManager.kt#RM](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
+
+* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -68,7 +78,8 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
 | reset | 重置处理 ( 重新构建 Retrofit ) |
 | resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
 
-* **ProgressManager 方法 ->** [DevHttpManager.kt#PM](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
+
+* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -407,6 +418,54 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 ```
 
 
+## OkHttp 上传、下载进度监听
+
+[代码目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress)
+
+* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDefault | 获取全局默认 Progress Operation 操作对象 |
+| getOperation | 获取 Progress Operation 操作对象 |
+| containsOperation | 通过 Key 判断是否存在 Progress Operation 操作对象 |
+| removeOperation | 通过 Key 解绑并返回 Operation 操作对象 |
+| clearOperation | 清空所有 Progress Operation 操作对象 |
+| putOperationTypeAll | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
+| putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
+| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
+
+
+* **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| setPlanType | 设置 Progress Operation 实现方式类型 |
+| wrap | 进行拦截器包装 ( 必须调用 ) |
+| isUseWrap | 是否已调用 wrap 方法 |
+| isDeprecated | 是否废弃不使用状态 |
+| isDefault | 是否全局默认操作对象 |
+| isTypeAll | 是否监听上下行 |
+| isTypeRequest | 是否监听上行 |
+| isTypeResponse | 是否监听下行 |
+| getPlanType | 获取 Progress Operation 实现方式类型 |
+| getRefreshTime | 获取回调刷新时间 ( 毫秒 ) |
+| setRefreshTime | 设置回调刷新时间 ( 毫秒 ) |
+| resetRefreshTime | 重置回调刷新时间 ( 毫秒 ) |
+| getCallback | 获取全局 Progress Callback |
+| setCallback | 设置全局 Progress Callback |
+| removeCallback | 移除全局 Progress Callback |
+| getHandler | 获取回调 UI 线程通知 Handler |
+| setHandler | 设置回调 UI 线程通知 Handler |
+| resetHandler | 重置回调 UI 线程通知 Handler |
+| removeSelfFromManager | 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态 |
+| recycleListener | 释放指定监听事件 |
+| addRequestListener | 添加指定 url 上行监听事件 |
+| clearRequestListener | 清空指定 url 上行所有监听事件 |
+| removeRequestListener | 移除指定 url 上行监听事件 |
+| addResponseListener | 添加指定 url 下行监听事件 |
+| clearResponseListener | 清空指定 url 下行所有监听事件 |
+| removeResponseListener | 移除指定 url 下行监听事件 |
 
 
 
