@@ -82,6 +82,21 @@ public class UrlExtras {
          * @return Url Params Map
          */
         Map<String, String> getUrlParamsDecode();
+
+        // =
+
+        /**
+         * 是否解析、转换 Param Map
+         * @return {@code true} yes, {@code false} no
+         */
+        boolean isConvertMap();
+
+        /**
+         * 设置是否解析、转换 Param Map
+         * @param convertMap {@code true} yes, {@code false} no
+         * @return Parser
+         */
+        Parser setConvertMap(boolean convertMap);
     }
 
     // =============

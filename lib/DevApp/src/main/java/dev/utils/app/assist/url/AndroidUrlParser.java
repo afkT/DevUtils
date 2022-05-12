@@ -30,6 +30,8 @@ public class AndroidUrlParser
     private Map<String, String> mUrlParamsMap;
     // Url Params Map ( 参数值进行 UrlDecode )
     private Map<String, String> mUrlParamsDecodeMap;
+    // 是否解析、转换 Param Map
+    private boolean             mConvertMap = true;
 
     // ====================
     // = UrlExtras.Parser =
@@ -71,6 +73,17 @@ public class AndroidUrlParser
         return this.mUrlParamsDecodeMap;
     }
 
+    @Override
+    public boolean isConvertMap() {
+        return this.mConvertMap;
+    }
+
+    @Override
+    public UrlExtras.Parser setConvertMap(boolean convertMap) {
+        this.mConvertMap = convertMap;
+        return this;
+    }
+
     // ==========
     // = 内部方法 =
     // ==========
@@ -95,7 +108,7 @@ public class AndroidUrlParser
                 this.mUrlPrefix = uriToUrlPrefix(uri);
                 this.mUrlParams = uri.getEncodedQuery();
 
-                if (StringUtils.isNotEmpty(mUrlParams)) {
+                if (mConvertMap && StringUtils.isNotEmpty(mUrlParams)) {
                     this.mUrlParamsMap       = new LinkedHashMap<>();
                     this.mUrlParamsDecodeMap = new LinkedHashMap<>();
 

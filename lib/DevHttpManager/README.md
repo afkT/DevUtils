@@ -160,7 +160,7 @@ DevHttpManager.RM.putRetrofitBuilder(
 )
 ```
 
-通过返回的 [Operation][Operation] 对象进行获取 Retrofit 或直接 create APIService
+通过返回的 [RetrofitOperation][RetrofitOperation] 对象进行获取 Retrofit 或直接 create APIService
 
 ```kotlin
 /**
@@ -490,6 +490,172 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 
 ## OkHttp 上传、下载进度监听使用
 
+使用代码只有一步：**通过 Key 绑定并返回 Operation 操作对象**
+
+```kotlin
+// 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 )
+DevHttpManager.PM.putOperationTypeAll(stringKey)
+// 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )
+DevHttpManager.PM.putOperationTypeRequest(stringKey)
+// 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
+DevHttpManager.PM.putOperationTypeResponse(stringKey)
+// 或者使用全局默认 Progress Operation 操作对象
+DevHttpManager.PM.getDefault()
+```
+
+通过返回的 [ProgressOperation][ProgressOperation] 对象进行操作, 具体公开方法可以查看 [IOperation][IOperation] 接口
+
+```kotlin
+/**
+ * 设置 Progress Operation 实现方式类型
+ * @param planType 实现方式类型 [ProgressOperation.PLAN_A]、[ProgressOperation.PLAN_B]
+ * @return IOperation
+ * 在没调用 IOperation 接口任何方法前, 调用该方法切换才有效
+ */
+fun setPlanType(planType: Int): IOperation
+
+/**
+ * 进行拦截器包装 ( 必须调用 )
+ * @param builder Builder
+ * @return Builder
+ */
+fun wrap(builder: OkHttpClient.Builder): OkHttpClient.Builder
+
+// ====================
+// = 操作方法 - 对外公开 =
+// ====================
+
+/**
+ * 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态
+ * 会释放所有数据、监听事件且不处理任何监听
+ */
+fun removeSelfFromManager()
+
+/**
+ * 释放指定监听事件
+ * @param progress Progress
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun recycleListener(
+    progress: Progress,
+    callback: Progress.Callback
+): Boolean
+
+// ====================
+// = Request Listener =
+// ====================
+
+/**
+ * 添加指定 url 上行监听事件
+ * @param url 请求 url
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun addRequestListener(
+    url: String,
+    callback: Progress.Callback
+): Boolean
+
+/**
+ * 清空指定 url 上行所有监听事件
+ * @param url 请求 url
+ * @return `true` success, `false` fail
+ */
+fun clearRequestListener(url: String): Boolean
+
+/**
+ * 清空指定 url 上行所有监听事件
+ * @param progress Progress
+ * @return `true` success, `false` fail
+ */
+fun clearRequestListener(progress: Progress?): Boolean
+
+/**
+ * 移除指定 url 上行监听事件
+ * @param url 请求 url
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun removeRequestListener(
+    url: String,
+    callback: Progress.Callback
+): Boolean
+
+/**
+ * 移除指定 url 上行监听事件
+ * @param progress Progress
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun removeRequestListener(
+    progress: Progress?,
+    callback: Progress.Callback
+): Boolean
+
+// =====================
+// = Response Listener =
+// =====================
+
+/**
+ * 添加指定 url 下行监听事件
+ * @param url 请求 url
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun addResponseListener(
+    url: String,
+    callback: Progress.Callback
+): Boolean
+
+/**
+ * 清空指定 url 下行所有监听事件
+ * @param url 请求 url
+ * @return `true` success, `false` fail
+ */
+fun clearResponseListener(url: String): Boolean
+
+/**
+ * 清空指定 url 下行所有监听事件
+ * @param progress Progress
+ * @return `true` success, `false` fail
+ */
+fun clearResponseListener(progress: Progress?): Boolean
+
+/**
+ * 移除指定 url 下行监听事件
+ * @param url 请求 url
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun removeResponseListener(
+    url: String,
+    callback: Progress.Callback
+): Boolean
+
+/**
+ * 移除指定 url 下行监听事件
+ * @param progress Progress
+ * @param callback 上传、下载回调接口
+ * @return `true` success, `false` fail
+ */
+fun removeResponseListener(
+    progress: Progress?,
+    callback: Progress.Callback
+): Boolean
+```
+
+
+**具体实现代码可以查看 [DevComponent lib_network][DevComponent lib_network]、[WanAndroidAPI][WanAndroidAPI]**
+，以 [DevComponent][DevComponent] 组件化项目代码为例。
+
+* HttpCoreLibrary initialize() 方法中的代码非必须设置，只是提供全局管理控制方法，支持设置全局 OkHttp Builder 接口对象、全局 Retrofit 重新构建监听事件。
+
+* 如 [OkHttpBuilderGlobal][OkHttpBuilderGlobal] 内部实现 OkHttpBuilder 接口，
+  通过创建通用的 OkHttpClient.Builder 提供给 RetrofitBuilder.createRetrofitBuilder() 方法创建 Retrofit.Builder 使用
+
+* [RetrofitResetListenerGlobal][RetrofitResetListenerGlobal] 则提供全局 BaseUrl Reset 监听，例如重新构建 Retrofit 前取消历史请求操作、重新构建后等操作
+
 
 
 
@@ -499,4 +665,6 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 [WanAndroidAPI]: https://github.com/afkT/DevComponent/blob/main/application/module/module_wanandroid/src/main/java/afkt_replace/module/wan_android/data/api/WanAndroidAPI.kt
 [OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
 [RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
-[Operation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
+[RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
+[ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
+[IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt

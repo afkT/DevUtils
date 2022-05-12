@@ -16,8 +16,8 @@ import okhttp3.OkHttpClient
  * <p></p>
  * 注意事项:
  * 绑定监听事件是通过 url 进行绑定的
- * 例 url 为 https://www.abc.com/asd?type=1&abc=b
- * 会统一处理成 https://www.abc.com/asd 作为 key
+ * 例 url 为 https://developer.android.com/docs?type=1&abc=afkt
+ * 会统一处理成 https://developer.android.com/docs 作为 key
  * 而其他信息通过 [Progress.Extras] 进行获取请求方法、请求头信息
  * 以及 url 携带参数解析 [Progress.Extras.getUrlExtras]
  * 具体参数信息拆分获取可通过 [UrlExtras] 进行获取
