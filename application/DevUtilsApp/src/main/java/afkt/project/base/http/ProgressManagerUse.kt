@@ -36,15 +36,13 @@ class ProgressManagerUse private constructor() {
         /**
          * 需要切换内部实现方式, 必须先调用该方法
          * 实现方式差异可以查看 [ProgressOperation] 类注释
+         * 可不调用默认使用 PLAN_A
          */
         mOperation.setPlanType(ProgressOperation.PLAN_A)
-//        mOperation.setPlanType(ProgressOperation.PLAN_B)
+        mOperation.setPlanType(ProgressOperation.PLAN_B)
 
         // 进行拦截器包装 ( 必须调用 )
         val okHttpClient = mOperation.wrap(OkHttpClient.Builder()).build()
-
-        // 监听请求
-        mOperation.addRequestListener(url, progressCallback)
 
         // 基于 OkHttp 库, 不同库封装使用不同, 只要使用 wrap build 后的 client 就能够实现监听
         val retrofit = Retrofit.Builder()
@@ -55,6 +53,12 @@ class ProgressManagerUse private constructor() {
             // 服务器地址
             .baseUrl("")
             .build()
+
+
+        // 添加指定 url 上行监听事件
+        mOperation.addRequestListener(url, progressCallback)
+        // 添加指定 url 下行监听事件
+        mOperation.addResponseListener(url, progressCallback)
     }
 
     // =====================

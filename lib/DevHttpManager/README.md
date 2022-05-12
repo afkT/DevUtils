@@ -503,7 +503,7 @@ DevHttpManager.PM.putOperationTypeResponse(stringKey)
 DevHttpManager.PM.getDefault()
 ```
 
-通过返回的 [ProgressOperation][ProgressOperation] 对象进行操作, 具体公开方法可以查看 [IOperation][IOperation] 接口
+通过返回的 [ProgressOperation][ProgressOperation] 对象进行操作，具体公开方法可以查看 [IOperation][IOperation] 接口
 
 ```kotlin
 /**
@@ -646,17 +646,48 @@ fun removeResponseListener(
 ```
 
 
-**具体实现代码可以查看 [DevComponent lib_network][DevComponent lib_network]、[WanAndroidAPI][WanAndroidAPI]**
-，以 [DevComponent][DevComponent] 组件化项目代码为例。
+**具体实现代码可以查看 [ProgressManagerUse][ProgressManagerUse]**
 
-* HttpCoreLibrary initialize() 方法中的代码非必须设置，只是提供全局管理控制方法，支持设置全局 OkHttp Builder 接口对象、全局 Retrofit 重新构建监听事件。
+* 进行监听指定 url 进度，也是只用一句代码
 
-* 如 [OkHttpBuilderGlobal][OkHttpBuilderGlobal] 内部实现 OkHttpBuilder 接口，
-  通过创建通用的 OkHttpClient.Builder 提供给 RetrofitBuilder.createRetrofitBuilder() 方法创建 Retrofit.Builder 使用
+```kotlin
+val mOperation = DevHttpManager.PM.getDefault()
+// 添加指定 url 上行监听事件
+mOperation.addRequestListener(url, progressCallback)
+// 添加指定 url 下行监听事件
+mOperation.addResponseListener(url, progressCallback)
+```
 
-* [RetrofitResetListenerGlobal][RetrofitResetListenerGlobal] 则提供全局 BaseUrl Reset 监听，例如重新构建 Retrofit 前取消历史请求操作、重新构建后等操作
+* 完整使用过程模拟代码
+
+```kotlin
+/**
+ * 需要切换内部实现方式, 必须先调用该方法
+ * 实现方式差异可以查看 [ProgressOperation] 类注释
+ * 可不调用默认使用 PLAN_A
+ */
+mOperation.setPlanType(ProgressOperation.PLAN_A)
+mOperation.setPlanType(ProgressOperation.PLAN_B)
+
+// 进行拦截器包装 ( 必须调用 )
+val okHttpClient = mOperation.wrap(OkHttpClient.Builder()).build()
+
+// 基于 OkHttp 库, 不同库封装使用不同, 只要使用 wrap build 后的 client 就能够实现监听
+val retrofit = Retrofit.Builder()
+    // Gson 解析
+    .addConverterFactory(GsonConverterFactory.create())
+    // OkHttpClient
+    .client(okHttpClient)
+    // 服务器地址
+    .baseUrl("")
+    .build()
 
 
+// 添加指定 url 上行监听事件
+mOperation.addRequestListener(url, progressCallback)
+// 添加指定 url 下行监听事件
+mOperation.addResponseListener(url, progressCallback)
+```
 
 
 
@@ -668,3 +699,4 @@ fun removeResponseListener(
 [RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
 [ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
 [IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt
+[ProgressManagerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/ProgressManagerUse.kt
