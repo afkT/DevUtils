@@ -20,6 +20,10 @@ class ProgressManagerUse private constructor() {
     companion object {
 
         private val instance: ProgressManagerUse by lazy { ProgressManagerUse() }
+
+        fun operation(): ProgressOperation {
+            return instance.operation()
+        }
     }
 
     // 日志 TAG
@@ -32,7 +36,7 @@ class ProgressManagerUse private constructor() {
     // = 模拟使用方法 =
     // =============
 
-    private fun use() {
+    fun use() {
         /**
          * 需要切换内部实现方式, 必须先调用该方法
          * 实现方式差异可以查看 [ProgressOperation] 类注释
@@ -64,6 +68,14 @@ class ProgressManagerUse private constructor() {
     // =====================
     // = ProgressOperation =
     // =====================
+
+    /**
+     * 对外提供操作对象
+     * @return ProgressOperation
+     */
+    fun operation(): ProgressOperation {
+        return mOperation
+    }
 
     // Progress Operation
     private val mOperation: ProgressOperation by lazy {
@@ -118,9 +130,7 @@ class ProgressManagerUse private constructor() {
 
             /**
              * 有多个相同请求且参数一致, 需要监听不同进度, 则自行新增一个无用的随机参数 or 头信息进行区分
-             *
              * 不同请求则不推荐进行复用, 方便回收、判断等 ( 本身功能设计也是监听指定需求 )
-             *
              * 有复用需求可以调用 [ProgressOperation.setCallback] 设置为全局通用回调
              * 设置后, 会优先通知全局回调, 接着通知对应 url Callback List
              */

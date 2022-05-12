@@ -648,7 +648,7 @@ fun removeResponseListener(
 
 **具体实现代码可以查看 [ProgressManagerUse][ProgressManagerUse]**
 
-* 进行监听指定 url 进度，也是只用一句代码
+* 监听指定 url 进度，也是只用一句代码
 
 ```kotlin
 val mOperation = DevHttpManager.PM.getDefault()

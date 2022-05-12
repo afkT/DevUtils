@@ -1,6 +1,6 @@
 package afkt.project.feature.framework.mvp
 
-import afkt.project.base.http.RetrofitUtils
+import afkt.project.base.http.RetrofitManagerUse
 import afkt.project.model.bean.ArticleBean
 import dev.base.expand.mvp.MVP
 import dev.base.expand.mvp.MVP.IModel
@@ -67,21 +67,20 @@ class ArticleMVP {
             mvpModel = object : Model {
                 override fun requestArticleLists() {
                     // 映射各种 JSON 实体类
-                    val articleList =
-                        RetrofitUtils.instance.wanAndroidService().getArticleList(0)
-                            .compose(RxJavaManager.instance.io_main())
-                            .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
-                                override fun onSuccessResponse(data: ArticleBean) {
-                                    mvpView?.onArticleListResponse(true, data)
-                                }
+                    val articleList = RetrofitManagerUse.api().getArticleList(0)
+                        .compose(RxJavaManager.instance.io_main())
+                        .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
+                            override fun onSuccessResponse(data: ArticleBean) {
+                                mvpView?.onArticleListResponse(true, data)
+                            }
 
-                                override fun onErrorResponse(
-                                    throwable: Throwable?,
-                                    message: String?
-                                ) {
-                                    mvpView?.onArticleListResponse(false, null)
-                                }
-                            })
+                            override fun onErrorResponse(
+                                throwable: Throwable?,
+                                message: String?
+                            ) {
+                                mvpView?.onArticleListResponse(false, null)
+                            }
+                        })
                     mvpView?.addDisposable(articleList)
                 }
             }

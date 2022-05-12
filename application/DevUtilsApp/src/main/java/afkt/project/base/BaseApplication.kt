@@ -1,7 +1,7 @@
 package afkt.project.base
 
 import afkt.project.R
-import afkt.project.base.http.RetrofitUtils
+import afkt.project.base.http.RetrofitManagerUse
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -265,13 +265,10 @@ class BaseApplication : MultiDexApplication() {
         // 可不调用, 默认开启 DP 转换
         AutoSizeConfig.getInstance().unitsManager.isSupportDP = true
 
-        // 初始化 Retrofit
-        RetrofitUtils.instance.initRetrofit()
-
         // 环境 ( 服务器地址 ) 改变通知
         DevEnvironment.addOnEnvironmentChangeListener { _, _, _ ->
             // 改变地址重新初始化
-            RetrofitUtils.instance.resetAPIService()
+            RetrofitManagerUse.operation().reset()
         }
 
         // 截图监听

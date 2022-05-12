@@ -1,6 +1,6 @@
 package afkt.project.feature.framework.mvvm
 
-import afkt.project.base.http.RetrofitUtils
+import afkt.project.base.http.RetrofitManagerUse
 import afkt.project.model.bean.ArticleBean
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -35,7 +35,7 @@ class ArticleRepository {
          * // 取消 TAG ( Activity ) 关联的请求
          * RxJavaManager.instance.remove(TAG)
          */
-        RetrofitUtils.instance.wanAndroidService().getArticleList(0)
+        RetrofitManagerUse.api().getArticleList(0)
             .compose(RxJavaManager.instance.io_main())
             // AutoDispose
             .autoDispose(provider)
