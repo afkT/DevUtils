@@ -206,6 +206,8 @@ fun <T> resetAndCreate(
 
 * [RetrofitResetListenerGlobal][RetrofitResetListenerGlobal] 则提供全局 BaseUrl Reset 监听，例如重新构建 Retrofit 前取消历史请求操作、重新构建后等操作
 
+**DevUtilsApp Demo 完整使用查看 [RetrofitManagerUse][RetrofitManagerUse]**
+
 ```kotlin
 /**
  * detail: Http Core Lib
@@ -691,6 +693,8 @@ mOperation.addResponseListener(url, progressCallback)
 
 
 
+
+
 [DevComponent]: https://github.com/afkT/DevComponent
 [DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
 [WanAndroidAPI]: https://github.com/afkT/DevComponent/blob/main/application/module/module_wanandroid/src/main/java/afkt_replace/module/wan_android/data/api/WanAndroidAPI.kt
@@ -700,3 +704,4 @@ mOperation.addResponseListener(url, progressCallback)
 [ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
 [IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt
 [ProgressManagerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/ProgressManagerUse.kt
+[RetrofitManagerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/RetrofitManagerUse.kt
