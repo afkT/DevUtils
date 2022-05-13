@@ -58,7 +58,6 @@ class ProgressManagerUse private constructor() {
             .baseUrl("")
             .build()
 
-
         // 添加指定 url 上行监听事件
         mOperation.addRequestListener(url, progressCallback)
         // 添加指定 url 下行监听事件

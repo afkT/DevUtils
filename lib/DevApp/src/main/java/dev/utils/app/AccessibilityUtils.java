@@ -1739,7 +1739,8 @@ public final class AccessibilityUtils {
          *     AccessibilityEvent Source Node、Source Node All Child
          *     AccessibilityService RootInActiveWindow or WindowList
          * </pre>
-         * @param event {@link AccessibilityEvent}
+         * @param event   {@link AccessibilityEvent}
+         * @param service {@link AccessibilityService}
          * @return AccessibilityEvent、AccessibilityService 完整信息日志
          */
         public static String logComplete(

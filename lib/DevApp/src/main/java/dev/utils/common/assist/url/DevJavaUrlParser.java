@@ -75,7 +75,7 @@ public class DevJavaUrlParser
     }
 
     @Override
-    public UrlExtras.Parser setConvertMap(boolean convertMap) {
+    public UrlExtras.Parser setConvertMap(final boolean convertMap) {
         this.mConvertMap = convertMap;
         return this;
     }

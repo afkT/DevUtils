@@ -79,7 +79,7 @@ public class AndroidUrlParser
     }
 
     @Override
-    public UrlExtras.Parser setConvertMap(boolean convertMap) {
+    public UrlExtras.Parser setConvertMap(final boolean convertMap) {
         this.mConvertMap = convertMap;
         return this;
     }
@@ -134,6 +134,7 @@ public class AndroidUrlParser
      * <pre>
      *     参照部分 Uri#toSafeString() 代码
      * </pre>
+     * @param uri Uri.parse
      * @return Url 前缀
      */
     private String uriToUrlPrefix(final Uri uri) {
