@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.4.4 *(2022-05-13)*
+----------------------------
+
+* `[Add]` 新增 DevFinal#INT 部分默认值
+
+* `[Add]` 新增 UrlExtras Url 携带信息解析类，并默认提供 DevJavaUrlParser 实现
+
+* `[Add]` 新增 ConvertUtils#newString 方法处理 CharSequence
+
+* `[Add]` 新增 ConvertUtils#newStringNotArrayDecode 并修改所有工具类 instanceof String 判断转换使用该方法
+
+* `[Add]` 新增 BigDecimalUtils 抛出异常相对应捕获异常快捷方法，并修改抛出方法名为 xxxThrow(param)
+
 Version 1.4.3 *(2022-03-20)*
 ----------------------------
 

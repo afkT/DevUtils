@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 2.3.7 *(2022-05-13)*
+----------------------------
+
+* `[Add]` 新增 DevUtils#getHandler(handler) 判断 null, 视情况返回全局 MainHandler
+
+* `[Refactor]` 重构 AccessibilityUtils 工具类，并对节点信息、节点、日志打印操作进行独立封装 Node、Operation、Print 类
+
+* `[Refactor]` Helper 链式相关类，移除 IHelper 并且新增 BaseHelper 内置通用方法
+
+* `[Add]` 新增 FlowHelper 流式 ( 链式 ) 连接 Helper 类，便捷链接其他 Helper 但不局限于上述类使用
+
+* `[Add]` 新增 DevFinal#INT 部分默认值
+
+* `[Add]` 新增 UrlExtras Url 携带信息解析类，并默认提供 DevJavaUrlParser、AndroidUrlParser 实现
+
+* `[Add]` 新增 ConvertUtils#newString 方法处理 CharSequence
+
+* `[Add]` 新增 ConvertUtils#newStringNotArrayDecode 并修改所有工具类 instanceof String 判断转换使用该方法
+
+* `[Add]` 新增 BigDecimalUtils 抛出异常相对应捕获异常快捷方法，并修改抛出方法名为 xxxThrow(param)
+
 Version 2.3.6 *(2022-03-20)*
 ----------------------------
 
