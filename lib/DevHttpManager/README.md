@@ -226,7 +226,7 @@ object HttpCoreLibrary {
     // =============
 
     /**
-     * 初始化 OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+     * 初始化 OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
      * @param context Context
      */
     fun initialize(context: Context) {

@@ -65,7 +65,7 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/CHANGELOG.md)
 
-### DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+### DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
 
 - [README](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md)
 
@@ -126,7 +126,7 @@ implementation 'io.github.afkt:DevHttpCapture:1.1.0'
 debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.0'
 releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.0'
 
-// DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+// DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
 implementation 'io.github.afkt:DevHttpManager:1.0.0'
 
 // DevWidget - 自定义 View UI 库

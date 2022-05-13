@@ -78,7 +78,7 @@ ext {
                     dev_http_capture                 : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
                     dev_http_capture_compiler        : "io.github.afkt:DevHttpCaptureCompiler:${versions.dev_http_capture_compiler_version}",
                     dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
-                    // OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+                    // OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
                     dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
             ],
             "kotlin"    : [

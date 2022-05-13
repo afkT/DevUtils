@@ -51,7 +51,7 @@ ext {
             dev_http_capture_compiler_version        : "1.1.1",
             dev_http_capture_compiler_release_version: "1.1.1",
 
-            // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )
+            // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
             dev_http_manager_versionCode             : 101,
             dev_http_manager_versionName             : "1.0.1",
 
