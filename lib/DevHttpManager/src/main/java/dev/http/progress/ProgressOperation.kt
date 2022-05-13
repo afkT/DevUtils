@@ -23,7 +23,7 @@ import okhttp3.OkHttpClient
  * 具体参数信息拆分获取可通过 [UrlExtras] 进行获取
  * 并自行根据 Request 信息进行判断处理回调事件
  * <p></p>
- * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊。
+ * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊
  * 已提供切换实现方式方法 [setPlanType]
  *
  * 方式二: [OperationPlanB]

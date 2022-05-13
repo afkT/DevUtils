@@ -22,6 +22,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.0'
    - http                                             | 基于 OkHttp 管理实现代码
       - manager                                       | Retrofit 多 BaseUrl 管理
       - progress                                      | OkHttp 上传、下载进度监听
+         - operation                                  | 监听通知不同方式实现
 ```
 
 

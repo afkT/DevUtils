@@ -13,6 +13,7 @@ implementation 'io.github.afkt:DevJava:1.4.3'
       - assist                                        | 各种快捷辅助类
          - record                                     | 文件记录分析类
          - search                                     | 搜索相关 ( 文件搜索等 )
+         - url                                        | Url 携带信息解析
       - cipher                                        | 编 / 解码工具类
       - comparator                                    | 排序比较器
          - sort                                       | 各种类型比较器排序实现
@@ -52,6 +53,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
       - [assist](#devutilscommonassist)               | 各种快捷辅助类
          - [record](#devutilscommonassistrecord)      | 文件记录分析类
          - [search](#devutilscommonassistsearch)      | 搜索相关 ( 文件搜索等 )
+         - [url](#devutilscommonassisturl)            | Url 携带信息解析
       - [cipher](#devutilscommoncipher)               | 编 / 解码工具类
       - [comparator](#devutilscommoncomparator)       | 排序比较器
          - [sort](#devutilscommoncomparatorsort)      | 各种类型比较器排序实现
@@ -121,13 +123,20 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getBigDecimal | 获取 BigDecimal |
 | operation | 获取 Operation |
 | adjustDouble | 获取自己想要的数据格式 |
+| compareTo | 比较大小 |
+| compareToThrow | 比较大小 ( 抛出异常 ) |
 | add | 提供精确的加法运算 |
 | subtract | 提供精确的减法运算 |
 | multiply | 提供精确的乘法运算 |
 | divide | 提供精确的除法运算 |
 | remainder | 提供精确的取余运算 |
 | round | 提供精确的小数位四舍五入处理 |
-| compareTo | 比较大小 |
+| addThrow | 提供精确的加法运算 ( 抛出异常 ) |
+| subtractThrow | 提供精确的减法运算 ( 抛出异常 ) |
+| multiplyThrow | 提供精确的乘法运算 ( 抛出异常 ) |
+| divideThrow | 提供精确的除法运算 ( 抛出异常 ) |
+| remainderThrow | 提供精确的取余运算 ( 抛出异常 ) |
+| roundThrow | 提供精确的小数位四舍五入处理 ( 抛出异常 ) |
 | getScale | 获取小数点保留位数 |
 | getRoundingMode | 获取舍入模式 |
 | requireNonNull | 检查 Value 是否为 null, 为 null 则抛出异常 |
@@ -349,6 +358,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | convert | Object 转换所需类型对象 |
 | newString | Object 转 String |
+| newStringNotArrayDecode | Object 转 String ( 不进行 Array 解码转 String ) |
 | toString | Object 转 String |
 | toInt | Object 转 Integer |
 | toBoolean | Object 转 Boolean |
@@ -1170,6 +1180,41 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getStartTime | 获取开始搜索时间 ( 毫秒 ) |
 | getEndTime | 获取结束搜索时间 ( 毫秒 ) |
 | query | 搜索目录 |
+
+
+## <span id="devutilscommonassisturl">**`dev.utils.common.assist.url`**</span>
+
+
+* **Dev 库 Java 通用 Url 解析器 ->** [DevJavaUrlParser.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/url/DevJavaUrlParser.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| reset | reset |
+| setUrl | setUrl |
+| getUrl | getUrl |
+| getUrlByPrefix | getUrlByPrefix |
+| getUrlByParams | getUrlByParams |
+| getUrlParams | getUrlParams |
+| getUrlParamsDecode | getUrlParamsDecode |
+| isConvertMap | isConvertMap |
+| setConvertMap | setConvertMap |
+
+
+* **Url 携带信息解析 ->** [UrlExtras.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/url/UrlExtras.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getUrl | 获取完整 Url |
+| getUrlByPrefix | 获取 Url 前缀 ( 去除参数部分 ) |
+| getUrlByParams | 获取 Url 参数部分字符串 |
+| getUrlParams | 获取 Url Params Map |
+| getUrlParamsDecode | 获取 Url Params Map ( 参数值进行 UrlDecode ) |
+| getParser | 获取 Url 解析器 |
+| setParser | 设置 Url 解析器 |
+| reset | 重置并返回一个新的解析器 |
+| setUrl | 设置完整 Url |
+| isConvertMap | 是否解析、转换 Param Map |
+| setConvertMap | 设置是否解析、转换 Param Map |
 
 
 ## <span id="devutilscommoncipher">**`dev.utils.common.cipher`**</span>

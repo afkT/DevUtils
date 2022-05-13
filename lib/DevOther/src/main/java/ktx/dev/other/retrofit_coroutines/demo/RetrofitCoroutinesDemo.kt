@@ -9,6 +9,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -158,7 +159,7 @@ suspend fun uploadImage(lists: List<File>) {
             lists.forEach {
                 addFormDataPart(
                     "images", it.name,
-                    RequestBody.create("image/*".toMediaTypeOrNull(), it)
+                    it.asRequestBody("image/*".toMediaTypeOrNull())
                 )
             }
         }
@@ -196,7 +197,7 @@ suspend fun uploadImage2(lists: List<File>) {
             lists.forEach {
                 addFormDataPart(
                     "images", it.name,
-                    RequestBody.create("image/*".toMediaTypeOrNull(), it)
+                    it.asRequestBody("image/*".toMediaTypeOrNull())
                 )
             }
         }
