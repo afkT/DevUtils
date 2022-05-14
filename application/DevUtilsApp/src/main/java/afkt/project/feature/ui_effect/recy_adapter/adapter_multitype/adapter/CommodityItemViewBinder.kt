@@ -4,15 +4,16 @@ import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBeanItem
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
+import afkt_replace.core.lib.utils.toSource
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 
@@ -54,10 +55,9 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
                 holder.binding.vidPriceTv
             )
         // 商品图片
-        DevEngine.getImage()?.display(
-            holder.binding.vidPicIv,
-            itemObj.commodityPicture,
-            IMAGE_ROUND_3.toImageConfig()
+        holder.binding.vidPicIv.display(
+            source = itemObj.commodityPicture.toSource(),
+            config = IMAGE_ROUND_3.toImageConfig()
         )
     }
 }

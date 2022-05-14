@@ -4,7 +4,9 @@ import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
@@ -12,7 +14,6 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.app.AppUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.TextViewUtils
@@ -42,10 +43,9 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         // 时间
         holder.binding.vidTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
         // 随机图片
-        DevEngine.getImage()?.display(
-            holder.binding.vidPicIv,
-            "https://picsum.photos/2${NumberUtils.addZero(position)}",
-            IMAGE_ROUND_3.toImageConfig()
+        holder.binding.vidPicIv.display(
+            source = "https://picsum.photos/2${NumberUtils.addZero(position)}".toSource(),
+            config = IMAGE_ROUND_3.toImageConfig()
         )
         // 绑定点击事件
         ListenerUtils.setOnClicks({

@@ -4,15 +4,16 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityEvaluateBeanItem
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
+import afkt_replace.core.lib.utils.toSource
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 
@@ -57,10 +58,9 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
             .setEnabled(false, holder.binding.vidContentEt)
 
         // 商品图片
-        DevEngine.getImage()?.display(
-            holder.binding.vidPicIv,
-            itemObj.commodityPicture,
-            IMAGE_ROUND_3.toImageConfig()
+        holder.binding.vidPicIv.display(
+            source = itemObj.commodityPicture.toSource(),
+            config = IMAGE_ROUND_3.toImageConfig()
         )
         // 评星等级
         val ratingBar = holder.binding.vidRatingbar

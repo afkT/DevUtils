@@ -6,12 +6,13 @@ import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
+import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
@@ -72,9 +73,8 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             holder: DevBaseViewBindingVH<AdapterDatabaseImageBinding>,
             position: Int
         ) {
-            DevEngine.getImage()?.display(
-                holder.binding.vidIv,
-                getDataItem(position).picture
+            holder.binding.vidIv.display(
+                source = getDataItem(position).picture.toSource()
             )
         }
     }

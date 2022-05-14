@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.image.loadBitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
@@ -87,14 +88,13 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                 } else {
                     DevSource.createWithPath(imgPath)
                 }
-                DevEngine.getImage()?.loadBitmap(
-                    mActivity, source, null, object : BitmapListener() {
-                        override fun onStart(source: DevSource?) {
-                        }
-
+                mActivity?.loadBitmap(
+                    source = source, config = null,
+                    listener = object : BitmapListener() {
+                        override fun onStart(source: DevSource) {}
                         override fun onResponse(
-                            source: DevSource?,
-                            value: Bitmap?
+                            source: DevSource,
+                            value: Bitmap
                         ) {
                             // 获取图片 Bitmap
                             selectBitmap = value
@@ -135,8 +135,8 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                         }
 
                         override fun onFailure(
-                            source: DevSource?,
-                            throwable: Throwable?
+                            source: DevSource,
+                            throwable: Throwable
                         ) {
                             TextViewUtils.setText(
                                 binding.vidTv, "图片非二维码 / 识别失败\n"

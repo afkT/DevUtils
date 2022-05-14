@@ -6,7 +6,9 @@ import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.BannerBean
 import afkt.project.feature.ui_effect.recy_adapter.BannerBeanItem
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,7 +19,6 @@ import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 
 /**
  * detail: Banner Adapter
@@ -61,10 +62,9 @@ class BannerItemViewBinder(
                     position: Int,
                     size: Int
                 ) {
-                    DevEngine.getImage()?.display(
-                        holder.binding.vidIv,
-                        data.imageUrl,
-                        IMAGE_ROUND_10.toImageConfig()
+                    holder.binding.vidIv.display(
+                        source = data.imageUrl.toSource(),
+                        config = IMAGE_ROUND_10.toImageConfig()
                     )
                 }
             }

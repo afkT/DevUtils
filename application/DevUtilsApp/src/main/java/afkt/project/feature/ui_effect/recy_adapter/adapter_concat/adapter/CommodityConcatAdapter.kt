@@ -5,14 +5,15 @@ import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
+import afkt_replace.core.lib.utils.toSource
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
-import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 
@@ -74,10 +75,9 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                     holder.binding.vidPriceTv
                 )
             // 商品图片
-            DevEngine.getImage()?.display(
-                holder.binding.vidPicIv,
-                item.commodityPicture,
-                IMAGE_ROUND_3.toImageConfig()
+            holder.binding.vidPicIv.display(
+                source = item.commodityPicture.toSource(),
+                config = IMAGE_ROUND_3.toImageConfig()
             )
 
         } else if (holder is CommodityEvaluateHolder) {
@@ -97,10 +97,9 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 .setEnabled(false, holder.binding.vidContentEt)
 
             // 商品图片
-            DevEngine.getImage()?.display(
-                holder.binding.vidPicIv,
-                item.commodityPicture,
-                IMAGE_ROUND_3.toImageConfig()
+            holder.binding.vidPicIv.display(
+                source = item.commodityPicture.toSource(),
+                config = IMAGE_ROUND_3.toImageConfig()
             )
             // 评星等级
             val ratingBar = holder.binding.vidRatingbar

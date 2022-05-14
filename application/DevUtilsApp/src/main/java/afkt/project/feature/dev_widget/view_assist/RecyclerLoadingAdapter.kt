@@ -2,6 +2,8 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
+import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.toSource
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
@@ -9,7 +11,6 @@ import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.widget.BaseImageView
-import dev.engine.DevEngine
 import dev.engine.image.listener.DrawableListener
 import dev.widget.assist.ViewAssist
 
@@ -49,9 +50,9 @@ class RecyclerLoadingAdapter(data: List<String>) : DevDataAdapter<String, DevBas
     ) {
         viewAssist.showIng()
         // 加载图片
-        DevEngine.getImage()?.display<Drawable>(
-            imageView, url,
-            object : DrawableListener() {
+        imageView.display(
+            source = url.toSource(),
+            listener = object : DrawableListener() {
                 override fun onStart(source: DevSource) {}
                 override fun onResponse(
                     source: DevSource,

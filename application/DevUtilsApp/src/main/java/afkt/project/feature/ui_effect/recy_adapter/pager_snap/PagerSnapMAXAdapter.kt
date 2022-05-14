@@ -4,14 +4,15 @@ import afkt.project.R
 import afkt.project.databinding.AdapterPagerSnapBinding
 import afkt.project.model.bean.ItemBean
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewDataBindingVH
-import dev.engine.DevEngine
 
 /**
  * detail: RecyclerView Gallery 效果 Adapter
@@ -72,9 +73,9 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
             view: ImageView?,
             imageUrl: String?
         ) {
-            DevEngine.getImage()?.display(
-                view, imageUrl,
-                IMAGE_ROUND_10.toImageConfig()
+            view?.display(
+                source = imageUrl?.toSource(),
+                config = IMAGE_ROUND_10.toImageConfig()
             )
         }
     }

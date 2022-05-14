@@ -4,12 +4,13 @@ import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
-import dev.engine.DevEngine
 import dev.utils.app.helper.view.ViewHelper
 
 /**
@@ -63,10 +64,10 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
                 .setText(itemBean.subtitle, holder.binding.vidSubtitleTv)
                 .setText(itemBean.timeFormat, holder.binding.vidTimeTv)
                 .setText("$position - $index", holder.binding.vidIndexTv)
-            DevEngine.getImage()?.display(
-                holder.binding.vidIv,
-                itemBean.imageUrl,
-                IMAGE_ROUND_10.toImageConfig()
+
+            holder.binding.vidIv.display(
+                source = itemBean.imageUrl?.toSource(),
+                config = IMAGE_ROUND_10.toImageConfig()
             )
         }
     }

@@ -3,6 +3,10 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatShapeableImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.ShapeableImageBean
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.RelativeCornerSize
@@ -36,10 +40,8 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
         position: Int
     ) {
         val item = getDataItem(position)
-
-        DevEngine.getImage()?.display(
-            holder.binding.vidIv,
-            item.imageUrl
+        holder.binding.vidIv.display(
+            source = item.imageUrl.toSource(),
         )
 
         when (item.type) {

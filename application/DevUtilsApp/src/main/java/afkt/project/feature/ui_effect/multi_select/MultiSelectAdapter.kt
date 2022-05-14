@@ -4,15 +4,16 @@ import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityItem
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
+import afkt_replace.core.lib.utils.toSource
 import android.view.View
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt2
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
 
@@ -48,10 +49,9 @@ class MultiSelectAdapter(data: List<CommodityItem?>) :
                 holder.binding.vidPriceTv
             )
         // 商品图片
-        DevEngine.getImage()?.display(
-            holder.binding.vidPicIv,
-            item?.commodityPicture,
-            IMAGE_ROUND_3.toImageConfig()
+        holder.binding.vidPicIv.display(
+            source = item?.commodityPicture?.toSource(),
+            config = IMAGE_ROUND_3.toImageConfig()
         )
 
         // ==========

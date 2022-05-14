@@ -3,13 +3,14 @@ package afkt.project.feature.dev_sku
 import afkt.project.R
 import afkt.project.databinding.SkuDialogSpecBinding
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.app.Dialog
 import android.view.Gravity
 import androidx.fragment.app.FragmentActivity
 import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
-import dev.engine.DevEngine
 import dev.utils.app.EditTextUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastUtils
@@ -205,9 +206,9 @@ class SKUDialog(
             // 设置规格价格
             refreshPrice()
             // 加载图片
-            DevEngine.getImage()?.display(
-                binding.vidPicIv, spec.picUrl,
-                IMAGE_ROUND_10.toImageConfig()
+            binding.vidPicIv.display(
+                source = spec.picUrl.toSource(),
+                config = IMAGE_ROUND_10.toImageConfig()
             )
             return
         }

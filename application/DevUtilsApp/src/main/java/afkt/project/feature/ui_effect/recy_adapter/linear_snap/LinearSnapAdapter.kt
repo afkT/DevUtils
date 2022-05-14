@@ -4,12 +4,13 @@ import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.app.helper.view.ViewHelper
 
 /**
@@ -38,10 +39,10 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
             .setText(item.title, holder.binding.vidTitleTv)
             .setText(item.subtitle, holder.binding.vidSubtitleTv)
             .setText(item.timeFormat, holder.binding.vidTimeTv)
-        DevEngine.getImage()?.display(
-            holder.binding.vidIv,
-            item.imageUrl,
-            IMAGE_ROUND_10.toImageConfig()
+
+        holder.binding.vidIv.display(
+            source = item.imageUrl?.toSource(),
+            config = IMAGE_ROUND_10.toImageConfig()
         )
     }
 }

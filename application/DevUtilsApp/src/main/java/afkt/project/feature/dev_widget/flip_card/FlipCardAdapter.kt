@@ -1,12 +1,12 @@
 package afkt.project.feature.dev_widget.flip_card
 
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import android.content.Context
 import android.view.View
 import dev.base.DevSource
 import dev.base.widget.BaseImageView
-import dev.engine.DevEngine
 import dev.widget.ui.FlipCardView
 
 /**
@@ -26,9 +26,9 @@ class FlipCardAdapter(val lists: List<DevSource>) : FlipCardView.Adapter {
     ): View? {
         context?.let {
             val imageView = BaseImageView(it)
-            DevEngine.getImage()?.display(
-                imageView, lists[position],
-                IMAGE_ROUND_10.toImageConfig()
+            imageView.display(
+                source = lists[position],
+                config = IMAGE_ROUND_10.toImageConfig()
             )
             return imageView
         }

@@ -4,14 +4,15 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.model.bean.EvaluateItem
 import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.image.display
 import afkt_replace.core.lib.utils.image.toImageConfig
 import afkt_replace.core.lib.utils.price.toPriceString
 import afkt_replace.core.lib.utils.price.toRMBSubZeroAndDot
+import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
 import dev.utils.common.StringUtils
 
 /**
@@ -51,10 +52,9 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
             commodity.commodityPrice.toPriceString()?.toRMBSubZeroAndDot()
 
         // 商品图片
-        DevEngine.getImage()?.display(
-            holder.binding.vidPicIv,
-            commodity.commodityPicture,
-            IMAGE_ROUND_3.toImageConfig()
+        holder.binding.vidPicIv.display(
+            source = commodity.commodityPicture?.toSource(),
+            config = IMAGE_ROUND_3.toImageConfig()
         )
         // 评星等级
         val ratingBar = holder.binding.vidRatingbar

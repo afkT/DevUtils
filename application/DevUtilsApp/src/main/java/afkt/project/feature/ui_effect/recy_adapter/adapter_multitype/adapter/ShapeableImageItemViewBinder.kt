@@ -3,6 +3,10 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatShapeableImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.ShapeableImageBeanItem
+import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.toSource
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -33,12 +37,9 @@ class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevB
         item: ShapeableImageBeanItem
     ) {
         val itemObj = item.obj
-
-        DevEngine.getImage()?.display(
-            holder.binding.vidIv,
-            itemObj.imageUrl
+        holder.binding.vidIv.display(
+            source = itemObj.imageUrl.toSource()
         )
-
         when (itemObj.type) {
             1 -> { // 圆形
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
