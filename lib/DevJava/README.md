@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.4.3'
+implementation 'io.github.afkt:DevJava:1.4.4'
 ```
 
 ## 目录结构

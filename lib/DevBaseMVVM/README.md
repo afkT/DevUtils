@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevBaseMVVM:1.0.9'
+implementation 'io.github.afkt:DevBaseMVVM:1.1.0'
 ```
 
 ## 目录结构
