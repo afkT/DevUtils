@@ -2,6 +2,8 @@ package afkt.project.base
 
 import afkt.project.R
 import afkt.project.base.http.RetrofitManagerUse
+import afkt_replace.core.lib.utils.log.log_d
+import afkt_replace.core.lib.utils.log.log_i
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -123,7 +125,7 @@ class BaseApplication : MultiDexApplication() {
             .append(DevEnvironmentActivity.getDevEnvironmentVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
-        DevEngine.getLog()?.i(builder.toString())
+        log_i(message = builder.toString())
     }
 
     // ============
@@ -249,7 +251,7 @@ class BaseApplication : MultiDexApplication() {
                     webViewAssist: WebViewAssist?,
                     builder: WebViewAssist.Builder
                 ) {
-                    DevEngine.getLog()?.d("WebViewAssist Builder onApply")
+                    log_d(message = "WebViewAssist Builder onApply")
                 }
             })
             // WebViewAssist 构造函数会使用全局配置
@@ -287,7 +289,7 @@ class BaseApplication : MultiDexApplication() {
                     .append(DevFinal.SYMBOL.NEW_LINE)
                     .append("dateTaken: ").append(dateTaken).append(" ( ")
                     .append(DateUtils.formatTime(dateTaken)).append(" )")
-                DevEngine.getLog()?.d(builder.toString())
+                log_d(message = builder.toString())
             }.startListener()
     }
 

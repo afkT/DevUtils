@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import afkt_replace.core.lib.utils.log.log_eTag
 import android.annotation.SuppressLint
 import android.os.Handler
@@ -547,8 +548,11 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     level: Int,
                     isConnected: Boolean
                 ) {
-                    DevEngine.getLog()
-                        .dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected)
+                    log_dTag(
+                        tag = TAG,
+                        message = "充电状态改变通知 level: %s, 是否充电中: %s",
+                        args = arrayOf(level, isConnected)
+                    )
                 }
 
                 override fun onPowerUsageSummary(level: Int) {

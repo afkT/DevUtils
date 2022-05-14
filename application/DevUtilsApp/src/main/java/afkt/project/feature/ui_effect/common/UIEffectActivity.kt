@@ -5,6 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
@@ -162,8 +163,11 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                         tabItem: TabItem,
                         pos: Int
                     ) {
-                        DevEngine.getLog()
-                            .dTag(TAG, "TabItem: %s, pos: %s", tabItem.title, pos)
+                        log_dTag(
+                            tag = TAG,
+                            message = "TabItem: %s, pos: %s",
+                            args = arrayOf(tabItem.title, pos)
+                        )
                     }
                 }
             ).setSelect(0)

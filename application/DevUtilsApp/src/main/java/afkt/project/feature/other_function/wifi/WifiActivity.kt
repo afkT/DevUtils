@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.wifiButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration
@@ -119,8 +120,10 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                                     }
 
                                                     override fun onFailed(reason: Int) {
-                                                        DevEngine.getLog()
-                                                            .dTag(TAG, "热点异常 reason: %s", reason)
+                                                        log_dTag(
+                                                            tag = TAG,
+                                                            message = "热点异常 reason: $reason",
+                                                        )
                                                         // 表示操作结束
                                                         isOpenAPING = false
                                                     }

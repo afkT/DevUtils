@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.timerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.os.Handler
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
@@ -59,8 +60,10 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                         if (number == 1) {
                                             DevEngine.getLog()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
                                         } else {
-                                            DevEngine.getLog()
-                                                .dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number)
+                                            log_dTag(
+                                                tag = TAG,
+                                                message = "每隔 2 秒触发一次, 触发次数: $number",
+                                            )
                                         }
                                     }
                                 }

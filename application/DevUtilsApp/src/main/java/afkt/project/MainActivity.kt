@@ -5,6 +5,7 @@ import afkt.project.databinding.ActivityMainBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
+import afkt_replace.core.lib.utils.log.log_dTag
 import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import dev.callback.DevItemClickCallback
@@ -59,7 +60,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ), object : IPermissionEngine.Callback {
                 override fun onGranted() {
-                    DevEngine.getLog()?.d("permission granted")
+                    log_dTag(
+                        tag = TAG,
+                        message = "permission granted"
+                    )
                 }
 
                 override fun onDenied(
@@ -67,15 +71,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     deniedList: List<String>,
                     notFoundList: List<String>
                 ) {
-                    val builder = StringBuilder()
-                        .append("permission")
-                        .append("\ngrantedList: ")
-                        .append(grantedList.toTypedArray().contentToString())
-                        .append("\ndeniedList: ")
-                        .append(deniedList.toTypedArray().contentToString())
-                        .append("\nnotFoundList: ")
-                        .append(notFoundList.toTypedArray().contentToString())
-                    DevEngine.getLog()?.d(builder.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("permission")
+                            append("\ngrantedList: ")
+                            append(grantedList.toTypedArray().contentToString())
+                            append("\ndeniedList: ")
+                            append(deniedList.toTypedArray().contentToString())
+                            append("\nnotFoundList: ")
+                            append(notFoundList.toTypedArray().contentToString())
+                        }.toString()
+                    )
                     // 拒绝了则再次请求处理
                     DevEngine.getPermission()
                         .againRequest(this@MainActivity, this, deniedList)

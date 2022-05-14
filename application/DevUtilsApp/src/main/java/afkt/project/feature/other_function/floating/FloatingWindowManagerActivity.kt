@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -18,7 +19,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
 import dev.callback.DevItemClickCallback
 import dev.utils.app.assist.floating.*
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.toast.ToastUtils
 
@@ -186,12 +186,18 @@ class FloatingView(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        DevLogger.dTag(TAG, "onAttachedToWindow")
+        log_dTag(
+            tag = TAG,
+            message = "onAttachedToWindow"
+        )
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        DevLogger.dTag(TAG, "onDetachedFromWindow")
+        log_dTag(
+            tag = TAG,
+            message = "onDetachedFromWindow"
+        )
     }
 }

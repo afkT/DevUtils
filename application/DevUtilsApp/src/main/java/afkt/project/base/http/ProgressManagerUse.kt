@@ -1,9 +1,9 @@
 package afkt.project.base.http
 
+import afkt_replace.core.lib.utils.log.log_dTag
 import dev.DevHttpManager
 import dev.http.progress.Progress
 import dev.http.progress.ProgressOperation
-import dev.utils.app.logger.DevLogger
 import dev.utils.common.MapUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
@@ -163,11 +163,14 @@ class ProgressManagerUse private constructor() {
                     }
                 }
                 if (progressId == progress.getId()) {
-                    DevLogger.dTag(TAG, StringBuilder().apply {
-                        append("onStart - ").append(progress.getId())
-                        append(", totalSize: ").append(progress.getTotalSize())
-                        append(", currentSize: ").append(progress.getCurrentSize())
-                    }.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("onStart - ").append(progress.getId())
+                            append(", totalSize: ").append(progress.getTotalSize())
+                            append(", currentSize: ").append(progress.getCurrentSize())
+                        }.toString()
+                    )
                 }
             }
 
@@ -177,13 +180,16 @@ class ProgressManagerUse private constructor() {
              */
             override fun onProgress(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    DevLogger.dTag(TAG, StringBuilder().apply {
-                        append("onProgress - ").append(progress.getId())
-                        append(", totalSize: ").append(progress.getTotalSize())
-                        append(", currentSize: ").append(progress.getCurrentSize())
-                        append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
-                        append(", 百分比进度: ").append(progress.getPercent())
-                    }.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("onProgress - ").append(progress.getId())
+                            append(", totalSize: ").append(progress.getTotalSize())
+                            append(", currentSize: ").append(progress.getCurrentSize())
+                            append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
+                            append(", 百分比进度: ").append(progress.getPercent())
+                        }.toString()
+                    )
                 }
             }
 
@@ -193,14 +199,17 @@ class ProgressManagerUse private constructor() {
              */
             override fun onError(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    DevLogger.dTag(TAG, StringBuilder().apply {
-                        append("onError - ").append(progress.getId())
-                        append(", totalSize: ").append(progress.getTotalSize())
-                        append(", currentSize: ").append(progress.getCurrentSize())
-                        append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
-                        append(", 百分比进度: ").append(progress.getPercent())
-                        append(", 异常信息: ").append(ThrowableUtils.getThrowable(progress.getException()))
-                    }.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("onError - ").append(progress.getId())
+                            append(", totalSize: ").append(progress.getTotalSize())
+                            append(", currentSize: ").append(progress.getCurrentSize())
+                            append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
+                            append(", 百分比进度: ").append(progress.getPercent())
+                            append(", 异常信息: ").append(ThrowableUtils.getThrowable(progress.getException()))
+                        }.toString()
+                    )
                 }
             }
 
@@ -210,11 +219,14 @@ class ProgressManagerUse private constructor() {
              */
             override fun onFinish(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    DevLogger.dTag(TAG, StringBuilder().apply {
-                        append("onFinish - ").append(progress.getId())
-                        append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
-                        append(", 百分比进度: ").append(progress.getPercent())
-                    }.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("onFinish - ").append(progress.getId())
+                            append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
+                            append(", 百分比进度: ").append(progress.getPercent())
+                        }.toString()
+                    )
                 }
             }
 
@@ -225,11 +237,14 @@ class ProgressManagerUse private constructor() {
              */
             override fun onEnd(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    DevLogger.dTag(TAG, StringBuilder().apply {
-                        append("onEnd - ").append(progress.getId())
-                        append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
-                        append(", 百分比进度: ").append(progress.getPercent())
-                    }.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = StringBuilder().apply {
+                            append("onEnd - ").append(progress.getId())
+                            append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
+                            append(", 百分比进度: ").append(progress.getPercent())
+                        }.toString()
+                    )
                 }
             }
         }
