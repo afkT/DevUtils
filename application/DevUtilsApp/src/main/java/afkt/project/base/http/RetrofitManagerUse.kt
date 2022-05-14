@@ -5,7 +5,6 @@ import dev.DevHttpCapture
 import dev.DevHttpManager
 import dev.DevUtils
 import dev.capture.CallbackInterceptor
-import dev.engine.DevEngine
 import dev.environment.DevEnvironment
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.OnRetrofitResetListener
@@ -286,7 +285,7 @@ class OkHttpBuilderGlobal : OkHttpBuilder {
             addInterceptor(CallbackInterceptor { info ->
                 // 打印 Http 请求信息 log
                 LogPrintUtils.jsonTag(
-                    key, DevEngine.getJSON().toJson(info)
+                    key, info.toJson()
                 )
             })
         }

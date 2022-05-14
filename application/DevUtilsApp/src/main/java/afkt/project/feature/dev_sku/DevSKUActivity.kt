@@ -7,9 +7,9 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.json.fromJson
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.sku.SKU
 import dev.sku.SKUData
 import dev.utils.DevFinal
@@ -39,9 +39,9 @@ class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_SKU_DIALOG -> {
                             val skuFileName = "sku_test.json" // sku.json
                             val skuFileContent = ResourceUtils.readStringFromAssets(skuFileName)
-                            val commoditySKU = DevEngine.getJSON()?.fromJson<CommoditySKU>(
-                                skuFileContent, CommoditySKU::class.java
-                            ) as? CommoditySKU
+                            val commoditySKU = skuFileContent.fromJson(
+                                classOfT = CommoditySKU::class.java
+                            )
 
                             // ==============
                             // = SKU Dialog =
