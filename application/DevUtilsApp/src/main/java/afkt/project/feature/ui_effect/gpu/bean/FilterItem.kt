@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.gpu.bean
 
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.graphics.PointF
-import dev.engine.DevEngine
 import jp.co.cyberagent.android.gpuimage.filter.*
 import java.util.*
 
@@ -274,7 +274,11 @@ class FilterItem(
             try {
                 return filterClass.newInstance()
             } catch (e: Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "createBlendFilter")
+                log_eTag(
+                    tag = TAG,
+                    throwable = e,
+                    message = "createBlendFilter"
+                )
             }
             return null
         }

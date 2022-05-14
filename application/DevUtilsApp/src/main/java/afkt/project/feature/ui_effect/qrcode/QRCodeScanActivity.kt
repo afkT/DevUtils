@@ -9,6 +9,7 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect
@@ -260,7 +261,11 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            DevEngine.getLog()?.eTag(TAG, error, "setError")
+            log_eTag(
+                tag = TAG,
+                throwable = error,
+                message = "setError"
+            )
         }
 
         override fun getHandler(): Handler? {

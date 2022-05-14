@@ -105,6 +105,8 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 }
             }
         )
-        DevLogEngine.getEngine(KEY)?.dTag(TAG, "多 Log Engine 方法调用")
+        DevLogEngine.getEngine(KEY)?.dTag(
+            TAG, "多 Log Engine 方法调用"
+        )
     }
 }

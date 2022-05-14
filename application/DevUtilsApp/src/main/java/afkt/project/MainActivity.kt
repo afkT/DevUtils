@@ -5,6 +5,7 @@ import afkt.project.databinding.ActivityMainBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
@@ -40,7 +41,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
             override fun onFail(error: Throwable) {
-                DevEngine.getLog()?.eTag(TAG, error, "getNetTime")
+                log_eTag(
+                    tag = TAG,
+                    throwable = error,
+                    message = "getNetTime"
+                )
             }
         })
 

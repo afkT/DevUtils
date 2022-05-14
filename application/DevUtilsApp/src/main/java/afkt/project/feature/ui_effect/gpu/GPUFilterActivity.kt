@@ -6,6 +6,7 @@ import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
@@ -146,7 +147,11 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
                     .setImageBitmap(it)
             }
         } catch (e: Exception) {
-            DevEngine.getLog()?.eTag(TAG, e, "setFilter")
+            log_eTag(
+                tag = TAG,
+                throwable = e,
+                message = "setFilter"
+            )
         }
     }
 }

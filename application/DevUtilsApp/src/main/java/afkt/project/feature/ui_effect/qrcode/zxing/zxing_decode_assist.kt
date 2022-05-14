@@ -1,6 +1,7 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler
@@ -265,7 +266,11 @@ class ZXingDecodeAssist(
             // 停止预览
             mCameraAssist.stopPreview()
         } catch (e: Exception) {
-            DevEngine.getLog()?.eTag(TAG, e, "stopPreview")
+            log_eTag(
+                tag = TAG,
+                throwable = e,
+                message = "stopPreview"
+            )
         }
     }
 
@@ -312,7 +317,11 @@ class ZXingDecodeAssist(
                     )
                 }
             } catch (e: java.lang.Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "checkPermission startPreview")
+                log_eTag(
+                    tag = TAG,
+                    throwable = e,
+                    message = "checkPermission startPreview"
+                )
             }
         }
     }

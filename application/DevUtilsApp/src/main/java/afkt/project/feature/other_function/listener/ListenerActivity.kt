@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
@@ -508,7 +509,10 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 mOrientationEventListener?.enable()
             }
         } catch (e: Exception) {
-            DevEngine.getLog()?.eTag(TAG, "rotaListener2")
+            log_eTag(
+                tag = TAG,
+                message = "rotaListener2"
+            )
         }
     }
 

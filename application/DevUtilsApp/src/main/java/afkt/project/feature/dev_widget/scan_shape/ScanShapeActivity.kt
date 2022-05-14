@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
@@ -122,7 +123,11 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
             try {
                 cameraAssist.stopPreview()
             } catch (e: Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "surfaceDestroyed")
+                log_eTag(
+                    tag = TAG,
+                    throwable = e,
+                    message = "surfaceDestroyed"
+                )
             }
         }
     }
@@ -151,7 +156,11 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false)
             } catch (e: Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "checkPermission startPreview")
+                log_eTag(
+                    tag = TAG,
+                    throwable = e,
+                    message = "checkPermission startPreview"
+                )
             }
         } else {
             // 申请权限

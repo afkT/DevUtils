@@ -1,8 +1,8 @@
 package afkt.project.feature.ui_effect.gpu
 
+import afkt_replace.core.lib.utils.log.log_eTag
 import android.content.Context
 import android.graphics.Bitmap
-import dev.engine.DevEngine
 import dev.utils.common.CloseUtils
 import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter
@@ -32,7 +32,11 @@ object GPUFilterUtils {
                 filter.setFromCurveFileInputStream(inputStream)
                 return filter
             } catch (e: Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "getGPUImageToneCurveFilter")
+                log_eTag(
+                    tag = TAG,
+                    throwable = e,
+                    message = "getGPUImageToneCurveFilter"
+                )
             } finally {
                 CloseUtils.closeIOQuietly(inputStream)
             }
