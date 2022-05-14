@@ -6,13 +6,13 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ItemBean
 import afkt.project.model.bean.ItemBean.Companion.newItemBean
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.DevEngine
 import dev.utils.app.ListViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 
@@ -77,13 +77,15 @@ class LinearSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         val currentPosition = (lastItemPosition + firstItemPosition) / 2
                         // 真实索引
                         val index = adapter.getRealIndex(currentPosition)
-                        DevEngine.getLog()?.dTag(
-                            TAG,
-                            "%s - %s 当前显示索引: %s - %s",
-                            lastItemPosition,
-                            firstItemPosition,
-                            currentPosition,
-                            index
+                        log_dTag(
+                            tag = TAG,
+                            message = "%s - %s 当前显示索引: %s - %s",
+                            args = arrayOf(
+                                lastItemPosition,
+                                firstItemPosition,
+                                currentPosition,
+                                index
+                            )
                         )
                     }
                 }

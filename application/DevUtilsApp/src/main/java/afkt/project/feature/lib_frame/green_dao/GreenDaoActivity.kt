@@ -8,12 +8,12 @@ import afkt.project.database.green.module.note.bean.NotePicture
 import afkt.project.database.green.module.note.bean.NoteType
 import afkt.project.databinding.ActivityDatabaseBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
-import dev.engine.DevEngine
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
@@ -232,7 +232,10 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        DevEngine.getLog()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
+        log_dTag(
+            tag = TAG,
+            message = "offset: $offset, limit: $limit"
+        )
         // 请求数据
         return GreenManager.getNoteDatabase().noteDao
             .queryBuilder()

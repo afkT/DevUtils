@@ -5,6 +5,7 @@ import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityWebviewBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.net.http.SslError
 import android.view.KeyEvent
 import android.view.View.OnLongClickListener
@@ -38,7 +39,10 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 when (result.type) {
                     HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra
-                        DevEngine.getLog()?.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl)
+                        log_dTag(
+                            tag = TAG,
+                            message = "SRC_IMAGE_ANCHOR_TYPE $imgUrl"
+                        )
                         return@OnLongClickListener true
                     }
                     else -> {

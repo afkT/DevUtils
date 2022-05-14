@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import afkt_replace.core.lib.utils.size.AppSize
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import com.gavin.com.library.PowerfulStickyDecoration
 import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
-import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
@@ -52,7 +52,10 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
 
             override fun getGroupView(position: Int): View? {
-                DevEngine.getLog()?.dTag(TAG, position.toString())
+                log_dTag(
+                    tag = TAG,
+                    message = position.toString()
+                )
                 val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)
                 TextViewUtils.setText(
                     view.findViewById(R.id.vid_title_tv),

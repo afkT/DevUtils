@@ -1,10 +1,10 @@
 package afkt.project.feature.other_function.wifi
 
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.annotation.SuppressLint
 import android.net.wifi.WifiManager
 import android.os.Handler
 import android.os.Message
-import dev.engine.DevEngine
 import dev.utils.app.wifi.WifiHotUtils
 import dev.utils.app.wifi.WifiUtils
 
@@ -55,8 +55,10 @@ class QuickWifiHotUtils(
             }
             when (msg.what) {
                 CLOSE_WIFI_SUCCESS -> {
-                    // 打印日志
-                    DevEngine.getLog()?.dTag(TAG, "hotHandler 关闭 Wifi 成功, 开启热点中")
+                    log_dTag(
+                        tag = TAG,
+                        message = "hotHandler 关闭 Wifi 成功, 开启热点中"
+                    )
                     // 停止线程检查
                     setWifiCheck(false)
                     // 开始进行线程检查
@@ -65,8 +67,10 @@ class QuickWifiHotUtils(
                     Thread(startWifiSpotThread).start()
                 }
                 START_WIFISPOT_SUCCESS -> {
-                    // 打印日志
-                    DevEngine.getLog()?.dTag(TAG, "hotHandler 开启热点成功")
+                    log_dTag(
+                        tag = TAG,
+                        message = "hotHandler 开启热点成功"
+                    )
                     // 停止线程检查
                     setWifiApCheck(false)
                     // 需要检查连接状态
@@ -75,8 +79,10 @@ class QuickWifiHotUtils(
                     Thread(hotCheckThread).start()
                 }
                 CHECK_HOT_CONN -> {
-                    // 打印日志
-                    DevEngine.getLog()?.dTag(TAG, "hotHandler 检查是否连接热点")
+                    log_dTag(
+                        tag = TAG,
+                        message = "hotHandler 检查是否连接热点"
+                    )
                     // 判断是否存在设备连接热点
                     val isConnectHot = wifiHotUtils.isConnectHot
                     // 如果存在, 则尝试连接
@@ -84,8 +90,10 @@ class QuickWifiHotUtils(
                         // 表示不需要进行检查了
                         mThreadCheckHot = false
                         // 通过获取是否存在其他设备 - 手机连接上该热点
-                        // 打印日志
-                        DevEngine.getLog()?.dTag(TAG, "存在设备连接热点")
+                        log_dTag(
+                            tag = TAG,
+                            message = "存在设备连接热点"
+                        )
                     }
                 }
             }
@@ -147,16 +155,25 @@ class QuickWifiHotUtils(
                 WifiManager.WIFI_STATE_ENABLING -> {
                     // case WifiManager.WIFI_STATE_UNKNOWN: // 未知
                     isPostDelayed = true
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 已打开、正在打开")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 已打开、正在打开"
+                    )
                     wifiUtils.closeWifi() // 关闭 Wifi
                 }
                 WifiManager.WIFI_STATE_DISABLED -> {
                     isPostDelayed = false
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 已关闭")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 已关闭"
+                    )
                 }
                 WifiManager.WIFI_STATE_DISABLING -> {
                     isPostDelayed = true
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 正在关闭")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 正在关闭"
+                    )
                 }
             }
             // 判断是否延时 0.4 秒进行开启热点
@@ -190,24 +207,41 @@ class QuickWifiHotUtils(
             val isPostDelayed = true
             when (wifiHotUtils.wifiApState) {
                 WifiHotUtils.WIFI_AP_STATE_DISABLING -> {
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 热点正在关闭")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 热点正在关闭"
+                    )
                 }
                 WifiHotUtils.WIFI_AP_STATE_DISABLED -> {
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 热点已关闭")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 热点已关闭"
+                    )
                     // 开启热点
                     val wifiConfiguration = WifiHotUtils.createWifiConfigToAp(mHotSSID, mHotPwd)
                     wifiHotUtils.startWifiAp(wifiConfiguration)
                 }
                 WifiHotUtils.WIFI_AP_STATE_ENABLING -> {
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 热点正在打开")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 热点正在打开"
+                    )
                 }
                 WifiHotUtils.WIFI_AP_STATE_ENABLED -> {
-                    DevEngine.getLog()?.dTag(TAG, "Wifi 热点已打开")
-                    val wifiap = "ssid: ${wifiHotUtils.apWifiSSID}, pwd: ${wifiHotUtils.apWifiSSID}"
-                    DevEngine.getLog()?.dTag(TAG, wifiap)
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi 热点已打开"
+                    )
+                    log_dTag(
+                        tag = TAG,
+                        message = "ssid: ${wifiHotUtils.apWifiSSID}, pwd: ${wifiHotUtils.apWifiSSID}"
+                    )
                 }
                 WifiHotUtils.WIFI_AP_STATE_FAILED -> {
-                    DevEngine.getLog()?.dTag(TAG, "Wifi热点状态未知")
+                    log_dTag(
+                        tag = TAG,
+                        message = "Wifi热点状态未知"
+                    )
                 }
             }
             // 判断是否延时 0.4 秒进行开启热点
@@ -259,8 +293,10 @@ class QuickWifiHotUtils(
         ssid: String?,
         pwd: String?
     ) {
-        // 打印日志
-        DevEngine.getLog()?.dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd)
+        log_dTag(
+            tag = TAG,
+            message = "openHotspot 开启热点 ssid: $ssid, pwd: $pwd"
+        )
         mHotSSID = ssid
         mHotPwd = pwd
         // 如果开启了 Wifi 则进行关闭 Wifi
