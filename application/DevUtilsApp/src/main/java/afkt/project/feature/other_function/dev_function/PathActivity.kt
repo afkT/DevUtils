@@ -7,9 +7,9 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -94,7 +94,10 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getInternal().appAudiobooksDir,
                                 ""
                             )
-                            DevEngine.getLog()?.dTag(TAG, builder.toString())
+                            log_dTag(
+                                tag = TAG,
+                                message = builder.toString()
+                            )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
                         ButtonValue.BTN_PATH_APP_EXTERNAL -> {
@@ -141,7 +144,10 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getAppExternal().appObbDir,
                                 ""
                             )
-                            DevEngine.getLog()?.dTag(TAG, builder.toString())
+                            log_dTag(
+                                tag = TAG,
+                                message = builder.toString()
+                            )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
                         ButtonValue.BTN_PATH_SDCARD -> {
@@ -179,7 +185,10 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getSDCard().audiobooksDir,
                                 ""
                             )
-                            DevEngine.getLog()?.dTag(TAG, builder.toString())
+                            log_dTag(
+                                tag = TAG,
+                                message = builder.toString()
+                            )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")

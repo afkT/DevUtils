@@ -4,11 +4,11 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityBottomSheetBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.view.View
 import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 
 /**
@@ -39,31 +39,46 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         // 折叠状态, bottom sheets 只在底部显示一部分布局
                         // 显示高度可以通过 app:behavior_peekHeight 设置
-                        DevEngine.getLog()?.dTag(TAG, "STATE_COLLAPSED")
+                        log_dTag(
+                            tag = TAG,
+                            message = "STATE_COLLAPSED"
+                        )
 
                         ViewUtils.setVisibility(false, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
-                        DevEngine.getLog()?.dTag(TAG, "STATE_DRAGGING")
+                        log_dTag(
+                            tag = TAG,
+                            message = "STATE_DRAGGING"
+                        )
 
                         ViewUtils.setVisibility(true, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         // 完全展开的状态
-                        DevEngine.getLog()?.dTag(TAG, "STATE_EXPANDED")
+                        log_dTag(
+                            tag = TAG,
+                            message = "STATE_EXPANDED"
+                        )
 
                         ViewUtils.setVisibility(true, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
-                        DevEngine.getLog()?.dTag(TAG, "STATE_HIDDEN")
+                        log_dTag(
+                            tag = TAG,
+                            message = "STATE_HIDDEN"
+                        )
 
                         ViewUtils.setVisibility(false, binding.vidBgView)
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
                         // 视图从脱离手指自由滑动到最终停下的这一小段时间
-                        DevEngine.getLog()?.dTag(TAG, "STATE_SETTLING")
+                        log_dTag(
+                            tag = TAG,
+                            message = "STATE_SETTLING"
+                        )
                     }
                 }
             }

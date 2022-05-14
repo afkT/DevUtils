@@ -12,7 +12,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
-import dev.engine.DevEngine
 import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
@@ -149,7 +148,11 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     tabItem: TabItem,
                     pos: Int
                 ) {
-                    DevEngine.getLog()?.dTag(TAG, "TabItem: %s, pos: %s", tabItem.title, pos)
+                    log_dTag(
+                        tag = TAG,
+                        message = "TabItem: %s, pos: %s",
+                        args = arrayOf(tabItem.title, pos)
+                    )
                     // 设置选中
                     setSelect(pos)
                 }

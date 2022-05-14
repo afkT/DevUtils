@@ -7,10 +7,10 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.accessibilityListenerServiceButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.view.accessibility.AccessibilityEvent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.service.AccessibilityListenerService
 import dev.utils.app.AppUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -83,22 +83,34 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
                     .append("onAccessibilityEvent")
                     .append("\naccessibilityEvent: ")
                     .append(accessibilityEvent)
-                DevEngine.getLog()?.dTag(TAG, builder.toString())
+                log_dTag(
+                    tag = TAG,
+                    message = builder.toString()
+                )
             }
 
             override fun onInterrupt() {
                 super.onInterrupt()
-                DevEngine.getLog()?.dTag(TAG, "onInterrupt")
+                log_dTag(
+                    tag = TAG,
+                    message = "onInterrupt"
+                )
             }
 
             override fun onServiceCreated(service: AccessibilityListenerService?) {
                 super.onServiceCreated(service)
-                DevEngine.getLog()?.dTag(TAG, "onServiceCreated")
+                log_dTag(
+                    tag = TAG,
+                    message = "onServiceCreated"
+                )
             }
 
             override fun onServiceDestroy() {
                 super.onServiceDestroy()
-                DevEngine.getLog()?.dTag(TAG, "onServiceDestroy")
+                log_dTag(
+                    tag = TAG,
+                    message = "onServiceDestroy"
+                )
             }
         })
     }

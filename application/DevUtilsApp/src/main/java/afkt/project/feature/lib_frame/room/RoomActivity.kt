@@ -9,12 +9,12 @@ import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.ActivityDatabaseBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
-import dev.engine.DevEngine
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.CollectionUtils
@@ -117,7 +117,10 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                             .deleteNotePictures(
                                 *CollectionUtils.toArrayT(nap.pictures)
                             )
-                        DevEngine.getLog()?.dTag(TAG, "删除图片数量: %s", deleteCount)
+                        log_dTag(
+                            tag = TAG,
+                            message = "删除图片数量: $deleteCount"
+                        )
                     }
                 }
             }
@@ -228,7 +231,10 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        DevEngine.getLog()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
+        log_dTag(
+            tag = TAG,
+            message = "offset: $offset, limit: $limit"
+        )
         // 请求数据
         return RoomManager.getNoteDatabase().noteDao
             .getNoteAndPictureLists(limit, offset)

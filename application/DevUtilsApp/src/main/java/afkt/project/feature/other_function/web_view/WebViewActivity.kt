@@ -15,7 +15,6 @@ import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.DevEngine
 import ktx.dev.assist.WebViewAssist
 
 /**
@@ -62,7 +61,10 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
             ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    DevEngine.getLog()?.dTag(TAG, "加载完成")
+                    log_dTag(
+                        tag = TAG,
+                        message = "加载完成"
+                    )
                 }
                 super.onProgressChanged(view, position)
             }
@@ -115,7 +117,10 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 ) {
                     applyListener?.onApply(webViewAssist, builder)
                     // BaseApplication 也会打印 WebViewAssist Builder onApply
-                    DevEngine.getLog()?.dTag(TAG, "自定义监听")
+                    log_dTag(
+                        tag = TAG,
+                        message = "自定义监听"
+                    )
                     // 全局配置或者自定义配置以外, 再次配置操作
                     // 加载网页
                     mWebViewAssist.loadUrl("https://www.csdn.net/")

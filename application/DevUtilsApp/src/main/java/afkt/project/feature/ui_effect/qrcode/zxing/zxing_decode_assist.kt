@@ -1,6 +1,7 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
+import afkt_replace.core.lib.utils.log.log_dTag
 import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import android.hardware.Camera
@@ -9,7 +10,6 @@ import android.os.Message
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
-import dev.engine.DevEngine
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
 import dev.utils.app.camera.camera1.CameraUtils
@@ -59,8 +59,9 @@ class PreviewCallback(
                 mPreviewHandler = null
             }
         } else {
-            DevEngine.getLog()?.dTag(
-                TAG, "Got preview callback, but no handler or resolution available"
+            log_dTag(
+                tag = TAG,
+                message = "Got preview callback, but no handler or resolution available"
             )
         }
     }
@@ -115,12 +116,18 @@ class CaptureHandler(
         if (message.what == WHAT_RESTART_PREVIEW) {
             restartPreviewAndDecode()
         } else if (message.what == WHAT_DECODE_SUCCEEDED) { // 解析成功
-            DevEngine.getLog()?.dTag(TAG, "解析成功")
+            log_dTag(
+                tag = TAG,
+                message = "解析成功"
+            )
             mState = State.SUCCESS
             val bundle = message.data
             mDecodeResult.handleDecode(message.obj as Result, bundle)
         } else if (message.what == WHAT_DECODE_FAILED) { // 解析失败 ( 解析不出来触发 )
-            DevEngine.getLog()?.dTag(TAG, "解析失败")
+            log_dTag(
+                tag = TAG,
+                message = "解析失败"
+            )
             // 表示预览中
             mState = State.PREVIEW
             // 设置预览解码线程
@@ -142,7 +149,10 @@ class CaptureHandler(
         handler: DecodeHandler?,
         message: Int
     ) {
-        DevEngine.getLog()?.dTag(TAG, "requestPreviewFrame")
+        log_dTag(
+            tag = TAG,
+            message = "requestPreviewFrame"
+        )
         val theCamera = mCameraAssist.camera
         // 不为 null 并且预览中才处理
         if (theCamera != null && mCameraAssist.isPreviewing) {
@@ -155,7 +165,10 @@ class CaptureHandler(
      * 重新设置预览以及解码处理
      */
     fun restartPreviewAndDecode() {
-        DevEngine.getLog()?.dTag(TAG, "restartPreviewAndDecode")
+        log_dTag(
+            tag = TAG,
+            message = "restartPreviewAndDecode"
+        )
         if (mState == State.SUCCESS) {
             mState = State.PREVIEW
             // 设置请求预览页面
@@ -167,7 +180,10 @@ class CaptureHandler(
      * 同步退出解析处理
      */
     fun quitSynchronously() {
-        DevEngine.getLog()?.dTag(TAG, "退出扫描")
+        log_dTag(
+            tag = TAG,
+            message = "退出扫描"
+        )
         // 表示状态为默认
         mState = State.DONE
         // 停止预览
@@ -289,12 +305,18 @@ class ZXingDecodeAssist(
                 // 设置监听
                 mCameraAssist.setPreviewNotify(object : PreviewNotify {
                     override fun stopPreviewNotify() {
-                        DevEngine.getLog()?.dTag(TAG, "停止预览通知")
+                        log_dTag(
+                            tag = TAG,
+                            message = "停止预览通知"
+                        )
                         mPreviewCallback?.setHandler(null, 0)
                     }
 
                     override fun startPreviewNotify() {
-                        DevEngine.getLog()?.dTag(TAG, "开始预览通知")
+                        log_dTag(
+                            tag = TAG,
+                            message = "开始预览通知"
+                        )
                     }
                 })
                 // 获取预览大小

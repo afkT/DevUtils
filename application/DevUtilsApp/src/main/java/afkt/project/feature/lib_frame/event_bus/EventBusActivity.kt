@@ -7,10 +7,10 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.eventButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevObject
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.utils.app.toast.ToastTintUtils
 import ktx.dev.other.EventBusUtils
 import org.greenrobot.eventbus.Subscribe
@@ -71,7 +71,10 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventBus(event: DevObject<String>) {
         // 打印数据
-        DevEngine.getLog()?.dTag(TAG, "value %s", event.getObject())
+        log_dTag(
+            tag = TAG,
+            message = "value ${event.getObject()}"
+        )
         // 进行提示
         ToastTintUtils.normal(event.code + "." + event.getObject())
     }
@@ -79,7 +82,10 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onEventBusSticky(event: DevObject<String>) {
         // 打印数据
-        DevEngine.getLog()?.dTag(TAG, "value %s", event.getObject())
+        log_dTag(
+            tag = TAG,
+            message = "value ${event.getObject()}"
+        )
         // 进行提示
         ToastTintUtils.warning(event.code + "." + event.getObject())
 

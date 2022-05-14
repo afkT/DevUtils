@@ -8,6 +8,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.functionButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.Manifest
 import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -155,13 +156,19 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
                             val memoryInfo = MemoryUtils.printMemoryInfo()
                             ToastUtils.showShort(memoryInfo)
-                            DevEngine.getLog()?.dTag(TAG, memoryInfo)
+                            log_dTag(
+                                tag = TAG,
+                                message = memoryInfo
+                            )
                         }
                         ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
                             val deviceInfo =
                                 DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
                             ToastUtils.showShort(deviceInfo)
-                            DevEngine.getLog()?.dTag(TAG, deviceInfo)
+                            log_dTag(
+                                tag = TAG,
+                                message = deviceInfo
+                            )
                         }
                         ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS -> {
                             result = AppUtils.launchAppDetailsSettings()

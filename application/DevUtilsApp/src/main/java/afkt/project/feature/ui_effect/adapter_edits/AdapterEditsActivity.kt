@@ -5,12 +5,12 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.EvaluateItem
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
-import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -47,7 +47,10 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .append("\nevaluateLevel: ").append(item.evaluateLevel)
                         .append(DevFinal.SYMBOL.NEW_LINE)
                 }
-                DevEngine.getLog()?.dTag(TAG, builder.toString())
+                log_dTag(
+                    tag = TAG,
+                    message = builder.toString()
+                )
                 ToastTintUtils.success("数据已打印, 请查看 Logcat")
             }.getView<View>()
         toolbar?.addView(view)

@@ -7,12 +7,12 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.notificationServiceButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.service.NotificationService
 import dev.utils.DevFinal
 import dev.utils.app.toast.ToastTintUtils
@@ -77,11 +77,17 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
         // 设置监听事件
         NotificationService.setListener(object : NotificationService.Listener {
             override fun onServiceCreated(service: NotificationService?) {
-                DevEngine.getLog()?.dTag(TAG, "服务创建通知")
+                log_dTag(
+                    tag = TAG,
+                    message = "服务创建通知"
+                )
             }
 
             override fun onServiceDestroy() {
-                DevEngine.getLog()?.dTag(TAG, "服务销毁通知")
+                log_dTag(
+                    tag = TAG,
+                    message = "服务销毁通知"
+                )
             }
 
             override fun onStartCommand(
@@ -95,7 +101,10 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                     .append("\nintent: ").append(intent)
                     .append("\nflags: ").append(flags)
                     .append("\nstartId: ").append(startId)
-                DevEngine.getLog()?.dTag(TAG, builder.toString())
+                log_dTag(
+                    tag = TAG,
+                    message = builder.toString()
+                )
                 return 0
             }
 
@@ -111,8 +120,10 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                             builder.append(DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.get(key))
                         }
                     }
-                    // 打印日志
-                    DevEngine.getLog()?.dTag(TAG, builder.toString())
+                    log_dTag(
+                        tag = TAG,
+                        message = builder.toString()
+                    )
                 }
             }
 
@@ -120,8 +131,10 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                 val builder = StringBuilder()
                     .append("onNotificationRemoved")
                     .append("\nstatusBarNotification: ").append(sbn)
-                // 打印日志
-                DevEngine.getLog()?.dTag(TAG, builder.toString())
+                log_dTag(
+                    tag = TAG,
+                    message = builder.toString()
+                )
             }
         })
     }

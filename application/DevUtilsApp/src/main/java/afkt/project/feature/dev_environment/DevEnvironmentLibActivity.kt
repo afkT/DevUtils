@@ -7,9 +7,9 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.moduleDevEnvironmentButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
 import dev.environment.bean.EnvironmentBean
@@ -77,7 +77,10 @@ class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
                 val content = toString()
                 ToastTintUtils.normal(content)
-                DevEngine.getLog()?.dTag(TAG, content)
+                log_dTag(
+                    tag = TAG,
+                    message = content
+                )
             }
         }
     }

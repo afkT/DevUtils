@@ -7,6 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.moduleDevAssistEngineButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.graphics.Color
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
@@ -90,7 +91,14 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
         })
         // 进行使用
-        DevEngine.getLog()?.dTag(TAG, "Log Engine 方法调用")
+        DevEngine.getLog()?.dTag(
+            TAG, "Log Engine 方法调用"
+        )
+
+        log_dTag(
+            tag = TAG,
+            message = "Log Engine 方法调用"
+        )
 
         // =========================
         // = 同类库多 Engine 混合使用 =
@@ -107,6 +115,12 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         )
         DevLogEngine.getEngine(KEY)?.dTag(
             TAG, "多 Log Engine 方法调用"
+        )
+
+        log_dTag(
+            engine = KEY,
+            tag = TAG,
+            message = "多 Log Engine 方法调用"
         )
     }
 }

@@ -9,6 +9,7 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import afkt_replace.core.lib.utils.log.log_eTag
 import android.Manifest
 import android.content.Intent
@@ -201,8 +202,9 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 提示解析成功声音
             mBeepVibrateAssist.playBeepSoundAndVibrate()
             // 打印结果
-            DevEngine.getLog()?.dTag(
-                TAG, "handleDecode result: %s", resultStr
+            log_dTag(
+                tag = TAG,
+                message = "handleDecode result: $resultStr"
             )
             showToast(true, "二维码内容: $resultStr")
 

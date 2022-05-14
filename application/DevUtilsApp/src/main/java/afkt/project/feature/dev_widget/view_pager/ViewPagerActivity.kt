@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityViewPagerBinding
 import afkt.project.model.item.RouterPath
+import afkt_replace.core.lib.utils.log.log_dTag
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.DevEngine
 import dev.widget.custom.CustomViewPager.OnDirectionListener
 
 /**
@@ -29,14 +29,23 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
                 right: Boolean
             ) {
                 if (left && !right) {
-                    DevEngine.getLog()?.dTag(TAG, "往左滑 - 从右往左")
+                    log_dTag(
+                        tag = TAG,
+                        message = "往左滑 - 从右往左"
+                    )
                 } else {
-                    DevEngine.getLog()?.dTag(TAG, "往右滑 - 从左往右")
+                    log_dTag(
+                        tag = TAG,
+                        message = "往右滑 - 从左往右"
+                    )
                 }
             }
 
             override fun onPageSelected(index: Int) {
-                DevEngine.getLog()?.dTag(TAG, "索引变动: %s", index)
+                log_dTag(
+                    tag = TAG,
+                    message = "索引变动: $index"
+                )
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左")
                 } else {
