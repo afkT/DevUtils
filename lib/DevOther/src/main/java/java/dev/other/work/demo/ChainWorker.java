@@ -25,11 +25,11 @@ public class ChainWorker {
      */
     public static void start() {
         WorkManagerUtils.getInstance().beginWith(
-                Arrays.asList(
-                        builder(AWorker.class, 1000L),
-                        builder(AWorker.class, 3000L)
+                        Arrays.asList(
+                                builder(AWorker.class, 1000L),
+                                builder(AWorker.class, 3000L)
+                        )
                 )
-        )
                 .then(builder(BWorker.class, 2000L))
                 .then(builder(CWorker.class, 5000L))
                 .then(builder(DWorker.class, 10000L))

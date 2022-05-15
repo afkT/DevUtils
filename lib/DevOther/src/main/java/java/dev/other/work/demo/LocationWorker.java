@@ -76,8 +76,8 @@ public class LocationWorker
         return new PeriodicWorkRequest.Builder(
                 LocationWorker.class, PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS, TimeUnit.MILLISECONDS
         ).setConstraints(
-                constraints.build()
-        ).keepResultsForAtLeast(10, TimeUnit.SECONDS) // 结果延迟保存时间
+                        constraints.build()
+                ).keepResultsForAtLeast(10, TimeUnit.SECONDS) // 结果延迟保存时间
                 // 退避策略 线性增加 10 秒重试
                 .setBackoffCriteria(BackoffPolicy.LINEAR, OneTimeWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
                 .addTag(TAG)
