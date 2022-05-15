@@ -1,5 +1,7 @@
 package afkt.project.database.green;
 
+import static afkt_replace.core.lib.utils.log.LogKt.log_eTag;
+
 import android.text.TextUtils;
 
 import java.util.HashMap;
@@ -8,7 +10,6 @@ import java.util.Map;
 import afkt.project.database.green.able.AbsGreenDatabase;
 import afkt.project.database.green.module.image.ImageDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
-import dev.engine.DevEngine;
 import dev.utils.common.StringUtils;
 
 /**
@@ -74,7 +75,7 @@ public final class GreenManager {
             try {
                 sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
             } catch (Exception e) {
-                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database");
+                log_eTag(null, TAG, e, "database");
             }
         }
         AbsGreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
@@ -83,7 +84,7 @@ public final class GreenManager {
             try {
                 db = (T) greenDatabase;
             } catch (Exception e) {
-                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database convert T");
+                log_eTag(null, TAG, e, "database convert T");
             }
             return db;
         }

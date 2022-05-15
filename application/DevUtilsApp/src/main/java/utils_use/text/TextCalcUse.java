@@ -1,11 +1,12 @@
 package utils_use.text;
 
+import static afkt_replace.core.lib.utils.log.LogKt.log_dTag;
+
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import dev.engine.DevEngine;
 import dev.utils.app.TextViewUtils;
 
 /**
@@ -59,6 +60,6 @@ public final class TextCalcUse {
         builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
         builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
         // 打印日志
-        DevEngine.INSTANCE.getLog().dTag(TAG, builder.toString());
+        log_dTag(null, TAG, builder.toString());
     }
 }

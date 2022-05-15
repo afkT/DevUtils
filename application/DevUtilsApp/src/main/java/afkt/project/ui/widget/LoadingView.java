@@ -11,7 +11,8 @@ import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingDrawable;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import afkt.project.ui.widget.render.LoadingRendererFactory;
-import dev.engine.DevEngine;
+
+import static afkt_replace.core.lib.utils.log.LogKt.log_e;
 
 /**
  * detail: LoadingView
@@ -47,7 +48,7 @@ public class LoadingView
             setLoadingRenderer(loadingRenderer);
             a.recycle();
         } catch (Exception e) {
-            DevEngine.INSTANCE.getLog().e(e);
+            log_e(null, e);
         }
     }
 

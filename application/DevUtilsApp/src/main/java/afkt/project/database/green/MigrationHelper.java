@@ -1,5 +1,7 @@
 package afkt.project.database.green;
 
+import static afkt_replace.core.lib.utils.log.LogKt.log_e;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
@@ -15,8 +17,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import dev.engine.DevEngine;
 
 /**
  * Createdby PedroOkawa and modified by MBH on 16/08/16.
@@ -105,7 +105,7 @@ public final class MigrationHelper {
                 method.invoke(null, db, isExists);
             }
         } catch (Exception e) {
-            DevEngine.INSTANCE.getLog().e(e);
+            log_e(null, e);
         }
     }
 
@@ -155,7 +155,7 @@ public final class MigrationHelper {
                 columns = Arrays.asList(cursor.getColumnNames());
             }
         } catch (Exception e) {
-            DevEngine.INSTANCE.getLog().e(e);
+            log_e(null, e);
         } finally {
             if (cursor != null) {
                 cursor.close();

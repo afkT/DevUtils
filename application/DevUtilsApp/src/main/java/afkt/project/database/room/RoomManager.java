@@ -1,5 +1,7 @@
 package afkt.project.database.room;
 
+import static afkt_replace.core.lib.utils.log.LogKt.log_eTag;
+
 import android.text.TextUtils;
 
 import java.util.HashMap;
@@ -7,7 +9,6 @@ import java.util.Map;
 
 import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.NoteDatabase;
-import dev.engine.DevEngine;
 import dev.utils.common.StringUtils;
 
 /**
@@ -73,7 +74,7 @@ public final class RoomManager {
             try {
                 sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
             } catch (Exception e) {
-                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database");
+                log_eTag(null, TAG, e, "database");
             }
         }
         AbsRoomDatabase roomDatabase = sDatabaseMaps.get(databaseName);
@@ -82,7 +83,7 @@ public final class RoomManager {
             try {
                 db = (T) roomDatabase;
             } catch (Exception e) {
-                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database convert T");
+                log_eTag(null, TAG, e, "database convert T");
             }
             return db;
         }
