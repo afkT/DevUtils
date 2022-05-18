@@ -8,7 +8,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.functionButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import android.Manifest
 import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route

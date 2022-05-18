@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import dev.utils.app.TextViewUtils;
 
-import static afkt_replace.core.lib.utils.engine.log.LogKt.log_dTag;
+import static dev.kotlin.engine.log.LogKt.log_dTag;
 
 /**
  * detail: 计算字体宽度、高度

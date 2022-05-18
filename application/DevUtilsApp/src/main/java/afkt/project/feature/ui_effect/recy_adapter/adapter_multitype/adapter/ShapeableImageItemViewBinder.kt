@@ -3,8 +3,8 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatShapeableImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.ShapeableImageBeanItem
-import afkt_replace.core.lib.utils.engine.image.display
-import afkt_replace.core.lib.utils.toSource
+import dev.kotlin.engine.image.display
+import dev.kotlin.utils.toSource
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder

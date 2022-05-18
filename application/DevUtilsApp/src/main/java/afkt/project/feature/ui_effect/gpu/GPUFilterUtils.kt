@@ -1,6 +1,6 @@
 package afkt.project.feature.ui_effect.gpu
 
-import afkt_replace.core.lib.utils.engine.log.log_eTag
+import dev.kotlin.engine.log.log_eTag
 import android.content.Context
 import android.graphics.Bitmap
 import dev.utils.common.CloseUtils

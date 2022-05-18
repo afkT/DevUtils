@@ -1,6 +1,6 @@
 package afkt.project.base.http
 
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import dev.DevHttpManager
 import dev.http.progress.Progress
 import dev.http.progress.ProgressOperation

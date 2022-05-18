@@ -6,8 +6,8 @@ import afkt.project.database.green.module.note.bean.NotePicture
 import afkt.project.database.green.module.note.bean.NoteType
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
-import afkt_replace.core.lib.utils.engine.image.display
-import afkt_replace.core.lib.utils.toSource
+import dev.kotlin.engine.image.display
+import dev.kotlin.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.adapter.DevDataAdapterExt

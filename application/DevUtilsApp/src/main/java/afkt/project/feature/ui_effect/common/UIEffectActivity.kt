@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View

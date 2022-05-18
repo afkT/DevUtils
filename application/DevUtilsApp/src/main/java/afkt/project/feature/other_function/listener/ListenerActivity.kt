@@ -7,8 +7,8 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.log.log_dTag
-import afkt_replace.core.lib.utils.engine.log.log_eTag
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.log.log_eTag
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message

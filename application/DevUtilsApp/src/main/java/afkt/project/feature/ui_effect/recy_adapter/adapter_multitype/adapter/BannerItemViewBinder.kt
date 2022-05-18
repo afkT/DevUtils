@@ -5,10 +5,10 @@ import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.BannerBean
 import afkt.project.feature.ui_effect.recy_adapter.BannerBeanItem
-import afkt_replace.core.lib.utils.engine.image.IMAGE_ROUND_10
-import afkt_replace.core.lib.utils.engine.image.display
-import afkt_replace.core.lib.utils.engine.image.toImageConfig
-import afkt_replace.core.lib.utils.toSource
+import dev.kotlin.engine.image.IMAGE_ROUND_10
+import dev.kotlin.engine.image.display
+import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.toSource
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

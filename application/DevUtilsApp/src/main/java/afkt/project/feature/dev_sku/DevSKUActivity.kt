@@ -7,7 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.json.fromJson
+import dev.kotlin.engine.json.fromJson
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.sku.SKU

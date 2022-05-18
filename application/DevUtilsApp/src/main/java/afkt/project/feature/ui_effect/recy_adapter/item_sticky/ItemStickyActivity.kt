@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.log.log_dTag
-import afkt_replace.core.lib.utils.size.AppSize
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.utils.size.AppSize
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route

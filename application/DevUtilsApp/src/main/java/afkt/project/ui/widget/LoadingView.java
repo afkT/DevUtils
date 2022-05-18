@@ -12,7 +12,7 @@ import afkt.project.ui.widget.render.LoadingDrawable;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import afkt.project.ui.widget.render.LoadingRendererFactory;
 
-import static afkt_replace.core.lib.utils.engine.log.LogKt.log_e;
+import static dev.kotlin.engine.log.LogKt.log_e;
 
 /**
  * detail: LoadingView

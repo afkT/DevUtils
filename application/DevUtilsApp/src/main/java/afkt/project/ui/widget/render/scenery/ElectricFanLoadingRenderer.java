@@ -33,7 +33,7 @@ import java.util.Random;
 
 import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingRenderer;
-import afkt_replace.core.lib.utils.size.AppSize;
+import dev.kotlin.utils.size.AppSize;
 
 public class ElectricFanLoadingRenderer
         extends LoadingRenderer {

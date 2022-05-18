@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
-import afkt_replace.core.lib.utils.size.AppSize
+import dev.kotlin.utils.size.AppSize
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

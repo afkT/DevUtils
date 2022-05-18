@@ -9,7 +9,7 @@ import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.NoteDatabase;
 import dev.utils.common.StringUtils;
 
-import static afkt_replace.core.lib.utils.engine.log.LogKt.log_eTag;
+import static dev.kotlin.engine.log.LogKt.log_eTag;
 
 /**
  * detail: Room 数据库管理类

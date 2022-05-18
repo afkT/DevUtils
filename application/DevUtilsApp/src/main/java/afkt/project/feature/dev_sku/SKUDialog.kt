@@ -2,10 +2,10 @@ package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuDialogSpecBinding
-import afkt_replace.core.lib.utils.engine.image.IMAGE_ROUND_10
-import afkt_replace.core.lib.utils.engine.image.display
-import afkt_replace.core.lib.utils.engine.image.toImageConfig
-import afkt_replace.core.lib.utils.toSource
+import dev.kotlin.engine.image.IMAGE_ROUND_10
+import dev.kotlin.engine.image.display
+import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.toSource
 import android.app.Dialog
 import android.view.Gravity
 import androidx.fragment.app.FragmentActivity

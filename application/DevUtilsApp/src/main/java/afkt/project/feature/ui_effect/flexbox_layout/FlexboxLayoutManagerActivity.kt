@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.size.AppSize
+import dev.kotlin.utils.size.AppSize
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
-import afkt_replace.core.lib.utils.size.AppSize;
+import dev.kotlin.utils.size.AppSize;
 
 public abstract class LoadingRenderer {
     private static final long  ANIMATION_DURATION = 1333;

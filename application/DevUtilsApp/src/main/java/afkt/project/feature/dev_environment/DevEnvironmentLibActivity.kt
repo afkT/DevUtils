@@ -7,7 +7,7 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.moduleDevEnvironmentButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.environment.DevEnvironment

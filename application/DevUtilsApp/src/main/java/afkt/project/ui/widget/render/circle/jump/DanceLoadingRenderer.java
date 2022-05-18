@@ -14,7 +14,7 @@ import android.view.animation.Interpolator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import afkt.project.ui.widget.render.LoadingRenderer;
-import afkt_replace.core.lib.utils.size.AppSize;
+import dev.kotlin.utils.size.AppSize;
 
 public class DanceLoadingRenderer
         extends LoadingRenderer {

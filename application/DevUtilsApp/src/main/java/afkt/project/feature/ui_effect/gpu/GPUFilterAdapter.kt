@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem
-import afkt_replace.core.lib.utils.size.AppSize
+import dev.kotlin.utils.size.AppSize
 import android.content.Context
 import android.view.Gravity
 import android.view.View
