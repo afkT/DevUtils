@@ -1,6 +1,6 @@
 package afkt.project.feature.other_function.wifi
 
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import android.annotation.SuppressLint
 import android.net.wifi.WifiManager
 import android.os.Handler

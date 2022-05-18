@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static afkt_replace.core.lib.utils.log.LogKt.log_e;
+import static afkt_replace.core.lib.utils.engine.log.LogKt.log_e;
 
 /**
  * Createdby PedroOkawa and modified by MBH on 16/08/16.

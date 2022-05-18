@@ -1,8 +1,8 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
-import afkt_replace.core.lib.utils.log.log_dTag
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler

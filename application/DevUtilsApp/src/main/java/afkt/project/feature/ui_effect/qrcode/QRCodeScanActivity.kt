@@ -9,8 +9,8 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.log.log_dTag
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect

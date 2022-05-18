@@ -1,8 +1,8 @@
 package afkt.project.feature.dev_widget.flip_card
 
-import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
-import afkt_replace.core.lib.utils.image.display
-import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.engine.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.engine.image.display
+import afkt_replace.core.lib.utils.engine.image.toImageConfig
 import android.content.Context
 import android.view.View
 import dev.base.DevSource

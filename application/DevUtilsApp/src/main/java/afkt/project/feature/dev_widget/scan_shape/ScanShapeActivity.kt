@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View

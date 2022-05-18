@@ -2,7 +2,7 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
-import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.engine.image.display
 import afkt_replace.core.lib.utils.toSource
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup

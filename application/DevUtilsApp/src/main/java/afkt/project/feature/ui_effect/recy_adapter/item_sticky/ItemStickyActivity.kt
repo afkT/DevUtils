@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import afkt_replace.core.lib.utils.size.AppSize
 import android.view.View
 import android.view.ViewGroup

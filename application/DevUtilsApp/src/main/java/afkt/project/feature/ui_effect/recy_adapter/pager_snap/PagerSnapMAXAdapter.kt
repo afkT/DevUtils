@@ -3,9 +3,9 @@ package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterPagerSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt_replace.core.lib.utils.image.IMAGE_ROUND_10
-import afkt_replace.core.lib.utils.image.display
-import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.engine.image.IMAGE_ROUND_10
+import afkt_replace.core.lib.utils.engine.image.display
+import afkt_replace.core.lib.utils.engine.image.toImageConfig
 import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import android.widget.ImageView

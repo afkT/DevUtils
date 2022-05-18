@@ -5,8 +5,8 @@ import afkt.project.databinding.ActivityMainBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import afkt_replace.core.lib.utils.log.log_dTag
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine

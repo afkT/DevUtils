@@ -6,7 +6,7 @@ import java.io.Serializable;
 import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
 
-import static afkt_replace.core.lib.utils.log.LogKt.log_dTag;
+import static afkt_replace.core.lib.utils.engine.log.LogKt.log_dTag;
 
 /**
  * detail: 缓存使用方法

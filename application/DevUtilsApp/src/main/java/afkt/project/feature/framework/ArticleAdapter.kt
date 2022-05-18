@@ -3,9 +3,9 @@ package afkt.project.feature.framework
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
-import afkt_replace.core.lib.utils.image.IMAGE_ROUND_3
-import afkt_replace.core.lib.utils.image.display
-import afkt_replace.core.lib.utils.image.toImageConfig
+import afkt_replace.core.lib.utils.engine.image.IMAGE_ROUND_3
+import afkt_replace.core.lib.utils.engine.image.display
+import afkt_replace.core.lib.utils.engine.image.toImageConfig
 import afkt_replace.core.lib.utils.toSource
 import android.content.Intent
 import android.net.Uri

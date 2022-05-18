@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.image.loadBitmap
+import afkt_replace.core.lib.utils.engine.image.loadBitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils

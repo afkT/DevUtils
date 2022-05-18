@@ -6,7 +6,7 @@ import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
-import afkt_replace.core.lib.utils.image.display
+import afkt_replace.core.lib.utils.engine.image.display
 import afkt_replace.core.lib.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

@@ -7,7 +7,7 @@ import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getGPUImageToneCurveFilter
 import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View

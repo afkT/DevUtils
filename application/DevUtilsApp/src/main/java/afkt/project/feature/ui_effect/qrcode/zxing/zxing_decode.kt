@@ -1,6 +1,6 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.hardware.Camera

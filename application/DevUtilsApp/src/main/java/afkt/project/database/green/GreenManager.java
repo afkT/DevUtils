@@ -10,7 +10,7 @@ import afkt.project.database.green.module.image.ImageDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
 import dev.utils.common.StringUtils;
 
-import static afkt_replace.core.lib.utils.log.LogKt.log_eTag;
+import static afkt_replace.core.lib.utils.engine.log.LogKt.log_eTag;
 
 /**
  * detail: GreenDao 管理类

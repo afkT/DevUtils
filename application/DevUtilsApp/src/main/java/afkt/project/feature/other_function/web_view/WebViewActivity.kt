@@ -5,7 +5,7 @@ import afkt.project.base.BaseApplication
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityWebviewBinding
 import afkt.project.model.item.RouterPath
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import android.net.http.SslError
 import android.view.KeyEvent
 import android.view.View.OnLongClickListener
