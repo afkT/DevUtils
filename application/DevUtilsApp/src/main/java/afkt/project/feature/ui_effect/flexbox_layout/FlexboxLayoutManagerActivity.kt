@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
-import dev.kotlin.utils.size.AppSize
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import dev.base.widget.BaseTextView
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils

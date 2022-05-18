@@ -7,7 +7,6 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.wifiButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration
@@ -18,6 +17,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_dTag
 import dev.receiver.WifiReceiver
 import dev.receiver.WifiReceiver.Companion.register
 import dev.receiver.WifiReceiver.Companion.setListener

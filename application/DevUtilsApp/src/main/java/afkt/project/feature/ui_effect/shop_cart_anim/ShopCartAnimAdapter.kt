@@ -3,17 +3,17 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 import afkt.project.R
 import afkt.project.databinding.AdapterItemShopCartAnimBinding
 import afkt.project.model.bean.CommodityItem
+import android.view.View
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapterExt
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.kotlin.engine.image.IMAGE_ROUND_3
 import dev.kotlin.engine.image.display
 import dev.kotlin.engine.image.toImageConfig
 import dev.kotlin.utils.price.toPriceString
 import dev.kotlin.utils.price.toRMBSubZeroAndDot
 import dev.kotlin.utils.toSource
-import android.view.View
-import android.view.ViewGroup
-import dev.adapter.DevDataAdapterExt
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
 import dev.utils.app.helper.view.ViewHelper
 
 /**

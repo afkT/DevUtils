@@ -7,12 +7,12 @@ import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectLi
 import afkt.project.model.bean.CommodityItem
 import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
+import dev.kotlin.engine.log.log_dTag
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper

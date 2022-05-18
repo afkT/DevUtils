@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.image.loadBitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
@@ -16,6 +15,7 @@ import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.image.listener.BitmapListener
 import dev.engine.media.MediaConfig
+import dev.kotlin.engine.image.loadBitmap
 import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.toast.ToastTintUtils

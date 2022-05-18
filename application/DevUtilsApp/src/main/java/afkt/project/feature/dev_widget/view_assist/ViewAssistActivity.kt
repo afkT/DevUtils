@@ -5,10 +5,10 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityViewAssistBinding
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import dev.kotlin.utils.size.AppSize
 import android.view.LayoutInflater
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils

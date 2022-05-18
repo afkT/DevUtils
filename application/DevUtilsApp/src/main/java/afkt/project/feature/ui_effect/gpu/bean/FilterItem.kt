@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.gpu.bean
 
-import dev.kotlin.engine.log.log_eTag
 import android.graphics.PointF
+import dev.kotlin.engine.log.log_eTag
 import jp.co.cyberagent.android.gpuimage.filter.*
 import java.util.*
 

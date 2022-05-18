@@ -1,6 +1,5 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
-import dev.kotlin.engine.log.log_dTag
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.hardware.Camera
@@ -11,6 +10,7 @@ import android.os.Message
 import androidx.annotation.IntDef
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
+import dev.kotlin.engine.log.log_dTag
 import java.io.ByteArrayOutputStream
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

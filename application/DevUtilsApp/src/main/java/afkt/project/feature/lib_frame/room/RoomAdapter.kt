@@ -6,13 +6,13 @@ import afkt.project.database.room.module.note.bean.NotePicture
 import afkt.project.database.room.module.note.bean.NoteType
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
-import dev.kotlin.engine.image.display
-import dev.kotlin.utils.toSource
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
+import dev.kotlin.engine.image.display
+import dev.kotlin.utils.toSource
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper

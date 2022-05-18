@@ -3,14 +3,14 @@ package afkt.project.feature.ui_effect.recy_adapter.linear_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
-import dev.kotlin.engine.image.IMAGE_ROUND_10
-import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
-import dev.kotlin.utils.toSource
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
+import dev.kotlin.engine.image.IMAGE_ROUND_10
+import dev.kotlin.engine.image.display
+import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.toSource
 import dev.utils.app.helper.view.ViewHelper
 
 /**

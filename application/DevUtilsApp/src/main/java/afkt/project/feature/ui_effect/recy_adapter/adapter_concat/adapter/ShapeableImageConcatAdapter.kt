@@ -3,8 +3,6 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatShapeableImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.ShapeableImageBean
-import dev.kotlin.engine.image.display
-import dev.kotlin.utils.toSource
 import android.view.ViewGroup
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.RelativeCornerSize
@@ -13,6 +11,8 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
+import dev.kotlin.engine.image.display
+import dev.kotlin.utils.toSource
 import dev.utils.app.ResourceUtils
 
 /**

@@ -3,16 +3,16 @@ package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 import afkt.project.R
 import afkt.project.databinding.AdapterPagerSnapBinding
 import afkt.project.model.bean.ItemBean
-import dev.kotlin.engine.image.IMAGE_ROUND_10
-import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
-import dev.kotlin.utils.toSource
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewDataBindingVH
+import dev.kotlin.engine.image.IMAGE_ROUND_10
+import dev.kotlin.engine.image.display
+import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.toSource
 
 /**
  * detail: RecyclerView Gallery 效果 Adapter

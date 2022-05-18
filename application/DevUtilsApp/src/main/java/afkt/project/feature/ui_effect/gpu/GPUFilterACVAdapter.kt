@@ -2,7 +2,6 @@ package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
 import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
-import dev.kotlin.utils.size.AppSize
 import android.content.Context
 import android.view.Gravity
 import android.view.View
@@ -10,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Gallery
 import dev.base.widget.BaseTextView
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 

@@ -4,13 +4,13 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_eTag
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist

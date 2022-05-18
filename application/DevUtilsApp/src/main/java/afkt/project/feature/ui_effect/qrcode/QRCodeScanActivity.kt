@@ -9,8 +9,6 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
-import dev.kotlin.engine.log.log_eTag
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect
@@ -25,6 +23,8 @@ import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.media.MediaConfig
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist

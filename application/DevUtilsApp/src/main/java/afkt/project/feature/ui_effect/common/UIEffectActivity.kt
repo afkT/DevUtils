@@ -5,13 +5,13 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
+import dev.kotlin.engine.log.log_dTag
 import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper

@@ -5,12 +5,12 @@ import afkt.project.databinding.ActivityMainBinding
 import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import dev.kotlin.engine.log.log_dTag
-import dev.kotlin.engine.log.log_eTag
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.VersionUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.HttpURLConnectionUtils

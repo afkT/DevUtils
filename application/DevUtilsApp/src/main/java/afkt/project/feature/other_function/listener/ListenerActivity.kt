@@ -7,8 +7,6 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
-import dev.kotlin.engine.log.log_eTag
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
@@ -16,6 +14,8 @@ import android.telephony.SmsMessage
 import android.view.OrientationEventListener
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.log.log_eTag
 import dev.receiver.*
 import dev.receiver.AppStateReceiver.Companion.setListener
 import dev.receiver.BatteryReceiver.Companion.setListener

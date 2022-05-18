@@ -4,11 +4,11 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityCornerLabelBinding
 import afkt.project.model.item.RouterPath
-import dev.kotlin.utils.size.AppSize
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.ListenerUtils
 import dev.utils.common.RandomUtils
 

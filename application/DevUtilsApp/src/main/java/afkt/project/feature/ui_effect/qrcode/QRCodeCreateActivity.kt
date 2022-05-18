@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeCreateBinding
 import afkt.project.model.item.RouterPath
-import dev.kotlin.utils.size.AppSize
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
@@ -13,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeData
 import dev.engine.media.MediaConfig
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ThrowableUtils

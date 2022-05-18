@@ -1,9 +1,9 @@
 package afkt.project.feature.dev_widget.scan_shape
 
 import afkt.project.R
-import dev.kotlin.utils.size.AppSize
 import android.graphics.Color
 import android.graphics.Rect
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
 import dev.widget.ui.ScanShapeView

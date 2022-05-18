@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.databinding.IncludeGridItemDecorationAssistBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.CommonColorItemDecorationAssist
-import dev.kotlin.utils.size.AppSize
 import androidx.recyclerview.widget.RecyclerView
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils

@@ -1,8 +1,6 @@
 package afkt.project.feature.ui_effect.qrcode.zxing
 
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
-import dev.kotlin.engine.log.log_dTag
-import dev.kotlin.engine.log.log_eTag
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler
@@ -10,6 +8,8 @@ import android.os.Message
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
+import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
 import dev.utils.app.camera.camera1.CameraUtils

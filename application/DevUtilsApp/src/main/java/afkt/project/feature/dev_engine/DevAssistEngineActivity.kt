@@ -7,7 +7,6 @@ import afkt.project.feature.ButtonAdapter
 import afkt.project.model.item.ButtonList.moduleDevAssistEngineButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
-import dev.kotlin.engine.log.log_dTag
 import android.graphics.Color
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
@@ -16,6 +15,7 @@ import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.log.DevLoggerEngineImpl
+import dev.kotlin.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SnackbarUtils

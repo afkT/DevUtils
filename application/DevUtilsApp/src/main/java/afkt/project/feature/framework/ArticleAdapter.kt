@@ -3,10 +3,6 @@ package afkt.project.feature.framework
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
-import dev.kotlin.engine.image.IMAGE_ROUND_3
-import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
-import dev.kotlin.utils.toSource
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
@@ -14,6 +10,10 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
+import dev.kotlin.engine.image.IMAGE_ROUND_3
+import dev.kotlin.engine.image.display
+import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.toSource
 import dev.utils.app.AppUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.TextViewUtils

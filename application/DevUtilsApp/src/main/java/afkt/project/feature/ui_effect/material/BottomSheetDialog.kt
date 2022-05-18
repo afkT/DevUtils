@@ -1,7 +1,6 @@
 package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
-import dev.kotlin.utils.size.AppSize
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dev.kotlin.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 
 /**

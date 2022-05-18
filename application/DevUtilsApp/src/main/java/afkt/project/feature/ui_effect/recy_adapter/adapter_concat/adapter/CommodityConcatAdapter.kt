@@ -4,16 +4,16 @@ import afkt.project.R
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import dev.adapter.DevDataAdapter
 import dev.kotlin.engine.image.IMAGE_ROUND_3
 import dev.kotlin.engine.image.display
 import dev.kotlin.engine.image.toImageConfig
 import dev.kotlin.utils.price.toPriceString
 import dev.kotlin.utils.price.toRMBSubZeroAndDot
 import dev.kotlin.utils.toSource
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import dev.adapter.DevDataAdapter
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 
