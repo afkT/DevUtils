@@ -252,8 +252,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final byte[] value,
+            String key,
+            byte[] value,
             long validTime
     );
 
@@ -265,8 +265,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final Bitmap value,
+            String key,
+            Bitmap value,
             long validTime
     );
 
@@ -278,8 +278,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final Drawable value,
+            String key,
+            Drawable value,
             long validTime
     );
 
@@ -291,8 +291,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final Serializable value,
+            String key,
+            Serializable value,
             long validTime
     );
 
@@ -304,8 +304,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final Parcelable value,
+            String key,
+            Parcelable value,
             long validTime
     );
 
@@ -317,8 +317,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final JSONObject value,
+            String key,
+            JSONObject value,
             long validTime
     );
 
@@ -330,8 +330,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean put(
-            final String key,
-            final JSONArray value,
+            String key,
+            JSONArray value,
             long validTime
     );
 
@@ -344,8 +344,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean put(
-            final String key,
-            final T value,
+            String key,
+            T value,
             long validTime
     );
 
@@ -456,8 +456,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return instance of type
      */
     <T> T getEntity(
-            final String key,
-            final Type typeOfT
+            String key,
+            Type typeOfT
     );
 
     // =
@@ -616,8 +616,8 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * @return instance of type
      */
     <T> T getEntity(
-            final String key,
-            final Type typeOfT,
+            String key,
+            Type typeOfT,
             T defaultValue
     );
 }

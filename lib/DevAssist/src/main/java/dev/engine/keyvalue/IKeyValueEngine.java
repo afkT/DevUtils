@@ -140,8 +140,8 @@ public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean putEntity(
-            final String key,
-            final T value
+            String key,
+            T value
     );
 
     // =======
@@ -198,8 +198,8 @@ public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
      * @return instance of type
      */
     <T> T getEntity(
-            final String key,
-            final Type typeOfT
+            String key,
+            Type typeOfT
     );
 
     // =
@@ -279,8 +279,8 @@ public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
      * @return instance of type
      */
     <T> T getEntity(
-            final String key,
-            final Type typeOfT,
+            String key,
+            Type typeOfT,
             T defaultValue
     );
 }

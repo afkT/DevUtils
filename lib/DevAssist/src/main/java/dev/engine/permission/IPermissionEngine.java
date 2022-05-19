@@ -100,9 +100,9 @@ public interface IPermissionEngine {
      * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
      */
     int againRequest(
-            final Activity activity,
-            final Callback callback,
-            final List<String> deniedList
+            Activity activity,
+            Callback callback,
+            List<String> deniedList
     );
 
     // =============
