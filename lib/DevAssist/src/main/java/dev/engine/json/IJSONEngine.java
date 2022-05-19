@@ -118,6 +118,8 @@ public interface IJSONEngine<Config extends IJSONEngine.EngineConfig> {
      */
     boolean isJSONArray(String json);
 
+    // =
+
     /**
      * JSON String 缩进处理
      * @param json JSON String
@@ -135,8 +137,6 @@ public interface IJSONEngine<Config extends IJSONEngine.EngineConfig> {
             String json,
             Config config
     );
-
-    // =
 
     /**
      * Object 转 JSON String 并进行缩进处理
