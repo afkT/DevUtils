@@ -11,9 +11,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
-import dev.kotlin.engine.image.IMAGE_ROUND_10
 import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.image.IMAGE_ROUND_10
+import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.toSource
 
 /**

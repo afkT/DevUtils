@@ -9,9 +9,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewDataBindingVH
-import dev.kotlin.engine.image.IMAGE_ROUND_10
 import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.image.IMAGE_ROUND_10
+import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.toSource
 
 /**

@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.kotlin.engine.image.IMAGE_ROUND_3
 import dev.kotlin.engine.image.display
-import dev.kotlin.engine.image.toImageConfig
+import dev.kotlin.utils.image.IMAGE_ROUND_3
+import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.price.toPriceString
 import dev.kotlin.utils.price.toRMBSubZeroAndDot
 import dev.kotlin.utils.toSource
