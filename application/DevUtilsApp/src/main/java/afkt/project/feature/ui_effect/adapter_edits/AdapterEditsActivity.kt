@@ -47,8 +47,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         .append("\nevaluateLevel: ").append(item.evaluateLevel)
                         .append(DevFinal.SYMBOL.NEW_LINE)
                 }
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = builder.toString()
                 )
                 ToastTintUtils.success("数据已打印, 请查看 Logcat")

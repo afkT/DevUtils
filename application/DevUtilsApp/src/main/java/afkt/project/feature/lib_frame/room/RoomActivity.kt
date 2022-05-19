@@ -117,8 +117,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                             .deleteNotePictures(
                                 *CollectionUtils.toArrayT(nap.pictures)
                             )
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "删除图片数量: $deleteCount"
                         )
                     }
@@ -231,8 +230,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "offset: $offset, limit: $limit"
         )
         // 请求数据

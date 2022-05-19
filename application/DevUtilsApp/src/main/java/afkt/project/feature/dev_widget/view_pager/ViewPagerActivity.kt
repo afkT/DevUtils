@@ -29,21 +29,18 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
                 right: Boolean
             ) {
                 if (left && !right) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "往左滑 - 从右往左"
                     )
                 } else {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "往右滑 - 从左往右"
                     )
                 }
             }
 
             override fun onPageSelected(index: Int) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "索引变动: $index"
                 )
                 if (mLeftScroll) {

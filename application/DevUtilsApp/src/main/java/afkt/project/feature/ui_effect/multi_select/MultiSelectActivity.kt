@@ -57,8 +57,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     now: Boolean
                 ) {
                     val item = adapter.getDataItem(position)
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "新状态: %s, 商品名: %s",
                         args = arrayOf(now, item?.commodityName)
                     )

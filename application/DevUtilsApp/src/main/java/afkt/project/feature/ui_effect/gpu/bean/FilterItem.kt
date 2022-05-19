@@ -274,8 +274,7 @@ class FilterItem(
             try {
                 return filterClass.newInstance()
             } catch (e: Exception) {
-                log_eTag(
-                    tag = TAG,
+                TAG.log_eTag(
                     throwable = e,
                     message = "createBlendFilter"
                 )

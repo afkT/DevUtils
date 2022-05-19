@@ -127,15 +127,13 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : WifiReceiver.Listener {
                 override fun onWifiSwitch(isOpenWifi: Boolean) { // Wifi 开关状态
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 是否打开: $isOpenWifi"
                     )
                 }
 
                 override fun onIntoTrigger() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "触发回调通知 ( 每次进入都通知 )"
                     )
                 }
@@ -143,86 +141,72 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 override fun onTrigger(what: Int) {
                     when (what) {
                         WifiReceiver.WIFI_SCAN_FINISH -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "startScan() 扫描附近 Wifi 结束触发"
                             )
                         }
                         WifiReceiver.WIFI_RSSI_CHANGED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "已连接的 Wifi 强度发生变化"
                             )
                         }
                         WifiReceiver.WIFI_ERROR_AUTHENTICATING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 认证错误 ( 密码错误等 )"
                             )
                         }
                         WifiReceiver.WIFI_ERROR_UNKNOWN -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接错误 ( 其他错误 )"
                             )
                         }
                         WifiReceiver.WIFI_STATE_ENABLED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 已打开"
                             )
                         }
                         WifiReceiver.WIFI_STATE_ENABLING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 正在打开"
                             )
                         }
                         WifiReceiver.WIFI_STATE_DISABLED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 已关闭"
                             )
                         }
                         WifiReceiver.WIFI_STATE_DISABLING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 正在关闭"
                             )
                         }
                         WifiReceiver.WIFI_STATE_UNKNOWN -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 状态未知"
                             )
                         }
                         WifiReceiver.CONNECTED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 连接成功"
                             )
                         }
                         WifiReceiver.CONNECTING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 连接中"
                             )
                         }
                         WifiReceiver.DISCONNECTED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 连接失败、断开"
                             )
                         }
                         WifiReceiver.SUSPENDED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 暂停、延迟"
                             )
                         }
                         WifiReceiver.UNKNOWN -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "Wifi 未知"
                             )
                         }
@@ -236,32 +220,27 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     val ssid = message?.obj as? String
                     when (what) {
                         WifiReceiver.CONNECTED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接 Wifi 成功: $ssid"
                             )
                         }
                         WifiReceiver.CONNECTING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接 Wifi 中: $ssid"
                             )
                         }
                         WifiReceiver.DISCONNECTED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接 Wifi 断开"
                             )
                         }
                         WifiReceiver.SUSPENDED -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接 Wifi 暂停、延迟"
                             )
                         }
                         WifiReceiver.UNKNOWN -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "连接 Wifi 状态未知"
                             )
                         }
@@ -295,8 +274,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                         NetWorkReceiver.NET_MOBILE -> state = "移动网络"
                         NetWorkReceiver.NO_NETWORK -> state = "( 无网络 / 未知 ) 状态"
                     }
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "网络连接状态 $state"
                     )
                 }
@@ -327,32 +305,27 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 ) {
                     when (callState) {
                         CallState.OUTGOING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "播出电话: $number"
                             )
                         }
                         CallState.OUTGOING_END -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "播出电话结束: $number"
                             )
                         }
                         CallState.INCOMING_RING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "接入电话铃响: $number"
                             )
                         }
                         CallState.INCOMING -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "接入通话中: $number"
                             )
                         }
                         CallState.INCOMING_END -> {
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = "接入通话完毕: $number"
                             )
                         }
@@ -384,16 +357,14 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     fromAddress: String?,
                     serviceCenterAddress: String?
                 ) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s",
                         args = arrayOf(msg, fromAddress, serviceCenterAddress)
                     )
                 }
 
                 override fun onMessage(msg: SmsMessage?) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "onMessage\nSmsMessage: ${msg.toString()}"
                     )
                 }
@@ -419,22 +390,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : TimeReceiver.Listener {
                 override fun onTimeZoneChanged() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "onTimeZoneChanged: 时区改变"
                     )
                 }
 
                 override fun onTimeChanged() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "onTimeChanged: 时间改变"
                     )
                 }
 
                 override fun onTimeTick() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "onTimeTick: 分钟改变"
                     )
                 }
@@ -460,22 +428,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : ScreenReceiver.Listener {
                 override fun screenOn() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "screenOn: 用户打开屏幕 - 屏幕变亮"
                     )
                 }
 
                 override fun screenOff() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "screenOff: 锁屏触发"
                     )
                 }
 
                 override fun userPresent() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "userPresent: 用户解锁触发"
                     )
                 }
@@ -520,8 +485,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             if (orientation == 1) { // 横屏
                                 // 当前时间 - 切屏的时间大于 1.5 秒间隔才进行处理
                                 if (System.currentTimeMillis() - mOrientationTime >= 1500) {
-                                    log_dTag(
-                                        tag = TAG,
+                                    TAG.log_dTag(
                                         message = "横屏"
                                     )
                                     // 重置时间,防止多次触发
@@ -531,8 +495,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                     //mContext.startActivity(intent)
                                 }
                             } else if (orientation == 2) { // 竖屏
-                                log_dTag(
-                                    tag = TAG,
+                                TAG.log_dTag(
                                     message = "竖屏"
                                 )
                             }
@@ -564,8 +527,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             mOrientationEventListener = object : OrientationEventListener(mContext) {
                 override fun onOrientationChanged(rotation: Int) {
                     if (rotation in 0..30 || rotation >= 330) {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "竖屏拍摄"
                         )
                         mPortrait = true
@@ -577,8 +539,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 0
                         }
                     } else if (rotation in 230..310) {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "横屏拍摄"
                         )
                         mPortrait = false
@@ -590,8 +551,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 90
                         }
                     } else if (rotation in 31..134) {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "反横屏拍摄"
                         )
                         mPortrait = false
@@ -603,8 +563,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 270
                         }
                     } else if (rotation in 136..229) {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "反竖屏拍摄"
                         )
                         mPortrait = true
@@ -630,8 +589,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 mOrientationEventListener?.enable()
             }
         } catch (e: Exception) {
-            log_eTag(
-                tag = TAG,
+            TAG.log_eTag(
                 message = "rotaListener2"
             )
         }
@@ -653,22 +611,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : BatteryReceiver.Listener {
                 override fun onBatteryChanged(level: Int) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "电量改变通知 level: $level"
                     )
                 }
 
                 override fun onBatteryLow(level: Int) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "电量低通知 level: $level"
                     )
                 }
 
                 override fun onBatteryOkay(level: Int) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "电量从低变回高通知 level: $level"
                     )
                 }
@@ -677,16 +632,14 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     level: Int,
                     isConnected: Boolean
                 ) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "充电状态改变通知 level: %s, 是否充电中: %s",
                         args = arrayOf(level, isConnected)
                     )
                 }
 
                 override fun onPowerUsageSummary(level: Int) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "电力使用情况总结 level: $level"
                     )
                 }
@@ -712,22 +665,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : AppStateReceiver.Listener {
                 override fun onAdded(packageName: String?) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "应用安装 packageName: $packageName"
                     )
                 }
 
                 override fun onReplaced(packageName: String?) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "应用更新 packageName: $packageName"
                     )
                 }
 
                 override fun onRemoved(packageName: String?) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "应用卸载 packageName: $packageName"
                     )
                 }

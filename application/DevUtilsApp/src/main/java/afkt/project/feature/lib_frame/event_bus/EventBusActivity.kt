@@ -71,8 +71,7 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventBus(event: DevObject<String>) {
         // 打印数据
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "value ${event.getObject()}"
         )
         // 进行提示
@@ -82,8 +81,7 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onEventBusSticky(event: DevObject<String>) {
         // 打印数据
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "value ${event.getObject()}"
         )
         // 进行提示

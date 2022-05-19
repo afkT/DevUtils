@@ -75,7 +75,7 @@ public final class GreenManager {
             try {
                 sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
             } catch (Exception e) {
-                log_eTag(null, TAG, e, "database");
+                log_eTag(TAG, null, e, "database");
             }
         }
         AbsGreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
@@ -84,7 +84,7 @@ public final class GreenManager {
             try {
                 db = (T) greenDatabase;
             } catch (Exception e) {
-                log_eTag(null, TAG, e, "database convert T");
+                log_eTag(TAG, null, e, "database convert T");
             }
             return db;
         }

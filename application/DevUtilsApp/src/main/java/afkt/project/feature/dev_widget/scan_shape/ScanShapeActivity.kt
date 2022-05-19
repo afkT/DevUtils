@@ -123,8 +123,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
             try {
                 cameraAssist.stopPreview()
             } catch (e: Exception) {
-                log_eTag(
-                    tag = TAG,
+                TAG.log_eTag(
                     throwable = e,
                     message = "surfaceDestroyed"
                 )
@@ -156,8 +155,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false)
             } catch (e: Exception) {
-                log_eTag(
-                    tag = TAG,
+                TAG.log_eTag(
                     throwable = e,
                     message = "checkPermission startPreview"
                 )

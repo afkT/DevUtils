@@ -107,8 +107,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                                     override fun onStarted(wifiConfiguration: WifiConfiguration) {
                                                         val wifiAp =
                                                             "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"
-                                                        log_dTag(
-                                                            tag = TAG,
+                                                        TAG.log_dTag(
                                                             message = wifiAp
                                                         )
                                                         ToastTintUtils.success(wifiAp)
@@ -117,8 +116,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                                     }
 
                                                     override fun onStopped() {
-                                                        log_dTag(
-                                                            tag = TAG,
+                                                        TAG.log_dTag(
                                                             message = "关闭热点"
                                                         )
                                                         // 表示操作结束
@@ -126,8 +124,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                                     }
 
                                                     override fun onFailed(reason: Int) {
-                                                        log_dTag(
-                                                            tag = TAG,
+                                                        TAG.log_dTag(
                                                             message = "热点异常 reason: $reason"
                                                         )
                                                         // 表示操作结束
@@ -207,15 +204,13 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 设置监听事件
         setListener(object : WifiReceiver.Listener {
             override fun onWifiSwitch(isOpenWifi: Boolean) { // Wifi 开关状态
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "Wifi 是否打开: $isOpenWifi"
                 )
             }
 
             override fun onIntoTrigger() {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "触发回调通知 ( 每次进入都通知 )"
                 )
             }
@@ -223,86 +218,72 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             override fun onTrigger(what: Int) {
                 when (what) {
                     WifiReceiver.WIFI_SCAN_FINISH -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "startScan() 扫描附近 Wifi 结束触发"
                         )
                     }
                     WifiReceiver.WIFI_RSSI_CHANGED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "已连接的 Wifi 强度发生变化"
                         )
                     }
                     WifiReceiver.WIFI_ERROR_AUTHENTICATING -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 认证错误 ( 密码错误等 )"
                         )
                     }
                     WifiReceiver.WIFI_ERROR_UNKNOWN -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接错误 ( 其他错误 )"
                         )
                     }
                     WifiReceiver.WIFI_STATE_ENABLED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 已打开"
                         )
                     }
                     WifiReceiver.WIFI_STATE_ENABLING -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 正在打开"
                         )
                     }
                     WifiReceiver.WIFI_STATE_DISABLED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 已关闭"
                         )
                     }
                     WifiReceiver.WIFI_STATE_DISABLING -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 正在关闭"
                         )
                     }
                     WifiReceiver.WIFI_STATE_UNKNOWN -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 状态未知"
                         )
                     }
                     WifiReceiver.CONNECTED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 连接成功"
                         )
                     }
                     WifiReceiver.CONNECTING -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 连接中"
                         )
                     }
                     WifiReceiver.DISCONNECTED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 连接失败、断开"
                         )
                     }
                     WifiReceiver.SUSPENDED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 暂停、延迟"
                         )
                     }
                     WifiReceiver.UNKNOWN -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "Wifi 未知"
                         )
                     }
@@ -316,32 +297,27 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 val ssid = message?.obj as? String
                 when (what) {
                     WifiReceiver.CONNECTED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接 Wifi 成功: $ssid"
                         )
                     }
                     WifiReceiver.CONNECTING -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接 Wifi 中: $ssid"
                         )
                     }
                     WifiReceiver.DISCONNECTED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接 Wifi 断开"
                         )
                     }
                     WifiReceiver.SUSPENDED -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接 Wifi 暂停、延迟"
                         )
                     }
                     WifiReceiver.UNKNOWN -> {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "连接 Wifi 状态未知"
                         )
                     }

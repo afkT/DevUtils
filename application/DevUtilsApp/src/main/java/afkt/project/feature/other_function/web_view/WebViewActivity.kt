@@ -38,8 +38,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 when (result.type) {
                     HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "SRC_IMAGE_ANCHOR_TYPE $imgUrl"
                         )
                         return@OnLongClickListener true
@@ -61,8 +60,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
             ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "加载完成"
                     )
                 }
@@ -117,8 +115,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 ) {
                     applyListener?.onApply(webViewAssist, builder)
                     // BaseApplication 也会打印 WebViewAssist Builder onApply
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "自定义监听"
                     )
                     // 全局配置或者自定义配置以外, 再次配置操作

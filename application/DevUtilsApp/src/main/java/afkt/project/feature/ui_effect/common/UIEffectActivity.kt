@@ -148,8 +148,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     tabItem: TabItem,
                     pos: Int
                 ) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "TabItem: %s, pos: %s",
                         args = arrayOf(tabItem.title, pos)
                     )
@@ -166,8 +165,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                         tabItem: TabItem,
                         pos: Int
                     ) {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "TabItem: %s, pos: %s",
                             args = arrayOf(tabItem.title, pos)
                         )

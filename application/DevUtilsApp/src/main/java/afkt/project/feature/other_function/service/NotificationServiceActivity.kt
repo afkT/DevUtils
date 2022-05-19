@@ -77,15 +77,13 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
         // 设置监听事件
         NotificationService.setListener(object : NotificationService.Listener {
             override fun onServiceCreated(service: NotificationService?) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "服务创建通知"
                 )
             }
 
             override fun onServiceDestroy() {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "服务销毁通知"
                 )
             }
@@ -101,8 +99,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                     .append("\nintent: ").append(intent)
                     .append("\nflags: ").append(flags)
                     .append("\nstartId: ").append(startId)
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = builder.toString()
                 )
                 return 0
@@ -120,8 +117,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                             builder.append(DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.get(key))
                         }
                     }
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = builder.toString()
                     )
                 }
@@ -131,8 +127,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                 val builder = StringBuilder()
                     .append("onNotificationRemoved")
                     .append("\nstatusBarNotification: ").append(sbn)
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = builder.toString()
                 )
             }

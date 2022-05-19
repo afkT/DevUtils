@@ -42,8 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
             override fun onFail(error: Throwable) {
-                log_eTag(
-                    tag = TAG,
+                TAG.log_eTag(
                     throwable = error,
                     message = "getNetTime"
                 )
@@ -60,8 +59,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ), object : IPermissionEngine.Callback {
                 override fun onGranted() {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "permission granted"
                     )
                 }
@@ -71,8 +69,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     deniedList: List<String>,
                     notFoundList: List<String>
                 ) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("permission")
                             append("\ngrantedList: ")

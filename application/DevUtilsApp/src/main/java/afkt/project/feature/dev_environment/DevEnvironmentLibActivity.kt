@@ -77,8 +77,7 @@ class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
                 val content = toString()
                 ToastTintUtils.normal(content)
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = content
                 )
             }

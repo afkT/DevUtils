@@ -39,8 +39,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         // 折叠状态, bottom sheets 只在底部显示一部分布局
                         // 显示高度可以通过 app:behavior_peekHeight 设置
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "STATE_COLLAPSED"
                         )
 
@@ -48,8 +47,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "STATE_DRAGGING"
                         )
 
@@ -57,8 +55,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         // 完全展开的状态
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "STATE_EXPANDED"
                         )
 
@@ -66,8 +63,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "STATE_HIDDEN"
                         )
 
@@ -75,8 +71,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
                         // 视图从脱离手指自由滑动到最终停下的这一小段时间
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "STATE_SETTLING"
                         )
                     }

@@ -232,8 +232,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "offset: $offset, limit: $limit"
         )
         // 请求数据

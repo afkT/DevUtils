@@ -75,8 +75,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         val currentPosition = (lastItemPosition + firstItemPosition) / 2
                         // 真实索引
                         val index = adapter.getRealIndex(currentPosition)
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "%s - %s 当前显示索引: %s - %s",
                             args = arrayOf(
                                 lastItemPosition,

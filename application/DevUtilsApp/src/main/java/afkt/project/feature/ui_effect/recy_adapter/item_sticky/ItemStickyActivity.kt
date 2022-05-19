@@ -52,8 +52,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
 
             override fun getGroupView(position: Int): View? {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = position.toString()
                 )
                 val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)

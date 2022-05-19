@@ -95,8 +95,7 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             TAG, "Log Engine 方法调用"
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "Log Engine 方法调用"
         )
 
@@ -117,9 +116,8 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             TAG, "多 Log Engine 方法调用"
         )
 
-        log_dTag(
+        TAG.log_dTag(
             engine = KEY,
-            tag = TAG,
             message = "多 Log Engine 方法调用"
         )
     }

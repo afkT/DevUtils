@@ -60,6 +60,6 @@ public final class TextCalcUse {
         builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
         builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
         // 打印日志
-        log_dTag(null, TAG, builder.toString());
+        log_dTag(TAG, null, builder.toString());
     }
 }

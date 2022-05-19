@@ -94,8 +94,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getInternal().appAudiobooksDir,
                                 ""
                             )
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = builder.toString()
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")
@@ -144,8 +143,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getAppExternal().appObbDir,
                                 ""
                             )
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = builder.toString()
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")
@@ -185,8 +183,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 PathUtils.getSDCard().audiobooksDir,
                                 ""
                             )
-                            log_dTag(
-                                tag = TAG,
+                            TAG.log_dTag(
                                 message = builder.toString()
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")

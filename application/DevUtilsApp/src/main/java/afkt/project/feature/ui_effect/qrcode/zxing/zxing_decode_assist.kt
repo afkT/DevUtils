@@ -59,8 +59,7 @@ class PreviewCallback(
                 mPreviewHandler = null
             }
         } else {
-            log_dTag(
-                tag = TAG,
+            TAG.log_dTag(
                 message = "Got preview callback, but no handler or resolution available"
             )
         }
@@ -116,16 +115,14 @@ class CaptureHandler(
         if (message.what == WHAT_RESTART_PREVIEW) {
             restartPreviewAndDecode()
         } else if (message.what == WHAT_DECODE_SUCCEEDED) { // 解析成功
-            log_dTag(
-                tag = TAG,
+            TAG.log_dTag(
                 message = "解析成功"
             )
             mState = State.SUCCESS
             val bundle = message.data
             mDecodeResult.handleDecode(message.obj as Result, bundle)
         } else if (message.what == WHAT_DECODE_FAILED) { // 解析失败 ( 解析不出来触发 )
-            log_dTag(
-                tag = TAG,
+            TAG.log_dTag(
                 message = "解析失败"
             )
             // 表示预览中
@@ -149,8 +146,7 @@ class CaptureHandler(
         handler: DecodeHandler?,
         message: Int
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "requestPreviewFrame"
         )
         val theCamera = mCameraAssist.camera
@@ -165,8 +161,7 @@ class CaptureHandler(
      * 重新设置预览以及解码处理
      */
     fun restartPreviewAndDecode() {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "restartPreviewAndDecode"
         )
         if (mState == State.SUCCESS) {
@@ -180,8 +175,7 @@ class CaptureHandler(
      * 同步退出解析处理
      */
     fun quitSynchronously() {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "退出扫描"
         )
         // 表示状态为默认
@@ -282,8 +276,7 @@ class ZXingDecodeAssist(
             // 停止预览
             mCameraAssist.stopPreview()
         } catch (e: Exception) {
-            log_eTag(
-                tag = TAG,
+            TAG.log_eTag(
                 throwable = e,
                 message = "stopPreview"
             )
@@ -305,16 +298,14 @@ class ZXingDecodeAssist(
                 // 设置监听
                 mCameraAssist.setPreviewNotify(object : PreviewNotify {
                     override fun stopPreviewNotify() {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "停止预览通知"
                         )
                         mPreviewCallback?.setHandler(null, 0)
                     }
 
                     override fun startPreviewNotify() {
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "开始预览通知"
                         )
                     }
@@ -339,8 +330,7 @@ class ZXingDecodeAssist(
                     )
                 }
             } catch (e: java.lang.Exception) {
-                log_eTag(
-                    tag = TAG,
+                TAG.log_eTag(
                     throwable = e,
                     message = "checkPermission startPreview"
                 )

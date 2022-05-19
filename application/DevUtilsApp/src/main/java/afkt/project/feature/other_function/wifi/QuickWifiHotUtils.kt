@@ -55,8 +55,7 @@ class QuickWifiHotUtils(
             }
             when (msg.what) {
                 CLOSE_WIFI_SUCCESS -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "hotHandler 关闭 Wifi 成功, 开启热点中"
                     )
                     // 停止线程检查
@@ -67,8 +66,7 @@ class QuickWifiHotUtils(
                     Thread(startWifiSpotThread).start()
                 }
                 START_WIFISPOT_SUCCESS -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "hotHandler 开启热点成功"
                     )
                     // 停止线程检查
@@ -79,8 +77,7 @@ class QuickWifiHotUtils(
                     Thread(hotCheckThread).start()
                 }
                 CHECK_HOT_CONN -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "hotHandler 检查是否连接热点"
                     )
                     // 判断是否存在设备连接热点
@@ -90,8 +87,7 @@ class QuickWifiHotUtils(
                         // 表示不需要进行检查了
                         mThreadCheckHot = false
                         // 通过获取是否存在其他设备 - 手机连接上该热点
-                        log_dTag(
-                            tag = TAG,
+                        TAG.log_dTag(
                             message = "存在设备连接热点"
                         )
                     }
@@ -155,23 +151,20 @@ class QuickWifiHotUtils(
                 WifiManager.WIFI_STATE_ENABLING -> {
                     // case WifiManager.WIFI_STATE_UNKNOWN: // 未知
                     isPostDelayed = true
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 已打开、正在打开"
                     )
                     wifiUtils.closeWifi() // 关闭 Wifi
                 }
                 WifiManager.WIFI_STATE_DISABLED -> {
                     isPostDelayed = false
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 已关闭"
                     )
                 }
                 WifiManager.WIFI_STATE_DISABLING -> {
                     isPostDelayed = true
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 正在关闭"
                     )
                 }
@@ -207,14 +200,12 @@ class QuickWifiHotUtils(
             val isPostDelayed = true
             when (wifiHotUtils.wifiApState) {
                 WifiHotUtils.WIFI_AP_STATE_DISABLING -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 热点正在关闭"
                     )
                 }
                 WifiHotUtils.WIFI_AP_STATE_DISABLED -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 热点已关闭"
                     )
                     // 开启热点
@@ -222,24 +213,20 @@ class QuickWifiHotUtils(
                     wifiHotUtils.startWifiAp(wifiConfiguration)
                 }
                 WifiHotUtils.WIFI_AP_STATE_ENABLING -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 热点正在打开"
                     )
                 }
                 WifiHotUtils.WIFI_AP_STATE_ENABLED -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi 热点已打开"
                     )
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "ssid: ${wifiHotUtils.apWifiSSID}, pwd: ${wifiHotUtils.apWifiSSID}"
                     )
                 }
                 WifiHotUtils.WIFI_AP_STATE_FAILED -> {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = "Wifi热点状态未知"
                     )
                 }
@@ -293,8 +280,7 @@ class QuickWifiHotUtils(
         ssid: String?,
         pwd: String?
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "openHotspot 开启热点 ssid: $ssid, pwd: $pwd"
         )
         mHotSSID = ssid

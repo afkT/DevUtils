@@ -147,8 +147,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
                     .setImageBitmap(it)
             }
         } catch (e: Exception) {
-            log_eTag(
-                tag = TAG,
+            TAG.log_eTag(
                 throwable = e,
                 message = "setFilter"
             )

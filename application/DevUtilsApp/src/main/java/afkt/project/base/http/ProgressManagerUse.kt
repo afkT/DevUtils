@@ -163,8 +163,7 @@ class ProgressManagerUse private constructor() {
                     }
                 }
                 if (progressId == progress.getId()) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("onStart - ").append(progress.getId())
                             append(", totalSize: ").append(progress.getTotalSize())
@@ -180,8 +179,7 @@ class ProgressManagerUse private constructor() {
              */
             override fun onProgress(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("onProgress - ").append(progress.getId())
                             append(", totalSize: ").append(progress.getTotalSize())
@@ -199,8 +197,7 @@ class ProgressManagerUse private constructor() {
              */
             override fun onError(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("onError - ").append(progress.getId())
                             append(", totalSize: ").append(progress.getTotalSize())
@@ -219,8 +216,7 @@ class ProgressManagerUse private constructor() {
              */
             override fun onFinish(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("onFinish - ").append(progress.getId())
                             append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
@@ -237,8 +233,7 @@ class ProgressManagerUse private constructor() {
              */
             override fun onEnd(progress: Progress) {
                 if (progressId == progress.getId()) {
-                    log_dTag(
-                        tag = TAG,
+                    TAG.log_dTag(
                         message = StringBuilder().apply {
                             append("onEnd - ").append(progress.getId())
                             append(", 网速: ").append(progress.getSpeed().getSpeedFormatSecond())
