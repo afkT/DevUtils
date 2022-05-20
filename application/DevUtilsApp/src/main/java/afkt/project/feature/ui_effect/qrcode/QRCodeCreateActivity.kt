@@ -83,13 +83,13 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        intent: Intent?
     ) {
-        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, intent)
         // 判断是否属于图片选择
-        if (resultCode == RESULT_OK && data != null) {
+        if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
+            val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
             // 获取图片 Bitmap
             selectBitmap = if (UriUtils.isUri(imgPath)) {
                 ImageUtils.decodeStream(

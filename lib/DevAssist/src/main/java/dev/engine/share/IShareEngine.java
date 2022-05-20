@@ -196,12 +196,12 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
      * @param context     {@link Context}
      * @param requestCode 请求 code
      * @param resultCode  resultCode
-     * @param data        {@link Intent}
+     * @param intent      {@link Intent}
      */
     void onActivityResult(
             Context context,
             int requestCode,
             int resultCode,
-            Intent data
+            Intent intent
     );
 }

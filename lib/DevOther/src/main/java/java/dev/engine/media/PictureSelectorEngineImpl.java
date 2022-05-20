@@ -192,8 +192,8 @@ public class PictureSelectorEngineImpl
     // =
 
     @Override
-    public List<LocalMediaData> getSelectors(Intent data) {
-        List<LocalMedia>     result = PictureSelector.obtainMultipleResult(data);
+    public List<LocalMediaData> getSelectors(Intent intent) {
+        List<LocalMedia>     result = PictureSelector.obtainMultipleResult(intent);
         List<LocalMediaData> lists  = new ArrayList<>();
         if (result != null) {
             for (LocalMedia localMedia : result) {
@@ -207,10 +207,10 @@ public class PictureSelectorEngineImpl
 
     @Override
     public List<String> getSelectorPaths(
-            Intent data,
+            Intent intent,
             boolean original
     ) {
-        List<LocalMediaData> result = getSelectors(data);
+        List<LocalMediaData> result = getSelectors(intent);
         List<String>         lists  = new ArrayList<>();
         if (result != null) {
             for (LocalMediaData media : result) {
@@ -224,18 +224,18 @@ public class PictureSelectorEngineImpl
     }
 
     @Override
-    public LocalMediaData getSingleSelector(Intent data) {
-        List<LocalMediaData> lists = getSelectors(data);
+    public LocalMediaData getSingleSelector(Intent intent) {
+        List<LocalMediaData> lists = getSelectors(intent);
         if (lists != null && lists.size() > 0) return lists.get(0);
         return null;
     }
 
     @Override
     public String getSingleSelectorPath(
-            Intent data,
+            Intent intent,
             boolean original
     ) {
-        List<String> lists = getSelectorPaths(data, original);
+        List<String> lists = getSelectorPaths(intent, original);
         if (lists != null && lists.size() > 0) return lists.get(0);
         return null;
     }

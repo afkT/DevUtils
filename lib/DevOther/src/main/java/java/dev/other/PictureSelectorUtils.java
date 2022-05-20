@@ -162,30 +162,30 @@ public final class PictureSelectorUtils {
      *     3.media.getCompressPath() 为压缩后 path 需判断 media.isCompressed() 是否为 true  注意: 音视频除外
      *     如果裁剪并压缩了, 以取压缩路径为准, 因为是先裁剪后压缩的
      * </pre>
-     * @param data {@link Intent}
+     * @param intent {@link Intent}
      * @return {@link List<LocalMedia>}
      */
-    public static List<LocalMedia> getLocalMedias(final Intent data) {
-        return (data != null) ? PictureSelector.obtainMultipleResult(data) : null;
+    public static List<LocalMedia> getLocalMedias(final Intent intent) {
+        return (intent != null) ? PictureSelector.obtainMultipleResult(intent) : null;
     }
 
     /**
      * 获取单独选中的资源
-     * @param data {@link Intent}
+     * @param intent {@link Intent}
      * @return {@link LocalMedia}
      */
-    public static LocalMedia getSingleMedia(final Intent data) {
-        List<LocalMedia> result = getLocalMedias(data);
+    public static LocalMedia getSingleMedia(final Intent intent) {
+        List<LocalMedia> result = getLocalMedias(intent);
         return (result.size() != 0) ? result.get(0) : null;
     }
 
     /**
      * 获取本地资源路径
-     * @param data {@link Intent}
+     * @param intent {@link Intent}
      * @return 本地资源路径
      */
-    public static String getLocalMediaPath(final Intent data) {
-        return getLocalMediaPath(getSingleMedia(data), false);
+    public static String getLocalMediaPath(final Intent intent) {
+        return getLocalMediaPath(getSingleMedia(intent), false);
     }
 
     /**
@@ -228,25 +228,25 @@ public final class PictureSelectorUtils {
 
     /**
      * 获取本地资源地址集合
-     * @param data {@link Intent}
+     * @param intent {@link Intent}
      * @return {@link List}
      */
-    public static List<String> getLocalMediaPaths(final Intent data) {
-        return getLocalMediaPaths(data, false);
+    public static List<String> getLocalMediaPaths(final Intent intent) {
+        return getLocalMediaPaths(intent, false);
     }
 
     /**
      * 获取本地资源地址集合
-     * @param data     {@link Intent}
+     * @param intent   {@link Intent}
      * @param original 是否使用原图地址
      * @return {@link List}
      */
     public static List<String> getLocalMediaPaths(
-            final Intent data,
+            final Intent intent,
             final boolean original
     ) {
         List<String>     lists  = new ArrayList<>();
-        List<LocalMedia> result = getLocalMedias(data);
+        List<LocalMedia> result = getLocalMedias(intent);
         if (result != null) {
             for (LocalMedia localMedia : result) {
                 String path = getLocalMediaPath(localMedia, original);

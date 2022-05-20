@@ -632,10 +632,10 @@ public final class PhoneUtils {
     /**
      * 打开手机联系人界面点击联系人后便获取该号码
      * <pre>
-     *     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-     *          super.onActivityResult(requestCode, resultCode, data);
-     *          if (data != null) {
-     *              Uri uri = data.getData();
+     *     protected void onActivityResult (int requestCode, int resultCode, Intent intent) {
+     *          super.onActivityResult(requestCode, resultCode, intent);
+     *          if (intent != null) {
+     *              Uri uri = intent.getData();
      *              String num = null;
      *              // 创建内容解析者
      *              ContentResolver resolver = getContentResolver();

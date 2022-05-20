@@ -74,14 +74,14 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        intent: Intent?
     ) {
-        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, intent)
         // 判断是否属于图片选择
-        if (resultCode == RESULT_OK && data != null) {
+        if (resultCode == RESULT_OK && intent != null) {
             MainScope().launch {
                 // 获取图片地址
-                val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
+                val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
 
                 val source = if (UriUtils.isUri(imgPath)) {
                     DevSource.create(UriUtils.getUriForString(imgPath))

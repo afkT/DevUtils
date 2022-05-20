@@ -192,37 +192,37 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
 
     /**
      * 获取 Media Selector Data List
-     * @param data onActivityResult Intent data
+     * @param intent onActivityResult Intent data
      * @return Media Selector Data List
      */
-    List<Data> getSelectors(Intent data);
+    List<Data> getSelectors(Intent intent);
 
     /**
      * 获取 Media Selector Path List
-     * @param data     onActivityResult Intent data
+     * @param intent   onActivityResult Intent data
      * @param original 是否使用原图地址
      * @return Media Selector Path List
      */
     List<String> getSelectorPaths(
-            Intent data,
+            Intent intent,
             boolean original
     );
 
     /**
      * 获取 Single Media Selector Data
-     * @param data onActivityResult Intent data
+     * @param intent onActivityResult Intent data
      * @return Single Media Selector Data
      */
-    Data getSingleSelector(Intent data);
+    Data getSingleSelector(Intent intent);
 
     /**
      * 获取 Single Media Selector Path
-     * @param data     onActivityResult Intent data
+     * @param intent   onActivityResult Intent data
      * @param original 是否使用原图地址
      * @return Single Media Selector Path
      */
     String getSingleSelectorPath(
-            Intent data,
+            Intent intent,
             boolean original
     );
 }

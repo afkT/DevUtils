@@ -150,7 +150,7 @@ object PictureSelectorUtils {
 
     /**
      * 获取选中的资源集合
-     * @param data [Intent]
+     * @param intent [Intent]
      * @return List<LocalMedia>?
      * 图片、视频、音频选择结果回调
      * List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data)
@@ -160,17 +160,17 @@ object PictureSelectorUtils {
      * 3.media.getCompressPath() 为压缩后 path 需判断 media.isCompressed() 是否为 true  注意: 音视频除外
      * 如果裁剪并压缩了, 以取压缩路径为准, 因为是先裁剪后压缩的
      */
-    fun getLocalMedias(data: Intent?): List<LocalMedia?> {
-        return PictureSelector.obtainMultipleResult(data)
+    fun getLocalMedias(intent: Intent?): List<LocalMedia?> {
+        return PictureSelector.obtainMultipleResult(intent)
     }
 
     /**
      * 获取单独选中的资源
-     * @param data [Intent]
+     * @param intent [Intent]
      * @return [LocalMedia]
      */
-    fun getSingleMedia(data: Intent?): LocalMedia? {
-        getLocalMedias(data).let {
+    fun getSingleMedia(intent: Intent?): LocalMedia? {
+        getLocalMedias(intent).let {
             if (it.isNotEmpty()) return it[0]
         }
         return null
@@ -178,11 +178,11 @@ object PictureSelectorUtils {
 
     /**
      * 获取本地资源路径
-     * @param data [Intent]
+     * @param intent [Intent]
      * @return 本地资源路径
      */
-    fun getLocalMediaPath(data: Intent?): String? {
-        return getLocalMediaPath(getSingleMedia(data), false)
+    fun getLocalMediaPath(intent: Intent?): String? {
+        return getLocalMediaPath(getSingleMedia(intent), false)
     }
 
     /**
@@ -225,25 +225,25 @@ object PictureSelectorUtils {
 
     /**
      * 获取本地资源地址集合
-     * @param data [Intent]
+     * @param intent [Intent]
      * @return [List]
      */
-    fun getLocalMediaPaths(data: Intent?): List<String?> {
-        return getLocalMediaPaths(data, false)
+    fun getLocalMediaPaths(intent: Intent?): List<String?> {
+        return getLocalMediaPaths(intent, false)
     }
 
     /**
      * 获取本地资源地址集合
-     * @param data     [Intent]
+     * @param intent     [Intent]
      * @param original 是否使用原图地址
      * @return [List]
      */
     fun getLocalMediaPaths(
-        data: Intent?,
+        intent: Intent?,
         original: Boolean
     ): List<String?> {
         val lists: MutableList<String?> = ArrayList()
-        val result = getLocalMedias(data)
+        val result = getLocalMedias(intent)
         for (localMedia in result) {
             val path = getLocalMediaPath(localMedia, original)
             lists.add(path)

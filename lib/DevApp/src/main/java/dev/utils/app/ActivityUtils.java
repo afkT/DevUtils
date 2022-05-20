@@ -652,12 +652,12 @@ public final class ActivityUtils {
          * 回传处理
          * @param result     resultCode 是否等于 {@link Activity#RESULT_OK}
          * @param resultCode resultCode
-         * @param data       回传数据
+         * @param intent     回传数据
          */
         void onActivityResult(
                 boolean result,
                 int resultCode,
-                Intent data
+                Intent intent
         );
     }
 
@@ -729,13 +729,13 @@ public final class ActivityUtils {
         protected void onActivityResult(
                 int requestCode,
                 int resultCode,
-                Intent data
+                Intent intent
         ) {
-            super.onActivityResult(requestCode, resultCode, data);
+            super.onActivityResult(requestCode, resultCode, intent);
             if (mCallback != null) {
                 mCallback.onActivityResult(
                         resultCode == Activity.RESULT_OK,
-                        resultCode, data
+                        resultCode, intent
                 );
             }
             finish();

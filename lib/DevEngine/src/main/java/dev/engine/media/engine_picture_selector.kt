@@ -362,9 +362,9 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
 
     // =
 
-    override fun getSelectors(data: Intent?): MutableList<LocalMediaData> {
+    override fun getSelectors(intent: Intent?): MutableList<LocalMediaData> {
         val lists: MutableList<LocalMediaData> = ArrayList()
-        val result = PictureSelector.obtainMultipleResult(data)
+        val result = PictureSelector.obtainMultipleResult(intent)
         result.forEach {
             it?.let { localMedia ->
                 lists.add(LocalMediaData(localMedia))
@@ -374,11 +374,11 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     }
 
     override fun getSelectorPaths(
-        data: Intent?,
+        intent: Intent?,
         original: Boolean
     ): MutableList<String> {
         val lists: MutableList<String> = ArrayList()
-        val result = getSelectors(data)
+        val result = getSelectors(intent)
         result.forEach { media ->
             media.getLocalMediaPath(original)?.apply {
                 lists.add(this)
@@ -387,16 +387,16 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return lists
     }
 
-    override fun getSingleSelector(data: Intent?): LocalMediaData? {
-        val lists = getSelectors(data)
+    override fun getSingleSelector(intent: Intent?): LocalMediaData? {
+        val lists = getSelectors(intent)
         return if (lists.size > 0) lists[0] else null
     }
 
     override fun getSingleSelectorPath(
-        data: Intent?,
+        intent: Intent?,
         original: Boolean
     ): String? {
-        val lists = getSelectorPaths(data, original)
+        val lists = getSelectorPaths(intent, original)
         return if (lists.size > 0) lists[0] else null
     }
 

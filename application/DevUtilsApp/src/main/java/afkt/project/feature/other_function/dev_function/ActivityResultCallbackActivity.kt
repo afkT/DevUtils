@@ -40,10 +40,10 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                 override fun onActivityResult(
                     result: Boolean,
                     resultCode: Int,
-                    data: Intent?
+                    intent: Intent?
                 ) {
-                    if (result && data != null) {
-                        val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
+                    if (result && intent != null) {
+                        val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
                         // 提示
                         ToastTintUtils.success("选择了图片: $imgPath")
                     } else {
