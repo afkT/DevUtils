@@ -184,6 +184,11 @@ ext {
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
             ],
             "lib"       : [
+
+                    // =================
+                    // = 第三方快捷开发库 =
+                    // =================
+
                     // Gson https://github.com/google/gson
                     gson                                : "com.google.code.gson:gson:2.9.0",
                     // Glide 图片加载框架 https://github.com/bumptech/glide
@@ -317,15 +322,22 @@ ext {
                     // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
             ],
             "build_apk" : [
-                    // APK 构建、打包相关 ( 多渠道、压缩等 )
+
+                    // ===================================
+                    // = APK 构建、打包相关 ( 多渠道、压缩等 ) =
+                    // ===================================
 
                     // 瓦力多渠道打包 https://github.com/Meituan-Dianping/walle
                     walle    : "com.meituan.android.walle:library:1.1.7",
+                    // https://mvnrepository.com/artifact/com.tencent.vasdolly/helper
                     // VasDolly 多渠道打包 https://github.com/Tencent/VasDolly
-                    vas_dolly: "com.leon.channel:helper:3.0.3",
+                    vas_dolly: "com.tencent.vasdolly:helper:3.0.4",
             ],
             "widget"    : [
-                    // 第三方简约小功能、UI 小组件等
+
+                    // ============================
+                    // = 第三方简约小功能、UI 小组件等 =
+                    // ============================
 
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                        : "jp.co.cyberagent.android:gpuimage:2.1.0",

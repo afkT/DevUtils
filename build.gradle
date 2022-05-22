@@ -48,11 +48,11 @@ buildscript {
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.6.21"
         // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
         classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
-        // 华为推送所需
-        classpath "com.huawei.agconnect:agcp:1.6.0.300"
+        // 华为推送所需 https://mvnrepository.com/artifact/com.huawei.agconnect/agcp
+        classpath "com.huawei.agconnect:agcp:1.6.5.300"
     }
 }
 
