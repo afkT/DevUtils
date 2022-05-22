@@ -269,9 +269,9 @@ ext {
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
                     aria_core                           : "me.laoyuyu.aria:core:3.8.16",
                     aria_compiler                       : "me.laoyuyu.aria:compiler:3.8.16",
-                    aria_ftp                            : "me.laoyuyu.aria:ftp:3.8.16", // 如果需要使用 ftp, 请增加该组件
-                    aria_sftp                           : "me.laoyuyu.aria:sftp:3.8.16", // 如果需要使用 ftp, 请增加该组件
-                    aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16", // 如果需要使用 m3u8, 请增加该组件
+                    aria_ftp                            : "me.laoyuyu.aria:ftp:3.8.16", // 如果需要使用 ftp 请增加该组件
+                    aria_sftp                           : "me.laoyuyu.aria:sftp:3.8.16", // 如果需要使用 ftp 请增加该组件
+                    aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16", // 如果需要使用 m3u8 请增加该组件
                     // https://mvnrepository.com/artifact/com.google.zxing/core
                     // https://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 二维码 ZXing https://github.com/zxing/zxing
@@ -305,7 +305,7 @@ ext {
 
                     // https://mvnrepository.com/artifact/com.alibaba/arouter-api
                     // https://mvnrepository.com/artifact/com.alibaba/arouter-compiler
-                    // // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api                         : "com.alibaba:arouter-api:1.5.2",
                     arouter_compiler                    : "com.alibaba:arouter-compiler:1.5.2",
@@ -372,7 +372,7 @@ ext {
 
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
 
-                    // 滴滴出行 DoraemonKit http://www.dokit.cn
+                    // 滴滴出行 DoraemonKit https://www.dokit.cn
 
                     // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
 
@@ -396,56 +396,66 @@ ext {
                     // = 第三方简约小功能、UI 小组件等 =
                     // ============================
 
+                    // https://mvnrepository.com/artifact/jp.co.cyberagent.android/gpuimage
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                        : "jp.co.cyberagent.android:gpuimage:2.1.0",
+                    // https://mvnrepository.com/artifact/com.tt/whorlviewlibrary
                     // 加载动画效果 https://github.com/Kyson/WhorlView
                     whorlviewlibrary                : "com.tt:whorlviewlibrary:1.0.3",
+                    // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView
+                    // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-                    pickerview                      : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
+                    pickerview                      : "com.contrarywind:Android-PickerView:4.1.9",
+                    // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
                     photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
+                    // https://mvnrepository.com/artifact/com.github.donkingliang/ConsecutiveScroller
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.6.1", // AndroidX
+                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.6.1",
+                    // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
+                    // https://blog.csdn.net/ww897532167/article/details/74171294
                     // 图表 https://github.com/PhilJay/MPAndroidChart
-                    mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0", // https://blog.csdn.net/ww897532167/article/details/74171294
+                    mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+                    // https://mvnrepository.com/artifact/io.github.youth5201314/banner
                     // Banner 库 https://github.com/youth5201314/banner
                     banner                          : "io.github.youth5201314:banner:2.2.2",
+                    // https://mvnrepository.com/artifact/com.haibin/calendarview
                     // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
                     calendarview                    : "com.haibin:calendarview:3.7.1",
+                    // https://mvnrepository.com/artifact/com.github.yalantis/ucrop
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
-                    ucrop                           : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
-                    ucrop_native                    : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
+                    ucrop                           : "com.github.yalantis:ucrop:2.2.8", // 轻量级通用解决方案
+                    ucrop_native                    : "com.github.yalantis:ucrop:2.2.8-native", // 支持本机功能
+                    // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
                     stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
-//                    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-//                    smartrefreshlayout              : "io.github.scwang90:refresh-layout-kernel:2.0.3",
-//                    smartrefresh_header_classics    : "io.github.scwang90:refresh-header-classics:2.0.3", // 经典刷新头
-//                    smartrefresh_header_radar       : "io.github.scwang90:refresh-header-radar:2.0.3", // 雷达刷新头
-//                    smartrefresh_header_falsify     : "io.github.scwang90:refresh-header-falsify:2.0.3", // 虚拟刷新头
-//                    smartrefresh_header_material    : "io.github.scwang90:refresh-header-material:2.0.3", // 谷歌刷新头
-//                    smartrefresh_header_two_level   : "io.github.scwang90:refresh-header-two-level:2.0.3", // 二级刷新头
-//                    smartrefresh_footer_ball        : "io.github.scwang90:refresh-footer-ball:2.0.3", // 球脉冲加载
-//                    smartrefresh_footer_classics    : "io.github.scwang90:refresh-footer-classics:2.0.3", // 经典加载
-//                    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
-//                    smartrefreshHorizontal          : "io.github.scwang90:refresh-layout-horizontal:2.0.0",
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-layout-kernel
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-classics
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-radar
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-falsify
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-material
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-two-level
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-ball
+                    // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-classics
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-                    smartrefreshlayout              : "com.scwang.smart:refresh-layout-kernel:2.0.3",
-                    smartrefresh_header_classics    : "com.scwang.smart:refresh-header-classics:2.0.3", // 经典刷新头
-                    smartrefresh_header_radar       : "com.scwang.smart:refresh-header-radar:2.0.3", // 雷达刷新头
-                    smartrefresh_header_falsify     : "com.scwang.smart:refresh-header-falsify:2.0.3", // 虚拟刷新头
-                    smartrefresh_header_material    : "com.scwang.smart:refresh-header-material:2.0.3", // 谷歌刷新头
-                    smartrefresh_header_two_level   : "com.scwang.smart:refresh-header-two-level:2.0.3", // 二级刷新头
-                    smartrefresh_footer_ball        : "com.scwang.smart:refresh-footer-ball:2.0.3", // 球脉冲加载
-                    smartrefresh_footer_classics    : "com.scwang.smart:refresh-footer-classics:2.0.3", // 经典加载
-                    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
-                    smartrefreshHorizontal          : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
+                    smartrefreshlayout              : "io.github.scwang90:refresh-layout-kernel:2.0.5",
+                    smartrefresh_header_classics    : "io.github.scwang90:refresh-header-classics:2.0.5", // 经典刷新头
+                    smartrefresh_header_radar       : "io.github.scwang90:refresh-header-radar:2.0.5", // 雷达刷新头
+                    smartrefresh_header_falsify     : "io.github.scwang90:refresh-header-falsify:2.0.5", // 虚拟刷新头
+                    smartrefresh_header_material    : "io.github.scwang90:refresh-header-material:2.0.5", // 谷歌刷新头
+                    smartrefresh_header_two_level   : "io.github.scwang90:refresh-header-two-level:2.0.5", // 二级刷新头
+                    smartrefresh_footer_ball        : "io.github.scwang90:refresh-footer-ball:2.0.5", // 球脉冲加载
+                    smartrefresh_footer_classics    : "io.github.scwang90:refresh-footer-classics:2.0.5", // 经典加载
+                    // https://mvnrepository.com/artifact/com.github.CymChad/BaseRecyclerViewAdapterHelper
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
+                    // https://mvnrepository.com/artifact/com.drakeet.multitype/multitype
                     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
                     multitype                       : "com.drakeet.multitype:multitype:4.3.0",
+                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
                     // QMUI Android https://qmuiteam.com/android
-                    qmui                            : "com.qmuiteam:qmui:2.0.0-alpha10",
+                    qmui                            : "com.qmuiteam:qmui:2.1.0",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
