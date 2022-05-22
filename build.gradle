@@ -37,22 +37,22 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.2.0'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.6.21"
         // ARouter AutoRegister
         classpath "com.alibaba:arouter-register:1.0.2"
         // greendao
         classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
-        // Hilt 依赖注入 https://mvnrepository.com/artifact/com.google.dagger/hilt-android-gradle-plugin
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
+        // 华为推送所需 https://mvnrepository.com/artifact/com.huawei.agconnect/agcp
+        classpath "com.huawei.agconnect:agcp:1.6.5.300"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
-        // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.6.21"
         // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
-        classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
-        // 华为推送所需 https://mvnrepository.com/artifact/com.huawei.agconnect/agcp
-        classpath "com.huawei.agconnect:agcp:1.6.5.300"
+        //classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
+        // Hilt 依赖注入 https://mvnrepository.com/artifact/com.google.dagger/hilt-android-gradle-plugin
+        //classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
     }
 }
 
