@@ -41,8 +41,8 @@ buildscript {
         classpath "com.alibaba:arouter-register:1.0.2"
         // greendao
         classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
-        // Hilt 依赖注入
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40.5"
+        // Hilt 依赖注入 https://mvnrepository.com/artifact/com.google.dagger/hilt-android-gradle-plugin
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
