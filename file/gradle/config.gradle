@@ -85,22 +85,22 @@ ext {
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     core                          : "androidx.core:core-ktx:1.7.0",
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1",
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle#declaring_dependencies
                     // Lifecycles only (without ViewModel or LiveData)
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.4.0",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.4.1",
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime                  : "androidx.room:room-runtime:2.4.1",
-                    room_compiler                 : "androidx.room:room-compiler:2.4.1",
-                    room_ktx                      : "androidx.room:room-ktx:2.4.1",
+                    room_runtime                  : "androidx.room:room-runtime:2.4.2",
+                    room_compiler                 : "androidx.room:room-compiler:2.4.2",
+                    room_ktx                      : "androidx.room:room-ktx:2.4.2",
                     // WorkManager Kotlin + coroutines
                     work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.7.1",
                     // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
@@ -270,6 +270,7 @@ ext {
                     matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${ext.matrix_version}",
                     matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${ext.matrix_version}",
                     matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${ext.matrix_version}",
+                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:${ext.matrix_version}",
 
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
 
