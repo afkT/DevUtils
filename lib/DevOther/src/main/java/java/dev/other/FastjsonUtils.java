@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.util.ParameterizedTypeImpl;
 
 import java.lang.reflect.GenericArrayType;
@@ -151,9 +152,9 @@ public final class FastjsonUtils {
                 // 保持 JSON 字符串次序
                 Object object = JSON.parse(json, Feature.OrderedField);
                 if (object instanceof JSONObject) {
-                    return JSONObject.toJSONString(object, true);
+                    return JSONObject.toJSONString(object, SerializerFeature.PrettyFormat);
                 } else if (object instanceof JSONArray) {
-                    return JSONArray.toJSONString(object, true);
+                    return JSONArray.toJSONString(object, SerializerFeature.PrettyFormat);
                 }
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent");
