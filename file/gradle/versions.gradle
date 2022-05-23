@@ -8,7 +8,7 @@ ext {
             // 支持最小的 SDK
             lib_minSdkVersion                        : 14,
             // 支持最小的 SDK
-            app_minSdkVersion                        : 21,
+            app_minSdkVersion                        : 26,
             // Lib 编译 SDK 版本
             lib_compileSdkVersion                    : 32,
             // 编译 SDK 版本
