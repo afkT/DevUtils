@@ -273,9 +273,9 @@ ext {
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
                     aria_core                           : "me.laoyuyu.aria:core:3.8.16",
                     aria_compiler                       : "me.laoyuyu.aria:compiler:3.8.16",
-                    aria_ftp                            : "me.laoyuyu.aria:ftp:3.8.16", // 如果需要使用 ftp 请增加该组件
-                    aria_sftp                           : "me.laoyuyu.aria:sftp:3.8.16", // 如果需要使用 ftp 请增加该组件
-                    aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16", // 如果需要使用 m3u8 请增加该组件
+                    aria_ftp                            : "me.laoyuyu.aria:ftp:3.8.16",
+                    aria_sftp                           : "me.laoyuyu.aria:sftp:3.8.16",
+                    aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16",
                     // https://mvnrepository.com/artifact/com.google.zxing/core
                     // https://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 二维码 ZXing https://github.com/zxing/zxing
@@ -430,7 +430,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.yalantis/ucrop
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
                     ucrop                           : "com.github.yalantis:ucrop:2.2.8", // 轻量级通用解决方案
-                    ucrop_native                    : "com.github.yalantis:ucrop:2.2.8-native", // 支持本机功能
+                    ucrop_native                    : "com.github.yalantis:ucrop:2.2.8-native", // 手机原生功能支持
                     // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
                     stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
