@@ -30,8 +30,8 @@ dependencies {
     api deps.lib.glide_transformations
     // Gson https://github.com/google/gson
     api deps.lib.gson
-    // Fastjson https://github.com/alibaba/fastjson
-    api deps.lib.fastjson
+    // Fastjson2 https://github.com/alibaba/fastjson2
+    api deps.lib.fastjson2
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     api deps.lib.mmkv
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector

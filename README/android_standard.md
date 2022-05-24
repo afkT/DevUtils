@@ -944,7 +944,7 @@ Android 开发存在着众多版本的不同，比如 `compileSdkVersion`、`min
 * **[RxAndroid][RxAndroid]**
 * **[OkHttp][OkHttp]**
 * **[Glide][Glide]**/**[Fresco][Fresco]**
-* **[Gson][Gson]**/**[Fastjson][Fastjson]**
+* **[Gson][Gson]**/**[Fastjson][Fastjson]、[Fastjson2][Fastjson2]**
 * **[EventBus][EventBus]**/**[AndroidEventBus][AndroidEventBus]**
 * **[GreenDao][GreenDao]**
 * **[Dagger2][Dagger2]**（选用）
@@ -1270,6 +1270,7 @@ AS 已帮你集成了一些注释模板，我们只需要直接使用即可，�
 [Fresco]: https://github.com/facebook/fresco
 [Gson]: https://github.com/google/gson
 [Fastjson]: https://github.com/alibaba/fastjson
+[Fastjson2]: https://github.com/alibaba/fastjson2
 [EventBus]: https://github.com/greenrobot/EventBus
 [AndroidEventBus]: https://github.com/bboyfeiyu/AndroidEventBus
 [GreenDao]: https://github.com/greenrobot/greenDAO

@@ -93,7 +93,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * 依赖 [Gson](https://github.com/google/gson)
   实现 [GsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/json/engine_gson.kt)
 
-* 依赖 [Fastjson](https://github.com/alibaba/fastjson)
+* 依赖 [Fastjson2](https://github.com/alibaba/fastjson2)
   实现 [FastjsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/json/engine_fastjson.kt)
 
 

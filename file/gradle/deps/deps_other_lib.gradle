@@ -27,8 +27,8 @@ dependencies {
     implementation deps.lib.auto_dispose_lifecycle
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
-    // Fastjson https://github.com/alibaba/fastjson
-    implementation deps.lib.fastjson
+    // Fastjson2 https://github.com/alibaba/fastjson2
+    implementation deps.lib.fastjson2
     // Glide 图片加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     kapt deps.lib.glide_compiler
