@@ -9,8 +9,8 @@ import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
-import dev.utils.app.ActivityUtils
 import dev.utils.app.AppUtils
+import dev.utils.app.activity_result.DefaultActivityResult
 import dev.utils.app.toast.ToastTintUtils
 
 /**
@@ -25,7 +25,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
     override fun initListener() {
         super.initListener()
         binding.vidSelectBtn.setOnClickListener {
-            AppUtils.startActivityForResult(object : ActivityUtils.ResultCallback {
+            AppUtils.startActivityForResult(object : DefaultActivityResult.ResultCallback {
                 override fun onStartActivityForResult(activity: Activity): Boolean {
                     // 初始化图片配置
                     val config = MediaConfig()

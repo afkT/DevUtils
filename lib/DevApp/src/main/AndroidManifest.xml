@@ -13,7 +13,7 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <activity
-            android:name="dev.utils.app.ActivityUtils$ResultActivity"
+            android:name="dev.utils.app.activity_result.DefaultActivityResult$ResultActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:multiprocess="true"

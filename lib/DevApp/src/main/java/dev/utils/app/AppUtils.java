@@ -49,6 +49,7 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.activity_result.DefaultActivityResult;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
@@ -1206,8 +1207,8 @@ public final class AppUtils {
      * @param callback Activity 跳转回传回调
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivityForResult(final ActivityUtils.ResultCallback callback) {
-        return ActivityUtils.startActivityForResult(callback);
+    public static boolean startActivityForResult(final DefaultActivityResult.ResultCallback callback) {
+        return ActivityResultUtils.getDefault().startActivityForResult(callback);
     }
 
     /**
