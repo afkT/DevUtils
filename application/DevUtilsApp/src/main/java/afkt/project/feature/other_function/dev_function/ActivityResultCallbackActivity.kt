@@ -42,10 +42,14 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     resultCode: Int,
                     intent: Intent?
                 ) {
-                    if (result && intent != null) {
-                        val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
-                        // 提示
-                        ToastTintUtils.success("选择了图片: $imgPath")
+                    val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
+                    if (imgPath != null) {
+                        Thread {
+                            Thread.sleep(100L)
+                            // 延迟 100 毫秒是防止 Activity 销毁对应的 Toast 显示在已销毁的 Activity
+                            // 导致实际预览效果 Toast 并没有显示
+                            ToastTintUtils.success("选择了图片: $imgPath")
+                        }.start()
                     } else {
                         showToast(false, "非成功操作")
                     }
