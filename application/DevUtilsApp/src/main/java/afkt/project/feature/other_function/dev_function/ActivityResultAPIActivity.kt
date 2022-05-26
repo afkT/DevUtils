@@ -15,7 +15,6 @@ import dev.kotlin.engine.log.log_dTag
 import dev.kotlin.engine.permission.permission_againRequest
 import dev.kotlin.engine.permission.permission_request
 import dev.kotlin.utils.toSource
-import dev.utils.DevFinal
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.activity_result.ActivityResultAssist
 import dev.utils.app.toast.ToastTintUtils
@@ -36,8 +35,7 @@ class ActivityResultAPIActivity : BaseActivity<ActivityActivityResultApiBinding>
                 permissions = arrayOf(Manifest.permission.CAMERA),
                 callback = object : IPermissionEngine.Callback {
                     override fun onGranted() {
-                        takeUri = MediaStoreUtils.createImageUri()
-                        mAssist.launch(takeUri)
+                        mAssist.launch(MediaStoreUtils.createImageUri())
                     }
 
                     override fun onDenied(
@@ -57,12 +55,15 @@ class ActivityResultAPIActivity : BaseActivity<ActivityActivityResultApiBinding>
         }
     }
 
-    // 生成拍照存储 Uri
-    var takeUri: Uri? = null
+    private fun getAssist(): ActivityResultAssist<Uri, Boolean> {
+        return mAssist
+    }
 
-    val mAssist = ActivityResultAssist(this, ActivityResultContracts.TakePicture()) {
+    private val mAssist: ActivityResultAssist<Uri, Boolean> = ActivityResultAssist(
+        this, ActivityResultContracts.TakePicture()
+    ) {
         if (it) {
-            binding.vidIv.display(source = takeUri?.toSource())
+            binding.vidIv.display(source = getAssist().inputValue?.toSource())
         } else {
             ToastTintUtils.warning("没有进行拍照")
         }
@@ -73,35 +74,26 @@ class ActivityResultAPIActivity : BaseActivity<ActivityActivityResultApiBinding>
         // ======================================
 
         override fun onStart(
+            assist: ActivityResultAssist<Uri, *>,
             type: Int,
             input: Uri?,
             options: ActivityOptionsCompat?
         ) {
-            super.onStart(type, input, options)
-
             TAG.log_dTag(
-                message = "开始调用 ${getMethod(type)} 方法前"
+                message = "开始调用 ${ActivityResultAssist.getMethodType(type)} 方法前"
             )
         }
 
         override fun onState(
+            assist: ActivityResultAssist<Uri, *>,
             type: Int,
             input: Uri?,
             options: ActivityOptionsCompat?,
             result: Boolean
         ) {
             TAG.log_dTag(
-                message = "调用 ${getMethod(type)} 方法后, 调用结果: $result"
+                message = "调用 ${ActivityResultAssist.getMethodType(type)} 方法后, 调用结果: $result"
             )
         }
     })
-
-    private fun getMethod(type: Int): String {
-        return when (type) {
-            ActivityResultAssist.LAUNCH -> "launch()"
-            ActivityResultAssist.LAUNCH_OPTIONS -> "launch(options)"
-            ActivityResultAssist.UNREGISTER -> "unregister()"
-            else -> DevFinal.STR.UNKNOWN
-        }
-    }
 }

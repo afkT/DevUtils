@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import dev.utils.DevFinal;
 import dev.utils.app.ActivityResultUtils;
 
 /**
@@ -47,14 +48,18 @@ import dev.utils.app.ActivityResultUtils;
 public final class ActivityResultAssist<I, O>
         extends ActivityResultLauncher<I> {
 
+    public static final int LAUNCH         = 1;
+    public static final int LAUNCH_OPTIONS = 2;
+    public static final int UNREGISTER     = 3;
+
     // 跳转回传值启动器
     private ActivityResultLauncher<I> mLauncher;
     // 操作回调
     private OperateCallback<I>        mCallback;
-
-    public static final int LAUNCH         = 1;
-    public static final int LAUNCH_OPTIONS = 2;
-    public static final int UNREGISTER     = 3;
+    // 启动输入参数
+    private I                         inputValue;
+    // Activity 启动选项
+    private ActivityOptionsCompat     optionsValue;
 
     // =============
     // = 对外公开方法 =
@@ -86,18 +91,76 @@ public final class ActivityResultAssist<I, O>
         return this;
     }
 
+    /**
+     * 获取启动输入参数值
+     * @return 启动输入参数值
+     */
+    public I getInputValue() {
+        return inputValue;
+    }
+
+    /**
+     * 获取 Activity 启动选项值
+     * @return Activity 启动选项值
+     */
+    public ActivityOptionsCompat getOptionsValue() {
+        return optionsValue;
+    }
+
+    /**
+     * 获取对应 Type 所属方法
+     * @param type method Type
+     * @return Type 所属方法
+     */
+    public static String getMethodType(final int type) {
+        switch (type) {
+            case ActivityResultAssist.LAUNCH:
+                return "launch()";
+            case ActivityResultAssist.LAUNCH_OPTIONS:
+                return "launch(options)";
+            case ActivityResultAssist.UNREGISTER:
+                return "unregister()";
+            default:
+                return DevFinal.STR.UNKNOWN;
+        }
+    }
+
+    // ==========
+    // = 内部方法 =
+    // ==========
+
+    /**
+     * 内部设置值
+     * <pre>
+     *     每次调用 launch 方法都会重置值
+     *     不能保证结果回调就是对应的 input value
+     *     可设置双击校验防止多次调用
+     * </pre>
+     * @param input   启动输入参数
+     * @param options Activity 启动选项
+     */
+    private void set(
+            final I input,
+            final ActivityOptionsCompat options
+    ) {
+        this.inputValue   = input;
+        this.optionsValue = options;
+    }
+
     // ==========================
     // = ActivityResultLauncher =
     // ==========================
 
     @Override
     public void launch(final I input) {
+        set(input, null);
+
         if (mCallback != null) {
-            mCallback.onStart(LAUNCH, input, null);
+            mCallback.onStart(this, LAUNCH, input, null);
         }
         boolean result = ActivityResultUtils.launch(mLauncher, input);
         if (mCallback != null) {
-            mCallback.onState(LAUNCH, input, null, result);
+            mCallback.onState(this, LAUNCH, input, null, result);
         }
     }
 
@@ -106,26 +169,29 @@ public final class ActivityResultAssist<I, O>
             final I input,
             final ActivityOptionsCompat options
     ) {
+        set(input, options);
+
         if (mCallback != null) {
-            mCallback.onStart(LAUNCH_OPTIONS, input, options);
+            mCallback.onStart(this, LAUNCH_OPTIONS, input, options);
         }
         boolean result = ActivityResultUtils.launch(mLauncher, input, options);
         if (mCallback != null) {
-            mCallback.onState(LAUNCH_OPTIONS, input, options, result);
+            mCallback.onState(this, LAUNCH_OPTIONS, input, options, result);
         }
     }
 
     @Override
     public void unregister() {
         if (mCallback != null) {
-            mCallback.onStart(UNREGISTER, null, null);
+            mCallback.onStart(this, UNREGISTER, null, null);
         }
         boolean result = ActivityResultUtils.unregister(mLauncher);
         if (mCallback != null) {
-            mCallback.onState(UNREGISTER, null, null, result);
+            mCallback.onState(this, UNREGISTER, null, null, result);
         }
         // 注销后调用 launch 将会失效
         mLauncher = null;
+        set(null, null);
     }
 
     @NonNull
@@ -146,11 +212,13 @@ public final class ActivityResultAssist<I, O>
 
         /**
          * 操作前回调
+         * @param assist  ActivityResultAssist
          * @param type    类型
          * @param input   输入参数
          * @param options Activity 启动选项
          */
         public void onStart(
+                final ActivityResultAssist<I, ?> assist,
                 final int type,
                 final I input,
                 final ActivityOptionsCompat options
@@ -159,12 +227,14 @@ public final class ActivityResultAssist<I, O>
 
         /**
          * 操作状态回调
+         * @param assist  ActivityResultAssist
          * @param type    类型
          * @param input   输入参数
          * @param options Activity 启动选项
          * @param result  操作结果
          */
         public abstract void onState(
+                final ActivityResultAssist<I, ?> assist,
                 final int type,
                 final I input,
                 final ActivityOptionsCompat options,
