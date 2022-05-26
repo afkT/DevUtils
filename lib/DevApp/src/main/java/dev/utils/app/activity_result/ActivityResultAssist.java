@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultCaller;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.LifecycleOwner;
@@ -15,13 +16,31 @@ import dev.utils.app.ActivityResultUtils;
  * detail: Activity Result 封装辅助类
  * @author Ttt
  * <pre>
+ *     Activity Result API
+ *     @see <a href="https://developer.android.google.cn/training/basics/intents/result"/>
+ *     <p></p>
  *     封装 {@link ActivityResultUtils} 无需考虑异常崩溃等各种情况
  *     注意事项:
  *     虽然在 fragment 或 activity 创建完毕之前可安全地调用 registerForActivityResult()
  *     但在 fragment 或 activity 的 Lifecycle 变为 CREATED 状态之前, 您无法启动 ActivityResultLauncher
+ *     推荐搭配 Kotlin by lazy 使用
+ *     Activity Result API 有三个重要的类:
+ *     ActivityResultContract: 协议, 这是一个抽象类, 定义如何传递数据和如何接收数据
+ *     ActivityResultLauncher: 启动器, 相当于以前的 startActivityForResult()
+ *     ActivityResultCallback: 结果回调, 相当于以前的 onActivityResult()
  *     <p></p>
- *     Activity Result API
- *     @see <a href="https://developer.android.google.cn/training/basics/intents/result"/>
+ *     系统内置常用 ActivityResultContract 具体点击 ActivityResultContracts 进行查看
+ *     {@link ActivityResultContracts.StartActivityForResult} 通用 Contract
+ *     {@link ActivityResultContracts.RequestMultiplePermissions} 申请一组权限
+ *     {@link ActivityResultContracts.RequestPermission} 申请单个权限
+ *     {@link ActivityResultContracts.TakePicturePreview} 拍照 ( 返回 Bitmap )
+ *     {@link ActivityResultContracts.TakePicture} 拍照 ( 保存指定 Uri 地址, 返回 true 表示保存成功 )
+ *     {@link ActivityResultContracts.CaptureVideo} 拍视频 ( 保存指定 Uri 地址, 返回 true 表示保存成功 )
+ *     {@link ActivityResultContracts.PickContact} 从通讯录获取联系人
+ *     {@link ActivityResultContracts.CreateDocument} 选择一个文档 ( 返回 Uri )
+ *     {@link ActivityResultContracts.OpenDocumentTree} 选择一个目录 ( 返回 Uri )
+ *     {@link ActivityResultContracts.OpenMultipleDocuments} 选择多个文档 ( 返回多个 Uri )
+ *     {@link ActivityResultContracts.GetContent} 选择一条内容 ( 返回 Uri )
  * </pre>
  */
 public final class ActivityResultAssist<I, O>
