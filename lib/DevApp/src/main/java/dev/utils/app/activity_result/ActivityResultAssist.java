@@ -23,7 +23,8 @@ import dev.utils.app.ActivityResultUtils;
  *     注意事项:
  *     虽然在 fragment 或 activity 创建完毕之前可安全地调用 registerForActivityResult()
  *     但在 fragment 或 activity 的 Lifecycle 变为 CREATED 状态之前, 您无法启动 ActivityResultLauncher
- *     推荐搭配 Kotlin by lazy 使用
+ *     并且必须在 STARTED 前调用 registerForActivityResult 可查看下方 register 方法 throw IllegalStateException
+ *     {@link androidx.activity.result.ActivityResultRegistry#register}
  *     Activity Result API 有三个重要的类:
  *     ActivityResultContract: 协议, 这是一个抽象类, 定义如何传递数据和如何接收数据
  *     ActivityResultLauncher: 启动器, 相当于以前的 startActivityForResult()
