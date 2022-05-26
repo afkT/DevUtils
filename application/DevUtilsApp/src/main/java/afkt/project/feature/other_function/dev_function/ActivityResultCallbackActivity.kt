@@ -9,9 +9,10 @@ import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
+import dev.kotlin.engine.image.display
+import dev.kotlin.utils.toSource
 import dev.utils.app.AppUtils
 import dev.utils.app.activity_result.DefaultActivityResult
-import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 跳转 Activity 回传 Callback
@@ -44,14 +45,14 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                 ) {
                     val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
                     if (imgPath != null) {
+                        binding.vidIv.display(source = imgPath.toSource())
+                    } else {
                         Thread {
                             Thread.sleep(100L)
                             // 延迟 100 毫秒是防止 Activity 销毁对应的 Toast 显示在已销毁的 Activity
                             // 导致实际预览效果 Toast 并没有显示
-                            ToastTintUtils.success("选择了图片: $imgPath")
+                            showToast(false, "非成功操作")
                         }.start()
-                    } else {
-                        showToast(false, "非成功操作")
                     }
                 }
             })

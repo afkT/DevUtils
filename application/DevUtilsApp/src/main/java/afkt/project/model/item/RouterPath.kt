@@ -144,6 +144,8 @@ object RouterPath {
 
         const val WebViewActivity_PATH = "/activity/WebViewActivity"
 
+        const val ActivityResultAPIActivity_PATH = "/activity/ActivityResultAPIActivity"
+
         const val ActivityResultCallbackActivity_PATH = "/activity/ActivityResultCallbackActivity"
 
         const val AddContactActivity_PATH = "/activity/AddContactActivity"

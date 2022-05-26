@@ -665,6 +665,13 @@ object ButtonList {
             )
             lists.add(
                 ButtonValue(
+                    ButtonValue.BTN_ACTIVITY_RESULT_API,
+                    "Activity Result API",
+                    RouterPath.OTHER_FUNCTION.ActivityResultAPIActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
                     ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK,
                     "startActivityForResult Callback",
                     RouterPath.OTHER_FUNCTION.ActivityResultCallbackActivity_PATH

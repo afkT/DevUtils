@@ -14,11 +14,11 @@
         android:paddingRight="@dimen/dp_10">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_select_btn"
+            android:id="@+id/vid_take_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="选择图片" />
+            android:text="拍照并显示" />
 
         <dev.widget.ui.ResizableImageView
             android:id="@+id/vid_iv"

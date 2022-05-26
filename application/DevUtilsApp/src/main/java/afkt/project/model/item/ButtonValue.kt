@@ -454,17 +454,20 @@ class ButtonValue(
         // WebView 辅助类
         const val BTN_WEBVIEW = MODULE_OTHER + 1100
 
+        // Activity Result API
+        const val BTN_ACTIVITY_RESULT_API = MODULE_OTHER + 1200
+
         // startActivityForResult Callback
-        const val BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1200
+        const val BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1300
 
         // 添加联系人
-        const val BTN_ADD_CONTACT = MODULE_OTHER + 1300
+        const val BTN_ADD_CONTACT = MODULE_OTHER + 1400
 
         // 手机壁纸
-        const val BTN_WALLPAPER = MODULE_OTHER + 1400
+        const val BTN_WALLPAPER = MODULE_OTHER + 1500
 
         // 悬浮窗管理辅助类 ( 需权限 )
-        const val BTN_FLOATING_WINDOW_MANAGER = MODULE_OTHER + 1500
+        const val BTN_FLOATING_WINDOW_MANAGER = MODULE_OTHER + 1600
 
         // 打开悬浮窗
         const val BTN_OPEN_FLOATING_WINDOW = BTN_FLOATING_WINDOW_MANAGER + 1
@@ -473,7 +476,7 @@ class ButtonValue(
         const val BTN_CLOSE_FLOATING_WINDOW = BTN_FLOATING_WINDOW_MANAGER + 2
 
         // 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
-        const val BTN_FLOATING_WINDOW_MANAGER2 = MODULE_OTHER + 1600
+        const val BTN_FLOATING_WINDOW_MANAGER2 = MODULE_OTHER + 1700
 
         // ==================
         // = DevWidget UI 库 =
