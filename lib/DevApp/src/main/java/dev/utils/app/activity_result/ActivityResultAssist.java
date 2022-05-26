@@ -1,190 +1,244 @@
 package dev.utils.app.activity_result;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultCaller;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.ActivityResultRegistry;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.lifecycle.LifecycleOwner;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import dev.DevUtils;
-import dev.utils.DevFinal;
-import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
-import dev.utils.common.DevCommonUtils;
+import dev.utils.app.ActivityResultUtils;
 
 /**
  * detail: Activity Result 封装辅助类
  * @author Ttt
  * <pre>
- *     默认 Activity onActivityResult(int, int, Intent) 实现方式封装
+ *     封装 {@link ActivityResultUtils} 无需考虑异常崩溃等各种情况
+ *     注意事项:
+ *     虽然在 fragment 或 activity 创建完毕之前可安全地调用 registerForActivityResult()
+ *     但在 fragment 或 activity 的 Lifecycle 变为 CREATED 状态之前, 您无法启动 ActivityResultLauncher
+ *     <p></p>
+ *     Activity Result API
+ *     @see <a href="https://developer.android.google.cn/training/basics/intents/result"/>
  * </pre>
  */
-public final class ActivityResultAssist {
+public final class ActivityResultAssist<I, O>
+        extends ActivityResultLauncher<I> {
 
-    private ActivityResultAssist() {
-    }
+    // 跳转回传值启动器
+    private ActivityResultLauncher<I> mLauncher;
+    // 操作回调
+    private OperateCallback<I>        mCallback;
 
-    // DefaultActivityResult 实例
-    private static volatile ActivityResultAssist sInstance;
-
-    /**
-     * 获取 DefaultActivityResult 实例
-     * @return {@link ActivityResultAssist}
-     */
-    public static ActivityResultAssist getInstance() {
-        if (sInstance == null) {
-            synchronized (ActivityResultAssist.class) {
-                if (sInstance == null) {
-                    sInstance = new ActivityResultAssist();
-                }
-            }
-        }
-        return sInstance;
-    }
+    public static final int LAUNCH         = 1;
+    public static final int LAUNCH_OPTIONS = 2;
+    public static final int UNREGISTER     = 3;
 
     // =============
     // = 对外公开方法 =
     // =============
 
     /**
-     * Activity 跳转回传
-     * @param callback Activity 跳转回传回调
-     * @return {@code true} success, {@code false} fail
+     * 判断启动器是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public boolean startActivityForResult(final ResultCallback callback) {
-        return ActivityResultAssist.ResultActivity.start(callback);
+    public boolean isLauncherEmpty() {
+        return mLauncher == null;
     }
 
-    // ==========
-    // = 跳转回传 =
-    // ==========
-
-    // 跳转回传回调 Map
-    private static final Map<Integer, ResultCallback> sResultCallbackMaps = new HashMap<>();
+    /**
+     * 判断启动器是否不为 null
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isLauncherNotEmpty() {
+        return mLauncher != null;
+    }
 
     /**
-     * detail: Activity 跳转回传回调
+     * 设置操作回调
+     * @param callback OperateCallback
+     * @return ActivityResultAssist
+     */
+    public ActivityResultAssist<I, O> setOperateCallback(final OperateCallback<I> callback) {
+        this.mCallback = callback;
+        return this;
+    }
+
+    // ==========================
+    // = ActivityResultLauncher =
+    // ==========================
+
+    @Override
+    public void launch(final I input) {
+        if (mCallback != null) {
+            mCallback.onStart(LAUNCH, input, null);
+        }
+        boolean result = ActivityResultUtils.launch(mLauncher, input);
+        if (mCallback != null) {
+            mCallback.onState(LAUNCH, input, null, result);
+        }
+    }
+
+    @Override
+    public void launch(
+            final I input,
+            final ActivityOptionsCompat options
+    ) {
+        if (mCallback != null) {
+            mCallback.onStart(LAUNCH_OPTIONS, input, options);
+        }
+        boolean result = ActivityResultUtils.launch(mLauncher, input, options);
+        if (mCallback != null) {
+            mCallback.onState(LAUNCH_OPTIONS, input, options, result);
+        }
+    }
+
+    @Override
+    public void unregister() {
+        if (mCallback != null) {
+            mCallback.onStart(UNREGISTER, null, null);
+        }
+        boolean result = ActivityResultUtils.unregister(mLauncher);
+        if (mCallback != null) {
+            mCallback.onState(UNREGISTER, null, null, result);
+        }
+        // 注销后调用 launch 将会失效
+        mLauncher = null;
+    }
+
+    @NonNull
+    @Override
+    public ActivityResultContract<I, ?> getContract() {
+        return ActivityResultUtils.getContract(mLauncher);
+    }
+
+    // ====================
+    // = Operate Callback =
+    // ====================
+
+    /**
+     * detail: 操作回调
      * @author Ttt
      */
-    public interface ResultCallback {
+    public static abstract class OperateCallback<I> {
 
         /**
-         * 跳转 Activity 操作
-         * <pre>
-         *     跳转失败, 必须返回 false 内部会根据返回值关闭 ResultActivity
-         *     必须返回正确的值, 表示是否跳转成功
-         * </pre>
-         * @param activity {@link Activity}
-         * @return {@code true} success, {@code false} fail
+         * 操作前回调
+         * @param type    类型
+         * @param input   输入参数
+         * @param options Activity 启动选项
          */
-        boolean onStartActivityForResult(Activity activity);
+        public void onStart(
+                final int type,
+                final I input,
+                final ActivityOptionsCompat options
+        ) {
+        }
 
         /**
-         * 回传处理
-         * @param result     resultCode 是否等于 {@link Activity#RESULT_OK}
-         * @param resultCode resultCode
-         * @param intent     回传数据
+         * 操作状态回调
+         * @param type    类型
+         * @param input   输入参数
+         * @param options Activity 启动选项
+         * @param result  操作结果
          */
-        void onActivityResult(
-                boolean result,
-                int resultCode,
-                Intent intent
+        public abstract void onState(
+                final int type,
+                final I input,
+                final ActivityOptionsCompat options,
+                final boolean result
         );
     }
 
-    // =============
-    // = 内部封装逻辑 =
-    // =============
+    // ==========
+    // = 构造函数 =
+    // ==========
+
+    // ========================
+    // = ActivityResultCaller =
+    // ========================
 
     /**
-     * detail: 回传结果处理 Activity
-     * @author Ttt
+     * 注册创建跳转回传值启动器并返回
+     * @param caller   ActivityResultCaller ( 只要属于继承 Fragment、FragmentActivity 传入 this 即可 )
+     * @param contract ActivityResultContract
+     * @param callback ActivityResultCallback 回传回调
      */
-    public static class ResultActivity
-            extends FragmentActivity {
+    public ActivityResultAssist(
+            final ActivityResultCaller caller,
+            final ActivityResultContract<I, O> contract,
+            final ActivityResultCallback<O> callback
+    ) {
+        mLauncher = ActivityResultUtils.registerForActivityResult(
+                caller, contract, callback
+        );
+    }
 
-        // 日志 TAG
-        private static final String TAG = ResultActivity.class.getSimpleName();
+    /**
+     * 注册创建跳转回传值启动器并返回
+     * @param caller   ActivityResultCaller ( 只要属于继承 Fragment、FragmentActivity 传入 this 即可 )
+     * @param contract ActivityResultContract
+     * @param registry ActivityResultRegistry
+     * @param callback ActivityResultCallback 回传回调
+     */
+    public ActivityResultAssist(
+            final ActivityResultCaller caller,
+            final ActivityResultContract<I, O> contract,
+            final ActivityResultRegistry registry,
+            final ActivityResultCallback<O> callback
+    ) {
+        mLauncher = ActivityResultUtils.registerForActivityResult(
+                caller, contract, registry, callback
+        );
+    }
 
-        // 传参 UUID Key
-        private static final String         EXTRA_UUID = DevFinal.STR.UUID;
-        // 跳转回传回调
-        private              ResultCallback mCallback;
-        // 跳转回传回调
-        private              Integer        mUUIDHash;
+    // ==========================
+    // = ActivityResultRegistry =
+    // ==========================
 
-        /**
-         * 跳转回传结果处理 Activity 内部方法
-         * @param callback Activity 跳转回传回调
-         * @return {@code true} success, {@code false} fail
-         */
-        protected static boolean start(final ResultCallback callback) {
-            int     uuid   = -1;
-            boolean result = false;
-            if (callback != null) {
-                uuid = DevCommonUtils.randomUUIDToHashCode();
-                while (sResultCallbackMaps.containsKey(uuid)) {
-                    uuid = DevCommonUtils.randomUUIDToHashCode();
-                }
-                sResultCallbackMaps.put(uuid, callback);
-                try {
-                    Intent intent = new Intent(DevUtils.getContext(), ResultActivity.class);
-                    intent.putExtra(EXTRA_UUID, uuid);
-                    result = AppUtils.startActivity(intent);
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "start");
-                }
-            }
-            if (!result && uuid != -1) {
-                sResultCallbackMaps.remove(uuid);
-            }
-            return result;
-        }
+    /**
+     * 注册创建跳转回传值启动器并返回
+     * <pre>
+     *     ActivityResultRegistry ( 可通过 ComponentActivity、Fragment getActivityResultRegistry() 获取 )
+     * </pre>
+     * @param registry       ActivityResultRegistry
+     * @param key            唯一值字符串
+     * @param lifecycleOwner 生命周期监听
+     * @param contract       ActivityResultContract
+     * @param callback       ActivityResultCallback 回传回调
+     */
+    public ActivityResultAssist(
+            final ActivityResultRegistry registry,
+            final String key,
+            final LifecycleOwner lifecycleOwner,
+            final ActivityResultContract<I, O> contract,
+            final ActivityResultCallback<O> callback
+    ) {
+        mLauncher = ActivityResultUtils.register(
+                registry, key, lifecycleOwner, contract, callback
+        );
+    }
 
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            boolean result = false; // 跳转结果
-            try {
-                mUUIDHash = getIntent().getIntExtra(EXTRA_UUID, -1);
-                mCallback = sResultCallbackMaps.get(mUUIDHash);
-                result    = mCallback.onStartActivityForResult(this);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "onCreate");
-            }
-            if (!result) {
-                if (mCallback != null) {
-                    mCallback.onActivityResult(false, Activity.RESULT_CANCELED, null);
-                }
-                finish();
-            }
-        }
-
-        @Override
-        protected void onActivityResult(
-                int requestCode,
-                int resultCode,
-                Intent intent
-        ) {
-            super.onActivityResult(requestCode, resultCode, intent);
-            if (mCallback != null) {
-                mCallback.onActivityResult(
-                        resultCode == Activity.RESULT_OK,
-                        resultCode, intent
-                );
-            }
-            finish();
-        }
-
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            // 移除操作
-            sResultCallbackMaps.remove(mUUIDHash);
-        }
+    /**
+     * 注册创建跳转回传值启动器并返回
+     * <pre>
+     *     ActivityResultRegistry ( 可通过 ComponentActivity、Fragment getActivityResultRegistry() 获取 )
+     * </pre>
+     * @param registry ActivityResultRegistry
+     * @param key      唯一值字符串
+     * @param contract ActivityResultContract
+     * @param callback ActivityResultCallback 回传回调
+     */
+    public ActivityResultAssist(
+            final ActivityResultRegistry registry,
+            final String key,
+            final ActivityResultContract<I, O> contract,
+            final ActivityResultCallback<O> callback
+    ) {
+        mLauncher = ActivityResultUtils.register(
+                registry, key, contract, callback
+        );
     }
 }

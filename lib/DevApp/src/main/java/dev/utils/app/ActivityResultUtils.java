@@ -9,6 +9,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.activity_result.ActivityResultAssist;
 import dev.utils.app.activity_result.DefaultActivityResult;
 
 /**
@@ -25,6 +26,8 @@ import dev.utils.app.activity_result.DefaultActivityResult;
  *     {@link androidx.activity.result.ActivityResultRegistry#register}
  *     正常在 Activity 中使用顺序是
  *     registerForActivityResult().launch(input)
+ *     可考虑使用
+ *     {@link ActivityResultAssist}
  * </pre>
  */
 public final class ActivityResultUtils {
