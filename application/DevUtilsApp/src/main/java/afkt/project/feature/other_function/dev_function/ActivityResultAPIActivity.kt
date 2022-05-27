@@ -35,7 +35,7 @@ class ActivityResultAPIActivity : BaseActivity<ActivityActivityResultApiBinding>
                 permissions = arrayOf(Manifest.permission.CAMERA),
                 callback = object : IPermissionEngine.Callback {
                     override fun onGranted() {
-                        mAssist.launch(MediaStoreUtils.createImageUri())
+                        mAssist?.launch(MediaStoreUtils.createImageUri())
                     }
 
                     override fun onDenied(
@@ -55,45 +55,46 @@ class ActivityResultAPIActivity : BaseActivity<ActivityActivityResultApiBinding>
         }
     }
 
-    private fun getAssist(): ActivityResultAssist<Uri, Boolean> {
-        return mAssist
+    // 如果使用 by lazy 要确保在 Lifecycle STARTED 状态前初始化
+    private var mAssist: ActivityResultAssist<Uri, Boolean>? = null
+
+    init {
+        mAssist = ActivityResultAssist(
+            this, ActivityResultContracts.TakePicture()
+        ) {
+            if (it) {
+                binding.vidIv.display(source = mAssist?.inputValue?.toSource())
+            } else {
+                ToastTintUtils.warning("非成功操作")
+            }
+        }.setOperateCallback(object : ActivityResultAssist.OperateCallback<Uri>() {
+
+            // ======================================
+            // = 该回调可不设置, 只是提供此功能便于特殊需求 =
+            // ======================================
+
+            override fun onStart(
+                assist: ActivityResultAssist<Uri, *>,
+                type: Int,
+                input: Uri?,
+                options: ActivityOptionsCompat?
+            ) {
+                TAG.log_dTag(
+                    message = "开始调用 ${ActivityResultAssist.getMethodType(type)} 方法前"
+                )
+            }
+
+            override fun onState(
+                assist: ActivityResultAssist<Uri, *>,
+                type: Int,
+                input: Uri?,
+                options: ActivityOptionsCompat?,
+                result: Boolean
+            ) {
+                TAG.log_dTag(
+                    message = "调用 ${ActivityResultAssist.getMethodType(type)} 方法后, 调用结果: $result"
+                )
+            }
+        })
     }
-
-    private val mAssist: ActivityResultAssist<Uri, Boolean> = ActivityResultAssist(
-        this, ActivityResultContracts.TakePicture()
-    ) {
-        if (it) {
-            binding.vidIv.display(source = getAssist().inputValue?.toSource())
-        } else {
-            ToastTintUtils.warning("没有进行拍照")
-        }
-    }.setOperateCallback(object : ActivityResultAssist.OperateCallback<Uri>() {
-
-        // ======================================
-        // = 该回调可不设置, 只是提供此功能便于特殊需求 =
-        // ======================================
-
-        override fun onStart(
-            assist: ActivityResultAssist<Uri, *>,
-            type: Int,
-            input: Uri?,
-            options: ActivityOptionsCompat?
-        ) {
-            TAG.log_dTag(
-                message = "开始调用 ${ActivityResultAssist.getMethodType(type)} 方法前"
-            )
-        }
-
-        override fun onState(
-            assist: ActivityResultAssist<Uri, *>,
-            type: Int,
-            input: Uri?,
-            options: ActivityOptionsCompat?,
-            result: Boolean
-        ) {
-            TAG.log_dTag(
-                message = "调用 ${ActivityResultAssist.getMethodType(type)} 方法后, 调用结果: $result"
-            )
-        }
-    })
 }
