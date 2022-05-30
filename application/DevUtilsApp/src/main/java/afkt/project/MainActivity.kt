@@ -7,10 +7,11 @@ import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
 import android.Manifest
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_dTag
 import dev.kotlin.engine.log.log_eTag
+import dev.kotlin.engine.permission.permission_againRequest
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.app.VersionUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.HttpURLConnectionUtils
@@ -53,11 +54,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // = 申请权限 =
         // ==========
 
-        DevEngine.getPermission()?.request(
-            this, arrayOf(
+        // 方式一
+        permission_request(
+            permissions = arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ), object : IPermissionEngine.Callback {
+            ),
+            callback = object : IPermissionEngine.Callback {
                 override fun onGranted() {
                     TAG.log_dTag(
                         message = "permission granted"
@@ -65,9 +68,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 override fun onDenied(
-                    grantedList: List<String>,
-                    deniedList: List<String>,
-                    notFoundList: List<String>
+                    grantedList: MutableList<String>,
+                    deniedList: MutableList<String>,
+                    notFoundList: MutableList<String>
                 ) {
                     TAG.log_dTag(
                         message = StringBuilder().apply {
@@ -81,12 +84,50 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         }.toString()
                     )
                     // 拒绝了则再次请求处理
-                    DevEngine.getPermission()
-                        .againRequest(this@MainActivity, this, deniedList)
+                    permission_againRequest(
+                        callback = this,
+                        deniedList = deniedList
+                    )
                     ToastUtils.showShort("请开启读写手机存储权限.")
                 }
             }
         )
+
+//        // 方式二
+//        DevEngine.getPermission()?.request(
+//            this, arrayOf(
+//                Manifest.permission.READ_EXTERNAL_STORAGE,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            ), object : IPermissionEngine.Callback {
+//                override fun onGranted() {
+//                    TAG.log_dTag(
+//                        message = "permission granted"
+//                    )
+//                }
+//
+//                override fun onDenied(
+//                    grantedList: MutableList<String>,
+//                    deniedList: MutableList<String>,
+//                    notFoundList: MutableList<String>
+//                ) {
+//                    TAG.log_dTag(
+//                        message = StringBuilder().apply {
+//                            append("permission")
+//                            append("\ngrantedList: ")
+//                            append(grantedList.toTypedArray().contentToString())
+//                            append("\ndeniedList: ")
+//                            append(deniedList.toTypedArray().contentToString())
+//                            append("\nnotFoundList: ")
+//                            append(notFoundList.toTypedArray().contentToString())
+//                        }.toString()
+//                    )
+//                    // 拒绝了则再次请求处理
+//                    DevEngine.getPermission()
+//                        .againRequest(this@MainActivity, this, deniedList)
+//                    ToastUtils.showShort("请开启读写手机存储权限.")
+//                }
+//            }
+//        )
     }
 
     override fun initValue() {
