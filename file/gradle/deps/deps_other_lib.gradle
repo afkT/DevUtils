@@ -28,7 +28,7 @@ dependencies {
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
     // Fastjson2 https://github.com/alibaba/fastjson2
-    implementation deps.lib.fastjson2
+    implementation deps.lib.fastjson2_android
     // Glide 图片加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     kapt deps.lib.glide_compiler

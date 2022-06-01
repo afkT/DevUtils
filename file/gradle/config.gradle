@@ -252,8 +252,8 @@ ext {
                     //fastjson_android                    : "com.alibaba:fastjson:2.0.4.android",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.4",
-                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.4.android",
+                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.5",
+                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.5.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.YummyLau:Anchors:v1.1.4",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
