@@ -15,9 +15,9 @@ import android.os.Handler
 import android.os.Message
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.permission.permission_request
 import dev.receiver.WifiReceiver
 import dev.receiver.WifiReceiver.Companion.register
 import dev.receiver.WifiReceiver.Companion.setListener
@@ -95,11 +95,12 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 }
                                 // = 8.0 特殊处理 =
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    DevEngine.getPermission()?.request(
-                                        mActivity, arrayOf(
+                                    permission_request(
+                                        permissions = arrayOf(
                                             Manifest.permission.ACCESS_FINE_LOCATION,
                                             Manifest.permission.ACCESS_COARSE_LOCATION
-                                        ), object : IPermissionEngine.Callback {
+                                        ),
+                                        callback = object : IPermissionEngine.Callback {
                                             override fun onGranted() {
                                                 isOpenAPING = true
                                                 // 设置热点 Wifi 监听

@@ -25,6 +25,7 @@ import dev.engine.media.MediaConfig
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_dTag
 import dev.kotlin.engine.log.log_eTag
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist
@@ -220,10 +221,11 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
     // 扫描相关操作接口
     private val mOperate = object : Operate {
         override fun cameraPermission() {
-            DevEngine.getPermission()?.request(
-                mActivity, arrayOf(
+            permission_request(
+                permissions = arrayOf(
                     Manifest.permission.CAMERA
-                ), object : IPermissionEngine.Callback {
+                ),
+                callback = object : IPermissionEngine.Callback {
                     override fun onGranted() {
                         zxingDecodeAssist.startPreview(binding.vidSurface)
                     }

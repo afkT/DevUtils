@@ -16,8 +16,8 @@ import android.provider.ContactsContract.CommonDataKinds.*
 import android.provider.ContactsContract.RawContacts
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.app.*
 import dev.utils.app.DialogUtils.DialogListener
 import dev.utils.app.toast.ToastTintUtils
@@ -55,10 +55,11 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
                 ToastTintUtils.warning("运行中")
                 return@OnClickListener
             }
-            DevEngine.getPermission()?.request(
-                mActivity, arrayOf(
+            permission_request(
+                permissions = arrayOf(
                     Manifest.permission.WRITE_CONTACTS
-                ), object : IPermissionEngine.Callback {
+                ),
+                callback = object : IPermissionEngine.Callback {
                     override fun onGranted() {
                         // 联系人创建校验
                         createCheck()

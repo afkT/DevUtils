@@ -8,9 +8,9 @@ import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_eTag
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist
@@ -161,10 +161,9 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
                 )
             }
         } else {
-            // 申请权限
-            DevEngine.getPermission()?.request(
-                this, arrayOf(cameraPermission),
-                object : IPermissionEngine.Callback {
+            permission_request(
+                permissions = arrayOf(cameraPermission),
+                callback = object : IPermissionEngine.Callback {
                     override fun onGranted() {
                         // 刷新处理
                         checkPermission()

@@ -12,9 +12,9 @@ import android.Manifest
 import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_dTag
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.camera.camera1.FlashlightUtils
@@ -93,10 +93,11 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             showToast(result)
                         }
                         ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN -> {
-                            DevEngine.getPermission()?.request(
-                                mActivity, arrayOf(
+                            permission_request(
+                                permissions = arrayOf(
                                     Manifest.permission.CAMERA
-                                ), object : IPermissionEngine.Callback {
+                                ),
+                                callback = object : IPermissionEngine.Callback {
                                     override fun onGranted() {
                                         // 非传入 Camera 方式需要注册
                                         FlashlightUtils.getInstance().register()
@@ -123,10 +124,11 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             showToast(result, "存在快捷方式", "不存在快捷方式")
                         }
                         ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE -> {
-                            DevEngine.getPermission()?.request(
-                                mActivity, arrayOf(
+                            permission_request(
+                                permissions = arrayOf(
                                     Manifest.permission.INSTALL_SHORTCUT
-                                ), object : IPermissionEngine.Callback {
+                                ),
+                                callback = object : IPermissionEngine.Callback {
                                     override fun onGranted() {
                                         val result = ShortCutUtils.addShortcut(
                                             MainActivity::class.java,
