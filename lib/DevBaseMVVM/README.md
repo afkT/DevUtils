@@ -8,16 +8,16 @@ implementation 'io.github.afkt:DevBaseMVVM:1.1.0'
 ## 目录结构
 
 ```
-- dev.base                                                           | 根目录
-   - able                                                            | 基类库接口相关
-   - adapter                                                         | RecyclerView ViewDataBinding ViewHolder
-   - expand                                                          | 基于 Base Activity、Fragment 扩展包
-      - content                                                      | Content Layout MVVM 基类
-      - mvvm                                                         | MVVM 架构基类
-      - viewdata                                                     | ViewDataBinding 基类
-      - viewmodel                                                    | ViewModel 基类
-   - utils                                                           | 依赖工具包
-      - assist                                                       | 功能辅助类 ( 抽取通用代码 )
+- dev.base           | 根目录
+   - able            | 基类库接口相关
+   - adapter         | RecyclerView ViewDataBinding ViewHolder
+   - expand          | 基于 Base Activity、Fragment 扩展包
+      - content      | Content Layout MVVM 基类
+      - mvvm         | MVVM 架构基类
+      - viewdata     | ViewDataBinding 基类
+      - viewmodel    | ViewModel 基类
+   - utils           | 依赖工具包
+      - assist       | 功能辅助类 ( 抽取通用代码 )
 ```
 
 

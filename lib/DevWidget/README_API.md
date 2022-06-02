@@ -9,18 +9,18 @@ implementation 'io.github.afkt:DevWidgetX:1.1.8'
 ## 目录结构
 
 ```
-- dev                                                                    | 根目录
-   - widget                                                              | 自定义 View 根目录
-      - adjust                                                           | 自动调节高度 View
-      - assist                                                           | View 辅助类
-      - custom                                                           | 自定义 View
-      - decoration                                                       | RecyclerView ItemDecoration
-         - grid                                                          | Grid ItemDecoration
-         - linear                                                        | Linear ItemDecoration
-      - function                                                         | 需求功能 View
-      - ui                                                               | UI View
-         - round                                                         | 圆角相关 View
-      - utils                                                            | 工具类目录
+- dev                  | 根目录
+   - widget            | 自定义 View 根目录
+      - adjust         | 自动调节高度 View
+      - assist         | View 辅助类
+      - custom         | 自定义 View
+      - decoration     | RecyclerView ItemDecoration
+         - grid        | Grid ItemDecoration
+         - linear      | Linear ItemDecoration
+      - function       | 需求功能 View
+      - ui             | UI View
+         - round       | 圆角相关 View
+      - utils          | 工具类目录
 ```
 
 
@@ -46,18 +46,18 @@ implementation 'io.github.afkt:DevWidgetX:1.1.8'
 ## API
 
 
-- dev                                                                    | 根目录
-   - [widget](#devwidget)                                                | 自定义 View 根目录
-      - [adjust](#devwidgetadjust)                                       | 自动调节高度 View
-      - [assist](#devwidgetassist)                                       | View 辅助类
-      - [custom](#devwidgetcustom)                                       | 自定义 View
-      - [decoration](#devwidgetdecoration)                               | RecyclerView ItemDecoration
-         - [grid](#devwidgetdecorationgrid)                              | Grid ItemDecoration
-         - [linear](#devwidgetdecorationlinear)                          | Linear ItemDecoration
-      - [function](#devwidgetfunction)                                   | 需求功能 View
-      - [ui](#devwidgetui)                                               | UI View
-         - [round](#devwidgetuiround)                                    | 圆角相关 View
-      - [utils](#devwidgetutils)                                         | 工具类目录
+- dev                                                  | 根目录
+   - [widget](#devwidget)                              | 自定义 View 根目录
+      - [adjust](#devwidgetadjust)                     | 自动调节高度 View
+      - [assist](#devwidgetassist)                     | View 辅助类
+      - [custom](#devwidgetcustom)                     | 自定义 View
+      - [decoration](#devwidgetdecoration)             | RecyclerView ItemDecoration
+         - [grid](#devwidgetdecorationgrid)            | Grid ItemDecoration
+         - [linear](#devwidgetdecorationlinear)        | Linear ItemDecoration
+      - [function](#devwidgetfunction)                 | 需求功能 View
+      - [ui](#devwidgetui)                             | UI View
+         - [round](#devwidgetuiround)                  | 圆角相关 View
+      - [utils](#devwidgetutils)                       | 工具类目录
 
 
 ## <span id="dev">**`dev`**</span>

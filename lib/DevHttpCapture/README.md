@@ -8,8 +8,8 @@ implementation 'io.github.afkt:DevHttpCapture:1.1.1'
 ## 目录结构
 
 ```
-- dev                                                                | 根目录
-   - capture                                                         | Http 抓包实现代码
+- dev                   | 根目录
+   - capture            | Http 抓包实现代码
 ```
 
 
@@ -58,8 +58,8 @@ DevHttpCapture.updateInterceptor(moduleName, isCapture);
 ## API
 
 
-- dev                                                                | 根目录
-   - [capture](#devcapture)                                          | Http 抓包实现代码
+- dev                                         | 根目录
+   - [capture](#devcapture)                   | Http 抓包实现代码
 
 
 ## <span id="dev">**`dev`**</span>

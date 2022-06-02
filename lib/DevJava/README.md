@@ -8,20 +8,20 @@ implementation 'io.github.afkt:DevJava:1.4.4'
 ## 目录结构
 
 ```
-- dev.utils                                                          | 根目录
-   - common                                                          | Java 工具类, 不依赖 android api
-      - assist                                                       | 各种快捷辅助类
-         - record                                                    | 文件记录分析类
-         - search                                                    | 搜索相关 ( 文件搜索等 )
-         - url                                                       | Url 携带信息解析
-      - cipher                                                       | 编 / 解码工具类
-      - comparator                                                   | 排序比较器
-         - sort                                                      | 各种类型比较器排序实现
-      - encrypt                                                      | 加密工具类
-      - file                                                         | 文件分片相关
-      - random                                                       | 随机概率算法工具类
-      - thread                                                       | 线程相关
-      - validator                                                    | 数据校验工具类
+- dev.utils            | 根目录
+   - common            | Java 工具类, 不依赖 android api
+      - assist         | 各种快捷辅助类
+         - record      | 文件记录分析类
+         - search      | 搜索相关 ( 文件搜索等 )
+         - url         | Url 携带信息解析
+      - cipher         | 编 / 解码工具类
+      - comparator     | 排序比较器
+         - sort        | 各种类型比较器排序实现
+      - encrypt        | 加密工具类
+      - file           | 文件分片相关
+      - random         | 随机概率算法工具类
+      - thread         | 线程相关
+      - validator      | 数据校验工具类
 ```
 
 
@@ -48,20 +48,20 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 ## API
 
 
-- dev.utils                                                          | 根目录
-   - [common](#devutilscommon)                                       | Java 工具类, 不依赖 android api
-      - [assist](#devutilscommonassist)                              | 各种快捷辅助类
-         - [record](#devutilscommonassistrecord)                     | 文件记录分析类
-         - [search](#devutilscommonassistsearch)                     | 搜索相关 ( 文件搜索等 )
-         - [url](#devutilscommonassisturl)                           | Url 携带信息解析
-      - [cipher](#devutilscommoncipher)                              | 编 / 解码工具类
-      - [comparator](#devutilscommoncomparator)                      | 排序比较器
-         - [sort](#devutilscommoncomparatorsort)                     | 各种类型比较器排序实现
-      - [encrypt](#devutilscommonencrypt)                            | 加密工具类
-      - [file](#devutilscommonfile)                                  | 文件分片相关
-      - [random](#devutilscommonrandom)                              | 随机概率算法工具类
-      - [thread](#devutilscommonthread)                              | 线程相关
-      - [validator](#devutilscommonvalidator)                        | 数据校验工具类
+- dev.utils                                                 | 根目录
+   - [common](#devutilscommon)                              | Java 工具类, 不依赖 android api
+      - [assist](#devutilscommonassist)                     | 各种快捷辅助类
+         - [record](#devutilscommonassistrecord)            | 文件记录分析类
+         - [search](#devutilscommonassistsearch)            | 搜索相关 ( 文件搜索等 )
+         - [url](#devutilscommonassisturl)                  | Url 携带信息解析
+      - [cipher](#devutilscommoncipher)                     | 编 / 解码工具类
+      - [comparator](#devutilscommoncomparator)             | 排序比较器
+         - [sort](#devutilscommoncomparatorsort)            | 各种类型比较器排序实现
+      - [encrypt](#devutilscommonencrypt)                   | 加密工具类
+      - [file](#devutilscommonfile)                         | 文件分片相关
+      - [random](#devutilscommonrandom)                     | 随机概率算法工具类
+      - [thread](#devutilscommonthread)                     | 线程相关
+      - [validator](#devutilscommonvalidator)               | 数据校验工具类
 
 
 ## <span id="devutilscommon">**`dev.utils.common`**</span>
