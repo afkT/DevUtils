@@ -42,6 +42,8 @@ import dev.utils.common.NumberUtils;
  *     @see <a href="https://www.jianshu.com/p/0faa70e88441"/>
  *     X5 WebView 使用 snapshotWholePage 方法清晰截图
  *     @see <a href="https://www.v2ex.com/t/583020"/>
+ *     针对 SurfaceView、Surface、Window 截图可使用
+ *     {@link android.view.PixelCopy} 进行实现
  * </pre>
  */
 public final class CapturePictureUtils {
