@@ -3,7 +3,7 @@
 ## 目录结构
 
 ```
--                                   | 根目录
+- src.main                          | 根目录
    - dev                            | 通用实现
       - receiver                    | BroadcastReceiver 监听相关
       - service                     | Service 相关
@@ -50,7 +50,7 @@
 ## API
 
 
--                                                                              | 根目录
+- src.main                                                                     | 根目录
    - [dev](#dev)                                                               | 通用实现
       - [receiver](#devreceiver)                                               | BroadcastReceiver 监听相关
       - [service](#devservice)                                                 | Service 相关
