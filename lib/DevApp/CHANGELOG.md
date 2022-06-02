@@ -1,10 +1,19 @@
 Change Log
 ==========
 
+Version 2.3.8 *(2022-06-02)*
+----------------------------
+
+* `[Refactor]` 新建 DefaultActivityResult 类并迁移 ActivityUtils 原始 startActivityForResult 封装实现代码
+
+* `[Add]` 新增 New Activity Result API 封装辅助类 ActivityResultAssist
+
+* `[Add]` 新增 ActivityResultUtils 工具类，用于使用新旧 ActivityResult 兼容
+
 Version 2.3.7 *(2022-05-13)*
 ----------------------------
 
-* `[Add]` 新增 DevUtils#getHandler(handler) 判断 null, 视情况返回全局 MainHandler
+* `[Add]` 新增 DevUtils#getHandler(handler) 判断 null，视情况返回全局 MainHandler
 
 * `[Refactor]` 重构 AccessibilityUtils 工具类，并对节点信息、节点、日志打印操作进行独立封装 Node、Operation、Print 类
 
