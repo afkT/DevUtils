@@ -12,7 +12,7 @@ android.defaultConfig {
 }
 
 // 是否发布版本
-def isPublishing = true
+def isPublishing = false
 
 dependencies {
     if (isPublishing) {
