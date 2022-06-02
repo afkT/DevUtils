@@ -108,7 +108,7 @@
 implementation 'io.github.afkt:DevAppX:2.3.8'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.3.4'
+implementation 'io.github.afkt:DevAssist:1.3.5'
 
 // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'io.github.afkt:DevBase:1.1.2'
