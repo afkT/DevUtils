@@ -34,14 +34,15 @@ buildscript {
     }
 
     dependencies {
+        // https://mvnrepository.com/artifact/com.android.tools.build/gradle
         classpath 'com.android.tools.build:gradle:7.2.1'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.6.21"
-        // ARouter AutoRegister
+        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
         classpath "com.alibaba:arouter-register:1.0.2"
-        // greendao
+        // greendao https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
         classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
         // 华为推送所需 https://mvnrepository.com/artifact/com.huawei.agconnect/agcp
         classpath "com.huawei.agconnect:agcp:1.6.5.300"
