@@ -8,17 +8,17 @@ implementation 'io.github.afkt:DevBase:1.1.2'
 ## 目录结构
 
 ```
-- dev.base                                            | 根目录
-   - able                                             | 基类库接口相关
-   - activity                                         | 核心 Base Activity 代码
-   - adapter                                          | RecyclerView ViewBinding ViewHolder
-   - expand                                           | 基于 Base Activity、Fragment 扩展包
-      - content                                       | Content Layout 基类
-      - mvp                                           | MVP 架构基类
-      - viewbinding                                   | ViewBinding 基类
-   - fragment                                         | 核心 Base Fragment 代码
-   - utils                                            | 依赖工具包
-      - assist                                        | 功能辅助类 ( 抽取通用代码 )
+- dev.base                                                           | 根目录
+   - able                                                            | 基类库接口相关
+   - activity                                                        | 核心 Base Activity 代码
+   - adapter                                                         | RecyclerView ViewBinding ViewHolder
+   - expand                                                          | 基于 Base Activity、Fragment 扩展包
+      - content                                                      | Content Layout 基类
+      - mvp                                                          | MVP 架构基类
+      - viewbinding                                                  | ViewBinding 基类
+   - fragment                                                        | 核心 Base Fragment 代码
+   - utils                                                           | 依赖工具包
+      - assist                                                       | 功能辅助类 ( 抽取通用代码 )
 ```
 
 

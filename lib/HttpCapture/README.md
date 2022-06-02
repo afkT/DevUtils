@@ -48,16 +48,16 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 ### 目录结构
 
 ```
-- dev                                                 | 根目录
-   - capture                                          | Http 抓包实现代码
+- dev                                                                | 根目录
+   - capture                                                         | Http 抓包实现代码
 ```
 
 
 ### API
 
 
-- dev                                                 | 根目录
-   - [capture](#devcapture)                           | Http 抓包实现代码
+- dev                                                                | 根目录
+   - [capture](#devcapture)                                          | Http 抓包实现代码
 
 
 

@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![MavenCentral](https://img.shields.io/badge/DevUtils-2.3.7-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+[![MavenCentral](https://img.shields.io/badge/DevUtils-2.3.8-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-200+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -105,7 +105,7 @@
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.3.7'
+implementation 'io.github.afkt:DevAppX:2.3.8'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.3.4'
@@ -117,7 +117,7 @@ implementation 'io.github.afkt:DevBase:1.1.2'
 implementation 'io.github.afkt:DevBaseMVVM:1.1.0'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.0.6'
+implementation 'io.github.afkt:DevEngine:1.0.7'
 
 // DevHttpCapture - OkHttp 抓包工具库
 implementation 'io.github.afkt:DevHttpCapture:1.1.1'

@@ -3,42 +3,42 @@
 ## 目录结构
 
 ```
--                                                     | 根目录
-   - dev                                              | 通用实现
-      - receiver                                      | BroadcastReceiver 监听相关
-      - service                                       | Service 相关
-   - java                                             | Java 实现
-      - dev                                           | 根目录
-         - assist                                     | 常用辅助类封装
-         - engine                                     | 兼容 Engine
-            - barcode                                 | BarCode Engine 条形码、二维码处理
-            - cache                                   | Cache Engine 有效期键值对缓存
-            - compress                                | Image Compress Engine 图片压缩
-            - image                                   | Image Engine 图片加载、下载、转格式等
-            - json                                    | JSON Engine 映射
-            - keyvalue                                | KeyValue Engine 键值对存储
-            - log                                     | Log Engine 日志打印
-            - media                                   | Media Selector Engine 多媒体资源选择
-            - permission                              | Permission Engine 权限申请
-            - storage                                 | Storage Engine 外部、内部文件存储
-         - other                                      | 第三方库封装工具类
-            - cache                                   | 缓存工具类
-            - okgo                                    | OkGo 网络请求
-            - retrofit                                | Retrofit 网络请求
-               - response                             | 请求响应解析
-               - subscriber                           | 请求响应处理
-            - work                                    | WorkManager Utils
-               - demo                                 | WorkManager 使用 Demo
-   - ktx                                              | Kotlin 实现
-      - dev                                           | 根目录
-         - assist                                     | 常用辅助类封装
-         - other                                      | 第三方库封装工具类
-            - retrofit_coroutines                     | Retrofit Coroutines 封装
-               - demo                                 | Retrofit Coroutines Demo
-            - retrofit_rxjava                         | Retrofit RxJava 封装
-               - demo                                 | Retrofit RxJava Demo
-               - response                             | 请求响应解析
-               - subscriber                           | 请求响应处理
+-                                                                    | 根目录
+   - dev                                                             | 通用实现
+      - receiver                                                     | BroadcastReceiver 监听相关
+      - service                                                      | Service 相关
+   - java                                                            | Java 实现
+      - dev                                                          | 根目录
+         - assist                                                    | 常用辅助类封装
+         - engine                                                    | 兼容 Engine
+            - barcode                                                | BarCode Engine 条形码、二维码处理
+            - cache                                                  | Cache Engine 有效期键值对缓存
+            - compress                                               | Image Compress Engine 图片压缩
+            - image                                                  | Image Engine 图片加载、下载、转格式等
+            - json                                                   | JSON Engine 映射
+            - keyvalue                                               | KeyValue Engine 键值对存储
+            - log                                                    | Log Engine 日志打印
+            - media                                                  | Media Selector Engine 多媒体资源选择
+            - permission                                             | Permission Engine 权限申请
+            - storage                                                | Storage Engine 外部、内部文件存储
+         - other                                                     | 第三方库封装工具类
+            - cache                                                  | 缓存工具类
+            - okgo                                                   | OkGo 网络请求
+            - retrofit                                               | Retrofit 网络请求
+               - response                                            | 请求响应解析
+               - subscriber                                          | 请求响应处理
+            - work                                                   | WorkManager Utils
+               - demo                                                | WorkManager 使用 Demo
+   - ktx                                                             | Kotlin 实现
+      - dev                                                          | 根目录
+         - assist                                                    | 常用辅助类封装
+         - other                                                     | 第三方库封装工具类
+            - retrofit_coroutines                                    | Retrofit Coroutines 封装
+               - demo                                                | Retrofit Coroutines Demo
+            - retrofit_rxjava                                        | Retrofit RxJava 封装
+               - demo                                                | Retrofit RxJava Demo
+               - response                                            | 请求响应解析
+               - subscriber                                          | 请求响应处理
 ```
 
 

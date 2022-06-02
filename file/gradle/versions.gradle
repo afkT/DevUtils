@@ -26,8 +26,8 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 237,
-            dev_app_versionName                      : "2.3.7",
+            dev_app_versionCode                      : 238,
+            dev_app_versionName                      : "2.3.8",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
             dev_assist_versionCode                   : 134,
@@ -42,8 +42,8 @@ ext {
             dev_base_mvvm_versionName                : "1.1.0",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 106,
-            dev_engine_versionName                   : "1.0.6",
+            dev_engine_versionCode                   : 107,
+            dev_engine_versionName                   : "1.0.7",
 
             // DevHttpCapture - OkHttp 抓包工具库
             dev_http_capture_versionCode             : 111,

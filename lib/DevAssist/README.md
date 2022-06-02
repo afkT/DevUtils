@@ -8,36 +8,36 @@ implementation 'io.github.afkt:DevAssist:1.3.4'
 ## 目录结构
 
 ```
-- dev                                                 | 根目录
-   - adapter                                          | 适配器相关
-   - assist                                           | 快捷功能辅助类
-   - base                                             | 实体类基类相关
-      - data                                          | 数据操作
-      - entry                                         | KeyValue 实体类
-      - multiselect                                   | 多选编辑操作
-      - number                                        | 数值操作
-      - state                                         | 状态相关
-   - callback                                         | 接口回调相关
-   - engine                                           | 兼容 Engine
-      - analytics                                     | Analytics Engine 数据统计 ( 埋点 )
-      - barcode                                       | BarCode Engine 条形码、二维码处理
-         - listener                                   | 条形码、二维码操作回调事件
-      - cache                                         | Cache Engine 有效期键值对缓存
-      - compress                                      | Image Compress Engine 图片压缩
-         - listener                                   | 图片压缩回调事件
-      - image                                         | Image Engine 图片加载、下载、转格式等
-         - listener                                   | 图片加载监听事件
-      - json                                          | JSON Engine 映射
-      - keyvalue                                      | KeyValue Engine 键值对存储
-      - log                                           | Log Engine 日志打印
-      - media                                         | Media Selector Engine 多媒体资源选择
-      - permission                                    | Permission Engine 权限申请
-      - push                                          | Push Engine 推送平台处理
-      - share                                         | Share Engine 分享平台处理
-         - listener                                   | 分享回调事件
-      - storage                                       | Storage Engine 外部、内部文件存储
-         - listener                                   | Storage 存储结果事件
-   - function                                         | 快捷方法执行相关
+- dev                                                                | 根目录
+   - adapter                                                         | 适配器相关
+   - assist                                                          | 快捷功能辅助类
+   - base                                                            | 实体类基类相关
+      - data                                                         | 数据操作
+      - entry                                                        | KeyValue 实体类
+      - multiselect                                                  | 多选编辑操作
+      - number                                                       | 数值操作
+      - state                                                        | 状态相关
+   - callback                                                        | 接口回调相关
+   - engine                                                          | 兼容 Engine
+      - analytics                                                    | Analytics Engine 数据统计 ( 埋点 )
+      - barcode                                                      | BarCode Engine 条形码、二维码处理
+         - listener                                                  | 条形码、二维码操作回调事件
+      - cache                                                        | Cache Engine 有效期键值对缓存
+      - compress                                                     | Image Compress Engine 图片压缩
+         - listener                                                  | 图片压缩回调事件
+      - image                                                        | Image Engine 图片加载、下载、转格式等
+         - listener                                                  | 图片加载监听事件
+      - json                                                         | JSON Engine 映射
+      - keyvalue                                                     | KeyValue Engine 键值对存储
+      - log                                                          | Log Engine 日志打印
+      - media                                                        | Media Selector Engine 多媒体资源选择
+      - permission                                                   | Permission Engine 权限申请
+      - push                                                         | Push Engine 推送平台处理
+      - share                                                        | Share Engine 分享平台处理
+         - listener                                                  | 分享回调事件
+      - storage                                                      | Storage Engine 外部、内部文件存储
+         - listener                                                  | Storage 存储结果事件
+   - function                                                        | 快捷方法执行相关
 ```
 
 
@@ -52,36 +52,36 @@ implementation 'io.github.afkt:DevAssist:1.3.4'
 ## API
 
 
-- dev                                                 | 根目录
-   - [adapter](#devadapter)                           | 适配器相关
-   - [assist](#devassist)                             | 快捷功能辅助类
-   - [base](#devbase)                                 | 实体类基类相关
-      - [data](#devbasedata)                          | 数据操作
-      - [entry](#devbaseentry)                        | KeyValue 实体类
-      - [multiselect](#devbasemultiselect)            | 多选编辑操作
-      - [number](#devbasenumber)                      | 数值操作
-      - [state](#devbasestate)                        | 状态相关
-   - [callback](#devcallback)                         | 接口回调相关
-   - [engine](#devengine)                             | 兼容 Engine
-      - [analytics](#devengineanalytics)              | Analytics Engine 数据统计 ( 埋点 )
-      - [barcode](#devenginebarcode)                  | BarCode Engine 条形码、二维码处理
-         - [listener](#devenginebarcodelistener)      | 条形码、二维码操作回调事件
-      - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
-      - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
-         - [listener](#devenginecompresslistener)     | 图片压缩回调事件
-      - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
-         - [listener](#devengineimagelistener)        | 图片加载监听事件
-      - [json](#devenginejson)                        | JSON Engine 映射
-      - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
-      - [log](#devenginelog)                          | Log Engine 日志打印
-      - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
-      - [permission](#devenginepermission)            | Permission Engine 权限申请
-      - [push](#devenginepush)                        | Push Engine 推送平台处理
-      - [share](#devengineshare)                      | Share Engine 分享平台处理
-         - [listener](#devenginesharelistener)        | 分享回调事件
-      - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
-         - [listener](#devenginestoragelistener)      | Storage 存储结果事件
-   - [function](#devfunction)                         | 快捷方法执行相关
+- dev                                                                | 根目录
+   - [adapter](#devadapter)                                          | 适配器相关
+   - [assist](#devassist)                                            | 快捷功能辅助类
+   - [base](#devbase)                                                | 实体类基类相关
+      - [data](#devbasedata)                                         | 数据操作
+      - [entry](#devbaseentry)                                       | KeyValue 实体类
+      - [multiselect](#devbasemultiselect)                           | 多选编辑操作
+      - [number](#devbasenumber)                                     | 数值操作
+      - [state](#devbasestate)                                       | 状态相关
+   - [callback](#devcallback)                                        | 接口回调相关
+   - [engine](#devengine)                                            | 兼容 Engine
+      - [analytics](#devengineanalytics)                             | Analytics Engine 数据统计 ( 埋点 )
+      - [barcode](#devenginebarcode)                                 | BarCode Engine 条形码、二维码处理
+         - [listener](#devenginebarcodelistener)                     | 条形码、二维码操作回调事件
+      - [cache](#devenginecache)                                     | Cache Engine 有效期键值对缓存
+      - [compress](#devenginecompress)                               | Image Compress Engine 图片压缩
+         - [listener](#devenginecompresslistener)                    | 图片压缩回调事件
+      - [image](#devengineimage)                                     | Image Engine 图片加载、下载、转格式等
+         - [listener](#devengineimagelistener)                       | 图片加载监听事件
+      - [json](#devenginejson)                                       | JSON Engine 映射
+      - [keyvalue](#devenginekeyvalue)                               | KeyValue Engine 键值对存储
+      - [log](#devenginelog)                                         | Log Engine 日志打印
+      - [media](#devenginemedia)                                     | Media Selector Engine 多媒体资源选择
+      - [permission](#devenginepermission)                           | Permission Engine 权限申请
+      - [push](#devenginepush)                                       | Push Engine 推送平台处理
+      - [share](#devengineshare)                                     | Share Engine 分享平台处理
+         - [listener](#devenginesharelistener)                       | 分享回调事件
+      - [storage](#devenginestorage)                                 | Storage Engine 外部、内部文件存储
+         - [listener](#devenginestoragelistener)                     | Storage 存储结果事件
+   - [function](#devfunction)                                        | 快捷方法执行相关
 
 
 ## <span id="dev">**`dev`**</span>
