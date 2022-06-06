@@ -1,0 +1,40 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply plugin: 'kotlin-parcelize'
+
+android.defaultConfig {
+    versionCode versions.dev_retrofit_versionCode
+    versionName versions.dev_retrofit_versionName
+    // DevRetrofit Module Version
+    buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
+    buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+    api deps.lib.okhttp3
+    // Retrofit 网络请求库  https://github.com/square/retrofit
+    api deps.lib.retrofit
+
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_app_x
+    } else {
+        // 编译时使用
+        api project(':DevApp')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

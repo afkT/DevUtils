@@ -10,6 +10,7 @@ def libs = [
         "DevEngine",
         "DevHttpCapture",
         "DevHttpManager",
+        "DevRetrofit",
         "DevJava",
         "DevWidget",
 ]

@@ -55,6 +55,10 @@ ext {
             dev_http_manager_versionCode             : 101,
             dev_http_manager_versionName             : "1.0.1",
 
+            // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+            dev_retrofit_versionCode                 : 100,
+            dev_retrofit_versionName                 : "1.0.0",
+
             // DevWidget - 自定义 View UI 库
             dev_widget_versionCode                   : 118,
             dev_widget_versionName                   : "1.1.8",
