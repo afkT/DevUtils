@@ -28,3 +28,45 @@ Engine 兼容框架等
       - DevHttpCaptureCompiler                   | Debug ( 打包 / 编译 ) 实现代码
       - DevHttpCaptureCompilerRelease            | Release ( 打包 / 编译 ) 实现代码
 ```
+
+## Dev 系列全部 Lib Gradle
+
+```gradle
+
+// DevApp - Android 工具类库
+implementation 'io.github.afkt:DevAppX:2.3.8'
+
+// DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
+implementation 'io.github.afkt:DevAssist:1.3.5'
+
+// DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+implementation 'io.github.afkt:DevBase:1.1.2'
+
+// DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
+implementation 'io.github.afkt:DevBaseMVVM:1.1.0'
+
+// DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+implementation 'io.github.afkt:DevEngine:1.0.7'
+
+// DevHttpCapture - OkHttp 抓包工具库
+implementation 'io.github.afkt:DevHttpCapture:1.1.1'
+
+// DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.1'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.1'
+
+// DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+implementation 'io.github.afkt:DevHttpManager:1.0.1'
+
+// DevWidget - 自定义 View UI 库
+implementation 'io.github.afkt:DevWidgetX:1.1.8'
+
+// DevEnvironment - Android 环境配置切换库
+implementation 'io.github.afkt:DevEnvironment:1.1.0'
+debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.0' // kaptDebug
+releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.0' // kaptRelease
+//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.0' // kapt
+
+// DevJava - Java 工具类库 ( 不依赖 android api )
+implementation 'io.github.afkt:DevJava:1.4.4' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+```
