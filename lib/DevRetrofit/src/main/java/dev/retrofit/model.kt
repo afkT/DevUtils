@@ -81,7 +81,6 @@ class Base private constructor() {
             private var response: R,
             private var error: Throwable?
         ) {
-            constructor(response: R) : this(response, null)
 
             fun build(): Result<T, R> {
                 return Result(response, error)
@@ -110,6 +109,25 @@ class Base private constructor() {
             }
         }
     }
+
+    /**
+     * detail: 错误类型 ( 简单定义 )
+     * @author Ttt
+     */
+    enum class ErrorCode {
+
+        NO_ERROR,
+
+        UNKNOWN,
+
+        PARSE_ERROR,
+
+        NETWORK_ERROR,
+
+        SSL_ERROR,
+
+        TIMEOUT_ERROR
+    }
 }
 
 // ==========
@@ -117,7 +135,7 @@ class Base private constructor() {
 // ==========
 
 /**
- * 通过 Base.Response 实现类创建 Result.Build 来决定请求结果校验
+ * 通过 Base.Response 实现类创建 Result.Build 来决定请求结果
  * @receiver R
  * @param error Throwable?
  * @return Base.Result.Build<T, R>
