@@ -3,7 +3,7 @@ package dev
 import dev.retrofit.BuildConfig
 
 /**
- * detail: OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+ * detail: Retrofit + Kotlin Coroutines 封装
  * @author Ttt
  * <p></p>
  * GitHub
@@ -22,6 +22,8 @@ import dev.retrofit.BuildConfig
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
  * DevHttpManager Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md
+ * DevRetrofit Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md
  * DevJava Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  * DevWidget Api
@@ -49,21 +51,5 @@ object DevRetrofit {
      */
     fun getDevRetrofitVersion(): String {
         return BuildConfig.DevRetrofit_Version
-    }
-
-    /**
-     * 获取 DevApp 版本号
-     * @return DevApp versionCode
-     */
-    fun getDevAppVersionCode(): Int {
-        return BuildConfig.DevApp_VersionCode
-    }
-
-    /**
-     * 获取 DevApp 版本
-     * @return DevApp versionName
-     */
-    fun getDevAppVersion(): String {
-        return BuildConfig.DevApp_Version
     }
 }

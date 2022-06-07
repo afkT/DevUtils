@@ -46,6 +46,8 @@ import dev.utils.common.assist.record.FileRecordUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md"/>
  *     DevHttpManager Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md"/>
+ *     DevRetrofit Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md"/>
  *     DevJava Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevWidget Api

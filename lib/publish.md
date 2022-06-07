@@ -12,6 +12,7 @@
       - DevHttpCaptureCompilerRelease      | Release ( 打包 / 编译 ) 实现代码
    - DevHttpManager                        | OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
    - DevWidget                             | 自定义 View UI 库
+- DevRetrofit                              | Retrofit + Kotlin Coroutines 封装
 - DevEnvironmentBase                       | 注解类、实体类、监听事件等通用基础
    - DevEnvironment                        | 环境切换可视化 UI 操作
    - DevEnvironmentCompiler                | Debug ( 打包 / 编译 ) 生成实现代码
