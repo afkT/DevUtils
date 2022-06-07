@@ -7,7 +7,7 @@ import org.greenrobot.eventbus.EventBus;
  * @author Ttt
  * <pre>
  *     eventbus: 注册后才能接收到该事件
- *     poststicky: 事件消费者在事件发布之后才注册也能接收到该事件
+ *     postSticky: 事件消费者在事件发布之后才注册也能接收到该事件
  * </pre>
  */
 public final class EventBusUtils {
