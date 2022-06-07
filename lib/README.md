@@ -10,14 +10,12 @@ Engine 兼容框架等
    - DevApp                                      | Android 工具类库
    - DevAssist                                   | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
    - DevBase                                     | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-   - DevBase2                                    | Base 基础代码 ( 非基类库 )
    - DevBaseMVVM                                 | MVVM ( ViewDataBinding + ViewModel ) 基类库
    - DevEngine                                   | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
    - DevHttpCapture                              | OkHttp 抓包工具库
    - DevHttpManager                              | OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
    - DevJava                                     | Java 工具类库 ( 不依赖 android api )
-   - DevOther                                    | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
-   - DevSKU                                      | 商品 SKU 组合封装实现
+   - DevRetrofit                                 | Retrofit + Kotlin Coroutines 封装
    - DevWidget                                   | 自定义 View UI 库
    - Environment                                 | Android 环境配置切换库
       - DevEnvironment                           | 环境切换可视化 UI 操作
@@ -27,6 +25,10 @@ Engine 兼容框架等
    - HttpCapture                                 | OkHttp 抓包工具库 ( 可视化功能 )
       - DevHttpCaptureCompiler                   | Debug ( 打包 / 编译 ) 实现代码
       - DevHttpCaptureCompilerRelease            | Release ( 打包 / 编译 ) 实现代码
+   - LocalModules                                | 本地 Module lib ( 非发布库 )
+      - DevBase2                                 | Base 基础代码 ( 非基类库 )
+      - DevOther                                 | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
+      - DevSKU                                   | 商品 SKU 组合封装实现
 ```
 
 ## Dev 系列全部 Lib Gradle
@@ -70,3 +72,6 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.0' 
 // DevJava - Java 工具类库 ( 不依赖 android api )
 implementation 'io.github.afkt:DevJava:1.4.4' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
+
+
+

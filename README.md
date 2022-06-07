@@ -93,11 +93,11 @@
 
 ## Other
 
-> [DevBase2](https://github.com/afkT/DevUtils/blob/master/lib/DevBase2/src/main/java/dev/base) Base 基础代码 ( 非基类库 )
+> [DevBase2](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevBase2/src/main/java/dev/base) Base 基础代码 ( 非基类库 )
 >
-> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
+> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 >
-> [DevSKU](https://github.com/afkT/DevUtils/blob/master/lib/DevSKU/src/main/java/dev/sku/SKU.kt) 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
+> [DevSKU](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevSKU/src/main/java/dev/sku/SKU.kt) 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
 >
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 

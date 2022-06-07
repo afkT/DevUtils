@@ -108,7 +108,7 @@
 ## <span id="javadevassist">**`java.dev.assist`**</span>
 
 
-* **WebView 辅助类 ->** [WebViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/assist/WebViewAssist.java)
+* **WebView 辅助类 ->** [WebViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/assist/WebViewAssist.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -232,7 +232,7 @@
 ## <span id="javadevenginebarcode">**`java.dev.engine.barcode`**</span>
 
 
-* **BarCode Config ->** [BarCodeConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeConfig.java)
+* **BarCode Config ->** [BarCodeConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/barcode/BarCodeConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -243,7 +243,7 @@
 | putDecodeHints | 设置解码 ( 解析 ) 配置 |
 
 
-* **BarCode ( Data、Params ) Item ->** [BarCodeData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeData.java)
+* **BarCode ( Data、Params ) Item ->** [BarCodeData.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/barcode/BarCodeData.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -263,7 +263,7 @@
 | setIconScale | 设置 icon 占比 |
 
 
-* **BarCode Result ->** [BarCodeResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/BarCodeResult.java)
+* **BarCode Result ->** [BarCodeResult.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/barcode/BarCodeResult.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -273,7 +273,7 @@
 | getBarcodeFormat | 获取条码类型 |
 
 
-* **ZXing BarCode Engine 实现 ->** [ZXingEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/barcode/ZXingEngineImpl.java)
+* **ZXing BarCode Engine 实现 ->** [ZXingEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/barcode/ZXingEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -289,7 +289,7 @@
 ## <span id="javadevenginecache">**`java.dev.engine.cache`**</span>
 
 
-* **DevCache ( DevUtils ) Cache Engine 实现 ->** [DevCacheEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/cache/DevCacheEngineImpl.java)
+* **DevCache ( DevUtils ) Cache Engine 实现 ->** [DevCacheEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/cache/DevCacheEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -327,7 +327,7 @@
 ## <span id="javadevenginecompress">**`java.dev.engine.compress`**</span>
 
 
-* **Image Compress Config ->** [CompressConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/compress/CompressConfig.java)
+* **Image Compress Config ->** [CompressConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/compress/CompressConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -335,7 +335,7 @@
 | setFailFinish | setFailFinish |
 
 
-* **Luban Image Compress Engine 实现 ->** [LubanEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/compress/LubanEngineImpl.java)
+* **Luban Image Compress Engine 实现 ->** [LubanEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/compress/LubanEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -345,7 +345,7 @@
 ## <span id="javadevengineimage">**`java.dev.engine.image`**</span>
 
 
-* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/image/GlideEngineImpl.java)
+* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/image/GlideEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -367,7 +367,7 @@
 | convertImageFormat | convertImageFormat |
 
 
-* **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/image/ImageConfig.java)
+* **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/image/ImageConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -409,7 +409,7 @@
 ## <span id="javadevenginejson">**`java.dev.engine.json`**</span>
 
 
-* **Fastjson JSON Engine 实现 ->** [FastjsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/json/FastjsonEngineImpl.java)
+* **Fastjson JSON Engine 实现 ->** [FastjsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/json/FastjsonEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -421,7 +421,7 @@
 | toJsonIndent | toJsonIndent |
 
 
-* **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/json/GsonEngineImpl.java)
+* **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/json/GsonEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -436,14 +436,14 @@
 ## <span id="javadevenginekeyvalue">**`java.dev.engine.keyvalue`**</span>
 
 
-* **MMKV Key-Value Config ->** [MMKVConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVConfig.java)
+* **MMKV Key-Value Config ->** [MMKVConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getMMKV | getMMKV |
 
 
-* **MMKV Key-Value Engine 实现 ->** [MMKVKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVKeyValueEngineImpl.java)
+* **MMKV Key-Value Engine 实现 ->** [MMKVKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/keyvalue/MMKVKeyValueEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -469,14 +469,14 @@
 | getEntity | getEntity |
 
 
-* **SharedPreferences Key-Value Config ->** [SPConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/SPConfig.java)
+* **SharedPreferences Key-Value Config ->** [SPConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/keyvalue/SPConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getPreference | getPreference |
 
 
-* **SharedPreferences Key-Value Engine 实现 ->** [SPKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/keyvalue/SPKeyValueEngineImpl.java)
+* **SharedPreferences Key-Value Engine 实现 ->** [SPKeyValueEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/keyvalue/SPKeyValueEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -505,7 +505,7 @@
 ## <span id="javadevenginelog">**`java.dev.engine.log`**</span>
 
 
-* **DevLogger Log Engine 实现 ->** [DevLoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/log/DevLoggerEngineImpl.java)
+* **DevLogger Log Engine 实现 ->** [DevLoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/log/DevLoggerEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -531,7 +531,7 @@
 ## <span id="javadevenginemedia">**`java.dev.engine.media`**</span>
 
 
-* ** ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
+* ** ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -541,7 +541,7 @@
 | createGlideEngine | createGlideEngine |
 
 
-* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/LocalMediaData.java)
+* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/LocalMediaData.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -550,7 +550,7 @@
 | getLocalMediaPath | 获取本地资源路径 |
 
 
-* **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/MediaConfig.java)
+* **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/MediaConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -592,7 +592,7 @@
 | ofAudio | ofAudio |
 
 
-* **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/media/PictureSelectorEngineImpl.java)
+* **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/PictureSelectorEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -617,7 +617,7 @@
 ## <span id="javadevenginepermission">**`java.dev.engine.permission`**</span>
 
 
-* **DevUtils Permission Engine 实现 ->** [DevPermissionEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/permission/DevPermissionEngineImpl.java)
+* **DevUtils Permission Engine 实现 ->** [DevPermissionEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/permission/DevPermissionEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -631,7 +631,7 @@
 ## <span id="javadevenginestorage">**`java.dev.engine.storage`**</span>
 
 
-* **DevUtils MediaStore Engine 实现 ->** [DevMediaStoreEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/DevMediaStoreEngineImpl.java)
+* **DevUtils MediaStore Engine 实现 ->** [DevMediaStoreEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/storage/DevMediaStoreEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -647,7 +647,7 @@
 | insertMediaToInternal | 插入一条多媒体资源到内部存储空间 |
 
 
-* **Storage Item Params ->** [StorageItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageItem.java)
+* **Storage Item Params ->** [StorageItem.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/storage/StorageItem.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -669,7 +669,7 @@
 | createExternalItemFolder | 创建外部存储路径信息 Item |
 
 
-* **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageResult.java)
+* **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/storage/StorageResult.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -688,7 +688,7 @@
 | setExternal | setExternal |
 
 
-* **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/engine/storage/StorageType.java)
+* **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/storage/StorageType.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -706,7 +706,7 @@
 ## <span id="javadevother">**`java.dev.other`**</span>
 
 
-* **EventBus 工具类 ->** [EventBusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/EventBusUtils.java)
+* **EventBus 工具类 ->** [EventBusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/EventBusUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -719,7 +719,7 @@
 | removeAllStickyEvents | 移除所有的粘性订阅事件 |
 
 
-* **Fastjson 工具类 ->** [FastjsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/FastjsonUtils.java)
+* **Fastjson 工具类 ->** [FastjsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/FastjsonUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -736,7 +736,7 @@
 | getType | 获取 Type |
 
 
-* **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GlideTransformUtils.java)
+* **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/GlideTransformUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -745,7 +745,7 @@
 | blurBitmap | 模糊图片处理 |
 
 
-* **Glide 工具类 ->** [GlideUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GlideUtils.java)
+* **Glide 工具类 ->** [GlideUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/GlideUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -767,7 +767,7 @@
 | convertImageFormat | convertImageFormat |
 
 
-* **Gson 工具类 ->** [GsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/GsonUtils.java)
+* **Gson 工具类 ->** [GsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/GsonUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -786,7 +786,7 @@
 | getType | 获取 Type |
 
 
-* **ImageLoader 工具类 ->** [ImageLoaderUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ImageLoaderUtils.java)
+* **ImageLoader 工具类 ->** [ImageLoaderUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/ImageLoaderUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -817,7 +817,7 @@
 | stop | 停止图片加载 |
 
 
-* **Luban 工具类 ->** [LubanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/LubanUtils.java)
+* **Luban 工具类 ->** [LubanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/LubanUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -830,7 +830,7 @@
 | onComplete | 压缩完成 ( 压缩结束 ) |
 
 
-* **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/MMKVUtils.java)
+* **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/MMKVUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -861,7 +861,7 @@
 | decodeParcelable | decodeParcelable |
 
 
-* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/PictureSelectorUtils.java)
+* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/PictureSelectorUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -916,7 +916,7 @@
 | ofAudio | ofAudio |
 
 
-* **ZXing 条形码、二维码工具类 ->** [ZXingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/ZXingUtils.java)
+* **ZXing 条形码、二维码工具类 ->** [ZXingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/ZXingUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -932,7 +932,7 @@
 ## <span id="javadevothercache">**`java.dev.other.cache`**</span>
 
 
-* **缓存工具类 ->** [ACache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/cache/ACache.java)
+* **缓存工具类 ->** [ACache.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/cache/ACache.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -954,7 +954,7 @@
 ## <span id="javadevotherokgo">**`java.dev.other.okgo`**</span>
 
 
-* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoCallback.java)
+* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -970,7 +970,7 @@
 | onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 
 
-* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoDemo.java)
+* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoDemo.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -980,7 +980,7 @@
 | uploadImages | 上传多个文件 |
 
 
-* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoResponse.java)
+* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoResponse.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -995,7 +995,7 @@
 | setException | setException |
 
 
-* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/okgo/OkGoUtils.java)
+* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1006,7 +1006,7 @@
 ## <span id="javadevotherretrofit">**`java.dev.other.retrofit`**</span>
 
 
-* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/RetrofitManager.java)
+* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/RetrofitManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1019,7 +1019,7 @@
 | create | 创建 API Service Class |
 
 
-* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/RxJavaManager.java)
+* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/RxJavaManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1037,7 +1037,7 @@
 ## <span id="javadevotherretrofitsubscriber">**`java.dev.other.retrofit.subscriber`**</span>
 
 
-* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
+* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1050,7 +1050,7 @@
 | getErrorMessage | 获取异常信息 |
 
 
-* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
+* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1067,7 +1067,7 @@
 ## <span id="javadevotherwork">**`java.dev.other.work`**</span>
 
 
-* **WorkManager 工具类 ->** [WorkManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/WorkManagerUtils.java)
+* **WorkManager 工具类 ->** [WorkManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/work/WorkManagerUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1099,7 +1099,7 @@
 ## <span id="javadevotherworkdemo">**`java.dev.other.work.demo`**</span>
 
 
-* ** ->** [ChainWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/ChainWorker.java)
+* ** ->** [ChainWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/work/demo/ChainWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1108,7 +1108,7 @@
 | doWork | doWork |
 
 
-* **模拟后台间隔性进行定位 ->** [LocationWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/LocationWorker.java)
+* **模拟后台间隔性进行定位 ->** [LocationWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/work/demo/LocationWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1116,7 +1116,7 @@
 | builder | 快捷创建循环 Worker Request |
 
 
-* **打印日志 Worker ( 用于演示 ) ->** [LogWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java//java/dev/other/work/demo/LogWorker.java)
+* **打印日志 Worker ( 用于演示 ) ->** [LogWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/work/demo/LogWorker.java)
 
 | 方法 | 注释 |
 | :- | :- |
