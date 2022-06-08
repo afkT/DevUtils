@@ -27,13 +27,13 @@ fun Throwable?.errorCode(): Base.ErrorCode {
         "HttpException" -> {
             Base.ErrorCode.NETWORK_ERROR
         }
-        "SSLException" -> {
-            Base.ErrorCode.SSL_ERROR
-        }
         "ConnectTimeoutException",
         "SocketTimeoutException",
         "UnknownHostException" -> {
             Base.ErrorCode.TIMEOUT_ERROR
+        }
+        "SSLException" -> {
+            Base.ErrorCode.SSL_ERROR
         }
         else -> {
             if (className.startsWith("SSL")) {
