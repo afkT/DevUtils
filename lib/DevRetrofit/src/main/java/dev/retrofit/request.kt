@@ -1,5 +1,7 @@
 package dev.retrofit
 
+import java.util.*
+
 // =============
 // = 封装请求方法 =
 // =============
@@ -24,37 +26,42 @@ suspend inline fun <T, P> finalExecute(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null
+    callback: Notify.Callback<T, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null
 ) {
+    val uuid: UUID = UUID.randomUUID()
     runCatching {
         // 开始请求
-        callback?.onStart()
+        innerOriginalStartCallback(
+            uuid, callback, globalCallback
+        )
 
         start.invoke()
         // 请求方法体
         block()
     }.onSuccess { itData ->
         // 请求成功、请求结束
-        callback?.apply {
-            onSuccess(itData)
-            onFinish()
-        }
+        innerOriginalSuccessCallback(
+            uuid, callback, globalCallback, itData
+        )
+
         success.invoke(itData)
         finish.invoke()
     }.onFailure { itError ->
         // 请求异常、请求结束
-        callback?.apply {
-            onError(itError)
-            onFinish()
-        }
+        innerOriginalErrorCallback(
+            uuid, callback, globalCallback, itError
+        )
+
         error.invoke(itError)
         finish.invoke()
     }
 }
 
-// =======
-// = 封装 =
-// =======
+// ==============
+// = Base - 封装 =
+// ==============
 
 /**
  * 最终执行方法
@@ -72,38 +79,191 @@ suspend inline fun <T, R : Base.Response<T>, P> finalExecuteResponse(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null
+    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null
 ) {
+    val uuid: UUID = UUID.randomUUID()
     runCatching {
         // 开始请求
-        callback?.onStart()
+        innerBaseStartCallback(
+            uuid, callback, globalCallback
+        )
 
         start.invoke()
         // 请求方法体
         block()
     }.onSuccess { itData ->
         val result = itData.result().build()
+        // 设置额外携带参数 ( 扩展使用 )
+        result.setParams(callback?.getParams())
         // 请求成功、请求结束
-        callback?.apply {
-            // 设置额外携带参数 ( 扩展使用 )
-            result.setParams(this.getParams())
+        innerBaseSuccessCallback(
+            uuid, callback, globalCallback, result
+        )
 
-            onSuccess(result)
-            onFinish()
-        }
         success.invoke(result)
         finish.invoke()
     }.onFailure { itError ->
         val result = resultCreate<T, R>(itError).build()
+        // 设置额外携带参数 ( 扩展使用 )
+        result.setParams(callback?.getParams())
         // 请求异常、请求结束
-        callback?.apply {
-            // 设置额外携带参数 ( 扩展使用 )
-            result.setParams(this.getParams())
+        innerBaseErrorCallback(
+            uuid, callback, globalCallback, itError
+        )
 
-            onError(itError)
-            onFinish()
-        }
         error.invoke(result)
         finish.invoke()
+    }
+}
+
+// =================
+// = 内部封装美化代码 =
+// =================
+
+// =======
+// = 原始 =
+// =======
+
+/**
+ * 开始请求
+ */
+fun <T, P> innerOriginalStartCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<T, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null
+) {
+    val params = callback?.getParams()
+    // 开始请求
+    globalCallback?.onStart(
+        uuid, params
+    )
+    callback?.onStart(uuid)
+}
+
+/**
+ * 请求成功、请求结束
+ */
+fun <T, P> innerOriginalSuccessCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<T, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null,
+    // 请求响应数据
+    itData: T?
+) {
+    val params = callback?.getParams()
+    // 请求成功、请求结束
+    globalCallback?.apply {
+        onSuccess(uuid, params, itData)
+        onFinish(uuid, params)
+    }
+    callback?.apply {
+        onSuccess(uuid, itData)
+        onFinish(uuid)
+    }
+}
+
+/**
+ * 请求异常、请求结束
+ */
+fun <T, P> innerOriginalErrorCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<T, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null,
+    // 请求异常
+    itError: Throwable
+) {
+    val params = callback?.getParams()
+    // 请求异常、请求结束
+    globalCallback?.apply {
+        onError(uuid, params, itError)
+        onFinish(uuid, params)
+    }
+    callback?.apply {
+        onError(uuid, itError)
+        onFinish(uuid)
+    }
+}
+
+// ==============
+// = Base - 封装 =
+// ==============
+
+/**
+ * 开始请求
+ */
+fun <T, R : Base.Response<T>, P> innerBaseStartCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null
+) {
+    val params = callback?.getParams()
+    // 开始请求
+    globalCallback?.onStart(
+        uuid, params
+    )
+    callback?.onStart(uuid)
+}
+
+/**
+ * 请求成功、请求结束
+ */
+fun <T, R : Base.Response<T>, P> innerBaseSuccessCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null,
+    // 请求响应数据
+    result: Base.Result<T, R>
+) {
+    val params = callback?.getParams()
+    // 请求成功、请求结束
+    globalCallback?.apply {
+        onSuccess(uuid, params, result)
+        onFinish(uuid, params)
+    }
+    callback?.apply {
+        onSuccess(uuid, result)
+        onFinish(uuid)
+    }
+}
+
+/**
+ * 请求异常、请求结束
+ */
+fun <T, R : Base.Response<T>, P> innerBaseErrorCallback(
+    // 每次请求唯一 id
+    uuid: UUID,
+    // 当前请求每个阶段进行通知
+    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    // 全局通知回调方法 ( 创建一个全局通用传入 )
+    globalCallback: Notify.GlobalCallback? = null,
+    // 请求异常
+    itError: Throwable
+) {
+    val params = callback?.getParams()
+    // 请求异常、请求结束
+    globalCallback?.apply {
+        onError(uuid, params, itError)
+        onFinish(uuid, params)
+    }
+    callback?.apply {
+        onError(uuid, itError)
+        onFinish(uuid)
     }
 }

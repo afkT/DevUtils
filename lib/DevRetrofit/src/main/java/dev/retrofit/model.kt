@@ -1,5 +1,7 @@
 package dev.retrofit
 
+import java.util.*
+
 // ====================
 // = 数据模型、接口汇总类 =
 // ====================
@@ -215,25 +217,87 @@ class Notify private constructor() {
 
         /**
          * 开始请求
+         * @param uuid UUID
          */
-        abstract fun onStart()
-
-        /**
-         * 请求异常
-         * @param error Throwable?
-         */
-        abstract fun onError(error: Throwable?)
+        abstract fun onStart(uuid: UUID)
 
         /**
          * 请求成功
+         * @param uuid UUID
          * @param data T
          */
-        abstract fun onSuccess(data: T?)
+        abstract fun onSuccess(
+            uuid: UUID,
+            data: T?
+        )
+
+        /**
+         * 请求异常
+         * @param uuid UUID
+         * @param error Throwable?
+         */
+        abstract fun onError(
+            uuid: UUID,
+            error: Throwable?
+        )
 
         /**
          * 请求结束
+         * @param uuid UUID
          * 不管是 [onError]、[onSuccess] 最终都会触发该结束方法
          */
-        abstract fun onFinish()
+        abstract fun onFinish(uuid: UUID)
+    }
+
+    /**
+     * detail: 全局通知回调方法
+     * @author Ttt
+     */
+    interface GlobalCallback {
+
+        /**
+         * 开始请求
+         * @param uuid UUID
+         * @param params [Notify.Callback.params]
+         */
+        fun onStart(
+            uuid: UUID,
+            params: Any?
+        )
+
+        /**
+         * 请求成功
+         * @param uuid UUID
+         * @param params [Notify.Callback.params]
+         * @param data T
+         */
+        fun onSuccess(
+            uuid: UUID,
+            params: Any?,
+            data: Any?
+        )
+
+        /**
+         * 请求异常
+         * @param uuid UUID
+         * @param params [Notify.Callback.params]
+         * @param error Throwable?
+         */
+        fun onError(
+            uuid: UUID,
+            params: Any?,
+            error: Throwable?
+        )
+
+        /**
+         * 请求结束
+         * @param uuid UUID
+         * @param params [Notify.Callback.params]
+         * 不管是 [onError]、[onSuccess] 最终都会触发该结束方法
+         */
+        fun onFinish(
+            uuid: UUID,
+            params: Any?
+        )
     }
 }
