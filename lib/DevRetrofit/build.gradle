@@ -12,6 +12,13 @@ android.defaultConfig {
 // 是否发布版本
 def isPublishing = false
 
+dependencies {
+    api deps.kotlin.core
+    api deps.kotlin.coroutines
+    api deps.kotlin.lifecycle_runtime
+    api deps.kotlin.lifecycle_viewmodel
+}
+
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
