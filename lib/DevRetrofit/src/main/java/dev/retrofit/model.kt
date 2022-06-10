@@ -37,7 +37,7 @@ class Base private constructor() {
      * detail: 请求结果包装类
      * @author Ttt
      */
-    class Result<T, R : Response<T>> private constructor(
+    open class Result<T, R : Response<T>> constructor(
         private val response: R?,
         // 不为 null 表示出错抛出异常
         private val error: Throwable?,
@@ -53,12 +53,12 @@ class Base private constructor() {
             return response
         }
 
-        fun getError(): Throwable? {
-            return error
-        }
-
         fun isError(): Boolean {
             return error != null
+        }
+
+        fun getError(): Throwable? {
+            return error
         }
 
         fun getErrorCode(): ErrorCode {
@@ -170,20 +170,20 @@ class Notify private constructor() {
      * @author Ttt
      * 允许继承自定义其他参数
      */
-    abstract class Callback<T, P>(
+    abstract class Callback<T> {
+
         // 额外携带参数 ( 扩展使用 )
-        private var params: P? = null
-    ) {
+        private var params: Any? = null
 
         // ===========
         // = get/set =
         // ===========
 
-        fun getParams(): P? {
+        fun getParams(): Any? {
             return params
         }
 
-        fun setParams(params: P?): Callback<T, P> {
+        fun setParams(params: Any?): Callback<T> {
             this.params = params
             return this
         }
@@ -246,7 +246,7 @@ class Notify private constructor() {
          * 请求成功
          * @param uuid UUID
          * @param params [Notify.Callback.params]
-         * @param data T
+         * @param data Any?
          */
         fun onSuccess(
             uuid: UUID,

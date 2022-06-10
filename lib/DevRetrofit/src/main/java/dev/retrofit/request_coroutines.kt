@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
  * 防止使用、阅读混淆
  * 通用 CoroutineScope 执行方法使用 scope 为方法名前缀
  */
-inline fun <T, P> CoroutineScope.scopeExecuteRequest(
+inline fun <T> CoroutineScope.scopeExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
     // 开始请求
@@ -35,7 +35,7 @@ inline fun <T, P> CoroutineScope.scopeExecuteRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -53,7 +53,7 @@ inline fun <T, P> CoroutineScope.scopeExecuteRequest(
  * 防止使用、阅读混淆
  * 通用 CoroutineScope 执行方法使用 scope 为方法名前缀
  */
-inline fun <T, R : Base.Response<T>, P> CoroutineScope.scopeExecuteResponseRequest(
+inline fun <T, R : Base.Response<T>> CoroutineScope.scopeExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
     // 开始请求
@@ -65,7 +65,7 @@ inline fun <T, R : Base.Response<T>, P> CoroutineScope.scopeExecuteResponseReque
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -84,7 +84,7 @@ inline fun <T, R : Base.Response<T>, P> CoroutineScope.scopeExecuteResponseReque
  * 执行请求
  * 无任何封装, 支持自定义解析、处理等代码
  */
-inline fun <T, P> ViewModel.launchExecuteRequest(
+inline fun <T> ViewModel.launchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
     // 开始请求
@@ -96,7 +96,7 @@ inline fun <T, P> ViewModel.launchExecuteRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -109,7 +109,7 @@ inline fun <T, P> ViewModel.launchExecuteRequest(
  * 执行请求
  * 封装为 Base.Response、Base.Result 进行响应
  */
-inline fun <T, R : Base.Response<T>, P> ViewModel.launchExecuteResponseRequest(
+inline fun <T, R : Base.Response<T>> ViewModel.launchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
     // 开始请求
@@ -121,7 +121,7 @@ inline fun <T, R : Base.Response<T>, P> ViewModel.launchExecuteResponseRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -138,7 +138,7 @@ inline fun <T, R : Base.Response<T>, P> ViewModel.launchExecuteResponseRequest(
  * 执行请求
  * 无任何封装, 支持自定义解析、处理等代码
  */
-inline fun <T, P> Lifecycle.launchExecuteRequest(
+inline fun <T> Lifecycle.launchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
     // 开始请求
@@ -150,7 +150,7 @@ inline fun <T, P> Lifecycle.launchExecuteRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -163,7 +163,7 @@ inline fun <T, P> Lifecycle.launchExecuteRequest(
  * 执行请求
  * 封装为 Base.Response、Base.Result 进行响应
  */
-inline fun <T, R : Base.Response<T>, P> Lifecycle.launchExecuteResponseRequest(
+inline fun <T, R : Base.Response<T>> Lifecycle.launchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
     // 开始请求
@@ -175,7 +175,7 @@ inline fun <T, R : Base.Response<T>, P> Lifecycle.launchExecuteResponseRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -192,7 +192,7 @@ inline fun <T, R : Base.Response<T>, P> Lifecycle.launchExecuteResponseRequest(
  * 执行请求
  * 无任何封装, 支持自定义解析、处理等代码
  */
-inline fun <T, P> LifecycleOwner.launchExecuteRequest(
+inline fun <T> LifecycleOwner.launchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
     // 开始请求
@@ -204,7 +204,7 @@ inline fun <T, P> LifecycleOwner.launchExecuteRequest(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -217,7 +217,7 @@ inline fun <T, P> LifecycleOwner.launchExecuteRequest(
  * 执行请求
  * 封装为 Base.Response、Base.Result 进行响应
  */
-inline fun <T, R : Base.Response<T>, P> LifecycleOwner.launchExecuteResponseRequest(
+inline fun <T, R : Base.Response<T>> LifecycleOwner.launchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
     // 开始请求
@@ -229,7 +229,7 @@ inline fun <T, R : Base.Response<T>, P> LifecycleOwner.launchExecuteResponseRequ
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {

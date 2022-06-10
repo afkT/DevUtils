@@ -14,7 +14,7 @@ import java.util.*
  * 最终执行方法
  * 无任何封装, 支持自定义解析、处理等代码
  */
-suspend inline fun <T, P> finalExecute(
+suspend inline fun <T> finalExecute(
     // 请求方法体
     crossinline block: suspend () -> T?,
     // 开始请求
@@ -26,7 +26,7 @@ suspend inline fun <T, P> finalExecute(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -67,7 +67,7 @@ suspend inline fun <T, P> finalExecute(
  * 最终执行方法
  * 封装为 Base.Response、Base.Result 进行响应
  */
-suspend inline fun <T, R : Base.Response<T>, P> finalExecuteResponse(
+suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
     // 请求方法体
     crossinline block: suspend () -> R?,
     // 开始请求
@@ -79,7 +79,7 @@ suspend inline fun <T, R : Base.Response<T>, P> finalExecuteResponse(
     // 请求结束
     crossinline finish: suspend () -> Unit,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -129,11 +129,11 @@ suspend inline fun <T, R : Base.Response<T>, P> finalExecuteResponse(
 /**
  * 开始请求
  */
-fun <T, P> innerOriginalStartCallback(
+fun <T> innerOriginalStartCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -148,11 +148,11 @@ fun <T, P> innerOriginalStartCallback(
 /**
  * 请求成功、请求结束
  */
-fun <T, P> innerOriginalSuccessCallback(
+fun <T> innerOriginalSuccessCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null,
     // 请求响应数据
@@ -173,11 +173,11 @@ fun <T, P> innerOriginalSuccessCallback(
 /**
  * 请求异常、请求结束
  */
-fun <T, P> innerOriginalErrorCallback(
+fun <T> innerOriginalErrorCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<T, P>? = null,
+    callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null,
     // 请求异常
@@ -202,11 +202,11 @@ fun <T, P> innerOriginalErrorCallback(
 /**
  * 开始请求
  */
-fun <T, R : Base.Response<T>, P> innerBaseStartCallback(
+fun <T, R : Base.Response<T>> innerBaseStartCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
@@ -221,11 +221,11 @@ fun <T, R : Base.Response<T>, P> innerBaseStartCallback(
 /**
  * 请求成功、请求结束
  */
-fun <T, R : Base.Response<T>, P> innerBaseSuccessCallback(
+fun <T, R : Base.Response<T>> innerBaseSuccessCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null,
     // 请求响应数据
@@ -246,11 +246,11 @@ fun <T, R : Base.Response<T>, P> innerBaseSuccessCallback(
 /**
  * 请求异常、请求结束
  */
-fun <T, R : Base.Response<T>, P> innerBaseErrorCallback(
+fun <T, R : Base.Response<T>> innerBaseErrorCallback(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
-    callback: Notify.Callback<Base.Result<T, R>, P>? = null,
+    callback: Notify.Callback<Base.Result<T, R>>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null,
     // 请求异常
