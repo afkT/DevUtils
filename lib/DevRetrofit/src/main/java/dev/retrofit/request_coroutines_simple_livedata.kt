@@ -2,6 +2,7 @@ package dev.retrofit
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -32,8 +33,8 @@ inline fun <T> CoroutineScope.liveDataScopeExecuteRequest(
     callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    launch {
+): Job {
+    return launch {
         finalExecute(
             block, start = {}, success = {
                 it?.let { data ->
@@ -65,8 +66,8 @@ inline fun <T, R : Base.Response<T>> CoroutineScope.liveDataScopeExecuteResponse
     callback: Notify.ResultCallback<T, R>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    launch {
+): Job {
+    return launch {
         finalExecuteResponse(
             block, start = {}, success = {},
             error = {}, finish = {},
@@ -115,8 +116,8 @@ inline fun <T> ViewModel.liveDataLaunchExecuteRequest(
     callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    viewModelScope.liveDataScopeExecuteRequest(
+): Job {
+    return viewModelScope.liveDataScopeExecuteRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }
@@ -136,8 +137,8 @@ inline fun <T, R : Base.Response<T>> ViewModel.liveDataLaunchExecuteResponseRequ
     callback: Notify.ResultCallback<T, R>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    viewModelScope.liveDataScopeExecuteResponseRequest(
+): Job {
+    return viewModelScope.liveDataScopeExecuteResponseRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }
@@ -161,8 +162,8 @@ inline fun <T> Lifecycle.liveDataLaunchExecuteRequest(
     callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    coroutineScope.liveDataScopeExecuteRequest(
+): Job {
+    return coroutineScope.liveDataScopeExecuteRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }
@@ -182,8 +183,8 @@ inline fun <T, R : Base.Response<T>> Lifecycle.liveDataLaunchExecuteResponseRequ
     callback: Notify.ResultCallback<T, R>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    coroutineScope.liveDataScopeExecuteResponseRequest(
+): Job {
+    return coroutineScope.liveDataScopeExecuteResponseRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }
@@ -207,8 +208,8 @@ inline fun <T> LifecycleOwner.liveDataLaunchExecuteRequest(
     callback: Notify.Callback<T>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    lifecycleScope.liveDataScopeExecuteRequest(
+): Job {
+    return lifecycleScope.liveDataScopeExecuteRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }
@@ -228,8 +229,8 @@ inline fun <T, R : Base.Response<T>> LifecycleOwner.liveDataLaunchExecuteRespons
     callback: Notify.ResultCallback<T, R>? = null,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    lifecycleScope.liveDataScopeExecuteResponseRequest(
+): Job {
+    return lifecycleScope.liveDataScopeExecuteResponseRequest(
         block, liveData, usePostValue, callback, globalCallback
     )
 }

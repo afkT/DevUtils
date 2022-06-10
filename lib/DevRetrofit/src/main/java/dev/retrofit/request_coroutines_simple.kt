@@ -2,6 +2,7 @@ package dev.retrofit
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 // ====================
@@ -27,8 +28,8 @@ inline fun <T> CoroutineScope.simpleScopeExecuteRequest(
     callback: Notify.Callback<T>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    launch {
+): Job {
+    return launch {
         finalExecute(
             block, start = {}, success = {},
             error = {}, finish = {},
@@ -48,8 +49,8 @@ inline fun <T, R : Base.Response<T>> CoroutineScope.simpleScopeExecuteResponseRe
     callback: Notify.ResultCallback<T, R>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    launch {
+): Job {
+    return launch {
         finalExecuteResponse(
             block, start = {}, success = {},
             error = {}, finish = {},
@@ -73,8 +74,8 @@ inline fun <T> ViewModel.simpleLaunchExecuteRequest(
     callback: Notify.Callback<T>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    viewModelScope.simpleScopeExecuteRequest(
+): Job {
+    return viewModelScope.simpleScopeExecuteRequest(
         block, callback, globalCallback
     )
 }
@@ -90,8 +91,8 @@ inline fun <T, R : Base.Response<T>> ViewModel.simpleLaunchExecuteResponseReques
     callback: Notify.ResultCallback<T, R>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    viewModelScope.simpleScopeExecuteResponseRequest(
+): Job {
+    return viewModelScope.simpleScopeExecuteResponseRequest(
         block, callback, globalCallback
     )
 }
@@ -111,8 +112,8 @@ inline fun <T> Lifecycle.simpleLaunchExecuteRequest(
     callback: Notify.Callback<T>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    coroutineScope.simpleScopeExecuteRequest(
+): Job {
+    return coroutineScope.simpleScopeExecuteRequest(
         block, callback, globalCallback
     )
 }
@@ -128,8 +129,8 @@ inline fun <T, R : Base.Response<T>> Lifecycle.simpleLaunchExecuteResponseReques
     callback: Notify.ResultCallback<T, R>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    coroutineScope.simpleScopeExecuteResponseRequest(
+): Job {
+    return coroutineScope.simpleScopeExecuteResponseRequest(
         block, callback, globalCallback
     )
 }
@@ -149,8 +150,8 @@ inline fun <T> LifecycleOwner.simpleLaunchExecuteRequest(
     callback: Notify.Callback<T>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    lifecycleScope.simpleScopeExecuteRequest(
+): Job {
+    return lifecycleScope.simpleScopeExecuteRequest(
         block, callback, globalCallback
     )
 }
@@ -166,8 +167,8 @@ inline fun <T, R : Base.Response<T>> LifecycleOwner.simpleLaunchExecuteResponseR
     callback: Notify.ResultCallback<T, R>,
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
-) {
-    lifecycleScope.simpleScopeExecuteResponseRequest(
+): Job {
+    return lifecycleScope.simpleScopeExecuteResponseRequest(
         block, callback, globalCallback
     )
 }
