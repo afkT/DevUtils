@@ -37,7 +37,7 @@ class Base private constructor() {
      * detail: 请求结果包装类
      * @author Ttt
      */
-    open class Result<T, R : Response<T>> constructor(
+    class Result<T, R : Response<T>> private constructor(
         private val response: R?,
         // 不为 null 表示出错抛出异常
         private val error: Throwable?,
@@ -196,7 +196,7 @@ class Notify private constructor() {
          * 开始请求
          * @param uuid UUID
          */
-        abstract fun onStart(uuid: UUID)
+        open fun onStart(uuid: UUID) {}
 
         /**
          * 请求成功
@@ -223,7 +223,57 @@ class Notify private constructor() {
          * @param uuid UUID
          * 不管是 [onError]、[onSuccess] 最终都会触发该结束方法
          */
-        abstract fun onFinish(uuid: UUID)
+        open fun onFinish(uuid: UUID) {}
+    }
+
+    /**
+     * detail: 当前请求每个阶段进行通知
+     * @author Ttt
+     * 允许继承自定义其他参数
+     */
+    abstract class ResultCallback<T, R : Base.Response<T>> {
+
+        // 额外携带参数 ( 扩展使用 )
+        private var params: Any? = null
+
+        // ===========
+        // = get/set =
+        // ===========
+
+        fun getParams(): Any? {
+            return params
+        }
+
+        fun setParams(params: Any?): ResultCallback<T, R> {
+            this.params = params
+            return this
+        }
+
+        // ============
+        // = abstract =
+        // ============
+
+        /**
+         * 开始请求
+         * @param uuid UUID
+         */
+        open fun onStart(uuid: UUID) {}
+
+        /**
+         * 请求成功
+         * @param uuid UUID
+         * @param data Result
+         */
+        abstract fun onSuccess(
+            uuid: UUID,
+            data: Base.Result<T, R>
+        )
+
+        /**
+         * 请求结束
+         * @param uuid UUID
+         */
+        open fun onFinish(uuid: UUID) {}
     }
 
     /**
