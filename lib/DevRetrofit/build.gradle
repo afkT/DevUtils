@@ -17,6 +17,7 @@ dependencies {
     api deps.kotlin.coroutines
     api deps.kotlin.lifecycle_runtime
     api deps.kotlin.lifecycle_viewmodel
+    api deps.kotlin.lifecycle_livedata
 }
 
 // gradlew clean
