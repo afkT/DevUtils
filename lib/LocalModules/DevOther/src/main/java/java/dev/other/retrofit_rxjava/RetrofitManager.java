@@ -1,4 +1,4 @@
-package java.dev.other.retrofit;
+package java.dev.other.retrofit_rxjava;
 
 import java.util.HashMap;
 import java.util.Map;

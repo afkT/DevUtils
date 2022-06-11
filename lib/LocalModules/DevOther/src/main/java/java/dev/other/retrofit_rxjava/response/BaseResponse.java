@@ -1,4 +1,4 @@
-package java.dev.other.retrofit.response;
+package java.dev.other.retrofit_rxjava.response;
 
 /**
  * detail: 请求响应统一解析类

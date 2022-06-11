@@ -9,9 +9,9 @@ import kotlinx.coroutines.launch
 // = 请求方法协程扩展函数 =
 // ====================
 
-// ==============
-// = request.kt =
-// ==============
+// ================================
+// = 在 request.kt 基础上封装使用协程 =
+// ================================
 
 // ==================
 // = CoroutineScope =
@@ -21,6 +21,8 @@ import kotlinx.coroutines.launch
  * 执行请求
  * 无任何封装, 支持自定义解析、处理等代码
  * <p></p>
+ * Android 上的 Kotlin 协程
+ * @see https://developer.android.google.cn/kotlin/coroutines?hl=zh-cn
  * 防止使用、阅读混淆
  * 通用 CoroutineScope 执行方法使用 scope 为方法名前缀
  */

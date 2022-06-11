@@ -1,4 +1,4 @@
-package java.dev.other.retrofit;
+package java.dev.other.retrofit_rxjava;
 
 import org.reactivestreams.Publisher;
 

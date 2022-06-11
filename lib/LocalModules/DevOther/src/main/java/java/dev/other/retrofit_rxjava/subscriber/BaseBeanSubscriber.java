@@ -1,4 +1,4 @@
-package java.dev.other.retrofit.subscriber;
+package java.dev.other.retrofit_rxjava.subscriber;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

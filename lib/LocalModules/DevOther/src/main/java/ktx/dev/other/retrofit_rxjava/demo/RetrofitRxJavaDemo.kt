@@ -53,8 +53,7 @@ object RetrofitManager {
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->
             LogPrintUtils.jsonTag(
-                ktx.dev.other.retrofit_coroutines.demo.TAG_L,
-                DevEngine.getJSON().toJson(captureInfo)
+                TAG_L, DevEngine.getJSON().toJson(captureInfo)
             )
         })
 

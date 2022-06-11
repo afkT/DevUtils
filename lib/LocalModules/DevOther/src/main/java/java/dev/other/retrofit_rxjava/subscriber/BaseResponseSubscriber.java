@@ -1,8 +1,8 @@
-package java.dev.other.retrofit.subscriber;
+package java.dev.other.retrofit_rxjava.subscriber;
 
 import android.text.TextUtils;
 
-import java.dev.other.retrofit.response.BaseResponse;
+import java.dev.other.retrofit_rxjava.response.BaseResponse;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
