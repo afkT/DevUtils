@@ -3,42 +3,40 @@
 ## 目录结构
 
 ```
-- src.main                          | 根目录
-   - dev                            | 通用实现
-      - receiver                    | BroadcastReceiver 监听相关
-      - service                     | Service 相关
-   - java                           | Java 实现
-      - dev                         | 根目录
-         - assist                   | 常用辅助类封装
-         - engine                   | 兼容 Engine
-            - barcode               | BarCode Engine 条形码、二维码处理
-            - cache                 | Cache Engine 有效期键值对缓存
-            - compress              | Image Compress Engine 图片压缩
-            - image                 | Image Engine 图片加载、下载、转格式等
-            - json                  | JSON Engine 映射
-            - keyvalue              | KeyValue Engine 键值对存储
-            - log                   | Log Engine 日志打印
-            - media                 | Media Selector Engine 多媒体资源选择
-            - permission            | Permission Engine 权限申请
-            - storage               | Storage Engine 外部、内部文件存储
-         - other                    | 第三方库封装工具类
-            - cache                 | 缓存工具类
-            - okgo                  | OkGo 网络请求
-            - retrofit              | Retrofit 网络请求
-               - response           | 请求响应解析
-               - subscriber         | 请求响应处理
-            - work                  | WorkManager Utils
-               - demo               | WorkManager 使用 Demo
-   - ktx                            | Kotlin 实现
-      - dev                         | 根目录
-         - assist                   | 常用辅助类封装
-         - other                    | 第三方库封装工具类
-            - retrofit_coroutines   | Retrofit Coroutines 封装
-               - demo               | Retrofit Coroutines Demo
-            - retrofit_rxjava       | Retrofit RxJava 封装
-               - demo               | Retrofit RxJava Demo
-               - response           | 请求响应解析
-               - subscriber         | 请求响应处理
+- src.main                      | 根目录
+   - dev                        | 通用实现
+      - receiver                | BroadcastReceiver 监听相关
+      - service                 | Service 相关
+   - java                       | Java 实现
+      - dev                     | 根目录
+         - assist               | 常用辅助类封装
+         - engine               | 兼容 Engine
+            - barcode           | BarCode Engine 条形码、二维码处理
+            - cache             | Cache Engine 有效期键值对缓存
+            - compress          | Image Compress Engine 图片压缩
+            - image             | Image Engine 图片加载、下载、转格式等
+            - json              | JSON Engine 映射
+            - keyvalue          | KeyValue Engine 键值对存储
+            - log               | Log Engine 日志打印
+            - media             | Media Selector Engine 多媒体资源选择
+            - permission        | Permission Engine 权限申请
+            - storage           | Storage Engine 外部、内部文件存储
+         - other                | 第三方库封装工具类
+            - cache             | 缓存工具类
+            - okgo              | OkGo 网络请求
+            - retrofit_rxjava   | Retrofit RxJava 封装
+               - response       | 请求响应解析
+               - subscriber     | 请求响应处理
+            - work              | WorkManager Utils
+               - demo           | WorkManager 使用 Demo
+   - ktx                        | Kotlin 实现
+      - dev                     | 根目录
+         - assist               | 常用辅助类封装
+         - other                | 第三方库封装工具类
+            - retrofit_rxjava   | Retrofit RxJava 封装
+               - demo           | Retrofit RxJava Demo
+               - response       | 请求响应解析
+               - subscriber     | 请求响应处理
 ```
 
 
@@ -50,42 +48,40 @@
 ## API
 
 
-- src.main                                                                     | 根目录
-   - [dev](#dev)                                                               | 通用实现
-      - [receiver](#devreceiver)                                               | BroadcastReceiver 监听相关
-      - [service](#devservice)                                                 | Service 相关
-   - [java](#java)                                                             | Java 实现
-      - [dev](#javadev)                                                        | 根目录
-         - [assist](#javadevassist)                                            | 常用辅助类封装
-         - [engine](#javadevengine)                                            | 兼容 Engine
-            - [barcode](#javadevenginebarcode)                                 | BarCode Engine 条形码、二维码处理
-            - [cache](#javadevenginecache)                                     | Cache Engine 有效期键值对缓存
-            - [compress](#javadevenginecompress)                               | Image Compress Engine 图片压缩
-            - [image](#javadevengineimage)                                     | Image Engine 图片加载、下载、转格式等
-            - [json](#javadevenginejson)                                       | JSON Engine 映射
-            - [keyvalue](#javadevenginekeyvalue)                               | KeyValue Engine 键值对存储
-            - [log](#javadevenginelog)                                         | Log Engine 日志打印
-            - [media](#javadevenginemedia)                                     | Media Selector Engine 多媒体资源选择
-            - [permission](#javadevenginepermission)                           | Permission Engine 权限申请
-            - [storage](#javadevenginestorage)                                 | Storage Engine 外部、内部文件存储
-         - [other](#javadevother)                                              | 第三方库封装工具类
-            - [cache](#javadevothercache)                                      | 缓存工具类
-            - [okgo](#javadevotherokgo)                                        | OkGo 网络请求
-            - [retrofit](#javadevotherretrofit)                                | Retrofit 网络请求
-               - [response](#javadevotherretrofitresponse)                     | 请求响应解析
-               - [subscriber](#javadevotherretrofitsubscriber)                 | 请求响应处理
-            - [work](#javadevotherwork)                                        | WorkManager Utils
-               - [demo](#javadevotherworkdemo)                                 | WorkManager 使用 Demo
-   - [ktx](#ktx)                                                               | Kotlin 实现
-      - [dev](#ktxdev)                                                         | 根目录
-         - [assist](#ktxdevassist)                                             | 常用辅助类封装
-         - [other](#ktxdevother)                                               | 第三方库封装工具类
-            - [retrofit_coroutines](#ktxdevotherretrofit_coroutines)           | Retrofit Coroutines 封装
-               - [demo](#ktxdevotherretrofit_coroutinesdemo)                   | Retrofit Coroutines Demo
-            - [retrofit_rxjava](#ktxdevotherretrofit_rxjava)                   | Retrofit RxJava 封装
-               - [demo](#ktxdevotherretrofit_rxjavademo)                       | Retrofit RxJava Demo
-               - [response](#ktxdevotherretrofit_rxjavaresponse)               | 请求响应解析
-               - [subscriber](#ktxdevotherretrofit_rxjavasubscriber)           | 请求响应处理
+- src.main                                                         | 根目录
+   - [dev](#dev)                                                   | 通用实现
+      - [receiver](#devreceiver)                                   | BroadcastReceiver 监听相关
+      - [service](#devservice)                                     | Service 相关
+   - [java](#java)                                                 | Java 实现
+      - [dev](#javadev)                                            | 根目录
+         - [assist](#javadevassist)                                | 常用辅助类封装
+         - [engine](#javadevengine)                                | 兼容 Engine
+            - [barcode](#javadevenginebarcode)                     | BarCode Engine 条形码、二维码处理
+            - [cache](#javadevenginecache)                         | Cache Engine 有效期键值对缓存
+            - [compress](#javadevenginecompress)                   | Image Compress Engine 图片压缩
+            - [image](#javadevengineimage)                         | Image Engine 图片加载、下载、转格式等
+            - [json](#javadevenginejson)                           | JSON Engine 映射
+            - [keyvalue](#javadevenginekeyvalue)                   | KeyValue Engine 键值对存储
+            - [log](#javadevenginelog)                             | Log Engine 日志打印
+            - [media](#javadevenginemedia)                         | Media Selector Engine 多媒体资源选择
+            - [permission](#javadevenginepermission)               | Permission Engine 权限申请
+            - [storage](#javadevenginestorage)                     | Storage Engine 外部、内部文件存储
+         - [other](#javadevother)                                  | 第三方库封装工具类
+            - [cache](#javadevothercache)                          | 缓存工具类
+            - [okgo](#javadevotherokgo)                            | OkGo 网络请求
+            - [retrofit_rxjava](#javadevotherretrofit_rxjava)      | Retrofit RxJava 封装
+               - [response](#javadevotherretrofit_rxjavaresponse)  | 请求响应解析
+               - [subscriber](#javadevotherretrofit_rxjavasubscriber)| 请求响应处理
+            - [work](#javadevotherwork)                            | WorkManager Utils
+               - [demo](#javadevotherworkdemo)                     | WorkManager 使用 Demo
+   - [ktx](#ktx)                                                   | Kotlin 实现
+      - [dev](#ktxdev)                                             | 根目录
+         - [assist](#ktxdevassist)                                 | 常用辅助类封装
+         - [other](#ktxdevother)                                   | 第三方库封装工具类
+            - [retrofit_rxjava](#ktxdevotherretrofit_rxjava)       | Retrofit RxJava 封装
+               - [demo](#ktxdevotherretrofit_rxjavademo)           | Retrofit RxJava Demo
+               - [response](#ktxdevotherretrofit_rxjavaresponse)   | 请求响应解析
+               - [subscriber](#ktxdevotherretrofit_rxjavasubscriber)| 请求响应处理
 
 
 
@@ -1003,10 +999,10 @@
 | execute | 执行请求处理 |
 
 
-## <span id="javadevotherretrofit">**`java.dev.other.retrofit`**</span>
+## <span id="javadevotherretrofit_rxjava">**`java.dev.other.retrofit_rxjava`**</span>
 
 
-* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/RetrofitManager.java)
+* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit_rxjava/RetrofitManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1019,7 +1015,7 @@
 | create | 创建 API Service Class |
 
 
-* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/RxJavaManager.java)
+* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit_rxjava/RxJavaManager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1031,13 +1027,13 @@
 | io_main | Flowable UI 线程 |
 
 
-## <span id="javadevotherretrofitresponse">**`java.dev.other.retrofit.response`**</span>
+## <span id="javadevotherretrofit_rxjavaresponse">**`java.dev.other.retrofit_rxjava.response`**</span>
 
 
-## <span id="javadevotherretrofitsubscriber">**`java.dev.other.retrofit.subscriber`**</span>
+## <span id="javadevotherretrofit_rxjavasubscriber">**`java.dev.other.retrofit_rxjava.subscriber`**</span>
 
 
-* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
+* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit_rxjava/subscriber/BaseBeanSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1050,7 +1046,7 @@
 | getErrorMessage | 获取异常信息 |
 
 
-* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
+* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/retrofit_rxjava/subscriber/BaseResponseSubscriber.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -1136,12 +1132,6 @@
 
 
 ## <span id="ktxdevother">**`ktx.dev.other`**</span>
-
-
-## <span id="ktxdevotherretrofit_coroutines">**`ktx.dev.other.retrofit_coroutines`**</span>
-
-
-## <span id="ktxdevotherretrofit_coroutinesdemo">**`ktx.dev.other.retrofit_coroutines.demo`**</span>
 
 
 ## <span id="ktxdevotherretrofit_rxjava">**`ktx.dev.other.retrofit_rxjava`**</span>
