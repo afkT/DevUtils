@@ -45,6 +45,10 @@ class Base private constructor() {
         private var params: Any? = null
     ) { // : Response<T>
 
+        private val innerErrorCode: ErrorCode by lazy {
+            error.errorCode()
+        }
+
         // ===========
         // = get/set =
         // ===========
@@ -62,7 +66,7 @@ class Base private constructor() {
         }
 
         fun getErrorCode(): ErrorCode {
-            return error.errorCode()
+            return innerErrorCode
         }
 
         // =
