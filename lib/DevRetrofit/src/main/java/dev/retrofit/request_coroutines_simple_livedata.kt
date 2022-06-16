@@ -20,7 +20,7 @@ import java.util.*
 
 /**
  * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
+ * 无任何额外逻辑封装, 支持自定义解析、处理等代码
  */
 inline fun <T> CoroutineScope.liveDataScopeExecuteRequest(
     // 请求方法体
@@ -101,10 +101,6 @@ inline fun <T, R : Base.Response<T>> CoroutineScope.liveDataScopeExecuteResponse
 // = ViewModel =
 // =============
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> ViewModel.liveDataLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -122,10 +118,6 @@ inline fun <T> ViewModel.liveDataLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> ViewModel.liveDataLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
@@ -147,10 +139,6 @@ inline fun <T, R : Base.Response<T>> ViewModel.liveDataLaunchExecuteResponseRequ
 // = Lifecycle =
 // =============
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> Lifecycle.liveDataLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -168,10 +156,6 @@ inline fun <T> Lifecycle.liveDataLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> Lifecycle.liveDataLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
@@ -193,10 +177,6 @@ inline fun <T, R : Base.Response<T>> Lifecycle.liveDataLaunchExecuteResponseRequ
 // = LifecycleOwner =
 // ==================
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> LifecycleOwner.liveDataLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -214,10 +194,6 @@ inline fun <T> LifecycleOwner.liveDataLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> LifecycleOwner.liveDataLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,

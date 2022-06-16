@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 /**
  * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
+ * 无任何额外逻辑封装, 支持自定义解析、处理等代码
  */
 inline fun <T> CoroutineScope.simpleScopeExecuteRequest(
     // 请求方法体
@@ -63,10 +63,6 @@ inline fun <T, R : Base.Response<T>> CoroutineScope.simpleScopeExecuteResponseRe
 // = ViewModel =
 // =============
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> ViewModel.simpleLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -80,10 +76,6 @@ inline fun <T> ViewModel.simpleLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> ViewModel.simpleLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
@@ -101,10 +93,6 @@ inline fun <T, R : Base.Response<T>> ViewModel.simpleLaunchExecuteResponseReques
 // = Lifecycle =
 // =============
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> Lifecycle.simpleLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -118,10 +106,6 @@ inline fun <T> Lifecycle.simpleLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> Lifecycle.simpleLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,
@@ -139,10 +123,6 @@ inline fun <T, R : Base.Response<T>> Lifecycle.simpleLaunchExecuteResponseReques
 // = LifecycleOwner =
 // ==================
 
-/**
- * 执行请求
- * 无任何封装, 支持自定义解析、处理等代码
- */
 inline fun <T> LifecycleOwner.simpleLaunchExecuteRequest(
     // 请求方法体
     crossinline block: suspend () -> T?,
@@ -156,10 +136,6 @@ inline fun <T> LifecycleOwner.simpleLaunchExecuteRequest(
     )
 }
 
-/**
- * 执行请求
- * 封装为 Base.Response、Base.Result 进行响应
- */
 inline fun <T, R : Base.Response<T>> LifecycleOwner.simpleLaunchExecuteResponseRequest(
     // 请求方法体
     crossinline block: suspend () -> R?,

@@ -12,7 +12,7 @@ import java.util.*
 
 /**
  * 最终执行方法
- * 无任何封装, 支持自定义解析、处理等代码
+ * 无任何额外逻辑封装, 支持自定义解析、处理等代码
  */
 suspend inline fun <T> finalExecute(
     // 请求方法体
