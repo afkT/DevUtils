@@ -38,7 +38,6 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_OKGO,
                         ButtonValue.BTN_LUBAN,
                         ButtonValue.BTN_MMKV,
-                        ButtonValue.BTN_DATA_STORE,
                         ButtonValue.BTN_WORK_MANAGER -> ToastTintUtils.info(
                             "具体请搜索: lib/LocalModules/DevOther " + buttonValue.text
                         )
