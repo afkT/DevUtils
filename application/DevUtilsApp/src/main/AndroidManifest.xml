@@ -122,6 +122,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- DataStore -->
+
+        <activity
+            android:name=".feature.lib_frame.data_store.DataStoreActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- EventBusUtils -->
 
         <activity

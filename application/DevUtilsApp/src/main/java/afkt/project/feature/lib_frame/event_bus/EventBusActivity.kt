@@ -20,7 +20,6 @@ import utils_use.toast.ToastTintUse
 /**
  * detail: EventBusUtils
  * @author Ttt
- * [ToastTintUse]
  */
 @Route(path = RouterPath.LIB_FRAME.EventBusActivity_PATH)
 class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {

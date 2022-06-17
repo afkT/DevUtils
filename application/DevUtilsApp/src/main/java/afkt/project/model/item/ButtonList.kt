@@ -168,6 +168,13 @@ object ButtonList {
             )
             lists.add(
                 ButtonValue(
+                    ButtonValue.BTN_DATA_STORE,
+                    "DataStore",
+                    RouterPath.LIB_FRAME.DataStoreActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
                     ButtonValue.BTN_EVENT_BUS,
                     "EventBusUtils",
                     RouterPath.LIB_FRAME.EventBusActivity_PATH
@@ -233,13 +240,6 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_MMKV,
                     "MMKVUtils",
-                    RouterPath.EMPTY
-                )
-            )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_DATA_STORE,
-                    "DataStore",
                     RouterPath.EMPTY
                 )
             )

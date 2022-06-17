@@ -97,9 +97,9 @@ dependencies {
     // = Deprecated =
     // ==============
 
-    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
+    // ImageLoader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
     implementation deps.deprecated.imageloader
-    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    // OkGo https://github.com/jeasonlzy/okhttp-OkGo
     implementation deps.deprecated.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
     implementation deps.deprecated.okserver
