@@ -80,14 +80,16 @@ ext {
                     dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
                     // OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
                     dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
+                    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+                    dev_retrofit                     : "io.github.afkt:DevRetrofit:${versions.dev_retrofit_versionName}",
             ],
             "kotlin"    : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
-                    core                          : "androidx.core:core-ktx:1.7.0",
+                    core                          : "androidx.core:core-ktx:1.8.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
@@ -135,9 +137,9 @@ ext {
                     // https://developer.android.google.cn/jetpack/androidx/explorer
 
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-                    appcompat            : "androidx.appcompat:appcompat:1.4.1",
+                    appcompat            : "androidx.appcompat:appcompat:1.4.2",
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat-resources
-                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.4.1",
+                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.4.2",
                     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
                     //support_v4            : "androidx.legacy:legacy-support-v4:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.cardview/cardview
@@ -155,7 +157,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     // https://blog.csdn.net/qq_36861770/article/details/108946449
-                    design               : "com.google.android.material:material:1.6.0",
+                    design               : "com.google.android.material:material:1.6.1",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
                     fragment             : "androidx.fragment:fragment:1.4.1",
                     // https://mvnrepository.com/artifact/androidx.activity/activity

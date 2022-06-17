@@ -359,6 +359,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
                         )
                     }
                 }
+                else -> return null
             }
         } else { // 内部存储路径
             val file = getOutputFile(params, source, external, type)
@@ -418,6 +419,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
                         }
                     }
                 }
+                else -> return null
             }
         } else { // 内部存储路径
             return params.getInternalFile()

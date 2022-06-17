@@ -253,6 +253,7 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
                         NetworkInfo.State.SUSPENDED -> msg.what = SUSPENDED
                         // 未知
                         NetworkInfo.State.UNKNOWN -> msg.what = UNKNOWN
+                        else -> msg.what = UNKNOWN
                     }
                     // 触发回调
                     sListener?.onTrigger(msg.what, msg)
