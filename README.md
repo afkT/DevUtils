@@ -71,6 +71,12 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/CHANGELOG.md)
 
+### DevRetrofit - Retrofit + Kotlin Coroutines 封装
+
+- [README](https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/CHANGELOG.md)
+
 ### DevWidget - 自定义 View UI 库
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
@@ -130,6 +136,9 @@ releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.1'
 
 // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
 implementation 'io.github.afkt:DevHttpManager:1.0.1'
+
+// DevRetrofit - Retrofit + Kotlin Coroutines 封装
+implementation 'io.github.afkt:DevRetrofit:1.0.0'
 
 // DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.1.8'
