@@ -116,7 +116,7 @@ def applications = [
 
         "Accessibility",
         "AppInfo",
-        "Demo",
+        "DevBaseDemo",
         "GTPush",
         "JPush",
         "UMShare",

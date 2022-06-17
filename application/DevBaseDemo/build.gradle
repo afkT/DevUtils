@@ -1,0 +1,17 @@
+apply from: rootProject.file(files.build_app_gradle)
+
+android {
+    defaultConfig {
+        applicationId "afkt.demo"
+    }
+}
+
+dependencies {
+    implementation project(':DevApp')
+    implementation project(':DevBaseMVVM')
+    implementation project(':DevEngine')
+    implementation project(':DevOther')
+
+    // DevComponent /core/libs/lib_utils
+    implementation project(':lib_utils')
+}

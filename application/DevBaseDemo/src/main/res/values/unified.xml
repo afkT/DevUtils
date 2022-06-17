@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 通用 DP -->
+    <dimen name="dp_0_5">0.5dp</dimen>
+    <dimen name="dp_5">5.0dp</dimen>
+    <dimen name="dp_8">8.0dp</dimen>
+    <dimen name="dp_10">10.0dp</dimen>
+    <dimen name="dp_15">15.0dp</dimen>
+    <dimen name="dp_20">20.0dp</dimen>
+    <dimen name="dp_50">50.0dp</dimen>
+    <dimen name="dp_100">100.0dp</dimen>
+    <dimen name="dp_150">150.0dp</dimen>
+    <dimen name="dp_200">200.0dp</dimen>
+
+    <!-- 通用 SP -->
+    <dimen name="sp_14">14.0sp</dimen>
+    <dimen name="sp_18">18.0sp</dimen>
+    <dimen name="sp_20">20.0sp</dimen>
+    <dimen name="sp_40">40.0sp</dimen>
+
+</resources>
