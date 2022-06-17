@@ -62,7 +62,7 @@ dependencies {
     implementation deps.lib.sqlcipher
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
     implementation deps.lib.xxPermissions
-    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
     implementation deps.lib.panelSwitchHelper
 
     // ==========

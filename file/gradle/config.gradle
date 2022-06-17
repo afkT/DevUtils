@@ -214,9 +214,9 @@ ext {
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3                             : "com.squareup.okhttp3:okhttp:4.9.3",
+                    okhttp3                             : "com.squareup.okhttp3:okhttp:4.10.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging                     : "com.squareup.okhttp3:logging-interceptor:4.9.3",
+                    okhttp3_logging                     : "com.squareup.okhttp3:logging-interceptor:4.10.0",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava3
@@ -230,7 +230,7 @@ ext {
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxandroid
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxkotlin
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.4",
+                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.5",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.0",
                     rxkotlin                            : "io.reactivex.rxjava3:rxkotlin:3.0.1",
@@ -250,23 +250,24 @@ ext {
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1",
                     // https://mvnrepository.com/artifact/com.alibaba/fastjson
                     // Fastjson https://github.com/alibaba/fastjson
-                    //fastjson                            : "com.alibaba:fastjson:2.0.4",
-                    //fastjson_android                    : "com.alibaba:fastjson:2.0.4.android",
+                    //fastjson                            : "com.alibaba:fastjson:2.0.7",
+                    //fastjson_android                    : "com.alibaba:fastjson:2.0.7.android",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.5",
-                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.5.android",
-                    // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
-                    anchors                             : "com.github.YummyLau:Anchors:v1.1.4",
-                    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.7",
+                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.7.android",
+                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
+                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
+                    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.github.YummyLau:PanelSwitchHelper:1.4.0",
+//                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.4.0",
                     // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
                     pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc10",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                              : "com.airbnb.android:lottie:5.1.1",
+                    lottie                              : "com.airbnb.android:lottie:5.2.0",
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/core
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/compiler
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/ftp
