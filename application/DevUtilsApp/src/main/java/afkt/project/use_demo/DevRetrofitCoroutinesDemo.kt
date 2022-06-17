@@ -132,9 +132,9 @@ open class BaseResponse<T> : Base.Response<T> {
 class UploadBean : BaseResponse<List<String?>>()
 
 /**
- * detail: 首页数据响应类 ( 可不定义只是为了方便理解 )
+ * detail: 文章数据响应类 ( 可不定义，只是为了方便理解、展示 )
  * @author Ttt
- * data 映射实体类为 List<ArticleBean>
+ * data 映射实体类为 List<ArticleBean?>
  */
 class ArticleResponse : BaseResponse<List<ArticleBean?>>()
 
@@ -160,6 +160,9 @@ data class ArticleBean(
  * 不管什么扩展函数方式请求, 最终都是执行 request.kt 中的 finalExecute、finalExecuteResponse 方法
  */
 class TestActivity : AppCompatActivity() {
+
+    // 封装 Base Notify.Callback
+    abstract class BaseCallback<T> : Notify.Callback<T>()
 
     // 封装 Notify.ResultCallback 简化代码
     abstract class BaseResultCallback<T> : Notify.ResultCallback<T, BaseResponse<T>>()
@@ -193,7 +196,7 @@ class TestActivity : AppCompatActivity() {
         simpleLaunchExecuteRequest(
             block = {
                 RetrofitAPI.api().loadArticleList(1)
-            }, InnerCallback()
+            }, ArticleCallback()
         )
 
         // 加载文章列表方式二
@@ -250,11 +253,11 @@ class TestActivity : AppCompatActivity() {
             finish = {
 
             },
-            callback = InnerCallback()
+            callback = ArticleCallback()
         )
     }
 
-    private class InnerCallback : Notify.Callback<ArticleResponse>() {
+    private class ArticleCallback : Notify.Callback<ArticleResponse>() {
         override fun onSuccess(
             uuid: UUID,
             data: ArticleResponse?
