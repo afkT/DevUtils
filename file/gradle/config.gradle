@@ -184,6 +184,9 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.swiperefreshlayout/swiperefreshlayout
                     // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+                    // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
+                    // 读取和写入图片文件 EXIF 标记 https://developer.android.google.cn/jetpack/androidx/releases/exifinterface
+                    exifinterface        : "androidx.exifinterface:exifinterface:1.3.3",
             ],
             "lib"       : [
 
@@ -264,6 +267,19 @@ ext {
                     // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
                     pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc10",
+//                    // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
+//                    // https://mvnrepository.com/artifact/io.github.lucksiege/compress
+//                    // https://mvnrepository.com/artifact/io.github.lucksiege/ucrop
+//                    // https://mvnrepository.com/artifact/io.github.lucksiege/camerax
+//                    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+//                    // PictureSelector 基础 ( 必须 )
+//                    pictureSelector                     : "io.github.lucksiege:pictureselector:v3.10.2",
+//                    // 图片压缩 ( 按需引入 )
+//                    pictureSelector_compress            : "io.github.lucksiege:compress:v3.10.2",
+//                    // 图片裁剪 ( 按需引入 )
+//                    pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.10.2",
+//                    // 自定义相机 ( 按需引入 )
+//                    pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.10.2",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android

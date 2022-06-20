@@ -17,6 +17,7 @@ def isPublishing = false
 dependencies {
     api deps.androidx.design
     api deps.androidx.appcompat
+    api deps.androidx.exifinterface
 }
 
 // gradlew clean

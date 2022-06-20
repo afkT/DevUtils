@@ -15,7 +15,6 @@ import dev.utils.app.toast.ToastTintUtils
 import ktx.dev.other.EventBusUtils
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import utils_use.toast.ToastTintUse
 
 /**
  * detail: EventBusUtils
