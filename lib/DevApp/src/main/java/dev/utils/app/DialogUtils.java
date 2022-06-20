@@ -493,6 +493,38 @@ public final class DialogUtils {
     // =
 
     /**
+     * 显示 Dialog 并关闭其他 Dialog
+     * @param dialog  {@link Dialog}
+     * @param dialogs 待关闭 Dialog 数组
+     * @param <T>     泛型
+     * @return {@link Dialog}
+     */
+    public static <T extends Dialog> T showDialogAndCloses(
+            final T dialog,
+            final Dialog... dialogs
+    ) {
+        closeDialogs(dialogs);
+        return showDialog(dialog);
+    }
+
+    /**
+     * 显示 Dialog 并关闭其他 Dialog
+     * @param dialog  {@link Dialog}
+     * @param dialogs 待关闭 DialogFragment 数组
+     * @param <T>     泛型
+     * @return {@link Dialog}
+     */
+    public static <T extends Dialog> T showDialogAndCloses(
+            final T dialog,
+            final DialogFragment... dialogs
+    ) {
+        closeDialogs(dialogs);
+        return showDialog(dialog);
+    }
+
+    // =
+
+    /**
      * detail: Dialog 事件
      * @author Ttt
      */
