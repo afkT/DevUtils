@@ -222,11 +222,6 @@ class GlideEngine private constructor() : ImageEngine {
  * @author Ttt
  * 功能配置文档
  * @see https://github.com/LuckSiege/PictureSelector
- * 所需权限
- * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
- * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
- * <uses-permission android:name="android.permission.CAMERA"/>
- * <p></p>
  * 尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
  * 防止需要适配 Android 11 ( R ) 进行转存文件需判断文件路径
  */

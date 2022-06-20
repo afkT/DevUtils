@@ -25,6 +25,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
 /**
  * detail: ImageLoader 工具类
  * @author Ttt
+ * @deprecated 推荐使用 DevImageEngine 实现类 GlideEngineImpl
  * <pre>
  *     init: ImageLoaderUtils.initialize(getApplicationContext());
  *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源

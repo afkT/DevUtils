@@ -34,11 +34,10 @@ dependencies {
     api deps.lib.fastjson2_android
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     api deps.lib.mmkv
-    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    api deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
     api deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
-    api deps.lib.zxing_android_code // android-core
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    api deps.lib.pictureSelector
 
     // =============
     // = DevEngine =
