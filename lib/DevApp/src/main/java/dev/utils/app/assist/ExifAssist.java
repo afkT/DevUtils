@@ -2,6 +2,7 @@ package dev.utils.app.assist;
 
 import android.Manifest;
 import android.app.Activity;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -11,10 +12,12 @@ import androidx.exifinterface.media.ExifInterface;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.permission.PermissionUtils;
+import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -418,7 +421,99 @@ public final class ExifAssist {
         }
     }
 
-    // =======
-    // = get =
-    // =======
+    // ===========
+    // = get/set =
+    // ===========
+
+    /**
+     * 获取经纬度信息
+     * @return [0] = 纬度、[1] = 经度
+     */
+    public double[] getLatLong() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getLatLong();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLatLong");
+            return null;
+        }
+    }
+
+    /**
+     * 设置经纬度信息
+     * @param latitude  纬度 ( -90.0 - 90 之间 )
+     * @param longitude 经度 ( -180.0 - 180.0 之间 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setLatLong(
+            final double latitude,
+            final double longitude
+    ) {
+        if (isExifNull()) return false;
+        try {
+            mExif.setLatLong(latitude, longitude);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setLatLong");
+            return false;
+        }
+    }
+
+    /**
+     * 获取 GPS 信息
+     * <pre>
+     *     API 没有该方法, 通过 {@link #setGpsInfo(Location)} 倒推
+     * </pre>
+     * @return Location
+     */
+    public Location getGpsInfo() {
+        if (isExifNull()) return null;
+        try {
+            double[] latLong = mExif.getLatLong();
+            if (latLong == null) return null;
+
+            String provider = mExif.getAttribute(ExifInterface.TAG_GPS_PROCESSING_METHOD);
+            double altitude = mExif.getAltitude(0D);
+
+            String gpsSpeed   = mExif.getAttribute(ExifInterface.TAG_GPS_SPEED);
+            String speedKMHR  = gpsSpeed.substring(0, gpsSpeed.indexOf("/"));
+            double speedKMHRD = Double.parseDouble(speedKMHR);
+            double speed      = speedKMHRD / TimeUnit.HOURS.toSeconds(1) * 1000D;
+
+            String gpsDatestamp = mExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
+            String gpsTimestamp = mExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
+            long dateTime = DateUtils.parseLong(
+                    gpsDatestamp + " " + gpsTimestamp,
+                    "yyyy:MM:dd HH:mm:ss"
+            );
+
+            Location location = new Location(provider);
+            location.setAltitude(altitude);
+            location.setLatitude(latLong[0]);
+            location.setLongitude(latLong[1]);
+            location.setSpeed((float) speed);
+            location.setTime(dateTime);
+            return location;
+        } catch (NumberFormatException e) {
+            LogPrintUtils.eTag(TAG, e, "getGpsInfo");
+            return null;
+        }
+    }
+
+    /**
+     * 设置 GPS 信息
+     * @param location Location
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setGpsInfo(final Location location) {
+        if (location == null) return false;
+        if (isExifNull()) return false;
+        try {
+            mExif.setGpsInfo(location);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setGpsInfo");
+            return false;
+        }
+    }
 }
