@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.permission.PermissionUtils;
-import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -469,30 +468,25 @@ public final class ExifAssist {
     public Location getGpsInfo() {
         if (isExifNull()) return null;
         try {
-            double[] latLong = mExif.getLatLong();
-            if (latLong == null) return null;
-
             String provider = mExif.getAttribute(ExifInterface.TAG_GPS_PROCESSING_METHOD);
             double altitude = mExif.getAltitude(0D);
+            Long   dateTime = mExif.getGpsDateTime();
+            if (dateTime == null) return null;
+
+            double[] latLong = mExif.getLatLong();
+            if (latLong == null) return null;
 
             String gpsSpeed   = mExif.getAttribute(ExifInterface.TAG_GPS_SPEED);
             String speedKMHR  = gpsSpeed.substring(0, gpsSpeed.indexOf("/"));
             double speedKMHRD = Double.parseDouble(speedKMHR);
             double speed      = speedKMHRD / TimeUnit.HOURS.toSeconds(1) * 1000D;
 
-            String gpsDatestamp = mExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
-            String gpsTimestamp = mExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
-            long dateTime = DateUtils.parseLong(
-                    gpsDatestamp + " " + gpsTimestamp,
-                    "yyyy:MM:dd HH:mm:ss"
-            );
-
             Location location = new Location(provider);
             location.setAltitude(altitude);
+            location.setTime(dateTime);
             location.setLatitude(latLong[0]);
             location.setLongitude(latLong[1]);
             location.setSpeed((float) speed);
-            location.setTime(dateTime);
             return location;
         } catch (NumberFormatException e) {
             LogPrintUtils.eTag(TAG, e, "getGpsInfo");
