@@ -771,7 +771,7 @@ public final class WifiUtils {
             // 返回连接的信息
             return connWifiConfig;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "quickConnWifi", e);
+            LogPrintUtils.eTag(TAG, e, "quickConnWifi");
         }
         return null;
     }
@@ -875,7 +875,7 @@ public final class WifiUtils {
             // 返回删除结果
             return result;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "removeWifiConfig", e);
+            LogPrintUtils.eTag(TAG, e, "removeWifiConfig");
         }
         return false;
     }
@@ -891,7 +891,7 @@ public final class WifiUtils {
             mWifiManager.disableNetwork(networkId);
             return mWifiManager.disconnect();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "disconnectWifi", e);
+            LogPrintUtils.eTag(TAG, e, "disconnectWifi");
         }
         return false;
     }

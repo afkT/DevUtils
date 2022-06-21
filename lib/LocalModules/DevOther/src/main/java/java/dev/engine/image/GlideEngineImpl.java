@@ -460,7 +460,7 @@ public class GlideEngineImpl
         try {
             return loadImageThrows(context, source, config, type);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, "loadImage", e);
+            LogPrintUtils.eTag(TAG, e, "loadImage");
         }
         return null;
     }

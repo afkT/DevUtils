@@ -431,7 +431,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         try {
             return loadImageThrows(context, source, config, type)
         } catch (e: Exception) {
-            LogPrintUtils.eTag(TAG, "loadImage", e)
+            LogPrintUtils.eTag(TAG, e, "loadImage")
         }
         return null
     }

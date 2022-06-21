@@ -7,6 +7,7 @@ import java.io.FileDescriptor;
 import java.io.InputStream;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 图片 EXIF 读写辅助类
@@ -43,7 +44,10 @@ public class ExifAssist {
         try {
             exif = new ExifInterface(file);
         } catch (Throwable e) {
-            LogPrintUtils.eTag(TAG, e, "ExifAssist - File");
+            LogPrintUtils.eTag(
+                    TAG, e, "ExifAssist - File %s",
+                    FileUtils.getAbsolutePath(file)
+            );
             mExifError = e;
         }
         mExif = exif;
@@ -54,7 +58,7 @@ public class ExifAssist {
         try {
             exif = new ExifInterface(fileName);
         } catch (Throwable e) {
-            LogPrintUtils.eTag(TAG, e, "ExifAssist - FileName");
+            LogPrintUtils.eTag(TAG, e, "ExifAssist - FileName %s", fileName);
             mExifError = e;
         }
         mExif = exif;
@@ -171,5 +175,22 @@ public class ExifAssist {
      */
     public boolean isExifNotNull() {
         return mExif != null;
+    }
+
+    // =======
+    // = get =
+    // =======
+
+    public int getAttributeInt(
+            final String tag,
+            final int defaultValue
+    ) {
+        if (isExifNull()) return defaultValue;
+        try {
+            return mExif.getAttributeInt(tag, defaultValue);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAttributeInt - %s", tag);
+            return defaultValue;
+        }
     }
 }

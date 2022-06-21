@@ -37,7 +37,7 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
     }
 
     override fun onError(throwable: Throwable?) {
-        LogPrintUtils.eTag(TAG, "请求异常", throwable)
+        LogPrintUtils.eTag(TAG, throwable, "请求异常")
         if (builder == null) builder = BaseResponse()
 
         builder?.let {

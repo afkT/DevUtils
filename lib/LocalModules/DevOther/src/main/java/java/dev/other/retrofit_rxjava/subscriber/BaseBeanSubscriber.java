@@ -34,7 +34,7 @@ public abstract class BaseBeanSubscriber<T>
 
     @Override
     public void onError(Throwable throwable) {
-        LogPrintUtils.eTag(TAG, "请求异常", throwable);
+        LogPrintUtils.eTag(TAG, throwable, "请求异常");
 
         onErrorResponse(throwable, getErrorMessage(throwable));
     }
