@@ -80,12 +80,12 @@ public final class ExifAssist {
         mExif = exif;
     }
 
-    private ExifAssist(final String fileName) {
+    private ExifAssist(final String filePath) {
         ExifInterface exif = null;
         try {
-            exif = new ExifInterface(fileName);
+            exif = new ExifInterface(filePath);
         } catch (Throwable e) {
-            LogPrintUtils.eTag(TAG, e, "ExifAssist - FileName %s", fileName);
+            LogPrintUtils.eTag(TAG, e, "ExifAssist - FilePath %s", filePath);
             mExifError = e;
         }
         mExif = exif;
@@ -139,8 +139,8 @@ public final class ExifAssist {
         return new ExifAssist(file);
     }
 
-    public static ExifAssist get(final String fileName) {
-        return new ExifAssist(fileName);
+    public static ExifAssist get(final String filePath) {
+        return new ExifAssist(filePath);
     }
 
     public static ExifAssist get(final FileDescriptor fd) {
@@ -537,6 +537,37 @@ public final class ExifAssist {
         }
     }
 
+    /**
+     * 获取高度信息 ( 单位米 )
+     * @param defaultValue 无数据时返回默认值
+     * @return 高度信息 ( 单位米 )
+     */
+    public double getAltitude(final double defaultValue) {
+        if (isExifNull()) return defaultValue;
+        try {
+            return mExif.getAltitude(defaultValue);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAltitude");
+            return defaultValue;
+        }
+    }
+
+    /**
+     * 设置高度信息
+     * @param altitude 高度值 ( 单位米 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setAltitude(final double altitude) {
+        if (isExifNull()) return false;
+        try {
+            mExif.setAltitude(altitude);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setAltitude");
+            return false;
+        }
+    }
+
     // =
 
     /**
@@ -627,6 +658,97 @@ public final class ExifAssist {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getThumbnailRange");
             return null;
+        }
+    }
+
+    // =
+
+    /**
+     * 当前图片是否翻转
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFlipped() {
+        if (isExifNull()) return false;
+        try {
+            return mExif.isFlipped();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isFlipped");
+            return false;
+        }
+    }
+
+    /**
+     * 进行水平翻转图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean flipHorizontally() {
+        if (isExifNull()) return false;
+        try {
+            mExif.flipHorizontally();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "flipHorizontally");
+            return false;
+        }
+    }
+
+    /**
+     * 进行垂直翻转图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean flipVertically() {
+        if (isExifNull()) return false;
+        try {
+            mExif.flipVertically();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "flipVertically");
+            return false;
+        }
+    }
+
+    /**
+     * 获取图片旋转角度
+     * @return 图片旋转角度
+     */
+    public int getRotationDegrees() {
+        if (isExifNull()) return 0;
+        try {
+            return mExif.getRotationDegrees();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getRotationDegrees");
+            return 0;
+        }
+    }
+
+    /**
+     * 将图片顺时针旋转给定度数
+     * @param degree 旋转角度 ( 必须是 90 整数倍 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean rotate(final int degree) {
+        if (isExifNull()) return false;
+        try {
+            mExif.rotate(degree);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "rotate");
+            return false;
+        }
+    }
+
+    /**
+     * 重置图片方向为默认方向
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean resetOrientation() {
+        if (isExifNull()) return false;
+        try {
+            mExif.resetOrientation();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "resetOrientation");
+            return false;
         }
     }
 }

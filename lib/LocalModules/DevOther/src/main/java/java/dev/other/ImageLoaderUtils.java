@@ -89,7 +89,7 @@ public final class ImageLoaderUtils {
                 .imageScaleType(ImageScaleType.EXACTLY) // 设置图片缩放
                 .bitmapConfig(Bitmap.Config.RGB_565) // 图片解码类型
                 .cacheInMemory(true) // 是否保存到内存
-                .considerExifParams(false) // 是否考虑 JPEG 图像 EXIF 参数 ( 旋转、翻转 )
+                .considerExifParams(false) // 是否考虑 JPEG 图片 EXIF 参数 ( 旋转、翻转 )
                 .resetViewBeforeLoading(false) // default 设置图片在加载前是否重置、复位
                 //.displayer(new FadeInBitmapDisplayer(100)) // 图片加载好后渐入的动画时间
                 .cacheOnDisk(true).build(); // 是否保存到 SDCard 上

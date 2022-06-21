@@ -20,7 +20,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
-import androidx.exifinterface.media.ExifInterface;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,6 +30,7 @@ import java.util.HashMap;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.assist.ExifAssist;
 import dev.utils.common.FileUtils;
 import dev.utils.common.ScaleUtils;
 
@@ -422,30 +422,12 @@ public final class BitmapUtils {
     }
 
     /**
-     * 读取图片属性, 获取图片被旋转的角度
+     * 读取图片属性, 获取图片旋转角度
      * @param filePath 文件路径
-     * @return 旋转角度
+     * @return 图片旋转角度
      */
-    public static int getRotateDegree(final String filePath) {
-        try {
-            ExifInterface exifInterface = new ExifInterface(filePath);
-            int orientation = exifInterface.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL
-            );
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    return 90;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    return 180;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    return 270;
-                default:
-                    return 0;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getRotateDegree");
-            return 0;
-        }
+    public static int getRotationDegrees(final String filePath) {
+        return ExifAssist.get(filePath).getRotationDegrees();
     }
 
     // =======
