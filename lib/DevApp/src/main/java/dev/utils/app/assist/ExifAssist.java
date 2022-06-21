@@ -1,5 +1,11 @@
 package dev.utils.app.assist;
 
+import android.Manifest;
+import android.app.Activity;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
+
 import androidx.exifinterface.media.ExifInterface;
 
 import java.io.File;
@@ -7,6 +13,8 @@ import java.io.FileDescriptor;
 import java.io.InputStream;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.ResourceUtils;
+import dev.utils.app.permission.PermissionUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -14,16 +22,28 @@ import dev.utils.common.StringUtils;
  * detail: 图片 EXIF 读写辅助类
  * @author Ttt
  * <pre>
- *     源码部分方法是不会抛出异常, 也统一进行 try-catch 防止后续库更新迭代代码变动
- *     <p></p>
  *     Supported for reading: JPEG, PNG, WebP, HEIF, DNG, CR2, NEF, NRW, ARW, RW2, ORF, PEF, SRW, RAF
  *     Supported for writing: JPEG, PNG, WebP, DNG
+ *     <p></p>
+ *     源码部分方法是不会抛出异常, 也统一进行 try-catch 防止后续库更新迭代代码变动
+ *     <p></p>
+ *     如果需要获取敏感信息, 如图片位置信息则
+ *     需要先申请权限 {@link Manifest.permission#ACCESS_MEDIA_LOCATION} 允许后
+ *     再调用 {@link MediaStore#setRequireOriginal} 获取原始 Uri
+ *     最后使用 {@link ResourceUtils#openInputStream(Uri)} 返回 InputStream 进行创建 ExifAssist
+ *     <p></p>
+ *     已提供 {@link ExifAssist#getByRequire(Uri)} 进行创建 ( 在申请权限成功后直接通过该方法创建即可 )
+ *     或通过 {@link ExifAssist#requireOriginal(Uri)} 申请获取原始 Uri
+ *     <p></p>
+ *     申请权限方法已封装 {@link ExifAssist#requestPermission(Activity, PermissionUtils.PermissionCallback)}
+ *     在 Callback onGranted() 方法中调用 {@link ExifAssist#getByRequire(Uri)} 即可
+ *     以上所有方法都已进行版本适配处理直接调用无需额外逻辑判断
  * </pre>
  */
-public class ExifAssist {
+public final class ExifAssist {
 
     // 日志 TAG
-    private final String TAG = ExifAssist.class.getSimpleName();
+    private static final String TAG = ExifAssist.class.getSimpleName();
 
     // 图片 EXIF 操作接口
     private final ExifInterface mExif;
@@ -132,6 +152,68 @@ public class ExifAssist {
             @ExifInterface.ExifStreamType final int streamType
     ) {
         return new ExifAssist(inputStream, streamType);
+    }
+
+    public static ExifAssist get(final Uri uri) {
+        return new ExifAssist(ResourceUtils.openInputStream(uri));
+    }
+
+    /**
+     * 创建可获取 EXIF 敏感信息辅助类
+     * @param uri 待请求 Uri
+     * @return {@link ExifAssist}
+     */
+    public static ExifAssist getByRequire(final Uri uri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            try {
+                return get(MediaStore.setRequireOriginal(uri));
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getByRequire");
+                return new ExifAssist(null, e);
+            }
+        }
+        return get(uri);
+    }
+
+    // =
+
+    /**
+     * 获取 EXIF 敏感信息, 请求获取原始 Uri
+     * @param uri 待请求 Uri
+     * @return Uri
+     */
+    public static Uri requireOriginal(final Uri uri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            try {
+                return MediaStore.setRequireOriginal(uri);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "requireOriginal");
+                return null;
+            }
+        }
+        return uri;
+    }
+
+    /**
+     * 请求 ACCESS_MEDIA_LOCATION 权限并进行通知
+     * @param activity {@link Activity}
+     * @param callback {@link PermissionUtils.PermissionCallback}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean requestPermission(
+            final Activity activity,
+            final PermissionUtils.PermissionCallback callback
+    ) {
+        if (activity == null) return false;
+        if (callback == null) return false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            PermissionUtils.permission(
+                    Manifest.permission.ACCESS_MEDIA_LOCATION
+            ).callback(callback).request(activity);
+        } else {
+            callback.onGranted();
+        }
+        return true;
     }
 
     // =============
@@ -321,7 +403,7 @@ public class ExifAssist {
      * 将标签数据存储到图片中 ( 最终必须调用 )
      * <pre>
      *     Supported for writing: JPEG, PNG, WebP, DNG
-     *     应该是全部设置完成后统一保存, 避免设置一次值调用一次
+     *     正确使用是全部设置完成后统一保存, 避免设置一次值调用一次
      * </pre>
      * @return {@code true} success, {@code false} fail
      */
