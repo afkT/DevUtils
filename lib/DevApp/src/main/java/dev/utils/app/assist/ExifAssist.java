@@ -2,6 +2,7 @@ package dev.utils.app.assist;
 
 import android.Manifest;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.image.ImageUtils;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
@@ -216,6 +218,16 @@ public final class ExifAssist {
             callback.onGranted();
         }
         return true;
+    }
+
+    /**
+     * 判断是否支持读取的资源类型
+     * @param mimeType 资源类型
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSupportedMimeType(final String mimeType) {
+        if (StringUtils.isEmpty(mimeType)) return false;
+        return ExifInterface.isSupportedMimeType(mimeType);
     }
 
     // =============
@@ -508,6 +520,113 @@ public final class ExifAssist {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setGpsInfo");
             return false;
+        }
+    }
+
+    /**
+     * 获取 GPS 定位时间信息
+     * @return GPS 定位时间
+     */
+    public Long getGpsDateTime() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getGpsDateTime();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getGpsDateTime");
+            return null;
+        }
+    }
+
+    // =
+
+    /**
+     * 是否存在缩略图
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean hasThumbnail() {
+        if (isExifNull()) return false;
+        try {
+            return mExif.hasThumbnail();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "hasThumbnail");
+            return false;
+        }
+    }
+
+    /**
+     * 是否存在 JPEG 压缩缩略图
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isThumbnailCompressed() {
+        if (isExifNull()) return false;
+        try {
+            return mExif.isThumbnailCompressed();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isThumbnailCompressed");
+            return false;
+        }
+    }
+
+    /**
+     * 获取 JPEG 压缩缩略图
+     * <pre>
+     *     如果非 JPEG 则返回 null
+     *     可通过 {@link ImageUtils#decodeByteArray(byte[])}
+     * </pre>
+     * @return 压缩缩略图数据
+     */
+    public byte[] getThumbnail() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getThumbnail();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getThumbnail");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Exif 缩略图
+     * <pre>
+     *     不管什么类型, 有的话则返回缩略图数据
+     * </pre>
+     * @return 缩略图数据
+     */
+    public byte[] getThumbnailBytes() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getThumbnailBytes();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getThumbnailBytes");
+            return null;
+        }
+    }
+
+    /**
+     * 获取 Exif 缩略图
+     * @return 缩略图
+     */
+    public Bitmap getThumbnailBitmap() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getThumbnailBitmap();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getThumbnailBitmap");
+            return null;
+        }
+    }
+
+    /**
+     * 获取缩略图数据偏移量位置和长度信息
+     * @return offset and length of thumbnail inside the image file
+     */
+    public long[] getThumbnailRange() {
+        if (isExifNull()) return null;
+        try {
+            return mExif.getThumbnailRange();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getThumbnailRange");
+            return null;
         }
     }
 }
