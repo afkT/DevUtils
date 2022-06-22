@@ -4,7 +4,9 @@ import androidx.exifinterface.media.ExifInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * detail: 图片 EXIF Tag Group 常量类
@@ -88,6 +90,30 @@ public final class ExifTag {
         lists.add(ORF_IMAGE_PROCESSING_TAGS);
         lists.add(PEF_TAGS);
         EXIF_TAGS = Collections.unmodifiableList(lists);
+    }
+
+    // ============
+    // = Exif Map =
+    // ============
+
+    /**
+     * detail: EXIF Tag Group Value Map
+     * @author Ttt
+     * <pre>
+     *     以 EXIF Tag Group 为分组进行获取各个 Group 值
+     * </pre>
+     */
+    public static final class Group {
+
+        public final Map<String, String> IFD_TIFF_TAGS             = new LinkedHashMap<>();
+        public final Map<String, String> IFD_EXIF_TAGS             = new LinkedHashMap<>();
+        public final Map<String, String> IFD_GPS_TAGS              = new LinkedHashMap<>();
+        public final Map<String, String> IFD_INTEROPERABILITY_TAGS = new LinkedHashMap<>();
+        public final Map<String, String> IFD_THUMBNAIL_TAGS        = new LinkedHashMap<>();
+        public final Map<String, String> ORF_MAKER_NOTE_TAGS       = new LinkedHashMap<>();
+        public final Map<String, String> ORF_CAMERA_SETTINGS_TAGS  = new LinkedHashMap<>();
+        public final Map<String, String> ORF_IMAGE_PROCESSING_TAGS = new LinkedHashMap<>();
+        public final Map<String, String> PEF_TAGS                  = new LinkedHashMap<>();
     }
 
     // =================

@@ -283,7 +283,7 @@ data class ArticleBean(
 )
 
 /**
- * detail: 文章数据响应类 ( 可不定义，只是为了方便理解、展示 )
+ * detail: 文章数据响应类 ( 可不定义, 只是为了方便理解、展示 )
  * @author Ttt
  * data 映射实体类为 List<ArticleBean?>
  */

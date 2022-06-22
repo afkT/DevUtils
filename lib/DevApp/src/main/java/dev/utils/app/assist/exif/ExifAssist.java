@@ -14,7 +14,9 @@ import androidx.exifinterface.media.ExifInterface;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dev.utils.LogPrintUtils;
@@ -466,7 +468,7 @@ public final class ExifAssist {
      * 擦除图像 Exif 信息 ( 指定数组 )
      * <pre>
      *     可删除指定 Group TAG Exif 信息
-     *     eraseExifByList(ExifTag.IFD_EXIF_TAGS)
+     *     eraseExifByList(ExifTag.IFD_GPS_TAGS)
      *     也可以删除指定 TAG Exif 信息
      *     eraseExifByArray(ExifInterface.TAG_GPS_LATITUDE)
      * </pre>
@@ -826,5 +828,58 @@ public final class ExifAssist {
             LogPrintUtils.eTag(TAG, e, "resetOrientation");
             return false;
         }
+    }
+
+    // ============
+    // = 获取属性值 =
+    // ============
+
+    /**
+     * 获取 Exif 信息 ( ExifTag Group )
+     * @return EXIF Tag Group Value Map
+     */
+    public ExifTag.Group getAttributeByGroup() {
+        ExifTag.Group group = new ExifTag.Group();
+        group.IFD_TIFF_TAGS.putAll(getAttributeByList(ExifTag.IFD_TIFF_TAGS));
+        group.IFD_EXIF_TAGS.putAll(getAttributeByList(ExifTag.IFD_EXIF_TAGS));
+        group.IFD_GPS_TAGS.putAll(getAttributeByList(ExifTag.IFD_GPS_TAGS));
+        group.IFD_INTEROPERABILITY_TAGS.putAll(getAttributeByList(ExifTag.IFD_INTEROPERABILITY_TAGS));
+        group.IFD_THUMBNAIL_TAGS.putAll(getAttributeByList(ExifTag.IFD_THUMBNAIL_TAGS));
+        group.ORF_MAKER_NOTE_TAGS.putAll(getAttributeByList(ExifTag.ORF_MAKER_NOTE_TAGS));
+        group.ORF_CAMERA_SETTINGS_TAGS.putAll(getAttributeByList(ExifTag.ORF_CAMERA_SETTINGS_TAGS));
+        group.ORF_IMAGE_PROCESSING_TAGS.putAll(getAttributeByList(ExifTag.ORF_IMAGE_PROCESSING_TAGS));
+        group.PEF_TAGS.putAll(getAttributeByList(ExifTag.PEF_TAGS));
+        return group;
+    }
+
+    /**
+     * 获取 Exif 信息 ( 指定集合 )
+     * @param list 待获取 TAG
+     * @return Exif Value Map
+     */
+    public Map<String, String> getAttributeByList(final List<String> list) {
+        if (list == null) return new LinkedHashMap<>();
+        return getAttributeByArray(list.toArray(new String[0]));
+    }
+
+    /**
+     * 获取 Exif 信息 ( 指定数组 )
+     * <pre>
+     *     获取单个 TAG 使用
+     *     {@link ExifAssist#getAttribute(String)}
+     * </pre>
+     * @param tags 待获取 TAG
+     * @return Exif Value Map
+     */
+    public Map<String, String> getAttributeByArray(final String... tags) {
+        Map<String, String> maps = new LinkedHashMap<>();
+        if (tags != null && isExifNotNull()) {
+            for (String tag : tags) {
+                if (tag != null) {
+                    maps.put(tag, mExif.getAttribute(tag));
+                }
+            }
+        }
+        return maps;
     }
 }
