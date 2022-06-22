@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
 import androidx.exifinterface.media.ExifInterface;
@@ -39,7 +40,14 @@ import dev.utils.common.StringUtils;
  *     如果需要获取敏感信息, 如图片位置信息则
  *     需要先申请权限 {@link Manifest.permission#ACCESS_MEDIA_LOCATION} 允许后
  *     再调用 {@link MediaStore#setRequireOriginal} 获取原始 Uri
- *     最后使用 {@link ResourceUtils#openInputStream(Uri)} 返回 InputStream 进行创建 ExifAssist
+ *     最后使用 {@link ResourceUtils#openFileDescriptor(Uri, String)} 返回 ParcelFileDescriptor
+ *     再通过 ParcelFileDescriptor.getFileDescriptor() 进行创建 ExifAssist
+ *     <p></p>
+ *     注意事项:
+ *     为什么不通过 {@link ResourceUtils#openInputStream(Uri)} 返回 InputStream 进行创建 ExifAssist
+ *     是因为通过 InputStream 创建 ExifAssist 进行 saveAttributes 会抛出异常
+ *     throw new IOException("Failed to save new file. Original file is stored in")
+ *     Write failed: EBADF (Bad file descriptor)
  *     <p></p>
  *     已提供 {@link ExifAssist#getByRequire(Uri)} 进行创建 ( 在申请权限成功后直接通过该方法创建即可 )
  *     或通过 {@link ExifAssist#requireOriginal(Uri)} 申请获取原始 Uri
@@ -164,7 +172,10 @@ public final class ExifAssist {
     }
 
     public static ExifAssist get(final Uri uri) {
-        return new ExifAssist(ResourceUtils.openInputStream(uri));
+        ParcelFileDescriptor pfd            = ResourceUtils.openFileDescriptor(uri, "rw");
+        FileDescriptor       fileDescriptor = null;
+        if (pfd != null) fileDescriptor = pfd.getFileDescriptor();
+        return new ExifAssist(fileDescriptor);
     }
 
     /**
@@ -423,6 +434,8 @@ public final class ExifAssist {
      * <pre>
      *     Supported for writing: JPEG, PNG, WebP, DNG
      *     正确使用是全部设置完成后统一保存, 避免设置一次值调用一次
+     *     因为每次调用 saveAttributes 都会创建一个临时文件写入成功后, 再写到原始文件
+     *     最后才删除临时文件
      * </pre>
      * @return {@code true} success, {@code false} fail
      */
@@ -451,6 +464,12 @@ public final class ExifAssist {
 
     /**
      * 擦除图像 Exif 信息 ( 指定数组 )
+     * <pre>
+     *     可删除指定 Group TAG Exif 信息
+     *     eraseExifByList(ExifTag.IFD_EXIF_TAGS)
+     *     也可以删除指定 TAG Exif 信息
+     *     eraseExifByArray(ExifInterface.TAG_GPS_LATITUDE)
+     * </pre>
      * @param tags 待擦除 TAG
      * @return {@code true} success, {@code false} fail
      */
@@ -557,7 +576,7 @@ public final class ExifAssist {
             location.setLongitude(latLong[1]);
             location.setSpeed((float) speed);
             return location;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getGpsInfo");
             return null;
         }
