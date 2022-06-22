@@ -30,7 +30,7 @@ import java.util.HashMap;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
-import dev.utils.app.assist.ExifAssist;
+import dev.utils.app.assist.exif.ExifAssist;
 import dev.utils.common.FileUtils;
 import dev.utils.common.ScaleUtils;
 

@@ -1,4 +1,4 @@
-package dev.utils.app.assist;
+package dev.utils.app.assist.exif;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,6 +13,7 @@ import androidx.exifinterface.media.ExifInterface;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import dev.utils.LogPrintUtils;
@@ -28,6 +29,10 @@ import dev.utils.common.StringUtils;
  * <pre>
  *     Supported for reading: JPEG, PNG, WebP, HEIF, DNG, CR2, NEF, NRW, ARW, RW2, ORF, PEF, SRW, RAF
  *     Supported for writing: JPEG, PNG, WebP, DNG
+ *     <p></p>
+ *     需要注意的是:
+ *     支持写入变更的只有上述 Supported for writing 类型, 如想要操作全部格式应使用其他库封装实现
+ *     该辅助类使用 Android 官方 API 不依赖任何第三方库
  *     <p></p>
  *     源码部分方法是不会抛出异常, 也统一进行 try-catch 防止后续库更新迭代代码变动
  *     <p></p>
@@ -430,6 +435,58 @@ public final class ExifAssist {
             LogPrintUtils.eTag(TAG, e, "saveAttributes");
             return false;
         }
+    }
+
+    // =
+
+    /**
+     * 擦除图像 Exif 信息 ( 指定集合 )
+     * @param list 待擦除 TAG
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseExifByList(final List<String> list) {
+        if (list == null) return false;
+        return eraseExifByArray(list.toArray(new String[0]));
+    }
+
+    /**
+     * 擦除图像 Exif 信息 ( 指定数组 )
+     * @param tags 待擦除 TAG
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseExifByArray(final String... tags) {
+        if (isExifNull()) return false;
+        if (tags != null) {
+            for (String tag : tags) {
+                if (tag != null) {
+                    try {
+                        mExif.setAttribute(tag, null);
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+            return saveAttributes();
+        }
+        return false;
+    }
+
+    /**
+     * 擦除图像 Exif 信息 ( 全部 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseAllExif() {
+        if (isExifNull()) return false;
+        for (List<String> list : ExifTag.EXIF_TAGS) {
+            for (String tag : list) {
+                if (tag != null) {
+                    try {
+                        mExif.setAttribute(tag, null);
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }
+        return saveAttributes();
     }
 
     // ===========
