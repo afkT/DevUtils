@@ -12,6 +12,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
 
+import java.dev.engine.media.luck_lib_engine.LuckGlideEngineImpl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -314,7 +315,7 @@ public class PictureSelectorEngineImpl
 
             // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
             pictureSelectionModel.selectionMode(config.getSelectionMode())
-                    .imageEngine(GlideEngine.createGlideEngine())
+                    .imageEngine(LuckGlideEngineImpl.createGlideEngine())
                     .isPreviewImage(true) // 是否可预览图片 true or false
                     .isPreviewVideo(true) // 是否可以预览视频 true or false
                     .isEnablePreviewAudio(true) // 是否可播放音频 true or false

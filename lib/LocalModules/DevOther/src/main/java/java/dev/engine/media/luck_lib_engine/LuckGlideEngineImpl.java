@@ -1,4 +1,4 @@
-package java.dev.engine.media;
+package java.dev.engine.media.luck_lib_engine;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,7 +33,7 @@ import dev.other.R;
  * @date 2019-11-13 17:02
  * @describe Glide 加载引擎
  */
-public class GlideEngine
+public class LuckGlideEngineImpl
         implements ImageEngine {
 
     /**
@@ -195,16 +195,16 @@ public class GlideEngine
                 .into(imageView);
     }
 
-    private GlideEngine() {
+    private LuckGlideEngineImpl() {
     }
 
-    private static GlideEngine instance;
+    private static LuckGlideEngineImpl instance;
 
-    public static GlideEngine createGlideEngine() {
+    public static LuckGlideEngineImpl createGlideEngine() {
         if (null == instance) {
-            synchronized (GlideEngine.class) {
+            synchronized (LuckGlideEngineImpl.class) {
                 if (null == instance) {
-                    instance = new GlideEngine();
+                    instance = new LuckGlideEngineImpl();
                 }
             }
         }
