@@ -42,6 +42,9 @@ public final class ExifTag {
 
     // List of Exif tag groups
     public static final List<List<String>> EXIF_TAGS;
+    public static final List<String>       EXIF_TAGS_ALL;
+
+    // =
 
     // Primary image IFD TIFF tags (See JEITA CP-3451C Section 4.6.8 Tag Support Levels)
     public static final List<String> IFD_TIFF_TAGS;
@@ -90,6 +93,12 @@ public final class ExifTag {
         lists.add(ORF_IMAGE_PROCESSING_TAGS);
         lists.add(PEF_TAGS);
         EXIF_TAGS = Collections.unmodifiableList(lists);
+
+        List<String> allList = new ArrayList<>();
+        for (List<String> list : lists) {
+            allList.addAll(list);
+        }
+        EXIF_TAGS_ALL = Collections.unmodifiableList(allList);
     }
 
     // ============
@@ -126,7 +135,7 @@ public final class ExifTag {
      */
     private static final class INNER {
 
-        public static final  String TAG_THUMBNAIL_ORIENTATION            = "ThumbnailOrientation";
+        private static final String TAG_THUMBNAIL_ORIENTATION            = "ThumbnailOrientation";
         private static final String TAG_EXIF_IFD_POINTER                 = "ExifIFDPointer";
         private static final String TAG_GPS_INFO_IFD_POINTER             = "GPSInfoIFDPointer";
         private static final String TAG_INTEROPERABILITY_IFD_POINTER     = "InteroperabilityIFDPointer";

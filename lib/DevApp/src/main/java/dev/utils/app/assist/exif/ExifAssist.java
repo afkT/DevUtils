@@ -67,7 +67,7 @@ public final class ExifAssist {
     // 图片 EXIF 操作接口
     private final ExifInterface mExif;
     // 是否 EXIF 初始化异常
-    private       Throwable     mExifError;
+    private final Throwable     mExifError;
 
     // ==========
     // = 构造函数 =
@@ -75,14 +75,15 @@ public final class ExifAssist {
 
     private ExifAssist(
             final ExifInterface exif,
-            final Throwable exifError
+            final Throwable error
     ) {
         mExif      = exif;
-        mExifError = exifError;
+        mExifError = error;
     }
 
     private ExifAssist(final File file) {
-        ExifInterface exif = null;
+        ExifInterface exif  = null;
+        Throwable     error = null;
         try {
             exif = new ExifInterface(file);
         } catch (Throwable e) {
@@ -90,56 +91,65 @@ public final class ExifAssist {
                     TAG, e, "ExifAssist - File %s",
                     FileUtils.getAbsolutePath(file)
             );
-            mExifError = e;
+            error = e;
         }
-        mExif = exif;
+        mExif      = exif;
+        mExifError = error;
     }
 
     private ExifAssist(final String filePath) {
-        ExifInterface exif = null;
+        ExifInterface exif  = null;
+        Throwable     error = null;
         try {
             exif = new ExifInterface(filePath);
         } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "ExifAssist - FilePath %s", filePath);
-            mExifError = e;
+            error = e;
         }
-        mExif = exif;
+        mExif      = exif;
+        mExifError = error;
     }
 
     private ExifAssist(final FileDescriptor fd) {
-        ExifInterface exif = null;
+        ExifInterface exif  = null;
+        Throwable     error = null;
         try {
             exif = new ExifInterface(fd);
         } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "ExifAssist - FileDescriptor");
-            mExifError = e;
+            error = e;
         }
-        mExif = exif;
+        mExif      = exif;
+        mExifError = error;
     }
 
     private ExifAssist(final InputStream inputStream) {
-        ExifInterface exif = null;
+        ExifInterface exif  = null;
+        Throwable     error = null;
         try {
             exif = new ExifInterface(inputStream);
         } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "ExifAssist - InputStream");
-            mExifError = e;
+            error = e;
         }
-        mExif = exif;
+        mExif      = exif;
+        mExifError = error;
     }
 
     private ExifAssist(
             final InputStream inputStream,
             @ExifInterface.ExifStreamType final int streamType
     ) {
-        ExifInterface exif = null;
+        ExifInterface exif  = null;
+        Throwable     error = null;
         try {
             exif = new ExifInterface(inputStream, streamType);
         } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "ExifAssist - InputStream, StreamType");
-            mExifError = e;
+            error = e;
         }
-        mExif = exif;
+        mExif      = exif;
+        mExifError = error;
     }
 
     // ==========
@@ -455,6 +465,14 @@ public final class ExifAssist {
     // =
 
     /**
+     * 擦除图像 Exif 信息 ( 全部 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseAllExif() {
+        return eraseExifByList(ExifTag.EXIF_TAGS_ALL);
+    }
+
+    /**
      * 擦除图像 Exif 信息 ( 指定集合 )
      * @param list 待擦除 TAG
      * @return {@code true} success, {@code false} fail
@@ -476,8 +494,7 @@ public final class ExifAssist {
      * @return {@code true} success, {@code false} fail
      */
     public boolean eraseExifByArray(final String... tags) {
-        if (isExifNull()) return false;
-        if (tags != null) {
+        if (tags != null && isExifNotNull()) {
             for (String tag : tags) {
                 if (tag != null) {
                     try {
@@ -489,25 +506,6 @@ public final class ExifAssist {
             return saveAttributes();
         }
         return false;
-    }
-
-    /**
-     * 擦除图像 Exif 信息 ( 全部 )
-     * @return {@code true} success, {@code false} fail
-     */
-    public boolean eraseAllExif() {
-        if (isExifNull()) return false;
-        for (List<String> list : ExifTag.EXIF_TAGS) {
-            for (String tag : list) {
-                if (tag != null) {
-                    try {
-                        mExif.setAttribute(tag, null);
-                    } catch (Exception ignored) {
-                    }
-                }
-            }
-        }
-        return saveAttributes();
     }
 
     // ===========
@@ -566,10 +564,13 @@ public final class ExifAssist {
             double[] latLong = mExif.getLatLong();
             if (latLong == null) return null;
 
-            String gpsSpeed   = mExif.getAttribute(ExifInterface.TAG_GPS_SPEED);
-            String speedKMHR  = gpsSpeed.substring(0, gpsSpeed.indexOf("/"));
-            double speedKMHRD = Double.parseDouble(speedKMHR);
-            double speed      = speedKMHRD / TimeUnit.HOURS.toSeconds(1) * 1000D;
+            String gpsSpeed = mExif.getAttribute(ExifInterface.TAG_GPS_SPEED);
+            double speed    = 0D;
+            if (gpsSpeed != null) {
+                String speedKMHR  = gpsSpeed.substring(0, gpsSpeed.indexOf("/"));
+                double speedKMHRD = Double.parseDouble(speedKMHR);
+                speed = speedKMHRD / TimeUnit.HOURS.toSeconds(1) * 1000D;
+            }
 
             Location location = new Location(provider);
             location.setAltitude(altitude);
@@ -616,9 +617,9 @@ public final class ExifAssist {
     }
 
     /**
-     * 获取高度信息 ( 单位米 )
+     * 获取海拔高度信息 ( 单位米 )
      * @param defaultValue 无数据时返回默认值
-     * @return 高度信息 ( 单位米 )
+     * @return 海拔高度信息 ( 单位米 )
      */
     public double getAltitude(final double defaultValue) {
         if (isExifNull()) return defaultValue;
@@ -631,8 +632,8 @@ public final class ExifAssist {
     }
 
     /**
-     * 设置高度信息
-     * @param altitude 高度值 ( 单位米 )
+     * 设置海拔高度信息
+     * @param altitude 海拔高度值 ( 单位米 )
      * @return {@code true} success, {@code false} fail
      */
     public boolean setAltitude(final double altitude) {
@@ -876,7 +877,10 @@ public final class ExifAssist {
         if (tags != null && isExifNotNull()) {
             for (String tag : tags) {
                 if (tag != null) {
-                    maps.put(tag, mExif.getAttribute(tag));
+                    try {
+                        maps.put(tag, mExif.getAttribute(tag));
+                    } catch (Exception ignored) {
+                    }
                 }
             }
         }
