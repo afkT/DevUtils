@@ -485,9 +485,9 @@ public final class ExifAssist {
     /**
      * 擦除图像 Exif 信息 ( 指定数组 )
      * <pre>
-     *     可删除指定 Group TAG Exif 信息
+     *     可擦除指定 Group TAG Exif 信息
      *     eraseExifByList(ExifTag.IFD_GPS_TAGS)
-     *     也可以删除指定 TAG Exif 信息
+     *     也可以擦除指定 TAG Exif 信息
      *     eraseExifByArray(ExifInterface.TAG_GPS_LATITUDE)
      * </pre>
      * @param tags 待擦除 TAG
@@ -508,9 +508,39 @@ public final class ExifAssist {
         return false;
     }
 
+    // =
+
+    /**
+     * 擦除图像所有 GPS 位置信息
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseExifLocation() {
+        return eraseExifLocation(true);
+    }
+
+    /**
+     * 擦除图像所有 GPS 位置信息
+     * @param check 是否校验存在定位信息再进行擦除
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean eraseExifLocation(final boolean check) {
+        if (check && !existLocation()) {
+            return false;
+        }
+        return eraseExifByList(ExifTag.IFD_GPS_TAGS);
+    }
+
     // ===========
     // = get/set =
     // ===========
+
+    /**
+     * 是否存在 GPS 位置信息
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean existLocation() {
+        return getLatLong() != null;
+    }
 
     /**
      * 获取经纬度信息
