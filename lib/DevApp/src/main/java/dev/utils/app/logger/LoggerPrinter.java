@@ -942,8 +942,8 @@ final class LoggerPrinter
         for (int i = LogConstants.MIN_STACK_OFFSET, len = trace.length; i < len; i++) {
             StackTraceElement e    = trace[i];
             String            name = e.getClassName();
-            if (!name.equals(LoggerPrinter.class.getName())
-                    && !name.equals(DevLogger.class.getName())) {
+            if (!LoggerPrinter.class.getName().equals(name)
+                    && !DevLogger.class.getName().equals(name)) {
                 return --i;
             }
         }

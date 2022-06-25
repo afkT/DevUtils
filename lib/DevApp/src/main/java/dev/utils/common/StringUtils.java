@@ -326,11 +326,11 @@ public final class StringUtils {
         if (str != null && args != null && args.length != 0) {
             for (String value : args) {
                 if (isIgnore) {
-                    if (value.equalsIgnoreCase(str)) {
+                    if (str.equalsIgnoreCase(value)) {
                         return true;
                     }
                 } else {
-                    if (value.equals(str)) {
+                    if (str.equals(value)) {
                         return true;
                     }
                 }
