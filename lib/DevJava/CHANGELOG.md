@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.4.5 *(2022-06-26)*
+----------------------------
+
+* `[Review]` 检查并调整使用 equals、equalsIgnoreCase 代码
+
+* `[Add]` 新增 StringUtils#equalsNotNull 方法
+
 Version 1.4.4 *(2022-05-13)*
 ----------------------------
 

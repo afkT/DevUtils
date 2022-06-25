@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.3.9 *(2022-06-26)*
+----------------------------
+
+* `[Review]` 检查并调整使用 equals、equalsIgnoreCase 代码
+
+* `[Add]` 新增 StringUtils#equalsNotNull 方法
+
+* `[Add]` 新增 图片 EXIF 读写辅助类
+
 Version 2.3.8 *(2022-06-02)*
 ----------------------------
 
