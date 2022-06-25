@@ -13,6 +13,19 @@ if (projectPropertiesFile.exists()) {
     properties.load(projectPropertiesFile.newDataInputStream())
 }
 
+// =========================================
+// = 本地 sonatype properties 文件防止意外上传 =
+// =========================================
+
+localPropertiesFile = new File(rootDir, "../../File/sonatype.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+}
+
+// =======
+// = 结束 =
+// =======
+
 // read properties
 def projectName = properties.getProperty("project.name")
 def projectGroupId = properties.getProperty("project.groupId")
