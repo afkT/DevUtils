@@ -19,6 +19,7 @@
             - keyvalue          | KeyValue Engine 键值对存储
             - log               | Log Engine 日志打印
             - media             | Media Selector Engine 多媒体资源选择
+               - luck_lib_engine| LuckSiege PictureSelector Engine 实现
             - permission        | Permission Engine 权限申请
             - storage           | Storage Engine 外部、内部文件存储
          - other                | 第三方库封装工具类
@@ -64,6 +65,7 @@
             - [keyvalue](#javadevenginekeyvalue)                   | KeyValue Engine 键值对存储
             - [log](#javadevenginelog)                             | Log Engine 日志打印
             - [media](#javadevenginemedia)                         | Media Selector Engine 多媒体资源选择
+               - [luck_lib_engine](#javadevenginemedialuck_lib_engine)| LuckSiege PictureSelector Engine 实现
             - [permission](#javadevenginepermission)               | Permission Engine 权限申请
             - [storage](#javadevenginestorage)                     | Storage Engine 外部、内部文件存储
          - [other](#javadevother)                                  | 第三方库封装工具类
@@ -527,16 +529,6 @@
 ## <span id="javadevenginemedia">**`java.dev.engine.media`**</span>
 
 
-* ** ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/GlideEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| loadImage | 加载图片 |
-| loadFolderImage | 加载相册目录 |
-| loadGridImage | 加载图片列表图片 |
-| createGlideEngine | createGlideEngine |
-
-
 * **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/LocalMediaData.java)
 
 | 方法 | 注释 |
@@ -608,6 +600,19 @@
 | getSelectorPaths | getSelectorPaths |
 | getSingleSelector | getSingleSelector |
 | getSingleSelectorPath | getSingleSelectorPath |
+
+
+## <span id="javadevenginemedialuck_lib_engine">**`java.dev.engine.media.luck_lib_engine`**</span>
+
+
+* ** ->** [LuckGlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_lib_engine/LuckGlideEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| loadImage | 加载图片 |
+| loadFolderImage | 加载相册目录 |
+| loadGridImage | 加载图片列表图片 |
+| createGlideEngine | createGlideEngine |
 
 
 ## <span id="javadevenginepermission">**`java.dev.engine.permission`**</span>
@@ -732,15 +737,6 @@
 | getType | 获取 Type |
 
 
-* **Glide 图形处理工具类 ->** [GlideTransformUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/GlideTransformUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| transform | transform |
-| updateDiskCacheKey | updateDiskCacheKey |
-| blurBitmap | 模糊图片处理 |
-
-
 * **Glide 工具类 ->** [GlideUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/GlideUtils.java)
 
 | 方法 | 注释 |
@@ -861,55 +857,22 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getConfig | 获取全局相册配置 |
-| setConfig | 设置全局相册配置 |
+| openCamera | 打开相册拍照 |
+| openGallery | 打开相册选择 |
+| getConfig | 获取全局配置 |
+| setConfig | 设置全局配置 |
 | getCameraSavePath | 获取拍照存储地址 |
 | getCompressSavePath | 获取压缩图片存储地址 |
 | setSavePath | 设置存储地址 |
 | getMinimumCompressSize | 获取图片大于多少才进行压缩 ( kb ) |
 | setMinimumCompressSize | 设置图片大于多少才进行压缩 ( kb ) |
-| deleteCacheDirFile | 清空缓存 |
-| deleteAllCacheDirFile | 清空全部缓存 |
+| deleteCacheDirFile | 删除缓存文件 |
+| deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
-| getLocalMedias | 获取选中的资源集合 |
-| getSingleMedia | 获取单独选中的资源 |
-| getLocalMediaPath | 获取本地资源路径 |
-| getLocalMediaPaths | 获取本地资源地址集合 |
-| getPictureSelectionModel | 获取图片选择配置模型 |
-| openCamera | 打开相册拍照 |
-| openGallery | 打开相册选择 |
-| getMimeType | 获取相册选择类型 |
-| setMimeType | 设置相册选择类型 |
-| getSelectionMode | 获取相册选择模式 |
-| setSelectionMode | 设置相册选择模式 |
-| isCamera | 是否显示拍照 |
-| setCamera | 设置是否显示拍照 |
-| isCrop | 是否裁减 |
-| setCrop | 设置是否裁减 |
-| isCircleCrop | 是否圆形裁减 |
-| setCircleCrop | 设置是否圆形裁减 |
-| isCompress | 是否压缩 |
-| setCompress | 设置是否压缩 |
-| getWithAspectRatio | 获取裁减比例 |
-| setWithAspectRatio | 设置裁减比例 |
-| isGif | 是否显示 Gif |
-| setGif | 设置是否显示 Gif |
-| getImageSpanCount | 获取每行显示个数 |
-| setImageSpanCount | 设置每行显示个数 |
-| getMinSelectNum | 获取最小选择数量 |
-| setMinSelectNum | 设置最小选择数量 |
-| getMaxSelectNum | 获取最大选择数量 |
-| setMaxSelectNum | 设置最大选择数量 |
-| getLocalMedia | 获取已选择的本地资源 |
-| setLocalMedia | 设置已选择的本地资源 |
-| setCameraSavePath | 设置拍照存储地址 |
-| setCompressSavePath | 设置压缩图片存储地址 |
-| clone | 克隆新的配置信息 |
-| set | 设置新的配置信息 |
-| ofAll | ofAll |
-| ofImage | ofImage |
-| ofVideo | ofVideo |
-| ofAudio | ofAudio |
+| getSelectors | 获取 Media Selector Data List |
+| getSelectorPaths | 获取 Media Selector Path List |
+| getSingleSelector | 获取 Single Media Selector Data |
+| getSingleSelectorPath | 获取 Single Media Selector Path |
 
 
 * **ZXing 条形码、二维码工具类 ->** [ZXingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/ZXingUtils.java)

@@ -8,17 +8,18 @@ implementation 'io.github.afkt:DevEngine:1.0.7'
 ## 目录结构
 
 ```
-- dev.engine            | 根目录
-   - barcode            | BarCode Engine 条形码、二维码处理
-   - cache              | Cache Engine 有效期键值对缓存
-   - compress           | Image Compress Engine 图片压缩
-   - image              | Image Engine 图片加载、下载、转格式等
-   - json               | JSON Engine 映射
-   - keyvalue           | KeyValue Engine 键值对存储
-   - log                | Log Engine 日志打印
-   - media              | Media Selector Engine 多媒体资源选择
-   - permission         | Permission Engine 权限申请
-   - storage            | Storage Engine 外部、内部文件存储
+- dev.engine                    | 根目录
+   - barcode                    | BarCode Engine 条形码、二维码处理
+   - cache                      | Cache Engine 有效期键值对缓存
+   - compress                   | Image Compress Engine 图片压缩
+   - image                      | Image Engine 图片加载、下载、转格式等
+   - json                       | JSON Engine 映射
+   - keyvalue                   | KeyValue Engine 键值对存储
+   - log                        | Log Engine 日志打印
+   - media                      | Media Selector Engine 多媒体资源选择
+      - luck_lib_engine         | LuckSiege PictureSelector Engine 实现
+   - permission                 | Permission Engine 权限申请
+   - storage                    | Storage Engine 外部、内部文件存储
 ```
 
 
