@@ -976,6 +976,7 @@ public final class FileUtils {
             final File file,
             final String newFileName
     ) {
+        if (StringUtils.isEmpty(newFileName)) return false;
         // 文件为空返回 false
         if (file == null) return false;
         // 文件不存在返回 false

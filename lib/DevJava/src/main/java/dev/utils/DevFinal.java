@@ -285,6 +285,7 @@ public final class DevFinal {
         public static final String COMPONENT = "component";
         public static final String CORE      = "core";
         public static final String ENGINE    = "engine";
+        public static final String FETCH     = "fetch";
         public static final String FLAG      = "flag";
         public static final String FROM      = "from";
         public static final String GROUP     = "group";
@@ -296,6 +297,7 @@ public final class DevFinal {
         public static final String MODEL     = "model";
         public static final String MODULE    = "module";
         public static final String OBTAIN    = "obtain";
+        public static final String OWNER     = "owner";
         public static final String PLUGIN    = "plugin";
         public static final String RESET     = "reset";
         public static final String ROUTER    = "router";
@@ -340,23 +342,43 @@ public final class DevFinal {
         // = 其他 =
         // =======
 
-        public static final String BANK    = "bank";
-        public static final String BANNER  = "banner";
-        public static final String CONTENT = "content";
-        public static final String INDENT  = "indent";
-        public static final String KIND    = "kind";
-        public static final String LEVEL   = "level";
-        public static final String MENU    = "menu";
-        public static final String MORE    = "more";
-        public static final String NUMBER  = "number";
-        public static final String OPERATE = "operate";
-        public static final String OPTIONS = "options";
-        public static final String OTHER   = "other";
-        public static final String REMARK  = "remark";
-        public static final String SCORE   = "score";
-        public static final String SMS     = "sms";
-        public static final String TIMING  = "timing";
-        public static final String TITLE   = "title";
+        public static final String ATTACH    = "attach";
+        public static final String AUTO      = "auto";
+        public static final String BALANCER  = "balancer";
+        public static final String BANK      = "bank";
+        public static final String BANNER    = "banner";
+        public static final String BLOCK     = "block";
+        public static final String BUCKET    = "bucket";
+        public static final String CONTENT   = "content";
+        public static final String EDIT      = "edit";
+        public static final String ELASTIC   = "elastic";
+        public static final String FACTORY   = "factory";
+        public static final String GOTO      = "goto";
+        public static final String IMPL      = "impl";
+        public static final String INDENT    = "indent";
+        public static final String INVENTORY = "inventory";
+        public static final String KIND      = "kind";
+        public static final String LEVEL     = "level";
+        public static final String LOADER    = "loader";
+        public static final String MENU      = "menu";
+        public static final String MORE      = "more";
+        public static final String NUMBER    = "number";
+        public static final String OF        = "of";
+        public static final String ONLY      = "only";
+        public static final String OPERATE   = "operate";
+        public static final String OPTIONS   = "options";
+        public static final String ORIGINAL  = "original";
+        public static final String OTHER     = "other";
+        public static final String QUIC      = "quic";
+        public static final String RANGE     = "range";
+        public static final String REMARK    = "remark";
+        public static final String SCORE     = "score";
+        public static final String SKIP      = "skip";
+        public static final String SMS       = "sms";
+        public static final String TIMING    = "timing";
+        public static final String TITLE     = "title";
+        public static final String TRANSFER  = "transfer";
+        public static final String WITH      = "with";
 
         // ==========
         // = 信息相关 =
@@ -420,9 +442,17 @@ public final class DevFinal {
         public static final String XML           = "xml";
 
         public static final String BEGIN_TIME = "begin_time";
+        public static final String COMPRESS   = "compress";
+        public static final String COVER      = "cover";
+        public static final String CROP       = "crop";
         public static final String DURATION   = "duration";
         public static final String END_TIME   = "end_time";
+        public static final String EXIF       = "exif";
+        public static final String EXIF_TAG   = "exif_tag";
+        public static final String MIME_TYPE  = "mimetype";
         public static final String PLAY_TIME  = "play_time";
+        public static final String PREVIEW    = "preview";
+        public static final String QUALITY    = "quality";
         public static final String TIME       = "time";
         public static final String TIMESTAMP  = "timestamp";
         public static final String VALID_TIME = "valid_time";
@@ -449,43 +479,80 @@ public final class DevFinal {
         public static final String BIND      = "bind";
         public static final String UN_BINDER = "un_binder";
 
-        public static final String ACCEPT     = "accept";
-        public static final String AFTER      = "after";
-        public static final String ASYNC      = "async";
-        public static final String BEFORE     = "before";
-        public static final String CLOSE      = "close";
-        public static final String CONNECT    = "connect";
-        public static final String DELAY      = "delay";
-        public static final String DENIED     = "denied";
-        public static final String DISCONNECT = "disconnect";
-        public static final String DISK       = "disk";
-        public static final String DOWNLOAD   = "download";
-        public static final String END        = "end";
-        public static final String FAIL       = "fail";
-        public static final String FOUND      = "found";
-        public static final String GRANTED    = "granted";
-        public static final String LOAD       = "load";
-        public static final String LOADING    = "loading";
-        public static final String NEXT       = "next";
-        public static final String NOT_FOUND  = "not_found";
-        public static final String PAUSE      = "pause";
-        public static final String PERIOD     = "period";
-        public static final String PLAY       = "play";
-        public static final String REFRESH    = "refresh";
-        public static final String REQUEST    = "request";
-        public static final String RESPONSE   = "response";
-        public static final String RESTART    = "restart";
-        public static final String RESULT     = "result";
-        public static final String SLEEP      = "sleep";
-        public static final String START      = "start";
-        public static final String STATE      = "state";
-        public static final String STOP       = "stop";
-        public static final String SUCCESS    = "success";
-        public static final String SYNC       = "sync";
-        public static final String UNCONNECT  = "unconnect";
-        public static final String UPLOAD     = "upload";
-        public static final String VALID      = "valid";
-        public static final String WAITING    = "waiting";
+        public static final String ACCEPT       = "accept";
+        public static final String AFTER        = "after";
+        public static final String ASYNC        = "async";
+        public static final String BEFORE       = "before";
+        public static final String CANCEL       = "cancel";
+        public static final String CLOSE        = "close";
+        public static final String COMPLETE     = "complete";
+        public static final String CONFIRM      = "confirm";
+        public static final String CONNECT      = "connect";
+        public static final String CONNECTED    = "connected";
+        public static final String CONNECTING   = "connecting";
+        public static final String CREATE       = "create";
+        public static final String DELAY        = "delay";
+        public static final String DELETE       = "delete";
+        public static final String DELIMITER    = "delimiter";
+        public static final String DENIED       = "denied";
+        public static final String DESTROY      = "destroy";
+        public static final String DISABLED     = "disabled";
+        public static final String DISABLING    = "disabling";
+        public static final String DISCONNECT   = "disconnect";
+        public static final String DISCONNECTED = "disconnected";
+        public static final String DISK         = "disk";
+        public static final String DOWNLOAD     = "download";
+        public static final String ENABLED      = "enabled";
+        public static final String ENABLING     = "enabling";
+        public static final String END          = "end";
+        public static final String EXECUTE      = "execute";
+        public static final String FAIL         = "fail";
+        public static final String FINISH       = "finish";
+        public static final String FOUND        = "found";
+        public static final String GRANTED      = "granted";
+        public static final String ING          = "ing";
+        public static final String INIT         = "init";
+        public static final String INSERT       = "insert";
+        public static final String LAUNCH       = "launch";
+        public static final String LOAD         = "load";
+        public static final String LOADING      = "loading";
+        public static final String MARKER       = "marker";
+        public static final String METADATA     = "metadata";
+        public static final String NEXT         = "next";
+        public static final String NORMAL       = "normal";
+        public static final String NOT_FOUND    = "not_found";
+        public static final String NOW          = "now";
+        public static final String OPEN         = "open";
+        public static final String OVERWRITE    = "overwrite";
+        public static final String PAUSE        = "pause";
+        public static final String PERIOD       = "period";
+        public static final String PLAY         = "play";
+        public static final String POOL         = "pool";
+        public static final String RECYCLE      = "recycle";
+        public static final String REFRESH      = "refresh";
+        public static final String REQUEST      = "request";
+        public static final String REQUIRE      = "require";
+        public static final String RESPONSE     = "response";
+        public static final String RESTART      = "restart";
+        public static final String RESULT       = "result";
+        public static final String RESUME       = "resume";
+        public static final String SCOPE        = "scope";
+        public static final String SHUTDOWN     = "shutdown";
+        public static final String SLEEP        = "sleep";
+        public static final String START        = "start";
+        public static final String STATE        = "state";
+        public static final String STOP         = "stop";
+        public static final String SUBMIT       = "submit";
+        public static final String SUCCESS      = "success";
+        public static final String SUSPEND      = "suspend";
+        public static final String SUSPENDED    = "suspended";
+        public static final String SYNC         = "sync";
+        public static final String TERMINATED   = "terminated";
+        public static final String TRUNCATED    = "truncated";
+        public static final String UNCONNECT    = "unconnect";
+        public static final String UPLOAD       = "upload";
+        public static final String VALID        = "valid";
+        public static final String WAITING      = "waiting";
 
         // ==========
         // = 平台相关 =
@@ -495,17 +562,17 @@ public final class DevFinal {
         public static final String H5           = "h5";
         public static final String IOS          = "ios";
         public static final String MIN_IPROGRAM = "min_iprogram";
-        public static final String WEB          = "web";
         public static final String PLATFORM     = "platform";
+        public static final String WEB          = "web";
 
         // ===============
         // = UI、APP 相关 =
         // ===============
 
-        public static final String LEFT   = "left";
-        public static final String TOP    = "top";
-        public static final String RIGHT  = "right";
         public static final String BOTTOM = "bottom";
+        public static final String LEFT   = "left";
+        public static final String RIGHT  = "right";
+        public static final String TOP    = "top";
 
         public static final String ANIMATION  = "animation";
         public static final String BACKGROUND = "background";
@@ -631,19 +698,28 @@ public final class DevFinal {
         public static final String CONFIG  = "config";
         public static final String COOKIE  = "cookie";
         public static final String COPY    = "copy";
+        public static final String DNS     = "dns";
+        public static final String DOMAIN  = "domain";
+        public static final String EBS     = "ebs";
         public static final String FOOTER  = "footer";
         public static final String HEAD    = "head";
         public static final String HEADER  = "header";
         public static final String HTTP    = "http";
         public static final String HTTPS   = "https";
+        public static final String OSS     = "oss";
+        public static final String PASTE   = "paste";
         public static final String PATCH   = "patch";
         public static final String POST    = "post";
         public static final String SESSION = "session";
+        public static final String SLB     = "slb";
+        public static final String SSL     = "ssl";
+        public static final String TIMEOUT = "timeout";
         public static final String TRACE   = "trace";
         public static final String UNLINK  = "unlink";
         public static final String URI     = "uri";
         public static final String URL     = "url";
         public static final String WRAPPED = "wrapped";
+        public static final String WWW     = "www";
 
         // ==========
         // = 数据相关 =
@@ -759,24 +835,26 @@ public final class DevFinal {
         public static final String CONTROL  = "control";
         public static final String CONVERT  = "convert";
         public static final String INSTANCE = "instance";
+        public static final String MARGIN   = "margin";
         public static final String PADDING  = "padding";
         public static final String PARENT   = "parent";
         public static final String PARSER   = "parser";
-        public static final String MARGIN   = "margin";
 
-        public static final String MARGIN_LEFT    = "margin_left";
-        public static final String MARGIN_TOP     = "margin_top";
-        public static final String MARGIN_RIGHT   = "margin_right";
         public static final String MARGIN_BOTTOM  = "margin_bottom";
-        public static final String PADDING_LEFT   = "padding_left";
-        public static final String PADDING_TOP    = "padding_top";
-        public static final String PADDING_RIGHT  = "padding_right";
+        public static final String MARGIN_LEFT    = "margin_left";
+        public static final String MARGIN_RIGHT   = "margin_right";
+        public static final String MARGIN_TOP     = "margin_top";
         public static final String PADDING_BOTTOM = "padding_bottom";
+        public static final String PADDING_LEFT   = "padding_left";
+        public static final String PADDING_RIGHT  = "padding_right";
+        public static final String PADDING_TOP    = "padding_top";
 
+        public static final String ATTRIBUTE = "attribute";
         public static final String BUFFER    = "buffer";
         public static final String BUILD     = "build";
         public static final String BUILDER   = "builder";
         public static final String CLASS     = "class";
+        public static final String CLONE     = "clone";
         public static final String CONST     = "const";
         public static final String ENUM      = "enum";
         public static final String FIELD     = "field";
@@ -786,6 +864,8 @@ public final class DevFinal {
         public static final String INNER     = "inner";
         public static final String INTERFACE = "interface";
         public static final String INTERNAL  = "internal";
+        public static final String INVOKE    = "invoke";
+        public static final String JOB       = "job";
         public static final String METHOD    = "method";
         public static final String NEW       = "new";
         public static final String NULL      = "null";
@@ -795,7 +875,11 @@ public final class DevFinal {
         public static final String PROTECTED = "protected";
         public static final String PUBLIC    = "public";
         public static final String RETURN    = "return";
+        public static final String RUNNABLE  = "runnable";
+        public static final String SCHEDULE  = "schedule";
         public static final String STATIC    = "static";
+        public static final String STREAM    = "stream";
+        public static final String THREAD    = "thread";
         public static final String VAL       = "val";
         public static final String VAR       = "var";
         public static final String VOID      = "void";

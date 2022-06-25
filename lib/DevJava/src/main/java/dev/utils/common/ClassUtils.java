@@ -301,7 +301,7 @@ public final class ClassUtils {
             try {
                 // 获取接口类名
                 String iName = interfaceClazz.getName();
-                if (iName.equals("")) return null;
+                if ("".equals(iName)) return null;
                 // 获取接口泛型类型数组
                 Type[] types = clazz.getGenericInterfaces();
                 // 循环类型
