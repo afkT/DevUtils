@@ -305,11 +305,12 @@ public final class ActivityLifecycleAssist {
          * @param activity {@link Activity}
          */
         private void setTopActivity(final Activity activity) {
+            if (activity == null) return;
             // 判断是否过滤 Activity
             if (ACTIVITY_LIFECYCLE_FILTER.filter(activity)) return;
             // 判断是否已经包含该 Activity
             if (mActivityLists.contains(activity)) {
-                if (!mActivityLists.getLast().equals(activity)) {
+                if (!activity.equals(mActivityLists.getLast())) {
                     mActivityLists.remove(activity);
                     mActivityLists.addLast(activity);
                 }
@@ -378,9 +379,15 @@ public final class ActivityLifecycleAssist {
         @Override
         public boolean isTopActivity(final String activityClassName) {
             if (!TextUtils.isEmpty(activityClassName)) {
-                Activity activity = getTopActivity();
-                // 判断是否类是否一致
-                return (activity != null && activity.getClass().getCanonicalName().equals(activityClassName));
+                try {
+                    Activity activity = getTopActivity();
+                    if (activity == null) return false;
+                    // 判断是否类是否一致
+                    return activityClassName.equals(
+                            activity.getClass().getCanonicalName()
+                    );
+                } catch (Exception ignored) {
+                }
             }
             return false;
         }
@@ -393,9 +400,17 @@ public final class ActivityLifecycleAssist {
         @Override
         public boolean isTopActivity(final Class<?> clazz) {
             if (clazz != null) {
-                Activity activity = getTopActivity();
-                // 判断是否类是否一致
-                return (activity != null && activity.getClass().getCanonicalName().equals(clazz.getCanonicalName()));
+                try {
+                    Activity activity = getTopActivity();
+                    if (activity == null || activity.getClass().getCanonicalName() == null) {
+                        return false;
+                    }
+                    // 判断是否类是否一致
+                    return clazz.getCanonicalName().equals(
+                            activity.getClass().getCanonicalName()
+                    );
+                } catch (Exception ignored) {
+                }
             }
             return false;
         }

@@ -127,7 +127,7 @@ public final class PathUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isSDCardEnable() {
-            return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+            return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
         }
 
         /**

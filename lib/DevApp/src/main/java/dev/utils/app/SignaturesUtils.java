@@ -147,9 +147,11 @@ public final class SignaturesUtils {
                 for (Signature sign : signatures) {
                     if (sign != null) {
                         X509Certificate cert = getX509Certificate(sign);
-                        debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
-                        if (debuggable) {
-                            break;
+                        if (cert != null && cert.getSubjectX500Principal() != null) {
+                            debuggable = DEBUG_DN.equals(cert.getSubjectX500Principal());
+                            if (debuggable) {
+                                break;
+                            }
                         }
                     }
                 }

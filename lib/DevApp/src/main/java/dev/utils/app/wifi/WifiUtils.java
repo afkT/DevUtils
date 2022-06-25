@@ -381,9 +381,9 @@ public final class WifiUtils {
      */
     public static int getWifiTypeInt(final String typeInt) {
         if (typeInt == null) return NOPWD;
-        if (typeInt.equals("2")) {
+        if ("2".equals(typeInt)) {
             return WPA;
-        } else if (typeInt.equals("1")) {
+        } else if ("1".equals(typeInt)) {
             return WEP;
         }
         return NOPWD;
@@ -533,7 +533,7 @@ public final class WifiUtils {
         for (int i = 0, len = listWifiConfigs.size(); i < len; i++) {
             WifiConfiguration wifiConfig = listWifiConfigs.get(i);
             if (wifiConfig != null) {
-                if (wifiConfig.SSID.equals("\"" + ssid + "\"")) {
+                if (("\"" + ssid + "\"").equals(wifiConfig.SSID)) {
                     return wifiConfig;
                 }
             }
@@ -594,7 +594,7 @@ public final class WifiUtils {
                 for (int i = 0, len = listWifiConfigs.size(); i < len; i++) {
                     WifiConfiguration wConfig = listWifiConfigs.get(i);
                     if (wConfig != null) {
-                        if (wConfig.SSID.equals("\"" + ssid + "\"")) {
+                        if (("\"" + ssid + "\"").equals(wConfig.SSID)) {
                             // 删除操作
                             wifiManager.removeNetwork(wConfig.networkId);
                         }

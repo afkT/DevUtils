@@ -330,7 +330,7 @@ public final class ActivityUtils {
             List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : lists) {
                 if (resolveInfo != null && resolveInfo.activityInfo != null) {
-                    if (resolveInfo.activityInfo.packageName.equals(packageName)) {
+                    if (packageName.equals(resolveInfo.activityInfo.packageName)) {
                         return resolveInfo.activityInfo.name;
                     }
                 }
@@ -476,7 +476,7 @@ public final class ActivityUtils {
         ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
         if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveInfo.activityInfo.packageName.equals("android")) {
+            if ("android".equals(resolveInfo.activityInfo.packageName)) {
                 return null;
             } else {
                 return resolveInfo.activityInfo.packageName;
@@ -493,7 +493,7 @@ public final class ActivityUtils {
         ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
         if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveInfo.activityInfo.packageName.equals("android")) {
+            if ("android".equals(resolveInfo.activityInfo.packageName)) {
                 return null;
             } else {
                 return resolveInfo.activityInfo.name;
@@ -510,7 +510,7 @@ public final class ActivityUtils {
         ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
         if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveInfo.activityInfo.packageName.equals("android")) {
+            if ("android".equals(resolveInfo.activityInfo.packageName)) {
                 return null;
             } else {
                 // 判断是否. 开头

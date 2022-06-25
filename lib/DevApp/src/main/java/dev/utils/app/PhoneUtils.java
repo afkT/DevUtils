@@ -695,9 +695,9 @@ public final class PhoneUtils {
                             while (c.moveToNext()) {
                                 String data1    = c.getString(0);
                                 String mimetype = c.getString(1);
-                                if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {
+                                if ("vnd.android.cursor.item/phone_v2".equals(mimetype)) {
                                     map.put("phone", data1); // 电话
-                                } else if (mimetype.equals("vnd.android.cursor.item/name")) {
+                                } else if ("vnd.android.cursor.item/name".equals(mimetype)) {
                                     map.put("name", data1); // 姓名
                                 }
                             }

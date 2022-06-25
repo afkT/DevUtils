@@ -45,6 +45,7 @@ public final class ServiceUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final String className) {
+        if (className == null) return false;
         try {
             ActivityManager          activityManager = AppUtils.getActivityManager();
             List<RunningServiceInfo> lists           = activityManager.getRunningServices(Integer.MAX_VALUE);

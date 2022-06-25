@@ -934,7 +934,7 @@ public final class AccessibilityUtils {
         ) {
             if (mNodeInfo != null && className != null) {
                 AccessibilityNodeInfo node = findFocus(focus);
-                if (node != null && node.getClassName().equals(className)) {
+                if (node != null && className.equals(node.getClassName())) {
                     return node;
                 }
             }
@@ -976,7 +976,7 @@ public final class AccessibilityUtils {
                 List<AccessibilityNodeInfo> nodes = findAccessibilityNodeInfosByText(text);
                 for (int i = 0, len = nodes.size(); i < len; i++) {
                     AccessibilityNodeInfo node = nodes.get(i);
-                    if (node != null && node.getClassName().equals(className)) {
+                    if (node != null && className.equals(node.getClassName())) {
                         lists.add(node);
                     }
                 }
@@ -1019,7 +1019,7 @@ public final class AccessibilityUtils {
                 List<AccessibilityNodeInfo> nodes = findAccessibilityNodeInfosByViewId(id);
                 for (int i = 0, len = nodes.size(); i < len; i++) {
                     AccessibilityNodeInfo node = nodes.get(i);
-                    if (node != null && node.getClassName().equals(className)) {
+                    if (node != null && className.equals(node.getClassName())) {
                         lists.add(node);
                     }
                 }

@@ -1079,7 +1079,7 @@ public final class AppUtils {
             if (lists != null && lists.size() > 0) {
                 for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                     if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                        return appProcess.processName.equals(packageName);
+                        return packageName.equals(appProcess.processName);
                     }
                 }
             }

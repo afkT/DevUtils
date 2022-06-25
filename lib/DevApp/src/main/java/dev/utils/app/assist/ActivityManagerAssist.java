@@ -119,8 +119,8 @@ public final class ActivityManagerAssist {
                     for (Activity activity : stack) {
                         if (activity != null && !activity.isFinishing()) {
                             for (Class<?> clazz : clazzs) {
-                                if (clazz != null && activity.getClass().getName().equals(
-                                        clazz.getName())
+                                if (clazz != null && clazz.getName().equals(
+                                        activity.getClass().getName())
                                 ) {
                                     return true;
                                 }

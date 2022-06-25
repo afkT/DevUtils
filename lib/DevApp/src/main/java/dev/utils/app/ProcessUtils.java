@@ -128,11 +128,12 @@ public final class ProcessUtils {
      * @return 进程 id
      */
     public static int getPid(final String packageName) {
+        if (packageName == null) return 0;
         try {
             ActivityManager                             activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
-                if (appProcess.processName.equals(packageName)) {
+                if (packageName.equals(appProcess.processName)) {
                     return appProcess.pid;
                 }
             }
@@ -168,11 +169,12 @@ public final class ProcessUtils {
      * @return 进程信息
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
+        if (packageName == null) return null;
         try {
             ActivityManager                             activityManager = AppUtils.getActivityManager();
             List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
-                if (appProcess.processName.equals(packageName)) {
+                if (packageName.equals(appProcess.processName)) {
                     return appProcess;
                 }
             }
