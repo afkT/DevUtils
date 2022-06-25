@@ -180,7 +180,7 @@ public final class PhoneUtils {
                 // 截取前面两位属于 zh 表示属于中国
                 String country = countryCode.substring(0, 2);
                 // 如果属于 cn 表示属于国内
-                if (country.equalsIgnoreCase("cn")) {
+                if ("cn".equalsIgnoreCase(country)) {
                     return 1;
                 } else {
                     return 2;

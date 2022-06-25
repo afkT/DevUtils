@@ -428,16 +428,12 @@ public final class NetWorkUtils {
                                     // 判断子类名字
                                     String subtypeName = networkInfo.getSubtypeName();
                                     // = 3G 网络 =
-                                    if (subtypeName.equalsIgnoreCase("TD-SCDMA")
-                                            || subtypeName.equalsIgnoreCase("WCDMA")
-                                            || subtypeName.equalsIgnoreCase("CDMA2000")) {
+                                    if ("TD-SCDMA".equalsIgnoreCase(subtypeName)
+                                            || "WCDMA".equalsIgnoreCase(subtypeName)
+                                            || "CDMA2000".equalsIgnoreCase(subtypeName)) {
                                         netType = NetworkType.NETWORK_3G;
-                                    } else {
-                                        netType = NetworkType.NETWORK_UNKNOWN;
                                     }
-                                } catch (Exception e) {
-                                    // 保存未知
-                                    netType = NetworkType.NETWORK_UNKNOWN;
+                                } catch (Exception ignored) {
                                 }
                                 break;
                         }

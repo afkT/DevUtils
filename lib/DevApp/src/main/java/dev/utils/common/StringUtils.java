@@ -233,6 +233,22 @@ public final class StringUtils {
     }
 
     /**
+     * 判断两个值是否一样 ( 非 null 判断 )
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @param <T>    泛型
+     * @return {@code true} yes, {@code false} no
+     */
+    public static <T> boolean equalsNotNull(
+            final T value1,
+            final T value2
+    ) {
+        return value1 != null && ObjectUtils.equals(value1, value2);
+    }
+
+    // =
+
+    /**
      * 判断多个字符串是否相等, 只有全相等才返回 true ( 对比大小写 )
      * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
