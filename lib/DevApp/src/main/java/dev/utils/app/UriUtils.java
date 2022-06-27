@@ -194,6 +194,8 @@ public final class UriUtils {
         return uri.getScheme();
     }
 
+    // =
+
     /**
      * 判断 Uri 路径资源是否存在
      * <pre>
@@ -484,5 +486,89 @@ public final class UriUtils {
     public static boolean isGooglePhotosUri(final Uri uri) {
         if (uri == null) return false;
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    // ==============
+    // = Uri Scheme =
+    // ==============
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_ANDROID_RESOURCE
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAndroidResourceScheme(final Uri uri) {
+        return isUriScheme(ContentResolver.SCHEME_ANDROID_RESOURCE, uri);
+    }
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_ANDROID_RESOURCE
+     * @param scheme 待校验 Scheme
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAndroidResourceScheme(final String scheme) {
+        return isUriScheme(ContentResolver.SCHEME_ANDROID_RESOURCE, scheme);
+    }
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_FILE
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFileScheme(final Uri uri) {
+        return isUriScheme(ContentResolver.SCHEME_FILE, uri);
+    }
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_FILE
+     * @param scheme 待校验 Scheme
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFileScheme(final String scheme) {
+        return isUriScheme(ContentResolver.SCHEME_FILE, scheme);
+    }
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_CONTENT
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isContentScheme(final Uri uri) {
+        return isUriScheme(ContentResolver.SCHEME_CONTENT, uri);
+    }
+
+    /**
+     * 判断 Uri Scheme 是否 ContentResolver.SCHEME_CONTENT
+     * @param scheme 待校验 Scheme
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isContentScheme(final String scheme) {
+        return isUriScheme(ContentResolver.SCHEME_CONTENT, scheme);
+    }
+
+    /**
+     * 判断是否指定的 Uri Scheme
+     * @param uriScheme 如 ContentResolver.SCHEME_CONTENT
+     * @param uri       {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriScheme(
+            final String uriScheme,
+            final Uri uri
+    ) {
+        return isUriScheme(uriScheme, getUriScheme(uri));
+    }
+
+    /**
+     * 判断是否指定的 Uri Scheme ( 忽略大小写 )
+     * @param uriScheme 如 ContentResolver.SCHEME_CONTENT
+     * @param scheme    待校验 Scheme
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriScheme(
+            final String uriScheme,
+            final String scheme
+    ) {
+        return StringUtils.equalsIgnoreCaseNotNull(uriScheme, scheme);
     }
 }

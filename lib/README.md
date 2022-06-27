@@ -36,7 +36,7 @@ Engine 兼容框架等
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.3.8'
+implementation 'io.github.afkt:DevAppX:2.3.9'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.3.5'
@@ -73,7 +73,7 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.0' 
 //annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.0' // kapt
 
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.4.4' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+implementation 'io.github.afkt:DevJava:1.4.5' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
 

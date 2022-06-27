@@ -246,6 +246,36 @@ public final class StringUtils {
         return value1 != null && ObjectUtils.equals(value1, value2);
     }
 
+    /**
+     * 判断两个值是否一样 ( 忽略大小写 )
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean equalsIgnoreCase(
+            final String value1,
+            final String value2
+    ) {
+        if (value1 != null) {
+            return value1.equalsIgnoreCase(value2);
+        } else {
+            return value2 == null;
+        }
+    }
+
+    /**
+     * 判断两个值是否一样 ( 忽略大小写 )
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean equalsIgnoreCaseNotNull(
+            final String value1,
+            final String value2
+    ) {
+        return value1 != null && equalsIgnoreCase(value1, value2);
+    }
+
     // =
 
     /**
