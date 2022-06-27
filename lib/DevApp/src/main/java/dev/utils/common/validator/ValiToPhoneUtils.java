@@ -7,11 +7,11 @@ package dev.utils.common.validator;
  *     @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
  *     <p></p>
  *     验证手机号是否正确
- *     移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 165 172 178 182 183 184 187 188 198
- *     联通: 130 131 132 145 146 155 156 166 171 175 176 185 186
- *     电信: 133 149 153 173 174 177 180 181 189 191 199
- *     卫星通信: 1349
- *     虚拟运营商: 170
+ *     移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 172 178 182 183 184 187 188 195 198
+ *     联通: 130 131 132 145 146 155 156 166 167 171 175 176 185 186 196
+ *     电信: 133 149 153 173 174 177 180 181 189 190 191 193 199
+ *     广电: 192
+ *     虚拟运营商: 162 165 167 170 171
  * </pre>
  */
 public final class ValiToPhoneUtils {
@@ -20,7 +20,11 @@ public final class ValiToPhoneUtils {
     }
 
     /**
-     * 中国手机号格式验证, 在输入可以调用该方法, 点击发送验证码, 使用 isPhone
+     * 中国手机号格式验证
+     * <pre>
+     *     在输入可以调用该方法, 点击发送验证码, 使用 isPhone
+     *     简单手机号码校验 校验手机号码的长度和 1 开头 ( 是否 11 位 )
+     * </pre>
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
@@ -38,12 +42,12 @@ public final class ValiToPhoneUtils {
     }
 
     /**
-     * 是否中国电信手机号码
+     * 是否中国移动手机号码
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isPhoneToChinaTelecom(final String phone) {
-        return ValidatorUtils.match(CHINA_TELECOM_PATTERN, phone);
+    public static boolean isPhoneToChinaMobile(final String phone) {
+        return ValidatorUtils.match(CHINA_MOBILE_PATTERN, phone);
     }
 
     /**
@@ -56,16 +60,36 @@ public final class ValiToPhoneUtils {
     }
 
     /**
-     * 是否中国移动手机号码
+     * 是否中国电信手机号码
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isPhoneToChinaMobile(final String phone) {
-        return ValidatorUtils.match(CHINA_MOBILE_PATTERN, phone);
+    public static boolean isPhoneToChinaTelecom(final String phone) {
+        return ValidatorUtils.match(CHINA_TELECOM_PATTERN, phone);
     }
 
     /**
-     * 判断是否香港手机号
+     * 是否中国广电手机号码
+     * @param phone 待校验的手机号
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPhoneToChinaBroadcast(final String phone) {
+        return ValidatorUtils.match(CHINA_BROADCAST_PATTERN, phone);
+    }
+
+    /**
+     * 是否中国虚拟运营商手机号码
+     * @param phone 待校验的手机号
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPhoneToChinaVirtual(final String phone) {
+        return ValidatorUtils.match(CHINA_VIRTUAL_PATTERN, phone);
+    }
+
+    // =
+
+    /**
+     * 判断是否中国香港手机号
      * @param phone 待校验的手机号
      * @return {@code true} yes, {@code false} no
      */
@@ -92,16 +116,22 @@ public final class ValiToPhoneUtils {
     // 中国手机号正则
     public static final String CHINA_PHONE_PATTERN;
 
-    // 中国电信号码正则
-    public static final String CHINA_TELECOM_PATTERN;
+    // 中国移动号码正则
+    public static final String CHINA_MOBILE_PATTERN;
 
     // 中国联通号码正则
     public static final String CHINA_UNICOM_PATTERN;
 
-    // 中国移动号码正则
-    public static final String CHINA_MOBILE_PATTERN;
+    // 中国电信号码正则
+    public static final String CHINA_TELECOM_PATTERN;
 
-    // 香港手机号码正则 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
+    // 中国广电号码正则
+    public static final String CHINA_BROADCAST_PATTERN;
+
+    // 中国虚拟运营商号码正则
+    public static final String CHINA_VIRTUAL_PATTERN;
+
+    // 中国香港手机号码正则 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
     public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // ==========
@@ -113,15 +143,56 @@ public final class ValiToPhoneUtils {
 
     static {
 
+        StringBuilder builder;
+
+        // ==========
+        // = 中国移动 =
+        // ==========
+
+        // 中国移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 172 178 182 183 184 187 188 195 198
+        builder = new StringBuilder();
+        builder.append("^13[4,5,6,7,8,9]{1}\\d{8}$"); // 13 开头
+        builder.append("|");
+        builder.append("^14[7,8]{1}\\d{8}$"); // 14 开头
+        builder.append("|");
+        builder.append("^15[0,1,2,7,8,9]{1}\\d{8}$"); // 15 开头
+        builder.append("|");
+        builder.append("^17[2,8]{1}\\d{8}$"); // 17 开头
+        builder.append("|");
+        builder.append("^18[2,3,4,7,8]{1}\\d{8}$"); // 18 开头
+        builder.append("|");
+        builder.append("^19[5,8]{1}\\d{8}$"); // 19 开头
+        CHINA_MOBILE_PATTERN = builder.toString();
+
+        // ==========
+        // = 中国联通 =
+        // ==========
+
+        // 中国联通: 130 131 132 145 146 155 156 166 167 171 175 176 185 186 196
+        builder = new StringBuilder();
+        builder.append("^13[0,1,2]{1}\\d{8}$"); // 13 开头
+        builder.append("|");
+        builder.append("^14[5,6]{1}\\d{8}$"); // 14 开头
+        builder.append("|");
+        builder.append("^15[5,6]{1}\\d{8}$"); // 15 开头
+        builder.append("|");
+        builder.append("^16[6,7]{1}\\d{8}$"); // 16 开头
+        builder.append("|");
+        builder.append("^17[1,5,6]{1}\\d{8}$"); // 17 开头
+        builder.append("|");
+        builder.append("^18[5,6]{1}\\d{8}$"); // 18 开头
+        builder.append("|");
+        builder.append("^19[6]{1}\\d{8}$"); // 19 开头
+        CHINA_UNICOM_PATTERN = builder.toString();
+
         // ==========
         // = 中国电信 =
         // ==========
 
-        // 电信: 133 149 153 173 174 177 180 181 189 191 199
-        // 进行拼接字符串, 便于理解
-        StringBuilder builder = new StringBuilder();
+        // 中国电信: 133 149 153 173 174 177 180 181 189 190 191 193 199
+        builder = new StringBuilder();
         builder.append("^13[3]{1}\\d{8}$"); // 13 开头
-        builder.append("|"); // 或
+        builder.append("|");
         builder.append("^14[9]{1}\\d{8}$"); // 14 开头
         builder.append("|");
         builder.append("^15[3]{1}\\d{8}$"); // 15 开头
@@ -130,62 +201,48 @@ public final class ValiToPhoneUtils {
         builder.append("|");
         builder.append("^18[0,1,9]{1}\\d{8}$"); // 18 开头
         builder.append("|");
-        builder.append("^19[1,9]{1}\\d{8}$"); // 19 开头
-        // 手机正则
+        builder.append("^19[0,1,3,9]{1}\\d{8}$"); // 19 开头
         CHINA_TELECOM_PATTERN = builder.toString();
 
         // ==========
-        // = 中国联通 =
+        // = 中国广电 =
         // ==========
 
-        // 联通: 130 131 132 145 146 155 156 166 171 175 176 185 186
-        // 进行拼接字符串, 便于理解
+        // 中国广电: 192
         builder = new StringBuilder();
-        builder.append("^13[0,1,2]{1}\\d{8}$"); // 13 开头
-        builder.append("|"); // 或
-        builder.append("^14[5,6]{1}\\d{8}$"); // 14 开头
-        builder.append("|");
-        builder.append("^15[5,6]{1}\\d{8}$"); // 15 开头
-        builder.append("|");
-        builder.append("^16[6]{1}\\d{8}$"); // 16 开头
-        builder.append("|");
-        builder.append("^17[1,5,6]{1}\\d{8}$"); // 17 开头
-        builder.append("|");
-        builder.append("^18[5,6]{1}\\d{8}$"); // 18 开头
-        // 手机正则
-        CHINA_UNICOM_PATTERN = builder.toString();
+        builder.append("^19[2]{1}\\d{8}$"); // 19 开头
+        CHINA_BROADCAST_PATTERN = builder.toString();
 
-        // ==========
-        // = 中国移动 =
-        // ==========
+        // ============
+        // = 虚拟运营商 =
+        // ============
 
-        // 移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 165 172 178 182 183 184 187 188 198
-        // 进行拼接字符串, 便于理解
+        // 虚拟运营商: 162 165 167 170 171
         builder = new StringBuilder();
-        builder.append("^13[4,5,6,7,8,9]{1}\\d{8}$"); // 13 开头
-        builder.append("|"); // 或
-        builder.append("^14[7,8]{1}\\d{8}$"); // 14 开头
+        builder.append("^16[2,5,7]{1}\\d{8}$"); // 16 开头
         builder.append("|");
-        builder.append("^15[0,1,2,7,8,9]{1}\\d{8}$"); // 15 开头
-        builder.append("|");
-        builder.append("^16[5]{1}\\d{8}$"); // 16 开头
-        builder.append("|");
-        builder.append("^17[2,8]{1}\\d{8}$"); // 17 开头
-        builder.append("|");
-        builder.append("^18[2,3,4,7,8]{1}\\d{8}$"); // 18 开头
-        builder.append("|");
-        builder.append("^19[8]{1}\\d{8}$"); // 19 开头
-        // 手机正则
-        CHINA_MOBILE_PATTERN = builder.toString();
+        builder.append("^17[0,1]{1}\\d{8}$"); // 17 开头
+        CHINA_VIRTUAL_PATTERN = builder.toString();
 
-        /*
-         * 验证手机号是否正确
-         * 移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 165 172 178 182 183 184 187 188 198
-         * 联通: 130 131 132 145 146 155 156 166 171 175 176 185 186
-         * 电信: 133 149 153 173 174 177 180 181 189 191 199
-         * 卫星通信: 1349
-         * 虚拟运营商: 170
-         */
-        CHINA_PHONE_PATTERN = "^13[\\d]{9}$|^14[5,6,7,8,9]{1}\\d{8}$|^15[^4]{1}\\d{8}$|^16[5,6]{1}\\d{8}$|^17[0,1,2,3,4,5,6,7,8]{1}\\d{8}$|^18[\\d]{9}$|^19[1,8,9]{1}\\d{8}$";
+        // ==========
+        // = 中国手机 =
+        // ==========
+
+        // 中国手机: 130 131 132 133 134 135 136 137 138 139 145 146 147 148 149 150 151 152 153 155 156 157 158 159 162 165 166 167 167 170 171 171 172 173 174 175 176 177 178 180 181 182 183 184 185 186 187 188 189 190 191 192 193 195 196 198 199
+        builder = new StringBuilder();
+        builder.append("^13[0,1,2,3,4,5,6,7,8,9]{1}\\d{8}$"); // 13 开头
+        builder.append("|");
+        builder.append("^14[5,6,7,8,9]{1}\\d{8}$"); // 14 开头
+        builder.append("|");
+        builder.append("^15[0,1,2,3,5,6,7,8,9]{1}\\d{8}$"); // 15 开头
+        builder.append("|");
+        builder.append("^16[2,5,6,7,7]{1}\\d{8}$"); // 16 开头
+        builder.append("|");
+        builder.append("^17[0,1,1,2,3,4,5,6,7,8]{1}\\d{8}$"); // 17 开头
+        builder.append("|");
+        builder.append("^18[0,1,2,3,4,5,6,7,8,9]{1}\\d{8}$"); // 18 开头
+        builder.append("|");
+        builder.append("^19[0,1,2,3,5,6,8,9]{1}\\d{8}$"); // 19 开头
+        CHINA_PHONE_PATTERN = builder.toString();
     }
 }
