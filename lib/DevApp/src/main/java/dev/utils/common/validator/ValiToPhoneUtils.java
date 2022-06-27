@@ -1,12 +1,12 @@
 package dev.utils.common.validator;
 
 /**
- * detail: 检验联系 ( 手机号、座机 ) 工具类
+ * detail: 检验联系 ( 手机号码、座机 ) 工具类
  * @author Ttt
  * <pre>
  *     @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
  *     <p></p>
- *     验证手机号是否正确
+ *     验证手机号码是否正确
  *     移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 172 178 182 183 184 187 188 195 198
  *     联通: 130 131 132 145 146 155 156 166 167 171 175 176 185 186 196
  *     电信: 133 149 153 173 174 177 180 181 189 190 191 193 199
@@ -20,21 +20,21 @@ public final class ValiToPhoneUtils {
     }
 
     /**
-     * 中国手机号格式验证
+     * 中国手机号码格式验证 ( 简单手机号码校验 )
      * <pre>
      *     在输入可以调用该方法, 点击发送验证码, 使用 isPhone
      *     简单手机号码校验 校验手机号码的长度和 1 开头 ( 是否 11 位 )
      * </pre>
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isPhoneCheck(final String phone) {
-        return ValidatorUtils.match(CHAIN_PHONE_FORMAT_CHECK, phone);
+    public static boolean isPhoneSimple(final String phone) {
+        return ValidatorUtils.match(CHAIN_PHONE_SIMPLE, phone);
     }
 
     /**
-     * 是否中国手机号
-     * @param phone 待校验的手机号
+     * 是否中国手机号码
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhone(final String phone) {
@@ -43,7 +43,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国移动手机号码
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaMobile(final String phone) {
@@ -52,7 +52,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国联通手机号码
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaUnicom(final String phone) {
@@ -61,7 +61,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国电信手机号码
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaTelecom(final String phone) {
@@ -70,7 +70,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国广电手机号码
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaBroadcast(final String phone) {
@@ -79,7 +79,7 @@ public final class ValiToPhoneUtils {
 
     /**
      * 是否中国虚拟运营商手机号码
-     * @param phone 待校验的手机号
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPhoneToChinaVirtual(final String phone) {
@@ -89,12 +89,12 @@ public final class ValiToPhoneUtils {
     // =
 
     /**
-     * 判断是否中国香港手机号
-     * @param phone 待校验的手机号
+     * 是否中国香港手机号码
+     * @param phone 待校验的手机号码
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isPhoneToHkMobile(final String phone) {
-        return ValidatorUtils.match(HK_PHONE_PATTERN, phone);
+    public static boolean isPhoneToChinaHkMobile(final String phone) {
+        return ValidatorUtils.match(CHINA_HK_PHONE_PATTERN, phone);
     }
 
     /**
@@ -106,14 +106,14 @@ public final class ValiToPhoneUtils {
         return ValidatorUtils.match(PHONE_CALL_PATTERN, phone);
     }
 
-    // ============
-    // = 手机号判断 =
-    // ============
+    // ==============
+    // = 手机号码判断 =
+    // ==============
 
     // 简单手机号码校验 校验手机号码的长度和 1 开头 ( 是否 11 位 )
-    public static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
+    public static final String CHAIN_PHONE_SIMPLE = "^(?:\\+86)?1\\d{10}$";
 
-    // 中国手机号正则
+    // 中国手机号码正则
     public static final String CHINA_PHONE_PATTERN;
 
     // 中国移动号码正则
@@ -132,7 +132,7 @@ public final class ValiToPhoneUtils {
     public static final String CHINA_VIRTUAL_PATTERN;
 
     // 中国香港手机号码正则 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
-    public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
+    public static final String CHINA_HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
     // ==========
     // = 座机判断 =
