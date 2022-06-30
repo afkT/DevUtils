@@ -645,13 +645,13 @@ public final class UtilsCompiler {
 
     /**
      * 键值对拼接
-     * @param map    {@link Map}
-     * @param <K>    key
-     * @param <V>    value
+     * @param map {@link Map}
+     * @param <K> key
+     * @param <V> value
      * @return {@link StringBuilder}
      */
     private <K, V> StringBuilder mapToString(final Map<K, V> map) {
-        return mapToString(map,new StringBuilder());
+        return mapToString(map, new StringBuilder());
     }
 
     /**

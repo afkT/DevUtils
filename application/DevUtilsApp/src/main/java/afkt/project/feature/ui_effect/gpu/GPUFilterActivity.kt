@@ -17,7 +17,6 @@ import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
-import dev.utils.app.UriUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ScaleUtils
