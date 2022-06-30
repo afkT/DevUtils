@@ -37,14 +37,14 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
     // =============
 
     // 是否通知适配器 ( 通用: 如多选操作后是否通知适配器 )
-    protected boolean isNotifyAdapter = true;
+    protected boolean mNotifyAdapter = true;
 
     /**
      * 是否通知适配器 ( 通用: 如多选操作后是否通知适配器 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isNotifyAdapter() {
-        return isNotifyAdapter;
+        return mNotifyAdapter;
     }
 
     /**
@@ -53,7 +53,7 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
      * @return {@link DevDataAdapterExt2}
      */
     public DevDataAdapterExt2<T, VH> setNotifyAdapter(boolean notifyAdapter) {
-        isNotifyAdapter = notifyAdapter;
+        mNotifyAdapter = notifyAdapter;
         return this;
     }
 
@@ -62,29 +62,29 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
     // ====================
 
     // 是否编辑状态
-    protected boolean isEdit;
+    protected boolean mEdit;
 
     @Override
     public boolean isEditState() {
-        return isEdit;
+        return mEdit;
     }
 
     @Override
     public DevDataAdapterExt2<T, VH> setEditState(boolean isEdit) {
-        this.isEdit = isEdit;
-        if (isNotifyAdapter) mAssist.notifyDataChanged();
+        this.mEdit = isEdit;
+        if (mNotifyAdapter) mAssist.notifyDataChanged();
         return this;
     }
 
     @Override
     public DevDataAdapterExt2<T, VH> toggleEditState() {
-        return setEditState(!isEdit);
+        return setEditState(!mEdit);
     }
 
     @Override
     public DevDataAdapterExt2<T, VH> clearSelectAll() {
         mMultiSelectMap.clearSelects();
-        if (isNotifyAdapter) mAssist.notifyDataChanged();
+        if (mNotifyAdapter) mAssist.notifyDataChanged();
         return this;
     }
 
@@ -125,7 +125,7 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
             maps.put(getMultiSelectKey(item, i), item);
         }
         mMultiSelectMap.putSelects(maps);
-        if (isNotifyAdapter) mAssist.notifyDataChanged();
+        if (mNotifyAdapter) mAssist.notifyDataChanged();
         return this;
     }
 
@@ -145,7 +145,7 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
         for (String key : keys) {
             mMultiSelectMap.unselect(key);
         }
-        if (isNotifyAdapter) mAssist.notifyDataChanged();
+        if (mNotifyAdapter) mAssist.notifyDataChanged();
         return this;
     }
 

@@ -28,7 +28,7 @@ public class FlipCardView
     // 背面 Layout
     private FrameLayout mBackLayout;
     // 当前是否显示正面 Layout
-    private boolean     isFront   = true;
+    private boolean     mFront    = true;
     // 翻转出入动画
     private Animator    mOutAnim;
     private Animator    mInAnim;
@@ -102,7 +102,7 @@ public class FlipCardView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFront() {
-        return isFront;
+        return mFront;
     }
 
     /**
@@ -140,7 +140,7 @@ public class FlipCardView
         // 默认两面都显示
         ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
         // 重置处理
-        isFront   = true;
+        mFront    = true;
         mPosition = 0;
         // 设置适配器
         this.mAdapter = adapter;
@@ -168,12 +168,12 @@ public class FlipCardView
         // 开始翻转时都显示 View
         ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
 
-        if (isFront) { // 正面朝上
-            isFront = false;
+        if (mFront) { // 正面朝上
+            mFront = false;
             mOutAnim.setTarget(mFrontLayout);
             mInAnim.setTarget(mBackLayout);
         } else { // 背面朝上
-            isFront = true;
+            mFront = true;
             mOutAnim.setTarget(mBackLayout);
             mInAnim.setTarget(mFrontLayout);
         }
@@ -248,9 +248,9 @@ public class FlipCardView
         public void onAnimationEnd(Animator animation) {
             postDelayed(() -> {
                 // 进行翻转 View 显示状态
-                ViewUtils.reverseVisibilitys(isFront, mFrontLayout, mBackLayout);
+                ViewUtils.reverseVisibilitys(mFront, mFrontLayout, mBackLayout);
                 // 加载下一索引 View
-                loadView(!isFront);
+                loadView(!mFront);
             }, 100);
         }
 

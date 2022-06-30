@@ -19,7 +19,7 @@ public final class CaptureFile {
     // 请求方法
     private String  method;
     // 是否加密
-    private boolean isEncrypt;
+    private boolean mEncrypt;
     // 创建时间 ( 本地时间戳 )
     private long    time;
     // 文件名
@@ -40,7 +40,7 @@ public final class CaptureFile {
     }
 
     public boolean isEncrypt() {
-        return isEncrypt;
+        return mEncrypt;
     }
 
     public long getTime() {
@@ -70,7 +70,7 @@ public final class CaptureFile {
     }
 
     CaptureFile setEncrypt(boolean encrypt) {
-        isEncrypt = encrypt;
+        mEncrypt = encrypt;
         return this;
     }
 
@@ -123,7 +123,7 @@ public final class CaptureFile {
      * @return 抓包信息封装类
      */
     public CaptureInfo getCaptureInfo() {
-        if (!isEncrypt) {
+        if (!mEncrypt) {
             captureInfo = Utils.fromJson(
                     getHttpCaptureData(), CaptureInfo.class
             );
