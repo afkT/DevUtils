@@ -49,11 +49,9 @@ dependencies {
     implementation deps.lib.glide_transformations
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
-//    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-//    implementation deps.lib.pictureSelector
 //    implementation deps.lib.pictureSelector_compress
-//    implementation deps.lib.pictureSelector_ucrop
-//    implementation deps.lib.pictureSelector_camerax
+    implementation deps.lib.pictureSelector_ucrop
+    implementation deps.lib.pictureSelector_camerax
     // 动画库 https://github.com/airbnb/lottie-android
     implementation deps.lib.lottie
     // 二维码 ZXing https://github.com/zxing/zxing

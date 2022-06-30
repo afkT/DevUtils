@@ -124,6 +124,44 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
             Config config
     );
 
+    // =
+
+    /**
+     * 打开相册预览
+     * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean openPreview(Activity activity);
+
+    /**
+     * 打开相册预览
+     * @param activity {@link Activity}
+     * @param config   配置信息
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean openPreview(
+            Activity activity,
+            Config config
+    );
+
+    /**
+     * 打开相册预览
+     * @param fragment {@link Fragment}
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean openPreview(Fragment fragment);
+
+    /**
+     * 打开相册预览
+     * @param fragment {@link Fragment}
+     * @param config   配置信息
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean openPreview(
+            Fragment fragment,
+            Config config
+    );
+
     // ==========
     // = 其他方法 =
     // ==========

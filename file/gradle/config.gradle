@@ -265,21 +265,18 @@ ext {
                     panelSwitchHelper                   : "com.github.YummyLau:PanelSwitchHelper:1.4.0",
 //                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.4.0",
                     // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
+                    // https://mvnrepository.com/artifact/io.github.lucksiege/compress
+                    // https://mvnrepository.com/artifact/io.github.lucksiege/ucrop
+                    // https://mvnrepository.com/artifact/io.github.lucksiege/camerax
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc10",
-//                    // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
-//                    // https://mvnrepository.com/artifact/io.github.lucksiege/compress
-//                    // https://mvnrepository.com/artifact/io.github.lucksiege/ucrop
-//                    // https://mvnrepository.com/artifact/io.github.lucksiege/camerax
-//                    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-//                    // PictureSelector 基础 ( 必须 )
-//                    pictureSelector                     : "io.github.lucksiege:pictureselector:v3.10.2",
-//                    // 图片压缩 ( 按需引入 )
-//                    pictureSelector_compress            : "io.github.lucksiege:compress:v3.10.2",
-//                    // 图片裁剪 ( 按需引入 )
-//                    pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.10.2",
-//                    // 自定义相机 ( 按需引入 )
-//                    pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.10.2",
+                    // PictureSelector 基础 ( 必须 )
+                    pictureSelector                     : "io.github.lucksiege:pictureselector:v3.10.3",
+                    // 图片压缩 ( 按需引入 )
+                    pictureSelector_compress            : "io.github.lucksiege:compress:v3.10.3",
+                    // 图片裁剪 ( 按需引入 )
+                    pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.10.3",
+                    // 自定义相机 ( 按需引入 )
+                    pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.10.3",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android

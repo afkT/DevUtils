@@ -38,11 +38,9 @@ dependencies {
     api deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps.lib.pictureSelector
-//    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-//    api deps.lib.pictureSelector
 //    api deps.lib.pictureSelector_compress
-//    api deps.lib.pictureSelector_ucrop
-//    api deps.lib.pictureSelector_camerax
+    api deps.lib.pictureSelector_ucrop
+    api deps.lib.pictureSelector_camerax
 
     // =============
     // = DevEngine =

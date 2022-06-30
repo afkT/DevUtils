@@ -8,12 +8,9 @@ import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
 
-import com.luck.picture.lib.PictureSelectionModel;
-import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.basic.PictureSelectionModel;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.tools.PictureFileUtils;
 
-import java.dev.engine.media.luck_lib_engine.LuckGlideEngineImpl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +29,7 @@ import dev.utils.app.UriUtils;
  * </pre>
  */
 public class PictureSelectorEngineImpl
-        implements IMediaEngine<MediaConfig, LocalMediaData> {
+        implements IMediaEngine<MediaConfig, MediaData> {
 
     // 日志 TAG
     private final String      TAG              = PictureSelectorEngineImpl.class.getSimpleName();
@@ -161,13 +158,13 @@ public class PictureSelectorEngineImpl
     // =
 
     @Override
-    public List<LocalMediaData> getSelectors(Intent intent) {
-        List<LocalMedia>     result = PictureSelector.obtainMultipleResult(intent);
-        List<LocalMediaData> lists  = new ArrayList<>();
+    public List<MediaData> getSelectors(Intent intent) {
+        List<LocalMedia> result = PictureSelector.obtainMultipleResult(intent);
+        List<MediaData>  lists  = new ArrayList<>();
         if (result != null) {
             for (LocalMedia localMedia : result) {
                 if (localMedia != null) {
-                    lists.add(new LocalMediaData(localMedia));
+                    lists.add(new MediaData(localMedia));
                 }
             }
         }
@@ -179,10 +176,10 @@ public class PictureSelectorEngineImpl
             Intent intent,
             boolean original
     ) {
-        List<LocalMediaData> result = getSelectors(intent);
-        List<Uri>            lists  = new ArrayList<>();
+        List<MediaData> result = getSelectors(intent);
+        List<Uri>       lists  = new ArrayList<>();
         if (result != null) {
-            for (LocalMediaData media : result) {
+            for (MediaData media : result) {
                 if (media != null) {
                     String path = media.getLocalMediaPath(original);
                     Uri    uri  = UriUtils.getUriForPath(path);
@@ -196,8 +193,8 @@ public class PictureSelectorEngineImpl
     }
 
     @Override
-    public LocalMediaData getSingleSelector(Intent intent) {
-        List<LocalMediaData> lists = getSelectors(intent);
+    public MediaData getSingleSelector(Intent intent) {
+        List<MediaData> lists = getSelectors(intent);
         if (lists != null && lists.size() > 0) return lists.get(0);
         return null;
     }
@@ -330,13 +327,13 @@ public class PictureSelectorEngineImpl
 
     /**
      * 转换 List
-     * @param lists {@link LocalMediaData} list
+     * @param lists {@link MediaData} list
      * @return {@link LocalMedia} list
      */
-    private List<LocalMedia> convertList(final List<LocalMediaData> lists) {
+    private List<LocalMedia> convertList(final List<MediaData> lists) {
         List<LocalMedia> medias = new ArrayList<>();
         if (lists != null) {
-            for (LocalMediaData data : lists) {
+            for (MediaData data : lists) {
                 if (data != null && data.getLocalMedia() != null) {
                     medias.add(data.getLocalMedia());
                 }
