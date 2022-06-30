@@ -262,8 +262,9 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
             // 判断是否 Wifi 打开了, 变化触发一次
             WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION -> {
                 // 判断是否打开 Wifi
-                val isOpenWifi =
-                    intent.getBooleanExtra(WifiManager.EXTRA_SUPPLICANT_CONNECTED, false)
+                val isOpenWifi = intent.getBooleanExtra(
+                    WifiManager.EXTRA_SUPPLICANT_CONNECTED, false
+                )
                 // 触发回调
                 sListener?.onWifiSwitch(isOpenWifi)
             }

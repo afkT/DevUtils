@@ -14,8 +14,7 @@ class CompressConfig @JvmOverloads constructor(
 ) : ICompressEngine.EngineConfig() {
 
     // 压缩失败、异常是否结束压缩
-    var isFailFinish = false
-        private set
+    private var mFailFinish = false
 
     constructor(targetDir: String?) : this(100, true, targetDir)
 
@@ -24,8 +23,14 @@ class CompressConfig @JvmOverloads constructor(
         targetDir: String?
     ) : this(ignoreSize, true, targetDir)
 
+    // =
+
+    fun isFailFinish(): Boolean {
+        return mFailFinish
+    }
+
     fun setFailFinish(failFinish: Boolean): CompressConfig {
-        isFailFinish = failFinish
+        mFailFinish = failFinish
         return this
     }
 }

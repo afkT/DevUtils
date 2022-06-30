@@ -20,11 +20,11 @@ public class AppRecordInsert
         extends RecordInsert {
 
     // 是否每次都创建新的 FileInfo
-    private final boolean isEveryCreate;
+    private final boolean mEveryCreate;
 
     public AppRecordInsert(boolean everyCreate) {
         super(null);
-        this.isEveryCreate = everyCreate;
+        this.mEveryCreate = everyCreate;
     }
 
     // =
@@ -36,7 +36,7 @@ public class AppRecordInsert
 
     @Override
     public String getFileInfo() {
-        if (isEveryCreate) return createFileInfo();
+        if (mEveryCreate) return createFileInfo();
         if (StringUtils.isNotEmpty(mFileInfo)) return mFileInfo;
         mFileInfo = createFileInfo();
         return mFileInfo;

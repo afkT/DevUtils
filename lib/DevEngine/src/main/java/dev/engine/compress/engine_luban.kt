@@ -62,7 +62,7 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
         return LubanUtils.compress(
             lists, LubanUtils.Config(
                 config.ignoreSize, config.focusAlpha, config.targetDir
-            ).setFailFinish(config.isFailFinish), predicate, rename,
+            ).setFailFinish(config.isFailFinish()), predicate, rename,
             object : LubanUtils.OnCompressListener {
                 override fun onStart(
                     index: Int,

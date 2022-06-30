@@ -17,7 +17,7 @@ import dev.base.R
 class DevBaseContentAssist {
 
     // 是否安全处理 ( 建议跟随 BuildConfig.DEBUG 取反处理, 开发阶段抛出异常 )
-    private var isSafe = false
+    private var mSafe = false
 
     // 最外层 Layout
     @JvmField
@@ -100,7 +100,7 @@ class DevBaseContentAssist {
      * 是否安全处理
      */
     fun isSafe(): Boolean {
-        return isSafe
+        return mSafe
     }
 
     /**
@@ -108,7 +108,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun setSafe(safe: Boolean): DevBaseContentAssist {
-        isSafe = safe
+        mSafe = safe
         return this
     }
 
@@ -533,7 +533,7 @@ class DevBaseContentAssist {
         // 防止重复添加, 当 parent 不为 null 则表示已添加, 则进行移除
         parent?.removeView(view)
 
-        if (isSafe) {
+        if (mSafe) {
             view?.let { viewGroup?.addView(it, index) }
         } else {
             viewGroup!!.addView(view, index)
@@ -560,7 +560,7 @@ class DevBaseContentAssist {
         // 防止重复添加, 当 parent 不为 null 则表示已添加, 则进行移除
         parent?.removeView(view)
 
-        if (isSafe) {
+        if (mSafe) {
             view?.let { viewGroup?.addView(it, index, params) }
         } else {
             viewGroup!!.addView(view, index, params)
