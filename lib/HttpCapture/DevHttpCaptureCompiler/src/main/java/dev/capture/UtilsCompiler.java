@@ -83,7 +83,7 @@ public final class UtilsCompiler {
      * 添加 Activity
      * @param activity {@link Activity}
      */
-    protected void addActivity(final Activity activity) {
+    void addActivity(final Activity activity) {
         getManager().addActivity(activity);
     }
 
@@ -91,7 +91,7 @@ public final class UtilsCompiler {
      * 移除 Activity
      * @param activity {@link Activity}
      */
-    protected void removeActivity(final Activity activity) {
+    void removeActivity(final Activity activity) {
         getManager().removeActivity(activity);
     }
 
@@ -107,19 +107,16 @@ public final class UtilsCompiler {
     // ========
 
     // JSON 字符串转 T Object
-    private final Gson FROM_GSON   = createGson(true).create();
+    private final Gson FROM_GSON   = createGson().create();
     // JSON 缩进
-    private final Gson INDENT_GSON = createGson(true).setPrettyPrinting().create();
+    private final Gson INDENT_GSON = createGson().setPrettyPrinting().create();
 
     /**
      * 创建 GsonBuilder
-     * @param serializeNulls 是否序列化 null 值
      * @return {@link GsonBuilder}
      */
-    protected GsonBuilder createGson(final boolean serializeNulls) {
-        GsonBuilder builder = new GsonBuilder();
-        if (serializeNulls) builder.serializeNulls();
-        return builder;
+    GsonBuilder createGson() {
+        return new GsonBuilder().serializeNulls();
     }
 
     /**
@@ -127,7 +124,7 @@ public final class UtilsCompiler {
      * @param json JSON String
      * @return JSON String
      */
-    protected String toJsonIndent(final String json) {
+    String toJsonIndent(final String json) {
         return toJsonIndent(json, INDENT_GSON);
     }
 
@@ -137,7 +134,7 @@ public final class UtilsCompiler {
      * @param gson {@link Gson}
      * @return JSON String
      */
-    protected String toJsonIndent(
+    String toJsonIndent(
             final String json,
             final Gson gson
     ) {
@@ -163,7 +160,7 @@ public final class UtilsCompiler {
      * @param <T>      泛型
      * @return instance of type
      */
-    protected <T> T fromJson(
+    <T> T fromJson(
             final String json,
             final Class<T> classOfT
     ) {
@@ -178,7 +175,7 @@ public final class UtilsCompiler {
      * @param <T>      泛型
      * @return instance of type
      */
-    protected <T> T fromJson(
+    <T> T fromJson(
             final String json,
             final Class<T> classOfT,
             final Gson gson
@@ -226,7 +223,7 @@ public final class UtilsCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 接口所属功能注释获取
      */
-    protected UrlFunctionGet getUrlFunction(final String moduleName) {
+    UrlFunctionGet getUrlFunction(final String moduleName) {
         return URL_FUNCTION_MAP.get(moduleName);
     }
 
@@ -240,7 +237,7 @@ public final class UtilsCompiler {
     /**
      * 移除所有回调
      */
-    protected void clearCallback() {
+    void clearCallback() {
         mCallbackLists.clear();
     }
 
@@ -248,7 +245,7 @@ public final class UtilsCompiler {
      * 移除回调 ( 关闭页面调用 )
      * @param callback 回调事件
      */
-    protected void removeCallback(final DevCallback<Boolean> callback) {
+    void removeCallback(final DevCallback<Boolean> callback) {
         if (callback == null) return;
         mCallbackLists.remove(callback);
     }
@@ -257,7 +254,7 @@ public final class UtilsCompiler {
      * 添加回调
      * @param callback 回调事件
      */
-    protected void addCallback(final DevCallback<Boolean> callback) {
+    void addCallback(final DevCallback<Boolean> callback) {
         if (callback == null) return;
         if (mCallbackLists.contains(callback)) return;
         mCallbackLists.add(callback);
@@ -268,7 +265,7 @@ public final class UtilsCompiler {
      * @param isQuerying 是否查询中
      * @param size       数据数量
      */
-    protected void notifyCallback(
+    void notifyCallback(
             final boolean isQuerying,
             final int size
     ) {
@@ -296,7 +293,7 @@ public final class UtilsCompiler {
      * @param callback  回调事件
      * @param isRefresh 是否刷新操作
      */
-    protected void queryData(
+    void queryData(
             final DevCallback<Boolean> callback,
             final boolean isRefresh
     ) {
@@ -328,7 +325,7 @@ public final class UtilsCompiler {
     /**
      * 移除所有数据
      */
-    protected void clearData() {
+    void clearData() {
         mDataMaps.clear();
     }
 
@@ -336,7 +333,7 @@ public final class UtilsCompiler {
      * 是否查询中
      * @return {@code true} yes, {@code false} no
      */
-    protected boolean isQuerying() {
+    boolean isQuerying() {
         return mQuerying;
     }
 
@@ -352,7 +349,7 @@ public final class UtilsCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 首页数据源
      */
-    protected List<Items.MainItem> getMainData(final String moduleName) {
+    List<Items.MainItem> getMainData(final String moduleName) {
         List<Items.MainItem> lists = new ArrayList<>();
         // 判断是否显示指定模块
         if (TextUtils.isEmpty(moduleName)) {
@@ -400,7 +397,7 @@ public final class UtilsCompiler {
      * @param json 抓包文件 JSON 格式数据
      * @return 抓包文件数据
      */
-    protected List<Items.FileItem> getFileData(final String json) {
+    List<Items.FileItem> getFileData(final String json) {
         List<Items.FileItem> lists       = new ArrayList<>();
         CaptureFile          captureFile = fromJson(json, CaptureFile.class);
         if (captureFile != null) {
@@ -430,7 +427,7 @@ public final class UtilsCompiler {
 
                 // 请求 Header
                 String requestHeader = mapToString(
-                        captureInfo.requestHeader, ": "
+                        captureInfo.requestHeader
                 ).toString();
                 if (StringUtils.isNotEmpty(requestHeader)) {
                     lists.add(new Items.FileItem(
@@ -441,7 +438,7 @@ public final class UtilsCompiler {
 
                 // 请求 Body
                 String requestBody = mapToString(
-                        captureInfo.requestBody, ": "
+                        captureInfo.requestBody
                 ).toString();
                 if (StringUtils.isNotEmpty(requestBody)) {
                     lists.add(new Items.FileItem(
@@ -452,7 +449,7 @@ public final class UtilsCompiler {
 
                 // 响应状态
                 String responseStatus = mapToString(
-                        captureInfo.responseStatus, ": "
+                        captureInfo.responseStatus
                 ).toString();
                 if (StringUtils.isNotEmpty(responseStatus)) {
                     lists.add(new Items.FileItem(
@@ -463,7 +460,7 @@ public final class UtilsCompiler {
 
                 // 响应 Header
                 String responseHeader = mapToString(
-                        captureInfo.responseHeader, ": "
+                        captureInfo.responseHeader
                 ).toString();
                 if (StringUtils.isNotEmpty(responseHeader)) {
                     lists.add(new Items.FileItem(
@@ -490,7 +487,7 @@ public final class UtilsCompiler {
      * @param groupType  分组条件类型
      * @return 指定筛选条件抓包列表数据
      */
-    protected List<Items.GroupItem> getDateData(
+    List<Items.GroupItem> getDateData(
             final String moduleName,
             final String date,
             final Items.DataType dataType,
@@ -589,7 +586,7 @@ public final class UtilsCompiler {
      * @param captureFile 抓包存储文件
      * @return 接口所属功能
      */
-    protected String getUrlFunctionByFile(final CaptureFile captureFile) {
+    String getUrlFunctionByFile(final CaptureFile captureFile) {
         if (captureFile != null) {
             String convertUrlKey = Items.convertUrlKey(captureFile.getUrl());
             return getUrlFunctionByFile(captureFile, convertUrlKey);
@@ -633,12 +630,12 @@ public final class UtilsCompiler {
     // ==========
 
     // 刷新点击 ( 双击 ) 辅助类
-    protected static final ClickUtils.ClickAssist sRefreshClick = new ClickUtils.ClickAssist(10000L);
+    static final ClickUtils.ClickAssist sRefreshClick = new ClickUtils.ClickAssist(10000L);
 
     /**
      * 重置刷新点击处理
      */
-    protected void resetRefreshClick() {
+    void resetRefreshClick() {
         sRefreshClick.reset().setIntervalTime(10000L);
     }
 
@@ -649,22 +646,17 @@ public final class UtilsCompiler {
     /**
      * 键值对拼接
      * @param map    {@link Map}
-     * @param symbol 拼接符号
      * @param <K>    key
      * @param <V>    value
      * @return {@link StringBuilder}
      */
-    private <K, V> StringBuilder mapToString(
-            final Map<K, V> map,
-            final String symbol
-    ) {
-        return mapToString(map, symbol, new StringBuilder());
+    private <K, V> StringBuilder mapToString(final Map<K, V> map) {
+        return mapToString(map,new StringBuilder());
     }
 
     /**
      * 键值对拼接
      * @param map     {@link Map}
-     * @param symbol  拼接符号
      * @param builder Builder
      * @param <K>     key
      * @param <V>     value
@@ -672,7 +664,6 @@ public final class UtilsCompiler {
      */
     private <K, V> StringBuilder mapToString(
             final Map<K, V> map,
-            final String symbol,
             final StringBuilder builder
     ) {
         if (map != null && builder != null) {
@@ -680,7 +671,7 @@ public final class UtilsCompiler {
             while (iterator.hasNext()) {
                 Map.Entry<K, V> entry = iterator.next();
                 builder.append(ConvertUtils.toString(entry.getKey()));
-                builder.append(symbol);
+                builder.append(": ");
                 builder.append(ConvertUtils.toString(entry.getValue()));
                 // 如果还有下一行则追加换行
                 if (iterator.hasNext()) {

@@ -271,8 +271,8 @@ public class CoolWaitLoadingRenderer
     public static class Builder {
         private final Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public CoolWaitLoadingRenderer build() {
