@@ -43,9 +43,9 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     resultCode: Int,
                     intent: Intent?
                 ) {
-                    val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
-                    if (imgPath != null) {
-                        binding.vidIv.display(source = imgPath.toSource())
+                    val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+                    if (imgUri != null) {
+                        binding.vidIv.display(source = imgUri.toSource())
                     } else {
                         Thread {
                             Thread.sleep(100L)

@@ -3,6 +3,7 @@ package java.dev.other;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
@@ -23,6 +24,26 @@ public final class PictureSelectorUtils {
     }
 
     private static final PictureSelectorEngineImpl IMPL = new PictureSelectorEngineImpl();
+
+    // ==========
+    // = 配置方法 =
+    // ==========
+
+    /**
+     * 获取全局配置
+     * @return 全局配置信息
+     */
+    public static MediaConfig getConfig() {
+        return IMPL.getConfig();
+    }
+
+    /**
+     * 设置全局配置
+     * @param config 新的配置信息
+     */
+    public static void setConfig(MediaConfig config) {
+        IMPL.setConfig(config);
+    }
 
     // =============
     // = 对外公开方法 =
@@ -119,70 +140,6 @@ public final class PictureSelectorUtils {
     }
 
     // ==========
-    // = 配置方法 =
-    // ==========
-
-    /**
-     * 获取全局配置
-     * @return 全局配置信息
-     */
-    public static MediaConfig getConfig() {
-        return IMPL.getConfig();
-    }
-
-    /**
-     * 设置全局配置
-     * @param config 新的配置信息
-     */
-    public static void setConfig(MediaConfig config) {
-        IMPL.setConfig(config);
-    }
-
-    /**
-     * 获取拍照存储地址
-     * @return 拍照存储地址
-     */
-    public static String getCameraSavePath() {
-        return IMPL.getCameraSavePath();
-    }
-
-    /**
-     * 获取压缩图片存储地址
-     * @return 压缩图片存储地址
-     */
-    public static String getCompressSavePath() {
-        return IMPL.getCompressSavePath();
-    }
-
-    /**
-     * 设置存储地址
-     * @param cameraSavePath   拍照存储地址
-     * @param compressSavePath 压缩图片存储地址
-     */
-    public static void setSavePath(
-            String cameraSavePath,
-            String compressSavePath
-    ) {
-        IMPL.setSavePath(cameraSavePath, compressSavePath);
-    }
-
-    /**
-     * 获取图片大于多少才进行压缩 ( kb )
-     * @return 最小压缩大小
-     */
-    public static int getMinimumCompressSize() {
-        return IMPL.getMinimumCompressSize();
-    }
-
-    /**
-     * 设置图片大于多少才进行压缩 ( kb )
-     * @param minimumCompressSize 最小压缩大小
-     */
-    public static void setMinimumCompressSize(int minimumCompressSize) {
-        IMPL.setMinimumCompressSize(minimumCompressSize);
-    }
-
-    // ==========
     // = 其他方法 =
     // ==========
 
@@ -231,16 +188,16 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取 Media Selector Path List
+     * 获取 Media Selector Uri List
      * @param intent   onActivityResult Intent data
-     * @param original 是否使用原图地址
+     * @param original 是否使用原图
      * @return Media Selector Path List
      */
-    public static List<String> getSelectorPaths(
+    public static List<Uri> getSelectorUris(
             Intent intent,
             boolean original
     ) {
-        return IMPL.getSelectorPaths(intent, original);
+        return IMPL.getSelectorUris(intent, original);
     }
 
     /**
@@ -253,15 +210,15 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取 Single Media Selector Path
+     * 获取 Single Media Selector Uri
      * @param intent   onActivityResult Intent data
-     * @param original 是否使用原图地址
+     * @param original 是否使用原图
      * @return Single Media Selector Path
      */
-    public static String getSingleSelectorPath(
+    public static Uri getSingleSelectorUri(
             Intent intent,
             boolean original
     ) {
-        return IMPL.getSingleSelectorPath(intent, original);
+        return IMPL.getSingleSelectorUri(intent, original);
     }
 }

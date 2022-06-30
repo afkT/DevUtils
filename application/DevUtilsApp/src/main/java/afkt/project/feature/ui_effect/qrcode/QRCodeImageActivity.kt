@@ -16,6 +16,7 @@ import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.image.listener.BitmapListener
 import dev.engine.media.MediaConfig
 import dev.kotlin.engine.image.loadBitmap
+import dev.kotlin.utils.toSource
 import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.toast.ToastTintUtils
@@ -81,15 +82,10 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         if (resultCode == RESULT_OK && intent != null) {
             MainScope().launch {
                 // 获取图片地址
-                val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
+                val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
 
-                val source = if (UriUtils.isUri(imgPath)) {
-                    DevSource.create(UriUtils.getUriForString(imgPath))
-                } else {
-                    DevSource.createWithPath(imgPath)
-                }
                 mActivity?.loadBitmap(
-                    source = source, config = null,
+                    source = imgUri?.toSource(), config = null,
                     listener = object : BitmapListener() {
                         override fun onStart(source: DevSource) {}
                         override fun onResponse(

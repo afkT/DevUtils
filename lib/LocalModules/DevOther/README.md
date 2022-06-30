@@ -584,22 +584,17 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| openCamera | openCamera |
-| openGallery | openGallery |
 | getConfig | getConfig |
 | setConfig | setConfig |
-| getCameraSavePath | getCameraSavePath |
-| getCompressSavePath | getCompressSavePath |
-| setSavePath | setSavePath |
-| getMinimumCompressSize | getMinimumCompressSize |
-| setMinimumCompressSize | setMinimumCompressSize |
+| openCamera | openCamera |
+| openGallery | openGallery |
 | deleteCacheDirFile | deleteCacheDirFile |
 | deleteAllCacheDirFile | deleteAllCacheDirFile |
 | isMediaSelectorResult | isMediaSelectorResult |
 | getSelectors | getSelectors |
-| getSelectorPaths | getSelectorPaths |
+| getSelectorUris | getSelectorUris |
 | getSingleSelector | getSingleSelector |
-| getSingleSelectorPath | getSingleSelectorPath |
+| getSingleSelectorUri | getSingleSelectorUri |
 
 
 ## <span id="javadevenginemedialuck_lib_engine">**`java.dev.engine.media.luck_lib_engine`**</span>
@@ -857,22 +852,17 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| openCamera | 打开相册拍照 |
-| openGallery | 打开相册选择 |
 | getConfig | 获取全局配置 |
 | setConfig | 设置全局配置 |
-| getCameraSavePath | 获取拍照存储地址 |
-| getCompressSavePath | 获取压缩图片存储地址 |
-| setSavePath | 设置存储地址 |
-| getMinimumCompressSize | 获取图片大于多少才进行压缩 ( kb ) |
-| setMinimumCompressSize | 设置图片大于多少才进行压缩 ( kb ) |
+| openCamera | 打开相册拍照 |
+| openGallery | 打开相册选择 |
 | deleteCacheDirFile | 删除缓存文件 |
 | deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
 | getSelectors | 获取 Media Selector Data List |
-| getSelectorPaths | 获取 Media Selector Path List |
+| getSelectorUris | 获取 Media Selector Uri List |
 | getSingleSelector | 获取 Single Media Selector Data |
-| getSingleSelectorPath | 获取 Single Media Selector Path |
+| getSingleSelectorUri | 获取 Single Media Selector Uri |
 
 
 * **ZXing 条形码、二维码工具类 ->** [ZXingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/other/ZXingUtils.java)

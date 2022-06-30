@@ -153,17 +153,9 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
+            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
             // 获取图片 Bitmap
-            val selectBitmap = if (UriUtils.isUri(imgPath)) {
-                ImageUtils.decodeStream(
-                    ResourceUtils.openInputStream(
-                        UriUtils.getUriForString(imgPath)
-                    )
-                )
-            } else {
-                ImageUtils.decodeFile(imgPath)
-            }
+            val selectBitmap = ImageUtils.decodeStream(ResourceUtils.openInputStream(imgUri))
             // 解析图片
             DevEngine.getBarCode().decodeBarCode(
                 selectBitmap, object : BarCodeDecodeCallback<BarCodeResult> {

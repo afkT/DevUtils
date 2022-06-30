@@ -3,6 +3,7 @@ package dev.engine.media;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
@@ -28,6 +29,22 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
      */
     class EngineData {
     }
+
+    // ==========
+    // = 配置方法 =
+    // ==========
+
+    /**
+     * 获取全局配置
+     * @return 全局配置信息
+     */
+    Config getConfig();
+
+    /**
+     * 设置全局配置
+     * @param config 新的配置信息
+     */
+    void setConfig(Config config);
 
     // =============
     // = 对外公开方法 =
@@ -108,56 +125,6 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     );
 
     // ==========
-    // = 配置方法 =
-    // ==========
-
-    /**
-     * 获取全局配置
-     * @return 全局配置信息
-     */
-    Config getConfig();
-
-    /**
-     * 设置全局配置
-     * @param config 新的配置信息
-     */
-    void setConfig(Config config);
-
-    /**
-     * 获取拍照存储地址
-     * @return 拍照存储地址
-     */
-    String getCameraSavePath();
-
-    /**
-     * 获取压缩图片存储地址
-     * @return 压缩图片存储地址
-     */
-    String getCompressSavePath();
-
-    /**
-     * 设置存储地址
-     * @param cameraSavePath   拍照存储地址
-     * @param compressSavePath 压缩图片存储地址
-     */
-    void setSavePath(
-            String cameraSavePath,
-            String compressSavePath
-    );
-
-    /**
-     * 获取图片大于多少才进行压缩 ( kb )
-     * @return 最小压缩大小
-     */
-    int getMinimumCompressSize();
-
-    /**
-     * 设置图片大于多少才进行压缩 ( kb )
-     * @param minimumCompressSize 最小压缩大小
-     */
-    void setMinimumCompressSize(int minimumCompressSize);
-
-    // ==========
     // = 其他方法 =
     // ==========
 
@@ -198,12 +165,12 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     List<Data> getSelectors(Intent intent);
 
     /**
-     * 获取 Media Selector Path List
+     * 获取 Media Selector Uri List
      * @param intent   onActivityResult Intent data
-     * @param original 是否使用原图地址
-     * @return Media Selector Path List
+     * @param original 是否使用原图
+     * @return Media Selector Uri List
      */
-    List<String> getSelectorPaths(
+    List<Uri> getSelectorUris(
             Intent intent,
             boolean original
     );
@@ -216,12 +183,12 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     Data getSingleSelector(Intent intent);
 
     /**
-     * 获取 Single Media Selector Path
+     * 获取 Single Media Selector Uri
      * @param intent   onActivityResult Intent data
-     * @param original 是否使用原图地址
-     * @return Single Media Selector Path
+     * @param original 是否使用原图
+     * @return Single Media Selector Uri
      */
-    String getSingleSelectorPath(
+    Uri getSingleSelectorUri(
             Intent intent,
             boolean original
     );

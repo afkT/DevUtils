@@ -18,7 +18,6 @@ import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
-import dev.utils.app.UriUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ScaleUtils
@@ -115,17 +114,9 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(intent, true)
+            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
             // 获取图片 Bitmap
-            selectBitmap = if (UriUtils.isUri(imgPath)) {
-                ImageUtils.decodeStream(
-                    ResourceUtils.openInputStream(
-                        UriUtils.getUriForString(imgPath)
-                    )
-                )
-            } else {
-                ImageUtils.decodeFile(imgPath)
-            }
+            selectBitmap = ImageUtils.decodeStream(ResourceUtils.openInputStream(imgUri))
             // 设置图片滤镜
             setFilter()
         }

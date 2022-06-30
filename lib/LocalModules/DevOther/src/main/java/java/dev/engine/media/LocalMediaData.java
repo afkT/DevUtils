@@ -34,7 +34,7 @@ public class LocalMediaData
 
     /**
      * 获取本地资源路径
-     * @param original 是否使用原图地址
+     * @param original 是否使用原图
      * @return 本地资源路径
      */
     public String getLocalMediaPath(final boolean original) {

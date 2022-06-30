@@ -3,6 +3,7 @@ package dev.engine.media
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import com.luck.picture.lib.PictureSelectionModel
@@ -11,6 +12,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import dev.engine.media.luck_lib_engine.LuckGlideEngineImpl
 import dev.utils.LogPrintUtils
+import dev.utils.app.UriUtils
 
 // ===================
 // = PictureSelector =
@@ -34,6 +36,18 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
 
     // 全局配置信息
     private val PIC_CONFIG = MediaConfig()
+
+    // ==========
+    // = 配置方法 =
+    // ==========
+
+    override fun getConfig(): MediaConfig {
+        return PIC_CONFIG
+    }
+
+    override fun setConfig(config: MediaConfig?) {
+        PIC_CONFIG.set(config)
+    }
 
     // =============
     // = 对外公开方法 =
@@ -98,42 +112,6 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     }
 
     // ==========
-    // = 配置方法 =
-    // ==========
-
-    override fun getConfig(): MediaConfig {
-        return PIC_CONFIG
-    }
-
-    override fun setConfig(config: MediaConfig?) {
-        PIC_CONFIG.set(config)
-    }
-
-    override fun getCameraSavePath(): String? {
-        return PIC_CONFIG.getCameraSavePath()
-    }
-
-    override fun getCompressSavePath(): String? {
-        return PIC_CONFIG.getCompressSavePath()
-    }
-
-    override fun setSavePath(
-        cameraSavePath: String?,
-        compressSavePath: String?
-    ) {
-        PIC_CONFIG.setCameraSavePath(cameraSavePath)
-            .setCompressSavePath(compressSavePath)
-    }
-
-    override fun getMinimumCompressSize(): Int {
-        return PIC_CONFIG.getMinimumCompressSize()
-    }
-
-    override fun setMinimumCompressSize(minimumCompressSize: Int) {
-        PIC_CONFIG.setMinimumCompressSize(minimumCompressSize)
-    }
-
-    // ==========
     // = 其他方法 =
     // ==========
 
@@ -176,15 +154,17 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return lists
     }
 
-    override fun getSelectorPaths(
+    override fun getSelectorUris(
         intent: Intent?,
         original: Boolean
-    ): MutableList<String> {
-        val lists: MutableList<String> = ArrayList()
+    ): MutableList<Uri> {
+        val lists: MutableList<Uri> = ArrayList()
         val result = getSelectors(intent)
         result.forEach { media ->
             media.getLocalMediaPath(original)?.apply {
-                lists.add(this)
+                UriUtils.getUriForPath(this)?.let { uri ->
+                    lists.add(uri)
+                }
             }
         }
         return lists
@@ -195,11 +175,11 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return if (lists.size > 0) lists[0] else null
     }
 
-    override fun getSingleSelectorPath(
+    override fun getSingleSelectorUri(
         intent: Intent?,
         original: Boolean
-    ): String? {
-        val lists = getSelectorPaths(intent, original)
+    ): Uri? {
+        val lists = getSelectorUris(intent, original)
         return if (lists.size > 0) lists[0] else null
     }
 

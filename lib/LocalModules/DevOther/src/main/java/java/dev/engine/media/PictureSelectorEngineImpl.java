@@ -3,6 +3,7 @@ package java.dev.engine.media;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import dev.engine.media.IMediaEngine;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.UriUtils;
 
 /**
  * detail: PictureSelector Media Selector Engine 实现
@@ -33,17 +35,25 @@ public class PictureSelectorEngineImpl
         implements IMediaEngine<MediaConfig, LocalMediaData> {
 
     // 日志 TAG
-    private final String      TAG                   = PictureSelectorEngineImpl.class.getSimpleName();
+    private final String      TAG              = PictureSelectorEngineImpl.class.getSimpleName();
     // 全局请求跳转回传 code
-    private final int         PIC_REQUEST_CODE      = 159857;
+    private final int         PIC_REQUEST_CODE = 159857;
     // 全局配置信息
-    private final MediaConfig PIC_CONFIG            = new MediaConfig();
-    // 拍照存储地址
-    private       String      CAMERA_SAVE_PATH      = null;
-    // 压缩图片存储地址
-    private       String      COMPRESS_SAVE_PATH    = null;
-    // 图片大于多少才进行压缩 ( kb )
-    private       int         MINIMUM_COMPRESS_SIZE = 0;
+    private final MediaConfig PIC_CONFIG       = new MediaConfig();
+
+    // ==========
+    // = 配置方法 =
+    // ==========
+
+    @Override
+    public MediaConfig getConfig() {
+        return PIC_CONFIG;
+    }
+
+    @Override
+    public void setConfig(MediaConfig config) {
+        PIC_CONFIG.set(config);
+    }
 
     // =============
     // = 对外公开方法 =
@@ -116,54 +126,6 @@ public class PictureSelectorEngineImpl
     }
 
     // ==========
-    // = 配置方法 =
-    // ==========
-
-    @Override
-    public MediaConfig getConfig() {
-        return PIC_CONFIG;
-    }
-
-    @Override
-    public void setConfig(MediaConfig config) {
-        PIC_CONFIG.set(config);
-    }
-
-    @Override
-    public String getCameraSavePath() {
-        return CAMERA_SAVE_PATH;
-    }
-
-    @Override
-    public String getCompressSavePath() {
-        return COMPRESS_SAVE_PATH;
-    }
-
-    @Override
-    public void setSavePath(
-            String cameraSavePath,
-            String compressSavePath
-    ) {
-        CAMERA_SAVE_PATH   = cameraSavePath;
-        COMPRESS_SAVE_PATH = compressSavePath;
-        // 设置配置
-        PIC_CONFIG.setCameraSavePath(cameraSavePath)
-                .setCompressSavePath(compressSavePath);
-    }
-
-    @Override
-    public int getMinimumCompressSize() {
-        return MINIMUM_COMPRESS_SIZE;
-    }
-
-    @Override
-    public void setMinimumCompressSize(int minimumCompressSize) {
-        MINIMUM_COMPRESS_SIZE = minimumCompressSize;
-        // 设置配置
-        PIC_CONFIG.setMinimumCompressSize(minimumCompressSize);
-    }
-
-    // ==========
     // = 其他方法 =
     // ==========
 
@@ -213,17 +175,20 @@ public class PictureSelectorEngineImpl
     }
 
     @Override
-    public List<String> getSelectorPaths(
+    public List<Uri> getSelectorUris(
             Intent intent,
             boolean original
     ) {
         List<LocalMediaData> result = getSelectors(intent);
-        List<String>         lists  = new ArrayList<>();
+        List<Uri>            lists  = new ArrayList<>();
         if (result != null) {
             for (LocalMediaData media : result) {
                 if (media != null) {
                     String path = media.getLocalMediaPath(original);
-                    lists.add(path);
+                    Uri    uri  = UriUtils.getUriForPath(path);
+                    if (uri != null) {
+                        lists.add(uri);
+                    }
                 }
             }
         }
@@ -238,11 +203,11 @@ public class PictureSelectorEngineImpl
     }
 
     @Override
-    public String getSingleSelectorPath(
+    public Uri getSingleSelectorUri(
             Intent intent,
             boolean original
     ) {
-        List<String> lists = getSelectorPaths(intent, original);
+        List<Uri> lists = getSelectorUris(intent, original);
         if (lists != null && lists.size() > 0) return lists.get(0);
         return null;
     }

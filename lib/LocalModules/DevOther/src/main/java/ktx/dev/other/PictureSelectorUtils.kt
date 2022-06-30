@@ -3,6 +3,7 @@ package ktx.dev.other
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.Fragment
 import dev.engine.media.LocalMediaData
 import dev.engine.media.MediaConfig
@@ -16,6 +17,18 @@ import dev.engine.media.PictureSelectorEngineImpl
 object PictureSelectorUtils {
 
     private val IMPL = PictureSelectorEngineImpl()
+
+    // ==========
+    // = 配置方法 =
+    // ==========
+
+    fun getConfig(): MediaConfig {
+        return IMPL.config
+    }
+
+    fun setConfig(config: MediaConfig?) {
+        IMPL.setConfig(config)
+    }
 
     // =============
     // = 对外公开方法 =
@@ -68,41 +81,6 @@ object PictureSelectorUtils {
     }
 
     // ==========
-    // = 配置方法 =
-    // ==========
-
-    fun getConfig(): MediaConfig {
-        return IMPL.config
-    }
-
-    fun setConfig(config: MediaConfig?) {
-        IMPL.setConfig(config)
-    }
-
-    fun getCameraSavePath(): String? {
-        return IMPL.cameraSavePath
-    }
-
-    fun getCompressSavePath(): String? {
-        return IMPL.compressSavePath
-    }
-
-    fun setSavePath(
-        cameraSavePath: String?,
-        compressSavePath: String?
-    ) {
-        IMPL.setSavePath(cameraSavePath, compressSavePath)
-    }
-
-    fun getMinimumCompressSize(): Int {
-        return IMPL.minimumCompressSize
-    }
-
-    fun setMinimumCompressSize(minimumCompressSize: Int) {
-        IMPL.minimumCompressSize = minimumCompressSize
-    }
-
-    // ==========
     // = 其他方法 =
     // ==========
 
@@ -130,21 +108,21 @@ object PictureSelectorUtils {
         return IMPL.getSelectors(intent)
     }
 
-    fun getSelectorPaths(
+    fun getSelectorUris(
         intent: Intent?,
         original: Boolean
-    ): MutableList<String> {
-        return IMPL.getSelectorPaths(intent, original)
+    ): MutableList<Uri> {
+        return IMPL.getSelectorUris(intent, original)
     }
 
     fun getSingleSelector(intent: Intent?): LocalMediaData? {
         return IMPL.getSingleSelector(intent)
     }
 
-    fun getSingleSelectorPath(
+    fun getSingleSelectorUri(
         intent: Intent?,
         original: Boolean
-    ): String? {
-        return IMPL.getSingleSelectorPath(intent, original)
+    ): Uri? {
+        return IMPL.getSingleSelectorUri(intent, original)
     }
 }
