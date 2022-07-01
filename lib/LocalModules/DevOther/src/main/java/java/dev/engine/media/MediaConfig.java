@@ -55,6 +55,8 @@ public class MediaConfig
     private int             mMimeType      = MimeType.ofImage();
     // 相册选择模式
     private int             mSelectionMode = MimeType.MULTIPLE;
+    // 自定义数据
+    private Object          mCustomData;
     // 已选择的资源
     private List<MediaData> mMediaDatas;
 
@@ -153,6 +155,24 @@ public class MediaConfig
     }
 
     /**
+     * 获取自定义数据
+     * @return 自定义数据
+     */
+    public Object getCustomData() {
+        return mCustomData;
+    }
+
+    /**
+     * 设置自定义数据
+     * @param customData 自定义数据
+     * @return MediaConfig
+     */
+    public MediaConfig setCustomData(final Object customData) {
+        this.mCustomData = customData;
+        return this;
+    }
+
+    /**
      * 获取已选择的资源
      * @return 已选择的资源 {@link List<MediaData>}
      */
@@ -181,6 +201,7 @@ public class MediaConfig
         config.mLibCustomConfig = mLibCustomConfig;
         config.mMimeType        = mMimeType;
         config.mSelectionMode   = mSelectionMode;
+        config.mCustomData      = mCustomData;
         config.mMediaDatas      = mMediaDatas;
         return config;
     }
@@ -195,6 +216,7 @@ public class MediaConfig
             mLibCustomConfig = config.mLibCustomConfig;
             mMimeType        = config.mMimeType;
             mSelectionMode   = config.mSelectionMode;
+            mCustomData      = config.mCustomData;
             mMediaDatas      = config.mMediaDatas;
         }
         return this;

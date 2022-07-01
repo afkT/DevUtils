@@ -14,9 +14,6 @@ import dev.other.R;
 /**
  * detail: PictureSelector 相册图片加载引擎
  * @author luck
- * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- * </pre>
  */
 public class LuckImageEngineImpl
         implements ImageEngine {

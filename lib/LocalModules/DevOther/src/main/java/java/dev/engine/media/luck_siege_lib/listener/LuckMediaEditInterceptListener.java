@@ -19,8 +19,6 @@ import dev.utils.common.FileUtils;
  * detail: PictureSelector 编辑拦截器
  * @author luck
  * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- *     <p></p>
  *     图片预览 - 左下角编辑点击触发
  * </pre>
  */

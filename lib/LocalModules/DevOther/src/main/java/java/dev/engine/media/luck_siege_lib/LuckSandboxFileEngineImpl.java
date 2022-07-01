@@ -9,9 +9,6 @@ import com.luck.picture.lib.utils.SandboxTransformUtils;
 /**
  * detail: PictureSelector 相册沙盒目录拷贝引擎
  * @author luck
- * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- * </pre>
  */
 public class LuckSandboxFileEngineImpl
         implements UriToFileTransformEngine {

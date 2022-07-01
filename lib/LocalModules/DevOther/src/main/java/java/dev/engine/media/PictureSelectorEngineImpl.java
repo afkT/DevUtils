@@ -8,8 +8,10 @@ import android.net.Uri;
 import androidx.fragment.app.Fragment;
 
 import com.luck.picture.lib.basic.PictureSelectionCameraModel;
+import com.luck.picture.lib.basic.PictureSelectionModel;
+import com.luck.picture.lib.basic.PictureSelectionPreviewModel;
+import com.luck.picture.lib.basic.PictureSelectionSystemModel;
 import com.luck.picture.lib.basic.PictureSelector;
-import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.manager.PictureCacheManager;
 
@@ -19,6 +21,7 @@ import java.util.List;
 import dev.engine.media.IMediaEngine;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.UriUtils;
+import dev.utils.common.ConvertUtils;
 
 /**
  * detail: PictureSelector Media Selector Engine 实现
@@ -26,6 +29,7 @@ import dev.utils.app.UriUtils;
  * <pre>
  *     功能配置文档
  *     @see <a href="https://github.com/LuckSiege/PictureSelector"/>
+ *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
  * </pre>
  */
 public class PictureSelectorEngineImpl
@@ -67,7 +71,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startCameraModel(
-                createPictureSelector(activity, null), config
+                createPictureSelector(activity), config
         );
     }
 
@@ -82,7 +86,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startCameraModel(
-                createPictureSelector(null, fragment), config
+                createPictureSelector(fragment), config
         );
     }
 
@@ -99,7 +103,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startGalleryModel(
-                createPictureSelector(activity, null), config
+                createPictureSelector(activity), config
         );
     }
 
@@ -114,7 +118,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startGalleryModel(
-                createPictureSelector(null, fragment), config
+                createPictureSelector(fragment), config
         );
     }
 
@@ -131,7 +135,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startPreviewModel(
-                createPictureSelector(activity, null), config
+                createPictureSelector(activity), config
         );
     }
 
@@ -146,7 +150,7 @@ public class PictureSelectorEngineImpl
             MediaConfig config
     ) {
         return startPreviewModel(
-                createPictureSelector(null, fragment), config
+                createPictureSelector(fragment), config
         );
     }
 
@@ -247,18 +251,14 @@ public class PictureSelectorEngineImpl
 
     /**
      * 创建图片选择器对象
-     * @param activity {@link Activity}
-     * @param fragment {@link Fragment}
+     * @param object {@link Activity}、{@link Fragment}
      * @return {@link PictureSelector}
      */
-    private PictureSelector createPictureSelector(
-            final Activity activity,
-            final Fragment fragment
-    ) {
-        if (activity != null) {
-            return PictureSelector.create(activity);
-        } else if (fragment != null) {
-            return PictureSelector.create(fragment);
+    private PictureSelector createPictureSelector(final Object object) {
+        if (object instanceof Activity) {
+            return PictureSelector.create((Activity) object);
+        } else if (object instanceof Fragment) {
+            return PictureSelector.create((Fragment) object);
         }
         return null;
     }
@@ -272,8 +272,8 @@ public class PictureSelectorEngineImpl
      * @param lists {@link MediaData} list
      * @return {@link LocalMedia} list
      */
-    private List<LocalMedia> convertList(final List<MediaData> lists) {
-        List<LocalMedia> medias = new ArrayList<>();
+    private ArrayList<LocalMedia> convertList(final List<MediaData> lists) {
+        ArrayList<LocalMedia> medias = new ArrayList<>();
         if (lists != null) {
             for (MediaData media : lists) {
                 if (media != null) {
@@ -350,7 +350,7 @@ public class PictureSelectorEngineImpl
             final PictureSelector pictureSelector,
             final MediaConfig config
     ) {
-        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+        if (pictureSelector != null && config != null) {
             try {
                 Object libConfig = config.getLibCustomConfig();
                 if (libConfig instanceof PictureSelectionCameraModel) {
@@ -359,16 +359,7 @@ public class PictureSelectorEngineImpl
                     );
                     return true;
                 }
-                if (libConfig instanceof PictureSelectionConfig) {
-                    PictureSelectionConfig useConfig = (PictureSelectionConfig) libConfig;
-                    // Camera Model
-                    PictureSelectionCameraModel model = pictureSelector.openCamera(
-                            useConfig.chooseMode
-                    );
-
-                    model.forResultActivity(PIC_REQUEST_CODE);
-                    return true;
-                }
+                throw new Exception("MediaConfig libCustomConfig is null");
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "startCameraModel");
             }
@@ -386,7 +377,25 @@ public class PictureSelectorEngineImpl
             final PictureSelector pictureSelector,
             final MediaConfig config
     ) {
-        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+        if (pictureSelector != null && config != null) {
+            try {
+                Object libConfig = config.getLibCustomConfig();
+                if (libConfig instanceof PictureSelectionModel) {
+                    ((PictureSelectionModel) libConfig).forResult(
+                            PIC_REQUEST_CODE
+                    );
+                    return true;
+                }
+                if (libConfig instanceof PictureSelectionSystemModel) {
+                    ((PictureSelectionSystemModel) libConfig).forSystemResultActivity(
+                            PIC_REQUEST_CODE
+                    );
+                    return true;
+                }
+                throw new Exception("MediaConfig libCustomConfig is null");
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startGalleryModel");
+            }
         }
         return false;
     }
@@ -401,7 +410,20 @@ public class PictureSelectorEngineImpl
             final PictureSelector pictureSelector,
             final MediaConfig config
     ) {
-        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+        if (pictureSelector != null && config != null) {
+            try {
+                Object libConfig = config.getLibCustomConfig();
+                if (libConfig instanceof PictureSelectionPreviewModel) {
+                    ((PictureSelectionPreviewModel) libConfig).startActivityPreview(
+                            ConvertUtils.toInt(config.getCustomData(), 0),
+                            false, convertList(config.getMediaDatas())
+                    );
+                    return true;
+                }
+                throw new Exception("MediaConfig libCustomConfig is null");
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startPreviewModel");
+            }
         }
         return false;
     }

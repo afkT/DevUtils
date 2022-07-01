@@ -15,9 +15,6 @@ import dev.utils.app.toast.ToastUtils;
 /**
  * detail: PictureSelector 录音拦截器
  * @author luck
- * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- * </pre>
  */
 public class LuckRecordAudioInterceptListener
         implements OnRecordAudioInterceptListener {

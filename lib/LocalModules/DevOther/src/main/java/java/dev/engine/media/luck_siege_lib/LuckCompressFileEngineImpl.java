@@ -25,9 +25,6 @@ import top.zibin.luban.OnRenameListener;
 /**
  * detail: PictureSelector 相册压缩引擎
  * @author luck
- * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- * </pre>
  */
 public class LuckCompressFileEngineImpl
         implements CompressFileEngine {

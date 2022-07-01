@@ -23,9 +23,6 @@ import java.util.ArrayList;
 /**
  * detail: PictureSelector 相册裁剪引擎
  * @author luck
- * <pre>
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/wiki"/>
- * </pre>
  */
 public class LuckCropFileEngineImpl
         implements CropFileEngine {
