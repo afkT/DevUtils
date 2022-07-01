@@ -10,6 +10,13 @@ import dev.utils.app.UriUtils;
 /**
  * detail: Media Selector Data
  * @author Ttt
+ * <pre>
+ *     统一使用 Uri 作为资源获取来源, 减少后续适配情况
+ *     <p></p>
+ *     唯一需要考虑的是适配第三方库转换 String Path 逻辑处理
+ *     get 时使用 uri.toString() 还是 uri.getPath() 亦或是其他方法
+ *     根据 set 时存入什么值决定
+ * </pre>
  */
 public class MediaData
         extends IMediaEngine.EngineData {
@@ -128,11 +135,11 @@ public class MediaData
     // = 状态信息 =
     // ==========
 
-    // 是否裁剪
-    private boolean mCrop = false;
+    // 是否裁剪状态
+    private boolean mCropState = false;
 
-    // 是否压缩
-    private boolean mCompress = false;
+    // 是否压缩状态
+    private boolean mCompressState = false;
 
     // ==============
     // = 对外公开方法 =
@@ -204,7 +211,7 @@ public class MediaData
      * @return {@code true} yes, {@code false} no
      */
     public boolean isExistCompressUri() {
-        return mCompress && UriUtils.isUriExists(mCompressUri);
+        return mCompressState && UriUtils.isUriExists(mCompressUri);
     }
 
     /**
@@ -212,7 +219,7 @@ public class MediaData
      * @return {@code true} yes, {@code false} no
      */
     public boolean isExistCropUri() {
-        return mCrop && UriUtils.isUriExists(mCropUri);
+        return mCropState && UriUtils.isUriExists(mCropUri);
     }
 
     // ==========
@@ -224,26 +231,55 @@ public class MediaData
      * @return MediaData
      */
     public MediaData clone() {
-        MediaData mediaData = new MediaData(mUUID);
-        mediaData.mCustomData      = mCustomData;
-        mediaData.mOriginalUri     = mOriginalUri;
-        mediaData.mSandboxUri      = mSandboxUri;
-        mediaData.mCompressUri     = mCompressUri;
-        mediaData.mThumbnailUri    = mThumbnailUri;
-        mediaData.mWatermarkUri    = mWatermarkUri;
-        mediaData.mCropUri         = mCropUri;
-        mediaData.mMimeType        = mMimeType;
-        mediaData.mDuration        = mDuration;
-        mediaData.mWidth           = mWidth;
-        mediaData.mHeight          = mHeight;
-        mediaData.mCropImageWidth  = mCropImageWidth;
-        mediaData.mCropImageHeight = mCropImageHeight;
-        mediaData.mCropOffsetX     = mCropOffsetX;
-        mediaData.mCropOffsetY     = mCropOffsetY;
-        mediaData.mCropAspectRatio = mCropAspectRatio;
-        mediaData.mCrop            = mCrop;
-        mediaData.mCompress        = mCompress;
-        return mediaData;
+        MediaData media = new MediaData(mUUID);
+        media.mCustomData      = mCustomData;
+        media.mOriginalUri     = mOriginalUri;
+        media.mSandboxUri      = mSandboxUri;
+        media.mCompressUri     = mCompressUri;
+        media.mThumbnailUri    = mThumbnailUri;
+        media.mWatermarkUri    = mWatermarkUri;
+        media.mCropUri         = mCropUri;
+        media.mMimeType        = mMimeType;
+        media.mDuration        = mDuration;
+        media.mWidth           = mWidth;
+        media.mHeight          = mHeight;
+        media.mCropImageWidth  = mCropImageWidth;
+        media.mCropImageHeight = mCropImageHeight;
+        media.mCropOffsetX     = mCropOffsetX;
+        media.mCropOffsetY     = mCropOffsetY;
+        media.mCropAspectRatio = mCropAspectRatio;
+        media.mCropState       = mCropState;
+        media.mCompressState   = mCompressState;
+        return media;
+    }
+
+    /**
+     * 设置 MediaData 数据
+     * @param media MediaData
+     * @return MediaData
+     */
+    public MediaData set(final MediaData media) {
+        if (media != null) {
+            mCustomData      = media.mCustomData;
+            mOriginalUri     = media.mOriginalUri;
+            mSandboxUri      = media.mSandboxUri;
+            mCompressUri     = media.mCompressUri;
+            mThumbnailUri    = media.mThumbnailUri;
+            mWatermarkUri    = media.mWatermarkUri;
+            mCropUri         = media.mCropUri;
+            mMimeType        = media.mMimeType;
+            mDuration        = media.mDuration;
+            mWidth           = media.mWidth;
+            mHeight          = media.mHeight;
+            mCropImageWidth  = media.mCropImageWidth;
+            mCropImageHeight = media.mCropImageHeight;
+            mCropOffsetX     = media.mCropOffsetX;
+            mCropOffsetY     = media.mCropOffsetY;
+            mCropAspectRatio = media.mCropAspectRatio;
+            mCropState       = media.mCropState;
+            mCompressState   = media.mCompressState;
+        }
+        return this;
     }
 
     // ===========
@@ -550,17 +586,17 @@ public class MediaData
      * 获取裁剪状态
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isCrop() {
-        return mCrop;
+    public boolean isCropState() {
+        return mCropState;
     }
 
     /**
      * 设置裁剪状态
-     * @param crop 是否裁剪
+     * @param cropState {@code true} yes, {@code false} no
      * @return MediaData
      */
-    public MediaData setCrop(final boolean crop) {
-        this.mCrop = crop;
+    public MediaData setCropState(final boolean cropState) {
+        this.mCropState = cropState;
         return this;
     }
 
@@ -568,17 +604,17 @@ public class MediaData
      * 获取压缩状态
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isCompress() {
-        return mCompress;
+    public boolean isCompressState() {
+        return mCompressState;
     }
 
     /**
      * 设置压缩状态
-     * @param compress 是否压缩
+     * @param compressState {@code true} yes, {@code false} no
      * @return MediaData
      */
-    public MediaData setCompress(final boolean compress) {
-        this.mCompress = compress;
+    public MediaData setCompressState(final boolean compressState) {
+        this.mCompressState = compressState;
         return this;
     }
 }

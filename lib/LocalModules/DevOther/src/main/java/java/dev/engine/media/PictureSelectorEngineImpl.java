@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
 
-import com.luck.picture.lib.basic.PictureSelectionModel;
+import com.luck.picture.lib.basic.PictureSelectionCameraModel;
+import com.luck.picture.lib.basic.PictureSelector;
+import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.manager.PictureCacheManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,6 @@ import dev.utils.app.UriUtils;
  * <pre>
  *     功能配置文档
  *     @see <a href="https://github.com/LuckSiege/PictureSelector"/>
- *     尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
- *     防止需要适配 Android 11 ( R ) 进行转存文件需判断文件路径
  * </pre>
  */
 public class PictureSelectorEngineImpl
@@ -66,10 +66,9 @@ public class PictureSelectorEngineImpl
             Activity activity,
             MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
-                getPictureSelector(activity, null), config, true
+        return startCameraModel(
+                createPictureSelector(activity, null), config
         );
-        return forResult(pictureSelectionModel);
     }
 
     @Override
@@ -82,10 +81,9 @@ public class PictureSelectorEngineImpl
             Fragment fragment,
             MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
-                getPictureSelector(null, fragment), config, true
+        return startCameraModel(
+                createPictureSelector(null, fragment), config
         );
-        return forResult(pictureSelectionModel);
     }
 
     // =
@@ -100,10 +98,9 @@ public class PictureSelectorEngineImpl
             Activity activity,
             MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
-                getPictureSelector(activity, null), config, false
+        return startGalleryModel(
+                createPictureSelector(activity, null), config
         );
-        return forResult(pictureSelectionModel);
     }
 
     @Override
@@ -116,10 +113,41 @@ public class PictureSelectorEngineImpl
             Fragment fragment,
             MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
-                getPictureSelector(null, fragment), config, false
+        return startGalleryModel(
+                createPictureSelector(null, fragment), config
         );
-        return forResult(pictureSelectionModel);
+    }
+
+    // =
+
+    @Override
+    public boolean openPreview(Activity activity) {
+        return openPreview(activity, PIC_CONFIG);
+    }
+
+    @Override
+    public boolean openPreview(
+            Activity activity,
+            MediaConfig config
+    ) {
+        return startPreviewModel(
+                createPictureSelector(activity, null), config
+        );
+    }
+
+    @Override
+    public boolean openPreview(Fragment fragment) {
+        return openPreview(fragment, PIC_CONFIG);
+    }
+
+    @Override
+    public boolean openPreview(
+            Fragment fragment,
+            MediaConfig config
+    ) {
+        return startPreviewModel(
+                createPictureSelector(null, fragment), config
+        );
     }
 
     // ==========
@@ -132,7 +160,7 @@ public class PictureSelectorEngineImpl
             int type
     ) {
         try {
-            PictureFileUtils.deleteCacheDirFile(context, type);
+            PictureCacheManager.deleteCacheDirFile(context, type);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteCacheDirFile");
         }
@@ -141,7 +169,7 @@ public class PictureSelectorEngineImpl
     @Override
     public void deleteAllCacheDirFile(Context context) {
         try {
-            PictureFileUtils.deleteAllCacheDirFile(context);
+            PictureCacheManager.deleteAllCacheDirFile(context);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile");
         }
@@ -159,12 +187,12 @@ public class PictureSelectorEngineImpl
 
     @Override
     public List<MediaData> getSelectors(Intent intent) {
-        List<LocalMedia> result = PictureSelector.obtainMultipleResult(intent);
+        List<LocalMedia> result = PictureSelector.obtainSelectorList(intent);
         List<MediaData>  lists  = new ArrayList<>();
         if (result != null) {
-            for (LocalMedia localMedia : result) {
-                if (localMedia != null) {
-                    lists.add(new MediaData(localMedia));
+            for (LocalMedia libData : result) {
+                if (libData != null) {
+                    lists.add(createMediaData(libData));
                 }
             }
         }
@@ -181,8 +209,12 @@ public class PictureSelectorEngineImpl
         if (result != null) {
             for (MediaData media : result) {
                 if (media != null) {
-                    String path = media.getLocalMediaPath(original);
-                    Uri    uri  = UriUtils.getUriForPath(path);
+                    Uri uri;
+                    if (original) {
+                        uri = media.getOriginalUri();
+                    } else {
+                        uri = media.getAvailableUri();
+                    }
                     if (uri != null) {
                         lists.add(uri);
                     }
@@ -214,12 +246,12 @@ public class PictureSelectorEngineImpl
     // ==========
 
     /**
-     * 获取图片选择器对象
+     * 创建图片选择器对象
      * @param activity {@link Activity}
      * @param fragment {@link Fragment}
      * @return {@link PictureSelector}
      */
-    private PictureSelector getPictureSelector(
+    private PictureSelector createPictureSelector(
             final Activity activity,
             final Fragment fragment
     ) {
@@ -231,99 +263,9 @@ public class PictureSelectorEngineImpl
         return null;
     }
 
-    /**
-     * 是否跳转成功
-     * @param pictureSelectionModel 图片选择配置模型
-     * @return {@code true} success, {@code false} fail
-     */
-    private boolean forResult(final PictureSelectionModel pictureSelectionModel) {
-        if (pictureSelectionModel != null) {
-            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 获取图片选择配置模型
-     * <pre>
-     *     // 结果回调 onActivityResult requestCode
-     *     pictureSelectionModel.forResult(requestCode);
-     * </pre>
-     * @param pictureSelector {@link PictureSelector}
-     * @param config          {@link MediaConfig}
-     * @param isCamera        是否拍照
-     * @return {@link PictureSelectionModel}
-     */
-    private PictureSelectionModel getPictureSelectionModel(
-            final PictureSelector pictureSelector,
-            final MediaConfig config,
-            final boolean isCamera
-    ) {
-        if (pictureSelector != null && config != null) {
-            // 图片选择配置模型
-            PictureSelectionModel pictureSelectionModel;
-            // 相册选择类型
-            if (isCamera) {
-                pictureSelectionModel = pictureSelector.openCamera(config.getMimeType());
-            } else {
-                pictureSelectionModel = pictureSelector.openGallery(config.getMimeType());
-            }
-
-            // 是否裁减
-            boolean isCrop = config.isCrop();
-            // 是否圆形裁减
-            boolean isCircleCrop = config.isCircleCrop();
-
-            // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
-            pictureSelectionModel.selectionMode(config.getSelectionMode())
-                    .imageEngine(LuckGlideEngineImpl.createGlideEngine())
-                    .isPreviewImage(true) // 是否可预览图片 true or false
-                    .isPreviewVideo(true) // 是否可以预览视频 true or false
-                    .isEnablePreviewAudio(true) // 是否可播放音频 true or false
-                    .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
-                    .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
-                    .imageSpanCount(config.getImageSpanCount())// 每行显示个数 int
-                    .minSelectNum(config.getMinSelectNum()) // 最小选择数量 int
-                    .maxSelectNum(config.getMaxSelectNum()) // 最大图片选择数量 int
-                    .isCamera(config.isCamera()) // 是否显示拍照按钮 true or false
-                    .isGif(config.isGif()) // 是否显示 Gif true or false
-                    // = 压缩相关 =
-                    .isCompress(config.isCompress()) // 是否压缩 true or false
-                    .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
-                    .withAspectRatio(
-                            config.getWithAspectRatio()[0],
-                            config.getWithAspectRatio()[1]
-                    ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
-                    // = 裁减相关 =
-                    // 判断是否显示圆形裁减
-                    .circleDimmedLayer(isCircleCrop)
-                    // = 裁减配置 =
-                    .isEnableCrop(isCrop) // 是否裁剪 true or false
-                    .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
-                    .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
-                    .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
-                    .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
-                    .scaleEnabled(isCrop); // 裁剪是否可放大缩小图片 true or false
-
-            // 设置拍照存储地址
-            if (!TextUtils.isEmpty(config.getCameraSavePath())) {
-                pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath());
-            }
-            // 设置压缩图片存储地址
-            if (!TextUtils.isEmpty(config.getCompressSavePath())) {
-                pictureSelectionModel.compressSavePath(config.getCompressSavePath());
-            }
-            // 判断是否存在选中资源
-            if (config.getLocalMedia() != null && config.getLocalMedia().size() != 0) {
-                pictureSelectionModel.selectionData(
-                        convertList(config.getLocalMedia())
-                );
-            }
-            return pictureSelectionModel;
-        }
-        return null;
-    }
+    // ==========
+    // = 转换对象 =
+    // ==========
 
     /**
      * 转换 List
@@ -333,12 +275,134 @@ public class PictureSelectorEngineImpl
     private List<LocalMedia> convertList(final List<MediaData> lists) {
         List<LocalMedia> medias = new ArrayList<>();
         if (lists != null) {
-            for (MediaData data : lists) {
-                if (data != null && data.getLocalMedia() != null) {
-                    medias.add(data.getLocalMedia());
+            for (MediaData media : lists) {
+                if (media != null) {
+                    Object libData = media.getLibOriginalData();
+                    if (libData instanceof LocalMedia) {
+                        medias.add((LocalMedia) libData);
+                    } else {
+                        LocalMedia localMedia = new LocalMedia();
+                        Uri        uri        = media.getOriginalUri();
+                        if (uri != null) {
+                            localMedia.setPath(uri.toString());
+                            localMedia.setOriginalPath(uri.toString());
+                            medias.add(localMedia);
+                        }
+                    }
                 }
             }
         }
         return medias;
+    }
+
+    /**
+     * 创建 MediaData 并填充数据
+     * @param libData 第三方库选择数据实体类
+     * @return MediaData
+     */
+    private MediaData createMediaData(final LocalMedia libData) {
+        MediaData media = new MediaData();
+        media.setLibOriginalData(libData);
+
+        // ============
+        // = 初始化数据 =
+        // ============
+
+        // 资源路径 Uri
+        media.setOriginalUri(UriUtils.getUriForPath(libData.getOriginalPath()))
+                .setSandboxUri(UriUtils.getUriForPath(libData.getSandboxPath()))
+                .setCompressUri(UriUtils.getUriForPath(libData.getCompressPath()))
+                .setThumbnailUri(UriUtils.getUriForPath(libData.getVideoThumbnailPath()))
+                .setWatermarkUri(UriUtils.getUriForPath(libData.getWatermarkPath()))
+                .setCropUri(UriUtils.getUriForPath(libData.getCutPath()));
+
+        // 资源信息
+        media.setMimeType(libData.getMimeType())
+                .setDuration(libData.getDuration())
+                .setWidth(libData.getWidth())
+                .setHeight(libData.getHeight());
+
+        // 资源裁剪信息
+        media.setCropImageWidth(libData.getCropImageWidth())
+                .setCropImageHeight(libData.getCropImageHeight())
+                .setCropOffsetX(libData.getCropOffsetX())
+                .setCropOffsetY(libData.getCropOffsetY())
+                .setCropAspectRatio(libData.getCropResultAspectRatio());
+
+        // 状态信息
+        media.setCropState(libData.isCut())
+                .setCompressState(libData.isCompressed());
+
+        return media;
+    }
+
+    // ==========================
+    // = PictureSelection Model =
+    // ==========================
+
+    /**
+     * 跳转 Camera PictureSelection Model
+     * @param pictureSelector {@link PictureSelector}
+     * @param config          {@link MediaConfig}
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean startCameraModel(
+            final PictureSelector pictureSelector,
+            final MediaConfig config
+    ) {
+        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+            try {
+                Object libConfig = config.getLibCustomConfig();
+                if (libConfig instanceof PictureSelectionCameraModel) {
+                    ((PictureSelectionCameraModel) libConfig).forResultActivity(
+                            PIC_REQUEST_CODE
+                    );
+                    return true;
+                }
+                if (libConfig instanceof PictureSelectionConfig) {
+                    PictureSelectionConfig useConfig = (PictureSelectionConfig) libConfig;
+                    // Camera Model
+                    PictureSelectionCameraModel model = pictureSelector.openCamera(
+                            useConfig.chooseMode
+                    );
+
+                    model.forResultActivity(PIC_REQUEST_CODE);
+                    return true;
+                }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "startCameraModel");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 跳转 Gallery PictureSelection Model
+     * @param pictureSelector {@link PictureSelector}
+     * @param config          {@link MediaConfig}
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean startGalleryModel(
+            final PictureSelector pictureSelector,
+            final MediaConfig config
+    ) {
+        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+        }
+        return false;
+    }
+
+    /**
+     * 跳转 Preview PictureSelection Model
+     * @param pictureSelector {@link PictureSelector}
+     * @param config          {@link MediaConfig}
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean startPreviewModel(
+            final PictureSelector pictureSelector,
+            final MediaConfig config
+    ) {
+        if (pictureSelector != null && config != null && config.getLibCustomConfig() != null) {
+        }
+        return false;
     }
 }

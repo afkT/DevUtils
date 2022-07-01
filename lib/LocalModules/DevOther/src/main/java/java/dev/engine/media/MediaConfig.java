@@ -7,6 +7,11 @@ import dev.engine.media.IMediaEngine;
 /**
  * detail: Media Selector Config
  * @author Ttt
+ * <pre>
+ *     图片选择库可配置选项过多且不一致
+ *     所以新增一个 mLibCustomConfig 第三方库自定义配置
+ *     要求必须设置第三方库配置、参数等自行转换进行使用
+ * </pre>
  */
 public class MediaConfig
         extends IMediaEngine.EngineConfig {

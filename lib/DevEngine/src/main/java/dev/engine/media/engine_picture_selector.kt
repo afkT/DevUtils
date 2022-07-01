@@ -4,13 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
-import com.luck.picture.lib.PictureSelectionModel
-import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.basic.PictureSelectionModel
+import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.tools.PictureFileUtils
-import dev.engine.media.luck_lib_engine.LuckGlideEngineImpl
+import com.luck.picture.lib.manager.PictureCacheManager
 import dev.utils.LogPrintUtils
 import dev.utils.app.UriUtils
 
@@ -111,6 +109,36 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return forResult(pictureSelectionModel)
     }
 
+    // =
+
+    override fun openPreview(activity: Activity?): Boolean {
+        return openPreview(activity, PIC_CONFIG)
+    }
+
+    override fun openPreview(
+        activity: Activity?,
+        config: MediaConfig?
+    ): Boolean {
+        val pictureSelectionModel = getPictureSelectionModel(
+            getPictureSelector(activity, null), config, false
+        )
+        return forResult(pictureSelectionModel)
+    }
+
+    override fun openPreview(fragment: Fragment?): Boolean {
+        return openPreview(fragment, PIC_CONFIG)
+    }
+
+    override fun openPreview(
+        fragment: Fragment?,
+        config: MediaConfig?
+    ): Boolean {
+        val pictureSelectionModel = getPictureSelectionModel(
+            getPictureSelector(null, fragment), config, false
+        )
+        return forResult(pictureSelectionModel)
+    }
+
     // ==========
     // = 其他方法 =
     // ==========
@@ -120,7 +148,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         type: Int
     ) {
         try {
-            PictureFileUtils.deleteCacheDirFile(context, type)
+            PictureCacheManager.deleteCacheDirFile(context, type)
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "deleteCacheDirFile")
         }
@@ -128,7 +156,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
 
     override fun deleteAllCacheDirFile(context: Context?) {
         try {
-            PictureFileUtils.deleteAllCacheDirFile(context)
+            PictureCacheManager.deleteAllCacheDirFile(context)
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile")
         }
@@ -145,12 +173,12 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
 
     override fun getSelectors(intent: Intent?): MutableList<LocalMediaData> {
         val lists: MutableList<LocalMediaData> = ArrayList()
-        val result = PictureSelector.obtainMultipleResult(intent)
-        result.forEach {
-            it?.let { localMedia ->
-                lists.add(LocalMediaData(localMedia))
-            }
-        }
+//        val result = PictureSelector.obtainMultipleResult(intent)
+//        result.forEach {
+//            it?.let { localMedia ->
+//                lists.add(LocalMediaData(localMedia))
+//            }
+//        }
         return lists
     }
 
@@ -211,10 +239,10 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
      * @return `true` success, `false` fail
      */
     private fun forResult(pictureSelectionModel: PictureSelectionModel?): Boolean {
-        pictureSelectionModel?.let {
-            it.forResult(PIC_REQUEST_CODE)
-            return true
-        }
+//        pictureSelectionModel?.let {
+//            it.forResult(PIC_REQUEST_CODE)
+//            return true
+//        }
         return false
     }
 
@@ -239,55 +267,55 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
             } else {
                 pictureSelector.openGallery(config.getMimeType())
             }
-            // 是否裁减
-            val isCrop = config.isCrop()
-            // 是否圆形裁减
-            val isCircleCrop = config.isCircleCrop()
-            // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
-            pictureSelectionModel.selectionMode(config.getSelectionMode())
-                .imageEngine(LuckGlideEngineImpl.instance)
-                .isPreviewImage(true) // 是否可预览图片 true or false
-                .isPreviewVideo(true) // 是否可以预览视频 true or false
-                .isEnablePreviewAudio(true) // 是否可播放音频 true or false
-                .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
-                .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
-                .imageSpanCount(config.getImageSpanCount()) // 每行显示个数 int
-                .minSelectNum(config.getMinSelectNum()) // 最小选择数量 int
-                .maxSelectNum(config.getMaxSelectNum()) // 最大图片选择数量 int
-                .isCamera(config.isCamera()) // 是否显示拍照按钮 true or false
-                .isGif(config.isGif()) // 是否显示 Gif true or false
-                // = 压缩相关 =
-                .isCompress(config.isCompress()) // 是否压缩 true or false
-                .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
-                .withAspectRatio(
-                    config.getWithAspectRatio()[0],
-                    config.getWithAspectRatio()[1]
-                ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
-                // = 裁减相关 =
-                // 判断是否显示圆形裁减
-                .circleDimmedLayer(isCircleCrop) // = 裁减配置 =
-                .isEnableCrop(isCrop) // 是否裁剪 true or false
-                .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
-                .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
-                .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
-                .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
-                .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
-
-            // 设置拍照存储地址
-            if (!TextUtils.isEmpty(config.getCameraSavePath())) {
-                pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
-            }
-            // 设置压缩图片存储地址
-            if (!TextUtils.isEmpty(config.getCompressSavePath())) {
-                pictureSelectionModel.compressSavePath(config.getCompressSavePath())
-            }
-            // 判断是否存在选中资源
-            config.getLocalMedia()?.let {
-                if (it.isNotEmpty()) {
-                    pictureSelectionModel.selectionData(convertList(it))
-                }
-            }
-            return pictureSelectionModel
+//            // 是否裁减
+//            val isCrop = config.isCrop()
+//            // 是否圆形裁减
+//            val isCircleCrop = config.isCircleCrop()
+//            // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
+//            pictureSelectionModel.selectionMode(config.getSelectionMode())
+//                .imageEngine(LuckGlideEngineImpl.instance)
+//                .isPreviewImage(true) // 是否可预览图片 true or false
+//                .isPreviewVideo(true) // 是否可以预览视频 true or false
+//                .isEnablePreviewAudio(true) // 是否可播放音频 true or false
+//                .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
+//                .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
+//                .imageSpanCount(config.getImageSpanCount()) // 每行显示个数 int
+//                .minSelectNum(config.getMinSelectNum()) // 最小选择数量 int
+//                .maxSelectNum(config.getMaxSelectNum()) // 最大图片选择数量 int
+//                .isCamera(config.isCamera()) // 是否显示拍照按钮 true or false
+//                .isGif(config.isGif()) // 是否显示 Gif true or false
+//                // = 压缩相关 =
+//                .isCompress(config.isCompress()) // 是否压缩 true or false
+//                .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
+//                .withAspectRatio(
+//                    config.getWithAspectRatio()[0],
+//                    config.getWithAspectRatio()[1]
+//                ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
+//                // = 裁减相关 =
+//                // 判断是否显示圆形裁减
+//                .circleDimmedLayer(isCircleCrop) // = 裁减配置 =
+//                .isEnableCrop(isCrop) // 是否裁剪 true or false
+//                .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
+//                .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
+//                .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
+//                .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
+//                .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
+//
+//            // 设置拍照存储地址
+//            if (!TextUtils.isEmpty(config.getCameraSavePath())) {
+//                pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
+//            }
+//            // 设置压缩图片存储地址
+//            if (!TextUtils.isEmpty(config.getCompressSavePath())) {
+//                pictureSelectionModel.compressSavePath(config.getCompressSavePath())
+//            }
+//            // 判断是否存在选中资源
+//            config.getLocalMedia()?.let {
+//                if (it.isNotEmpty()) {
+//                    pictureSelectionModel.selectionData(convertList(it))
+//                }
+//            }
+//            return pictureSelectionModel
         }
         return null
     }

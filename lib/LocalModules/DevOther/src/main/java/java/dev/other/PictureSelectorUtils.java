@@ -7,8 +7,8 @@ import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
-import java.dev.engine.media.LocalMediaData;
 import java.dev.engine.media.MediaConfig;
+import java.dev.engine.media.MediaData;
 import java.dev.engine.media.PictureSelectorEngineImpl;
 import java.util.List;
 
@@ -183,7 +183,7 @@ public final class PictureSelectorUtils {
      * @param intent onActivityResult Intent data
      * @return Media Selector Data List
      */
-    public static List<LocalMediaData> getSelectors(Intent intent) {
+    public static List<MediaData> getSelectors(Intent intent) {
         return IMPL.getSelectors(intent);
     }
 
@@ -205,7 +205,7 @@ public final class PictureSelectorUtils {
      * @param intent onActivityResult Intent data
      * @return Single Media Selector Data
      */
-    public static LocalMediaData getSingleSelector(Intent intent) {
+    public static MediaData getSingleSelector(Intent intent) {
         return IMPL.getSingleSelector(intent);
     }
 
