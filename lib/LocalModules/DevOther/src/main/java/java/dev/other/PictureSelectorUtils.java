@@ -139,6 +139,52 @@ public final class PictureSelectorUtils {
         return IMPL.openGallery(fragment, config);
     }
 
+    // =
+
+    /**
+     * 打开相册预览
+     * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openPreview(Activity activity) {
+        return IMPL.openPreview(activity);
+    }
+
+    /**
+     * 打开相册预览
+     * @param activity {@link Activity}
+     * @param config   配置信息
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openPreview(
+            Activity activity,
+            MediaConfig config
+    ) {
+        return IMPL.openPreview(activity, config);
+    }
+
+    /**
+     * 打开相册预览
+     * @param fragment {@link Fragment}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openPreview(Fragment fragment) {
+        return IMPL.openPreview(fragment);
+    }
+
+    /**
+     * 打开相册预览
+     * @param fragment {@link Fragment}
+     * @param config   配置信息
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openPreview(
+            Fragment fragment,
+            MediaConfig config
+    ) {
+        return IMPL.openPreview(fragment, config);
+    }
+
     // ==========
     // = 其他方法 =
     // ==========
