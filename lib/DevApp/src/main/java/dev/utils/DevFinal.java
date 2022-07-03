@@ -716,12 +716,12 @@ public final class DevFinal {
         public static final String PERMISSION = "permission";
         public static final String VIEW_MODEL = "view_model";
 
-        public static final String IMAGE_VIEW      = "image_view";
-        public static final String RECYCLE_VIEW      = "recycle_view";
-        public static final String SCROLL_VIEW      = "scroll_view";
-        public static final String TEXT_VIEW      = "text_view";
-        public static final String VIEW_GROUP      = "view_group";
-        public static final String VIEW_PAGER      = "view_pager";
+        public static final String IMAGE_VIEW   = "image_view";
+        public static final String RECYCLE_VIEW = "recycle_view";
+        public static final String SCROLL_VIEW  = "scroll_view";
+        public static final String TEXT_VIEW    = "text_view";
+        public static final String VIEW_GROUP   = "view_group";
+        public static final String VIEW_PAGER   = "view_pager";
 
         public static final String CHILD       = "child";
         public static final String COMPILE     = "compile";
@@ -855,7 +855,7 @@ public final class DevFinal {
         public static final String LOOP     = "loop";
         public static final String MIDDLE   = "middle";
         public static final String PAGE     = "page";
-        public static final String PAGER     = "pager";
+        public static final String PAGER    = "pager";
         public static final String POSITION = "position";
         public static final String PUT      = "put";
         public static final String QUERY    = "query";

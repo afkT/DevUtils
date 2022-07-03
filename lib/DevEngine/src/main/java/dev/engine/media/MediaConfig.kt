@@ -136,9 +136,9 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun setSelectionMode(selectionMode: Int): MediaConfig {
         if (selectionMode >= MimeType.MULTIPLE) {
-            this.mSelectionMode = MimeType.MULTIPLE
-        } else if (selectionMode <= MimeType.SINGLE) {
-            this.mSelectionMode = MimeType.SINGLE
+            mSelectionMode = MimeType.MULTIPLE
+        } else {
+            mSelectionMode = MimeType.SINGLE
         }
         return this
     }
