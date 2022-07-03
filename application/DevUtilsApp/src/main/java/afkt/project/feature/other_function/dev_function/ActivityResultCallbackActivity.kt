@@ -28,13 +28,13 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
         binding.vidSelectBtn.setOnClickListener {
             AppUtils.startActivityForResult(object : DefaultActivityResult.ResultCallback {
                 override fun onStartActivityForResult(activity: Activity): Boolean {
-                    // 初始化图片配置
-                    val config = MediaConfig()
-                        .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                        .setMimeType(MediaConfig.MimeType.ofImage())
-                        .setCamera(true).setGif(false)
-                    // 打开图片选择器
-                    DevEngine.getMedia()?.openGallery(activity, config)
+//                    // 初始化图片配置
+//                    val config = MediaConfig()
+//                        .setCompress(false).setMaxSelectNum(1).setCrop(false)
+//                        .setMimeType(MediaConfig.MimeType.ofImage())
+//                        .setCamera(true).setGif(false)
+//                    // 打开图片选择器
+//                    DevEngine.getMedia()?.openGallery(activity, config)
                     return true
                 }
 

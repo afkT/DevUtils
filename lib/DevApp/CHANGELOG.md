@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.4.0 *(2022-07-03)*
+Version 2.4.0 *(2022-07-04)*
 ----------------------------
 
 * `[Add]` 新增 UriUtils#isAndroidResourceScheme、isFileScheme、isContentScheme、isUriScheme

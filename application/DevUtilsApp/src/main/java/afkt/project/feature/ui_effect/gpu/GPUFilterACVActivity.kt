@@ -91,13 +91,13 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
     override fun initListener() {
         super.initListener()
         binding.vidSelectBtn.setOnClickListener {
-            // 初始化图片配置
-            val config = MediaConfig()
-                .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                .setMimeType(MediaConfig.MimeType.ofImage())
-                .setCamera(true).setGif(false)
-            // 打开图片选择器
-            DevEngine.getMedia()?.openGallery(mActivity, config)
+//            // 初始化图片配置
+//            val config = MediaConfig()
+//                .setCompress(false).setMaxSelectNum(1).setCrop(false)
+//                .setMimeType(MediaConfig.MimeType.ofImage())
+//                .setCamera(true).setGif(false)
+//            // 打开图片选择器
+//            DevEngine.getMedia()?.openGallery(mActivity, config)
         }
     }
 

@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.4.6 *(2022-07-03)*
+Version 1.4.6 *(2022-07-04)*
 ----------------------------
 
 * `[Add]` 新增 StringUtils#equalsIgnoreCase、equalsIgnoreCaseNotNull

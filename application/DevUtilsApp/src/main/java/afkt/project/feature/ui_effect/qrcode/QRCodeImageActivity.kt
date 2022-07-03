@@ -49,13 +49,13 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         super.onClick(v)
         when (v.id) {
             R.id.vid_select_btn -> {
-                // 初始化图片配置
-                val config = MediaConfig()
-                    .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                    .setMimeType(MediaConfig.MimeType.ofImage())
-                    .setCamera(true).setGif(false)
-                // 打开图片选择器
-                DevEngine.getMedia()?.openGallery(mActivity, config)
+//                // 初始化图片配置
+//                val config = MediaConfig()
+//                    .setCompress(false).setMaxSelectNum(1).setCrop(false)
+//                    .setMimeType(MediaConfig.MimeType.ofImage())
+//                    .setCamera(true).setGif(false)
+//                // 打开图片选择器
+//                DevEngine.getMedia()?.openGallery(mActivity, config)
             }
             R.id.vid_tv -> {
                 val text = TextViewUtils.getText(binding.vidTv)

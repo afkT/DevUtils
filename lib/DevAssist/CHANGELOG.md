@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.3.6 *(2022-07-03)*
+Version 1.3.6 *(2022-07-04)*
 ----------------------------
 
 * `[Update]` 更新 IMediaEngine 接口，新增 openPreview 方法、更新 Path 返回为 Uri

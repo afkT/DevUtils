@@ -89,7 +89,7 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
                     core                          : "androidx.core:core-ktx:1.8.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
@@ -97,15 +97,15 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle#declaring_dependencies
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.0",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.4.1",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.5.0",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -124,10 +124,10 @@ ext {
                     // DataStore https://developer.android.google.cn/topic/libraries/architecture/datastore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.4.1",
+                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.5.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
                     // https://developer.android.google.cn/jetpack/androidx/releases/activity
-                    activity_ktx                  : "androidx.activity:activity-ktx:1.4.0"
+                    activity_ktx                  : "androidx.activity:activity-ktx:1.5.0"
             ],
             "androidx"  : [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
@@ -159,9 +159,9 @@ ext {
                     // https://blog.csdn.net/qq_36861770/article/details/108946449
                     design               : "com.google.android.material:material:1.6.1",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
-                    fragment             : "androidx.fragment:fragment:1.4.1",
+                    fragment             : "androidx.fragment:fragment:1.5.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity             : "androidx.activity:activity:1.4.0",
+                    activity             : "androidx.activity:activity:1.5.0",
                     // https://mvnrepository.com/artifact/androidx.palette/palette
                     // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
                     // Palette 调色板 ( 从图片中获取颜色 )
@@ -213,7 +213,7 @@ ext {
                     live_eventbus                       : "io.github.jeremyliao:live-event-bus-x:1.8.0",
                     // https://mvnrepository.com/artifact/com.squareup.okio/okio
                     // okio https://github.com/square/okio
-                    okio                                : "com.squareup.okio:okio:3.1.0",
+                    okio                                : "com.squareup.okio:okio:3.2.0",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
@@ -253,12 +253,12 @@ ext {
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1",
                     // https://mvnrepository.com/artifact/com.alibaba/fastjson
                     // Fastjson https://github.com/alibaba/fastjson
-                    //fastjson                            : "com.alibaba:fastjson:2.0.7",
-                    //fastjson_android                    : "com.alibaba:fastjson:2.0.7.android",
+                    //fastjson                            : "com.alibaba:fastjson:2.0.8",
+                    //fastjson_android                    : "com.alibaba:fastjson:2.0.8.android",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.7",
-                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.7.android",
+                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.8",
+                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.8.android",
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
@@ -317,7 +317,7 @@ ext {
                     kluban                              : "com.github.forJrking:KLuban:1.1.0",
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:13.6",
+                    xxPermissions                       : "com.github.getActivity:XXPermissions:15.0",
 
                     // =======
                     // = 其他 =
