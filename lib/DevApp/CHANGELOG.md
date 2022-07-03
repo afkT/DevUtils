@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.4.0 *(2022-07-03)*
+----------------------------
+
+* `[Add]` 新增 UriUtils#isAndroidResourceScheme、isFileScheme、isContentScheme、isUriScheme
+
+* `[Add]` 新增 StringUtils#equalsIgnoreCase、equalsIgnoreCaseNotNull
+
+* `[Add]` 新增 ValiToPhoneUtils 中国广电手机号码段、更新最新运营商号码段
+
+* `[Add]` 新增 DevFinal 部分常量值
+
 Version 2.3.9 *(2022-06-26)*
 ----------------------------
 

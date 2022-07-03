@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.4.6 *(2022-07-03)*
+----------------------------
+
+* `[Add]` 新增 StringUtils#equalsIgnoreCase、equalsIgnoreCaseNotNull
+
+* `[Add]` 新增 ValiToPhoneUtils 中国广电手机号码段、更新最新运营商号码段
+
+* `[Add]` 新增 DevFinal 部分常量值
+
 Version 1.4.5 *(2022-06-26)*
 ----------------------------
 
