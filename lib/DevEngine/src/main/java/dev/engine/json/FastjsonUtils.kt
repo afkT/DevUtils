@@ -53,7 +53,7 @@ internal object FastjsonUtils {
         if (json != null) {
             try {
                 return JSON.parseObject(json, classOfT)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "fromJson")
             }
         }
@@ -75,7 +75,7 @@ internal object FastjsonUtils {
         if (json != null) {
             try {
                 return JSON.parseObject(json, typeOfT)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "fromJson")
             }
         }
@@ -95,7 +95,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj != null
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             return false
         }
     }
@@ -109,7 +109,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj is JSONObject
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
         }
         return false
     }
@@ -123,7 +123,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj is JSONArray
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
         }
         return false
     }
@@ -143,7 +143,7 @@ internal object FastjsonUtils {
                 return JSON.toJSONString(
                     obj, JSONWriter.Feature.PrettyFormat
                 )
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent")
             }
         }
@@ -159,7 +159,7 @@ internal object FastjsonUtils {
         if (obj != null) {
             try {
                 return toJsonIndent(toJson(obj))
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent")
             }
         }

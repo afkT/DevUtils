@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.fragment.app.Fragment
-import dev.engine.media.LocalMediaData
 import dev.engine.media.MediaConfig
+import dev.engine.media.MediaData
 import dev.engine.media.PictureSelectorEngineImpl
 
 /**
@@ -80,6 +80,30 @@ object PictureSelectorUtils {
         return IMPL.openGallery(fragment, config)
     }
 
+    // =
+
+    fun openPreview(activity: Activity?): Boolean {
+        return IMPL.openPreview(activity)
+    }
+
+    fun openPreview(
+        activity: Activity?,
+        config: MediaConfig?
+    ): Boolean {
+        return IMPL.openPreview(activity, config)
+    }
+
+    fun openPreview(fragment: Fragment?): Boolean {
+        return IMPL.openPreview(fragment)
+    }
+
+    fun openPreview(
+        fragment: Fragment?,
+        config: MediaConfig?
+    ): Boolean {
+        return IMPL.openPreview(fragment, config)
+    }
+
     // ==========
     // = 其他方法 =
     // ==========
@@ -104,7 +128,7 @@ object PictureSelectorUtils {
 
     // =
 
-    fun getSelectors(intent: Intent?): MutableList<LocalMediaData> {
+    fun getSelectors(intent: Intent?): MutableList<MediaData> {
         return IMPL.getSelectors(intent)
     }
 
@@ -115,7 +139,7 @@ object PictureSelectorUtils {
         return IMPL.getSelectorUris(intent, original)
     }
 
-    fun getSingleSelector(intent: Intent?): LocalMediaData? {
+    fun getSingleSelector(intent: Intent?): MediaData? {
         return IMPL.getSingleSelector(intent)
     }
 

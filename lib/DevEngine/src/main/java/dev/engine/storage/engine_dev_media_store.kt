@@ -487,7 +487,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
         Thread {
             try {
                 innerInsertFinal(params, source, listener, external, type)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 // 统一触发事件回调
                 finalCallback(
                     StorageResult.failure().setError(e),
@@ -573,7 +573,7 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
             .setExternal(external).setType(type)
         // 输出 Uri 为 null, 则设置 Error
         if (outputUri == null) {
-            result.setError(java.lang.Exception("outputUri is null"))
+            result.setError(Exception("outputUri is null"))
         }
         // 属于外部存储并且存储成功
         if (external && insertResult) {

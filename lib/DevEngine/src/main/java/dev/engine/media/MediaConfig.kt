@@ -1,12 +1,46 @@
 package dev.engine.media
 
-import kotlin.math.max
-
 /**
  * detail: Media Selector Config
  * @author Ttt
+ * 图片选择库可配置选项过多且不一致
+ * 所以新增一个 mLibCustomConfig 第三方库自定义配置
+ * 要求必须设置第三方库配置、参数等自行转换进行使用
  */
 class MediaConfig : IMediaEngine.EngineConfig() {
+
+    // 第三方库自定义配置 ( 可自行强转 )
+    private var mLibCustomConfig: Any? = null
+
+    /**
+     * 强转第三方库自定义配置
+     * @return 泛型类型对象
+     */
+    fun <T> convertLibCustomConfig(): T? {
+        return mLibCustomConfig as? T
+    }
+
+    /**
+     * 获取第三方库自定义配置
+     * @return 第三方库自定义配置
+     */
+    fun getLibCustomConfig(): Any? {
+        return mLibCustomConfig
+    }
+
+    /**
+     * 设置第三方库自定义配置
+     * @param libCustomConfig 第三方库自定义配置
+     * @return MediaConfig
+     */
+    fun setLibCustomConfig(libCustomConfig: Any?): MediaConfig {
+        mLibCustomConfig = libCustomConfig
+        return this
+    }
+
+    // ==========
+    // = 常用配置 =
+    // ==========
 
     // 相册选择类型
     private var mMimeType: Int = MimeType.ofImage()
@@ -14,44 +48,11 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     // 相册选择模式
     private var mSelectionMode: Int = MimeType.MULTIPLE
 
-    // 是否显示拍照
-    private var mCamera = true
+    // 自定义数据
+    private var mCustomData: Any? = null
 
-    // 是否裁减
-    private var mCrop = false
-
-    // 是否圆形裁减 true = 圆形, false = 矩形
-    private var mCircleCrop = false
-
-    // 是否压缩
-    private var mCompress = false
-
-    // 图片大于多少才进行压缩 ( kb )
-    private var mMinimumCompressSize = 2048
-
-    // 裁减比例
-    private var mWithAspectRatio = intArrayOf(0, 0)
-
-    // 是否显示 Gif
-    private var mGif = false
-
-    // 每行显示个数
-    private var mImageSpanCount = 4
-
-    // 最小选择数量
-    private var mMinSelectNum = 1
-
-    // 最大选择数量
-    private var mMaxSelectNum = 9
-
-    // 已选择的本地资源
-    private var mLocalMedia: List<LocalMediaData>? = null
-
-    // 拍照存储地址
-    private var mCameraSavePath: String? = null
-
-    // 压缩图片存储地址
-    private var mCompressSavePath: String? = null
+    // 已选择的资源
+    private var mMediaDatas: MutableList<MediaData>? = null
 
     /**
      * detail: 选择模式
@@ -60,10 +61,15 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     object MimeType {
         const val SINGLE = 1
         const val MULTIPLE = 2
+
         const val TYPE_ALL = 0
         const val TYPE_IMAGE = 1
         const val TYPE_VIDEO = 2
         const val TYPE_AUDIO = 3
+
+        const val OPEN_CAMERA = 1
+        const val OPEN_GALLERY = 2
+        const val OPEN_PREVIEW = 3
 
         fun ofAll(): Int {
             return TYPE_ALL
@@ -138,241 +144,38 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     }
 
     /**
-     * 是否显示拍照
-     * @return `true` yes, `false` no
+     * 获取自定义数据
+     * @return 自定义数据
      */
-    fun isCamera(): Boolean {
-        return mCamera
+    fun getCustomData(): Any? {
+        return mCustomData
     }
 
     /**
-     * 设置是否显示拍照
-     * @param camera `true` yes, `false` no
-     * @return [MediaConfig]
+     * 设置自定义数据
+     * @param customData 自定义数据
+     * @return MediaConfig
      */
-    fun setCamera(camera: Boolean): MediaConfig {
-        mCamera = camera
+    fun setCustomData(customData: Any?): MediaConfig {
+        mCustomData = customData
         return this
     }
 
     /**
-     * 是否裁减
-     * @return `true` yes, `false` no
+     * 获取已选择的资源
+     * @return 已选择的资源
      */
-    fun isCrop(): Boolean {
-        return mCrop
+    fun getMediaDatas(): List<MediaData>? {
+        return mMediaDatas
     }
 
     /**
-     * 设置是否裁减
-     * @param crop `true` yes, `false` no
+     * 设置已选择的资源
+     * @param mediaDatas 选择的资源
      * @return [MediaConfig]
      */
-    fun setCrop(crop: Boolean): MediaConfig {
-        mCrop = crop
-        return this
-    }
-
-    /**
-     * 是否圆形裁减
-     * @return `true` yes, `false` no
-     */
-    fun isCircleCrop(): Boolean {
-        return mCircleCrop
-    }
-
-    /**
-     * 设置是否圆形裁减
-     * @param circleCrop `true` yes, `false` no
-     * @return [MediaConfig]
-     */
-    fun setCircleCrop(circleCrop: Boolean): MediaConfig {
-        mCircleCrop = circleCrop
-        return this
-    }
-
-    /**
-     * 是否压缩
-     * @return `true` yes, `false` no
-     */
-    fun isCompress(): Boolean {
-        return mCompress
-    }
-
-    /**
-     * 设置是否压缩
-     * @param compress `true` yes, `false` no
-     * @return [MediaConfig]
-     */
-    fun setCompress(compress: Boolean): MediaConfig {
-        mCompress = compress
-        return this
-    }
-
-    /**
-     * 获取图片大于多少才进行压缩
-     * @return 最小压缩大小
-     */
-    fun getMinimumCompressSize(): Int {
-        return mMinimumCompressSize
-    }
-
-    /**
-     * 设置图片大于多少才进行压缩
-     * @param minimumCompressSize 最小压缩大小
-     * @return [MediaConfig]
-     */
-    fun setMinimumCompressSize(minimumCompressSize: Int): MediaConfig {
-        this.mMinimumCompressSize = minimumCompressSize
-        return this
-    }
-
-    /**
-     * 获取裁减比例
-     * @return int[] 0 = 宽比例, 1 = 高比例
-     */
-    fun getWithAspectRatio(): IntArray {
-        return mWithAspectRatio
-    }
-
-    /**
-     * 设置裁减比例
-     * @param x 宽比例
-     * @param y 高比例
-     * @return [MediaConfig]
-     */
-    fun setWithAspectRatio(
-        x: Int,
-        y: Int
-    ): MediaConfig {
-        mWithAspectRatio[0] = x
-        mWithAspectRatio[1] = y
-        return this
-    }
-
-    /**
-     * 是否显示 Gif
-     * @return `true` yes, `false` no
-     */
-    fun isGif(): Boolean {
-        return mGif
-    }
-
-    /**
-     * 设置是否显示 Gif
-     * @param gif `true` yes, `false` no
-     * @return [MediaConfig]
-     */
-    fun setGif(gif: Boolean): MediaConfig {
-        mGif = gif
-        return this
-    }
-
-    /**
-     * 获取每行显示个数
-     * @return 每行显示个数
-     */
-    fun getImageSpanCount(): Int {
-        return mImageSpanCount
-    }
-
-    /**
-     * 设置每行显示个数
-     * @param imageSpanCount 每行显示个数
-     * @return [MediaConfig]
-     */
-    fun setImageSpanCount(imageSpanCount: Int): MediaConfig {
-        this.mImageSpanCount = max(imageSpanCount, 1)
-        return this
-    }
-
-    /**
-     * 获取最小选择数量
-     * @return 最小选择数量
-     */
-    fun getMinSelectNum(): Int {
-        return mMinSelectNum
-    }
-
-    /**
-     * 设置最小选择数量
-     * @param minSelectNum 最小选择数量
-     * @return [MediaConfig]
-     */
-    fun setMinSelectNum(minSelectNum: Int): MediaConfig {
-        this.mMinSelectNum = minSelectNum
-        return this
-    }
-
-    /**
-     * 获取最大选择数量
-     * @return 最大选择数量
-     */
-    fun getMaxSelectNum(): Int {
-        return mMaxSelectNum
-    }
-
-    /**
-     * 设置最大选择数量
-     * @param maxSelectNum 最大选择数量
-     * @return [MediaConfig]
-     */
-    fun setMaxSelectNum(maxSelectNum: Int): MediaConfig {
-        this.mMaxSelectNum = maxSelectNum
-        return this
-    }
-
-    /**
-     * 获取已选择的本地资源
-     * @return 已选择的本地资源
-     */
-    fun getLocalMedia(): List<LocalMediaData>? {
-        return mLocalMedia
-    }
-
-    /**
-     * 设置已选择的本地资源
-     * @param localMedia 已选择的本地资源
-     * @return [MediaConfig]
-     */
-    fun setLocalMedia(localMedia: List<LocalMediaData>?): MediaConfig {
-        this.mLocalMedia = localMedia
-        return this
-    }
-
-    /**
-     * 获取拍照存储地址
-     * @return 拍照存储地址
-     */
-    fun getCameraSavePath(): String? {
-        return mCameraSavePath
-    }
-
-    /**
-     * 设置拍照存储地址
-     * @param cameraSavePath 拍照存储地址
-     * @return [MediaConfig]
-     */
-    fun setCameraSavePath(cameraSavePath: String?): MediaConfig {
-        this.mCameraSavePath = cameraSavePath
-        return this
-    }
-
-    /**
-     * 获取压缩图片存储地址
-     * @return 压缩图片存储地址
-     */
-    fun getCompressSavePath(): String? {
-        return mCompressSavePath
-    }
-
-    /**
-     * 设置压缩图片存储地址
-     * @param compressSavePath 压缩图片存储地址
-     * @return [MediaConfig]
-     */
-    fun setCompressSavePath(compressSavePath: String?): MediaConfig {
-        this.mCompressSavePath = compressSavePath
+    fun setMediaDatas(mediaDatas: MutableList<MediaData>?): MediaConfig {
+        mMediaDatas = mediaDatas
         return this
     }
 
@@ -384,21 +187,11 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun clone(): MediaConfig {
         val config = MediaConfig()
+        config.mLibCustomConfig = mLibCustomConfig
         config.mMimeType = mMimeType
         config.mSelectionMode = mSelectionMode
-        config.mCamera = mCamera
-        config.mCrop = mCrop
-        config.mCircleCrop = mCircleCrop
-        config.mCompress = mCompress
-        config.mMinimumCompressSize = mMinimumCompressSize
-        config.mWithAspectRatio = mWithAspectRatio
-        config.mGif = mGif
-        config.mImageSpanCount = mImageSpanCount
-        config.mMinSelectNum = mMinSelectNum
-        config.mMaxSelectNum = mMaxSelectNum
-        config.mLocalMedia = mLocalMedia
-        config.mCameraSavePath = mCameraSavePath
-        config.mCompressSavePath = mCompressSavePath
+        config.mCustomData = mCustomData
+        config.mMediaDatas = mMediaDatas
         return config
     }
 
@@ -409,21 +202,11 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun set(config: MediaConfig?): MediaConfig {
         config?.let {
+            mLibCustomConfig = it.mLibCustomConfig
             mMimeType = it.mMimeType
             mSelectionMode = it.mSelectionMode
-            mCamera = it.mCamera
-            mCrop = it.mCrop
-            mCircleCrop = it.mCircleCrop
-            mCompress = it.mCompress
-            mMinimumCompressSize = it.mMinimumCompressSize
-            mWithAspectRatio = it.mWithAspectRatio
-            mGif = it.mGif
-            mImageSpanCount = it.mImageSpanCount
-            mMinSelectNum = it.mMinSelectNum
-            mMaxSelectNum = it.mMaxSelectNum
-            mLocalMedia = it.mLocalMedia
-            mCameraSavePath = it.mCameraSavePath
-            mCompressSavePath = it.mCompressSavePath
+            mCustomData = it.mCustomData
+            mMediaDatas = it.mMediaDatas
         }
         return this
     }

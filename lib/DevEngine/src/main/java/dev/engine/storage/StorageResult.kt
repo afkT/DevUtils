@@ -71,7 +71,7 @@ class StorageResult(
         return mFile
     }
 
-    fun getError(): java.lang.Exception? {
+    fun getError(): Exception? {
         return mError
     }
 
@@ -95,7 +95,7 @@ class StorageResult(
         return this
     }
 
-    fun setError(error: java.lang.Exception?): StorageResult {
+    fun setError(error: Exception?): StorageResult {
         mError = error
         return this
     }

@@ -64,7 +64,7 @@ class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, Bar
                     bitmap = addIconToBarCode(params, bitmap, params.getIcon())
                 }
                 encodeCallback(callback, bitmap)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 LogPrintUtils.eTag(TAG, e, "encodeBarCode")
                 // 触发回调
                 encodeFailureCallback(callback, e)
@@ -110,7 +110,7 @@ class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, Bar
         callback: BarCodeDecodeCallback<BarCodeResult>?
     ) {
         if (bitmap == null) {
-            decodeFailureCallback(callback, java.lang.Exception("BarCode decode Bitmap is null"))
+            decodeFailureCallback(callback, Exception("BarCode decode Bitmap is null"))
             return
         }
         DEV_THREAD_POOL.execute {
@@ -118,7 +118,7 @@ class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, Bar
                 val result = decodeBarCodeSync(bitmap)
                 // 触发回调
                 decodeCallback(callback, result)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 LogPrintUtils.eTag(TAG, e, "decodeBarCode")
                 // 触发回调
                 decodeFailureCallback(callback, e)

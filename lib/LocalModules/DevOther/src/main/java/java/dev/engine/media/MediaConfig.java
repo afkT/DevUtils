@@ -40,7 +40,7 @@ public class MediaConfig
     /**
      * 设置第三方库自定义配置
      * @param libCustomConfig 第三方库自定义配置
-     * @return MediaData
+     * @return MediaConfig
      */
     public MediaConfig setLibCustomConfig(final Object libCustomConfig) {
         this.mLibCustomConfig = libCustomConfig;

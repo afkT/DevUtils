@@ -94,7 +94,7 @@ internal object GsonUtils {
         if (gson != null) {
             try {
                 return gson.fromJson(json, classOfT)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "fromJson")
             }
         }
@@ -131,7 +131,7 @@ internal object GsonUtils {
         if (gson != null) {
             try {
                 return gson.fromJson(json, typeOfT)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "fromJson")
             }
         }
@@ -151,7 +151,7 @@ internal object GsonUtils {
         try {
             val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonObject || jsonElement.isJsonArray
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
         }
         return false
     }
@@ -165,7 +165,7 @@ internal object GsonUtils {
         try {
             val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonObject
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
         }
         return false
     }
@@ -179,7 +179,7 @@ internal object GsonUtils {
         try {
             val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonArray
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
         }
         return false
     }
@@ -209,7 +209,7 @@ internal object GsonUtils {
                 reader.isLenient = true
                 val jsonElement = JsonParser.parseReader(reader)
                 return gson.toJson(jsonElement)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent")
             }
         }
@@ -240,7 +240,7 @@ internal object GsonUtils {
         if (gson != null) {
             try {
                 return gson.toJson(obj)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent")
             }
         }

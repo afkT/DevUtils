@@ -5,12 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.fragment.app.Fragment
-import com.luck.picture.lib.basic.PictureSelectionModel
-import com.luck.picture.lib.basic.PictureSelector
+import com.luck.picture.lib.basic.*
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.manager.PictureCacheManager
 import dev.utils.LogPrintUtils
 import dev.utils.app.UriUtils
+import dev.utils.common.ConvertUtils
 
 // ===================
 // = PictureSelector =
@@ -24,7 +24,7 @@ import dev.utils.app.UriUtils
  * 尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
  * 防止需要适配 Android 11 ( R ) 进行转存文件需判断文件路径
  */
-class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
+class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // 日志 TAG
     private val TAG = PictureSelectorEngineImpl::class.java.simpleName
@@ -59,10 +59,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         activity: Activity?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(activity, null), config, true
-        )
-        return forResult(pictureSelectionModel)
+        return startCameraModel(config)
     }
 
     override fun openCamera(fragment: Fragment?): Boolean {
@@ -73,10 +70,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         fragment: Fragment?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(null, fragment), config, true
-        )
-        return forResult(pictureSelectionModel)
+        return startCameraModel(config)
     }
 
     // =
@@ -89,10 +83,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         activity: Activity?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(activity, null), config, false
-        )
-        return forResult(pictureSelectionModel)
+        return startGalleryModel(config)
     }
 
     override fun openGallery(fragment: Fragment?): Boolean {
@@ -103,10 +94,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         fragment: Fragment?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(null, fragment), config, false
-        )
-        return forResult(pictureSelectionModel)
+        return startGalleryModel(config)
     }
 
     // =
@@ -119,10 +107,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         activity: Activity?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(activity, null), config, false
-        )
-        return forResult(pictureSelectionModel)
+        return startPreviewModel(config)
     }
 
     override fun openPreview(fragment: Fragment?): Boolean {
@@ -133,10 +118,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         fragment: Fragment?,
         config: MediaConfig?
     ): Boolean {
-        val pictureSelectionModel = getPictureSelectionModel(
-            getPictureSelector(null, fragment), config, false
-        )
-        return forResult(pictureSelectionModel)
+        return startPreviewModel(config)
     }
 
     // ==========
@@ -171,14 +153,14 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
 
     // =
 
-    override fun getSelectors(intent: Intent?): MutableList<LocalMediaData> {
-        val lists: MutableList<LocalMediaData> = ArrayList()
-//        val result = PictureSelector.obtainMultipleResult(intent)
-//        result.forEach {
-//            it?.let { localMedia ->
-//                lists.add(LocalMediaData(localMedia))
-//            }
-//        }
+    override fun getSelectors(intent: Intent?): MutableList<MediaData> {
+        val lists: MutableList<MediaData> = ArrayList()
+        val result = PictureSelector.obtainSelectorList(intent)
+        result.forEach {
+            it?.let { libData ->
+                lists.add(createMediaData(libData))
+            }
+        }
         return lists
     }
 
@@ -189,16 +171,17 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         val lists: MutableList<Uri> = ArrayList()
         val result = getSelectors(intent)
         result.forEach { media ->
-            media.getLocalMediaPath(original)?.apply {
-                UriUtils.getUriForPath(this)?.let { uri ->
-                    lists.add(uri)
-                }
+            val uri: Uri? = if (original) {
+                media.getOriginalUri()
+            } else {
+                media.getAvailableUri()
             }
+            uri?.let { lists.add(it) }
         }
         return lists
     }
 
-    override fun getSingleSelector(intent: Intent?): LocalMediaData? {
+    override fun getSingleSelector(intent: Intent?): MediaData? {
         val lists = getSelectors(intent)
         return if (lists.size > 0) lists[0] else null
     }
@@ -215,123 +198,152 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     // = 内部方法 =
     // ==========
 
+    // ==========
+    // = 转换对象 =
+    // ==========
+
     /**
-     * 获取图片选择器对象
-     * @param activity [Activity]
-     * @param fragment [Fragment]
-     * @return [PictureSelector]
+     * 转换 List
+     * @param lists [MediaData] list
+     * @return [LocalMedia] list
      */
-    private fun getPictureSelector(
-        activity: Activity?,
-        fragment: Fragment?
-    ): PictureSelector? {
-        if (activity != null) {
-            return PictureSelector.create(activity)
-        } else if (fragment != null) {
-            return PictureSelector.create(fragment)
+    private fun convertList(lists: List<MediaData>?): ArrayList<LocalMedia> {
+        val medias = ArrayList<LocalMedia>()
+        if (lists != null) {
+            for (media in lists) {
+                val libData: Any? = media.getLibOriginalData()
+                if (libData is LocalMedia) {
+                    medias.add(libData)
+                } else {
+                    media.getOriginalUri()?.let { uri ->
+                        val localMedia = LocalMedia()
+                        localMedia.path = uri.toString()
+                        localMedia.originalPath = uri.toString()
+                        medias.add(localMedia)
+                    }
+                }
+            }
         }
-        return null
+        return medias
     }
 
     /**
-     * 是否跳转成功
-     * @param pictureSelectionModel 图片选择配置模型
+     * 创建 MediaData 并填充数据
+     * @param libData 第三方库选择数据实体类
+     * @return MediaData
+     */
+    private fun createMediaData(libData: LocalMedia): MediaData {
+        val media = MediaData()
+        media.setLibOriginalData(libData)
+
+        // ============
+        // = 初始化数据 =
+        // ============
+
+        // 资源路径 Uri
+        media.setOriginalUri(UriUtils.getUriForPath(libData.originalPath))
+            .setSandboxUri(UriUtils.getUriForPath(libData.sandboxPath))
+            .setCompressUri(UriUtils.getUriForPath(libData.compressPath))
+            .setThumbnailUri(UriUtils.getUriForPath(libData.videoThumbnailPath))
+            .setWatermarkUri(UriUtils.getUriForPath(libData.watermarkPath))
+            .setCropUri(UriUtils.getUriForPath(libData.cutPath))
+
+        // 资源信息
+        media.setMimeType(libData.mimeType)
+            .setDuration(libData.duration)
+            .setWidth(libData.width)
+            .setHeight(libData.height)
+
+        // 资源裁剪信息
+        media.setCropImageWidth(libData.cropImageWidth)
+            .setCropImageHeight(libData.cropImageHeight)
+            .setCropOffsetX(libData.cropOffsetX)
+            .setCropOffsetY(libData.cropOffsetY)
+            .setCropAspectRatio(libData.cropResultAspectRatio)
+
+        // 状态信息
+        media.setCropState(libData.isCut)
+            .setCompressState(libData.isCompressed)
+        return media
+    }
+
+    // ==========================
+    // = PictureSelection Model =
+    // ==========================
+
+    /**
+     * 跳转 Camera PictureSelection Model
+     * @param config [MediaConfig]
      * @return `true` success, `false` fail
      */
-    private fun forResult(pictureSelectionModel: PictureSelectionModel?): Boolean {
-//        pictureSelectionModel?.let {
-//            it.forResult(PIC_REQUEST_CODE)
-//            return true
-//        }
+    private fun startCameraModel(config: MediaConfig?): Boolean {
+        if (config != null) {
+            try {
+                val libConfig: Any? = config.getLibCustomConfig()
+                if (libConfig is PictureSelectionCameraModel) {
+                    libConfig.forResultActivity(
+                        PIC_REQUEST_CODE
+                    )
+                    return true
+                }
+                throw Exception("MediaConfig libCustomConfig is null")
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "startCameraModel")
+            }
+        }
         return false
     }
 
     /**
-     * 获取图片选择配置模型
-     * @param pictureSelector [PictureSelector]
-     * @param config          [MediaConfig]
-     * @param isCamera        是否拍照
-     * @return [PictureSelectionModel]
-     * 结果回调 onActivityResult requestCode
-     * pictureSelectionModel.forResult(requestCode)
+     * 跳转 Gallery PictureSelection Model
+     * @param config [MediaConfig]
+     * @return `true` success, `false` fail
      */
-    private fun getPictureSelectionModel(
-        pictureSelector: PictureSelector?,
-        config: MediaConfig?,
-        isCamera: Boolean
-    ): PictureSelectionModel? {
-        if (pictureSelector != null && config != null) {
-            // 图片选择配置模型
-            val pictureSelectionModel = if (isCamera) {
-                pictureSelector.openCamera(config.getMimeType())
-            } else {
-                pictureSelector.openGallery(config.getMimeType())
+    private fun startGalleryModel(config: MediaConfig?): Boolean {
+        if (config != null) {
+            try {
+                val libConfig: Any? = config.getLibCustomConfig()
+                if (libConfig is PictureSelectionModel) {
+                    libConfig.forResult(
+                        PIC_REQUEST_CODE
+                    )
+                    return true
+                }
+                if (libConfig is PictureSelectionSystemModel) {
+                    libConfig.forSystemResultActivity(
+                        PIC_REQUEST_CODE
+                    )
+                    return true
+                }
+                throw Exception("MediaConfig libCustomConfig is null")
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "startGalleryModel")
             }
-//            // 是否裁减
-//            val isCrop = config.isCrop()
-//            // 是否圆形裁减
-//            val isCircleCrop = config.isCircleCrop()
-//            // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
-//            pictureSelectionModel.selectionMode(config.getSelectionMode())
-//                .imageEngine(LuckGlideEngineImpl.instance)
-//                .isPreviewImage(true) // 是否可预览图片 true or false
-//                .isPreviewVideo(true) // 是否可以预览视频 true or false
-//                .isEnablePreviewAudio(true) // 是否可播放音频 true or false
-//                .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
-//                .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
-//                .imageSpanCount(config.getImageSpanCount()) // 每行显示个数 int
-//                .minSelectNum(config.getMinSelectNum()) // 最小选择数量 int
-//                .maxSelectNum(config.getMaxSelectNum()) // 最大图片选择数量 int
-//                .isCamera(config.isCamera()) // 是否显示拍照按钮 true or false
-//                .isGif(config.isGif()) // 是否显示 Gif true or false
-//                // = 压缩相关 =
-//                .isCompress(config.isCompress()) // 是否压缩 true or false
-//                .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
-//                .withAspectRatio(
-//                    config.getWithAspectRatio()[0],
-//                    config.getWithAspectRatio()[1]
-//                ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
-//                // = 裁减相关 =
-//                // 判断是否显示圆形裁减
-//                .circleDimmedLayer(isCircleCrop) // = 裁减配置 =
-//                .isEnableCrop(isCrop) // 是否裁剪 true or false
-//                .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
-//                .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
-//                .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
-//                .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
-//                .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
-//
-//            // 设置拍照存储地址
-//            if (!TextUtils.isEmpty(config.getCameraSavePath())) {
-//                pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
-//            }
-//            // 设置压缩图片存储地址
-//            if (!TextUtils.isEmpty(config.getCompressSavePath())) {
-//                pictureSelectionModel.compressSavePath(config.getCompressSavePath())
-//            }
-//            // 判断是否存在选中资源
-//            config.getLocalMedia()?.let {
-//                if (it.isNotEmpty()) {
-//                    pictureSelectionModel.selectionData(convertList(it))
-//                }
-//            }
-//            return pictureSelectionModel
         }
-        return null
+        return false
     }
 
     /**
-     * 转换 List
-     * @param lists [LocalMediaData] list
-     * @return [LocalMedia] list
+     * 跳转 Preview PictureSelection Model
+     * @param config [MediaConfig]
+     * @return `true` success, `false` fail
      */
-    private fun convertList(lists: List<LocalMediaData?>?): List<LocalMedia?> {
-        val medias: MutableList<LocalMedia?> = ArrayList()
-        lists?.forEach {
-            it?.getLocalMedia()?.let { media ->
-                medias.add(media)
+    private fun startPreviewModel(config: MediaConfig?): Boolean {
+        if (config != null) {
+            try {
+                val libConfig: Any? = config.getLibCustomConfig()
+                if (libConfig is PictureSelectionPreviewModel) {
+                    libConfig.startActivityPreview(
+                        ConvertUtils.toInt(config.getCustomData(), 0),
+                        false, convertList(config.getMediaDatas())
+                    )
+                    return true
+                }
+                throw Exception("MediaConfig libCustomConfig is null")
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "startPreviewModel")
             }
         }
-        return medias
+        return false
     }
 }
