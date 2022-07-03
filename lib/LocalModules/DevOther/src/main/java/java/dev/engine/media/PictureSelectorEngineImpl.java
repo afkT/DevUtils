@@ -70,9 +70,7 @@ public class PictureSelectorEngineImpl
             Activity activity,
             MediaConfig config
     ) {
-        return startCameraModel(
-                createPictureSelector(activity), config
-        );
+        return startCameraModel(config);
     }
 
     @Override
@@ -85,9 +83,7 @@ public class PictureSelectorEngineImpl
             Fragment fragment,
             MediaConfig config
     ) {
-        return startCameraModel(
-                createPictureSelector(fragment), config
-        );
+        return startCameraModel(config);
     }
 
     // =
@@ -102,9 +98,7 @@ public class PictureSelectorEngineImpl
             Activity activity,
             MediaConfig config
     ) {
-        return startGalleryModel(
-                createPictureSelector(activity), config
-        );
+        return startGalleryModel(config);
     }
 
     @Override
@@ -117,9 +111,7 @@ public class PictureSelectorEngineImpl
             Fragment fragment,
             MediaConfig config
     ) {
-        return startGalleryModel(
-                createPictureSelector(fragment), config
-        );
+        return startGalleryModel(config);
     }
 
     // =
@@ -134,9 +126,7 @@ public class PictureSelectorEngineImpl
             Activity activity,
             MediaConfig config
     ) {
-        return startPreviewModel(
-                createPictureSelector(activity), config
-        );
+        return startPreviewModel(config);
     }
 
     @Override
@@ -149,9 +139,7 @@ public class PictureSelectorEngineImpl
             Fragment fragment,
             MediaConfig config
     ) {
-        return startPreviewModel(
-                createPictureSelector(fragment), config
-        );
+        return startPreviewModel(config);
     }
 
     // ==========
@@ -249,19 +237,19 @@ public class PictureSelectorEngineImpl
     // = 内部方法 =
     // ==========
 
-    /**
-     * 创建图片选择器对象
-     * @param object {@link Activity}、{@link Fragment}
-     * @return {@link PictureSelector}
-     */
-    private PictureSelector createPictureSelector(final Object object) {
-        if (object instanceof Activity) {
-            return PictureSelector.create((Activity) object);
-        } else if (object instanceof Fragment) {
-            return PictureSelector.create((Fragment) object);
-        }
-        return null;
-    }
+//    /**
+//     * 创建图片选择器对象
+//     * @param object {@link Activity}、{@link Fragment}
+//     * @return {@link PictureSelector}
+//     */
+//    private PictureSelector createPictureSelector(final Object object) {
+//        if (object instanceof Activity) {
+//            return PictureSelector.create((Activity) object);
+//        } else if (object instanceof Fragment) {
+//            return PictureSelector.create((Fragment) object);
+//        }
+//        return null;
+//    }
 
     // ==========
     // = 转换对象 =
@@ -342,15 +330,11 @@ public class PictureSelectorEngineImpl
 
     /**
      * 跳转 Camera PictureSelection Model
-     * @param pictureSelector {@link PictureSelector}
-     * @param config          {@link MediaConfig}
+     * @param config {@link MediaConfig}
      * @return {@code true} success, {@code false} fail
      */
-    private boolean startCameraModel(
-            final PictureSelector pictureSelector,
-            final MediaConfig config
-    ) {
-        if (pictureSelector != null && config != null) {
+    private boolean startCameraModel(final MediaConfig config) {
+        if (config != null) {
             try {
                 Object libConfig = config.getLibCustomConfig();
                 if (libConfig instanceof PictureSelectionCameraModel) {
@@ -369,15 +353,11 @@ public class PictureSelectorEngineImpl
 
     /**
      * 跳转 Gallery PictureSelection Model
-     * @param pictureSelector {@link PictureSelector}
-     * @param config          {@link MediaConfig}
+     * @param config {@link MediaConfig}
      * @return {@code true} success, {@code false} fail
      */
-    private boolean startGalleryModel(
-            final PictureSelector pictureSelector,
-            final MediaConfig config
-    ) {
-        if (pictureSelector != null && config != null) {
+    private boolean startGalleryModel(final MediaConfig config) {
+        if (config != null) {
             try {
                 Object libConfig = config.getLibCustomConfig();
                 if (libConfig instanceof PictureSelectionModel) {
@@ -402,15 +382,11 @@ public class PictureSelectorEngineImpl
 
     /**
      * 跳转 Preview PictureSelection Model
-     * @param pictureSelector {@link PictureSelector}
-     * @param config          {@link MediaConfig}
+     * @param config {@link MediaConfig}
      * @return {@code true} success, {@code false} fail
      */
-    private boolean startPreviewModel(
-            final PictureSelector pictureSelector,
-            final MediaConfig config
-    ) {
-        if (pictureSelector != null && config != null) {
+    private boolean startPreviewModel(final MediaConfig config) {
+        if (config != null) {
             try {
                 Object libConfig = config.getLibCustomConfig();
                 if (libConfig instanceof PictureSelectionPreviewModel) {
