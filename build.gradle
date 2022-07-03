@@ -39,7 +39,7 @@ buildscript {
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.6.21"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
         // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
         classpath "com.alibaba:arouter-register:1.0.2"
         // greendao https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin

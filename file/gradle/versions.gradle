@@ -26,52 +26,52 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 239,
-            dev_app_versionName                      : "2.3.9",
+            dev_app_versionCode                      : 240,
+            dev_app_versionName                      : "2.4.0",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-            dev_assist_versionCode                   : 135,
-            dev_assist_versionName                   : "1.3.5",
+            dev_assist_versionCode                   : 136,
+            dev_assist_versionName                   : "1.3.6",
 
             // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-            dev_base_versionCode                     : 112,
-            dev_base_versionName                     : "1.1.2",
+            dev_base_versionCode                     : 113,
+            dev_base_versionName                     : "1.1.3",
 
             // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-            dev_base_mvvm_versionCode                : 110,
-            dev_base_mvvm_versionName                : "1.1.0",
+            dev_base_mvvm_versionCode                : 111,
+            dev_base_mvvm_versionName                : "1.1.1",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 107,
-            dev_engine_versionName                   : "1.0.7",
+            dev_engine_versionCode                   : 108,
+            dev_engine_versionName                   : "1.0.8",
 
             // DevHttpCapture - OkHttp 抓包工具库
-            dev_http_capture_versionCode             : 111,
-            dev_http_capture_versionName             : "1.1.1",
-            dev_http_capture_compiler_version        : "1.1.1",
-            dev_http_capture_compiler_release_version: "1.1.1",
+            dev_http_capture_versionCode             : 112,
+            dev_http_capture_versionName             : "1.1.2",
+            dev_http_capture_compiler_version        : "1.1.2",
+            dev_http_capture_compiler_release_version: "1.1.2",
 
             // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-            dev_http_manager_versionCode             : 101,
-            dev_http_manager_versionName             : "1.0.1",
+            dev_http_manager_versionCode             : 102,
+            dev_http_manager_versionName             : "1.0.2",
 
             // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-            dev_retrofit_versionCode                 : 100,
-            dev_retrofit_versionName                 : "1.0.0",
+            dev_retrofit_versionCode                 : 101,
+            dev_retrofit_versionName                 : "1.0.1",
 
             // DevWidget - 自定义 View UI 库
-            dev_widget_versionCode                   : 118,
-            dev_widget_versionName                   : "1.1.8",
+            dev_widget_versionCode                   : 119,
+            dev_widget_versionName                   : "1.1.9",
 
             // DevEnvironment - Android 环境配置切换库
-            dev_environment_versionCode              : 110,
-            dev_environment_version                  : "1.1.0",
-            dev_environment_base_version             : "1.1.0",
-            dev_environment_compiler_version         : "1.1.0",
-            dev_environment_compiler_release_version : "1.1.0",
+            dev_environment_versionCode              : 111,
+            dev_environment_version                  : "1.1.1",
+            dev_environment_base_version             : "1.1.1",
+            dev_environment_compiler_version         : "1.1.1",
+            dev_environment_compiler_release_version : "1.1.1",
 
             // DevJava - Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 145,
-            dev_java_version                         : "1.4.5",
+            dev_java_versionCode                     : 146,
+            dev_java_version                         : "1.4.6",
     ]
 }
