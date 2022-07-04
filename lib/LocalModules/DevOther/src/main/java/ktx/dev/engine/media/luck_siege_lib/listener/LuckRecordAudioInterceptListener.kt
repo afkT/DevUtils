@@ -54,7 +54,7 @@ open class LuckRecordAudioInterceptListener(
      * @param fragment    Fragment
      * @param requestCode 请求 code
      */
-    protected fun startRecordSoundAction(
+    open protected fun startRecordSoundAction(
         fragment: Fragment,
         requestCode: Int
     ) {

@@ -94,7 +94,7 @@ open class LuckCompressFileEngineImpl(
      * @param sources 待转换数据
      * @return Uris
      */
-    protected fun toInputStreamList(
+    open protected fun toInputStreamList(
         context: Context?,
         sources: List<Uri>
     ): List<InputStreamProvider?> {
@@ -119,7 +119,7 @@ open class LuckCompressFileEngineImpl(
      * @param uri Uri
      * @return Uri 原始路径
      */
-    protected fun toUriPath(uri: Uri?): String? {
+    open protected fun toUriPath(uri: Uri?): String? {
         return uri?.let {
             val uriString = it.toString()
             if (PictureMimeType.isContent(uriString)) uriString else it.path
