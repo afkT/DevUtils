@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.model.item.RouterPath
+import afkt.project.utils.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
@@ -14,7 +15,6 @@ import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.image.listener.BitmapListener
-import dev.engine.media.MediaConfig
 import dev.kotlin.engine.image.loadBitmap
 import dev.kotlin.utils.toSource
 import dev.utils.DevFinal
@@ -49,13 +49,10 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         super.onClick(v)
         when (v.id) {
             R.id.vid_select_btn -> {
-//                // 初始化图片配置
-//                val config = MediaConfig()
-//                    .setCompress(false).setMaxSelectNum(1).setCrop(false)
-//                    .setMimeType(MediaConfig.MimeType.ofImage())
-//                    .setCamera(true).setGif(false)
-//                // 打开图片选择器
-//                DevEngine.getMedia()?.openGallery(mActivity, config)
+                mActivity?.let { activity ->
+                    // 打开图片选择器
+                    DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
+                }
             }
             R.id.vid_tv -> {
                 val text = TextViewUtils.getText(binding.vidTv)
@@ -82,7 +79,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         if (resultCode == RESULT_OK && intent != null) {
             MainScope().launch {
                 // 获取图片地址
-                val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+                val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
 
                 mActivity?.loadBitmap(
                     source = imgUri?.toSource(), config = null,

@@ -4,11 +4,11 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import afkt.project.model.item.RouterPath
+import afkt.project.utils.createGalleryConfig
 import android.app.Activity
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
-import dev.engine.media.MediaConfig
 import dev.kotlin.engine.image.display
 import dev.kotlin.utils.toSource
 import dev.utils.app.AppUtils
@@ -28,13 +28,8 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
         binding.vidSelectBtn.setOnClickListener {
             AppUtils.startActivityForResult(object : DefaultActivityResult.ResultCallback {
                 override fun onStartActivityForResult(activity: Activity): Boolean {
-//                    // 初始化图片配置
-//                    val config = MediaConfig()
-//                        .setCompress(false).setMaxSelectNum(1).setCrop(false)
-//                        .setMimeType(MediaConfig.MimeType.ofImage())
-//                        .setCamera(true).setGif(false)
-//                    // 打开图片选择器
-//                    DevEngine.getMedia()?.openGallery(activity, config)
+                    // 打开图片选择器
+                    DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
                     return true
                 }
 
@@ -43,7 +38,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     resultCode: Int,
                     intent: Intent?
                 ) {
-                    val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+                    val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
                     if (imgUri != null) {
                         binding.vidIv.display(source = imgUri.toSource())
                     } else {

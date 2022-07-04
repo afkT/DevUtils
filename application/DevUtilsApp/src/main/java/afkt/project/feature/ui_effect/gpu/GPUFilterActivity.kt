@@ -6,13 +6,13 @@ import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
 import afkt.project.model.item.RouterPath
+import afkt.project.utils.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
-import dev.engine.media.MediaConfig
 import dev.kotlin.engine.log.log_eTag
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
@@ -79,13 +79,10 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
     override fun initListener() {
         super.initListener()
         binding.vidSelectBtn.setOnClickListener {
-//            // 初始化图片配置
-//            val config = MediaConfig()
-//                .setCompress(false).setMaxSelectNum(1).setCrop(false)
-//                .setMimeType(MediaConfig.MimeType.ofImage())
-//                .setCamera(true).setGif(false)
-//            // 打开图片选择器
-//            DevEngine.getMedia()?.openGallery(mActivity, config)
+            mActivity?.let { activity ->
+                // 打开图片选择器
+                DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
+            }
         }
     }
 
@@ -102,7 +99,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
             // 获取图片 Bitmap
             selectBitmap = ImageUtils.decodeStream(ResourceUtils.openInputStream(imgUri))
             // 设置图片滤镜

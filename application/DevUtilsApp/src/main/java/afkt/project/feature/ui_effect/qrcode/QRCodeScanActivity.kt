@@ -9,6 +9,7 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.item.RouterPath
+import afkt.project.utils.createGalleryConfig
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect
@@ -21,7 +22,6 @@ import com.google.zxing.Result
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
-import dev.engine.media.MediaConfig
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_dTag
 import dev.kotlin.engine.log.log_eTag
@@ -132,13 +132,10 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                 )
             }
             R.id.vid_image_iv -> {
-//                // 初始化图片配置
-//                val config = MediaConfig()
-//                    .setCompress(false).setMaxSelectNum(1).setCrop(false)
-//                    .setMimeType(MediaConfig.MimeType.ofImage())
-//                    .setCamera(true).setGif(false)
-//                // 打开图片选择器
-//                DevEngine.getMedia()?.openGallery(mActivity, config)
+                mActivity?.let { activity ->
+                    // 打开图片选择器
+                    DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
+                }
             }
         }
     }
@@ -156,7 +153,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
             // 获取图片 Bitmap
             val selectBitmap = ImageUtils.decodeStream(ResourceUtils.openInputStream(imgUri))
             // 解析图片

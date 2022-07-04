@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityQrcodeCreateBinding
 import afkt.project.model.item.RouterPath
+import afkt.project.utils.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
@@ -11,7 +12,6 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeData
-import dev.engine.media.MediaConfig
 import dev.kotlin.utils.size.AppSize
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
@@ -65,13 +65,10 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 }
             }
             R.id.vid_select_btn -> {
-//                // 初始化图片配置
-//                val config = MediaConfig()
-//                    .setCompress(false).setMaxSelectNum(1).setCrop(false)
-//                    .setMimeType(MediaConfig.MimeType.ofImage())
-//                    .setCamera(true).setGif(false)
-//                // 打开图片选择器
-//                DevEngine.getMedia()?.openGallery(mActivity, config)
+                mActivity?.let { activity ->
+                    // 打开图片选择器
+                    DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
+                }
             }
         }
     }
@@ -89,7 +86,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && intent != null) {
             // 获取图片地址
-            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, true)
+            val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
             // 获取图片 Bitmap
             selectBitmap = ImageUtils.decodeStream(ResourceUtils.openInputStream(imgUri))
         }
