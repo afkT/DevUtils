@@ -301,6 +301,8 @@ public final class DevFinal {
         public static final String PLUGIN    = "plugin";
         public static final String RESET     = "reset";
         public static final String ROUTER    = "router";
+        public static final String SAFE      = "safe";
+        public static final String SAFETY    = "safety";
         public static final String SHARE     = "share";
         public static final String STANDARD  = "standard";
         public static final String TARGET    = "target";
@@ -336,11 +338,14 @@ public final class DevFinal {
         public static final String DATABASE = "database";
         public static final String DB       = "db";
 
-        public static final String BLANK   = "blank";
-        public static final String GLOBAL  = "global";
-        public static final String HOME    = "home";
-        public static final String MAIN    = "main";
-        public static final String SETTING = "setting";
+        public static final String BLANK    = "blank";
+        public static final String GLOBAL   = "global";
+        public static final String HOME     = "home";
+        public static final String MAIN     = "main";
+        public static final String PRIVACY  = "privacy";
+        public static final String PROFILES = "profiles";
+        public static final String SETTING  = "setting";
+        public static final String SETTINGS = "settings";
 
         // =======
         // = 其他 =
@@ -514,6 +519,7 @@ public final class DevFinal {
         public static final String DISCONNECTED = "disconnected";
         public static final String DISK         = "disk";
         public static final String DOWNLOAD     = "download";
+        public static final String DOWNLOADS    = "downloads";
         public static final String ENABLED      = "enabled";
         public static final String ENABLING     = "enabling";
         public static final String END          = "end";
@@ -650,6 +656,7 @@ public final class DevFinal {
         public static final String VERSION_CODE = "version_code";
         public static final String VERSION_NAME = "version_name";
 
+        public static final String ACCESSIBILITY   = "accessibility";
         public static final String ACTION          = "action";
         public static final String ACTIVITY        = "activity";
         public static final String ADAPTER         = "adapter";
