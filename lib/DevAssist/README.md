@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevAssist:1.3.5'
+implementation 'io.github.afkt:DevAssist:1.3.6'
 ```
 
 ## 目录结构
@@ -1426,6 +1426,7 @@ implementation 'io.github.afkt:DevAssist:1.3.5'
 | setConfig | 设置全局配置 |
 | openCamera | 打开相册拍照 |
 | openGallery | 打开相册选择 |
+| openPreview | 打开相册预览 |
 | deleteCacheDirFile | 删除缓存文件 |
 | deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |

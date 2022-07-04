@@ -21,8 +21,8 @@ version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][m
 
 ```groovy
 dependencies {
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.1'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.1'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.2'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.2'
 }
 ```
 
@@ -114,31 +114,13 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 | 方法 | 注释 |
 | :- | :- |
 | getInstance | 获取 Utils 实例 |
-| addActivity | 添加 Activity |
-| removeActivity | 移除 Activity |
 | finishAllActivity | 结束所有 Activity |
-| createGson | 创建 GsonBuilder |
-| toJsonIndent | JSON String 缩进处理 |
-| fromJson | 将 JSON String 映射为指定类型对象 |
 | putUrlFunction | 添加接口所属功能注释 |
 | removeUrlFunction | 移除接口所属功能注释 |
-| getUrlFunction | 获取接口所属功能注释 |
-| clearCallback | 移除所有回调 |
-| removeCallback | 移除回调 ( 关闭页面调用 ) |
-| addCallback | 添加回调 |
-| notifyCallback | 通知回调 |
-| queryData | 查询数据 |
-| clearData | 移除所有数据 |
-| isQuerying | 是否查询中 |
-| getMainData | 获取首页数据源 |
-| getFileData | 获取抓包文件数据 |
-| getDateData | 获取对应时间 ( yyyyMMdd ) 指定筛选条件抓包列表数据 |
-| getUrlFunctionByFile | 获取接口所属功能 |
-| resetRefreshClick | 重置刷新点击处理 |
 
 
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.1-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.2-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt

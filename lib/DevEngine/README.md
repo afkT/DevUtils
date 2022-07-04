@@ -2,24 +2,23 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevEngine:1.0.7'
+implementation 'io.github.afkt:DevEngine:1.0.8'
 ```
 
 ## 目录结构
 
 ```
-- dev.engine                    | 根目录
-   - barcode                    | BarCode Engine 条形码、二维码处理
-   - cache                      | Cache Engine 有效期键值对缓存
-   - compress                   | Image Compress Engine 图片压缩
-   - image                      | Image Engine 图片加载、下载、转格式等
-   - json                       | JSON Engine 映射
-   - keyvalue                   | KeyValue Engine 键值对存储
-   - log                        | Log Engine 日志打印
-   - media                      | Media Selector Engine 多媒体资源选择
-      - luck_lib_engine         | LuckSiege PictureSelector Engine 实现
-   - permission                 | Permission Engine 权限申请
-   - storage                    | Storage Engine 外部、内部文件存储
+- dev.engine            | 根目录
+   - barcode            | BarCode Engine 条形码、二维码处理
+   - cache              | Cache Engine 有效期键值对缓存
+   - compress           | Image Compress Engine 图片压缩
+   - image              | Image Engine 图片加载、下载、转格式等
+   - json               | JSON Engine 映射
+   - keyvalue           | KeyValue Engine 键值对存储
+   - log                | Log Engine 日志打印
+   - media              | Media Selector Engine 多媒体资源选择
+   - permission         | Permission Engine 权限申请
+   - storage            | Storage Engine 外部、内部文件存储
 ```
 
 
@@ -311,27 +310,26 @@ private fun initEngine(appContext: Application) {
 
 ## API
 
-- dev                                                 | 根目录
-    - [engine](#devengine)                             | 兼容 Engine
-        - [analytics](#devengineanalytics)              | Analytics Engine 数据统计 ( 埋点 )
-        - [barcode](#devenginebarcode)                  | BarCode Engine 条形码、二维码处理
-            - [listener](#devenginebarcodelistener)      | 条形码、二维码操作回调事件
-        - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
-        - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
-            - [listener](#devenginecompresslistener)     | 图片压缩回调事件
-        - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
-            - [listener](#devengineimagelistener)        | 图片加载监听事件
-        - [json](#devenginejson)                        | JSON Engine 映射
-        - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
-        - [log](#devenginelog)                          | Log Engine 日志打印
-        - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
-        - [permission](#devenginepermission)            | Permission Engine 权限申请
-        - [push](#devenginepush)                        | Push Engine 推送平台处理
-        - [share](#devengineshare)                      | Share Engine 分享平台处理
-            - [listener](#devenginesharelistener)        | 分享回调事件
-        - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
-            - [listener](#devenginestoragelistener)      | Storage 存储结果事件
-
+- dev                                                     | 根目录
+    - [engine](#devengine)                                 | 兼容 Engine
+        - [analytics](#devengineanalytics)                  | Analytics Engine 数据统计 ( 埋点 )
+        - [barcode](#devenginebarcode)                      | BarCode Engine 条形码、二维码处理
+            - [listener](#devenginebarcodelistener)          | 条形码、二维码操作回调事件
+        - [cache](#devenginecache)                          | Cache Engine 有效期键值对缓存
+        - [compress](#devenginecompress)                    | Image Compress Engine 图片压缩
+            - [listener](#devenginecompresslistener)         | 图片压缩回调事件
+        - [image](#devengineimage)                          | Image Engine 图片加载、下载、转格式等
+            - [listener](#devengineimagelistener)            | 图片加载监听事件
+        - [json](#devenginejson)                            | JSON Engine 映射
+        - [keyvalue](#devenginekeyvalue)                    | KeyValue Engine 键值对存储
+        - [log](#devenginelog)                              | Log Engine 日志打印
+        - [media](#devenginemedia)                          | Media Selector Engine 多媒体资源选择
+        - [permission](#devenginepermission)                | Permission Engine 权限申请
+        - [push](#devenginepush)                            | Push Engine 推送平台处理
+        - [share](#devengineshare)                          | Share Engine 分享平台处理
+            - [listener](#devenginesharelistener)            | 分享回调事件
+        - [storage](#devenginestorage)                      | Storage Engine 外部、内部文件存储
+            - [listener](#devenginestoragelistener)          | Storage 存储结果事件
 
 
 
@@ -736,6 +734,7 @@ private fun initEngine(appContext: Application) {
 | setConfig | 设置全局配置 |
 | openCamera | 打开相册拍照 |
 | openGallery | 打开相册选择 |
+| openPreview | 打开相册预览 |
 | deleteCacheDirFile | 删除缓存文件 |
 | deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
@@ -833,10 +832,11 @@ private fun initEngine(appContext: Application) {
 | shareMinApp | 分享小程序 |
 | shareUrl | 分享链接 |
 | shareImage | 分享图片 |
+| shareImageList | 分享多张图片 |
+| shareText | 分享文本 |
 | shareVideo | 分享视频 |
 | shareMusic | 分享音乐 |
 | shareEmoji | 分享表情 |
-| shareText | 分享文本 |
 | shareFile | 分享文件 |
 | share | 分享操作 ( 通用扩展 ) |
 | onActivityResult | 部分平台 Activity onActivityResult 额外调用处理 |

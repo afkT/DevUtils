@@ -3,41 +3,46 @@
 ## 目录结构
 
 ```
-- src.main                      | 根目录
-   - dev                        | 通用实现
-      - receiver                | BroadcastReceiver 监听相关
-      - service                 | Service 相关
-   - java                       | Java 实现
-      - dev                     | 根目录
-         - assist               | 常用辅助类封装
-         - engine               | 兼容 Engine
-            - barcode           | BarCode Engine 条形码、二维码处理
-            - cache             | Cache Engine 有效期键值对缓存
-            - compress          | Image Compress Engine 图片压缩
-            - image             | Image Engine 图片加载、下载、转格式等
-            - json              | JSON Engine 映射
-            - keyvalue          | KeyValue Engine 键值对存储
-            - log               | Log Engine 日志打印
-            - media             | Media Selector Engine 多媒体资源选择
-               - luck_lib_engine| LuckSiege PictureSelector Engine 实现
-            - permission        | Permission Engine 权限申请
-            - storage           | Storage Engine 外部、内部文件存储
-         - other                | 第三方库封装工具类
-            - cache             | 缓存工具类
-            - okgo              | OkGo 网络请求
-            - retrofit_rxjava   | Retrofit RxJava 封装
-               - response       | 请求响应解析
-               - subscriber     | 请求响应处理
-            - work              | WorkManager Utils
-               - demo           | WorkManager 使用 Demo
-   - ktx                        | Kotlin 实现
-      - dev                     | 根目录
-         - assist               | 常用辅助类封装
-         - other                | 第三方库封装工具类
-            - retrofit_rxjava   | Retrofit RxJava 封装
-               - demo           | Retrofit RxJava Demo
-               - response       | 请求响应解析
-               - subscriber     | 请求响应处理
+- src.main                     | 根目录
+   - dev                       | 通用实现
+      - receiver               | BroadcastReceiver 监听相关
+      - service                | Service 相关
+   - java                      | Java 实现
+      - dev                    | 根目录
+         - assist              | 常用辅助类封装
+         - engine              | 兼容 Engine
+            - barcode          | BarCode Engine 条形码、二维码处理
+            - cache            | Cache Engine 有效期键值对缓存
+            - compress         | Image Compress Engine 图片压缩
+            - image            | Image Engine 图片加载、下载、转格式等
+            - json             | JSON Engine 映射
+            - keyvalue         | KeyValue Engine 键值对存储
+            - log              | Log Engine 日志打印
+            - media            | Media Selector Engine 多媒体资源选择
+               - luck_siege_lib| LuckSiege PictureSelector Engine 实现
+                  - listener   | LuckSiege PictureSelector Listener 实现
+            - permission       | Permission Engine 权限申请
+            - storage          | Storage Engine 外部、内部文件存储
+         - other               | 第三方库封装工具类
+            - cache            | 缓存工具类
+            - okgo             | OkGo 网络请求
+            - retrofit_rxjava  | Retrofit RxJava 封装
+               - response      | 请求响应解析
+               - subscriber    | 请求响应处理
+            - work             | WorkManager Utils
+               - demo          | WorkManager 使用 Demo
+   - ktx                       | Kotlin 实现
+      - dev                    | 根目录
+         - assist              | 常用辅助类封装
+         - engine              | 兼容 Engine
+            - media            | Media Selector Engine 多媒体资源选择
+               - luck_siege_lib| LuckSiege PictureSelector Engine 实现
+                  - listener   | LuckSiege PictureSelector Listener 实现
+         - other               | 第三方库封装工具类
+            - retrofit_rxjava  | Retrofit RxJava 封装
+               - demo          | Retrofit RxJava Demo
+               - response      | 请求响应解析
+               - subscriber    | 请求响应处理
 ```
 
 
@@ -49,40 +54,45 @@
 ## API
 
 
-- src.main                                                         | 根目录
-   - [dev](#dev)                                                   | 通用实现
-      - [receiver](#devreceiver)                                   | BroadcastReceiver 监听相关
-      - [service](#devservice)                                     | Service 相关
-   - [java](#java)                                                 | Java 实现
-      - [dev](#javadev)                                            | 根目录
-         - [assist](#javadevassist)                                | 常用辅助类封装
-         - [engine](#javadevengine)                                | 兼容 Engine
-            - [barcode](#javadevenginebarcode)                     | BarCode Engine 条形码、二维码处理
-            - [cache](#javadevenginecache)                         | Cache Engine 有效期键值对缓存
-            - [compress](#javadevenginecompress)                   | Image Compress Engine 图片压缩
-            - [image](#javadevengineimage)                         | Image Engine 图片加载、下载、转格式等
-            - [json](#javadevenginejson)                           | JSON Engine 映射
-            - [keyvalue](#javadevenginekeyvalue)                   | KeyValue Engine 键值对存储
-            - [log](#javadevenginelog)                             | Log Engine 日志打印
-            - [media](#javadevenginemedia)                         | Media Selector Engine 多媒体资源选择
-               - [luck_lib_engine](#javadevenginemedialuck_lib_engine)| LuckSiege PictureSelector Engine 实现
-            - [permission](#javadevenginepermission)               | Permission Engine 权限申请
-            - [storage](#javadevenginestorage)                     | Storage Engine 外部、内部文件存储
-         - [other](#javadevother)                                  | 第三方库封装工具类
-            - [cache](#javadevothercache)                          | 缓存工具类
-            - [okgo](#javadevotherokgo)                            | OkGo 网络请求
-            - [retrofit_rxjava](#javadevotherretrofit_rxjava)      | Retrofit RxJava 封装
-               - [response](#javadevotherretrofit_rxjavaresponse)  | 请求响应解析
+- src.main                                                      | 根目录
+   - [dev](#dev)                                                | 通用实现
+      - [receiver](#devreceiver)                                | BroadcastReceiver 监听相关
+      - [service](#devservice)                                  | Service 相关
+   - [java](#java)                                              | Java 实现
+      - [dev](#javadev)                                         | 根目录
+         - [assist](#javadevassist)                             | 常用辅助类封装
+         - [engine](#javadevengine)                             | 兼容 Engine
+            - [barcode](#javadevenginebarcode)                  | BarCode Engine 条形码、二维码处理
+            - [cache](#javadevenginecache)                      | Cache Engine 有效期键值对缓存
+            - [compress](#javadevenginecompress)                | Image Compress Engine 图片压缩
+            - [image](#javadevengineimage)                      | Image Engine 图片加载、下载、转格式等
+            - [json](#javadevenginejson)                        | JSON Engine 映射
+            - [keyvalue](#javadevenginekeyvalue)                | KeyValue Engine 键值对存储
+            - [log](#javadevenginelog)                          | Log Engine 日志打印
+            - [media](#javadevenginemedia)                      | Media Selector Engine 多媒体资源选择
+               - [luck_siege_lib](#javadevenginemedialuck_siege_lib)| LuckSiege PictureSelector Engine 实现
+                  - [listener](#javadevenginemedialuck_siege_liblistener)| LuckSiege PictureSelector Listener 实现
+            - [permission](#javadevenginepermission)            | Permission Engine 权限申请
+            - [storage](#javadevenginestorage)                  | Storage Engine 外部、内部文件存储
+         - [other](#javadevother)                               | 第三方库封装工具类
+            - [cache](#javadevothercache)                       | 缓存工具类
+            - [okgo](#javadevotherokgo)                         | OkGo 网络请求
+            - [retrofit_rxjava](#javadevotherretrofit_rxjava)   | Retrofit RxJava 封装
+               - [response](#javadevotherretrofit_rxjavaresponse)| 请求响应解析
                - [subscriber](#javadevotherretrofit_rxjavasubscriber)| 请求响应处理
-            - [work](#javadevotherwork)                            | WorkManager Utils
-               - [demo](#javadevotherworkdemo)                     | WorkManager 使用 Demo
-   - [ktx](#ktx)                                                   | Kotlin 实现
-      - [dev](#ktxdev)                                             | 根目录
-         - [assist](#ktxdevassist)                                 | 常用辅助类封装
-         - [other](#ktxdevother)                                   | 第三方库封装工具类
-            - [retrofit_rxjava](#ktxdevotherretrofit_rxjava)       | Retrofit RxJava 封装
-               - [demo](#ktxdevotherretrofit_rxjavademo)           | Retrofit RxJava Demo
-               - [response](#ktxdevotherretrofit_rxjavaresponse)   | 请求响应解析
+            - [work](#javadevotherwork)                         | WorkManager Utils
+               - [demo](#javadevotherworkdemo)                  | WorkManager 使用 Demo
+   - [ktx](#ktx)                                                | Kotlin 实现
+      - [dev](#ktxdev)                                          | 根目录
+         - [assist](#ktxdevassist)                              | 常用辅助类封装
+         - [engine](#ktxdevengine)                              | 兼容 Engine
+            - [media](#ktxdevenginemedia)                       | Media Selector Engine 多媒体资源选择
+               - [luck_siege_lib](#ktxdevenginemedialuck_siege_lib)| LuckSiege PictureSelector Engine 实现
+                  - [listener](#ktxdevenginemedialuck_siege_liblistener)| LuckSiege PictureSelector Listener 实现
+         - [other](#ktxdevother)                                | 第三方库封装工具类
+            - [retrofit_rxjava](#ktxdevotherretrofit_rxjava)    | Retrofit RxJava 封装
+               - [demo](#ktxdevotherretrofit_rxjavademo)        | Retrofit RxJava Demo
+               - [response](#ktxdevotherretrofit_rxjavaresponse)| 请求响应解析
                - [subscriber](#ktxdevotherretrofit_rxjavasubscriber)| 请求响应处理
 
 
@@ -529,55 +539,82 @@
 ## <span id="javadevenginemedia">**`java.dev.engine.media`**</span>
 
 
-* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/LocalMediaData.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getLocalMedia | getLocalMedia |
-| setLocalMedia | setLocalMedia |
-| getLocalMediaPath | 获取本地资源路径 |
-
-
 * **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/MediaConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| convertLibCustomConfig | 强转第三方库自定义配置 |
+| getLibCustomConfig | 获取第三方库自定义配置 |
+| setLibCustomConfig | 设置第三方库自定义配置 |
 | getMimeType | 获取相册选择类型 |
 | setMimeType | 设置相册选择类型 |
 | getSelectionMode | 获取相册选择模式 |
 | setSelectionMode | 设置相册选择模式 |
-| isCamera | 是否显示拍照 |
-| setCamera | 设置是否显示拍照 |
-| isCrop | 是否裁减 |
-| setCrop | 设置是否裁减 |
-| isCircleCrop | 是否圆形裁减 |
-| setCircleCrop | 设置是否圆形裁减 |
-| isCompress | 是否压缩 |
-| setCompress | 设置是否压缩 |
-| getMinimumCompressSize | 获取图片大于多少才进行压缩 |
-| setMinimumCompressSize | 设置图片大于多少才进行压缩 |
-| getWithAspectRatio | 获取裁减比例 |
-| setWithAspectRatio | 设置裁减比例 |
-| isGif | 是否显示 Gif |
-| setGif | 设置是否显示 Gif |
-| getImageSpanCount | 获取每行显示个数 |
-| setImageSpanCount | 设置每行显示个数 |
-| getMinSelectNum | 获取最小选择数量 |
-| setMinSelectNum | 设置最小选择数量 |
-| getMaxSelectNum | 获取最大选择数量 |
-| setMaxSelectNum | 设置最大选择数量 |
-| getLocalMedia | 获取已选择的本地资源 |
-| setLocalMedia | 设置已选择的本地资源 |
-| getCameraSavePath | 获取拍照存储地址 |
-| setCameraSavePath | 设置拍照存储地址 |
-| getCompressSavePath | 获取压缩图片存储地址 |
-| setCompressSavePath | 设置压缩图片存储地址 |
+| getCustomData | 获取自定义数据 |
+| setCustomData | 设置自定义数据 |
+| getMediaDatas | 获取已选择的资源 |
+| setMediaDatas | 设置已选择的资源 |
 | clone | 克隆新的配置信息 |
 | set | 设置新的配置信息 |
 | ofAll | ofAll |
 | ofImage | ofImage |
 | ofVideo | ofVideo |
 | ofAudio | ofAudio |
+
+
+* **Media Selector Data ->** [MediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/MediaData.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| convertLibOriginalData | 强转第三方库原始数据 |
+| getLibOriginalData | 获取第三方库原始数据 |
+| setLibOriginalData | 设置第三方库原始数据 |
+| getAvailableUri | 获取可用资源 Uri |
+| isExistOriginalUri | 是否存在原始 Uri |
+| isExistSandboxUri | 是否存在沙盒转存 Uri |
+| isExistThumbnailUri | 是否存在缩略图 Uri |
+| isExistWatermarkUri | 是否存在水印 Uri |
+| isExistCompressUri | 是否属于压缩状态且存在压缩 Uri |
+| isExistCropUri | 是否属于裁剪状态且存在裁剪 Uri |
+| clone | 克隆对象 |
+| set | 设置 MediaData 数据 |
+| getUUID | 获取唯一标识 UUID |
+| getCustomData | 获取自定义数据 |
+| setCustomData | 设置自定义数据 |
+| getOriginalUri | 获取原始 Uri |
+| setOriginalUri | 设置原始 Uri |
+| getSandboxUri | 获取沙盒转存 Uri |
+| setSandboxUri | 设置沙盒转存 Uri |
+| getCompressUri | 获取压缩 Uri |
+| setCompressUri | 设置压缩 Uri |
+| getThumbnailUri | 获取缩略图 Uri |
+| setThumbnailUri | 设置缩略图 Uri |
+| getWatermarkUri | 获取水印 Uri |
+| setWatermarkUri | 设置水印 Uri |
+| getCropUri | 获取裁剪 Uri |
+| setCropUri | 设置裁剪 Uri |
+| getMimeType | 获取类型 |
+| setMimeType | 设置类型 |
+| getDuration | 获取时长 |
+| setDuration | 设置时长 |
+| getWidth | 获取宽度 |
+| setWidth | 设置宽度 |
+| getHeight | 获取高度 |
+| setHeight | 设置高度 |
+| getCropImageWidth | 获取裁剪宽度 |
+| setCropImageWidth | 设置裁剪宽度 |
+| getCropImageHeight | 获取裁剪高度 |
+| setCropImageHeight | 设置裁剪高度 |
+| getCropOffsetX | 获取裁剪 X 轴偏移值 |
+| setCropOffsetX | 设置裁剪 X 轴偏移值 |
+| getCropOffsetY | 获取裁剪 Y 轴偏移值 |
+| setCropOffsetY | 设置裁剪 Y 轴偏移值 |
+| getCropAspectRatio | 获取裁剪纵横比 X:Y |
+| setCropAspectRatio | 设置裁剪纵横比 X:Y |
+| isCropState | 获取裁剪状态 |
+| setCropState | 设置裁剪状态 |
+| isCompressState | 获取压缩状态 |
+| setCompressState | 设置压缩状态 |
 
 
 * **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/PictureSelectorEngineImpl.java)
@@ -588,6 +625,7 @@
 | setConfig | setConfig |
 | openCamera | openCamera |
 | openGallery | openGallery |
+| openPreview | openPreview |
 | deleteCacheDirFile | deleteCacheDirFile |
 | deleteAllCacheDirFile | deleteAllCacheDirFile |
 | isMediaSelectorResult | isMediaSelectorResult |
@@ -597,17 +635,61 @@
 | getSingleSelectorUri | getSingleSelectorUri |
 
 
-## <span id="javadevenginemedialuck_lib_engine">**`java.dev.engine.media.luck_lib_engine`**</span>
+## <span id="javadevenginemedialuck_siege_lib">**`java.dev.engine.media.luck_siege_lib`**</span>
 
 
-* ** ->** [LuckGlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_lib_engine/LuckGlideEngineImpl.java)
+* **PictureSelector 相册压缩引擎 ->** [LuckCompressFileEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/LuckCompressFileEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| onStartCompress | onStartCompress |
+| toInputStreamList | 转换待压缩数据 |
+| toUriPath | 获取 Uri 原始路径 |
+
+
+* **PictureSelector 相册裁剪引擎 ->** [LuckCropFileEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/LuckCropFileEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStartCrop | onStartCrop |
+
+
+* **PictureSelector 相册图片加载引擎 ->** [LuckImageEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/LuckImageEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| createEngine | createEngine |
 | loadImage | 加载图片 |
-| loadFolderImage | 加载相册目录 |
+| loadAlbumCover | 加载相册目录封面 |
 | loadGridImage | 加载图片列表图片 |
-| createGlideEngine | createGlideEngine |
+| pauseRequests | pauseRequests |
+| resumeRequests | resumeRequests |
+
+
+* **PictureSelector 相册沙盒目录拷贝引擎 ->** [LuckSandboxFileEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/LuckSandboxFileEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| createEngine | createEngine |
+| onUriToFileAsyncTransform | onUriToFileAsyncTransform |
+
+
+## <span id="javadevenginemedialuck_siege_liblistener">**`java.dev.engine.media.luck_siege_lib.listener`**</span>
+
+
+* **PictureSelector 编辑拦截器 ->** [LuckMediaEditInterceptListener.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/listener/LuckMediaEditInterceptListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStartMediaEdit | onStartMediaEdit |
+
+
+* **PictureSelector 录音拦截器 ->** [LuckRecordAudioInterceptListener.java](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java//java/dev/engine/media/luck_siege_lib/listener/LuckRecordAudioInterceptListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onRecordAudio | onRecordAudio |
+| startRecordSoundAction | 启动录音意图 |
 
 
 ## <span id="javadevenginepermission">**`java.dev.engine.permission`**</span>
@@ -856,6 +938,7 @@
 | setConfig | 设置全局配置 |
 | openCamera | 打开相册拍照 |
 | openGallery | 打开相册选择 |
+| openPreview | 打开相册预览 |
 | deleteCacheDirFile | 删除缓存文件 |
 | deleteAllCacheDirFile | 删除全部缓存文件 |
 | isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
@@ -1082,6 +1165,18 @@
 
 
 ## <span id="ktxdevassist">**`ktx.dev.assist`**</span>
+
+
+## <span id="ktxdevengine">**`ktx.dev.engine`**</span>
+
+
+## <span id="ktxdevenginemedia">**`ktx.dev.engine.media`**</span>
+
+
+## <span id="ktxdevenginemedialuck_siege_lib">**`ktx.dev.engine.media.luck_siege_lib`**</span>
+
+
+## <span id="ktxdevenginemedialuck_siege_liblistener">**`ktx.dev.engine.media.luck_siege_lib.listener`**</span>
 
 
 ## <span id="ktxdevother">**`ktx.dev.other`**</span>
