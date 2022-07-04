@@ -28,7 +28,7 @@ public class LuckCropFileEngineImpl
         implements CropFileEngine {
 
     // UCrop.Options
-    private final UCrop.Options mOptions;
+    protected final UCrop.Options mOptions;
 
     // ==========
     // = 构造函数 =

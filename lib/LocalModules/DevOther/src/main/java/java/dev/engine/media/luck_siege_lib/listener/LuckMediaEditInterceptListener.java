@@ -26,9 +26,9 @@ public class LuckMediaEditInterceptListener
         implements OnMediaEditInterceptListener {
 
     // 编辑保存路径
-    private final String        mOutputCropPath;
+    protected final String        mOutputCropPath;
     // UCrop.Options
-    private final UCrop.Options mOptions;
+    protected final UCrop.Options mOptions;
 
     // ==========
     // = 构造函数 =

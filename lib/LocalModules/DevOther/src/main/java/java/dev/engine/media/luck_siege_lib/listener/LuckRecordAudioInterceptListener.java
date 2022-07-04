@@ -20,7 +20,7 @@ public class LuckRecordAudioInterceptListener
         implements OnRecordAudioInterceptListener {
 
     // 拒绝权限提示文案
-    private final String mDeniedHint;
+    protected final String mDeniedHint;
 
     // ==========
     // = 构造函数 =

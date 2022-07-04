@@ -10,9 +10,8 @@ import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
 import dev.utils.common.FileUtils
-import java.dev.engine.media.luck_siege_lib.LuckCompressFileEngineImpl
-import java.dev.engine.media.luck_siege_lib.LuckImageEngineImpl
-
+import ktx.dev.engine.media.luck_siege_lib.LuckCompressFileEngineImpl
+import ktx.dev.engine.media.luck_siege_lib.LuckImageEngineImpl
 
 // =============================
 // = IMediaEngine.EngineConfig =

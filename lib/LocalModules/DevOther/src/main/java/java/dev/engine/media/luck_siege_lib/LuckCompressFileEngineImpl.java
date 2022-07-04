@@ -30,7 +30,7 @@ public class LuckCompressFileEngineImpl
         implements CompressFileEngine {
 
     // 图片大于多少才进行压缩 ( kb )
-    private final int mMinimumCompressSize;
+    protected final int mMinimumCompressSize;
 
     // ==========
     // = 构造函数 =
