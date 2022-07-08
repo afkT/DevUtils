@@ -5,7 +5,7 @@ apply from: rootProject.file(files.task_generate_deps_file_gradle)
 buildscript {
 
     // Kotlin 版本
-    ext.kotlin_version = "1.7.0"
+    ext.kotlin_version = "1.7.10"
     ext.kotlin_stdlib = "1.7.0"
     ext.matrix_version = "2.0.8"
 
