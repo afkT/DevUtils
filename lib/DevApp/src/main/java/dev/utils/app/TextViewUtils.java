@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
+import androidx.core.widget.TextViewCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -2985,5 +2986,178 @@ public final class TextViewUtils {
             }
         }
         return textView;
+    }
+
+    // =============
+    // = AppCompat =
+    // =============
+
+    // ================
+    // = AutoSizeable =
+    // ================
+
+    /**
+     * 通过设置默认的自动调整大小配置, 决定是否自动缩放文本
+     * @param view             {@link TextView}
+     * @param autoSizeTextType 自动调整大小类型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setAutoSizeTextTypeWithDefaults(
+            final View view,
+            @TextViewCompat.AutoSizeTextType final int autoSizeTextType
+    ) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                        textView, autoSizeTextType
+                );
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setAutoSizeTextTypeWithDefaults");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 TextView 自动调整字体大小配置
+     * @param view                    {@link TextView}
+     * @param autoSizeMinTextSize     自动调整最小字体大小
+     * @param autoSizeMaxTextSize     自动调整最大字体大小
+     * @param autoSizeStepGranularity 自动调整大小变动粒度 ( 跨度区间值 )
+     * @param unit                    字体参数类型
+     */
+    public static boolean setAutoSizeTextTypeUniformWithConfiguration(
+            final View view,
+            final int autoSizeMinTextSize,
+            final int autoSizeMaxTextSize,
+            final int autoSizeStepGranularity,
+            final int unit
+    ) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                        textView, autoSizeMinTextSize, autoSizeMaxTextSize,
+                        autoSizeStepGranularity, unit
+                );
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setAutoSizeTextTypeUniformWithConfiguration");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置 TextView 自动调整如果预设字体大小范围有效则修改类型为 AUTO_SIZE_TEXT_TYPE_UNIFORM
+     * @param view        {@link TextView}
+     * @param presetSizes 预设字体大小范围像素为单位
+     * @param unit        字体参数类型
+     */
+    public static boolean setAutoSizeTextTypeUniformWithPresetSizes(
+            final View view,
+            final int[] presetSizes,
+            final int unit
+    ) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(
+                        textView, presetSizes, unit
+                );
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setAutoSizeTextTypeUniformWithPresetSizes");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取 TextView 自动调整大小类型
+     * @param view {@link TextView}
+     * @return 自动调整大小类型
+     */
+    @TextViewCompat.AutoSizeTextType
+    public static int getAutoSizeTextType(final View view) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                return TextViewCompat.getAutoSizeTextType(textView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAutoSizeTextType");
+            }
+        }
+        return TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE;
+    }
+
+    /**
+     * 获取 TextView 自动调整大小变动粒度 ( 跨度区间值 )
+     * @param view {@link TextView}
+     * @return 自动调整大小变动粒度 ( 跨度区间值 )
+     */
+    public static int getAutoSizeStepGranularity(final View view) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                return TextViewCompat.getAutoSizeStepGranularity(textView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAutoSizeStepGranularity");
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取 TextView 自动调整最小字体大小
+     * @param view {@link TextView}
+     * @return 自动调整最小字体大小
+     */
+    public static int getAutoSizeMinTextSize(final View view) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                return TextViewCompat.getAutoSizeMinTextSize(textView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAutoSizeMinTextSize");
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取 TextView 自动调整最大字体大小
+     * @param view {@link TextView}
+     * @return 自动调整最大字体大小
+     */
+    public static int getAutoSizeMaxTextSize(final View view) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                return TextViewCompat.getAutoSizeMaxTextSize(textView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAutoSizeMaxTextSize");
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 获取 TextView 自动调整大小预设范围数组
+     * @param view {@link TextView}
+     * @return 自动调整大小预设范围数组
+     */
+    public static int[] getAutoSizeTextAvailableSizes(final View view) {
+        TextView textView = getTextView(view);
+        if (textView != null) {
+            try {
+                return TextViewCompat.getAutoSizeTextAvailableSizes(textView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getAutoSizeTextAvailableSizes");
+            }
+        }
+        return new int[0];
     }
 }

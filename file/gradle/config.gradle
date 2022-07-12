@@ -253,12 +253,12 @@ ext {
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1",
                     // https://mvnrepository.com/artifact/com.alibaba/fastjson
                     // Fastjson https://github.com/alibaba/fastjson
-                    //fastjson                            : "com.alibaba:fastjson:2.0.8",
-                    //fastjson_android                    : "com.alibaba:fastjson:2.0.8.android",
+                    //fastjson                            : "com.alibaba:fastjson:2.0.9",
+                    //fastjson_android                    : "com.alibaba:fastjson:2.0.9.android",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.8",
-                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.8.android",
+                    fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.9",
+                    fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.9.android",
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
