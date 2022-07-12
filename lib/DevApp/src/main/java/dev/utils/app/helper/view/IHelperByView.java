@@ -23,6 +23,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
+import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.SizeUtils;
@@ -2682,6 +2683,47 @@ public interface IHelperByView<T> {
             Drawable right,
             Drawable bottom,
             TextView... textViews
+    );
+
+    /**
+     * 通过设置默认的自动调整大小配置, 决定是否自动缩放文本
+     * @param autoSizeTextType 自动调整大小类型
+     * @param views            View[]
+     * @return Helper
+     */
+    T setAutoSizeTextTypeWithDefaults(
+            @TextViewCompat.AutoSizeTextType int autoSizeTextType,
+            View... views
+    );
+
+    /**
+     * 设置 TextView 自动调整字体大小配置
+     * @param autoSizeMinTextSize     自动调整最小字体大小
+     * @param autoSizeMaxTextSize     自动调整最大字体大小
+     * @param autoSizeStepGranularity 自动调整大小变动粒度 ( 跨度区间值 )
+     * @param unit                    字体参数类型
+     * @param views                   View[]
+     * @return Helper
+     */
+    T setAutoSizeTextTypeUniformWithConfiguration(
+            int autoSizeMinTextSize,
+            int autoSizeMaxTextSize,
+            int autoSizeStepGranularity,
+            int unit,
+            View... views
+    );
+
+    /**
+     * 设置 TextView 自动调整如果预设字体大小范围有效则修改类型为 AUTO_SIZE_TEXT_TYPE_UNIFORM
+     * @param presetSizes 预设字体大小范围像素为单位
+     * @param unit        字体参数类型
+     * @param views       View[]
+     * @return Helper
+     */
+    T setAutoSizeTextTypeUniformWithPresetSizes(
+            int[] presetSizes,
+            int unit,
+            View... views
     );
 
     // =====================
