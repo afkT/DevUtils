@@ -7,6 +7,8 @@ package dev.utils.common.able;
  *     所有通用快捷 Filter 接口定义存储类
  *     全部接口只定义一个方法 accept() 且返回值一致
  *     唯一差异就是参数不同
+ *     <p></p>
+ *     代码与 {@link Operateable} 完全一致, 只有方法名、接口名不同
  * </pre>
  */
 public final class Filterable {
@@ -40,7 +42,7 @@ public final class Filterable {
         /**
          * 通过传入参数判断是否接受后续操作
          * @param param 泛型参数
-         * @return {@code true} 允许, {@code false} 不允许
+         * @return {@code true} yes, {@code false} no
          */
         boolean accept(Param param);
     }
@@ -55,7 +57,7 @@ public final class Filterable {
          * 通过传入参数判断是否接受后续操作
          * @param param  泛型参数
          * @param param2 泛型参数
-         * @return {@code true} 允许, {@code false} 不允许
+         * @return {@code true} yes, {@code false} no
          */
         boolean accept(
                 Param param,
@@ -74,7 +76,7 @@ public final class Filterable {
          * @param param  泛型参数
          * @param param2 泛型参数
          * @param param3 泛型参数
-         * @return {@code true} 允许, {@code false} 不允许
+         * @return {@code true} yes, {@code false} no
          */
         boolean accept(
                 Param param,
@@ -92,7 +94,7 @@ public final class Filterable {
         /**
          * 通过传入参数判断是否接受后续操作
          * @param args 泛型参数数组
-         * @return {@code true} 允许, {@code false} 不允许
+         * @return {@code true} yes, {@code false} no
          */
         boolean accept(Param... args);
     }

@@ -40,7 +40,7 @@ public final class Correctable {
     public interface CorrectByParam<Param> {
 
         /**
-         * 通过传入参数执行操作
+         * 通过传入参数校验
          * @param param 泛型参数
          * @return {@code true} yes, {@code false} no
          */
@@ -54,7 +54,7 @@ public final class Correctable {
     public interface CorrectByParam2<Param, Param2> {
 
         /**
-         * 通过传入参数执行操作
+         * 通过传入参数校验
          * @param param  泛型参数
          * @param param2 泛型参数
          * @return {@code true} yes, {@code false} no
@@ -72,7 +72,7 @@ public final class Correctable {
     public interface CorrectByParam3<Param, Param2, Param3> {
 
         /**
-         * 通过传入参数执行操作
+         * 通过传入参数校验
          * @param param  泛型参数
          * @param param2 泛型参数
          * @param param3 泛型参数
@@ -92,7 +92,7 @@ public final class Correctable {
     public interface CorrectByParamArgs<Param> {
 
         /**
-         * 通过传入参数执行操作
+         * 通过传入参数校验
          * @param args 泛型参数数组
          * @return {@code true} yes, {@code false} no
          */
