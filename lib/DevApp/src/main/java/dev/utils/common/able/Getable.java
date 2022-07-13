@@ -1,7 +1,7 @@
 package dev.utils.common.able;
 
 /**
- * detail: Common Get 接口
+ * detail: 通用 Get 接口
  * @author Ttt
  * <pre>
  *     所有通用快捷 Get 接口定义存储类
