@@ -8,11 +8,11 @@ package dev.utils.common.able;
  *     全部接口只定义一个方法 execute() 且返回值一致
  *     唯一差异就是参数不同
  *     <p></p>
- *     如 Edit、Task、Result 等各种执行操作功能
- *     减少定义 Editable、Taskable、Resultable 等过多相同功能接口
- *     如有切换编辑状态等, 可定义 Toggleable 专门用于通用切换定义
+ *     如 Delete、Update 各种执行操作只需要知道 true、false 结果功能通用
+ *     减少定义 Deleteable、Updateable 等过多相同功能接口
+ *     缺点就是 如 delete()、update() 等方法都统一命名为 execute()
  *     <p></p>
- *     缺点就是 如 edit()、taskRun()、result() 等方法都统一命名为 execute()
+ *     如果需要执行操作后, 获取返回所需值可使用 {@link Taskable}
  *     <p></p>
  *     虽然 Readable、Writeable 都可以分别使用 {@link Getable}、{@link Operateable} 实现
  *     但是读写较为常用, 所以专门定义代码与 {@link Getable}、{@link Operateable} 一致方法名、接口名不同
