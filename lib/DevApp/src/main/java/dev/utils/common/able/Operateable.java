@@ -8,11 +8,14 @@ package dev.utils.common.able;
  *     全部接口只定义一个方法 execute() 且返回值一致
  *     唯一差异就是参数不同
  *     <p></p>
- *     如 Write、Edit、Task 等各种执行操作功能
- *     减少定义 Writeable、Editable、Taskable 等过多相同功能接口
+ *     如 Edit、Task、Result 等各种执行操作功能
+ *     减少定义 Editable、Taskable、Resultable 等过多相同功能接口
  *     如有切换编辑状态等, 可定义 Toggleable 专门用于通用切换定义
  *     <p></p>
- *     缺点就是 如 write()、edit()、taskRun() 等方法都统一命名为 execute()
+ *     缺点就是 如 edit()、taskRun()、result() 等方法都统一命名为 execute()
+ *     <p></p>
+ *     虽然 Readable、Writeable 都可以分别使用 {@link Getable}、{@link Operateable} 实现
+ *     但是读写较为常用, 所以专门定义代码与 {@link Getable}、{@link Operateable} 一致方法名、接口名不同
  * </pre>
  */
 public final class Operateable {

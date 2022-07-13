@@ -1,20 +1,19 @@
 package dev.utils.common.able;
 
 /**
- * detail: 通用 Get 接口
+ * detail: 通用 Read 接口
  * @author Ttt
  * <pre>
- *     所有通用快捷 Get 接口定义存储类
- *     全部接口只定义一个方法 get() 且返回值一致
+ *     所有通用快捷 Read 接口定义存储类
+ *     全部接口只定义一个方法 read() 且返回值一致
  *     唯一差异就是参数不同
  *     <p></p>
- *     同 {@link Operateable} 注释定义
- *     用于通用获取操作并返回值相同功能定义
+ *     代码与 {@link Getable} 完全一致, 只有方法名、接口名不同
  * </pre>
  */
-public final class Getable {
+public final class Readable {
 
-    private Getable() {
+    private Readable() {
     }
 
     // =======
@@ -22,12 +21,12 @@ public final class Getable {
     // =======
 
     /**
-     * detail: Get 接口 ( 最基础无参方法 )
+     * detail: Read 接口 ( 最基础无参方法 )
      * @author Ttt
      */
-    public interface Get<T> {
+    public interface Read<T> {
 
-        T get();
+        T read();
     }
 
     // =======
@@ -35,24 +34,24 @@ public final class Getable {
     // =======
 
     /**
-     * detail: Get 接口 ( 通过传入参数 )
+     * detail: Read 接口 ( 通过传入参数 )
      * @author Ttt
      */
-    public interface GetByParam<T, Param> {
+    public interface ReadByParam<T, Param> {
 
         /**
          * 通过传入参数获取指定类型返回值
          * @param param 泛型参数
          * @return 泛型值
          */
-        T get(Param param);
+        T read(Param param);
     }
 
     /**
-     * detail: Get 接口 ( 通过传入参数 )
+     * detail: Read 接口 ( 通过传入参数 )
      * @author Ttt
      */
-    public interface GetByParam2<T, Param, Param2> {
+    public interface ReadByParam2<T, Param, Param2> {
 
         /**
          * 通过传入参数获取指定类型返回值
@@ -60,17 +59,17 @@ public final class Getable {
          * @param param2 泛型参数
          * @return 泛型值
          */
-        T get(
+        T read(
                 Param param,
                 Param2 param2
         );
     }
 
     /**
-     * detail: Get 接口 ( 通过传入参数 )
+     * detail: Read 接口 ( 通过传入参数 )
      * @author Ttt
      */
-    public interface GetByParam3<T, Param, Param2, Param3> {
+    public interface ReadByParam3<T, Param, Param2, Param3> {
 
         /**
          * 通过传入参数获取指定类型返回值
@@ -79,7 +78,7 @@ public final class Getable {
          * @param param3 泛型参数
          * @return 泛型值
          */
-        T get(
+        T read(
                 Param param,
                 Param2 param2,
                 Param3 param3
@@ -87,16 +86,16 @@ public final class Getable {
     }
 
     /**
-     * detail: Get 接口 ( 通过传入参数 )
+     * detail: Read 接口 ( 通过传入参数 )
      * @author Ttt
      */
-    public interface GetByParamArgs<T, Param> {
+    public interface ReadByParamArgs<T, Param> {
 
         /**
          * 通过传入参数获取指定类型返回值
          * @param args 泛型参数数组
          * @return 泛型值
          */
-        T get(Param... args);
+        T read(Param... args);
     }
 }
