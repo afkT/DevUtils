@@ -7,8 +7,6 @@ package dev.utils.common.able;
  *     所有通用快捷 Filter 接口定义存储类
  *     全部接口只定义一个方法 accept() 且返回值一致
  *     唯一差异就是参数不同
- *     <p></p>
- *     代码与 {@link Operateable} 完全一致, 只有方法名、接口名不同
  * </pre>
  */
 public final class Filterable {
@@ -20,82 +18,39 @@ public final class Filterable {
     // = 无参 =
     // =======
 
-    /**
-     * detail: Filter 接口 ( 最基础无参方法 )
-     * @author Ttt
-     */
-    public interface Filter {
+    public interface Filter<T> {
 
-        boolean accept();
+        T accept();
     }
 
     // =======
     // = 有参 =
     // =======
 
-    /**
-     * detail: Filter 接口 ( 通过传入参数 )
-     * @author Ttt
-     */
-    public interface FilterByParam<Param> {
+    public interface FilterByParam<T, Param> {
 
-        /**
-         * 通过传入参数判断是否接受后续操作
-         * @param param 泛型参数
-         * @return {@code true} yes, {@code false} no
-         */
-        boolean accept(Param param);
+        T accept(Param param);
     }
 
-    /**
-     * detail: Filter 接口 ( 通过传入参数 )
-     * @author Ttt
-     */
-    public interface FilterByParam2<Param, Param2> {
+    public interface FilterByParam2<T, Param, Param2> {
 
-        /**
-         * 通过传入参数判断是否接受后续操作
-         * @param param  泛型参数
-         * @param param2 泛型参数
-         * @return {@code true} yes, {@code false} no
-         */
-        boolean accept(
+        T accept(
                 Param param,
                 Param2 param2
         );
     }
 
-    /**
-     * detail: Filter 接口 ( 通过传入参数 )
-     * @author Ttt
-     */
-    public interface FilterByParam3<Param, Param2, Param3> {
+    public interface FilterByParam3<T, Param, Param2, Param3> {
 
-        /**
-         * 通过传入参数判断是否接受后续操作
-         * @param param  泛型参数
-         * @param param2 泛型参数
-         * @param param3 泛型参数
-         * @return {@code true} yes, {@code false} no
-         */
-        boolean accept(
+        T accept(
                 Param param,
                 Param2 param2,
                 Param3 param3
         );
     }
 
-    /**
-     * detail: Filter 接口 ( 通过传入参数 )
-     * @author Ttt
-     */
-    public interface FilterByParamArgs<Param> {
+    public interface FilterByParamArgs<T, Param> {
 
-        /**
-         * 通过传入参数判断是否接受后续操作
-         * @param args 泛型参数数组
-         * @return {@code true} yes, {@code false} no
-         */
-        boolean accept(Param... args);
+        T accept(Param... args);
     }
 }

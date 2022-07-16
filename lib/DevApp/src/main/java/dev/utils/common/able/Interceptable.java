@@ -7,8 +7,6 @@ package dev.utils.common.able;
  *     所有通用快捷 Intercept 接口定义存储类
  *     全部接口只定义一个方法 intercept() 且返回值一致
  *     唯一差异就是参数不同
- *     <p></p>
- *     代码与 {@link Getable} 完全一致, 只有方法名、接口名不同
  * </pre>
  */
 public final class Interceptable {
