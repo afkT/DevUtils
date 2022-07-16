@@ -1,13 +1,13 @@
 package utils_use.text;
 
+import static dev.kotlin.engine.log.LogKt.log_dTag;
+
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import dev.utils.app.TextViewUtils;
-
-import static dev.kotlin.engine.log.LogKt.log_dTag;
 
 /**
  * detail: 计算字体宽度、高度

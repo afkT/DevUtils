@@ -1,5 +1,7 @@
 package afkt.project.ui.widget;
 
+import static dev.kotlin.engine.log.LogKt.log_e;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -11,8 +13,6 @@ import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingDrawable;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import afkt.project.ui.widget.render.LoadingRendererFactory;
-
-import static dev.kotlin.engine.log.LogKt.log_e;
 
 /**
  * detail: LoadingView

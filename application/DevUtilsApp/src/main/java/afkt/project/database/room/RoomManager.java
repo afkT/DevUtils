@@ -1,5 +1,7 @@
 package afkt.project.database.room;
 
+import static dev.kotlin.engine.log.LogKt.log_eTag;
+
 import android.text.TextUtils;
 
 import java.util.HashMap;
@@ -8,8 +10,6 @@ import java.util.Map;
 import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.NoteDatabase;
 import dev.utils.common.StringUtils;
-
-import static dev.kotlin.engine.log.LogKt.log_eTag;
 
 /**
  * detail: Room 数据库管理类
