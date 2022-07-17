@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.4.1 *(2022-07-18)*
+----------------------------
+
+* `[Add]` 新增 TextViewUitls AppCompat AutoSizeableTextView 接口实现方法
+
+* `[Add]` 新增 TextViewUtils 方法到 Helper 类
+
+* `[Add]` 新增部分通用 able 接口
+
 Version 2.4.0 *(2022-07-04)*
 ----------------------------
 

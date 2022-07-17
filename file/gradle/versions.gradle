@@ -26,8 +26,8 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 240,
-            dev_app_versionName                      : "2.4.0",
+            dev_app_versionCode                      : 241,
+            dev_app_versionName                      : "2.4.1",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
             dev_assist_versionCode                   : 136,
@@ -71,7 +71,7 @@ ext {
             dev_environment_compiler_release_version : "1.1.1",
 
             // DevJava - Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 146,
-            dev_java_version                         : "1.4.6",
+            dev_java_versionCode                     : 147,
+            dev_java_version                         : "1.4.7",
     ]
 }

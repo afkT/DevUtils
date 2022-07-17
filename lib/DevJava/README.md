@@ -2,26 +2,27 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.4.6'
+implementation 'io.github.afkt:DevJava:1.4.7'
 ```
 
 ## 目录结构
 
 ```
-- dev.utils            | 根目录
-   - common            | Java 工具类, 不依赖 android api
-      - assist         | 各种快捷辅助类
-         - record      | 文件记录分析类
-         - search      | 搜索相关 ( 文件搜索等 )
-         - url         | Url 携带信息解析
-      - cipher         | 编 / 解码工具类
-      - comparator     | 排序比较器
-         - sort        | 各种类型比较器排序实现
-      - encrypt        | 加密工具类
-      - file           | 文件分片相关
-      - random         | 随机概率算法工具类
-      - thread         | 线程相关
-      - validator      | 数据校验工具类
+- dev.utils                | 根目录
+   - common                | Java 工具类, 不依赖 android api
+      - able               | 通用接口定义
+      - assist             | 各种快捷辅助类
+         - record          | 文件记录分析类
+         - search          | 搜索相关 ( 文件搜索等 )
+         - url             | Url 携带信息解析
+      - cipher             | 编 / 解码工具类
+      - comparator         | 排序比较器
+         - sort            | 各种类型比较器排序实现
+      - encrypt            | 加密工具类
+      - file               | 文件分片相关
+      - random             | 随机概率算法工具类
+      - thread             | 线程相关
+      - validator          | 数据校验工具类
 ```
 
 
@@ -50,6 +51,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 - dev.utils                                                 | 根目录
    - [common](#devutilscommon)                              | Java 工具类, 不依赖 android api
+      - [able](#devutilscommonable)                         | 通用接口定义
       - [assist](#devutilscommonassist)                     | 各种快捷辅助类
          - [record](#devutilscommonassistrecord)            | 文件记录分析类
          - [search](#devutilscommonassistsearch)            | 搜索相关 ( 文件搜索等 )
@@ -1032,6 +1034,9 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | unzipFileByKeyword | 解压带有关键字的文件 |
 | getFilesPath | 获取压缩文件中的文件路径链表 |
 | getComments | 获取压缩文件中的注释链表 |
+
+
+## <span id="devutilscommonable">**`dev.utils.common.able`**</span>
 
 
 ## <span id="devutilscommonassist">**`dev.utils.common.assist`**</span>
