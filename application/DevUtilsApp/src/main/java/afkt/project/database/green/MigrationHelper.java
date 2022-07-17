@@ -1,7 +1,5 @@
 package afkt.project.database.green;
 
-import static dev.kotlin.engine.log.LogKt.log_e;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
@@ -17,6 +15,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static dev.kotlin.engine.log.LogKt.log_e;
 
 /**
  * Createdby PedroOkawa and modified by MBH on 16/08/16.

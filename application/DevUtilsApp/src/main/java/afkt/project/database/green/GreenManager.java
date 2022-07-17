@@ -1,7 +1,5 @@
 package afkt.project.database.green;
 
-import static dev.kotlin.engine.log.LogKt.log_eTag;
-
 import android.text.TextUtils;
 
 import java.util.HashMap;
@@ -11,6 +9,8 @@ import afkt.project.database.green.able.AbsGreenDatabase;
 import afkt.project.database.green.module.image.ImageDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
 import dev.utils.common.StringUtils;
+
+import static dev.kotlin.engine.log.LogKt.log_eTag;
 
 /**
  * detail: GreenDao 管理类
