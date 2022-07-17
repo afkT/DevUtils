@@ -1312,6 +1312,11 @@ public final class FileUtils {
 
     /**
      * 读取文件
+     * <pre>
+     *     获取换行内容可以通过
+     *     {@link FileIOUtils#readFileToList(File)}
+     *     {@link FileIOUtils#readFileToString(File)}
+     * </pre>
      * @param filePath 文件路径
      * @return 文件内容字符串
      */
