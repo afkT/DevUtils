@@ -8,23 +8,17 @@ dependencies {
 //    // Bugly https://bugly.qq.com/docs/
 //    implementation deps.property.bugly
 //    implementation deps.property.bugly_ndk
+
 //    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
 //    debugImplementation deps.property.uetool
 //    releaseImplementation deps.property.uetool_no_op
 
 //    // 内存检测工具 https://github.com/square/leakcanary
 //    debugImplementation deps.property.leakcanary
+
 //    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
 //    debugImplementation deps.property.blockcanary_android
 //    releaseImplementation deps.property.blockcanary_no_op
-
-//    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-//    implementation deps.property.xcrash
-//    // 滴滴出行 DoraemonKit http://www.dokit.cn
-//    debugImplementation deps.property.dokitx
-//    releaseImplementation deps.property.dokitx_no_op
-//    // 应用数据库展示 https://github.com/guolindev/Glance
-//    debugImplementation deps.property.glance
 
 //    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
 //    implementation(deps.property.matrix_android_lib) { changing = true }

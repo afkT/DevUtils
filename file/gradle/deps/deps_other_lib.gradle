@@ -52,8 +52,6 @@ dependencies {
 //    implementation deps.lib.pictureSelector_compress
     implementation deps.lib.pictureSelector_ucrop
     implementation deps.lib.pictureSelector_camerax
-    // 动画库 https://github.com/airbnb/lottie-android
-    implementation deps.lib.lottie
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     implementation deps.lib.zxing_android_code // android-core
@@ -63,10 +61,6 @@ dependencies {
     implementation deps.lib.greenDAO
     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
     implementation deps.lib.sqlcipher
-    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-    implementation deps.lib.xxPermissions
-    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
-    implementation deps.lib.panelSwitchHelper
 
     // ==========
     // = Widget =
@@ -78,11 +72,6 @@ dependencies {
     implementation deps.widget.ratingbar
     // 加载动画效果 https://github.com/Kyson/WhorlView
     implementation deps.widget.whorlviewlibrary
-    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-    implementation deps.widget.pickerview
-    // https://blog.csdn.net/qq_22393017/article/details/58099486
-    // 图片缩放 https://github.com/chrisbanes/PhotoView
-    implementation deps.widget.photoview
     // Banner 库 https://github.com/youth5201314/banner
     implementation deps.widget.banner
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
@@ -91,8 +80,6 @@ dependencies {
     implementation deps.widget.smartrefreshlayout
     implementation deps.widget.smartrefresh_header_classics
     implementation deps.widget.smartrefresh_footer_classics
-//    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-//    implementation deps.widget.base_recyclerview_adapter_helper
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     implementation deps.widget.multitype
 
