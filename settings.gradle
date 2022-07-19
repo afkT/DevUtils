@@ -52,11 +52,20 @@ def local_modules = [
         "DevBase2",
         "DevOther",
         "DevSKU",
+        "DevComponent/lib_utils",
 ]
 
 local_modules.forEach {
-    include(":$it")
-    project(":$it").projectDir = new File(rootDir, "lib/LocalModules/$it")
+    def itName = it
+
+    if (itName.indexOf("/") != -1) {
+        itName = itName.substring(
+                itName.lastIndexOf("/") + 1,
+                itName.length()
+        )
+    }
+    include(":$itName")
+    project(":$itName").projectDir = new File(rootDir, "lib/LocalModules/$it")
 }
 
 // ==========
@@ -65,7 +74,6 @@ local_modules.forEach {
 
 def modules = [
         "DevBaseModule",
-        "DevComponent/lib_utils",
         "push/DevGTPush",
         "push/DevJPush",
         "share/DevUMShare",

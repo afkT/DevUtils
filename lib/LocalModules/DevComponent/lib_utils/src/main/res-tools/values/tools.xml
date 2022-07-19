@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" translatable="false" tools:ignore="ResourceName">
+
+    <!--
+        专门用于 tools:xxxx 相关属性值使用
+        全局进行统一减少太多匹配代码
+    -->
+
+    <string name="tools_price">¥17.2</string>
+</resources>

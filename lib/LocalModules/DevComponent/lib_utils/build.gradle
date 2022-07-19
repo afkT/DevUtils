@@ -1,0 +1,12 @@
+apply from: rootProject.file(files.build_app_kotlin_gradle)
+
+android {
+    sourceSets {
+        main {
+            // 优化 res 资源管理, 使用 sourceSets 资源分包
+            res.srcDirs = [
+                    'src/main/res-tools', // 用于 xml tools:xxx 展示
+            ]
+        }
+    }
+}
