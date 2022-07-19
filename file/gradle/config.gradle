@@ -205,6 +205,9 @@ ext {
                     // https://mvnrepository.com/artifact/jp.wasabeef/glide-transformations
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
                     glide_transformations               : "jp.wasabeef:glide-transformations:4.3.0",
+                    // https://mvnrepository.com/artifact/com.tencent/mmkv-static
+                    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
+                    mmkv                                : "com.tencent:mmkv-static:1.2.13",
                     // https://mvnrepository.com/artifact/org.greenrobot/eventbus
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                            : "org.greenrobot:eventbus:3.3.1",
@@ -215,11 +218,8 @@ ext {
                     // okio https://github.com/square/okio
                     okio                                : "com.squareup.okio:okio:3.2.0",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-                    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
                     okhttp3                             : "com.squareup.okhttp3:okhttp:4.10.0",
-                    // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging                     : "com.squareup.okhttp3:logging-interceptor:4.10.0",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava3
@@ -259,11 +259,10 @@ ext {
                     // Fastjson2 https://github.com/alibaba/fastjson2
                     fastjson2                           : "com.alibaba.fastjson2:fastjson2:2.0.9",
                     fastjson2_android                   : "com.alibaba.fastjson2:fastjson2:2.0.9.android",
-                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
-                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
-                    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper                   : "com.github.YummyLau:PanelSwitchHelper:1.4.0",
-//                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.4.0",
+                    // https://mvnrepository.com/artifact/com.airbnb.android/lottie
+                    // https://www.jianshu.com/p/9a2136ecbc7b
+                    // 动画库 https://github.com/airbnb/lottie-android
+                    lottie                              : "com.airbnb.android:lottie:5.2.0",
                     // https://mvnrepository.com/artifact/io.github.lucksiege/pictureselector
                     // https://mvnrepository.com/artifact/io.github.lucksiege/compress
                     // https://mvnrepository.com/artifact/io.github.lucksiege/ucrop
@@ -277,10 +276,6 @@ ext {
                     pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.10.3",
                     // 自定义相机 ( 按需引入 )
                     pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.10.3",
-                    // https://mvnrepository.com/artifact/com.airbnb.android/lottie
-                    // https://www.jianshu.com/p/9a2136ecbc7b
-                    // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                              : "com.airbnb.android:lottie:5.2.0",
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/core
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/compiler
                     // https://mvnrepository.com/artifact/me.laoyuyu.aria/ftp
@@ -297,9 +292,6 @@ ext {
                     // 二维码 ZXing https://github.com/zxing/zxing
                     zxing_code                          : "com.google.zxing:core:3.5.0",
                     zxing_android_code                  : "com.google.zxing:android-core:3.3.0",
-                    // https://mvnrepository.com/artifact/com.tencent/mmkv-static
-                    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv                                : "com.tencent:mmkv-static:1.2.13",
                     // https://mvnrepository.com/artifact/com.github.JessYanCoding/AndroidAutoSize
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize                            : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
@@ -318,6 +310,11 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions                       : "com.github.getActivity:XXPermissions:15.0",
+                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
+                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
+                    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
+                    panelSwitchHelper                   : "com.github.YummyLau:PanelSwitchHelper:1.4.0",
+//                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.4.0",
 
                     // =======
                     // = 其他 =
@@ -329,9 +326,6 @@ ext {
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api                         : "com.alibaba:arouter-api:1.5.2",
                     arouter_compiler                    : "com.alibaba:arouter-compiler:1.5.2",
-
-                    // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
-                    // https://github.com/CoderAlee/PaintedSkin
             ],
             "aop"       : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
@@ -358,17 +352,14 @@ ext {
                     uetool                        : "com.github.eleme.UETool:uetool:1.3.4",
                     uetool_base                   : "com.github.eleme.UETool:uetool-base:1.3.4",
                     uetool_no_op                  : "com.github.eleme.UETool:uetool-no-op:1.3.4",
-
                     // https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
                     // 内存检测工具 https://github.com/square/leakcanary
                     leakcanary                    : "com.squareup.leakcanary:leakcanary-android:2.9.1",
-
                     // https://mvnrepository.com/artifact/com.github.markzhai/blockcanary-android
                     // https://mvnrepository.com/artifact/com.github.markzhai/blockcanary-no-op
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
-
                     // https://mvnrepository.com/search?q=com.tencent.matrix
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-lib
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-commons
@@ -419,37 +410,46 @@ ext {
                     // https://mvnrepository.com/artifact/jp.co.cyberagent.android/gpuimage
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                        : "jp.co.cyberagent.android:gpuimage:2.1.0",
-                    // https://mvnrepository.com/artifact/com.tt/whorlviewlibrary
-                    // 加载动画效果 https://github.com/Kyson/WhorlView
-                    whorlviewlibrary                : "com.tt:whorlviewlibrary:1.0.3",
-                    // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView
-                    // https://blog.csdn.net/qq_22393017/article/details/58099486
-                    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-                    pickerview                      : "com.contrarywind:Android-PickerView:4.1.9",
-                    // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
-                    // 图片缩放 https://github.com/chrisbanes/PhotoView
-                    photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
-                    // https://mvnrepository.com/artifact/com.github.donkingliang/ConsecutiveScroller
-                    // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
-                    // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.6.1",
+                    // https://mvnrepository.com/artifact/com.haibin/calendarview
+                    // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
+                    calendarview                    : "com.haibin:calendarview:3.7.1",
                     // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
                     // https://blog.csdn.net/ww897532167/article/details/74171294
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
-                    // https://mvnrepository.com/artifact/io.github.youth5201314/banner
-                    // Banner 库 https://github.com/youth5201314/banner
-                    banner                          : "io.github.youth5201314:banner:2.2.2",
-                    // https://mvnrepository.com/artifact/com.haibin/calendarview
-                    // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
-                    calendarview                    : "com.haibin:calendarview:3.7.1",
+                    // https://mvnrepository.com/artifact/com.tt/whorlviewlibrary
+                    // 加载动画效果 https://github.com/Kyson/WhorlView
+                    whorlviewlibrary                : "com.tt:whorlviewlibrary:1.0.3",
+                    // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
+                    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+                    stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
+                    // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
+                    // 图片缩放 https://github.com/chrisbanes/PhotoView
+                    photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
+                    // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView
+                    // https://blog.csdn.net/qq_22393017/article/details/58099486
+                    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
+                    pickerview                      : "com.contrarywind:Android-PickerView:4.1.9",
                     // https://mvnrepository.com/artifact/com.github.yalantis/ucrop
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
                     ucrop                           : "com.github.yalantis:ucrop:2.2.8", // 轻量级通用解决方案
                     ucrop_native                    : "com.github.yalantis:ucrop:2.2.8-native", // 手机原生功能支持
-                    // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
-                    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-                    stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
+                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
+                    // QMUI Android https://qmuiteam.com/android
+                    qmui                            : "com.qmuiteam:qmui:2.1.0",
+                    // https://mvnrepository.com/artifact/com.github.CymChad/BaseRecyclerViewAdapterHelper
+                    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+                    base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
+                    // https://mvnrepository.com/artifact/com.drakeet.multitype/multitype
+                    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
+                    multitype                       : "com.drakeet.multitype:multitype:4.3.0",
+                    // https://mvnrepository.com/artifact/com.github.donkingliang/ConsecutiveScroller
+                    // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
+                    // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
+                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.6.1",
+                    // https://mvnrepository.com/artifact/io.github.youth5201314/banner
+                    // Banner 库 https://github.com/youth5201314/banner
+                    banner                          : "io.github.youth5201314:banner:2.2.2",
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-layout-kernel
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-classics
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-radar
@@ -467,21 +467,15 @@ ext {
                     smartrefresh_header_two_level   : "io.github.scwang90:refresh-header-two-level:2.0.5", // 二级刷新头
                     smartrefresh_footer_ball        : "io.github.scwang90:refresh-footer-ball:2.0.5", // 球脉冲加载
                     smartrefresh_footer_classics    : "io.github.scwang90:refresh-footer-classics:2.0.5", // 经典加载
-                    // https://mvnrepository.com/artifact/com.github.CymChad/BaseRecyclerViewAdapterHelper
-                    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
-                    // https://mvnrepository.com/artifact/com.drakeet.multitype/multitype
-                    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-                    multitype                       : "com.drakeet.multitype:multitype:4.3.0",
-                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
-                    // QMUI Android https://qmuiteam.com/android
-                    qmui                            : "com.qmuiteam:qmui:2.1.0",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
 
                     // 骨架屏 https://github.com/sharish/ShimmerRecyclerView
                     // https://www.jianshu.com/p/9d27a1563a48
+
+                    // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
+                    // https://github.com/CoderAlee/PaintedSkin
 
                     // ==============
                     // = deprecated =
