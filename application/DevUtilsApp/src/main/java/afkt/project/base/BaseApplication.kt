@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevAssist
 import dev.DevHttpCapture
 import dev.DevUtils
+import dev.assist.WebViewAssist
 import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
@@ -33,7 +34,6 @@ import dev.utils.common.assist.TimeCounter
 import dev.widget.DevWidget
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import dev.assist.WebViewAssist
 import me.jessyan.autosize.AutoSizeConfig
 
 /**

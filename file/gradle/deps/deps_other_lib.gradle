@@ -11,20 +11,6 @@ dependencies {
     implementation deps.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
     implementation deps.lib.retrofit_gson
-    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/blob/master/retrofit-adapters/rxjava3
-    implementation deps.lib.retrofit_rxjava3
-    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-    implementation deps.lib.rxjava3
-    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
-    implementation deps.lib.rxandroid3
-    // RxLifecycle https://github.com/trello/RxLifecycle
-    implementation deps.lib.rxlifecycle
-    implementation deps.lib.rxlifecycle_kotlin
-    implementation deps.lib.rxlifecycle_android_lifecycle_kotlin
-    // AutoDispose 自动绑定解绑 https://github.com/uber/AutoDispose
-    implementation deps.lib.auto_dispose
-    implementation deps.lib.auto_dispose_android
-    implementation deps.lib.auto_dispose_lifecycle
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
     // Fastjson2 https://github.com/alibaba/fastjson2
@@ -32,10 +18,6 @@ dependencies {
     // Glide 图片加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     kapt deps.lib.glide_compiler
-    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-    implementation deps.lib.eventbus
-    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
-    implementation deps.lib.live_eventbus
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     implementation deps.lib.mmkv
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
@@ -45,8 +27,6 @@ dependencies {
     // = 其他第三方库 - 小功能、简约 =
     // ==========================
 
-    // Glide 图形库 https://github.com/wasabeef/glide-transformations
-    implementation deps.lib.glide_transformations
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
 //    implementation deps.lib.pictureSelector_compress
@@ -82,15 +62,4 @@ dependencies {
     implementation deps.widget.smartrefresh_footer_classics
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     implementation deps.widget.multitype
-
-    // ==============
-    // = Deprecated =
-    // ==============
-
-    // ImageLoader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
-    implementation deps.deprecated.imageloader
-    // OkGo https://github.com/jeasonlzy/okhttp-OkGo
-    implementation deps.deprecated.okgo
-    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
-    implementation deps.deprecated.okserver
 }

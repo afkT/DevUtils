@@ -11,12 +11,10 @@ import dev.http.manager.OnRetrofitResetListener
 import dev.http.manager.RetrofitBuilder
 import dev.http.manager.RetrofitOperation
 import dev.utils.LogPrintUtils
-import io.reactivex.rxjava3.core.Flowable
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -147,8 +145,6 @@ class RetrofitManagerUse private constructor() {
                 return Retrofit.Builder().apply {
                     // Gson 解析
                     addConverterFactory(GsonConverterFactory.create())
-                    // RxJava3 适配器
-                    addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     // OkHttpClient
                     client((okHttp ?: OkHttpClient.Builder()).build())
                     // 服务器地址
