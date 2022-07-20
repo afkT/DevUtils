@@ -51,11 +51,8 @@ dependencies {
     implementation project(':DevApp')
     implementation project(':DevAssist')
     implementation project(':DevBase')
-    implementation project(':DevBase2')
     implementation project(':DevBaseMVVM')
     implementation project(':DevEngine')
-    implementation project(':DevOther')
-    implementation project(':DevSKU')
     implementation project(':DevWidget')
 
     implementation project(':DevHttpCapture')
@@ -69,6 +66,15 @@ dependencies {
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
 
+    // =========
+    // = 非 lib =
+    // =========
+
     // DevComponent /core/libs/lib_utils
     implementation project(':lib_utils')
+
+    implementation project(':DevBase2')
+    implementation project(':DevOther')
+    implementation project(':DevSKU')
 }
+

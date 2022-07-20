@@ -10,8 +10,13 @@ dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
     implementation project(':DevEngine')
-    implementation project(':DevOther')
+
+    // =========
+    // = 非 lib =
+    // =========
 
     // DevComponent /core/libs/lib_utils
     implementation project(':lib_utils')
+
+    implementation project(':DevOther')
 }
