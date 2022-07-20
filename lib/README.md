@@ -29,7 +29,7 @@ Engine 兼容框架等
       - DevBaseView                              | 通用基础 View 封装 ( 非基类库 )
       - DevComponent                             | 【100% Kotlin 实现 Android 项目组件化示例代码】
          - lib_utils                             | /core/libs/lib_utils
-      - DevOther                                 | 功能、工具类二次封装, 直接 copy 使用【 部分迁移至 DevUtils-repo 】
+      - DevOther                                 | 功能、工具类二次封装, 直接 copy 使用【 大部分迁移至 DevUtils-repo 】
       - DevSKU                                   | 商品 SKU 组合封装实现
 ```
 
