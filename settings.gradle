@@ -49,7 +49,7 @@ environment_libs.forEach {
 // =================
 
 def local_modules = [
-        "DevBase2",
+        "DevBaseView",
         "DevOther",
         "DevSKU",
         "DevComponent/lib_utils",

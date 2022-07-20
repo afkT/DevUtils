@@ -26,10 +26,10 @@ Engine 兼容框架等
       - DevHttpCaptureCompiler                   | Debug ( 打包 / 编译 ) 实现代码
       - DevHttpCaptureCompilerRelease            | Release ( 打包 / 编译 ) 实现代码
    - LocalModules                                | 本地 Module lib ( 非发布库 )
-      - DevBase2                                 | Base 基础代码 ( 非基类库 )
+      - DevBaseView                              | 通用基础 View 封装 ( 非基类库 )
       - DevComponent                             | 【100% Kotlin 实现 Android 项目组件化示例代码】
          - lib_utils                             | /core/libs/lib_utils
-      - DevOther                                 | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用【 部分迁移至 DevUtils-repo 】
+      - DevOther                                 | 功能、工具类二次封装, 直接 copy 使用【 部分迁移至 DevUtils-repo 】
       - DevSKU                                   | 商品 SKU 组合封装实现
 ```
 

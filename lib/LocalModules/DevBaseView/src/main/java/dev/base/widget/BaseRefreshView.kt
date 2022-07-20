@@ -19,7 +19,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import dev.assist.PageAssist
 import dev.base.utils.assist.DevBaseRefreshAssist
-import dev.base2.databinding.BaseRefreshViewBinding
+import dev.base_view.databinding.BaseRefreshViewBinding
 
 /**
  * detail: Base Refresh、Load View

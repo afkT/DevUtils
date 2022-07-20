@@ -5,9 +5,9 @@
 ## 目录结构
 
 ```
-- application                 | 根目录
-   - DevBaseDemo              | 临时测试代码、库调用调试 Demo
-   - DevUtilsApp              | DevUtils 代码演示应用
+- application               | 根目录
+   - DevBaseDemo            | 临时测试代码、库调用调试 Demo
+   - DevUtilsApp            | DevUtils 代码演示应用
 ```
 
 

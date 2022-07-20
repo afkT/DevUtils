@@ -73,7 +73,7 @@ dependencies {
     // DevComponent /core/libs/lib_utils
     implementation project(':lib_utils')
 
-    implementation project(':DevBase2')
+    implementation project(':DevBaseView')
     implementation project(':DevOther')
     implementation project(':DevSKU')
 }
