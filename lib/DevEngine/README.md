@@ -34,7 +34,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 ## 依赖实现信息
 
-> 该库为 Kotlin 实现，另有 [Java 实现代码](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java/java/dev/engine)
+> 该库为 Kotlin 实现，另有 [Java 实现代码](https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther/src/main/java/java/dev/engine)
 > ，**该库会依赖第三方库导致项目体积变大等情况**，可自行 copy 所需已实现代码进行使用
 
 已实现模块有（依赖第三方库实现列表如下展示）：
