@@ -79,9 +79,9 @@
 
 ### DevWidget - 自定义 View UI 库
 
-- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md)
 
-- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget)
+- [Preview README](https://github.com/afkT/DevUtils-repo/blob/main/lib/DevWidget_Preview.md)
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md)
 

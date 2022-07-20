@@ -68,44 +68,6 @@ local_modules.forEach {
     project(":$itName").projectDir = new File(rootDir, "lib/LocalModules/$it")
 }
 
-// ==========
-// = Module =
-// ==========
-
-def modules = [
-        "DevBaseModule",
-        "push/DevGTPush",
-        "push/DevJPush",
-        "share/DevUMShare",
-]
-
-modules.forEach {
-    def itName = it
-
-    if (itName.indexOf("/") != -1) {
-        itName = itName.substring(
-                itName.lastIndexOf("/") + 1,
-                itName.length()
-        )
-    }
-    include(":$itName")
-    project(":$itName").projectDir = new File(rootDir, "module/$it")
-}
-
-// ===============
-// = Interesting =
-// ===============
-
-def interestings = [
-        "DevScreenMatch",
-        "DevStandard",
-]
-
-interestings.forEach {
-    include(":$it")
-    project(":$it").projectDir = new File(rootDir, "interesting/$it")
-}
-
 // ===============
 // = Application =
 // ===============
@@ -122,12 +84,7 @@ def applications = [
         // = 其他项目 =
         // ==========
 
-        "Accessibility",
-        "AppInfo",
         "DevBaseDemo",
-        "GTPush",
-        "JPush",
-        "UMShare",
 ]
 
 applications.forEach {

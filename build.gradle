@@ -1,6 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: rootProject.file("file/gradle/config.gradle")
-apply from: rootProject.file(files.task_generate_deps_file_gradle)
 
 buildscript {
 
@@ -25,12 +24,6 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
         maven { url "https://repo1.maven.org/maven2/" }
-
-        // 个推 maven
-        maven { url "https://mvn.getui.com/nexus/content/repositories/releases/" }
-
-        // 华为 maven
-        maven { url "https://developer.huawei.com/repo/" }
     }
 
     dependencies {
@@ -44,16 +37,10 @@ buildscript {
         classpath "com.alibaba:arouter-register:1.0.2"
         // greendao https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
         classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
-        // 华为推送所需 https://mvnrepository.com/artifact/com.huawei.agconnect/agcp
-        classpath "com.huawei.agconnect:agcp:1.6.6.200"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
-        // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
-        //classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
-        // Hilt 依赖注入 https://mvnrepository.com/artifact/com.google.dagger/hilt-android-gradle-plugin
-        //classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
     }
 }
 
@@ -69,21 +56,6 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
         maven { url "https://repo1.maven.org/maven2/" }
-
-        // 个推 maven
-        maven { url "https://mvn.getui.com/nexus/content/repositories/releases/" }
-
-        // 华为 maven
-        maven { url "https://developer.huawei.com/repo/" }
-
-        // OPPO maven username、password 是 OPPO 官方要求配置的固定值 ( 不可修改 )
-        maven {
-            url "https://maven.columbus.heytapmobi.com/repository/releases/"
-            credentials {
-                username "nexus"
-                password "c0b08da17e3ec36c3870fed674a0bcb36abc2e23"
-            }
-        }
     }
 
 //    gradle.projectsEvaluated {
