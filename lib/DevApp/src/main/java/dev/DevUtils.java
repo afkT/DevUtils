@@ -51,7 +51,7 @@ import dev.utils.common.assist.record.FileRecordUtils;
  *     DevJava Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevWidget Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md"/>
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md"/>
  *     DevEnvironment Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
  * </pre>

@@ -25,7 +25,7 @@ package dev.base
  * DevJava Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  * DevWidget Api
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
  * DevEnvironment Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/Environment
  */
