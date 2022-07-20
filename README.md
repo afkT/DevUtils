@@ -97,11 +97,19 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/CHANGELOG.md)
 
+### DevUtils-repo
+
+**[DevUtils-repo](https://github.com/afkT/DevUtils-repo)** 该项目是针对 [DevUtils](https://github.com/afkT/DevUtils) 第三方库封装扩展、新技术 Demo 编写、大文件资源等迁移存储仓库。
+
+减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列工具类库相关代码。
+
+移除多余的第三方库、插件依赖配置，避免过多无关且繁杂配置影响快速理解项目，降低第三方库下载数量、编译运行 `DevUtils 演示 Demo App` 难度，使项目可更加快捷运行。
+
 ## Other
 
 > [DevBase2](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevBase2/src/main/java/dev/base) Base 基础代码 ( 非基类库 )
 >
-> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
+> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用，部分迁移至【DevUtils-repo】
 >
 > [DevSKU](https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevSKU/src/main/java/dev/sku/SKU.kt) 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
 >
