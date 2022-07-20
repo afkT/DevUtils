@@ -29,6 +29,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     param: Int
                 ) {
                     when (buttonValue.type) {
+                        ButtonValue.BTN_EVENT_BUS,
                         ButtonValue.BTN_GLIDE,
                         ButtonValue.BTN_IMAGE_LOADER,
                         ButtonValue.BTN_GSON,
@@ -39,7 +40,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_LUBAN,
                         ButtonValue.BTN_MMKV,
                         ButtonValue.BTN_WORK_MANAGER -> ToastTintUtils.info(
-                            "具体请搜索: lib/LocalModules/DevOther " + buttonValue.text
+                            "具体请搜索: 【DevUtils-repo】lib/LocalModules/DevOther " + buttonValue.text
                         )
                         else -> routerActivity(buttonValue)
                     }

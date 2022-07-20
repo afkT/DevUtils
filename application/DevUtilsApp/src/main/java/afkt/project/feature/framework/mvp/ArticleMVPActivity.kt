@@ -13,8 +13,6 @@ import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import io.reactivex.rxjava3.disposables.Disposable
-import ktx.dev.other.retrofit_rxjava.RxJavaManager
 
 /**
  * detail: 文章 MVP Activity
@@ -31,7 +29,7 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
     var adapter = ArticleAdapter()
 
     override fun createPresenter(): ArticleMVP.Presenter {
-        return ArticleMVP.Presenter(this)
+        return ArticleMVP.Presenter(this, this)
     }
 
     override fun baseLayoutId(): Int {
@@ -139,9 +137,5 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
         }
         // 请求失败
         stateLayout.showFailed()
-    }
-
-    override fun addDisposable(disposable: Disposable) {
-        RxJavaManager.instance.add(TAG, disposable)
     }
 }

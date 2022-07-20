@@ -21,7 +21,6 @@ import dev.utils.app.AppUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
-import ktx.dev.other.retrofit_rxjava.RxJavaManager
 
 /**
  * detail: Base MVP ViewBinding 基类
@@ -70,12 +69,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         insertStateLayout()
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // 取消 TAG ( Activity ) 关联的请求
-        RxJavaManager.instance.remove(TAG)
     }
 
     // ===============

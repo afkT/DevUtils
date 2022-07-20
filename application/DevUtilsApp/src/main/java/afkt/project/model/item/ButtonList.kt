@@ -177,7 +177,7 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_EVENT_BUS,
                     "EventBusUtils",
-                    RouterPath.LIB_FRAME.EventBusActivity_PATH
+                    RouterPath.EMPTY
                 )
             )
             lists.add(
@@ -247,52 +247,6 @@ object ButtonList {
                 ButtonValue(
                     ButtonValue.BTN_WORK_MANAGER,
                     "WorkManagerUtils",
-                    RouterPath.EMPTY
-                )
-            )
-            return lists
-        }
-
-    /**
-     * 获取 Event Button Value 集合
-     * @return [List]
-     */
-    @JvmStatic
-    val eventButtonValues: List<ButtonValue>
-        get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_EVENT_REGISTER,
-                    "Register",
-                    RouterPath.EMPTY
-                )
-            )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_EVENT_UNREGISTER,
-                    "unRegister",
-                    RouterPath.EMPTY
-                )
-            )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_EVENT_CLEAN_STICKY,
-                    "清空粘性事件",
-                    RouterPath.EMPTY
-                )
-            )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_EVENT_SEND,
-                    "发送事件",
-                    RouterPath.EMPTY
-                )
-            )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_EVENT_SEND_STICKY,
-                    "发送粘性事件",
                     RouterPath.EMPTY
                 )
             )

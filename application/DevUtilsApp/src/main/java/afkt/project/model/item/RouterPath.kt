@@ -40,8 +40,6 @@ object RouterPath {
         const val RoomActivity_PATH = "/activity/RoomActivity"
 
         const val DataStoreActivity_PATH = "/activity/DataStoreActivity"
-
-        const val EventBusActivity_PATH = "/activity/EventBusActivity"
     }
 
     /**

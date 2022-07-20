@@ -1,4 +1,4 @@
-package ktx.dev.assist
+package dev.assist
 
 import android.graphics.Paint
 import android.os.Build
@@ -9,10 +9,10 @@ import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebSettings.RenderPriority
 import android.webkit.WebView.HitTestResult
 import dev.DevUtils
+import dev.assist.WebViewAssist.Builder.OnApplyListener
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
-import ktx.dev.assist.WebViewAssist.Builder.OnApplyListener
 
 /**
  * detail: WebView 辅助类

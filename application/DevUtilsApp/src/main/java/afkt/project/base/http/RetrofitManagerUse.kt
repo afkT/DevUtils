@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
 interface WanAndroidService {
 
     @GET("/article/list/{page}/json")
-    fun getArticleList(@Path("page") page: Int): Flowable<ArticleBean>
+    suspend fun getArticleList(@Path("page") page: Int): ArticleBean
 }
 
 /**

@@ -3,9 +3,9 @@ package afkt.project.feature.lib_frame.data_store
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import dev.kotlin.engine.log.log_dTag
+import dev.other.DataStoreUtils
 import dev.utils.app.share.SPUtils
 import kotlinx.coroutines.flow.first
-import ktx.dev.other.DataStoreUtils
 
 object DataStoreUse {
 

@@ -130,14 +130,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- EventBusUtils -->
-
-        <activity
-            android:name=".feature.lib_frame.event_bus.EventBusActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- GreenDao -->
 
         <activity

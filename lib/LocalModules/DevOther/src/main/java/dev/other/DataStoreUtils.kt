@@ -1,4 +1,4 @@
-package ktx.dev.other
+package dev.other
 
 import android.content.Context
 import android.text.TextUtils

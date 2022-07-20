@@ -33,7 +33,7 @@ import dev.utils.common.assist.TimeCounter
 import dev.widget.DevWidget
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import ktx.dev.assist.WebViewAssist
+import dev.assist.WebViewAssist
 import me.jessyan.autosize.AutoSizeConfig
 
 /**

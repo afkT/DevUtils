@@ -65,21 +65,6 @@ class ButtonValue(
         // EventBusUtils
         const val BTN_EVENT_BUS = MODULE_LIB
 
-        // Register
-        const val BTN_EVENT_REGISTER = BTN_EVENT_BUS + 1
-
-        // unRegister
-        const val BTN_EVENT_UNREGISTER = BTN_EVENT_BUS + 2
-
-        // 清空粘性事件
-        const val BTN_EVENT_CLEAN_STICKY = BTN_EVENT_BUS + 3
-
-        // 发送事件
-        const val BTN_EVENT_SEND = BTN_EVENT_BUS + 4
-
-        // 发送粘性事件
-        const val BTN_EVENT_SEND_STICKY = BTN_EVENT_BUS + 5
-
         // GreenDAO
         const val BTN_GREEN_DAO = MODULE_LIB + 1
 
