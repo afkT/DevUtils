@@ -3,9 +3,9 @@
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
 [![MavenCentral](https://img.shields.io/badge/DevUtils-2.4.1-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
-[![Utils](https://img.shields.io/badge/utils-200+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+[![Utils](https://img.shields.io/badge/utils-300+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
-# About ( 持续更新，目前含 200+ 工具类 ) [Roadmap](https://github.com/afkT/DevUtils/projects/1)
+# About ( 持续更新，目前含 300+ 工具类 ) [Roadmap](https://github.com/afkT/DevUtils/projects/1)
 
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
 >
@@ -16,6 +16,12 @@
 > **[DevComponent](https://github.com/afkT/DevComponent)** 【100% Kotlin 实现 Android 项目组件化示例代码】
 > 基于 Google JetPack AndroidX + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）
 > 等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
+
+> **[DevUtils-repo](https://github.com/afkT/DevUtils-repo)** 该项目是针对 [DevUtils](https://github.com/afkT/DevUtils) 第三方库封装扩展、新技术 Demo 编写、大文件资源等迁移存储仓库。
+>
+> 减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列工具类库相关代码。
+>
+> 移除多余的第三方库、插件依赖配置，避免过多无关且繁杂配置影响快速理解项目，降低第三方库下载数量、编译运行 `DevUtils 演示 Demo App` 难度，使项目可更加快捷运行。
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
@@ -104,6 +110,12 @@
 减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列工具类库相关代码。
 
 移除多余的第三方库、插件依赖配置，避免过多无关且繁杂配置影响快速理解项目，降低第三方库下载数量、编译运行 `DevUtils 演示 Demo App` 难度，使项目可更加快捷运行。
+
+## DevComponent
+
+**[DevComponent](https://github.com/afkT/DevComponent)** 【100% Kotlin 实现 Android 项目组件化示例代码】
+基于 Google JetPack AndroidX + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）
+等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
 
 ## Other
 
