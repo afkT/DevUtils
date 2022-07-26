@@ -21,14 +21,14 @@ dependencies {
     api deps.kotlin.coroutines
     api deps.kotlin.lifecycle_runtime
     api deps.kotlin.lifecycle_common_java8
-    api deps.androidx.design
-    api deps.androidx.appcompat
     api deps.kotlin.fragment_ktx
     api deps.kotlin.activity_ktx
+    api deps.androidx.design
+    api deps.androidx.appcompat
 
     if (isPublishing) {
         // 打包时使用
-        api deps.dev.dev_app_x
+        api deps.dev.dev_app
     } else {
         // 编译时使用
         api project(':DevApp')

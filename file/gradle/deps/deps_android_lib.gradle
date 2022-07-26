@@ -1,5 +1,10 @@
 // Android lib 依赖配置
 dependencies {
+
+    // ==========
+    // = kotlin =
+    // ==========
+
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.core
     implementation deps.kotlin.coroutines
@@ -16,6 +21,11 @@ dependencies {
     implementation deps.kotlin.datastore_preferences
     implementation deps.kotlin.fragment_ktx
     implementation deps.kotlin.activity_ktx
+
+    // ============
+    // = androidx =
+    // ============
+
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
     implementation deps.androidx.appcompat_resources
