@@ -83,7 +83,7 @@ ext {
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions                       : "com.github.getActivity:XXPermissions:15.0",
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
-                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.6",
+                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.7",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.github.YummyLau:PanelSwitchHelper:1.4.0",
             ],

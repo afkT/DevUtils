@@ -17,7 +17,7 @@ import dev.utils.app.activity_result.DefaultActivityResult;
  * @author Ttt
  * <pre>
  *     Activity Result API
- *     @see <a href="https://developer.android.google.cn/training/basics/intents/result"/>
+ *     @see <a href="https://developer.android.com/training/basics/intents/result"/>
  *     <p></p>
  *     只是为了拆分原始 onActivityResult 实现方式以及新的 ActivityResult API 实现方式
  *     可不封装 ( 内部捕获异常并返回操作是否成功 )

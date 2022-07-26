@@ -23,7 +23,7 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     Android 11 ( R ) 适配
- *     @see <a href="https://developer.android.google.cn/about/versions/11/privacy/package-visibility"/>
+ *     @see <a href="https://developer.android.com/about/versions/11/privacy/package-visibility"/>
  *     <p></p>
  *     Android 11 ( R ) 需要加该权限 ( 无需申请 ) 才能够获取安装列表
  *     <uses-permission

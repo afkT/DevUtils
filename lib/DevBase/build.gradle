@@ -21,8 +21,8 @@ dependencies {
     api deps.kotlin.coroutines
     api deps.kotlin.lifecycle_runtime
     api deps.kotlin.lifecycle_common_java8
-    api deps.kotlin.fragment_ktx
-    api deps.kotlin.activity_ktx
+    api deps.kotlin.fragment
+    api deps.kotlin.activity
     api deps.androidx.design
     api deps.androidx.appcompat
 

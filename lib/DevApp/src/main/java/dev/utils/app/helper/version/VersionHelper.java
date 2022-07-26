@@ -37,11 +37,11 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     <p></p>
  *     Android 10 ( Q ) 更新内容
- *     @see <a href="https://developer.android.google.cn/about/versions/10"/>
+ *     @see <a href="https://developer.android.com/about/versions/10"/>
  *     Android 11 ( R ) 更新内容
- *     @see <a href="https://developer.android.google.cn/about/versions/11"/>
+ *     @see <a href="https://developer.android.com/about/versions/11"/>
  *     Android 12 ( S ) 更新内容
- *     @see <a href="https://developer.android.google.cn/about/versions/12"/>
+ *     @see <a href="https://developer.android.com/about/versions/12"/>
  *     <p></p>
  *     Android 10 ( Q ) 适配指南
  *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>

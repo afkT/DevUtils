@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  * 无任何额外逻辑封装, 支持自定义解析、处理等代码
  * <p></p>
  * Android 上的 Kotlin 协程
- * @see https://developer.android.google.cn/kotlin/coroutines?hl=zh-cn
+ * @see https://developer.android.com/kotlin/coroutines
  * 防止使用、阅读混淆
  * 通用 CoroutineScope 执行方法使用 scope 为方法名前缀
  */

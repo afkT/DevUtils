@@ -15,12 +15,10 @@ dependencies {
     implementation deps.kotlin.lifecycle_common_java8
     implementation deps.kotlin.room_runtime
     kapt deps.kotlin.room_compiler
-    implementation deps.kotlin.room_ktx
-    implementation deps.kotlin.work_runtime_ktx
-    implementation deps.kotlin.work_runtime
+    implementation deps.kotlin.room
     implementation deps.kotlin.datastore_preferences
-    implementation deps.kotlin.fragment_ktx
-    implementation deps.kotlin.activity_ktx
+    implementation deps.kotlin.fragment
+    implementation deps.kotlin.activity
 
     // ============
     // = androidx =
@@ -34,6 +32,7 @@ dependencies {
     implementation deps.androidx.multidex
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.viewpager2
+    implementation deps.androidx.work_runtime
     implementation deps.androidx.fragment
     implementation deps.androidx.activity
     implementation deps.androidx.palette

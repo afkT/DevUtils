@@ -30,17 +30,17 @@ allprojects {
                     "androidx.room:room-runtime:2.4.0",
                     // room_compiler
                     "androidx.room:room-compiler:2.4.0",
-                    // room_ktx
+                    // room
                     "androidx.room:room-ktx:2.4.0",
-                    // work_runtime_ktx
+                    // work_runtime
                     "androidx.work:work-runtime-ktx:2.7.1",
                     // work_runtime
                     "androidx.work:work-runtime:2.7.1",
                     // datastore_preferences
                     "androidx.datastore:datastore-preferences:1.0.0",
-                    // fragment_ktx
+                    // fragment
                     "androidx.fragment:fragment-ktx:1.4.0",
-                    // activity_ktx
+                    // activity
                     "androidx.activity:activity-ktx:1.4.0",
 
                     // = androidx =

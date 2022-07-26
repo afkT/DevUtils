@@ -14,9 +14,9 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     处理外部存储中的媒体文件
- *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
+ *     @see <a href="https://developer.android.com/training/data-storage/files/media"/>
  *     管理分区外部存储访问
- *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external-scoped"/>
+ *     @see <a href="https://developer.android.com/training/data-storage/files/external-scoped"/>
  *     <p></p>
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
@@ -90,7 +90,7 @@ public final class PathUtils {
      * 检查是否有 MANAGE_EXTERNAL_STORAGE 权限并跳转设置页面
      * <pre>
      *     MANAGE_EXTERNAL_STORAGE
-     *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
+     *     @see <a href="https://developer.android.com/preview/privacy/storage"/>
      * </pre>
      * @return {@code true} yes, {@code false} no
      */

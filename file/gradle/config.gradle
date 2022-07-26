@@ -57,6 +57,11 @@ ext {
     ]
 
     deps = [
+
+            // ================
+            // = Dev 系列开发库 =
+            // ================
+
             "dev"     : [
                     // https://github.com/afkT/DevUtils
                     // https://search.maven.org/search?q=io.github.afkt
@@ -83,20 +88,31 @@ ext {
                     // DevRetrofit - Retrofit + Kotlin Coroutines 封装
                     dev_retrofit                     : "io.github.afkt:DevRetrofit:${versions.dev_retrofit_versionName}",
             ],
+
+            // =================
+            // = Android 官方库 =
+            // =================
+
+            // https://developer.android.com/jetpack/androidx/explorer
+            // https://developer.android.com/jetpack/androidx/releases
+            // https://developer.android.com/jetpack/androidx/versions
+            // https://developer.android.com/jetpack/androidx/versions/stable-channel
+            // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
+
             "kotlin"  : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
                     core                          : "androidx.core:core-ktx:1.8.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-savedstate
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
-                    // https://developer.android.com/jetpack/androidx/releases/lifecycle#declaring_dependencies
+                    // https://developer.android.com/jetpack/androidx/releases/lifecycle
                     lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0",
                     // ViewModel
                     lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0",
@@ -112,30 +128,30 @@ ext {
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
                     room_runtime                  : "androidx.room:room-runtime:2.4.2",
                     room_compiler                 : "androidx.room:room-compiler:2.4.2",
-                    room_ktx                      : "androidx.room:room-ktx:2.4.2",
+                    room                          : "androidx.room:room-ktx:2.4.2",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
-                    // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Kotlin + coroutines
-                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.7.1",
-                    // WorkManager Java only
-                    work_runtime                  : "androidx.work:work-runtime:2.7.1",
+                    work_runtime                  : "androidx.work:work-runtime-ktx:2.7.1",
                     // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
-                    // https://developer.android.google.cn/jetpack/androidx/releases/datastore
-                    // DataStore https://developer.android.google.cn/topic/libraries/architecture/datastore
+                    // https://developer.android.com/jetpack/androidx/releases/datastore
+                    // DataStore https://developer.android.com/topic/libraries/architecture/datastore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.5.0",
+                    fragment                      : "androidx.fragment:fragment-ktx:1.5.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
-                    // https://developer.android.google.cn/jetpack/androidx/releases/activity
-                    activity_ktx                  : "androidx.activity:activity-ktx:1.5.0"
+                    // https://developer.android.com/jetpack/androidx/releases/activity
+                    activity                      : "androidx.activity:activity-ktx:1.5.0",
+                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
+                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
+                    // https://developer.android.com/guide/navigation
+                    // https://developer.android.com/jetpack/androidx/releases/navigation
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.5.0",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.5.0",
+                    // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
+                    // Palette 调色板 ( 从图片中获取颜色 )
+                    palette                       : "androidx.palette:palette-ktx:1.0.0",
             ],
             "androidx": [
-                    // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
-                    // https://developer.android.com/jetpack/androidx/versions
-                    // https://developer.android.com/jetpack/androidx/versions/stable-channel
-                    // https://developer.android.com/jetpack/androidx/explorer
-                    // https://developer.android.google.cn/jetpack/androidx/explorer
-
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
                     appcompat            : "androidx.appcompat:appcompat:1.4.2",
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat-resources
@@ -158,36 +174,96 @@ ext {
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     // https://blog.csdn.net/qq_36861770/article/details/108946449
                     design               : "com.google.android.material:material:1.6.1",
+                    // https://mvnrepository.com/artifact/androidx.work/work-runtime
+                    // WorkManager Java only
+                    work_runtime         : "androidx.work:work-runtime:2.7.1",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
                     fragment             : "androidx.fragment:fragment:1.5.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
                     activity             : "androidx.activity:activity:1.5.0",
+                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
+                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
+                    // https://developer.android.com/guide/navigation
+                    // https://developer.android.com/jetpack/androidx/releases/navigation
+                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.5.0",
+                    navigation_ui        : "androidx.navigation:navigation-ui:2.5.0",
                     // https://mvnrepository.com/artifact/androidx.palette/palette
-                    // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette              : "androidx.palette:palette:1.0.0",
-                    palette_ktx          : "androidx.palette:palette-ktx:1.0.0",
                     // https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
                     // https://github.com/google/flexbox-layout
                     // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
                     flexbox              : "com.google.android.flexbox:flexbox:3.0.0",
+                    // https://mvnrepository.com/artifact/androidx.startup/startup-runtime
+                    // https://developer.android.com/topic/libraries/app-startup
+                    startup              : "androidx.startup:startup-runtime:1.1.1",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // https://blog.csdn.net/petterp/article/details/106771203
-                    // Hilt 依赖注入 https://developer.android.google.cn/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.42",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.42",
-                    // https://mvnrepository.com/artifact/androidx.startup/startup-runtime
-                    // https://developer.android.google.cn/topic/libraries/app-startup
-                    startup              : "androidx.startup:startup-runtime:1.1.1",
+                    // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
+                    hilt_android         : "com.google.dagger:hilt-android:2.43",
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.43",
                     // https://mvnrepository.com/artifact/androidx.swiperefreshlayout/swiperefreshlayout
                     // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
-                    // 读取和写入图片文件 EXIF 标记 https://developer.android.google.cn/jetpack/androidx/releases/exifinterface
+                    // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/exifinterface
                     exifinterface        : "androidx.exifinterface:exifinterface:1.3.3",
             ],
+            "compose" : [
+                    // https://developer.android.com/jetpack/compose
+                    // https://developer.android.com/jetpack/androidx/releases/compose
+
+                    // ===================
+                    // = Android Compose =
+                    // ===================
+
+                    // https://mvnrepository.com/artifact/androidx.compose.ui/ui
+                    // https://developer.android.com/jetpack/androidx/releases/compose-ui
+                    // 与设备互动所需的 Compose UI 的基本组件, 包括布局、绘图和输入
+                    ui                         : "androidx.compose.ui:ui:1.1.1",
+                    // https://mvnrepository.com/artifact/androidx.compose.runtime/runtime
+                    // https://mvnrepository.com/artifact/androidx.compose.runtime/runtime-livedata
+                    // https://developer.android.com/jetpack/androidx/releases/compose-runtime
+                    // Compose 编程模型和状态管理的基本构建块, 以及 Compose Compiler 插件针对的核心运行时
+                    runtime                    : "androidx.compose.runtime:runtime:1.1.1",
+                    runtime_livedata           : "androidx.compose.runtime:runtime-livedata:1.1.1",
+                    // https://mvnrepository.com/artifact/androidx.compose.animation/animation
+                    // https://developer.android.com/jetpack/androidx/releases/compose-animation
+                    // 在 Jetpack Compose 应用中构建动画，丰富用户体验
+                    animation                  : "androidx.compose.animation:animation:1.1.1",
+                    // https://mvnrepository.com/artifact/androidx.compose.foundation/foundation
+                    // https://developer.android.com/jetpack/androidx/releases/compose-foundation
+                    // 使用现成可用的构建块编写 Jetpack Compose 应用, 并扩展 Foundation 以构建您自己的设计系统元素
+                    foundation                 : "androidx.compose.foundation:foundation:1.1.1",
+                    // https://mvnrepository.com/artifact/androidx.compose.material/material
+                    // https://developer.android.com/jetpack/androidx/releases/compose-material
+                    // 使用现成可用的 Material Design 组件构建 Jetpack Compose UI
+                    material                   : "androidx.compose.material:material:1.1.1",
+                    // https://mvnrepository.com/artifact/androidx.compose.material3/material3
+                    // https://mvnrepository.com/artifact/androidx.compose.material3/material3-window-size-class
+                    // https://developer.android.com/jetpack/androidx/releases/compose-material3
+                    // 使用 Material Design 3 ( 下一代 Material Design ) 组件构建 Jetpack Compose 界面
+                    material3                  : "androidx.compose.material3:material3:1.0.0-alpha14",
+                    // material3-window-size-class 是一个为窗口大小类别提供支持的新库
+                    material3_window_size_class: "androidx.compose.material3:material3-window-size-class:1.0.0-alpha14",
+                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
+                    // https://developer.android.com/jetpack/androidx/releases/lifecycle
+                    lifecycle_viewmodel        : "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0",
+                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-compose
+                    // https://developer.android.com/guide/navigation
+                    // https://developer.android.com/jetpack/androidx/releases/navigation
+                    navigation                 : "androidx.navigation:navigation-compose:2.5.0",
+                    // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose
+                    // https://developer.android.com/jetpack/androidx/releases/constraintlayout
+                    constraintlayout           : "androidx.constraintlayout:constraintlayout-compose:1.0.1",
+            ],
+
+            // ===================
+            // = 非 Android 官方库 =
+            // ===================
+
             "lib"     : [
 
                     // =================

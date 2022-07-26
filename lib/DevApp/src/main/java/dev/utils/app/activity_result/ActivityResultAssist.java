@@ -18,7 +18,7 @@ import dev.utils.app.ActivityResultUtils;
  * @author Ttt
  * <pre>
  *     Activity Result API
- *     @see <a href="https://developer.android.google.cn/training/basics/intents/result"/>
+ *     @see <a href="https://developer.android.com/training/basics/intents/result"/>
  *     <p></p>
  *     封装 {@link ActivityResultUtils} 无需考虑异常崩溃等各种情况
  *     注意事项:
