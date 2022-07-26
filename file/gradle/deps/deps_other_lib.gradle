@@ -33,7 +33,7 @@ dependencies {
     implementation deps_split.lib.pictureSelector_ucrop
     implementation deps_split.lib.pictureSelector_camerax
     // 二维码 ZXing https://github.com/zxing/zxing
-    implementation deps_split.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation deps_split.lib.zxing_code
     implementation deps_split.lib.zxing_android_code // android-core
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     implementation deps_split.lib.luban
@@ -46,14 +46,6 @@ dependencies {
     // = Widget =
     // ==========
 
-    // GPU Filters https://github.com/cats-oss/android-gpuimage
-    implementation deps_split.widget.gpuimage
-    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-    implementation deps_split.widget.ratingbar
-    // 加载动画效果 https://github.com/Kyson/WhorlView
-    implementation deps_split.widget.whorlviewlibrary
-    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-    implementation deps_split.widget.stickyDecoration
     // Banner 库 https://github.com/youth5201314/banner
     implementation deps.widget.banner
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
@@ -62,4 +54,12 @@ dependencies {
     implementation deps.widget.smartrefresh_footer_classics
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     implementation deps.widget.multitype
+    // GPU Filters https://github.com/cats-oss/android-gpuimage
+    implementation deps_split.widget.gpuimage
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation deps_split.widget.ratingbar
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation deps_split.widget.whorlviewlibrary
+    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+    implementation deps_split.widget.stickyDecoration
 }

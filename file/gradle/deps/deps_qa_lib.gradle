@@ -6,27 +6,27 @@ dependencies {
     // ====================
 
 //    // Bugly https://bugly.qq.com/docs/
-//    implementation deps.property.bugly
-//    implementation deps.property.bugly_ndk
+//    implementation deps_split.property.bugly
+//    implementation deps_split.property.bugly_ndk
 
 //    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-//    debugImplementation deps.property.uetool
-//    releaseImplementation deps.property.uetool_no_op
+//    debugImplementation deps_split.property.uetool
+//    releaseImplementation deps_split.property.uetool_no_op
 
 //    // 内存检测工具 https://github.com/square/leakcanary
-//    debugImplementation deps.property.leakcanary
+//    debugImplementation deps_split.property.leakcanary
 
 //    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-//    debugImplementation deps.property.blockcanary_android
-//    releaseImplementation deps.property.blockcanary_no_op
+//    debugImplementation deps_split.property.blockcanary_android
+//    releaseImplementation deps_split.property.blockcanary_no_op
 
 //    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-//    implementation(deps.property.matrix_android_lib) { changing = true }
-//    implementation(deps.property.matrix_android_commons) { changing = true }
-//    implementation(deps.property.matrix_trace_canary) { changing = true }
-//    implementation(deps.property.matrix_resource_canary_android) { changing = true }
-//    implementation(deps.property.matrix_resource_canary_common) { changing = true }
-//    implementation(deps.property.matrix_io_canary) { changing = true }
-//    implementation(deps.property.matrix_sqlite_lint) { changing = true }
-//    implementation(deps.property.matrix_battery_canary) { changing = true }
+//    implementation(deps_split.property.matrix_android_lib) { changing = true }
+//    implementation(deps_split.property.matrix_android_commons) { changing = true }
+//    implementation(deps_split.property.matrix_trace_canary) { changing = true }
+//    implementation(deps_split.property.matrix_resource_canary_android) { changing = true }
+//    implementation(deps_split.property.matrix_resource_canary_common) { changing = true }
+//    implementation(deps_split.property.matrix_io_canary) { changing = true }
+//    implementation(deps_split.property.matrix_sqlite_lint) { changing = true }
+//    implementation(deps_split.property.matrix_battery_canary) { changing = true }
 }
