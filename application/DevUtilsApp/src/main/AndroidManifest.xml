@@ -130,22 +130,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- GreenDao -->
-
-        <activity
-            android:name=".feature.lib_frame.green_dao.GreenDaoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Room -->
-
-        <activity
-            android:name=".feature.lib_frame.room.RoomActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- ToastTint ( 着色美化 Toast ) -->
 
         <activity

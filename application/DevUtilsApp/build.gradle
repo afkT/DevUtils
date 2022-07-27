@@ -6,27 +6,6 @@ apply from: rootProject.file(files.deps_qa_lib)
 android {
     defaultConfig {
         applicationId "afkt.project"
-
-        // 指定 room.schemaLocation 生成的文件路径
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation":
-                                      "$projectDir/schemas".toString()]
-            }
-        }
-    }
-
-    // https://greenrobot.org/greendao/documentation/
-    // https://greenrobot.org/greendao/documentation/javadoc/
-    greendao {
-        // https://greenrobot.org/greendao/documentation/modelling-entities/
-        schemaVersion 1
-
-//        // Upgrade
-//        schemaVersion 2
-
-        daoPackage 'gen.greendao' // 生成 DAOs、DaoMaster、DaoSession 包名
-        targetGenDir 'src/main/java'
     }
 
     sourceSets {

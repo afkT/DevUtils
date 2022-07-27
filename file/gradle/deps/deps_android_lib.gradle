@@ -13,9 +13,6 @@ dependencies {
     implementation deps.kotlin.lifecycle_livedata
     implementation deps.kotlin.lifecycle_viewmodel_savedstate
     implementation deps.kotlin.lifecycle_common_java8
-    implementation deps.kotlin.room_runtime
-    kapt deps.kotlin.room_compiler
-    implementation deps.kotlin.room
     implementation deps.kotlin.datastore_preferences
     implementation deps.kotlin.fragment
     implementation deps.kotlin.activity

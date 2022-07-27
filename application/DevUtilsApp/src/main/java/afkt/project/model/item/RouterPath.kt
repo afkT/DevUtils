@@ -35,10 +35,6 @@ object RouterPath {
      */
     object LIB_FRAME {
 
-        const val GreenDaoActivity_PATH = "/activity/GreenDaoActivity"
-
-        const val RoomActivity_PATH = "/activity/RoomActivity"
-
         const val DataStoreActivity_PATH = "/activity/DataStoreActivity"
     }
 

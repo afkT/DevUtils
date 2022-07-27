@@ -36,8 +36,6 @@ buildscript {
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
         // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
         classpath "com.alibaba:arouter-register:1.0.2"
-        // greendao https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
-        classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray

@@ -37,10 +37,6 @@ dependencies {
     implementation deps_split.lib.zxing_android_code // android-core
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     implementation deps_split.lib.luban
-    // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
-    implementation deps_split.lib.greenDAO
-    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
-    implementation deps_split.lib.sqlcipher
 
     // ==========
     // = Widget =

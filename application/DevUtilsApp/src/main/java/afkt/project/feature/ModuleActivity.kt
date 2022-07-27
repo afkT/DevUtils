@@ -29,6 +29,10 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     param: Int
                 ) {
                     when (buttonValue.type) {
+                        ButtonValue.BTN_ROOM,
+                        ButtonValue.BTN_GREEN_DAO -> ToastTintUtils.info(
+                            "具体请查看: 【DevUtils-repo】application/AppDB"
+                        )
                         ButtonValue.BTN_EVENT_BUS,
                         ButtonValue.BTN_GLIDE,
                         ButtonValue.BTN_IMAGE_LOADER,
