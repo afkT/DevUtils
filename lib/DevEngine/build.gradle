@@ -33,7 +33,7 @@ dependencies {
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     api deps_split.lib.luban
     // 二维码 ZXing https://github.com/zxing/zxing
-    api deps_split.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    api deps_split.lib.zxing_code
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps_split.lib.pictureSelector
 
