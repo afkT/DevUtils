@@ -7,17 +7,27 @@
 <a href="https://android-arsenal.com/api?level=14"><img alt="API" src="https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat"/></a>
 <a href="https://search.maven.org/search?q=io.github.afkt"><img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.1-yellow.svg"/></a>
 <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"><img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg"/></a>
-</p >
+</p>
 
 <p align="center">
-🔥 ( 持续更新，目前含 300+ 工具类 ) DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
+🔥 <a href="https://github.com/afkT/DevUtils/projects/1">Roadmap</a>
+( 持续更新，目前含 300+ 工具类 ) DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
 <br>
-该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。<a href="https://github.com/afkT/DevUtils/projects/1">Roadmap</a>
-</p >
+该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
+</p>
+
+<p align="center">
+<b><a href="https://github.com/afkT/DevUtils/blob/master/README/android_standard.md">Android 规范</a></b>
+<b><a href="https://github.com/afkT/DevUtils/blob/master/README/java_standard.md">Java 规范</a></b>
+<b><a href="https://github.com/afkT/DevUtils/blob/master/README/git_standard.md">Git 规范</a></b>
+</p>
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
-**[Android 规范](https://github.com/afkT/DevUtils/blob/master/README/android_standard.md)** 、 **[Java 规范](https://github.com/afkT/DevUtils/blob/master/README/java_standard.md)** 、 **[Git 规范](https://github.com/afkT/DevUtils/blob/master/README/git_standard.md)**
+
+## Download
+
+下载 DevUtils 系列开发库演示应用 [APK](https://github.com/afkT/Resources/blob/main/APK)
 
 
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib) **（ 全部已迁移至 Maven Central ）**
@@ -111,7 +121,7 @@
 
 **[DevUtils-repo](https://github.com/afkT/DevUtils-repo)** 该项目是针对 [DevUtils](https://github.com/afkT/DevUtils) 第三方库封装扩展、新技术 Demo 编写、大文件资源等迁移存储仓库。
 
-减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列工具类库相关代码。
+减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列开发库相关代码。
 
 移除多余的第三方库、插件依赖配置，避免过多无关且繁杂配置影响快速理解项目，降低第三方库下载数量、编译运行 `DevUtils 演示 Demo App` 难度，使项目可更加快捷运行。
 
@@ -131,7 +141,7 @@
 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
 
 
-## Dev 系列全部 Lib Gradle
+## Dev 系列开发库全部 Lib Gradle
 
 ```gradle
 
@@ -176,7 +186,6 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.1' 
 implementation 'io.github.afkt:DevJava:1.4.7' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
-## [APK Demo](https://github.com/afkT/Resources/blob/main/APK)
 
 ## License
 

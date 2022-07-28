@@ -34,7 +34,7 @@ Engine 兼容框架等
 ```
 
 
-## Dev 系列全部 Lib Gradle
+## Dev 系列开发库全部 Lib Gradle
 
 ```gradle
 
