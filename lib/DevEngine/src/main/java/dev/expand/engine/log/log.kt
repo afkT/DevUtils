@@ -13,7 +13,7 @@ import dev.engine.log.ILogEngine
  * @return ILogEngine
  * 内部做了处理如果匹配不到则返回默认 Log Engine
  */
-fun String?.getEngine(): ILogEngine? {
+fun String?.getLogEngine(): ILogEngine? {
     DevEngine.getLog(this)?.let { value ->
         return value
     }
@@ -27,7 +27,7 @@ fun String?.getEngine(): ILogEngine? {
 fun log_isPrintLog(
     engine: String? = null
 ): Boolean {
-    return engine.getEngine()?.isPrintLog ?: false
+    return engine.getLogEngine()?.isPrintLog ?: false
 }
 
 // =============================
@@ -39,7 +39,7 @@ fun log_d(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.d(message, *args)
+    engine.getLogEngine()?.d(message, *args)
 }
 
 fun log_e(
@@ -47,14 +47,14 @@ fun log_e(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.e(message, *args)
+    engine.getLogEngine()?.e(message, *args)
 }
 
 fun log_e(
     engine: String? = null,
     throwable: Throwable?
 ) {
-    engine.getEngine()?.e(throwable)
+    engine.getLogEngine()?.e(throwable)
 }
 
 fun log_e(
@@ -63,7 +63,7 @@ fun log_e(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.e(throwable, message, *args)
+    engine.getLogEngine()?.e(throwable, message, *args)
 }
 
 fun log_w(
@@ -71,7 +71,7 @@ fun log_w(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.w(message, *args)
+    engine.getLogEngine()?.w(message, *args)
 }
 
 fun log_i(
@@ -79,7 +79,7 @@ fun log_i(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.i(message, *args)
+    engine.getLogEngine()?.i(message, *args)
 }
 
 fun log_v(
@@ -87,7 +87,7 @@ fun log_v(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.v(message, *args)
+    engine.getLogEngine()?.v(message, *args)
 }
 
 fun log_wtf(
@@ -95,7 +95,7 @@ fun log_wtf(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.wtf(message, *args)
+    engine.getLogEngine()?.wtf(message, *args)
 }
 
 // =
@@ -104,14 +104,14 @@ fun log_json(
     engine: String? = null,
     json: String?
 ) {
-    engine.getEngine()?.json(json)
+    engine.getLogEngine()?.json(json)
 }
 
 fun log_xml(
     engine: String? = null,
     xml: String?
 ) {
-    engine.getEngine()?.xml(xml)
+    engine.getLogEngine()?.xml(xml)
 }
 
 // ==============================
@@ -123,7 +123,7 @@ fun String.log_dTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.dTag(this, message, *args)
+    engine.getLogEngine()?.dTag(this, message, *args)
 }
 
 fun String.log_eTag(
@@ -131,14 +131,14 @@ fun String.log_eTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.eTag(this, message, *args)
+    engine.getLogEngine()?.eTag(this, message, *args)
 }
 
 fun String.log_eTag(
     engine: String? = null,
     throwable: Throwable?
 ) {
-    engine.getEngine()?.eTag(this, throwable)
+    engine.getLogEngine()?.eTag(this, throwable)
 }
 
 fun String.log_eTag(
@@ -147,7 +147,7 @@ fun String.log_eTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.eTag(this, throwable, message, *args)
+    engine.getLogEngine()?.eTag(this, throwable, message, *args)
 }
 
 fun String.log_wTag(
@@ -155,7 +155,7 @@ fun String.log_wTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.wTag(this, message, *args)
+    engine.getLogEngine()?.wTag(this, message, *args)
 }
 
 fun String.log_iTag(
@@ -163,7 +163,7 @@ fun String.log_iTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.iTag(this, message, *args)
+    engine.getLogEngine()?.iTag(this, message, *args)
 }
 
 fun String.log_vTag(
@@ -171,7 +171,7 @@ fun String.log_vTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.vTag(this, message, *args)
+    engine.getLogEngine()?.vTag(this, message, *args)
 }
 
 fun String.log_wtfTag(
@@ -179,7 +179,7 @@ fun String.log_wtfTag(
     message: String?,
     vararg args: Any?
 ) {
-    engine.getEngine()?.wtfTag(this, message, *args)
+    engine.getLogEngine()?.wtfTag(this, message, *args)
 }
 
 // =
@@ -188,12 +188,12 @@ fun String.log_jsonTag(
     engine: String? = null,
     json: String?
 ) {
-    engine.getEngine()?.jsonTag(this, json)
+    engine.getLogEngine()?.jsonTag(this, json)
 }
 
 fun String.log_xmlTag(
     engine: String? = null,
     xml: String?
 ) {
-    engine.getEngine()?.xmlTag(this, xml)
+    engine.getLogEngine()?.xmlTag(this, xml)
 }

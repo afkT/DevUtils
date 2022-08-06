@@ -16,7 +16,7 @@ import dev.engine.barcode.listener.BarCodeEncodeCallback
  * @return IBarCodeEngine<EngineConfig, EngineItem, EngineResult>
  * 内部做了处理如果匹配不到则返回默认 BarCode Engine
  */
-fun String?.getEngine(): IBarCodeEngine<
+fun String?.getBarCodeEngine(): IBarCodeEngine<
         in IBarCodeEngine.EngineConfig,
         in IBarCodeEngine.EngineItem,
         in IBarCodeEngine.EngineResult>? {
@@ -38,13 +38,13 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.initialize(config)
+    engine.getBarCodeEngine()?.initialize(config)
 }
 
 fun <Config : IBarCodeEngine.EngineConfig> barcode_getConfig(
     engine: String? = null
 ): Config? {
-    return engine.getEngine()?.config as? Config
+    return engine.getBarCodeEngine()?.config as? Config
 }
 
 // ==========
@@ -55,14 +55,14 @@ fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCode(
     engine: String? = null,
     callback: BarCodeEncodeCallback?
 ) {
-    engine.getEngine()?.encodeBarCode(this, callback)
+    engine.getBarCodeEngine()?.encodeBarCode(this, callback)
 }
 
 @Throws(Exception::class)
 fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCodeSync(
     engine: String? = null
 ): Bitmap? {
-    return engine.getEngine()?.encodeBarCodeSync(this)
+    return engine.getBarCodeEngine()?.encodeBarCodeSync(this)
 }
 
 // ==========
@@ -73,7 +73,7 @@ fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
     engine: String? = null,
     callback: BarCodeDecodeCallback<Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getBarCodeEngine()?.let {
         (it as? IBarCodeEngine<*, *, Result>)?.decodeBarCode(
             this, callback
         )
@@ -84,7 +84,7 @@ fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
 fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCodeSync(
     engine: String? = null
 ): Result? {
-    return engine.getEngine()?.decodeBarCodeSync(this) as? Result
+    return engine.getBarCodeEngine()?.decodeBarCodeSync(this) as? Result
 }
 
 // ==========
@@ -97,5 +97,5 @@ fun <Item : IBarCodeEngine.EngineItem> Item.barcode_addIconToBarCode(
     src: Bitmap?,
     icon: Bitmap?
 ): Bitmap? {
-    return engine.getEngine()?.addIconToBarCode(this, src, icon)
+    return engine.getBarCodeEngine()?.addIconToBarCode(this, src, icon)
 }

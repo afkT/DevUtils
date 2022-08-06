@@ -14,7 +14,7 @@ import java.lang.reflect.Type
  * @return IJSONEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 JSON Engine
  */
-fun String?.getEngine(): IJSONEngine<in IJSONEngine.EngineConfig>? {
+fun String?.getJSONEngine(): IJSONEngine<in IJSONEngine.EngineConfig>? {
     DevEngine.getJSON(this)?.let { value ->
         return value
     }
@@ -32,14 +32,14 @@ fun String?.getEngine(): IJSONEngine<in IJSONEngine.EngineConfig>? {
 fun Any.toJson(
     engine: String? = null
 ): String? {
-    return engine.getEngine()?.toJson(this)
+    return engine.getJSONEngine()?.toJson(this)
 }
 
 fun <Config : IJSONEngine.EngineConfig> Any.toJson(
     engine: String? = null,
     config: Config?
 ): String? {
-    return engine.getEngine()?.toJson(this, config)
+    return engine.getJSONEngine()?.toJson(this, config)
 }
 
 // =
@@ -48,7 +48,7 @@ fun <T : Any> String.fromJson(
     engine: String? = null,
     classOfT: Class<T>?
 ): T? {
-    return engine.getEngine()?.fromJson(this, classOfT)
+    return engine.getJSONEngine()?.fromJson(this, classOfT)
 }
 
 fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
@@ -56,7 +56,7 @@ fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
     classOfT: Class<T>?,
     config: Config?
 ): T? {
-    return engine.getEngine()?.fromJson(this, classOfT, config)
+    return engine.getJSONEngine()?.fromJson(this, classOfT, config)
 }
 
 // =
@@ -65,7 +65,7 @@ fun <T : Any> String.fromJson(
     engine: String? = null,
     typeOfT: Type?
 ): T? {
-    return engine.getEngine()?.fromJson(this, typeOfT)
+    return engine.getJSONEngine()?.fromJson(this, typeOfT)
 }
 
 fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
@@ -73,7 +73,7 @@ fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
     typeOfT: Type?,
     config: Config?
 ): T? {
-    return engine.getEngine()?.fromJson(this, typeOfT, config)
+    return engine.getJSONEngine()?.fromJson(this, typeOfT, config)
 }
 
 // ==========
@@ -83,19 +83,19 @@ fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
 fun String.isJSON(
     engine: String? = null
 ): Boolean {
-    return engine.getEngine()?.isJSON(this) ?: false
+    return engine.getJSONEngine()?.isJSON(this) ?: false
 }
 
 fun String.isJSONObject(
     engine: String? = null
 ): Boolean {
-    return engine.getEngine()?.isJSONObject(this) ?: false
+    return engine.getJSONEngine()?.isJSONObject(this) ?: false
 }
 
 fun String.isJSONArray(
     engine: String? = null
 ): Boolean {
-    return engine.getEngine()?.isJSONArray(this) ?: false
+    return engine.getJSONEngine()?.isJSONArray(this) ?: false
 }
 
 // =
@@ -103,25 +103,25 @@ fun String.isJSONArray(
 fun String.toJsonIndent(
     engine: String? = null
 ): String? {
-    return engine.getEngine()?.toJsonIndent(this)
+    return engine.getJSONEngine()?.toJsonIndent(this)
 }
 
 fun <Config : IJSONEngine.EngineConfig> String.toJsonIndent(
     engine: String? = null,
     config: Config?
 ): String? {
-    return engine.getEngine()?.toJsonIndent(this, config)
+    return engine.getJSONEngine()?.toJsonIndent(this, config)
 }
 
 fun Any.toJsonIndent(
     engine: String? = null
 ): String? {
-    return engine.getEngine()?.toJsonIndent(this)
+    return engine.getJSONEngine()?.toJsonIndent(this)
 }
 
 fun <Config : IJSONEngine.EngineConfig> Any.toJsonIndent(
     engine: String? = null,
     config: Config?
 ): String? {
-    return engine.getEngine()?.toJsonIndent(this, config)
+    return engine.getJSONEngine()?.toJsonIndent(this, config)
 }

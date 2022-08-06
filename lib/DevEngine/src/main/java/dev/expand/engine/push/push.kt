@@ -15,7 +15,7 @@ import dev.engine.push.IPushEngine
  * @return IPushEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Push Engine
  */
-fun String?.getEngine(): IPushEngine<in IPushEngine.EngineConfig, in IPushEngine.EngineItem>? {
+fun String?.getPushEngine(): IPushEngine<in IPushEngine.EngineConfig, in IPushEngine.EngineItem>? {
     DevEngine.getPush(this)?.let { value ->
         return value
     }
@@ -34,21 +34,21 @@ fun <Config : IPushEngine.EngineConfig> Application.push_initialize(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.initialize(this, config)
+    engine.getPushEngine()?.initialize(this, config)
 }
 
 fun <Config : IPushEngine.EngineConfig> Context.push_register(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.register(this, config)
+    engine.getPushEngine()?.register(this, config)
 }
 
 fun <Config : IPushEngine.EngineConfig> Context.push_unregister(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.unregister(this, config)
+    engine.getPushEngine()?.unregister(this, config)
 }
 
 // =
@@ -58,7 +58,7 @@ fun push_onReceiveServicePid(
     context: Context?,
     pid: Int
 ) {
-    engine.getEngine()?.onReceiveServicePid(context, pid)
+    engine.getPushEngine()?.onReceiveServicePid(context, pid)
 }
 
 fun push_onReceiveClientId(
@@ -66,7 +66,7 @@ fun push_onReceiveClientId(
     context: Context?,
     clientId: String?
 ) {
-    engine.getEngine()?.onReceiveClientId(context, clientId)
+    engine.getPushEngine()?.onReceiveClientId(context, clientId)
 }
 
 fun push_onReceiveDeviceToken(
@@ -74,7 +74,7 @@ fun push_onReceiveDeviceToken(
     context: Context?,
     deviceToken: String?
 ) {
-    engine.getEngine()?.onReceiveDeviceToken(context, deviceToken)
+    engine.getPushEngine()?.onReceiveDeviceToken(context, deviceToken)
 }
 
 fun push_onReceiveOnlineState(
@@ -82,7 +82,7 @@ fun push_onReceiveOnlineState(
     context: Context?,
     online: Boolean
 ) {
-    engine.getEngine()?.onReceiveOnlineState(context, online)
+    engine.getPushEngine()?.onReceiveOnlineState(context, online)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onReceiveCommandResult(
@@ -90,7 +90,7 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveCommandResult(
     context: Context?,
     message: Item?
 ) {
-    engine.getEngine()?.onReceiveCommandResult(context, message)
+    engine.getPushEngine()?.onReceiveCommandResult(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onNotificationMessageArrived(
@@ -98,7 +98,7 @@ fun <Item : IPushEngine.EngineItem> push_onNotificationMessageArrived(
     context: Context?,
     message: Item?
 ) {
-    engine.getEngine()?.onNotificationMessageArrived(context, message)
+    engine.getPushEngine()?.onNotificationMessageArrived(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onNotificationMessageClicked(
@@ -106,7 +106,7 @@ fun <Item : IPushEngine.EngineItem> push_onNotificationMessageClicked(
     context: Context?,
     message: Item?
 ) {
-    engine.getEngine()?.onNotificationMessageClicked(context, message)
+    engine.getPushEngine()?.onNotificationMessageClicked(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
@@ -114,7 +114,7 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
     context: Context?,
     message: Item?
 ) {
-    engine.getEngine()?.onReceiveMessageData(context, message)
+    engine.getPushEngine()?.onReceiveMessageData(context, message)
 }
 
 // ===============
@@ -125,5 +125,5 @@ fun <Item : IPushEngine.EngineItem> push_convertMessage(
     engine: String? = null,
     message: Any?
 ): Item? {
-    return engine.getEngine()?.convertMessage(message) as? Item
+    return engine.getPushEngine()?.convertMessage(message) as? Item
 }

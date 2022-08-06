@@ -22,7 +22,7 @@ import dev.engine.image.listener.OnConvertListener
  * @return IImageEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Image Engine
  */
-fun String?.getEngine(): IImageEngine<in IImageEngine.EngineConfig>? {
+fun String?.getImageEngine(): IImageEngine<in IImageEngine.EngineConfig>? {
     DevEngine.getImage(this)?.let { value ->
         return value
     }
@@ -35,11 +35,10 @@ fun String?.getEngine(): IImageEngine<in IImageEngine.EngineConfig>? {
 
 /**
  * 请求校验 Source
- * @param source DevSource?
  * @return `true` 直接 return, `false` 表示可以接着操作
  */
-internal fun requireSource(source: DevSource?): Boolean {
-    if (source?.isSource == true) {
+fun DevSource?.requireSource(): Boolean {
+    if (this?.isSource == true) {
         return false
     }
     return true
@@ -56,25 +55,25 @@ internal fun requireSource(source: DevSource?): Boolean {
 fun Fragment.pause(
     engine: String? = null
 ) {
-    engine.getEngine()?.pause(this)
+    engine.getImageEngine()?.pause(this)
 }
 
 fun Fragment.resume(
     engine: String? = null
 ) {
-    engine.getEngine()?.resume(this)
+    engine.getImageEngine()?.resume(this)
 }
 
 fun Context.pause(
     engine: String? = null
 ) {
-    engine.getEngine()?.pause(this)
+    engine.getImageEngine()?.pause(this)
 }
 
 fun Context.resume(
     engine: String? = null
 ) {
-    engine.getEngine()?.resume(this)
+    engine.getImageEngine()?.resume(this)
 }
 
 // ===========
@@ -85,8 +84,8 @@ fun Context.preload(
     engine: String? = null,
     source: DevSource?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.preload(this, source)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.preload(this, source)
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.preload(
@@ -94,8 +93,8 @@ fun <Config : IImageEngine.EngineConfig> Context.preload(
     source: DevSource?,
     config: Config?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.preload(this, source, config)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.preload(this, source, config)
 }
 
 // =========
@@ -105,32 +104,32 @@ fun <Config : IImageEngine.EngineConfig> Context.preload(
 fun View.clear(
     engine: String? = null
 ) {
-    engine.getEngine()?.clear(this)
+    engine.getImageEngine()?.clear(this)
 }
 
 fun Fragment.clear(
     engine: String? = null,
     view: View?
 ) {
-    engine.getEngine()?.clear(this, view)
+    engine.getImageEngine()?.clear(this, view)
 }
 
 fun Context.clearDiskCache(
     engine: String? = null
 ) {
-    engine.getEngine()?.clearDiskCache(this)
+    engine.getImageEngine()?.clearDiskCache(this)
 }
 
 fun Context.clearMemoryCache(
     engine: String? = null
 ) {
-    engine.getEngine()?.clearMemoryCache(this)
+    engine.getImageEngine()?.clearMemoryCache(this)
 }
 
 fun Context.clearAllCache(
     engine: String? = null
 ) {
-    engine.getEngine()?.clearAllCache(this)
+    engine.getImageEngine()?.clearAllCache(this)
 }
 
 // =========
@@ -140,7 +139,7 @@ fun Context.clearAllCache(
 fun Context.lowMemory(
     engine: String? = null
 ) {
-    engine.getEngine()?.lowMemory(this)
+    engine.getImageEngine()?.lowMemory(this)
 }
 
 // ===========
@@ -151,8 +150,8 @@ fun ImageView.display(
     engine: String? = null,
     source: DevSource?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(this, source)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(this, source)
 }
 
 fun <Config : IImageEngine.EngineConfig> ImageView.display(
@@ -160,8 +159,8 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
     source: DevSource?,
     config: Config?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(this, source, config)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(this, source, config)
 }
 
 fun <T : Any> ImageView.display(
@@ -169,8 +168,8 @@ fun <T : Any> ImageView.display(
     source: DevSource?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(this, source, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(this, source, listener)
 }
 
 fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
@@ -179,8 +178,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
     config: Config?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(this, source, config, listener)
 }
 
 // =
@@ -190,8 +189,8 @@ fun ImageView.display(
     fragment: Fragment?,
     source: DevSource?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(fragment, this, source)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(fragment, this, source)
 }
 
 fun <Config : IImageEngine.EngineConfig> ImageView.display(
@@ -200,8 +199,8 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
     source: DevSource?,
     config: Config?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(fragment, this, source, config)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(fragment, this, source, config)
 }
 
 fun <T : Any> ImageView.display(
@@ -210,8 +209,8 @@ fun <T : Any> ImageView.display(
     source: DevSource?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(fragment, this, source, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(fragment, this, source, listener)
 }
 
 fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
@@ -221,8 +220,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
     config: Config?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.display(fragment, this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.display(fragment, this, source, config, listener)
 }
 
 // ========
@@ -235,8 +234,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     config: Config?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadImage(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadImage(this, source, config, listener)
 }
 
 fun <T : Any, Config : IImageEngine.EngineConfig> Fragment.loadImage(
@@ -245,8 +244,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Fragment.loadImage(
     config: Config?,
     listener: LoadListener<T>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadImage(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadImage(this, source, config, listener)
 }
 
 fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
@@ -255,8 +254,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     config: Config?,
     type: Class<*>?
 ): T? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadImage(this, source, config, type)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadImage(this, source, config, type)
 }
 
 fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImageThrows(
@@ -265,8 +264,8 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImageThrows(
     config: Config?,
     type: Class<*>?
 ): T? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadImageThrows(this, source, config, type)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadImageThrows(this, source, config, type)
 }
 
 // =
@@ -277,8 +276,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     config: Config?,
     listener: LoadListener<Bitmap>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadBitmap(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadBitmap(this, source, config, listener)
 }
 
 fun <Config : IImageEngine.EngineConfig> Fragment.loadBitmap(
@@ -287,8 +286,8 @@ fun <Config : IImageEngine.EngineConfig> Fragment.loadBitmap(
     config: Config?,
     listener: LoadListener<Bitmap>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadBitmap(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadBitmap(this, source, config, listener)
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
@@ -296,8 +295,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     source: DevSource?,
     config: Config?
 ): Bitmap? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadBitmap(this, source, config)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadBitmap(this, source, config)
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.loadBitmapThrows(
@@ -305,8 +304,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmapThrows(
     source: DevSource?,
     config: Config?
 ): Bitmap? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadBitmapThrows(this, source, config)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadBitmapThrows(this, source, config)
 }
 
 // =
@@ -317,8 +316,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     config: Config?,
     listener: LoadListener<Drawable>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadDrawable(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadDrawable(this, source, config, listener)
 }
 
 fun <Config : IImageEngine.EngineConfig> Fragment.loadDrawable(
@@ -327,8 +326,8 @@ fun <Config : IImageEngine.EngineConfig> Fragment.loadDrawable(
     config: Config?,
     listener: LoadListener<Drawable>?
 ) {
-    if (requireSource(source)) return
-    engine.getEngine()?.loadDrawable(this, source, config, listener)
+    if (source.requireSource()) return
+    engine.getImageEngine()?.loadDrawable(this, source, config, listener)
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
@@ -336,8 +335,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     source: DevSource?,
     config: Config?
 ): Drawable? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadDrawable(this, source, config)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadDrawable(this, source, config)
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.loadDrawableThrows(
@@ -345,8 +344,8 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawableThrows(
     source: DevSource?,
     config: Config?
 ): Drawable? {
-    if (requireSource(source)) return null
-    return engine.getEngine()?.loadDrawableThrows(this, source, config)
+    if (source.requireSource()) return null
+    return engine.getImageEngine()?.loadDrawableThrows(this, source, config)
 }
 
 // ===========
@@ -358,7 +357,7 @@ fun Context.convertImageFormat(
     sources: MutableList<DevSource>?,
     listener: OnConvertListener?
 ): Boolean {
-    return engine.getEngine()?.convertImageFormat(this, sources, listener) ?: false
+    return engine.getImageEngine()?.convertImageFormat(this, sources, listener) ?: false
 }
 
 fun <Config : IImageEngine.EngineConfig> Context.convertImageFormat(
@@ -367,5 +366,5 @@ fun <Config : IImageEngine.EngineConfig> Context.convertImageFormat(
     config: Config?,
     listener: OnConvertListener?
 ): Boolean {
-    return engine.getEngine()?.convertImageFormat(this, sources, config, listener) ?: false
+    return engine.getImageEngine()?.convertImageFormat(this, sources, config, listener) ?: false
 }

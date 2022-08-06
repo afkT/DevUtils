@@ -15,7 +15,7 @@ import dev.engine.analytics.IAnalyticsEngine
  * @return IAnalyticsEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Analytics Engine
  */
-fun String?.getEngine(): IAnalyticsEngine<
+fun String?.getAnalyticsEngine(): IAnalyticsEngine<
         in IAnalyticsEngine.EngineConfig,
         in IAnalyticsEngine.EngineItem>? {
     DevEngine.getAnalytics(this)?.let { value ->
@@ -36,25 +36,25 @@ fun <Config : IAnalyticsEngine.EngineConfig> Application.analytics_initialize(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.initialize(this, config)
+    engine.getAnalyticsEngine()?.initialize(this, config)
 }
 
 fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_register(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.register(this, config)
+    engine.getAnalyticsEngine()?.register(this, config)
 }
 
 fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_unregister(
     engine: String? = null,
     config: Config?
 ) {
-    engine.getEngine()?.unregister(this, config)
+    engine.getAnalyticsEngine()?.unregister(this, config)
 }
 
 fun <Item : IAnalyticsEngine.EngineItem> Item.analytics_track(
     engine: String? = null
 ): Boolean {
-    return engine.getEngine()?.track(this) ?: false
+    return engine.getAnalyticsEngine()?.track(this) ?: false
 }

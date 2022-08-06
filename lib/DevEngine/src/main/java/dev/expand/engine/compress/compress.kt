@@ -16,7 +16,7 @@ import dev.engine.compress.listener.OnRenameListener
  * @return ICompressEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Compress Engine
  */
-fun String?.getEngine(): ICompressEngine<in ICompressEngine.EngineConfig>? {
+fun String?.getCompressEngine(): ICompressEngine<in ICompressEngine.EngineConfig>? {
     DevEngine.getCompress(this)?.let { value ->
         return value
     }
@@ -37,7 +37,7 @@ fun <Config : ICompressEngine.EngineConfig> compress_any(
     config: Config?,
     compressListener: OnCompressListener?
 ): Boolean {
-    return engine.getEngine()?.compress(data, config, compressListener) ?: false
+    return engine.getCompressEngine()?.compress(data, config, compressListener) ?: false
 }
 
 fun <Config : ICompressEngine.EngineConfig> compress_any(
@@ -48,7 +48,7 @@ fun <Config : ICompressEngine.EngineConfig> compress_any(
     renameListener: OnRenameListener?,
     compressListener: OnCompressListener?
 ): Boolean {
-    return engine.getEngine()?.compress(
+    return engine.getCompressEngine()?.compress(
         data, config, filter, renameListener, compressListener
     ) ?: false
 }
@@ -61,7 +61,7 @@ fun <Config : ICompressEngine.EngineConfig> compress_list(
     config: Config?,
     compressListener: OnCompressListener?
 ): Boolean {
-    return engine.getEngine()?.compress(
+    return engine.getCompressEngine()?.compress(
         lists, config, compressListener
     ) ?: false
 }
@@ -74,7 +74,7 @@ fun <Config : ICompressEngine.EngineConfig> compress_list(
     renameListener: OnRenameListener?,
     compressListener: OnCompressListener?
 ): Boolean {
-    return engine.getEngine()?.compress(
+    return engine.getCompressEngine()?.compress(
         lists, config, filter, renameListener, compressListener
     ) ?: false
 }

@@ -15,7 +15,7 @@ import dev.engine.storage.listener.OnInsertListener
  * @return IStorageEngine<EngineItem, EngineResult>
  * 内部做了处理如果匹配不到则返回默认 Storage Engine
  */
-fun String?.getEngine(): IStorageEngine<in IStorageEngine.EngineItem, in IStorageEngine.EngineResult>? {
+fun String?.getStorageEngine(): IStorageEngine<in IStorageEngine.EngineItem, in IStorageEngine.EngineResult>? {
     DevEngine.getStorage(this)?.let { value ->
         return value
     }
@@ -39,7 +39,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertImageToExternal(
             params, this, listener
         )
@@ -51,7 +51,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertVideoToExternal(
             params, this, listener
         )
@@ -63,7 +63,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertAudioToExternal(
             params, this, listener
         )
@@ -75,7 +75,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertDownloadToExternal(
             params, this, listener
         )
@@ -87,7 +87,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertMediaToExternal(
             params, this, listener
         )
@@ -103,7 +103,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertImageToInternal(
             params, this, listener
         )
@@ -115,7 +115,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertVideoToInternal(
             params, this, listener
         )
@@ -127,7 +127,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertAudioToInternal(
             params, this, listener
         )
@@ -139,7 +139,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertDownloadToInternal(
             params, this, listener
         )
@@ -151,7 +151,7 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     params: Item?,
     listener: OnInsertListener<Item, Result>?
 ) {
-    engine.getEngine()?.let {
+    engine.getStorageEngine()?.let {
         (it as? IStorageEngine<Item, Result>)?.insertMediaToInternal(
             params, this, listener
         )
