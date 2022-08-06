@@ -131,9 +131,9 @@ open class MediaData : IMediaEngine.EngineData {
     // 是否压缩状态
     private var mCompressState = false
 
-    // ==============
+    // =============
     // = 对外公开方法 =
-    // ==============
+    // =============
 
     /**
      * 获取可用资源 Uri
