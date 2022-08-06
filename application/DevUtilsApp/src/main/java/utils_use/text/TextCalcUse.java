@@ -1,6 +1,6 @@
 package utils_use.text;
 
-import static dev.kotlin.engine.log.LogKt.log_dTag;
+import static dev.expand.engine.log.LogKt.log_dTag;
 
 import android.content.Context;
 import android.view.View;

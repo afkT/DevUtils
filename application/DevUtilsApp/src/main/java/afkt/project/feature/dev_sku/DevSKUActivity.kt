@@ -9,7 +9,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.kotlin.engine.json.fromJson
+import dev.expand.engine.json.fromJson
 import dev.sku.SKU
 import dev.sku.SKUData
 import dev.utils.DevFinal

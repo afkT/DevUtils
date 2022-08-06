@@ -1,4 +1,4 @@
-package dev.kotlin.engine.push
+package dev.expand.engine.push
 
 import android.app.Application
 import android.content.Context
@@ -15,8 +15,8 @@ import dev.engine.push.IPushEngine
  * @return IPushEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Push Engine
  */
-internal fun getEngine(engine: String?): IPushEngine<in IPushEngine.EngineConfig, in IPushEngine.EngineItem>? {
-    DevEngine.getPush(engine)?.let { value ->
+fun String?.getEngine(): IPushEngine<in IPushEngine.EngineConfig, in IPushEngine.EngineItem>? {
+    DevEngine.getPush(this)?.let { value ->
         return value
     }
     return DevEngine.getPush()
@@ -34,21 +34,21 @@ fun <Config : IPushEngine.EngineConfig> Application.push_initialize(
     engine: String? = null,
     config: Config?
 ) {
-    getEngine(engine)?.initialize(this, config)
+    engine.getEngine()?.initialize(this, config)
 }
 
 fun <Config : IPushEngine.EngineConfig> Context.push_register(
     engine: String? = null,
     config: Config?
 ) {
-    getEngine(engine)?.register(this, config)
+    engine.getEngine()?.register(this, config)
 }
 
 fun <Config : IPushEngine.EngineConfig> Context.push_unregister(
     engine: String? = null,
     config: Config?
 ) {
-    getEngine(engine)?.unregister(this, config)
+    engine.getEngine()?.unregister(this, config)
 }
 
 // =
@@ -58,7 +58,7 @@ fun push_onReceiveServicePid(
     context: Context?,
     pid: Int
 ) {
-    getEngine(engine)?.onReceiveServicePid(context, pid)
+    engine.getEngine()?.onReceiveServicePid(context, pid)
 }
 
 fun push_onReceiveClientId(
@@ -66,7 +66,7 @@ fun push_onReceiveClientId(
     context: Context?,
     clientId: String?
 ) {
-    getEngine(engine)?.onReceiveClientId(context, clientId)
+    engine.getEngine()?.onReceiveClientId(context, clientId)
 }
 
 fun push_onReceiveDeviceToken(
@@ -74,7 +74,7 @@ fun push_onReceiveDeviceToken(
     context: Context?,
     deviceToken: String?
 ) {
-    getEngine(engine)?.onReceiveDeviceToken(context, deviceToken)
+    engine.getEngine()?.onReceiveDeviceToken(context, deviceToken)
 }
 
 fun push_onReceiveOnlineState(
@@ -82,7 +82,7 @@ fun push_onReceiveOnlineState(
     context: Context?,
     online: Boolean
 ) {
-    getEngine(engine)?.onReceiveOnlineState(context, online)
+    engine.getEngine()?.onReceiveOnlineState(context, online)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onReceiveCommandResult(
@@ -90,7 +90,7 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveCommandResult(
     context: Context?,
     message: Item?
 ) {
-    getEngine(engine)?.onReceiveCommandResult(context, message)
+    engine.getEngine()?.onReceiveCommandResult(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onNotificationMessageArrived(
@@ -98,7 +98,7 @@ fun <Item : IPushEngine.EngineItem> push_onNotificationMessageArrived(
     context: Context?,
     message: Item?
 ) {
-    getEngine(engine)?.onNotificationMessageArrived(context, message)
+    engine.getEngine()?.onNotificationMessageArrived(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onNotificationMessageClicked(
@@ -106,7 +106,7 @@ fun <Item : IPushEngine.EngineItem> push_onNotificationMessageClicked(
     context: Context?,
     message: Item?
 ) {
-    getEngine(engine)?.onNotificationMessageClicked(context, message)
+    engine.getEngine()?.onNotificationMessageClicked(context, message)
 }
 
 fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
@@ -114,7 +114,7 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
     context: Context?,
     message: Item?
 ) {
-    getEngine(engine)?.onReceiveMessageData(context, message)
+    engine.getEngine()?.onReceiveMessageData(context, message)
 }
 
 // ===============
@@ -125,5 +125,5 @@ fun <Item : IPushEngine.EngineItem> push_convertMessage(
     engine: String? = null,
     message: Any?
 ): Item? {
-    return getEngine(engine)?.convertMessage(message) as? Item
+    return engine.getEngine()?.convertMessage(message) as? Item
 }

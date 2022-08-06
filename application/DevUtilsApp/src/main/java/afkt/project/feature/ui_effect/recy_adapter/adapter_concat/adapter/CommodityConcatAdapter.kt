@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
-import dev.kotlin.engine.image.display
+import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_3
 import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.price.toPriceString

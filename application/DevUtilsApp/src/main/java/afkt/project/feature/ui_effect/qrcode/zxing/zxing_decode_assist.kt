@@ -8,8 +8,8 @@ import android.os.Message
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
-import dev.kotlin.engine.log.log_dTag
-import dev.kotlin.engine.log.log_eTag
+import dev.expand.engine.log.log_dTag
+import dev.expand.engine.log.log_eTag
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
 import dev.utils.app.camera.camera1.CameraUtils

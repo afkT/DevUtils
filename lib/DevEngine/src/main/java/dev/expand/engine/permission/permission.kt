@@ -1,4 +1,4 @@
-package dev.kotlin.engine.permission
+package dev.expand.engine.permission
 
 import android.app.Activity
 import android.content.Context
@@ -15,8 +15,8 @@ import dev.engine.permission.IPermissionEngine
  * @return IPermissionEngine
  * 内部做了处理如果匹配不到则返回默认 Permission Engine
  */
-internal fun getEngine(engine: String?): IPermissionEngine? {
-    DevEngine.getPermission(engine)?.let { value ->
+fun String?.getEngine(): IPermissionEngine? {
+    DevEngine.getPermission(this)?.let { value ->
         return value
     }
     return DevEngine.getPermission()
@@ -34,14 +34,14 @@ fun Context.permission_isGranted(
     engine: String? = null,
     vararg permissions: String?
 ): Boolean {
-    return getEngine(engine)?.isGranted(this, *permissions) ?: false
+    return engine.getEngine()?.isGranted(this, *permissions) ?: false
 }
 
 fun Activity.permission_shouldShowRequestPermissionRationale(
     engine: String? = null,
     vararg permissions: String?
 ): Boolean {
-    return getEngine(engine)?.shouldShowRequestPermissionRationale(
+    return engine.getEngine()?.shouldShowRequestPermissionRationale(
         this, *permissions
     ) ?: false
 }
@@ -51,7 +51,7 @@ fun Activity.permission_getDeniedPermissionStatus(
     shouldShow: Boolean,
     vararg permissions: String?
 ): MutableList<String> {
-    return getEngine(engine)?.getDeniedPermissionStatus(
+    return engine.getEngine()?.getDeniedPermissionStatus(
         this, shouldShow, *permissions
     ) ?: mutableListOf()
 }
@@ -61,7 +61,7 @@ fun Activity.permission_againRequest(
     callback: IPermissionEngine.Callback?,
     deniedList: MutableList<String>?
 ): Int {
-    return getEngine(engine)?.againRequest(this, callback, deniedList) ?: 0
+    return engine.getEngine()?.againRequest(this, callback, deniedList) ?: 0
 }
 
 // =============
@@ -72,7 +72,7 @@ fun Activity.permission_request(
     engine: String? = null,
     permissions: Array<out String>?
 ) {
-    getEngine(engine)?.request(this, permissions)
+    engine.getEngine()?.request(this, permissions)
 }
 
 fun Activity.permission_request(
@@ -80,7 +80,7 @@ fun Activity.permission_request(
     permissions: Array<out String>?,
     callback: IPermissionEngine.Callback?
 ) {
-    getEngine(engine)?.request(this, permissions, callback)
+    engine.getEngine()?.request(this, permissions, callback)
 }
 
 fun Activity.permission_request(
@@ -89,5 +89,5 @@ fun Activity.permission_request(
     callback: IPermissionEngine.Callback?,
     againRequest: Boolean
 ) {
-    getEngine(engine)?.request(this, permissions, callback, againRequest)
+    engine.getEngine()?.request(this, permissions, callback, againRequest)
 }

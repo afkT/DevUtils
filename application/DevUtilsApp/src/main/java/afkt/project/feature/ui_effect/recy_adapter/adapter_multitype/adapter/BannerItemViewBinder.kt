@@ -15,7 +15,7 @@ import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.kotlin.engine.image.display
+import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.toSource

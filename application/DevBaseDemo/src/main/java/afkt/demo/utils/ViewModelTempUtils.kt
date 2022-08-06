@@ -4,7 +4,7 @@ import afkt.demo.model.ActivityViewModel
 import afkt.demo.model.ApplicationViewModel
 import afkt.demo.model.FragmentViewModel
 import androidx.lifecycle.LifecycleOwner
-import dev.kotlin.engine.log.log_dTag
+import dev.expand.engine.log.log_dTag
 
 /**
  * detail: ViewModel 临时工具类

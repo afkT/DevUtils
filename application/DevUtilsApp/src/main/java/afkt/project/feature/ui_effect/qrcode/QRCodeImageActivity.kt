@@ -15,7 +15,7 @@ import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.image.listener.BitmapListener
-import dev.kotlin.engine.image.loadBitmap
+import dev.expand.engine.image.loadBitmap
 import dev.kotlin.utils.toSource
 import dev.utils.DevFinal
 import dev.utils.app.*

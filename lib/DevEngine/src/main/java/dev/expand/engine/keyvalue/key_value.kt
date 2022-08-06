@@ -1,4 +1,4 @@
-package dev.kotlin.engine.keyvalue
+package dev.expand.engine.keyvalue
 
 import dev.engine.DevEngine
 import dev.engine.keyvalue.IKeyValueEngine
@@ -15,8 +15,8 @@ import java.lang.reflect.Type
  * @return IKeyValueEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 KeyValue Engine
  */
-internal fun getEngine(engine: String?): IKeyValueEngine<in IKeyValueEngine.EngineConfig>? {
-    DevEngine.getKeyValue(engine)?.let { value ->
+fun String?.getEngine(): IKeyValueEngine<in IKeyValueEngine.EngineConfig>? {
+    DevEngine.getKeyValue(this)?.let { value ->
         return value
     }
     return DevEngine.getKeyValue()
@@ -43,7 +43,7 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 fun <Config : IKeyValueEngine.EngineConfig> kv_getConfig(
     engine: String? = null
 ): Config? {
-    return getEngine(engine)?.config as? Config
+    return engine.getEngine()?.config as? Config
 }
 
 // =
@@ -51,26 +51,26 @@ fun <Config : IKeyValueEngine.EngineConfig> kv_getConfig(
 fun String.kv_remove(
     engine: String? = null
 ) {
-    getEngine(engine)?.remove(this)
+    engine.getEngine()?.remove(this)
 }
 
 fun kv_removeForKeys(
     engine: String? = null,
     keys: Array<out String>?
 ) {
-    getEngine(engine)?.removeForKeys(keys)
+    engine.getEngine()?.removeForKeys(keys)
 }
 
 fun String.kv_contains(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.contains(this) ?: false
+    return engine.getEngine()?.contains(this) ?: false
 }
 
 fun kv_clear(
     engine: String? = null
 ) {
-    getEngine(engine)?.clear()
+    engine.getEngine()?.clear()
 }
 
 // =======
@@ -81,49 +81,49 @@ fun String.kv_putInt(
     engine: String? = null,
     value: Int
 ): Boolean {
-    return getEngine(engine)?.putInt(this, value) ?: false
+    return engine.getEngine()?.putInt(this, value) ?: false
 }
 
 fun String.kv_putLong(
     engine: String? = null,
     value: Long
 ): Boolean {
-    return getEngine(engine)?.putLong(this, value) ?: false
+    return engine.getEngine()?.putLong(this, value) ?: false
 }
 
 fun String.kv_putFloat(
     engine: String? = null,
     value: Float
 ): Boolean {
-    return getEngine(engine)?.putFloat(this, value) ?: false
+    return engine.getEngine()?.putFloat(this, value) ?: false
 }
 
 fun String.kv_putDouble(
     engine: String? = null,
     value: Double
 ): Boolean {
-    return getEngine(engine)?.putDouble(this, value) ?: false
+    return engine.getEngine()?.putDouble(this, value) ?: false
 }
 
 fun String.kv_putBoolean(
     engine: String? = null,
     value: Boolean
 ): Boolean {
-    return getEngine(engine)?.putBoolean(this, value) ?: false
+    return engine.getEngine()?.putBoolean(this, value) ?: false
 }
 
 fun String.kv_putString(
     engine: String? = null,
     value: String?
 ): Boolean {
-    return getEngine(engine)?.putString(this, value) ?: false
+    return engine.getEngine()?.putString(this, value) ?: false
 }
 
 fun <T : Any> String.kv_putEntity(
     engine: String? = null,
     value: T
 ): Boolean {
-    return getEngine(engine)?.putEntity(this, value) ?: false
+    return engine.getEngine()?.putEntity(this, value) ?: false
 }
 
 // =======
@@ -133,44 +133,44 @@ fun <T : Any> String.kv_putEntity(
 fun String.kv_getInt(
     engine: String? = null
 ): Int {
-    return getEngine(engine)?.getInt(this) ?: INTEGER_DEFAULT
+    return engine.getEngine()?.getInt(this) ?: INTEGER_DEFAULT
 }
 
 fun String.kv_getLong(
     engine: String? = null
 ): Long {
-    return getEngine(engine)?.getLong(this) ?: LONG_DEFAULT
+    return engine.getEngine()?.getLong(this) ?: LONG_DEFAULT
 }
 
 fun String.kv_getFloat(
     engine: String? = null
 ): Float {
-    return getEngine(engine)?.getFloat(this) ?: FLOAT_DEFAULT
+    return engine.getEngine()?.getFloat(this) ?: FLOAT_DEFAULT
 }
 
 fun String.kv_getDouble(
     engine: String? = null
 ): Double {
-    return getEngine(engine)?.getDouble(this) ?: DOUBLE_DEFAULT
+    return engine.getEngine()?.getDouble(this) ?: DOUBLE_DEFAULT
 }
 
 fun String.kv_getBoolean(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.getBoolean(this) ?: BOOLEAN_DEFAULT
+    return engine.getEngine()?.getBoolean(this) ?: BOOLEAN_DEFAULT
 }
 
 fun String.kv_getString(
     engine: String? = null
 ): String? {
-    return getEngine(engine)?.getString(this)
+    return engine.getEngine()?.getString(this)
 }
 
 fun <T : Any> String.kv_getEntity(
     engine: String? = null,
     typeOfT: Type?
 ): T? {
-    return getEngine(engine)?.getEntity(this, typeOfT) as? T
+    return engine.getEngine()?.getEntity(this, typeOfT) as? T
 }
 
 // =================
@@ -181,42 +181,42 @@ fun String.kv_getInt(
     engine: String? = null,
     defaultValue: Int
 ): Int {
-    return getEngine(engine)?.getInt(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getInt(this, defaultValue) ?: defaultValue
 }
 
 fun String.kv_getLong(
     engine: String? = null,
     defaultValue: Long
 ): Long {
-    return getEngine(engine)?.getLong(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getLong(this, defaultValue) ?: defaultValue
 }
 
 fun String.kv_getFloat(
     engine: String? = null,
     defaultValue: Float
 ): Float {
-    return getEngine(engine)?.getFloat(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getFloat(this, defaultValue) ?: defaultValue
 }
 
 fun String.kv_getDouble(
     engine: String? = null,
     defaultValue: Double
 ): Double {
-    return getEngine(engine)?.getDouble(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getDouble(this, defaultValue) ?: defaultValue
 }
 
 fun String.kv_getBoolean(
     engine: String? = null,
     defaultValue: Boolean
 ): Boolean {
-    return getEngine(engine)?.getBoolean(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getBoolean(this, defaultValue) ?: defaultValue
 }
 
 fun String.kv_getString(
     engine: String? = null,
     defaultValue: String?
 ): String? {
-    return getEngine(engine)?.getString(this, defaultValue)
+    return engine.getEngine()?.getString(this, defaultValue)
 }
 
 fun <T : Any> String.kv_getEntity(
@@ -224,5 +224,5 @@ fun <T : Any> String.kv_getEntity(
     typeOfT: Type?,
     defaultValue: T?
 ): T? {
-    return getEngine(engine)?.getEntity(this, typeOfT, defaultValue)
+    return engine.getEngine()?.getEntity(this, typeOfT, defaultValue)
 }

@@ -1,4 +1,4 @@
-package dev.kotlin.engine.media
+package dev.expand.engine.media
 
 import android.app.Activity
 import android.content.Context
@@ -18,8 +18,8 @@ import dev.engine.media.IMediaEngine
  * @return IMediaEngine<EngineConfig, EngineData>
  * 内部做了处理如果匹配不到则返回默认 Media Engine
  */
-internal fun getEngine(engine: String?): IMediaEngine<in IMediaEngine.EngineConfig, in IMediaEngine.EngineData>? {
-    DevEngine.getMedia(engine)?.let { value ->
+fun String?.getEngine(): IMediaEngine<in IMediaEngine.EngineConfig, in IMediaEngine.EngineData>? {
+    DevEngine.getMedia(this)?.let { value ->
         return value
     }
     return DevEngine.getMedia()
@@ -36,14 +36,14 @@ internal fun getEngine(engine: String?): IMediaEngine<in IMediaEngine.EngineConf
 fun <Config : IMediaEngine.EngineConfig> media_getConfig(
     engine: String? = null
 ): Config? {
-    return getEngine(engine)?.config as? Config
+    return engine.getEngine()?.config as? Config
 }
 
 fun <Config : IMediaEngine.EngineConfig> media_setConfig(
     engine: String? = null,
     config: Config?
 ) {
-    getEngine(engine)?.config = config
+    engine.getEngine()?.config = config
 }
 
 // =============
@@ -53,27 +53,27 @@ fun <Config : IMediaEngine.EngineConfig> media_setConfig(
 fun Activity.media_openCamera(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openCamera(this) ?: false
+    return engine.getEngine()?.openCamera(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Activity.media_openCamera(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openCamera(this, config) ?: false
+    return engine.getEngine()?.openCamera(this, config) ?: false
 }
 
 fun Fragment.media_openCamera(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openCamera(this) ?: false
+    return engine.getEngine()?.openCamera(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Fragment.media_openCamera(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openCamera(this, config) ?: false
+    return engine.getEngine()?.openCamera(this, config) ?: false
 }
 
 // =
@@ -81,27 +81,27 @@ fun <Config : IMediaEngine.EngineConfig> Fragment.media_openCamera(
 fun Activity.media_openGallery(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openGallery(this) ?: false
+    return engine.getEngine()?.openGallery(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Activity.media_openGallery(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openGallery(this, config) ?: false
+    return engine.getEngine()?.openGallery(this, config) ?: false
 }
 
 fun Fragment.media_openGallery(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openGallery(this) ?: false
+    return engine.getEngine()?.openGallery(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Fragment.media_openGallery(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openGallery(this, config) ?: false
+    return engine.getEngine()?.openGallery(this, config) ?: false
 }
 
 // =
@@ -109,27 +109,27 @@ fun <Config : IMediaEngine.EngineConfig> Fragment.media_openGallery(
 fun Activity.media_openPreview(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openPreview(this) ?: false
+    return engine.getEngine()?.openPreview(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Activity.media_openPreview(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openPreview(this, config) ?: false
+    return engine.getEngine()?.openPreview(this, config) ?: false
 }
 
 fun Fragment.media_openPreview(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.openPreview(this) ?: false
+    return engine.getEngine()?.openPreview(this) ?: false
 }
 
 fun <Config : IMediaEngine.EngineConfig> Fragment.media_openPreview(
     engine: String? = null,
     config: Config?
 ): Boolean {
-    return getEngine(engine)?.openPreview(this, config) ?: false
+    return engine.getEngine()?.openPreview(this, config) ?: false
 }
 
 // ==========
@@ -140,13 +140,13 @@ fun Context.media_deleteCacheDirFile(
     engine: String? = null,
     type: Int
 ) {
-    getEngine(engine)?.deleteCacheDirFile(this, type)
+    engine.getEngine()?.deleteCacheDirFile(this, type)
 }
 
 fun Context.media_deleteAllCacheDirFile(
     engine: String? = null
 ) {
-    getEngine(engine)?.deleteAllCacheDirFile(this)
+    engine.getEngine()?.deleteAllCacheDirFile(this)
 }
 
 fun media_isMediaSelectorResult(
@@ -154,7 +154,7 @@ fun media_isMediaSelectorResult(
     requestCode: Int,
     resultCode: Int
 ): Boolean {
-    return getEngine(engine)?.isMediaSelectorResult(requestCode, resultCode) ?: false
+    return engine.getEngine()?.isMediaSelectorResult(requestCode, resultCode) ?: false
 }
 
 // =
@@ -162,25 +162,25 @@ fun media_isMediaSelectorResult(
 fun <Data : IMediaEngine.EngineData> Intent.media_getSelectors(
     engine: String? = null
 ): List<Data?>? {
-    return getEngine(engine)?.getSelectors(this) as? List<Data?>
+    return engine.getEngine()?.getSelectors(this) as? List<Data?>
 }
 
 fun Intent.media_getSelectorUris(
     engine: String? = null,
     original: Boolean
 ): List<Uri?>? {
-    return getEngine(engine)?.getSelectorUris(this, original)
+    return engine.getEngine()?.getSelectorUris(this, original)
 }
 
 fun <Data : IMediaEngine.EngineData> Intent.media_getSingleSelector(
     engine: String? = null
 ): Data? {
-    return getEngine(engine)?.getSingleSelector(this) as? Data
+    return engine.getEngine()?.getSingleSelector(this) as? Data
 }
 
 fun Intent.media_getSingleSelectorUri(
     engine: String? = null,
     original: Boolean
 ): Uri? {
-    return getEngine(engine)?.getSingleSelectorUri(this, original)
+    return engine.getEngine()?.getSingleSelectorUri(this, original)
 }

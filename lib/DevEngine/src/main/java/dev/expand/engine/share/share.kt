@@ -1,4 +1,4 @@
-package dev.kotlin.engine.share
+package dev.expand.engine.share
 
 import android.app.Activity
 import android.app.Application
@@ -18,8 +18,8 @@ import dev.engine.share.listener.ShareListener
  * @return IShareEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Share Engine
  */
-internal fun getEngine(engine: String?): IShareEngine<in IShareEngine.EngineConfig, in IShareEngine.EngineItem>? {
-    DevEngine.getShare(engine)?.let { value ->
+fun String?.getEngine(): IShareEngine<in IShareEngine.EngineConfig, in IShareEngine.EngineItem>? {
+    DevEngine.getShare(this)?.let { value ->
         return value
     }
     return DevEngine.getShare()
@@ -37,7 +37,7 @@ fun <Config : IShareEngine.EngineConfig> Application.share_initialize(
     engine: String? = null,
     config: Config?
 ) {
-    getEngine(engine)?.initialize(this, config)
+    engine.getEngine()?.initialize(this, config)
 }
 
 // ==========
@@ -49,7 +49,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.openMinApp(
             this, params, listener
         ) ?: false
@@ -61,7 +61,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareMinApp(
             this, params, listener
         ) ?: false
@@ -73,7 +73,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareUrl(
             this, params, listener
         ) ?: false
@@ -85,7 +85,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareImage(
             this, params, listener
         ) ?: false
@@ -97,7 +97,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareImageList(
             this, params, listener
         ) ?: false
@@ -109,7 +109,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareText(
             this, params, listener
         ) ?: false
@@ -121,7 +121,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareVideo(
             this, params, listener
         ) ?: false
@@ -133,7 +133,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareMusic(
             this, params, listener
         ) ?: false
@@ -145,7 +145,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareEmoji(
             this, params, listener
         ) ?: false
@@ -157,7 +157,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.shareFile(
             this, params, listener
         ) ?: false
@@ -169,7 +169,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_share(
     params: Item?,
     listener: ShareListener<Item>?
 ): Boolean {
-    return getEngine(engine)?.let {
+    return engine.getEngine()?.let {
         return (it as? IShareEngine<*, Item>)?.share(
             this, params, listener
         ) ?: false
@@ -184,5 +184,5 @@ fun Context.share_onActivityResult(
     resultCode: Int,
     intent: Intent?
 ) {
-    getEngine(engine)?.onActivityResult(this, requestCode, resultCode, intent)
+    engine.getEngine()?.onActivityResult(this, requestCode, resultCode, intent)
 }

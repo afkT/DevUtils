@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.kotlin.engine.image.display
+import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.toSource

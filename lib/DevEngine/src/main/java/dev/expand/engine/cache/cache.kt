@@ -1,4 +1,4 @@
-package dev.kotlin.engine.cache
+package dev.expand.engine.cache
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -21,8 +21,8 @@ import java.lang.reflect.Type
  * @return ICacheEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Cache Engine
  */
-internal fun getEngine(engine: String?): ICacheEngine<in ICacheEngine.EngineConfig, in ICacheEngine.EngineItem>? {
-    DevEngine.getCache(engine)?.let { value ->
+fun String?.getEngine(): ICacheEngine<in ICacheEngine.EngineConfig, in ICacheEngine.EngineItem>? {
+    DevEngine.getCache(this)?.let { value ->
         return value
     }
     return DevEngine.getCache()
@@ -49,7 +49,7 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 fun <Config : ICacheEngine.EngineConfig> cache_getConfig(
     engine: String? = null
 ): Config? {
-    return getEngine(engine)?.config as? Config
+    return engine.getEngine()?.config as? Config
 }
 
 // =
@@ -57,74 +57,74 @@ fun <Config : ICacheEngine.EngineConfig> cache_getConfig(
 fun String.cache_remove(
     engine: String? = null
 ) {
-    getEngine(engine)?.remove(this)
+    engine.getEngine()?.remove(this)
 }
 
 fun Array<String?>.cache_removeForKeys(
     engine: String? = null
 ) {
-    getEngine(engine)?.removeForKeys(this)
+    engine.getEngine()?.removeForKeys(this)
 }
 
 fun String.cache_contains(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.contains(this) ?: false
+    return engine.getEngine()?.contains(this) ?: false
 }
 
 fun String.cache_isDue(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.isDue(this) ?: false
+    return engine.getEngine()?.isDue(this) ?: false
 }
 
 fun cache_clear(
     engine: String? = null
 ) {
-    getEngine(engine)?.clear()
+    engine.getEngine()?.clear()
 }
 
 fun cache_clearDue(
     engine: String? = null
 ) {
-    getEngine(engine)?.clearDue()
+    engine.getEngine()?.clearDue()
 }
 
 fun cache_clearType(
     engine: String? = null,
     type: Int
 ) {
-    getEngine(engine)?.clearType(type)
+    engine.getEngine()?.clearType(type)
 }
 
 fun <Item : ICacheEngine.EngineItem> String.cache_getItemByKey(
     engine: String? = null
 ): Item? {
-    return getEngine(engine)?.getItemByKey(this) as? Item
+    return engine.getEngine()?.getItemByKey(this) as? Item
 }
 
 fun <Item : ICacheEngine.EngineItem> cache_getKeys(
     engine: String? = null
 ): List<Item?>? {
-    return getEngine(engine)?.keys as? List<Item?>
+    return engine.getEngine()?.keys as? List<Item?>
 }
 
 fun <Item : ICacheEngine.EngineItem> cache_getPermanentKeys(
     engine: String? = null
 ): List<Item?>? {
-    return getEngine(engine)?.permanentKeys as? List<Item?>
+    return engine.getEngine()?.permanentKeys as? List<Item?>
 }
 
 fun cache_getCount(
     engine: String? = null
 ): Int {
-    return getEngine(engine)?.count ?: 0
+    return engine.getEngine()?.count ?: 0
 }
 
 fun cache_getSize(
     engine: String? = null
 ): Long {
-    return getEngine(engine)?.size ?: 0L
+    return engine.getEngine()?.size ?: 0L
 }
 
 // =======
@@ -136,7 +136,7 @@ fun String.cache_put(
     value: Int,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -144,7 +144,7 @@ fun String.cache_put(
     value: Long,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -152,7 +152,7 @@ fun String.cache_put(
     value: Float,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -160,7 +160,7 @@ fun String.cache_put(
     value: Double,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -168,7 +168,7 @@ fun String.cache_put(
     value: Boolean,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -176,7 +176,7 @@ fun String.cache_put(
     value: String?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -184,7 +184,7 @@ fun String.cache_put(
     value: ByteArray?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -192,7 +192,7 @@ fun String.cache_put(
     value: Bitmap?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -200,7 +200,7 @@ fun String.cache_put(
     value: Drawable?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -208,7 +208,7 @@ fun String.cache_put(
     value: Serializable?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -216,7 +216,7 @@ fun String.cache_put(
     value: Parcelable?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -224,7 +224,7 @@ fun String.cache_put(
     value: JSONObject?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun String.cache_put(
@@ -232,7 +232,7 @@ fun String.cache_put(
     value: JSONArray?,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 fun <T> String.cache_put(
@@ -240,7 +240,7 @@ fun <T> String.cache_put(
     value: T,
     validTime: Long
 ): Boolean {
-    return getEngine(engine)?.put(this, value, validTime) ?: false
+    return engine.getEngine()?.put(this, value, validTime) ?: false
 }
 
 // =======
@@ -250,87 +250,87 @@ fun <T> String.cache_put(
 fun String.cache_getInt(
     engine: String? = null
 ): Int {
-    return getEngine(engine)?.getInt(this) ?: INTEGER_DEFAULT
+    return engine.getEngine()?.getInt(this) ?: INTEGER_DEFAULT
 }
 
 fun String.cache_getLong(
     engine: String? = null
 ): Long {
-    return getEngine(engine)?.getLong(this) ?: LONG_DEFAULT
+    return engine.getEngine()?.getLong(this) ?: LONG_DEFAULT
 }
 
 fun String.cache_getFloat(
     engine: String? = null
 ): Float {
-    return getEngine(engine)?.getFloat(this) ?: FLOAT_DEFAULT
+    return engine.getEngine()?.getFloat(this) ?: FLOAT_DEFAULT
 }
 
 fun String.cache_getDouble(
     engine: String? = null
 ): Double {
-    return getEngine(engine)?.getDouble(this) ?: DOUBLE_DEFAULT
+    return engine.getEngine()?.getDouble(this) ?: DOUBLE_DEFAULT
 }
 
 fun String.cache_getBoolean(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.getBoolean(this) ?: BOOLEAN_DEFAULT
+    return engine.getEngine()?.getBoolean(this) ?: BOOLEAN_DEFAULT
 }
 
 fun String.cache_getString(
     engine: String? = null
 ): String? {
-    return getEngine(engine)?.getString(this)
+    return engine.getEngine()?.getString(this)
 }
 
 fun String.cache_getBytes(
     engine: String? = null
 ): ByteArray? {
-    return getEngine(engine)?.getBytes(this)
+    return engine.getEngine()?.getBytes(this)
 }
 
 fun String.cache_getBitmap(
     engine: String? = null
 ): Bitmap? {
-    return getEngine(engine)?.getBitmap(this)
+    return engine.getEngine()?.getBitmap(this)
 }
 
 fun String.cache_getDrawable(
     engine: String? = null
 ): Drawable? {
-    return getEngine(engine)?.getDrawable(this)
+    return engine.getEngine()?.getDrawable(this)
 }
 
 fun String.cache_getSerializable(
     engine: String? = null
 ): Any? {
-    return getEngine(engine)?.getSerializable(this)
+    return engine.getEngine()?.getSerializable(this)
 }
 
 fun <T> String.cache_getParcelable(
     engine: String? = null,
     creator: Parcelable.Creator<T>?
 ): T? {
-    return getEngine(engine)?.getParcelable(this, creator)
+    return engine.getEngine()?.getParcelable(this, creator)
 }
 
 fun String.cache_getJSONObject(
     engine: String? = null
 ): JSONObject? {
-    return getEngine(engine)?.getJSONObject(this)
+    return engine.getEngine()?.getJSONObject(this)
 }
 
 fun String.cache_getJSONArray(
     engine: String? = null
 ): JSONArray? {
-    return getEngine(engine)?.getJSONArray(this)
+    return engine.getEngine()?.getJSONArray(this)
 }
 
 fun <T> String.cache_getEntity(
     engine: String? = null,
     typeOfT: Type?
 ): T? {
-    return getEngine(engine)?.getEntity(this, typeOfT)
+    return engine.getEngine()?.getEntity(this, typeOfT)
 }
 
 // =================
@@ -341,70 +341,70 @@ fun String.cache_getInt(
     engine: String? = null,
     defaultValue: Int
 ): Int {
-    return getEngine(engine)?.getInt(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getInt(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getLong(
     engine: String? = null,
     defaultValue: Long
 ): Long {
-    return getEngine(engine)?.getLong(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getLong(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getFloat(
     engine: String? = null,
     defaultValue: Float
 ): Float {
-    return getEngine(engine)?.getFloat(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getFloat(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getDouble(
     engine: String? = null,
     defaultValue: Double
 ): Double {
-    return getEngine(engine)?.getDouble(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getDouble(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getBoolean(
     engine: String? = null,
     defaultValue: Boolean
 ): Boolean {
-    return getEngine(engine)?.getBoolean(this, defaultValue) ?: defaultValue
+    return engine.getEngine()?.getBoolean(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getString(
     engine: String? = null,
     defaultValue: String?
 ): String? {
-    return getEngine(engine)?.getString(this, defaultValue)
+    return engine.getEngine()?.getString(this, defaultValue)
 }
 
 fun String.cache_getBytes(
     engine: String? = null,
     defaultValue: ByteArray?
 ): ByteArray? {
-    return getEngine(engine)?.getBytes(this, defaultValue)
+    return engine.getEngine()?.getBytes(this, defaultValue)
 }
 
 fun String.cache_getBitmap(
     engine: String? = null,
     defaultValue: Bitmap?
 ): Bitmap? {
-    return getEngine(engine)?.getBitmap(this, defaultValue)
+    return engine.getEngine()?.getBitmap(this, defaultValue)
 }
 
 fun String.cache_getDrawable(
     engine: String? = null,
     defaultValue: Drawable?
 ): Drawable? {
-    return getEngine(engine)?.getDrawable(this, defaultValue)
+    return engine.getEngine()?.getDrawable(this, defaultValue)
 }
 
 fun String.cache_getSerializable(
     engine: String? = null,
     defaultValue: Any?
 ): Any? {
-    return getEngine(engine)?.getSerializable(this, defaultValue)
+    return engine.getEngine()?.getSerializable(this, defaultValue)
 }
 
 fun <T> String.cache_getParcelable(
@@ -412,21 +412,21 @@ fun <T> String.cache_getParcelable(
     creator: Parcelable.Creator<T>?,
     defaultValue: T?
 ): T? {
-    return getEngine(engine)?.getParcelable(this, creator, defaultValue)
+    return engine.getEngine()?.getParcelable(this, creator, defaultValue)
 }
 
 fun String.cache_getJSONObject(
     engine: String? = null,
     defaultValue: JSONObject?
 ): JSONObject? {
-    return getEngine(engine)?.getJSONObject(this, defaultValue)
+    return engine.getEngine()?.getJSONObject(this, defaultValue)
 }
 
 fun String.cache_getJSONArray(
     engine: String? = null,
     defaultValue: JSONArray?
 ): JSONArray? {
-    return getEngine(engine)?.getJSONArray(this, defaultValue)
+    return engine.getEngine()?.getJSONArray(this, defaultValue)
 }
 
 fun <T> String.cache_getEntity(
@@ -434,5 +434,5 @@ fun <T> String.cache_getEntity(
     typeOfT: Type?,
     defaultValue: T?
 ): T? {
-    return getEngine(engine)?.getEntity(this, typeOfT, defaultValue)
+    return engine.getEngine()?.getEntity(this, typeOfT, defaultValue)
 }
