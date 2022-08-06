@@ -16,17 +16,17 @@ import dev.utils.app.timer.DevTimer;
 public class DevTimerAssist {
 
     // 总时长 ( 毫秒 )
-    private final AtomicLong        mDuration = new AtomicLong();
+    private final AtomicLong mDuration = new AtomicLong();
     // 循环时间 ( 每隔多少毫秒执行一次 )
-    private final long              mPeriod;
+    private final long       mPeriod;
     // 定时器 TAG
-    private       String            mTag;
+    private       String     mTag;
     // UI Handler
-    private       Handler           mHandler;
+    private       Handler    mHandler;
     // 回调方法
-    private       DevTimer.Callback mCallback;
+    private       Callback   mCallback;
     // 当前定时器
-    private       DevTimer          mTimer;
+    private       DevTimer   mTimer;
 
     /**
      * 构造函数
@@ -47,6 +47,27 @@ public class DevTimerAssist {
     ) {
         this.mDuration.set(duration);
         this.mPeriod = period;
+    }
+
+    /**
+     * detail: 回调接口
+     * @author Ttt
+     */
+    public interface Callback {
+
+        /**
+         * 触发回调方法
+         * @param assist   定时器辅助类
+         * @param number   触发次数
+         * @param end      是否结束
+         * @param duration 剩余总时长 ( 毫秒 )
+         */
+        void callback(
+                DevTimerAssist assist,
+                int number,
+                boolean end,
+                long duration
+        );
     }
 
     // =============
@@ -82,10 +103,10 @@ public class DevTimerAssist {
 
     /**
      * 设置回调事件
-     * @param callback {@link DevTimer.Callback}
+     * @param callback {@link Callback}
      * @return {@link DevTimerAssist}
      */
-    public DevTimerAssist setCallback(final DevTimer.Callback callback) {
+    public DevTimerAssist setCallback(final Callback callback) {
         if (mTimer == null) {
             mCallback = callback;
         }
@@ -103,6 +124,14 @@ public class DevTimerAssist {
         return mTimer;
     }
 
+    /**
+     * 获取剩余总时长 ( 毫秒 )
+     * @return 剩余总时长 ( 毫秒 )
+     */
+    public long getDuration() {
+        return mDuration.get();
+    }
+
     // ==========
     // = 核心方法 =
     // ==========
@@ -112,9 +141,8 @@ public class DevTimerAssist {
      * @return {@link DevTimerAssist}
      */
     public DevTimerAssist start() {
-        if (!isDurationEnd()) {
-            getTimer().start();
-        }
+        if (isDurationEnd()) return this;
+        getTimer().start();
         return this;
     }
 
@@ -123,9 +151,7 @@ public class DevTimerAssist {
      * @return {@link DevTimerAssist}
      */
     public DevTimerAssist stop() {
-        if (!isDurationEnd()) {
-            getTimer().stop();
-        }
+        getTimer().stop();
         return this;
     }
 
@@ -146,12 +172,16 @@ public class DevTimerAssist {
             if (result <= 0L) {
                 timer.stop();
                 if (mCallback != null) {
-                    mCallback.callback(timer, number, true, infinite);
+                    mCallback.callback(
+                            DevTimerAssist.this, number, true, result
+                    );
                 }
                 return;
             }
             if (mCallback != null) {
-                mCallback.callback(timer, number, false, infinite);
+                mCallback.callback(
+                        DevTimerAssist.this, number, false, result
+                );
             }
         }
     };
@@ -176,7 +206,7 @@ public class DevTimerAssist {
         if (result <= 0L) {
             getTimer().stop();
             if (mCallback != null) {
-                mCallback.callback(mTimer, 0, true, true);
+                mCallback.callback(this, 0, true, result);
             }
             return true;
         }
