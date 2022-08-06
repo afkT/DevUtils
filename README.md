@@ -151,7 +151,7 @@ DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装�
 implementation 'io.github.afkt:DevAppX:2.4.1'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.3.6'
+implementation 'io.github.afkt:DevAssist:1.3.7'
 
 // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'io.github.afkt:DevBase:1.1.3'
@@ -160,7 +160,7 @@ implementation 'io.github.afkt:DevBase:1.1.3'
 implementation 'io.github.afkt:DevBaseMVVM:1.1.1'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.0.8'
+implementation 'io.github.afkt:DevEngine:1.0.9'
 
 // DevHttpCapture - OkHttp 抓包工具库
 implementation 'io.github.afkt:DevHttpCapture:1.1.2'

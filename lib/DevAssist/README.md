@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevAssist:1.3.6'
+implementation 'io.github.afkt:DevAssist:1.3.7'
 ```
 
 ## 目录结构
@@ -319,6 +319,20 @@ implementation 'io.github.afkt:DevAssist:1.3.6'
 | setDataList | 设置 List Data |
 | notifyDataChanged | 通知数据改变 |
 | notifyElementChanged | 通知某个数据改变 |
+
+
+* **定时器辅助类 ->** [DevTimerAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/DevTimerAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setTag | 设置 TAG |
+| setHandler | 设置 UI Handler |
+| setCallback | 设置回调事件 |
+| getTimer | 获取定时器 |
+| getDuration | 获取剩余总时长 ( 毫秒 ) |
+| start | 运行定时器 |
+| stop | 关闭定时器 |
+| callback | 触发回调方法 |
 
 
 * **EditText 搜索辅助类 ->** [EditTextSearchAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/EditTextSearchAssist.java)
