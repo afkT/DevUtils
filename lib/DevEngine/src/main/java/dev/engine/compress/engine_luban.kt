@@ -10,7 +10,7 @@ import java.io.File
  * detail: Luban Image Compress Engine 实现
  * @author Ttt
  */
-class LubanEngineImpl : ICompressEngine<CompressConfig> {
+open class LubanEngineImpl : ICompressEngine<CompressConfig> {
 
     override fun compress(
         data: Any?,

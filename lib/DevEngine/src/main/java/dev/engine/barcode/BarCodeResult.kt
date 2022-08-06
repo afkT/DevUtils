@@ -7,7 +7,7 @@ import com.google.zxing.Result
  * detail: BarCode Result
  * @author Ttt
  */
-class BarCodeResult(
+open class BarCodeResult(
     private val mResult: Result?
 ) : IBarCodeEngine.EngineResult() {
 

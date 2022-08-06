@@ -7,7 +7,7 @@ import dev.utils.common.cipher.Cipher
  * detail: Cache Config
  * @author Ttt
  */
-class CacheConfig(
+open class CacheConfig(
     cipher: Cipher?,
     val mDevCache: DevCache
 ) : ICacheEngine.EngineConfig(cipher)

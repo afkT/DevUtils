@@ -13,7 +13,7 @@ import java.util.*
  * get 时使用 uri.toString() 还是 uri.getPath() 亦或是其他方法
  * 根据 set 时存入什么值决定
  */
-class MediaData : IMediaEngine.EngineData {
+open class MediaData : IMediaEngine.EngineData {
 
     // 第三方库原始数据 ( 可自行强转 )
     private var mLibOriginalData: Any? = null

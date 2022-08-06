@@ -6,7 +6,7 @@ import com.google.gson.Gson
  * detail: JSON Config
  * @author Ttt
  */
-class JSONConfig : IJSONEngine.EngineConfig() {
+open class JSONConfig : IJSONEngine.EngineConfig() {
     @JvmField
     var gson: Gson? = null
 }

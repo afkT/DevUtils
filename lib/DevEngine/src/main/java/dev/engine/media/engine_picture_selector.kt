@@ -24,7 +24,7 @@ import dev.utils.common.ConvertUtils
  * 尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
  * 防止需要适配 Android 11 ( R ) 进行转存文件需判断文件路径
  */
-class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
+open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // 日志 TAG
     private val TAG = PictureSelectorEngineImpl::class.java.simpleName

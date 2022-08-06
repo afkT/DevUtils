@@ -8,7 +8,7 @@ import com.google.zxing.BarcodeFormat
  * detail: BarCode ( Data、Params ) Item
  * @author Ttt
  */
-class BarCodeData private constructor(
+open class BarCodeData private constructor(
     // 条码内容
     private val mContent: String?,
     // 条码宽度

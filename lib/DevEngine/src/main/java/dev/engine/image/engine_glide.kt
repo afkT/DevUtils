@@ -44,7 +44,7 @@ import java.util.*
  * 解决圆角 + centerCrop 效果叠加处理
  * transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)))
  */
-class GlideEngineImpl : IImageEngine<ImageConfig> {
+open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // 日志 TAG
     private val TAG = GlideEngineImpl::class.java.simpleName
@@ -698,6 +698,9 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @return [RequestOptions]
      */
     private fun buildRequestOptions(config: ImageConfig?): RequestOptions {
+        if (config?.getOptions() is RequestOptions) {
+            return config.getOptions() as RequestOptions
+        }
         var options = RequestOptions()
         config?.let { config ->
 

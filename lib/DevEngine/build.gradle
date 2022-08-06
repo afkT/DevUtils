@@ -23,7 +23,6 @@ dependencies {
 
     // Glide 图片加载框架 https://github.com/bumptech/glide
     api deps.lib.glide
-    kapt deps.lib.glide_compiler
     // Gson https://github.com/google/gson
     api deps.lib.gson
     // Fastjson2 https://github.com/alibaba/fastjson2

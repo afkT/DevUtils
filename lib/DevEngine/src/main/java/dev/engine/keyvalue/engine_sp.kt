@@ -11,7 +11,7 @@ import java.lang.reflect.Type
  * detail: SharedPreferences Key-Value Config
  * @author Ttt
  */
-class SPConfig(
+open class SPConfig(
     cipher: Cipher?,
     // SharedPreferences
     val preference: IPreference
@@ -21,7 +21,7 @@ class SPConfig(
  * detail: SharedPreferences Key-Value Engine 实现
  * @author Ttt
  */
-class SPKeyValueEngineImpl(
+open class SPKeyValueEngineImpl(
     private val mConfig: SPConfig
 ) : IKeyValueEngine<SPConfig> {
 

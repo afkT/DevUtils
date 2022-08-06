@@ -10,7 +10,7 @@ import java.util.*
  * detail: BarCode Config
  * @author Ttt
  */
-class BarCodeConfig : IBarCodeEngine.EngineConfig() {
+open class BarCodeConfig : IBarCodeEngine.EngineConfig() {
 
     // 编码 ( 生成 ) 配置
     private val encodeHints: MutableMap<EncodeHintType, Any> = EnumMap(

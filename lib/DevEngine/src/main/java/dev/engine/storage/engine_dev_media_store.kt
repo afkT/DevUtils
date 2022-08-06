@@ -27,7 +27,7 @@ interface OnDevInsertListener : OnInsertListener<StorageItem, StorageResult>
  * 如果需要设置全局结果监听, 可以新增构造函数传入 [OnDevInsertListener]
  * 并在 [finalCallback] 方法中设置触发事件回调
  */
-class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
+open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
     // ==========
     // = 外部存储 =

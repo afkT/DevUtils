@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable
  * detail: Image Config
  * @author Ttt
  */
-class ImageConfig private constructor(
+open class ImageConfig private constructor(
     config: ImageConfig?
 ) : IImageEngine.EngineConfig() {
 
@@ -46,6 +46,9 @@ class ImageConfig private constructor(
 
     // 是否移除所有 Transformation 效果
     private var mDontTransform = false
+
+    // 额外扩展对象
+    private var mOptions: Any? = null
 
     companion object {
 
@@ -103,6 +106,8 @@ class ImageConfig private constructor(
             this.mDontAnimate = it.mDontAnimate
             // 是否移除所有 Transformation 效果
             this.mDontTransform = it.mDontTransform
+            // 额外扩展对象
+            this.mOptions = it.mOptions
         }
     }
 
@@ -269,5 +274,13 @@ class ImageConfig private constructor(
 
     fun setDontTransform(dontTransform: Boolean) {
         mDontTransform = dontTransform
+    }
+
+    fun getOptions(): Any? {
+        return mOptions
+    }
+
+    fun setOptions(options: Any?) {
+        mOptions = options
     }
 }

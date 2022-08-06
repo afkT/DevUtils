@@ -4,7 +4,7 @@ package dev.engine.compress
  * detail: Image Compress Config
  * @author Ttt
  */
-class CompressConfig @JvmOverloads constructor(
+open class CompressConfig @JvmOverloads constructor(
     // 单位 KB 默认 100 kb 以下不压缩
     val ignoreSize: Int,
     // 是否保留透明通道

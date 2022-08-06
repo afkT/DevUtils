@@ -22,7 +22,7 @@ import java.io.File
  * ( 正常无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/ * 则需指定后缀 )
  * 可以使用快捷创建方法 [.createExternalItem]
  */
-class StorageItem private constructor() : IStorageEngine.EngineItem() {
+open class StorageItem private constructor() : IStorageEngine.EngineItem() {
 
     // 输出 Uri ( 可以自行指定输出 Uri 优先使用该值 )
     @Transient

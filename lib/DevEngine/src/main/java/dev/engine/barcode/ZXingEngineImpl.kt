@@ -17,7 +17,7 @@ import dev.utils.common.thread.DevThreadPool
  * detail: ZXing BarCode Engine 实现
  * @author Ttt
  */
-class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult> {
+open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult> {
 
     // 日志 TAG
     private val TAG = ZXingEngineImpl::class.java.simpleName

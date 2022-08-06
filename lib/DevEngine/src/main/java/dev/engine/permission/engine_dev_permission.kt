@@ -8,7 +8,7 @@ import dev.utils.app.permission.PermissionUtils
  * detail: DevUtils Permission Engine 实现
  * @author Ttt
  */
-class DevPermissionEngineImpl : IPermissionEngine {
+open class DevPermissionEngineImpl : IPermissionEngine {
 
     // =============
     // = 对外公开方法 =

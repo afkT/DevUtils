@@ -6,7 +6,7 @@ import java.lang.reflect.Type
  * detail: Fastjson JSON Engine 实现
  * @author Ttt
  */
-class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
+open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
 
     // ==========
     // = 转换方法 =

@@ -4,7 +4,7 @@ package dev.engine.cache
  * detail: Cache ( Data、Params ) Item
  * @author Ttt
  */
-class DataItem(
+open class DataItem(
     key: String?,
     type: Int,
     size: Long,

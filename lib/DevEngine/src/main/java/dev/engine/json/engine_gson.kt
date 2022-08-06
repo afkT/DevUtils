@@ -6,7 +6,7 @@ import java.lang.reflect.Type
  * detail: Gson JSON Engine 实现
  * @author Ttt
  */
-class GsonEngineImpl : IJSONEngine<JSONConfig> {
+open class GsonEngineImpl : IJSONEngine<JSONConfig> {
 
     // ==========
     // = 转换方法 =

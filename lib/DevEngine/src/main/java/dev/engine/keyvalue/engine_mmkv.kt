@@ -11,7 +11,7 @@ import java.lang.reflect.Type
  * detail: MMKV Key-Value Config
  * @author Ttt
  */
-class MMKVConfig(
+open class MMKVConfig(
     cipher: Cipher?,
     val mmkv: MMKV
 ) : IKeyValueEngine.EngineConfig(cipher)
@@ -20,7 +20,7 @@ class MMKVConfig(
  * detail: MMKV Key-Value Engine 实现
  * @author Ttt
  */
-class MMKVKeyValueEngineImpl(
+open class MMKVKeyValueEngineImpl(
     private val mConfig: MMKVConfig
 ) : IKeyValueEngine<MMKVConfig> {
 

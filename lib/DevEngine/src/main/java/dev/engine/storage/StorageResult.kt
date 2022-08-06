@@ -9,7 +9,7 @@ import java.io.File
  * 外部存储时以 Uri 为准, 可在存储成功通过 [dev.utils.app.UriUtils.getFilePathByUri]
  * 获取真实 File 存储地址 ( 部分 ROM 传入 RELATIVE_PATH 无效 ) 只会存储在对应 MimeType 根目录下
  */
-class StorageResult(
+open class StorageResult(
     // 存储结果
     private val mInsertResult: Boolean
 ) : IStorageEngine.EngineResult() {

@@ -14,7 +14,7 @@ import java.lang.reflect.Type
  * detail: DevCache ( DevUtils ) Cache Engine 实现
  * @author Ttt
  */
-class DevCacheEngineImpl(
+open class DevCacheEngineImpl(
     private val mConfig: CacheConfig
 ) : ICacheEngine<CacheConfig?, DataItem?> {
 
