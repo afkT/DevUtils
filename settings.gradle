@@ -7,12 +7,13 @@ def libs = [
         "DevAssist",
         "DevBase",
         "DevBaseMVVM",
+        "DevMVVM",
         "DevEngine",
         "DevHttpCapture",
         "DevHttpManager",
         "DevRetrofit",
-        "DevJava",
         "DevWidget",
+        "DevJava",
 ]
 
 libs.forEach {

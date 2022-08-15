@@ -30,6 +30,7 @@ dependencies {
     implementation project(':DevApp')
     implementation project(':DevAssist')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevMVVM')
     implementation project(':DevEngine')
     implementation project(':DevHttpCapture')
     implementation project(':DevWidget')

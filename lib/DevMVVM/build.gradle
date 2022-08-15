@@ -1,0 +1,39 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_mvvm_versionCode
+    versionName versions.dev_mvvm_versionName
+    // DevMVVM Module Version
+    buildConfigField "int", "DevMVVM_VersionCode", "${versions.dev_mvvm_versionCode}"
+    buildConfigField "String", "DevMVVM_Version", "\"${versions.dev_mvvm_versionName}\""
+    // DevBaseMVVM Module Version
+    buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
+    buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    api deps.kotlin.lifecycle_viewmodel
+    api deps.kotlin.lifecycle_livedata
+    api deps.kotlin.lifecycle_viewmodel_savedstate
+
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_base_mvvm
+    } else {
+        // 编译时使用
+        api project(':DevBaseMVVM')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}
