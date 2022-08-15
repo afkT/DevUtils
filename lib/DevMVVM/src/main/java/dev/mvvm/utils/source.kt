@@ -1,4 +1,4 @@
-package dev.kotlin.utils
+package dev.mvvm.utils
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable

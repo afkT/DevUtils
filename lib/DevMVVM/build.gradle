@@ -22,9 +22,11 @@ dependencies {
 
     if (isPublishing) {
         // 打包时使用
+        api deps.dev.dev_assist
         api deps.dev.dev_base_mvvm
     } else {
         // 编译时使用
+        api project(':DevAssist')
         api project(':DevBaseMVVM')
     }
 }

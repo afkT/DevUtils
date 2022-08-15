@@ -14,7 +14,7 @@ import com.youth.banner.indicator.CircleIndicator
 import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.kotlin.utils.image.toImageConfig
-import dev.kotlin.utils.toSource
+import dev.mvvm.utils.toSource
 
 /**
  * detail: Banner Adapter

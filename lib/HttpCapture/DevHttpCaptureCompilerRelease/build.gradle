@@ -11,12 +11,12 @@ def isPublishing = false
 dependencies {
     if (isPublishing) {
         // 打包时使用
-        api deps.dev.dev_http_capture
         api deps.dev.dev_assist
+        api deps.dev.dev_http_capture
     } else {
         // 编译时使用
-        api project(':DevHttpCapture')
         api project(':DevAssist')
+        api project(':DevHttpCapture')
     }
 }
 

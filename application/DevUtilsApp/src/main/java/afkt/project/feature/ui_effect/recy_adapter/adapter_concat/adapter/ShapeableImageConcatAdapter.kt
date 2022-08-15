@@ -12,7 +12,7 @@ import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
-import dev.kotlin.utils.toSource
+import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 
 /**
