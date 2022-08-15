@@ -14,6 +14,8 @@ package dev.base
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
  * DevBaseMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
+ * DevMVVM README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevHttpCapture Api
@@ -22,12 +24,12 @@ package dev.base
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md
  * DevRetrofit Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md
- * DevJava Api
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  * DevWidget Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
  * DevEnvironment Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/Environment
+ * DevJava Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  */
 object DevBase {
 

@@ -18,6 +18,8 @@ import dev.capture.UrlFunctionGet;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md"/>
  *     DevBaseMVVM README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
+ *     DevMVVM README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md"/>
  *     DevEngine README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevHttpCapture Api
@@ -26,12 +28,12 @@ import dev.capture.UrlFunctionGet;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md"/>
  *     DevRetrofit Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md"/>
- *     DevJava Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevWidget Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md"/>
  *     DevEnvironment Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
+ *     DevJava Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  * </pre>
  */
 public final class DevHttpCaptureCompiler {
