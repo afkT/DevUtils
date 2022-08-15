@@ -7,6 +7,9 @@ android.defaultConfig {
     // DevMVVM Module Version
     buildConfigField "int", "DevMVVM_VersionCode", "${versions.dev_mvvm_versionCode}"
     buildConfigField "String", "DevMVVM_Version", "\"${versions.dev_mvvm_versionName}\""
+    // DevAssist Module Version
+    buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+    buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
     // DevBaseMVVM Module Version
     buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
     buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""

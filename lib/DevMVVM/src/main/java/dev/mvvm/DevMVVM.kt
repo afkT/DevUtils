@@ -54,6 +54,22 @@ object DevMVVM {
     }
 
     /**
+     * 获取 DevAssist 版本号
+     * @return DevAssist versionCode
+     */
+    fun getDevAssistVersionCode(): Int {
+        return BuildConfig.DevAssist_VersionCode
+    }
+
+    /**
+     * 获取 DevAssist 版本
+     * @return DevAssist versionName
+     */
+    fun getDevAssistVersion(): String {
+        return BuildConfig.DevAssist_Version
+    }
+
+    /**
      * 获取 DevBaseMVVM 版本号
      * @return DevBaseMVVM versionCode
      */
