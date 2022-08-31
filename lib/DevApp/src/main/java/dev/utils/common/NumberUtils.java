@@ -65,7 +65,9 @@ public final class NumberUtils {
         return value;
     }
 
-    // =
+    // =============
+    // = Unit Span =
+    // =============
 
     /**
      * 计算指定单位倍数
@@ -73,7 +75,7 @@ public final class NumberUtils {
      * @param units 单位数组
      * @return 单位数组对应倍数值
      */
-    public static double[] calculateUnit(
+    public static double[] calculateUnitD(
             final double value,
             final double[] units
     ) {
@@ -99,18 +101,22 @@ public final class NumberUtils {
      * @return 单位数组对应倍数值
      */
     public static int[] calculateUnitI(
-            final long value,
-            final long[] units
+            final int value,
+            final int[] units
     ) {
-        long[] result = calculateUnitL(value, units);
-        if (result != null) {
-            int[] ints = new int[result.length];
-            for (int i = 0, len = result.length; i < len; i++) {
-                ints[i] = (int) result[i];
+        if (value <= 0) return null;
+        if (units == null) return null;
+        int   len    = units.length;
+        int[] result = new int[len];
+        int   temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= units[i]) {
+                int multiple = temp / units[i];
+                            temp -= multiple * units[i];
+                result[i] = multiple;
             }
-            return ints;
         }
-        return null;
+        return result;
     }
 
     /**
@@ -131,6 +137,31 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 long multiple = temp / units[i];
+                            temp -= multiple * units[i];
+                result[i] = multiple;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 计算指定单位倍数
+     * @param value 待计算数值
+     * @param units 单位数组
+     * @return 单位数组对应倍数值
+     */
+    public static float[] calculateUnitF(
+            final float value,
+            final float[] units
+    ) {
+        if (value <= 0) return null;
+        if (units == null) return null;
+        int     len    = units.length;
+        float[] result = new float[len];
+        float   temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= units[i]) {
+                float multiple = temp / units[i];
                             temp -= multiple * units[i];
                 result[i] = multiple;
             }

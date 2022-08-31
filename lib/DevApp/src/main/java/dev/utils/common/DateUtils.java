@@ -2393,9 +2393,10 @@ public final class DateUtils {
      */
     public static int[] millisToTimeArrays(final long millis) {
         if (millis > 0) {
-            return NumberUtils.calculateUnitI(
+            final long[] values = NumberUtils.calculateUnitL(
                     millis, new long[]{86400000, 3600000, 60000, 1000, 1}
             );
+            return ConvertUtils.longsToInts(values);
         }
         return new int[5];
     }
