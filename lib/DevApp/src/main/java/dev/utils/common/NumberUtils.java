@@ -71,6 +71,10 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
+     * <pre>
+     *     返回数组前面都为整数倍, 最后一位可能存在小数点
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
      * @param value 待计算数值
      * @param units 单位数组
      * @return 单位数组对应倍数值
@@ -87,7 +91,11 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 double multiple = temp / units[i];
-                            temp -= multiple * units[i];
+                if (i != len - 1) {
+                    multiple = (int) multiple;
+                }
+                temp -= multiple * units[i];
+
                 result[i] = multiple;
             }
         }
@@ -96,6 +104,9 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
+     * <pre>
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
      * @param value 待计算数值
      * @param units 单位数组
      * @return 单位数组对应倍数值
@@ -112,7 +123,8 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 int multiple = temp / units[i];
-                            temp -= multiple * units[i];
+                temp -= multiple * units[i];
+
                 result[i] = multiple;
             }
         }
@@ -121,6 +133,9 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
+     * <pre>
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
      * @param value 待计算数值
      * @param units 单位数组
      * @return 单位数组对应倍数值
@@ -137,7 +152,8 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 long multiple = temp / units[i];
-                            temp -= multiple * units[i];
+                temp -= multiple * units[i];
+
                 result[i] = multiple;
             }
         }
@@ -146,6 +162,10 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
+     * <pre>
+     *     返回数组前面都为整数倍, 最后一位可能存在小数点
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
      * @param value 待计算数值
      * @param units 单位数组
      * @return 单位数组对应倍数值
@@ -162,7 +182,11 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 float multiple = temp / units[i];
-                            temp -= multiple * units[i];
+                if (i != len - 1) {
+                    multiple = (int) multiple;
+                }
+                temp -= multiple * units[i];
+
                 result[i] = multiple;
             }
         }
