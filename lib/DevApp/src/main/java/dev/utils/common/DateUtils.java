@@ -2381,6 +2381,16 @@ public final class DateUtils {
 
     /**
      * 转换时间
+     * <pre>
+     *     如果有其他要求可使用 {@link FormatUtils#getUnitSpanFormatter(int, boolean, String)}
+     *     <p></p>
+     *     该方法使用 UnitSpanFormatter 实现如下:
+     *     long[]   unitSpans = {86400000, 3600000, 60000, 1000, 1};
+     *     String[] units     = {"天", "小时", "分钟", "秒", "毫秒"};
+     *     UnitSpanFormatter.get(precision, appendZero, "").formatBySpan(
+     *                 millis, unitSpans, units
+     *     );
+     * </pre>
      * @param millis     时间毫秒
      * @param precision  precision = 1, return 天
      *                   precision = 2, return 天, 小时
