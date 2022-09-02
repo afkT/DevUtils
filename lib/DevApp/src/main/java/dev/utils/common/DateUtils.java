@@ -2425,7 +2425,7 @@ public final class DateUtils {
      */
     public static int[] millisToTimeArrays(final long millis) {
         if (millis > 0) {
-            final long[] values = NumberUtils.calculateUnitL(millis, MILLIS_UNIT_SPANS);
+            long[] values = NumberUtils.calculateUnitL(millis, MILLIS_UNIT_SPANS);
             return ConvertUtils.longsToInts(values);
         }
         return new int[5];

@@ -323,7 +323,7 @@ public final class SnackbarUtils {
     ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = StringUtils.getFormatString(text, formatArgs);
+            String content = StringUtils.format(text, formatArgs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -405,7 +405,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_SHORT);
+        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -417,7 +417,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_LONG);
+        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -429,7 +429,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
+        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // ==========

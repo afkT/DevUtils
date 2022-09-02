@@ -153,7 +153,7 @@ public class ArgsFormatter {
     // ============
 
     /**
-     * 获取自动数量格式化后的字符串 ( 可变参数 )
+     * 根据可变参数数量自动格式化
      * @param args 格式化参数
      * @return 格式化后的字符串
      */
@@ -162,7 +162,7 @@ public class ArgsFormatter {
     }
 
     /**
-     * 获取自动数量格式化后的字符串 ( 可变参数 )
+     * 根据可变参数数量自动格式化
      * @param objects 格式化参数
      * @return 格式化后的字符串
      */

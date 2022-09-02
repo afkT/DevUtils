@@ -228,7 +228,7 @@ final class IToastImpl
             final String text,
             final Object... formatArgs
     ) {
-        String context = StringUtils.getFormatString(text, formatArgs);
+        String context = StringUtils.format(text, formatArgs);
         if (filter(context)) {
             innerShowToastText(handlerContent(context));
         }

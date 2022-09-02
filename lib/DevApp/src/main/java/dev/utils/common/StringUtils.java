@@ -1014,12 +1014,12 @@ public final class StringUtils {
     // ===============
 
     /**
-     * 获取格式化后的字符串
+     * 字符串格式化
      * @param format 待格式化字符串
      * @param args   格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatString(
+    public static String format(
             final String format,
             final Object... args
     ) {
@@ -1031,17 +1031,17 @@ public final class StringUtils {
                 return format;
             }
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getFormatString");
+            JCLogUtils.eTag(TAG, e, "format");
         }
         return null;
     }
 
     /**
-     * 获取自动数量格式化后的字符串 ( 可变参数 )
+     * 根据可变参数数量自动格式化
      * @param args 格式化参数
      * @return 格式化后的字符串
      */
-    public static String getAutoFormatString(final Object... args) {
+    public static String argsFormat(final Object... args) {
         return FormatUtils.argsOf("%s", " %s").format(args);
     }
 
