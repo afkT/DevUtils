@@ -4,10 +4,10 @@ import dev.utils.common.BigDecimalUtils;
 import dev.utils.common.NumberUtils;
 
 /**
- * detail: 单位数组范围格式化
+ * detail: 可变数组格式化
  * @author Ttt
  */
-public class UnitSpanFormatter {
+public class ArgsFormatter {
 
     // 单位格式化精度
     private final int     precision;
@@ -22,7 +22,7 @@ public class UnitSpanFormatter {
      * @param appendZero   是否自动补 0 ( 只有 int、long 有效 )
      * @param defaultValue 格式化异常默认值
      */
-    public UnitSpanFormatter(
+    public ArgsFormatter(
             final int precision,
             final boolean appendZero,
             final String defaultValue
@@ -39,38 +39,38 @@ public class UnitSpanFormatter {
     /**
      * 获取 UnitSpanFormatter
      * @param precision 单位格式化精度
-     * @return {@link UnitSpanFormatter}
+     * @return {@link ArgsFormatter}
      */
-    public static UnitSpanFormatter get(
+    public static ArgsFormatter get(
             final int precision
     ) {
-        return new UnitSpanFormatter(precision, false, null);
+        return new ArgsFormatter(precision, false, null);
     }
 
     /**
      * 获取 UnitSpanFormatter
      * @param precision    单位格式化精度
      * @param defaultValue 格式化异常默认值
-     * @return {@link UnitSpanFormatter}
+     * @return {@link ArgsFormatter}
      */
-    public static UnitSpanFormatter get(
+    public static ArgsFormatter get(
             final int precision,
             final String defaultValue
     ) {
-        return new UnitSpanFormatter(precision, false, defaultValue);
+        return new ArgsFormatter(precision, false, defaultValue);
     }
 
     /**
      * 获取 UnitSpanFormatter
      * @param precision  单位格式化精度
      * @param appendZero 是否自动补 0 ( 只有 int、long 有效 )
-     * @return {@link UnitSpanFormatter}
+     * @return {@link ArgsFormatter}
      */
-    public static UnitSpanFormatter get(
+    public static ArgsFormatter get(
             final int precision,
             final boolean appendZero
     ) {
-        return new UnitSpanFormatter(precision, appendZero, null);
+        return new ArgsFormatter(precision, appendZero, null);
     }
 
     /**
@@ -78,14 +78,14 @@ public class UnitSpanFormatter {
      * @param precision    单位格式化精度
      * @param appendZero   是否自动补 0 ( 只有 int、long 有效 )
      * @param defaultValue 格式化异常默认值
-     * @return {@link UnitSpanFormatter}
+     * @return {@link ArgsFormatter}
      */
-    public static UnitSpanFormatter get(
+    public static ArgsFormatter get(
             final int precision,
             final boolean appendZero,
             final String defaultValue
     ) {
-        return new UnitSpanFormatter(precision, appendZero, defaultValue);
+        return new ArgsFormatter(precision, appendZero, defaultValue);
     }
 
     // =======
