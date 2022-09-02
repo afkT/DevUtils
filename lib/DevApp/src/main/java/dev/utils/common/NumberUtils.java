@@ -38,6 +38,30 @@ public final class NumberUtils {
     }
 
     /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value 待处理值
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(final long value) {
+        return addZero(value, true);
+    }
+
+    /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value      待处理值
+     * @param appendZero 是否自动补 0
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(
+            final long value,
+            final boolean appendZero
+    ) {
+        if (!appendZero) return String.valueOf(value);
+        long temp = Math.max(0, value);
+        return temp >= 10 ? String.valueOf(temp) : "0" + temp;
+    }
+
+    /**
      * 去掉结尾多余的 . 与 0
      * @param value 待处理数值
      * @return 处理后的数值字符串

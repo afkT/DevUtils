@@ -2172,6 +2172,28 @@ public final class DateUtils {
         return NumberUtils.addZero(time, appendZero);
     }
 
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time 待处理时间
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(final long time) {
+        return timeAddZero(time, true);
+    }
+
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time       待处理时间
+     * @param appendZero 是否自动补 0
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(
+            final long time,
+            final boolean appendZero
+    ) {
+        return NumberUtils.addZero(time, appendZero);
+    }
+
     // =
 
     /**

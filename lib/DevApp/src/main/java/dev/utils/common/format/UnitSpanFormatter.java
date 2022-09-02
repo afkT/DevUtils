@@ -1,6 +1,7 @@
 package dev.utils.common.format;
 
 import dev.utils.common.BigDecimalUtils;
+import dev.utils.common.NumberUtils;
 
 /**
  * detail: 单位数组范围格式化
@@ -184,6 +185,140 @@ public class UnitSpanFormatter {
                         builder.append(values[i]);
                     }
                     builder.append(units[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return defaultValue;
+    }
+
+    // =========
+    // = float =
+    // =========
+
+    /**
+     * 格式化
+     * @param values 待格式化值
+     * @param units  对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String format(
+            final float[] values,
+            final String[] units
+    ) {
+        return format(values, units, null);
+    }
+
+    /**
+     * 格式化
+     * @param values    待格式化值
+     * @param units     对应值单位
+     * @param operation BigDecimal 操作包装类
+     * @return 单位数组范围格式化字符串
+     */
+    public String format(
+            final float[] values,
+            final String[] units,
+            final BigDecimalUtils.Operation operation
+    ) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision >= values.length && precision >= units.length) {
+                BigDecimalUtils.Operation op = null;
+                if (operation != null) op = operation.clone();
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
+                    if (op != null) {
+                        String value = op.setBigDecimal(values[i]).round()
+                                .toPlainString();
+                        builder.append(value);
+                    } else {
+                        builder.append(values[i]);
+                    }
+                    builder.append(units[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return defaultValue;
+    }
+
+    // ========
+    // = long =
+    // ========
+
+    /**
+     * 格式化
+     * @param values 待格式化值
+     * @param units  对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String format(
+            final long[] values,
+            final String[] units
+    ) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision >= values.length && precision >= units.length) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
+                    long value = values[i];
+                    builder.append(NumberUtils.addZero(value, appendZero))
+                            .append(units[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return defaultValue;
+    }
+
+    // =======
+    // = int =
+    // =======
+
+    /**
+     * 格式化
+     * @param values 待格式化值
+     * @param units  对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String format(
+            final int[] values,
+            final String[] units
+    ) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision >= values.length && precision >= units.length) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
+                    long value = values[i];
+                    builder.append(NumberUtils.addZero(value, appendZero))
+                            .append(units[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return defaultValue;
+    }
+
+    // ===========
+    // = Generic =
+    // ===========
+
+    /**
+     * 格式化
+     * @param values 待格式化值
+     * @param units  对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public <T> String format(
+            final T[] values,
+            final String[] units
+    ) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision >= values.length && precision >= units.length) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
+                    T value = values[i];
+                    builder.append(value)
+                            .append(units[i]);
                 }
                 return builder.toString();
             }
