@@ -1797,7 +1797,12 @@ public final class ConvertUtils {
             throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
-            throw new Exception(String.format("Illegal hexadecimal character %s at index %s", ch, index));
+            throw new Exception(
+                    String.format(
+                            "Illegal hexadecimal character %s at index %s",
+                            ch, index
+                    )
+            );
         }
         return digit;
     }

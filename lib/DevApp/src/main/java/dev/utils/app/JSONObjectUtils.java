@@ -185,8 +185,10 @@ public final class JSONObjectUtils {
                 }
             }
             // 抛出不支持的类型
-            throw new Exception("Value " + object + " of className" + object.getClass().getName()
-                    + " converted Type " + type.getCanonicalName());
+            throw new Exception(
+                    "Value " + object + " of className" + object.getClass().getName()
+                            + " converted Type " + type.getCanonicalName()
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "fromJson");
         }

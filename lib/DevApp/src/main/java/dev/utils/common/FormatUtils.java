@@ -15,6 +15,19 @@ public final class FormatUtils {
     // 日志 TAG
     private static final String TAG = FormatUtils.class.getSimpleName();
 
+    /**
+     * 字符串格式化
+     * @param format 待格式化字符串
+     * @param args   格式化参数
+     * @return 格式化后的字符串
+     */
+    public static String format(
+            final String format,
+            final Object... args
+    ) {
+        return StringUtils.format(format, args);
+    }
+
     // =============
     // = Unit Span =
     // =============
