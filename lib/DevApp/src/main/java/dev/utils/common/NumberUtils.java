@@ -99,26 +99,26 @@ public final class NumberUtils {
      *     返回数组前面都为整数倍, 最后一位可能存在小数点
      *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
      * </pre>
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static double[] calculateUnitD(
             final double value,
-            final double[] units
+            final double[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int      len    = units.length;
+        if (unitSpans == null) return null;
+        int      len    = unitSpans.length;
         double[] result = new double[len];
         double   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                double multiple = temp / units[i];
+            if (temp >= unitSpans[i]) {
+                double multiple = temp / unitSpans[i];
                 if (i != len - 1) {
                     multiple = (int) multiple;
                 }
-                temp -= multiple * units[i];
+                temp -= multiple * unitSpans[i];
 
                 result[i] = multiple;
             }
@@ -131,23 +131,23 @@ public final class NumberUtils {
      * <pre>
      *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
      * </pre>
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static int[] calculateUnitI(
             final int value,
-            final int[] units
+            final int[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int   len    = units.length;
+        if (unitSpans == null) return null;
+        int   len    = unitSpans.length;
         int[] result = new int[len];
         int   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                int multiple = temp / units[i];
-                temp -= multiple * units[i];
+            if (temp >= unitSpans[i]) {
+                int multiple = temp / unitSpans[i];
+                temp -= multiple * unitSpans[i];
 
                 result[i] = multiple;
             }
@@ -160,23 +160,23 @@ public final class NumberUtils {
      * <pre>
      *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
      * </pre>
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static long[] calculateUnitL(
             final long value,
-            final long[] units
+            final long[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int    len    = units.length;
+        if (unitSpans == null) return null;
+        int    len    = unitSpans.length;
         long[] result = new long[len];
         long   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                long multiple = temp / units[i];
-                temp -= multiple * units[i];
+            if (temp >= unitSpans[i]) {
+                long multiple = temp / unitSpans[i];
+                temp -= multiple * unitSpans[i];
 
                 result[i] = multiple;
             }
@@ -190,26 +190,26 @@ public final class NumberUtils {
      *     返回数组前面都为整数倍, 最后一位可能存在小数点
      *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
      * </pre>
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static float[] calculateUnitF(
             final float value,
-            final float[] units
+            final float[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int     len    = units.length;
+        if (unitSpans == null) return null;
+        int     len    = unitSpans.length;
         float[] result = new float[len];
         float   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                float multiple = temp / units[i];
+            if (temp >= unitSpans[i]) {
+                float multiple = temp / unitSpans[i];
                 if (i != len - 1) {
                     multiple = (int) multiple;
                 }
-                temp -= multiple * units[i];
+                temp -= multiple * unitSpans[i];
 
                 result[i] = multiple;
             }

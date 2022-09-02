@@ -171,12 +171,13 @@ public class UnitSpanFormatter {
             final String[] units,
             final BigDecimalUtils.Operation operation
     ) {
-        if (precision > 0 && values != null && units != null) {
-            if (precision >= values.length && precision >= units.length) {
+        final int precisionLen = precision;
+        if (precisionLen > 0 && values != null && units != null) {
+            if (precisionLen <= values.length && precisionLen <= units.length) {
                 BigDecimalUtils.Operation op = null;
                 if (operation != null) op = operation.clone();
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precision; i++) {
+                for (int i = 0; i < precisionLen; i++) {
                     if (op != null) {
                         String value = op.setBigDecimal(values[i]).round()
                                 .toPlainString();
@@ -221,12 +222,13 @@ public class UnitSpanFormatter {
             final String[] units,
             final BigDecimalUtils.Operation operation
     ) {
-        if (precision > 0 && values != null && units != null) {
-            if (precision >= values.length && precision >= units.length) {
+        final int precisionLen = precision;
+        if (precisionLen > 0 && values != null && units != null) {
+            if (precisionLen <= values.length && precisionLen <= units.length) {
                 BigDecimalUtils.Operation op = null;
                 if (operation != null) op = operation.clone();
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precision; i++) {
+                for (int i = 0; i < precisionLen; i++) {
                     if (op != null) {
                         String value = op.setBigDecimal(values[i]).round()
                                 .toPlainString();
@@ -256,12 +258,14 @@ public class UnitSpanFormatter {
             final long[] values,
             final String[] units
     ) {
-        if (precision > 0 && values != null && units != null) {
-            if (precision >= values.length && precision >= units.length) {
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precision; i++) {
+        final int precisionLen = precision;
+        if (precisionLen > 0 && values != null && units != null) {
+            if (precisionLen <= values.length && precisionLen <= units.length) {
+                final boolean isAppendZero = appendZero;
+                StringBuilder builder      = new StringBuilder();
+                for (int i = 0; i < precisionLen; i++) {
                     long value = values[i];
-                    builder.append(NumberUtils.addZero(value, appendZero))
+                    builder.append(NumberUtils.addZero(value, isAppendZero))
                             .append(units[i]);
                 }
                 return builder.toString();
@@ -284,12 +288,14 @@ public class UnitSpanFormatter {
             final int[] values,
             final String[] units
     ) {
-        if (precision > 0 && values != null && units != null) {
-            if (precision >= values.length && precision >= units.length) {
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precision; i++) {
+        final int precisionLen = precision;
+        if (precisionLen > 0 && values != null && units != null) {
+            if (precisionLen <= values.length && precisionLen <= units.length) {
+                final boolean isAppendZero = appendZero;
+                StringBuilder builder      = new StringBuilder();
+                for (int i = 0; i < precisionLen; i++) {
                     long value = values[i];
-                    builder.append(NumberUtils.addZero(value, appendZero))
+                    builder.append(NumberUtils.addZero(value, isAppendZero))
                             .append(units[i]);
                 }
                 return builder.toString();
@@ -312,16 +318,147 @@ public class UnitSpanFormatter {
             final T[] values,
             final String[] units
     ) {
-        if (precision > 0 && values != null && units != null) {
-            if (precision >= values.length && precision >= units.length) {
+        final int precisionLen = precision;
+        if (precisionLen > 0 && values != null && units != null) {
+            if (precisionLen <= values.length && precisionLen <= units.length) {
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precision; i++) {
+                for (int i = 0; i < precisionLen; i++) {
                     T value = values[i];
                     builder.append(value)
                             .append(units[i]);
                 }
                 return builder.toString();
             }
+        }
+        return defaultValue;
+    }
+
+    // =============
+    // = Unit Span =
+    // =============
+
+    // ==========
+    // = double =
+    // ==========
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final double value,
+            final double[] unitSpans,
+            final String[] units
+    ) {
+        return formatBySpan(value, unitSpans, units, null);
+    }
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @param operation BigDecimal 操作包装类
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final double value,
+            final double[] unitSpans,
+            final String[] units,
+            final BigDecimalUtils.Operation operation
+    ) {
+        if (unitSpans != null && units != null) {
+            double[] values = NumberUtils.calculateUnitD(value, unitSpans);
+            return format(values, units, operation);
+        }
+        return defaultValue;
+    }
+
+    // =========
+    // = float =
+    // =========
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final float value,
+            final float[] unitSpans,
+            final String[] units
+    ) {
+        return formatBySpan(value, unitSpans, units, null);
+    }
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @param operation BigDecimal 操作包装类
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final float value,
+            final float[] unitSpans,
+            final String[] units,
+            final BigDecimalUtils.Operation operation
+    ) {
+        if (unitSpans != null && units != null) {
+            float[] values = NumberUtils.calculateUnitF(value, unitSpans);
+            return format(values, units, operation);
+        }
+        return defaultValue;
+    }
+
+    // ========
+    // = long =
+    // ========
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final long value,
+            final long[] unitSpans,
+            final String[] units
+    ) {
+        if (unitSpans != null && units != null) {
+            long[] values = NumberUtils.calculateUnitL(value, unitSpans);
+            return format(values, units);
+        }
+        return defaultValue;
+    }
+
+    // =======
+    // = int =
+    // =======
+
+    /**
+     * 格式化
+     * @param value     待格式化值
+     * @param unitSpans 对应单位范围
+     * @param units     对应值单位
+     * @return 单位数组范围格式化字符串
+     */
+    public String formatBySpan(
+            final int value,
+            final int[] unitSpans,
+            final String[] units
+    ) {
+        if (unitSpans != null && units != null) {
+            int[] values = NumberUtils.calculateUnitI(value, unitSpans);
+            return format(values, units);
         }
         return defaultValue;
     }
