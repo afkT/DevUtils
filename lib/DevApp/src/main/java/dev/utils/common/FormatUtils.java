@@ -23,7 +23,7 @@ public final class FormatUtils {
      * @param precision 单位格式化精度
      * @return {@link UnitSpanFormatter}
      */
-    public static UnitSpanFormatter getUnitSpanFormatter(
+    public static UnitSpanFormatter unitSpanOf(
             final int precision
     ) {
         return UnitSpanFormatter.get(precision);
@@ -35,7 +35,7 @@ public final class FormatUtils {
      * @param defaultValue 格式化异常默认值
      * @return {@link UnitSpanFormatter}
      */
-    public static UnitSpanFormatter getUnitSpanFormatter(
+    public static UnitSpanFormatter unitSpanOf(
             final int precision,
             final String defaultValue
     ) {
@@ -48,7 +48,7 @@ public final class FormatUtils {
      * @param appendZero 是否自动补 0 ( 只有 int、long 有效 )
      * @return {@link UnitSpanFormatter}
      */
-    public static UnitSpanFormatter getUnitSpanFormatter(
+    public static UnitSpanFormatter unitSpanOf(
             final int precision,
             final boolean appendZero
     ) {
@@ -62,7 +62,7 @@ public final class FormatUtils {
      * @param defaultValue 格式化异常默认值
      * @return {@link UnitSpanFormatter}
      */
-    public static UnitSpanFormatter getUnitSpanFormatter(
+    public static UnitSpanFormatter unitSpanOf(
             final int precision,
             final boolean appendZero,
             final String defaultValue

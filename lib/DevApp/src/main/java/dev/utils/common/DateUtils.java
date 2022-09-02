@@ -2382,7 +2382,7 @@ public final class DateUtils {
     /**
      * 转换时间
      * <pre>
-     *     如果有其他要求可使用 {@link FormatUtils#getUnitSpanFormatter(int, boolean, String)}
+     *     如果有其他要求可使用 {@link FormatUtils#unitSpanOf(int, boolean, String)}
      *     <p></p>
      *     该方法使用 UnitSpanFormatter 实现如下:
      *     long[]   unitSpans = {86400000, 3600000, 60000, 1000, 1};

@@ -10,11 +10,27 @@ import dev.utils.common.NumberUtils;
 public class UnitSpanFormatter {
 
     // 单位格式化精度
-    private int     precision;
+    private final int     precision;
     // 是否自动补 0 ( 只有 int、long 有效 )
-    private boolean appendZero;
+    private final boolean appendZero;
     // 格式化异常默认值
-    private String  defaultValue;
+    private final String  defaultValue;
+
+    /**
+     * 构造函数
+     * @param precision    单位格式化精度
+     * @param appendZero   是否自动补 0 ( 只有 int、long 有效 )
+     * @param defaultValue 格式化异常默认值
+     */
+    public UnitSpanFormatter(
+            final int precision,
+            final boolean appendZero,
+            final String defaultValue
+    ) {
+        this.precision    = precision;
+        this.appendZero   = appendZero;
+        this.defaultValue = defaultValue;
+    }
 
     // =============
     // = 对外公开方法 =
@@ -28,8 +44,7 @@ public class UnitSpanFormatter {
     public static UnitSpanFormatter get(
             final int precision
     ) {
-        return new UnitSpanFormatter()
-                .setPrecision(precision);
+        return new UnitSpanFormatter(precision, false, null);
     }
 
     /**
@@ -42,9 +57,7 @@ public class UnitSpanFormatter {
             final int precision,
             final String defaultValue
     ) {
-        return new UnitSpanFormatter()
-                .setPrecision(precision)
-                .setDefaultValue(defaultValue);
+        return new UnitSpanFormatter(precision, false, defaultValue);
     }
 
     /**
@@ -57,9 +70,7 @@ public class UnitSpanFormatter {
             final int precision,
             final boolean appendZero
     ) {
-        return new UnitSpanFormatter()
-                .setPrecision(precision)
-                .setAppendZero(appendZero);
+        return new UnitSpanFormatter(precision, appendZero, null);
     }
 
     /**
@@ -74,15 +85,12 @@ public class UnitSpanFormatter {
             final boolean appendZero,
             final String defaultValue
     ) {
-        return new UnitSpanFormatter()
-                .setPrecision(precision)
-                .setAppendZero(appendZero)
-                .setDefaultValue(defaultValue);
+        return new UnitSpanFormatter(precision, appendZero, defaultValue);
     }
 
-    // ===========
-    // = get/set =
-    // ===========
+    // =======
+    // = get =
+    // =======
 
     /**
      * 获取单位格式化精度
@@ -90,16 +98,6 @@ public class UnitSpanFormatter {
      */
     public int getPrecision() {
         return precision;
-    }
-
-    /**
-     * 设置单位格式化精度
-     * @param precision 单位格式化精度
-     * @return {@link UnitSpanFormatter}
-     */
-    public UnitSpanFormatter setPrecision(final int precision) {
-        this.precision = precision;
-        return this;
     }
 
     /**
@@ -111,31 +109,11 @@ public class UnitSpanFormatter {
     }
 
     /**
-     * 设置是否自动补 0
-     * @param appendZero 是否自动补 0
-     * @return {@link UnitSpanFormatter}
-     */
-    public UnitSpanFormatter setAppendZero(final boolean appendZero) {
-        this.appendZero = appendZero;
-        return this;
-    }
-
-    /**
      * 获取格式化异常默认值
      * @return 格式化异常默认值
      */
     public String getDefaultValue() {
         return defaultValue;
-    }
-
-    /**
-     * 设置格式化异常默认值
-     * @param defaultValue 格式化异常默认值
-     * @return {@link UnitSpanFormatter}
-     */
-    public UnitSpanFormatter setDefaultValue(final String defaultValue) {
-        this.defaultValue = defaultValue;
-        return this;
     }
 
     // ============
@@ -171,13 +149,12 @@ public class UnitSpanFormatter {
             final String[] units,
             final BigDecimalUtils.Operation operation
     ) {
-        final int precisionLen = precision;
-        if (precisionLen > 0 && values != null && units != null) {
-            if (precisionLen <= values.length && precisionLen <= units.length) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision <= values.length && precision <= units.length) {
                 BigDecimalUtils.Operation op = null;
                 if (operation != null) op = operation.clone();
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precisionLen; i++) {
+                for (int i = 0; i < precision; i++) {
                     if (op != null) {
                         String value = op.setBigDecimal(values[i]).round()
                                 .toPlainString();
@@ -222,13 +199,12 @@ public class UnitSpanFormatter {
             final String[] units,
             final BigDecimalUtils.Operation operation
     ) {
-        final int precisionLen = precision;
-        if (precisionLen > 0 && values != null && units != null) {
-            if (precisionLen <= values.length && precisionLen <= units.length) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision <= values.length && precision <= units.length) {
                 BigDecimalUtils.Operation op = null;
                 if (operation != null) op = operation.clone();
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precisionLen; i++) {
+                for (int i = 0; i < precision; i++) {
                     if (op != null) {
                         String value = op.setBigDecimal(values[i]).round()
                                 .toPlainString();
@@ -258,14 +234,12 @@ public class UnitSpanFormatter {
             final long[] values,
             final String[] units
     ) {
-        final int precisionLen = precision;
-        if (precisionLen > 0 && values != null && units != null) {
-            if (precisionLen <= values.length && precisionLen <= units.length) {
-                final boolean isAppendZero = appendZero;
-                StringBuilder builder      = new StringBuilder();
-                for (int i = 0; i < precisionLen; i++) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision <= values.length && precision <= units.length) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
                     long value = values[i];
-                    builder.append(NumberUtils.addZero(value, isAppendZero))
+                    builder.append(NumberUtils.addZero(value, appendZero))
                             .append(units[i]);
                 }
                 return builder.toString();
@@ -288,14 +262,12 @@ public class UnitSpanFormatter {
             final int[] values,
             final String[] units
     ) {
-        final int precisionLen = precision;
-        if (precisionLen > 0 && values != null && units != null) {
-            if (precisionLen <= values.length && precisionLen <= units.length) {
-                final boolean isAppendZero = appendZero;
-                StringBuilder builder      = new StringBuilder();
-                for (int i = 0; i < precisionLen; i++) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision <= values.length && precision <= units.length) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < precision; i++) {
                     long value = values[i];
-                    builder.append(NumberUtils.addZero(value, isAppendZero))
+                    builder.append(NumberUtils.addZero(value, appendZero))
                             .append(units[i]);
                 }
                 return builder.toString();
@@ -318,11 +290,10 @@ public class UnitSpanFormatter {
             final T[] values,
             final String[] units
     ) {
-        final int precisionLen = precision;
-        if (precisionLen > 0 && values != null && units != null) {
-            if (precisionLen <= values.length && precisionLen <= units.length) {
+        if (precision > 0 && values != null && units != null) {
+            if (precision <= values.length && precision <= units.length) {
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < precisionLen; i++) {
+                for (int i = 0; i < precision; i++) {
                     T value = values[i];
                     builder.append(value)
                             .append(units[i]);
