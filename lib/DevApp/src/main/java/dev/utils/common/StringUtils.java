@@ -1036,54 +1036,13 @@ public final class StringUtils {
         return null;
     }
 
-    // =
-
     /**
      * 获取自动数量格式化后的字符串 ( 可变参数 )
      * @param args 格式化参数
      * @return 格式化后的字符串
      */
     public static String getAutoFormatString(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int           length  = args.length;
-                StringBuilder builder = new StringBuilder();
-                builder.append("%s");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        builder.append(" %s");
-                    }
-                }
-                return String.format(builder.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString");
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取自动数量格式化后的字符串 ( 可变参数 )
-     * @param args 格式化参数
-     * @return 格式化后的字符串
-     */
-    public static String getAutoFormatString2(final Object... args) {
-        if (args != null && args.length != 0) {
-            try {
-                int           length  = args.length;
-                StringBuilder builder = new StringBuilder();
-                builder.append("[%s]");
-                if (length > 1) {
-                    for (int i = 1; i < length; i++) {
-                        builder.append(" %s");
-                    }
-                }
-                return String.format(builder.toString(), args);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getAutoFormatString2");
-            }
-        }
-        return null;
+        return FormatUtils.argsOf("%s", " %s").format(args);
     }
 
     // =
