@@ -202,9 +202,6 @@ public class SlideImageView
 
     /**
      * 重新计算大小, 以宽度为基准
-     * @param bitmap
-     * @param w
-     * @return
      */
     public Bitmap resizeImage(
             Bitmap bitmap,
@@ -220,9 +217,6 @@ public class SlideImageView
 
     /**
      * 重新计算大小, 以高度为基准
-     * @param bitmap
-     * @param h
-     * @return
      */
     public Bitmap resizeImageH(
             Bitmap bitmap,
@@ -238,7 +232,6 @@ public class SlideImageView
 
     /**
      * 获取设置的预计宽度
-     * @return
      */
     public int getEstimateWidth() {
         return estimateWidth;
@@ -246,7 +239,6 @@ public class SlideImageView
 
     /**
      * 设置预计高度
-     * @param estimateWidth
      */
     public SlideImageView setEstimateWidth(int estimateWidth) {
         this.estimateWidth = estimateWidth;
@@ -255,7 +247,6 @@ public class SlideImageView
 
     /**
      * 获取计算次数
-     * @return
      */
     public int getMeasureCount() {
         return measureCount;
@@ -263,7 +254,6 @@ public class SlideImageView
 
     /**
      * 设置计算次数
-     * @param measureCount
      */
     public SlideImageView setMeasureCount(int measureCount) {
         this.measureCount = measureCount;
@@ -274,7 +264,6 @@ public class SlideImageView
 
     /**
      * 是否需要滑动 -> 图片是否符合要求能够滑动
-     * @return
      */
     public boolean isNeedSlide() {
         return isNeedSlide;
@@ -282,7 +271,6 @@ public class SlideImageView
 
     /**
      * 设置是否需要滑动
-     * @param needSlide
      */
     public SlideImageView setNeedSlide(boolean needSlide) {
         isNeedSlide = needSlide;
@@ -291,7 +279,6 @@ public class SlideImageView
 
     /**
      * 是否允许滑动
-     * @return
      */
     public boolean isAllowSlide() {
         return isAllowSlide;
@@ -299,7 +286,6 @@ public class SlideImageView
 
     /**
      * 设置是否允许滑动
-     * @param allowSlide
      */
     public SlideImageView setAllowSlide(boolean allowSlide) {
         isAllowSlide = allowSlide;
@@ -308,7 +294,6 @@ public class SlideImageView
 
     /**
      * 获取比例
-     * @return
      */
     public float getScale() {
         return scale;
@@ -316,7 +301,6 @@ public class SlideImageView
 
     /**
      * 设置计算比例
-     * @param scale
      */
     public SlideImageView setScale(float scale) {
         this.scale = scale;
@@ -327,7 +311,7 @@ public class SlideImageView
 
     private final Handler handler        = new Handler();
     // 动画滑动距离
-    private       float   slideLenth     = 10F;
+    private       float   slideLength     = 10F;
     // 滑动速度 -> 时间
     private       long    slideSpeed     = 100L;
     // 检测时间
@@ -357,9 +341,9 @@ public class SlideImageView
             calcSlideScale();
             // 向下滑动
             if (isScrollBottom) {
-                slideHeight -= slideLenth;
+                slideHeight -= slideLength;
             } else { // 向上滑动
-                slideHeight += slideLenth;
+                slideHeight += slideLength;
             }
             // 判断是否滑动到顶部
             if (slideHeight >= 0) {
@@ -414,7 +398,6 @@ public class SlideImageView
 
     /**
      * 是否启动了动画
-     * @return
      */
     public boolean isStartAnim() {
         return isStartAnim;
@@ -422,24 +405,21 @@ public class SlideImageView
 
     /**
      * 获取滑动长度
-     * @return
      */
-    public float getSlideLenth() {
-        return slideLenth;
+    public float getSlideLength() {
+        return slideLength;
     }
 
     /**
      * 设置滑动长度
-     * @param slideLenth
      */
-    public SlideImageView setSlideLenth(float slideLenth) {
-        this.slideLenth = slideLenth;
+    public SlideImageView setSlideLength(float slideLength) {
+        this.slideLength = slideLength;
         return this;
     }
 
     /**
      * 获取滑动速度 - 时间
-     * @return
      */
     public long getSlideSpeed() {
         return slideSpeed;
@@ -447,7 +427,6 @@ public class SlideImageView
 
     /**
      * 设置滑动速度 - 时间
-     * @param slideSpeed
      */
     public SlideImageView setSlideSpeed(long slideSpeed) {
         this.slideSpeed = slideSpeed;
@@ -456,7 +435,6 @@ public class SlideImageView
 
     /**
      * 获取检测时间
-     * @return
      */
     public long getCheckTime() {
         return checkTime;
@@ -464,7 +442,6 @@ public class SlideImageView
 
     /**
      * 设置检测时间
-     * @param checkTime
      */
     public void setCheckTime(long checkTime) {
         this.checkTime = checkTime;
@@ -474,7 +451,6 @@ public class SlideImageView
 
     /**
      * 是否向下滑动
-     * @return
      */
     public boolean isScrollBottom() {
         return isScrollBottom;
@@ -491,7 +467,6 @@ public class SlideImageView
 
     /**
      * 获取当前滑动的高度
-     * @return
      */
     public float getSlideHeight() {
         return slideHeight;
@@ -499,7 +474,6 @@ public class SlideImageView
 
     /**
      * 设置当前滑动的高度
-     * @param slideHeight
      */
     public SlideImageView setSlideHeight(float slideHeight) {
         this.slideHeight = slideHeight;
@@ -511,7 +485,6 @@ public class SlideImageView
 
     /**
      * 设置滑动比例
-     * @param scale
      */
     public SlideImageView setSlideHeightScale(float scale) {
         slideCalcScale = scale;

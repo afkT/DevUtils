@@ -60,6 +60,8 @@ dependencies {
     implementation deps_split.widget.ratingbar
     // 加载动画效果 https://github.com/Kyson/WhorlView
     implementation deps_split.widget.whorlviewlibrary
+    // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
+    implementation deps_split.widget.loading_drawable
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
     implementation deps_split.widget.stickyDecoration
 }

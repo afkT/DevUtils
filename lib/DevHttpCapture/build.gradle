@@ -1,4 +1,4 @@
-apply from: rootProject.file(files.lib_app_gradle)
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
 
 android.defaultConfig {
     versionCode versions.dev_http_capture_versionCode

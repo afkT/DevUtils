@@ -173,6 +173,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.tt/whorlviewlibrary
                     // 加载动画效果 https://github.com/Kyson/WhorlView
                     whorlviewlibrary                : "com.tt:whorlviewlibrary:1.0.3",
+                    // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
+                    loading_drawable                : "com.github.elmliu:loadingdrawable:1.0",
                     // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
                     stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
