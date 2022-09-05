@@ -318,8 +318,7 @@ class Utils {
                         // 循环时分文件夹
                         List<File> hhmmFiles = sortFileByName(ymdFile.listFiles());
                         if (hhmmFiles.size() != 0) {
-                            CaptureItem captureItem = new CaptureItem()
-                                    .setYyyyMMdd(ymdName);
+                            CaptureItem captureItem = new CaptureItem(ymdName);
                             for (File hmFile : hhmmFiles) {
                                 if (FileUtils.isDirectory(hmFile)) {
                                     String hmName = hmFile.getName();

@@ -299,8 +299,11 @@ ext {
                     // okio https://github.com/square/okio
                     okio                 : "com.squareup.okio:okio:3.2.0",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+                    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
                     okhttp3              : "com.squareup.okhttp3:okhttp:4.10.0",
+                    // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
+                    okhttp3_logging      : "com.squareup.okhttp3:logging-interceptor:4.10.0",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava3
