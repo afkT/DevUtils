@@ -153,7 +153,7 @@ public final class HttpCaptureInterceptor
             boolean isFilter = false;
             try {
                 isFilter = mHttpFilter.filter(
-                        request.url().toString(), request.method(),
+                        request.url(), request.method(),
                         protocol, request.headers()
                 );
             } catch (Exception ignored) {
