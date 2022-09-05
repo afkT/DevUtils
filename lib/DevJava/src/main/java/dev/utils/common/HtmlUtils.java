@@ -46,7 +46,7 @@ public final class HtmlUtils {
             final String content,
             final String color
     ) {
-        return StringUtils.getFormatString(format, addHtmlColor(content, color));
+        return StringUtils.format(format, addHtmlColor(content, color));
     }
 
     /**

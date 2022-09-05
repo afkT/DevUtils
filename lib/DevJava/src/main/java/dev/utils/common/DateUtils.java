@@ -2172,6 +2172,28 @@ public final class DateUtils {
         return NumberUtils.addZero(time, appendZero);
     }
 
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time 待处理时间
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(final long time) {
+        return timeAddZero(time, true);
+    }
+
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time       待处理时间
+     * @param appendZero 是否自动补 0
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(
+            final long time,
+            final boolean appendZero
+    ) {
+        return NumberUtils.addZero(time, appendZero);
+    }
+
     // =
 
     /**
@@ -2357,6 +2379,19 @@ public final class DateUtils {
         return -1;
     }
 
+    // =============
+    // = Unit Span =
+    // =============
+
+    // 毫秒格式化范围
+    private static final long[]   MILLIS_UNIT_SPANS = {
+            86400000, 3600000, 60000, 1000, 1
+    };
+    // 毫秒格式化单位
+    private static final String[] MILLIS_UNITS      = {
+            "天", "小时", "分钟", "秒", "毫秒"
+    };
+
     /**
      * 转换时间
      * @param millis     时间毫秒
@@ -2374,14 +2409,11 @@ public final class DateUtils {
             final boolean appendZero
     ) {
         if (precision >= 1 && precision <= 5) {
-            int[]         result  = millisToTimeArrays(millis);
-            String[]      units   = {"天", "小时", "分钟", "秒", "毫秒"};
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < precision; i++) {
-                builder.append(timeAddZero(result[i], appendZero))
-                        .append(units[i]);
-            }
-            return builder.toString();
+            return FormatUtils.unitSpanOf(
+                    precision, appendZero, ""
+            ).formatBySpan(
+                    millis, MILLIS_UNIT_SPANS, MILLIS_UNITS
+            );
         }
         return "";
     }
@@ -2393,9 +2425,8 @@ public final class DateUtils {
      */
     public static int[] millisToTimeArrays(final long millis) {
         if (millis > 0) {
-            return NumberUtils.calculateUnitI(
-                    millis, new long[]{86400000, 3600000, 60000, 1000, 1}
-            );
+            long[] values = NumberUtils.calculateUnitL(millis, MILLIS_UNIT_SPANS);
+            return ConvertUtils.longsToInts(values);
         }
         return new int[5];
     }

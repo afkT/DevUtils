@@ -38,6 +38,30 @@ public final class NumberUtils {
     }
 
     /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value 待处理值
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(final long value) {
+        return addZero(value, true);
+    }
+
+    /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value      待处理值
+     * @param appendZero 是否自动补 0
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(
+            final long value,
+            final boolean appendZero
+    ) {
+        if (!appendZero) return String.valueOf(value);
+        long temp = Math.max(0, value);
+        return temp >= 10 ? String.valueOf(temp) : "0" + temp;
+    }
+
+    /**
      * 去掉结尾多余的 . 与 0
      * @param value 待处理数值
      * @return 处理后的数值字符串
@@ -65,27 +89,37 @@ public final class NumberUtils {
         return value;
     }
 
-    // =
+    // =============
+    // = Unit Span =
+    // =============
 
     /**
      * 计算指定单位倍数
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * <pre>
+     *     返回数组前面都为整数倍, 最后一位可能存在小数点
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
-    public static double[] calculateUnit(
+    public static double[] calculateUnitD(
             final double value,
-            final double[] units
+            final double[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int      len    = units.length;
+        if (unitSpans == null) return null;
+        int      len    = unitSpans.length;
         double[] result = new double[len];
         double   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                double multiple = temp / units[i];
-                            temp -= multiple * units[i];
+            if (temp >= unitSpans[i]) {
+                double multiple = temp / unitSpans[i];
+                if (i != len - 1) {
+                    multiple = (int) multiple;
+                }
+                temp -= multiple * unitSpans[i];
+
                 result[i] = multiple;
             }
         }
@@ -94,44 +128,89 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * <pre>
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static int[] calculateUnitI(
-            final long value,
-            final long[] units
+            final int value,
+            final int[] unitSpans
     ) {
-        long[] result = calculateUnitL(value, units);
-        if (result != null) {
-            int[] ints = new int[result.length];
-            for (int i = 0, len = result.length; i < len; i++) {
-                ints[i] = (int) result[i];
+        if (value <= 0) return null;
+        if (unitSpans == null) return null;
+        int   len    = unitSpans.length;
+        int[] result = new int[len];
+        int   temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= unitSpans[i]) {
+                int multiple = temp / unitSpans[i];
+                temp -= multiple * unitSpans[i];
+
+                result[i] = multiple;
             }
-            return ints;
         }
-        return null;
+        return result;
     }
 
     /**
      * 计算指定单位倍数
-     * @param value 待计算数值
-     * @param units 单位数组
-     * @return 单位数组对应倍数值
+     * <pre>
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
      */
     public static long[] calculateUnitL(
             final long value,
-            final long[] units
+            final long[] unitSpans
     ) {
         if (value <= 0) return null;
-        if (units == null) return null;
-        int    len    = units.length;
+        if (unitSpans == null) return null;
+        int    len    = unitSpans.length;
         long[] result = new long[len];
         long   temp   = value;
         for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                long multiple = temp / units[i];
-                            temp -= multiple * units[i];
+            if (temp >= unitSpans[i]) {
+                long multiple = temp / unitSpans[i];
+                temp -= multiple * unitSpans[i];
+
+                result[i] = multiple;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 计算指定单位倍数
+     * <pre>
+     *     返回数组前面都为整数倍, 最后一位可能存在小数点
+     *     需要最后一位为最后余数, 则设置 units[last] 为 1 即可
+     * </pre>
+     * @param value     待计算数值
+     * @param unitSpans 单位范围数组
+     * @return 单位范围数组对应倍数值
+     */
+    public static float[] calculateUnitF(
+            final float value,
+            final float[] unitSpans
+    ) {
+        if (value <= 0) return null;
+        if (unitSpans == null) return null;
+        int     len    = unitSpans.length;
+        float[] result = new float[len];
+        float   temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= unitSpans[i]) {
+                float multiple = temp / unitSpans[i];
+                if (i != len - 1) {
+                    multiple = (int) multiple;
+                }
+                temp -= multiple * unitSpans[i];
+
                 result[i] = multiple;
             }
         }
