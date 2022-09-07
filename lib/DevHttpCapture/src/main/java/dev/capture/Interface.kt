@@ -68,6 +68,12 @@ interface IHttpCapture {
      */
     fun setCapture(capture: Boolean)
 
+    /**
+     * 获取抓包信息隐藏字段
+     * @return [CaptureRedact]
+     */
+    fun captureRedact(): CaptureRedact
+
     // ==========
     // = 获取操作 =
     // ==========
@@ -123,12 +129,29 @@ interface IHttpCaptureEvent {
      * @param request 请求对象
      * @param headers  请求头信息
      * @param requestBody 请求体
+     * @param captureRedact 抓包信息隐藏字段
      * @return 请求头信息 Map
      */
     fun callRequestHeaders(
         request: Request,
         headers: Headers,
-        requestBody: RequestBody?
+        requestBody: RequestBody?,
+        captureRedact: CaptureRedact
+    ): LinkedHashMap<String, String>
+
+    /**
+     * 生成请求体信息 Map
+     * @param request 请求对象
+     * @param headers  请求头信息
+     * @param requestBody 请求体
+     * @param captureRedact 抓包信息隐藏字段
+     * @return 请求头信息 Map
+     */
+    fun callRequestBody(
+        request: Request,
+        headers: Headers,
+        requestBody: RequestBody?,
+        captureRedact: CaptureRedact
     ): LinkedHashMap<String, String>
 
     /**

@@ -96,7 +96,15 @@ internal abstract class BaseInterceptor(
         // 请求头信息
         captureInfo.requestHeader.putAll(
             eventIMPL.callRequestHeaders(
-                request, requestHeaders, requestBody
+                request, requestHeaders, requestBody,
+                captureRedact()
+            )
+        )
+        // 请求体数据
+        captureInfo.requestBody.putAll(
+            eventIMPL.callRequestBody(
+                request, requestHeaders, requestBody,
+                captureRedact()
             )
         )
         return chain.proceed(chain.request())

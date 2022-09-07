@@ -1,9 +1,12 @@
 package dev.capture;
 
+import androidx.annotation.NonNull;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dev.utils.DevFinal;
@@ -78,6 +81,12 @@ public final class HttpCaptureInterceptor
         return Utils.getModuleHttpCaptures(
                 mModuleName, mEncrypt != null
         );
+    }
+
+    @NonNull
+    @Override
+    public CaptureRedact captureRedact() {
+        return null;
     }
 
     // ==========
