@@ -5,6 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
 import java.nio.charset.Charset
+import java.util.concurrent.TimeUnit
 
 /**
  * detail: 通用 Http 抓包拦截器
@@ -14,6 +15,9 @@ internal abstract class BaseInterceptor(
     private val eventIMPL: IHttpCaptureEvent
 ) : Interceptor,
     IHttpCapture {
+
+    // 抓包数据本地存储实现 Engine
+    private val storageEngine = HttpCaptureStorageEngine(eventIMPL, this)
 
     // ============
     // = abstract =
@@ -81,9 +85,9 @@ internal abstract class BaseInterceptor(
             }
         }
 
-        // ==========
-        // = 请求信息 =
-        // ==========
+        // ===========
+        // = request =
+        // ===========
 
         // 请求链接
         captureInfo.requestUrl = eventIMPL.callRequestUrl(
@@ -103,10 +107,53 @@ internal abstract class BaseInterceptor(
         // 请求体数据
         captureInfo.requestBody.putAll(
             eventIMPL.callRequestBody(
-                request, requestHeaders, requestBody,
-                captureRedact()
+                request, requestBody, captureRedact()
             )
         )
-        return chain.proceed(chain.request())
+        // 请求时间
+        val requestTime = System.currentTimeMillis()
+
+        // ============
+        // = response =
+        // ============
+
+        val startNs = System.nanoTime()
+        val response: Response
+        try {
+            response = chain.proceed(request)
+        } catch (e: Exception) {
+            // 响应数据
+            captureInfo.responseBody = eventIMPL.callResponseBodyFailed(
+                request, e
+            )
+            // 抓包数据存储
+            storageEngine.captureStorage(captureInfo, requestTime)
+            throw e
+        }
+        val tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
+
+        val responseBody = response.body!!
+        val responseHeaders = response.headers
+
+        // 响应状态
+        captureInfo.responseStatus.putAll(
+            eventIMPL.callResponseStatus(
+                request, response, responseBody, tookMs
+            )
+        )
+        // 响应头信息
+        captureInfo.responseHeader.putAll(
+            eventIMPL.callResponseHeaders(
+                request, response, responseHeaders,
+                responseBody, captureRedact()
+            )
+        )
+        // 响应数据
+        captureInfo.responseBody = eventIMPL.callResponseBody(
+            request, response, responseBody
+        )
+        // 抓包数据存储
+        storageEngine.captureStorage(captureInfo, requestTime)
+        return response
     }
 }

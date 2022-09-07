@@ -98,6 +98,10 @@ interface IHttpCapture {
  */
 interface IHttpCaptureEvent {
 
+    // ===========
+    // = request =
+    // ===========
+
     /**
      * 生成请求链接字符串
      * @param request 请求对象
@@ -127,7 +131,7 @@ interface IHttpCaptureEvent {
     /**
      * 生成请求头信息 Map
      * @param request 请求对象
-     * @param headers  请求头信息
+     * @param headers 请求头信息
      * @param requestBody 请求体
      * @param captureRedact 抓包信息隐藏字段
      * @return 请求头信息 Map
@@ -142,17 +146,75 @@ interface IHttpCaptureEvent {
     /**
      * 生成请求体信息 Map
      * @param request 请求对象
-     * @param headers  请求头信息
      * @param requestBody 请求体
      * @param captureRedact 抓包信息隐藏字段
-     * @return 请求头信息 Map
+     * @return 请求体信息 Map
      */
     fun callRequestBody(
         request: Request,
-        headers: Headers,
         requestBody: RequestBody?,
         captureRedact: CaptureRedact
     ): LinkedHashMap<String, String>
+
+    // ============
+    // = response =
+    // ============
+
+    /**
+     * 生成响应状态 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param responseBody 响应体
+     * @param tookMs 响应耗时
+     * @return 响应状态 Map
+     */
+    fun callResponseStatus(
+        request: Request,
+        response: Response,
+        responseBody: ResponseBody,
+        tookMs: Long
+    ): LinkedHashMap<String, String>
+
+    /**
+     * 生成响应头信息 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param headers 响应头信息
+     * @param responseBody 响应体
+     * @param captureRedact 抓包信息隐藏字段
+     * @return 响应头信息 Map
+     */
+    fun callResponseHeaders(
+        request: Request,
+        response: Response,
+        headers: Headers,
+        responseBody: ResponseBody,
+        captureRedact: CaptureRedact
+    ): LinkedHashMap<String, String>
+
+    /**
+     * 生成错误响应体信息
+     * @param request 请求对象
+     * @param error 异常信息
+     * @return 错误响应体信息
+     */
+    fun callResponseBodyFailed(
+        request: Request,
+        error: Exception
+    ): String
+
+    /**
+     * 生成响应体信息 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param responseBody 响应体
+     * @return 响应体信息 Map
+     */
+    fun callResponseBody(
+        request: Request,
+        response: Response,
+        responseBody: ResponseBody,
+    ): String
 
     /**
      * 抓包结束
