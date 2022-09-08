@@ -39,6 +39,9 @@ import okhttp3.OkHttpClient
  */
 object DevHttpCapture {
 
+    // 日志 TAG
+    val TAG = DevHttpCapture::class.java.simpleName
+
     // ============
     // = 工具类版本 =
     // ============
@@ -201,14 +204,15 @@ object DevHttpCapture {
         return mutableListOf()
     }
 
+    // =================
+    // = 对外公开快捷方法 =
+    // =================
+
     /**
-     * 获取全部模块所有抓包数据
-     * @param isEncrypt 是否加密数据
-     * @return 全部模块所有抓包数据
+     * 对外公开快捷工具类
+     * @return UtilsPublic
      */
-    fun getAllModule(
-        isEncrypt: Boolean
-    ): MutableMap<String, MutableList<CaptureItem>> {
-        return UtilsPublic.getAllModule(isEncrypt)
+    fun utils(): UtilsPublic {
+        return UtilsPublic.get()
     }
 }
