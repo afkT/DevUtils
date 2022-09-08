@@ -208,7 +208,7 @@ object DevHttpCapture {
      */
     fun getAllModule(
         isEncrypt: Boolean
-    ): Map<String, List<CaptureItem>> {
+    ): MutableMap<String, MutableList<CaptureItem>> {
         return UtilsPublic.getAllModule(isEncrypt)
     }
 }

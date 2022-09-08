@@ -1,6 +1,8 @@
 package dev.capture
 
 import dev.capture.HttpCaptureEventIMPL.Companion.REDACT_REPLACE_VALUE
+import dev.utils.common.FileUtils
+import java.io.File
 
 /**
  * detail: 抓包信息隐藏字段
@@ -95,5 +97,167 @@ class CaptureInfo {
      */
     fun toJson(): String? {
         return Utils.toJson(this)
+    }
+}
+
+/**
+ * detail: 抓包存储文件
+ * @author Ttt
+ * 加密情况下, 抓包数据不会进行解析展示, 只能自行导出进行解密
+ * 非加密情况下 [httpCaptureData] 则会映射成 [CaptureInfo] 实体类
+ */
+class CaptureFile {
+
+    // 请求链接
+    private var url: String? = null
+
+    // 请求方法
+    private var method: String? = null
+
+    // 是否加密
+    private var encrypt = false
+
+    // 创建时间 ( 本地时间戳 )
+    private var time: Long = 0
+
+    // 文件名
+    private var fileName: String? = null
+
+    // 模块名
+    private var moduleName: String? = null
+
+    // =======
+    // = get =
+    // =======
+
+    fun getUrl(): String? {
+        return url
+    }
+
+    fun getMethod(): String? {
+        return method
+    }
+
+    fun isEncrypt(): Boolean {
+        return encrypt
+    }
+
+    fun getTime(): Long {
+        return time
+    }
+
+    fun getFileName(): String? {
+        return fileName
+    }
+
+    fun getModuleName(): String? {
+        return moduleName
+    }
+
+    // =======
+    // = set =
+    // =======
+
+    internal fun setUrl(url: String?): CaptureFile {
+        this.url = url
+        return this
+    }
+
+    internal fun setMethod(method: String?): CaptureFile {
+        this.method = method
+        return this
+    }
+
+    internal fun setEncrypt(encrypt: Boolean): CaptureFile {
+        this.encrypt = encrypt
+        return this
+    }
+
+    internal fun setTime(time: Long): CaptureFile {
+        this.time = time
+        return this
+    }
+
+    internal fun setFileName(fileName: String?): CaptureFile {
+        this.fileName = fileName
+        return this
+    }
+
+    internal fun setModuleName(moduleName: String?): CaptureFile {
+        this.moduleName = moduleName
+        return this
+    }
+
+    // ==========
+    // = 抓包数据 =
+    // ==========
+
+    // 请求数据 ( 抓包数据 )
+    @Transient
+    internal var httpCaptureData: String? = null
+
+    fun getHttpCaptureData(): String? {
+        if (httpCaptureData == null) {
+            httpCaptureData = FileUtils.readFile(getDataFile())
+        }
+        return httpCaptureData
+    }
+
+    // ==========
+    // = 其他处理 =
+    // ==========
+
+    // 抓包信息封装类
+    @Transient
+    private var captureInfo: CaptureInfo? = null
+
+    /**
+     * 获取抓包信息封装类
+     * @return 抓包信息封装类
+     */
+    fun getCaptureInfo(): CaptureInfo? {
+        if (captureInfo == null && !encrypt) {
+            captureInfo = Utils.fromJson(
+                getHttpCaptureData(), CaptureInfo::class.java
+            )
+        }
+        return captureInfo
+    }
+
+    /**
+     * 将对象转换为 JSON String
+     * @return JSON String
+     */
+    fun toJson(): String? {
+        return Utils.toJson(this)
+    }
+
+    // =============
+    // = 文件操作相关 =
+    // =============
+
+    /**
+     * 删除该对象抓包存储文件
+     * @return `true` success, `false` fail
+     */
+    fun deleteFile(): Boolean {
+        FileUtils.deleteFile(getDataFile())
+        return FileUtils.deleteFile(getFile())
+    }
+
+    /**
+     * 获取该对象抓包存储文件
+     * @return 该对象抓包存储文件
+     */
+    fun getFile(): File {
+        return Utils.getModuleHttpCaptureFile(this)
+    }
+
+    /**
+     * 获取该对象抓包数据存储文件
+     * @return 该对象抓包数据存储文件
+     */
+    fun getDataFile(): File {
+        return Utils.getModuleHttpCaptureDataFile(this)
     }
 }
