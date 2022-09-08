@@ -417,16 +417,17 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
  * @author Ttt
  */
 internal class HttpCaptureStorageEngine(
-    private val eventIMPL: IHttpCaptureEvent,
-    private val base: BaseInterceptor
+    private val eventIMPL: IHttpCaptureEvent
 ) {
 
     /**
      * 抓包数据存储
+     * @param base 通用 Http 抓包拦截器
      * @param info 抓包信息封装类
      * @param requestTime 开始请求时间
      */
     fun captureStorage(
+        base: BaseInterceptor,
         info: CaptureInfo,
         requestTime: Long
     ) {

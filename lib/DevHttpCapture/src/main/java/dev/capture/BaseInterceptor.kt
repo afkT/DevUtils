@@ -1,10 +1,8 @@
 package dev.capture
 
-import dev.utils.DevFinal
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
-import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
 /**
@@ -17,7 +15,7 @@ internal abstract class BaseInterceptor(
     IHttpCapture {
 
     // 抓包数据本地存储实现 Engine
-    private val storageEngine = HttpCaptureStorageEngine(eventIMPL, this)
+    private val storageEngine = HttpCaptureStorageEngine(eventIMPL)
 
     // ============
     // = abstract =
@@ -44,9 +42,6 @@ internal abstract class BaseInterceptor(
     // ==========
     // = 内部方法 =
     // ==========
-
-    // UTF-8 编码
-    private val UTF_8 = Charset.forName(DevFinal.ENCODE.UTF_8)
 
     /**
      * 统一抓包逻辑代码
@@ -127,7 +122,7 @@ internal abstract class BaseInterceptor(
                 request, e
             )
             // 抓包数据存储
-            storageEngine.captureStorage(captureInfo, requestTime)
+            storageEngine.captureStorage(this, captureInfo, requestTime)
             throw e
         }
         val tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
@@ -153,7 +148,7 @@ internal abstract class BaseInterceptor(
             request, response, responseBody
         )
         // 抓包数据存储
-        storageEngine.captureStorage(captureInfo, requestTime)
+        storageEngine.captureStorage(this, captureInfo, requestTime)
         return response
     }
 }
