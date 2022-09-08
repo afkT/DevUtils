@@ -444,7 +444,7 @@ internal class HttpCaptureStorageEngine(
             // 如果存在加密则进行处理
             base.getEncrypt()?.let { encrypt ->
                 httpCaptureData = try {
-                    val bytes = encrypt.encrypt(httpCaptureData.toByteArray())
+                    val bytes = encrypt.encrypt(httpCaptureData?.toByteArray())
                     String(bytes)
                 } catch (e: Exception) {
                     ThrowableUtils.getThrowable(e)

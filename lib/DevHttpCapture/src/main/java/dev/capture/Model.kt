@@ -59,5 +59,41 @@ class CaptureItem(
     val yyyyMMdd: String
 ) {
     // 存储数据 - 时分
-    val data: Map<String, List<CaptureFile>> = LinkedHashMap()
+    val data: LinkedHashMap<String, List<CaptureFile>> = LinkedHashMap()
+}
+
+/**
+ * detail: 抓包信息封装类
+ * @author Ttt
+ */
+class CaptureInfo {
+
+    // 请求链接
+    var requestUrl: String? = null
+
+    // 请求方法
+    var requestMethod: String? = null
+
+    // 请求头信息
+    val requestHeader: LinkedHashMap<String, String> = LinkedHashMap()
+
+    // 请求数据
+    val requestBody: LinkedHashMap<String, String> = LinkedHashMap()
+
+    // 响应状态
+    val responseStatus: LinkedHashMap<String, String> = LinkedHashMap()
+
+    // 响应头信息
+    val responseHeader: LinkedHashMap<String, String> = LinkedHashMap()
+
+    // 响应数据
+    var responseBody: String? = null
+
+    /**
+     * 将对象转换为 JSON String
+     * @return JSON String
+     */
+    fun toJson(): String? {
+        return Utils.toJson(this)
+    }
 }
