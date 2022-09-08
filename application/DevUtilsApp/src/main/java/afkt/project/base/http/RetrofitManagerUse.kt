@@ -5,6 +5,8 @@ import dev.DevHttpCapture
 import dev.DevHttpManager
 import dev.DevUtils
 import dev.capture.CallbackInterceptor
+import dev.capture.CaptureInfo
+import dev.capture.IHttpCaptureEnd
 import dev.environment.DevEnvironment
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.OnRetrofitResetListener
@@ -278,12 +280,14 @@ class OkHttpBuilderGlobal : OkHttpBuilder {
             DevHttpCapture.addInterceptor(builder, "ModuleName")
 
             // Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 )
-            addInterceptor(CallbackInterceptor { info ->
-                // 打印 Http 请求信息 log
-                LogPrintUtils.jsonTag(
-                    key, info.toJson()
-                )
-            })
+            addInterceptor(CallbackInterceptor(endCall = object : IHttpCaptureEnd {
+                override fun callEnd(info: CaptureInfo) {
+                    // 打印 Http 请求信息 log
+                    LogPrintUtils.jsonTag(
+                        key, info.toJson()
+                    )
+                }
+            }))
         }
     }
 }

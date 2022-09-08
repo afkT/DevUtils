@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
  * detail: 通用 Http 抓包拦截器
  * @author Ttt
  */
-internal abstract class BaseInterceptor(
+abstract class BaseInterceptor(
     private val eventIMPL: IHttpCaptureEvent
 ) : Interceptor,
     IHttpCapture {
@@ -31,7 +31,7 @@ internal abstract class BaseInterceptor(
     // = Interceptor =
     // ===============
 
-    override fun intercept(chain: Interceptor.Chain): Response {
+    final override fun intercept(chain: Interceptor.Chain): Response {
         // 如果属于存储抓包数据类型, 但是不需要抓包则直接返回
         if (isStorageHttpCaptureType() && !isCapture()) {
             return chain.proceed(chain.request())

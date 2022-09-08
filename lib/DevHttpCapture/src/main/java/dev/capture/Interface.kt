@@ -94,9 +94,9 @@ interface IHttpCapture {
 /**
  * detail: Http 抓包事件回调
  * @author Ttt
- * 方便二次扩展, 允许自行解析存储数据
+ * 方便二次扩展, 允许自行解析抓包数据
  */
-interface IHttpCaptureEvent {
+interface IHttpCaptureEvent : IHttpCaptureEnd {
 
     // ===========
     // = request =
@@ -215,10 +215,17 @@ interface IHttpCaptureEvent {
         response: Response,
         responseBody: ResponseBody,
     ): String
+}
+
+/**
+ * detail: Http 抓包结束回调
+ * @author Ttt
+ */
+interface IHttpCaptureEnd {
 
     /**
      * 抓包结束
-     * @param captureInfo 抓包数据
+     * @param info 抓包数据
      */
-    fun callEnd(captureInfo: CaptureInfo)
+    fun callEnd(info: CaptureInfo)
 }

@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.DevHttpCapture
 import dev.capture.CallbackInterceptor
+import dev.capture.CaptureInfo
+import dev.capture.IHttpCaptureEnd
 import dev.engine.DevEngine
 import dev.retrofit.*
 import dev.utils.LogPrintUtils
@@ -56,11 +58,13 @@ object RetrofitAPI {
         DevHttpCapture.addInterceptor(builder, "ModuleName")
 
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
-        builder.addInterceptor(CallbackInterceptor { captureInfo ->
-            LogPrintUtils.jsonTag(
-                TAG_L, DevEngine.getJSON().toJson(captureInfo)
-            )
-        })
+        builder.addInterceptor(CallbackInterceptor(endCall = object : IHttpCaptureEnd {
+            override fun callEnd(info: CaptureInfo) {
+                LogPrintUtils.jsonTag(
+                    TAG_L, DevEngine.getJSON().toJson(info)
+                )
+            }
+        }))
 
         // ================
         // = Retrofit 配置 =

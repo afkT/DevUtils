@@ -210,10 +210,10 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             if (contentLength != 0L) {
                 return buffer.clone().readString(charset)
             }
-            if (gzippedLength != null) {
-                return "END HTTP ( ${buffer.size}-byte, $gzippedLength-gzipped-byte body )"
+            return if (gzippedLength != null) {
+                "END HTTP ( ${buffer.size}-byte, $gzippedLength-gzipped-byte body )"
             } else {
-                return "END HTTP ( ${buffer.size}-byte body )"
+                "END HTTP ( ${buffer.size}-byte body )"
             }
         }
     }
