@@ -20,17 +20,12 @@ open class CallbackInterceptor(
             endCall?.callEnd(info)
         }
     }
-) : BaseInterceptor(eventIMPL) {
+) : BaseInterceptor(false, eventIMPL) {
 
     private val tag = CallbackInterceptor::class.java.simpleName
 
-    // ============
-    // = abstract =
-    // ============
-
-    final override fun isStorageHttpCaptureType(): Boolean {
-        return false
-    }
+    // 抓包信息隐藏字段
+    private val captureRedact = CaptureRedact()
 
     // ================
     // = IHttpCapture =
@@ -51,6 +46,10 @@ open class CallbackInterceptor(
     final override fun setCapture(capture: Boolean) {
     }
 
+    final override fun captureRedact(): CaptureRedact {
+        return captureRedact
+    }
+
     final override fun getModulePath(): String {
         return ""
     }
@@ -65,9 +64,5 @@ open class CallbackInterceptor(
 
     override fun getHttpFilter(): IHttpFilter? {
         return null
-    }
-
-    override fun captureRedact(): CaptureRedact {
-        return CaptureRedact()
     }
 }

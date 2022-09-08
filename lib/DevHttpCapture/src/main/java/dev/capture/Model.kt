@@ -17,6 +17,37 @@ class CaptureRedact(
 
     // 响应头隐藏信息 Key
     val responseHeader: MutableSet<String> = mutableSetOf()
+
+    /**
+     * 克隆新的抓包信息隐藏字段
+     * @return [CaptureRedact]
+     */
+    fun clone(): CaptureRedact {
+        val redact = CaptureRedact()
+        redact.requestHeader.addAll(requestHeader)
+        redact.requestBody.addAll(requestBody)
+        redact.responseHeader.addAll(responseHeader)
+        return redact
+    }
+
+    /**
+     * 插入抓包信息隐藏字段
+     * @param source 数据源
+     * @param clear 是否清空旧数据
+     */
+    fun insertRedact(
+        source: CaptureRedact,
+        clear: Boolean = false
+    ) {
+        if (clear) {
+            requestHeader.clear()
+            requestBody.clear()
+            responseHeader.clear()
+        }
+        requestHeader.addAll(source.requestHeader)
+        requestBody.addAll(source.requestBody)
+        responseHeader.addAll(source.responseHeader)
+    }
 }
 
 /**
