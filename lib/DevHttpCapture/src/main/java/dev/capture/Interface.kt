@@ -88,7 +88,7 @@ interface IHttpCapture {
      * 获取模块所有抓包数据
      * @return 模块所有抓包数据
      */
-    fun getModuleHttpCaptures(): List<CaptureItem>
+    fun getModuleHttpCaptures(): MutableList<CaptureItem>
 }
 
 /**

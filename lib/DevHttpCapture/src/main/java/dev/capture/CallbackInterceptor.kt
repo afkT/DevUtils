@@ -54,7 +54,7 @@ open class CallbackInterceptor(
         return ""
     }
 
-    final override fun getModuleHttpCaptures(): List<CaptureItem> {
+    final override fun getModuleHttpCaptures(): MutableList<CaptureItem> {
         return mutableListOf()
     }
 

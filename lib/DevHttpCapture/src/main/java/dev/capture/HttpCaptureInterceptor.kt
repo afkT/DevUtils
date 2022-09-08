@@ -57,7 +57,7 @@ class HttpCaptureInterceptor(
         return Utils.getModulePath(moduleName)
     }
 
-    override fun getModuleHttpCaptures(): List<CaptureItem> {
+    override fun getModuleHttpCaptures(): MutableList<CaptureItem> {
         return Utils.getModuleHttpCaptures(
             moduleName, encrypt != null
         )
