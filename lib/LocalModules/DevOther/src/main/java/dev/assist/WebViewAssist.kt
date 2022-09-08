@@ -40,7 +40,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
     init {
         /**
          * listener 是否复用监听事件
-         * 使用全局配置, 需要手动调用 [.apply] 方法
+         * 使用全局配置, 需要手动调用 [apply] 方法
          */
         mBuilder = sGlobalBuilder?.clone(listener)
     }
@@ -175,7 +175,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 设置 WebView
      * @param webView [WebView]
      * @return [WebViewAssist]
-     * 如果在 [.setWebView] 前调用了 [.setBuilder] 则需要手动调用 [.apply]
+     * 如果在 [setWebView] 前调用了 [setBuilder] 则需要手动调用 [apply]
      */
     fun setWebView(webView: WebView?): WebViewAssist {
         mWebView = webView
@@ -317,7 +317,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param url      资源地址
      * @param postData post 数据 ( 注意 UrlEncode )
      * @return [WebViewAssist]
-     * 如果 url 不是网络 url [.loadUrl] 加载
+     * 如果 url 不是网络 url [loadUrl] 加载
      */
     fun postUrl(
         url: String,

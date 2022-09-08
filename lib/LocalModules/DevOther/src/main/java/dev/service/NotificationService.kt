@@ -98,10 +98,10 @@ class NotificationService : NotificationListenerService() {
          * @param service [NotificationService]
          * @param intent  [Intent]
          * @param flags   Additional data about this start request.
-         * @param startId A unique integer representing this specific request to start.  Use with [.stopSelfResult].
+         * @param startId A unique integer representing this specific request to start.  Use with [stopSelfResult].
          * @return The return value indicates what semantics the system should
          * use for the service's current started state.  It may be one of the
-         * constants associated with the [.START_CONTINUATION_MASK] bits.
+         * constants associated with the [START_CONTINUATION_MASK] bits.
          */
         fun onStartCommand(
             service: NotificationService?,

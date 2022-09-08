@@ -13,14 +13,14 @@ import java.io.File
  * @author Ttt
  * 可传入输出 Uri 或通过拼接路径创建 Uri 二选一
  * 内部存储时:
- * 必须传入 [.mFilePath]、[.mFileName]
- * [.mFileName] 需携带后缀
- * 可以使用快捷创建方法 [.createInternalItem]
+ * 必须传入 [mFilePath]、[mFileName]
+ * [mFileName] 需携带后缀
+ * 可以使用快捷创建方法 [createInternalItem]
  * 外部存储时:
- * 必须传入 [.mFileName]、[.mMimeType]、[.mFolder]
- * [.mFileName] 存储文件名是否需要后缀视 [.mMimeType] 情况而定
+ * 必须传入 [mFileName]、[mMimeType]、[mFolder]
+ * [mFileName] 存储文件名是否需要后缀视 [mMimeType] 情况而定
  * ( 正常无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/ * 则需指定后缀 )
- * 可以使用快捷创建方法 [.createExternalItem]
+ * 可以使用快捷创建方法 [createExternalItem]
  */
 open class StorageItem private constructor() : IStorageEngine.EngineItem() {
 
