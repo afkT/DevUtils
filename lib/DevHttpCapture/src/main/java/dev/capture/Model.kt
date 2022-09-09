@@ -61,7 +61,7 @@ class CaptureItem(
     val yyyyMMdd: String
 ) {
     // 存储数据 - 时分
-    val data: LinkedHashMap<String, List<CaptureFile>> = LinkedHashMap()
+    val data: LinkedHashMap<String, MutableList<CaptureFile>> = LinkedHashMap()
 }
 
 /**

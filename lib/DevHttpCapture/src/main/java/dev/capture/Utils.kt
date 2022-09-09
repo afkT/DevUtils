@@ -8,6 +8,7 @@ import dev.utils.LogPrintUtils
 import dev.utils.app.PathUtils
 import dev.utils.common.*
 import dev.utils.common.encrypt.MD5Utils
+import dev.utils.common.validator.ValidatorUtils
 import java.io.File
 
 // =================
@@ -71,9 +72,7 @@ class UtilsPublic private constructor() {
      * @param isEncrypt 是否加密数据
      * @return 全部模块所有抓包数据
      */
-    fun getAllModule(
-        isEncrypt: Boolean
-    ): MutableMap<String, MutableList<CaptureItem>> {
+    fun getAllModule(isEncrypt: Boolean): MutableMap<String, MutableList<CaptureItem>> {
         return Utils.getAllModule(isEncrypt)
     }
 
@@ -200,7 +199,7 @@ internal object Utils {
      * @param files 待排序文件数组
      * @return 排序后的文件名
      */
-    private fun sortFileByName(files: Array<File>?): List<File> {
+    private fun sortFileByName(files: Array<File>?): MutableList<File> {
         val lists = mutableListOf<File>()
         if (files != null) {
             lists.addAll(files.toMutableList())
@@ -394,41 +393,125 @@ internal object Utils {
     }
 
     /**
+     * 获取全部模块所有抓包数据
+     * @param isEncrypt 是否加密数据
+     * @return 全部模块所有抓包数据
+     */
+    fun getAllModule(isEncrypt: Boolean): MutableMap<String, MutableList<CaptureItem>> {
+        val maps: MutableMap<String, MutableList<CaptureItem>> = LinkedHashMap()
+        val filePath = getStoragePath()
+        val rootFile = FileUtils.getFile(filePath)
+        if (FileUtils.isFileExists(rootFile)) {
+            rootFile.listFiles()?.forEach { file ->
+                if (FileUtils.isDirectory(file)) {
+                    val moduleName = file.name
+                    maps[moduleName] = getModuleHttpCaptures(moduleName, isEncrypt)
+                }
+            }
+        }
+        return maps
+    }
+
+    /**
      * 获取指定模块所有抓包数据
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param isEncrypt  是否加密数据
      * @return 指定模块所有抓包数据
      */
     fun getModuleHttpCaptures(
-        moduleName: String?,
+        moduleName: String,
         isEncrypt: Boolean
     ): MutableList<CaptureItem> {
-        return mutableListOf()
-    }
-
-    /**
-     * 获取全部模块所有抓包数据
-     * @param isEncrypt 是否加密数据
-     * @return 全部模块所有抓包数据
-     */
-    fun getAllModule(
-        isEncrypt: Boolean
-    ): MutableMap<String, MutableList<CaptureItem>> {
-        val maps: MutableMap<String, MutableList<CaptureItem>> = LinkedHashMap()
-        // 抓包存储路径
-        val filePath = getStoragePath()
-        val rootFile = FileUtils.getFile(filePath)
-        if (FileUtils.isFileExists(rootFile)) {
-            val files = rootFile.listFiles()
-            if (files != null) {
-                for (file in files) {
-                    if (FileUtils.isDirectory(file)) {
-                        val moduleName = file.name
-                        maps[moduleName] = getModuleHttpCaptures(moduleName, isEncrypt)
+        val lists = mutableListOf<CaptureItem>()
+        // 获取指定模块抓包存储路径
+        val filePath = getModulePath(moduleName)
+        val moduleFile = FileUtils.getFile(filePath)
+        if (FileUtils.isFileExists(moduleFile)) {
+            // 循环年月日文件夹
+            val yyyyMMddFiles = sortFileByName(moduleFile.listFiles())
+            yyyyMMddFiles.forEach { ymdFile ->
+                // 验证是否 yyyyMMdd 8 位数数字文件名
+                if (validateFileName(ymdFile, 8)) {
+                    val ymdName = ymdFile.name
+                    // 循环时分文件夹
+                    val hhmmFiles = sortFileByName(ymdFile.listFiles())
+                    if (hhmmFiles.isNotEmpty()) {
+                        val captureItem = CaptureItem(ymdName)
+                        hhmmFiles.forEach { hmFile ->
+                            // 验证是否 hhmm 4 位数数字文件名
+                            if (validateFileName(hmFile, 4)) {
+                                val hmName = hmFile.name
+                                // 循环抓包存储文件
+                                val files = hmFile.listFiles()
+                                if (files != null && files.isNotEmpty()) {
+                                    val captureList = mutableListOf<CaptureFile>()
+                                    files.forEach { file ->
+                                        if (FileUtils.isFile(file)) {
+                                            val fileName = file.name
+                                            // 不属于数据文件才读取
+                                            if (!fileName.endsWith(DATA_FILE_EXTENSION)) {
+                                                // 判断是否加密文件
+                                                val isEncryptFile = fileName.startsWith(
+                                                    "encrypt_"
+                                                )
+                                                if (isEncrypt) {
+                                                    // 要求获取加密文件并且属于加密文件才处理
+                                                    if (isEncryptFile) {
+                                                        fromCaptureFile(file)?.let {
+                                                            captureList.add(it)
+                                                        }
+                                                    }
+                                                } else {
+                                                    // 要求获取非加密文件并且属于非加密文件才处理
+                                                    if (!isEncryptFile) {
+                                                        fromCaptureFile(file)?.let {
+                                                            captureList.add(it)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (captureList.isNotEmpty()) {
+                                        // 最新的在最前面
+                                        captureList.sortWith { o1, o2 ->
+                                            val diff: Long = o1.getTime() - o2.getTime()
+                                            if (diff > 0) {
+                                                -1
+                                            } else if (diff < 0) {
+                                                1
+                                            } else {
+                                                0
+                                            }
+                                        }
+                                        // 存储数据 - 时分
+                                        captureItem.data[hmName] = captureList
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        return maps
+        return lists
+    }
+
+    /**
+     * 验证文件名是否符合要求
+     * @param file 待验证文件
+     * @param length 文件名长度
+     * @return `true` yes, `false` no
+     */
+    private fun validateFileName(
+        file: File,
+        length: Int
+    ): Boolean {
+        if (FileUtils.isDirectory(file)) {
+            val name = file.name
+            return ValidatorUtils.isNumber(name) &&
+                    StringUtils.isLength(name, length)
+        }
+        return false
     }
 }
