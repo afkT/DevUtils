@@ -1,10 +1,10 @@
-package dev.capture;
+package dev.capture
 
 /**
  * detail: 接口所属功能注释获取
  * @author Ttt
  */
-public interface UrlFunctionGet {
+interface UrlFunctionGet {
 
     /**
      * 接口所属功能注释获取
@@ -15,11 +15,11 @@ public interface UrlFunctionGet {
      * @param cacheFunction 缓存功能注释
      * @return 接口所属功能注释
      */
-    String toUrlFunction(
-            String moduleName,
-            String url,
-            String convertUrlKey,
-            String method,
-            String cacheFunction
-    );
+    fun toUrlFunction(
+        moduleName: String?,
+        url: String?,
+        convertUrlKey: String?,
+        method: String?,
+        cacheFunction: String?
+    ): String?
 }
