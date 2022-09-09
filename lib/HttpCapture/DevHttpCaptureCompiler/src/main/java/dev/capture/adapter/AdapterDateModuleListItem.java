@@ -1,4 +1,4 @@
-package dev.capture;
+package dev.capture.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.adapter.DevDataAdapterExt;
+import dev.capture.CaptureFile;
+import dev.capture.UtilsCompiler;
+import dev.capture.activity.DevHttpCaptureFileActivity;
+import dev.capture.base.BaseDevHttpViewHolder;
 import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListItemAdapterBinding;
+import dev.capture.model.Items;
 import dev.utils.DevFinal;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.quick.QuickHelper;
@@ -22,7 +27,7 @@ import dev.utils.common.StringUtils;
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-class AdapterDateModuleListItem
+public class AdapterDateModuleListItem
         extends DevDataAdapterExt<CaptureFile, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListItemAdapterBinding>> {
 
     Items.GroupItem groupItem;

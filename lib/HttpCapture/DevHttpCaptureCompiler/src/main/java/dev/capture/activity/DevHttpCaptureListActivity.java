@@ -1,4 +1,4 @@
-package dev.capture;
+package dev.capture.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,13 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import dev.callback.DevCallback;
+import dev.capture.UtilsCompiler;
+import dev.capture.adapter.AdapterDateModuleList;
+import dev.capture.base.BaseDevHttpActivity;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureListActivityBinding;
+import dev.capture.model.Dialogs;
+import dev.capture.model.Items;
 import dev.utils.DevFinal;
 import dev.utils.app.BarUtils;
 import dev.utils.app.ClickUtils;

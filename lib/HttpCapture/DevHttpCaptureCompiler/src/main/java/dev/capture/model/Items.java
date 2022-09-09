@@ -1,13 +1,15 @@
-package dev.capture;
+package dev.capture.model;
 
 import java.util.List;
 
+import dev.capture.CaptureFile;
+import dev.capture.CaptureItem;
 import dev.capture.compiler.R;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.StringUtils;
 
-class Items {
+public class Items {
 
     /**
      * 数据来源类型

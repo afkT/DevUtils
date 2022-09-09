@@ -1,4 +1,4 @@
-package dev.capture;
+package dev.capture.model;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,7 +7,7 @@ import dev.callback.DevCallback;
 import dev.capture.compiler.databinding.DevHttpCaptureDataTypeDialogBinding;
 import dev.capture.compiler.databinding.DevHttpCaptureGroupTypeDialogBinding;
 
-class Dialogs {
+public class Dialogs {
 
     /**
      * 数据来源选项 Dialog
@@ -23,7 +23,7 @@ class Dialogs {
                 Context context,
                 DevCallback<Items.DataType> callback
         ) {
-            super(context, R.style.DevDialogFullScreenTheme);
+            super(context, dev.capture.R.style.DevDialogFullScreenTheme);
 
             this.mCallback = callback;
             this.mBinding  = DevHttpCaptureDataTypeDialogBinding.inflate(
@@ -61,7 +61,7 @@ class Dialogs {
                 Context context,
                 DevCallback<Items.GroupType> callback
         ) {
-            super(context, R.style.DevDialogFullScreenTheme);
+            super(context, dev.capture.R.style.DevDialogFullScreenTheme);
 
             this.mCallback = callback;
             this.mBinding  = DevHttpCaptureGroupTypeDialogBinding.inflate(

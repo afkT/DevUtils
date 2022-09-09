@@ -2,9 +2,9 @@ package dev
 
 import android.content.Context
 import android.content.Intent
-import dev.capture.DevHttpCaptureMainActivity
 import dev.capture.UrlFunctionGet
 import dev.capture.UtilsCompiler
+import dev.capture.activity.DevHttpCaptureMainActivity
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 

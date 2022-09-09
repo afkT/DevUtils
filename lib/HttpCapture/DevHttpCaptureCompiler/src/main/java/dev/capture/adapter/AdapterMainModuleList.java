@@ -1,4 +1,4 @@
-package dev.capture;
+package dev.capture.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.adapter.DevDataAdapterExt;
+import dev.capture.CaptureItem;
+import dev.capture.activity.DevHttpCaptureListActivity;
+import dev.capture.base.BaseDevHttpViewHolder;
 import dev.capture.compiler.databinding.DevHttpCaptureMainModuleListAdapterBinding;
+import dev.capture.model.Items;
 import dev.utils.DevFinal;
 import dev.utils.app.helper.quick.QuickHelper;
 
@@ -17,7 +21,7 @@ import dev.utils.app.helper.quick.QuickHelper;
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-class AdapterMainModuleList
+public class AdapterMainModuleList
         extends DevDataAdapterExt<CaptureItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleListAdapterBinding>> {
 
     private final Items.MainItem mMainItem;

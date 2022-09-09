@@ -45,7 +45,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
             .setTag(TAG)
             .setContext(this)
             .printLog("onCreate")
-        // 记录 Activity
+        // 添加 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
         contentInit(LayoutInflater.from(this), null)

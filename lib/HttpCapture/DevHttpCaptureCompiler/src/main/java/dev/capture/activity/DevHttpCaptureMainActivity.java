@@ -1,4 +1,4 @@
-package dev.capture;
+package dev.capture.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 import dev.DevHttpCapture;
 import dev.callback.DevCallback;
+import dev.capture.UtilsCompiler;
+import dev.capture.adapter.AdapterMainModule;
+import dev.capture.base.BaseDevHttpActivity;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureMainActivityBinding;
+import dev.capture.model.Items;
 import dev.utils.DevFinal;
 import dev.utils.app.BarUtils;
 import dev.utils.app.ClickUtils;

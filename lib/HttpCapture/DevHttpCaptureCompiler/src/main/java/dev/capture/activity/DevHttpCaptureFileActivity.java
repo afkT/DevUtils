@@ -1,10 +1,13 @@
-package dev.capture;
+package dev.capture.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import dev.capture.UtilsCompiler;
+import dev.capture.adapter.AdapterCaptureFile;
+import dev.capture.base.BaseDevHttpActivity;
 import dev.capture.compiler.R;
 import dev.capture.compiler.databinding.DevHttpCaptureFileActivityBinding;
 import dev.utils.DevFinal;

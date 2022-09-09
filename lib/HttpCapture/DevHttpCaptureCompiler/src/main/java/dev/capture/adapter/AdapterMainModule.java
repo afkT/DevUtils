@@ -1,31 +1,31 @@
-package dev.capture;
+package dev.capture.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
 import dev.adapter.DevDataAdapterExt2;
+import dev.capture.base.BaseDevHttpViewHolder;
 import dev.capture.compiler.R;
-import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListAdapterBinding;
+import dev.capture.compiler.databinding.DevHttpCaptureMainModuleAdapterBinding;
+import dev.capture.model.Items;
 import dev.utils.app.ListViewUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.quick.QuickHelper;
-import dev.utils.common.StringUtils;
 
 /**
- * detail: DevHttpCapture 对应模块具体日期抓包列表适配器
+ * detail: DevHttpCapture 模块适配器
  * @author Ttt
  */
-class AdapterDateModuleList
-        extends DevDataAdapterExt2<Items.GroupItem, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding>> {
+public class AdapterMainModule
+        extends DevDataAdapterExt2<Items.MainItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleAdapterBinding>> {
 
     // 延迟滑动时间
     private final long mDelay;
 
-    public AdapterDateModuleList() {
+    public AdapterMainModule() {
         // 初始化延迟滑动时间
         mDelay = Math.max(ResourceUtils.getInteger(
                 R.integer.dev_http_capture_query_item_scroll_delay
@@ -34,42 +34,41 @@ class AdapterDateModuleList
 
     @Override
     public String getMultiSelectKey(
-            Items.GroupItem item,
+            Items.MainItem item,
             int position
     ) {
-        return item.title;
+        return item.moduleName;
     }
 
     @NonNull
     @Override
-    public BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding> onCreateViewHolder(
+    public BaseDevHttpViewHolder<DevHttpCaptureMainModuleAdapterBinding> onCreateViewHolder(
             @NonNull ViewGroup parent,
             int viewType
     ) {
         return new BaseDevHttpViewHolder<>(
-                DevHttpCaptureDateModuleListAdapterBinding.inflate(
+                DevHttpCaptureMainModuleAdapterBinding.inflate(
                         LayoutInflater.from(mContext), parent, false
                 )
         );
     }
 
-    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(
-            @NonNull BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding> holder,
+            @NonNull BaseDevHttpViewHolder<DevHttpCaptureMainModuleAdapterBinding> holder,
             int position
     ) {
-        Items.GroupItem item = getDataItem(position);
+        Items.MainItem item = getDataItem(position);
         // 判断对应模块是否展开
-        boolean unfold = mMultiSelectMap.isSelectKey(item.title);
+        boolean unfold = mMultiSelectMap.isSelectKey(item.moduleName);
         if (ViewUtils.setVisibility(unfold, holder.binding.vidRv)) {
-            new AdapterDateModuleListItem(item, holder.binding.vidRv);
+            new AdapterMainModuleList(item, holder.binding.vidRv);
         }
         QuickHelper.get(holder.binding.vidTitleTv)
-                .setText(item.title)
+                .setText(item.moduleName)
                 .setOnClick(view -> {
                     // 反选展开状态
-                    mMultiSelectMap.toggle(item.title, item);
+                    mMultiSelectMap.toggle(item.moduleName, item);
                     // 刷新适配器
                     notifyDataChanged();
                     // 延时滑动到点击的索引
@@ -77,9 +76,5 @@ class AdapterDateModuleList
                             mRecyclerView, position
                     ), mDelay);
                 });
-        // 接口所属功能
-        QuickHelper.get(holder.binding.vidFunctionTv)
-                .setText(item.function)
-                .setVisibilitys(StringUtils.isNotEmpty(item.function));
     }
 }
