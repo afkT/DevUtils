@@ -2,7 +2,6 @@ package dev.engine.barcode
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.text.TextUtils
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter

@@ -2,7 +2,8 @@ package dev.engine.storage
 
 import android.graphics.Bitmap.CompressFormat
 import android.net.Uri
-import android.text.TextUtils
+import dev.engine.storage.StorageItem.Companion.createExternalItem
+import dev.engine.storage.StorageItem.Companion.createInternalItem
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.PathUtils
 import dev.utils.common.FileUtils

@@ -311,7 +311,7 @@ public class SlideImageView
 
     private final Handler handler        = new Handler();
     // 动画滑动距离
-    private       float   slideLength     = 10F;
+    private       float   slideLength    = 10F;
     // 滑动速度 -> 时间
     private       long    slideSpeed     = 100L;
     // 检测时间
