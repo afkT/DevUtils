@@ -41,7 +41,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun initValue() {
         super.initValue()
-        val lists: MutableList<CommodityItem> = ArrayList()
+        val lists = mutableListOf<CommodityItem>()
         for (i in 0..39) lists.add(CommodityItem.newCommodityItem())
 
         // 初始化布局管理器、适配器

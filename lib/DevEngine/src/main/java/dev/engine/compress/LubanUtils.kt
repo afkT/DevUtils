@@ -1,9 +1,9 @@
 package dev.engine.compress
 
 import android.net.Uri
-import android.text.TextUtils
 import dev.DevUtils
 import dev.utils.common.ConvertUtils
+import dev.utils.common.StringUtils
 import top.zibin.luban.CompressionPredicate
 import top.zibin.luban.InputStreamProvider
 import top.zibin.luban.Luban
@@ -121,14 +121,14 @@ internal object LubanUtils {
         }
         if (number == 0) return false
         val count = number
-        val fileMaps: MutableMap<Int, File?> = LinkedHashMap()
+        val fileMaps = linkedMapOf<Int, File?>()
         // 配置信息
         builder.ignoreBy(config.ignoreSize)
             .setFocusAlpha(config.focusAlpha)
             .setTargetDir(config.targetDir)
             .filter { path ->
                 if (predicate != null) return@filter predicate.apply(path)
-                return@filter !(TextUtils.isEmpty(path) || path.lowercase().endsWith(".gif"))
+                return@filter !(StringUtils.isEmpty(path) || path.lowercase().endsWith(".gif"))
             }
             .setRenameListener(renameListener)
             .setCompressListener(object : top.zibin.luban.OnCompressListener {
@@ -165,7 +165,7 @@ internal object LubanUtils {
                 }
 
                 private fun getLists(): List<File> {
-                    val files: MutableList<File> = ArrayList()
+                    val files = mutableListOf<File>()
                     val iterator: Iterator<File?> = fileMaps.values.iterator()
                     while (iterator.hasNext()) {
                         val file = iterator.next()

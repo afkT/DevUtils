@@ -11,6 +11,7 @@ import com.google.zxing.common.HybridBinarizer
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.barcode.listener.BarCodeEncodeCallback
 import dev.utils.LogPrintUtils
+import dev.utils.common.StringUtils
 import dev.utils.common.thread.DevThreadPool
 
 /**
@@ -219,7 +220,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
         if (params == null) {
             return Exception("BarCode ( Data、Params ) Item is null")
         }
-        if (TextUtils.isEmpty(params.getContent())) {
+        if (StringUtils.isEmpty(params.getContent())) {
             return Exception("BarCode content is null")
         }
         if (params.getWidth() <= 0 || params.getHeight() <= 0) {

@@ -61,7 +61,7 @@ class CaptureItem(
     val yyyyMMdd: String
 ) {
     // 存储数据 - 时分
-    val data: LinkedHashMap<String, MutableList<CaptureFile>> = LinkedHashMap()
+    val data = linkedMapOf<String, MutableList<CaptureFile>>()
 }
 
 /**
@@ -77,16 +77,16 @@ class CaptureInfo {
     var requestMethod: String? = null
 
     // 请求头信息
-    val requestHeader: LinkedHashMap<String, String> = LinkedHashMap()
+    val requestHeader = linkedMapOf<String, String>()
 
     // 请求数据
-    val requestBody: LinkedHashMap<String, String> = LinkedHashMap()
+    val requestBody = linkedMapOf<String, String>()
 
     // 响应状态
-    val responseStatus: LinkedHashMap<String, String> = LinkedHashMap()
+    val responseStatus = linkedMapOf<String, String>()
 
     // 响应头信息
-    val responseHeader: LinkedHashMap<String, String> = LinkedHashMap()
+    val responseHeader = linkedMapOf<String, String>()
 
     // 响应数据
     var responseBody: String? = null

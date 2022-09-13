@@ -1,6 +1,5 @@
 package dev.capture
 
-import android.text.TextUtils
 import com.google.gson.GsonBuilder
 import dev.DevHttpCapture
 import dev.utils.DevFinal
@@ -184,7 +183,7 @@ internal object Utils {
         if (json == null) return null
         try {
             return GSON.fromJson(json, classOfT)
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             LogPrintUtils.eTag(DevHttpCapture.TAG, e, "fromJson")
         }
         return null
@@ -228,7 +227,7 @@ internal object Utils {
      * @return 抓包存储路径
      */
     fun getStoragePath(): String {
-        if (TextUtils.isEmpty(sStoragePath)) {
+        if (StringUtils.isEmpty(sStoragePath)) {
             sStoragePath = PathUtils.getInternal().getAppDataPath(
                 DevHttpCapture.TAG
             )
@@ -298,7 +297,7 @@ internal object Utils {
         filePath: String,
         isEncrypt: Boolean
     ): String? {
-        if (TextUtils.isEmpty(filePath)) return null
+        if (StringUtils.isEmpty(filePath)) return null
         while (true) {
             val md5Value = MD5Utils.md5(DevCommonUtils.getRandomUUIDToString())
             // 属于加密的文件名前加前缀
@@ -398,7 +397,7 @@ internal object Utils {
      * @return 全部模块所有抓包数据
      */
     fun getAllModule(isEncrypt: Boolean): MutableMap<String, MutableList<CaptureItem>> {
-        val maps: MutableMap<String, MutableList<CaptureItem>> = LinkedHashMap()
+        val maps = linkedMapOf<String, MutableList<CaptureItem>>()
         val filePath = getStoragePath()
         val rootFile = FileUtils.getFile(filePath)
         if (FileUtils.isFileExists(rootFile)) {

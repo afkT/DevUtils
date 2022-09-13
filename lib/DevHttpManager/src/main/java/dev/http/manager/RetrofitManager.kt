@@ -15,7 +15,7 @@ internal object RetrofitManager {
     private var sOnRetrofitResetListener: OnRetrofitResetListener? = null
 
     // 存储 Retrofit Operation 操作对象
-    private val sOperationMaps: MutableMap<String, RetrofitOperation> = LinkedHashMap()
+    private val sOperationMaps = linkedMapOf<String, RetrofitOperation>()
 
     // =============
     // = 对外公开方法 =

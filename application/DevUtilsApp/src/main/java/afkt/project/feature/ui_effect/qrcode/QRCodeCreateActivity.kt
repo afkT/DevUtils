@@ -7,7 +7,6 @@ import afkt.project.model.item.RouterPath
 import afkt.project.utils.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
-import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
@@ -15,6 +14,7 @@ import dev.engine.barcode.BarCodeData
 import dev.kotlin.utils.size.AppSize
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
+import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 
 /**
@@ -43,7 +43,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
             R.id.vid_create_btn -> {
                 val text = EditTextUtils.getText(binding.vidContentEt)
                 // 判断是否存在内容
-                if (TextUtils.isEmpty(text)) {
+                if (StringUtils.isEmpty(text)) {
                     showToast(false, "请输入生成二维码内容")
                     return
                 }

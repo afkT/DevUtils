@@ -94,7 +94,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         // ============================
 
         // Tab 数据
-        val listTabs: MutableList<TabItem> = ArrayList()
+        val listTabs = mutableListOf<TabItem>()
         listTabs.add(TabItem("全部", 0))
         listTabs.add(TabItem("待付款", 1))
         listTabs.add(TabItem("待发货", 2))

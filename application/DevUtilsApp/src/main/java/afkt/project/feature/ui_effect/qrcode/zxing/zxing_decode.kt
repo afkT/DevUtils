@@ -157,7 +157,7 @@ class DecodeThread(
     private var mHandler: DecodeHandler? = null
 
     init {
-        val decodeFormats: MutableCollection<BarcodeFormat> = ArrayList()
+        val decodeFormats = mutableListOf<BarcodeFormat>()
         decodeFormats.addAll(EnumSet.of(BarcodeFormat.AZTEC))
         decodeFormats.addAll(EnumSet.of(BarcodeFormat.PDF_417))
         when (decodeMode) {

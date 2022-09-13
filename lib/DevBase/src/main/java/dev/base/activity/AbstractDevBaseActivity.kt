@@ -24,7 +24,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     // ==========
 
     @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
-    protected var TAG: String = AbstractDevBaseActivity::class.java.simpleName
+    protected var TAG = AbstractDevBaseActivity::class.java.simpleName
 
     @JvmField // Content View
     protected var mContentView: View? = null

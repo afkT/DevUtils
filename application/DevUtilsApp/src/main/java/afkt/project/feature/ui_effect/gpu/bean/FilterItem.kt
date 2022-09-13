@@ -99,7 +99,7 @@ class FilterItem(
         private val TAG = FilterItem::class.java.simpleName
 
         // 滤镜类型集合
-        var FILTER_LISTS: MutableList<FilterItem> = ArrayList()
+        var FILTER_LISTS = mutableListOf<FilterItem>()
 
         /**
          * 创建 GPU Image Filter

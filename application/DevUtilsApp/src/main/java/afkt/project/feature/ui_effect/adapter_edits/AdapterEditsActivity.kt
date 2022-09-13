@@ -63,7 +63,7 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val lists: MutableList<EvaluateItem> = ArrayList()
+        val lists = mutableListOf<EvaluateItem>()
         for (i in 0..5) lists.add(EvaluateItem())
         // 默认清空第一条数据内容
         lists[0].evaluateContent = ""

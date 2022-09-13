@@ -94,7 +94,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     private val list: List<ItemStickyBean>
         private get() {
-            val lists: MutableList<ItemStickyBean> = ArrayList()
+            val lists = mutableListOf<ItemStickyBean>()
             var time = System.currentTimeMillis()
             for (i in 0..9) {
                 val number = RandomUtils.getRandom(4, 10)

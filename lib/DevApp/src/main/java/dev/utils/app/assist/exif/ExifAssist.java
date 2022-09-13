@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -24,7 +25,6 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.common.FileUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: 图片 EXIF 读写辅助类
@@ -254,7 +254,7 @@ public final class ExifAssist {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportedMimeType(final String mimeType) {
-        if (StringUtils.isEmpty(mimeType)) return false;
+        if (TextUtils.isEmpty(mimeType)) return false;
         return ExifInterface.isSupportedMimeType(mimeType);
     }
 
@@ -326,7 +326,7 @@ public final class ExifAssist {
             final String tag,
             final int defaultValue
     ) {
-        if (StringUtils.isEmpty(tag)) return defaultValue;
+        if (TextUtils.isEmpty(tag)) return defaultValue;
         if (isExifNull()) return defaultValue;
         try {
             return mExif.getAttributeInt(tag, defaultValue);
@@ -346,7 +346,7 @@ public final class ExifAssist {
             final String tag,
             final double defaultValue
     ) {
-        if (StringUtils.isEmpty(tag)) return defaultValue;
+        if (TextUtils.isEmpty(tag)) return defaultValue;
         if (isExifNull()) return defaultValue;
         try {
             return mExif.getAttributeDouble(tag, defaultValue);
@@ -362,7 +362,7 @@ public final class ExifAssist {
      * @return TAG 对应值
      */
     public String getAttribute(final String tag) {
-        if (StringUtils.isEmpty(tag)) return null;
+        if (TextUtils.isEmpty(tag)) return null;
         if (isExifNull()) return null;
         try {
             return mExif.getAttribute(tag);
@@ -378,7 +378,7 @@ public final class ExifAssist {
      * @return TAG 对应值
      */
     public byte[] getAttributeBytes(final String tag) {
-        if (StringUtils.isEmpty(tag)) return null;
+        if (TextUtils.isEmpty(tag)) return null;
         if (isExifNull()) return null;
         try {
             return mExif.getAttributeBytes(tag);
@@ -394,7 +394,7 @@ public final class ExifAssist {
      * @return TAG 对应值
      */
     public long[] getAttributeRange(final String tag) {
-        if (StringUtils.isEmpty(tag)) return null;
+        if (TextUtils.isEmpty(tag)) return null;
         if (isExifNull()) return null;
         try {
             return mExif.getAttributeRange(tag);
@@ -410,7 +410,7 @@ public final class ExifAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean hasAttribute(final String tag) {
-        if (StringUtils.isEmpty(tag)) return false;
+        if (TextUtils.isEmpty(tag)) return false;
         if (isExifNull()) return false;
         try {
             return mExif.hasAttribute(tag);
@@ -430,7 +430,7 @@ public final class ExifAssist {
             final String tag,
             final String value
     ) {
-        if (StringUtils.isEmpty(tag)) return false;
+        if (TextUtils.isEmpty(tag)) return false;
         if (isExifNull()) return false;
         try {
             mExif.setAttribute(tag, value);

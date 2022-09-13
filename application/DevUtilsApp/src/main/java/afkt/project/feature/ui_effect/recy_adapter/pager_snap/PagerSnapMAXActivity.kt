@@ -37,7 +37,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val lists: MutableList<ItemBean> = ArrayList()
+        val lists = mutableListOf<ItemBean>()
         for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
 
         // 初始化布局管理器、适配器

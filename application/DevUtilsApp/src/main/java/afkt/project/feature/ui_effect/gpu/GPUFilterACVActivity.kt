@@ -33,7 +33,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
     private lateinit var gpuFilterACVAdapter: GPUFilterACVAdapter
 
     // ACV 文件集合
-    private val listACVFiles: MutableList<ACVFileBean> = ArrayList()
+    private val listACVFiles = mutableListOf<ACVFileBean>()
 
     // 图片 Bitmap
     private var selectBitmap: Bitmap? = null

@@ -998,8 +998,8 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         listener: OnConvertListener?
     ): Boolean {
         if (context != null && sources != null && listener != null && sources.isNotEmpty()) {
-            val fileLists: MutableList<File> = ArrayList()
-            val fileMaps: MutableMap<Int, File?> = LinkedHashMap()
+            val fileLists = mutableListOf<File>()
+            val fileMaps = linkedMapOf<Int, File?>()
             // 转换器
             val convertStorage = InnerConvertStorage(this)
             // 随机创建任务 id

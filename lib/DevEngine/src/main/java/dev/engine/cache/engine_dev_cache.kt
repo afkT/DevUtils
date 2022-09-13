@@ -72,7 +72,7 @@ open class DevCacheEngineImpl(
 
     override fun getKeys(): MutableList<DataItem> {
         val datas = mConfig.mDevCache.keys
-        val lists: MutableList<DataItem> = ArrayList()
+        val lists = mutableListOf<DataItem>()
         for (data in datas) {
             if (data != null) {
                 val item = DataItem(
@@ -88,7 +88,7 @@ open class DevCacheEngineImpl(
 
     override fun getPermanentKeys(): MutableList<DataItem> {
         val datas = mConfig.mDevCache.permanentKeys
-        val lists: MutableList<DataItem> = ArrayList()
+        val lists = mutableListOf<DataItem>()
         for (data in datas) {
             if (data != null) {
                 val item = DataItem(

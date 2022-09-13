@@ -329,7 +329,7 @@ class ZXingDecodeAssist(
                         mDecodeResult
                     )
                 }
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 TAG.log_eTag(
                     throwable = e,
                     message = "checkPermission startPreview"

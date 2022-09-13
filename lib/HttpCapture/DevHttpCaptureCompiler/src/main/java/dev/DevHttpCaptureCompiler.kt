@@ -52,7 +52,7 @@ object DevHttpCaptureCompiler {
      * 结束所有 Activity
      */
     fun finishAllActivity() {
-        UtilsCompiler.getInstance().finishAllActivity()
+        UtilsCompiler.finishAllActivity()
     }
 
     // ==========
@@ -101,7 +101,7 @@ object DevHttpCaptureCompiler {
         moduleName: String?,
         function: UrlFunctionGet
     ) {
-        UtilsCompiler.getInstance().putUrlFunction(
+        UtilsCompiler.putUrlFunction(
             moduleName, function
         )
     }
@@ -111,6 +111,6 @@ object DevHttpCaptureCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      */
     fun removeUrlFunction(moduleName: String?) {
-        UtilsCompiler.getInstance().removeUrlFunction(moduleName)
+        UtilsCompiler.removeUrlFunction(moduleName)
     }
 }

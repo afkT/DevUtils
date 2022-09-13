@@ -9,6 +9,7 @@ import dev.engine.keyvalue.MMKVUtils.defaultHolder
 import dev.engine.keyvalue.MMKVUtils.get
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.common.StringUtils
 import java.util.*
 import kotlin.collections.set
 
@@ -161,7 +162,7 @@ internal object MMKVUtils {
          * @return `true` yes, `false` no
          */
         fun containsKey(key: String?): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.containsKey(key) ?: false
         }
 
@@ -172,7 +173,7 @@ internal object MMKVUtils {
          */
         fun removeValueForKey(key: String?): Boolean {
             if (isMMKVEmpty()) return false
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             mmkv?.removeValueForKey(key)
             return true
         }
@@ -233,7 +234,7 @@ internal object MMKVUtils {
             key: String?,
             value: Boolean
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -241,7 +242,7 @@ internal object MMKVUtils {
             key: String?,
             value: Int
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -249,7 +250,7 @@ internal object MMKVUtils {
             key: String?,
             value: Long
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -257,7 +258,7 @@ internal object MMKVUtils {
             key: String?,
             value: Float
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -265,7 +266,7 @@ internal object MMKVUtils {
             key: String?,
             value: Double
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -273,7 +274,7 @@ internal object MMKVUtils {
             key: String?,
             value: String?
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -282,7 +283,7 @@ internal object MMKVUtils {
             value: Set<String?>?
         ): Boolean {
             if (value == null) return false
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -291,7 +292,7 @@ internal object MMKVUtils {
             value: ByteArray?
         ): Boolean {
             if (value == null) return false
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -300,7 +301,7 @@ internal object MMKVUtils {
             value: Parcelable?
         ): Boolean {
             if (value == null) return false
-            if (TextUtils.isEmpty(key)) return false
+            if (StringUtils.isEmpty(key)) return false
             return mmkv?.encode(key, value) ?: false
         }
 
@@ -316,7 +317,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: Boolean
         ): Boolean {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeBool(key, defaultValue) ?: defaultValue
         }
 
@@ -328,7 +329,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: Int
         ): Int {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeInt(key, defaultValue) ?: defaultValue
         }
 
@@ -340,7 +341,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: Long
         ): Long {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeLong(key, defaultValue) ?: defaultValue
         }
 
@@ -352,7 +353,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: Float
         ): Float {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeFloat(key, defaultValue) ?: defaultValue
         }
 
@@ -364,7 +365,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: Double
         ): Double {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeDouble(key, defaultValue) ?: defaultValue
         }
 
@@ -376,7 +377,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: String?
         ): String? {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeString(key, defaultValue) ?: defaultValue
         }
 
@@ -396,7 +397,7 @@ internal object MMKVUtils {
             defaultValue: Set<String?>?,
             cls: Class<out Set<*>?>?
         ): Set<String?>? {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeStringSet(key, defaultValue, cls) ?: defaultValue
         }
 
@@ -408,7 +409,7 @@ internal object MMKVUtils {
             key: String?,
             defaultValue: ByteArray?
         ): ByteArray? {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeBytes(key, defaultValue) ?: defaultValue
         }
 
@@ -424,7 +425,7 @@ internal object MMKVUtils {
             tClass: Class<T>?,
             defaultValue: T?
         ): T? {
-            if (TextUtils.isEmpty(key)) return defaultValue
+            if (StringUtils.isEmpty(key)) return defaultValue
             return mmkv?.decodeParcelable(key, tClass, defaultValue) ?: defaultValue
         }
     }

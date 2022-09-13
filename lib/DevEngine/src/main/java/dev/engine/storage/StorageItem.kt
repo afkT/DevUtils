@@ -6,6 +6,7 @@ import android.text.TextUtils
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.PathUtils
 import dev.utils.common.FileUtils
+import dev.utils.common.StringUtils
 import java.io.File
 
 /**
@@ -266,9 +267,9 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem() {
             mimeType: String?,
             folder: String?
         ): StorageItem? {
-            if (TextUtils.isEmpty(fileName)) return null
-            if (TextUtils.isEmpty(mimeType)) return null
-            if (TextUtils.isEmpty(folder)) return null
+            if (StringUtils.isEmpty(fileName)) return null
+            if (StringUtils.isEmpty(mimeType)) return null
+            if (StringUtils.isEmpty(folder)) return null
             return StorageItem().setFileName(fileName)
                 .setMimeType(mimeType).setFolder(folder)
         }

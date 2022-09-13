@@ -425,7 +425,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
             mWebView?.let {
                 try {
                     it.evaluateJavascript(script, callback)
-                } catch (e: java.lang.Exception) {
+                } catch (e: Exception) {
                     LogPrintUtils.eTag(TAG, e, "evaluateJavascript")
                 }
             }

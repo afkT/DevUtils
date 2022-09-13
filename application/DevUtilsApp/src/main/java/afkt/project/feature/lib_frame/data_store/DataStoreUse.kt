@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.first
 
 object DataStoreUse {
 
-    val TAG: String = DataStoreUse::class.java.simpleName
+    val TAG = DataStoreUse::class.java.simpleName
 
     private const val spStoreName = "spStore"
 

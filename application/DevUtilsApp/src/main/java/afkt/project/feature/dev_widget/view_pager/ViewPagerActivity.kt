@@ -19,7 +19,7 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
 
     override fun initValue() {
         super.initValue()
-        val lists: MutableList<String> = ArrayList()
+        val lists = mutableListOf<String>()
         for (i in 0..4) lists.add((i + 1).toString())
         binding.vidVp.adapter = ViewPagerAdapter(lists)
         binding.vidVp.setCurrentItem(lists.size * 100, false)

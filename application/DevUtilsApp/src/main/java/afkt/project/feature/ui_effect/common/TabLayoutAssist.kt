@@ -19,7 +19,7 @@ class TabLayoutAssist private constructor(
 ) {
 
     // 数据源
-    private val mListTabs: MutableList<TabItem> = ArrayList()
+    private val mListTabs = mutableListOf<TabItem>()
 
     // Tab 切换事件
     private var mListener: TabChangeListener? = null

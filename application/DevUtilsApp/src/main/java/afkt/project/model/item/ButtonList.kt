@@ -16,7 +16,7 @@ object ButtonList {
      */
     val mainButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.MODULE_FRAMEWORK,
@@ -123,7 +123,7 @@ object ButtonList {
      */
     private val moduleFrameworkButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_MVP,
@@ -151,7 +151,7 @@ object ButtonList {
      */
     private val moduleLibButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GREEN_DAO,
@@ -263,7 +263,7 @@ object ButtonList {
      */
     private val moduleUIButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TOAST_TINT,
@@ -476,7 +476,7 @@ object ButtonList {
      */
     val toastButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TOAST_TINT_SUCCESS,
@@ -532,7 +532,7 @@ object ButtonList {
      */
     private val moduleOtherButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LISTENER,
@@ -669,7 +669,7 @@ object ButtonList {
     @JvmStatic
     val listenerButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WIFI_LISTENER,
@@ -750,7 +750,7 @@ object ButtonList {
     @JvmStatic
     val notificationServiceButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK,
@@ -782,7 +782,7 @@ object ButtonList {
     @JvmStatic
     val accessibilityListenerServiceButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK,
@@ -814,7 +814,7 @@ object ButtonList {
     @JvmStatic
     val wifiButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_WIFI_OPEN,
@@ -867,7 +867,7 @@ object ButtonList {
     @JvmStatic
     val functionButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FUNCTION_VIBRATE,
@@ -1004,7 +1004,7 @@ object ButtonList {
     @JvmStatic
     val timerButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_TIMER_START,
@@ -1057,7 +1057,7 @@ object ButtonList {
     @JvmStatic
     val cacheButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CACHE_STRING,
@@ -1131,7 +1131,7 @@ object ButtonList {
     @JvmStatic
     val loggerButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LOGGER_PRINT,
@@ -1156,7 +1156,7 @@ object ButtonList {
     @JvmStatic
     val fileRecordButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_FILE_RECORD_UTILS,
@@ -1173,7 +1173,7 @@ object ButtonList {
      */
     val crashButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_CRASH_CLICK_CATCH,
@@ -1190,7 +1190,7 @@ object ButtonList {
      */
     val pathButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_PATH_INTERNAL,
@@ -1221,7 +1221,7 @@ object ButtonList {
      */
     val floatingWindowButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_OPEN_FLOATING_WINDOW,
@@ -1249,7 +1249,7 @@ object ButtonList {
      */
     private val moduleDevWidgetButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEW_PAGER,
@@ -1350,7 +1350,7 @@ object ButtonList {
      */
     private val viewAssistButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_VIEW_ASSIST_RECYCLER,
@@ -1388,7 +1388,7 @@ object ButtonList {
      */
     private val linearItemDecorationButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_LINEAR_ITEM_VERTICAL,
@@ -1412,7 +1412,7 @@ object ButtonList {
      */
     private val gridItemDecorationButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_GRID_ITEM_VERTICAL,
@@ -1441,7 +1441,7 @@ object ButtonList {
     @JvmStatic
     val moduleDevEnvironmentButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_DEV_ENVIRONMENT,
@@ -1470,7 +1470,7 @@ object ButtonList {
     @JvmStatic
     val moduleDevAssistEngineButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_ENGINE_ANALYTICS,
@@ -1569,7 +1569,7 @@ object ButtonList {
     @JvmStatic
     val moduleDevSKUButtonValues: List<ButtonValue>
         get() {
-            val lists: MutableList<ButtonValue> = ArrayList()
+            val lists = mutableListOf<ButtonValue>()
             lists.add(
                 ButtonValue(
                     ButtonValue.BTN_SKU_DIALOG,

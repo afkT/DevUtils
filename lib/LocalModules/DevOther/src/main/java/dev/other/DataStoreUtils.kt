@@ -39,7 +39,7 @@ import java.io.IOException
 object DataStoreUtils {
 
     // 日志 TAG
-    private val TAG: String = DataStoreUtils::class.java.simpleName
+    private val TAG = DataStoreUtils::class.java.simpleName
 
     // Map
     private val cacheMap = HashMap<String, InnerDataStore>()

@@ -103,7 +103,7 @@ internal object ProgressManager {
     val TAG = ProgressManager::class.java.simpleName
 
     // 存储 Progress Operation 操作对象
-    private val sOperationMaps: MutableMap<String, ProgressOperation> = LinkedHashMap()
+    private val sOperationMaps = linkedMapOf<String, ProgressOperation>()
 
     // 默认监听上下行操作对象
     private val mDefault: ProgressOperation by lazy {

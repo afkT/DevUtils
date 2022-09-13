@@ -1,106 +1,61 @@
-package dev.capture;
+package dev.capture
 
-import android.app.Activity;
-import android.text.TextUtils;
+import android.app.Activity
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonElement
+import com.google.gson.JsonParser
+import com.google.gson.stream.JsonReader
+import dev.DevHttpCapture
+import dev.callback.DevCallback
+import dev.capture.compiler.R
+import dev.capture.model.Items
+import dev.utils.LogPrintUtils
+import dev.utils.app.ClickUtils.ClickAssist
+import dev.utils.app.HandlerUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.assist.ActivityManagerAssist
+import dev.utils.common.CollectionUtils
+import dev.utils.common.MapUtils
+import dev.utils.common.StringUtils
+import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator
+import java.io.StringReader
+import java.util.concurrent.CopyOnWriteArrayList
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import dev.DevHttpCapture;
-import dev.callback.DevCallback;
-import dev.capture.compiler.R;
-import dev.capture.model.Items;
-import dev.utils.DevFinal;
-import dev.utils.LogPrintUtils;
-import dev.utils.app.ClickUtils;
-import dev.utils.app.HandlerUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.assist.ActivityManagerAssist;
-import dev.utils.common.CollectionUtils;
-import dev.utils.common.ConvertUtils;
-import dev.utils.common.MapUtils;
-import dev.utils.common.StringUtils;
-import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator;
-
-public final class UtilsCompiler {
+internal object UtilsCompiler {
 
     // 日志 TAG
-    private static final String TAG = UtilsCompiler.class.getSimpleName();
-
-    // Utils 实例
-    private static volatile UtilsCompiler sInstance;
-
-    /**
-     * 获取 Utils 实例
-     * @return {@link UtilsCompiler}
-     */
-    public static UtilsCompiler getInstance() {
-        if (sInstance == null) {
-            synchronized (UtilsCompiler.class) {
-                if (sInstance == null) {
-                    sInstance = new UtilsCompiler();
-                }
-            }
-        }
-        return sInstance;
-    }
+    private val TAG = UtilsCompiler::class.java.simpleName
 
     // ===================
     // = Activity 管理控制 =
     // ===================
 
     // ActivityManagerAssist 实例
-    private volatile ActivityManagerAssist sManagerInstance;
-
-    /**
-     * 获取 ActivityManagerAssist 管理实例
-     * @return {@link ActivityManagerAssist}
-     */
-    private ActivityManagerAssist getManager() {
-        if (sManagerInstance == null) {
-            synchronized (ActivityManagerAssist.class) {
-                if (sManagerInstance == null) {
-                    sManagerInstance = new ActivityManagerAssist();
-                }
-            }
-        }
-        return sManagerInstance;
-    }
+    private val mManager: ActivityManagerAssist = ActivityManagerAssist()
 
     /**
      * 添加 Activity
-     * @param activity {@link Activity}
+     * @param activity [Activity]
      */
-    void addActivity(final Activity activity) {
-        getManager().addActivity(activity);
+    fun addActivity(activity: Activity?) {
+        mManager.addActivity(activity)
     }
 
     /**
      * 移除 Activity
-     * @param activity {@link Activity}
+     * @param activity [Activity]
      */
-    void removeActivity(final Activity activity) {
-        getManager().removeActivity(activity);
+    fun removeActivity(activity: Activity?) {
+        mManager.removeActivity(activity)
     }
 
     /**
      * 结束所有 Activity
      */
-    public void finishAllActivity() {
-        getManager().finishAllActivity();
+    fun finishAllActivity() {
+        mManager.finishAllActivity()
     }
 
     // ========
@@ -108,16 +63,17 @@ public final class UtilsCompiler {
     // ========
 
     // JSON 字符串转 T Object
-    private final Gson FROM_GSON   = createGson().create();
+    private val FROM_GSON: Gson = createGson().create()
+
     // JSON 缩进
-    private final Gson INDENT_GSON = createGson().setPrettyPrinting().create();
+    private val INDENT_GSON: Gson = createGson().setPrettyPrinting().create()
 
     /**
      * 创建 GsonBuilder
-     * @return {@link GsonBuilder}
+     * @return [GsonBuilder]
      */
-    GsonBuilder createGson() {
-        return new GsonBuilder().serializeNulls();
+    private fun createGson(): GsonBuilder {
+        return GsonBuilder().serializeNulls()
     }
 
     /**
@@ -125,70 +81,35 @@ public final class UtilsCompiler {
      * @param json JSON String
      * @return JSON String
      */
-    String toJsonIndent(final String json) {
-        return toJsonIndent(json, INDENT_GSON);
-    }
-
-    /**
-     * JSON String 缩进处理
-     * @param json JSON String
-     * @param gson {@link Gson}
-     * @return JSON String
-     */
-    String toJsonIndent(
-            final String json,
-            final Gson gson
-    ) {
-        if (gson != null) {
-            try {
-                JsonReader reader = new JsonReader(new StringReader(json));
-                reader.setLenient(true);
-                JsonElement jsonElement = JsonParser.parseReader(reader);
-                return gson.toJson(jsonElement);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "toJsonIndent");
-            }
+    private fun toJsonIndent(json: String?): String? {
+        try {
+            val reader = JsonReader(StringReader(json))
+            reader.isLenient = true
+            val jsonElement: JsonElement = JsonParser.parseReader(reader)
+            return INDENT_GSON.toJson(jsonElement)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "toJsonIndent")
         }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 将 JSON String 映射为指定类型对象
-     * @param json     JSON String
-     * @param classOfT {@link Class} T
-     * @param <T>      泛型
-     * @return instance of type
-     */
-    <T> T fromJson(
-            final String json,
-            final Class<T> classOfT
-    ) {
-        return fromJson(json, classOfT, FROM_GSON);
+        return null
     }
 
     /**
      * 将 JSON String 映射为指定类型对象
      * @param json     JSON String
-     * @param classOfT {@link Class} T
-     * @param gson     {@link Gson}
+     * @param classOfT [Class] T
      * @param <T>      泛型
      * @return instance of type
      */
-    <T> T fromJson(
-            final String json,
-            final Class<T> classOfT,
-            final Gson gson
-    ) {
-        if (gson != null) {
-            try {
-                return gson.fromJson(json, classOfT);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "fromJson");
-            }
+    private fun <T> fromJson(
+        json: String?,
+        classOfT: Class<T>?
+    ): T? {
+        try {
+            return FROM_GSON.fromJson(json, classOfT)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "fromJson")
         }
-        return null;
+        return null
     }
 
     // ==============
@@ -196,27 +117,30 @@ public final class UtilsCompiler {
     // ==============
 
     // key = moduleName, value = 接口所属功能注释获取
-    private final Map<String, UrlFunctionGet> URL_FUNCTION_MAP = new LinkedHashMap<>();
+    private val URL_FUNCTION_MAP = linkedMapOf<String, UrlFunctionGet?>()
 
     /**
      * 添加接口所属功能注释
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param function   接口所属功能注释获取
      */
-    public void putUrlFunction(
-            final String moduleName,
-            final UrlFunctionGet function
+    fun putUrlFunction(
+        moduleName: String?,
+        function: UrlFunctionGet?
     ) {
-        if (TextUtils.isEmpty(moduleName)) return;
-        URL_FUNCTION_MAP.put(moduleName, function);
+        if (StringUtils.isEmpty(moduleName)) return
+        moduleName?.let {
+            URL_FUNCTION_MAP[it] = function
+        }
     }
 
     /**
      * 移除接口所属功能注释
      * @param moduleName 模块名 ( 要求唯一性 )
      */
-    public void removeUrlFunction(final String moduleName) {
-        URL_FUNCTION_MAP.remove(moduleName);
+    fun removeUrlFunction(moduleName: String?) {
+        if (StringUtils.isEmpty(moduleName)) return
+        URL_FUNCTION_MAP.remove(moduleName)
     }
 
     /**
@@ -224,8 +148,9 @@ public final class UtilsCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 接口所属功能注释获取
      */
-    UrlFunctionGet getUrlFunction(final String moduleName) {
-        return URL_FUNCTION_MAP.get(moduleName);
+    fun getUrlFunction(moduleName: String?): UrlFunctionGet? {
+        if (StringUtils.isEmpty(moduleName)) return null
+        return URL_FUNCTION_MAP[moduleName]
     }
 
     // ============
@@ -233,32 +158,30 @@ public final class UtilsCompiler {
     // ============
 
     // 监听回调
-    private final List<DevCallback<Boolean>> mCallbackLists = new CopyOnWriteArrayList<>();
+    private val mCallbackLists: MutableList<DevCallback<Boolean>> = CopyOnWriteArrayList()
 
     /**
      * 移除所有回调
      */
-    void clearCallback() {
-        mCallbackLists.clear();
+    fun clearCallback() {
+        mCallbackLists.clear()
     }
 
     /**
      * 移除回调 ( 关闭页面调用 )
      * @param callback 回调事件
      */
-    void removeCallback(final DevCallback<Boolean> callback) {
-        if (callback == null) return;
-        mCallbackLists.remove(callback);
+    fun removeCallback(callback: DevCallback<Boolean>) {
+        mCallbackLists.remove(callback)
     }
 
     /**
      * 添加回调
      * @param callback 回调事件
      */
-    void addCallback(final DevCallback<Boolean> callback) {
-        if (callback == null) return;
-        if (mCallbackLists.contains(callback)) return;
-        mCallbackLists.add(callback);
+    fun addCallback(callback: DevCallback<Boolean>) {
+        if (mCallbackLists.contains(callback)) return
+        mCallbackLists.add(callback)
     }
 
     /**
@@ -266,17 +189,17 @@ public final class UtilsCompiler {
      * @param isQuerying 是否查询中
      * @param size       数据数量
      */
-    void notifyCallback(
-            final boolean isQuerying,
-            final int size
+    fun notifyCallback(
+        isQuerying: Boolean,
+        size: Int
     ) {
-        for (DevCallback<Boolean> callback : mCallbackLists) {
-            HandlerUtils.postRunnable(() -> {
+        for (callback in mCallbackLists) {
+            HandlerUtils.postRunnable {
                 try {
-                    callback.callback(isQuerying, size);
-                } catch (Exception ignored) {
+                    callback.callback(isQuerying, size)
+                } catch (ignored: Exception) {
                 }
-            });
+            }
         }
     }
 
@@ -285,57 +208,58 @@ public final class UtilsCompiler {
     // ==========
 
     // 是否查询中
-    private       boolean                        mQuerying = false;
+    private var mQuerying = false
+
     // 数据源
-    private final Map<String, List<CaptureItem>> mDataMaps = new LinkedHashMap<>();
+    private val mDataMaps = linkedMapOf<String, List<CaptureItem>>()
 
     /**
      * 查询数据
      * @param callback  回调事件
      * @param isRefresh 是否刷新操作
      */
-    void queryData(
-            final DevCallback<Boolean> callback,
-            final boolean isRefresh
+    fun queryData(
+        callback: DevCallback<Boolean>,
+        isRefresh: Boolean
     ) {
-        addCallback(callback);
-        int size = mDataMaps.size();
+        addCallback(callback)
+        val size = mDataMaps.size
         if (mQuerying) {
-            notifyCallback(true, size);
-            return;
+            notifyCallback(true, size)
+            return
         }
         // 如果存在数据且非刷新操作表示需要获取数据
         if (size != 0 && !isRefresh) {
-            notifyCallback(false, size);
-            return;
+            notifyCallback(false, size)
+            return
         }
-        mQuerying = true;
+        mQuerying = true
         // 触发通知表示查询中
-        notifyCallback(true, size);
+        notifyCallback(true, size)
         // 后台读取数据
-        new Thread(() -> {
-            Map<String, List<CaptureItem>> maps = DevHttpCapture.getAllModule(false);
-            mDataMaps.clear();
-            mDataMaps.putAll(maps);
-            mQuerying = false;
-            notifyCallback(false, mDataMaps.size());
-            clearCallback();
-        }).start();
+        Thread {
+            val maps = DevHttpCapture.utils().getAllModule(false)
+            mDataMaps.clear()
+            mDataMaps.putAll(maps)
+            mQuerying = false
+            notifyCallback(false, mDataMaps.size)
+            clearCallback()
+        }.start()
     }
 
     /**
      * 移除所有数据
      */
-    void clearData() {
-        mDataMaps.clear();
+    fun clearData() {
+        mDataMaps.clear()
     }
 
     /**
      * 是否查询中
-     * @return {@code true} yes, {@code false} no
+     * @return `true` yes, `false` no
      */
-    boolean isQuerying() {
-        return mQuerying;
+    fun isQuerying(): Boolean {
+        return mQuerying
     }
 
     // ==========
@@ -343,31 +267,32 @@ public final class UtilsCompiler {
     // ==========
 
     // Windows 目录资源文件名排序比较器
-    private final WindowsExplorerStringSimpleComparator COMPARATOR = new WindowsExplorerStringSimpleComparator();
+    private val COMPARATOR = WindowsExplorerStringSimpleComparator()
 
     /**
      * 获取首页数据源
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 首页数据源
      */
-    List<Items.MainItem> getMainData(final String moduleName) {
-        List<Items.MainItem> lists = new ArrayList<>();
+    fun getMainData(moduleName: String): List<Items.MainItem> {
+        val lists = mutableListOf<Items.MainItem>()
         // 判断是否显示指定模块
-        if (TextUtils.isEmpty(moduleName)) {
-            for (Map.Entry<String, List<CaptureItem>> entry : mDataMaps.entrySet()) {
-                if (CollectionUtils.isNotEmpty(entry.getValue())) {
-                    lists.add(new Items.MainItem(entry.getKey(), entry.getValue()));
+        if (StringUtils.isEmpty(moduleName)) {
+            mDataMaps.forEach { entry ->
+                if (CollectionUtils.isNotEmpty(entry.value)) {
+                    lists.add(Items.MainItem(entry.key, entry.value))
                 }
             }
         } else {
-            List<CaptureItem> data = mDataMaps.get(moduleName);
-            if (CollectionUtils.isNotEmpty(data)) {
-                lists.add(new Items.MainItem(moduleName, data));
+            mDataMaps[moduleName]?.let {
+                if (CollectionUtils.isNotEmpty(it)) {
+                    lists.add(Items.MainItem(moduleName, it))
+                }
             }
         }
         // 进行排序
-        Collections.sort(lists, (o1, o2) -> COMPARATOR.compare(o1.moduleName, o2.moduleName));
-        return lists;
+        lists.sortWith { o1, o2 -> COMPARATOR.compare(o1.moduleName, o2.moduleName) }
+        return lists
     }
 
     /**
@@ -376,21 +301,22 @@ public final class UtilsCompiler {
      * @param date       yyyyMMdd
      * @return 抓包存储 Item
      */
-    private CaptureItem getCaptureItemByDate(
-            final String moduleName,
-            final String date
-    ) {
+    private fun getCaptureItemByDate(
+        moduleName: String,
+        date: String
+    ): CaptureItem? {
         if (StringUtils.isNotEmpty(date)) {
-            List<CaptureItem> data = mDataMaps.get(moduleName);
-            if (CollectionUtils.isNotEmpty(data)) {
-                for (CaptureItem item : data) {
-                    if (item != null && date.equals(item.getYyyyMMdd())) {
-                        return item;
+            mDataMaps[moduleName]?.let { list ->
+                if (CollectionUtils.isNotEmpty(list)) {
+                    for (item in list) {
+                        if (date == item.yyyyMMdd) {
+                            return item
+                        }
                     }
                 }
             }
         }
-        return null;
+        return null
     }
 
     /**
@@ -398,86 +324,92 @@ public final class UtilsCompiler {
      * @param json 抓包文件 JSON 格式数据
      * @return 抓包文件数据
      */
-    List<Items.FileItem> getFileData(final String json) {
-        List<Items.FileItem> lists       = new ArrayList<>();
-        CaptureFile          captureFile = fromJson(json, CaptureFile.class);
+    fun getFileData(json: String?): List<Items.FileItem> {
+        val lists = mutableListOf<Items.FileItem>()
+        val captureFile = fromJson(json, CaptureFile::class.java)
         if (captureFile != null) {
-            CaptureInfo captureInfo = captureFile.getCaptureInfo();
-            if (captureInfo != null) {
-
+            captureFile.getCaptureInfo()?.let { captureInfo ->
                 // 接口所属功能
-                String function = getUrlFunctionByInfo(captureFile, captureInfo);
+                val function = getUrlFunctionByInfo(captureFile, captureInfo)
                 if (StringUtils.isNotEmpty(function)) {
-                    lists.add(new Items.FileItem(
+                    lists.add(
+                        Items.FileItem(
                             ResourceUtils.getString(R.string.dev_http_capture_url_function),
-                            function
-                    ));
+                            function ?: ""
+                        )
+                    )
                 }
 
-                // 请求方式
-                lists.add(new Items.FileItem(
-                        ResourceUtils.getString(R.string.dev_http_capture_request_method),
-                        captureInfo.requestMethod
-                ));
-
-                // 请求 URL
-                lists.add(new Items.FileItem(
+                // 请求链接
+                lists.add(
+                    Items.FileItem(
                         ResourceUtils.getString(R.string.dev_http_capture_request_url),
-                        captureInfo.requestUrl
-                ));
+                        captureInfo.requestUrl ?: ""
+                    )
+                )
 
-                // 请求 Header
-                String requestHeader = mapToString(
-                        captureInfo.requestHeader
-                ).toString();
+                // 请求方法
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_method),
+                        captureInfo.requestMethod ?: ""
+                    )
+                )
+
+                // 请求头信息
+                val requestHeader = mapToString(captureInfo.requestHeader).toString()
                 if (StringUtils.isNotEmpty(requestHeader)) {
-                    lists.add(new Items.FileItem(
+                    lists.add(
+                        Items.FileItem(
                             ResourceUtils.getString(R.string.dev_http_capture_request_header),
                             requestHeader
-                    ));
+                        )
+                    )
                 }
 
-                // 请求 Body
-                String requestBody = mapToString(
-                        captureInfo.requestBody
-                ).toString();
+                // 请求数据
+                val requestBody = mapToString(captureInfo.requestBody).toString()
                 if (StringUtils.isNotEmpty(requestBody)) {
-                    lists.add(new Items.FileItem(
+                    lists.add(
+                        Items.FileItem(
                             ResourceUtils.getString(R.string.dev_http_capture_request_body),
                             requestBody
-                    ));
+                        )
+                    )
                 }
 
                 // 响应状态
-                String responseStatus = mapToString(
-                        captureInfo.responseStatus
-                ).toString();
+                val responseStatus = mapToString(captureInfo.responseStatus).toString()
                 if (StringUtils.isNotEmpty(responseStatus)) {
-                    lists.add(new Items.FileItem(
+                    lists.add(
+                        Items.FileItem(
                             ResourceUtils.getString(R.string.dev_http_capture_response_status),
                             responseStatus
-                    ));
+                        )
+                    )
                 }
 
-                // 响应 Header
-                String responseHeader = mapToString(
-                        captureInfo.responseHeader
-                ).toString();
+                // 响应头信息
+                val responseHeader = mapToString(captureInfo.responseHeader).toString()
                 if (StringUtils.isNotEmpty(responseHeader)) {
-                    lists.add(new Items.FileItem(
+                    lists.add(
+                        Items.FileItem(
                             ResourceUtils.getString(R.string.dev_http_capture_response_header),
                             responseHeader
-                    ));
+                        )
+                    )
                 }
 
-                // 响应 Body
-                lists.add(new Items.FileItem(
+                // 响应数据
+                lists.add(
+                    Items.FileItem(
                         ResourceUtils.getString(R.string.dev_http_capture_response_body),
-                        UtilsCompiler.getInstance().toJsonIndent(captureInfo.responseBody)
-                ));
+                        toJsonIndent(captureInfo.responseBody) ?: ""
+                    )
+                )
             }
         }
-        return lists;
+        return lists
     }
 
     /**
@@ -488,59 +420,53 @@ public final class UtilsCompiler {
      * @param groupType  分组条件类型
      * @return 指定筛选条件抓包列表数据
      */
-    List<Items.GroupItem> getDateData(
-            final String moduleName,
-            final String date,
-            final Items.DataType dataType,
-            final Items.GroupType groupType
-    ) {
-        List<Items.GroupItem> dataLists = new ArrayList<>();
+    fun getDateData(
+        moduleName: String,
+        date: String,
+        dataType: Items.DataType,
+        groupType: Items.GroupType
+    ): List<Items.GroupItem> {
+        val dataLists = mutableListOf<Items.GroupItem>()
         // 通过时间 ( yyyyMMdd ) 获取抓包存储 Item
-        CaptureItem captureItem = getCaptureItemByDate(moduleName, date);
-        if (captureItem == null) return dataLists;
-
-        Map<String, List<CaptureFile>> tempMaps = new LinkedHashMap<>();
-        if (dataType == Items.DataType.T_ALL) {
-            // 以全部数据为展示
-            tempMaps.putAll(captureItem.getData());
-        } else {
-            // 以指定时间数据为展示
-            for (Map.Entry<String, List<CaptureFile>> entry : captureItem.getData().entrySet()) {
-                if (CollectionUtils.isNotEmpty(entry.getValue())) {
-                    if (Items.convertDataType(entry.getKey()) == dataType) {
-                        tempMaps.put(entry.getKey(), entry.getValue());
+        getCaptureItemByDate(moduleName, date)?.let { captureItem ->
+            val tempMaps = linkedMapOf<String, List<CaptureFile>>()
+            if (dataType === Items.DataType.T_ALL) {
+                // 以全部数据为展示
+                tempMaps.putAll(captureItem.data)
+            } else {
+                // 以指定时间数据为展示
+                captureItem.data.forEach { entry ->
+                    if (CollectionUtils.isNotEmpty(entry.value)) {
+                        if (Items.convertDataType(entry.key) === dataType) {
+                            tempMaps[entry.key] = entry.value
+                        }
                     }
                 }
             }
-        }
-        // 以时间为分组 ( 展开条标题 )
-        if (groupType == Items.GroupType.T_TIME) {
-            for (Map.Entry<String, List<CaptureFile>> entry : tempMaps.entrySet()) {
-                if (CollectionUtils.isNotEmpty(entry.getValue())) {
-                    dataLists.add(new Items.GroupItem(entry.getKey(), entry.getValue()));
+            // 以时间为分组 ( 展开条标题 )
+            if (groupType == Items.GroupType.T_TIME) {
+                tempMaps.forEach { entry ->
+                    dataLists.add(Items.GroupItem(entry.key, entry.value))
                 }
-            }
-        } else {
-            // 以请求链接为分组 ( 展开条标题 )
-            Map<String, List<CaptureFile>> urlMaps = new LinkedHashMap<>();
-            for (List<CaptureFile> lists : tempMaps.values()) {
-                if (CollectionUtils.isNotEmpty(lists)) {
-                    for (CaptureFile captureFile : lists) {
-                        String urlKey = Items.convertUrlKey(captureFile.getUrl());
-                        MapUtils.putToList(urlMaps, urlKey, captureFile);
+            } else {
+                // 以请求链接为分组 ( 展开条标题 )
+                val urlMaps = linkedMapOf<String, List<CaptureFile>>()
+                tempMaps.values.forEach { lists ->
+                    for (captureFile in lists) {
+                        val urlKey = Items.convertUrlKey(captureFile.getUrl())
+                        MapUtils.putToList(urlMaps, urlKey, captureFile)
                     }
                 }
-            }
-            // 保存处理后的数据
-            for (Map.Entry<String, List<CaptureFile>> entry : urlMaps.entrySet()) {
-                CaptureFile     captureFile = entry.getValue().get(0);
-                String          function    = getUrlFunctionByFile(captureFile, entry.getKey());
-                Items.GroupItem item        = new Items.GroupItem(entry.getKey(), entry.getValue());
-                item.setFunction(function);
-                dataLists.add(item);
+                urlMaps.forEach { entry ->
+                    val captureFile = entry.value[0]
+                    val function = getUrlFunctionByFile(captureFile, entry.key)
+                    val item = Items.GroupItem(entry.key, entry.value)
+                    item.setFunction(function)
+                    dataLists.add(item)
+                }
             }
         }
-        return dataLists;
+        return dataLists
     }
 
     // =============
@@ -548,7 +474,7 @@ public final class UtilsCompiler {
     // =============
 
     // 接口所属功能注释缓存
-    private final Map<String, String> mFunctionCacheMaps = new HashMap<>();
+    private val mFunctionCacheMaps = mutableMapOf<String, String>()
 
     /**
      * 获取接口所属功能
@@ -556,74 +482,27 @@ public final class UtilsCompiler {
      * @param captureInfo 抓包数据
      * @return 接口所属功能
      */
-    private String getUrlFunctionByInfo(
-            final CaptureFile captureFile,
-            final CaptureInfo captureInfo
-    ) {
-        if (captureFile != null && captureInfo != null) {
-            // 接口所属功能
-            UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
-                    captureFile.getModuleName()
-            );
-            if (urlFunction != null) {
-                String convertUrlKey = Items.convertUrlKey(captureInfo.requestUrl);
-                String cacheFunction = mFunctionCacheMaps.get(convertUrlKey);
-                String function = urlFunction.toUrlFunction(
-                        captureFile.getModuleName(), captureInfo.requestUrl,
-                        convertUrlKey, captureInfo.requestMethod, cacheFunction
-                );
-                // 两个值不同才进行变更
-                if (!StringUtils.equals(cacheFunction, function)) {
-                    mFunctionCacheMaps.put(convertUrlKey, function);
+    private fun getUrlFunctionByInfo(
+        captureFile: CaptureFile,
+        captureInfo: CaptureInfo
+    ): String? {
+        // 接口所属功能
+        getUrlFunction(captureFile.getModuleName())?.let {
+            val convertUrlKey = Items.convertUrlKey(captureInfo.requestUrl)
+            val cacheFunction = mFunctionCacheMaps[convertUrlKey]
+            val function = it.toUrlFunction(
+                captureFile.getModuleName(), captureInfo.requestUrl,
+                convertUrlKey, captureInfo.requestMethod, cacheFunction
+            )
+            // 两个值不同才进行变更
+            if (!StringUtils.equalsNotNull(cacheFunction, function)) {
+                if (convertUrlKey != null && function != null) {
+                    mFunctionCacheMaps[convertUrlKey] = function
                 }
-                return function;
             }
+            return function
         }
-        return null;
-    }
-
-    /**
-     * 获取接口所属功能
-     * @param captureFile 抓包存储文件
-     * @return 接口所属功能
-     */
-    String getUrlFunctionByFile(final CaptureFile captureFile) {
-        if (captureFile != null) {
-            String convertUrlKey = Items.convertUrlKey(captureFile.getUrl());
-            return getUrlFunctionByFile(captureFile, convertUrlKey);
-        }
-        return null;
-    }
-
-    /**
-     * 获取接口所属功能
-     * @param captureFile   抓包存储文件
-     * @param convertUrlKey 拆分 Url 用于匹配接口所属功能注释
-     * @return 接口所属功能
-     */
-    private String getUrlFunctionByFile(
-            final CaptureFile captureFile,
-            final String convertUrlKey
-    ) {
-        if (captureFile != null) {
-            // 接口所属功能
-            UrlFunctionGet urlFunction = UtilsCompiler.getInstance().getUrlFunction(
-                    captureFile.getModuleName()
-            );
-            if (urlFunction != null) {
-                String cacheFunction = mFunctionCacheMaps.get(convertUrlKey);
-                String function = urlFunction.toUrlFunction(
-                        captureFile.getModuleName(), captureFile.getUrl(),
-                        convertUrlKey, captureFile.getMethod(), cacheFunction
-                );
-                // 两个值不同才进行变更
-                if (!StringUtils.equals(cacheFunction, function)) {
-                    mFunctionCacheMaps.put(convertUrlKey, function);
-                }
-                return function;
-            }
-        }
-        return null;
+        return null
     }
 
     // ==========
@@ -631,13 +510,13 @@ public final class UtilsCompiler {
     // ==========
 
     // 刷新点击 ( 双击 ) 辅助类
-    static final ClickUtils.ClickAssist sRefreshClick = new ClickUtils.ClickAssist(10000L);
+    val sRefreshClick = ClickAssist(10000L)
 
     /**
      * 重置刷新点击处理
      */
-    void resetRefreshClick() {
-        sRefreshClick.reset().setIntervalTime(10000L);
+    fun resetRefreshClick() {
+        sRefreshClick.reset().setIntervalTime(10000L)
     }
 
     // ============
@@ -646,40 +525,12 @@ public final class UtilsCompiler {
 
     /**
      * 键值对拼接
-     * @param map {@link Map}
+     * @param map [Map]
      * @param <K> key
      * @param <V> value
-     * @return {@link StringBuilder}
+     * @return [StringBuilder]
      */
-    private <K, V> StringBuilder mapToString(final Map<K, V> map) {
-        return mapToString(map, new StringBuilder());
-    }
-
-    /**
-     * 键值对拼接
-     * @param map     {@link Map}
-     * @param builder Builder
-     * @param <K>     key
-     * @param <V>     value
-     * @return {@link StringBuilder}
-     */
-    private <K, V> StringBuilder mapToString(
-            final Map<K, V> map,
-            final StringBuilder builder
-    ) {
-        if (map != null && builder != null) {
-            Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<K, V> entry = iterator.next();
-                builder.append(ConvertUtils.toString(entry.getKey()));
-                builder.append(": ");
-                builder.append(ConvertUtils.toString(entry.getValue()));
-                // 如果还有下一行则追加换行
-                if (iterator.hasNext()) {
-                    builder.append(DevFinal.SYMBOL.NEW_LINE);
-                }
-            }
-        }
-        return builder;
+    private fun <K, V> mapToString(map: Map<K, V>): StringBuilder {
+        return MapUtils.mapToString(map, ": ")
     }
 }

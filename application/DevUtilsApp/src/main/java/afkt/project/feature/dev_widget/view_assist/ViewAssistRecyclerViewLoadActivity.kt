@@ -26,7 +26,7 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
         QuickHelper.get(parent).setPadding(0)
 
         val url = "https://picsum.photos/id/%s/1080/1920"
-        val lists: MutableList<String> = ArrayList()
+        val lists = mutableListOf<String>()
         for (i in 0..19) {
             lists.add(String.format(url, RandomUtils.getRandom(1, 1000)))
         }

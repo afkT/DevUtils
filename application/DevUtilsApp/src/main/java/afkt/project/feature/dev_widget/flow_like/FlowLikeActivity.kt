@@ -30,7 +30,7 @@ class FlowLikeActivity : BaseActivity<ActivityFlowLikeBinding>() {
 //        binding.vidFlv.iconHeight = AppSize.dp2px(30F)
 //
 //        // 设置漂浮图标
-//        val lists: MutableList<Drawable> = ArrayList()
+//        val lists = mutableListOf<Drawable>()
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_1))
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_2))
 //        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_3))

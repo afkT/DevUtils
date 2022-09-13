@@ -154,7 +154,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     // =
 
     override fun getSelectors(intent: Intent?): MutableList<MediaData> {
-        val lists: MutableList<MediaData> = ArrayList()
+        val lists = mutableListOf<MediaData>()
         val result = PictureSelector.obtainSelectorList(intent)
         result.forEach {
             it?.let { libData ->
@@ -168,7 +168,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         intent: Intent?,
         original: Boolean
     ): MutableList<Uri> {
-        val lists: MutableList<Uri> = ArrayList()
+        val lists = mutableListOf<Uri>()
         val result = getSelectors(intent)
         result.forEach { media ->
             val uri: Uri? = if (original) {

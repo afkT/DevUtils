@@ -83,7 +83,7 @@ object DevHttpCapture {
     // ===============
 
     // Http 抓包接口 Map
-    private val sCaptureMaps: LinkedHashMap<String, IHttpCapture> = LinkedHashMap()
+    private val sCaptureMaps = linkedMapOf<String, IHttpCapture>()
 
     /**
      * 添加 Http 抓包拦截处理

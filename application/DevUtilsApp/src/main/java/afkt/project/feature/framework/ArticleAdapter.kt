@@ -5,7 +5,6 @@ import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
 import android.content.Intent
 import android.net.Uri
-import android.text.TextUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
@@ -50,7 +49,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         // 绑定点击事件
         ListenerUtils.setOnClicks({
             val link = item.link
-            if (!TextUtils.isEmpty(link)) {
+            if (!StringUtils.isEmpty(link)) {
                 val uri = Uri.parse(link)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 AppUtils.startActivity(intent)

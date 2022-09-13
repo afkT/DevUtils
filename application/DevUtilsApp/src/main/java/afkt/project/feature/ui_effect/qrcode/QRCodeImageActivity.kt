@@ -7,7 +7,6 @@ import afkt.project.model.item.RouterPath
 import afkt.project.utils.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
-import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
@@ -56,7 +55,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
             }
             R.id.vid_tv -> {
                 val text = TextViewUtils.getText(binding.vidTv)
-                if (TextUtils.isEmpty(text)) return
+                if (StringUtils.isEmpty(text)) return
                 // 复制到剪切板
                 ClipboardUtils.copyText(text)
                 // 进行提示
