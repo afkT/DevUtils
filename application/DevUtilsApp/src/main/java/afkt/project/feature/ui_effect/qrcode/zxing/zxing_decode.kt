@@ -151,7 +151,7 @@ class DecodeThread(
     private val mHints: MutableMap<DecodeHintType, Any> = EnumMap(DecodeHintType::class.java)
 
     // 并发线程等待
-    private val mHandlerInitLatch: CountDownLatch = CountDownLatch(1)
+    private val mHandlerInitLatch = CountDownLatch(1)
 
     // 解码处理 Handler ( DecodeHandler )
     private var mHandler: DecodeHandler? = null
@@ -215,7 +215,7 @@ class DecodeHandler(
     private var mRunning = true
 
     // 读取图像数据对象
-    private val mMultiFormatReader: MultiFormatReader = MultiFormatReader()
+    private val mMultiFormatReader = MultiFormatReader()
 
     init {
         mMultiFormatReader.setHints(hints)

@@ -67,7 +67,7 @@ class ParentFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
             position: Int,
             max: Int
         ) {
-            val transaction: FragmentTransaction = manager.beginTransaction()
+            val transaction = manager.beginTransaction()
             transaction.add(id, get(position, max))
             transaction.commit()
         }

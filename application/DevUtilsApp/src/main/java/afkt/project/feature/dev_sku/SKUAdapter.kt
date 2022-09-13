@@ -23,8 +23,8 @@ class SKUAdapter(
 ) : DevDataAdapterExt<SKU.Attr, DevBaseViewBindingVH<SkuAdapterSpecBinding>>() {
 
     // 字体颜色
-    private val color92ba37: Int = ResourceUtils.getColor(R.color.color_92ba37)
-    private val color999999: Int = ResourceUtils.getColor(R.color.color_999999)
+    private val color92ba37 = ResourceUtils.getColor(R.color.color_92ba37)
+    private val color999999 = ResourceUtils.getColor(R.color.color_999999)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

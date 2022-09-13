@@ -137,7 +137,7 @@ class FilterItem(
                 FilterType.EMBOSS -> GPUImageEmbossFilter()
                 FilterType.POSTERIZE -> GPUImagePosterizeFilter()
                 FilterType.FILTER_GROUP -> {
-                    val filters: MutableList<GPUImageFilter> = LinkedList()
+                    val filters = LinkedList<GPUImageFilter>()
                     filters.add(GPUImageContrastFilter())
                     filters.add(GPUImageDirectionalSobelEdgeDetectionFilter())
                     filters.add(GPUImageGrayscaleFilter())

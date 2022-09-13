@@ -157,7 +157,7 @@ class TabLayoutAssist private constructor(
      */
     private fun createTabView(position: Int): View {
         val view = LayoutInflater.from(mTabLayout.context).inflate(R.layout.tab_item_view, null)
-        val textView: BaseTextView = view.findViewById(R.id.vid_tv)
+        val textView = view.findViewById<BaseTextView>(R.id.vid_tv)
         textView.text = mListTabs[position].title
         return view
     }

@@ -40,7 +40,7 @@ open class AdapterBean(
          * @return 适配器实体类集合
          */
         fun newAdapterBeanList(count: Int): List<AdapterBean> {
-            val lists: MutableList<AdapterBean> = ArrayList(count)
+            val lists = mutableListOf<AdapterBean>()
             for (i in 0 until count) {
                 lists.add(newAdapterBean(i))
             }

@@ -251,7 +251,7 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
     }
 
     @SuppressLint("HandlerLeak")
-    private var handler: Handler = object : Handler() {
+    private var handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             val value = index.getAndIncrement()

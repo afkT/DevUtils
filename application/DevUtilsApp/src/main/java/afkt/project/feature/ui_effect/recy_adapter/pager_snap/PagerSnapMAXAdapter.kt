@@ -42,14 +42,12 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-//        val holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
-//            newDataBindingViewHolder(parent, R.layout.adapter_pager_snap)
-//        return holder
-        val holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
-            DevBaseViewDataBindingVH.create(
-                parent, R.layout.adapter_pager_snap
-            )
-        return holder
+//        return newDataBindingViewHolder<AdapterPagerSnapBinding>(
+//            parent, R.layout.adapter_pager_snap
+//        )
+        return DevBaseViewDataBindingVH.create<AdapterPagerSnapBinding>(
+            parent, R.layout.adapter_pager_snap
+        )
     }
 
     override fun onBindViewHolder(

@@ -51,7 +51,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
     }
 
     @SuppressLint("HandlerLeak")
-    private val handler: Handler = object : Handler() {
+    private val handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             // 如果页面销毁了则不处理

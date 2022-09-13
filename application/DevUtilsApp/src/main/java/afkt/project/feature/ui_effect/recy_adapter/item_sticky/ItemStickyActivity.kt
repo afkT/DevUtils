@@ -46,7 +46,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // = 使用自定义悬浮 View =
         // ====================
 
-        val listener: PowerGroupListener = object : PowerGroupListener {
+        val listener = object : PowerGroupListener {
             override fun getGroupName(position: Int): String {
                 return itemStickyAdapter.getDataItem(position).timeTile
             }

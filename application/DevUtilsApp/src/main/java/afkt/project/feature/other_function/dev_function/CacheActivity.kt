@@ -94,7 +94,7 @@ class CacheActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
      */
     internal class CacheVo(var name: String) : Serializable {
 
-        var time: Long = System.currentTimeMillis()
+        var time = System.currentTimeMillis()
 
         constructor(
             name: String,

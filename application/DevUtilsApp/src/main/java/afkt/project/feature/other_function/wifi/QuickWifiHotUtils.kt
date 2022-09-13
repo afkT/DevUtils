@@ -131,7 +131,7 @@ class QuickWifiHotUtils(
     /**
      * 关闭 Wifi 检查线程
      */
-    private val closeWifiThread: Thread = object : Thread() {
+    private val closeWifiThread = object : Thread() {
         override fun run() {
             if (mStop) return
             // 如果属于需要销毁, 则全部不处理
@@ -183,7 +183,7 @@ class QuickWifiHotUtils(
     /**
      * 开启 Wifi 热点线程
      */
-    private val startWifiSpotThread: Thread = object : Thread() {
+    private val startWifiSpotThread = object : Thread() {
         @SuppressLint("MissingPermission")
         override fun run() {
             if (mCheck) return
@@ -245,7 +245,7 @@ class QuickWifiHotUtils(
     /**
      * 检查热点连接线程
      */
-    private val hotCheckThread: Thread = object : Thread() {
+    private val hotCheckThread = object : Thread() {
         override fun run() {
             while (mThreadCheckHot) {
                 // 如果属于需要销毁, 则全部不处理

@@ -335,7 +335,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     private val CHECK_HOTSOPT_STATE = 100
 
     @SuppressLint("HandlerLeak")
-    var handler: Handler = object : Handler() {
+    var handler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             when (msg.what) {

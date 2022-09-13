@@ -70,7 +70,7 @@ class ShopCartFloating(private val activity: AppCompatActivity) {
     }
 
     // 悬浮窗生命周期处理类
-    private val floatingLifecycle: FloatingLifecycle = FloatingLifecycle(activity, binding)
+    private val floatingLifecycle = FloatingLifecycle(activity, binding)
 
     // 购物车动画
     private val shopCartAnimation = ShopCartAnimation()
@@ -267,7 +267,7 @@ class ShopCartAnimation {
             rootView, object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     // 动画结束抖动数量
-                    val zoomTime: Long = 100
+                    val zoomTime = 100L
                     val zoomAnim = ScaleAnimation(
                         1.0F, 1.1F, 1.0F, 1.1F,
                         ScaleAnimation.RELATIVE_TO_SELF, 0.5F,
@@ -319,8 +319,8 @@ class ShopCartAnimation {
         val endOffsetX = ArrayUtils.get(wh, 0) / 2
         val endOffsetY = -ArrayUtils.get(wh, 1) / 3
         // 中间点偏移值
-        val controlOffsetX: Int = ResourceUtils.getDimensionInt(R.dimen.dp_50)
-        val controlOffsetY: Int = ResourceUtils.getDimensionInt(R.dimen.dp_200)
+        val controlOffsetX = ResourceUtils.getDimensionInt(R.dimen.dp_50)
+        val controlOffsetY = ResourceUtils.getDimensionInt(R.dimen.dp_200)
         // 开始、结束位置
         val startPosition = Point(cX, cY)
         val endPosition = Point(toX + endOffsetX, toY + endOffsetY)

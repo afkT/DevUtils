@@ -5,6 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityTextCalcBinding
 import afkt.project.model.item.RouterPath
 import android.graphics.Color
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.TextViewUtils
@@ -29,7 +30,7 @@ class TextCalcActivity : BaseActivity<ActivityTextCalcBinding>() {
                     RandomUtils.getRandomLetters(RandomUtils.getRandom(20))
 
             val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
-            val view: BaseTextView = QuickHelper.get(BaseTextView(this))
+            val view = QuickHelper.get(BaseTextView(this))
                 .setPadding(30)
                 .setMarginTop(40)
                 .setMarginBottom(20)
@@ -59,7 +60,7 @@ class TextCalcActivity : BaseActivity<ActivityTextCalcBinding>() {
                     )
                     val content = builder.toString()
                     ToastTintUtils.normal(content)
-                }.getView()
+                }.getView<View>()
             binding.vidLl.addView(view)
         }
     }

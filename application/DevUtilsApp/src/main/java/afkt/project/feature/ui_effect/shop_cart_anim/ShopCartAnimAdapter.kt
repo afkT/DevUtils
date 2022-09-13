@@ -38,7 +38,7 @@ class ShopCartAnimAdapter(data: List<CommodityItem?>) :
         holder: DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>,
         position: Int
     ) {
-        val item: CommodityItem? = getDataItem(position)
+        val item = getDataItem(position)
 
         // 商品信息
         ViewHelper.get()
