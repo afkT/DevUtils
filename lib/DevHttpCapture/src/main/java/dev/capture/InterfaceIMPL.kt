@@ -55,7 +55,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
         requestBody: RequestBody?,
         captureRedact: CaptureRedact
     ): LinkedHashMap<String, String> {
-        val map = LinkedHashMap<String, String>()
+        val map = linkedMapOf<String, String>()
         requestBody?.let { body ->
             body.contentType()?.let { type ->
                 if (headers[CONTENT_TYPE] == null) {
@@ -83,7 +83,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
         requestBody: RequestBody?,
         captureRedact: CaptureRedact
     ): LinkedHashMap<String, String> {
-        val map = LinkedHashMap<String, String>()
+        val map = linkedMapOf<String, String>()
         if (requestBody == null) {
             map[END] = "${request.method} requestBody is null"
         } else if (bodyHasUnknownEncoding(request.headers)) {
@@ -146,7 +146,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
         val contentLength = responseBody.contentLength()
         val bodySize = if (contentLength != -1L) "$contentLength-byte" else "unknown-length"
 
-        val map = LinkedHashMap<String, String>()
+        val map = linkedMapOf<String, String>()
         map[STATUS] = response.code.toString() + " " + response.message
         map[TIME] = tookMs.toString() + "ms"
         map[BODY_SIZE] = bodySize
@@ -288,7 +288,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             headersToRedact: Set<String>,
             replaceValue: String = REDACT_REPLACE_VALUE
         ): LinkedHashMap<String, String> {
-            val map = LinkedHashMap<String, String>()
+            val map = linkedMapOf<String, String>()
             for (i in 0 until headers.size) {
                 val name = headers.name(i)
                 if (name in headersToRedact) {
@@ -312,7 +312,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             bodyToRedact: Set<String>,
             replaceValue: String = REDACT_REPLACE_VALUE
         ): LinkedHashMap<String, String> {
-            val map = LinkedHashMap<String, String>()
+            val map = linkedMapOf<String, String>()
             for (i in 0 until body.size) {
                 val name = body.name(i)
                 if (name in bodyToRedact) {
@@ -341,10 +341,10 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                 StandardCharsets.UTF_8
             ) ?: StandardCharsets.UTF_8
 
-            val mapKeyCount = LinkedHashMap<String, Int>()
-            val mapDisposition = LinkedHashMap<String, String>()
+            val mapKeyCount = linkedMapOf<String, Int>()
+            val mapDisposition = linkedMapOf<String, String>()
 
-            val map = LinkedHashMap<String, String>()
+            val map = linkedMapOf<String, String>()
             for (i in 0 until body.size) {
                 val part = body.part(i)
                 part.headers?.let { headers ->

@@ -5,7 +5,6 @@ import dev.utils.common.StringUtils
 import dev.utils.common.cipher.Encrypt
 import okhttp3.OkHttpClient
 
-
 /**
  * detail: OkHttp 抓包工具库
  * @author Ttt
@@ -127,7 +126,7 @@ object DevHttpCapture {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return `true` yes, `false` no
      */
-    fun containsInterceptor(moduleName: String?): Boolean {
+    fun containsInterceptor(moduleName: String): Boolean {
         return if (StringUtils.isNotEmpty(moduleName)) {
             sCaptureMaps.containsKey(moduleName)
         } else false
@@ -138,7 +137,7 @@ object DevHttpCapture {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return `true` success, `false` fail
      */
-    fun removeInterceptor(moduleName: String?): Boolean {
+    fun removeInterceptor(moduleName: String): Boolean {
         if (StringUtils.isNotEmpty(moduleName)) {
             val httpCapture = sCaptureMaps[moduleName]
             if (httpCapture != null) {
@@ -157,7 +156,7 @@ object DevHttpCapture {
      * @return `true` success, `false` fail
      */
     fun updateInterceptor(
-        moduleName: String?,
+        moduleName: String,
         capture: Boolean
     ): Boolean {
         if (StringUtils.isNotEmpty(moduleName)) {
@@ -179,7 +178,7 @@ object DevHttpCapture {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包存储路径
      */
-    fun getModulePath(moduleName: String?): String? {
+    fun getModulePath(moduleName: String): String? {
         if (StringUtils.isNotEmpty(moduleName)) {
             val httpCapture = sCaptureMaps[moduleName]
             if (httpCapture != null) {
@@ -194,7 +193,7 @@ object DevHttpCapture {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块所有抓包数据
      */
-    fun getModuleHttpCaptures(moduleName: String?): MutableList<CaptureItem> {
+    fun getModuleHttpCaptures(moduleName: String): MutableList<CaptureItem> {
         if (StringUtils.isNotEmpty(moduleName)) {
             val httpCapture = sCaptureMaps[moduleName]
             if (httpCapture != null) {

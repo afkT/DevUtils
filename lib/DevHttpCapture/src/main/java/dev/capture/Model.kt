@@ -12,13 +12,13 @@ class CaptureRedact(
     val replaceValue: String = REDACT_REPLACE_VALUE
 ) {
     // 请求头隐藏信息 Key
-    val requestHeader: MutableSet<String> = mutableSetOf()
+    val requestHeader = mutableSetOf<String>()
 
     // 请求体隐藏信息 Key
-    val requestBody: MutableSet<String> = mutableSetOf()
+    val requestBody = mutableSetOf<String>()
 
     // 响应头隐藏信息 Key
-    val responseHeader: MutableSet<String> = mutableSetOf()
+    val responseHeader = mutableSetOf<String>()
 
     /**
      * 克隆新的抓包信息隐藏字段
@@ -71,10 +71,10 @@ class CaptureItem(
 class CaptureInfo {
 
     // 请求链接
-    var requestUrl: String? = null
+    var requestUrl: String = ""
 
     // 请求方法
-    var requestMethod: String? = null
+    var requestMethod: String = ""
 
     // 请求头信息
     val requestHeader = linkedMapOf<String, String>()
@@ -89,7 +89,7 @@ class CaptureInfo {
     val responseHeader = linkedMapOf<String, String>()
 
     // 响应数据
-    var responseBody: String? = null
+    var responseBody: String = ""
 
     /**
      * 将对象转换为 JSON String
@@ -109,10 +109,10 @@ class CaptureInfo {
 class CaptureFile {
 
     // 请求链接
-    private var url: String? = null
+    private var url: String = ""
 
     // 请求方法
-    private var method: String? = null
+    private var method: String = ""
 
     // 是否加密
     private var encrypt = false
@@ -121,20 +121,20 @@ class CaptureFile {
     private var time: Long = 0
 
     // 文件名
-    private var fileName: String? = null
+    private var fileName: String = ""
 
     // 模块名
-    private var moduleName: String? = null
+    private var moduleName: String = ""
 
     // =======
     // = get =
     // =======
 
-    fun getUrl(): String? {
+    fun getUrl(): String {
         return url
     }
 
-    fun getMethod(): String? {
+    fun getMethod(): String {
         return method
     }
 
@@ -146,11 +146,11 @@ class CaptureFile {
         return time
     }
 
-    fun getFileName(): String? {
+    fun getFileName(): String {
         return fileName
     }
 
-    fun getModuleName(): String? {
+    fun getModuleName(): String {
         return moduleName
     }
 
@@ -158,12 +158,12 @@ class CaptureFile {
     // = set =
     // =======
 
-    internal fun setUrl(url: String?): CaptureFile {
+    internal fun setUrl(url: String): CaptureFile {
         this.url = url
         return this
     }
 
-    internal fun setMethod(method: String?): CaptureFile {
+    internal fun setMethod(method: String): CaptureFile {
         this.method = method
         return this
     }
@@ -178,12 +178,12 @@ class CaptureFile {
         return this
     }
 
-    internal fun setFileName(fileName: String?): CaptureFile {
+    internal fun setFileName(fileName: String): CaptureFile {
         this.fileName = fileName
         return this
     }
 
-    internal fun setModuleName(moduleName: String?): CaptureFile {
+    internal fun setModuleName(moduleName: String): CaptureFile {
         this.moduleName = moduleName
         return this
     }

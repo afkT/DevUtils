@@ -45,7 +45,7 @@ class UtilsPublic private constructor() {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包存储路径
      */
-    fun getModulePath(moduleName: String?): String {
+    fun getModulePath(moduleName: String): String {
         return Utils.getModulePath(moduleName)
     }
 
@@ -55,10 +55,10 @@ class UtilsPublic private constructor() {
      */
     fun getAllModuleName(): MutableList<String> {
         val lists = mutableListOf<String>()
-        val root: File = FileUtils.getFile(getStoragePath())
+        val root = FileUtils.getFile(getStoragePath())
         if (FileUtils.isFileExists(root)) {
             root.listFiles()?.forEach { file ->
-                if (file != null && file.isDirectory) {
+                if (FileUtils.isDirectory(file)) {
                     lists.add(file.name)
                 }
             }
@@ -71,7 +71,7 @@ class UtilsPublic private constructor() {
      * @param isEncrypt 是否加密数据
      * @return 全部模块所有抓包数据
      */
-    fun getAllModule(isEncrypt: Boolean): MutableMap<String, MutableList<CaptureItem>> {
+    fun getAllModule(isEncrypt: Boolean): LinkedHashMap<String, MutableList<CaptureItem>> {
         return Utils.getAllModule(isEncrypt)
     }
 
@@ -84,7 +84,7 @@ class UtilsPublic private constructor() {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return `true` success, `false` fail
      */
-    fun deleteModule(moduleName: String?): Boolean {
+    fun deleteModule(moduleName: String): Boolean {
         return FileUtils.deleteAllInDir(getModulePath(moduleName))
     }
 
@@ -101,7 +101,7 @@ class UtilsPublic private constructor() {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包文件大小
      */
-    fun getModuleFileSize(moduleName: String?): String? {
+    fun getModuleFileSize(moduleName: String): String {
         return FileUtils.getDirSize(getModulePath(moduleName))
     }
 
@@ -109,7 +109,7 @@ class UtilsPublic private constructor() {
      * 获取全部模块抓包文件大小
      * @return 全部模块抓包文件大小
      */
-    fun getAllModuleFileSize(): String? {
+    fun getAllModuleFileSize(): String {
         return FileUtils.getDirSize(getStoragePath())
     }
 
@@ -118,7 +118,7 @@ class UtilsPublic private constructor() {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包文件大小
      */
-    fun getModuleFileLength(moduleName: String?): Long {
+    fun getModuleFileLength(moduleName: String): Long {
         return FileUtils.getDirLength(getModulePath(moduleName))
     }
 
@@ -141,18 +141,7 @@ internal object Utils {
     // = Gson =
     // ========
 
-    private val GSON = createGson(false).create()
-
-    /**
-     * 创建 GsonBuilder
-     * @param serializeNulls 是否序列化 null 值
-     * @return [GsonBuilder]
-     */
-    private fun createGson(serializeNulls: Boolean): GsonBuilder {
-        val builder = GsonBuilder()
-        if (serializeNulls) builder.serializeNulls()
-        return builder
-    }
+    private val GSON = GsonBuilder().create()
 
     /**
      * 将对象转换为 JSON String
@@ -240,7 +229,7 @@ internal object Utils {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 指定模块抓包存储路径
      */
-    fun getModulePath(moduleName: String?): String {
+    fun getModulePath(moduleName: String): String {
         return FileUtils.getAbsolutePath(
             FileUtils.getFile(getStoragePath(), moduleName)
         ) ?: ""
@@ -267,7 +256,7 @@ internal object Utils {
     fun getModuleHttpCaptureFile(captureFile: CaptureFile): File {
         val modulePath = getModulePath(captureFile.getModuleName())
         val filePath = getTimeFile(modulePath, captureFile.getTime())
-        return getModuleHttpCaptureFile(filePath, captureFile.getFileName()!!)
+        return getModuleHttpCaptureFile(filePath, captureFile.getFileName())
     }
 
     /**
@@ -396,7 +385,7 @@ internal object Utils {
      * @param isEncrypt 是否加密数据
      * @return 全部模块所有抓包数据
      */
-    fun getAllModule(isEncrypt: Boolean): MutableMap<String, MutableList<CaptureItem>> {
+    fun getAllModule(isEncrypt: Boolean): LinkedHashMap<String, MutableList<CaptureItem>> {
         val maps = linkedMapOf<String, MutableList<CaptureItem>>()
         val filePath = getStoragePath()
         val rootFile = FileUtils.getFile(filePath)
