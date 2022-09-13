@@ -7,7 +7,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.common.ConvertUtils
 import dev.utils.common.StringUtils
 
-internal class Items {
+class Items {
 
     /**
      * 数据来源类型
@@ -89,7 +89,7 @@ internal class Items {
      * 抓包列表数据包装类
      */
     class GroupItem(
-        var title: String?,
+        var title: String,
         var lists: List<CaptureFile>
     ) {
         var function: String? = null
@@ -157,7 +157,7 @@ internal class Items {
          * 1040 转换为 10 hour 40-49 minute
          * 1050 转换为 10 hour 50-59 minute
          */
-        fun convertTitleByHHMM(title: String?): String? {
+        fun convertTitleByHHMM(title: String): String {
             if (StringUtils.isLength(title, 4)) {
                 val builder = StringBuilder()
                 builder.append(title, 0, 2).append(" hour ")

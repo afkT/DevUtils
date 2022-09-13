@@ -21,7 +21,6 @@ import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator
 import java.io.StringReader
 import java.util.concurrent.CopyOnWriteArrayList
 
-
 internal object UtilsCompiler {
 
     // 日志 TAG
@@ -125,7 +124,7 @@ internal object UtilsCompiler {
      */
     fun putUrlFunction(
         moduleName: String,
-        function: UrlFunctionGet?
+        function: UrlFunctionGet
     ) {
         if (StringUtils.isEmpty(moduleName)) return
         URL_FUNCTION_MAP[moduleName] = function
