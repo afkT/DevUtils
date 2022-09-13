@@ -6,7 +6,6 @@ import afkt.demo.ui.adapter.MainTabAdapter
 import afkt.demo.ui.fragment.ItemValueFragment
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import dev.base.expand.viewbinding.DevBaseViewBindingActivity
 import dev.utils.app.helper.view.ViewHelper
 
@@ -18,7 +17,12 @@ import dev.utils.app.helper.view.ViewHelper
 class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBinding>() {
 
     // Tab Fragment
-    private val fragments = ArrayList<Fragment>()
+    private val fragments = mutableListOf(
+        ItemValueFragment.get(1),
+        ItemValueFragment.get(2),
+        ItemValueFragment.get(3),
+        ItemValueFragment.get(4)
+    )
 
     override fun baseContentId(): Int {
         return R.layout.activity_main_viewpager
@@ -30,11 +34,6 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        fragments.add(ItemValueFragment.get(1))
-        fragments.add(ItemValueFragment.get(2))
-        fragments.add(ItemValueFragment.get(3))
-        fragments.add(ItemValueFragment.get(4))
 
         binding.vidVp.apply {
             // 设置适配器

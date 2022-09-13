@@ -56,9 +56,10 @@ internal object LubanUtils {
         compressListener: OnCompressListener?
     ): Boolean {
         if (data == null || config == null || compressListener == null) return false
-        val lists = ArrayList<Any?>()
-        lists.add(data)
-        return compress(lists, config, predicate, renameListener, compressListener)
+        return compress(
+            mutableListOf<Any?>(data), config,
+            predicate, renameListener, compressListener
+        )
     }
 
     // =

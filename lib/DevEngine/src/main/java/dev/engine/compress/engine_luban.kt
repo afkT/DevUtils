@@ -28,9 +28,10 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
         compressListener: OnCompressListener?
     ): Boolean {
         if (data == null || config == null || compressListener == null) return false
-        val lists = ArrayList<Any?>()
-        lists.add(data)
-        return compress(lists, config, filter, renameListener, compressListener)
+        return compress(
+            mutableListOf<Any?>(data), config,
+            filter, renameListener, compressListener
+        )
     }
 
     override fun compress(

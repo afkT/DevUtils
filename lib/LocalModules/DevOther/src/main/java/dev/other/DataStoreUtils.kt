@@ -92,7 +92,7 @@ object DataStoreUtils {
         if (spNames.isEmpty()) throw Exception("spNames size is zero")
 
         val context = getContext()
-        val lists = ArrayList<DataMigration<Preferences>>()
+        val lists = mutableListOf<DataMigration<Preferences>>()
         for (name in spNames) {
             if (!TextUtils.isEmpty(name)) {
                 lists.add(SharedPreferencesMigration(context, name))
