@@ -5,7 +5,6 @@ import afkt.demo.databinding.FragmentParentBinding
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import dev.base.expand.viewbinding.DevBaseViewBindingFragment
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils

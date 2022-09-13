@@ -6,7 +6,6 @@ import okhttp3.internal.http.promisesBody
 import okio.Buffer
 import okio.GzipSource
 import java.io.EOFException
-import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 
 /**
