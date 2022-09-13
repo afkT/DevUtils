@@ -3,7 +3,6 @@ package dev.capture
 import android.app.Activity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonReader
 import dev.DevHttpCapture
@@ -85,7 +84,7 @@ internal object UtilsCompiler {
         try {
             val reader = JsonReader(StringReader(json))
             reader.isLenient = true
-            val jsonElement: JsonElement = JsonParser.parseReader(reader)
+            val jsonElement = JsonParser.parseReader(reader)
             return INDENT_GSON.toJson(jsonElement)
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "toJsonIndent")
@@ -125,20 +124,18 @@ internal object UtilsCompiler {
      * @param function   接口所属功能注释获取
      */
     fun putUrlFunction(
-        moduleName: String?,
+        moduleName: String,
         function: UrlFunctionGet?
     ) {
         if (StringUtils.isEmpty(moduleName)) return
-        moduleName?.let {
-            URL_FUNCTION_MAP[it] = function
-        }
+        URL_FUNCTION_MAP[moduleName] = function
     }
 
     /**
      * 移除接口所属功能注释
      * @param moduleName 模块名 ( 要求唯一性 )
      */
-    fun removeUrlFunction(moduleName: String?) {
+    fun removeUrlFunction(moduleName: String) {
         if (StringUtils.isEmpty(moduleName)) return
         URL_FUNCTION_MAP.remove(moduleName)
     }
@@ -148,7 +145,7 @@ internal object UtilsCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      * @return 接口所属功能注释获取
      */
-    fun getUrlFunction(moduleName: String?): UrlFunctionGet? {
+    fun getUrlFunction(moduleName: String): UrlFunctionGet? {
         if (StringUtils.isEmpty(moduleName)) return null
         return URL_FUNCTION_MAP[moduleName]
     }
@@ -211,7 +208,7 @@ internal object UtilsCompiler {
     private var mQuerying = false
 
     // 数据源
-    private val mDataMaps = linkedMapOf<String, List<CaptureItem>>()
+    private val mDataMaps = linkedMapOf<String, MutableList<CaptureItem>>()
 
     /**
      * 查询数据
@@ -344,7 +341,7 @@ internal object UtilsCompiler {
                 lists.add(
                     Items.FileItem(
                         ResourceUtils.getString(R.string.dev_http_capture_request_url),
-                        captureInfo.requestUrl ?: ""
+                        captureInfo.requestUrl
                     )
                 )
 
@@ -352,7 +349,7 @@ internal object UtilsCompiler {
                 lists.add(
                     Items.FileItem(
                         ResourceUtils.getString(R.string.dev_http_capture_request_method),
-                        captureInfo.requestMethod ?: ""
+                        captureInfo.requestMethod
                     )
                 )
 
@@ -487,12 +484,12 @@ internal object UtilsCompiler {
         captureInfo: CaptureInfo
     ): String? {
         // 接口所属功能
-        getUrlFunction(captureFile.getModuleName())?.let {
+        return getUrlFunction(captureFile.getModuleName())?.let {
             val convertUrlKey = Items.convertUrlKey(captureInfo.requestUrl)
             val cacheFunction = mFunctionCacheMaps[convertUrlKey]
             val function = it.toUrlFunction(
-                captureFile.getModuleName(), captureInfo.requestUrl,
-                convertUrlKey, captureInfo.requestMethod, cacheFunction
+                captureFile.getModuleName(), captureFile.getUrl(),
+                captureFile.getMethod(), convertUrlKey, cacheFunction
             )
             // 两个值不同才进行变更
             if (!StringUtils.equalsNotNull(cacheFunction, function)) {
@@ -502,6 +499,50 @@ internal object UtilsCompiler {
             }
             return function
         }
+    }
+
+    /**
+     * 获取接口所属功能
+     * @param captureFile 抓包存储文件
+     * @return 接口所属功能
+     */
+    fun getUrlFunctionByFile(captureFile: CaptureFile?): String? {
+        if (captureFile != null) {
+            val convertUrlKey = Items.convertUrlKey(captureFile.getUrl())
+            return getUrlFunctionByFile(captureFile, convertUrlKey)
+        }
+        return null
+    }
+
+    /**
+     * 获取接口所属功能
+     * @param captureFile   抓包存储文件
+     * @param convertUrlKey 拆分 Url 用于匹配接口所属功能注释
+     * @return 接口所属功能
+     */
+    private fun getUrlFunctionByFile(
+        captureFile: CaptureFile?,
+        convertUrlKey: String?
+    ): String? {
+        if (captureFile != null) {
+            // 接口所属功能
+            return getUrlFunction(
+                captureFile.getModuleName()
+            )?.let {
+                val cacheFunction = mFunctionCacheMaps[convertUrlKey]
+                val function = it.toUrlFunction(
+                    captureFile.getModuleName(), captureFile.getUrl(),
+                    captureFile.getMethod(), convertUrlKey, cacheFunction
+                )
+                // 两个值不同才进行变更
+                if (!StringUtils.equalsNotNull(cacheFunction, function)) {
+                    if (convertUrlKey != null && function != null) {
+                        mFunctionCacheMaps[convertUrlKey] = function
+                    }
+                }
+                return function
+            }
+        }
         return null
     }
 
@@ -510,13 +551,13 @@ internal object UtilsCompiler {
     // ==========
 
     // 刷新点击 ( 双击 ) 辅助类
-    val sRefreshClick = ClickAssist(10000L)
+    val REFRESH_CLICK = ClickAssist(10000L)
 
     /**
      * 重置刷新点击处理
      */
     fun resetRefreshClick() {
-        sRefreshClick.reset().setIntervalTime(10000L)
+        REFRESH_CLICK.reset().setIntervalTime(10000L)
     }
 
     // ============

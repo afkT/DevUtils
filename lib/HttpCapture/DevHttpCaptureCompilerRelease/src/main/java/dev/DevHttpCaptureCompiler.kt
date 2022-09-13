@@ -66,7 +66,7 @@ object DevHttpCaptureCompiler {
      */
     fun start(
         context: Context?,
-        moduleName: String?
+        moduleName: String
     ): Boolean {
         return false
     }
@@ -77,7 +77,7 @@ object DevHttpCaptureCompiler {
      * @param function   接口所属功能注释获取
      */
     fun putUrlFunction(
-        moduleName: String?,
+        moduleName: String,
         function: UrlFunctionGet
     ) {
     }
@@ -86,5 +86,5 @@ object DevHttpCaptureCompiler {
      * 移除接口所属功能注释
      * @param moduleName 模块名 ( 要求唯一性 )
      */
-    fun removeUrlFunction(moduleName: String?) {}
+    fun removeUrlFunction(moduleName: String) {}
 }

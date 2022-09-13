@@ -65,7 +65,7 @@ object DevHttpCaptureCompiler {
      * @return `true` success, `false` fail
      */
     fun start(context: Context?): Boolean {
-        return start(context, null)
+        return start(context, "")
     }
 
     /**
@@ -76,7 +76,7 @@ object DevHttpCaptureCompiler {
      */
     fun start(
         context: Context?,
-        moduleName: String?
+        moduleName: String
     ): Boolean {
         // 关闭全部页面
         finishAllActivity()
@@ -98,7 +98,7 @@ object DevHttpCaptureCompiler {
      * @param function   接口所属功能注释获取
      */
     fun putUrlFunction(
-        moduleName: String?,
+        moduleName: String,
         function: UrlFunctionGet
     ) {
         UtilsCompiler.putUrlFunction(
@@ -110,7 +110,7 @@ object DevHttpCaptureCompiler {
      * 移除接口所属功能注释
      * @param moduleName 模块名 ( 要求唯一性 )
      */
-    fun removeUrlFunction(moduleName: String?) {
+    fun removeUrlFunction(moduleName: String) {
         UtilsCompiler.removeUrlFunction(moduleName)
     }
 }

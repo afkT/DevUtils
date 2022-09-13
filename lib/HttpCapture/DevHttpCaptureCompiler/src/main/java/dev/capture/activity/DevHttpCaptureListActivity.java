@@ -204,7 +204,7 @@ public class DevHttpCaptureListActivity
                         DialogUtils.showDialog(mGroupTypeDialog);
                     }
                 }, mBinding.vidTabInclude.vidGroupLl)
-                .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.sRefreshClick) {
+                .setOnClick(new ClickUtils.OnDebouncingClickListener(UtilsCompiler.REFRESH_CLICK) {
                     @Override
                     public void doClick(View view) {
                         ToastTintUtils.normal(
