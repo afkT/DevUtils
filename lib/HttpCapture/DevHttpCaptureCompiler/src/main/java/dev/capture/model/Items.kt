@@ -128,7 +128,7 @@ class Items {
             val minute = StringUtils.substring(
                 key, 2, 4, false
             )
-            val mm: Int = ConvertUtils.toInt(minute, -1)
+            val mm = ConvertUtils.toInt(minute, -1)
             if (mm == -1) return null
             // 存储间隔以 10 分钟为单位
             return if (mm < 10) { // 00-09

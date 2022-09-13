@@ -30,7 +30,7 @@ suspend inline fun <T> finalExecute(
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
-    val uuid: UUID = UUID.randomUUID()
+    val uuid = UUID.randomUUID()
     runCatching {
         // 开始请求
         innerOriginalStartCallback(
@@ -83,7 +83,7 @@ suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
     // 全局通知回调方法 ( 创建一个全局通用传入 )
     globalCallback: Notify.GlobalCallback? = null
 ) {
-    val uuid: UUID = UUID.randomUUID()
+    val uuid = UUID.randomUUID()
     runCatching {
         // 开始请求
         innerBaseStartCallback(

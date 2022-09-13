@@ -265,7 +265,7 @@ class AppAutoSize {
         context: Context?,
         @DimenRes id: Int
     ): Float {
-        val value: Float = CONVERT.DIMEN_ID.getVariableValue(
+        val value = CONVERT.DIMEN_ID.getVariableValue(
             id, context
         )
         if (value == 0F) {
@@ -297,7 +297,7 @@ class AppAutoSize {
         context: Context?,
         resName: String?
     ): Float {
-        val value: Float = CONVERT.DIMEN_NAME.getVariableValue(
+        val value = CONVERT.DIMEN_NAME.getVariableValue(
             resName, context
         )
         if (value == 0F) {
@@ -445,28 +445,28 @@ class AppAutoSize {
         ): Float {
             when (type) {
                 Type.dp2px -> {
-                    val value: Float = DP_2_PX.getVariableValue(key, context)
+                    val value = DP_2_PX.getVariableValue(key, context)
                     if (value == 0F) {
                         DP_2_PX.variable.removeVariable(key)
                     }
                     return value
                 }
                 Type.px2dp -> {
-                    val value: Float = PX_2_DP.getVariableValue(key, context)
+                    val value = PX_2_DP.getVariableValue(key, context)
                     if (value == 0F) {
                         PX_2_DP.variable.removeVariable(key)
                     }
                     return value
                 }
                 Type.sp2px -> {
-                    val value: Float = SP_2_PX.getVariableValue(key, context)
+                    val value = SP_2_PX.getVariableValue(key, context)
                     if (value == 0F) {
                         SP_2_PX.variable.removeVariable(key)
                     }
                     return value
                 }
                 Type.px2sp -> {
-                    val value: Float = PX_2_SP.getVariableValue(key, context)
+                    val value = PX_2_SP.getVariableValue(key, context)
                     if (value == 0F) {
                         PX_2_SP.variable.removeVariable(key)
                     }

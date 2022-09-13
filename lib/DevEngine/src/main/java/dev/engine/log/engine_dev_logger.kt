@@ -7,7 +7,9 @@ import dev.utils.app.logger.LogConfig
  * detail: DevLogger Log Engine 实现
  * @author Ttt
  */
-abstract class DevLoggerEngineImpl(open val logConfig: LogConfig? = null) : ILogEngine {
+abstract class DevLoggerEngineImpl(
+    open val logConfig: LogConfig? = null
+) : ILogEngine {
 
     // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =

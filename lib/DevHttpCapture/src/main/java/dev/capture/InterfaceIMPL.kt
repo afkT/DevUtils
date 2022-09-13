@@ -118,7 +118,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                     }
                     else -> {
                         val contentType = requestBody.contentType()
-                        val charset: Charset = contentType?.charset(
+                        val charset = contentType?.charset(
                             StandardCharsets.UTF_8
                         ) ?: StandardCharsets.UTF_8
                         map[BODY_STRING] = buffer.readString(charset)
@@ -198,7 +198,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             }
 
             val contentType = responseBody.contentType()
-            val charset: Charset = contentType?.charset(
+            val charset = contentType?.charset(
                 StandardCharsets.UTF_8
             ) ?: StandardCharsets.UTF_8
 
@@ -337,7 +337,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             replaceValue: String = REDACT_REPLACE_VALUE
         ): LinkedHashMap<String, String> {
             val contentType = body.contentType()
-            val charset: Charset = contentType.charset(
+            val charset = contentType.charset(
                 StandardCharsets.UTF_8
             ) ?: StandardCharsets.UTF_8
 

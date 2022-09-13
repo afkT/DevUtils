@@ -171,7 +171,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         val lists = mutableListOf<Uri>()
         val result = getSelectors(intent)
         result.forEach { media ->
-            val uri: Uri? = if (original) {
+            val uri = if (original) {
                 media.getOriginalUri()
             } else {
                 val availableUri = media.getAvailableUri()
@@ -216,7 +216,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         val medias = ArrayList<LocalMedia>()
         if (lists != null) {
             for (media in lists) {
-                val libData: Any? = media.getLibOriginalData()
+                val libData = media.getLibOriginalData()
                 if (libData is LocalMedia) {
                     medias.add(libData)
                 } else {
@@ -295,7 +295,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     private fun startCameraModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
-                val libConfig: Any? = config.getLibCustomConfig()
+                val libConfig = config.getLibCustomConfig()
                 if (libConfig is PictureSelectionCameraModel) {
                     libConfig.forResultActivity(
                         PIC_REQUEST_CODE
@@ -318,7 +318,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     private fun startGalleryModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
-                val libConfig: Any? = config.getLibCustomConfig()
+                val libConfig = config.getLibCustomConfig()
                 if (libConfig is PictureSelectionModel) {
                     libConfig.forResult(
                         PIC_REQUEST_CODE
@@ -347,7 +347,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     private fun startPreviewModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
-                val libConfig: Any? = config.getLibCustomConfig()
+                val libConfig = config.getLibCustomConfig()
                 if (libConfig is PictureSelectionPreviewModel) {
                     libConfig.startActivityPreview(
                         ConvertUtils.toInt(config.getCustomData(), 0),

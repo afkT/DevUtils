@@ -23,7 +23,7 @@ class AdapterDateModuleList :
     DevDataAdapterExt2<GroupItem, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding>>() {
 
     // 延迟滑动时间
-    private val mDelay: Long = ResourceUtils.getInteger(
+    private val mDelay = ResourceUtils.getInteger(
         R.integer.dev_http_capture_query_item_scroll_delay
     ).toLong().coerceAtLeast(30L)
 

@@ -31,7 +31,7 @@ internal object UtilsCompiler {
     // ===================
 
     // ActivityManagerAssist 实例
-    private val mManager: ActivityManagerAssist = ActivityManagerAssist()
+    private val mManager = ActivityManagerAssist()
 
     /**
      * 添加 Activity
@@ -61,10 +61,10 @@ internal object UtilsCompiler {
     // ========
 
     // JSON 字符串转 T Object
-    private val FROM_GSON: Gson = createGson().create()
+    private val FROM_GSON = createGson().create()
 
     // JSON 缩进
-    private val INDENT_GSON: Gson = createGson().setPrettyPrinting().create()
+    private val INDENT_GSON = createGson().setPrettyPrinting().create()
 
     /**
      * 创建 GsonBuilder
@@ -154,7 +154,7 @@ internal object UtilsCompiler {
     // ============
 
     // 监听回调
-    private val mCallbackLists: MutableList<DevCallback<Boolean>> = CopyOnWriteArrayList()
+    private val mCallbackLists = CopyOnWriteArrayList<DevCallback<Boolean>>()
 
     /**
      * 移除所有回调

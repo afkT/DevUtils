@@ -414,7 +414,7 @@ class Progress private constructor(
          * @return 平均网速 byte/s
          */
         private fun calculateSpeed(): Long {
-            var sum: Long = 0
+            var sum = 0L
             for (speedTemp in speedBuffer) {
                 sum += speedTemp
             }

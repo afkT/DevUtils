@@ -106,7 +106,7 @@ open class MMKVKeyValueEngineImpl(
         key: String?,
         value: String?
     ): Boolean {
-        var content: String? = value
+        var content = value
         if (value != null && mConfig.cipher != null) {
             val bytes = mConfig.cipher.encrypt(ConvertUtils.toBytes(value))
             content = ConvertUtils.newString(bytes)
@@ -197,8 +197,8 @@ open class MMKVKeyValueEngineImpl(
         key: String?,
         defaultValue: String?
     ): String? {
-        var content: String? = mHolder.decodeString(key, null) ?: return defaultValue
-        if (content != null && mConfig.cipher != null) {
+        var content = mHolder.decodeString(key, null) ?: return defaultValue
+        if (mConfig.cipher != null) {
             val bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content))
             content = ConvertUtils.newString(bytes)
         }

@@ -166,7 +166,7 @@ internal object LubanUtils {
 
                 private fun getLists(): List<File> {
                     val files = mutableListOf<File>()
-                    val iterator: Iterator<File?> = fileMaps.values.iterator()
+                    val iterator = fileMaps.values.iterator()
                     while (iterator.hasNext()) {
                         val file = iterator.next()
                         if (file != null && file.exists()) {

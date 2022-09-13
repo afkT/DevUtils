@@ -19,10 +19,9 @@ internal class Dialogs {
         private val mCallback: DevCallback<Items.DataType>
     ) : Dialog(context, R.style.DevDialogFullScreenTheme) {
 
-        private val binding: DevHttpCaptureDataTypeDialogBinding =
-            DevHttpCaptureDataTypeDialogBinding.inflate(
-                layoutInflater
-            )
+        private val binding = DevHttpCaptureDataTypeDialogBinding.inflate(
+            layoutInflater
+        )
 
         private fun callback(dataType: Items.DataType) {
             dismiss()
@@ -54,10 +53,9 @@ internal class Dialogs {
         private val mCallback: DevCallback<GroupType>
     ) : Dialog(context, R.style.DevDialogFullScreenTheme) {
 
-        private val binding: DevHttpCaptureGroupTypeDialogBinding =
-            DevHttpCaptureGroupTypeDialogBinding.inflate(
-                layoutInflater
-            )
+        private val binding = DevHttpCaptureGroupTypeDialogBinding.inflate(
+            layoutInflater
+        )
 
         private fun callback(dataType: GroupType) {
             dismiss()

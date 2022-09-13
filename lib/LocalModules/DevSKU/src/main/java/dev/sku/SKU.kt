@@ -22,10 +22,10 @@ class SKU {
         val value: T? = null
     ) {
         // 库存集合 ( 所有组合库存集, 可进行排序获取最大最小库存 )
-        val stockList: MutableList<Int> = mutableListOf()
+        val stockList = mutableListOf<Int>()
 
         // 价格集合 ( 所有组合价格集, 可进行排序获取最高最低价格 )
-        val priceList: MutableList<Double> = mutableListOf()
+        val priceList = mutableListOf<Double>()
     }
 
     /**
@@ -527,7 +527,7 @@ internal object SKUUtils {
             val len = it.size
             val result = ArrayList<ArrayList<String>>()
             for (n in 1 until len) {
-                val flags: ArrayList<Array<Int>> = getCombineFlags(len, n)
+                val flags = getCombineFlags(len, n)
                 for (i in flags.indices) {
                     val flag = flags[i]
                     val combine = ArrayList<String>()

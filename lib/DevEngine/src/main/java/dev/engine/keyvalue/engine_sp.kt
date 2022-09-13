@@ -26,7 +26,7 @@ open class SPKeyValueEngineImpl(
 ) : IKeyValueEngine<SPConfig> {
 
     // SharedPreferences
-    private val mPreference: IPreference = mConfig.preference
+    private val mPreference = mConfig.preference
 
     init {
         // SharedPreferences
@@ -203,8 +203,8 @@ open class SPKeyValueEngineImpl(
         key: String?,
         defaultValue: String?
     ): String? {
-        var content: String? = mPreference.getString(key, null) ?: return defaultValue
-        if (content != null && mConfig.cipher != null) {
+        var content = mPreference.getString(key, null) ?: return defaultValue
+        if (mConfig.cipher != null) {
             val bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content))
             content = ConvertUtils.newString(bytes)
         }

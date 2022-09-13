@@ -48,7 +48,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
     private val mAdapter = AdapterDateModuleList()
 
     // 查询回调
-    private val mCallback: DevCallback<Boolean> = object : DevCallback<Boolean>() {
+    private val mCallback = object : DevCallback<Boolean>() {
         override fun callback(
             isQuerying: Boolean,
             size: Int

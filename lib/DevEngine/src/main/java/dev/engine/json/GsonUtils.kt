@@ -149,7 +149,7 @@ internal object GsonUtils {
      */
     fun isJSON(json: String?): Boolean {
         try {
-            val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
+            val jsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonObject || jsonElement.isJsonArray
         } catch (e: Exception) {
         }
@@ -163,7 +163,7 @@ internal object GsonUtils {
      */
     fun isJSONObject(json: String?): Boolean {
         try {
-            val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
+            val jsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonObject
         } catch (e: Exception) {
         }
@@ -177,7 +177,7 @@ internal object GsonUtils {
      */
     fun isJSONArray(json: String?): Boolean {
         try {
-            val jsonElement: JsonElement = JsonParser.parseString(json) ?: return false
+            val jsonElement = JsonParser.parseString(json) ?: return false
             return jsonElement.isJsonArray
         } catch (e: Exception) {
         }

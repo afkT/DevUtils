@@ -192,8 +192,8 @@ internal object Utils {
         if (files != null) {
             lists.addAll(files.toMutableList())
             lists.sortWith { file1, file2 ->
-                val value1: Int = ConvertUtils.toInt(file1.name)
-                val value2: Int = ConvertUtils.toInt(file2.name)
+                val value1 = ConvertUtils.toInt(file1.name)
+                val value2 = ConvertUtils.toInt(file2.name)
                 value2.compareTo(value1)
             }
         }
@@ -463,7 +463,7 @@ internal object Utils {
                                     if (captureList.isNotEmpty()) {
                                         // 最新的在最前面
                                         captureList.sortWith { o1, o2 ->
-                                            val diff: Long = o1.getTime() - o2.getTime()
+                                            val diff = o1.getTime() - o2.getTime()
                                             if (diff > 0) {
                                                 -1
                                             } else if (diff < 0) {
