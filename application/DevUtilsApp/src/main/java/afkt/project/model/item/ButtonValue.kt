@@ -1,6 +1,19 @@
 package afkt.project.model.item
 
 /**
+ * detail: 扩展函数
+ * @author Ttt
+ */
+fun Int.buttonOf(
+    text: String,
+    path: String
+): ButtonValue {
+    return ButtonValue(
+        this, text, path
+    )
+}
+
+/**
  * detail: Button Value 实体类
  * @author Ttt
  */
