@@ -174,7 +174,12 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
             val uri: Uri? = if (original) {
                 media.getOriginalUri()
             } else {
-                media.getAvailableUri()
+                val availableUri = media.getAvailableUri()
+                if (UriUtils.isUriExists(availableUri)) {
+                    availableUri
+                } else {
+                    media.getOriginalUri()
+                }
             }
             uri?.let { lists.add(it) }
         }
@@ -241,12 +246,12 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         // ============
 
         // 资源路径 Uri
-        media.setOriginalUri(UriUtils.getUriForPath(libData.originalPath))
-            .setSandboxUri(UriUtils.getUriForPath(libData.sandboxPath))
-            .setCompressUri(UriUtils.getUriForPath(libData.compressPath))
-            .setThumbnailUri(UriUtils.getUriForPath(libData.videoThumbnailPath))
-            .setWatermarkUri(UriUtils.getUriForPath(libData.watermarkPath))
-            .setCropUri(UriUtils.getUriForPath(libData.cutPath))
+        media.setOriginalUri(UriUtils.ofUri(libData.originalPath))
+            .setSandboxUri(UriUtils.ofUri(libData.sandboxPath))
+            .setCompressUri(UriUtils.ofUri(libData.compressPath))
+            .setThumbnailUri(UriUtils.ofUri(libData.videoThumbnailPath))
+            .setWatermarkUri(UriUtils.ofUri(libData.watermarkPath))
+            .setCropUri(UriUtils.ofUri(libData.cutPath))
 
         // 资源信息
         media.setMimeType(libData.mimeType)
@@ -264,6 +269,17 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         // 状态信息
         media.setCropState(libData.isCut)
             .setCompressState(libData.isCompressed)
+
+        // =================
+        // = 资源路径最后校验 =
+        // =================
+
+        // 判断是否存在有效 Uri
+        val availableUri = media.getAvailableUri()
+        if (!UriUtils.isUriExists(availableUri)) {
+            // 上述已设置路径都不存在则设置原图路径
+            media.setOriginalUri(UriUtils.ofUri(libData.path))
+        }
         return media
     }
 

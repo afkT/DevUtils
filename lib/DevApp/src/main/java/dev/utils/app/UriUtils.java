@@ -150,6 +150,36 @@ public final class UriUtils {
         return null;
     }
 
+    /**
+     * 通过 String 获取 Uri
+     * @param uriString uri 路径
+     * @return {@link Uri}
+     */
+    public static Uri ofUri(final String uriString) {
+        return ofUri(uriString, false);
+    }
+
+    /**
+     * 通过 String 获取 Uri
+     * <pre>
+     *     内部判断 uriString 是 path 还是 uri string
+     * </pre>
+     * @param uriString uri 路径
+     * @param fromFile  是否直接使用 {@link #fromFile} 方法
+     * @return {@link Uri}
+     */
+    public static Uri ofUri(
+            final String uriString,
+            final boolean fromFile
+    ) {
+        Uri pathUri = getUriForString(uriString);
+        if (isUri(pathUri)) {
+            return pathUri;
+        }
+        if (fromFile) return fromFile(uriString);
+        return getUriForPath(uriString);
+    }
+
     // =======
     // = Uri =
     // =======

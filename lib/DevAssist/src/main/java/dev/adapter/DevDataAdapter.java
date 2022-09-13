@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -112,6 +113,17 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
         return getDataSize();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        initialize(recyclerView, true);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
     }
 
     // ================
