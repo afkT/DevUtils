@@ -565,11 +565,12 @@ internal object UtilsCompiler {
     /**
      * 键值对拼接
      * @param map [Map]
-     * @param <K> key
-     * @param <V> value
      * @return [StringBuilder]
      */
-    private fun <K, V> mapToString(map: Map<K, V>): StringBuilder {
+    private fun mapToString(map: LinkedHashMap<String, String>): StringBuilder {
+//        map.forEach {
+//            map[it.key] = toJsonIndent(it.value) ?: it.value
+//        }
         return MapUtils.mapToString(map, ": ")
     }
 }

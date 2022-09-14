@@ -15,7 +15,7 @@ abstract class BaseDevHttpActivity<VB : ViewBinding> : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createBinding()
+        binding = createBinding()
         // 添加 Activity
         UtilsCompiler.addActivity(this)
     }

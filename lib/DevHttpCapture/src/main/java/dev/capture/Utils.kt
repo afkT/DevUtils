@@ -478,6 +478,9 @@ internal object Utils {
                                 }
                             }
                         }
+                        if (captureItem.data.size != 0) {
+                            lists.add(captureItem)
+                        }
                     }
                 }
             }
