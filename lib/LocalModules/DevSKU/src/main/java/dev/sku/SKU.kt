@@ -373,7 +373,7 @@ internal class SKUController<T> {
         skuModels: Map<String, SKU.Model<T>>
     ): MutableMap<String, SKU.Model<T>> {
         // SKU 数据集基本模型全部组合数 ( key = List<SKU.AttrValue.id>.join, value = SKU.Model )
-        val skuModelAll: MutableMap<String, SKU.Model<T>> = mutableMapOf()
+        val skuModelAll = mutableMapOf<String, SKU.Model<T>>()
         val count = attrs.size
         attrs.firstOrNull()?.attrList?.forEach {
             forSKUAttr(1, count, mutableListOf(it.id), attrs, skuModels, skuModelAll)

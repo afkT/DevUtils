@@ -445,7 +445,7 @@ internal object UtilsCompiler {
                 }
             } else {
                 // 以请求链接为分组 ( 展开条标题 )
-                val urlMaps = linkedMapOf<String, List<CaptureFile>>()
+                val urlMaps = linkedMapOf<String, MutableList<CaptureFile>>()
                 tempMaps.values.forEach { lists ->
                     for (captureFile in lists) {
                         val urlKey = Items.convertUrlKey(captureFile.getUrl())

@@ -202,7 +202,7 @@ internal class OperationPlanB constructor(
     /**
      * 获取 Callback Map
      * @param isRequest `true` 上行, `false` 下行
-     * @return HashMap<String, List<Progress.Callback?>>
+     * @return WeakHashMap<String, MutableList<Progress.Callback?>>
      */
     private fun listenerMap(isRequest: Boolean): WeakHashMap<String, MutableList<Progress.Callback?>> {
         return if (isRequest) mRequestListeners else mResponseListeners

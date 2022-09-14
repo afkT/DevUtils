@@ -21,7 +21,7 @@ fun Request.toExtras(): Progress.Extras? {
         // 请求链接
         val rUrl = url.toUrl().toString()
         // 请求头信息
-        val rHeaders: MutableMap<String, String> = mutableMapOf()
+        val rHeaders = mutableMapOf<String, String>()
 
         for (i in 0 until headers.size) {
             rHeaders[headers.name(i)] = headers.value(i)
