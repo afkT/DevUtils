@@ -321,7 +321,7 @@ public class DevTimer {
         // 开启定时器
         mTimer = new Timer(); // 每次重新 new 防止被取消
         // 重新生成定时器, 防止出现 TimerTask is scheduled already 同一个定时器只能被放置一次
-        mTimerTask = new java.util.TimerTask() {
+        mTimerTask = new TimerTask() {
             @Override
             public void run() {
                 // 表示运行定时器中

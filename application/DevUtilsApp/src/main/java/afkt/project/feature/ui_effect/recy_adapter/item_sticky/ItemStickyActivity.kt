@@ -93,7 +93,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     }
 
     private val list: List<ItemStickyBean>
-        private get() {
+        get() {
             val lists = mutableListOf<ItemStickyBean>()
             var time = System.currentTimeMillis()
             for (i in 0..9) {

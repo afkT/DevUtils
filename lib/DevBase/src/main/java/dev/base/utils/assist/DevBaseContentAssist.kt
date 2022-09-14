@@ -21,31 +21,31 @@ class DevBaseContentAssist {
 
     // 最外层 Layout
     @JvmField
-    open var rootLinear: LinearLayout? = null
+    var rootLinear: LinearLayout? = null
 
     // StatusBar Layout
     @JvmField
-    open var statusBarLinear: LinearLayout? = null
+    var statusBarLinear: LinearLayout? = null
 
     // Title Layout
     @JvmField
-    open var titleLinear: LinearLayout? = null
+    var titleLinear: LinearLayout? = null
 
     // Body Layout
     @JvmField
-    open var bodyFrame: FrameLayout? = null
+    var bodyFrame: FrameLayout? = null
 
     // 填充容器
     @JvmField
-    open var contentLinear: LinearLayout? = null
+    var contentLinear: LinearLayout? = null
 
     // 状态布局容器
     @JvmField
-    open var stateLinear: LinearLayout? = null
+    var stateLinear: LinearLayout? = null
 
     // 悬浮容器
     @JvmField
-    open var floatFrame: FrameLayout? = null
+    var floatFrame: FrameLayout? = null
 
     fun bind(activity: Activity): DevBaseContentAssist {
         // R.layout.base_content_view

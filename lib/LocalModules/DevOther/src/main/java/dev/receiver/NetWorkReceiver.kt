@@ -80,7 +80,7 @@ class NetWorkReceiver private constructor() : BroadcastReceiver() {
         const val NO_NETWORK = BASE + 3
 
         // 当前连接的状态
-        private var mConnectState: Int = NO_NETWORK
+        private var mConnectState = NO_NETWORK
 
         /**
          * 注册广播监听
