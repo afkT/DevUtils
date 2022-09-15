@@ -14,4 +14,11 @@
     <color name="dev_http_capture_url_color">#333333</color>
     <color name="dev_http_capture_time_color">#333333</color>
     <color name="dev_http_capture_value_color">#333333</color>
+
+    <color name="dev_http_capture_title_text_color">@android:color/white</color>
+    <color name="dev_http_capture_title_restart_text_color">@android:color/white</color>
+
+    <dimen name="dev_http_capture_title_height">56.0dp</dimen>
+    <dimen name="dev_http_capture_title_back_padding">15.0dp</dimen>
+    <dimen name="dev_http_capture_title_text_size">18.0sp</dimen>
 </resources>

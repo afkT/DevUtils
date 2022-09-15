@@ -29,6 +29,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:singleLine="true"
             android:text="@string/dev_environment_title"
             android:textColor="@color/dev_environment_title_text_color"
             android:textSize="@dimen/dev_environment_title_text_size"

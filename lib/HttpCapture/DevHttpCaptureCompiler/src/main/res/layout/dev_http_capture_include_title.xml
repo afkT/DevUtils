@@ -2,31 +2,31 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="56.0dp"
+    android:layout_height="@dimen/dev_http_capture_title_height"
     android:background="@color/dev_http_capture_title_bg_color"
     android:fitsSystemWindows="true"
     android:scrollbars="none">
 
     <ImageView
         android:id="@+id/vid_back_iv"
-        android:layout_width="56.0dp"
-        android:layout_height="56.0dp"
+        android:layout_width="@dimen/dev_http_capture_title_height"
+        android:layout_height="@dimen/dev_http_capture_title_height"
         android:background="@drawable/dev_http_capture_back"
-        android:padding="15.0dp" />
+        android:padding="@dimen/dev_http_capture_title_back_padding" />
 
     <TextView
         android:id="@+id/vid_title_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="56.0dp"
+        android:layout_marginLeft="@dimen/dev_http_capture_title_height"
         android:ellipsize="end"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:maxLines="1"
-        android:paddingRight="5.0dp"
         android:singleLine="true"
-        android:textColor="@color/white"
-        android:textSize="21.0sp"
+        android:textColor="@color/dev_http_capture_title_text_color"
+        android:textSize="@dimen/dev_http_capture_title_text_size"
         android:textStyle="bold"
+        tools:paddingRight="@dimen/dev_http_capture_title_height"
         tools:text="@string/dev_http_capture_title" />
 </FrameLayout>
