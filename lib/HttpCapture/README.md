@@ -29,27 +29,31 @@ dependencies {
 
 ### 使用示例
 
-```java
+```kotlin
 // 显示所有 Module 抓包数据
-DevHttpCaptureCompiler.start(context);
+DevHttpCaptureCompiler.start(context)
 // 显示指定 Module 抓包数据
-DevHttpCaptureCompiler.start(context, moduleName);
+DevHttpCaptureCompiler.start(context, moduleName)
 
 // =======
 // = 可选 =
 // =======
 
 // 添加接口所属功能注释
-DevHttpCaptureCompiler.putUrlFunction(moduleName, UrlFunctionGet);
+DevHttpCaptureCompiler.putUrlFunction(moduleName, UrlFunctionGet)
 // 移除接口所属功能注释
-DevHttpCaptureCompiler.removeUrlFunction(moduleName);
+DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 ```
 
 ### 目录结构
 
 ```
-- dev                   | 根目录
-   - capture            | Http 抓包实现代码
+- dev                    | 根目录
+   - capture             | Http 抓包实现代码
+      - activity         | 可视化页面
+      - adapter          | 适配器
+      - base             | 基础相关
+      - model            | 数据模型
 ```
 
 
@@ -57,9 +61,7 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 
 
 - dev                                         | 根目录
-   - [capture](#devcapture)                   | Http 抓包实现代码
-
-
+    - [capture](#devcapture)                   | Http 抓包实现代码
 
 
 ## <span id="dev">**`dev`**</span>

@@ -20,6 +20,7 @@ implementation 'io.github.afkt:DevJava:1.4.7'
          - sort            | 各种类型比较器排序实现
       - encrypt            | 加密工具类
       - file               | 文件分片相关
+      - format             | 格式化相关
       - random             | 随机概率算法工具类
       - thread             | 线程相关
       - validator          | 数据校验工具类
@@ -61,6 +62,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
          - [sort](#devutilscommoncomparatorsort)            | 各种类型比较器排序实现
       - [encrypt](#devutilscommonencrypt)                   | 加密工具类
       - [file](#devutilscommonfile)                         | 文件分片相关
+      - [format](#devutilscommonformat)                     | 格式化相关
       - [random](#devutilscommonrandom)                     | 随机概率算法工具类
       - [thread](#devutilscommonthread)                     | 线程相关
       - [validator](#devutilscommonvalidator)               | 数据校验工具类
@@ -649,6 +651,15 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getFileMD5ToHexString | 获取文件 MD5 值 |
 
 
+* **格式化工具类 ->** [FormatUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FormatUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| format | 字符串格式化 |
+| unitSpanOf | 获取 UnitSpanFormatter |
+| argsOf | 获取 ArgsFormatter |
+
+
 * **循环工具类 ->** [ForUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ForUtils.java)
 
 | 方法 | 注释 |
@@ -769,9 +780,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | addZero | 补 0 处理 ( 小于 10, 则自动补充 0x ) |
 | subZeroAndDot | 去掉结尾多余的 . 与 0 |
-| calculateUnit | 计算指定单位倍数 |
+| calculateUnitD | 计算指定单位倍数 |
 | calculateUnitI | 计算指定单位倍数 |
 | calculateUnitL | 计算指定单位倍数 |
+| calculateUnitF | 计算指定单位倍数 |
 | percentD | 计算百分比值 ( 最大 100% ) |
 | percentI | 计算百分比值 ( 最大 100% ) |
 | percentL | 计算百分比值 ( 最大 100% ) |
@@ -959,9 +971,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | checkValue | 检查字符串 |
 | checkValues | 检查字符串 ( 多个值 ) |
 | checkValuesSpace | 检查字符串 ( 多个值, 删除前后空格对比判断 ) |
-| getFormatString | 获取格式化后的字符串 |
-| getAutoFormatString | 获取自动数量格式化后的字符串 ( 可变参数 ) |
-| getAutoFormatString2 | 获取自动数量格式化后的字符串 ( 可变参数 ) |
+| format | 字符串格式化 |
+| argsFormat | 根据可变参数数量自动格式化 |
 | concat | 字符串连接, 将参数列表拼接为一个字符串 |
 | concatSpiltWith | 字符串连接, 将参数列表拼接为一个字符串 |
 | concatSpiltWithIgnoreLast | 字符串连接, 将参数列表拼接为一个字符串 ( 最后一个不追加间隔 ) |
@@ -1712,6 +1723,35 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | fileSplitMergePaths | 分片合并 |
 | fileSplitMergeFiles | 分片合并 |
 | fileSplitMerge | 分片合并 |
+
+
+## <span id="devutilscommonformat">**`dev.utils.common.format`**</span>
+
+
+* **可变数组格式化 ->** [ArgsFormatter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/format/ArgsFormatter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取 ArgsFormatter |
+| getStartSpecifier | 获取开始占位说明符 |
+| getMiddleSpecifier | 获取中间占位说明符 |
+| getEndSpecifier | 获取结尾占位说明符 |
+| isThrowError | 是否抛出异常 |
+| getDefaultValue | 获取格式化异常默认值 |
+| format | 根据可变参数数量自动格式化 |
+| formatByArray | 根据可变参数数量自动格式化 |
+
+
+* **单位数组范围格式化 ->** [UnitSpanFormatter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/format/UnitSpanFormatter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取 UnitSpanFormatter |
+| getPrecision | 获取单位格式化精度 |
+| isAppendZero | 是否自动补 0 |
+| getDefaultValue | 获取格式化异常默认值 |
+| format | 格式化 |
+| formatBySpan | 计算指定单位倍数格式化 |
 
 
 ## <span id="devutilscommonrandom">**`dev.utils.common.random`**</span>

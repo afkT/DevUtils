@@ -110,6 +110,8 @@ implementation 'io.github.afkt:DevAssist:1.3.7'
 | setActivity | 设置 Activity |
 | parentContext | 通过 ViewGroup 设置 Context |
 | getItemCount | getItemCount |
+| onAttachedToRecyclerView | onAttachedToRecyclerView |
+| onDetachedFromRecyclerView | onDetachedFromRecyclerView |
 | getRecyclerView | getRecyclerView |
 | setRecyclerView | setRecyclerView |
 | bindAdapter | bindAdapter |
