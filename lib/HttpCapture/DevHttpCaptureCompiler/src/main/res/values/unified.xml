@@ -88,5 +88,34 @@
     <dimen name="dev_http_capture_dialog_dt_cancel_padding_right">20.0sp</dimen>
     <dimen name="dev_http_capture_dialog_dt_cancel_padding_bottom">15.0sp</dimen>
 
+    <!-- dev_http_capture_date_module_list_adapter -->
+
+    <color name="dev_http_capture_adapter_date_bg_color">#0080FF</color>
+    <dimen name="dev_http_capture_adapter_date_padding_lr">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_date_padding_tb">14.0dp</dimen>
+    <color name="dev_http_capture_adapter_date_divider_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_divider_height">0.1dp</dimen>
+    <color name="dev_http_capture_adapter_date_title_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_title_text_size">19.0sp</dimen>
+    <color name="dev_http_capture_adapter_date_function_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_function_text_size">15.0sp</dimen>
+    <dimen name="dev_http_capture_adapter_date_function_margin_top">5.0sp</dimen>
+
+    <!-- dev_http_capture_date_module_list_item_adapter -->
+
+    <color name="dev_http_capture_adapter_date_item_bg_color">#e9e9e9</color>
+    <dimen name="dev_http_capture_adapter_date_item_line">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_date_item_padding">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_date_item_margin_left">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_date_item_margin_right">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_date_item_margin_bottom">10.0dp</dimen>
+
+    <color name="dev_http_capture_adapter_date_item_divider_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_item_divider_height">0.1dp</dimen>
+    <color name="dev_http_capture_adapter_date_item_title_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_item_title_text_size">19.0sp</dimen>
+    <color name="dev_http_capture_adapter_date_item_function_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_date_item_function_text_size">15.0sp</dimen>
+    <dimen name="dev_http_capture_adapter_date_item_function_margin_top">5.0sp</dimen>
 
 </resources>
