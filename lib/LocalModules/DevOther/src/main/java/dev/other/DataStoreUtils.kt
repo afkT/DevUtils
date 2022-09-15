@@ -1,7 +1,6 @@
 package dev.other
 
 import android.content.Context
-import android.text.TextUtils
 import androidx.datastore.core.DataMigration
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
@@ -11,6 +10,7 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import dev.DevUtils
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.common.StringUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -58,7 +58,7 @@ object DataStoreUtils {
      * @return [InnerDataStore]
      */
     fun get(storeName: String?): InnerDataStore {
-        val key = if (TextUtils.isEmpty(storeName)) TAG else storeName!!
+        val key = if (StringUtils.isEmpty(storeName)) TAG else storeName!!
         var value = cacheMap[key]
         if (value != null) return value
         value = InnerDataStore(key)
@@ -94,7 +94,7 @@ object DataStoreUtils {
         val context = getContext()
         val lists = mutableListOf<DataMigration<Preferences>>()
         for (name in spNames) {
-            if (!TextUtils.isEmpty(name)) {
+            if (!StringUtils.isEmpty(name)) {
                 lists.add(SharedPreferencesMigration(context, name))
             }
         }
