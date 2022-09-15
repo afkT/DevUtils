@@ -22,7 +22,7 @@ open class CallbackInterceptor(
     }
 ) : BaseInterceptor(false, eventIMPL) {
 
-    private val tag = CallbackInterceptor::class.java.simpleName
+    private val TAG = CallbackInterceptor::class.java.simpleName
 
     // 抓包信息隐藏字段
     private val captureRedact = CaptureRedact()
@@ -32,7 +32,7 @@ open class CallbackInterceptor(
     // ================
 
     final override fun getModuleName(): String {
-        return tag
+        return TAG
     }
 
     final override fun getEncrypt(): Encrypt? {

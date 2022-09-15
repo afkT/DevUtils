@@ -24,37 +24,9 @@ implementation 'io.github.afkt:DevHttpCapture:1.1.2'
 ### 使用示例
 
 ```kotlin
-/**
- * 添加 Http 抓包拦截处理
- * @param builder    OkHttpClient Builder
- * @param moduleName 模块名 ( 要求唯一性 )
- * @param encrypt    抓包数据加密中间层
- * @param httpFilter Http 拦截过滤器
- * @param capture    是否进行 Http 抓包拦截
- * @param eventIMPL  Http 抓包事件回调
- * @return `true` success, `false` fail
- */
-fun addInterceptor(
-    builder: OkHttpClient.Builder,
-    moduleName: String,
-    encrypt: Encrypt? = null,
-    httpFilter: IHttpFilter? = null,
-    capture: Boolean = true,
-    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
-        override fun callEnd(info: CaptureInfo) {
-        }
-    }
-) : Boolean
-
 // 添加 Http 抓包拦截处理
 DevHttpCapture.addInterceptor(
     OkHttpClient.Builder, moduleName
-)
-
-// 添加 Http 抓包拦截处理
-DevHttpCapture.addInterceptor(
-    OkHttpClient.Builder, moduleName, encrypt,
-    httpFilter, capture, eventIMPL
 )
 
 // 移除对应 Module Http 抓包拦截
@@ -102,7 +74,11 @@ DevHttpCapture.updateInterceptor(moduleName, capture)
 ## <span id="devcapture">**`dev.capture`**</span>
 
 
-* ** ->** [UtilsPublic.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/Utils.kt)
+* **Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 ) ->** [CallbackInterceptor.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CallbackInterceptor.kt)
+* **Http 抓包拦截器 ( 存在存储抓包数据逻辑 ) ->** [HttpCaptureInterceptor.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/HttpCaptureInterceptor.kt)
+
+
+* **对外公开快捷方法 ->** [UtilsPublic.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/Utils.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -116,10 +92,6 @@ DevHttpCapture.updateInterceptor(moduleName, capture)
 | getAllModuleFileSize | 获取全部模块抓包文件大小 |
 | getModuleFileLength | 获取指定模块抓包文件大小 |
 | getAllModuleFileLength | 获取全部模块抓包文件大小 |
-
-
-* **Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 ) ->** [CallbackInterceptor.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/CallbackInterceptor.kt)
-* **Http 抓包拦截器 ( 存在存储抓包数据逻辑 ) ->** [HttpCaptureInterceptor.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/HttpCaptureInterceptor.kt)
 
 
 * **抓包存储文件 ->** [CaptureFile.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/src/main/java/dev/capture/Model.kt#L103)
