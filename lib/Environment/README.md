@@ -38,7 +38,7 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 | 运行时切换环境 | :heavy_check_mark: | :x: | :x: |
 | 切换环境回调 | :heavy_check_mark: | :x: | :x: |
 | 切换环境逻辑 | 自动生成 | 需要自己实现 | 需要自己实现 |
-| N 套环境打包数量 | 1 个 | N 个 | N 个|
+| N 套环境打包数量 | 1 个 | N 个 | N 个 |
 | 多套环境同时安装 | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | 支付等 SDK 包名校验 | :heavy_check_mark: | :x: | :heavy_check_mark: |
 | 多模块环境配置 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
