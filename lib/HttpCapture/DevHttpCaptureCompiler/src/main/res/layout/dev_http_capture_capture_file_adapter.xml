@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20.0dp"
+        android:layout_margin="@dimen/dev_http_capture_adapter_file_margin"
         android:orientation="vertical">
 
         <TextView
@@ -17,18 +17,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_value_color"
-            android:textSize="17.0sp"
+            android:textColor="@color/dev_http_capture_adapter_file_title_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_file_title_text_size"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/vid_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_adapter_file_value_margin_top"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_value_color"
-            android:textSize="14.0sp"
+            android:textColor="@color/dev_http_capture_adapter_file_value_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_file_value_text_size"
             tools:text="Value" />
     </LinearLayout>
 
@@ -37,15 +37,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
-        android:layout_marginTop="15.0dp"
-        android:layout_marginRight="15.0dp"
-        android:background="@drawable/dev_http_capture_copy_radius_bg"
+        android:layout_marginTop="@dimen/dev_http_capture_adapter_file_copy_margin_top"
+        android:layout_marginRight="@dimen/dev_http_capture_adapter_file_copy_margin_right"
+        android:background="@drawable/dev_http_capture_adapter_copy_bg"
         android:includeFontPadding="false"
-        android:paddingLeft="18.0dp"
-        android:paddingTop="3.0dp"
-        android:paddingRight="18.0dp"
-        android:paddingBottom="3.0dp"
+        android:paddingLeft="@dimen/dev_http_capture_adapter_file_copy_padding_lr"
+        android:paddingTop="@dimen/dev_http_capture_adapter_file_copy_padding_tb"
+        android:paddingRight="@dimen/dev_http_capture_adapter_file_copy_padding_lr"
+        android:paddingBottom="@dimen/dev_http_capture_adapter_file_copy_padding_tb"
         android:text="@string/dev_http_capture_copy"
-        android:textColor="@color/white"
-        android:textSize="14.0sp" />
+        android:textColor="@color/dev_http_capture_adapter_file_copy_text_color"
+        android:textSize="@dimen/dev_http_capture_adapter_file_copy_text_size" />
 </FrameLayout>

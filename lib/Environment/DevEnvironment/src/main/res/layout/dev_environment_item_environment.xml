@@ -19,7 +19,7 @@
             android:includeFontPadding="false"
             android:paddingLeft="@dimen/dev_environment_item_name_padding_lr"
             android:paddingRight="@dimen/dev_environment_item_name_padding_lr"
-            android:textColor="@color/dev_environment_item_text_color"
+            android:textColor="@color/dev_environment_item_name_text_color"
             tools:text="Name" />
 
         <TextView

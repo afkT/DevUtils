@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="@dimen/dev_http_capture_adapter_item_drawable_radius" />
+
+    <solid android:color="@color/dev_http_capture_adapter_item_drawable_bg_color" />
+</shape>

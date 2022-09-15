@@ -7,7 +7,6 @@
     <color name="dev_http_capture_method_color">#FF0000</color>
     <color name="dev_http_capture_url_color">#333333</color>
     <color name="dev_http_capture_time_color">#333333</color>
-    <color name="dev_http_capture_value_color">#333333</color>
 
     <color name="dev_http_capture_adapter_title_bg_color">#0080FF</color>
     <color name="dev_http_capture_adapter_item_color">#777777</color>
@@ -24,17 +23,70 @@
     <dimen name="dev_http_capture_action_margin">10.0dp</dimen>
     <dimen name="dev_http_capture_action_margin_right">15.0dp</dimen>
     <dimen name="dev_http_capture_action_margin_bottom">35.0dp</dimen>
-    <color name="dev_http_capture_action_round_bg_color">#FF4181</color>
 
-    <dimen name="dev_http_capture_adapter_copy_radius">4.0dp</dimen>
-    <color name="dev_http_capture_adapter_copy_radius_bg_color">#0080FF</color>
+    <!-- drawable -->
 
-    <dimen name="dev_http_capture_adapter_dialog_radius">4.0dp</dimen>
-    <color name="dev_http_capture_adapter_dialog_radius_bg_color">#ffffff</color>
+    <!-- dev_http_capture_action_round_bg -->
 
-    <dimen name="dev_http_capture_adapter_item_radius">6.0dp</dimen>
-    <color name="dev_http_capture_adapter_item_radius_bg_color">#ffffff</color>
+    <color name="dev_http_capture_action_drawable_bg_color">#FF4181</color>
+
+    <!-- dev_http_capture_adapter_copy_bg -->
+
+    <color name="dev_http_capture_adapter_copy_drawable_bg_color">#0080FF</color>
+    <dimen name="dev_http_capture_adapter_copy_drawable_radius">4.0dp</dimen>
+
+    <!-- dev_http_capture_adapter_item_bg -->
+
+    <color name="dev_http_capture_adapter_item_drawable_bg_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_item_drawable_radius">6.0dp</dimen>
+
+    <!-- dev_http_capture_dialog_bg -->
+
+    <color name="dev_http_capture_dialog_drawable_bg_color">#ffffff</color>
+    <dimen name="dev_http_capture_dialog_drawable_radius">4.0dp</dimen>
+
+    <!-- layout -->
+
+    <!-- dev_http_capture_capture_file_adapter -->
 
     <color name="dev_http_capture_adapter_file_bg_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_file_margin">20.0dp</dimen>
     <dimen name="dev_http_capture_adapter_file_margin_bottom">10.0dp</dimen>
+
+    <color name="dev_http_capture_adapter_file_title_text_color">#333333</color>
+    <dimen name="dev_http_capture_adapter_file_title_text_size">17.0sp</dimen>
+
+    <color name="dev_http_capture_adapter_file_value_text_color">#333333</color>
+    <dimen name="dev_http_capture_adapter_file_value_text_size">14.0sp</dimen>
+    <dimen name="dev_http_capture_adapter_file_value_margin_top">7.0dp</dimen>
+
+    <color name="dev_http_capture_adapter_file_copy_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_file_copy_text_size">14.0sp</dimen>
+    <dimen name="dev_http_capture_adapter_file_copy_margin_top">15.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_file_copy_margin_right">15.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_file_copy_padding_lr">18.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_file_copy_padding_tb">3.0dp</dimen>
+
+    <!-- dev_http_capture_data_type_dialog -->
+
+    <color name="dev_http_capture_dialog_dt_bg_color">#66000000</color>
+    <dimen name="dev_http_capture_dialog_dt_width">250.0dp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_margin_top">15.0dp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_margin_bottom">8.0dp</dimen>
+    <color name="dev_http_capture_dialog_dt_text_color">#333333</color>
+    <dimen name="dev_http_capture_dialog_dt_text_size">15.0sp</dimen>
+    <color name="dev_http_capture_dialog_dt_options_text_color">#333333</color>
+    <dimen name="dev_http_capture_dialog_dt_options_text_size">17.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_options_padding_left">15.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_options_padding_top">8.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_options_padding_right">10.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_options_padding_bottom">8.0sp</dimen>
+    <color name="dev_http_capture_dialog_dt_cancel_text_color">#ff0000</color>
+    <dimen name="dev_http_capture_dialog_dt_cancel_text_size">14.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_cancel_padding_left">35.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_cancel_padding_top">5.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_cancel_padding_right">20.0sp</dimen>
+    <dimen name="dev_http_capture_dialog_dt_cancel_padding_bottom">15.0sp</dimen>
+
+
 </resources>

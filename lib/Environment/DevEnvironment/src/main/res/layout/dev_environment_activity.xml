@@ -54,5 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        tools:listheader="@layout/dev_environment_item_module"
+        tools:listitem="@layout/dev_environment_item_environment" />
 </LinearLayout>

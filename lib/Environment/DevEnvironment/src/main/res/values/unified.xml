@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- dev_environment_activity -->
+
     <color name="dev_environment_bg_color">#e9e9e9</color>
 
     <color name="dev_environment_title_bg_color">#3F51B5</color>
     <dimen name="dev_environment_title_height">56.0dp</dimen>
     <dimen name="dev_environment_title_back_padding">15.0dp</dimen>
-    <dimen name="dev_environment_title_text_size">18.0sp</dimen>
-    <color name="dev_environment_title_text_color">#ffffff</color>
 
+    <color name="dev_environment_title_text_color">#ffffff</color>
+    <dimen name="dev_environment_title_text_size">18.0sp</dimen>
+
+    <color name="dev_environment_title_restart_text_color">#ffffff</color>
     <dimen name="dev_environment_title_restart_text_size">16.0sp</dimen>
     <dimen name="dev_environment_title_restart_padding_lr">13.0dp</dimen>
-    <color name="dev_environment_title_restart_text_color">#ffffff</color>
+
+    <!-- dev_environment_item_environment、dev_environment_item_module -->
 
     <color name="dev_environment_item_bg_color">#e9e9e9</color>
     <dimen name="dev_environment_item_height">50.0dp</dimen>
-    <dimen name="dev_environment_item_name_padding_lr">15.0dp</dimen>
-    <color name="dev_environment_item_text_color">#000000</color>
+
+    <color name="dev_environment_item_name_text_color">#000000</color>
     <color name="dev_environment_item_value_text_color">#aaaaaa</color>
+    <dimen name="dev_environment_item_name_padding_lr">15.0dp</dimen>
+
+    <color name="dev_environment_item_divider_color">#e9e9e9</color>
+    <dimen name="dev_environment_item_divider_height">0.5dp</dimen>
+
+    <!-- dev_environment_item_selector -->
 
     <color name="dev_environment_item_click_pressed_color">#efefef</color>
     <color name="dev_environment_item_click_normal_color">#ffffff</color>
-
-    <dimen name="dev_environment_item_divider_height">0.5dp</dimen>
-    <color name="dev_environment_item_divider_color">#e9e9e9</color>
 </resources>

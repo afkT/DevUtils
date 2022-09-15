@@ -17,7 +17,7 @@
         android:layout_marginLeft="10.0dp"
         android:layout_marginRight="10.0dp"
         android:layout_marginBottom="10.0dp"
-        android:background="@drawable/dev_http_capture_item_radius_bg"
+        android:background="@drawable/dev_http_capture_adapter_item_bg"
         android:orientation="vertical"
         android:padding="10.0dp">
 
