@@ -65,7 +65,7 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 ## <span id="dev">**`dev`**</span>
 
 
-* **OkHttp 抓包工具库 ->** [DevHttpCaptureCompiler.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.java)
+* **OkHttp 抓包工具库 ->** [DevHttpCaptureCompiler.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -78,45 +78,11 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName);
 ## <span id="devcapture">**`dev.capture`**</span>
 
 
-* **DevHttpCapture 抓包数据详情页 ->** [DevHttpCaptureFileActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureFileActivity.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onCreate | onCreate |
-| onBackPressed | onBackPressed |
-
-
-* **DevHttpCapture 抓包数据列表 ->** [DevHttpCaptureListActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureListActivity.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onCreate | onCreate |
-| onBackPressed | onBackPressed |
-
-
-* **DevHttpCapture 入口 ->** [DevHttpCaptureMainActivity.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/DevHttpCaptureMainActivity.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onCreate | onCreate |
-| onBackPressed | onBackPressed |
-
-
-* **接口所属功能注释获取 ->** [UrlFunctionGet.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UrlFunctionGet.java)
+* **接口所属功能注释获取 ->** [UrlFunctionGet.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UrlFunctionGet.kt)
 
 | 方法 | 注释 |
 | :- | :- |
 | toUrlFunction | 接口所属功能注释获取 |
-
-
-* ** ->** [UtilsCompiler.java](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UtilsCompiler.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getInstance | 获取 Utils 实例 |
-| finishAllActivity | 结束所有 Activity |
-| putUrlFunction | 添加接口所属功能注释 |
-| removeUrlFunction | 移除接口所属功能注释 |
 
 
 
