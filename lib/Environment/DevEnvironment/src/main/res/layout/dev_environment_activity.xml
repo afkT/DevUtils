@@ -3,28 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dev_environment_bg"
+    android:background="@color/dev_environment_bg_color"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dev_environment_title_height"
-        android:background="@color/dev_environment_color">
+        android:background="@color/dev_environment_title_bg_color"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/vid_back_iv"
             android:layout_width="@dimen/dev_environment_title_height"
             android:layout_height="@dimen/dev_environment_title_height"
-            android:layout_alignParentLeft="true"
             android:background="@drawable/dev_environment_back"
             android:padding="@dimen/dev_environment_title_back_padding" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0.0dp"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/vid_restart_tv"
-            android:layout_toRightOf="@id/vid_back_iv"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center"
             android:includeFontPadding="false"
@@ -39,17 +38,16 @@
             android:id="@+id/vid_restart_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_environment_title_restart_lr_padding"
-            android:paddingRight="@dimen/dev_environment_title_restart_lr_padding"
+            android:paddingLeft="@dimen/dev_environment_title_restart_padding_lr"
+            android:paddingRight="@dimen/dev_environment_title_restart_padding_lr"
             android:text="@string/dev_environment_restart"
             android:textColor="@color/dev_environment_title_restart_text_color"
             android:textSize="@dimen/dev_environment_title_restart_text_size"
             android:visibility="invisible"
             tools:visibility="visible" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/vid_lv"

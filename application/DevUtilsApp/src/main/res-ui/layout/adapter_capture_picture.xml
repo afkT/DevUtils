@@ -38,10 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            android:lineSpacingExtra="10px"
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20" />
     </LinearLayout>
-
 </LinearLayout>

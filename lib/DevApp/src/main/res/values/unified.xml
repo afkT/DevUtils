@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dev_toast_icon_size">24.0dp</dimen>
+    <dimen name="dev_toast_icon_margin_end">8.0dp</dimen>
+    <dimen name="dev_toast_icon_margin_right">8.0dp</dimen>
+</resources>

@@ -9,7 +9,7 @@
         style="@style/AppTheme.Base_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20.0dp"
+        android:padding="@dimen/dp_20"
         android:text="进入页面会自动调用 DataStoreUse.use() 方法，请通过 Logcat 查看日志"
         android:textColor="@color/color_55"
         android:textSize="@dimen/sp_20" />

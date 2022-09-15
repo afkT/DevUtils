@@ -7,8 +7,8 @@
 
     <dev.base.widget.BaseImageView
         android:id="@+id/vid_bg_iv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
         android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHorizontal_bias="0.0"
@@ -18,8 +18,8 @@
         app:layout_constraintWidth_percent="0.5" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
         android:orientation="vertical"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHorizontal_bias="0.0"

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50.0dp"
-    android:background="@color/dev_environment_bg"
+    android:layout_height="@dimen/dev_environment_item_height"
+    android:background="@color/dev_environment_item_bg_color"
     android:orientation="vertical">
 
     <TextView
@@ -12,5 +12,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:textColor="@color/dev_environment_item_text_color"
         tools:text="Module Name" />
 </LinearLayout>

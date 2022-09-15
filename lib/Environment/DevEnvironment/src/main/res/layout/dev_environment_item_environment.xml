@@ -17,8 +17,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:paddingLeft="15.0dp"
-            android:paddingRight="15.0dp"
+            android:paddingLeft="@dimen/dev_environment_item_name_padding_lr"
+            android:paddingRight="@dimen/dev_environment_item_name_padding_lr"
+            android:textColor="@color/dev_environment_item_text_color"
             tools:text="Name" />
 
         <TextView
@@ -31,19 +32,19 @@
             android:gravity="center"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/dev_environment_item_value_text_color"
             tools:text="Environment Value" />
 
         <ImageView
             android:id="@+id/vid_mark_iv"
-            android:layout_width="50.0dp"
-            android:layout_height="50.0dp"
+            android:layout_width="@dimen/dev_environment_item_height"
+            android:layout_height="@dimen/dev_environment_item_height"
             android:layout_gravity="center"
             android:background="@drawable/dev_environment_mark" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/dev_environment_divider" />
+        android:layout_height="@dimen/dev_environment_item_divider_height"
+        android:background="@color/dev_environment_item_divider_color" />
 </LinearLayout>

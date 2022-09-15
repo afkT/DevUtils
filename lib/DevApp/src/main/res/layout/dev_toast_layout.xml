@@ -11,14 +11,13 @@
 
     <ImageView
         android:id="@+id/vid_toast_iv"
-        android:layout_width="24.0dp"
-        android:layout_height="24.0dp"
-        android:layout_marginEnd="8.0dp"
-        android:layout_marginRight="8.0dp" />
+        android:layout_width="@dimen/dev_toast_icon_size"
+        android:layout_height="@dimen/dev_toast_icon_size"
+        android:layout_marginEnd="@dimen/dev_toast_icon_margin_end"
+        android:layout_marginRight="@dimen/dev_toast_icon_margin_right" />
 
     <TextView
         android:id="@+id/vid_toast_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 </LinearLayout>
