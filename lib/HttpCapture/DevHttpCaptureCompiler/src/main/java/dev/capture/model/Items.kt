@@ -7,7 +7,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.common.ConvertUtils
 import dev.utils.common.StringUtils
 
-class Items {
+internal class Items {
 
     /**
      * 数据来源类型

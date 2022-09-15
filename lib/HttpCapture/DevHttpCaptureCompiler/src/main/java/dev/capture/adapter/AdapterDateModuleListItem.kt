@@ -23,7 +23,7 @@ import dev.utils.common.StringUtils
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-class AdapterDateModuleListItem(
+internal class AdapterDateModuleListItem(
     private val groupItem: GroupItem,
     recyclerView: RecyclerView
 ) : DevDataAdapterExt<CaptureFile, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListItemAdapterBinding>>() {

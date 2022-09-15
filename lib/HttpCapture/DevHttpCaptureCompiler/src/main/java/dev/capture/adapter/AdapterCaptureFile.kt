@@ -16,7 +16,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: DevHttpCapture 抓包数据详情适配器
  * @author Ttt
  */
-class AdapterCaptureFile :
+internal class AdapterCaptureFile :
     DevDataAdapterExt<Items.FileItem, BaseDevHttpViewHolder<DevHttpCaptureCaptureFileAdapterBinding>>() {
 
     override fun onCreateViewHolder(

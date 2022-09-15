@@ -19,7 +19,7 @@ import dev.utils.common.StringUtils
  * detail: DevHttpCapture 对应模块具体日期抓包列表适配器
  * @author Ttt
  */
-class AdapterDateModuleList :
+internal class AdapterDateModuleList :
     DevDataAdapterExt2<GroupItem, BaseDevHttpViewHolder<DevHttpCaptureDateModuleListAdapterBinding>>() {
 
     // 延迟滑动时间

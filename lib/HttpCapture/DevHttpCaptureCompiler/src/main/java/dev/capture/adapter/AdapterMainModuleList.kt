@@ -18,7 +18,7 @@ import dev.utils.app.helper.quick.QuickHelper
  * detail: DevHttpCapture 模块列表适配器
  * @author Ttt
  */
-class AdapterMainModuleList(
+internal class AdapterMainModuleList(
     private val mainItem: MainItem,
     recyclerView: RecyclerView
 ) : DevDataAdapterExt<CaptureItem, BaseDevHttpViewHolder<DevHttpCaptureMainModuleListAdapterBinding>>() {

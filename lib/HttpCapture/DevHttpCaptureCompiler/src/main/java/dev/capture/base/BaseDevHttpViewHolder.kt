@@ -7,6 +7,6 @@ import androidx.viewbinding.ViewBinding
  * detail: DevHttpCapture Base ViewHolder ViewBinding
  * @author Ttt
  */
-class BaseDevHttpViewHolder<VB : ViewBinding>(
+internal class BaseDevHttpViewHolder<VB : ViewBinding>(
     val binding: VB
 ) : RecyclerView.ViewHolder(binding.root)
