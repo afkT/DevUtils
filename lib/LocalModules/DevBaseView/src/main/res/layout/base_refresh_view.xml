@@ -16,7 +16,7 @@
             android:id="@+id/vid_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:cacheColorHint="@android:color/transparent"
+            android:cacheColorHint="@color/transparent"
             android:divider="@null"
             android:fadingEdge="none"
             android:listSelector="@null"

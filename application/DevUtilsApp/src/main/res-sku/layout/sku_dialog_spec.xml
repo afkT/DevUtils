@@ -65,7 +65,7 @@
                     android:id="@+id/vid_recy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:cacheColorHint="@android:color/transparent"
+                    android:cacheColorHint="@color/transparent"
                     android:divider="@null"
                     android:fadingEdge="none"
                     android:listSelector="@null"

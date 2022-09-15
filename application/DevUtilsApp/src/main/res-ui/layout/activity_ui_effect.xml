@@ -176,7 +176,7 @@
                 android:background="@color/white"
                 android:paddingLeft="@dimen/dp_0"
                 android:paddingRight="@dimen/dp_0"
-                app:tabBackground="@android:color/transparent"
+                app:tabBackground="@color/transparent"
                 app:tabIndicatorHeight="@dimen/dp_0"
                 app:tabMaxWidth="@dimen/dp_80"
                 app:tabMinWidth="@dimen/dp_80"
@@ -190,7 +190,7 @@
                 android:background="@color/white"
                 android:paddingLeft="@dimen/dp_0"
                 android:paddingRight="@dimen/dp_0"
-                app:tabBackground="@android:color/transparent"
+                app:tabBackground="@color/transparent"
                 app:tabIndicatorHeight="@dimen/dp_0"
                 app:tabMode="fixed" />
         </LinearLayout>

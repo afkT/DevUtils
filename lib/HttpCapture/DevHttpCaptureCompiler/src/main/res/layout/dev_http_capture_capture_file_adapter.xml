@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10.0dp"
-    android:background="@color/white">
+    android:layout_marginBottom="@dimen/dev_http_capture_adapter_file_margin_bottom"
+    android:background="@color/dev_http_capture_adapter_file_bg_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:layout_gravity="right|top"
         android:layout_marginTop="15.0dp"
         android:layout_marginRight="15.0dp"
-        android:background="@drawable/dev_http_capture_file_round_bg"
+        android:background="@drawable/dev_http_capture_copy_radius_bg"
         android:includeFontPadding="false"
         android:paddingLeft="18.0dp"
         android:paddingTop="3.0dp"

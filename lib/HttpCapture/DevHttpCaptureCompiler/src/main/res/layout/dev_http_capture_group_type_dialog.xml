@@ -8,7 +8,7 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/dev_http_capture_dialog_round_bg"
+        android:background="@drawable/dev_http_capture_dialog_radius_bg"
         android:orientation="vertical">
 
         <TextView

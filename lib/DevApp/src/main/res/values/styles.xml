@@ -42,7 +42,7 @@
 
     <!-- Activity 透明样式 - 无标题、全屏、背景透明等 -->
     <style name="DevActivityTranslucentTheme">
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
@@ -51,7 +51,7 @@
         <item name="android:activityOpenExitAnimation">@null</item>
         <item name="android:activityCloseEnterAnimation">@null</item>
         <item name="android:activityCloseExitAnimation">@null</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/transparent</item>
     </style>
 
     <!-- AppCompatActivity -->
@@ -84,7 +84,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
     </style>
 
 </resources>

@@ -3,22 +3,38 @@
     <color name="dev_http_capture_bg_color">#e9e9e9</color>
     <color name="dev_http_capture_title_bg_color">#3F51B5</color>
     <color name="dev_http_capture_tab_bg_color">#3F51B5</color>
-    <color name="dev_http_capture_adapter_title_bg_color">#0080FF</color>
-    <color name="dev_http_capture_adapter_item_color">#777777</color>
-    <color name="dev_http_capture_adapter_item_bg_color">#d0d0d0</color>
-    <color name="dev_http_capture_adapter_item_round_bg_color">#FFFFFF</color>
-    <color name="dev_http_capture_adapter_file_round_bg_color">#0080FF</color>
-    <color name="dev_http_capture_action_round_bg_color">#FF4181</color>
     <color name="dev_http_capture_tips_color">#3F51B5</color>
     <color name="dev_http_capture_method_color">#FF0000</color>
     <color name="dev_http_capture_url_color">#333333</color>
     <color name="dev_http_capture_time_color">#333333</color>
     <color name="dev_http_capture_value_color">#333333</color>
 
-    <color name="dev_http_capture_title_text_color">@android:color/white</color>
-    <color name="dev_http_capture_title_restart_text_color">@android:color/white</color>
+    <color name="dev_http_capture_adapter_title_bg_color">#0080FF</color>
+    <color name="dev_http_capture_adapter_item_color">#777777</color>
+    <color name="dev_http_capture_adapter_item_bg_color">#d0d0d0</color>
+
+    <color name="dev_http_capture_title_text_color">#ffffff</color>
+    <color name="dev_http_capture_title_restart_text_color">#ffffff</color>
 
     <dimen name="dev_http_capture_title_height">56.0dp</dimen>
     <dimen name="dev_http_capture_title_back_padding">15.0dp</dimen>
     <dimen name="dev_http_capture_title_text_size">18.0sp</dimen>
+
+    <dimen name="dev_http_capture_action_size">50.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin">10.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin_right">15.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin_bottom">35.0dp</dimen>
+    <color name="dev_http_capture_action_round_bg_color">#FF4181</color>
+
+    <dimen name="dev_http_capture_adapter_copy_radius">4.0dp</dimen>
+    <color name="dev_http_capture_adapter_copy_radius_bg_color">#0080FF</color>
+
+    <dimen name="dev_http_capture_adapter_dialog_radius">4.0dp</dimen>
+    <color name="dev_http_capture_adapter_dialog_radius_bg_color">#ffffff</color>
+
+    <dimen name="dev_http_capture_adapter_item_radius">6.0dp</dimen>
+    <color name="dev_http_capture_adapter_item_radius_bg_color">#ffffff</color>
+
+    <color name="dev_http_capture_adapter_file_bg_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_file_margin_bottom">10.0dp</dimen>
 </resources>

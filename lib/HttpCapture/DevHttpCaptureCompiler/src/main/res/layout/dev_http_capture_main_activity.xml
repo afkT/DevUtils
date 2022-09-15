@@ -30,21 +30,22 @@
             android:overScrollMode="never"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="1"
             tools:listitem="@layout/dev_http_capture_main_module_adapter" />
 
         <FrameLayout
             android:id="@+id/vid_refresh_fl"
-            android:layout_width="50.0dp"
-            android:layout_height="50.0dp"
+            android:layout_width="@dimen/dev_http_capture_action_size"
+            android:layout_height="@dimen/dev_http_capture_action_size"
             android:layout_gravity="bottom|right"
-            android:layout_marginRight="15.0dp"
-            android:layout_marginBottom="35.0dp"
+            android:layout_marginRight="@dimen/dev_http_capture_action_margin_right"
+            android:layout_marginBottom="@dimen/dev_http_capture_action_margin_bottom"
             android:background="@drawable/dev_http_capture_action_round_bg">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10.0dp"
+                android:layout_margin="@dimen/dev_http_capture_action_margin"
                 android:background="@drawable/dev_http_capture_icon_refresh" />
         </FrameLayout>
     </FrameLayout>

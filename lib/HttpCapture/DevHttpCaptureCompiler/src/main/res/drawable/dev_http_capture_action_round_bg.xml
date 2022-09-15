@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <corners android:radius="40.0dp" />
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
 
     <solid android:color="@color/dev_http_capture_action_round_bg_color" />
-
 </shape>
