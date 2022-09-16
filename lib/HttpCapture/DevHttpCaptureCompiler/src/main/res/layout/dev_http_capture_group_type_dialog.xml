@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_tran40">
+    android:background="@color/dev_http_capture_dialog_bg_color">
 
     <LinearLayout
-        android:layout_width="220dp"
+        android:layout_width="@dimen/dev_http_capture_dialog_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/dev_http_capture_dialog_bg"
@@ -14,13 +14,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15.0dp"
-            android:layout_marginBottom="8.0dp"
             android:gravity="center"
             android:includeFontPadding="false"
+            android:paddingTop="@dimen/dev_http_capture_dialog_title_padding_top"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_title_padding_bottom"
             android:text="@string/dev_http_capture_options_group"
-            android:textColor="@color/color_33"
-            android:textSize="15.0sp"
+            android:textColor="@color/dev_http_capture_dialog_title_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_title_text_size"
             android:textStyle="bold" />
 
         <TextView
@@ -28,26 +28,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="15.0dp"
-            android:paddingTop="8.0dp"
-            android:paddingRight="10.0dp"
-            android:paddingBottom="8.0dp"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_group_type_time"
-            android:textColor="@color/color_33"
-            android:textSize="17.0sp" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_url_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="15.0dp"
-            android:paddingTop="8.0dp"
-            android:paddingRight="10.0dp"
-            android:paddingBottom="8.0dp"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_group_type_url"
-            android:textColor="@color/color_33"
-            android:textSize="17.0sp" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_cancel_tv"
@@ -55,12 +55,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:includeFontPadding="false"
-            android:paddingLeft="35.0dp"
-            android:paddingTop="5.0dp"
-            android:paddingRight="20.0dp"
-            android:paddingBottom="15.0dp"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_cancel_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_cancel_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_cancel_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_cancel_padding_bottom"
             android:text="@string/dev_http_capture_cancel"
-            android:textColor="@color/red"
-            android:textSize="14.0sp" />
+            android:textColor="@color/dev_http_capture_dialog_cancel_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_cancel_text_size" />
     </LinearLayout>
 </FrameLayout>

@@ -5,7 +5,7 @@
 
     <color name="dev_environment_bg_color">#e9e9e9</color>
 
-    <color name="dev_environment_title_bg_color">#3F51B5</color>
+    <color name="dev_environment_title_bg_color">#3f51b5</color>
     <dimen name="dev_environment_title_height">56.0dp</dimen>
     <dimen name="dev_environment_title_back_padding">5.0dp</dimen>
 

@@ -26,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_method_color"
-            android:textSize="18.0sp"
+            android:textColor="@color/dev_http_capture_adapter_date_item_method_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_item_method_text_size"
             android:textStyle="bold"
             tools:text="GET Http/1.1" />
 
@@ -35,30 +35,30 @@
             android:id="@+id/vid_url_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_adapter_date_item_interval"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_url_color"
-            android:textSize="16.0sp"
+            android:textColor="@color/dev_http_capture_adapter_date_item_url_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_item_url_text_size"
             tools:text="https://www.baidu.com" />
 
         <TextView
             android:id="@+id/vid_function_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_adapter_date_item_interval"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_url_color"
-            android:textSize="16.0sp"
+            android:textColor="@color/dev_http_capture_adapter_date_item_function_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_item_function_text_size"
             tools:text="@string/dev_http_capture_url_function" />
 
         <TextView
             android:id="@+id/vid_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_adapter_date_item_interval"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_time_color"
-            android:textSize="14.0sp"
+            android:textColor="@color/dev_http_capture_adapter_date_item_time_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_item_time_text_size"
             tools:text="2021-09-30 18:15:13" />
     </LinearLayout>
 </LinearLayout>

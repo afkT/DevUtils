@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dev_http_capture_dialog_dt_bg_color">
+    android:background="@color/dev_http_capture_dialog_bg_color">
 
     <LinearLayout
-        android:layout_width="@dimen/dev_http_capture_dialog_dt_width"
+        android:layout_width="@dimen/dev_http_capture_dialog_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/dev_http_capture_dialog_bg"
@@ -14,13 +14,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dev_http_capture_dialog_dt_margin_top"
-            android:layout_marginBottom="@dimen/dev_http_capture_dialog_dt_margin_bottom"
             android:gravity="center"
             android:includeFontPadding="false"
+            android:paddingTop="@dimen/dev_http_capture_dialog_title_padding_top"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_title_padding_bottom"
             android:text="@string/dev_http_capture_options_data"
-            android:textColor="@color/dev_http_capture_dialog_dt_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_text_size"
+            android:textColor="@color/dev_http_capture_dialog_title_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_title_text_size"
             android:textStyle="bold" />
 
         <TextView
@@ -28,91 +28,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_all"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_0_9_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_0_9"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_10_19_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_10_19"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_20_29_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_20_29"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_30_39_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_30_39"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_40_49_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_40_49"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_50_59_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_options_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_options_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_options_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_options_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_options_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_options_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_options_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_options_padding_bottom"
             android:text="@string/dev_http_capture_data_type_50_59"
-            android:textColor="@color/dev_http_capture_dialog_dt_options_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_options_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_options_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_options_text_size" />
 
         <TextView
             android:id="@+id/vid_cancel_tv"
@@ -120,12 +120,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:includeFontPadding="false"
-            android:paddingLeft="@dimen/dev_http_capture_dialog_dt_cancel_padding_left"
-            android:paddingTop="@dimen/dev_http_capture_dialog_dt_cancel_padding_top"
-            android:paddingRight="@dimen/dev_http_capture_dialog_dt_cancel_padding_right"
-            android:paddingBottom="@dimen/dev_http_capture_dialog_dt_cancel_padding_bottom"
+            android:paddingLeft="@dimen/dev_http_capture_dialog_cancel_padding_left"
+            android:paddingTop="@dimen/dev_http_capture_dialog_cancel_padding_top"
+            android:paddingRight="@dimen/dev_http_capture_dialog_cancel_padding_right"
+            android:paddingBottom="@dimen/dev_http_capture_dialog_cancel_padding_bottom"
             android:text="@string/dev_http_capture_cancel"
-            android:textColor="@color/dev_http_capture_dialog_dt_cancel_text_color"
-            android:textSize="@dimen/dev_http_capture_dialog_dt_cancel_text_size" />
+            android:textColor="@color/dev_http_capture_dialog_cancel_text_color"
+            android:textSize="@dimen/dev_http_capture_dialog_cancel_text_size" />
     </LinearLayout>
 </FrameLayout>
