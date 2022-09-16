@@ -57,7 +57,7 @@ class DevHttpCaptureFileActivity : BaseDevHttpActivity<DevHttpCaptureFileActivit
         // 设置点击事件
         binding.vidTitleInclude.vidBackIv.setOnClickListener { finishOperate() }
         // 设置标题
-        binding.vidTitleInclude.vidTitleTv.text = "Http Capture Details"
+        binding.vidTitleInclude.vidTitleTv.setText(R.string.dev_http_capture_details_title)
         // 绑定适配器
         mAdapter.bindAdapter(binding.vidRv)
         // 设置数据源

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <integer name="dev_http_capture_query_item_scroll_delay">30</integer>
     <string name="dev_http_capture_title">DevHttpCapture</string>
+    <integer name="dev_http_capture_query_item_scroll_delay">30</integer>
+
+    <string name="dev_http_capture_details_title">Http Capture Details</string>
     <string name="dev_http_capture_querying">Loading, Please Wait&#8230;</string>
     <string name="dev_http_capture_query_complete">Data Refresh Complete</string>
     <string name="dev_http_capture_query_no_data">No Http Capture Data</string>
