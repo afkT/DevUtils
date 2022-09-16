@@ -29,11 +29,11 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.0'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.10"
         // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
         classpath "com.alibaba:arouter-register:1.0.2"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
