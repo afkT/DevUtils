@@ -31,8 +31,7 @@ class DevHttpCaptureFileActivity : BaseDevHttpActivity<DevHttpCaptureFileActivit
         setContentView(binding.root)
         // 设置状态栏颜色
         BarUtils.setStatusBarColor(
-            this,
-            ResourceUtils.getColor(R.color.dev_http_capture_title_bg_color)
+            this, ResourceUtils.getColor(R.color.dev_http_capture_include_title_bg_color)
         )
         // 初始化数据
         initValue(intent)

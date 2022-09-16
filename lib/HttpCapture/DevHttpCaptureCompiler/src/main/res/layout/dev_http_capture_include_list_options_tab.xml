@@ -14,10 +14,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="3.0dp"
-        android:paddingTop="3.0dp"
-        android:paddingRight="3.0dp"
-        android:paddingBottom="11.0dp">
+        android:paddingLeft="@dimen/dev_http_capture_include_tab_container_padding_left"
+        android:paddingTop="@dimen/dev_http_capture_include_tab_container_padding_top"
+        android:paddingRight="@dimen/dev_http_capture_include_tab_container_padding_right"
+        android:paddingBottom="@dimen/dev_http_capture_include_tab_container_padding_bottom">
 
         <TextView
             android:layout_width="match_parent"
@@ -27,22 +27,22 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@string/dev_http_capture_options_data"
-            android:textColor="@color/white"
-            android:textSize="12.0sp" />
+            android:textColor="@color/dev_http_capture_include_tab_title_text_color"
+            android:textSize="@dimen/dev_http_capture_include_tab_title_text_size" />
 
         <TextView
             android:id="@+id/vid_data_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_include_tab_options_margin_top"
             android:drawableRight="@drawable/dev_http_capture_icon_sort_arrow"
-            android:drawablePadding="2.0dp"
+            android:drawablePadding="@dimen/dev_http_capture_include_tab_options_drawable_padding"
             android:ellipsize="end"
             android:gravity="center"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="16.0sp"
+            android:textColor="@color/dev_http_capture_include_tab_options_text_color"
+            android:textSize="@dimen/dev_http_capture_include_tab_options_text_size"
             tools:text="@string/dev_http_capture_data_type_all" />
     </LinearLayout>
 
@@ -53,10 +53,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="3.0dp"
-        android:paddingTop="8.0dp"
-        android:paddingRight="3.0dp"
-        android:paddingBottom="10.0dp">
+        android:paddingLeft="@dimen/dev_http_capture_include_tab_container_padding_left"
+        android:paddingTop="@dimen/dev_http_capture_include_tab_container_padding_top"
+        android:paddingRight="@dimen/dev_http_capture_include_tab_container_padding_right"
+        android:paddingBottom="@dimen/dev_http_capture_include_tab_container_padding_bottom">
 
         <TextView
             android:layout_width="match_parent"
@@ -66,22 +66,22 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@string/dev_http_capture_options_group"
-            android:textColor="@color/white"
-            android:textSize="12.0sp" />
+            android:textColor="@color/dev_http_capture_include_tab_title_text_color"
+            android:textSize="@dimen/dev_http_capture_include_tab_title_text_size" />
 
         <TextView
             android:id="@+id/vid_group_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_include_tab_options_margin_top"
             android:drawableRight="@drawable/dev_http_capture_icon_sort_arrow"
-            android:drawablePadding="2.0dp"
+            android:drawablePadding="@dimen/dev_http_capture_include_tab_options_drawable_padding"
             android:ellipsize="end"
             android:gravity="center"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="16.0sp"
+            android:textColor="@color/dev_http_capture_include_tab_options_text_color"
+            android:textSize="@dimen/dev_http_capture_include_tab_options_text_size"
             tools:text="@string/dev_http_capture_group_type_time" />
     </LinearLayout>
 </LinearLayout>

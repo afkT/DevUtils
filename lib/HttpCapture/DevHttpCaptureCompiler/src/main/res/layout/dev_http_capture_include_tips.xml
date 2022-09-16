@@ -14,22 +14,22 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="50.0dp">
+        android:paddingBottom="@dimen/dev_http_capture_include_tips_padding_bottom">
 
         <ImageView
-            android:layout_width="180.0dp"
-            android:layout_height="180.0dp"
+            android:layout_width="@dimen/dev_http_capture_include_tips_image_size"
+            android:layout_height="@dimen/dev_http_capture_include_tips_image_size"
             android:background="@drawable/dev_http_capture_icon_tips" />
 
         <TextView
             android:id="@+id/vid_tips_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dp"
+            android:layout_marginTop="@dimen/dev_http_capture_include_tips_margin_top"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/dev_http_capture_tips_color"
-            android:textSize="17.0sp"
+            android:textColor="@color/dev_http_capture_include_tips_text_color"
+            android:textSize="@dimen/dev_http_capture_include_tips_text_size"
             tools:text="@string/dev_http_capture_query_no_data" />
     </LinearLayout>
 </FrameLayout>

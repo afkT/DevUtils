@@ -9,22 +9,22 @@
     <TextView
         android:id="@+id/vid_title_tv"
         android:layout_width="match_parent"
-        android:layout_height="50.0dp"
-        android:background="@color/dev_http_capture_adapter_title_bg_color"
+        android:layout_height="@dimen/dev_http_capture_adapter_main_title_height"
+        android:background="@color/dev_http_capture_adapter_main_bg_color"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:maxLines="1"
-        android:paddingLeft="10.0dp"
-        android:paddingRight="10.0dp"
-        android:textColor="@color/white"
-        android:textSize="19.0sp"
+        android:paddingLeft="@dimen/dev_http_capture_adapter_main_padding_lr"
+        android:paddingRight="@dimen/dev_http_capture_adapter_main_padding_lr"
+        android:textColor="@color/dev_http_capture_adapter_main_title_text_color"
+        android:textSize="@dimen/dev_http_capture_adapter_main_title_text_size"
         tools:text="@string/dev_http_capture_title" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/white" />
+        android:layout_height="@dimen/dev_http_capture_adapter_main_divider_height"
+        android:background="@color/dev_http_capture_adapter_main_divider_color" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vid_rv"

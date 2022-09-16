@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dev_http_capture_title_height"
-    android:background="@color/dev_http_capture_title_bg_color"
+    android:layout_height="@dimen/dev_http_capture_include_title_height"
+    android:background="@color/dev_http_capture_include_title_bg_color"
     android:fitsSystemWindows="true"
+    android:orientation="horizontal"
     android:scrollbars="none">
 
     <ImageView
         android:id="@+id/vid_back_iv"
-        android:layout_width="@dimen/dev_http_capture_title_height"
-        android:layout_height="@dimen/dev_http_capture_title_height"
-        android:padding="@dimen/dev_http_capture_title_back_padding"
+        android:layout_width="@dimen/dev_http_capture_include_title_height"
+        android:layout_height="@dimen/dev_http_capture_include_title_height"
+        android:padding="@dimen/dev_http_capture_include_title_back_padding"
         android:src="@drawable/dev_http_capture_back" />
 
     <TextView
         android:id="@+id/vid_title_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dev_http_capture_title_height"
         android:ellipsize="end"
         android:gravity="center"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="@color/dev_http_capture_title_text_color"
-        android:textSize="@dimen/dev_http_capture_title_text_size"
+        android:textColor="@color/dev_http_capture_include_title_text_color"
+        android:textSize="@dimen/dev_http_capture_include_title_text_size"
         android:textStyle="bold"
-        tools:paddingRight="@dimen/dev_http_capture_title_height"
+        tools:paddingRight="@dimen/dev_http_capture_include_title_height"
         tools:text="@string/dev_http_capture_title" />
-</FrameLayout>
+</LinearLayout>

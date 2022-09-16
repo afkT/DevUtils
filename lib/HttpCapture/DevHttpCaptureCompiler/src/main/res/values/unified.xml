@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="dev_http_capture_bg_color">#e9e9e9</color>
-    <color name="dev_http_capture_title_bg_color">#3f51b5</color>
-    <color name="dev_http_capture_tips_color">#3f51b5</color>
-
-    <color name="dev_http_capture_adapter_title_bg_color">#0080ff</color>
-    <color name="dev_http_capture_adapter_item_color">#777777</color>
-    <color name="dev_http_capture_adapter_item_bg_color">#d0d0d0</color>
-
-    <color name="dev_http_capture_title_text_color">#ffffff</color>
-    <color name="dev_http_capture_title_restart_text_color">#ffffff</color>
-
-    <dimen name="dev_http_capture_title_height">56.0dp</dimen>
-    <dimen name="dev_http_capture_title_back_padding">5.0dp</dimen>
-    <dimen name="dev_http_capture_title_text_size">18.0sp</dimen>
-
-    <dimen name="dev_http_capture_action_size">50.0dp</dimen>
-    <dimen name="dev_http_capture_action_margin">10.0dp</dimen>
-    <dimen name="dev_http_capture_action_margin_right">15.0dp</dimen>
-    <dimen name="dev_http_capture_action_margin_bottom">35.0dp</dimen>
 
     <!-- drawable -->
 
@@ -119,5 +101,55 @@
     <!-- dev_http_capture_include_list_options_tab -->
 
     <color name="dev_http_capture_include_tab_bg_color">#3f51b5</color>
+    <dimen name="dev_http_capture_include_tab_container_padding_left">3.0sp</dimen>
+    <dimen name="dev_http_capture_include_tab_container_padding_top">3.0sp</dimen>
+    <dimen name="dev_http_capture_include_tab_container_padding_right">3.0sp</dimen>
+    <dimen name="dev_http_capture_include_tab_container_padding_bottom">11.0sp</dimen>
+    <color name="dev_http_capture_include_tab_title_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_include_tab_title_text_size">12.0sp</dimen>
+    <color name="dev_http_capture_include_tab_options_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_include_tab_options_text_size">16.0sp</dimen>
+    <dimen name="dev_http_capture_include_tab_options_margin_top">7.0dp</dimen>
+    <dimen name="dev_http_capture_include_tab_options_drawable_padding">2.0dp</dimen>
 
+    <!-- dev_http_capture_include_tips -->
+
+    <color name="dev_http_capture_include_tips_text_color">#3f51b5</color>
+    <dimen name="dev_http_capture_include_tips_text_size">17.0sp</dimen>
+    <dimen name="dev_http_capture_include_tips_margin_top">20.0dp</dimen>
+    <dimen name="dev_http_capture_include_tips_padding_bottom">50.0dp</dimen>
+    <dimen name="dev_http_capture_include_tips_image_size">180.0dp</dimen>
+
+    <!-- dev_http_capture_include_title -->
+
+    <color name="dev_http_capture_include_title_bg_color">#3f51b5</color>
+    <dimen name="dev_http_capture_include_title_height">56.0dp</dimen>
+    <dimen name="dev_http_capture_include_title_back_padding">5.0dp</dimen>
+    <color name="dev_http_capture_include_title_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_include_title_text_size">18.0sp</dimen>
+
+    <!-- dev_http_capture_list_activity、dev_http_capture_main_activity -->
+
+    <dimen name="dev_http_capture_action_size">50.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin">10.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin_right">15.0dp</dimen>
+    <dimen name="dev_http_capture_action_margin_bottom">35.0dp</dimen>
+
+    <!-- dev_http_capture_main_module_adapter -->
+
+    <color name="dev_http_capture_adapter_main_bg_color">#0080ff</color>
+    <dimen name="dev_http_capture_adapter_main_padding_lr">10.0dp</dimen>
+    <color name="dev_http_capture_adapter_main_divider_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_main_divider_height">0.1dp</dimen>
+    <dimen name="dev_http_capture_adapter_main_title_height">50.0dp</dimen>
+    <color name="dev_http_capture_adapter_main_title_text_color">#ffffff</color>
+    <dimen name="dev_http_capture_adapter_main_title_text_size">19.0sp</dimen>
+
+    <!-- dev_http_capture_main_module_list_adapter -->
+
+    <color name="dev_http_capture_adapter_main_item_bg_color">#d0d0d0</color>
+    <dimen name="dev_http_capture_adapter_main_item_padding_lr">10.0dp</dimen>
+    <dimen name="dev_http_capture_adapter_main_item_title_height">45.0dp</dimen>
+    <color name="dev_http_capture_adapter_main_item_title_text_color">#777777</color>
+    <dimen name="dev_http_capture_adapter_main_item_title_text_size">17.0sp</dimen>
 </resources>

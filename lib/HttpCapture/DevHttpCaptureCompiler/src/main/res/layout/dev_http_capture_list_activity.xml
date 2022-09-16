@@ -13,49 +13,43 @@
         android:id="@+id/vid_title_include"
         layout="@layout/dev_http_capture_include_title" />
 
-    <LinearLayout
+    <include
+        android:id="@+id/vid_tab_include"
+        layout="@layout/dev_http_capture_include_list_options_tab" />
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include
-            android:id="@+id/vid_tab_include"
-            layout="@layout/dev_http_capture_include_list_options_tab" />
+            android:id="@+id/vid_tips_include"
+            layout="@layout/dev_http_capture_include_tips"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vid_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/vid_refresh_fl"
+            android:layout_width="@dimen/dev_http_capture_action_size"
+            android:layout_height="@dimen/dev_http_capture_action_size"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="@dimen/dev_http_capture_action_margin_right"
+            android:layout_marginBottom="@dimen/dev_http_capture_action_margin_bottom"
+            android:background="@drawable/dev_http_capture_action_round_bg">
 
-            <include
-                android:id="@+id/vid_tips_include"
-                layout="@layout/dev_http_capture_include_tips"
-                android:visibility="gone" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/vid_rv"
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/dev_http_capture_date_module_list_adapter" />
-
-            <FrameLayout
-                android:id="@+id/vid_refresh_fl"
-                android:layout_width="50.0dp"
-                android:layout_height="50.0dp"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="15.0dp"
-                android:layout_marginBottom="35.0dp"
-                android:background="@drawable/dev_http_capture_action_round_bg">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10.0dp"
-                    android:background="@drawable/dev_http_capture_icon_refresh" />
-            </FrameLayout>
+                android:layout_margin="@dimen/dev_http_capture_action_margin"
+                android:background="@drawable/dev_http_capture_icon_refresh" />
         </FrameLayout>
-    </LinearLayout>
+    </FrameLayout>
 </LinearLayout>
