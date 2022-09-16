@@ -40,7 +40,8 @@
             android:layout_width="@dimen/dev_environment_item_height"
             android:layout_height="@dimen/dev_environment_item_height"
             android:layout_gravity="center"
-            android:background="@drawable/dev_environment_mark" />
+            android:padding="@dimen/dev_environment_item_mark_padding"
+            android:src="@drawable/dev_environment_mark" />
     </LinearLayout>
 
     <View

@@ -17,8 +17,8 @@
             android:id="@+id/vid_back_iv"
             android:layout_width="@dimen/dev_environment_title_height"
             android:layout_height="@dimen/dev_environment_title_height"
-            android:background="@drawable/dev_environment_back"
-            android:padding="@dimen/dev_environment_title_back_padding" />
+            android:padding="@dimen/dev_environment_title_back_padding"
+            android:src="@drawable/dev_environment_back" />
 
         <TextView
             android:layout_width="0.0dp"

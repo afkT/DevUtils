@@ -11,8 +11,8 @@
         android:id="@+id/vid_back_iv"
         android:layout_width="@dimen/dev_http_capture_title_height"
         android:layout_height="@dimen/dev_http_capture_title_height"
-        android:background="@drawable/dev_http_capture_back"
-        android:padding="@dimen/dev_http_capture_title_back_padding" />
+        android:padding="@dimen/dev_http_capture_title_back_padding"
+        android:src="@drawable/dev_http_capture_back" />
 
     <TextView
         android:id="@+id/vid_title_tv"
