@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.3.8 *(2022-09-18)*
+----------------------------
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
+* `[Add]` 新增 DevDataAdapter#onAttachedToRecyclerView 方法初始化处理
+
 Version 1.3.7 *(2022-08-07)*
 ----------------------------
 

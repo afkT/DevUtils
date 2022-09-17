@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevHttpCapture:1.1.2'
+implementation 'io.github.afkt:DevHttpCapture:1.1.3'
 ```
 
 ## 目录结构
@@ -159,4 +159,5 @@ DevHttpCapture.updateInterceptor(moduleName, capture)
 | callResponseHeaders | 生成响应头信息 Map |
 | callResponseBodyFailed | 生成错误响应体信息 |
 | callResponseBody | 生成响应体信息 Map |
+| converterRequestBody | 转换请求体信息 Map |
 | callEnd | 抓包结束 |

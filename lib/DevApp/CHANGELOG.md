@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.4.2 *(2022-09-18)*
+----------------------------
+
+* `[Add]` 新增 UriUtils#ofUri
+
+* `[Add]` 新增 NumberUtils#calculateUnitD、calculateUnitF
+
+* `[Add]` 新增 FormatUtils 工具类及 UnitSpanFormatter、ArgsFormatter 封装类
+
+* `[Add]` 新增部分通用 able 接口
+
 Version 2.4.1 *(2022-07-18)*
 ----------------------------
 

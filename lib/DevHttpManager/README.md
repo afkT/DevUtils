@@ -12,7 +12,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevHttpManager:1.0.2'
+implementation 'io.github.afkt:DevHttpManager:1.0.3'
 ```
 
 ## 目录结构
