@@ -11,7 +11,7 @@ private class HttpConstants private constructor() {
 
     @Module(alias = "服务器请求地址")
     private inner class Service {
-        @Environment(value = "https://www.wanandroid.com/", isRelease = true, alias = "线上环境")
+        @Environment(value = "https://www.wanandroid.com", isRelease = true, alias = "线上环境")
         private val release: String? = null
 
         @Environment(value = "https://debug.com", alias = "测试环境")
@@ -35,7 +35,7 @@ private class HttpConstants private constructor() {
 
     @Module(alias = "IM 模块")
     private inner class IM {
-        @Environment(value = "https://im.release.com/", isRelease = true, alias = "线上环境")
+        @Environment(value = "https://im.release.com", isRelease = true, alias = "线上环境")
         private val release: String? = null
 
         @Environment(value = "https://im.debug.com", alias = "测试环境")

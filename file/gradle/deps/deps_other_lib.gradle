@@ -23,6 +23,19 @@ dependencies {
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize
 
+    // ==========
+    // = Widget =
+    // ==========
+
+    // Banner 库 https://github.com/youth5201314/banner
+    implementation deps.widget.banner
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation deps.widget.smartrefreshlayout
+    implementation deps.widget.smartrefresh_header_classics
+    implementation deps.widget.smartrefresh_footer_classics
+    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
+    implementation deps.widget.multitype
+
     // ==========================
     // = 其他第三方库 - 小功能、简约 =
     // ==========================
@@ -36,19 +49,6 @@ dependencies {
 //    implementation deps_split.lib.pictureSelector_compress
 //    implementation deps_split.lib.pictureSelector_ucrop
     implementation deps_split.lib.pictureSelector_camerax
-
-    // ==========
-    // = Widget =
-    // ==========
-
-    // Banner 库 https://github.com/youth5201314/banner
-    implementation deps.widget.banner
-    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    implementation deps.widget.smartrefreshlayout
-    implementation deps.widget.smartrefresh_header_classics
-    implementation deps.widget.smartrefresh_footer_classics
-    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-    implementation deps.widget.multitype
 
     // ==============
     // = deps_split =
