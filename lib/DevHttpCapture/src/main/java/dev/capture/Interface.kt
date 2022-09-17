@@ -2,6 +2,7 @@ package dev.capture
 
 import dev.utils.common.cipher.Encrypt
 import okhttp3.*
+import okio.Buffer
 
 /**
  * detail: Http 拦截过滤器
@@ -215,6 +216,25 @@ interface IHttpCaptureEvent : IHttpCaptureEnd {
         response: Response,
         responseBody: ResponseBody,
     ): String
+
+    // ==========
+    // = 转换处理 =
+    // ==========
+
+    /**
+     * 转换请求体信息 Map
+     * @param request 请求对象
+     * @param requestBody 请求体
+     * @param captureRedact 抓包信息隐藏字段
+     * @param buffer Body Buffer
+     * @return 请求体信息 Map
+     */
+    fun converterRequestBody(
+        request: Request,
+        requestBody: RequestBody,
+        captureRedact: CaptureRedact,
+        buffer: Buffer
+    ): LinkedHashMap<String, String>
 }
 
 /**

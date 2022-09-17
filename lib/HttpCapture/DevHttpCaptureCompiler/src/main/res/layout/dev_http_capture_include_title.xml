@@ -23,10 +23,10 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:maxLines="1"
+        android:paddingRight="@dimen/dev_http_capture_include_title_padding_right"
         android:singleLine="true"
         android:textColor="@color/dev_http_capture_include_title_text_color"
         android:textSize="@dimen/dev_http_capture_include_title_text_size"
         android:textStyle="bold"
-        tools:paddingRight="@dimen/dev_http_capture_include_title_height"
         tools:text="@string/dev_http_capture_title" />
 </LinearLayout>

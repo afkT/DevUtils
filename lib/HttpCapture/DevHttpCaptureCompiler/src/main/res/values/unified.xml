@@ -124,6 +124,7 @@
 
     <color name="dev_http_capture_include_title_bg_color">#3f51b5</color>
     <dimen name="dev_http_capture_include_title_height">56.0dp</dimen>
+    <dimen name="dev_http_capture_include_title_padding_right">56.0dp</dimen>
     <dimen name="dev_http_capture_include_title_back_padding">5.0dp</dimen>
 
     <color name="dev_http_capture_include_title_text_color">#ffffff</color>

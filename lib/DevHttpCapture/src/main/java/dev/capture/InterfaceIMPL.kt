@@ -6,13 +6,15 @@ import okhttp3.internal.http.promisesBody
 import okio.Buffer
 import okio.GzipSource
 import java.io.EOFException
-import java.nio.charset.StandardCharsets
+import java.nio.charset.Charset
 
 /**
  * detail: Http 抓包事件回调实现类
  * @author Ttt
  */
 abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
+
+    val UTF_8 = Charset.forName("UTF-8")
 
     // =====================
     // = IHttpCaptureEvent =
@@ -96,33 +98,11 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             requestBody.writeTo(buffer)
 
             if (isProbablyUtf8(buffer)) {
-                when (requestBody) {
-                    is FormBody -> {
-                        map.putAll(
-                            mapFormBody(
-                                requestBody,
-                                captureRedact.requestBody,
-                                captureRedact.replaceValue
-                            )
-                        )
-                    }
-                    is MultipartBody -> {
-                        map.putAll(
-                            mapMultipartBody(
-                                requestBody,
-                                captureRedact.requestBody,
-                                captureRedact.replaceValue
-                            )
-                        )
-                    }
-                    else -> {
-                        val contentType = requestBody.contentType()
-                        val charset = contentType?.charset(
-                            StandardCharsets.UTF_8
-                        ) ?: StandardCharsets.UTF_8
-                        map[BODY_STRING] = buffer.readString(charset)
-                    }
-                }
+                map.putAll(
+                    converterRequestBody(
+                        request, requestBody, captureRedact, buffer
+                    )
+                )
                 map[END] = "${request.method} ( ${requestBody.contentLength()}-byte body )"
             } else {
                 map[END] =
@@ -197,9 +177,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             }
 
             val contentType = responseBody.contentType()
-            val charset = contentType?.charset(
-                StandardCharsets.UTF_8
-            ) ?: StandardCharsets.UTF_8
+            val charset = contentType?.charset(UTF_8) ?: UTF_8
 
             if (!isProbablyUtf8(buffer)) {
                 return "END HTTP ( binary ${buffer.size}-byte body omitted )"
@@ -213,6 +191,42 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                 "END HTTP ( ${buffer.size}-byte, $gzippedLength-gzipped-byte body )"
             } else {
                 "END HTTP ( ${buffer.size}-byte body )"
+            }
+        }
+    }
+
+    // ==========
+    // = 转换处理 =
+    // ==========
+
+    override fun converterRequestBody(
+        request: Request,
+        requestBody: RequestBody,
+        captureRedact: CaptureRedact,
+        buffer: Buffer
+    ): LinkedHashMap<String, String> {
+        when (requestBody) {
+            is FormBody -> {
+                return mapFormBody(
+                    requestBody,
+                    captureRedact.requestBody,
+                    captureRedact.replaceValue
+                )
+            }
+            is MultipartBody -> {
+                return mapMultipartBody(
+                    requestBody,
+                    captureRedact.requestBody,
+                    captureRedact.replaceValue
+                )
+            }
+            else -> {
+                val contentType = requestBody.contentType()
+                val charset = contentType?.charset(UTF_8) ?: UTF_8
+
+                val map = linkedMapOf<String, String>()
+                map[BODY_STRING] = buffer.readString(charset)
+                return map
             }
         }
     }
@@ -335,10 +349,9 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
             bodyToRedact: Set<String>,
             replaceValue: String = REDACT_REPLACE_VALUE
         ): LinkedHashMap<String, String> {
+            val UTF_8 = Charset.forName("UTF-8")
             val contentType = body.contentType()
-            val charset = contentType.charset(
-                StandardCharsets.UTF_8
-            ) ?: StandardCharsets.UTF_8
+            val charset = contentType.charset(UTF_8) ?: UTF_8
 
             val mapKeyCount = linkedMapOf<String, Int>()
             val mapDisposition = linkedMapOf<String, String>()
