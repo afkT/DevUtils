@@ -15,6 +15,7 @@ Engine 兼容框架等
    - DevHttpCapture                              | OkHttp 抓包工具库
    - DevHttpManager                              | OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
    - DevJava                                     | Java 工具类库 ( 不依赖 android api )
+   - DevMVVM                                     | DataBinding 工具类库
    - DevRetrofit                                 | Retrofit + Kotlin Coroutines 封装
    - DevWidget                                   | 自定义 View UI 库
    - Environment                                 | Android 环境配置切换库
