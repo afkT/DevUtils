@@ -41,9 +41,12 @@ ext {
             dev_base_mvvm_versionCode                : 112,
             dev_base_mvvm_versionName                : "1.1.2",
 
+//            // DevMVVM - DataBinding 工具类库
+//            dev_mvvm_versionCode                     : 100,
+//            dev_mvvm_versionName                     : "1.0.0",
             // DevMVVM - DataBinding 工具类库
-            dev_mvvm_versionCode                     : 100,
-            dev_mvvm_versionName                     : "1.0.0",
+            dev_mvvm_versionCode                     : 1,
+            dev_mvvm_versionName                     : "1.0.0-alpha01",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 110,

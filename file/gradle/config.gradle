@@ -342,16 +342,23 @@ ext {
                     // = 第三方简约小功能、UI 小组件等 =
                     // ============================
 
+                    // https://mvnrepository.com/artifact/me.tatarka.bindingcollectionadapter2/bindingcollectionadapter
+                    // https://mvnrepository.com/artifact/me.tatarka.bindingcollectionadapter2/bindingcollectionadapter-recyclerview
+                    // https://mvnrepository.com/artifact/me.tatarka.bindingcollectionadapter2/bindingcollectionadapter-viewpager2
+                    // MVVM Adapter Binding https://github.com/evant/binding-collection-adapter
+                    binding_collection_adapter             : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0",
+                    binding_collection_adapter_recyclerview: "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0",
+                    binding_collection_adapter_viewpager2  : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0",
                     // https://mvnrepository.com/artifact/com.drakeet.multitype/multitype
                     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-                    multitype                    : "com.drakeet.multitype:multitype:4.3.0",
+                    multitype                              : "com.drakeet.multitype:multitype:4.3.0",
                     // https://mvnrepository.com/artifact/com.github.donkingliang/ConsecutiveScroller
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.6.3",
+                    consecutiveScroller                    : "com.github.donkingliang:ConsecutiveScroller:4.6.3",
                     // https://mvnrepository.com/artifact/io.github.youth5201314/banner
                     // Banner 库 https://github.com/youth5201314/banner
-                    banner                       : "io.github.youth5201314:banner:2.2.2",
+                    banner                                 : "io.github.youth5201314:banner:2.2.2",
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-layout-kernel
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-classics
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-radar
@@ -361,14 +368,14 @@ ext {
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-ball
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-classics
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-                    smartrefreshlayout           : "io.github.scwang90:refresh-layout-kernel:2.0.5",
-                    smartrefresh_header_classics : "io.github.scwang90:refresh-header-classics:2.0.5", // 经典刷新头
-                    smartrefresh_header_radar    : "io.github.scwang90:refresh-header-radar:2.0.5", // 雷达刷新头
-                    smartrefresh_header_falsify  : "io.github.scwang90:refresh-header-falsify:2.0.5", // 虚拟刷新头
-                    smartrefresh_header_material : "io.github.scwang90:refresh-header-material:2.0.5", // 谷歌刷新头
-                    smartrefresh_header_two_level: "io.github.scwang90:refresh-header-two-level:2.0.5", // 二级刷新头
-                    smartrefresh_footer_ball     : "io.github.scwang90:refresh-footer-ball:2.0.5", // 球脉冲加载
-                    smartrefresh_footer_classics : "io.github.scwang90:refresh-footer-classics:2.0.5", // 经典加载
+                    smartrefreshlayout                     : "io.github.scwang90:refresh-layout-kernel:2.0.5",
+                    smartrefresh_header_classics           : "io.github.scwang90:refresh-header-classics:2.0.5", // 经典刷新头
+                    smartrefresh_header_radar              : "io.github.scwang90:refresh-header-radar:2.0.5", // 雷达刷新头
+                    smartrefresh_header_falsify            : "io.github.scwang90:refresh-header-falsify:2.0.5", // 虚拟刷新头
+                    smartrefresh_header_material           : "io.github.scwang90:refresh-header-material:2.0.5", // 谷歌刷新头
+                    smartrefresh_header_two_level          : "io.github.scwang90:refresh-header-two-level:2.0.5", // 二级刷新头
+                    smartrefresh_footer_ball               : "io.github.scwang90:refresh-footer-ball:2.0.5", // 球脉冲加载
+                    smartrefresh_footer_classics           : "io.github.scwang90:refresh-footer-classics:2.0.5", // 经典加载
             ]
     ]
 }
