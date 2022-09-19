@@ -11,7 +11,7 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeData
-import dev.kotlin.utils.size.AppSize
+import dev.mvvm.utils.size.AppSize
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.StringUtils

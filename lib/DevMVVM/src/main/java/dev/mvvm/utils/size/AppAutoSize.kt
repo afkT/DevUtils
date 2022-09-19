@@ -1,4 +1,4 @@
-package dev.kotlin.utils.size
+package dev.mvvm.utils.size
 
 import android.content.Context
 import androidx.annotation.DimenRes
@@ -15,9 +15,6 @@ val GLOBAL_APP_AUTO_SIZE = AppAutoSize()
  * detail: App 适配值转换快捷类
  * @author Ttt
  * 该类主要用于内部缓存适配值, 便于第二次直接从缓存中读取
- * 也可使用
- * SizeUtils.dp2px(context, value).toFloat()
- * AutoSizeUtils.dp2px(context, value).toFloat()
  */
 class AppAutoSize {
 

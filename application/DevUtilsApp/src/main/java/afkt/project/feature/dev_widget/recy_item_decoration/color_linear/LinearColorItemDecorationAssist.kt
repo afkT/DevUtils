@@ -3,7 +3,7 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_linear
 import afkt.project.databinding.IncludeLinearItemDecorationAssistBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.CommonColorItemDecorationAssist
 import androidx.recyclerview.widget.RecyclerView
-import dev.kotlin.utils.size.AppSize
+import dev.mvvm.utils.size.AppSize
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils

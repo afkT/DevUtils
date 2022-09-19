@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.kotlin.utils.size.AppSize
+import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ListenerUtils
 import dev.utils.common.RandomUtils
 

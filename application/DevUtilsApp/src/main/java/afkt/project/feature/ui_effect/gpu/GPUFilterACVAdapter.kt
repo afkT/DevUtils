@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Gallery
 import dev.base.widget.BaseTextView
-import dev.kotlin.utils.size.AppSize
+import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 

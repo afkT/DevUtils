@@ -1,4 +1,4 @@
-package dev.kotlin.utils.size
+package dev.mvvm.utils.size
 
 import android.content.Context
 import androidx.annotation.DimenRes
@@ -16,6 +16,7 @@ object AppSize {
 
     private val AUTO_SIZE = GLOBAL_APP_AUTO_SIZE
 
+    // 允许获取存储集合清空缓存
     val CONVERT: AppAutoSize.Convert by lazy {
         AUTO_SIZE.CONVERT
     }

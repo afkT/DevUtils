@@ -1,7 +1,7 @@
 package afkt.project.feature.dev_widget.recy_item_decoration
 
 import androidx.recyclerview.widget.RecyclerView
-import dev.kotlin.utils.size.AppSize
+import dev.mvvm.utils.size.AppSize
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.BaseColorItemDecoration
 import java.util.concurrent.atomic.AtomicInteger
