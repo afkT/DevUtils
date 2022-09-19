@@ -11,7 +11,7 @@ import dev.mvvm.base.adapter.item.ItemBinding
  * detail: 通用 DataBinding Data AdapterExt
  * @author Ttt
  */
-abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
+internal abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
     val itemBinding: ItemBinding<T>
 ) : DevDataAdapterExt<T, DevBaseViewDataBindingVH<VDB>>() {
 
@@ -26,16 +26,18 @@ abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
         holder: DevBaseViewDataBindingVH<VDB>,
         position: Int
     ) {
-        onItemBinding(holder.binding, position)
+        onItemBinding(holder.binding, position, getDataItem(position))
     }
 
     /**
      * Item DataBinding
      * @param binding VDB
      * @param position Int
+     * @param item 对应索引实体类
      */
     abstract fun onItemBinding(
         binding: VDB,
-        position: Int
+        position: Int,
+        item: T
     )
 }

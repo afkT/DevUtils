@@ -1,5 +1,7 @@
 package dev.mvvm
 
+import dev.mvvm.base.Config
+
 /**
  * detail: DevMVVM
  * @author Ttt
@@ -83,5 +85,25 @@ object DevMVVM {
      */
     fun getDevBaseMVVMVersion(): String {
         return BuildConfig.DevBaseMVVM_Version
+    }
+
+    // =============
+    // = 对外公开方法 =
+    // =============
+
+    /**
+     * 开启日志开关
+     */
+    fun openLog(): DevMVVM {
+        return Config.openLog()
+    }
+
+    /**
+     * 设置默认点击时间间隔
+     * @param intervalTime 双击时间间隔
+     * @return [DevMVVM]
+     */
+    fun setIntervalTime(intervalTime: Long): DevMVVM {
+        return Config.setIntervalTime(intervalTime)
     }
 }

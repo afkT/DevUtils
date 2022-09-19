@@ -1,5 +1,7 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
 
 android.defaultConfig {
     versionCode versions.dev_mvvm_versionCode
@@ -19,18 +21,18 @@ android.defaultConfig {
 def isPublishing = false
 
 dependencies {
-    api deps.kotlin.lifecycle_viewmodel
-    api deps.kotlin.lifecycle_livedata
-    api deps.kotlin.lifecycle_viewmodel_savedstate
-
     if (isPublishing) {
         // 打包时使用
         api deps.dev.dev_assist
         api deps.dev.dev_base_mvvm
+        api deps.dev.dev_engine
+        api deps.dev.dev_widget
     } else {
         // 编译时使用
         api project(':DevAssist')
         api project(':DevBaseMVVM')
+        api project(':DevEngine')
+        api project(':DevWidget')
     }
 }
 
