@@ -1,9 +1,9 @@
 package dev.mvvm.binding.view
 
-import dev.mvvm.base.attribute.Margins
-import dev.mvvm.base.attribute.Paddings
 import android.view.View
 import androidx.databinding.BindingAdapter
+import dev.mvvm.base.attribute.Margins
+import dev.mvvm.base.attribute.Paddings
 import dev.utils.app.ViewUtils
 
 // =======================

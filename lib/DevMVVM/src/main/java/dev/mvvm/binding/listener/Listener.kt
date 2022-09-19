@@ -1,4 +1,4 @@
-package dev.mvvm.binding.view
+package dev.mvvm.binding.listener
 
 import android.view.View
 import androidx.databinding.BindingAdapter

@@ -1,5 +1,9 @@
 package dev.mvvm.utils
 
+// ==============
+// = 通用扩展函数 =
+// ==============
+
 /**
  * 在 let 基础上增加如果 null 执行方法体
  * @receiver T?

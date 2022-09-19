@@ -2,6 +2,10 @@ package dev.mvvm.utils
 
 import dev.utils.app.ResourceUtils
 
+// ============
+// = Resource =
+// ============
+
 /**
  * 获取 R.string.id String
  * @return String

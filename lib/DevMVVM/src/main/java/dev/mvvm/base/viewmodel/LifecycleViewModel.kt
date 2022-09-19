@@ -1,4 +1,4 @@
-package dev.mvvm.viewmodel
+package dev.mvvm.base.viewmodel
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
