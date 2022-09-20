@@ -1,4 +1,4 @@
-package dev.mvvm.binding.view
+package dev.mvvm.binding.animation
 
 import android.view.View
 import android.view.animation.Animation
