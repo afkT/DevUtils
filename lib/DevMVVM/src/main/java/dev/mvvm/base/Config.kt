@@ -1,7 +1,6 @@
 package dev.mvvm.base
 
 import dev.expand.engine.log.log_isPrintLog
-import dev.mvvm.DevMVVM
 import dev.utils.app.ClickUtils
 
 /**
@@ -19,19 +18,16 @@ object Config {
     /**
      * 开启日志开关
      */
-    internal fun openLog(): DevMVVM {
+    internal fun openLog() {
         JUDGE_PRINT_LOG = true
-        return DevMVVM
     }
 
     /**
      * 设置默认点击时间间隔
      * @param intervalTime 双击时间间隔
-     * @return [DevMVVM]
      */
-    internal fun setIntervalTime(intervalTime: Long): DevMVVM {
+    internal fun setIntervalTime(intervalTime: Long) {
         INTERVAL_TIME = intervalTime
-        return DevMVVM
     }
 
     // ==============

@@ -1,6 +1,9 @@
 package dev.mvvm
 
+import dev.base.DevVariableExt
+import dev.engine.image.ImageConfig
 import dev.mvvm.base.Config
+import dev.mvvm.utils.image.AppImageConfig
 
 /**
  * detail: DevMVVM
@@ -95,15 +98,25 @@ object DevMVVM {
      * 开启日志开关
      */
     fun openLog(): DevMVVM {
-        return Config.openLog()
+        Config.openLog()
+        return this
     }
 
     /**
      * 设置默认点击时间间隔
      * @param intervalTime 双击时间间隔
-     * @return [DevMVVM]
      */
     fun setIntervalTime(intervalTime: Long): DevMVVM {
-        return Config.setIntervalTime(intervalTime)
+        Config.setIntervalTime(intervalTime)
+        return this
+    }
+
+    /**
+     * 设置 ImageConfig 创建器
+     * @param creator Creator<String, ImageConfig, ImageConfig>
+     */
+    fun setImageCreator(creator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>): DevMVVM {
+        AppImageConfig.setCreator(creator)
+        return this
     }
 }

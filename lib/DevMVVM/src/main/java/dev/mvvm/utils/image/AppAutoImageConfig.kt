@@ -33,19 +33,19 @@ class AppAutoImageConfig(
     }
 
     /**
-     * 通过字符串转换 ImageConfig
+     * 通过 Key 获取 ImageConfig
      * @param key 对应 ImageConfig Key
-     * @return ImageConfig?
+     * @return [ImageConfig]
      */
     fun toImageConfig(key: String?): ImageConfig? {
         return toImageConfig(key, defaultValue)
     }
 
     /**
-     * 通过字符串转换 ImageConfig
+     * 通过 Key 获取 ImageConfig
      * @param key 对应 ImageConfig Key
      * @param defaultValue 默认 ImageConfig
-     * @return ImageConfig?
+     * @return [ImageConfig]
      */
     fun toImageConfig(
         key: String?,
@@ -61,7 +61,7 @@ class AppAutoImageConfig(
 
     /**
      * 获取 ImageConfig 默认值
-     * @return ImageConfig?
+     * @return [ImageConfig]
      */
     fun defaultValue(): ImageConfig? {
         return defaultValue

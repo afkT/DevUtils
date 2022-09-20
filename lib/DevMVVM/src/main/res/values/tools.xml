@@ -6,5 +6,12 @@
         全局进行统一减少太多匹配代码
     -->
 
+    <string name="tools_rmb">¥</string>
     <string name="tools_price">¥17.2</string>
+    <string name="tools_double">17.2</string>
+    <string name="tools_long">17</string>
+
+    <string name="tools_title">Title</string>
+    <string name="tools_value">Value</string>
+    <string name="tools_name">Name</string>
 </resources>
