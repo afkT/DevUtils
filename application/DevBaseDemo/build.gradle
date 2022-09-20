@@ -9,14 +9,12 @@ android {
 dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevMVVM')
     implementation project(':DevEngine')
 
     // =========
     // = 非 lib =
     // =========
-
-    // DevComponent /core/libs/lib_utils
-    implementation project(':lib_utils')
 
     implementation project(':DevOther')
 }

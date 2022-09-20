@@ -3,6 +3,7 @@ package afkt.project.feature.framework
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
+import afkt.project.utils.IMAGE_ROUND_3
 import android.content.Intent
 import android.net.Uri
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
-import dev.kotlin.utils.image.IMAGE_ROUND_3
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.AppUtils

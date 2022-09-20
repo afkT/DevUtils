@@ -2,6 +2,7 @@ package afkt.project.base
 
 import afkt.project.R
 import afkt.project.base.http.RetrofitManagerUse
+import afkt.project.utils.initAppImageConfigCreator
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -21,7 +22,6 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
-import dev.kotlin.utils.image.initAppImageConfigCreator
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.*

@@ -5,6 +5,7 @@ import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.BannerBean
 import afkt.project.feature.ui_effect.recy_adapter.BannerBeanItem
+import afkt.project.utils.IMAGE_ROUND_10
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +17,6 @@ import com.youth.banner.indicator.CircleIndicator
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
-import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 

@@ -50,9 +50,6 @@ dependencies {
     // = 非 lib =
     // =========
 
-    // DevComponent /core/libs/lib_utils
-    implementation project(':lib_utils')
-
     implementation project(':DevBaseView')
     implementation project(':DevOther')
     implementation project(':DevSKU')

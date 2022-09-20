@@ -2,13 +2,13 @@ package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuDialogSpecBinding
+import afkt.project.utils.IMAGE_ROUND_10
 import android.app.Dialog
 import android.view.Gravity
 import androidx.fragment.app.FragmentActivity
 import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.expand.engine.image.display
-import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.EditTextUtils

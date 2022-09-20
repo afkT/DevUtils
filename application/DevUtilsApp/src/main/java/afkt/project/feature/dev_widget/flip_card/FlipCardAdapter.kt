@@ -1,11 +1,11 @@
 package afkt.project.feature.dev_widget.flip_card
 
+import afkt.project.utils.IMAGE_ROUND_10
 import android.content.Context
 import android.view.View
 import dev.base.DevSource
 import dev.base.widget.BaseImageView
 import dev.expand.engine.image.display
-import dev.kotlin.utils.image.IMAGE_ROUND_10
 import dev.mvvm.utils.image.toImageConfig
 import dev.widget.ui.FlipCardView
 
