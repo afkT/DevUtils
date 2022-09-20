@@ -9,8 +9,8 @@ import dev.utils.app.ViewUtils
 // = View Margin BindingAdapter =
 // ==============================
 
-@BindingAdapter("binding_layout_margin_attr")
-fun View.bindingLayoutMarginAttr(margins: Margins?) {
+@BindingAdapter("binding_marginAttr")
+fun View.bindingMarginAttr(margins: Margins?) {
     margins?.let {
         ViewUtils.setMargin(this, it.left, it.top, it.right, it.bottom)
     }
@@ -18,16 +18,16 @@ fun View.bindingLayoutMarginAttr(margins: Margins?) {
 
 // =
 
-@BindingAdapter("binding_layout_margin")
-fun View.bindingLayoutMargin(margin: Int) {
+@BindingAdapter("binding_margin")
+fun View.bindingMargin(margin: Int) {
     ViewUtils.setMargin(this, margin)
 }
 
 @BindingAdapter(
-    value = ["binding_layout_margin_left", "binding_layout_reset"],
+    value = ["binding_marginLeft", "binding_marginReset"],
     requireAll = false
 )
-fun View.bindingLayoutMarginLeft(
+fun View.bindingMarginLeft(
     margin: Int,
     reset: Boolean
 ) {
@@ -35,10 +35,10 @@ fun View.bindingLayoutMarginLeft(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_margin_top", "binding_layout_reset"],
+    value = ["binding_marginTop", "binding_marginReset"],
     requireAll = false
 )
-fun View.bindingLayoutMarginTop(
+fun View.bindingMarginTop(
     margin: Int,
     reset: Boolean
 ) {
@@ -46,10 +46,10 @@ fun View.bindingLayoutMarginTop(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_margin_right", "binding_layout_reset"],
+    value = ["binding_marginRight", "binding_marginReset"],
     requireAll = false
 )
-fun View.bindingLayoutMarginRight(
+fun View.bindingMarginRight(
     margin: Int,
     reset: Boolean
 ) {
@@ -57,10 +57,10 @@ fun View.bindingLayoutMarginRight(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_margin_bottom", "binding_layout_reset"],
+    value = ["binding_marginBottom", "binding_marginReset"],
     requireAll = false
 )
-fun View.bindingLayoutMarginBottom(
+fun View.bindingMarginBottom(
     margin: Int,
     reset: Boolean
 ) {

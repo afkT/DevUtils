@@ -11,6 +11,11 @@ import androidx.databinding.BindingAdapter
 // = visible =
 // ===========
 
+@BindingAdapter("binding_visibility")
+fun View.bindingVisibility(visibility: Int) {
+    this.visibility = visibility
+}
+
 @BindingAdapter("binding_visibleOrGone")
 fun View.bindingVisibleOrGone(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE

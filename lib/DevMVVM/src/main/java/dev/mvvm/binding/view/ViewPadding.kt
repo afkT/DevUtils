@@ -9,8 +9,8 @@ import dev.utils.app.ViewUtils
 // = View Padding BindingAdapter =
 // ==============================
 
-@BindingAdapter("binding_layout_padding_attr")
-fun View.bindingLayoutPaddingAttr(paddings: Paddings?) {
+@BindingAdapter("binding_paddingAttr")
+fun View.bindingPaddingAttr(paddings: Paddings?) {
     paddings?.let {
         ViewUtils.setPadding(this, it.left, it.top, it.right, it.bottom)
     }
@@ -18,16 +18,16 @@ fun View.bindingLayoutPaddingAttr(paddings: Paddings?) {
 
 // =
 
-@BindingAdapter("binding_layout_padding")
-fun View.bindingLayoutPadding(padding: Int) {
+@BindingAdapter("binding_padding")
+fun View.bindingPadding(padding: Int) {
     ViewUtils.setPadding(this, padding)
 }
 
 @BindingAdapter(
-    value = ["binding_layout_padding_left", "binding_layout_reset"],
+    value = ["binding_paddingLeft", "binding_paddingReset"],
     requireAll = false
 )
-fun View.bindingLayoutPaddingLeft(
+fun View.bindingPaddingLeft(
     padding: Int,
     reset: Boolean
 ) {
@@ -35,10 +35,10 @@ fun View.bindingLayoutPaddingLeft(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_padding_top", "binding_layout_reset"],
+    value = ["binding_paddingTop", "binding_paddingReset"],
     requireAll = false
 )
-fun View.bindingLayoutPaddingTop(
+fun View.bindingPaddingTop(
     padding: Int,
     reset: Boolean
 ) {
@@ -46,10 +46,10 @@ fun View.bindingLayoutPaddingTop(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_padding_right", "binding_layout_reset"],
+    value = ["binding_paddingRight", "binding_paddingReset"],
     requireAll = false
 )
-fun View.bindingLayoutPaddingRight(
+fun View.bindingPaddingRight(
     padding: Int,
     reset: Boolean
 ) {
@@ -57,10 +57,10 @@ fun View.bindingLayoutPaddingRight(
 }
 
 @BindingAdapter(
-    value = ["binding_layout_padding_bottom", "binding_layout_reset"],
+    value = ["binding_paddingBottom", "binding_paddingReset"],
     requireAll = false
 )
-fun View.bindingLayoutPaddingBottom(
+fun View.bindingPaddingBottom(
     padding: Int,
     reset: Boolean
 ) {
