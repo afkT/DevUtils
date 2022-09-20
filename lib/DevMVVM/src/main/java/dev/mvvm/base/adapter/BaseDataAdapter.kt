@@ -12,7 +12,7 @@ import dev.mvvm.base.adapter.item.ItemLifecycle
  * detail: 通用 DataBinding Data Adapter
  * @author Ttt
  */
-internal abstract class BaseDataAdapter<T, VDB : ViewDataBinding>(
+abstract class BaseDataAdapter<T, VDB : ViewDataBinding>(
     val itemBinding: ItemBinding<T>,
     var itemLifecycle: ItemLifecycle = ItemLifecycle.of()
 ) : DevDataAdapter<T, DevBaseViewDataBindingVH<VDB>>() {

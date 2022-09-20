@@ -321,7 +321,7 @@ class AppAutoSize {
     // = 内部转换存储 =
     // =============
 
-    internal enum class Type {
+    enum class Type {
 
         dp2px,
 

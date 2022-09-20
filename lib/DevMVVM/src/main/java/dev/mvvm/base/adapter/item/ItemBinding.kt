@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
  * detail: Item Binding 信息类
  * @author Ttt
  */
-internal class ItemBinding<T>(
+class ItemBinding<T>(
     // Item 绑定实体类
     val variableId: Int,
     // DataBinding 绑定布局

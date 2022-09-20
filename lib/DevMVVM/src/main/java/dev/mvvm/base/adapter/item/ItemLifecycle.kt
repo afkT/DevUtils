@@ -11,7 +11,7 @@ import dev.mvvm.command.BindingGet
  * detail: Item Binding Lifecycle
  * @author Ttt
  */
-internal class ItemLifecycle private constructor() {
+class ItemLifecycle private constructor() {
 
     companion object {
 

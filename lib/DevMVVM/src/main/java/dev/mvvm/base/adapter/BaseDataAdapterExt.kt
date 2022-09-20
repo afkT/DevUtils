@@ -11,7 +11,7 @@ import dev.mvvm.base.adapter.item.ItemBinding
  * detail: 通用 DataBinding Data AdapterExt
  * @author Ttt
  */
-internal abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
+abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
     val itemBinding: ItemBinding<T>
 ) : DevDataAdapterExt<T, DevBaseViewDataBindingVH<VDB>>() {
 
