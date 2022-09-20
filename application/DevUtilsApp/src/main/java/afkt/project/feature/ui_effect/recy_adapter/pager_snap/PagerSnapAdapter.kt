@@ -11,7 +11,7 @@ import dev.base.adapter.DevBaseViewDataBindingVH
 import dev.base.adapter.newDataBindingViewHolder
 import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_10
-import dev.kotlin.utils.image.toImageConfig
+import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 
 /**

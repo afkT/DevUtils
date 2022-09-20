@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.expand.engine.image.display
 import dev.kotlin.utils.image.IMAGE_ROUND_3
-import dev.kotlin.utils.image.toImageConfig
 import dev.kotlin.utils.price.toPriceString
 import dev.kotlin.utils.price.toRMBSubZeroAndDot
+import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper

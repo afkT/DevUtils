@@ -8,9 +8,6 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.assist.ResourceAssist
 
-// 全局 App 适配值转换快捷类
-val GLOBAL_APP_AUTO_SIZE = AppAutoSize()
-
 /**
  * detail: App 适配值转换快捷类
  * @author Ttt

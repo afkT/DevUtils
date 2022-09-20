@@ -21,6 +21,7 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
+import dev.kotlin.utils.image.initAppImageConfigCreator
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.*
@@ -291,6 +292,9 @@ class BaseApplication : MultiDexApplication() {
                     .append(DateUtils.formatTime(dateTaken)).append(" )")
                 log_d(message = builder.toString())
             }.startListener()
+
+        // 初始化 App ImageConfig 创建器
+        initAppImageConfigCreator()
     }
 
     companion object {

@@ -14,7 +14,7 @@ object AppSize {
     // = 对外公开方法 =
     // =============
 
-    private val AUTO_SIZE = GLOBAL_APP_AUTO_SIZE
+    private val AUTO_SIZE = AppAutoSize()
 
     // 允许获取存储集合清空缓存
     val CONVERT: AppAutoSize.Convert by lazy {

@@ -12,9 +12,9 @@ package dev.mvvm.utils
  */
 inline fun <T, R> T?.letNull(
     block: (T) -> R,
-    nullBlock: () -> Unit
-) {
-    if (this != null) {
+    nullBlock: () -> R
+): R {
+    return if (this != null) {
         block.invoke(this)
     } else {
         nullBlock.invoke()
