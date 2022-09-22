@@ -1,28 +1,50 @@
 
 <h1 align="center">DevUtils</h1>
 
-<p align="center">
-<a href="https://github.com/afkT"><img alt="Profile" src="https://img.shields.io/badge/GitHub-afkT-orange.svg"/></a>
-<a href="https://github.com/afkT/DevUtils/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-<a href="https://search.maven.org/search?q=io.github.afkt"><img alt="Version" src="https://img.shields.io/badge/Maven-Dev-5776E0.svg"/></a>
-<a href="https://android-arsenal.com/api?level=14"><img alt="API" src="https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat"/></a>
-<a href="https://search.maven.org/search?q=io.github.afkt"><img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.2-yellow.svg"/></a>
-<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"><img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg"/></a>
-</p>
 
 <p align="center">
-🔥 ( 持续更新，目前含 300+ 工具类 ) <a href="https://github.com/afkT/DevUtils/projects/1">Roadmap</a>
-<br>
-DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
-<br>
-该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
+	<a href="https://github.com/afkT">
+		<img alt="Profile" src="https://img.shields.io/badge/GitHub-afkT-orange.svg" />
+	</a>
+	<a href="https://github.com/afkT/DevUtils/blob/master/LICENSE">
+		<img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" />
+	</a>
+	<a href="https://search.maven.org/search?q=io.github.afkt">
+		<img alt="Version" src="https://img.shields.io/badge/Maven-Dev-5776E0.svg" />
+	</a>
+	<a href="https://android-arsenal.com/api?level=14">
+		<img alt="API" src="https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat" />
+	</a>
+	<a href="https://search.maven.org/search?q=io.github.afkt">
+		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.2-yellow.svg" />
+	</a>
+	<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md">
+		<img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg" />
+	</a>
 </p>
 
+
 <p align="center">
-<b><a href="https://github.com/afkT/DevUtils/blob/master/README/android_standard.md">Android 规范</a></b>、
-<b><a href="https://github.com/afkT/DevUtils/blob/master/README/java_standard.md">Java 规范</a></b>、
-<b><a href="https://github.com/afkT/DevUtils/blob/master/README/git_standard.md">Git 规范</a></b>
+	🔥 ( 持续更新，目前含 300+ 工具类 ) <a href="https://github.com/afkT/DevUtils/projects/1">Roadmap</a>
+	<br>
+	DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
+	<br>
+	该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
 </p>
+
+
+<p align="center">
+	<b>
+		<a href="https://github.com/afkT/DevUtils/blob/master/README/android_standard.md">Android 规范</a>
+	</b>、
+	<b>
+		<a href="https://github.com/afkT/DevUtils/blob/master/README/java_standard.md">Java 规范</a>
+	</b>、
+	<b>
+		<a href="https://github.com/afkT/DevUtils/blob/master/README/git_standard.md">Git 规范</a>
+	</b>
+</p>
+
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
