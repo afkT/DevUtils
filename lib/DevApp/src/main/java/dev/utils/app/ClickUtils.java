@@ -101,6 +101,14 @@ public final class ClickUtils {
     }
 
     /**
+     * 获取全局双击间隔时间
+     * @return 全局双击间隔时间
+     */
+    public static long getGlobalIntervalTime() {
+        return ClickUtils.sGlobalIntervalTime;
+    }
+
+    /**
      * 设置全局双击间隔时间
      * @param globalIntervalTime 全局双击间隔时间
      */
@@ -260,6 +268,14 @@ public final class ClickUtils {
     }
 
     // =
+
+    /**
+     * 获取默认点击时间间隔
+     * @return 双击时间间隔
+     */
+    public static long getIntervalTime() {
+        return sGlobalClickAssist.getIntervalTime();
+    }
 
     /**
      * 设置默认点击时间间隔
@@ -489,6 +505,14 @@ public final class ClickUtils {
         }
 
         // =
+
+        /**
+         * 获取默认点击时间间隔
+         * @return 双击时间间隔
+         */
+        public long getIntervalTime() {
+            return this.mIntervalTime;
+        }
 
         /**
          * 设置默认点击时间间隔
