@@ -53,7 +53,13 @@ public final class ActivityUtils {
     public static Activity getActivity(final Context context) {
         if (context != null) {
             try {
-                return (Activity) context;
+                Context temp = context;
+                while (temp instanceof ContextWrapper) {
+                    if (temp instanceof Activity) {
+                        return (Activity) temp;
+                    }
+                    temp = ((ContextWrapper) temp).getBaseContext();
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getActivity");
             }
@@ -67,20 +73,8 @@ public final class ActivityUtils {
      * @return {@link Activity}
      */
     public static Activity getActivity(final View view) {
-        if (view != null) {
-            try {
-                Context context = view.getContext();
-                while (context instanceof ContextWrapper) {
-                    if (context instanceof Activity) {
-                        return (Activity) context;
-                    }
-                    context = ((ContextWrapper) context).getBaseContext();
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getActivity");
-            }
-        }
-        return null;
+        if (view == null) return null;
+        return getActivity(view.getContext());
     }
 
     // =
