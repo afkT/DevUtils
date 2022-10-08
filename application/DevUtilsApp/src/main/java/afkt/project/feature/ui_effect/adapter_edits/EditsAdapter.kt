@@ -58,11 +58,11 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         )
         // 评星等级
         val ratingBar = holder.binding.vidRatingbar
-        ratingBar.setOnRatingChangeListener { ratingCount ->
-            item.evaluateLevel = ratingCount
+        ratingBar.setOnRatingChangeListener { _, rating, _ ->
+            item.evaluateLevel = rating
         }
         // 设置评星等级
-        ratingBar.setStar(item.evaluateLevel)
+        ratingBar.rating = item.evaluateLevel
 
         // ==========
         // = 输入监听 =
@@ -81,12 +81,12 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
             try {
                 // 保存评价内容
                 getDataItem(pos).evaluateContent = charSequence.toString()
-            } catch (e: Exception) {
+            } catch (ignored: Exception) {
             }
             try {
                 // 计算已经输入的内容长度
                 numberTv.text = "${120 - StringUtils.length(item.evaluateContent)}"
-            } catch (e: Exception) {
+            } catch (ignored: Exception) {
             }
         }
     }

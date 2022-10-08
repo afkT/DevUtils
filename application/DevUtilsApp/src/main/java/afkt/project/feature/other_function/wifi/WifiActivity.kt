@@ -349,7 +349,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 try {
                                     // 堵塞 1.5 秒
                                     Thread.sleep(1500)
-                                } catch (e: Exception) {
+                                } catch (ignored: Exception) {
                                 }
                             }
                             // 防止页面已经关闭

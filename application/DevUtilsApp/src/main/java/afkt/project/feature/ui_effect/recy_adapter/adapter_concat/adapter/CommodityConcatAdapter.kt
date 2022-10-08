@@ -103,11 +103,11 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
             )
             // 评星等级
             val ratingBar = holder.binding.vidRatingbar
-            ratingBar.setOnRatingChangeListener { ratingCount ->
-                item.evaluateLevel = ratingCount
+            ratingBar.setOnRatingChangeListener { _, rating, _ ->
+                item.evaluateLevel = rating
             }
             // 设置评星等级
-            ratingBar.setStar(item.evaluateLevel)
+            ratingBar.rating = item.evaluateLevel
         }
     }
 

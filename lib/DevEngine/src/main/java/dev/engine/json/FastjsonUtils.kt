@@ -109,7 +109,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj is JSONObject
-        } catch (e: Exception) {
+        } catch (ignored: Exception) {
         }
         return false
     }
@@ -123,7 +123,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj is JSONArray
-        } catch (e: Exception) {
+        } catch (ignored: Exception) {
         }
         return false
     }

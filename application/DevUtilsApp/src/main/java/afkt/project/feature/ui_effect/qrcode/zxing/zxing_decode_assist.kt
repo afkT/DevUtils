@@ -187,7 +187,7 @@ class CaptureHandler(
         try {
             // 进行处理解析数据
             mDecodeThread.join(200L)
-        } catch (e: InterruptedException) {
+        } catch (ignored: InterruptedException) {
         }
         // 移除堵塞在队列的消息
         removeMessages(WHAT_DECODE_SUCCEEDED)
@@ -358,7 +358,7 @@ class ZXingDecodeAssist(
         view?.holder?.apply {
             try {
                 removeCallback(mHolderCallback)
-            } catch (e: Exception) {
+            } catch (ignored: Exception) {
             }
             addCallback(mHolderCallback)
         }

@@ -36,7 +36,7 @@ class NetWorkReceiver private constructor() : BroadcastReceiver() {
                 mConnectState = getConnectType()
                 // 触发事件
                 sListener?.onNetworkState(mConnectState)
-            } catch (e: Exception) {
+            } catch (ignored: Exception) {
             }
         }
     }

@@ -194,6 +194,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.CymChad/BaseRecyclerViewAdapterHelper
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.8",
+                    // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
+                    simple_ratingbar                : "com.github.williamyyu:SimpleRatingBar:1.5.1",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
@@ -203,13 +205,6 @@ ext {
 
                     // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
                     // https://github.com/CoderAlee/PaintedSkin
-
-                    // ==============
-                    // = deprecated =
-                    // ==============
-
-                    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-                    ratingbar                       : "com.hedgehog.ratingbar:app:1.1.2",
             ],
             "deprecated": [
 

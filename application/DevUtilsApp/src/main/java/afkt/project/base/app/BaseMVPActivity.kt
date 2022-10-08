@@ -228,7 +228,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     private fun innerInitialize() {
         try {
             ARouter.getInstance().inject(this)
-        } catch (e: Exception) {
+        } catch (ignored: Exception) {
         }
     }
 

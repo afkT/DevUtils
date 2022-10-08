@@ -52,7 +52,7 @@ fun Any.toPriceString(
         BigDecimalUtils.roundThrow(
             this, scale, roundingMode
         ).toString()
-    } catch (e: Exception) {
+    } catch (ignored: Exception) {
         defaultValue
     }
 }
@@ -73,7 +73,7 @@ fun Any.toPriceDouble(
         BigDecimalUtils.roundThrow(
             this, scale, roundingMode
         )
-    } catch (e: Exception) {
+    } catch (ignored: Exception) {
         defaultValue
     }
 }

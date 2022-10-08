@@ -68,7 +68,7 @@ class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
                     // 延迟发送通知
                     sendEmptyMessageDelayed(0, 100)
                 }
-            } catch (e: Exception) {
+            } catch (ignored: Exception) {
             }
         }
     }

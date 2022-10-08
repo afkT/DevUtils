@@ -56,8 +56,8 @@ dependencies {
 
     // GPU Filters https://github.com/cats-oss/android-gpuimage
     implementation deps_split.widget.gpuimage
-    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-    implementation deps_split.widget.ratingbar
+    // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
+    implementation deps_split.widget.simple_ratingbar
     // 加载动画效果 https://github.com/Kyson/WhorlView
     implementation deps_split.widget.whorlviewlibrary
     // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable

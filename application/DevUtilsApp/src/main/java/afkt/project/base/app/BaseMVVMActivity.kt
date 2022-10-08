@@ -33,7 +33,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     private fun innerInitialize() {
         try {
             ARouter.getInstance().inject(this)
-        } catch (e: Exception) {
+        } catch (ignored: Exception) {
         }
     }
 }

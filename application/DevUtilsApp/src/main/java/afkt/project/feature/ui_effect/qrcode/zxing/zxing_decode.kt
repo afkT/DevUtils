@@ -184,7 +184,7 @@ class DecodeThread(
         get() {
             try {
                 mHandlerInitLatch.await()
-            } catch (e: InterruptedException) {
+            } catch (ignored: InterruptedException) {
             }
             return mHandler
         }

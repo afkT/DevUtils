@@ -64,10 +64,10 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
         )
         // 评星等级
         val ratingBar = holder.binding.vidRatingbar
-        ratingBar.setOnRatingChangeListener { ratingCount ->
-            itemObj.evaluateLevel = ratingCount
+        ratingBar.setOnRatingChangeListener { _, rating, _ ->
+            itemObj.evaluateLevel = rating
         }
         // 设置评星等级
-        ratingBar.setStar(itemObj.evaluateLevel)
+        ratingBar.rating = itemObj.evaluateLevel
     }
 }

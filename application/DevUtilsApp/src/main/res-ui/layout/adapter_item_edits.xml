@@ -95,20 +95,24 @@
 
                     <!-- 评星控件 -->
 
-                    <com.hedgehog.ratingbar.RatingBar
+                    <com.willy.ratingbar.ScaleRatingBar
                         android:id="@+id/vid_ratingbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_15"
-                        android:gravity="center|left"
-                        app:clickable="true"
-                        app:halfstart="false"
-                        app:starCount="5"
-                        app:starEmpty="@drawable/icon_star_unselected"
-                        app:starFill="@drawable/icon_star_selected"
-                        app:starImageHeight="@dimen/dp_18" />
+                        app:srb_clearRatingEnabled="true"
+                        app:srb_clickable="true"
+                        app:srb_drawableEmpty="@drawable/icon_star_unselected"
+                        app:srb_drawableFilled="@drawable/icon_star_selected"
+                        app:srb_isIndicator="false"
+                        app:srb_minimumStars="1"
+                        app:srb_numStars="5"
+                        app:srb_rating="3"
+                        app:srb_scrollable="true"
+                        app:srb_starHeight="@dimen/dp_18"
+                        app:srb_starPadding="@dimen/dp_2"
+                        app:srb_starWidth="@dimen/dp_18"
+                        app:srb_stepSize="1" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
