@@ -608,19 +608,33 @@ public final class PhoneUtils {
     ) {
         if (TextUtils.isEmpty(content)) return false;
         try {
-            PendingIntent sentIntent = PendingIntent.getBroadcast(
-                    DevUtils.getContext(), 0, new Intent("send"), 0
-            );
+            PendingIntent sentIntent;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                sentIntent = PendingIntent.getBroadcast(
+                        DevUtils.getContext(), 0,
+                        new Intent("send"),
+                        PendingIntent.FLAG_IMMUTABLE
+                );
+            } else {
+                sentIntent = PendingIntent.getBroadcast(
+                        DevUtils.getContext(), 0,
+                        new Intent("send"), 0
+                );
+            }
             SmsManager smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
                 List<String> lists = smsManager.divideMessage(content);
                 for (String value : lists) {
                     smsManager.sendTextMessage(
-                            phoneNumber, null, value, sentIntent, null
+                            phoneNumber, null, value,
+                            sentIntent, null
                     );
                 }
             } else {
-                smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);
+                smsManager.sendTextMessage(
+                        phoneNumber, null, content,
+                        sentIntent, null
+                );
             }
             return true;
         } catch (Exception e) {
