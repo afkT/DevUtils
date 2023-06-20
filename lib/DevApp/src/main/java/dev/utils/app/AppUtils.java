@@ -1676,6 +1676,58 @@ public final class AppUtils {
         return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg));
     }
 
+    /**
+     * 跳转设置页面, 开启安装未知应用权限
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean launchAppInstallPermissionSettings() {
+        return startActivity(IntentUtils.getLaunchAppInstallPermissionSettingsIntent());
+    }
+
+    /**
+     * 跳转设置页面, 开启安装未知应用权限
+     * @param activity    {@link Activity}
+     * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean launchAppInstallPermissionSettings(
+            final Activity activity,
+            final int requestCode
+    ) {
+        return startActivityForResult(
+                activity, IntentUtils.getLaunchAppInstallPermissionSettingsIntent(),
+                requestCode
+        );
+    }
+
+    /**
+     * 跳转设置页面, 开启 APP 授予所有文件管理权限
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public static boolean launchManageAppAllFilesAccessPermission() {
+        return startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent());
+    }
+
+    /**
+     * 跳转设置页面, 开启 APP 授予所有文件管理权限
+     * @param activity    {@link Activity}
+     * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public static boolean launchManageAppAllFilesAccessPermission(
+            final Activity activity,
+            final int requestCode
+    ) {
+        return startActivityForResult(
+                activity, IntentUtils.getManageAppAllFilesAccessPermissionIntent(),
+                requestCode
+        );
+    }
+
     // ==========
     // = 其他功能 =
     // ==========
