@@ -341,7 +341,9 @@ public final class ShortCutUtils {
             final String permission
     ) {
         if (permission != null) {
-            List<PackageInfo> lists = context.getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS);
+            PackageManager packageManager = AppUtils.getPackageManager(context);
+            if (packageManager == null) return null;
+            List<PackageInfo> lists = packageManager.getInstalledPackages(PackageManager.GET_PROVIDERS);
             if (lists != null) {
                 for (PackageInfo packageInfo : lists) {
                     ProviderInfo[] providers = packageInfo.providers;
