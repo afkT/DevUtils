@@ -2,6 +2,7 @@ package dev.utils.common;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -166,6 +167,27 @@ public final class ForUtils {
         );
     }
 
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface ConsumerMap<K, V> {
+
+        /**
+         * 循环消费方法
+         * @param iterator 迭代器
+         * @param entry    键值对
+         * @param key      对应索引 Key
+         * @param value    对应索引值
+         */
+        void accept(
+                Iterator<Map.Entry<K, V>> iterator,
+                Map.Entry<K, V> entry,
+                K key,
+                V value
+        );
+    }
+
     // ========
     // = List =
     // ========
@@ -266,11 +288,11 @@ public final class ForUtils {
      * @param <T>    泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean forSetIterator(
+    public static <T> boolean forSet(
             final ConsumerIterator<T> action,
             final Set<T> sets
     ) {
-        return forSetIterator(action, false, sets);
+        return forSet(action, false, sets);
     }
 
     /**
@@ -281,7 +303,7 @@ public final class ForUtils {
      * @param <T>         泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean forSetIterator(
+    public static <T> boolean forSet(
             final ConsumerIterator<T> action,
             final boolean checkLength,
             final Set<T> sets
@@ -295,6 +317,57 @@ public final class ForUtils {
             while (iterator.hasNext()) {
                 T value = iterator.next();
                 action.accept(iterator, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =======
+    // = Map =
+    // =======
+
+    /**
+     * 循环集合
+     * @param action 循环消费对象
+     * @param maps   集合
+     * @param <K>    key
+     * @param <V>    value
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, V> boolean forMap(
+            final ConsumerMap<K, V> action,
+            final Map<K, V> maps
+    ) {
+        return forMap(action, false, maps);
+    }
+
+    /**
+     * 循环集合
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param maps        集合
+     * @param <K>         key
+     * @param <V>         value
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <K, V> boolean forMap(
+            final ConsumerMap<K, V> action,
+            final boolean checkLength,
+            final Map<K, V> maps
+    ) {
+        if (action != null && maps != null) {
+            int len = maps.size();
+            // 是否需要判断长度
+            if (len == 0) return !checkLength;
+
+            Iterator<Map.Entry<K, V>> iterator = maps.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<K, V> entry = iterator.next();
+                action.accept(
+                        iterator, entry,
+                        entry.getKey(), entry.getValue()
+                );
             }
             return true;
         }
