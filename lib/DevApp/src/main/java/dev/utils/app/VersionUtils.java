@@ -216,6 +216,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 12.0 L 版本及以上
+     * @return 是否在 12.0 L 版本及以上
+     */
+    public static boolean isSV2() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
@@ -292,6 +300,8 @@ public final class VersionUtils {
                 return "Android 11.0";
             case 31:
                 return "Android 12.0";
+            case 32:
+                return "Android 12L";
         }
         return "unknown";
     }
@@ -373,6 +383,8 @@ public final class VersionUtils {
                 return "Android R";
             case 31:
                 return "Android S";
+            case 32:
+                return "Android S_V2";
         }
         return "unknown";
     }
