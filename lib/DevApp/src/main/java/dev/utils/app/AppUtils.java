@@ -1588,6 +1588,56 @@ public final class AppUtils {
     // =
 
     /**
+     * 打开 APP
+     * @param packageName 应用包名
+     * @param className   Activity.class.getCanonicalName()
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean launchApp2(
+            final String packageName,
+            final String className
+    ) {
+        Intent intent = IntentUtils.getLaunchAppIntent(
+                packageName, true
+        );
+        if (AppUtils.startActivity(intent)) {
+            return true;
+        }
+        intent = IntentUtils.getCategoryLauncherIntent(
+                packageName, className, true
+        );
+        return AppUtils.startActivity(intent);
+    }
+
+    /**
+     * 打开 APP
+     * @param activity    {@link Activity}
+     * @param packageName 应用包名
+     * @param className   Activity.class.getCanonicalName()
+     * @param requestCode 请求 code
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean launchApp2(
+            final Activity activity,
+            final String packageName,
+            final String className,
+            final int requestCode
+    ) {
+        Intent intent = IntentUtils.getLaunchAppIntent(
+                packageName, true
+        );
+        if (AppUtils.startActivityForResult(activity, intent, requestCode)) {
+            return true;
+        }
+        intent = IntentUtils.getCategoryLauncherIntent(
+                packageName, className, true
+        );
+        return AppUtils.startActivityForResult(activity, intent, requestCode);
+    }
+
+    // =
+
+    /**
      * 跳转到 APP 设置详情页面
      * @return {@code true} success, {@code false} fail
      */
