@@ -1,5 +1,9 @@
 package dev.utils.common;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 /**
  * detail: 循环工具类
  * @author Ttt
@@ -135,6 +139,162 @@ public final class ForUtils {
 
             for (T value : args) {
                 action.accept(value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ==========
+    // = 集合操作 =
+    // ==========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface ConsumerIterator<T> {
+
+        /**
+         * 循环消费方法
+         * @param iterator 迭代器
+         * @param value    对应索引值
+         */
+        void accept(
+                Iterator<T> iterator,
+                T value
+        );
+    }
+
+    // ========
+    // = List =
+    // ========
+
+    /**
+     * 循环集合
+     * @param action 循环消费对象
+     * @param list   集合
+     * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forList(
+            final Consumer<T> action,
+            final List<T> list
+    ) {
+        return forList(action, false, list);
+    }
+
+    /**
+     * 循环集合
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param list        集合
+     * @param <T>         泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forList(
+            final Consumer<T> action,
+            final boolean checkLength,
+            final List<T> list
+    ) {
+        if (action != null && list != null) {
+            int len = list.size();
+            // 是否需要判断长度
+            if (len == 0) return !checkLength;
+
+            for (int i = 0; i < len; i++) {
+                T value = list.get(i);
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 循环集合
+     * @param action 循环消费对象
+     * @param list   集合
+     * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forListIterator(
+            final ConsumerIterator<T> action,
+            final List<T> list
+    ) {
+        return forListIterator(action, false, list);
+    }
+
+    /**
+     * 循环集合
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param list        集合
+     * @param <T>         泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forListIterator(
+            final ConsumerIterator<T> action,
+            final boolean checkLength,
+            final List<T> list
+    ) {
+        if (action != null && list != null) {
+            int len = list.size();
+            // 是否需要判断长度
+            if (len == 0) return !checkLength;
+
+            Iterator<T> iterator = list.iterator();
+            while (iterator.hasNext()) {
+                T value = iterator.next();
+                action.accept(iterator, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =======
+    // = Set =
+    // =======
+
+    /**
+     * 循环集合
+     * @param action 循环消费对象
+     * @param sets   集合
+     * @param <T>    泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forSetIterator(
+            final ConsumerIterator<T> action,
+            final Set<T> sets
+    ) {
+        return forSetIterator(action, false, sets);
+    }
+
+    /**
+     * 循环集合
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param sets        集合
+     * @param <T>         泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T> boolean forSetIterator(
+            final ConsumerIterator<T> action,
+            final boolean checkLength,
+            final Set<T> sets
+    ) {
+        if (action != null && sets != null) {
+            int len = sets.size();
+            // 是否需要判断长度
+            if (len == 0) return !checkLength;
+
+            Iterator<T> iterator = sets.iterator();
+            while (iterator.hasNext()) {
+                T value = iterator.next();
+                action.accept(iterator, value);
             }
             return true;
         }

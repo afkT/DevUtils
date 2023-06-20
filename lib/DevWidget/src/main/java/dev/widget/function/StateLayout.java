@@ -338,16 +338,7 @@ public class StateLayout
         return this;
     }
 
-    public <T> T getData() {
-        return mAssist.getData();
-    }
-
-    public StateLayout setData(final Object data) {
-        mAssist.setData(data);
-        return this;
-    }
-
-    public <T> T getData(final String key) {
+    public Object getData(final String key) {
         return mAssist.getData(key);
     }
 

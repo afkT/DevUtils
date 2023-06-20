@@ -51,8 +51,8 @@ object ViewAssistUtils {
                     view: View,
                     type: Int
                 ) {
-                    // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.gone()
-                    assist.gone()
+                    // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.goneWrapper()
+                    assist.goneWrapper()
                 }
             })
             // 设置加载失败样式
