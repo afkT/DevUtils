@@ -224,6 +224,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 13.0 版本及以上
+     * @return 是否在 13.0 版本及以上
+     */
+    public static boolean isTiramisu() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
@@ -302,6 +310,8 @@ public final class VersionUtils {
                 return "Android 12.0";
             case 32:
                 return "Android 12L";
+            case 33:
+                return "Android 13.0";
         }
         return "unknown";
     }
@@ -385,6 +395,8 @@ public final class VersionUtils {
                 return "Android S";
             case 32:
                 return "Android S_V2";
+            case 33:
+                return "Android Tiramisu";
         }
         return "unknown";
     }

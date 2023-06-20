@@ -1143,16 +1143,20 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 
                     // 是否支持 DOM Storage
                     webSettings.domStorageEnabled = mDomStorageEnabled
-                    // 是否开启 Application Caches 功能
-                    webSettings.setAppCacheEnabled(mAppCacheEnabled)
-                    if (mAppCacheEnabled) {
-                        // Application Caches 地址
-                        if (mAppCachePath != null) {
-                            webSettings.setAppCachePath(mAppCachePath)
-                        }
-                        // Application Caches 大小
-                        webSettings.setAppCacheMaxSize(mAppCacheMaxSize)
-                    }
+
+//                    // 大于 13.0 该方法已移除
+//                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+//                        // 是否开启 Application Caches 功能
+//                        webSettings.setAppCacheEnabled(mAppCacheEnabled)
+//                        if (mAppCacheEnabled) {
+//                            // Application Caches 地址
+//                            if (mAppCachePath != null) {
+//                                webSettings.setAppCachePath(mAppCachePath)
+//                            }
+//                            // Application Caches 大小
+//                            webSettings.setAppCacheMaxSize(mAppCacheMaxSize)
+//                        }
+//                    }
 
                     // 是否支持数据库缓存
                     webSettings.databaseEnabled = mDatabaseEnabled

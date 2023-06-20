@@ -42,11 +42,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.com/about/versions/11"/>
  *     Android 12 ( S ) 更新内容
  *     @see <a href="https://developer.android.com/about/versions/12"/>
- *     <p></p>
- *     Android 10 ( Q ) 适配指南
- *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
- *     Android 11 ( R ) 适配指南
- *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
+ *     Android 13 ( Tiramisu ) 更新内容
+ *     @see <a href="https://developer.android.com/about/versions/13"/>
  *     <p></p>
  *     Android 版本适配全套指南
  *     @see <a href="https://github.com/getActivity/AndroidVersionAdapter"/>

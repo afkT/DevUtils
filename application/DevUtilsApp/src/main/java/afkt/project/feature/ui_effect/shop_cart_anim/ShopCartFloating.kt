@@ -265,7 +265,7 @@ class ShopCartAnimation {
             animView, endPoints[0], endPoints[1],
             startPoints[0], startPoints[1],
             rootView, object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     // 动画结束抖动数量
                     val zoomTime = 100L
                     val zoomAnim = ScaleAnimation(
