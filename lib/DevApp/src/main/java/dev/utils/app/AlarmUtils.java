@@ -38,7 +38,6 @@ public final class AlarmUtils {
      * @param pendingIntent   {@link PendingIntent} 响应动作
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmIntent(
             final long triggerAtMillis,
             final PendingIntent pendingIntent
@@ -58,7 +57,6 @@ public final class AlarmUtils {
      * @param pendingIntent   {@link PendingIntent} 响应动作
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmIntent(
             final int type,
             final long triggerAtMillis,
@@ -89,7 +87,6 @@ public final class AlarmUtils {
      * @param pendingIntent {@link PendingIntent} 响应动作
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmIntent(final PendingIntent pendingIntent) {
         try {
             AppUtils.getAlarmManager().cancel(pendingIntent);
@@ -112,7 +109,6 @@ public final class AlarmUtils {
      * @param action          Intent Action
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmService(
             final Context context,
             final long triggerAtMillis,
@@ -136,7 +132,6 @@ public final class AlarmUtils {
      * @param intent          {@link Intent
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmService(
             final Context context,
             final long triggerAtMillis,
@@ -163,7 +158,6 @@ public final class AlarmUtils {
      * @param action  Intent Action
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmService(
             final Context context,
             final Class<?> clazz,
@@ -185,7 +179,6 @@ public final class AlarmUtils {
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmService(
             final Context context,
             final Intent intent
@@ -315,7 +308,6 @@ public final class AlarmUtils {
      * @param intent          {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmBroadcast(
             final Context context,
             final long triggerAtMillis,
@@ -341,7 +333,6 @@ public final class AlarmUtils {
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmBroadcast(
             final Context context,
             final Intent intent
@@ -369,7 +360,6 @@ public final class AlarmUtils {
      * @param intent          {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean startAlarmActivity(
             final Context context,
             final long triggerAtMillis,
@@ -393,7 +383,6 @@ public final class AlarmUtils {
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static boolean stopAlarmActivity(
             final Context context,
             final Intent intent
