@@ -1,10 +1,15 @@
 package dev.utils.app.info;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
+import android.content.pm.ResolveInfo;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +22,7 @@ import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.ForUtils;
 
 /**
  * detail: APP 信息获取工具类
@@ -352,5 +358,40 @@ public final class AppInfoUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "printAppPermission");
         }
+    }
+
+    // =
+
+    /**
+     * 获取所有能够显示在桌面上的应用
+     * @return 所有能够显示在桌面上的应用
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static List<ResolveInfo> getAllLauncherIconPackages() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            // set match_all to prevent any filtering of the results
+            return AppUtils.getPackageManager()
+                    .queryIntentActivities(intent, PackageManager.MATCH_ALL);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAllLauncherIconPackages");
+        }
+        return null;
+    }
+
+    /**
+     * 获取所有能够显示在桌面上的应用包名
+     * @return 所有能够显示在桌面上的应用包名
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static List<String> getAllLauncherIconPackageNames() {
+        List<String> names = new ArrayList<>();
+        ForUtils.forList((index, value) -> {
+            if (value != null) {
+                names.add(value.activityInfo.packageName);
+            }
+        }, getAllLauncherIconPackages());
+        return names;
     }
 }
