@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -386,12 +387,12 @@ public final class AppInfoUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static List<String> getAllLauncherIconPackageNames() {
-        List<String> names = new ArrayList<>();
+        LinkedHashSet<String> names = new LinkedHashSet<>();
         ForUtils.forList((index, value) -> {
             if (value != null) {
                 names.add(value.activityInfo.packageName);
             }
         }, getAllLauncherIconPackages());
-        return names;
+        return new ArrayList<>(names);
     }
 }
