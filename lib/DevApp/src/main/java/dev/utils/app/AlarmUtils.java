@@ -107,18 +107,20 @@ public final class AlarmUtils {
      * @param triggerAtMillis 执行时间
      * @param clazz           Class
      * @param action          Intent Action
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startAlarmService(
             final Context context,
             final long triggerAtMillis,
             final Class<?> clazz,
-            final String action
+            final String action,
+            final int requestCode
     ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            return startAlarmService(context, triggerAtMillis, intent);
+            return startAlarmService(context, triggerAtMillis, intent, requestCode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmService");
         }
@@ -130,16 +132,18 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startAlarmService(
             final Context context,
             final long triggerAtMillis,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -153,20 +157,22 @@ public final class AlarmUtils {
 
     /**
      * 关闭 Service 闹钟
-     * @param context {@link Context}
-     * @param clazz   Class
-     * @param action  Intent Action
+     * @param context     {@link Context}
+     * @param clazz       Class
+     * @param action      Intent Action
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopAlarmService(
             final Context context,
             final Class<?> clazz,
-            final String action
+            final String action,
+            final int requestCode
     ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            return stopAlarmService(context, intent);
+            return stopAlarmService(context, intent, requestCode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmService");
         }
@@ -175,17 +181,19 @@ public final class AlarmUtils {
 
     /**
      * 关闭 Service 闹钟
-     * @param context {@link Context}
-     * @param intent  {@link Intent}
+     * @param context     {@link Context}
+     * @param intent      {@link Intent}
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopAlarmService(
             final Context context,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
@@ -205,6 +213,7 @@ public final class AlarmUtils {
      * @param triggerAtMillis 执行时间
      * @param clazz           Class
      * @param action          Intent Action
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -212,12 +221,15 @@ public final class AlarmUtils {
             final Context context,
             final long triggerAtMillis,
             final Class<?> clazz,
-            final String action
+            final String action,
+            final int requestCode
     ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            return startAlarmForegroundService(context, triggerAtMillis, intent);
+            return startAlarmForegroundService(
+                    context, triggerAtMillis, intent, requestCode
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
         }
@@ -229,17 +241,19 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static boolean startAlarmForegroundService(
             final Context context,
             final long triggerAtMillis,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -253,21 +267,23 @@ public final class AlarmUtils {
 
     /**
      * 关闭 ForegroundService 闹钟
-     * @param context {@link Context}
-     * @param clazz   Class
-     * @param action  Intent Action
+     * @param context     {@link Context}
+     * @param clazz       Class
+     * @param action      Intent Action
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static boolean stopAlarmForegroundService(
             final Context context,
             final Class<?> clazz,
-            final String action
+            final String action,
+            final int requestCode
     ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
-            return stopAlarmForegroundService(context, intent);
+            return stopAlarmForegroundService(context, intent, requestCode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
         }
@@ -276,18 +292,20 @@ public final class AlarmUtils {
 
     /**
      * 关闭 ForegroundService 闹钟
-     * @param context {@link Context}
-     * @param intent  {@link Intent}
+     * @param context     {@link Context}
+     * @param intent      {@link Intent}
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static boolean stopAlarmForegroundService(
             final Context context,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
@@ -306,16 +324,18 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startAlarmBroadcast(
             final Context context,
             final long triggerAtMillis,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -329,17 +349,19 @@ public final class AlarmUtils {
 
     /**
      * 关闭 Receiver 闹钟
-     * @param context {@link Context}
-     * @param intent  {@link Intent}
+     * @param context     {@link Context}
+     * @param intent      {@link Intent}
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopAlarmBroadcast(
             final Context context,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
@@ -358,16 +380,18 @@ public final class AlarmUtils {
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
      * @param intent          {@link Intent}
+     * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startAlarmActivity(
             final Context context,
             final long triggerAtMillis,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -379,17 +403,19 @@ public final class AlarmUtils {
 
     /**
      * 关闭 Activity 闹钟
-     * @param context {@link Context}
-     * @param intent  {@link Intent}
+     * @param context     {@link Context}
+     * @param intent      {@link Intent}
+     * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopAlarmActivity(
             final Context context,
-            final Intent intent
+            final Intent intent,
+            final int requestCode
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, 0, intent,
+                    context, requestCode, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
