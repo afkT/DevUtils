@@ -7,7 +7,8 @@ buildscript {
     // Kotlin 版本
     ext.kotlin_version = "1.7.10"
     ext.kotlin_stdlib = "1.7.10"
-    ext.matrix_version = "2.0.8"
+    ext.dokka_plugin = "1.7.10"
+    ext.matrix_version = "2.1.0"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
@@ -33,7 +34,7 @@ buildscript {
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.10"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_plugin"
 //        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
 //        classpath "cn.therouter:plugin:1.1.4-rc1"
         // TheRouter AutoRegister https://mvnrepository.com/artifact/cn.therouter/plugin
