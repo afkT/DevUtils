@@ -7,7 +7,7 @@ import afkt.project.model.item.RouterPath
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ListenerUtils
 import dev.utils.common.RandomUtils

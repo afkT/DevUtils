@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityFlipCardBinding
 import afkt.project.model.item.RouterPath
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.DevSource
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils

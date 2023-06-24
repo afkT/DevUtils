@@ -10,7 +10,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.os.Build
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag

@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 
 /**
  * detail: Material BottomSheetDialog

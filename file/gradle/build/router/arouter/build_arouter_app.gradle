@@ -1,13 +1,9 @@
-apply plugin: 'com.alibaba.arouter'
+apply plugin: 'therouter'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
+
 
 dependencies {
 

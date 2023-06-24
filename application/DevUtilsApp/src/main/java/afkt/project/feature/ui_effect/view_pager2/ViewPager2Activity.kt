@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.utils.app.ResourceUtils
 

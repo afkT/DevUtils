@@ -8,7 +8,7 @@ import afkt.project.feature.dev_widget.recy_item_decoration.common.GridVerticalT
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.RecyclerView
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.RecyclerViewUtils
 
 /**

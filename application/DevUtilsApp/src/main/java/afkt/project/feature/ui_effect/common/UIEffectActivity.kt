@@ -9,7 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.*

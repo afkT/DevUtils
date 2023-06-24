@@ -7,7 +7,7 @@ import afkt.project.model.item.RouterPath
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.ActivityUtils
 
 /**

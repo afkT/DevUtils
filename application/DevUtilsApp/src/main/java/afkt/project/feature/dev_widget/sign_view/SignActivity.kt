@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.view.View
 import android.widget.LinearLayout
 import androidx.viewbinding.ViewBinding
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.widget.function.SignView
 
 /**

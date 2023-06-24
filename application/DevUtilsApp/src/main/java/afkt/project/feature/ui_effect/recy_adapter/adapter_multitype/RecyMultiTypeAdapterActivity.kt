@@ -8,7 +8,7 @@ import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.*
 import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.drakeet.multitype.MultiTypeAdapter
 import dev.utils.app.helper.quick.QuickHelper
 

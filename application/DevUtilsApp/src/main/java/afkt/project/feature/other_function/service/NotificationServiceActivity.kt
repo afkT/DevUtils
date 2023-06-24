@@ -10,7 +10,7 @@ import afkt.project.model.item.RouterPath
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.service.NotificationService

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import com.alibaba.android.arouter.launcher.ARouter
+import com.therouter.TheRouter
 import dev.base.expand.mvvm.DevBaseMVVMActivity
 
 /**
@@ -32,7 +32,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
 
     private fun innerInitialize() {
         try {
-            ARouter.getInstance().inject(this)
+            TheRouter.inject(this)
         } catch (ignored: Exception) {
         }
     }

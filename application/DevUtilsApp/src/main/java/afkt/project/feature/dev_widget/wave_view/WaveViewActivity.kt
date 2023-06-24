@@ -6,7 +6,7 @@ import afkt.project.databinding.ActivityWaveViewBinding
 import afkt.project.model.item.RouterPath
 import android.graphics.Color
 import android.widget.SeekBar
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.BarUtils
 import dev.utils.app.ResourceUtils
 import dev.widget.ui.WaveView

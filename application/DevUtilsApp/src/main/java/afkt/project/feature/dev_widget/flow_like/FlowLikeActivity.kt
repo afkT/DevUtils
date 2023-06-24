@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityFlowLikeBinding
 import afkt.project.model.item.RouterPath
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 
 /**
  * detail: 自定义点赞效果 View

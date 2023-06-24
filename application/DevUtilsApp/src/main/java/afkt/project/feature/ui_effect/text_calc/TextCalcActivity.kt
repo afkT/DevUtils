@@ -6,7 +6,7 @@ import afkt.project.databinding.ActivityTextCalcBinding
 import afkt.project.model.item.RouterPath
 import android.graphics.Color
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper

@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityViewPagerBinding
 import afkt.project.model.item.RouterPath
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.widget.custom.CustomViewPager.OnDirectionListener
 

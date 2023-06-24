@@ -12,7 +12,7 @@ import android.os.Handler
 import android.os.Message
 import android.telephony.SmsMessage
 import android.view.OrientationEventListener
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_eTag

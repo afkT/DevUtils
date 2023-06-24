@@ -8,7 +8,7 @@ import afkt.project.model.item.ButtonList.timerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import android.os.Handler
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.HandlerUtils

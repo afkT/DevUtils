@@ -8,7 +8,7 @@ import android.Manifest
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.image.display
 import dev.expand.engine.log.log_dTag

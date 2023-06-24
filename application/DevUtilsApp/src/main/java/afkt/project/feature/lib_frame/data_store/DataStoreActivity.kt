@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityDataStoreBinding
 import afkt.project.model.item.RouterPath
 import androidx.lifecycle.lifecycleScope
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import kotlinx.coroutines.launch
 
 /**

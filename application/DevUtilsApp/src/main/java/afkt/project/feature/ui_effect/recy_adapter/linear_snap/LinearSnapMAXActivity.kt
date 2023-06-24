@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ListViewUtils
 import dev.utils.app.helper.quick.QuickHelper

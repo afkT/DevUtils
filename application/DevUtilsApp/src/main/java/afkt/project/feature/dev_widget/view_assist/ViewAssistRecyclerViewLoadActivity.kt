@@ -6,7 +6,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.RandomUtils
 

@@ -11,7 +11,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.expand.engine.log.log_eTag
 import dev.utils.app.HandlerUtils

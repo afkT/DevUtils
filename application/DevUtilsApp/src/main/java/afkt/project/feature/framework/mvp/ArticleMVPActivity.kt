@@ -7,7 +7,7 @@ import afkt.project.feature.framework.ArticleAdapter
 import afkt.project.model.bean.ArticleBean
 import afkt.project.model.item.RouterPath
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.tt.whorlviewlibrary.WhorlView
 import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils

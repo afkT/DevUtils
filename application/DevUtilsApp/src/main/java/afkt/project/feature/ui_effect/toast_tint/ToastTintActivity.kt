@@ -11,7 +11,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.text.TextUtils.TruncateAt
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils

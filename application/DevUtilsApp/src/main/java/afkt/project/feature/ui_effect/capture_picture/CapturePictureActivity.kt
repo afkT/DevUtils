@@ -7,7 +7,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import android.graphics.Bitmap
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener

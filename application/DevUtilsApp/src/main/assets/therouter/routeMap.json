@@ -1,0 +1,520 @@
+[
+  {
+    "path": "/activity/ViewPager2Activity",
+    "className": "afkt.project.feature.ui_effect.view_pager2.ViewPager2Activity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ToastTintActivity",
+    "className": "afkt.project.feature.ui_effect.toast_tint.ToastTintActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/TextViewActivity",
+    "className": "afkt.project.feature.ui_effect.text_view.TextViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/TextCalcActivity",
+    "className": "afkt.project.feature.ui_effect.text_calc.TextCalcActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/StatusBarActivity",
+    "className": "afkt.project.feature.ui_effect.status_bar.StatusBarActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ShopCartAddAnimActivity",
+    "className": "afkt.project.feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/PagerSnapMAXActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapMAXActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/PagerSnapActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.pager_snap.PagerSnapActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/LinearSnapMAXActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapMAXActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/LinearSnapActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.linear_snap.LinearSnapActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ItemStickyActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.item_sticky.ItemStickyActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/RecyItemSlideActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.item_slide.RecyItemSlideActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/RecyMultiTypeAdapterActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.RecyMultiTypeAdapterActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/RecyConcatAdapterActivity",
+    "className": "afkt.project.feature.ui_effect.recy_adapter.adapter_concat.RecyConcatAdapterActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/QRCodeScanActivity",
+    "className": "afkt.project.feature.ui_effect.qrcode.QRCodeScanActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/QRCodeImageActivity",
+    "className": "afkt.project.feature.ui_effect.qrcode.QRCodeImageActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/QRCodeCreateActivity",
+    "className": "afkt.project.feature.ui_effect.qrcode.QRCodeCreateActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/PaletteActivity",
+    "className": "afkt.project.feature.ui_effect.palette.PaletteActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/MultiSelectActivity",
+    "className": "afkt.project.feature.ui_effect.multi_select.MultiSelectActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ShapeableImageViewActivity",
+    "className": "afkt.project.feature.ui_effect.material.ShapeableImageViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ChipActivity",
+    "className": "afkt.project.feature.ui_effect.material.ChipActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/BottomSheetDialogActivity",
+    "className": "afkt.project.feature.ui_effect.material.BottomSheetDialogActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/BottomSheetActivity",
+    "className": "afkt.project.feature.ui_effect.material.BottomSheetActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/GPUFilterActivity",
+    "className": "afkt.project.feature.ui_effect.gpu.GPUFilterActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/GPUFilterACVActivity",
+    "className": "afkt.project.feature.ui_effect.gpu.GPUFilterACVActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FlexboxLayoutManagerActivity",
+    "className": "afkt.project.feature.ui_effect.flexbox_layout.FlexboxLayoutManagerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/UIEffectActivity",
+    "className": "afkt.project.feature.ui_effect.common.UIEffectActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CapturePictureWebActivity",
+    "className": "afkt.project.feature.ui_effect.capture_picture.CapturePictureWebActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CapturePictureRecyActivity",
+    "className": "afkt.project.feature.ui_effect.capture_picture.CapturePictureRecyActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CapturePictureListActivity",
+    "className": "afkt.project.feature.ui_effect.capture_picture.CapturePictureListActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CapturePictureGridActivity",
+    "className": "afkt.project.feature.ui_effect.capture_picture.CapturePictureGridActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CapturePictureActivity",
+    "className": "afkt.project.feature.ui_effect.capture_picture.CapturePictureActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/AdapterEditsActivity",
+    "className": "afkt.project.feature.ui_effect.adapter_edits.AdapterEditsActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/WifiActivity",
+    "className": "afkt.project.feature.other_function.wifi.WifiActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/WebViewActivity",
+    "className": "afkt.project.feature.other_function.web_view.WebViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/TimerActivity",
+    "className": "afkt.project.feature.other_function.timer.TimerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/NotificationServiceActivity",
+    "className": "afkt.project.feature.other_function.service.NotificationServiceActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/AccessibilityListenerServiceActivity",
+    "className": "afkt.project.feature.other_function.service.AccessibilityListenerServiceActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ListenerActivity",
+    "className": "afkt.project.feature.other_function.listener.ListenerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FloatingWindowManagerActivity",
+    "className": "afkt.project.feature.other_function.floating.FloatingWindowManagerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FloatingWindowManager2Activity",
+    "className": "afkt.project.feature.other_function.floating.FloatingWindowManager2Activity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/WallpaperActivity",
+    "className": "afkt.project.feature.other_function.dev_function.WallpaperActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/PathActivity",
+    "className": "afkt.project.feature.other_function.dev_function.PathActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/LoggerActivity",
+    "className": "afkt.project.feature.other_function.dev_function.LoggerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FunctionActivity",
+    "className": "afkt.project.feature.other_function.dev_function.FunctionActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FileRecordActivity",
+    "className": "afkt.project.feature.other_function.dev_function.FileRecordActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CrashCatchActivity",
+    "className": "afkt.project.feature.other_function.dev_function.CrashCatchActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CacheActivity",
+    "className": "afkt.project.feature.other_function.dev_function.CacheActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ActivityResultCallbackActivity",
+    "className": "afkt.project.feature.other_function.dev_function.ActivityResultCallbackActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ActivityResultAPIActivity",
+    "className": "afkt.project.feature.other_function.dev_function.ActivityResultAPIActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/AddContactActivity",
+    "className": "afkt.project.feature.other_function.add_contact.AddContactActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/DataStoreActivity",
+    "className": "afkt.project.feature.lib_frame.data_store.DataStoreActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ArticleMVVMActivity",
+    "className": "afkt.project.feature.framework.mvvm.ArticleMVVMActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ArticleMVPActivity",
+    "className": "afkt.project.feature.framework.mvp.ArticleMVPActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/WrapActivity",
+    "className": "afkt.project.feature.dev_widget.wrap_view.WrapActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/WaveViewActivity",
+    "className": "afkt.project.feature.dev_widget.wave_view.WaveViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ViewPagerActivity",
+    "className": "afkt.project.feature.dev_widget.view_pager.ViewPagerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ViewAssistRecyclerViewLoadActivity",
+    "className": "afkt.project.feature.dev_widget.view_assist.ViewAssistRecyclerViewLoadActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ViewAssistActivity",
+    "className": "afkt.project.feature.dev_widget.view_assist.ViewAssistActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/SignActivity",
+    "className": "afkt.project.feature.dev_widget.sign_view.SignActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ScanShapeActivity",
+    "className": "afkt.project.feature.dev_widget.scan_shape.ScanShapeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/LinearColorItemDecorationActivity",
+    "className": "afkt.project.feature.dev_widget.recy_item_decoration.color_linear.LinearColorItemDecorationActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/GridColorItemDecorationActivity",
+    "className": "afkt.project.feature.dev_widget.recy_item_decoration.color_grid.GridColorItemDecorationActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ProgressBarActivity",
+    "className": "afkt.project.feature.dev_widget.progress_bar.ProgressBarActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/LineActivity",
+    "className": "afkt.project.feature.dev_widget.line_view.LineActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FlowLikeActivity",
+    "className": "afkt.project.feature.dev_widget.flow_like.FlowLikeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/FlipCardActivity",
+    "className": "afkt.project.feature.dev_widget.flip_card.FlipCardActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/CornerLabelActivity",
+    "className": "afkt.project.feature.dev_widget.corner_label.CornerLabelActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/DevSKUActivity",
+    "className": "afkt.project.feature.dev_sku.DevSKUActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/DevHttpCaptureActivity",
+    "className": "afkt.project.feature.dev_http_capture.DevHttpCaptureActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/DevEnvironmentLibActivity",
+    "className": "afkt.project.feature.dev_environment.DevEnvironmentLibActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/DevAssistEngineActivity",
+    "className": "afkt.project.feature.dev_engine.DevAssistEngineActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ModuleActivity",
+    "className": "afkt.project.feature.ModuleActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/activity/ButtonItemActivity",
+    "className": "afkt.project.feature.ButtonItemActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]

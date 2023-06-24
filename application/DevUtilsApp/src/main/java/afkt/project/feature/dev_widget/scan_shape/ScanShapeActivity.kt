@@ -7,7 +7,7 @@ import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_eTag
 import dev.expand.engine.permission.permission_request

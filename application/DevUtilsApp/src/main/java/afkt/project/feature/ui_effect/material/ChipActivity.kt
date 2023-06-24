@@ -6,7 +6,7 @@ import afkt.project.databinding.ActivityChipBinding
 import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.google.android.material.chip.Chip
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils

@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils

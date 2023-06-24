@@ -17,7 +17,7 @@ import android.hardware.Camera
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.google.zxing.Result
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult

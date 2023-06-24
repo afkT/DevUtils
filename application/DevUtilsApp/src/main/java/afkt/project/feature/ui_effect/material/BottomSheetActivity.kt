@@ -6,7 +6,7 @@ import afkt.project.databinding.ActivityBottomSheetBinding
 import afkt.project.model.item.RouterPath
 import android.view.View
 import android.widget.LinearLayout
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ViewUtils

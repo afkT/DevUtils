@@ -5,7 +5,7 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.RouterPath
 import android.graphics.Color
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils

@@ -8,7 +8,7 @@ import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem
 import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration

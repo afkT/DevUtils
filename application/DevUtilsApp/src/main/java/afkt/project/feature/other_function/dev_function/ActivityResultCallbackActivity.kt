@@ -7,7 +7,7 @@ import afkt.project.model.item.RouterPath
 import afkt.project.utils.createGalleryConfig
 import android.app.Activity
 import android.content.Intent
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.expand.engine.image.display
 import dev.mvvm.utils.toSource

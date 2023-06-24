@@ -8,7 +8,7 @@ import afkt.project.model.item.ButtonList.moduleDevAssistEngineButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.model.item.RouterPath
 import android.graphics.Color
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.DevUtils
 import dev.base.widget.BaseTextView
 import dev.callback.DevItemClickCallback

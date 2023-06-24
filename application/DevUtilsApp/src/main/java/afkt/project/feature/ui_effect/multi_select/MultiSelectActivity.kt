@@ -10,7 +10,7 @@ import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ResourceUtils

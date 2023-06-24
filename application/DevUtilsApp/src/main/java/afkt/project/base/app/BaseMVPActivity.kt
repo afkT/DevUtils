@@ -12,8 +12,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
-import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.alibaba.android.arouter.launcher.ARouter
+import com.therouter.TheRouter
+import com.therouter.router.Autowired
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.utils.DevFinal
@@ -227,7 +227,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
 
     private fun innerInitialize() {
         try {
-            ARouter.getInstance().inject(this)
+            TheRouter.inject(this)
         } catch (ignored: Exception) {
         }
     }
@@ -243,7 +243,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     fun routerActivity(
         buttonValue: ButtonValue
     ) {
-        ARouter.getInstance().build(buttonValue.path)
+        TheRouter.build(buttonValue.path)
             .withInt(DevFinal.STR.TYPE, buttonValue.type)
             .withString(DevFinal.STR.TITLE, buttonValue.text)
             .navigation(this)

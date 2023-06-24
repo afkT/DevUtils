@@ -13,7 +13,7 @@ import android.net.wifi.WifiConfiguration
 import android.os.Build
 import android.os.Handler
 import android.os.Message
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag

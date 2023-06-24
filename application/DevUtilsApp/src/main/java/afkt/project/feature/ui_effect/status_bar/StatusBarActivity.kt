@@ -7,7 +7,7 @@ import afkt.project.model.item.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.alibaba.android.arouter.facade.annotation.Route
+import com.therouter.router.Route
 import dev.utils.app.BarUtils
 import dev.utils.app.ResourceUtils
 
