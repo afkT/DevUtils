@@ -476,22 +476,21 @@ public final class DeviceUtils {
     /**
      * 获取 Android id
      * <pre>
-     *     在设备首次启动时, 系统会随机生成一个 64 位的数字, 并把这个数字以十六进制字符串的形式保存下来,
+     *     在设备首次启动时, 系统会随机生成一个 64 位的数字, 并把这个数字以十六进制字符串的形式保存下来
      *     这个十六进制的字符串就是 ANDROID_ID, 当设备被 wipe 后该值会被重置
      * </pre>
      * @return Android id
      */
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
-        String androidId = null;
         try {
-            androidId = Settings.Secure.getString(
+            return Settings.Secure.getString(
                     ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
-        return androidId;
+        return null;
     }
 
     /**
