@@ -1,422 +1,422 @@
 {
-    "specList": [
+    "specList" : [
         {
-            "specId": 1045,
-            "specName": "黑色 500g 2",
-            "picUrl": "https://picsum.photos/300",
-            "inventory": 15,
-            "salePrice": 1.5,
-            "attrValueIdList": [
+            "specId" : 1045,
+            "specName" : "黑色 500g 2",
+            "picUrl" : "https://picsum.photos/300",
+            "inventory" : 15,
+            "salePrice" : 1.5,
+            "attrValueIdList" : [
                 333,
                 334,
                 338
             ]
         },
         {
-            "specId": 1046,
-            "specName": "白色 500g 2",
-            "picUrl": "https://picsum.photos/301",
-            "inventory": 16,
-            "salePrice": 2.5,
-            "attrValueIdList": [
+            "specId" : 1046,
+            "specName" : "白色 500g 2",
+            "picUrl" : "https://picsum.photos/301",
+            "inventory" : 16,
+            "salePrice" : 2.5,
+            "attrValueIdList" : [
                 332,
                 334,
                 338
             ]
         },
         {
-            "specId": 1047,
-            "specName": "红色 500g 2",
-            "picUrl": "https://picsum.photos/302",
-            "inventory": 17,
-            "salePrice": 3.5,
-            "attrValueIdList": [
+            "specId" : 1047,
+            "specName" : "红色 500g 2",
+            "picUrl" : "https://picsum.photos/302",
+            "inventory" : 17,
+            "salePrice" : 3.5,
+            "attrValueIdList" : [
                 335,
                 334,
                 338
             ]
         },
         {
-            "specId": 1048,
-            "specName": "黑色 800g 2",
-            "picUrl": "https://picsum.photos/303",
-            "inventory": 18,
-            "salePrice": 4.5,
-            "attrValueIdList": [
+            "specId" : 1048,
+            "specName" : "黑色 800g 2",
+            "picUrl" : "https://picsum.photos/303",
+            "inventory" : 18,
+            "salePrice" : 4.5,
+            "attrValueIdList" : [
                 333,
                 343,
                 338
             ]
         },
         {
-            "specId": 1049,
-            "specName": "白色 800g 2",
-            "picUrl": "https://picsum.photos/304",
-            "inventory": 19,
-            "salePrice": 5.5,
-            "attrValueIdList": [
+            "specId" : 1049,
+            "specName" : "白色 800g 2",
+            "picUrl" : "https://picsum.photos/304",
+            "inventory" : 19,
+            "salePrice" : 5.5,
+            "attrValueIdList" : [
                 332,
                 343,
                 338
             ]
         },
         {
-            "specId": 1050,
-            "specName": "红色 800g 2",
-            "picUrl": "https://picsum.photos/305",
-            "inventory": 20,
-            "salePrice": 6.5,
-            "attrValueIdList": [
+            "specId" : 1050,
+            "specName" : "红色 800g 2",
+            "picUrl" : "https://picsum.photos/305",
+            "inventory" : 20,
+            "salePrice" : 6.5,
+            "attrValueIdList" : [
                 335,
                 343,
                 338
             ]
         },
         {
-            "specId": 1051,
-            "specName": "黑色 500g 3",
-            "picUrl": "https://picsum.photos/306",
-            "inventory": 21,
-            "salePrice": 7.5,
-            "attrValueIdList": [
+            "specId" : 1051,
+            "specName" : "黑色 500g 3",
+            "picUrl" : "https://picsum.photos/306",
+            "inventory" : 21,
+            "salePrice" : 7.5,
+            "attrValueIdList" : [
                 333,
                 334,
                 339
             ]
         },
         {
-            "specId": 1052,
-            "specName": "白色 500g 3",
-            "picUrl": "https://picsum.photos/307",
-            "inventory": 22,
-            "salePrice": 8.5,
-            "attrValueIdList": [
+            "specId" : 1052,
+            "specName" : "白色 500g 3",
+            "picUrl" : "https://picsum.photos/307",
+            "inventory" : 22,
+            "salePrice" : 8.5,
+            "attrValueIdList" : [
                 332,
                 334,
                 339
             ]
         },
         {
-            "specId": 1053,
-            "specName": "红色 500g 3",
-            "picUrl": "https://picsum.photos/308",
-            "inventory": 23,
-            "salePrice": 9.5,
-            "attrValueIdList": [
+            "specId" : 1053,
+            "specName" : "红色 500g 3",
+            "picUrl" : "https://picsum.photos/308",
+            "inventory" : 23,
+            "salePrice" : 9.5,
+            "attrValueIdList" : [
                 335,
                 334,
                 339
             ]
         },
         {
-            "specId": 1054,
-            "specName": "黑色 800g 3",
-            "picUrl": "https://picsum.photos/309",
-            "inventory": 24,
-            "salePrice": 10.5,
-            "attrValueIdList": [
+            "specId" : 1054,
+            "specName" : "黑色 800g 3",
+            "picUrl" : "https://picsum.photos/309",
+            "inventory" : 24,
+            "salePrice" : 10.5,
+            "attrValueIdList" : [
                 333,
                 343,
                 339
             ]
         },
         {
-            "specId": 1055,
-            "specName": "白色 800g 3",
-            "picUrl": "https://picsum.photos/310",
-            "inventory": 25,
-            "salePrice": 11.5,
-            "attrValueIdList": [
+            "specId" : 1055,
+            "specName" : "白色 800g 3",
+            "picUrl" : "https://picsum.photos/310",
+            "inventory" : 25,
+            "salePrice" : 11.5,
+            "attrValueIdList" : [
                 332,
                 343,
                 339
             ]
         },
         {
-            "specId": 1056,
-            "specName": "红色 800g 3",
-            "picUrl": "https://picsum.photos/311",
-            "inventory": 26,
-            "salePrice": 12.5,
-            "attrValueIdList": [
+            "specId" : 1056,
+            "specName" : "红色 800g 3",
+            "picUrl" : "https://picsum.photos/311",
+            "inventory" : 26,
+            "salePrice" : 12.5,
+            "attrValueIdList" : [
                 335,
                 343,
                 339
             ]
         },
         {
-            "specId": 1057,
-            "specName": "黑色 500g 4",
-            "picUrl": "https://picsum.photos/312",
-            "inventory": 27,
-            "salePrice": 13.5,
-            "attrValueIdList": [
+            "specId" : 1057,
+            "specName" : "黑色 500g 4",
+            "picUrl" : "https://picsum.photos/312",
+            "inventory" : 27,
+            "salePrice" : 13.5,
+            "attrValueIdList" : [
                 333,
                 334,
                 340
             ]
         },
         {
-            "specId": 1058,
-            "specName": "白色 500g 4",
-            "picUrl": "https://picsum.photos/313",
-            "inventory": 28,
-            "salePrice": 14.5,
-            "attrValueIdList": [
+            "specId" : 1058,
+            "specName" : "白色 500g 4",
+            "picUrl" : "https://picsum.photos/313",
+            "inventory" : 28,
+            "salePrice" : 14.5,
+            "attrValueIdList" : [
                 332,
                 334,
                 340
             ]
         },
         {
-            "specId": 1059,
-            "specName": "红色 500g 4",
-            "picUrl": "https://picsum.photos/314",
-            "inventory": 29,
-            "salePrice": 15.5,
-            "attrValueIdList": [
+            "specId" : 1059,
+            "specName" : "红色 500g 4",
+            "picUrl" : "https://picsum.photos/314",
+            "inventory" : 29,
+            "salePrice" : 15.5,
+            "attrValueIdList" : [
                 335,
                 334,
                 340
             ]
         },
         {
-            "specId": 1060,
-            "specName": "黑色 800g 4",
-            "picUrl": "https://picsum.photos/315",
-            "inventory": 30,
-            "salePrice": 16.5,
-            "attrValueIdList": [
+            "specId" : 1060,
+            "specName" : "黑色 800g 4",
+            "picUrl" : "https://picsum.photos/315",
+            "inventory" : 30,
+            "salePrice" : 16.5,
+            "attrValueIdList" : [
                 333,
                 343,
                 340
             ]
         },
         {
-            "specId": 1061,
-            "specName": "白色 800g 4",
-            "picUrl": "https://picsum.photos/316",
-            "inventory": 31,
-            "salePrice": 17.5,
-            "attrValueIdList": [
+            "specId" : 1061,
+            "specName" : "白色 800g 4",
+            "picUrl" : "https://picsum.photos/316",
+            "inventory" : 31,
+            "salePrice" : 17.5,
+            "attrValueIdList" : [
                 332,
                 343,
                 340
             ]
         },
         {
-            "specId": 1062,
-            "specName": "红色 800g 4",
-            "picUrl": "https://picsum.photos/317",
-            "inventory": 32,
-            "salePrice": 18.5,
-            "attrValueIdList": [
+            "specId" : 1062,
+            "specName" : "红色 800g 4",
+            "picUrl" : "https://picsum.photos/317",
+            "inventory" : 32,
+            "salePrice" : 18.5,
+            "attrValueIdList" : [
                 335,
                 343,
                 340
             ]
         },
         {
-            "specId": 1063,
-            "specName": "黑色 500g 5",
-            "picUrl": "https://picsum.photos/318",
-            "inventory": 33,
-            "salePrice": 19.5,
-            "attrValueIdList": [
+            "specId" : 1063,
+            "specName" : "黑色 500g 5",
+            "picUrl" : "https://picsum.photos/318",
+            "inventory" : 33,
+            "salePrice" : 19.5,
+            "attrValueIdList" : [
                 333,
                 334,
                 341
             ]
         },
         {
-            "specId": 1064,
-            "specName": "白色 500g 5",
-            "picUrl": "https://picsum.photos/319",
-            "inventory": 34,
-            "salePrice": 20.5,
-            "attrValueIdList": [
+            "specId" : 1064,
+            "specName" : "白色 500g 5",
+            "picUrl" : "https://picsum.photos/319",
+            "inventory" : 34,
+            "salePrice" : 20.5,
+            "attrValueIdList" : [
                 332,
                 334,
                 341
             ]
         },
         {
-            "specId": 1065,
-            "specName": "红色 500g 5",
-            "picUrl": "https://picsum.photos/320",
-            "inventory": 35,
-            "salePrice": 21.5,
-            "attrValueIdList": [
+            "specId" : 1065,
+            "specName" : "红色 500g 5",
+            "picUrl" : "https://picsum.photos/320",
+            "inventory" : 35,
+            "salePrice" : 21.5,
+            "attrValueIdList" : [
                 335,
                 334,
                 341
             ]
         },
         {
-            "specId": 1066,
-            "specName": "黑色 800g 5",
-            "picUrl": "https://picsum.photos/321",
-            "inventory": 36,
-            "salePrice": 22.5,
-            "attrValueIdList": [
+            "specId" : 1066,
+            "specName" : "黑色 800g 5",
+            "picUrl" : "https://picsum.photos/321",
+            "inventory" : 36,
+            "salePrice" : 22.5,
+            "attrValueIdList" : [
                 333,
                 343,
                 341
             ]
         },
         {
-            "specId": 1067,
-            "specName": "白色 800g 5",
-            "picUrl": "https://picsum.photos/322",
-            "inventory": 37,
-            "salePrice": 23.5,
-            "attrValueIdList": [
+            "specId" : 1067,
+            "specName" : "白色 800g 5",
+            "picUrl" : "https://picsum.photos/322",
+            "inventory" : 37,
+            "salePrice" : 23.5,
+            "attrValueIdList" : [
                 332,
                 343,
                 341
             ]
         },
         {
-            "specId": 1068,
-            "specName": "红色 800g 5",
-            "picUrl": "https://picsum.photos/323",
-            "inventory": 38,
-            "salePrice": 24.5,
-            "attrValueIdList": [
+            "specId" : 1068,
+            "specName" : "红色 800g 5",
+            "picUrl" : "https://picsum.photos/323",
+            "inventory" : 38,
+            "salePrice" : 24.5,
+            "attrValueIdList" : [
                 335,
                 343,
                 341
             ]
         },
         {
-            "specId": 1069,
-            "specName": "黑色 500g 6",
-            "picUrl": "https://picsum.photos/324",
-            "inventory": 39,
-            "salePrice": 25.5,
-            "attrValueIdList": [
+            "specId" : 1069,
+            "specName" : "黑色 500g 6",
+            "picUrl" : "https://picsum.photos/324",
+            "inventory" : 39,
+            "salePrice" : 25.5,
+            "attrValueIdList" : [
                 333,
                 334,
                 342
             ]
         },
         {
-            "specId": 1070,
-            "specName": "白色 500g 6",
-            "picUrl": "https://picsum.photos/325",
-            "inventory": 40,
-            "salePrice": 26.5,
-            "attrValueIdList": [
+            "specId" : 1070,
+            "specName" : "白色 500g 6",
+            "picUrl" : "https://picsum.photos/325",
+            "inventory" : 40,
+            "salePrice" : 26.5,
+            "attrValueIdList" : [
                 332,
                 334,
                 342
             ]
         },
         {
-            "specId": 1071,
-            "specName": "红色 500g 6",
-            "picUrl": "https://picsum.photos/326",
-            "inventory": 41,
-            "salePrice": 27.5,
-            "attrValueIdList": [
+            "specId" : 1071,
+            "specName" : "红色 500g 6",
+            "picUrl" : "https://picsum.photos/326",
+            "inventory" : 41,
+            "salePrice" : 27.5,
+            "attrValueIdList" : [
                 335,
                 334,
                 342
             ]
         },
         {
-            "specId": 1072,
-            "specName": "黑色 800g 6",
-            "picUrl": "https://picsum.photos/327",
-            "inventory": 42,
-            "salePrice": 28.5,
-            "attrValueIdList": [
+            "specId" : 1072,
+            "specName" : "黑色 800g 6",
+            "picUrl" : "https://picsum.photos/327",
+            "inventory" : 42,
+            "salePrice" : 28.5,
+            "attrValueIdList" : [
                 333,
                 343,
                 342
             ]
         },
         {
-            "specId": 1073,
-            "specName": "白色 800g 6",
-            "picUrl": "https://picsum.photos/328",
-            "inventory": 43,
-            "salePrice": 29.5,
-            "attrValueIdList": [
+            "specId" : 1073,
+            "specName" : "白色 800g 6",
+            "picUrl" : "https://picsum.photos/328",
+            "inventory" : 43,
+            "salePrice" : 29.5,
+            "attrValueIdList" : [
                 332,
                 343,
                 342
             ]
         },
         {
-            "specId": 1074,
-            "specName": "红色 800g 6",
-            "picUrl": "https://picsum.photos/329",
-            "inventory": 44,
-            "salePrice": 30.5,
-            "attrValueIdList": [
+            "specId" : 1074,
+            "specName" : "红色 800g 6",
+            "picUrl" : "https://picsum.photos/329",
+            "inventory" : 44,
+            "salePrice" : 30.5,
+            "attrValueIdList" : [
                 335,
                 343,
                 342
             ]
         }
     ],
-    "attributeList": [
+    "attributeList" : [
         {
-            "id": 165,
-            "attrName": "颜色",
-            "attrValueList": [
+            "id" : 165,
+            "attrName" : "颜色",
+            "attrValueList" : [
                 {
-                    "id": 332,
-                    "attrValue": "白色"
+                    "id" : 332,
+                    "attrValue" : "白色"
                 },
                 {
-                    "id": 333,
-                    "attrValue": "黑色"
+                    "id" : 333,
+                    "attrValue" : "黑色"
                 },
                 {
-                    "id": 335,
-                    "attrValue": "红色"
+                    "id" : 335,
+                    "attrValue" : "红色"
                 }
             ]
         },
         {
-            "id": 166,
-            "attrName": "大小",
-            "attrValueList": [
+            "id" : 166,
+            "attrName" : "大小",
+            "attrValueList" : [
                 {
-                    "id": 334,
-                    "attrValue": "500g"
+                    "id" : 334,
+                    "attrValue" : "500g"
                 },
                 {
-                    "id": 343,
-                    "attrValue": "800g"
+                    "id" : 343,
+                    "attrValue" : "800g"
                 }
             ]
         },
         {
-            "id": 168,
-            "attrName": "重量",
-            "attrValueList": [
+            "id" : 168,
+            "attrName" : "重量",
+            "attrValueList" : [
                 {
-                    "id": 338,
-                    "attrValue": "2"
+                    "id" : 338,
+                    "attrValue" : "2"
                 },
                 {
-                    "id": 339,
-                    "attrValue": "3"
+                    "id" : 339,
+                    "attrValue" : "3"
                 },
                 {
-                    "id": 340,
-                    "attrValue": "4"
+                    "id" : 340,
+                    "attrValue" : "4"
                 },
                 {
-                    "id": 341,
-                    "attrValue": "5"
+                    "id" : 341,
+                    "attrValue" : "5"
                 },
                 {
-                    "id": 342,
-                    "attrValue": "6"
+                    "id" : 342,
+                    "attrValue" : "6"
                 }
             ]
         }
