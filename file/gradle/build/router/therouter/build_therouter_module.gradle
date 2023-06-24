@@ -1,0 +1,11 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+
+    // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
+    // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
+    kapt deps.lib.therouter_apt
+    api deps.lib.therouter_router
+}

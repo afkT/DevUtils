@@ -1,1 +1,2 @@
-apply from: rootProject.file(files.build_arouter_module_gradle)
+//apply from: rootProject.file(files.build_arouter_module_gradle)
+apply from: rootProject.file(files.build_therouter_module_gradle)

@@ -34,8 +34,10 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.10"
-        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
-        classpath "com.alibaba:arouter-register:1.0.2"
+//        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
+//        classpath "com.alibaba:arouter-register:1.0.2"
+        // TheRouter AutoRegister https://mvnrepository.com/artifact/cn.therouter/plugin
+        classpath "cn.therouter:plugin:1.1.2"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray

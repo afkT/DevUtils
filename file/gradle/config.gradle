@@ -65,6 +65,11 @@ ext {
             build_arouter_app_gradle            : "file/gradle/build/router/arouter/build_arouter_app.gradle",
             // ARouter Module 构建配置
             build_arouter_module_gradle         : "file/gradle/build/router/arouter/build_arouter_module.gradle",
+
+            // TheRouter App 构建配置
+            build_therouter_app_gradle            : "file/gradle/build/router/therouter/build_therouter_app.gradle",
+            // TheRouter Module 构建配置
+            build_therouter_module_gradle         : "file/gradle/build/router/therouter/build_therouter_module.gradle",
     ]
 
     deps = [
@@ -336,6 +341,13 @@ ext {
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api          : "com.alibaba:arouter-api:1.5.2",
                     arouter_compiler     : "com.alibaba:arouter-compiler:1.5.2",
+                    // https://mvnrepository.com/artifact/cn.therouter
+                    // https://mvnrepository.com/artifact/cn.therouter/apt
+                    // https://mvnrepository.com/artifact/cn.therouter/router
+                    // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
+                    // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
+                    therouter_apt        : "cn.therouter:apt:1.1.2",
+                    therouter_router     : "cn.therouter:router:1.1.2",
             ],
             "aop"     : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
