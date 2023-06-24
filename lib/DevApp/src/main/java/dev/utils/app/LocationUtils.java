@@ -70,12 +70,46 @@ public final class LocationUtils {
     public static boolean isLocationEnabled() {
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
-            return locationManager != null && (locationManager.isProviderEnabled(
-                    LocationManager.NETWORK_PROVIDER)
-                    || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            return locationManager != null && (
+                    locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                            || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLocationEnabled");
+        }
+        return false;
+    }
+
+    /**
+     * 判断定位是否可用
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isLocationEnabled2() {
+        try {
+            LocationManager locationManager = AppUtils.getLocationManager();
+            return locationManager != null && (
+                    locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                            || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                            || locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)
+            );
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isLocationEnabled2");
+        }
+        return false;
+    }
+
+    /**
+     * 判断定位是否可用
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPassiveEnable() {
+        try {
+            LocationManager locationManager = AppUtils.getLocationManager();
+            return locationManager != null && locationManager.isProviderEnabled(
+                    LocationManager.PASSIVE_PROVIDER
+            );
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isPassiveEnable");
         }
         return false;
     }
