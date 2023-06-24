@@ -1,12 +1,16 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 apply plugin: 'kotlin-parcelize'
 
-android.defaultConfig {
-    versionCode versions.dev_retrofit_versionCode
-    versionName versions.dev_retrofit_versionName
-    // DevRetrofit Module Version
-    buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
-    buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+android {
+    namespace "dev.retrofit"
+
+    defaultConfig {
+        versionCode versions.dev_retrofit_versionCode
+        versionName versions.dev_retrofit_versionName
+        // DevRetrofit Module Version
+        buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
+        buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+    }
 }
 
 // 是否发布版本

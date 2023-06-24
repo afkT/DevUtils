@@ -1,14 +1,18 @@
 apply from: rootProject.file(files.lib_app_gradle)
 
-android.defaultConfig {
-    versionCode versions.dev_assist_versionCode
-    versionName versions.dev_assist_versionName
-    // DevAssist Module Version
-    buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
-    buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
-    // DevApp Module Version
-    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
-    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+android {
+    namespace "dev.assist"
+
+    defaultConfig {
+        versionCode versions.dev_assist_versionCode
+        versionName versions.dev_assist_versionName
+        // DevAssist Module Version
+        buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+        buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
 }
 
 // 是否发布版本

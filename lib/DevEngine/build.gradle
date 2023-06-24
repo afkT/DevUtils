@@ -1,15 +1,19 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 apply plugin: 'kotlin-kapt'
 
-android.defaultConfig {
-    versionCode versions.dev_engine_versionCode
-    versionName versions.dev_engine_versionName
-    // DevEngine Module Version
-    buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
-    buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
-    // DevApp Module Version
-    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
-    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+android {
+    namespace "dev.engine"
+
+    defaultConfig {
+        versionCode versions.dev_engine_versionCode
+        versionName versions.dev_engine_versionName
+        // DevEngine Module Version
+        buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
+        buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
 }
 
 // 是否发布版本

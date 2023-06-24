@@ -1,15 +1,19 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 apply from: rootProject.file(files.unified_use_view_binding_gradle)
 
-android.defaultConfig {
-    versionCode versions.dev_base_versionCode
-    versionName versions.dev_base_versionName
-    // DevBase Module Version
-    buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
-    buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
-    // DevApp Module Version
-    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
-    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+android {
+    namespace "dev.base"
+
+    defaultConfig {
+        versionCode versions.dev_base_versionCode
+        versionName versions.dev_base_versionName
+        // DevBase Module Version
+        buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
+        buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
 }
 
 // 是否发布版本

@@ -1,9 +1,11 @@
 apply from: rootProject.file(files.build_app_gradle)
-apply from: rootProject.file(files.build_arouter_app_gradle)
+apply from: rootProject.file(files.build_router_app_gradle)
 apply from: rootProject.file(files.deps_other_lib)
 apply from: rootProject.file(files.deps_qa_lib)
 
 android {
+    namespace "afkt.project"
+
     defaultConfig {
         applicationId "afkt.project"
     }

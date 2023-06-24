@@ -7,10 +7,6 @@ ext {
             build_app_gradle                    : "file/gradle/build/build_app.gradle",
             // Android Kotlin 项目构建配置
             build_app_kotlin_gradle             : "file/gradle/build/build_app_kotlin.gradle",
-            // Android Kotlin 项目构建配置
-            build_arouter_app_gradle            : "file/gradle/build/arouter/build_arouter_app.gradle",
-            // Android Kotlin 项目构建配置
-            build_arouter_module_gradle         : "file/gradle/build/arouter/build_arouter_module.gradle",
 
             // Android Lib 通用配置
             lib_app_gradle                      : "file/gradle/build/lib_app.gradle",
@@ -54,6 +50,21 @@ ext {
             unified_use_data_binding_gradle     : "file/gradle/build/unified/unified_use_data_binding.gradle",
             // 统一使用 View、Data Binding 处理
             unified_use_view_data_binding_gradle: "file/gradle/build/unified/unified_use_view_data_binding.gradle",
+
+            // ==========
+            // = Router =
+            // ==========
+
+
+            // ARouter App 构建配置
+            build_router_app_gradle             : "file/gradle/build/router/build_router_app.gradle",
+            // ARouter Module 构建配置
+            build_router_module_gradle          : "file/gradle/build/router/build_router_module.gradle",
+
+            // ARouter App 构建配置
+            build_arouter_app_gradle            : "file/gradle/build/router/arouter/build_arouter_app.gradle",
+            // ARouter Module 构建配置
+            build_arouter_module_gradle         : "file/gradle/build/router/arouter/build_arouter_module.gradle",
     ]
 
     deps = [

@@ -1,8 +1,12 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 
-android.defaultConfig {
-    versionCode versions.dev_http_capture_versionCode
-    versionName versions.dev_http_capture_compiler_release_version
+android {
+    namespace "dev.capture.compiler"
+
+    defaultConfig {
+        versionCode versions.dev_http_capture_versionCode
+        versionName versions.dev_http_capture_compiler_release_version
+    }
 }
 
 // 是否发布版本

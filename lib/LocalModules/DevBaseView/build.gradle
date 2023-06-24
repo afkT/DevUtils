@@ -1,5 +1,9 @@
 apply from: rootProject.file(files.build_app_kotlin_gradle)
 
+android {
+    namespace "dev.base_view"
+}
+
 dependencies {
 
     // ==========================

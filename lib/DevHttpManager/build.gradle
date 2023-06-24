@@ -1,15 +1,19 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
 apply plugin: 'kotlin-parcelize'
 
-android.defaultConfig {
-    versionCode versions.dev_http_manager_versionCode
-    versionName versions.dev_http_manager_versionName
-    // DevHttpManager Module Version
-    buildConfigField "int", "DevHttpManager_VersionCode", "${versions.dev_http_manager_versionCode}"
-    buildConfigField "String", "DevHttpManager_Version", "\"${versions.dev_http_manager_versionName}\""
-    // DevApp Module Version
-    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
-    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+android {
+    namespace "dev.http"
+
+    defaultConfig {
+        versionCode versions.dev_http_manager_versionCode
+        versionName versions.dev_http_manager_versionName
+        // DevHttpManager Module Version
+        buildConfigField "int", "DevHttpManager_VersionCode", "${versions.dev_http_manager_versionCode}"
+        buildConfigField "String", "DevHttpManager_Version", "\"${versions.dev_http_manager_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
 }
 
 // 是否发布版本
