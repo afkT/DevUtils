@@ -164,9 +164,11 @@ class DecodeThread(
             DecodeFormat.BARCODE -> {
                 decodeFormats.addAll(DecodeFormat.barCodeFormats)
             }
+
             DecodeFormat.QRCODE -> {
                 decodeFormats.addAll(DecodeFormat.qrCodeFormats)
             }
+
             DecodeFormat.ALL -> {
                 decodeFormats.addAll(DecodeFormat.barCodeFormats)
                 decodeFormats.addAll(DecodeFormat.qrCodeFormats)

@@ -50,11 +50,13 @@ fun initAppImageConfigCreator() {
                     setScaleType(ImageConfig.SCALE_CENTER_CROP)
                 }
             }
+
             IMAGE_DEFAULT_FIX -> {
                 ImageConfig.create().apply {
                     setScaleType(ImageConfig.SCALE_FIT_CENTER)
                 }
             }
+
             IMAGE_ROUND_3 -> {
                 ImageConfig.create(IMAGE_ROUND).apply {
                     setRoundedCornersRadius(
@@ -62,6 +64,7 @@ fun initAppImageConfigCreator() {
                     )
                 }
             }
+
             IMAGE_ROUND_10 -> {
                 ImageConfig.create(IMAGE_ROUND).apply {
                     setRoundedCornersRadius(
@@ -69,6 +72,7 @@ fun initAppImageConfigCreator() {
                     )
                 }
             }
+
             IMAGE_ROUND_CROP_10 -> {
                 ImageConfig.create(IMAGE_ROUND).apply {
                     setRoundedCornersRadius(
@@ -77,6 +81,7 @@ fun initAppImageConfigCreator() {
                     setScaleType(ImageConfig.SCALE_CENTER_CROP)
                 }
             }
+
             IMAGE_ROUND_FIX_10 -> {
                 ImageConfig.create(IMAGE_ROUND).apply {
                     setRoundedCornersRadius(
@@ -85,6 +90,7 @@ fun initAppImageConfigCreator() {
                     setScaleType(ImageConfig.SCALE_FIT_CENTER)
                 }
             }
+
             else -> {
                 null
             }

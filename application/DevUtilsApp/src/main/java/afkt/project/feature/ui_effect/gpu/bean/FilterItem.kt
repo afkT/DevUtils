@@ -122,6 +122,7 @@ class FilterItem(
                     sharpness.setSharpness(2.0F)
                     sharpness
                 }
+
                 FilterType.SOBEL_EDGE_DETECTION -> GPUImageSobelEdgeDetectionFilter()
                 FilterType.THREE_X_THREE_CONVOLUTION -> {
                     val convolution = GPUImage3x3ConvolutionFilter()
@@ -134,6 +135,7 @@ class FilterItem(
                     )
                     convolution
                 }
+
                 FilterType.EMBOSS -> GPUImageEmbossFilter()
                 FilterType.POSTERIZE -> GPUImagePosterizeFilter()
                 FilterType.FILTER_GROUP -> {
@@ -143,6 +145,7 @@ class FilterItem(
                     filters.add(GPUImageGrayscaleFilter())
                     GPUImageFilterGroup(filters)
                 }
+
                 FilterType.SATURATION -> GPUImageSaturationFilter(1.0F)
                 FilterType.EXPOSURE -> GPUImageExposureFilter(0.0F)
                 FilterType.HIGHLIGHT_SHADOW -> GPUImageHighlightShadowFilter(0.0F, 1.0F)
@@ -150,6 +153,7 @@ class FilterItem(
                     1.0F,
                     floatArrayOf(0.6F, 0.45F, 0.3F, 1.0F)
                 )
+
                 FilterType.OPACITY -> GPUImageOpacityFilter(1.0F)
                 FilterType.RGB -> GPUImageRGBFilter(1.0F, 1.0F, 1.0F)
                 FilterType.WHITE_BALANCE -> GPUImageWhiteBalanceFilter(5000.0F, 0.0F)
@@ -159,79 +163,104 @@ class FilterItem(
                     centerPoint.y = 0.5F
                     GPUImageVignetteFilter(centerPoint, floatArrayOf(0.0F, 0.0F, 0.0F), 0.3F, 0.75F)
                 }
+
                 FilterType.TONE_CURVE -> GPUImageToneCurveFilter()
                 FilterType.BLEND_DIFFERENCE -> createBlendFilter(
                     GPUImageDifferenceBlendFilter::class.java
                 )
+
                 FilterType.BLEND_SOURCE_OVER -> createBlendFilter(
                     GPUImageSourceOverBlendFilter::class.java
                 )
+
                 FilterType.BLEND_COLOR_BURN -> createBlendFilter(
                     GPUImageColorBurnBlendFilter::class.java
                 )
+
                 FilterType.BLEND_COLOR_DODGE -> createBlendFilter(
                     GPUImageColorDodgeBlendFilter::class.java
                 )
+
                 FilterType.BLEND_DARKEN -> createBlendFilter(
                     GPUImageDarkenBlendFilter::class.java
                 )
+
                 FilterType.BLEND_DISSOLVE -> createBlendFilter(
                     GPUImageDissolveBlendFilter::class.java
                 )
+
                 FilterType.BLEND_EXCLUSION -> createBlendFilter(
                     GPUImageExclusionBlendFilter::class.java
                 )
+
                 FilterType.BLEND_HARD_LIGHT -> createBlendFilter(
                     GPUImageHardLightBlendFilter::class.java
                 )
+
                 FilterType.BLEND_LIGHTEN -> createBlendFilter(
                     GPUImageLightenBlendFilter::class.java
                 )
+
                 FilterType.BLEND_ADD -> createBlendFilter(
                     GPUImageAddBlendFilter::class.java
                 )
+
                 FilterType.BLEND_DIVIDE -> createBlendFilter(
                     GPUImageDivideBlendFilter::class.java
                 )
+
                 FilterType.BLEND_MULTIPLY -> createBlendFilter(
                     GPUImageMultiplyBlendFilter::class.java
                 )
+
                 FilterType.BLEND_OVERLAY -> createBlendFilter(
                     GPUImageOverlayBlendFilter::class.java
                 )
+
                 FilterType.BLEND_SCREEN -> createBlendFilter(
                     GPUImageScreenBlendFilter::class.java
                 )
+
                 FilterType.BLEND_ALPHA -> createBlendFilter(
                     GPUImageAlphaBlendFilter::class.java
                 )
+
                 FilterType.BLEND_COLOR -> createBlendFilter(
                     GPUImageColorBlendFilter::class.java
                 )
+
                 FilterType.BLEND_HUE -> createBlendFilter(
                     GPUImageHueBlendFilter::class.java
                 )
+
                 FilterType.BLEND_SATURATION -> createBlendFilter(
                     GPUImageSaturationBlendFilter::class.java
                 )
+
                 FilterType.BLEND_LUMINOSITY -> createBlendFilter(
                     GPUImageLuminosityBlendFilter::class.java
                 )
+
                 FilterType.BLEND_LINEAR_BURN -> createBlendFilter(
                     GPUImageLinearBurnBlendFilter::class.java
                 )
+
                 FilterType.BLEND_SOFT_LIGHT -> createBlendFilter(
                     GPUImageSoftLightBlendFilter::class.java
                 )
+
                 FilterType.BLEND_SUBTRACT -> createBlendFilter(
                     GPUImageSubtractBlendFilter::class.java
                 )
+
                 FilterType.BLEND_CHROMA_KEY -> createBlendFilter(
                     GPUImageChromaKeyBlendFilter::class.java
                 )
+
                 FilterType.BLEND_NORMAL -> createBlendFilter(
                     GPUImageNormalBlendFilter::class.java
                 )
+
                 FilterType.LOOKUP_AMATORKA -> GPUImageLookupFilter()
                 FilterType.GAUSSIAN_BLUR -> GPUImageGaussianBlurFilter()
                 FilterType.CROSSHATCH -> GPUImageCrosshatchFilter()
@@ -258,6 +287,7 @@ class FilterItem(
                     levelsFilter.setMin(0.0F, 3.0F, 1.0F)
                     levelsFilter
                 }
+
                 FilterType.HALFTONE -> GPUImageHalftoneFilter()
                 FilterType.BILATERAL_BLUR -> GPUImageBilateralBlurFilter()
                 FilterType.TRANSFORM2D -> GPUImageTransformFilter()

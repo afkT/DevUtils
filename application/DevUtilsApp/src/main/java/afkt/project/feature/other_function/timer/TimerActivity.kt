@@ -78,6 +78,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 }
                             }
                         }
+
                         ButtonValue.BTN_TIMER_STOP -> {
                             result = mTimer?.isRunning ?: false
                             showToast(result, "定时器关闭成功", "定时器未启动")
@@ -85,6 +86,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             // 回收定时器
                             TimerManager.recycle()
                         }
+
                         ButtonValue.BTN_TIMER_RESTART -> {
                             mTimer?.let {
                                 showToast(true, "定时器启动成功, 请查看 Logcat")
@@ -94,18 +96,26 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             }
                             showToast(false, "请先初始化定时器")
                         }
+
                         ButtonValue.BTN_TIMER_CHECK -> {
                             result = mTimer?.isRunning ?: false
                             showToast(result, "定时器已启动", "定时器未启动")
                         }
+
                         ButtonValue.BTN_TIMER_GET -> {
                             val timerTAG = TimerManager.getTimer(TAG)
                             showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
                         }
+
                         ButtonValue.BTN_TIMER_GET_NUMBER -> {
                             result = mTimer?.isRunning ?: false
-                            showToast(result, "定时器运行次数: ${mTimer?.triggerNumber}", "定时器未启动")
+                            showToast(
+                                result,
+                                "定时器运行次数: ${mTimer?.triggerNumber}",
+                                "定时器未启动"
+                            )
                         }
+
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }

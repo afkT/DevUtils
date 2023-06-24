@@ -104,14 +104,17 @@ internal object LubanUtils {
                     builder.load(src)
                     number++
                 }
+
                 is Uri -> {
                     builder.load(src)
                     number++
                 }
+
                 is InputStreamProvider -> {
                     builder.load(src)
                     number++
                 }
+
                 else -> {
                     ConvertUtils.newStringNotArrayDecode(src)?.let { srcIt ->
                         builder.load(srcIt)

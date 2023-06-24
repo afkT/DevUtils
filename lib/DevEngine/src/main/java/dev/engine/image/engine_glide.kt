@@ -610,18 +610,23 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 source.mFile != null -> {
                     manager.load(source.mFile)
                 }
+
                 source.mUrl != null -> {
                     manager.load(source.mUrl)
                 }
+
                 source.mResource != 0 -> {
                     manager.load(source.mResource)
                 }
+
                 source.mUri != null -> {
                     manager.load(source.mUri)
                 }
+
                 source.mBytes != null -> {
                     manager.load(source.mBytes)
                 }
+
                 source.mInputStream != null -> {
                     val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
                     if (bytes != null) {
@@ -630,12 +635,15 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                         null
                     }
                 }
+
                 source.mDrawable != null -> {
                     manager.load(source.mDrawable)
                 }
+
                 source.mBitmap != null -> {
                     manager.load(source.mBitmap)
                 }
+
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
                 }
@@ -659,18 +667,23 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 source.mFile != null -> {
                     request.load(source.mFile)
                 }
+
                 source.mUrl != null -> {
                     request.load(source.mUrl)
                 }
+
                 source.mResource != 0 -> {
                     request.load(source.mResource)
                 }
+
                 source.mUri != null -> {
                     request.load(source.mUri)
                 }
+
                 source.mBytes != null -> {
                     request.load(source.mBytes)
                 }
+
                 source.mInputStream != null -> {
                     val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
                     if (bytes != null) {
@@ -679,12 +692,15 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                         null
                     }
                 }
+
                 source.mDrawable != null -> {
                     request.load(source.mDrawable)
                 }
+
                 source.mBitmap != null -> {
                     request.load(source.mBitmap)
                 }
+
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
                 }

@@ -7,10 +7,10 @@ import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import com.therouter.router.Route
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils

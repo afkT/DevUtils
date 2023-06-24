@@ -45,6 +45,7 @@ class FloatingWindowManager2Activity : BaseActivity<BaseViewRecyclerviewBinding>
                                 addFloatingView(this@FloatingWindowManager2Activity)
                             }
                         }
+
                         ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
                             Utils2.instance.apply {
                                 isNeedsAdd = false

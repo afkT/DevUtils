@@ -17,8 +17,8 @@ import android.hardware.Camera
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import com.therouter.router.Route
 import com.google.zxing.Result
+import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
@@ -113,24 +113,28 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                     !ViewUtils.isSelected(binding.vidFlashlightIv)
                 )
             }
+
             R.id.vid_square_iv -> {
                 ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Square
                 )
             }
+
             R.id.vid_hexagon_iv -> {
                 ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Hexagon
                 )
             }
+
             R.id.vid_annulus_iv -> {
                 ScanShapeUtils.refShape(
                     binding.vidSsv,
                     ScanShapeView.Shape.Annulus
                 )
             }
+
             R.id.vid_image_iv -> {
                 mActivity?.let { activity ->
                     // 打开图片选择器

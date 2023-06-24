@@ -48,6 +48,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                     .setAllCornerSizes(RelativeCornerSize(0.5F))
                     .build()
             }
+
             2 -> { // 圆角
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
@@ -56,6 +57,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                     )
                     .build()
             }
+
             3 -> { // 水滴形
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(
@@ -66,6 +68,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
                     .setTopLeftCornerSize(RelativeCornerSize(0.7F))
                     .build()
             }
+
             4 -> { // 叶子形状
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setTopRightCorner(CornerFamily.ROUNDED, RelativeCornerSize(0.5F))

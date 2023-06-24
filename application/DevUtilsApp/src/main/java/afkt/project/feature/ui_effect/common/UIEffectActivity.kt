@@ -193,11 +193,13 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     .setSelected(true, binding.vid10Tv)
                     .setSelected(false, binding.vid11Tv)
             }
+
             R.id.vid_1_1_tv -> {
                 ViewHelper.get()
                     .setSelected(true, binding.vid11Tv)
                     .setSelected(false, binding.vid10Tv)
             }
+
             R.id.vid_2_0_tv -> changeTab1(binding.vid20Tv, binding.vid21Tv)
             R.id.vid_2_1_tv -> changeTab1(binding.vid21Tv, binding.vid20Tv)
             R.id.vid_3_0_tv -> changeTab2(binding.vid30Tv, binding.vid31Tv)

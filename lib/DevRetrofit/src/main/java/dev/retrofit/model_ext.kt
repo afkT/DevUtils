@@ -48,18 +48,22 @@ fun Throwable?.errorCode(): Base.ErrorCode {
         "MalformedJsonException" -> {
             Base.ErrorCode.PARSE_ERROR
         }
+
         "ConnectException",
         "HttpException" -> {
             Base.ErrorCode.NETWORK_ERROR
         }
+
         "ConnectTimeoutException",
         "SocketTimeoutException",
         "UnknownHostException" -> {
             Base.ErrorCode.TIMEOUT_ERROR
         }
+
         "SSLException" -> {
             Base.ErrorCode.SSL_ERROR
         }
+
         else -> {
             if (className.startsWith("SSL")) {
                 return Base.ErrorCode.SSL_ERROR

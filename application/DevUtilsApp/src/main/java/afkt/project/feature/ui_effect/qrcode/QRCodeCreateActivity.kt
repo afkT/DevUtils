@@ -64,6 +64,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     }
                 }
             }
+
             R.id.vid_select_btn -> {
                 mActivity?.let { activity ->
                     // 打开图片选择器

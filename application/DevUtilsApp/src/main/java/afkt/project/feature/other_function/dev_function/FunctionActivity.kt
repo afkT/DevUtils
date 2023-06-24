@@ -54,6 +54,7 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             result = VibrationUtils.vibrate(200)
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_BEEP -> {
                             // 表示不要震动、使用本地或者 raw 文件
                             result = BeepVibrateAssist(mActivity, R.raw.dev_beep).setVibrate(false)
@@ -62,10 +63,12 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 .playBeepSoundAndVibrate()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_NOTIFICATION_CHECK -> {
                             result = NotificationUtils.isNotificationEnabled()
                             showToast(result, "通知权限已开启", "通知权限未开启")
                         }
+
                         ButtonValue.BTN_FUNCTION_NOTIFICATION_OPEN -> {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 result = AppUtils.startActivity(
@@ -76,6 +79,7 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 showToast(false)
                             }
                         }
+
                         ButtonValue.BTN_FUNCTION_NOTIFICATION -> {
                             result = NotificationUtils.notify(
                                 12, NotificationUtils.createNotification(
@@ -84,14 +88,17 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             )
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_NOTIFICATION_REMOVE -> {
                             result = NotificationUtils.cancel(12)
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_HOME -> {
                             result = ActivityUtils.startHomeActivity()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN -> {
                             permission_request(
                                 permissions = arrayOf(
@@ -115,14 +122,17 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 }
                             )
                         }
+
                         ButtonValue.BTN_FUNCTION_FLASHLIGHT_CLOSE -> {
                             result = FlashlightUtils.getInstance().setFlashlightOff()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_SHORTCUT_CHECK -> {
                             result = ShortCutUtils.hasShortcut("Dev 快捷方式")
                             showToast(result, "存在快捷方式", "不存在快捷方式")
                         }
+
                         ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE -> {
                             permission_request(
                                 permissions = arrayOf(
@@ -148,6 +158,7 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 }
                             )
                         }
+
                         ButtonValue.BTN_FUNCTION_SHORTCUT_DELETE -> {
                             result = ShortCutUtils.deleteShortcut(
                                 MainActivity::class.java,
@@ -155,6 +166,7 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             )
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
                             val memoryInfo = MemoryUtils.printMemoryInfo()
                             ToastUtils.showShort(memoryInfo)
@@ -162,6 +174,7 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 message = memoryInfo
                             )
                         }
+
                         ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
                             val deviceInfo =
                                 DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
@@ -170,22 +183,27 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 message = deviceInfo
                             )
                         }
+
                         ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS -> {
                             result = AppUtils.launchAppDetailsSettings()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_GPS_SETTINGS -> {
                             result = AppUtils.openGpsSettings()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_WIRELESS_SETTINGS -> {
                             result = AppUtils.openWirelessSettings()
                             showToast(result)
                         }
+
                         ButtonValue.BTN_FUNCTION_SYS_SETTINGS -> {
                             result = AppUtils.startSysSetting()
                             showToast(result)
                         }
+
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }

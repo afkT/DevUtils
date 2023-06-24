@@ -213,6 +213,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                     captureRedact.replaceValue
                 )
             }
+
             is MultipartBody -> {
                 return mapMultipartBody(
                     requestBody,
@@ -220,6 +221,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                     captureRedact.replaceValue
                 )
             }
+
             else -> {
                 val contentType = requestBody.contentType()
                 val charset = contentType?.charset(UTF_8) ?: UTF_8

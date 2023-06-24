@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.therouter.router.Route
 import com.google.android.material.tabs.TabLayoutMediator
+import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 
 /**
@@ -76,16 +76,20 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
                 binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_LTR
                 binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_LTR
             }
+
             R.id.vid_menu_rtl -> {
                 binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_RTL
                 binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_RTL
             }
+
             R.id.vid_menu_horizontal -> {
                 binding.vidVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
+
             R.id.vid_menu_vertical -> {
                 binding.vidVp.orientation = ViewPager2.ORIENTATION_VERTICAL
             }
+
             R.id.vid_menu_reset -> {
                 binding.vidTl.layoutDirection = View.LAYOUT_DIRECTION_LTR
                 binding.vidVp.layoutDirection = View.LAYOUT_DIRECTION_LTR

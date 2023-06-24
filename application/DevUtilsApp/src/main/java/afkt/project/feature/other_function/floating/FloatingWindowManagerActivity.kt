@@ -47,6 +47,7 @@ class FloatingWindowManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>(
                                 Utils.instance.addView()
                             }
                         }
+
                         ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
                             Utils.instance.removeView()
                         }

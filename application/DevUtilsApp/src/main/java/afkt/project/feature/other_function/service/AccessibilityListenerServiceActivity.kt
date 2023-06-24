@@ -50,6 +50,7 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
                                 AccessibilityListenerService.isAccessibilitySettingsOn(AppUtils.getPackageName())
                             showToast(check, "已开启无障碍功能", "未开启无障碍功能")
                         }
+
                         ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER -> {
                             if (!AccessibilityListenerService.checkAccessibility()) {
                                 showToast(false, "请先开启无障碍功能")
@@ -59,11 +60,13 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
                             // 注册监听
                             AccessibilityListenerService.startService()
                         }
+
                         ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER -> {
                             showToast(true, "注销无障碍监听服务成功")
                             // 注销监听
                             AccessibilityListenerService.stopService()
                         }
+
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }

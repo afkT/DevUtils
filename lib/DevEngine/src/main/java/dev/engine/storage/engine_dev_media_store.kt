@@ -359,6 +359,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
                         )
                     }
                 }
+
                 else -> return null
             }
         } else { // 内部存储路径
@@ -419,6 +420,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
                         }
                     }
                 }
+
                 else -> return null
             }
         } else { // 内部存储路径

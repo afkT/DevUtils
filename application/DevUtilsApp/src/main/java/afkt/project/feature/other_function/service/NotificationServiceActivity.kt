@@ -51,6 +51,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                             val check = NotificationService.isNotificationListenerEnabled()
                             showToast(check, "已开启服务通知", "未开启服务通知")
                         }
+
                         ButtonValue.BTN_NOTIFICATION_SERVICE_REGISTER -> {
                             if (!NotificationService.checkAndIntentSetting()) {
                                 showToast(false, "请先开启服务通知权限")
@@ -60,11 +61,13 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                             // 注册监听
                             NotificationService.startService()
                         }
+
                         ButtonValue.BTN_NOTIFICATION_SERVICE_UNREGISTER -> {
                             showToast(true, "注销通知栏监听服务成功")
                             // 注销监听
                             NotificationService.stopService()
                         }
+
                         else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                     }
                 }

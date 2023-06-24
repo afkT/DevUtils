@@ -99,13 +99,16 @@ private fun Progress.innerCallback(
         Progress.START -> {
             callback.onStart(this)
         }
+
         Progress.ING -> {
             callback.onProgress(this)
         }
+
         Progress.ERROR -> {
             callback.onError(this)
             callback.onEnd(this)
         }
+
         Progress.FINISH -> {
             callback.onFinish(this)
             callback.onEnd(this)

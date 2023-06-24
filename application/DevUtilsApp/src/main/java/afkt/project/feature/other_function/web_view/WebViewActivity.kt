@@ -43,6 +43,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                         )
                         return@OnLongClickListener true
                     }
+
                     else -> {
                     }
                 }

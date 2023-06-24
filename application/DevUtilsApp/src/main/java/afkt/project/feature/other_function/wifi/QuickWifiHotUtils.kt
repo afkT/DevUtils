@@ -65,6 +65,7 @@ class QuickWifiHotUtils(
                     // 开启热点
                     Thread(startWifiSpotThread).start()
                 }
+
                 START_WIFISPOT_SUCCESS -> {
                     TAG.log_dTag(
                         message = "hotHandler 开启热点成功"
@@ -76,6 +77,7 @@ class QuickWifiHotUtils(
                     // 开启线程检查
                     Thread(hotCheckThread).start()
                 }
+
                 CHECK_HOT_CONN -> {
                     TAG.log_dTag(
                         message = "hotHandler 检查是否连接热点"
@@ -156,12 +158,14 @@ class QuickWifiHotUtils(
                     )
                     wifiUtils.closeWifi() // 关闭 Wifi
                 }
+
                 WifiManager.WIFI_STATE_DISABLED -> {
                     isPostDelayed = false
                     TAG.log_dTag(
                         message = "Wifi 已关闭"
                     )
                 }
+
                 WifiManager.WIFI_STATE_DISABLING -> {
                     isPostDelayed = true
                     TAG.log_dTag(
@@ -204,6 +208,7 @@ class QuickWifiHotUtils(
                         message = "Wifi 热点正在关闭"
                     )
                 }
+
                 WifiHotUtils.WIFI_AP_STATE_DISABLED -> {
                     TAG.log_dTag(
                         message = "Wifi 热点已关闭"
@@ -212,11 +217,13 @@ class QuickWifiHotUtils(
                     val wifiConfiguration = WifiHotUtils.createWifiConfigToAp(mHotSSID, mHotPwd)
                     wifiHotUtils.startWifiAp(wifiConfiguration)
                 }
+
                 WifiHotUtils.WIFI_AP_STATE_ENABLING -> {
                     TAG.log_dTag(
                         message = "Wifi 热点正在打开"
                     )
                 }
+
                 WifiHotUtils.WIFI_AP_STATE_ENABLED -> {
                     TAG.log_dTag(
                         message = "Wifi 热点已打开"
@@ -225,6 +232,7 @@ class QuickWifiHotUtils(
                         message = "ssid: ${wifiHotUtils.apWifiSSID}, pwd: ${wifiHotUtils.apWifiSSID}"
                     )
                 }
+
                 WifiHotUtils.WIFI_AP_STATE_FAILED -> {
                     TAG.log_dTag(
                         message = "Wifi热点状态未知"

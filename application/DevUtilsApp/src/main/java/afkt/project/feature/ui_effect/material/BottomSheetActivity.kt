@@ -6,8 +6,8 @@ import afkt.project.databinding.ActivityBottomSheetBinding
 import afkt.project.model.item.RouterPath
 import android.view.View
 import android.widget.LinearLayout
-import com.therouter.router.Route
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ViewUtils
 
@@ -45,6 +45,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
                         ViewUtils.setVisibility(false, binding.vidBgView)
                     }
+
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
                         TAG.log_dTag(
@@ -53,6 +54,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
                         ViewUtils.setVisibility(true, binding.vidBgView)
                     }
+
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         // 完全展开的状态
                         TAG.log_dTag(
@@ -61,6 +63,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
                         ViewUtils.setVisibility(true, binding.vidBgView)
                     }
+
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
                         TAG.log_dTag(
@@ -69,6 +72,7 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
                         ViewUtils.setVisibility(false, binding.vidBgView)
                     }
+
                     BottomSheetBehavior.STATE_SETTLING -> {
                         // 视图从脱离手指自由滑动到最终停下的这一小段时间
                         TAG.log_dTag(

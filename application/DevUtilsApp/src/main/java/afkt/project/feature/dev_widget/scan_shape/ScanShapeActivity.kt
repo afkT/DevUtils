@@ -81,14 +81,17 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
                 // 设置开关
                 setFlashlight(!ViewUtils.isSelected(binding.vidFlashlightIv))
             }
+
             R.id.vid_square_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Square
             )
+
             R.id.vid_hexagon_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Hexagon
             )
+
             R.id.vid_annulus_iv -> ScanShapeUtils.refShape(
                 binding.vidSsv,
                 ScanShapeView.Shape.Annulus

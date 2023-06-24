@@ -75,6 +75,7 @@ class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 }
                             }
                         }
+
                         else -> routerActivity(buttonValue)
                     }
                 }

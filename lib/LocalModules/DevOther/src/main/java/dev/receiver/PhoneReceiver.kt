@@ -56,6 +56,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
                             // 接入电话铃响
                             sListener?.onPhoneStateChanged(CallState.INCOMING_RING, number)
                         }
+
                         OFFHOOK -> { // 已接
                             if (!mDialOut) {
                                 // 接入通话中
@@ -63,6 +64,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
                             } else {
                             }
                         }
+
                         IDLE -> { // 挂断
                             if (mDialOut) {
                                 // 播出电话结束
@@ -72,6 +74,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
                                 sListener?.onPhoneStateChanged(CallState.INCOMING_END, number)
                             }
                         }
+
                         else -> {
                         }
                     }

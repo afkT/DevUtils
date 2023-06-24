@@ -59,10 +59,12 @@ class LoggerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             showToast(true, "打印成功, 请查看 Logcat")
                             LoggerUse.tempLog()
                         }
+
                         ButtonValue.BTN_LOGGER_TIME -> {
                             showToast(true, "打印成功, 请查看 Logcat")
                             LoggerUse.testTime()
                         }
+
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }

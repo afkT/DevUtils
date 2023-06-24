@@ -70,12 +70,14 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     CapturePictureUtils.snapshotWithStatusBar(mActivity)
                 )
             }
+
             R.id.vid_screen1_btn -> {
                 saveBitmap(
                     "screen1.jpg",
                     CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
                 )
             }
+
             R.id.vid_linear_btn -> {
                 // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
                 // 以上方法都是使用 snapshotByView
@@ -84,6 +86,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     CapturePictureUtils.snapshotByLinearLayout(binding.vidLl)
                 )
             }
+
             R.id.vid_scroll_btn -> {
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
                 saveBitmap(
@@ -91,6 +94,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     CapturePictureUtils.snapshotByNestedScrollView(binding.vidNsv)
                 )
             }
+
             R.id.vid_list_btn -> {
                 routerActivity(
                     ButtonValue(
@@ -99,6 +103,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
+
             R.id.vid_grid_btn -> {
                 routerActivity(
                     ButtonValue(
@@ -107,6 +112,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
+
             R.id.vid_recy_btn -> {
                 routerActivity(
                     ButtonValue(
@@ -115,6 +121,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                     )
                 )
             }
+
             R.id.vid_webview_btn -> {
                 routerActivity(
                     ButtonValue(

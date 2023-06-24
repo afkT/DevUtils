@@ -37,6 +37,7 @@ class LinearColorItemDecorationActivity : BaseActivity<ActivityLinearItemDecorat
                     binding.vidRv
                 )
             }
+
             ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL -> {
                 RecyclerViewUtils.setOrientation(
                     binding.vidRv, RecyclerView.HORIZONTAL

@@ -145,66 +145,79 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                 message = "startScan() 扫描附近 Wifi 结束触发"
                             )
                         }
+
                         WifiReceiver.WIFI_RSSI_CHANGED -> {
                             TAG.log_dTag(
                                 message = "已连接的 Wifi 强度发生变化"
                             )
                         }
+
                         WifiReceiver.WIFI_ERROR_AUTHENTICATING -> {
                             TAG.log_dTag(
                                 message = "Wifi 认证错误 ( 密码错误等 )"
                             )
                         }
+
                         WifiReceiver.WIFI_ERROR_UNKNOWN -> {
                             TAG.log_dTag(
                                 message = "连接错误 ( 其他错误 )"
                             )
                         }
+
                         WifiReceiver.WIFI_STATE_ENABLED -> {
                             TAG.log_dTag(
                                 message = "Wifi 已打开"
                             )
                         }
+
                         WifiReceiver.WIFI_STATE_ENABLING -> {
                             TAG.log_dTag(
                                 message = "Wifi 正在打开"
                             )
                         }
+
                         WifiReceiver.WIFI_STATE_DISABLED -> {
                             TAG.log_dTag(
                                 message = "Wifi 已关闭"
                             )
                         }
+
                         WifiReceiver.WIFI_STATE_DISABLING -> {
                             TAG.log_dTag(
                                 message = "Wifi 正在关闭"
                             )
                         }
+
                         WifiReceiver.WIFI_STATE_UNKNOWN -> {
                             TAG.log_dTag(
                                 message = "Wifi 状态未知"
                             )
                         }
+
                         WifiReceiver.CONNECTED -> {
                             TAG.log_dTag(
                                 message = "Wifi 连接成功"
                             )
                         }
+
                         WifiReceiver.CONNECTING -> {
                             TAG.log_dTag(
                                 message = "Wifi 连接中"
                             )
                         }
+
                         WifiReceiver.DISCONNECTED -> {
                             TAG.log_dTag(
                                 message = "Wifi 连接失败、断开"
                             )
                         }
+
                         WifiReceiver.SUSPENDED -> {
                             TAG.log_dTag(
                                 message = "Wifi 暂停、延迟"
                             )
                         }
+
                         WifiReceiver.UNKNOWN -> {
                             TAG.log_dTag(
                                 message = "Wifi 未知"
@@ -224,21 +237,25 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                 message = "连接 Wifi 成功: $ssid"
                             )
                         }
+
                         WifiReceiver.CONNECTING -> {
                             TAG.log_dTag(
                                 message = "连接 Wifi 中: $ssid"
                             )
                         }
+
                         WifiReceiver.DISCONNECTED -> {
                             TAG.log_dTag(
                                 message = "连接 Wifi 断开"
                             )
                         }
+
                         WifiReceiver.SUSPENDED -> {
                             TAG.log_dTag(
                                 message = "连接 Wifi 暂停、延迟"
                             )
                         }
+
                         WifiReceiver.UNKNOWN -> {
                             TAG.log_dTag(
                                 message = "连接 Wifi 状态未知"
@@ -309,21 +326,25 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                 message = "播出电话: $number"
                             )
                         }
+
                         CallState.OUTGOING_END -> {
                             TAG.log_dTag(
                                 message = "播出电话结束: $number"
                             )
                         }
+
                         CallState.INCOMING_RING -> {
                             TAG.log_dTag(
                                 message = "接入电话铃响: $number"
                             )
                         }
+
                         CallState.INCOMING -> {
                             TAG.log_dTag(
                                 message = "接入通话中: $number"
                             )
                         }
+
                         CallState.INCOMING_END -> {
                             TAG.log_dTag(
                                 message = "接入通话完毕: $number"

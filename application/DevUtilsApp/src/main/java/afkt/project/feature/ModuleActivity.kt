@@ -33,6 +33,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_GREEN_DAO -> ToastTintUtils.info(
                             "具体请查看: 【DevUtils-repo】application/AppDB"
                         )
+
                         ButtonValue.BTN_EVENT_BUS,
                         ButtonValue.BTN_GLIDE,
                         ButtonValue.BTN_IMAGE_LOADER,
@@ -46,6 +47,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonValue.BTN_WORK_MANAGER -> ToastTintUtils.info(
                             "具体请搜索: 【DevUtils-repo】lib/LocalModules/DevOther " + buttonValue.text
                         )
+
                         else -> routerActivity(buttonValue)
                     }
                 }

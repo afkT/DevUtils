@@ -99,6 +99,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
+
                         ButtonValue.BTN_PATH_APP_EXTERNAL -> {
                             StringUtils.appendsIgnoreLast(
                                 builder, DevFinal.SYMBOL.NEW_LINE,
@@ -148,6 +149,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
+
                         ButtonValue.BTN_PATH_SDCARD -> {
                             StringUtils.appendsIgnoreLast(
                                 builder, DevFinal.SYMBOL.NEW_LINE,
@@ -188,6 +190,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             )
                             showToast(true, "信息已打印, 请查看 Logcat")
                         }
+
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }

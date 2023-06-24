@@ -94,6 +94,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         WaveView.DEFAULT_FRONT_WAVE_COLOR,
                     )
                 }
+
                 R.id.vid_color_red_rb -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#44f16d7a")
@@ -102,6 +103,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         Color.parseColor("#3cf16d7a")
                     )
                 }
+
                 R.id.vid_color_green_rb -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#B0b7d28d")
@@ -110,6 +112,7 @@ class WaveViewActivity : BaseActivity<ActivityWaveViewBinding>() {
                         Color.parseColor("#80b7d28d")
                     )
                 }
+
                 R.id.vid_color_blue_rb -> {
                     helper.setBorder(
                         helper.borderWidth, Color.parseColor("#b8f1ed")

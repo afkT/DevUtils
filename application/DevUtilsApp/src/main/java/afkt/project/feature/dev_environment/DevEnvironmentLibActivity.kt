@@ -43,16 +43,18 @@ class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             }
                             showToast(result, "跳转成功", "跳转失败")
                         }
+
                         ButtonValue.BTN_USE_CUSTOM -> {
                             // 如果准备设置环境等于当前选中的环境, 则会返回 false
                             val custom =
                                 EnvironmentBean(
-                                    "自定义配置",
-                                    "https://custom.com", "动态自定义", DevEnvironment.getServiceModule()
+                                    "自定义配置", "https://custom.com",
+                                    "动态自定义", DevEnvironment.getServiceModule()
                                 )
                             result = DevEnvironment.setServiceEnvironment(mContext, custom)
                             showToast(result, "设置成功", "设置失败")
                         }
+
                         else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                     }
                 }

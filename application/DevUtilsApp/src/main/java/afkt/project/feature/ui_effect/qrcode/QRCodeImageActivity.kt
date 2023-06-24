@@ -53,6 +53,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                     DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
                 }
             }
+
             R.id.vid_tv -> {
                 val text = TextViewUtils.getText(binding.vidTv)
                 if (StringUtils.isEmpty(text)) return

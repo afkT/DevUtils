@@ -411,12 +411,15 @@ class AppAutoSize {
                 Type.dp2px -> {
                     SizeUtils.dp2pxf(DevUtils.getContext(ctx), key)
                 }
+
                 Type.px2dp -> {
                     SizeUtils.px2dpf(DevUtils.getContext(ctx), key)
                 }
+
                 Type.sp2px -> {
                     SizeUtils.sp2pxf(DevUtils.getContext(ctx), key)
                 }
+
                 Type.px2sp -> {
                     SizeUtils.px2spf(DevUtils.getContext(ctx), key)
                 }
@@ -445,6 +448,7 @@ class AppAutoSize {
                     }
                     return value
                 }
+
                 Type.px2dp -> {
                     val value = PX_2_DP.getVariableValue(key, context)
                     if (value == 0F) {
@@ -452,6 +456,7 @@ class AppAutoSize {
                     }
                     return value
                 }
+
                 Type.sp2px -> {
                     val value = SP_2_PX.getVariableValue(key, context)
                     if (value == 0F) {
@@ -459,6 +464,7 @@ class AppAutoSize {
                     }
                     return value
                 }
+
                 Type.px2sp -> {
                     val value = PX_2_SP.getVariableValue(key, context)
                     if (value == 0F) {
