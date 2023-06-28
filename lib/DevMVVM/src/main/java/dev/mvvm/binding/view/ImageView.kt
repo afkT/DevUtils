@@ -8,7 +8,7 @@ import dev.engine.image.listener.LoadListener
 import dev.expand.engine.image.display
 import dev.expand.engine.log.log_dTag
 import dev.mvvm.base.Config
-import dev.mvvm.utils.hi.hiNull
+import dev.mvvm.utils.hi.hiIfNotNullWith
 import dev.mvvm.utils.toSource
 
 // ========================
@@ -35,7 +35,7 @@ fun ImageView.bindingImageUrl(
             args = arrayOf(url, engine, listener)
         )
     }
-    listener.hiNull({
+    listener.hiIfNotNullWith({
         this.display(
             engine = engine,
             source = url.toSource(),
@@ -65,7 +65,7 @@ fun ImageView.bindingImageSource(
             args = arrayOf(source, engine, listener)
         )
     }
-    listener.hiNull({
+    listener.hiIfNotNullWith({
         this.display(
             engine = engine,
             source = source,

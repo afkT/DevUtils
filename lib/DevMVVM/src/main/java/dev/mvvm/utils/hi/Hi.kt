@@ -1,6 +1,6 @@
 @file:Suppress("unused")
-@file:JvmMultifileClass
 @file:JvmName("HiKt")
+@file:JvmMultifileClass
 @file:OptIn(ExperimentalContracts::class)
 
 package dev.mvvm.utils.hi
@@ -14,24 +14,24 @@ import kotlin.contracts.contract
 // ==============
 
 /**
- * 在 let 基础上增加如果 null 执行方法体
- * @receiver T?
- * @param block 不为 null 执行方法体
- * @param nullBlock null 执行方法体
+ * 目标对象 T 不为 null 触发 [hiIf] 反之触发 [hiIfNull]
+ * @param hiIf 非 null 执行方法体
+ * @param hiIfNull 为 null 执行方法体
+ * @return 方法体返回所需对象
  */
 @JvmSynthetic
 @DevInlineOnly
-inline fun <T, R> T?.hiNull(
-    block: (T) -> R,
-    nullBlock: () -> R
+inline fun <T, R> T?.hiIfNotNullWith(
+    hiIf: (T) -> R,
+    hiIfNull: () -> R
 ): R {
     contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-        callsInPlace(nullBlock, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(hiIf, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(hiIfNull, InvocationKind.AT_MOST_ONCE)
     }
     return if (this != null) {
-        block.invoke(this)
+        hiIf.invoke(this)
     } else {
-        nullBlock.invoke()
+        hiIfNull.invoke()
     }
 }

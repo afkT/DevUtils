@@ -2,7 +2,7 @@ package dev.mvvm.utils.image
 
 import dev.base.DevVariableExt
 import dev.engine.image.ImageConfig
-import dev.mvvm.utils.hi.hiNull
+import dev.mvvm.utils.hi.hiIfNotNullWith
 
 // ================================
 // = dev.engine.image.ImageConfig =
@@ -20,10 +20,10 @@ object AppImageConfig {
                 key: String?,
                 param: ImageConfig?
             ): ImageConfig? {
-                return innerCreator.hiNull({
-                    return@hiNull it.create(key, param)
+                return innerCreator.hiIfNotNullWith({
+                    return@hiIfNotNullWith it.create(key, param)
                 }, {
-                    return@hiNull param
+                    return@hiIfNotNullWith param
                 })
             }
         }, ImageConfig.create())
