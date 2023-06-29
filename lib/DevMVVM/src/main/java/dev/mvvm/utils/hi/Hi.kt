@@ -175,7 +175,7 @@ inline fun <T, R> T.hiIfMap(
 }
 
 /**
- * 目标对象 T 执行 [hiIf] 方法体
+ * 目标对象 T 执行 [hiIf]
  * @param given 执行 [hiIf] 方法体条件
  * @param default 默认返回值
  * @param hiIf [given] 为 true 执行方法体
@@ -199,7 +199,7 @@ inline fun <T, R> T.hiIfMap(
 }
 
 /**
- * 目标对象 T 执行 [hiIf]、[hiIfNot] 方法体
+ * 目标对象 T 执行 [hiIf]、[hiIfNot]
  * @param given 执行 [hiIf]、[hiIfNot] 方法体条件
  * @param hiIf [given] 为 true 执行方法体
  * @param hiIfNot [given] 为 false 执行方法体
