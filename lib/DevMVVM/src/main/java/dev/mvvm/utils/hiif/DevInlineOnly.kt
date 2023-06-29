@@ -1,4 +1,4 @@
-package dev.mvvm.utils.hi
+package dev.mvvm.utils.hiif
 
 /**
  * Specifies that this function should not be called directly without inlining

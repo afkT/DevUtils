@@ -2,7 +2,7 @@ package dev.mvvm.utils.image
 
 import dev.base.DevVariableExt
 import dev.engine.image.ImageConfig
-import dev.mvvm.utils.hi.hiIfNotNullWith
+import dev.mvvm.utils.hiif.hiIfNotNullWith
 
 // ================================
 // = dev.engine.image.ImageConfig =

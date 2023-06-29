@@ -1,9 +1,9 @@
 @file:Suppress("unused")
-@file:JvmName("HiKt")
+@file:JvmName("HiIfKt")
 @file:JvmMultifileClass
 @file:OptIn(ExperimentalContracts::class)
 
-package dev.mvvm.utils.hi
+package dev.mvvm.utils.hiif
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind

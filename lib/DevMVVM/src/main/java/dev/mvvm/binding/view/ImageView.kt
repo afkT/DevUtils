@@ -8,7 +8,7 @@ import dev.engine.image.listener.LoadListener
 import dev.expand.engine.image.display
 import dev.expand.engine.log.log_dTag
 import dev.mvvm.base.Config
-import dev.mvvm.utils.hi.hiIfNotNullWith
+import dev.mvvm.utils.hiif.hiIfNotNullWith
 import dev.mvvm.utils.toSource
 
 // ========================
