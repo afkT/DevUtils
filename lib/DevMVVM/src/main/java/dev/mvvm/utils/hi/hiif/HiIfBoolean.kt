@@ -3,8 +3,9 @@
 @file:JvmMultifileClass
 @file:OptIn(ExperimentalContracts::class)
 
-package dev.mvvm.utils.hiif
+package dev.mvvm.utils.hi.hiif
 
+import dev.mvvm.utils.hi.HiInlineOnly
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -20,7 +21,7 @@ import kotlin.contracts.contract
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: (T) -> Boolean?,
     hiIf: () -> Unit
@@ -42,7 +43,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: (T) -> Boolean?,
     hiIf: () -> Unit,
@@ -67,7 +68,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: Boolean?,
     hiIf: T.() -> Unit
@@ -89,7 +90,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: Boolean?,
     hiIf: T.() -> Unit,
@@ -114,7 +115,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: () -> Boolean?,
     hiIfDo: T.() -> Unit
@@ -137,7 +138,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T.hiIf(
     given: () -> Boolean?,
     hiIfDo: T.() -> Unit,
@@ -161,7 +162,7 @@ inline fun <T> T.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun Boolean?.hiIf(
     hiIf: () -> Unit
 ): Boolean? {
@@ -181,7 +182,7 @@ inline fun Boolean?.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun Boolean?.hiIf(
     hiIf: () -> Unit,
     hiIfNot: () -> Unit
@@ -204,7 +205,7 @@ inline fun Boolean?.hiIf(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun Boolean?.hiIfElse(
     hiIf: () -> Unit
 ): Boolean? {
@@ -224,7 +225,7 @@ inline fun Boolean?.hiIfElse(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun Boolean?.hiIfAnd(
     predicate: Boolean?,
     hiIf: () -> Unit
@@ -245,7 +246,7 @@ inline fun Boolean?.hiIfAnd(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun Boolean?.hiIfOr(
     predicate: Boolean?,
     hiIf: () -> Unit

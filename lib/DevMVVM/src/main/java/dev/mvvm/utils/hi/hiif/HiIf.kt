@@ -3,8 +3,9 @@
 @file:JvmMultifileClass
 @file:OptIn(ExperimentalContracts::class)
 
-package dev.mvvm.utils.hiif
+package dev.mvvm.utils.hi.hiif
 
+import dev.mvvm.utils.hi.HiInlineOnly
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -19,7 +20,7 @@ import kotlin.contracts.contract
  * @return 目标对象 T
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T?.hiIfNotNull(
     hiIf: (T) -> Unit
 ): T? {
@@ -39,7 +40,7 @@ inline fun <T> T?.hiIfNotNull(
  * @return 目标对象 T
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T> T?.hiIfNotNull(
     hiIf: (T) -> Unit,
     hiIfNot: () -> Unit
@@ -62,7 +63,7 @@ inline fun <T> T?.hiIfNotNull(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <reified R> Any?.hiIfNotNullAs(
     hiIf: (R) -> Unit
 ): Any? {
@@ -89,7 +90,7 @@ inline fun <reified R> Any?.hiIfNotNullAs(
  * @return 目标对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <reified R> Any?.hiIfNotNullAs(
     hiIf: (R) -> Unit,
     hiIfNot: () -> Unit
@@ -113,7 +114,7 @@ inline fun <reified R> Any?.hiIfNotNullAs(
  * @return 方法体返回所需对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T, R> T?.hiIfNotNullWith(
     hiIf: (T) -> R,
     hiIfNot: () -> R
@@ -138,7 +139,7 @@ inline fun <T, R> T?.hiIfNotNullWith(
  * @return 方法体返回所需对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T, R> T.hiIfMap(
     default: R,
     hiIf: (T) -> R
@@ -159,7 +160,7 @@ inline fun <T, R> T.hiIfMap(
  * @return 方法体返回所需对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T, R> T.hiIfMap(
     hiIf: (T) -> R,
     hiIfNot: (T) -> R
@@ -182,7 +183,7 @@ inline fun <T, R> T.hiIfMap(
  * @return 方法体返回所需对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T, R> T.hiIfMap(
     given: Boolean?,
     default: R,
@@ -206,7 +207,7 @@ inline fun <T, R> T.hiIfMap(
  * @return 方法体返回所需对象
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun <T, R> T.hiIfMap(
     given: Boolean?,
     hiIf: (T) -> R,

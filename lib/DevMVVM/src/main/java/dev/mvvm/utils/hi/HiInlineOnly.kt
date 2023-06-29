@@ -1,4 +1,4 @@
-package dev.mvvm.utils.hiif
+package dev.mvvm.utils.hi
 
 /**
  * Specifies that this function should not be called directly without inlining
@@ -11,4 +11,4 @@ package dev.mvvm.utils.hiif
 )
 @DslMarker
 @Retention(AnnotationRetention.BINARY)
-internal annotation class DevInlineOnly
+internal annotation class HiInlineOnly

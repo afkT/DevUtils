@@ -3,8 +3,9 @@
 @file:JvmMultifileClass
 @file:OptIn(ExperimentalContracts::class)
 
-package dev.mvvm.utils.hiif
+package dev.mvvm.utils.hi.hiif
 
+import dev.mvvm.utils.hi.HiInlineOnly
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -19,7 +20,7 @@ import kotlin.contracts.contract
  * @return 字符串
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun String?.hiIfNotNullOrEmpty(
     hiIf: (String) -> Unit
 ): String? {
@@ -40,7 +41,7 @@ inline fun String?.hiIfNotNullOrEmpty(
  * @return 字符串
  */
 @JvmSynthetic
-@DevInlineOnly
+@HiInlineOnly
 inline fun String?.hiIfNotNullOrEmpty(
     hiIf: (String) -> Unit,
     hiIfNot: () -> Unit
