@@ -9,9 +9,9 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
-// ==============
-// = 通用扩展函数 =
-// ==============
+// =====================
+// = Boolean 通用扩展函数 =
+// =====================
 
 /**
  * 当 [given] 返回为 true 时触发 [hiIf]
