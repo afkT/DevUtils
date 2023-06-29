@@ -18,7 +18,7 @@ import kotlin.contracts.contract
  * 当 [given] 返回为 true 时触发 [hiIf]
  * @param given 执行 [hiIf] 方法体条件
  * @param hiIf [given] 为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -40,7 +40,7 @@ inline fun <T> T.hiIf(
  * @param given 执行 [hiIf] 方法体条件
  * @param hiIf [given] 为 true 执行方法体
  * @param hiIfNot [given] 为 false 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -65,7 +65,7 @@ inline fun <T> T.hiIf(
  * 当 [given] 为 true 时在 [apply] 中触发 [hiIf]
  * @param given 执行 [hiIf] 方法体条件
  * @param hiIf [given] 为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -87,7 +87,7 @@ inline fun <T> T.hiIf(
  * @param given 执行 [hiIf]、[hiIfNot] 方法体条件
  * @param hiIf [given] 为 true 执行方法体
  * @param hiIfNot [given] 为 false 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -112,7 +112,7 @@ inline fun <T> T.hiIf(
  * 当 [given] 返回为 true 时触发 [hiIfDo]
  * @param given 执行 [hiIfDo] 方法体条件
  * @param hiIfDo [given] 为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -135,7 +135,7 @@ inline fun <T> T.hiIf(
  * @param given 执行 [hiIfDo]、[hiIfNot] 方法体条件
  * @param hiIfDo [given] 为 true 执行方法体
  * @param hiIfNot [given] 为 false 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -159,7 +159,7 @@ inline fun <T> T.hiIf(
 /**
  * 调用对象值为 true 时触发 [hiIf]
  * @param hiIf 调用对象为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -179,7 +179,7 @@ inline fun Boolean?.hiIf(
  * 调用对象值为 true 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 调用对象为 true 执行方法体
  * @param hiIfNot 调用对象为 false 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -202,7 +202,7 @@ inline fun Boolean?.hiIf(
 /**
  * 调用对象值为 false 时触发 [hiIf]
  * @param hiIf 调用对象为 false 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -222,7 +222,7 @@ inline fun Boolean?.hiIfElse(
  * 调用对象值为 true 并且 [predicate] 为 true 时触发 [hiIf]
  * @param predicate 额外判断值
  * @param hiIf 都为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -243,7 +243,7 @@ inline fun Boolean?.hiIfAnd(
  * 调用对象值为 true 或 [predicate] 为 true 时触发 [hiIf]
  * @param predicate 额外判断值
  * @param hiIf 其中一个值为 true 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly

@@ -7,7 +7,6 @@ import dev.mvvm.base.Config
 import dev.mvvm.command.BindingConsumer
 import dev.utils.app.ClickUtils
 
-
 // =======================
 // = View BindingAdapter =
 // =======================

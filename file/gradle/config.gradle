@@ -55,7 +55,6 @@ ext {
             // = Router =
             // ==========
 
-
             // ARouter App 构建配置
             build_router_app_gradle             : "file/gradle/build/router/build_router_app.gradle",
             // ARouter Module 构建配置

@@ -17,7 +17,7 @@ import kotlin.contracts.contract
 /**
  * 目标对象 T 不为 null 触发 [hiIf]
  * @param hiIf 非 null 执行方法体
- * @return 目标对象 T
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -37,7 +37,7 @@ inline fun <T> T?.hiIfNotNull(
  * 目标对象 T 不为 null 触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 非 null 执行方法体
  * @param hiIfNot 为 null 执行方法体
- * @return 目标对象 T
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -60,7 +60,7 @@ inline fun <T> T?.hiIfNotNull(
 /**
  * 目标对象转换 [R] 成功则触发 [hiIf]
  * @param hiIf 成功转换 [R] 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -87,7 +87,7 @@ inline fun <reified R> Any?.hiIfNotNullAs(
  *
  * @param hiIf 成功转换 [R] 执行方法体
  * @param hiIfNot 转换失败 [R] 执行方法体
- * @return 目标对象
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly

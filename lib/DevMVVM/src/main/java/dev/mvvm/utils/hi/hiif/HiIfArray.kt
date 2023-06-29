@@ -17,7 +17,7 @@ import kotlin.contracts.contract
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -38,7 +38,7 @@ inline fun <T> Array<out T>?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -58,12 +58,14 @@ inline fun <T> Array<out T>?.hiIfNotNullOrEmpty(
     return this
 }
 
-// =
+// ==========
+// = 基础数组 =
+// ==========
 
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -84,7 +86,7 @@ inline fun IntArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -107,7 +109,7 @@ inline fun IntArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -128,7 +130,7 @@ inline fun ByteArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -151,7 +153,7 @@ inline fun ByteArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -172,7 +174,7 @@ inline fun CharArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -195,7 +197,7 @@ inline fun CharArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -216,7 +218,7 @@ inline fun ShortArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -239,7 +241,7 @@ inline fun ShortArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -260,7 +262,7 @@ inline fun LongArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -283,7 +285,7 @@ inline fun LongArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -304,7 +306,7 @@ inline fun FloatArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -327,7 +329,7 @@ inline fun FloatArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -348,7 +350,7 @@ inline fun DoubleArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -371,7 +373,7 @@ inline fun DoubleArray?.hiIfNotNullOrEmpty(
 /**
  * 数组不为 null or empty 时触发 [hiIf]
  * @param hiIf 数组不为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -392,7 +394,7 @@ inline fun BooleanArray?.hiIfNotNullOrEmpty(
  * 数组不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 数组不为 null or empty 执行方法体
  * @param hiIfNot 数组为 null or empty 执行方法体
- * @return 当前数组
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly

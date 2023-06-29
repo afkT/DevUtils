@@ -17,7 +17,7 @@ import kotlin.contracts.contract
 /**
  * 字符串不为 null or empty 时触发 [hiIf]
  * @param hiIf 字符串不为 null or empty 执行方法体
- * @return 字符串
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
@@ -38,7 +38,7 @@ inline fun String?.hiIfNotNullOrEmpty(
  * 字符串不为 null or empty 时触发 [hiIf] 反之触发 [hiIfNot]
  * @param hiIf 字符串不为 null or empty 执行方法体
  * @param hiIfNot 字符串为 null or empty 执行方法体
- * @return 字符串
+ * @return 调用对象
  */
 @JvmSynthetic
 @HiInlineOnly
