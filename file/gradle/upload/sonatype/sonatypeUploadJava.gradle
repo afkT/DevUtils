@@ -62,13 +62,13 @@ ext["ossrhPassword"] = ossrhPassword
 
 // This generates sources.jar
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources"
+    archiveClassifier = "sources"
     from sourceSets.main.allSource
 }
 
 // This generates javadoc.jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = "javadoc"
+    archiveClassifier = "javadoc"
     from javadoc.destinationDir
 }
 
