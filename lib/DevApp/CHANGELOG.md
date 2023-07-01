@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+Version 2.4.3 *(2023-07-01)*
+----------------------------
+
+* `[Feature]` 适配 Android 13 ( Tiramisu )
+
+* `[Add]` 新增 AppInfoUtils#getAllLauncherIconPackages、getAllLauncherIconPackageNames
+
+* `[Add]` 新增 AppUtils#launchApp2、launchAppInstallPermissionSettings、launchManageAppAllFilesAccessPermission
+
+* `[Add]` 新增 ClickUtils#getGlobalIntervalTime、getIntervalTime、getIntervalTime
+
+* `[Add]` 新增 LocationUtils#isLocationEnabled2
+
+* `[Add]` 新增 ForUtils#forList、forListIterator、forSet、forMap
+
 Version 2.4.2 *(2022-09-18)*
 ----------------------------
 

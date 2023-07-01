@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.4.9 *(2023-07-01)*
+----------------------------
+
+* `[Add]` 新增 ForUtils#forList、forListIterator、forSet、forMap
+
 Version 1.4.8 *(2022-09-18)*
 ----------------------------
 
