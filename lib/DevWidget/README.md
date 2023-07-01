@@ -3,7 +3,7 @@
 
 ```gradle
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.2.0'
+implementation 'io.github.afkt:DevWidgetX:1.2.1'
 ```
 
 ## 目录结构
@@ -113,27 +113,58 @@ implementation 'io.github.afkt:DevWidgetX:1.2.0'
 | 方法 | 注释 |
 | :- | :- |
 | wrap | 传入包裹 View |
+| showType | 显示 Type Adapter View |
 | showIng | showIng |
 | showFailed | showFailed |
 | showSuccess | showSuccess |
 | showEmptyData | showEmptyData |
-| showType | 显示 Type Adapter View |
-| notifyDataSetChanged | notifyDataSetChanged |
-| gone | gone |
-| visible | visible |
+| getWrapper | 获取包裹 View |
+| isGoneWrapper | 包裹 View 是否隐藏 |
+| isVisibleWrapper | 包裹 View 是否显示 |
+| goneWrapper | 隐藏包裹 View |
+| visibleWrapper | 显示包裹 View |
+| reset | 重置处理 |
 | register | 注册 type |
 | unregister | 取消注册 type |
-| reset | 重置处理 |
-| getWrapper | getWrapper |
+| registerIng | registerIng |
+| registerFailed | registerFailed |
+| registerSuccess | registerSuccess |
+| registerEmptyData | registerEmptyData |
+| unregisterIng | unregisterIng |
+| unregisterFailed | unregisterFailed |
+| unregisterSuccess | unregisterSuccess |
+| unregisterEmptyData | unregisterEmptyData |
+| isTypeView | isTypeView |
+| isTypeIng | isTypeIng |
+| isTypeFailed | isTypeFailed |
+| isTypeSuccess | isTypeSuccess |
+| isTypeEmptyData | isTypeEmptyData |
+| getAdapter | getAdapter |
+| getAdapterByIng | getAdapterByIng |
+| getAdapterByFailed | getAdapterByFailed |
+| getAdapterBySuccess | getAdapterBySuccess |
+| getAdapterByEmptyData | getAdapterByEmptyData |
+| getView | getView |
+| getViewByIng | getViewByIng |
+| getViewByFailed | getViewByFailed |
+| getViewBySuccess | getViewBySuccess |
+| getViewByEmptyData | getViewByEmptyData |
+| notifyDataSetChanged | notifyDataSetChanged |
+| notifyDataSetChangedByIng | notifyDataSetChangedByIng |
+| notifyDataSetChangedByFailed | notifyDataSetChangedByFailed |
+| notifyDataSetChangedBySuccess | notifyDataSetChangedBySuccess |
+| notifyDataSetChangedByEmptyData | notifyDataSetChangedByEmptyData |
+| getCurrentType | getCurrentType |
+| getCurrentView | getCurrentView |
+| setListener | setListener |
 | getTag | getTag |
 | setTag | setTag |
 | getData | getData |
 | setData | setData |
-| getAdapter | getAdapter |
-| getView | getView |
-| getCurrentType | getCurrentType |
-| getCurrentView | getCurrentView |
-| setListener | setListener |
+| isGoneModel | isGoneModel |
+| isRemoveModel | isRemoveModel |
+| changeModelGone | 更新 Model 为隐藏 View |
+| changeModelRemove | 更新 Model 为移除 View |
 
 
 ## <span id="devwidgetcustom">**`dev.widget.custom`**</span>

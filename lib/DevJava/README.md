@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.4.8'
+implementation 'io.github.afkt:DevJava:1.4.9'
 ```
 
 ## 目录结构
@@ -666,6 +666,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | forArgs | 循环可变数组 |
 | forSimpleArgs | 循环可变数组 |
+| forList | 循环集合 |
+| forListIterator | 循环集合 |
+| forSet | 循环集合 |
+| forMap | 循环集合 |
 | forInts | 循环可变数组 |
 | forDoubles | 循环可变数组 |
 | forFloats | 循环可变数组 |

@@ -38,45 +38,42 @@ Engine 兼容框架等
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.1'
+implementation 'io.github.afkt:DevAppX:2.4.3'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.3.6'
+implementation 'io.github.afkt:DevAssist:1.3.9'
 
 // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'io.github.afkt:DevBase:1.1.3'
+implementation 'io.github.afkt:DevBase:1.1.5'
 
 // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.1.1'
+implementation 'io.github.afkt:DevBaseMVVM:1.1.3'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.0.8'
+implementation 'io.github.afkt:DevEngine:1.1.1'
 
 // DevHttpCapture - OkHttp 抓包工具库
-implementation 'io.github.afkt:DevHttpCapture:1.1.2'
+implementation 'io.github.afkt:DevHttpCapture:1.1.4'
 
 // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.2'
-releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.2'
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.4'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.4'
 
 // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-implementation 'io.github.afkt:DevHttpManager:1.0.2'
+implementation 'io.github.afkt:DevHttpManager:1.0.4'
 
 // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-implementation 'io.github.afkt:DevRetrofit:1.0.1'
+implementation 'io.github.afkt:DevRetrofit:1.0.3'
 
 // DevWidget - 自定义 View UI 库
-implementation 'io.github.afkt:DevWidgetX:1.1.9'
+implementation 'io.github.afkt:DevWidgetX:1.2.1'
 
 // DevEnvironment - Android 环境配置切换库
-implementation 'io.github.afkt:DevEnvironment:1.1.1'
-debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.1' // kaptDebug
-releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.1' // kaptRelease
-//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.1' // kapt
+implementation 'io.github.afkt:DevEnvironment:1.1.3'
+debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.3' // kaptDebug
+releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.3' // kaptRelease
+//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.3' // kapt
 
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.4.7' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+implementation 'io.github.afkt:DevJava:1.4.9' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
-
-
-
