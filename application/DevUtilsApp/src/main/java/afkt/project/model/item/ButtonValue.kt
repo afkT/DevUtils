@@ -22,7 +22,7 @@ class ButtonValue(
     val type: Int,
     // 文案
     val text: String,
-    // ARouter Path
+    // Router Path
     val path: String
 ) {
 

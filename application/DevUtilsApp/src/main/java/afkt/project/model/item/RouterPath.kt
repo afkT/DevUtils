@@ -1,7 +1,7 @@
 package afkt.project.model.item
 
 /**
- * detail: ARouter Path
+ * detail: Router Path
  * @author Ttt
  */
 object RouterPath {

@@ -94,6 +94,11 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.3' 
 implementation 'io.github.afkt:DevJava:1.4.9' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 ```
 
+## 赞赏
+
+如果你喜欢 DevUtils 的设计，感觉它帮助到了你，并且你很想支持库的后续开发和维护，那么你可以扫描下方的二维码，请作者喝一杯咖啡~
+
+![][pay_qrcodeImg]
 
 ## License
 
@@ -110,4 +115,6 @@ implementation 'io.github.afkt:DevJava:1.4.9' // 用于纯 Java 开发，如果�
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
+
+
+[pay_qrcodeImg]: https://github.com/afkT/Resources/raw/main/art/pay_qrcode.png
