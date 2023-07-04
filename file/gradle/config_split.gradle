@@ -194,6 +194,9 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.CymChad/BaseRecyclerViewAdapterHelper
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.14",
+                    // https://mvnrepository.com/artifact/com.github.skydoves/transformationlayout
+                    // Activity 跳转动画 https://github.com/skydoves/TransformationLayout
+                    transformation_layout           : "com.github.skydoves:transformationlayout:1.1.1",
                     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
                     simple_ratingbar                : "com.github.williamyyu:SimpleRatingBar:1.5.1",
 

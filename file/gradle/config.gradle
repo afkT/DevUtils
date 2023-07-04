@@ -338,8 +338,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.alibaba/arouter-compiler
                     // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     // ARouter 路由 https://github.com/alibaba/ARouter
-                    arouter_api          : "cn.therouter:router:1.1.4-rc1",
-                    arouter_compiler     : "cn.therouter:apt:1.1.4-rc1",
+                    arouter_api          : "com.alibaba:arouter-api:1.5.2",
+                    arouter_compiler     : "com.alibaba:arouter-compiler:1.5.2",
                     // https://mvnrepository.com/artifact/cn.therouter
                     // https://mvnrepository.com/artifact/cn.therouter/apt
                     // https://mvnrepository.com/artifact/cn.therouter/router
