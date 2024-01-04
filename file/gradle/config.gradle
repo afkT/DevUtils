@@ -151,7 +151,7 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
                     // https://developer.android.com/jetpack/androidx/releases/datastore
                     // DataStore https://developer.android.com/topic/libraries/architecture/datastore
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0",
+                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.1.0-alpha07",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
                     fragment                      : "androidx.fragment:fragment-ktx:1.6.2",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
@@ -183,7 +183,7 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
                     constraint_layout    : "androidx.constraintlayout:constraintlayout:2.1.4",
                     // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
-                    viewpager2           : "androidx.viewpager2:viewpager2:1.0.0",
+                    viewpager2           : "androidx.viewpager2:viewpager2:1.1.0-beta02",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
                     sqlite               : "androidx.sqlite:sqlite:2.4.0", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/com.google.android.material/material

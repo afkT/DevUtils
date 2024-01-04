@@ -5,13 +5,16 @@ import androidx.lifecycle.asLiveData
 import dev.expand.engine.log.log_dTag
 import dev.other.DataStoreUtils
 import dev.utils.app.share.SPUtils
+import dev.utils.common.RandomUtils
 import kotlinx.coroutines.flow.first
 
 object DataStoreUse {
 
     val TAG = DataStoreUse::class.java.simpleName
 
-    private const val spStoreName = "spStore"
+    private val spStoreName: String
+//        get() = "spStore" // OkioStorage createConnection() There are multiple DataStores active for the same file: $path. You should
+        get() = RandomUtils.getRandomLetters(10)
 
     suspend fun use(activity: AppCompatActivity) {
         // 监听数据变化

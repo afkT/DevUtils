@@ -35,7 +35,7 @@ allprojects {
                     // work_runtime
                     "androidx.work:work-runtime-ktx:2.9.0",
                     // datastore_preferences
-                    "androidx.datastore:datastore-preferences:1.0.0",
+                    "androidx.datastore:datastore-preferences:1.1.0-alpha07",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.6.2",
                     // activity
@@ -62,7 +62,7 @@ allprojects {
                     // constraint_layout
                     "androidx.constraintlayout:constraintlayout:2.1.4",
                     // viewpager2
-                    "androidx.viewpager2:viewpager2:1.0.0",
+                    "androidx.viewpager2:viewpager2:1.1.0-beta02",
                     // sqlite
                     "androidx.sqlite:sqlite:2.4.0",
                     // design
