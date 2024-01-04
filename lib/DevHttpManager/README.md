@@ -197,7 +197,7 @@ fun <T> resetAndCreate(
 ```
 
 
-**具体实现代码可以查看 [DevComponent lib_network][DevComponent lib_network]、[WanAndroidAPI][WanAndroidAPI]**
+**具体实现代码可以查看 [DevComponent lib_network][DevComponent lib_network]**
 ，以 [DevComponent][DevComponent] 组件化项目代码为例。
 
 * HttpCoreLibrary initialize() 方法中的代码非必须设置，只是提供全局管理控制方法，支持设置全局 OkHttp Builder 接口对象、全局 Retrofit 重新构建监听事件。
@@ -698,7 +698,6 @@ mOperation.addResponseListener(url, progressCallback)
 
 [DevComponent]: https://github.com/afkT/DevComponent
 [DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
-[WanAndroidAPI]: https://github.com/afkT/DevComponent/blob/main/application/module/module_wanandroid/src/main/java/afkt_replace/module/wan_android/data/api/WanAndroidAPI.kt
 [OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
 [RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
 [RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt

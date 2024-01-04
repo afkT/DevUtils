@@ -57,7 +57,6 @@ class BaseApplication : MultiDexApplication(),
     // = ViewModelStoreOwner =
     // =======================
 
-    override fun getViewModelStore(): ViewModelStore {
-        return mAppViewModelStore
-    }
+    override val viewModelStore: ViewModelStore
+        get() = mAppViewModelStore
 }

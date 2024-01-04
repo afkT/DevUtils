@@ -5,9 +5,9 @@ apply from: rootProject.file("file/gradle/config_split.gradle")
 buildscript {
 
     // Kotlin 版本
-    ext.kotlin_version = "1.7.10"
-    ext.kotlin_stdlib = "1.7.10"
-    ext.dokka_plugin = "1.7.10"
+    ext.kotlin_version = "1.9.22"
+    ext.kotlin_stdlib = "1.9.22"
+    ext.dokka_plugin = "1.9.10"
     ext.matrix_version = "2.1.0"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
@@ -30,7 +30,7 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.2.1'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
@@ -38,7 +38,8 @@ buildscript {
 //        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
 //        classpath "com.alibaba:arouter-register:1.0.2"
         // TheRouter AutoRegister https://mvnrepository.com/artifact/cn.therouter/plugin
-        classpath "cn.therouter:plugin:1.2.0-beta3"
+        classpath "cn.therouter:plugin-agp8:1.2.2-rc3"
+//        classpath "cn.therouter:plugin:1.2.2-rc3"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray

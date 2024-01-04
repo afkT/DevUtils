@@ -119,9 +119,9 @@ ext {
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
-                    core                          : "androidx.core:core-ktx:1.8.0",
+                    core                          : "androidx.core:core-ktx:1.12.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
@@ -129,55 +129,55 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.5.1",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.6.2",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime                  : "androidx.room:room-runtime:2.4.3",
-                    room_compiler                 : "androidx.room:room-compiler:2.4.3",
-                    room                          : "androidx.room:room-ktx:2.4.3",
+                    room_runtime                  : "androidx.room:room-runtime:2.6.1",
+                    room_compiler                 : "androidx.room:room-compiler:2.6.1",
+                    room                          : "androidx.room:room-ktx:2.6.1",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
                     // WorkManager Kotlin + coroutines
-                    work_runtime                  : "androidx.work:work-runtime-ktx:2.7.1",
+                    work_runtime                  : "androidx.work:work-runtime-ktx:2.9.0",
                     // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
                     // https://developer.android.com/jetpack/androidx/releases/datastore
                     // DataStore https://developer.android.com/topic/libraries/architecture/datastore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-                    fragment                      : "androidx.fragment:fragment-ktx:1.5.2",
+                    fragment                      : "androidx.fragment:fragment-ktx:1.6.2",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
                     // https://developer.android.com/jetpack/androidx/releases/activity
-                    activity                      : "androidx.activity:activity-ktx:1.5.1",
+                    activity                      : "androidx.activity:activity-ktx:1.8.2",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.5.2",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.5.2",
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.7.6",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.7.6",
                     // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette                       : "androidx.palette:palette-ktx:1.0.0",
             ],
             "androidx": [
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-                    appcompat            : "androidx.appcompat:appcompat:1.5.1",
+                    appcompat            : "androidx.appcompat:appcompat:1.6.1",
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat-resources
-                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.5.1",
+                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.6.1",
                     // https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
                     //support_v4            : "androidx.legacy:legacy-support-v4:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.cardview/cardview
                     cardview             : "androidx.cardview:cardview:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
-                    recyclerview         : "androidx.recyclerview:recyclerview:1.2.1",
+                    recyclerview         : "androidx.recyclerview:recyclerview:1.3.2",
                     // https://mvnrepository.com/artifact/androidx.multidex/multidex
                     multidex             : "androidx.multidex:multidex:2.0.1",
                     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
@@ -185,23 +185,23 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
                     viewpager2           : "androidx.viewpager2:viewpager2:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
-                    sqlite               : "androidx.sqlite:sqlite:2.2.0", // 推荐使用 Room Jetpack 组件
+                    sqlite               : "androidx.sqlite:sqlite:2.4.0", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
-                    design               : "com.google.android.material:material:1.6.1",
+                    design               : "com.google.android.material:material:1.11.0",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
-                    work_runtime         : "androidx.work:work-runtime:2.7.1",
+                    work_runtime         : "androidx.work:work-runtime:2.9.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
-                    fragment             : "androidx.fragment:fragment:1.5.2",
+                    fragment             : "androidx.fragment:fragment:1.6.2",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity             : "androidx.activity:activity:1.5.1",
+                    activity             : "androidx.activity:activity:1.8.2",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.5.2",
-                    navigation_ui        : "androidx.navigation:navigation-ui:2.5.2",
+                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.7.6",
+                    navigation_ui        : "androidx.navigation:navigation-ui:2.7.6",
                     // https://mvnrepository.com/artifact/androidx.palette/palette
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette              : "androidx.palette:palette:1.0.0",
@@ -217,14 +217,14 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // https://blog.csdn.net/petterp/article/details/106771203
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.43.2",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.43.2",
+                    hilt_android         : "com.google.dagger:hilt-android:2.5.0",
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.5.0",
                     // https://mvnrepository.com/artifact/androidx.swiperefreshlayout/swiperefreshlayout
                     // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/exifinterface
-                    exifinterface        : "androidx.exifinterface:exifinterface:1.3.3",
+                    exifinterface        : "androidx.exifinterface:exifinterface:1.3.7",
             ],
             "compose" : [
                     // https://developer.android.com/jetpack/compose
@@ -237,39 +237,39 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.compose.ui/ui
                     // https://developer.android.com/jetpack/androidx/releases/compose-ui
                     // 与设备互动所需的 Compose UI 的基本组件, 包括布局、绘图和输入
-                    ui                         : "androidx.compose.ui:ui:1.2.1",
+                    ui                         : "androidx.compose.ui:ui:1.5.4",
                     // https://mvnrepository.com/artifact/androidx.compose.runtime/runtime
                     // https://mvnrepository.com/artifact/androidx.compose.runtime/runtime-livedata
                     // https://developer.android.com/jetpack/androidx/releases/compose-runtime
                     // Compose 编程模型和状态管理的基本构建块, 以及 Compose Compiler 插件针对的核心运行时
-                    runtime                    : "androidx.compose.runtime:runtime:1.2.1",
-                    runtime_livedata           : "androidx.compose.runtime:runtime-livedata:1.2.1",
+                    runtime                    : "androidx.compose.runtime:runtime:1.5.4",
+                    runtime_livedata           : "androidx.compose.runtime:runtime-livedata:1.5.4",
                     // https://mvnrepository.com/artifact/androidx.compose.animation/animation
                     // https://developer.android.com/jetpack/androidx/releases/compose-animation
                     // 在 Jetpack Compose 应用中构建动画，丰富用户体验
-                    animation                  : "androidx.compose.animation:animation:1.2.1",
+                    animation                  : "androidx.compose.animation:animation:1.5.4",
                     // https://mvnrepository.com/artifact/androidx.compose.foundation/foundation
                     // https://developer.android.com/jetpack/androidx/releases/compose-foundation
                     // 使用现成可用的构建块编写 Jetpack Compose 应用, 并扩展 Foundation 以构建您自己的设计系统元素
-                    foundation                 : "androidx.compose.foundation:foundation:1.2.1",
+                    foundation                 : "androidx.compose.foundation:foundation:1.5.4",
                     // https://mvnrepository.com/artifact/androidx.compose.material/material
                     // https://developer.android.com/jetpack/androidx/releases/compose-material
                     // 使用现成可用的 Material Design 组件构建 Jetpack Compose UI
-                    material                   : "androidx.compose.material:material:1.2.1",
+                    material                   : "androidx.compose.material:material:1.5.4",
                     // https://mvnrepository.com/artifact/androidx.compose.material3/material3
                     // https://mvnrepository.com/artifact/androidx.compose.material3/material3-window-size-class
                     // https://developer.android.com/jetpack/androidx/releases/compose-material3
                     // 使用 Material Design 3 ( 下一代 Material Design ) 组件构建 Jetpack Compose 界面
-                    material3                  : "androidx.compose.material3:material3:1.0.0-beta02",
+                    material3                  : "androidx.compose.material3:material3:1.1.2",
                     // material3-window-size-class 是一个为窗口大小类别提供支持的新库
-                    material3_window_size_class: "androidx.compose.material3:material3-window-size-class:1.0.0-beta02",
+                    material3_window_size_class: "androidx.compose.material3:material3-window-size-class:1.1.2",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_viewmodel        : "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1",
+                    lifecycle_viewmodel        : "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-compose
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation                 : "androidx.navigation:navigation-compose:2.5.2",
+                    navigation                 : "androidx.navigation:navigation-compose:2.7.6",
                     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose
                     // https://developer.android.com/jetpack/androidx/releases/constraintlayout
                     constraintlayout           : "androidx.constraintlayout:constraintlayout-compose:1.0.1",
@@ -290,19 +290,19 @@ ext {
                     gson                 : "com.google.code.gson:gson:2.10.1",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2            : "com.alibaba.fastjson2:fastjson2:2.0.34",
-                    fastjson2_android    : "com.alibaba.fastjson2:fastjson2:2.0.34.1.android4",
+                    fastjson2            : "com.alibaba.fastjson2:fastjson2:2.0.44",
+                    fastjson2_android    : "com.alibaba.fastjson2:fastjson2:2.0.44.android4",
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/compiler
                     // Glide 图片加载框架 https://github.com/bumptech/glide
-                    glide                : "com.github.bumptech.glide:glide:4.15.1",
-                    glide_compiler       : "com.github.bumptech.glide:compiler:4.15.1",
+                    glide                : "com.github.bumptech.glide:glide:4.16.0",
+                    glide_compiler       : "com.github.bumptech.glide:compiler:4.16.0",
                     // https://mvnrepository.com/artifact/jp.wasabeef/glide-transformations
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
                     glide_transformations: "jp.wasabeef:glide-transformations:4.3.0",
                     // https://mvnrepository.com/artifact/com.tencent/mmkv
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv                 : "com.tencent:mmkv:1.3.0",
+                    mmkv                 : "com.tencent:mmkv:1.3.2",
                     // https://mvnrepository.com/artifact/org.greenrobot/eventbus
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus             : "org.greenrobot:eventbus:3.3.1",
@@ -311,13 +311,13 @@ ext {
                     live_eventbus        : "io.github.jeremyliao:live-event-bus-x:1.8.0",
                     // https://mvnrepository.com/artifact/com.squareup.okio/okio
                     // okio https://github.com/square/okio
-                    okio                 : "com.squareup.okio:okio:3.3.0",
+                    okio                 : "com.squareup.okio:okio:3.7.0",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3              : "com.squareup.okhttp3:okhttp:4.11.0",
+                    okhttp3              : "com.squareup.okhttp3:okhttp:4.12.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging      : "com.squareup.okhttp3:logging-interceptor:4.11.0",
+                    okhttp3_logging      : "com.squareup.okhttp3:logging-interceptor:4.12.0",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava3
@@ -330,7 +330,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie               : "com.airbnb.android:lottie:6.0.1",
+                    lottie               : "com.airbnb.android:lottie:6.3.0",
                     // https://mvnrepository.com/artifact/com.github.JessYanCoding/AndroidAutoSize
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize             : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
@@ -345,8 +345,8 @@ ext {
                     // https://mvnrepository.com/artifact/cn.therouter/router
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
                     // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
-                    therouter_apt        : "cn.therouter:apt:1.2.0-beta3",
-                    therouter_router     : "cn.therouter:router:1.2.0-beta3",
+                    therouter_apt        : "cn.therouter:apt:1.2.2-rc3",
+                    therouter_router     : "cn.therouter:router:1.2.2-rc3",
             ],
             "aop"     : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
@@ -390,14 +390,14 @@ ext {
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-ball
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-footer-classics
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-                    smartrefreshlayout                     : "io.github.scwang90:refresh-layout-kernel:2.0.6",
-                    smartrefresh_header_classics           : "io.github.scwang90:refresh-header-classics:2.0.6", // 经典刷新头
-                    smartrefresh_header_radar              : "io.github.scwang90:refresh-header-radar:2.0.6", // 雷达刷新头
-                    smartrefresh_header_falsify            : "io.github.scwang90:refresh-header-falsify:2.0.6", // 虚拟刷新头
-                    smartrefresh_header_material           : "io.github.scwang90:refresh-header-material:2.0.6", // 谷歌刷新头
-                    smartrefresh_header_two_level          : "io.github.scwang90:refresh-header-two-level:2.0.6", // 二级刷新头
-                    smartrefresh_footer_ball               : "io.github.scwang90:refresh-footer-ball:2.0.6", // 球脉冲加载
-                    smartrefresh_footer_classics           : "io.github.scwang90:refresh-footer-classics:2.0.6", // 经典加载
+                    smartrefreshlayout                     : "io.github.scwang90:refresh-layout-kernel:2.1.0",
+                    smartrefresh_header_classics           : "io.github.scwang90:refresh-header-classics:2.1.0", // 经典刷新头
+                    smartrefresh_header_radar              : "io.github.scwang90:refresh-header-radar:2.1.0", // 雷达刷新头
+                    smartrefresh_header_falsify            : "io.github.scwang90:refresh-header-falsify:2.1.0", // 虚拟刷新头
+                    smartrefresh_header_material           : "io.github.scwang90:refresh-header-material:2.1.0", // 谷歌刷新头
+                    smartrefresh_header_two_level          : "io.github.scwang90:refresh-header-two-level:2.1.0", // 二级刷新头
+                    smartrefresh_footer_ball               : "io.github.scwang90:refresh-footer-ball:2.1.0", // 球脉冲加载
+                    smartrefresh_footer_classics           : "io.github.scwang90:refresh-footer-classics:2.1.0", // 经典加载
             ]
     ]
 }

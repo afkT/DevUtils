@@ -10,6 +10,10 @@ android {
         consumerProguardFiles 'proguard-rules.pro'
     }
 
+    buildFeatures {
+        buildConfig true
+    }
+
     lintOptions {
         abortOnError false
     }
