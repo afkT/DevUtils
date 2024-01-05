@@ -44,6 +44,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.com/about/versions/12"/>
  *     Android 13 ( Tiramisu ) 更新内容
  *     @see <a href="https://developer.android.com/about/versions/13"/>
+ *     Android 14 ( UPSIDE_DOWN_CAKE ) 更新内容
+ *     @see <a href="https://developer.android.com/about/versions/14"/>
  *     <p></p>
  *     Android 版本适配全套指南
  *     @see <a href="https://github.com/getActivity/AndroidVersionAdapter"/>
