@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
+import android.provider.Settings;
 
 import dev.utils.LogPrintUtils;
 
@@ -429,7 +430,7 @@ public final class AudioManagerUtils {
                     && !notificationManager.isNotificationPolicyAccessGranted()) {
                 if (setting) {
                     Intent intent = new Intent(
-                            android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
+                            Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
                     );
                     AppUtils.startActivity(intent);
                 }

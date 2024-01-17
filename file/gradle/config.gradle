@@ -129,15 +129,15 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.6.2",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.7.0",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -151,7 +151,7 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
                     // https://developer.android.com/jetpack/androidx/releases/datastore
                     // DataStore https://developer.android.com/topic/libraries/architecture/datastore
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.1.0-alpha07",
+                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.1.0-beta01",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
                     fragment                      : "androidx.fragment:fragment-ktx:1.6.2",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
@@ -217,8 +217,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // https://blog.csdn.net/petterp/article/details/106771203
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.5.0",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.5.0",
+                    hilt_android         : "com.google.dagger:hilt-android:2.50",
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.50",
                     // https://mvnrepository.com/artifact/androidx.swiperefreshlayout/swiperefreshlayout
                     // Google 原生刷新库 https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
                     swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
@@ -265,7 +265,7 @@ ext {
                     material3_window_size_class: "androidx.compose.material3:material3-window-size-class:1.1.2",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_viewmodel        : "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2",
+                    lifecycle_viewmodel        : "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-compose
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
@@ -290,8 +290,8 @@ ext {
                     gson                 : "com.google.code.gson:gson:2.10.1",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2            : "com.alibaba.fastjson2:fastjson2:2.0.44",
-                    fastjson2_android    : "com.alibaba.fastjson2:fastjson2:2.0.44.android4",
+                    fastjson2            : "com.alibaba.fastjson2:fastjson2:2.0.45",
+                    fastjson2_android    : "com.alibaba.fastjson2:fastjson2:2.0.45.android4",
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/compiler
                     // Glide 图片加载框架 https://github.com/bumptech/glide
@@ -345,8 +345,8 @@ ext {
                     // https://mvnrepository.com/artifact/cn.therouter/router
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
                     // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
-                    therouter_apt        : "cn.therouter:apt:1.2.2-rc3",
-                    therouter_router     : "cn.therouter:router:1.2.2-rc3",
+                    therouter_apt        : "cn.therouter:apt:1.2.2-rc5",
+                    therouter_router     : "cn.therouter:router:1.2.2-rc5",
             ],
             "aop"     : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
@@ -380,7 +380,7 @@ ext {
                     consecutiveScroller                    : "com.github.donkingliang:ConsecutiveScroller:4.6.4",
                     // https://mvnrepository.com/artifact/io.github.youth5201314/banner
                     // Banner 库 https://github.com/youth5201314/banner
-                    banner                                 : "io.github.youth5201314:banner:2.2.2",
+                    banner                                 : "io.github.youth5201314:banner:2.2.3",
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-layout-kernel
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-classics
                     // https://mvnrepository.com/artifact/io.github.scwang90/refresh-header-radar

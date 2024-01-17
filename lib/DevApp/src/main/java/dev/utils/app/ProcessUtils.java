@@ -7,6 +7,7 @@ import android.app.usage.UsageStatsManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 
@@ -203,7 +204,7 @@ public final class ProcessUtils {
             LogPrintUtils.eTag(TAG, e, "getForegroundProcessName");
         }
         // SDK 大于 21 时
-        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             PackageManager packageManager = AppUtils.getPackageManager();
             if (packageManager == null) return null;
             try {

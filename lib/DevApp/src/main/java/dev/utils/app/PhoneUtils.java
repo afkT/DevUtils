@@ -598,7 +598,7 @@ public final class PhoneUtils {
         if (TextUtils.isEmpty(content)) return false;
         try {
             PendingIntent sentIntent;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 sentIntent = PendingIntent.getBroadcast(
                         DevUtils.getContext(), 0,
                         new Intent("send"),

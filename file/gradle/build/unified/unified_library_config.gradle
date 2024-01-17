@@ -17,15 +17,15 @@ allprojects {
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3",
                     // lifecycle_runtime
-                    "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2",
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0",
                     // lifecycle_livedata
-                    "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2",
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0",
                     // lifecycle_viewmodel_savedstate
-                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2",
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0",
                     // lifecycle_common_java8
-                    "androidx.lifecycle:lifecycle-common-java8:2.6.2",
+                    "androidx.lifecycle:lifecycle-common-java8:2.7.0",
                     // room_runtime
                     "androidx.room:room-runtime:2.6.1",
                     // room_compiler
@@ -35,7 +35,7 @@ allprojects {
                     // work_runtime
                     "androidx.work:work-runtime-ktx:2.9.0",
                     // datastore_preferences
-                    "androidx.datastore:datastore-preferences:1.1.0-alpha07",
+                    "androidx.datastore:datastore-preferences:1.1.0-beta01",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.6.2",
                     // activity
@@ -84,9 +84,9 @@ allprojects {
                     // startup
                     "androidx.startup:startup-runtime:1.1.1",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.5.0",
+                    "com.google.dagger:hilt-android:2.50",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.5.0",
+                    "com.google.dagger:hilt-android-compiler:2.50",
                     // swiperefreshlayout
                     "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // exifinterface
@@ -111,7 +111,7 @@ allprojects {
                     // material3_window_size_class
                     "androidx.compose.material3:material3-window-size-class:1.1.2",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2",
+                    "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0",
                     // navigation
                     "androidx.navigation:navigation-compose:2.7.6",
                     // constraintlayout
@@ -119,8 +119,8 @@ allprojects {
 
                     // = 手动添加 =
 
-                    "androidx.lifecycle:lifecycle-livedata:2.6.2",
-                    "androidx.lifecycle:lifecycle-process:2.6.2",
+                    "androidx.lifecycle:lifecycle-livedata:2.7.0",
+                    "androidx.lifecycle:lifecycle-process:2.7.0",
                     "androidx.transition:transition:1.4.1",
                     "androidx.annotation:annotation:1.5.0",
                     "androidx.collection:collection:1.1.0",

@@ -343,7 +343,7 @@ public final class ScreenshotUtils {
             MediaStore.Images.ImageColumns.DATE_TAKEN,
     };
     // 排序字段
-    public static final  String   SORT_ORDER        = MediaStore.Images.ImageColumns.DATE_ADDED + " desc limit 1";
+    public static final  String   SORT_ORDER        = MediaStore.Images.ImageColumns.DATE_ADDED + " desc";
     // 截图关键字前缀判断
     public static final  String   PREFIX_SCREEN     = "screen";
     // 检测间隔时间

@@ -290,7 +290,7 @@ public final class ShortCutUtils {
         String authority = getAuthorityFromPermission(context);
         // 如果等于 null
         if (authority == null) {
-            int version = android.os.Build.VERSION.SDK_INT;
+            int version = Build.VERSION.SDK_INT;
             if (version < 8) { // Android 2.1.x (API 7) 以及以下的
                 authority = "com.android.launcher.settings";
             } else if (version < 19) { // Android 4.4 以下
