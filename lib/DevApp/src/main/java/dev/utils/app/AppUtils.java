@@ -1261,6 +1261,31 @@ public final class AppUtils {
     }
 
     /**
+     * 注册广播监听
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @param flags    Additional options for the receiver. For apps targeting
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final int flags
+    ) {
+        if (receiver == null || filter == null) return false;
+        try {
+            DevUtils.getContext().registerReceiver(
+                    receiver, filter, flags
+            );
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "registerReceiver");
+        }
+        return false;
+    }
+
+    /**
      * 注销广播监听
      * @param receiver {@link BroadcastReceiver}
      * @return {@code true} success, {@code false} fail
