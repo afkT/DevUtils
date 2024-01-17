@@ -58,18 +58,18 @@ version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][m
 ```groovy
 dependencies {
     // Java
-    implementation 'io.github.afkt:DevEnvironment:1.1.3'
-    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.3'
-    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.3'
+    implementation 'io.github.afkt:DevEnvironment:1.1.4'
+    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.4'
+    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.4'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.3'
+    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.4'
 
     // Kotlin
-    implementation 'io.github.afkt:DevEnvironment:1.1.3'
-    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.1.3'
-    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.3'
+    implementation 'io.github.afkt:DevEnvironment:1.1.4'
+    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.1.4'
+    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.4'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.1.3'
+    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.1.4'
 }
 ```
 
@@ -332,7 +332,7 @@ DevEnvironment 使用：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.3-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.4-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment
 [@Module]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java
