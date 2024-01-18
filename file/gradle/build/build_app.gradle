@@ -8,6 +8,7 @@ apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 android {
 
     compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
 
     defaultConfig {
         minSdkVersion versions.app_minSdkVersion
