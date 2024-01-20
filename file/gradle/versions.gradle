@@ -50,10 +50,10 @@ ext {
             dev_engine_versionName                   : "1.1.2",
 
             // DevHttpCapture - OkHttp 抓包工具库
-            dev_http_capture_versionCode             : 115,
-            dev_http_capture_versionName             : "1.1.5",
-            dev_http_capture_compiler_version        : "1.1.5",
-            dev_http_capture_compiler_release_version: "1.1.5",
+            dev_http_capture_versionCode             : 116,
+            dev_http_capture_versionName             : "1.1.6",
+            dev_http_capture_compiler_version        : "1.1.6",
+            dev_http_capture_compiler_release_version: "1.1.6",
 
             // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
             dev_http_manager_versionCode             : 105,

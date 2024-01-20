@@ -21,8 +21,8 @@ version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][m
 
 ```groovy
 dependencies {
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.5'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.5'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.6'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.6'
 }
 ```
 
@@ -90,5 +90,5 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.5-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.6-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt

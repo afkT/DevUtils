@@ -69,7 +69,12 @@ task sourcesJar(type: Jar) {
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
 //    classpath += configurations.compile
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    // Gradle 8.0.2 之前
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    // 升级 Gradle 8.2.1 后 android.getBootClasspath() 异常
+    // https://stackoverflow.com/questions/77436558/android-custom-javadoc-task-throws-path-may-not-be-null-or-empty-string
+    classpath += files("${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar")
+    classpath += files("${android.sdkDirectory}/build-tools/${android.buildToolsVersion}/core-lambda-stubs.jar")
     failOnError false
 }
 

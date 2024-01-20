@@ -69,11 +69,11 @@ implementation 'io.github.afkt:DevBaseMVVM:1.1.4'
 implementation 'io.github.afkt:DevEngine:1.1.2'
 
 // DevHttpCapture - OkHttp 抓包工具库
-implementation 'io.github.afkt:DevHttpCapture:1.1.5'
+implementation 'io.github.afkt:DevHttpCapture:1.1.6'
 
 // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.5'
-releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.5'
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.6'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.6'
 
 // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
 implementation 'io.github.afkt:DevHttpManager:1.0.5'
