@@ -697,9 +697,9 @@ mOperation.addResponseListener(url, progressCallback)
 
 
 [DevComponent]: https://github.com/afkT/DevComponent
-[DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
-[OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
-[RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
+[DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
+[OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
+[RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
 [RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
 [ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
 [IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt
