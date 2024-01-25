@@ -39,8 +39,10 @@ ext {
                     auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.2.1",
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
+                    // https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
                     greenDAO                            : "org.greenrobot:greendao:3.3.0",
+                    greenDAO_gradle_plugin              : "org.greenrobot:greendao-gradle-plugin:3.3.1",
                     // https://mvnrepository.com/artifact/net.zetetic/android-database-sqlcipher
                     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
                     sqlcipher                           : "net.zetetic:android-database-sqlcipher:4.5.4",
@@ -111,6 +113,7 @@ ext {
                     blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
                     // https://mvnrepository.com/search?q=com.tencent.matrix
+                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-lib
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-commons
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-trace-canary
@@ -122,6 +125,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-hooks
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-backtrace
                     // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
+                    matrix_gradle_plugin          : "com.tencent.matrix:matrix-gradle-plugin:${versions.matrix_version}",
                     matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${versions.matrix_version}",
                     matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${versions.matrix_version}",
                     matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:${versions.matrix_version}",
