@@ -10,6 +10,8 @@ import android.os.BatteryManager;
 
 import java.lang.ref.WeakReference;
 
+import dev.utils.app.AppUtils;
+
 /**
  * detail: Activity 无操作定时辅助类
  * @author Ttt
@@ -86,8 +88,8 @@ public final class InactivityTimerAssist {
     public synchronized void onResume() {
         try {
             // 注册广播
-            mActivity.get().registerReceiver(
-                    mPowerStateReceiver,
+            AppUtils.registerReceiver(
+                    mActivity.get(), mPowerStateReceiver,
                     new IntentFilter(Intent.ACTION_BATTERY_CHANGED)
             );
         } catch (Exception ignored) {

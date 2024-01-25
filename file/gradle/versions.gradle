@@ -20,6 +20,11 @@ ext {
             // Java 版本
             javaVersion                              : JavaVersion.VERSION_1_8,
             javaVersion_str                          : "1.8",
+            // Kotlin 版本
+            kotlin_version                           : "1.9.22",
+            kotlin_stdlib_version                    : "1.9.22",
+            dokka_plugin_version                     : "1.9.10",
+            matrix_version                           : "2.1.0",
 
             // ===========
             // = Dev Lib =

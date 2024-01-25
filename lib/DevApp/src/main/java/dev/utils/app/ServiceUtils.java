@@ -89,8 +89,21 @@ public final class ServiceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startService(final String className) {
+        return startService(DevUtils.getContext(), className);
+    }
+
+    /**
+     * 启动服务
+     * @param context   {@link Context}
+     * @param className package.ServiceClassName ( class.getName() )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(
+            final Context context,
+            final String className
+    ) {
         try {
-            return startService(Class.forName(className));
+            return startService(context, Class.forName(className));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
@@ -103,8 +116,21 @@ public final class ServiceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startService(final Class<?> clazz) {
+        return startService(DevUtils.getContext(), clazz);
+    }
+
+    /**
+     * 启动服务
+     * @param context {@link Context}
+     * @param clazz   {@link Class}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(
+            final Context context,
+            final Class<?> clazz
+    ) {
         try {
-            return AppUtils.startService(new Intent(DevUtils.getContext(), clazz));
+            return AppUtils.startService(context, new Intent(context, clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
@@ -121,8 +147,21 @@ public final class ServiceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final String className) {
+        return stopService(DevUtils.getContext(), className);
+    }
+
+    /**
+     * 停止服务
+     * @param context   {@link Context}
+     * @param className package.ServiceClassName ( class.getName() )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(
+            final Context context,
+            final String className
+    ) {
         try {
-            return stopService(Class.forName(className));
+            return stopService(context, Class.forName(className));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
             return false;
@@ -135,8 +174,21 @@ public final class ServiceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final Class<?> clazz) {
+        return stopService(DevUtils.getContext(), clazz);
+    }
+
+    /**
+     * 停止服务
+     * @param context {@link Context}
+     * @param clazz   {@link Class}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(
+            final Context context,
+            final Class<?> clazz
+    ) {
         try {
-            return AppUtils.stopService(new Intent(DevUtils.getContext(), clazz));
+            return AppUtils.stopService(context, new Intent(context, clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
             return false;
@@ -152,12 +204,6 @@ public final class ServiceUtils {
      * @param className package.ServiceClassName ( class.getName() )
      * @param conn      {@link ServiceConnection}
      * @param flags     绑定选项
-     *                  {@link Context#BIND_AUTO_CREATE}
-     *                  {@link Context#BIND_DEBUG_UNBIND}
-     *                  {@link Context#BIND_NOT_FOREGROUND}
-     *                  {@link Context#BIND_ABOVE_CLIENT}
-     *                  {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
-     *                  {@link Context#BIND_WAIVE_PRIORITY}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean bindService(
@@ -165,8 +211,26 @@ public final class ServiceUtils {
             final ServiceConnection conn,
             final int flags
     ) {
+        return bindService(DevUtils.getContext(), className, conn, flags);
+    }
+
+    /**
+     * 绑定服务
+     * @param context   {@link Context}
+     * @param className package.ServiceClassName ( class.getName() )
+     * @param conn      {@link ServiceConnection}
+     * @param flags     绑定选项
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean bindService(
+            final Context context,
+            final String className,
+            final ServiceConnection conn,
+            final int flags
+    ) {
+        if (context == null || className == null || conn == null) return false;
         try {
-            return bindService(Class.forName(className), conn, flags);
+            return bindService(context, Class.forName(className), conn, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");
         }
@@ -178,12 +242,6 @@ public final class ServiceUtils {
      * @param clazz {@link Class}
      * @param conn  {@link ServiceConnection}
      * @param flags 绑定选项
-     *              {@link Context#BIND_AUTO_CREATE}
-     *              {@link Context#BIND_DEBUG_UNBIND}
-     *              {@link Context#BIND_NOT_FOREGROUND}
-     *              {@link Context#BIND_ABOVE_CLIENT}
-     *              {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
-     *              {@link Context#BIND_WAIVE_PRIORITY}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean bindService(
@@ -191,9 +249,33 @@ public final class ServiceUtils {
             final ServiceConnection conn,
             final int flags
     ) {
+        return bindService(DevUtils.getContext(), clazz, conn, flags);
+    }
+
+    /**
+     * 绑定服务
+     * @param context {@link Context}
+     * @param clazz   {@link Class}
+     * @param conn    {@link ServiceConnection}
+     * @param flags   绑定选项
+     *                {@link Context#BIND_AUTO_CREATE}
+     *                {@link Context#BIND_DEBUG_UNBIND}
+     *                {@link Context#BIND_NOT_FOREGROUND}
+     *                {@link Context#BIND_ABOVE_CLIENT}
+     *                {@link Context#BIND_ALLOW_OOM_MANAGEMENT}
+     *                {@link Context#BIND_WAIVE_PRIORITY}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean bindService(
+            final Context context,
+            final Class<?> clazz,
+            final ServiceConnection conn,
+            final int flags
+    ) {
+        if (context == null || clazz == null || conn == null) return false;
         try {
-            Intent intent = new Intent(DevUtils.getContext(), clazz);
-            DevUtils.getContext().bindService(intent, conn, flags);
+            Intent intent = new Intent(context, clazz);
+            context.bindService(intent, conn, flags);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "bindService");
@@ -211,8 +293,22 @@ public final class ServiceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean unbindService(final ServiceConnection conn) {
+        return unbindService(DevUtils.getContext(), conn);
+    }
+
+    /**
+     * 解绑服务
+     * @param context {@link Context}
+     * @param conn    {@link ServiceConnection}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean unbindService(
+            final Context context,
+            final ServiceConnection conn
+    ) {
+        if (context == null || conn == null) return false;
         try {
-            DevUtils.getContext().unbindService(conn);
+            context.unbindService(conn);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unbindService");

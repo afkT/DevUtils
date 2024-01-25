@@ -122,16 +122,16 @@ ext {
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-hooks
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-backtrace
                     // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${ext.matrix_version}",
-                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${ext.matrix_version}",
-                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:${ext.matrix_version}",
-                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:${ext.matrix_version}",
-                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:${ext.matrix_version}",
-                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${ext.matrix_version}",
-                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${ext.matrix_version}",
-                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${ext.matrix_version}",
-                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:${ext.matrix_version}",
-                    matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:${ext.matrix_version}",
+                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${versions.matrix_version}",
+                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${versions.matrix_version}",
+                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:${versions.matrix_version}",
+                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:${versions.matrix_version}",
+                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:${versions.matrix_version}",
+                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${versions.matrix_version}",
+                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${versions.matrix_version}",
+                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${versions.matrix_version}",
+                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:${versions.matrix_version}",
+                    matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:${versions.matrix_version}",
 
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
 

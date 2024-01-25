@@ -1,14 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: rootProject.file("file/gradle/config.gradle")
-apply from: rootProject.file("file/gradle/config_split.gradle")
+//apply from: rootProject.file("file/gradle/config.gradle")
+//apply from: rootProject.file("file/gradle/config_split.gradle")
 
 buildscript {
 
-    // Kotlin 版本
-    ext.kotlin_version = "1.9.22"
-    ext.kotlin_stdlib = "1.9.22"
-    ext.dokka_plugin = "1.9.10"
-    ext.matrix_version = "2.1.0"
+    // 防止无法获取 ext.deps
+    apply from: rootProject.file("file/gradle/config.gradle")
+    apply from: rootProject.file("file/gradle/config_split.gradle")
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
@@ -30,20 +28,21 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath 'com.android.tools.build:gradle:8.2.2'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath rootProject.ext.deps.build.kotlin_gradle_plugin
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_plugin"
+        classpath rootProject.ext.deps.build.dokka_gradle_plugin
 //        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
-//        classpath "com.alibaba:arouter-register:1.0.2"
+//        classpath rootProject.ext.deps.lib.arouter_register
+//        // ARouter https://www.jitpack.io/#jadepeakpoet/ARouter
+//        classpath rootProject.ext.deps.lib.arouter_register_fork
         // TheRouter AutoRegister https://mvnrepository.com/artifact/cn.therouter/plugin
-        classpath "cn.therouter:plugin-agp8:1.2.2-rc5"
-//        classpath "cn.therouter:plugin:1.2.2-rc5"
+        classpath rootProject.ext.deps.lib.therouter_plugin
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
-        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
+        classpath rootProject.ext.deps.build.android_maven_gradle_plugin
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
+        classpath rootProject.ext.deps.build.gradle_bintray_plugin
     }
 }
 

@@ -73,6 +73,22 @@ ext {
 
     deps = [
 
+            // =============
+            // = Build 信息 =
+            // =============
+
+            "build"   : [
+
+                    // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
+                    kotlin_gradle_plugin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}",
+                    // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
+                    dokka_gradle_plugin        : "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka_plugin_version}",
+                    // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
+                    android_maven_gradle_plugin: "com.github.dcendents:android-maven-gradle-plugin:2.1",
+                    // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
+                    gradle_bintray_plugin      : "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
+            ],
+
             // ================
             // = Dev 系列开发库 =
             // ================
@@ -117,7 +133,7 @@ ext {
 
             "kotlin"  : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
-                    stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
+                    stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_stdlib_version}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
                     core                          : "androidx.core:core-ktx:1.12.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
@@ -309,6 +325,9 @@ ext {
                     // https://mvnrepository.com/artifact/io.github.jeremyliao/live-event-bus-x
                     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
                     live_eventbus        : "io.github.jeremyliao:live-event-bus-x:1.8.0",
+                    // https://jitpack.io/#michaellee123/LiveEventBus
+                    // LiveEventBus 消息总线 https://github.com/michaellee123/LiveEventBus
+                    live_eventbus_fork   : "com.github.michaellee123:LiveEventBus:1.8.14",
                     // https://mvnrepository.com/artifact/com.squareup.okio/okio
                     // okio https://github.com/square/okio
                     okio                 : "com.squareup.okio:okio:3.7.0",
@@ -336,17 +355,27 @@ ext {
                     autosize             : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
                     // https://mvnrepository.com/artifact/com.alibaba/arouter-api
                     // https://mvnrepository.com/artifact/com.alibaba/arouter-compiler
+                    // https://mvnrepository.com/artifact/com.alibaba/arouter-register
                     // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api          : "com.alibaba:arouter-api:1.5.2",
                     arouter_compiler     : "com.alibaba:arouter-compiler:1.5.2",
+                    arouter_register     : "com.alibaba:arouter-register:1.0.2",
+                    // https://www.jitpack.io/#jadepeakpoet/ARouter
+                    // ARouter 路由 https://github.com/jadepeakpoet/ARouter/blob/develop/README_CN.md
+                    arouter_api_fork     : "com.github.jadepeakpoet.ARouter:arouter-api:1.0.3",
+                    arouter_compiler_fork: "com.github.jadepeakpoet.ARouter:arouter-compiler:1.0.3",
+                    arouter_register_fork: "com.github.jadepeakpoet.ARouter:arouter-register:1.0.3",
                     // https://mvnrepository.com/artifact/cn.therouter
                     // https://mvnrepository.com/artifact/cn.therouter/apt
                     // https://mvnrepository.com/artifact/cn.therouter/router
+                    // https://mvnrepository.com/artifact/cn.therouter/plugin
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
                     // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
                     therouter_apt        : "cn.therouter:apt:1.2.2-rc5",
                     therouter_router     : "cn.therouter:router:1.2.2-rc5",
+                    therouter_plugin     : "cn.therouter:plugin-agp8:1.2.2-rc5",
+//                    therouter_plugin     : "cn.therouter:plugin:1.2.2-rc5",
             ],
             "aop"     : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a

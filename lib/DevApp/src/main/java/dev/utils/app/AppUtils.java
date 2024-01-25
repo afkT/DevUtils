@@ -650,8 +650,7 @@ public final class AppUtils {
             final int flags
     ) {
         try {
-            return DevUtils.getContext().getPackageManager()
-                    .getApplicationInfo(packageName, flags);
+            return DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplicationInfo %s", packageName);
         }
@@ -678,8 +677,7 @@ public final class AppUtils {
             final int flags
     ) {
         try {
-            return DevUtils.getContext().getPackageManager()
-                    .getPackageInfo(packageName, flags);
+            return DevUtils.getContext().getPackageManager().getPackageInfo(packageName, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo %s", packageName);
         }
@@ -757,9 +755,7 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                    packageName, 0
-            );
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             if (packageInfo == null) return null;
             return packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
@@ -786,9 +782,7 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                    packageName, 0
-            );
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             if (packageInfo == null) return null;
             return packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
@@ -813,9 +807,7 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(
-                    packageName, PackageManager.GET_SIGNATURES
-            );
+            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -838,9 +830,7 @@ public final class AppUtils {
      */
     public static long getAppVersionCode(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return -1L;
-        PackageInfo packageInfo = getPackageInfo(
-                packageName, PackageManager.GET_SIGNATURES
-        );
+        PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
         if (packageInfo == null) return -1L;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             return packageInfo.getLongVersionCode();
@@ -891,9 +881,7 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(
-                    packageName, PackageManager.GET_SIGNATURES
-            );
+            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");
@@ -968,17 +956,9 @@ public final class AppUtils {
         try {
             Signature[] signature = getAppSignature(packageName);
             if (signature == null || signature.length == 0) return null;
-            return StringUtils.colonSplit(
-                    ConvertUtils.toHexString(
-                            EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)
-                    )
-            );
+            return StringUtils.colonSplit(ConvertUtils.toHexString(EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)));
         } catch (Exception e) {
-            LogPrintUtils.eTag(
-                    TAG, e,
-                    "getAppSignatureHash - packageName: %s, algorithm: %s",
-                    packageName, algorithm
-            );
+            LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: %s, algorithm: %s", packageName, algorithm);
             return null;
         }
     }
@@ -1123,9 +1103,7 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getApplicationInfo(
-                    packageName, PackageManager.GET_UNINSTALLED_PACKAGES
-            );
+            ApplicationInfo appInfo = getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return appInfo != null;
         } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -1152,10 +1130,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startActivity(final Intent intent) {
-        return startActivity(
-                DevUtils.getContext(),
-                IntentUtils.getIntent(intent, true)
-        );
+        return startActivity(DevUtils.getContext(), IntentUtils.getIntent(intent, true));
     }
 
     /**
@@ -1225,10 +1200,7 @@ public final class AppUtils {
     ) {
         if (activity == null || pendingIntent == null) return false;
         try {
-            activity.startIntentSenderForResult(
-                    pendingIntent.getIntentSender(), requestCode,
-                    null, 0, 0, 0
-            );
+            activity.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode, null, 0, 0, 0);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startIntentSenderForResult");
@@ -1250,9 +1222,28 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        if (receiver == null || filter == null) return false;
+        return registerReceiver(DevUtils.getContext(), receiver, filter);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context  {@link Context}
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiver(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
+        if (context == null || receiver == null || filter == null) return false;
         try {
-            DevUtils.getContext().registerReceiver(receiver, filter);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+            } else {
+                context.registerReceiver(receiver, filter);
+            }
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
@@ -1273,11 +1264,27 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        if (receiver == null || filter == null) return false;
+        return registerReceiver(DevUtils.getContext(), receiver, filter, flags);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context  {@link Context}
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @param flags    Additional options for the receiver. For apps targeting
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean registerReceiver(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final int flags
+    ) {
+        if (context == null || receiver == null || filter == null) return false;
         try {
-            DevUtils.getContext().registerReceiver(
-                    receiver, filter, flags
-            );
+            context.registerReceiver(receiver, filter, flags);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
@@ -1291,9 +1298,22 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean unregisterReceiver(final BroadcastReceiver receiver) {
-        if (receiver == null) return false;
+        return unregisterReceiver(DevUtils.getContext(), receiver);
+    }
+
+    /**
+     * 注销广播监听
+     * @param context  {@link Context}
+     * @param receiver {@link BroadcastReceiver}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean unregisterReceiver(
+            final Context context,
+            final BroadcastReceiver receiver
+    ) {
+        if (context == null || receiver == null) return false;
         try {
-            DevUtils.getContext().unregisterReceiver(receiver);
+            context.unregisterReceiver(receiver);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
@@ -1311,9 +1331,22 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendBroadcast(final Intent intent) {
-        if (intent == null) return false;
+        return sendBroadcast(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 发送广播 ( 无序 )
+     * @param context {@link Context}
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendBroadcast(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
         try {
-            DevUtils.getContext().sendBroadcast(intent);
+            context.sendBroadcast(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcast");
@@ -1331,9 +1364,24 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        if (intent == null || receiverPermission == null) return false;
+        return sendBroadcast(DevUtils.getContext(), intent, receiverPermission);
+    }
+
+    /**
+     * 发送广播 ( 无序 )
+     * @param context            {@link Context}
+     * @param intent             {@link Intent}
+     * @param receiverPermission 广播权限
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendBroadcast(
+            final Context context,
+            final Intent intent,
+            final String receiverPermission
+    ) {
+        if (context == null || intent == null || receiverPermission == null) return false;
         try {
-            DevUtils.getContext().sendBroadcast(intent, receiverPermission);
+            context.sendBroadcast(intent, receiverPermission);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcast");
@@ -1351,9 +1399,24 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        if (intent == null || receiverPermission == null) return false;
+        return sendOrderedBroadcast(DevUtils.getContext(), intent, receiverPermission);
+    }
+
+    /**
+     * 发送广播 ( 有序 )
+     * @param context            {@link Context}
+     * @param intent             {@link Intent}
+     * @param receiverPermission 广播权限
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean sendOrderedBroadcast(
+            final Context context,
+            final Intent intent,
+            final String receiverPermission
+    ) {
+        if (context == null || intent == null || receiverPermission == null) return false;
         try {
-            DevUtils.getContext().sendOrderedBroadcast(intent, receiverPermission);
+            context.sendOrderedBroadcast(intent, receiverPermission);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendOrderedBroadcast");
@@ -1371,9 +1434,22 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startService(final Intent intent) {
-        if (intent == null) return false;
+        return startService(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 启动服务
+     * @param context Context
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
         try {
-            DevUtils.getContext().startService(intent);
+            context.startService(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
@@ -1387,9 +1463,22 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final Intent intent) {
-        if (intent == null) return false;
+        return stopService(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 停止服务
+     * @param context Context
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
         try {
-            DevUtils.getContext().stopService(intent);
+            context.stopService(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
@@ -1446,10 +1535,7 @@ public final class AppUtils {
             final File file,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, IntentUtils.getInstallAppIntent(file),
-                requestCode
-        );
+        return startActivityForResult(activity, IntentUtils.getInstallAppIntent(file), requestCode);
     }
 
     // =
@@ -1536,10 +1622,7 @@ public final class AppUtils {
             final String packageName,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, IntentUtils.getUninstallAppIntent(packageName),
-                requestCode
-        );
+        return startActivityForResult(activity, IntentUtils.getUninstallAppIntent(packageName), requestCode);
     }
 
     /**
@@ -1604,10 +1687,7 @@ public final class AppUtils {
             final String packageName,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, IntentUtils.getLaunchAppIntent(packageName),
-                requestCode
-        );
+        return startActivityForResult(activity, IntentUtils.getLaunchAppIntent(packageName), requestCode);
     }
 
     // =
@@ -1622,15 +1702,11 @@ public final class AppUtils {
             final String packageName,
             final String className
     ) {
-        Intent intent = IntentUtils.getLaunchAppIntent(
-                packageName, true
-        );
+        Intent intent = IntentUtils.getLaunchAppIntent(packageName, true);
         if (AppUtils.startActivity(intent)) {
             return true;
         }
-        intent = IntentUtils.getCategoryLauncherIntent(
-                packageName, className, true
-        );
+        intent = IntentUtils.getCategoryLauncherIntent(packageName, className, true);
         return AppUtils.startActivity(intent);
     }
 
@@ -1648,15 +1724,11 @@ public final class AppUtils {
             final String className,
             final int requestCode
     ) {
-        Intent intent = IntentUtils.getLaunchAppIntent(
-                packageName, true
-        );
+        Intent intent = IntentUtils.getLaunchAppIntent(packageName, true);
         if (AppUtils.startActivityForResult(activity, intent, requestCode)) {
             return true;
         }
-        intent = IntentUtils.getCategoryLauncherIntent(
-                packageName, className, true
-        );
+        intent = IntentUtils.getCategoryLauncherIntent(packageName, className, true);
         return AppUtils.startActivityForResult(activity, intent, requestCode);
     }
 
@@ -1721,10 +1793,7 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, IntentUtils.getLaunchAppInstallPermissionSettingsIntent(),
-                requestCode
-        );
+        return startActivityForResult(activity, IntentUtils.getLaunchAppInstallPermissionSettingsIntent(), requestCode);
     }
 
     /**
@@ -1747,10 +1816,7 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, IntentUtils.getManageAppAllFilesAccessPermissionIntent(),
-                requestCode
-        );
+        return startActivityForResult(activity, IntentUtils.getManageAppAllFilesAccessPermissionIntent(), requestCode);
     }
 
     // ==========
@@ -1922,10 +1988,7 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, new Intent(Settings.ACTION_SETTINGS),
-                requestCode
-        );
+        return startActivityForResult(activity, new Intent(Settings.ACTION_SETTINGS), requestCode);
     }
 
     /**
@@ -1946,10 +2009,7 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, new Intent(Settings.ACTION_WIRELESS_SETTINGS),
-                requestCode
-        );
+        return startActivityForResult(activity, new Intent(Settings.ACTION_WIRELESS_SETTINGS), requestCode);
     }
 
     /**
@@ -1970,9 +2030,6 @@ public final class AppUtils {
             final Activity activity,
             final int requestCode
     ) {
-        return startActivityForResult(
-                activity, new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
-                requestCode
-        );
+        return startActivityForResult(activity, new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), requestCode);
     }
 }
