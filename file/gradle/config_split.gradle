@@ -62,7 +62,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.zxing/core
                     // https://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code                          : "com.google.zxing:core:3.5.2",
+                    zxing_code                          : "com.google.zxing:core:3.5.3",
                     zxing_android_code                  : "com.google.zxing:android-core:3.3.0",
                     // https://mvnrepository.com/artifact/top.zibin/Luban
                     // https://mvnrepository.com/artifact/top.zibin/Luban?repo=jcenter
@@ -83,7 +83,7 @@ ext {
                     aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16",
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:18.5",
+                    xxPermissions                       : "com.github.getActivity:XXPermissions:18.6",
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md

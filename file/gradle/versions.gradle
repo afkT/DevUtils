@@ -23,7 +23,7 @@ ext {
             // Kotlin 版本
             kotlin_version                           : "1.9.22",
             kotlin_stdlib_version                    : "1.9.22",
-            dokka_plugin_version                     : "1.9.10",
+            dokka_plugin_version                     : "1.9.20",
             matrix_version                           : "2.1.0",
 
             // ===========

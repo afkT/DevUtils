@@ -15,7 +15,7 @@ allprojects {
                     // core
                     "androidx.core:core-ktx:1.12.0",
                     // coroutines
-                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3",
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0",
                     // lifecycle_runtime
                     "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0",
                     // lifecycle_viewmodel
@@ -41,9 +41,9 @@ allprojects {
                     // activity
                     "androidx.activity:activity-ktx:1.8.2",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment-ktx:2.7.6",
+                    "androidx.navigation:navigation-fragment-ktx:2.7.7",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui-ktx:2.7.6",
+                    "androidx.navigation:navigation-ui-ktx:2.7.7",
                     // palette
                     "androidx.palette:palette-ktx:1.0.0",
 
@@ -74,9 +74,9 @@ allprojects {
                     // activity
                     "androidx.activity:activity:1.8.2",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment:2.7.6",
+                    "androidx.navigation:navigation-fragment:2.7.7",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui:2.7.6",
+                    "androidx.navigation:navigation-ui:2.7.7",
                     // palette
                     "androidx.palette:palette:1.0.0",
                     // flexbox
@@ -84,9 +84,9 @@ allprojects {
                     // startup
                     "androidx.startup:startup-runtime:1.1.1",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.50",
+                    "com.google.dagger:hilt-android:2.51",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.50",
+                    "com.google.dagger:hilt-android-compiler:2.51",
                     // swiperefreshlayout
                     "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // exifinterface
@@ -95,25 +95,25 @@ allprojects {
                     // = compose =
 
                     // ui
-                    "androidx.compose.ui:ui:1.5.4",
+                    "androidx.compose.ui:ui:1.6.2",
                     // runtime
-                    "androidx.compose.runtime:runtime:1.5.4",
+                    "androidx.compose.runtime:runtime:1.6.2",
                     // runtime_livedata
-                    "androidx.compose.runtime:runtime-livedata:1.5.4",
+                    "androidx.compose.runtime:runtime-livedata:1.6.2",
                     // animation
-                    "androidx.compose.animation:animation:1.5.4",
+                    "androidx.compose.animation:animation:1.6.2",
                     // foundation
-                    "androidx.compose.foundation:foundation:1.5.4",
+                    "androidx.compose.foundation:foundation:1.6.2",
                     // material
-                    "androidx.compose.material:material:1.5.4",
+                    "androidx.compose.material:material:1.6.2",
                     // material3
-                    "androidx.compose.material3:material3:1.1.2",
+                    "androidx.compose.material3:material3:1.2.0",
                     // material3_window_size_class
-                    "androidx.compose.material3:material3-window-size-class:1.1.2",
+                    "androidx.compose.material3:material3-window-size-class:1.2.0",
                     // lifecycle_viewmodel
                     "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0",
                     // navigation
-                    "androidx.navigation:navigation-compose:2.7.6",
+                    "androidx.navigation:navigation-compose:2.7.7",
                     // constraintlayout
                     "androidx.constraintlayout:constraintlayout-compose:1.0.1",
 
@@ -124,8 +124,8 @@ allprojects {
                     "androidx.transition:transition:1.4.1",
                     "androidx.annotation:annotation:1.5.0",
                     "androidx.collection:collection:1.1.0",
-                    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10",
-                    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10",
+                    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20",
+                    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20",
             )
         }
     }

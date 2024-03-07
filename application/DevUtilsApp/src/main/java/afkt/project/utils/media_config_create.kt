@@ -3,19 +3,29 @@ package afkt.project.utils
 import android.app.Activity
 import android.content.Context
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.OnPermissionPageCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import com.luck.lib.camerax.SimpleCameraX
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.engine.ImageEngine
+import com.luck.picture.lib.interfaces.OnCallbackListener
+import com.luck.picture.lib.interfaces.OnPermissionDeniedListener
+import com.luck.picture.lib.interfaces.OnPermissionsInterceptListener
+import com.luck.picture.lib.interfaces.OnRequestPermissionListener
 import com.luck.picture.lib.utils.ActivityCompatHelper
 import dev.engine.media.IMediaEngine
 import dev.engine.media.MediaConfig
 import dev.other.R
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
+import dev.utils.app.toast.ToastUtils
 import dev.utils.common.FileUtils
 
 // =============================
@@ -27,6 +37,8 @@ fun Activity.createGalleryConfig(): IMediaEngine.EngineConfig {
     val selector = PictureSelector.create(this)
         .openGallery(SelectMimeType.ofImage())
         .setImageEngine(LuckImageEngineImpl.createEngine())
+        .setPermissionsInterceptListener(OnPermissionsInterceptListenerImpl())
+        .setPermissionDeniedListener(OnPermissionDeniedListenerImpl())
         .setCameraInterceptListener { fragment, cameraMode, requestCode ->
             fragment?.let { itFrag ->
                 val dirPath = PathUtils.getAppExternal().getAppCachePath(DevFinal.STR.SANDBOX)
@@ -164,3 +176,122 @@ class LuckImageEngineImpl private constructor() : ImageEngine {
         Glide.with(context).resumeRequests()
     }
 }
+
+// ==========================
+// = 修复 Android 权限适配问题 =
+// ==========================
+
+// https://github.com/LuckSiege/PictureSelector/issues/2499 修复 Android 权限适配问题
+
+/**
+ * detail: 结合 XXPermissions 权限适配
+ * @author petterp
+ * 拦截相册库的权限申请流程 simple
+ */
+class OnPermissionsInterceptListenerImpl : OnPermissionsInterceptListener {
+    override fun requestPermission(
+        fragment: Fragment?,
+        permissionArray: Array<out String>?,
+        call: OnRequestPermissionListener?
+    ) {
+        if (permissionArray == null || fragment == null || fragment.context == null) return
+        if (XXPermissions.isGranted(
+                fragment.requireContext(),
+                permissionArray.toCompatPermissions
+            )
+        ) {
+            call?.onCall(permissionArray, true)
+            return
+        }
+        // 这里去申请自己的权限,可以在此处增加弹窗询问用户是否需要给权限
+        XXPermissions.with(fragment)
+            .permission(permissionArray.toCompatPermissions)
+            .request(OnPermissionCallbackImpl(fragment, permissionArray, call))
+    }
+
+    override fun hasPermissions(fragment: Fragment?, permissionArray: Array<out String>?): Boolean {
+        if (permissionArray == null || fragment == null) return false
+        return XXPermissions.isGranted(
+            fragment.requireContext(),
+            permissionArray.toCompatPermissions
+        )
+    }
+}
+
+/**
+ * detail: 拦截相册库的权限拒绝流程
+ * @author petterp
+ */
+class OnPermissionDeniedListenerImpl : OnPermissionDeniedListener {
+    override fun onDenied(
+        fragment: Fragment?,
+        permissionArray: Array<out String>?,
+        requestCode: Int,
+        call: OnCallbackListener<Boolean>?
+    ) {
+        if (fragment == null || permissionArray == null || fragment.context == null) return
+        // 这里即未获取到权限时, 合格的流程这里应该询问用户是否需要前往设置打开, 示例如下
+        XXPermissions.startPermissionActivity(
+            fragment,
+            permissionArray.toCompatPermissions,
+            object : OnPermissionPageCallback {
+                override fun onGranted() {
+                    call?.onCall(true)
+                }
+
+                override fun onDenied() {
+                    ToastUtils.showShort("权限打开失败")
+                    call?.onCall(false)
+                }
+            }
+        )
+    }
+}
+
+/**
+ * 具体的权限申请 impl, 在这里, 我们对权限进行二次调整
+ * @property fragment Fragment
+ * @property permissionArray Array<out String>
+ * @property call OnRequestPermissionListener?
+ * @constructor
+ */
+class OnPermissionCallbackImpl(
+    private val fragment: Fragment,
+    private val permissionArray: Array<out String>,
+    private val call: OnRequestPermissionListener?
+) : OnPermissionCallback {
+
+    override fun onGranted(permissions: MutableList<String>, all: Boolean) {
+        if (permissions == null) {
+            call?.onCall(permissionArray, false)
+            return
+        }
+        if (all) {
+            call?.onCall(permissionArray, true)
+        } else {
+            // 此时直接 return, 因为我们知道这是用户自己操作的
+            return
+        }
+    }
+
+    override fun onDenied(permissions: MutableList<String>, never: Boolean) {
+        if (fragment.activity == null || permissions == null) return
+        // 永久拒绝时让流程延续下去
+        if (never) {
+            call?.onCall(permissionArray, false)
+        }
+    }
+}
+
+private val Array<out String>.isFilePermission: Boolean
+    get() = this.contains(Permission.WRITE_EXTERNAL_STORAGE) ||
+            this.contains(Permission.READ_EXTERNAL_STORAGE)
+
+private val Array<out String>.isCamera: Boolean
+    get() = this.contains(Permission.CAMERA)
+
+private val Array<out String>.toCompatPermissions: Array<out String>
+    get() {
+        if (isFilePermission) return arrayOf(Permission.READ_MEDIA_IMAGES)
+        return this
+    }
