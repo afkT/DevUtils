@@ -43,9 +43,9 @@ public final class AdapterItem {
         this.environmentBean = environmentBean;
     }
 
-    // ==========
-    // = 公开方法 =
-    // ==========
+    // =============
+    // = 对外公开方法 =
+    // =============
 
     /**
      * 是否 Module 类型

@@ -1237,7 +1237,6 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        if (context == null || receiver == null || filter == null) return false;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
@@ -1282,7 +1281,6 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        if (context == null || receiver == null || filter == null) return false;
         try {
             context.registerReceiver(receiver, filter, flags);
             return true;
@@ -1319,7 +1317,6 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        if (context == null || receiver == null || filter == null) return null;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 return context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
@@ -1363,7 +1360,6 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        if (context == null || receiver == null || filter == null) return null;
         try {
             return context.registerReceiver(receiver, filter, flags);
         } catch (Exception e) {
