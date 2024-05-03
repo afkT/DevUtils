@@ -10,7 +10,7 @@ import afkt.project.model.item.RouterPath
 import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.environment.DevEnvironment
-import dev.environment.DevEnvironmentActivity
+import dev.environment.DevEnvironmentUtils
 import dev.environment.bean.EnvironmentBean
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ActivityUtils
@@ -38,7 +38,7 @@ class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     val result: Boolean
                     when (buttonValue.type) {
                         ButtonValue.BTN_DEV_ENVIRONMENT -> {
-                            result = DevEnvironmentActivity.start(mContext) {
+                            result = DevEnvironmentUtils.start(mContext) {
                                 ActivityUtils.getManager().exitApplication()
                             }
                             showToast(result, "跳转成功", "跳转失败")

@@ -1,7 +1,6 @@
 package dev.environment;
 
 import android.content.Context;
-import android.content.Intent;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -26,53 +25,14 @@ class Utils {
     // 常量字符串
     static final String STR_ENVIRONMENT        = "Environment";
 
-    // callback
-    protected static RestartCallback sCallback;
     // DevEnvironment Class
-    static           Class<?>        devEnvironmentClass;
+    static Class<?> devEnvironmentClass;
 
     static {
         try {
             devEnvironmentClass = Class.forName(PACKAGE_NAME + "." + ENVIRONMENT_FILE_NAME);
         } catch (ClassNotFoundException ignored) {
         }
-    }
-
-    // ==========
-    // = 跳转方法 =
-    // ==========
-
-    /**
-     * 跳转 DevEnvironment Activity
-     * @param context {@link Context}
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean start(final Context context) {
-        return start(context, null);
-    }
-
-    /**
-     * 跳转 DevEnvironment Activity
-     * @param context  {@link Context}
-     * @param callback 重启按钮点击回调
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean start(
-            final Context context,
-            final RestartCallback callback
-    ) {
-        if (context != null && !isRelease()) {
-            try {
-                Utils.sCallback = callback;
-                Intent intent = new Intent(context, DevEnvironmentActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-                return true;
-            } catch (Exception e) {
-                LogUtils.printStackTrace(e);
-            }
-        }
-        return false;
     }
 
     // ==========

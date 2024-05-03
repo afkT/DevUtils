@@ -19,13 +19,21 @@ import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
 import dev.environment.DevEnvironment
-import dev.environment.DevEnvironmentActivity
+import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
-import dev.utils.app.*
+import dev.utils.app.ActivityUtils
+import dev.utils.app.AppUtils
+import dev.utils.app.CrashUtils
 import dev.utils.app.CrashUtils.CrashCatchListener
+import dev.utils.app.PathUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.ScreenshotUtils
+import dev.utils.app.TextViewUtils
+import dev.utils.app.VersionUtils
+import dev.utils.app.ViewUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
@@ -120,7 +128,7 @@ class BaseApplication : MultiDexApplication() {
             .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
             .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())
             .append("\nDevEnvironment 版本: ")
-            .append(DevEnvironmentActivity.getDevEnvironmentVersion())
+            .append(DevEnvironmentUtils.getDevEnvironmentVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
         log_i(message = builder.toString())
