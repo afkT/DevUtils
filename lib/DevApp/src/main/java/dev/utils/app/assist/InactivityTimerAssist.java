@@ -1,16 +1,9 @@
 package dev.utils.app.assist;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncTask;
-import android.os.BatteryManager;
 
 import java.lang.ref.WeakReference;
-
-import dev.utils.app.AppUtils;
 
 /**
  * detail: Activity 无操作定时辅助类
@@ -25,8 +18,6 @@ public final class InactivityTimerAssist {
     private final long                              mInactivityTime;
     // 对应的页面
     private final WeakReference<Activity>           mActivity;
-    // 电池广播 ( 充电中, 则不处理, 主要是为了省电 )
-    private final BroadcastReceiver                 mPowerStateReceiver;
     // 检查任务
     private       AsyncTask<Object, Object, Object> mInactivityTask;
 
@@ -53,8 +44,6 @@ public final class InactivityTimerAssist {
     ) {
         this.mActivity       = new WeakReference<>(activity);
         this.mInactivityTime = inactivityTime;
-        // 电池广播监听
-        mPowerStateReceiver = new PowerStateReceiver();
         // 关闭任务
         cancel();
     }
@@ -72,11 +61,6 @@ public final class InactivityTimerAssist {
     public synchronized void onPause() {
         // 取消任务
         cancel();
-        try {
-            // 取消注册广播
-            mActivity.get().unregisterReceiver(mPowerStateReceiver);
-        } catch (Exception ignored) {
-        }
     }
 
     /**
@@ -86,14 +70,6 @@ public final class InactivityTimerAssist {
      * </pre>
      */
     public synchronized void onResume() {
-        try {
-            // 注册广播
-            AppUtils.registerReceiver(
-                    mActivity.get(), mPowerStateReceiver,
-                    new IntentFilter(Intent.ACTION_BATTERY_CHANGED)
-            );
-        } catch (Exception ignored) {
-        }
         // 开始检测
         start();
     }
@@ -137,31 +113,6 @@ public final class InactivityTimerAssist {
     }
 
     // =
-
-    /**
-     * detail: 电池监听广播
-     * @author Ttt
-     */
-    private class PowerStateReceiver
-            extends BroadcastReceiver {
-        @Override
-        public void onReceive(
-                Context context,
-                Intent intent
-        ) {
-            if (intent != null && Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
-                // 0 indicates that we're on battery
-                boolean isBatteryNow = intent.getIntExtra(
-                        BatteryManager.EXTRA_PLUGGED, -1
-                ) <= 0;
-                if (isBatteryNow) { // 属于非充电才进行记时
-                    InactivityTimerAssist.this.start();
-                } else { // 充电中, 则不处理
-                    InactivityTimerAssist.this.cancel();
-                }
-            }
-        }
-    }
 
     /**
      * detail: 定时检测任务 ( 无操作检测 )

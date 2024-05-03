@@ -1218,11 +1218,11 @@ public final class AppUtils {
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerReceiver(
+    public static boolean registerReceiverBool(
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        return registerReceiver(DevUtils.getContext(), receiver, filter);
+        return registerReceiverBool(DevUtils.getContext(), receiver, filter);
     }
 
     /**
@@ -1232,7 +1232,7 @@ public final class AppUtils {
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerReceiver(
+    public static boolean registerReceiverBool(
             final Context context,
             final BroadcastReceiver receiver,
             final IntentFilter filter
@@ -1246,7 +1246,7 @@ public final class AppUtils {
             }
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerReceiver");
+            LogPrintUtils.eTag(TAG, e, "registerReceiverBool");
         }
         return false;
     }
@@ -1259,7 +1259,88 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static boolean registerReceiver(
+    public static boolean registerReceiverBool(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final int flags
+    ) {
+        return registerReceiverBool(DevUtils.getContext(), receiver, filter, flags);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context  {@link Context}
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @param flags    Additional options for the receiver. For apps targeting
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean registerReceiverBool(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final int flags
+    ) {
+        if (context == null || receiver == null || filter == null) return false;
+        try {
+            context.registerReceiver(receiver, filter, flags);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "registerReceiverBool");
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 注册广播监听
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
+        return registerReceiver(DevUtils.getContext(), receiver, filter);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context  {@link Context}
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
+        if (context == null || receiver == null || filter == null) return null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                return context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+            } else {
+                return context.registerReceiver(receiver, filter);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "registerReceiver");
+        }
+        return null;
+    }
+
+    /**
+     * 注册广播监听
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @param flags    Additional options for the receiver. For apps targeting
+     * @return 粘性 Intent
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static Intent registerReceiver(
             final BroadcastReceiver receiver,
             final IntentFilter filter,
             final int flags
@@ -1273,23 +1354,22 @@ public final class AppUtils {
      * @param receiver {@link BroadcastReceiver}
      * @param filter   {@link IntentFilter}
      * @param flags    Additional options for the receiver. For apps targeting
-     * @return {@code true} success, {@code false} fail
+     * @return 粘性 Intent
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static boolean registerReceiver(
+    public static Intent registerReceiver(
             final Context context,
             final BroadcastReceiver receiver,
             final IntentFilter filter,
             final int flags
     ) {
-        if (context == null || receiver == null || filter == null) return false;
+        if (context == null || receiver == null || filter == null) return null;
         try {
-            context.registerReceiver(receiver, filter, flags);
-            return true;
+            return context.registerReceiver(receiver, filter, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
-        return false;
+        return null;
     }
 
     /**
