@@ -608,7 +608,7 @@ public final class ScaleUtils {
             final int x,
             final int y
     ) {
-        if (xyLists != null && xyLists.size() != 0) {
+        if (xyLists != null && !xyLists.isEmpty()) {
             List<XY> lists = new ArrayList<>(xyLists);
             Collections.sort(lists);
             double scale = calcScale(x, y);

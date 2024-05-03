@@ -58,7 +58,7 @@ public final class HttpParamsUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean existsParams(final String params) {
-        return splitParams(params).size() != 0;
+        return !splitParams(params).isEmpty();
     }
 
     /**
@@ -67,7 +67,7 @@ public final class HttpParamsUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean existsParamsByURL(final String url) {
-        return splitParams(getUrlParams(url)).size() != 0;
+        return !splitParams(getUrlParams(url)).isEmpty();
     }
 
     /**

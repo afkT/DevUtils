@@ -152,7 +152,11 @@ public final class DevEnvironmentUtils {
             final Context context,
             final EnvironmentBean newEnvironment
     ) {
-        return Utils.setModuleEnvironment(context, newEnvironment);
+        if (Utils.setModuleEnvironment(context, newEnvironment)) {
+            AdapterItem.changeHashCode(newEnvironment);
+            return true;
+        }
+        return false;
     }
 
     // ===============

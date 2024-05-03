@@ -33,7 +33,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Map<?, ?> map) {
-        return (map == null || map.size() == 0);
+        return (map == null || map.isEmpty());
     }
 
     /**
@@ -42,7 +42,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Map<?, ?> map) {
-        return (map != null && map.size() != 0);
+        return (map != null && !map.isEmpty());
     }
 
     // ==========

@@ -43,7 +43,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Collection<?> collection) {
-        return (collection == null || collection.size() == 0);
+        return (collection == null || collection.isEmpty());
     }
 
     /**
@@ -52,7 +52,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Collection<?> collection) {
-        return (collection != null && collection.size() != 0);
+        return (collection != null && !collection.isEmpty());
     }
 
     // ==========

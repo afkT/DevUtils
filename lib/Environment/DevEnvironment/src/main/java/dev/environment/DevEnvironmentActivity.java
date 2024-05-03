@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -30,13 +31,16 @@ public final class DevEnvironmentActivity
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
-                View decorView = getWindow().getDecorView();
+                Window window    = getWindow();
+                View   decorView = window.getDecorView();
                 // 设置全屏和状态栏透明
-                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                );
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 // 设置状态栏为主题色
-                getWindow().setStatusBarColor(this.getResources().getColor(R.color.dev_environment_title_bg_color));
+                window.setStatusBarColor(this.getResources().getColor(R.color.dev_environment_title_bg_color));
             } catch (Exception ignored) {
             }
         }

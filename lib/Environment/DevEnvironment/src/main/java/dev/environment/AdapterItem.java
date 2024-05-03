@@ -29,14 +29,14 @@ public final class AdapterItem {
     // Environment 实体类 ( Environment 类型使用 )
     public final  EnvironmentBean environmentBean;
 
-    AdapterItem(ModuleBean moduleBean) {
+    AdapterItem(final ModuleBean moduleBean) {
         this.itemType        = MODULE_TYPE;
         this.hashCodeEquals  = -1;
         this.moduleBean      = moduleBean;
         this.environmentBean = null;
     }
 
-    AdapterItem(EnvironmentBean environmentBean) {
+    AdapterItem(final EnvironmentBean environmentBean) {
         this.itemType        = ENVIRONMENT_TYPE;
         this.hashCodeEquals  = environmentBean.hashCode();
         this.moduleBean      = null;
@@ -85,10 +85,7 @@ public final class AdapterItem {
      */
     public boolean setModuleEnvironment(final Context context) {
         if (isEnvironment()) {
-            if (DevEnvironmentUtils.setModuleEnvironment(context, environmentBean)) {
-                changeHashCode(environmentBean);
-                return true;
-            }
+            return DevEnvironmentUtils.setModuleEnvironment(context, environmentBean);
         }
         return false;
     }
@@ -167,7 +164,7 @@ public final class AdapterItem {
             for (ModuleBean moduleBean : modules) {
                 if (moduleBean != null) {
                     List<EnvironmentBean> environments = moduleBean.getEnvironments();
-                    if (environments != null && environments.size() != 0) {
+                    if (environments != null && !environments.isEmpty()) {
                         // 添加 Module Type
                         items.add(new AdapterItem(moduleBean));
                         // 判断是否添加自定义配置
@@ -208,10 +205,12 @@ public final class AdapterItem {
         if (modules != null) {
             for (ModuleBean moduleBean : modules) {
                 if (moduleBean != null) {
-                    String          key             = moduleBean.getName();
-                    EnvironmentBean environmentBean = DevEnvironmentUtils.getModuleEnvironment(context, key);
-                    if (environmentBean != null) {
-                        sModuleHashCodeMap.put(moduleBean.getName(), environmentBean.hashCode());
+                    // 获取选中的环境
+                    EnvironmentBean environmentSelect = DevEnvironmentUtils.getModuleEnvironment(
+                            context, moduleBean.getName()
+                    );
+                    if (environmentSelect != null) {
+                        sModuleHashCodeMap.put(moduleBean.getName(), environmentSelect.hashCode());
                     }
                 }
             }
@@ -222,7 +221,7 @@ public final class AdapterItem {
      * 改变 HashCode
      * @param newEnvironment environment bean
      */
-    private static void changeHashCode(final EnvironmentBean newEnvironment) {
+    static void changeHashCode(final EnvironmentBean newEnvironment) {
         try {
             sModuleHashCodeMap.put(newEnvironment.getModule().getName(), newEnvironment.hashCode());
         } catch (Exception e) {
