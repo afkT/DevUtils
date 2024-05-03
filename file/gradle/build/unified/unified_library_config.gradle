@@ -11,9 +11,9 @@ allprojects {
                     // = kotlin =
 
                     // stdlib
-                    "org.jetbrains.kotlin:kotlin-stdlib:1.9.22",
+                    "org.jetbrains.kotlin:kotlin-stdlib:1.9.23",
                     // core
-                    "androidx.core:core-ktx:1.12.0",
+                    "androidx.core:core-ktx:1.13.0",
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0",
                     // lifecycle_runtime
@@ -35,11 +35,11 @@ allprojects {
                     // work_runtime
                     "androidx.work:work-runtime-ktx:2.9.0",
                     // datastore_preferences
-                    "androidx.datastore:datastore-preferences:1.1.0-beta01",
+                    "androidx.datastore:datastore-preferences:1.1.0",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.6.2",
                     // activity
-                    "androidx.activity:activity-ktx:1.8.2",
+                    "androidx.activity:activity-ktx:1.9.0",
                     // navigation_fragment
                     "androidx.navigation:navigation-fragment-ktx:2.7.7",
                     // navigation_ui
@@ -72,7 +72,7 @@ allprojects {
                     // fragment
                     "androidx.fragment:fragment:1.6.2",
                     // activity
-                    "androidx.activity:activity:1.8.2",
+                    "androidx.activity:activity:1.9.0",
                     // navigation_fragment
                     "androidx.navigation:navigation-fragment:2.7.7",
                     // navigation_ui
@@ -84,9 +84,9 @@ allprojects {
                     // startup
                     "androidx.startup:startup-runtime:1.1.1",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.51",
+                    "com.google.dagger:hilt-android:2.51.1",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.51",
+                    "com.google.dagger:hilt-android-compiler:2.51.1",
                     // swiperefreshlayout
                     "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // exifinterface
@@ -95,21 +95,21 @@ allprojects {
                     // = compose =
 
                     // ui
-                    "androidx.compose.ui:ui:1.6.2",
+                    "androidx.compose.ui:ui:1.6.6",
                     // runtime
-                    "androidx.compose.runtime:runtime:1.6.2",
+                    "androidx.compose.runtime:runtime:1.6.6",
                     // runtime_livedata
-                    "androidx.compose.runtime:runtime-livedata:1.6.2",
+                    "androidx.compose.runtime:runtime-livedata:1.6.6",
                     // animation
-                    "androidx.compose.animation:animation:1.6.2",
+                    "androidx.compose.animation:animation:1.6.6",
                     // foundation
-                    "androidx.compose.foundation:foundation:1.6.2",
+                    "androidx.compose.foundation:foundation:1.6.6",
                     // material
-                    "androidx.compose.material:material:1.6.2",
+                    "androidx.compose.material:material:1.6.6",
                     // material3
-                    "androidx.compose.material3:material3:1.2.0",
+                    "androidx.compose.material3:material3:1.2.1",
                     // material3_window_size_class
-                    "androidx.compose.material3:material3-window-size-class:1.2.0",
+                    "androidx.compose.material3:material3-window-size-class:1.2.1",
                     // lifecycle_viewmodel
                     "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0",
                     // navigation

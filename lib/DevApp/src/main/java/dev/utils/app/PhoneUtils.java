@@ -537,9 +537,7 @@ public final class PhoneUtils {
     public static boolean dial(final String phoneNumber) {
         try {
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
-            if (IntentUtils.isIntentAvailable(intent)) {
-                return AppUtils.startActivity(intent);
-            }
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "dial");
         }
@@ -554,9 +552,7 @@ public final class PhoneUtils {
     public static boolean call(final String phoneNumber) {
         try {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-            if (IntentUtils.isIntentAvailable(intent)) {
-                return AppUtils.startActivity(intent);
-            }
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "call");
         }
@@ -575,10 +571,8 @@ public final class PhoneUtils {
     ) {
         try {
             Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
-            if (IntentUtils.isIntentAvailable(intent)) {
-                intent.putExtra("sms_body", content);
-                return AppUtils.startActivity(intent);
-            }
+            intent.putExtra("sms_body", content);
+            return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendSms");
         }
