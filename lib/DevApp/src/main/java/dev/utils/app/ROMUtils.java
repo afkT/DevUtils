@@ -28,6 +28,8 @@ public final class ROMUtils {
     // ==============
 
     private static final String[] ROM_HUAWEI    = {"huawei"};
+    private static final String[] ROM_HARMONY   = {"harmony"};
+    private static final String[] ROM_HONOR     = {"honor"};
     private static final String[] ROM_VIVO      = {"vivo"};
     private static final String[] ROM_XIAOMI    = {"xiaomi"};
     private static final String[] ROM_OPPO      = {"oppo"};
@@ -49,6 +51,8 @@ public final class ROMUtils {
     private static final String[] ROM_MOTOROLA  = {"motorola"};
 
     private static final String VERSION_PROPERTY_HUAWEI  = "ro.build.version.emui";
+    private static final String VERSION_PROPERTY_HARMONY = "hw_sc.build.platform.version";
+    private static final String VERSION_PROPERTY_HONOR   = "ro.honor.build.display.id";
     private static final String VERSION_PROPERTY_VIVO    = "ro.vivo.os.build.display.id";
     private static final String VERSION_PROPERTY_XIAOMI  = "ro.build.version.incremental";
     private static final String VERSION_PROPERTY_OPPO    = "ro.build.version.opporom";
@@ -57,6 +61,7 @@ public final class ROMUtils {
     private static final String VERSION_PROPERTY_ZTE     = "ro.build.MiFavor_version";
     private static final String VERSION_PROPERTY_ONEPLUS = "ro.rom.version";
     private static final String VERSION_PROPERTY_NUBIA   = "ro.build.rom.id";
+    private final static String UNKNOWN                  = "unknown";
 
     /**
      * 判断 ROM 是否 Huawei ( 华为 )
@@ -64,6 +69,22 @@ public final class ROMUtils {
      */
     public static boolean isHuawei() {
         return ROM_HUAWEI[0].equals(getRomInfo().name);
+    }
+
+    /**
+     * 判断 ROM 是否 HarmonyOS ( 鸿蒙 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHarmonyOS() {
+        return ROM_HARMONY[0].equals(getRomInfo().name);
+    }
+
+    /**
+     * 判断 ROM 是否 Honor ( 荣耀 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHonor() {
+        return ROM_HONOR[0].equals(getRomInfo().name);
     }
 
     /**
@@ -232,8 +253,6 @@ public final class ROMUtils {
     // = 内部方法 =
     // ==========
 
-    private static final String UNKNOWN = "unknown";
-
     /**
      * 是否匹配正确 ROM
      * @param names 品牌名称集合
@@ -263,6 +282,20 @@ public final class ROMUtils {
             if (brand.contains(name) || manufacturer.contains(name)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * 判断 ROM 是否 HarmonyOS ( 鸿蒙 )
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean checkHarmonyOS() {
+        try {
+            Class<?> buildExClass = Class.forName("com.huawei.system.BuildEx");
+            Object   osBrand      = buildExClass.getMethod("getOsBrand").invoke(buildExClass);
+            return osBrand != null && ROM_HARMONY[0].equalsIgnoreCase(osBrand.toString());
+        } catch (Throwable ignore) {
         }
         return false;
     }
@@ -447,6 +480,16 @@ public final class ROMUtils {
             } else {
                 bean.version = version;
             }
+            return bean;
+        }
+        if (checkHarmonyOS()) {
+            bean.name    = ROM_HARMONY[0];
+            bean.version = getRomVersion(VERSION_PROPERTY_HARMONY);
+            return bean;
+        }
+        if (isRightRom(brand, manufacturer, ROM_HONOR)) {
+            bean.name    = ROM_HONOR[0];
+            bean.version = getRomVersion(VERSION_PROPERTY_HONOR);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_VIVO)) {
