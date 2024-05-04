@@ -31,6 +31,7 @@ import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
@@ -367,6 +368,23 @@ public final class AppUtils {
      */
     public static PowerManager getPowerManager(final Context context) {
         return getSystemService(context, Context.POWER_SERVICE);
+    }
+
+    /**
+     * 获取 BatteryManager
+     * @return {@link BatteryManager}
+     */
+    public static BatteryManager getBatteryManager() {
+        return getSystemService(Context.BATTERY_SERVICE);
+    }
+
+    /**
+     * 获取 BatteryManager
+     * @param context Context
+     * @return {@link BatteryManager}
+     */
+    public static BatteryManager getBatteryManager(final Context context) {
+        return getSystemService(context, Context.BATTERY_SERVICE);
     }
 
     /**
