@@ -161,9 +161,7 @@ public final class ObjectUtils {
      * @return 非空对象
      * @throws NullPointerException null 异常
      */
-    public static <T> T requireNonNull(
-            final T object
-    )
+    public static <T> T requireNonNull(final T object)
             throws NullPointerException {
         return requireNonNull(object, "object is null");
     }
@@ -186,13 +184,11 @@ public final class ObjectUtils {
     }
 
     /**
-     * 检查对象是否为 null
+     * 检查对象是否为 null, 为 null 则抛出异常
      * @param args 对象数组
      * @throws NullPointerException null 异常
      */
-    public static void requireNonNullArgs(
-            final Object... args
-    )
+    public static void requireNonNullArgs(final Object... args)
             throws NullPointerException {
         if (args != null && args.length != 0) {
             for (Object object : args) {
@@ -208,24 +204,20 @@ public final class ObjectUtils {
     // =
 
     /**
-     * 检查对象是否为 null
+     * 检查对象是否非 null
      * @param object 对象
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean requireNonNullBool(
-            final Object object
-    ) {
+    public static boolean requireNonNullBool(final Object object) {
         return object != null;
     }
 
     /**
-     * 检查对象是否为 null
+     * 检查对象是否非 null
      * @param args 对象数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean requireNonNullBoolArgs(
-            final Object... args
-    ) {
+    public static boolean requireNonNullBoolArgs(final Object... args) {
         if (args != null && args.length != 0) {
             for (Object object : args) {
                 if (object == null) {
