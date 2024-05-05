@@ -953,7 +953,7 @@ public final class CapturePictureUtils {
                         )
                 );
             } else {
-                throw new Exception("Adapter or LayoutManager is Null");
+                throw new Exception("Adapter or LayoutManager is null");
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView");

@@ -64,9 +64,9 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
  *     <p></p>
  *     Android Settings 系统属性, 共分三种:
- *     {@link Settings.Global}: 所有的偏好设置对系统的所有用户公开, 第三方 APP 有读没有写的权限
- *     {@link Settings.System}: 包含各种各样的用户偏好系统设置
- *     {@link Settings.Secure}: 安全性的用户偏好系统设置, 第三方 APP 有读没有写的权限
+ *     {@link Settings.Global} 所有的偏好设置对系统的所有用户公开, 第三方 APP 有读没有写的权限
+ *     {@link Settings.System} 包含各种各样的用户偏好系统设置
+ *     {@link Settings.Secure} 安全性的用户偏好系统设置, 第三方 APP 有读没有写的权限
  * </pre>
  */
 public final class DeviceUtils {

@@ -101,23 +101,6 @@ public final class ObjectUtils {
     }
 
     /**
-     * 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象
-     * @param object  对象
-     * @param message 报错信息
-     * @param <T>     泛型
-     * @return 非空对象
-     * @throws NullPointerException null 异常
-     */
-    public static <T> T requireNonNull(
-            final T object,
-            final String message
-    )
-            throws NullPointerException {
-        if (object == null) throw new NullPointerException(message);
-        return object;
-    }
-
-    /**
      * 获取非空或默认对象
      * @param object        对象
      * @param defaultObject 默认值
@@ -165,5 +148,92 @@ public final class ObjectUtils {
             JCLogUtils.eTag(TAG, e, "convert");
         }
         return null;
+    }
+
+    // ==========
+    // = 非空校验 =
+    // ==========
+
+    /**
+     * 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象
+     * @param object 对象
+     * @param <T>    泛型
+     * @return 非空对象
+     * @throws NullPointerException null 异常
+     */
+    public static <T> T requireNonNull(
+            final T object
+    )
+            throws NullPointerException {
+        return requireNonNull(object, "object is null");
+    }
+
+    /**
+     * 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象
+     * @param object  对象
+     * @param message 报错信息
+     * @param <T>     泛型
+     * @return 非空对象
+     * @throws NullPointerException null 异常
+     */
+    public static <T> T requireNonNull(
+            final T object,
+            final String message
+    )
+            throws NullPointerException {
+        if (object == null) throw new NullPointerException(message);
+        return object;
+    }
+
+    /**
+     * 检查对象是否为 null
+     * @param args 对象数组
+     * @throws NullPointerException null 异常
+     */
+    public static void requireNonNullArgs(
+            final Object... args
+    )
+            throws NullPointerException {
+        if (args != null && args.length != 0) {
+            for (Object object : args) {
+                if (object == null) {
+                    throw new NullPointerException("arrays with null objects");
+                }
+            }
+        } else {
+            throw new NullPointerException("array is null");
+        }
+    }
+
+    // =
+
+    /**
+     * 检查对象是否为 null
+     * @param object 对象
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean requireNonNullBool(
+            final Object object
+    ) {
+        return object != null;
+    }
+
+    /**
+     * 检查对象是否为 null
+     * @param args 对象数组
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean requireNonNullBoolArgs(
+            final Object... args
+    ) {
+        if (args != null && args.length != 0) {
+            for (Object object : args) {
+                if (object == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

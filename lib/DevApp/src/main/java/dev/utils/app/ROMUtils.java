@@ -418,9 +418,9 @@ public final class ROMUtils {
     private static String getSystemPropertyByReflect(final String key) {
         try {
             @SuppressLint("PrivateApi")
-            Class<?> clz = Class.forName("android.os.SystemProperties");
-            Method getMethod = clz.getMethod("get", String.class, String.class);
-            return (String) getMethod.invoke(clz, key, "");
+            Class<?> clazz = Class.forName("android.os.SystemProperties");
+            Method getMethod = clazz.getMethod("get", String.class, String.class);
+            return (String) getMethod.invoke(clazz, key, "");
         } catch (Throwable ignored) {
         }
         return "";
