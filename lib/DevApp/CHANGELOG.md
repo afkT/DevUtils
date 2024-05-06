@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+Version 2.4.5 *(2024-05-06)*
+----------------------------
+
+* `[Add]` 新增 AppUtils#getBatteryManager、registerReceiverBool
+
+* `[Add]` 新增 BatteryUtils 电量工具类
+
+* `[Add]` 新增 FragmentUtils 工具类
+
+* `[Add]` 新增 ROMUtils#isHarmonyOS、isHonor 鸿蒙、荣耀 ROM 校验
+
+* `[Add]` 新增 ObjectUtils#requireNonNull、requireNonNullArgs、requireNonNullBool、requireNonNullBoolArgs
+
+* `[Delete]` 移除 InactivityTimerAssist 电量监听广播
+
 Version 2.4.4 *(2024-01-18)*
 ----------------------------
 

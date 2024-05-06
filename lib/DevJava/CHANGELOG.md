@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.5.1 *(2024-05-06)*
+----------------------------
+
+* `[Add]` 新增 ObjectUtils#requireNonNull、requireNonNullArgs、requireNonNullBool、requireNonNullBoolArgs
+
+* `[Upgrade]` 统一同步更新
+
 Version 1.5.0 *(2024-01-18)*
 ----------------------------
 

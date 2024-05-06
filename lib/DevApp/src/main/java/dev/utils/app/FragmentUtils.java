@@ -2159,6 +2159,7 @@ public final class FragmentUtils {
             final Fragment fragment,
             final boolean isHide
     ) {
+        if (fragment == null) return;
         Bundle bundle = fragment.getArguments();
         if (bundle == null) {
             bundle = new Bundle();
@@ -2217,6 +2218,7 @@ public final class FragmentUtils {
             final Fragment srcFragment,
             final Fragment... destFragments
     ) {
+        if (manager == null || ft == null) return false;
         try {
             if (srcFragment != null && srcFragment.isRemoving()) {
                 LogPrintUtils.eTag(
@@ -2311,6 +2313,7 @@ public final class FragmentUtils {
             @AnimatorRes @AnimRes final int popEnterAnim,
             @AnimatorRes @AnimRes final int popExitAnim
     ) {
+        if (ft == null) return;
         ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim);
     }
 
@@ -2325,8 +2328,8 @@ public final class FragmentUtils {
             final FragmentTransaction ft,
             final View... views
     ) {
+        if (ft == null || views == null) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (views == null) return;
             for (View view : views) {
                 if (view != null) {
                     try {

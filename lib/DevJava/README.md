@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevJava:1.5.0'
+implementation 'io.github.afkt:DevJava:1.5.1'
 ```
 
 ## 目录结构
@@ -814,11 +814,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isEmpty | 判断对象是否为空 |
 | isNotEmpty | 判断对象是否非空 |
 | equals | 判断两个值是否一样 |
-| requireNonNull | 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象 |
 | getOrDefault | 获取非空或默认对象 |
 | hashCode | 获取对象哈希值 |
 | getObjectTag | 获取一个对象的独一无二的标记 |
 | convert | Object 转换所需类型对象 |
+| requireNonNull | 检查对象是否为 null, 为 null 则抛出异常, 不为 null 则返回该对象 |
+| requireNonNullArgs | 检查对象是否为 null, 为 null 则抛出异常 |
+| requireNonNullBool | 检查对象是否非 null |
+| requireNonNullBoolArgs | 检查对象是否非 null |
 
 
 * **随机工具类 ->** [RandomUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/RandomUtils.java)
