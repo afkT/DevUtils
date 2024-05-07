@@ -10,6 +10,8 @@ android {
         minSdkVersion versions.lib_minSdkVersion
         // 混淆配置
         consumerProguardFiles 'proguard-rules.pro'
+        // 开启 multidex
+        multiDexEnabled true
     }
 
     buildFeatures {

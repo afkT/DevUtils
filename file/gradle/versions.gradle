@@ -6,7 +6,7 @@ ext {
             // 版本名
             versionName                              : "9.9.9",
             // 支持最小的 SDK
-            lib_minSdkVersion                        : 14,
+            lib_minSdkVersion                        : 19,
             // 支持最小的 SDK
             app_minSdkVersion                        : 21,
             // Lib 编译 SDK 版本
@@ -82,5 +82,9 @@ ext {
             // DevJava - Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                     : 151,
             dev_java_version                         : "1.5.1",
+
+            // DevSimple - 简单敏捷开发库
+            dev_simple_versionCode                   : 100,
+            dev_simple_versionName                   : "1.0.0",
     ]
 }

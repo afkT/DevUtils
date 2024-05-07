@@ -1,0 +1,44 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+android {
+    namespace "dev.simple"
+
+    defaultConfig {
+        versionCode versions.dev_simple_versionCode
+        versionName versions.dev_simple_versionName
+        // DevSimple Module Version
+        buildConfigField "int", "DevSimple_VersionCode", "${versions.dev_simple_versionCode}"
+        buildConfigField "String", "DevSimple_Version", "\"${versions.dev_simple_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_assist
+        api deps.dev.dev_base_mvvm
+        api deps.dev.dev_engine
+        api deps.dev.dev_widget
+    } else {
+        // 编译时使用
+        api project(':DevAssist')
+        api project(':DevBaseMVVM')
+        api project(':DevEngine')
+        api project(':DevWidget')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

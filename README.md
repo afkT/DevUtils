@@ -12,8 +12,8 @@
 	<a href="https://search.maven.org/search?q=io.github.afkt">
 		<img alt="Version" src="https://img.shields.io/badge/Maven-Dev-5776E0.svg" />
 	</a>
-	<a href="https://android-arsenal.com/api?level=14">
-		<img alt="API" src="https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat" />
+	<a href="https://android-arsenal.com/api?level=19">
+		<img alt="API" src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat" />
 	</a>
 	<a href="https://search.maven.org/search?q=io.github.afkt">
 		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.5-yellow.svg" />

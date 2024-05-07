@@ -27,7 +27,6 @@ android {
     }
 
     lintOptions {
-        // https://blog.csdn.net/berber78/article/details/60766091
         abortOnError false
         checkReleaseBuilds false
     }

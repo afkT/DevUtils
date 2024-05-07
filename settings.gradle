@@ -45,6 +45,15 @@ environment_libs.forEach {
     project(":$it").projectDir = new File(rootDir, "lib/Environment/$it")
 }
 
+def simple_libs = [
+        "DevSimple",
+]
+
+simple_libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/DevSimple/$it")
+}
+
 // =================
 // = Local Modules =
 // =================
