@@ -55,4 +55,5 @@ dependencies {
     implementation project(':DevBaseView')
     implementation project(':DevOther')
     implementation project(':DevSKU')
+    implementation project(':DevSimple')
 }

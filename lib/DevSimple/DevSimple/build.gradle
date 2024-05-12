@@ -12,6 +12,9 @@ android {
         // DevSimple Module Version
         buildConfigField "int", "DevSimple_VersionCode", "${versions.dev_simple_versionCode}"
         buildConfigField "String", "DevSimple_Version", "\"${versions.dev_simple_versionName}\""
+        // DevMVVM Module Version
+        buildConfigField "int", "DevMVVM_VersionCode", "${versions.dev_mvvm_versionCode}"
+        buildConfigField "String", "DevMVVM_Version", "\"${versions.dev_mvvm_versionName}\""
     }
 }
 
@@ -21,16 +24,10 @@ def isPublishing = false
 dependencies {
     if (isPublishing) {
         // 打包时使用
-        api deps.dev.dev_assist
-        api deps.dev.dev_base_mvvm
-        api deps.dev.dev_engine
-        api deps.dev.dev_widget
+        api deps.dev.dev_mvvm
     } else {
         // 编译时使用
-        api project(':DevAssist')
-        api project(':DevBaseMVVM')
-        api project(':DevEngine')
-        api project(':DevWidget')
+        api project(':DevMVVM')
     }
 }
 

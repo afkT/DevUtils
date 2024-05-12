@@ -53,6 +53,22 @@ object DevSimple {
         return BuildConfig.DevSimple_Version
     }
 
+    /**
+     * 获取 DevMVVM 版本号
+     * @return DevMVVM versionCode
+     */
+    fun getDevMVVMVersionCode(): Int {
+        return BuildConfig.DevMVVM_VersionCode
+    }
+
+    /**
+     * 获取 DevMVVM 版本
+     * @return DevMVVM versionName
+     */
+    fun getDevMVVMVersion(): String {
+        return BuildConfig.DevMVVM_Version
+    }
+
     // =============
     // = 对外公开方法 =
     // =============
