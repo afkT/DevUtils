@@ -25,8 +25,6 @@ class BaseVMController<VDB : ViewDataBinding, VM : BaseAppViewModel>(
         uiController: BaseUIController,
         keyEventController: BaseKeyEventController?
     ) {
-        // 内部 VDB 定义变量初始化
-        innerVDBDefineVariable(binding, uiController)
 
         // ===============
         // = IController =
@@ -39,21 +37,5 @@ class BaseVMController<VDB : ViewDataBinding, VM : BaseAppViewModel>(
             // 基础 KeyEvent 物理按键 控制封装
             viewModel.keyEventController.value = keyEventController
         }
-    }
-
-    // ==========
-    // = 内部方法 =
-    // ==========
-
-    /**
-     * 内部 VDB 定义变量初始化
-     * @param binding VDB
-     * @param uiController 基础 UI 控制封装
-     */
-    private fun innerVDBDefineVariable(
-        binding: VDB,
-        uiController: BaseUIController
-    ) {
-//        uiController.initializeVDBVariable(binding)
     }
 }

@@ -82,22 +82,18 @@ abstract class BaseLoadingSkeletonFragment<VDB : ViewDataBinding, VM : BaseAppVi
     private val simpleFactory: SimpleFragmentIMPL<BaseLoadingSkeletonFragment<VDB, VM>>
 
     override fun simpleInit() {
-        super.simpleInit()
         simpleFactory.simpleInit(this)
     }
 
     override fun simpleStart() {
-        super.simpleStart()
         simpleFactory.simpleStart(this)
     }
 
     override fun simpleAgile() {
-        super.simpleAgile()
         simpleFactory.simpleAgile(this)
     }
 
     override fun simplePreLoad() {
-        super.simplePreLoad()
         simpleFactory.simplePreLoad(this)
     }
 

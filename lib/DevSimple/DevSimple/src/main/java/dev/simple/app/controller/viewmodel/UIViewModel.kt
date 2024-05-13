@@ -10,7 +10,7 @@ import dev.utils.app.ScreenUtils
 open class UIViewModel : ControllerViewModel() {
 
     // 状态栏高度
-    val statusBarHeight = ObservableInt(ScreenUtils.getStatusBarHeight())
+    val statusBarHeight = ObservableInt(ScreenUtils.getStatusBarHeight2())
 
     // 状态栏高度 ( 负数 )
     val statusBarHeightMinus = ObservableInt(-statusBarHeight.get())

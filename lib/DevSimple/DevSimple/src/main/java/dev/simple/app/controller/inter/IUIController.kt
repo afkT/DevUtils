@@ -1,6 +1,10 @@
 package dev.simple.app.controller.inter
 
 import android.app.Activity
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import dev.base.utils.assist.DevBaseContentAssist
 import dev.utils.app.assist.WindowAssist
 import dev.utils.common.able.Operatorable
@@ -83,4 +87,34 @@ interface IUIController {
      * @return `true` yes, `false` no
      */
     fun isFeatureNoTitle(): Boolean = true
+
+    // ===========
+    // = UI View =
+    // ===========
+
+    /**
+     * 创建 状态栏 骨架 View
+     * @param context Context
+     * @param inflater LayoutInflater
+     * @param owner LifecycleOwner
+     * @return View?
+     */
+    fun createStatusBarSkeletonView(
+        context: Context,
+        inflater: LayoutInflater,
+        owner: LifecycleOwner,
+    ): View? = null
+
+    /**
+     * 创建 标题栏 骨架 View
+     * @param context Context
+     * @param inflater LayoutInflater
+     * @param owner LifecycleOwner
+     * @return View?
+     */
+    fun createTitleBarSkeletonView(
+        context: Context,
+        inflater: LayoutInflater,
+        owner: LifecycleOwner,
+    ): View? = null
 }

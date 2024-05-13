@@ -78,22 +78,18 @@ abstract class BaseLoadingActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>
     private val simpleFactory: SimpleActivityIMPL<BaseLoadingActivity<VDB, VM>>
 
     override fun simpleInit() {
-        super.simpleInit()
         simpleFactory.simpleInit(this)
     }
 
     override fun simpleStart() {
-        super.simpleStart()
         simpleFactory.simpleStart(this)
     }
 
     override fun simpleAgile() {
-        super.simpleAgile()
         simpleFactory.simpleAgile(this)
     }
 
     override fun simplePreLoad() {
-        super.simplePreLoad()
         simpleFactory.simplePreLoad(this)
     }
 

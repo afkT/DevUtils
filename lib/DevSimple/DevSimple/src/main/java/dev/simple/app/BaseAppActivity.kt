@@ -20,17 +20,39 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 构造函数 =
     // ==========
 
+//    constructor(
+//        bindLayoutId: Int,
+//        bindViewModelId: Int,
+//        vmType: ActivityVMType = ActivityVMType.ACTIVITY
+//    ) : super(bindLayoutId, bindViewModelId, vmType)
+//
+//    constructor(
+//        bindLayoutView: BindingActivityView?,
+//        bindViewModelId: Int,
+//        vmType: ActivityVMType = ActivityVMType.ACTIVITY
+//    ) : super(bindLayoutView, bindViewModelId, vmType)
+
+    // ========================
+    // = 统一进入下方多参构造函数 =
+    // ========================
+
     constructor(
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY
-    ) : super(bindLayoutId, bindViewModelId, vmType)
+    ) : this(
+        bindLayoutId, bindViewModelId, vmType,
+        null, null, null, null, null
+    )
 
     constructor(
         bindLayoutView: BindingActivityView?,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY
-    ) : super(bindLayoutView, bindViewModelId, vmType)
+    ) : this(
+        bindLayoutView, bindViewModelId, vmType,
+        null, null, null, null, null
+    )
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -76,22 +98,22 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private var simpleFactory: SimpleActivityIMPL<BaseAppActivity<VDB, VM>>? = null
+    private val simpleFactory: SimpleActivityIMPL<BaseAppActivity<VDB, VM>>
 
     override fun simpleInit() {
-        simpleFactory?.simpleInit(this)
+        simpleFactory.simpleInit(this)
     }
 
     override fun simpleStart() {
-        simpleFactory?.simpleStart(this)
+        simpleFactory.simpleStart(this)
     }
 
     override fun simpleAgile() {
-        simpleFactory?.simpleAgile(this)
+        simpleFactory.simpleAgile(this)
     }
 
     override fun simplePreLoad() {
-        simpleFactory?.simplePreLoad(this)
+        simpleFactory.simplePreLoad(this)
     }
 
     // ===========================
@@ -100,7 +122,7 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 
     override fun createActivityUITheme(theme: ActivityUITheme): ActivityUITheme {
         return super.createActivityUITheme(
-            simpleFactory?.simpleUITheme(theme) ?: theme
+            simpleFactory.simpleUITheme(theme)
         )
     }
 }

@@ -20,17 +20,39 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 构造函数 =
     // ==========
 
+//    constructor(
+//        bindLayoutId: Int,
+//        bindViewModelId: Int,
+//        vmType: FragmentVMType = FragmentVMType.FRAGMENT
+//    ) : super(bindLayoutId, bindViewModelId, vmType)
+//
+//    constructor(
+//        bindLayoutView: BindingFragmentView,
+//        bindViewModelId: Int,
+//        vmType: FragmentVMType = FragmentVMType.FRAGMENT
+//    ) : super(bindLayoutView, bindViewModelId, vmType)
+
+    // ========================
+    // = 统一进入下方多参构造函数 =
+    // ========================
+
     constructor(
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT
-    ) : super(bindLayoutId, bindViewModelId, vmType)
+    ) : this(
+        bindLayoutId, bindViewModelId, vmType,
+        null, null, null, null, null
+    )
 
     constructor(
         bindLayoutView: BindingFragmentView,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT
-    ) : super(bindLayoutView, bindViewModelId, vmType)
+    ) : this(
+        bindLayoutView, bindViewModelId, vmType,
+        null, null, null, null, null
+    )
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -76,22 +98,22 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private var simpleFactory: SimpleFragmentIMPL<BaseAppFragment<VDB, VM>>? = null
+    private val simpleFactory: SimpleFragmentIMPL<BaseAppFragment<VDB, VM>>
 
     override fun simpleInit() {
-        simpleFactory?.simpleInit(this)
+        simpleFactory.simpleInit(this)
     }
 
     override fun simpleStart() {
-        simpleFactory?.simpleStart(this)
+        simpleFactory.simpleStart(this)
     }
 
     override fun simpleAgile() {
-        simpleFactory?.simpleAgile(this)
+        simpleFactory.simpleAgile(this)
     }
 
     override fun simplePreLoad() {
-        simpleFactory?.simplePreLoad(this)
+        simpleFactory.simplePreLoad(this)
     }
 
     // ===========================
@@ -100,7 +122,7 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 
     override fun createFragmentUITheme(theme: FragmentUITheme): FragmentUITheme {
         return super.createFragmentUITheme(
-            simpleFactory?.simpleUITheme(theme) ?: theme
+            simpleFactory.simpleUITheme(theme)
         )
     }
 }
