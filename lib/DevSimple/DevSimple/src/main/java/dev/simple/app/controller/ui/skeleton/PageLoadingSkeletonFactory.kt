@@ -1,4 +1,4 @@
-package dev.simple.app.widget.skeleton
+package dev.simple.app.controller.ui.skeleton
 
 /**
  * detail: Page Loading 骨架工厂类

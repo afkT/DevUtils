@@ -7,8 +7,8 @@ import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
 import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
 import dev.simple.app.controller.loading.BaseLoadingSkeletonController
+import dev.simple.app.controller.ui.skeleton.PageLoadingSkeletonFactory
 import dev.simple.app.controller.ui.theme.FragmentUITheme
-import dev.simple.app.widget.skeleton.PageLoadingSkeletonFactory
 
 /**
  * detail: Base Loading Skeleton Fragment

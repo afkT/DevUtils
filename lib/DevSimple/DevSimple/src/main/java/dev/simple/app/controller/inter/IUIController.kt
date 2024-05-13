@@ -1,4 +1,4 @@
-package dev.simple.app.controller.ui
+package dev.simple.app.controller.inter
 
 import android.app.Activity
 import dev.base.utils.assist.DevBaseContentAssist

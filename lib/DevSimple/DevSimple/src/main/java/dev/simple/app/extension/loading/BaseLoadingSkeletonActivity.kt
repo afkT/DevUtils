@@ -7,8 +7,8 @@ import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.base.simple.factory.SimpleActivityIMPL
 import dev.simple.app.controller.loading.BaseLoadingSkeletonController
+import dev.simple.app.controller.ui.skeleton.PageLoadingSkeletonFactory
 import dev.simple.app.controller.ui.theme.ActivityUITheme
-import dev.simple.app.widget.skeleton.PageLoadingSkeletonFactory
 
 /**
  * detail: Base Loading Skeleton Activity

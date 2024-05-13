@@ -1,4 +1,4 @@
-package dev.simple.app.widget.skeleton
+package dev.simple.app.controller.ui.skeleton
 
 import android.view.View
 import dev.widget.assist.ViewAssist

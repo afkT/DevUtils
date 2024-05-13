@@ -1,7 +1,5 @@
 package dev.simple.app.controller.inter
 
-import dev.simple.app.controller.ui.IUIController
-
 /**
  * detail: Base 汇总控制器接口
  * @author Ttt

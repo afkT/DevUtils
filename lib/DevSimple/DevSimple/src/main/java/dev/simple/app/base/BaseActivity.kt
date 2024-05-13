@@ -11,6 +11,7 @@ import dev.simple.app.controller.BaseKeyEventController
 import dev.simple.app.controller.BaseUIController
 import dev.simple.app.controller.BaseVMController
 import dev.simple.app.controller.inter.IController
+import dev.utils.app.ActivityUtils
 import dev.utils.common.ClassUtils
 
 /**
@@ -139,5 +140,16 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel>(
             return
         }
         super.onBackPressed()
+    }
+
+    // ==========
+    // = 快捷方法 =
+    // ==========
+
+    /**
+     * 关闭当前 Activity
+     */
+    fun finishActivity() {
+        ActivityUtils.getManager().finishActivity(this)
     }
 }
