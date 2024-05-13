@@ -2,7 +2,7 @@ package dev.simple.app.controller.loading
 
 import android.widget.FrameLayout
 import dev.base.utils.assist.DevBaseContentAssist
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.widget.assist.ViewAssist
 
 /**
@@ -10,7 +10,7 @@ import dev.widget.assist.ViewAssist
  * @author Ttt
  * 首次进入使用 Activity、Fragment Loading 使用
  */
-class BaseLoadingSkeletonController<VM : BaseViewModel>(
+class BaseLoadingSkeletonController<VM : BaseAppViewModel>(
     contentAssist: DevBaseContentAssist,
     FORCED_SHOW: Boolean = false
 ) : BaseViewAssistController<VM>(contentAssist, FORCED_SHOW) {

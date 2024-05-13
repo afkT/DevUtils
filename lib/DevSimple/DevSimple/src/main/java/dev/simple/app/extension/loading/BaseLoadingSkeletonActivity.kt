@@ -2,7 +2,7 @@ package dev.simple.app.extension.loading
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppActivity
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.base.simple.factory.SimpleActivityIMPL
@@ -15,7 +15,7 @@ import dev.simple.app.controller.ui.theme.ActivityUITheme
  * @author Ttt
  * Loading UI 骨架 Activity, 用于首次进入使用
  */
-abstract class BaseLoadingSkeletonActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseLoadingSkeletonActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseAppActivity<VDB, VM> {
 
     // ==========

@@ -2,8 +2,7 @@ package dev.simple.app.extension.theme
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseAppFragment
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.BaseFragment
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
@@ -13,9 +12,8 @@ import dev.simple.app.controller.ui.theme.FragmentUITheme
  * detail: Base Theme Fragment
  * @author Ttt
  * 在 [BaseFragment] 基础上封装 UITheme 样式 Intent 传参控制处理
- * 如果无特殊需求请使用 [BaseAppFragment]
  */
-abstract class BaseUIThemeFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseUIThemeFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val bindLayoutId: Int = 0,
     private val bindLayoutView: BindingFragmentView? = null,
     vmType: FragmentVMType = FragmentVMType.FRAGMENT

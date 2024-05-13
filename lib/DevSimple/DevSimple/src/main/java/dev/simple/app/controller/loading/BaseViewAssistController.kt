@@ -1,7 +1,7 @@
 package dev.simple.app.controller.loading
 
 import dev.base.utils.assist.DevBaseContentAssist
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.utils.DevFinal
 import dev.widget.assist.ViewAssist
 
@@ -9,7 +9,7 @@ import dev.widget.assist.ViewAssist
  * detail: 基础 ViewAssist 控制封装
  * @author Ttt
  */
-abstract class BaseViewAssistController<VM : BaseViewModel>(
+abstract class BaseViewAssistController<VM : BaseAppViewModel>(
     val contentAssist: DevBaseContentAssist,
     val FORCED_SHOW: Boolean = true
 ) {

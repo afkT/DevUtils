@@ -1,8 +1,7 @@
 package dev.simple.app.extension.mvvm
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseAppActivity
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.extension.theme.BaseUIThemeActivity
@@ -10,10 +9,9 @@ import dev.simple.app.extension.theme.BaseUIThemeActivity
 /**
  * detail: Base MVVM Activity
  * @author Ttt
- * 在 [BaseUIThemeActivity] 基础上进行关联赋值
- * 如果无特殊需求请使用 [BaseAppActivity]
+ * 在 [BaseUIThemeActivity] 基础上进行 ViewModel 关联赋值
  */
-abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseUIThemeActivity<VDB, VM> {
 
     private var viewModelId: Int

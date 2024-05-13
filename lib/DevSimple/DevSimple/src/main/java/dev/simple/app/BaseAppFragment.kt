@@ -8,11 +8,12 @@ import dev.simple.app.controller.ui.theme.FragmentUITheme
 import dev.simple.app.extension.mvvm.BaseMVVMFragment
 
 /**
- * detail: Base MVVM Fragment
+ * detail: Base App MVVM Fragment
  * @author Ttt
  * 如有额外参数等可统一在此基类增加, 避免污染底层基类过于复杂、混乱
+ * 使用方法【统一继承该类即可】
  */
-abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseMVVMFragment<VDB, VM> {
 
     // ==========

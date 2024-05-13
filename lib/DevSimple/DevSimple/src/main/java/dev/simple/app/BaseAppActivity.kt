@@ -8,11 +8,12 @@ import dev.simple.app.controller.ui.theme.ActivityUITheme
 import dev.simple.app.extension.mvvm.BaseMVVMActivity
 
 /**
- * detail: Base MVVM Activity
+ * detail: Base App MVVM Activity
  * @author Ttt
  * 如有额外参数等可统一在此基类增加, 避免污染底层基类过于复杂、混乱
+ * 使用方法【统一继承该类即可】
  */
-abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseMVVMActivity<VDB, VM> {
 
     // ==========

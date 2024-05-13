@@ -2,7 +2,7 @@ package dev.simple.app.extension.loading
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppFragment
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
 import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
@@ -15,8 +15,8 @@ import dev.simple.app.controller.ui.theme.FragmentUITheme
  * @author Ttt
  * Loading UI 骨架 Fragment, 用于首次进入使用
  */
-abstract class
-BaseLoadingSkeletonFragment<VDB : ViewDataBinding, VM : BaseViewModel> : BaseAppFragment<VDB, VM> {
+abstract class BaseLoadingSkeletonFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
+    BaseAppFragment<VDB, VM> {
 
     // ==========
     // = 构造函数 =

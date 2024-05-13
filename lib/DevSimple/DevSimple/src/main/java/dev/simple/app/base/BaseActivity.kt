@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import dev.DevUtils
 import dev.base.expand.content.DevBaseContentMVVMActivity
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.simple.ISimpleAgile
 import dev.simple.app.controller.BaseKeyEventController
 import dev.simple.app.controller.BaseUIController
@@ -18,7 +18,7 @@ import dev.utils.common.ClassUtils
  * detail: Base MVVM Activity
  * @author Ttt
  */
-abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseContentMVVMActivity<VDB, VM>(),
     IController, ISimpleAgile {

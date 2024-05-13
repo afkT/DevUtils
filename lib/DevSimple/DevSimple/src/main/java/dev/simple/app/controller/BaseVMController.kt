@@ -1,14 +1,14 @@
 package dev.simple.app.controller
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.controller.inter.IController
 
 /**
  * detail: 基础 ViewModel 控制封装
  * @author Ttt
  */
-class BaseVMController<VDB : ViewDataBinding, VM : BaseViewModel>(
+class BaseVMController<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     // Base 汇总控制器接口
     private val controller: IController
 ) {

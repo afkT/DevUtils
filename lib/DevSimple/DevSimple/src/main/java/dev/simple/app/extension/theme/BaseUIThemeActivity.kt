@@ -2,8 +2,7 @@ package dev.simple.app.extension.theme
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseAppActivity
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.BaseActivity
 import dev.simple.app.base.inter.BindingActivityView
@@ -13,9 +12,8 @@ import dev.simple.app.controller.ui.theme.ActivityUITheme
  * detail: Base Theme Activity
  * @author Ttt
  * 在 [BaseActivity] 基础上封装 UITheme 样式 Intent 传参控制处理
- * 如果无特殊需求请使用 [BaseAppActivity]
  */
-abstract class BaseUIThemeActivity<VDB : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseUIThemeActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val bindLayoutId: Int = 0,
     private val bindLayoutView: BindingActivityView? = null,
     vmType: ActivityVMType = ActivityVMType.ACTIVITY

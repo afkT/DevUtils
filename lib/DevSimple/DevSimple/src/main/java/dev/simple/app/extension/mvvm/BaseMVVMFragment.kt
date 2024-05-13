@@ -1,8 +1,7 @@
 package dev.simple.app.extension.mvvm
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseAppFragment
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
 import dev.simple.app.extension.theme.BaseUIThemeFragment
@@ -10,10 +9,9 @@ import dev.simple.app.extension.theme.BaseUIThemeFragment
 /**
  * detail: Base MVVM Fragment
  * @author Ttt
- * 在 [BaseUIThemeFragment] 基础上进行关联赋值
- * 如果无特殊需求请使用 [BaseAppFragment]
+ * 在 [BaseUIThemeFragment] 基础上进行 ViewModel 关联赋值
  */
-abstract class BaseMVVMFragment<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseMVVMFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseUIThemeFragment<VDB, VM> {
 
     private var viewModelId: Int

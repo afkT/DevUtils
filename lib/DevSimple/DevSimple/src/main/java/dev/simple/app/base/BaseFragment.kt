@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
 import dev.DevUtils
 import dev.base.expand.content.DevBaseContentMVVMFragment
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.simple.ISimpleAgile
 import dev.simple.app.controller.BaseUIController
 import dev.simple.app.controller.BaseVMController
@@ -20,7 +20,7 @@ import dev.utils.common.ClassUtils
  * detail: Base MVVM Fragment
  * @author Ttt
  */
-abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(
+abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val vmType: FragmentVMType = FragmentVMType.FRAGMENT
 ) : DevBaseContentMVVMFragment<VDB, VM>(),
     IController, ISimpleAgile {

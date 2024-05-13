@@ -1,7 +1,7 @@
 package dev.simple.app.controller.loading
 
 import dev.base.utils.assist.DevBaseContentAssist
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.widget.assist.ViewAssist
 
 /**
@@ -10,7 +10,7 @@ import dev.widget.assist.ViewAssist
  * 区别于 Loading Skeleton 只用在首次进入管理控制
  * 该 Loading 是重复性使用在 Content Layout 上层显示
  */
-class BaseLoadingController<VM : BaseViewModel>(
+class BaseLoadingController<VM : BaseAppViewModel>(
     contentAssist: DevBaseContentAssist,
     FORCED_SHOW: Boolean = true
 ) : BaseViewAssistController<VM>(contentAssist, FORCED_SHOW) {

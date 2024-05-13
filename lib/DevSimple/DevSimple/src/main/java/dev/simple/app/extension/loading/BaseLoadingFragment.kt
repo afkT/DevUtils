@@ -1,7 +1,7 @@
 package dev.simple.app.extension.loading
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
 import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
@@ -14,7 +14,7 @@ import dev.simple.app.controller.ui.theme.FragmentUITheme
  * 区别于 Loading Skeleton 只用在首次进入管理控制
  * 该 Loading 是重复性使用在 Content Layout 上层显示
  */
-abstract class BaseLoadingFragment<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseLoadingFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseLoadingSkeletonFragment<VDB, VM> {
 
     // ==========

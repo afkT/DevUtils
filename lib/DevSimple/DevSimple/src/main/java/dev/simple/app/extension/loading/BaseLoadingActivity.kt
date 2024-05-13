@@ -1,7 +1,7 @@
 package dev.simple.app.extension.loading
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseViewModel
+import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.base.simple.factory.SimpleActivityIMPL
@@ -14,7 +14,7 @@ import dev.simple.app.controller.ui.theme.ActivityUITheme
  * 区别于 Loading Skeleton 只用在首次进入管理控制
  * 该 Loading 是重复性使用在 Content Layout 上层显示
  */
-abstract class BaseLoadingActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseLoadingActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     BaseLoadingSkeletonActivity<VDB, VM> {
 
     // ==========
