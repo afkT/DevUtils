@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 /**
- * detail: ActivityLifecycleCallbacks 抽象类
+ * detail: Activity LifecycleCallbacks 抽象类
  * @author Ttt
  */
 public abstract class AbstractActivityLifecycle
