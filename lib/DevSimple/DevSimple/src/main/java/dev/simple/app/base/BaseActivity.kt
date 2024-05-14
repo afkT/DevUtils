@@ -6,6 +6,8 @@ import androidx.databinding.ViewDataBinding
 import dev.DevUtils
 import dev.base.expand.content.DevBaseContentMVVMActivity
 import dev.simple.app.BaseAppViewModel
+import dev.simple.app.base.lifecycle.IActivityLifecycle
+import dev.simple.app.base.lifecycle.LifecycleManager
 import dev.simple.app.base.simple.ISimpleAgile
 import dev.simple.app.controller.BaseKeyEventController
 import dev.simple.app.controller.BaseUIController
@@ -21,7 +23,7 @@ import dev.utils.common.ClassUtils
 abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseContentMVVMActivity<VDB, VM>(),
-    IController, ISimpleAgile {
+    IController, ISimpleAgile, IActivityLifecycle {
 
     // Activity
     open val mActivity: AppCompatActivity get() = this
@@ -43,6 +45,11 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
         // 初始化 UI 样式
         uiController.initialize(this)
         super.onCreate(savedInstanceState)
+        // 是否监听生命周期 ( 实现了则表示需要监听 )
+        activityLifecycleIMPL()?.let { impl ->
+            // 添加 Activity 生命周期通知事件
+            LifecycleManager.activity().addListener(this, impl)
+        }
         // 内部初始化前调用
         simpleInit()
         // 内部初始化

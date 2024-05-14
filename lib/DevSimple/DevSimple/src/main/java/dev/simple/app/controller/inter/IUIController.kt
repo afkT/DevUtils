@@ -7,7 +7,6 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import dev.base.utils.assist.DevBaseContentAssist
 import dev.utils.app.assist.WindowAssist
-import dev.utils.common.able.Operatorable
 
 /**
  * detail: UI 基类控制器接口
@@ -17,10 +16,9 @@ interface IUIController {
 
     /**
      * Activity onCreate 创建之前触发
-     * @return Operatorable.OperatorByParam3<Void, Activity, WindowAssist, IUIController>
+     * @return [onCreateBeforeMethod]
      */
-    fun onCreateBefore(): Operatorable.OperatorByParam3<Void, Activity,
-            WindowAssist, IUIController>? = null
+    fun onCreateBefore(): onCreateBeforeMethod? = null
 
     /**
      * [DevBaseContentAssist] 是否安全处理
@@ -117,4 +115,16 @@ interface IUIController {
         inflater: LayoutInflater,
         owner: LifecycleOwner,
     ): View? = null
+}
+
+/**
+ * detail: Activity onCreate 创建之前触发
+ * @author Ttt
+ */
+interface onCreateBeforeMethod {
+    fun execute(
+        activity: Activity,
+        window: WindowAssist,
+        control: IUIController
+    )
 }
