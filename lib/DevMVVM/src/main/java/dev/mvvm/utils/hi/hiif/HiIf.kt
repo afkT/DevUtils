@@ -78,13 +78,11 @@ inline fun <reified R> Any?.hiIfNotNullAs(
 
 /**
  * 目标对象转换 [R] 成功则触发 [hiIf] 反之触发 [hiIfNot]
- *
  * ```
  * serializable.hiIfNotNullAs<User> { user ->
  *  log(poster.name)
  * }
  * ```
- *
  * @param hiIf 成功转换 [R] 执行方法体
  * @param hiIfNot 转换失败 [R] 执行方法体
  * @return 调用对象

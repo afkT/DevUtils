@@ -61,7 +61,7 @@ public final class ROMUtils {
     private static final String VERSION_PROPERTY_ZTE     = "ro.build.MiFavor_version";
     private static final String VERSION_PROPERTY_ONEPLUS = "ro.rom.version";
     private static final String VERSION_PROPERTY_NUBIA   = "ro.build.rom.id";
-    private final static String UNKNOWN                  = "unknown";
+    private static final String UNKNOWN                  = "unknown";
 
     /**
      * 判断 ROM 是否 Huawei ( 华为 )

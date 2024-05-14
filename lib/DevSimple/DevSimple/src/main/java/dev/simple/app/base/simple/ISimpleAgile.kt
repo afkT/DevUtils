@@ -77,7 +77,7 @@ interface ISimpleAgile {
 
     /**
      * [BaseActivity] 执行顺序
-     *
+     * =
      * [BaseActivity.onCreate]
      * // 内部初始化前调用
      * [simpleInit]
@@ -105,7 +105,7 @@ interface ISimpleAgile {
 
     /**
      * [BaseFragment] 执行顺序
-     *
+     * =
      * [BaseFragment.onCreateView]
      * // 内部初始化前调用
      * [simpleInit]
@@ -113,7 +113,7 @@ interface ISimpleAgile {
      * innerInitialize()
      * // 内部初始化后开始流程调用
      * [simpleStart]
-     *
+     * =
      * [BaseFragment.onViewCreated]
      * // 初始化 ViewModel
      * initViewModel()

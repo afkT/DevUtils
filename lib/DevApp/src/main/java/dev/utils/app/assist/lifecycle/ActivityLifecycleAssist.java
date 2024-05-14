@@ -7,6 +7,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,30 +47,11 @@ public final class ActivityLifecycleAssist {
     }
 
     public ActivityLifecycleAssist(final Context context) {
-        this(getApplication(context));
+        this(DevUtils.getApplication(context));
     }
 
     public ActivityLifecycleAssist(final Application application) {
         this.mApplication = application;
-    }
-
-    // ==========
-    // = 内部方法 =
-    // ==========
-
-    /**
-     * 获取 Application
-     * @param context {@link Context}
-     * @return {@link Application}
-     */
-    private static Application getApplication(final Context context) {
-        if (context == null) return null;
-        try {
-            return (Application) context.getApplicationContext();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getApplication");
-        }
-        return null;
     }
 
     // =============
@@ -118,6 +101,8 @@ public final class ActivityLifecycleAssist {
         this.mAbstractActivityLifecycle = abstractActivityLifecycle;
         return this;
     }
+
+    // =
 
     /**
      * 注册绑定 Activity 生命周期事件处理
@@ -208,7 +193,7 @@ public final class ActivityLifecycleAssist {
 
         @Override
         public void onActivityCreated(
-                Activity activity,
+                @NonNull Activity activity,
                 Bundle savedInstanceState
         ) {
             setTopActivity(activity);
@@ -219,7 +204,7 @@ public final class ActivityLifecycleAssist {
         }
 
         @Override
-        public void onActivityStarted(Activity activity) {
+        public void onActivityStarted(@NonNull Activity activity) {
             if (!mBackground) {
                 setTopActivity(activity);
             }
@@ -235,7 +220,7 @@ public final class ActivityLifecycleAssist {
         }
 
         @Override
-        public void onActivityResumed(Activity activity) {
+        public void onActivityResumed(@NonNull Activity activity) {
             setTopActivity(activity);
             // Activity 准备可见, 设置为非后台 Activity
             if (mBackground) {
@@ -249,14 +234,14 @@ public final class ActivityLifecycleAssist {
         }
 
         @Override
-        public void onActivityPaused(Activity activity) {
+        public void onActivityPaused(@NonNull Activity activity) {
             if (mAbstractActivityLifecycle != null) {
                 mAbstractActivityLifecycle.onActivityPaused(activity);
             }
         }
 
         @Override
-        public void onActivityStopped(Activity activity) {
+        public void onActivityStopped(@NonNull Activity activity) {
             // 检测当前的 Activity 是否因为 Configuration 的改变被销毁了
             if (activity.isChangingConfigurations()) {
                 --mConfigCount;
@@ -275,8 +260,8 @@ public final class ActivityLifecycleAssist {
 
         @Override
         public void onActivitySaveInstanceState(
-                Activity activity,
-                Bundle outState
+                @NonNull Activity activity,
+                @NonNull Bundle outState
         ) {
             if (mAbstractActivityLifecycle != null) {
                 mAbstractActivityLifecycle.onActivitySaveInstanceState(activity, outState);
@@ -284,7 +269,7 @@ public final class ActivityLifecycleAssist {
         }
 
         @Override
-        public void onActivityDestroyed(Activity activity) {
+        public void onActivityDestroyed(@NonNull Activity activity) {
             mActivityLists.remove(activity);
             // 通知 Activity 销毁
             consumeOnActivityDestroyedListener(activity);

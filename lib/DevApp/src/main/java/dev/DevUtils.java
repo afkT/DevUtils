@@ -161,6 +161,30 @@ public final class DevUtils {
      * @return {@link Application}
      */
     public static Application getApplication() {
+        return getApplication(DevUtils.sContext);
+    }
+
+    /**
+     * 获取全局 Application
+     * @param context {@link Context}
+     * @return {@link Application}
+     */
+    public static Application getApplication(final Context context) {
+        if (DevUtils.sApplication != null) return DevUtils.sApplication;
+        if (context == null) return null;
+        try {
+            return (Application) context.getApplicationContext();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getApplication");
+        }
+        return null;
+    }
+
+    /**
+     * 获取全局 Application
+     * @return {@link Application}
+     */
+    public static Application getApplication2() {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
@@ -170,6 +194,16 @@ public final class DevUtils {
             LogPrintUtils.eTag(TAG, e, "getApplication");
         }
         return null;
+    }
+
+    /**
+     * 获取全局 Application
+     * @return {@link Application}
+     */
+    public static Application getApplicationExt() {
+        Application application = getApplication();
+        if (application != null) return application;
+        return getApplication2();
     }
 
     // =

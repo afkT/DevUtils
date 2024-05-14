@@ -25,14 +25,14 @@ import okhttp3.OkHttpClient
  * <p></p>
  * 因通知回调功能支持方式不同, 选择的技术方案不同, 各有利弊
  * 已提供切换实现方式方法 [setPlanType]
- *
+ * =
  * 方式二: [OperationPlanB]
  * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 创建一个新的 Callback
  * 并把 listener map 对应 url 监听的 Callback List toArray 传入进行通知使用
  * 优点: 可以对 List 进行弱引用处理, 会自动进行释放资源
  * 缺点: 对 listener map 新增 url key add listener 在请求之后添加
  *      则会无法触发 ( 因为在请求拦截时候就已传入 Callback List toArray )
- *
+ * =
  * 方式一 ( 默认 ): [OperationPlanA]
  * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [OperationPlanA.innerCallback] 无需每次 new Callback
  * 在统一回调内获取 listener map 对应 url 监听的 Callback List 并进行通知

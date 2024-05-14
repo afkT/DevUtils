@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 /**
  * detail: Activity LifecycleCallbacks 抽象类
  * @author Ttt
@@ -13,35 +15,35 @@ public abstract class AbstractActivityLifecycle
 
     @Override
     public void onActivityCreated(
-            Activity activity,
+            @NonNull Activity activity,
             Bundle savedInstanceState
     ) {
     }
 
     @Override
-    public void onActivityStarted(Activity activity) {
+    public void onActivityStarted(@NonNull Activity activity) {
     }
 
     @Override
-    public void onActivityResumed(Activity activity) {
+    public void onActivityResumed(@NonNull Activity activity) {
     }
 
     @Override
-    public void onActivityPaused(Activity activity) {
+    public void onActivityPaused(@NonNull Activity activity) {
     }
 
     @Override
-    public void onActivityStopped(Activity activity) {
+    public void onActivityStopped(@NonNull Activity activity) {
     }
 
     @Override
     public void onActivitySaveInstanceState(
-            Activity activity,
-            Bundle outState
+            @NonNull Activity activity,
+            @NonNull Bundle outState
     ) {
     }
 
     @Override
-    public void onActivityDestroyed(Activity activity) {
+    public void onActivityDestroyed(@NonNull Activity activity) {
     }
 }

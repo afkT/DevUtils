@@ -62,6 +62,8 @@ public final class FragmentLifecycleAssist {
         return this;
     }
 
+    // =
+
     /**
      * 注册绑定 Fragment 生命周期事件处理
      * @return {@link FragmentLifecycleAssist}
