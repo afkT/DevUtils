@@ -22,6 +22,8 @@ import okhttp3.HttpUrl
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
  * DevMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
+ * DevSimple README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevHttpCapture Api

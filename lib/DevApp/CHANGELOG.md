@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.4.6 *(2024-05-15)*
+----------------------------
+
+* `[Build]` bump minSdkVersion to 19
+
+* `[Add]` 新增 KeyValueAssist 键值对辅助类
+
+* `[Add]` 新增 ThisActivityLifecycleAssist 当前 Activity 生命周期辅助类
+
+* `[Add]` 新增 FragmentLifecycleAssist Fragment 生命周期监听辅助类
+
 Version 2.4.5 *(2024-05-06)*
 ----------------------------
 

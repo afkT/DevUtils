@@ -31,8 +31,8 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 245,
-            dev_app_versionName                      : "2.4.5",
+            dev_app_versionCode                      : 246,
+            dev_app_versionName                      : "2.4.6",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
             dev_assist_versionCode                   : 141,
@@ -49,6 +49,10 @@ ext {
             // DevMVVM - DataBinding 工具类库
             dev_mvvm_versionCode                     : 103,
             dev_mvvm_versionName                     : "1.0.3",
+
+            // DevSimple - 简单敏捷开发库
+            dev_simple_versionCode                   : 100,
+            dev_simple_versionName                   : "1.0.0",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 113,
@@ -82,9 +86,5 @@ ext {
             // DevJava - Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                     : 151,
             dev_java_version                         : "1.5.1",
-
-            // DevSimple - 简单敏捷开发库
-            dev_simple_versionCode                   : 100,
-            dev_simple_versionName                   : "1.0.0",
     ]
 }
