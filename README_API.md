@@ -16,7 +16,7 @@
 		<img alt="API" src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat" />
 	</a>
 	<a href="https://search.maven.org/search?q=io.github.afkt">
-		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.5-yellow.svg" />
+		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.6-yellow.svg" />
 	</a>
 	<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md">
 		<img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg" />
@@ -170,7 +170,7 @@
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.5'
+implementation 'io.github.afkt:DevAppX:2.4.6'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.4.1'

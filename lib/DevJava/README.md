@@ -1083,6 +1083,19 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | notHasFlags | 是否不存在 flags value |
 
 
+* **键值对 Assist ->** [KeyValueAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/KeyValueAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getValue | 获取 Value |
+| setValue | 设置 Value |
+| removeValue | 移除 Value |
+| getKeyValueMaps | 获取 Key Value Map |
+| containsKey | 是否存在 Key |
+| containsValue | 是否存在 Value |
+| isEmpty | 判断 Value 是否为 null |
+
+
 * **时间均值计算辅助类 ->** [TimeAverager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/TimeAverager.java)
 
 | 方法 | 注释 |
