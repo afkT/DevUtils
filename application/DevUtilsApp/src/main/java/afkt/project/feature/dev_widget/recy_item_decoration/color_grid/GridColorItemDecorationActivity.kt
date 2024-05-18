@@ -2,11 +2,11 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.ButtonValue
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityGridItemDecorationBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.common.GridHorizontalTextAdapter
 import afkt.project.feature.dev_widget.recy_item_decoration.common.GridVerticalTextAdapter
-import afkt.project.model.item.ButtonValue
-import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.RecyclerView
 import com.therouter.router.Route
 import dev.utils.app.RecyclerViewUtils

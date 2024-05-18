@@ -2,6 +2,7 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.ArticleBean1Item
 import afkt.project.feature.ui_effect.recy_adapter.BannerBeanItem
@@ -23,7 +24,6 @@ import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.Hea
 import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.ShapeableImageItemViewBinder
 import afkt.project.feature.ui_effect.recy_adapter.convertMainDataItem
 import afkt.project.feature.ui_effect.recy_adapter.createMainData
-import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
 import com.drakeet.multitype.MultiTypeAdapter

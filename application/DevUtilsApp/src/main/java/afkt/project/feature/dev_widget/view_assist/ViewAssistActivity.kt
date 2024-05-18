@@ -2,9 +2,9 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.ButtonValue
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityViewAssistBinding
-import afkt.project.model.item.ButtonValue
-import afkt.project.model.item.RouterPath
 import android.view.LayoutInflater
 import android.view.View
 import com.therouter.router.Route

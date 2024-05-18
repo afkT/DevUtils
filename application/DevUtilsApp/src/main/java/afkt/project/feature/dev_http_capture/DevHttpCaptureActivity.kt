@@ -2,8 +2,8 @@ package afkt.project.feature.dev_http_capture
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.item.RouterPath
 import android.graphics.Color
 import com.therouter.router.Route
 import dev.base.widget.BaseTextView

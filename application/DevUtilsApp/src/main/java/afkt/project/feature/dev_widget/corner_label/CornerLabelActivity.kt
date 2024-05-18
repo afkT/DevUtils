@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.corner_label
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
-import afkt.project.model.item.RouterPath
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout

@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.bean.CommodityItem
+import afkt.project.data_model.bean.CommodityItem.Companion.newCommodityItem
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.bean.CommodityItem
-import afkt.project.model.bean.CommodityItem.Companion.newCommodityItem
-import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
 import com.therouter.router.Route

@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.text_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.model.item.RouterPath
+import afkt.project.data_model.button.RouterPath
 import androidx.viewbinding.ViewBinding
 import com.therouter.router.Route
 

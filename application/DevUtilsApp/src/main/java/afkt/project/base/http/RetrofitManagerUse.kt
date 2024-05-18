@@ -1,6 +1,6 @@
 package afkt.project.base.http
 
-import afkt.project.model.bean.ArticleBean
+import afkt.project.data_model.bean.ArticleBean
 import dev.DevHttpCapture
 import dev.DevHttpManager
 import dev.DevUtils

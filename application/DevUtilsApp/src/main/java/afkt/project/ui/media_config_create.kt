@@ -1,4 +1,4 @@
-package afkt.project.utils
+package afkt.project.ui
 
 import android.app.Activity
 import android.content.Context

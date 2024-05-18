@@ -1,4 +1,4 @@
-package afkt.project.ui;
+package afkt.project.ui.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,6 +19,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * detail: 滑动 ImageView ( 未调整优化 )
+ *
  * @author Ttt
  * https://blog.csdn.net/qq_18833399/article/details/60958658
  * https://blog.csdn.net/csdnwangzhan/article/details/51597142
@@ -458,6 +459,7 @@ public class SlideImageView
 
     /**
      * 设置滑动方向
+     *
      * @param scrollBottom 是否向下滑动
      */
     public SlideImageView setScrollDirection(boolean scrollBottom) {

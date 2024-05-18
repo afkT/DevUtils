@@ -1,10 +1,10 @@
 package afkt.project
 
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.ButtonList
+import afkt.project.data_model.button.ButtonValue
 import afkt.project.databinding.ActivityMainBinding
 import afkt.project.feature.ButtonAdapter
-import afkt.project.model.item.ButtonList
-import afkt.project.model.item.ButtonValue
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.permission.IPermissionEngine

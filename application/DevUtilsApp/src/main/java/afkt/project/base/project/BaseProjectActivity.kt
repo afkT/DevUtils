@@ -1,12 +1,12 @@
-package afkt.project.base.app
+package afkt.project.base.project
 
+import afkt.project.base.app.FloatingLifecycle
 import afkt.project.feature.other_function.floating.Utils2
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppActivity
-import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
@@ -16,8 +16,8 @@ import dev.utils.app.assist.floating.IFloatingActivity
  * detail: 项目 BaseActivity
  * @author Ttt
  */
-class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> : BaseAppActivity<VDB, VM>,
-    IFloatingActivity {
+class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel> :
+    BaseAppActivity<VDB, VM>, IFloatingActivity {
 
     // ==========
     // = 构造函数 =

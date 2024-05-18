@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityChipBinding
-import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.chip.Chip

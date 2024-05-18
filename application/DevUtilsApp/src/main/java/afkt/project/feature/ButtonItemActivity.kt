@@ -2,10 +2,10 @@ package afkt.project.feature
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.ButtonList
+import afkt.project.data_model.button.ButtonValue
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.item.ButtonList
-import afkt.project.model.item.ButtonValue
-import afkt.project.model.item.RouterPath
 import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 

@@ -1,6 +1,6 @@
 package afkt.project.feature.ui_effect.recy_adapter.item_sticky
 
-import afkt.project.model.bean.AdapterBean
+import afkt.project.data_model.bean.AdapterBean
 import dev.utils.DevFinal
 import dev.utils.common.DateUtils
 

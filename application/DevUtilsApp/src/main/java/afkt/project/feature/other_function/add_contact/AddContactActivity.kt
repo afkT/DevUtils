@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.add_contact
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityAddContactBinding
-import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentUris

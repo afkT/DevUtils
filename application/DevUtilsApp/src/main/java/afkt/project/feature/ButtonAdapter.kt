@@ -1,8 +1,8 @@
 package afkt.project.feature
 
 import afkt.project.R
+import afkt.project.data_model.button.ButtonValue
 import afkt.project.databinding.BaseViewButtonBinding
-import afkt.project.model.item.ButtonValue
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH

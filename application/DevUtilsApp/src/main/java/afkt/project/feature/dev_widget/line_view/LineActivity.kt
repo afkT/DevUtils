@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.line_view
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityLineBinding
-import afkt.project.model.item.RouterPath
 import android.graphics.Color
 import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper

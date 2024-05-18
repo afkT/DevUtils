@@ -1,6 +1,6 @@
 package afkt.project.feature.framework.mvvm
 
-import afkt.project.model.bean.ArticleBean
+import afkt.project.data_model.bean.ArticleBean
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package afkt.project.model.bean
+package afkt.project.data_model.bean
 
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils

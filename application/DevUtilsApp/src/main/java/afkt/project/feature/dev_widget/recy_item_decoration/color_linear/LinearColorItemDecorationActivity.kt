@@ -2,11 +2,11 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_linear
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.ButtonValue
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityLinearItemDecorationBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearHorizontalTextAdapter
 import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearVerticalTextAdapter
-import afkt.project.model.item.ButtonValue
-import afkt.project.model.item.RouterPath
 import androidx.recyclerview.widget.RecyclerView
 import com.therouter.router.Route
 import dev.utils.app.RecyclerViewUtils

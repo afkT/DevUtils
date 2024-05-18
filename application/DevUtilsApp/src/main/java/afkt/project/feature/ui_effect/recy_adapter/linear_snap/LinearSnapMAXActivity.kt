@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.recy_adapter.linear_snap
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.bean.ItemBean
+import afkt.project.data_model.bean.ItemBean.Companion.newItemBean
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.bean.ItemBean
-import afkt.project.model.bean.ItemBean.Companion.newItemBean
-import afkt.project.model.item.RouterPath
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager

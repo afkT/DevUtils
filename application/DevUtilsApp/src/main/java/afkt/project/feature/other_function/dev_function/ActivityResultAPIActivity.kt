@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityActivityResultApiBinding
-import afkt.project.model.item.RouterPath
 import android.Manifest
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContracts

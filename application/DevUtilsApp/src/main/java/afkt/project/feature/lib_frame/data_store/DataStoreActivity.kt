@@ -2,8 +2,8 @@ package afkt.project.feature.lib_frame.data_store
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityDataStoreBinding
-import afkt.project.model.item.RouterPath
 import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
 import kotlinx.coroutines.launch

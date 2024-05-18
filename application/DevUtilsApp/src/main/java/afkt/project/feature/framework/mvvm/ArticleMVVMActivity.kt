@@ -3,10 +3,10 @@ package afkt.project.feature.framework.mvvm
 import afkt.project.BR
 import afkt.project.R
 import afkt.project.base.app.BaseMVVMActivity
+import afkt.project.data_model.bean.ArticleBean
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityArticleMvvmBinding
 import afkt.project.feature.framework.ArticleAdapter
-import afkt.project.model.bean.ArticleBean
-import afkt.project.model.item.RouterPath
 import android.view.View
 import androidx.lifecycle.Observer
 import com.therouter.router.Route

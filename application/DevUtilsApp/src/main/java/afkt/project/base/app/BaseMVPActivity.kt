@@ -1,7 +1,7 @@
 package afkt.project.base.app
 
 import afkt.project.R
-import afkt.project.model.item.ButtonValue
+import afkt.project.data_model.button.ButtonValue
 import android.app.Activity
 import android.content.Context
 import android.content.Intent

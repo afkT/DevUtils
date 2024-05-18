@@ -1,4 +1,4 @@
-package afkt.project.model.bean
+package afkt.project.data_model.bean
 
 /**
  * detail: 文章信息实体类

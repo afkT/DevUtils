@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.status_bar
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityStatusBarBinding
-import afkt.project.model.item.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout

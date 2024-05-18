@@ -1,7 +1,7 @@
 package afkt.project.feature.framework.mvp
 
 import afkt.project.base.http.RetrofitManagerUse
-import afkt.project.model.bean.ArticleBean
+import afkt.project.data_model.bean.ArticleBean
 import androidx.lifecycle.LifecycleOwner
 import dev.base.expand.mvp.MVP
 import dev.base.expand.mvp.MVP.IModel
