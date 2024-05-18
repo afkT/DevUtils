@@ -4,7 +4,6 @@ import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
-import dev.simple.app.base.simple.factory.SimpleActivityIMPL
 import dev.simple.app.controller.loading.BaseLoadingController
 import dev.simple.app.controller.ui.theme.ActivityUITheme
 
@@ -25,31 +24,29 @@ abstract class BaseLoadingActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
-        simple_Init: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
-    ) : super(bindLayoutId, bindViewModelId, vmType) {
-        simpleFactory = SimpleActivityIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
-        )
-    }
+    ) : super(
+        bindLayoutId, bindViewModelId, vmType,
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+    )
 
     constructor(
         bindLayoutView: BindingActivityView?,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
-        simple_Init: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseLoadingActivity<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
-    ) : super(bindLayoutView, bindViewModelId, vmType) {
-        simpleFactory = SimpleActivityIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
-        )
-    }
+    ) : super(
+        bindLayoutView, bindViewModelId, vmType,
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+    )
 
     // ===========
     // = Loading =
@@ -69,37 +66,5 @@ abstract class BaseLoadingActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>
 
         // 初始化 ViewModel loadingController
         loadingController.initialize(viewModel)
-    }
-
-    // ====================
-    // = 敏捷简化开发扩展接口 =
-    // ====================
-
-    private val simpleFactory: SimpleActivityIMPL<BaseLoadingActivity<VDB, VM>>
-
-    override fun simpleInit() {
-        simpleFactory.simpleInit(this)
-    }
-
-    override fun simpleStart() {
-        simpleFactory.simpleStart(this)
-    }
-
-    override fun simpleAgile() {
-        simpleFactory.simpleAgile(this)
-    }
-
-    override fun simplePreLoad() {
-        simpleFactory.simplePreLoad(this)
-    }
-
-    // ===========================
-    // = 敏捷简化开发扩展 - UITheme =
-    // ===========================
-
-    override fun createActivityUITheme(theme: ActivityUITheme): ActivityUITheme {
-        return super.createActivityUITheme(
-            simpleFactory.simpleUITheme(theme)
-        )
     }
 }

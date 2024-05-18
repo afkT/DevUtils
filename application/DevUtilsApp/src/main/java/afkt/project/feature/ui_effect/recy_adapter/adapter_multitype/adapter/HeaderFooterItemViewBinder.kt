@@ -13,7 +13,8 @@ import dev.base.adapter.newBindingViewHolder
  * detail: Header、Footer Adapter
  * @author Ttt
  */
-class HeaderFooterItemViewBinder : ItemViewBinder<HeaderFooterItem, DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>>() {
+class HeaderFooterItemViewBinder :
+    ItemViewBinder<HeaderFooterItem, DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

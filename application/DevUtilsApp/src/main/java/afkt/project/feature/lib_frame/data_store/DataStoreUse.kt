@@ -13,7 +13,7 @@ object DataStoreUse {
     val TAG = DataStoreUse::class.java.simpleName
 
     private val spStoreName: String
-//        get() = "spStore" // OkioStorage createConnection() There are multiple DataStores active for the same file: $path. You should
+        //        get() = "spStore" // OkioStorage createConnection() There are multiple DataStores active for the same file: $path. You should
         get() = RandomUtils.getRandomLetters(10)
 
     suspend fun use(activity: AppCompatActivity) {

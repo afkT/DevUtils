@@ -15,7 +15,8 @@ import dev.utils.app.helper.quick.QuickHelper
  * detail: 一级分类 Adapter
  * @author Ttt
  */
-class Classify1ItemViewBinder : ItemViewBinder<ClassifyBeanItem1, DevBaseViewBindingVH<AdapterConcatClassifyBinding>>() {
+class Classify1ItemViewBinder :
+    ItemViewBinder<ClassifyBeanItem1, DevBaseViewBindingVH<AdapterConcatClassifyBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

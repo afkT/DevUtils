@@ -1,8 +1,8 @@
 package afkt.project.feature.dev_sku
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_10
 import afkt.project.databinding.SkuDialogSpecBinding
-import afkt.project.utils.IMAGE_ROUND_10
 import android.app.Dialog
 import android.view.Gravity
 import androidx.fragment.app.FragmentActivity

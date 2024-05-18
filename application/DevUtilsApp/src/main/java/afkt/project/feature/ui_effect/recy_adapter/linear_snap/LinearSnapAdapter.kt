@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.recy_adapter.linear_snap
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterLinearSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.utils.IMAGE_ROUND_10
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
@@ -17,7 +17,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseViewBindingVH<AdapterLinearSnapBinding>>() {
+class LinearSnapAdapter(data: List<ItemBean>) :
+    DevDataAdapter<ItemBean, DevBaseViewBindingVH<AdapterLinearSnapBinding>>() {
 
     init {
         setDataList(data, false)

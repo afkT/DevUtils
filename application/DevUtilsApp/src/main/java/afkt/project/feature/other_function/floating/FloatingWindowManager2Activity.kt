@@ -15,7 +15,13 @@ import android.widget.FrameLayout
 import com.therouter.router.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.ViewUtils
-import dev.utils.app.assist.floating.*
+import dev.utils.app.assist.floating.DevFloatingCommon
+import dev.utils.app.assist.floating.DevFloatingEdgeIMPL
+import dev.utils.app.assist.floating.DevFloatingListener
+import dev.utils.app.assist.floating.DevFloatingTouchIMPL2
+import dev.utils.app.assist.floating.FloatingWindowManagerAssist2
+import dev.utils.app.assist.floating.IFloatingActivity
+import dev.utils.app.assist.floating.IFloatingOperate
 import dev.utils.app.toast.ToastTintUtils
 
 /**

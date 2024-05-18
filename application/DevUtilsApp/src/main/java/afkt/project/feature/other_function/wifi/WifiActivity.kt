@@ -106,7 +106,8 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                             override fun onGranted() {
                                                 isOpenAPING = true
                                                 // 设置热点 Wifi 监听
-                                                wifiHotUtils.setOnWifiAPListener(object : WifiHotUtils.OnWifiAPListener {
+                                                wifiHotUtils.setOnWifiAPListener(object :
+                                                    WifiHotUtils.OnWifiAPListener {
                                                     override fun onStarted(wifiConfiguration: WifiConfiguration) {
                                                         val wifiAp =
                                                             "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"

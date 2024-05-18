@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterPagerSnapBinding
 import afkt.project.model.bean.ItemBean
-import afkt.project.utils.IMAGE_ROUND_10
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -18,7 +18,8 @@ import dev.mvvm.utils.toSource
  * detail: RecyclerView ViewPager 效果 Adapter
  * @author Ttt
  */
-class PagerSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseViewDataBindingVH<AdapterPagerSnapBinding>>() {
+class PagerSnapAdapter(data: List<ItemBean>) :
+    DevDataAdapter<ItemBean, DevBaseViewDataBindingVH<AdapterPagerSnapBinding>>() {
 
     init {
         setDataList(data, false)

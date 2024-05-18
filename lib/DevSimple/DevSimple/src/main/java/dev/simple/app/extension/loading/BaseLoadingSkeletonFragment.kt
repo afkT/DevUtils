@@ -5,7 +5,6 @@ import dev.simple.app.BaseAppFragment
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.inter.BindingFragmentView
-import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
 import dev.simple.app.controller.loading.BaseLoadingSkeletonController
 import dev.simple.app.controller.ui.skeleton.PageLoadingSkeletonFactory
 import dev.simple.app.controller.ui.theme.FragmentUITheme
@@ -26,31 +25,29 @@ abstract class BaseLoadingSkeletonFragment<VDB : ViewDataBinding, VM : BaseAppVi
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
-        simple_Init: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
-    ) : super(bindLayoutId, bindViewModelId, vmType) {
-        simpleFactory = SimpleFragmentIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
-        )
-    }
+    ) : super(
+        bindLayoutId, bindViewModelId, vmType,
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+    )
 
     constructor(
         bindLayoutView: BindingFragmentView,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
-        simple_Init: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseLoadingSkeletonFragment<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
-    ) : super(bindLayoutView, bindViewModelId, vmType) {
-        simpleFactory = SimpleFragmentIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
-        )
-    }
+    ) : super(
+        bindLayoutView, bindViewModelId, vmType,
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+    )
 
     // ===========
     // = Loading =
@@ -73,37 +70,5 @@ abstract class BaseLoadingSkeletonFragment<VDB : ViewDataBinding, VM : BaseAppVi
 
         // 初始化 ViewModel loadingSkeletonController
         loadingSkeletonController.initialize(viewModel)
-    }
-
-    // ====================
-    // = 敏捷简化开发扩展接口 =
-    // ====================
-
-    private val simpleFactory: SimpleFragmentIMPL<BaseLoadingSkeletonFragment<VDB, VM>>
-
-    override fun simpleInit() {
-        simpleFactory.simpleInit(this)
-    }
-
-    override fun simpleStart() {
-        simpleFactory.simpleStart(this)
-    }
-
-    override fun simpleAgile() {
-        simpleFactory.simpleAgile(this)
-    }
-
-    override fun simplePreLoad() {
-        simpleFactory.simplePreLoad(this)
-    }
-
-    // ===========================
-    // = 敏捷简化开发扩展 - UITheme =
-    // ===========================
-
-    override fun createFragmentUITheme(theme: FragmentUITheme): FragmentUITheme {
-        return super.createFragmentUITheme(
-            simpleFactory.simpleUITheme(theme)
-        )
     }
 }

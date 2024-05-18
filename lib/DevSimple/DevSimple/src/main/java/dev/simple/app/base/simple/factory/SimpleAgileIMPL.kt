@@ -7,25 +7,25 @@ import dev.simple.app.controller.ui.theme.FragmentUITheme
 // = Activity =
 // ============
 
-class SimpleActivityIMPL<SimpleTClass> private constructor(
-    simple_Init: ((SimpleTClass) -> Unit)?,
-    simple_Start: ((SimpleTClass) -> Unit)?,
-    simple_PreLoad: ((SimpleTClass) -> Unit)?,
-    simple_Agile: ((SimpleTClass) -> Unit)?,
+class SimpleActivityIMPL private constructor(
+    simple_Init: ((Any) -> Unit)?,
+    simple_Start: ((Any) -> Unit)?,
+    simple_PreLoad: ((Any) -> Unit)?,
+    simple_Agile: ((Any) -> Unit)?,
     simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)?
-) : BaseSimpleAgile<SimpleTClass, ActivityUITheme>(
+) : BaseSimpleAgile<Any, ActivityUITheme>(
     simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
 ) {
 
     companion object {
 
-        fun <SimpleTClass> of(
-            simple_Init: ((SimpleTClass) -> Unit)? = null,
-            simple_Start: ((SimpleTClass) -> Unit)? = null,
-            simple_PreLoad: ((SimpleTClass) -> Unit)? = null,
-            simple_Agile: ((SimpleTClass) -> Unit)? = null,
+        fun of(
+            simple_Init: ((Any) -> Unit)? = null,
+            simple_Start: ((Any) -> Unit)? = null,
+            simple_PreLoad: ((Any) -> Unit)? = null,
+            simple_Agile: ((Any) -> Unit)? = null,
             simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
-        ): SimpleActivityIMPL<SimpleTClass> {
+        ): SimpleActivityIMPL {
             return SimpleActivityIMPL(
                 simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
             )
@@ -37,25 +37,25 @@ class SimpleActivityIMPL<SimpleTClass> private constructor(
 // = Fragment =
 // ============
 
-class SimpleFragmentIMPL<SimpleTClass> private constructor(
-    simple_Init: ((SimpleTClass) -> Unit)?,
-    simple_Start: ((SimpleTClass) -> Unit)?,
-    simple_PreLoad: ((SimpleTClass) -> Unit)?,
-    simple_Agile: ((SimpleTClass) -> Unit)?,
+class SimpleFragmentIMPL private constructor(
+    simple_Init: ((Any) -> Unit)?,
+    simple_Start: ((Any) -> Unit)?,
+    simple_PreLoad: ((Any) -> Unit)?,
+    simple_Agile: ((Any) -> Unit)?,
     simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)?
-) : BaseSimpleAgile<SimpleTClass, FragmentUITheme>(
+) : BaseSimpleAgile<Any, FragmentUITheme>(
     simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
 ) {
 
     companion object {
 
-        fun <SimpleTClass> of(
-            simple_Init: ((SimpleTClass) -> Unit)? = null,
-            simple_Start: ((SimpleTClass) -> Unit)? = null,
-            simple_PreLoad: ((SimpleTClass) -> Unit)? = null,
-            simple_Agile: ((SimpleTClass) -> Unit)? = null,
+        fun of(
+            simple_Init: ((Any) -> Unit)? = null,
+            simple_Start: ((Any) -> Unit)? = null,
+            simple_PreLoad: ((Any) -> Unit)? = null,
+            simple_Agile: ((Any) -> Unit)? = null,
             simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
-        ): SimpleFragmentIMPL<SimpleTClass> {
+        ): SimpleFragmentIMPL {
             return SimpleFragmentIMPL(
                 simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
             )

@@ -91,7 +91,8 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
 //            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
 
         binding.vidRv.adapter =
-            object : DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
+            object :
+                DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
 
                 init {
                     setDataList(newAdapterBeanList(15), false)

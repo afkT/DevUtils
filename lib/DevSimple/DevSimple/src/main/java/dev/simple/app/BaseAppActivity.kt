@@ -32,28 +32,6 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 //        vmType: ActivityVMType = ActivityVMType.ACTIVITY
 //    ) : super(bindLayoutView, bindViewModelId, vmType)
 
-    // ========================
-    // = 统一进入下方多参构造函数 =
-    // ========================
-
-    constructor(
-        bindLayoutId: Int,
-        bindViewModelId: Int,
-        vmType: ActivityVMType = ActivityVMType.ACTIVITY
-    ) : this(
-        bindLayoutId, bindViewModelId, vmType,
-        null, null, null, null, null
-    )
-
-    constructor(
-        bindLayoutView: BindingActivityView?,
-        bindViewModelId: Int,
-        vmType: ActivityVMType = ActivityVMType.ACTIVITY
-    ) : this(
-        bindLayoutView, bindViewModelId, vmType,
-        null, null, null, null, null
-    )
-
     // ====================
     // = 敏捷简化开发扩展接口 =
     // ====================
@@ -68,10 +46,10 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
-        simple_Init: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
     ) : super(bindLayoutId, bindViewModelId, vmType) {
         simpleFactory = SimpleActivityIMPL.of(
@@ -83,10 +61,10 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         bindLayoutView: BindingActivityView?,
         bindViewModelId: Int,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
-        simple_Init: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseAppActivity<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
     ) : super(bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleActivityIMPL.of(
@@ -98,7 +76,7 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleActivityIMPL<BaseAppActivity<VDB, VM>>
+    private val simpleFactory: SimpleActivityIMPL
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

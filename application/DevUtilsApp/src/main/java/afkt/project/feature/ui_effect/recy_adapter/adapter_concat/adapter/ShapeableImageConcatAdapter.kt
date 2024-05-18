@@ -19,7 +19,8 @@ import dev.utils.app.ResourceUtils
  * detail: ShapeableImage Adapter
  * @author Ttt
  */
-class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapter<ShapeableImageBean, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
+class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) :
+    DevDataAdapter<ShapeableImageBean, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
 
     init {
         setDataList(data, false)

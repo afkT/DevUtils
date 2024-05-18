@@ -13,7 +13,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Article Adapter
  * @author Ttt
  */
-class ArticleConcatAdapter(data: List<ArticleBean1>) : DevDataAdapter<ArticleBean1, DevBaseViewBindingVH<AdapterConcatArticleBinding>>() {
+class ArticleConcatAdapter(data: List<ArticleBean1>) :
+    DevDataAdapter<ArticleBean1, DevBaseViewBindingVH<AdapterConcatArticleBinding>>() {
 
     init {
         setDataList(data, false)

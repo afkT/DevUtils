@@ -32,28 +32,6 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 //        vmType: FragmentVMType = FragmentVMType.FRAGMENT
 //    ) : super(bindLayoutView, bindViewModelId, vmType)
 
-    // ========================
-    // = 统一进入下方多参构造函数 =
-    // ========================
-
-    constructor(
-        bindLayoutId: Int,
-        bindViewModelId: Int,
-        vmType: FragmentVMType = FragmentVMType.FRAGMENT
-    ) : this(
-        bindLayoutId, bindViewModelId, vmType,
-        null, null, null, null, null
-    )
-
-    constructor(
-        bindLayoutView: BindingFragmentView,
-        bindViewModelId: Int,
-        vmType: FragmentVMType = FragmentVMType.FRAGMENT
-    ) : this(
-        bindLayoutView, bindViewModelId, vmType,
-        null, null, null, null, null
-    )
-
     // ====================
     // = 敏捷简化开发扩展接口 =
     // ====================
@@ -68,10 +46,10 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         bindLayoutId: Int,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
-        simple_Init: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
     ) : super(bindLayoutId, bindViewModelId, vmType) {
         simpleFactory = SimpleFragmentIMPL.of(
@@ -83,10 +61,10 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         bindLayoutView: BindingFragmentView,
         bindViewModelId: Int,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
-        simple_Init: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_Start: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_PreLoad: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
-        simple_Agile: ((BaseAppFragment<VDB, VM>) -> Unit)? = null,
+        simple_Init: ((Any) -> Unit)? = null,
+        simple_Start: ((Any) -> Unit)? = null,
+        simple_PreLoad: ((Any) -> Unit)? = null,
+        simple_Agile: ((Any) -> Unit)? = null,
         simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
     ) : super(bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleFragmentIMPL.of(
@@ -98,7 +76,7 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleFragmentIMPL<BaseAppFragment<VDB, VM>>
+    private val simpleFactory: SimpleFragmentIMPL
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

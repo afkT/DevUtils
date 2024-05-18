@@ -2,7 +2,6 @@ package afkt.project.base
 
 import afkt.project.R
 import afkt.project.base.http.RetrofitManagerUse
-import afkt.project.utils.initAppImageConfigCreator
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -13,15 +12,22 @@ import androidx.multidex.MultiDexApplication
 import com.therouter.TheRouter
 import dev.DevAssist
 import dev.DevHttpCapture
+import dev.DevHttpManager
+import dev.DevRetrofit
 import dev.DevUtils
 import dev.assist.WebViewAssist
 import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
+import dev.engine.image.ImageConfig
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
+import dev.mvvm.DevMVVM
+import dev.mvvm.utils.image.AppImageConfig
+import dev.mvvm.utils.size.AppSize
+import dev.simple.DevSimple
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ActivityUtils
@@ -51,6 +57,17 @@ import me.jessyan.autosize.AutoSizeConfig
  */
 class BaseApplication : MultiDexApplication() {
 
+    companion object {
+
+        /**
+         * 是否 Debug 模式
+         * @return `true` yes, `false` no
+         */
+        fun isDebug(): Boolean {
+            return DevUtils.isDebug()
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -70,7 +87,7 @@ class BaseApplication : MultiDexApplication() {
         // 初始化日志配置
         DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)
-                .tag(AppConfig.LOG_TAG)
+                .tag("DevUtils_Log")
                 .sortLog(true) // 美化日志, 边框包围
                 .methodCount(0)
         )
@@ -113,8 +130,7 @@ class BaseApplication : MultiDexApplication() {
      */
     private fun printProInfo(timeCounter: TimeCounter) {
         val builder = StringBuilder()
-            .append("项目名: ")
-            .append(ResourceUtils.getString(R.string.str_app_name))
+            .append("项目名: ").append(ResourceUtils.getString(R.string.str_app_name))
             .append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(")
             .append(VersionUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
             .append("\nPackageName: ").append(AppUtils.getPackageName())
@@ -124,11 +140,16 @@ class BaseApplication : MultiDexApplication() {
             .append("\nDevAssist 版本: ").append(DevAssist.getDevAssistVersion())
             .append("\nDevBase 版本: ").append(DevBase.getDevBaseVersion())
             .append("\nDevBaseMVVM 版本: ").append(DevBaseMVVM.getDevBaseMVVMVersion())
-            .append("\nDevHttpCapture 版本: ").append(DevHttpCapture.getDevHttpCaptureVersion())
-            .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
+            .append("\nDevMVVM 版本: ").append(DevMVVM.getDevMVVMVersion())
+            .append("\nDevSimple 版本: ").append(DevSimple.getDevSimpleVersion())
+            .append("\nDevEngine 版本: ").append(DevEngine.getDevEngineVersion())
             .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())
+            .append("\nDevHttpCapture 版本: ").append(DevHttpCapture.getDevHttpCaptureVersion())
             .append("\nDevEnvironment 版本: ")
             .append(DevEnvironmentUtils.getDevEnvironmentVersion())
+            .append("\nDevHttpManager 版本: ").append(DevHttpManager.getDevHttpManagerVersion())
+            .append("\nDevRetrofit 版本: ").append(DevRetrofit.getDevRetrofitVersion())
+            .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
         log_i(message = builder.toString())
@@ -144,12 +165,18 @@ class BaseApplication : MultiDexApplication() {
     private fun initialize() {
         // 初始化引擎
         initEngine()
-        // 初始化状态布局配置
-        initStateLayout()
         // 初始化异常捕获处理
         initCrash()
+        // 初始化截图监听
+        initScreenshot()
+        // 初始化状态布局配置
+        initStateLayout()
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder()
+        // 初始化 App ImageConfig Creator
+        initAppImageConfigCreator()
+        // 初始化 Android 环境配置切换库
+        initEnvironment()
         // 初始化其他 lib
         initOther()
     }
@@ -160,6 +187,56 @@ class BaseApplication : MultiDexApplication() {
     private fun initEngine() {
         // DevEngine 完整初始化
         DevEngine.completeInitialize(this)
+    }
+
+    /**
+     * 初始化异常捕获处理
+     */
+    private fun initCrash() {
+        // 捕获异常处理 => 在 BaseApplication 中调用
+        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
+            override fun handleException(ex: Throwable) {
+                // 保存日志信息
+            }
+
+            override fun uncaughtException(
+                context: Context,
+                thread: Thread,
+                ex: Throwable
+            ) {
+//                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
+//                System.exit(-1)
+//                // 从操作系统中结束掉当前程序的进程
+//                android.os.Process.killProcess(android.os.Process.myPid())
+                // 关闭 APP
+                ActivityUtils.getManager().exitApplication()
+                // 可启动新的 Activity 显示异常信息、打开 APP 等
+            }
+        })
+    }
+
+    /**
+     * 初始化截图监听
+     */
+    private fun initScreenshot() {
+        // 截图监听
+        ScreenshotUtils.getInstance()
+            .setListener { contentUri: Uri?, selfChange: Boolean, rowId: Long, dataPath: String?, dateTaken: Long ->
+                val builder = StringBuilder()
+                    .append("截图监听回调")
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("contentUri: ").append(contentUri)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("selfChange: ").append(selfChange)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("rowId: ").append(rowId)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("dataPath: ").append(dataPath)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("dateTaken: ").append(dateTaken).append(" ( ")
+                    .append(DateUtils.formatTime(dateTaken)).append(" )")
+                log_d(message = builder.toString())
+            }.startListener()
     }
 
     /**
@@ -205,32 +282,6 @@ class BaseApplication : MultiDexApplication() {
     }
 
     /**
-     * 初始化异常捕获处理
-     */
-    private fun initCrash() {
-        // 捕获异常处理 => 在 BaseApplication 中调用
-        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
-            override fun handleException(ex: Throwable) {
-                // 保存日志信息
-            }
-
-            override fun uncaughtException(
-                context: Context,
-                thread: Thread,
-                ex: Throwable
-            ) {
-//                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
-//                System.exit(-1)
-//                // 从操作系统中结束掉当前程序的进程
-//                android.os.Process.killProcess(android.os.Process.myPid())
-                // 关闭 APP
-                ActivityUtils.getManager().exitApplication()
-                // 可开启定时任务, 延迟几秒启动 APP
-            }
-        })
-    }
-
-    /**
      * 初始化 WebView 辅助类全局配置
      */
     private fun initWebViewBuilder() {
@@ -266,50 +317,116 @@ class BaseApplication : MultiDexApplication() {
     }
 
     /**
+     * 初始化 [AppImageConfig] ImageConfig Creator
+     */
+    private fun initAppImageConfigCreator() {
+        DevMVVM.setImageCreator { key, param ->
+            when (key) {
+                IMAGE_DEFAULT_CROP -> {
+                    ImageConfig.create().apply {
+                        setScaleType(ImageConfig.SCALE_CENTER_CROP)
+                    }
+                }
+
+                IMAGE_DEFAULT_FIX -> {
+                    ImageConfig.create().apply {
+                        setScaleType(ImageConfig.SCALE_FIT_CENTER)
+                    }
+                }
+
+                IMAGE_ROUND_3 -> {
+                    ImageConfig.create(IMAGE_ROUND).apply {
+                        setRoundedCornersRadius(
+                            AppSize.dp2px(3F)
+                        )
+                    }
+                }
+
+                IMAGE_ROUND_10 -> {
+                    ImageConfig.create(IMAGE_ROUND).apply {
+                        setRoundedCornersRadius(
+                            AppSize.dp2px(10F)
+                        )
+                    }
+                }
+
+                IMAGE_ROUND_CROP_10 -> {
+                    ImageConfig.create(IMAGE_ROUND).apply {
+                        setRoundedCornersRadius(
+                            AppSize.dp2px(10F)
+                        )
+                        setScaleType(ImageConfig.SCALE_CENTER_CROP)
+                    }
+                }
+
+                IMAGE_ROUND_FIX_10 -> {
+                    ImageConfig.create(IMAGE_ROUND).apply {
+                        setRoundedCornersRadius(
+                            AppSize.dp2px(10F)
+                        )
+                        setScaleType(ImageConfig.SCALE_FIT_CENTER)
+                    }
+                }
+
+                else -> {
+                    null
+                }
+            }
+        }
+    }
+
+    /**
+     * 初始化 Android 环境配置切换库
+     */
+    private fun initEnvironment() {
+        // 环境 ( 服务器地址 ) 改变通知
+        DevEnvironment.addOnEnvironmentChangeListener { _, _, _ ->
+            // 改变地址重新初始化
+            RetrofitManagerUse.operation().reset()
+        }
+    }
+
+    /**
      * 初始化其他 lib
      */
     private fun initOther() {
         // https://github.com/JessYanCoding/AndroidAutoSize/blob/master/demo-subunits/src/main/java/me/jessyan/autosize/demo/subunits/BaseApplication.java
         // 可不调用, 默认开启 DP 转换
         AutoSizeConfig.getInstance().unitsManager.isSupportDP = true
-
-        // 环境 ( 服务器地址 ) 改变通知
-        DevEnvironment.addOnEnvironmentChangeListener { _, _, _ ->
-            // 改变地址重新初始化
-            RetrofitManagerUse.operation().reset()
-        }
-
-        // 截图监听
-        ScreenshotUtils.getInstance()
-            .setListener { contentUri: Uri?, selfChange: Boolean, rowId: Long, dataPath: String?, dateTaken: Long ->
-                val builder = StringBuilder()
-                    .append("截图监听回调")
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("contentUri: ").append(contentUri)
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("selfChange: ").append(selfChange)
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("rowId: ").append(rowId)
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("dataPath: ").append(dataPath)
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("dateTaken: ").append(dateTaken).append(" ( ")
-                    .append(DateUtils.formatTime(dateTaken)).append(" )")
-                log_d(message = builder.toString())
-            }.startListener()
-
-        // 初始化 App ImageConfig 创建器
-        initAppImageConfigCreator()
-    }
-
-    companion object {
-
-        /**
-         * 是否 Debug 模式
-         * @return `true` yes, `false` no
-         */
-        fun isDebug(): Boolean {
-            return DevUtils.isDebug()
-        }
     }
 }
+
+// ================================
+// = dev.engine.image.ImageConfig =
+// ================================
+
+// ============
+// = 使用方式一 =
+// ============
+
+private val IMAGE_ROUND = ImageConfig.create().apply {
+    setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
+    setScaleType(ImageConfig.SCALE_NONE)
+}
+
+//val IMAGE_DEFAULT_CROP = ImageConfig.create().apply {
+//    setScaleType(ImageConfig.SCALE_CENTER_CROP)
+//}
+//
+//val IMAGE_ROUND_3 = ImageConfig.create(IMAGE_ROUND).apply {
+//    setRoundedCornersRadius(
+//        AppSize.dp2px(3F)
+//    )
+//}
+
+// ============
+// = 使用方式二 =
+// ============
+
+// IMAGE_KEY.toImageConfig() => ImageConfig
+const val IMAGE_DEFAULT_CROP = "IMAGE_DEFAULT_CROP"
+const val IMAGE_DEFAULT_FIX = "IMAGE_DEFAULT_FIX"
+const val IMAGE_ROUND_3 = "IMAGE_ROUND_3"
+const val IMAGE_ROUND_10 = "IMAGE_ROUND_10"
+const val IMAGE_ROUND_CROP_10 = "IMAGE_ROUND_CROP_10"
+const val IMAGE_ROUND_FIX_10 = "IMAGE_ROUND_FIX_10"

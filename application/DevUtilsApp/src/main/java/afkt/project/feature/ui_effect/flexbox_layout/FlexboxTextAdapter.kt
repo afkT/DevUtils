@@ -11,7 +11,8 @@ import dev.base.adapter.newBindingViewHolder
  * detail: Text Adapter
  * @author Ttt
  */
-class FlexboxTextAdapter(data: MutableList<String>) : DevDataAdapter<String, DevBaseViewBindingVH<AdapterFlexboxTextBinding>>() {
+class FlexboxTextAdapter(data: MutableList<String>) :
+    DevDataAdapter<String, DevBaseViewBindingVH<AdapterFlexboxTextBinding>>() {
 
     init {
         setDataList(data, false)

@@ -20,7 +20,8 @@ import dev.utils.app.ResourceUtils
  * detail: ShapeableImage Adapter
  * @author Ttt
  */
-class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
+class ShapeableImageItemViewBinder :
+    ItemViewBinder<ShapeableImageBeanItem, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

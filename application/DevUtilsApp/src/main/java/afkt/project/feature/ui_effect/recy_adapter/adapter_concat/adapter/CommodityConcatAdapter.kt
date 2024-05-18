@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
-import afkt.project.utils.IMAGE_ROUND_3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +21,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Commodity、Evaluate Adapter
  * @author Ttt
  */
-class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<CommodityBean, RecyclerView.ViewHolder>() {
+class CommodityConcatAdapter(data: List<CommodityBean>) :
+    DevDataAdapter<CommodityBean, RecyclerView.ViewHolder>() {
 
     init {
         setDataList(data, false)

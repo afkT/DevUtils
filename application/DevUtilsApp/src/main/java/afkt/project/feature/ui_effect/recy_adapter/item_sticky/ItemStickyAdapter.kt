@@ -11,7 +11,8 @@ import dev.base.adapter.newBindingViewHolder
  * detail: 吸附 Item 预览 View Adapter
  * @author Ttt
  */
-class ItemStickyAdapter(data: List<ItemStickyBean>) : DevDataAdapter<ItemStickyBean, DevBaseViewBindingVH<AdapterItemStickyBinding>>() {
+class ItemStickyAdapter(data: List<ItemStickyBean>) :
+    DevDataAdapter<ItemStickyBean, DevBaseViewBindingVH<AdapterItemStickyBinding>>() {
 
     init {
         setDataList(data, false)

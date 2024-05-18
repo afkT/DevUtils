@@ -12,7 +12,8 @@ import dev.base.adapter.newBindingViewHolder
  * detail: Header、Footer Adapter
  * @author Ttt
  */
-class HeaderFooterConcatAdapter(data: List<HeaderFooterItem>) : DevDataAdapter<HeaderFooterItem, DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>>() {
+class HeaderFooterConcatAdapter(data: List<HeaderFooterItem>) :
+    DevDataAdapter<HeaderFooterItem, DevBaseViewBindingVH<AdapterConcatHeaderFooterBinding>>() {
 
     init {
         setDataList(data, false)

@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBeanItem
-import afkt.project.utils.IMAGE_ROUND_3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -21,7 +21,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Commodity Adapter
  * @author Ttt
  */
-class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+class CommodityItemViewBinder :
+    ItemViewBinder<CommodityBeanItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

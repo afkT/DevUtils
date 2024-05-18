@@ -1,9 +1,9 @@
 package afkt.project.feature.framework
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterArticleBinding
 import afkt.project.model.bean.ArticleBean.DataBean.ListBean
-import afkt.project.utils.IMAGE_ROUND_3
 import android.content.Intent
 import android.net.Uri
 import android.view.ViewGroup

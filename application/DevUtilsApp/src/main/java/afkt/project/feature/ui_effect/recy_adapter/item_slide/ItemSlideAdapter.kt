@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.recy_adapter.item_slide
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.model.bean.CommodityItem
-import afkt.project.utils.IMAGE_ROUND_3
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
@@ -19,7 +19,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Item Slide Adapter
  * @author Ttt
  */
-class ItemSlideAdapter(data: List<CommodityItem>) : DevDataAdapter<CommodityItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+class ItemSlideAdapter(data: List<CommodityItem>) :
+    DevDataAdapter<CommodityItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
     init {
         setDataList(data, false)

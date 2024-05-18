@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
+import afkt.project.base.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.model.bean.EvaluateItem
-import afkt.project.utils.IMAGE_ROUND_3
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
@@ -19,7 +19,8 @@ import dev.utils.common.StringUtils
  * detail: Item EditText 输入监听 Adapter
  * @author Ttt
  */
-class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterItemEditsBinding>>() {
+class EditsAdapter(data: List<EvaluateItem>) :
+    DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterItemEditsBinding>>() {
 
     init {
         setDataList(data, false)

@@ -12,7 +12,8 @@ import dev.base.adapter.newBindingViewHolder
  * detail: Button 适配器
  * @author Ttt
  */
-class ButtonAdapter(data: List<ButtonValue>) : DevDataAdapterExt<ButtonValue, DevBaseViewBindingVH<BaseViewButtonBinding>>() {
+class ButtonAdapter(data: List<ButtonValue>) :
+    DevDataAdapterExt<ButtonValue, DevBaseViewBindingVH<BaseViewButtonBinding>>() {
 
     init {
         setDataList(data, false)

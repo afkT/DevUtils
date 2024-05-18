@@ -18,7 +18,8 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist RecyclerView 适配器
  * @author Ttt
  */
-class RecyclerLoadingAdapter(data: List<String>) : DevDataAdapter<String, DevBaseViewBindingVH<AdapterRecyclerLoadingBinding>>() {
+class RecyclerLoadingAdapter(data: List<String>) :
+    DevDataAdapter<String, DevBaseViewBindingVH<AdapterRecyclerLoadingBinding>>() {
 
     init {
         setDataList(data, false)

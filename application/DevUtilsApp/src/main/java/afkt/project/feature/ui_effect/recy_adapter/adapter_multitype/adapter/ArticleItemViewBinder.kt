@@ -14,7 +14,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Article Adapter
  * @author Ttt
  */
-class ArticleItemViewBinder : ItemViewBinder<ArticleBean1Item, DevBaseViewBindingVH<AdapterConcatArticleBinding>>() {
+class ArticleItemViewBinder :
+    ItemViewBinder<ArticleBean1Item, DevBaseViewBindingVH<AdapterConcatArticleBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
