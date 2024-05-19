@@ -34,7 +34,7 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
 
     constructor(
         bindLayoutId: Int,
-        bindViewModelId: Int,
+        bindViewModelId: Int = -1,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
@@ -48,7 +48,7 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
 
     constructor(
         bindLayoutView: BindingActivityView?,
-        bindViewModelId: Int,
+        bindViewModelId: Int = -1,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,

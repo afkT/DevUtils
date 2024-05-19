@@ -15,7 +15,7 @@ import com.therouter.router.Route
  */
 @Route(path = RouterPath.ButtonItemActivity_PATH)
 class ButtonItemActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
-    R.layout.base_view_recyclerview, -1, simple_Agile = {
+    R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ButtonItemActivity) {
             it.apply {
                 binding.vidRv.bindAdapter(ButtonList.getButtonValues(it.moduleType))

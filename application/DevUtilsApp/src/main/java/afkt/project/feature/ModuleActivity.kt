@@ -18,7 +18,7 @@ import dev.utils.app.toast.ToastTintUtils
  */
 @Route(path = RouterPath.ModuleActivity_PATH)
 class ModuleActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
-    R.layout.base_view_recyclerview, -1, simple_Agile = {
+    R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ModuleActivity) {
             it.apply {
                 binding.vidRv.bindAdapter(ButtonList.getModuleButtonValues(it.moduleType)) { buttonValue ->

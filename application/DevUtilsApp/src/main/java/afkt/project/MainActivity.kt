@@ -7,7 +7,7 @@ import afkt.project.data_model.button.ButtonList
 import afkt.project.databinding.ActivityMainBinding
 
 class MainActivity : BaseProjectActivity<ActivityMainBinding, BaseProjectViewModel>(
-    R.layout.activity_main, -1, simple_Agile = {
+    R.layout.activity_main, simple_Agile = {
         if (it is MainActivity) {
             it.binding.vidInclude.vidRv.bindAdapter(
                 ButtonList.mainButtonValues
