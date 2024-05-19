@@ -1,13 +1,15 @@
 package afkt.project.feature
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
+import afkt.project.base.project.ext.routerActivity
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.utils.app.toast.ToastTintUtils
 
 /**
@@ -15,19 +17,11 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.ModuleActivity_PATH)
-class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.getModuleButtonValues(moduleType))
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class ModuleActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, -1, simple_Agile = {
+        if (it is ModuleActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(ButtonList.getModuleButtonValues(it.moduleType)) { buttonValue ->
                     when (buttonValue.type) {
                         ButtonValue.BTN_ROOM,
                         ButtonValue.BTN_GREEN_DAO -> ToastTintUtils.info(
@@ -48,11 +42,12 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             "具体请搜索: 【DevUtils-repo】lib/LocalModules/DevOther " + buttonValue.text
                         )
 
-                        else -> routerActivity(buttonValue)
+                        else -> buttonValue.routerActivity()
                     }
                 }
-            }).bindAdapter(binding.vidRv)
-        // 注册观察者
-        registerAdapterDataObserver(binding.vidRv, true)
+                // 注册观察者
+                registerAdapterDataObserver(binding.vidRv, true)
+            }
+        }
     }
-}
+)

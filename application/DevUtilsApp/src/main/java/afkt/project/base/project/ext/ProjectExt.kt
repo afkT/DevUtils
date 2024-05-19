@@ -1,9 +1,12 @@
 package afkt.project.base.project.ext
 
 import afkt.project.data_model.button.ButtonValue
+import afkt.project.feature.ButtonAdapter
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter
 import dev.DevUtils
+import dev.callback.DevItemClickCallback
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 
@@ -32,4 +35,30 @@ fun ButtonValue.classStartActivity(clazz: Class<*>?): Boolean {
     intent.putExtra(DevFinal.STR.TYPE, this.type)
     intent.putExtra(DevFinal.STR.TITLE, this.text)
     return AppUtils.startActivity(intent)
+}
+
+// ============
+// = 适配器相关 =
+// ============
+
+/**
+ * 初始化布局管理器、适配器
+ * @receiver RecyclerView
+ * @param buttons MutableList<ButtonValue>
+ */
+fun RecyclerView.bindAdapter(
+    buttons: List<ButtonValue>,
+    callback: ((ButtonValue) -> Unit) = {
+        it.routerActivity()
+    }
+) {
+    ButtonAdapter(buttons)
+        .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
+            ) {
+                callback.invoke(buttonValue)
+            }
+        }).bindAdapter(this)
 }

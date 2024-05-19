@@ -79,22 +79,13 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
     var moduleType: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // 内部初始化
-        innerInitialize()
-        // 插入 StateLayout
-        insertStateLayout()
-    }
-
-    // ============
-    // = 内部初始化 =
-    // ============
-
-    private fun innerInitialize() {
         try {
             TheRouter.inject(this)
         } catch (ignored: Exception) {
         }
+        super.onCreate(savedInstanceState)
+        // 插入 StateLayout
+        insertStateLayout()
     }
 
     // ===============
@@ -233,7 +224,9 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
                     )
                     // 判断是否不存在数据
                     if (itemCount == 0) {
-                        stateLayout.showEmptyData()
+                        if (::stateLayout.isInitialized) {
+                            stateLayout.showEmptyData()
+                        }
                     }
                     adapterDataObserver?.onChanged()
                 }
