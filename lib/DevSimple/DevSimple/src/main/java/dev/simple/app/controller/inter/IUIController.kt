@@ -34,7 +34,7 @@ interface IUIController {
      * StatusBar 是否占位显示 ( StatusBar 底部透明 )
      * @return `true` yes, `false` no
      */
-    fun isStatusBarFrame(): Boolean = true
+    fun isStatusBarFrame(): Boolean = false
 
     /**
      * StatusBar 是否高亮模式

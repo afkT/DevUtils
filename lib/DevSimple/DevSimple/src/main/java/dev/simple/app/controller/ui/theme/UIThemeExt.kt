@@ -11,17 +11,17 @@ private fun <T : BaseUITheme<*>> T.unifiedUITheme(): T {
     // DevBaseContentAssist 是否安全处理
     setContentAssistSafe(true)
     // StatusBar 是否占位显示 ( StatusBar 底部透明 )
-    setStatusBarFrame(true)
+    setStatusBarFrame(false)
     // StatusBar 是否高亮模式
     setLightMode(true)
     // 是否添加 StatusBar
-    setAddStatusBar(false)
+    setAddStatusBar(true)
     // 是否添加 TitleBar
-    setAddTitleBar(false)
+    setAddTitleBar(true)
     // Activity 是否全屏
     setFlagFullScreen(false)
     // 是否屏幕常亮
-    setFlagKeepScreen(false)
+    setFlagKeepScreen(true)
     // 是否允许截屏
     setFlagSecure(true)
     // 是否屏幕页面为无标题
