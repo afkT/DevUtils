@@ -1,9 +1,7 @@
 package afkt.project.base.project
 
 import afkt.project.R
-import afkt.project.data_model.button.ButtonValue
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,6 @@ import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
 import dev.utils.DevFinal
-import dev.utils.app.AppUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.IFloatingActivity
 import dev.utils.app.toast.ToastTintUtils
@@ -143,39 +140,6 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
             toolbar?.title = moduleTitle
             return titleView
         }
-    }
-
-    // =======
-    // = 通用 =
-    // =======
-
-    /**
-     * Router 跳转方法
-     * @param buttonValue 按钮参数
-     */
-    fun routerActivity(
-        buttonValue: ButtonValue
-    ) {
-        TheRouter.build(buttonValue.path)
-            .withInt(DevFinal.STR.TYPE, buttonValue.type)
-            .withString(DevFinal.STR.TITLE, buttonValue.text)
-            .navigation(this)
-    }
-
-    /**
-     * 跳转方法
-     * @param clazz       跳转
-     * @param buttonValue 按钮参数
-     * @return `true` success, `false` fail
-     */
-    private fun classStartActivity(
-        clazz: Class<*>?,
-        buttonValue: ButtonValue
-    ): Boolean {
-        val intent = Intent(this, clazz)
-        intent.putExtra(DevFinal.STR.TYPE, buttonValue.type)
-        intent.putExtra(DevFinal.STR.TITLE, buttonValue.text)
-        return AppUtils.startActivity(intent)
     }
 
     // =========

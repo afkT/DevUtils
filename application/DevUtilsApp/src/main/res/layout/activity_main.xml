@@ -3,7 +3,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <import type="dev.utils.app.VersionUtils" />
+
+    </data>
 
     <dev.widget.custom.CustomNestedScrollView
             android:layout_width="match_parent"
@@ -37,9 +41,10 @@
             </androidx.cardview.widget.CardView>
 
             <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_android_tv"
                     style="@style/AppTheme.Base_TextView"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:text="@{VersionUtils.convertSDKVersion()}"
+                    tools:text="Android 14.0" />
 
             <include
                     android:id="@+id/vid_include"
