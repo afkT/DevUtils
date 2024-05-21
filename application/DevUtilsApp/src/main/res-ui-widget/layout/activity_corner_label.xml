@@ -1,319 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_f9"
-    android:scrollbars="none">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <FrameLayout
+    <dev.widget.custom.CustomNestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@color/color_f9"
+            android:scrollbars="none">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_margin="@dimen/dp_20"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:stateListAnimator="@drawable/touch"
+                        app:cardCornerRadius="@dimen/dp_10"
+                        app:cardElevation="@dimen/dp_10"
+                        tools:targetApi="lollipop">
+
+                    <dev.base.widget.BaseImageView
+                            android:layout_width="@dimen/dp_130"
+                            android:layout_height="@dimen/dp_130"
+                            android:layout_gravity="center"
+                            android:background="@drawable/img_commodity" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:dev_fillColor="#9C27B0"
+                            app:dev_flags="triangle"
+                            app:dev_paddingCenter="@dimen/dp_10"
+                            app:dev_text1="活动优惠"
+                            app:dev_text2="特价"
+                            app:dev_textColor2="#80FFFF" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            app:dev_fillColor="#F44336"
+                            app:dev_flags="triangle|right"
+                            app:dev_paddingCenter="@dimen/dp_10"
+                            app:dev_text1="活动优惠"
+                            app:dev_text2="特价"
+                            app:dev_textColor2="@color/white" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            app:dev_fillColor="#3F51B5"
+                            app:dev_flags="triangle|bottom"
+                            app:dev_paddingCenter="@dimen/dp_10"
+                            app:dev_text1="活动优惠"
+                            app:dev_text2="特价"
+                            app:dev_textColor2="#66ffffff" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            app:dev_fillColor="#009688"
+                            app:dev_flags="triangle|right|bottom"
+                            app:dev_paddingCenter="@dimen/dp_10"
+                            app:dev_text1="活动优惠"
+                            app:dev_text2="特价"
+                            app:dev_textColor2="@color/black" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_margin="@dimen/dp_20"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:stateListAnimator="@drawable/touch"
+                        app:cardCornerRadius="@dimen/dp_10"
+                        app:cardElevation="@dimen/dp_10"
+                        tools:targetApi="lollipop">
+
+                    <dev.base.widget.BaseImageView
+                            android:layout_width="@dimen/dp_130"
+                            android:layout_height="@dimen/dp_130"
+                            android:layout_gravity="center"
+                            android:background="@drawable/img_commodity" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:dev_fillColor="#03A9F4"
+                            app:dev_paddingCenter="@dimen/dp_3"
+                            app:dev_text1="满减" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            app:dev_fillColor="#4CAF50"
+                            app:dev_flags="right"
+                            app:dev_paddingCenter="@dimen/dp_3"
+                            app:dev_text1="买送" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            app:dev_fillColor="#CDDC39"
+                            app:dev_flags="bottom"
+                            app:dev_paddingCenter="@dimen/dp_3"
+                            app:dev_text1="赠品" />
+
+                    <dev.widget.ui.CornerLabelView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            app:dev_fillColor="#795548"
+                            app:dev_flags="right|bottom"
+                            app:dev_paddingCenter="@dimen/dp_3"
+                            app:dev_text1="拼图" />
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="@dimen/dp_20"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:stateListAnimator="@drawable/touch"
-                app:cardCornerRadius="@dimen/dp_10"
-                app:cardElevation="@dimen/dp_10"
-                tools:targetApi="lollipop">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dp_20"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:stateListAnimator="@drawable/touch"
+                    app:cardCornerRadius="@dimen/dp_10"
+                    app:cardElevation="@dimen/dp_10"
+                    tools:targetApi="lollipop">
 
                 <dev.base.widget.BaseImageView
-                    android:layout_width="@dimen/dp_130"
-                    android:layout_height="@dimen/dp_130"
-                    android:layout_gravity="center"
-                    android:background="@drawable/img_commodity" />
+                        android:layout_width="@dimen/dp_130"
+                        android:layout_height="@dimen/dp_130"
+                        android:layout_gravity="center"
+                        android:background="@drawable/img_commodity" />
 
                 <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:dev_fillColor="#9C27B0"
-                    app:dev_flags="triangle"
-                    app:dev_paddingCenter="@dimen/dp_10"
-                    app:dev_text1="活动优惠"
-                    app:dev_text2="特价"
-                    app:dev_textColor2="#80FFFF" />
-
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    app:dev_fillColor="#F44336"
-                    app:dev_flags="triangle|right"
-                    app:dev_paddingCenter="@dimen/dp_10"
-                    app:dev_text1="活动优惠"
-                    app:dev_text2="特价"
-                    app:dev_textColor2="@color/white" />
-
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    app:dev_fillColor="#3F51B5"
-                    app:dev_flags="triangle|bottom"
-                    app:dev_paddingCenter="@dimen/dp_10"
-                    app:dev_text1="活动优惠"
-                    app:dev_text2="特价"
-                    app:dev_textColor2="#66ffffff" />
-
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    app:dev_fillColor="#009688"
-                    app:dev_flags="triangle|right|bottom"
-                    app:dev_paddingCenter="@dimen/dp_10"
-                    app:dev_text1="活动优惠"
-                    app:dev_text2="特价"
-                    app:dev_textColor2="@color/black" />
+                        android:id="@+id/vid_clv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:dev_fillColor="#FFC107"
+                        app:dev_paddingCenter="@dimen/dp_3"
+                        app:dev_text1="动态" />
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_margin="@dimen/dp_20"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:stateListAnimator="@drawable/touch"
-                app:cardCornerRadius="@dimen/dp_10"
-                app:cardElevation="@dimen/dp_10"
-                tools:targetApi="lollipop">
-
-                <dev.base.widget.BaseImageView
-                    android:layout_width="@dimen/dp_130"
-                    android:layout_height="@dimen/dp_130"
-                    android:layout_gravity="center"
-                    android:background="@drawable/img_commodity" />
-
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:dev_fillColor="#03A9F4"
-                    app:dev_paddingCenter="@dimen/dp_3"
-                    app:dev_text1="满减" />
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:orientation="horizontal">
 
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    app:dev_fillColor="#4CAF50"
-                    app:dev_flags="right"
-                    app:dev_paddingCenter="@dimen/dp_3"
-                    app:dev_text1="买送" />
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_color_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="color" />
 
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    app:dev_fillColor="#CDDC39"
-                    app:dev_flags="bottom"
-                    app:dev_paddingCenter="@dimen/dp_3"
-                    app:dev_text1="赠品" />
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_left_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="left" />
 
-                <dev.widget.ui.CornerLabelView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    app:dev_fillColor="#795548"
-                    app:dev_flags="right|bottom"
-                    app:dev_paddingCenter="@dimen/dp_3"
-                    app:dev_text1="拼图" />
-            </androidx.cardview.widget.CardView>
-        </FrameLayout>
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_top_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="top" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/dp_20"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:stateListAnimator="@drawable/touch"
-            app:cardCornerRadius="@dimen/dp_10"
-            app:cardElevation="@dimen/dp_10"
-            tools:targetApi="lollipop">
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_triangle_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="triangle" />
+            </LinearLayout>
 
-            <dev.base.widget.BaseImageView
-                android:layout_width="@dimen/dp_130"
-                android:layout_height="@dimen/dp_130"
-                android:layout_gravity="center"
-                android:background="@drawable/img_commodity" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:orientation="horizontal">
 
-            <dev.widget.ui.CornerLabelView
-                android:id="@+id/vid_clv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:dev_fillColor="#FFC107"
-                app:dev_paddingCenter="@dimen/dp_3"
-                app:dev_text1="动态" />
-        </androidx.cardview.widget.CardView>
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_text1_minus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="text1-" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:orientation="horizontal">
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_text1_plus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="text1+" />
 
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_color_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="color" />
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_height1_minus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="height1-" />
 
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_left_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="left" />
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_height1_plus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="height1+" />
+            </LinearLayout>
 
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_top_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="top" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:orientation="horizontal">
 
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_triangle_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="triangle" />
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_text2_minus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="text2-" />
+
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_text2_plus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="text2+" />
+
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_height2_minus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="height2-" />
+
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_btn_height2_plus_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_25"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="#DDD"
+                        android:gravity="center"
+                        android:text="height2+" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_35"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:orientation="horizontal">
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text1_minus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="text1-" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text1_plus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="text1+" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height1_minus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="height1-" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height1_plus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="height1+" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_35"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:orientation="horizontal">
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text2_minus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="text2-" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_text2_plus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="text2+" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height2_minus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="height2-" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_btn_height2_plus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:background="#DDD"
-                android:gravity="center"
-                android:text="height2+" />
-        </LinearLayout>
-    </LinearLayout>
-</dev.widget.custom.CustomNestedScrollView>
+    </dev.widget.custom.CustomNestedScrollView>
+</layout>

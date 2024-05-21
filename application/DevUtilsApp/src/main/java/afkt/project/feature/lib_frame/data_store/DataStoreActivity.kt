@@ -1,7 +1,8 @@
 package afkt.project.feature.lib_frame.data_store
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityDataStoreBinding
 import androidx.lifecycle.lifecycleScope
@@ -13,15 +14,14 @@ import kotlinx.coroutines.launch
  * @author Ttt
  */
 @Route(path = RouterPath.LIB_FRAME.DataStoreActivity_PATH)
-class DataStoreActivity : BaseActivity<ActivityDataStoreBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_data_store
-
-    override fun initValue() {
-        super.initValue()
-
-        lifecycleScope.launch {
-            DataStoreUse.use(this@DataStoreActivity)
+class DataStoreActivity : BaseProjectActivity<ActivityDataStoreBinding, BaseProjectViewModel>(
+    R.layout.activity_data_store, simple_Agile = {
+        if (it is DataStoreActivity) {
+            it.apply {
+                lifecycleScope.launch {
+                    DataStoreUse.use(it)
+                }
+            }
         }
     }
-}
+)

@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/AppTheme.padding_lr"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <dev.base.widget.BaseButton
-        android:id="@+id/vid_allow_btn"
-        style="@style/AppTheme.Base_Button"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="允许滑动" />
+    <LinearLayout
+            style="@style/AppTheme.padding_lr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <dev.base.widget.BaseButton
-        android:id="@+id/vid_ban_btn"
-        style="@style/AppTheme.Base_Button"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="禁止滑动" />
+        <dev.base.widget.BaseButton
+                android:id="@+id/vid_allow_btn"
+                style="@style/AppTheme.Base_Button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="允许滑动" />
 
-    <dev.widget.custom.CustomViewPager
-        android:id="@+id/vid_vp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_20" />
+        <dev.base.widget.BaseButton
+                android:id="@+id/vid_ban_btn"
+                style="@style/AppTheme.Base_Button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="禁止滑动" />
 
-</LinearLayout>
+        <dev.widget.custom.CustomViewPager
+                android:id="@+id/vid_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_20" />
+    </LinearLayout>
+</layout>

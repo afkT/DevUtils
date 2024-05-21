@@ -1,14 +1,15 @@
 package afkt.project.feature.dev_sku
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
+import afkt.project.base.project.ext.routerActivity
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.json.fromJson
 import dev.sku.SKU
 import dev.sku.SKUData
@@ -22,19 +23,11 @@ import dev.utils.common.CollectionUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_LIBS.DevSKUActivity_PATH)
-class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.moduleDevSKUButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class DevSKUActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is DevSKUActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(ButtonList.moduleDevSKUButtonValues) { buttonValue ->
                     when (buttonValue.type) {
                         ButtonValue.BTN_SKU_DIALOG -> {
                             val skuFileName = "sku_test.json" // sku.json
@@ -48,7 +41,7 @@ class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             // ==============
 
                             commoditySKU?.let { model ->
-                                SKUDialog(this@DevSKUActivity, object : SKUCallback {
+                                SKUDialog(it, object : SKUCallback {
                                     override fun callback(
                                         spec: Spec,
                                         number: Int,
@@ -76,12 +69,13 @@ class DevSKUActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             }
                         }
 
-                        else -> routerActivity(buttonValue)
+                        else -> buttonValue.routerActivity()
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
     }
-}
+)
 
 // ==========
 // = 数据模型 =

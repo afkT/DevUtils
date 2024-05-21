@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<afkt.project.ui.widget.AutoGridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_gv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@null"
-    android:horizontalSpacing="@dimen/dp_1"
-    android:listSelector="@null"
-    android:numColumns="@integer/grid_columns"
-    android:verticalSpacing="@dimen/dp_1" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <afkt.project.ui.widget.AutoGridView
+            android:id="@+id/vid_gv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:horizontalSpacing="@dimen/dp_1"
+            android:listSelector="@null"
+            android:numColumns="@integer/grid_columns"
+            android:verticalSpacing="@dimen/dp_1" />
+</layout>

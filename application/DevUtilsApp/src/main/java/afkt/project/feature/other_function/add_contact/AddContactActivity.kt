@@ -1,7 +1,8 @@
 package afkt.project.feature.other_function.add_contact
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityAddContactBinding
 import android.Manifest
@@ -41,7 +42,39 @@ import java.util.concurrent.atomic.AtomicInteger
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.AddContactActivity_PATH)
-class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
+class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, BaseProjectViewModel>(
+    R.layout.activity_add_contact, simple_Agile = {
+        if (it is AddContactActivity) {
+            it.apply {
+                binding.vidAddBtn.setOnClickListener(View.OnClickListener {
+                    if (running) {
+                        ToastTintUtils.warning("运行中")
+                        return@OnClickListener
+                    }
+                    permission_request(
+                        permissions = arrayOf(
+                            Manifest.permission.WRITE_CONTACTS
+                        ),
+                        callback = object : IPermissionEngine.Callback {
+                            override fun onGranted() {
+                                // 联系人创建校验
+                                createCheck()
+                            }
+
+                            override fun onDenied(
+                                grantedList: List<String>,
+                                deniedList: List<String>,
+                                notFoundList: List<String>
+                            ) {
+                                ToastUtils.showShort("请开启联系人写入权限")
+                            }
+                        }
+                    )
+                })
+            }
+        }
+    }
+) {
 
     // 待创建总数
     var count = 0
@@ -51,38 +84,6 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
 
     // 递增数
     var index = AtomicInteger()
-
-    override fun baseLayoutId(): Int = R.layout.activity_add_contact
-
-    override fun initValue() {
-        super.initValue()
-
-        binding.vidAddBtn.setOnClickListener(View.OnClickListener {
-            if (running) {
-                ToastTintUtils.warning("运行中")
-                return@OnClickListener
-            }
-            permission_request(
-                permissions = arrayOf(
-                    Manifest.permission.WRITE_CONTACTS
-                ),
-                callback = object : IPermissionEngine.Callback {
-                    override fun onGranted() {
-                        // 联系人创建校验
-                        createCheck()
-                    }
-
-                    override fun onDenied(
-                        grantedList: List<String>,
-                        deniedList: List<String>,
-                        notFoundList: List<String>
-                    ) {
-                        ToastUtils.showShort("请开启联系人写入权限")
-                    }
-                }
-            )
-        })
-    }
 
     /**
      * 联系人创建校验
@@ -117,7 +118,7 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
         val builder = StringBuilder()
         builder.append("将会创建 ").append(middle).append(" 条联系人数据\n")
         builder.append(tempNumber).append(" - ").append(tempNumber2)
-        DialogUtils.createAlertDialog(mContext, "创建提示", builder.toString(),
+        DialogUtils.createAlertDialog(mActivity, "创建提示", builder.toString(),
             "取消", "创建", object : DialogListener() {
                 override fun onLeftButton(dialog: DialogInterface) {
                     dialog.dismiss()

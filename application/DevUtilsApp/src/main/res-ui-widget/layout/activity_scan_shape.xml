@@ -1,62 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <SurfaceView
-        android:id="@+id/vid_surface"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <dev.widget.ui.ScanShapeView
-        android:id="@+id/vid_ssv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        <SurfaceView
+                android:id="@+id/vid_surface"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:layout_margin="@dimen/dp_15"
-        android:orientation="horizontal">
+        <dev.widget.ui.ScanShapeView
+                android:id="@+id/vid_ssv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
 
-        <dev.base.widget.BaseImageView
-            android:id="@+id/vid_image_iv"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:background="@drawable/icon_image"
-            android:visibility="gone"
-            tools:visibility="visible" />
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:layout_margin="@dimen/dp_15"
+                android:orientation="horizontal">
 
-        <dev.base.widget.BaseImageView
-            android:id="@+id/vid_flashlight_iv"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@drawable/shape_flashlight_selector" />
+            <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_image_iv"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@drawable/icon_image"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
-        <dev.base.widget.BaseImageView
-            android:id="@+id/vid_square_iv"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@drawable/icon_square" />
+            <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_flashlight_iv"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:background="@drawable/shape_flashlight_selector" />
 
-        <dev.base.widget.BaseImageView
-            android:id="@+id/vid_hexagon_iv"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@drawable/icon_hexagon" />
+            <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_square_iv"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:background="@drawable/icon_square" />
 
-        <dev.base.widget.BaseImageView
-            android:id="@+id/vid_annulus_iv"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:background="@drawable/icon_annulus" />
+            <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_hexagon_iv"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:background="@drawable/icon_hexagon" />
 
-    </LinearLayout>
-</FrameLayout>
+            <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_annulus_iv"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:background="@drawable/icon_annulus" />
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

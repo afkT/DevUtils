@@ -1,72 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_nsv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/vid_ll"
-        style="@style/AppTheme.padding_lr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <dev.widget.custom.CustomNestedScrollView
+            android:id="@+id/vid_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_screen_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="当前屏幕截图 ( 含状态栏 )" />
+        <LinearLayout
+                android:id="@+id/vid_ll"
+                style="@style/AppTheme.padding_lr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_screen1_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="当前屏幕截图 ( 不含状态栏 )" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_screen_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="当前屏幕截图 ( 含状态栏 )" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_linear_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="LinearLayout 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_screen1_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="当前屏幕截图 ( 不含状态栏 )" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_scroll_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="ScrollView 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_linear_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="LinearLayout 截图" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_list_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="ListView 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_scroll_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="ScrollView 截图" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_grid_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="GridView 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_list_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="ListView 截图" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_recy_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="RecyclerView 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_grid_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="GridView 截图" />
 
-        <dev.base.widget.BaseButton
-            android:id="@+id/vid_webview_btn"
-            style="@style/AppTheme.Base_Button"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Webview 截图" />
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_recy_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="RecyclerView 截图" />
 
-    </LinearLayout>
-</dev.widget.custom.CustomNestedScrollView>
+            <dev.base.widget.BaseButton
+                    android:id="@+id/vid_webview_btn"
+                    style="@style/AppTheme.Base_Button"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Webview 截图" />
+
+        </LinearLayout>
+    </dev.widget.custom.CustomNestedScrollView>
+</layout>
