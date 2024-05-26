@@ -1,12 +1,13 @@
 package afkt.project.feature.other_function.floating
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -16,7 +17,6 @@ import android.view.View
 import android.widget.LinearLayout
 import com.therouter.router.Route
 import dev.DevUtils
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.assist.floating.DevFloatingCommon
 import dev.utils.app.assist.floating.DevFloatingListener
@@ -31,34 +31,28 @@ import dev.utils.app.toast.ToastUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.FloatingWindowManagerActivity_PATH)
-class FloatingWindowManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.floatingWindowButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
-                            if (checkOverlayPermission()) {
-                                Utils.instance.addView()
+class FloatingWindowManagerActivity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is FloatingWindowManagerActivity) {
+                it.apply {
+                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
+                        when (buttonValue.type) {
+                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
+                                if (checkOverlayPermission()) {
+                                    Utils.instance.addView()
+                                }
                             }
-                        }
 
-                        ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
-                            Utils.instance.removeView()
+                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
+                                Utils.instance.removeView()
+                            }
                         }
                     }
                 }
-            }).bindAdapter(binding.vidRv)
-    }
+            }
+        }
+    ) {
 
     override fun onActivityResult(
         requestCode: Int,

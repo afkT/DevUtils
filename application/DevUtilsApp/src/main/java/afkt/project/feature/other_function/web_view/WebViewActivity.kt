@@ -2,7 +2,8 @@ package afkt.project.feature.other_function.web_view
 
 import afkt.project.R
 import afkt.project.base.BaseApplication
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityWebviewBinding
 import android.net.http.SslError
@@ -22,12 +23,12 @@ import dev.expand.engine.log.log_dTag
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.WebViewActivity_PATH)
-class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
+class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, BaseProjectViewModel>(
+    R.layout.activity_webview
+) {
 
     // WebView 辅助类
     private val mWebViewAssist = WebViewAssist()
-
-    override fun baseLayoutId(): Int = R.layout.activity_webview
 
     override fun initValue() {
         super.initValue()

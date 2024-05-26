@@ -2,16 +2,16 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.MainActivity
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.functionButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.Manifest
 import android.os.Build
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.permission.permission_request
@@ -33,27 +33,11 @@ import dev.utils.app.toast.ToastUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.FunctionActivity_PATH)
-class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // 关闭手电筒
-        FlashlightUtils.getInstance().setFlashlightOff()
-        FlashlightUtils.getInstance().unregister()
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(functionButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is FunctionActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(functionButtonValues) { buttonValue ->
                     // 获取操作结果
                     var result: Boolean
                     when (buttonValue.type) {
@@ -214,6 +198,15 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
+    }
+) {
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // 关闭手电筒
+        FlashlightUtils.getInstance().setFlashlightOff()
+        FlashlightUtils.getInstance().unregister()
     }
 }

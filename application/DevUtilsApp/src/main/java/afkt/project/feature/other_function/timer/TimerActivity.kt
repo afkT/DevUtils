@@ -1,15 +1,15 @@
 package afkt.project.feature.other_function.timer
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.timerButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.os.Handler
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.HandlerUtils
 import dev.utils.app.timer.DevTimer
@@ -21,26 +21,11 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.TimerActivity_PATH)
-class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    // UI Handler
-    private val mUiHandler = Handler()
-
-    // 定时器
-    private var mTimer: DevTimer? = null
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(timerButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is TimerActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(timerButtonValues) { buttonValue ->
                     // 获取操作结果
                     val result: Boolean
                     when (buttonValue.type) {
@@ -92,7 +77,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 showToast(true, "定时器启动成功, 请查看 Logcat")
                                 // 运行定时器
                                 it.start()
-                                return
+                                return@let
                             }
                             showToast(false, "请先初始化定时器")
                         }
@@ -119,8 +104,16 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
     }
+) {
+
+    // UI Handler
+    private val mUiHandler = Handler()
+
+    // 定时器
+    private var mTimer: DevTimer? = null
 
     override fun initListener() {
         super.initListener()

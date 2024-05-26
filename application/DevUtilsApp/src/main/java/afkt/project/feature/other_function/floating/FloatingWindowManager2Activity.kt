@@ -1,19 +1,19 @@
 package afkt.project.feature.other_function.floating
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.DevFloatingCommon
 import dev.utils.app.assist.floating.DevFloatingEdgeIMPL
@@ -29,41 +29,33 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.FloatingWindowManager2Activity_PATH)
-class FloatingWindowManager2Activity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.floatingWindowButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
-                            Utils2.instance.apply {
-                                isNeedsAdd = true
-                                // 添加悬浮窗 View
-                                addFloatingView(this@FloatingWindowManager2Activity)
+class FloatingWindowManager2Activity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is FloatingWindowManager2Activity) {
+                it.apply {
+                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
+                        when (buttonValue.type) {
+                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
+                                Utils2.instance.apply {
+                                    isNeedsAdd = true
+                                    // 添加悬浮窗 View
+                                    addFloatingView(it)
+                                }
                             }
-                        }
 
-                        ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
-                            Utils2.instance.apply {
-                                isNeedsAdd = false
-                                // 移除所有悬浮窗 View
-                                removeAllFloatingView()
+                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
+                                Utils2.instance.apply {
+                                    isNeedsAdd = false
+                                    // 移除所有悬浮窗 View
+                                    removeAllFloatingView()
+                                }
                             }
                         }
                     }
                 }
-            }).bindAdapter(binding.vidRv)
-    }
-}
+            }
+        })
 
 // ==========
 // = 实现代码 =

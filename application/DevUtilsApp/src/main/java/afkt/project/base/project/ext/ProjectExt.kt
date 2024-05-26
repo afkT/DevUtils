@@ -50,15 +50,18 @@ fun RecyclerView.bindAdapter(
     buttons: List<ButtonValue>,
     callback: ((ButtonValue) -> Unit) = {
         it.routerActivity()
+    },
+    longCallback: ((ButtonValue) -> Unit) = {
     }
 ) {
     ButtonAdapter(buttons)
         .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(
-                buttonValue: ButtonValue,
-                param: Int
-            ) {
+            override fun onItemClick(buttonValue: ButtonValue, param: Int) {
                 callback.invoke(buttonValue)
+            }
+
+            override fun onItemLongClick(buttonValue: ButtonValue, param: Int) {
+                longCallback.invoke(buttonValue)
             }
         }).bindAdapter(this)
 }

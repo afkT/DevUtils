@@ -2,6 +2,8 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
 import com.therouter.router.Route
@@ -18,44 +20,43 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH)
-class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
+class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, BaseProjectViewModel>(
+    R.layout.activity_wallpaper, simple_Agile = {
+        if (it is WallpaperActivity) {
+            it.apply {
+                val wallpaper = WallpaperUtils.getDrawable()
 
-    override fun baseLayoutId(): Int = R.layout.activity_wallpaper
-
-    override fun initValue() {
-        super.initValue()
-
-        val wallpaper = WallpaperUtils.getDrawable()
-
-        binding.vidSaveBtn.setOnClickListener {
-            if (wallpaper == null) {
-                showToast(false, "获取壁纸失败")
-                return@setOnClickListener
-            }
-            DevEngine.getStorage()?.insertImageToExternal(
-                StorageItem.createExternalItem(
-                    "${System.currentTimeMillis()}.jpg"
-                ),
-                DevSource.create(
-                    wallpaper
-                ),
-                object : OnDevInsertListener {
-                    override fun onResult(
-                        result: StorageResult,
-                        params: StorageItem?,
-                        source: DevSource?
-                    ) {
-                        showToast(
-                            result.isSuccess(),
-                            "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
-                            "保存失败"
-                        )
+                binding.vidSaveBtn.setOnClickListener {
+                    if (wallpaper == null) {
+                        showToast(false, "获取壁纸失败")
+                        return@setOnClickListener
                     }
+                    DevEngine.getStorage()?.insertImageToExternal(
+                        StorageItem.createExternalItem(
+                            "${System.currentTimeMillis()}.jpg"
+                        ),
+                        DevSource.create(
+                            wallpaper
+                        ),
+                        object : OnDevInsertListener {
+                            override fun onResult(
+                                result: StorageResult,
+                                params: StorageItem?,
+                                source: DevSource?
+                            ) {
+                                showToast(
+                                    result.isSuccess(),
+                                    "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                                    "保存失败"
+                                )
+                            }
+                        }
+                    )
                 }
-            )
-        }
-        wallpaper?.let {
-            binding.vidIv.background = it
+                wallpaper?.let {
+                    binding.vidIv.background = it
+                }
+            }
         }
     }
-}
+)

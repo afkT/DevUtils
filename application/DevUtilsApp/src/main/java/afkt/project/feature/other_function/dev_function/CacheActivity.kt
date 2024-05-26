@@ -1,14 +1,14 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.cacheButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.utils.app.PathUtils
 import dev.utils.app.cache.DevCache
 import dev.utils.app.toast.ToastTintUtils
@@ -21,20 +21,11 @@ import java.io.Serializable
  * [CacheUse]
  */
 @Route(path = RouterPath.OTHER_FUNCTION.CacheActivity_PATH)
-class CacheActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(cacheButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is CacheActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(cacheButtonValues) { buttonValue ->
                     // 获取字符串
                     val str: String?
                     when (buttonValue.type) {
@@ -94,8 +85,10 @@ class CacheActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
     }
+) {
 
     /**
      * detail: 缓存实体类

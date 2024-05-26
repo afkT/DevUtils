@@ -1,12 +1,13 @@
 package afkt.project.feature.other_function.wifi
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.wifiButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration
@@ -14,7 +15,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Message
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.permission.permission_request
@@ -35,41 +35,13 @@ import dev.utils.app.wifi.WifiUtils
  * @author Ttt
  * Wifi 热点状态监听等可参考 [QuickWifiHotUtils]
  */
+@SuppressLint("MissingPermission")
 @Route(path = RouterPath.OTHER_FUNCTION.WifiActivity_PATH)
-class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    // Wifi 工具类
-    var wifiUtils = WifiUtils()
-
-    // Wifi 热点工具类
-    var wifiHotUtils = WifiHotUtils()
-
-    // 热点名、密码
-    var wifiHotSSID = "DevWifiAp"
-    var wifiHotPwd = "123456789"
-
-    // Android 8.0 开启热点不能多次点击
-    var isOpenAPING = false
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // 注销监听
-        unregister()
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(wifiButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                @SuppressLint("MissingPermission")
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is WifiActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(wifiButtonValues) { buttonValue ->
                     when (buttonValue.type) {
                         ButtonValue.BTN_WIFI_OPEN -> {
                             if (wifiUtils.isOpenWifi) {
@@ -93,7 +65,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             } else {
                                 if (isOpenAPING) {
                                     ToastUtils.showShort("Wifi 热点开启中")
-                                    return
+                                    return@bindAdapter
                                 }
                                 // = 8.0 特殊处理 =
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -154,7 +126,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                             }
                                         }
                                     )
-                                    return
+                                    return@bindAdapter
                                 } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) { // 7.0 及以下需要 WRITE_SETTINGS 权限
                                     // 无法进行申请, 只能跳转到权限页面, 让用户开启
                                     // 获取写入设置权限 , 必须有这个权限, 否则无法开启
@@ -166,7 +138,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                                 AppUtils.getPackageName()
                                             )
                                         )
-                                        return
+                                        return@bindAdapter
                                     }
                                 }
                                 // 密码必须大于等于 8 位
@@ -203,7 +175,28 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
+    }
+) {
+
+    // Wifi 工具类
+    var wifiUtils = WifiUtils()
+
+    // Wifi 热点工具类
+    var wifiHotUtils = WifiHotUtils()
+
+    // 热点名、密码
+    var wifiHotSSID = "DevWifiAp"
+    var wifiHotPwd = "123456789"
+
+    // Android 8.0 开启热点不能多次点击
+    var isOpenAPING = false
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // 注销监听
+        unregister()
     }
 
     override fun initListener() {

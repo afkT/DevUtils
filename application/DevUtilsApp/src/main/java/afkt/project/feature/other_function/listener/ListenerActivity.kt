@@ -1,19 +1,19 @@
 package afkt.project.feature.other_function.listener
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.listenerButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCommonTipsBinding
-import afkt.project.feature.ButtonAdapter
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
 import android.telephony.SmsMessage
 import android.view.OrientationEventListener
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_eTag
 import dev.receiver.AppStateReceiver
@@ -44,9 +44,50 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.ListenerActivity_PATH)
-class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
+class ListenerActivity : BaseProjectActivity<ActivityCommonTipsBinding, BaseProjectViewModel>(
+    R.layout.activity_common_tips, simple_Agile = {
+        if (it is ListenerActivity) {
+            it.apply {
+                val view = ViewUtils.inflate(this, R.layout.base_view_textview)
+                ViewHelper.get().setText("单击绑定, 长按注销", view)
+                    .setTextColors(ResourceUtils.getColor(R.color.gray), view)
+                binding.vidLl.addView(view)
 
-    override fun baseLayoutId(): Int = R.layout.activity_common_tips
+                binding.vidInclude.vidRv.bindAdapter(
+                    listenerButtonValues, { buttonValue ->
+                        when (buttonValue.type) {
+                            ButtonValue.BTN_WIFI_LISTENER -> wifiListener(true)
+                            ButtonValue.BTN_NETWORK_LISTENER -> netListener(true)
+                            ButtonValue.BTN_PHONE_LISTENER -> phoneListener(true)
+                            ButtonValue.BTN_SMS_LISTENER -> smsListener(true)
+                            ButtonValue.BTN_TIME_LISTENER -> timeListener(true)
+                            ButtonValue.BTN_SCREEN_LISTENER -> screenListener(true)
+                            ButtonValue.BTN_ROTA_LISTENER -> rotaListener(true)
+                            ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(true)
+                            ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(true)
+                            ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(true)
+                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                        }
+                    }, { buttonValue ->
+                        when (buttonValue.type) {
+                            ButtonValue.BTN_WIFI_LISTENER -> wifiListener(false)
+                            ButtonValue.BTN_NETWORK_LISTENER -> netListener(false)
+                            ButtonValue.BTN_PHONE_LISTENER -> phoneListener(false)
+                            ButtonValue.BTN_SMS_LISTENER -> smsListener(false)
+                            ButtonValue.BTN_TIME_LISTENER -> timeListener(false)
+                            ButtonValue.BTN_SCREEN_LISTENER -> screenListener(false)
+                            ButtonValue.BTN_ROTA_LISTENER -> rotaListener(false)
+                            ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(false)
+                            ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(false)
+                            ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(false)
+                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                        }
+                    }
+                )
+            }
+        }
+    }
+) {
 
     override fun onDestroy() {
         super.onDestroy()
@@ -61,57 +102,6 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
         AppStateReceiver.unregister()
         screenSensorAssist.stop()
         mOrientationEventListener?.disable()
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        val view = ViewUtils.inflate(this, R.layout.base_view_textview)
-        ViewHelper.get().setText("单击绑定, 长按注销", view)
-            .setTextColors(ResourceUtils.getColor(R.color.gray), view)
-        binding.vidLl.addView(view)
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(listenerButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_WIFI_LISTENER -> wifiListener(true)
-                        ButtonValue.BTN_NETWORK_LISTENER -> netListener(true)
-                        ButtonValue.BTN_PHONE_LISTENER -> phoneListener(true)
-                        ButtonValue.BTN_SMS_LISTENER -> smsListener(true)
-                        ButtonValue.BTN_TIME_LISTENER -> timeListener(true)
-                        ButtonValue.BTN_SCREEN_LISTENER -> screenListener(true)
-                        ButtonValue.BTN_ROTA_LISTENER -> rotaListener(true)
-                        ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(true)
-                        ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(true)
-                        ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(true)
-                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                    }
-                }
-
-                override fun onItemLongClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_WIFI_LISTENER -> wifiListener(false)
-                        ButtonValue.BTN_NETWORK_LISTENER -> netListener(false)
-                        ButtonValue.BTN_PHONE_LISTENER -> phoneListener(false)
-                        ButtonValue.BTN_SMS_LISTENER -> smsListener(false)
-                        ButtonValue.BTN_TIME_LISTENER -> timeListener(false)
-                        ButtonValue.BTN_SCREEN_LISTENER -> screenListener(false)
-                        ButtonValue.BTN_ROTA_LISTENER -> rotaListener(false)
-                        ButtonValue.BTN_ROTA2_LISTENER -> rotaListener2(false)
-                        ButtonValue.BTN_BATTERY_LISTENER -> batteryListener(false)
-                        ButtonValue.BTN_APP_STATE_LISTENER -> appStateListener(false)
-                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                    }
-                }
-            }).bindAdapter(binding.vidInclude.vidRv)
     }
 
     // ============
@@ -552,7 +542,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
      */
     private fun rotaListener2(isBind: Boolean) {
         if (mOrientationEventListener == null) {
-            mOrientationEventListener = object : OrientationEventListener(mContext) {
+            mOrientationEventListener = object : OrientationEventListener(mActivity) {
                 override fun onOrientationChanged(rotation: Int) {
                     if (rotation in 0..30 || rotation >= 330) {
                         TAG.log_dTag(

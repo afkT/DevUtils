@@ -1,14 +1,14 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
@@ -20,20 +20,11 @@ import dev.utils.common.StringUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.PathActivity_PATH)
-class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.pathButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class PathActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is PathActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(ButtonList.pathButtonValues) { buttonValue ->
                     val builder = StringBuilder()
                     when (buttonValue.type) {
                         ButtonValue.BTN_PATH_INTERNAL -> {
@@ -194,6 +185,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
     }
-}
+)

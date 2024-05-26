@@ -1,15 +1,15 @@
 package afkt.project.feature.other_function.service
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList.accessibilityListenerServiceButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.view.accessibility.AccessibilityEvent
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.expand.engine.log.log_dTag
 import dev.service.AccessibilityListenerService
 import dev.utils.app.AppUtils
@@ -23,9 +23,43 @@ import dev.utils.app.toast.ToastTintUtils
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
 @Route(path = RouterPath.OTHER_FUNCTION.AccessibilityListenerServiceActivity_PATH)
-class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+class AccessibilityListenerServiceActivity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is AccessibilityListenerServiceActivity) {
+                it.apply {
+                    binding.vidRv.bindAdapter(accessibilityListenerServiceButtonValues) { buttonValue ->
+                        when (buttonValue.type) {
+                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK -> {
+                                val check = AccessibilityListenerService.isAccessibilitySettingsOn(
+                                    AppUtils.getPackageName()
+                                )
+                                showToast(check, "已开启无障碍功能", "未开启无障碍功能")
+                            }
 
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
+                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER -> {
+                                if (!AccessibilityListenerService.checkAccessibility()) {
+                                    showToast(false, "请先开启无障碍功能")
+                                } else {
+                                    showToast(true, "绑定无障碍监听服务成功, 请查看 Logcat")
+                                    // 注册监听
+                                    AccessibilityListenerService.startService()
+                                }
+                            }
+
+                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER -> {
+                                showToast(true, "注销无障碍监听服务成功")
+                                // 注销监听
+                                AccessibilityListenerService.stopService()
+                            }
+
+                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+                        }
+                    }
+                }
+            }
+        }
+    ) {
 
     override fun onDestroy() {
         super.onDestroy()
@@ -34,50 +68,12 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
         AccessibilityListenerService.stopService()
     }
 
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(accessibilityListenerServiceButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK -> {
-                            val check =
-                                AccessibilityListenerService.isAccessibilitySettingsOn(AppUtils.getPackageName())
-                            showToast(check, "已开启无障碍功能", "未开启无障碍功能")
-                        }
-
-                        ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER -> {
-                            if (!AccessibilityListenerService.checkAccessibility()) {
-                                showToast(false, "请先开启无障碍功能")
-                                return
-                            }
-                            showToast(true, "绑定无障碍监听服务成功, 请查看 Logcat")
-                            // 注册监听
-                            AccessibilityListenerService.startService()
-                        }
-
-                        ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER -> {
-                            showToast(true, "注销无障碍监听服务成功")
-                            // 注销监听
-                            AccessibilityListenerService.stopService()
-                        }
-
-                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                    }
-                }
-            }).bindAdapter(binding.vidRv)
-    }
-
     override fun initListener() {
         super.initListener()
 
         // 设置监听事件
-        AccessibilityListenerService.setListener(object : AccessibilityListenerService.Listener {
+        AccessibilityListenerService.setListener(object :
+            AccessibilityListenerService.Listener {
             override fun onAccessibilityEvent(
                 accessibilityEvent: AccessibilityEvent?,
                 accessibilityListenerService: AccessibilityListenerService?
