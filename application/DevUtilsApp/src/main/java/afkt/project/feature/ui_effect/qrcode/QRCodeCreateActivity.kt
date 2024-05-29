@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityQrcodeCreateBinding
 import afkt.project.ui.createGalleryConfig
@@ -26,20 +27,20 @@ import dev.utils.common.ThrowableUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.QRCodeCreateActivity_PATH)
-class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
+class QRCodeCreateActivity : BaseProjectActivity<ActivityQrcodeCreateBinding, BaseProjectViewModel>(
+    R.layout.activity_qrcode_create, simple_Agile = {
+        if (it is QRCodeCreateActivity) {
+            it.apply {
+                ListenerUtils.setOnClicks(
+                    this, binding.vidCreateBtn, binding.vidSelectBtn
+                )
+            }
+        }
+    }
+) {
 
     // 图片 Bitmap
     private var selectBitmap: Bitmap? = null
-
-    override fun baseLayoutId(): Int = R.layout.activity_qrcode_create
-
-    override fun initListener() {
-        super.initListener()
-        ListenerUtils.setOnClicks(
-            this,
-            binding.vidCreateBtn, binding.vidSelectBtn
-        )
-    }
 
     override fun onClick(v: View) {
         super.onClick(v)

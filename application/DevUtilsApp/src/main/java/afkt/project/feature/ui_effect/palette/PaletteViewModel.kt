@@ -1,12 +1,10 @@
 package afkt.project.feature.ui_effect.palette
 
-import androidx.lifecycle.DefaultLifecycleObserver
+import afkt.project.base.project.BaseProjectViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.palette.graphics.Palette
 
-class PaletteViewModel : ViewModel(),
-    DefaultLifecycleObserver {
+class PaletteViewModel : BaseProjectViewModel() {
 
     val itemPosition = MutableLiveData<Int>()
 

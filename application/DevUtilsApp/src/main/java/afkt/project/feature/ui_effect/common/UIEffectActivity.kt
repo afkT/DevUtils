@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.common
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
@@ -27,12 +28,12 @@ import dev.utils.common.ArrayUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.UIEffectActivity_PATH)
-class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
+class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjectViewModel>(
+    R.layout.activity_ui_effect
+) {
 
     // 当前选中的索引
     private var selectTabIndex = -1
-
-    override fun baseLayoutId(): Int = R.layout.activity_ui_effect
 
     override fun initValue() {
         super.initValue()

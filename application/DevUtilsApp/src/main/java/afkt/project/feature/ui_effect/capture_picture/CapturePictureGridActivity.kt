@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.bean.AdapterBean
 import afkt.project.data_model.bean.AdapterBean.Companion.newAdapterBeanList
 import afkt.project.data_model.button.RouterPath
@@ -30,9 +31,10 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureGridActivity_PATH)
-class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_capture_picture_grid
+class CapturePictureGridActivity :
+    BaseProjectActivity<ActivityCapturePictureGridBinding, BaseProjectViewModel>(
+        R.layout.activity_capture_picture_grid
+    ) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

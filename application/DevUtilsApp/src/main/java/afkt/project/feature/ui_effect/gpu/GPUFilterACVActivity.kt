@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
@@ -27,7 +28,53 @@ import dev.utils.common.ScaleUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.GPUFilterACVActivity_PATH)
-class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
+class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, BaseProjectViewModel>(
+    R.layout.activity_gpu_filter, simple_Agile = {
+        if (it is GPUFilterACVActivity) {
+            it.apply {
+
+                // 设置滤镜线程
+                filterThread = Runnable { setFilter() }
+
+                // 初始化数据
+                listACVFiles.add(ACVFileBean("August", "filter/August.acv"))
+                listACVFiles.add(ACVFileBean("Darker", "filter/Darker.acv"))
+                listACVFiles.add(ACVFileBean("Dream", "filter/Dream.acv"))
+                listACVFiles.add(ACVFileBean("Fornature", "filter/Fornature.acv"))
+                listACVFiles.add(ACVFileBean("Greens", "filter/Greens.acv"))
+                listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
+
+                // 设置适配器
+                binding.vidGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
+                    gpuFilterACVAdapter = it
+                }
+                binding.vidGallery.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>?,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
+                            gpuFilterACVAdapter.setSelectPosition(position)
+                            // 延迟一会进行滤镜
+                            HandlerUtils.removeRunnable(filterThread)
+                            HandlerUtils.postRunnable(filterThread, 500)
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>?) {}
+                    }
+                // 默认选中第一个
+                binding.vidGallery.setSelection(0)
+
+                binding.vidSelectBtn.setOnClickListener { _ ->
+                    // 打开图片选择器
+                    DevEngine.getMedia()?.openGallery(it, it.createGalleryConfig())
+                }
+            }
+        }
+    }
+) {
 
     // 适配器
     private lateinit var gpuFilterACVAdapter: GPUFilterACVAdapter
@@ -43,59 +90,9 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         private var filterThread: Runnable? = null
     }
 
-    override fun baseLayoutId(): Int = R.layout.activity_gpu_filter
-
     override fun onDestroy() {
         super.onDestroy()
         filterThread = null
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        // 设置滤镜线程
-        filterThread = Runnable { setFilter() }
-
-        // 初始化数据
-        listACVFiles.add(ACVFileBean("August", "filter/August.acv"))
-        listACVFiles.add(ACVFileBean("Darker", "filter/Darker.acv"))
-        listACVFiles.add(ACVFileBean("Dream", "filter/Dream.acv"))
-        listACVFiles.add(ACVFileBean("Fornature", "filter/Fornature.acv"))
-        listACVFiles.add(ACVFileBean("Greens", "filter/Greens.acv"))
-        listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
-
-        // 设置适配器
-        binding.vidGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
-            gpuFilterACVAdapter = it
-        }
-        binding.vidGallery.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
-                    gpuFilterACVAdapter.setSelectPosition(position)
-                    // 延迟一会进行滤镜
-                    HandlerUtils.removeRunnable(filterThread)
-                    HandlerUtils.postRunnable(filterThread, 500)
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
-        // 默认选中第一个
-        binding.vidGallery.setSelection(0)
-    }
-
-    override fun initListener() {
-        super.initListener()
-        binding.vidSelectBtn.setOnClickListener {
-            mActivity?.let { activity ->
-                // 打开图片选择器
-                DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
-            }
-        }
     }
 
     // ==========

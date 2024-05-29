@@ -1,7 +1,6 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
 import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
@@ -26,37 +25,38 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.ActivityResultAPIActivity_PATH)
-class ActivityResultAPIActivity : BaseProjectActivity<ActivityActivityResultApiBinding, BaseProjectViewModel>(
-    R.layout.activity_activity_result_api, simple_Agile = {
-        if (it is ActivityResultAPIActivity) {
-            it.apply {
-                binding.vidTakeBtn.setOnClickListener {
-                    permission_request(
-                        permissions = arrayOf(Manifest.permission.CAMERA),
-                        callback = object : IPermissionEngine.Callback {
-                            override fun onGranted() {
-                                mAssist?.launch(MediaStoreUtils.createImageUri())
-                            }
+class ActivityResultAPIActivity :
+    BaseProjectActivity<ActivityActivityResultApiBinding, BaseProjectViewModel>(
+        R.layout.activity_activity_result_api, simple_Agile = {
+            if (it is ActivityResultAPIActivity) {
+                it.apply {
+                    binding.vidTakeBtn.setOnClickListener {
+                        permission_request(
+                            permissions = arrayOf(Manifest.permission.CAMERA),
+                            callback = object : IPermissionEngine.Callback {
+                                override fun onGranted() {
+                                    mAssist?.launch(MediaStoreUtils.createImageUri())
+                                }
 
-                            override fun onDenied(
-                                grantedList: MutableList<String>?,
-                                deniedList: MutableList<String>?,
-                                notFoundList: MutableList<String>?
-                            ) {
-                                // 拒绝了则再次请求处理
-                                permission_againRequest(
-                                    callback = this,
-                                    deniedList = deniedList
-                                )
-                                ToastTintUtils.warning("拍照需摄像头权限")
+                                override fun onDenied(
+                                    grantedList: MutableList<String>?,
+                                    deniedList: MutableList<String>?,
+                                    notFoundList: MutableList<String>?
+                                ) {
+                                    // 拒绝了则再次请求处理
+                                    permission_againRequest(
+                                        callback = this,
+                                        deniedList = deniedList
+                                    )
+                                    ToastTintUtils.warning("拍照需摄像头权限")
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
-    }
-) {
+    ) {
 
     // 如果使用 by lazy 要确保在 Lifecycle STARTED 状态前初始化
     private var mAssist: ActivityResultAssist<Uri, Boolean>? = null

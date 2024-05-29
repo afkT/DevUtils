@@ -1,13 +1,13 @@
 package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.bean.CommodityItem
 import afkt.project.data_model.bean.CommodityItem.Companion.newCommodityItem
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.therouter.router.Route
@@ -24,55 +24,51 @@ import dev.widget.decoration.linear.FirstLinearColorItemDecoration
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.MultiSelectActivity_PATH)
-class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is MultiSelectActivity) {
+            it.apply {
+                // 增加 Toolbar 按钮
+                addToolbarButton()
+
+                val parent = binding.vidRv.parent as? ViewGroup
+                // 根布局处理
+                QuickHelper.get(parent).setPadding(0)
+                    .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
+
+                val lists = mutableListOf<CommodityItem>()
+                for (i in 0..14) lists.add(newCommodityItem())
+
+                // 初始化布局管理器、适配器
+                adapter = MultiSelectAdapter(lists)
+                    .setSelectListener(object : OnSelectListener {
+                        override fun onClickSelect(
+                            position: Int,
+                            now: Boolean
+                        ) {
+                            val item = adapter.getDataItem(position)
+                            TAG.log_dTag(
+                                message = "新状态: %s, 商品名: %s",
+                                args = arrayOf(now, item?.commodityName)
+                            )
+                        }
+                    })
+                adapter.bindAdapter(binding.vidRv)
+
+                QuickHelper.get(binding.vidRv)
+                    .removeAllItemDecoration()
+                    .addItemDecoration(
+                        FirstLinearColorItemDecoration(
+                            true, ResourceUtils.getDimension(R.dimen.dp_10)
+                        )
+                    )
+            }
+        }
+    }
+) {
 
     // 适配器
     lateinit var adapter: MultiSelectAdapter
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // 增加 Toolbar 按钮
-        addToolbarButton()
-
-        val parent = binding.vidRv.parent as? ViewGroup
-        // 根布局处理
-        QuickHelper.get(parent).setPadding(0)
-            .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        val lists = mutableListOf<CommodityItem>()
-        for (i in 0..14) lists.add(newCommodityItem())
-
-        // 初始化布局管理器、适配器
-        adapter = MultiSelectAdapter(lists)
-            .setSelectListener(object : OnSelectListener {
-                override fun onClickSelect(
-                    position: Int,
-                    now: Boolean
-                ) {
-                    val item = adapter.getDataItem(position)
-                    TAG.log_dTag(
-                        message = "新状态: %s, 商品名: %s",
-                        args = arrayOf(now, item?.commodityName)
-                    )
-                }
-            })
-        adapter.bindAdapter(binding.vidRv)
-
-        QuickHelper.get(binding.vidRv)
-            .removeAllItemDecoration()
-            .addItemDecoration(
-                FirstLinearColorItemDecoration(
-                    true, ResourceUtils.getDimension(R.dimen.dp_10)
-                )
-            )
-    }
 
     // =============
     // = 增加按钮处理 =

@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
@@ -41,15 +42,33 @@ import dev.widget.ui.ScanShapeView
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.QRCodeScanActivity_PATH)
-class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
+class QRCodeScanActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProjectViewModel>(
+    R.layout.activity_scan_shape, simple_Agile = {
+        if (it is QRCodeScanActivity) {
+            it.apply {
+                // 设置扫描类型
+                ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
+                // 显示图片识别按钮
+                ViewUtils.setVisibility(true, findViewById(R.id.vid_image_iv))
+
+                ListenerUtils.setOnClicks(
+                    this,
+                    binding.vidFlashlightIv,
+                    binding.vidSquareIv,
+                    binding.vidHexagonIv,
+                    binding.vidAnnulusIv,
+                    binding.vidImageIv
+                )
+            }
+        }
+    }
+) {
 
     // 无操作计时辅助类
     private var mInactivityTimerAssist = InactivityTimerAssist(this)
 
     // 扫描成功响声 + 震动
     private var mBeepVibrateAssist = BeepVibrateAssist(this, R.raw.dev_beep)
-
-    override fun baseLayoutId(): Int = R.layout.activity_scan_shape
 
     override fun onDestroy() {
         // 销毁处理
@@ -77,27 +96,6 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         mInactivityTimerAssist.onPause()
         // 暂停扫描
         zxingDecodeAssist.onPause()
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        // 设置扫描类型
-        ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
-        // 显示图片识别按钮
-        ViewUtils.setVisibility(true, findViewById(R.id.vid_image_iv))
-    }
-
-    override fun initListener() {
-        super.initListener()
-        ListenerUtils.setOnClicks(
-            this,
-            binding.vidFlashlightIv,
-            binding.vidSquareIv,
-            binding.vidHexagonIv,
-            binding.vidAnnulusIv,
-            binding.vidImageIv
-        )
     }
 
     override fun onClick(v: View) {
@@ -136,7 +134,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             }
 
             R.id.vid_image_iv -> {
-                mActivity?.let { activity ->
+                mActivity.let { activity ->
                     // 打开图片选择器
                     DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
                 }

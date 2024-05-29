@@ -1,13 +1,13 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.ui.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
-import android.view.View
 import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
@@ -33,41 +33,35 @@ import kotlinx.coroutines.launch
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.QRCodeImageActivity_PATH)
-class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
+class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, BaseProjectViewModel>(
+    R.layout.activity_qrcode_image, simple_Agile = {
+        if (it is QRCodeImageActivity) {
+            it.apply {
+                ListenerUtils.setOnClicks({ v ->
+                        when (v.id) {
+                            R.id.vid_select_btn -> {
+                                // 打开图片选择器
+                                DevEngine.getMedia()?.openGallery(it, it.createGalleryConfig())
+                            }
 
-    // 图片 Bitmap
-    private var selectBitmap: Bitmap? = null
-
-    override fun baseLayoutId(): Int = R.layout.activity_qrcode_image
-
-    override fun initListener() {
-        super.initListener()
-        ListenerUtils.setOnClicks(
-            this,
-            binding.vidSelectBtn, binding.vidTv
-        )
-    }
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.vid_select_btn -> {
-                mActivity?.let { activity ->
-                    // 打开图片选择器
-                    DevEngine.getMedia()?.openGallery(activity, activity.createGalleryConfig())
-                }
-            }
-
-            R.id.vid_tv -> {
-                val text = TextViewUtils.getText(binding.vidTv)
-                if (StringUtils.isEmpty(text)) return
-                // 复制到剪切板
-                ClipboardUtils.copyText(text)
-                // 进行提示
-                ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + " -> " + text)
+                            R.id.vid_tv -> {
+                                val text = TextViewUtils.getText(binding.vidTv)
+                                if (StringUtils.isEmpty(text)) return@setOnClicks
+                                // 复制到剪切板
+                                ClipboardUtils.copyText(text)
+                                // 进行提示
+                                ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + " -> " + text)
+                            }
+                        }
+                    }, binding.vidSelectBtn, binding.vidTv
+                )
             }
         }
     }
+) {
+
+    // 图片 Bitmap
+    private var selectBitmap: Bitmap? = null
 
     // ==========
     // = 图片回传 =
@@ -85,7 +79,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                 // 获取图片地址
                 val imgUri = DevEngine.getMedia()?.getSingleSelectorUri(intent, false)
 
-                mActivity?.loadBitmap(
+                mActivity.loadBitmap(
                     source = imgUri?.toSource(), config = null,
                     listener = object : BitmapListener() {
                         override fun onStart(source: DevSource) {}

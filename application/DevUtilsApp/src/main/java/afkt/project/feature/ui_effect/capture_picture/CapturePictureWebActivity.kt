@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureWebBinding
 import android.os.Bundle
@@ -23,9 +24,10 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH)
-class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_capture_picture_web
+class CapturePictureWebActivity :
+    BaseProjectActivity<ActivityCapturePictureWebBinding, BaseProjectViewModel>(
+        R.layout.activity_capture_picture_web
+    ) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

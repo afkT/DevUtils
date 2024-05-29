@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityChipBinding
-import android.os.Bundle
 import android.view.View
 import com.google.android.material.chip.Chip
 import com.therouter.router.Route
@@ -29,45 +29,41 @@ import java.util.*
  * Activity 需要设置为 Theme.MaterialComponents 主题
  */
 @Route(path = RouterPath.UI_EFFECT.ChipActivity_PATH)
-class ChipActivity : BaseActivity<ActivityChipBinding>() {
+class ChipActivity : BaseProjectActivity<ActivityChipBinding, BaseProjectViewModel>(
+    R.layout.activity_chip, simple_Agile = {
+        if (it is ChipActivity) {
+            it.apply {
+                val view = QuickHelper.get(BaseTextView(this))
+                    .setText("刷新")
+                    .setBold()
+                    .setTextColors(ResourceUtils.getColor(R.color.red))
+                    .setTextSizeBySp(15.0F)
+                    .setPaddingLeft(30)
+                    .setPaddingRight(30)
+                    .setOnClick { initValue() }.getView<View>()
+                toolbar?.addView(view)
 
-    override fun baseLayoutId(): Int = R.layout.activity_chip
+                binding.vidGroup.removeAllViews()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+                for (i in 1..20) {
+                    val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
+                            RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
+                    val randomText =
+                        i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
 
-        val view = QuickHelper.get(BaseTextView(this))
-            .setText("刷新")
-            .setBold()
-            .setTextColors(ResourceUtils.getColor(R.color.red))
-            .setTextSizeBySp(15.0F)
-            .setPaddingLeft(30)
-            .setPaddingRight(30)
-            .setOnClick { initValue() }.getView<View>()
-        toolbar?.addView(view)
-    }
+                    val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
+                    chip?.run {
+                        // 随机颜色
+                        val pressed = ColorUtils.getRandomColorString()
+                        val normal = ColorUtils.getRandomColorString()
 
-    override fun initValue() {
-        super.initValue()
-
-        binding.vidGroup.removeAllViews()
-
-        for (i in 1..20) {
-            val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
-                    RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
-            val randomText =
-                i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
-
-            val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
-            chip?.run {
-                // 随机颜色
-                val pressed = ColorUtils.getRandomColorString()
-                val normal = ColorUtils.getRandomColorString()
-
-                chip.text = randomText
-                chip.chipBackgroundColor = StateListUtils.createColorStateList(pressed, normal)
-                binding.vidGroup.addView(this)
+                        chip.text = randomText
+                        chip.chipBackgroundColor =
+                            StateListUtils.createColorStateList(pressed, normal)
+                        binding.vidGroup.addView(this)
+                    }
+                }
             }
         }
     }
-}
+)

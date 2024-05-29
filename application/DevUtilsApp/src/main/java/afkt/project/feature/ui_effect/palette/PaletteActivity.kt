@@ -1,10 +1,9 @@
 package afkt.project.feature.ui_effect.palette
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityPaletteBinding
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -22,53 +21,46 @@ import dev.utils.app.BarUtils
  * @see https://blog.csdn.net/jaynm/article/details/107076754
  */
 @Route(path = RouterPath.UI_EFFECT.PaletteActivity_PATH)
-class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
-
-    private val viewModel by viewModels<PaletteViewModel>()
-
-    override fun baseLayoutId(): Int = R.layout.activity_palette
-
-    override fun initValue() {
-        super.initValue()
-
-        viewModel.paletteColor.observe(this) {
-            it.vibrantSwatch?.run {
-                binding.vidTl.setBackgroundColor(rgb)
-                toolbar?.let { bar ->
-                    bar.setBackgroundColor(rgb)
-                    BarUtils.addMarginTopEqualStatusBarHeight(bar)
+class PaletteActivity : BaseProjectActivity<ActivityPaletteBinding, PaletteViewModel>(
+    R.layout.activity_palette, simple_Agile = {
+        if (it is PaletteActivity) {
+            it.apply {
+                viewModel.paletteColor.observe(this) {
+                    it.vibrantSwatch?.run {
+                        binding.vidTl.setBackgroundColor(rgb)
+                        toolbar?.let { bar ->
+                            bar.setBackgroundColor(rgb)
+                            BarUtils.addMarginTopEqualStatusBarHeight(bar)
+                        }
+                        BarUtils.setStatusBarColor(mActivity, rgb)
+                    }
                 }
-                BarUtils.setStatusBarColor(mActivity, rgb)
+
+                val list = mutableListOf<Fragment>()
+                list.add(newPaletteFragment(1))
+                list.add(newPaletteFragment(2))
+                list.add(newPaletteFragment(3))
+                list.add(newPaletteFragment(4))
+                list.add(newPaletteFragment(5))
+                binding.vidVp.adapter = MyPagerAdapter(this, list)
+
+                binding.vidVp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        viewModel.postItemPosition(position + 1)
+                    }
+                })
+
+                // TabLayout 与 ViewPager2 联动
+                TabLayoutMediator(
+                    binding.vidTl, binding.vidVp
+                ) { tab, position ->
+                    tab.text = "Wallpaper-${position}"
+                }.attach()
             }
         }
-
-        val list = mutableListOf<Fragment>()
-        list.add(newPaletteFragment(1))
-        list.add(newPaletteFragment(2))
-        list.add(newPaletteFragment(3))
-        list.add(newPaletteFragment(4))
-        list.add(newPaletteFragment(5))
-
-        binding.vidVp.adapter = MyPagerAdapter(this, list)
     }
-
-    override fun initListener() {
-        super.initListener()
-
-        binding.vidVp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                viewModel.postItemPosition(position + 1)
-            }
-        })
-
-        // TabLayout 与 ViewPager2 联动
-        TabLayoutMediator(
-            binding.vidTl, binding.vidVp
-        ) { tab, position ->
-            tab.text = "Wallpaper-${position}"
-        }.attach()
-    }
+) {
 
     class MyPagerAdapter(
         val activity: FragmentActivity,

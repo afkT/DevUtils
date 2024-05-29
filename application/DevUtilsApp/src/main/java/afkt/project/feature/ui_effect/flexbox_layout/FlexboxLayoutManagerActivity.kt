@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.flexbox_layout
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.flexbox.FlexDirection
@@ -28,48 +28,47 @@ import java.util.*
  * @see https://juejin.im/post/58d1035161ff4b00603ca9c4
  */
 @Route(path = RouterPath.UI_EFFECT.FlexboxLayoutManagerActivity_PATH)
-class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+class FlexboxLayoutManagerActivity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is FlexboxLayoutManagerActivity) {
+                it.apply {
+                    val parent = binding.vidRv.parent as? ViewGroup
+                    // 根布局处理
+                    QuickHelper.get(parent).setPadding(
+                        0, 0, AppSize.dp2px(5F),
+                        AppSize.dp2px(5F)
+                    )
 
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
+                    val view = QuickHelper.get(BaseTextView(this))
+                        .setText("刷新")
+                        .setBold()
+                        .setTextColors(ResourceUtils.getColor(R.color.red))
+                        .setTextSizeBySp(15.0F)
+                        .setPaddingLeft(30)
+                        .setPaddingRight(30)
+                        .setOnClick { initValue() }.getView<View>()
+                    toolbar?.addView(view)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+                    val lists = mutableListOf<String>()
+                    for (i in 1..20) {
+                        val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
+                                RandomUtils.getRandomLetters(RandomUtils.getRandom(8))
+                        val randomText =
+                            i.toString() + "." + RandomUtils.getRandom(
+                                text.toCharArray(),
+                                text.length
+                            )
+                        lists.add(randomText)
+                    }
 
-        val parent = binding.vidRv.parent as? ViewGroup
-        // 根布局处理
-        QuickHelper.get(parent).setPadding(
-            0, 0, AppSize.dp2px(5F),
-            AppSize.dp2px(5F)
-        )
+                    val layoutManager = FlexboxLayoutManager(this)
+                    layoutManager.flexDirection = FlexDirection.ROW
+                    layoutManager.justifyContent = JustifyContent.FLEX_START
 
-        val view = QuickHelper.get(BaseTextView(this))
-            .setText("刷新")
-            .setBold()
-            .setTextColors(ResourceUtils.getColor(R.color.red))
-            .setTextSizeBySp(15.0F)
-            .setPaddingLeft(30)
-            .setPaddingRight(30)
-            .setOnClick { initValue() }.getView<View>()
-        toolbar?.addView(view)
-    }
-
-    override fun initValue() {
-        super.initValue()
-
-        val lists = mutableListOf<String>()
-        for (i in 1..20) {
-            val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
-                    RandomUtils.getRandomLetters(RandomUtils.getRandom(8))
-            val randomText =
-                i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
-            lists.add(randomText)
+                    binding.vidRv.layoutManager = layoutManager
+                    FlexboxTextAdapter(lists).bindAdapter(binding.vidRv)
+                }
+            }
         }
-
-        val layoutManager = FlexboxLayoutManager(this)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.FLEX_START
-
-        binding.vidRv.layoutManager = layoutManager
-        FlexboxTextAdapter(lists).bindAdapter(binding.vidRv)
-    }
-}
+    )

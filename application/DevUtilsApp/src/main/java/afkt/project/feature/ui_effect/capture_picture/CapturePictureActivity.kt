@@ -1,7 +1,9 @@
 package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.routerActivity
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
@@ -22,9 +24,10 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureActivity_PATH)
-class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_capture_picture
+class CapturePictureActivity :
+    BaseProjectActivity<ActivityCapturePictureBinding, BaseProjectViewModel>(
+        R.layout.activity_capture_picture
+    ) {
 
     override fun initValue() {
         super.initValue()
@@ -96,39 +99,32 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
             }
 
             R.id.vid_list_btn -> {
-                routerActivity(
-                    ButtonValue(
-                        1, "CapturePictureUtils ListView 截图",
-                        RouterPath.UI_EFFECT.CapturePictureListActivity_PATH
-                    )
-                )
+                ButtonValue(
+                    1, "CapturePictureUtils ListView 截图",
+                    RouterPath.UI_EFFECT.CapturePictureListActivity_PATH
+                ).routerActivity()
             }
 
             R.id.vid_grid_btn -> {
-                routerActivity(
-                    ButtonValue(
-                        2, "CapturePictureUtils GridView 截图",
-                        RouterPath.UI_EFFECT.CapturePictureGridActivity_PATH
-                    )
-                )
+
+                ButtonValue(
+                    2, "CapturePictureUtils GridView 截图",
+                    RouterPath.UI_EFFECT.CapturePictureGridActivity_PATH
+                ).routerActivity()
             }
 
             R.id.vid_recy_btn -> {
-                routerActivity(
-                    ButtonValue(
-                        3, "CapturePictureUtils RecyclerView 截图",
-                        RouterPath.UI_EFFECT.CapturePictureRecyActivity_PATH
-                    )
-                )
+                ButtonValue(
+                    3, "CapturePictureUtils RecyclerView 截图",
+                    RouterPath.UI_EFFECT.CapturePictureRecyActivity_PATH
+                ).routerActivity()
             }
 
             R.id.vid_webview_btn -> {
-                routerActivity(
-                    ButtonValue(
-                        4, "CapturePictureUtils WebView 截图",
-                        RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH
-                    )
-                )
+                ButtonValue(
+                    4, "CapturePictureUtils WebView 截图",
+                    RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH
+                ).routerActivity()
             }
         }
     }
