@@ -28,12 +28,12 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
     // 适配器
     var adapter = ArticleAdapter()
 
-    override fun createPresenter(): ArticleMVP.Presenter {
-        return ArticleMVP.Presenter(this, this)
-    }
-
     override fun baseLayoutId(): Int {
         return R.layout.base_view_recyclerview
+    }
+
+    override fun createPresenter(): ArticleMVP.Presenter {
+        return ArticleMVP.Presenter(this, this)
     }
 
     override fun initView() {
@@ -41,10 +41,6 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
         // 初始化 View
         val view = stateLayout.getView(ViewAssist.TYPE_ING)
         loadView = ViewUtils.findViewById(view, R.id.vid_whv)
-    }
-
-    override fun initValue() {
-        super.initValue()
         // 初始化布局管理器、适配器
         adapter.bindAdapter(binding.vidRv)
     }

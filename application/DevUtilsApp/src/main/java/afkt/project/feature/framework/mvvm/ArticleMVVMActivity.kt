@@ -1,6 +1,5 @@
 package afkt.project.feature.framework.mvvm
 
-import afkt.project.BR
 import afkt.project.R
 import afkt.project.base.app.BaseMVVMActivity
 import afkt.project.data_model.bean.ArticleBean
@@ -11,7 +10,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.therouter.router.Route
 import com.tt.whorlviewlibrary.WhorlView
-import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils
 import dev.widget.assist.ViewAssist
@@ -39,31 +37,11 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
 
     override fun initView() {
         super.initView()
-
-        setSupportActionBar(binding.vidTb)
-        supportActionBar?.apply {
-            // 给左上角图标的左边加上一个返回的图标
-            setDisplayHomeAsUpEnabled(true)
-            // 对应 ActionBar.DISPLAY_SHOW_TITLE
-            setDisplayShowTitleEnabled(false)
-        }
-
-        // 设置点击事件
-        binding.vidTb.setNavigationOnClickListener { v: View? -> finish() }
-
-        // 获取标题
-        val title = intent.getStringExtra(DevFinal.STR.TITLE)
-        // 设置标题
-        binding.title = title // 或用下面设置
-        binding.setVariable(BR.title, title) // 设置后, 会动态刷新
-
+        // 初始化 ToolBar
+        initToolBar(binding.vidTb)
         // 初始化 View
         val view = binding.vidStateSl.getView(ViewAssist.TYPE_ING)
         loadView = ViewUtils.findViewById(view, R.id.vid_whv)
-    }
-
-    override fun initValue() {
-        super.initValue()
         // 初始化布局管理器、适配器
         adapter.bindAdapter(binding.vidRv)
     }

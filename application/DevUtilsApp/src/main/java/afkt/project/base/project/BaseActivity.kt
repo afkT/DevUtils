@@ -1,6 +1,5 @@
 package afkt.project.base.project
 
-import afkt.project.base.app.FloatingLifecycle
 import afkt.project.feature.other_function.floating.Utils2
 import android.app.Activity
 import android.view.View
