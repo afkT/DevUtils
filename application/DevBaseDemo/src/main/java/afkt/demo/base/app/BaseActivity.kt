@@ -11,13 +11,11 @@ import dev.base.expand.viewdata.DevBaseViewDataBindingActivity
  */
 abstract class BaseActivity<VDB : ViewDataBinding> : DevBaseViewDataBindingActivity<VDB>() {
 
+    override fun baseContentView(): View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()
-    }
-
-    override fun baseContentView(): View? {
-        return null
     }
 }
