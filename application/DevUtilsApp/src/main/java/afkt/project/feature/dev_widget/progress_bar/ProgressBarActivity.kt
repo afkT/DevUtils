@@ -1,6 +1,8 @@
 package afkt.project.feature.dev_widget.progress_bar
 
 import afkt.project.R
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityProgressbarBinding
 import android.annotation.SuppressLint
@@ -8,8 +10,6 @@ import android.os.Handler
 import android.os.Message
 import com.therouter.router.Route
 import dev.utils.app.ActivityUtils
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 自定义 ProgressBar 样式 View

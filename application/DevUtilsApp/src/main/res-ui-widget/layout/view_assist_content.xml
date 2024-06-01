@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <dev.base.widget.BaseTextView
-        style="@style/AppTheme.Base_TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="content view"
-        android:textColor="@color/color_88"
-        android:textSize="@dimen/sp_20" />
+            style="@style/AppTheme.Base_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="content view"
+            android:textColor="@color/color_88"
+            android:textSize="@dimen/sp_20" />
 
 </FrameLayout>

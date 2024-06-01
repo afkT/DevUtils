@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="image"
-            type="android.graphics.drawable.Drawable" />
+                name="image"
+                type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="content"
-            type="java.lang.String" />
+                name="content"
+                type="java.lang.String" />
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/vid_nsv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadingEdge="none"
-        android:fitsSystemWindows="true"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+            android:id="@+id/vid_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"
+            android:fitsSystemWindows="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/vid_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="@dimen/dp_100"
-                android:layout_gravity="center"
-                android:background="@{image}"
-                tools:background="@mipmap/icon_launcher_round" />
-
-            <TextView
+                android:id="@+id/vid_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:padding="@dimen/dp_10"
-                android:text="@{content}"
-                android:textSize="@dimen/sp_14"
-                tools:text="随机内容" />
+                android:orientation="vertical">
+
+            <ImageView
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_gravity="center"
+                    android:background="@{image}"
+                    tools:background="@mipmap/icon_launcher_round" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/dp_10"
+                    android:text="@{content}"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="随机内容" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

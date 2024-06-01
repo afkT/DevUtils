@@ -41,10 +41,12 @@ class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, BaseProjec
                             val text = textView.text.toString()
                             val builder = StringBuilder()
                             builder.append("字体总数: ").append(text.length)
-                            builder.append("\n字体高度: ").append(TextViewUtils.getTextHeight(textView))
+                            builder.append("\n字体高度: ")
+                                .append(TextViewUtils.getTextHeight(textView))
                             builder.append("\n偏移高度: ")
                                 .append(TextViewUtils.getTextTopOffsetHeight(textView))
-                            builder.append("\n字体宽度: ").append(TextViewUtils.getTextWidth(textView))
+                            builder.append("\n字体宽度: ")
+                                .append(TextViewUtils.getTextWidth(textView))
                             builder.append("\n字体大小: ").append(textView.textSize)
                             builder.append("\n计算字体大小: ").append(
                                 TextViewUtils.reckonTextSizeByHeight(

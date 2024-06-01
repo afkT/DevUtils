@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.base.widget.BaseTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_tv"
-    style="@style/AppTheme.Base_TextView" />
+        android:id="@+id/vid_tv"
+        style="@style/AppTheme.Base_TextView" />

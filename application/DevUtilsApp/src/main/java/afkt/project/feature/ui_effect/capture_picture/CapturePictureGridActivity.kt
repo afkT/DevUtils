@@ -8,7 +8,6 @@ import afkt.project.data_model.bean.AdapterBean.Companion.newAdapterBeanList
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureGridBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

@@ -1,6 +1,8 @@
 package afkt.project.feature.dev_widget.corner_label
 
 import afkt.project.R
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
 import android.view.Gravity
@@ -10,8 +12,6 @@ import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ListenerUtils
 import dev.utils.common.RandomUtils
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 自定义角标 View

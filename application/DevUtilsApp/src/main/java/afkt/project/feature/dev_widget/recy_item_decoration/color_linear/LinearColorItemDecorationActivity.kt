@@ -17,36 +17,37 @@ import dev.utils.app.RecyclerViewUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH)
-class LinearColorItemDecorationActivity : BaseProjectActivity<ActivityLinearItemDecorationBinding, BaseProjectViewModel>(
-    R.layout.activity_linear_item_decoration, simple_Agile = {
-        if (it is LinearColorItemDecorationActivity) {
-            it.apply {
-                val lists = mutableListOf<String>()
-                for (i in 1..3) {
-                    lists.add(i.toString())
-                }
-
-                when (moduleType) {
-                    ButtonValue.BTN_LINEAR_ITEM_VERTICAL -> {
-                        RecyclerViewUtils.setOrientation(
-                            binding.vidRv, RecyclerView.VERTICAL
-                        )
-                        LinearVerticalTextAdapter(lists).bindAdapter(
-                            binding.vidRv
-                        )
+class LinearColorItemDecorationActivity :
+    BaseProjectActivity<ActivityLinearItemDecorationBinding, BaseProjectViewModel>(
+        R.layout.activity_linear_item_decoration, simple_Agile = {
+            if (it is LinearColorItemDecorationActivity) {
+                it.apply {
+                    val lists = mutableListOf<String>()
+                    for (i in 1..3) {
+                        lists.add(i.toString())
                     }
 
-                    ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL -> {
-                        RecyclerViewUtils.setOrientation(
-                            binding.vidRv, RecyclerView.HORIZONTAL
-                        )
-                        LinearHorizontalTextAdapter(lists).bindAdapter(
-                            binding.vidRv
-                        )
+                    when (moduleType) {
+                        ButtonValue.BTN_LINEAR_ITEM_VERTICAL -> {
+                            RecyclerViewUtils.setOrientation(
+                                binding.vidRv, RecyclerView.VERTICAL
+                            )
+                            LinearVerticalTextAdapter(lists).bindAdapter(
+                                binding.vidRv
+                            )
+                        }
+
+                        ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL -> {
+                            RecyclerViewUtils.setOrientation(
+                                binding.vidRv, RecyclerView.HORIZONTAL
+                            )
+                            LinearHorizontalTextAdapter(lists).bindAdapter(
+                                binding.vidRv
+                            )
+                        }
                     }
+                    LinearColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
                 }
-                LinearColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
             }
         }
-    }
-)
+    )

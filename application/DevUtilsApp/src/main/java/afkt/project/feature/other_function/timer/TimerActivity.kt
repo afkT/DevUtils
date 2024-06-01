@@ -32,10 +32,7 @@ class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProje
                         ButtonValue.BTN_TIMER_START -> {
                             if (mTimer == null) {
                                 // 初始化定时器
-                                mTimer = DevTimer.Builder(
-                                    500L, 2000L,
-                                    -1, TAG
-                                ).build()
+                                mTimer = DevTimer.Builder(500L, 2000L, -1, TAG).build()
                                 // 设置回调通过 Handler 触发
                                 mTimer?.apply {
                                     setHandler(mUiHandler)

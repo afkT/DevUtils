@@ -35,19 +35,20 @@ import dev.utils.app.helper.quick.QuickHelper
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.RecyMultiTypeAdapterActivity_PATH)
-class RecyMultiTypeAdapterActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is RecyMultiTypeAdapterActivity) {
-            it.apply {
-                val parent = binding.vidRv.parent as? ViewGroup
-                // 根布局处理
-                QuickHelper.get(parent).setPadding(0)
+class RecyMultiTypeAdapterActivity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is RecyMultiTypeAdapterActivity) {
+                it.apply {
+                    val parent = binding.vidRv.parent as? ViewGroup
+                    // 根布局处理
+                    QuickHelper.get(parent).setPadding(0)
 
-                convertAdapter()
+                    convertAdapter()
+                }
             }
         }
-    }
-) {
+    ) {
 
     private fun convertAdapter() {
         val mainData = createMainData()

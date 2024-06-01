@@ -37,7 +37,8 @@ class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, Base
     R.layout.activity_qrcode_image, simple_Agile = {
         if (it is QRCodeImageActivity) {
             it.apply {
-                ListenerUtils.setOnClicks({ v ->
+                ListenerUtils.setOnClicks(
+                    { v ->
                         when (v.id) {
                             R.id.vid_select_btn -> {
                                 // 打开图片选择器

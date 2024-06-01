@@ -2,13 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <rotate
-            android:fromDegrees="45"
-            android:pivotX="135%"
-            android:pivotY="15%">
+                android:fromDegrees="45"
+                android:pivotX="135%"
+                android:pivotY="15%">
             <shape android:shape="rectangle">
                 <size
-                    android:width="@dimen/dp_15"
-                    android:height="@dimen/dp_15" />
+                        android:width="@dimen/dp_15"
+                        android:height="@dimen/dp_15" />
                 <solid android:color="@color/black" />
             </shape>
         </rotate>

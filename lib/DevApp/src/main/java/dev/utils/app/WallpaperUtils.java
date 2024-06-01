@@ -25,6 +25,7 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     所需权限
  *     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+ *     <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL"/>
  *     <p></p>
  *     修改 ( 设置、清空 ) 壁纸成功都会触发 {@link Intent#ACTION_WALLPAPER_CHANGED} 广播
  *     <p></p>

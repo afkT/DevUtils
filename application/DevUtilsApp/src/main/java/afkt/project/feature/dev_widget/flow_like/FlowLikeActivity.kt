@@ -1,11 +1,11 @@
 package afkt.project.feature.dev_widget.flow_like
 
 import afkt.project.R
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityFlowLikeBinding
 import com.therouter.router.Route
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 自定义点赞效果 View

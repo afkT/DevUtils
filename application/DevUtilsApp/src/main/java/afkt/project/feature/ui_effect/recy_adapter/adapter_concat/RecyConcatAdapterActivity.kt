@@ -21,19 +21,20 @@ import java.util.*
  * @see https://zhuanlan.zhihu.com/p/275635988
  */
 @Route(path = RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH)
-class RecyConcatAdapterActivity  : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is RecyConcatAdapterActivity) {
-            it.apply {
-                val parent = binding.vidRv.parent as? ViewGroup
-                // 根布局处理
-                QuickHelper.get(parent).setPadding(0)
+class RecyConcatAdapterActivity :
+    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+        R.layout.base_view_recyclerview, simple_Agile = {
+            if (it is RecyConcatAdapterActivity) {
+                it.apply {
+                    val parent = binding.vidRv.parent as? ViewGroup
+                    // 根布局处理
+                    QuickHelper.get(parent).setPadding(0)
 
-                convertAdapter()
+                    convertAdapter()
+                }
             }
         }
-    }
-) {
+    ) {
 
     private fun convertAdapter() {
         // 头部适配器

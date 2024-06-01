@@ -55,9 +55,9 @@ class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProje
                         }
 
                         ButtonValue.BTN_CACHE_BEAN_GET -> {
-                            val `object` = DevCache.newCache().getSerializable("bean")
-                            str = if (`object` != null) (`object` as CacheVo).toString() else null
-                            showToast(`object` != null, str, "未存储 key 为 bean 的实体类")
+                            val obj = DevCache.newCache().getSerializable("bean")
+                            str = if (obj != null) (obj as CacheVo).toString() else null
+                            showToast(obj != null, str, "未存储 key 为 bean 的实体类")
                         }
 
                         ButtonValue.BTN_CACHE_FILE -> {

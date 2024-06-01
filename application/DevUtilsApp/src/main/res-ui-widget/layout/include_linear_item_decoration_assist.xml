@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/dp_20"
-    android:paddingTop="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_20">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_20">
 
     <dev.base.widget.BaseTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First ItemDecoration" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First ItemDecoration" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_first_add_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Add" />
+                android:id="@+id/vid_first_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_first_remove_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Remove" />
+                android:id="@+id/vid_first_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
     </LinearLayout>
 
     <dev.base.widget.BaseTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Line ItemDecoration" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line ItemDecoration" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_line_add_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Add" />
+                android:id="@+id/vid_line_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_line_remove_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Remove" />
+                android:id="@+id/vid_line_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
     </LinearLayout>
 
     <dev.base.widget.BaseTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last ItemDecoration" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last ItemDecoration" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal">
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_last_add_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Add" />
+                android:id="@+id/vid_last_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Add" />
 
         <dev.base.widget.BaseButton
-            android:id="@+id/vid_last_remove_btn"
-            style="@style/AppTheme.Base_Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_weight="1"
-            android:text="Remove" />
+                android:id="@+id/vid_last_remove_btn"
+                style="@style/AppTheme.Base_Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="Remove" />
     </LinearLayout>
 </LinearLayout>

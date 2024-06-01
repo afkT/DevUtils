@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_10"
-    android:paddingBottom="@dimen/dp_10"
-    tools:background="@color/color_f5"
-    tools:paddingTop="@dimen/dp_10">
-
-    <View
-        android:id="@+id/vid_line_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_10"
-        android:visibility="gone" />
-
-    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg_white_r10"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/dp_14"
-        android:paddingTop="@dimen/dp_10"
-        android:paddingRight="@dimen/dp_10">
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        tools:background="@color/color_f5"
+        tools:paddingTop="@dimen/dp_10">
+
+    <View
+            android:id="@+id/vid_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:visibility="gone" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bg_white_r10"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_70"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10">
 
             <FrameLayout
-                android:id="@+id/vid_pic_fl"
-                android:layout_width="@dimen/dp_70"
-                android:layout_height="@dimen/dp_70"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/shape_border_image"
-                android:padding="@dimen/dp_5">
+                    android:id="@+id/vid_pic_fl"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/shape_border_image"
+                    android:padding="@dimen/dp_5">
 
                 <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_pic_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                        android:id="@+id/vid_pic_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
             </FrameLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/dp_8"
-                android:layout_toRightOf="@id/vid_pic_fl"
-                android:orientation="vertical">
-
-                <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_name_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="@color/color_33"
-                    android:textSize="@dimen/sp_14"
-                    tools:text="商品名" />
-
-                <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_price_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/sp_14"
-                    tools:text="@string/tools_price" />
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:layout_toRightOf="@id/vid_pic_fl"
+                    android:orientation="vertical">
+
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_name_tv"
+                        style="@style/AppTheme.Base_TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/color_33"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="商品名" />
+
+                <dev.base.widget.BaseTextView
+                        android:id="@+id/vid_price_tv"
+                        style="@style/AppTheme.Base_TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="@string/tools_price" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
                     <dev.base.widget.BaseTextView
-                        style="@style/AppTheme.Base_TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="评分描述"
-                        android:textColor="@color/color_33"
-                        android:textSize="@dimen/sp_14" />
+                            style="@style/AppTheme.Base_TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="评分描述"
+                            android:textColor="@color/color_33"
+                            android:textSize="@dimen/sp_14" />
 
                     <!-- 评星控件 -->
 
                     <com.willy.ratingbar.ScaleRatingBar
-                        android:id="@+id/vid_ratingbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_15"
-                        app:srb_clearRatingEnabled="true"
-                        app:srb_clickable="true"
-                        app:srb_drawableEmpty="@drawable/icon_star_unselected"
-                        app:srb_drawableFilled="@drawable/icon_star_selected"
-                        app:srb_isIndicator="false"
-                        app:srb_minimumStars="1"
-                        app:srb_numStars="5"
-                        app:srb_rating="3"
-                        app:srb_scrollable="true"
-                        app:srb_starHeight="@dimen/dp_18"
-                        app:srb_starPadding="@dimen/dp_2"
-                        app:srb_starWidth="@dimen/dp_18"
-                        app:srb_stepSize="1" />
+                            android:id="@+id/vid_ratingbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_15"
+                            app:srb_clearRatingEnabled="true"
+                            app:srb_clickable="true"
+                            app:srb_drawableEmpty="@drawable/icon_star_unselected"
+                            app:srb_drawableFilled="@drawable/icon_star_selected"
+                            app:srb_isIndicator="false"
+                            app:srb_minimumStars="1"
+                            app:srb_numStars="5"
+                            app:srb_rating="3"
+                            app:srb_scrollable="true"
+                            app:srb_starHeight="@dimen/dp_18"
+                            app:srb_starPadding="@dimen/dp_2"
+                            app:srb_starWidth="@dimen/dp_18"
+                            app:srb_stepSize="1" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_0_5"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/color_d7" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/color_d7" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10">
 
             <!-- 输入的评价内容 -->
 
             <dev.base.widget.BaseEditText
-                android:id="@+id/vid_content_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@id/vid_number_tv"
-                android:background="@null"
-                android:gravity="start"
-                android:hint="分享你的评价"
-                android:maxLength="120"
-                android:minHeight="@dimen/dp_110"
-                android:textColor="@color/color_33"
-                android:textColorHint="@color/color_99"
-                android:textSize="@dimen/sp_15" />
+                    android:id="@+id/vid_content_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@id/vid_number_tv"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="分享你的评价"
+                    android:maxLength="120"
+                    android:minHeight="@dimen/dp_110"
+                    android:textColor="@color/color_33"
+                    android:textColorHint="@color/color_99"
+                    android:textSize="@dimen/sp_15" />
 
             <!-- 输入的字数数量 -->
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_number_tv"
-                style="@style/AppTheme.Base_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/dp_15"
-                android:textColor="@color/color_33"
-                android:textSize="@dimen/sp_14"
-                tools:text="120" />
+                    android:id="@+id/vid_number_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="120" />
         </RelativeLayout>
 
         <!-- 选择的图片 -->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vid_pic_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_12"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:id="@+id/vid_pic_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_12"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </LinearLayout>

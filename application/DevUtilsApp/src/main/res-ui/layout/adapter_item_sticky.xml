@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/vid_ll"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/dp_15"
-    android:paddingTop="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_15"
-    android:paddingBottom="@dimen/dp_10">
-
-    <dev.base.widget.BaseTextView
-        android:id="@+id/vid_title_tv"
-        style="@style/AppTheme.Base_TextView"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/vid_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center|left"
-        android:maxLines="1"
-        android:textColor="@color/color_33"
-        android:textSize="@dimen/sp_16"
-        tools:text="Item Title" />
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_10">
 
     <dev.base.widget.BaseTextView
-        android:id="@+id/vid_time_tv"
-        style="@style/AppTheme.Base_TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center|left"
-        android:maxLines="1"
-        android:paddingTop="@dimen/dp_5"
-        android:textColor="@color/color_99"
-        android:textSize="@dimen/sp_12"
-        tools:text="2020.06.16" />
+            android:id="@+id/vid_title_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center|left"
+            android:maxLines="1"
+            android:textColor="@color/color_33"
+            android:textSize="@dimen/sp_16"
+            tools:text="Item Title" />
+
+    <dev.base.widget.BaseTextView
+            android:id="@+id/vid_time_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center|left"
+            android:maxLines="1"
+            android:paddingTop="@dimen/dp_5"
+            android:textColor="@color/color_99"
+            android:textSize="@dimen/sp_12"
+            tools:text="2020.06.16" />
 </LinearLayout>

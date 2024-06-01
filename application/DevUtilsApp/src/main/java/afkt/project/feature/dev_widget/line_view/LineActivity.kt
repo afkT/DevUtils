@@ -1,6 +1,8 @@
 package afkt.project.feature.dev_widget.line_view
 
 import afkt.project.R
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityLineBinding
 import android.graphics.Color
@@ -8,8 +10,6 @@ import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 换行监听 View

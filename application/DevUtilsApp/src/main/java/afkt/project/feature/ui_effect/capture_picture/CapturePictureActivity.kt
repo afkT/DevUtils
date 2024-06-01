@@ -24,10 +24,11 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureActivity_PATH)
-class CapturePictureActivity : BaseProjectActivity<ActivityCapturePictureBinding, BaseProjectViewModel>(
+class CapturePictureActivity :
+    BaseProjectActivity<ActivityCapturePictureBinding, BaseProjectViewModel>(
         R.layout.activity_capture_picture, simple_Agile = {
-        if (it is CapturePictureActivity) {
-            it.apply {
+            if (it is CapturePictureActivity) {
+                it.apply {
 //                // ==========
 //                // = 截图方法 =
 //                // ==========
@@ -48,17 +49,17 @@ class CapturePictureActivity : BaseProjectActivity<ActivityCapturePictureBinding
 //                | snapshotByGridView | 通过 GridView 绘制为 Bitmap |
 //                | snapshotByRecyclerView | 通过 RecyclerView 绘制为 Bitmap |
 
-                ListenerUtils.setOnClicks(
-                    this,
-                    binding.vidScreenBtn, binding.vidScreen1Btn,
-                    binding.vidLinearBtn, binding.vidScrollBtn,
-                    binding.vidListBtn, binding.vidGridBtn,
-                    binding.vidRecyBtn, binding.vidWebviewBtn
-                )
+                    ListenerUtils.setOnClicks(
+                        this,
+                        binding.vidScreenBtn, binding.vidScreen1Btn,
+                        binding.vidLinearBtn, binding.vidScrollBtn,
+                        binding.vidListBtn, binding.vidGridBtn,
+                        binding.vidRecyBtn, binding.vidWebviewBtn
+                    )
+                }
             }
         }
-    }
-) {
+    ) {
 
     override fun onClick(v: View) {
         super.onClick(v)

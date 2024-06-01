@@ -50,8 +50,8 @@ class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BasePr
                             // 表示不要震动、使用本地或者 raw 文件
                             result = BeepVibrateAssist(mActivity, R.raw.dev_beep).setVibrate(false)
                                 .playBeepSoundAndVibrate()
-                            result = BeepVibrateAssist(mActivity, "xxx/a.mp3").setVibrate(false)
-                                .playBeepSoundAndVibrate()
+//                            result = BeepVibrateAssist(mActivity, "xxx/a.mp3").setVibrate(false)
+//                                .playBeepSoundAndVibrate()
                             showToast(result)
                         }
 

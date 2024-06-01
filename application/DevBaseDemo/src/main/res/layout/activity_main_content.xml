@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="title"
-            type="java.lang.String" />
+                name="title"
+                type="java.lang.String" />
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/vid_nsv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_d9"
-        android:fadingEdge="none"
-        android:fitsSystemWindows="true"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+            android:id="@+id/vid_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_d9"
+            android:fadingEdge="none"
+            android:fitsSystemWindows="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/vid_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
+                android:id="@+id/vid_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:padding="@dimen/dp_15"
-                android:text="@{title}"
-                android:textSize="@dimen/sp_20"
-                tools:text="标题" />
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/dp_15"
+                    android:text="@{title}"
+                    android:textSize="@dimen/sp_20"
+                    tools:text="标题" />
 
             <FrameLayout
-                android:id="@+id/vid_fl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:id="@+id/vid_fl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/vid_fragment"
-                    android:name="afkt.demo.ui.fragment.VDBContentFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:layout_height="@dimen/dp_200" />
+                        android:id="@+id/vid_fragment"
+                        android:name="afkt.demo.ui.fragment.VDBContentFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_height="@dimen/dp_200" />
             </FrameLayout>
 
             <include
-                android:id="@+id/vid_include"
-                layout="@layout/include_view_data" />
+                    android:id="@+id/vid_include"
+                    layout="@layout/include_view_data" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

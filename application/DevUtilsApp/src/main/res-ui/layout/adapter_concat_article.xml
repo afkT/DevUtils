@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <dev.base.widget.BaseTextView
-        android:id="@+id/vid_title_tv"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:gravity="center"
-        android:textSize="@dimen/sp_28"
-        tools:text="标题" />
+        android:orientation="vertical">
+
+    <dev.base.widget.BaseTextView
+            android:id="@+id/vid_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:gravity="center"
+            android:textSize="@dimen/sp_28"
+            tools:text="标题" />
 
     <dev.base.widget.BaseImageView
-        android:id="@+id/vid_iv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:scaleType="fitXY"
-        tools:background="@drawable/bg_wallpaper" />
+            android:id="@+id/vid_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:scaleType="fitXY"
+            tools:background="@drawable/bg_wallpaper" />
 
     <dev.base.widget.BaseTextView
-        android:id="@+id/vid_content_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_15"
-        android:textSize="@dimen/sp_20"
-        tools:text="内容" />
+            android:id="@+id/vid_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:textSize="@dimen/sp_20"
+            tools:text="内容" />
 </LinearLayout>

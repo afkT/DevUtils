@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vid_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dp_100"
-        android:fadingEdge="none"
-        android:overScrollMode="never"
-        android:scrollbars="none" />
+        android:background="@color/white"
+        android:orientation="vertical">
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vid_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp_100"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
 
     <!-- 底部选项 -->
 
     <LinearLayout
-        android:id="@+id/vid_bottom_ll"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_100"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        android:orientation="horizontal">
+            android:id="@+id/vid_bottom_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/vid_tab1_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="1"
-            android:textSize="@dimen/sp_40"
-            android:textStyle="bold" />
+                android:id="@+id/vid_tab1_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="@dimen/sp_40"
+                android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab2_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="2"
-            android:textSize="@dimen/sp_40"
-            android:textStyle="bold" />
+                android:id="@+id/vid_tab2_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="@dimen/sp_40"
+                android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab3_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="3"
-            android:textSize="@dimen/sp_40"
-            android:textStyle="bold" />
+                android:id="@+id/vid_tab3_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3"
+                android:textSize="@dimen/sp_40"
+                android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab4_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="4"
-            android:textSize="@dimen/sp_40"
-            android:textStyle="bold" />
+                android:id="@+id/vid_tab4_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="@dimen/sp_40"
+                android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>

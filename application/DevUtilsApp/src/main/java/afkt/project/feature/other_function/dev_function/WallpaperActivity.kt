@@ -11,6 +11,9 @@ import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
+import dev.utils.app.AppUtils
+import dev.utils.app.IntentUtils
+import dev.utils.app.VersionUtils
 import dev.utils.app.WallpaperUtils
 import dev.utils.common.FileUtils
 
@@ -23,11 +26,15 @@ class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, BaseProj
     R.layout.activity_wallpaper, simple_Agile = {
         if (it is WallpaperActivity) {
             it.apply {
-                val wallpaper = WallpaperUtils.getDrawable()
-
                 binding.vidSaveBtn.setOnClickListener {
+                    val wallpaper = WallpaperUtils.getDrawable()
                     if (wallpaper == null) {
-                        showToast(false, "获取壁纸失败")
+                        if (VersionUtils.isR()) {
+                            showToast(false, "获取壁纸失败，需要授予所有文件管理权限")
+                            AppUtils.startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent())
+                        } else {
+                            showToast(false, "获取壁纸失败")
+                        }
                         return@setOnClickListener
                     }
                     DevEngine.getStorage()?.insertImageToExternal(
@@ -52,10 +59,15 @@ class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, BaseProj
                         }
                     )
                 }
-                wallpaper?.let {
-                    binding.vidIv.background = it
-                }
             }
         }
     }
-)
+) {
+    override fun onResume() {
+        super.onResume()
+
+        WallpaperUtils.getDrawable()?.let {
+            binding.vidIv.background = it
+        }
+    }
+}
