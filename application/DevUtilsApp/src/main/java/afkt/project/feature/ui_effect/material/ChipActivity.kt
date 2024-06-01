@@ -42,28 +42,32 @@ class ChipActivity : BaseProjectActivity<ActivityChipBinding, BaseProjectViewMod
                     .setPaddingRight(30)
                     .setOnClick { initValue() }.getView<View>()
                 toolbar?.addView(view)
-
-                binding.vidGroup.removeAllViews()
-
-                for (i in 1..20) {
-                    val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
-                            RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
-                    val randomText =
-                        i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
-
-                    val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
-                    chip?.run {
-                        // 随机颜色
-                        val pressed = ColorUtils.getRandomColorString()
-                        val normal = ColorUtils.getRandomColorString()
-
-                        chip.text = randomText
-                        chip.chipBackgroundColor =
-                            StateListUtils.createColorStateList(pressed, normal)
-                        binding.vidGroup.addView(this)
-                    }
-                }
             }
         }
     }
-)
+) {
+
+    override fun initValue() {
+        super.initValue()
+        binding.vidGroup.removeAllViews()
+
+        for (i in 1..20) {
+            val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
+                    RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
+            val randomText =
+                i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
+
+            val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
+            chip?.run {
+                // 随机颜色
+                val pressed = ColorUtils.getRandomColorString()
+                val normal = ColorUtils.getRandomColorString()
+
+                chip.text = randomText
+                chip.chipBackgroundColor =
+                    StateListUtils.createColorStateList(pressed, normal)
+                binding.vidGroup.addView(this)
+            }
+        }
+    }
+}

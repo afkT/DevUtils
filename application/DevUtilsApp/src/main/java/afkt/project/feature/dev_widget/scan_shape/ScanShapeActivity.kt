@@ -1,7 +1,8 @@
 package afkt.project.feature.dev_widget.scan_shape
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import android.Manifest
@@ -25,9 +26,24 @@ import dev.widget.ui.ScanShapeView
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ScanShapeActivity_PATH)
-class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
+class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProjectViewModel>(
+    R.layout.activity_scan_shape, simple_Agile = {
+        if (it is ScanShapeActivity) {
+            it.apply {
+                // 设置扫描类型
+                ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
 
-    override fun baseLayoutId(): Int = R.layout.activity_scan_shape
+                ListenerUtils.setOnClicks(
+                    this,
+                    binding.vidFlashlightIv,
+                    binding.vidSquareIv,
+                    binding.vidHexagonIv,
+                    binding.vidAnnulusIv
+                )
+            }
+        }
+    }
+) {
 
     override fun onDestroy() {
         // 销毁处理
@@ -55,19 +71,6 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun initValue() {
         super.initValue()
-        // 设置扫描类型
-        ScanShapeUtils.refShape(binding.vidSsv, ScanShapeView.Shape.Square)
-    }
-
-    override fun initListener() {
-        super.initListener()
-        ListenerUtils.setOnClicks(
-            this,
-            binding.vidFlashlightIv,
-            binding.vidSquareIv,
-            binding.vidHexagonIv,
-            binding.vidAnnulusIv
-        )
     }
 
     override fun onClick(v: View) {

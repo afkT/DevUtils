@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.view_pager2
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityViewpager2Binding
 import android.view.Menu
@@ -20,36 +21,33 @@ import dev.utils.app.ResourceUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.ViewPager2Activity_PATH)
-class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
+class ViewPager2Activity : BaseProjectActivity<ActivityViewpager2Binding, BaseProjectViewModel>(
+    R.layout.activity_viewpager2, simple_Agile = {
+        if (it is ViewPager2Activity) {
+            it.apply {
+                val list = mutableListOf<Fragment>()
+                list.add(newPagerFragment(1))
+                list.add(newPagerFragment(2))
+                list.add(newPagerFragment(3))
+                list.add(newPagerFragment(4))
 
-    override fun baseLayoutId(): Int = R.layout.activity_viewpager2
+                binding.vidVp.adapter = MyPagerAdapter(this, list)
 
-    override fun initValue() {
-        super.initValue()
+                binding.vidTl.setTabTextColors(
+                    ResourceUtils.getColor(R.color.black),
+                    ResourceUtils.getColor(R.color.white)
+                )
 
-        val list = mutableListOf<Fragment>()
-        list.add(newPagerFragment(1))
-        list.add(newPagerFragment(2))
-        list.add(newPagerFragment(3))
-        list.add(newPagerFragment(4))
-
-        binding.vidVp.adapter = MyPagerAdapter(this, list)
+                // TabLayout 与 ViewPager2 联动
+                TabLayoutMediator(
+                    binding.vidTl, binding.vidVp
+                ) { tab, position ->
+                    tab.text = "Pager-${position + 1}"
+                }.attach()
+            }
+        }
     }
-
-    override fun initListener() {
-        super.initListener()
-        binding.vidTl.setTabTextColors(
-            ResourceUtils.getColor(R.color.black),
-            ResourceUtils.getColor(R.color.white)
-        )
-
-        // TabLayout 与 ViewPager2 联动
-        TabLayoutMediator(
-            binding.vidTl, binding.vidVp
-        ) { tab, position ->
-            tab.text = "Pager-${position + 1}"
-        }.attach()
-    }
+) {
 
     class MyPagerAdapter(
         val activity: FragmentActivity,

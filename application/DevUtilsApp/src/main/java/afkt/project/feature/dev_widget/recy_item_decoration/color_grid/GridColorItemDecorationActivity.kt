@@ -1,7 +1,8 @@
 package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityGridItemDecorationBinding
@@ -16,37 +17,36 @@ import dev.utils.app.RecyclerViewUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH)
-class GridColorItemDecorationActivity : BaseActivity<ActivityGridItemDecorationBinding>() {
+class GridColorItemDecorationActivity : BaseProjectActivity<ActivityGridItemDecorationBinding, BaseProjectViewModel>(
+    R.layout.activity_grid_item_decoration, simple_Agile = {
+        if (it is GridColorItemDecorationActivity) {
+            it.apply {
+                val lists = mutableListOf<String>()
+                for (i in 1..11) {
+                    lists.add(i.toString())
+                }
 
-    override fun baseLayoutId(): Int = R.layout.activity_grid_item_decoration
+                when (moduleType) {
+                    ButtonValue.BTN_GRID_ITEM_VERTICAL -> {
+                        RecyclerViewUtils.setOrientation(
+                            binding.vidRv, RecyclerView.VERTICAL
+                        )
+                        GridVerticalTextAdapter(lists).bindAdapter(
+                            binding.vidRv
+                        )
+                    }
 
-    override fun initValue() {
-        super.initValue()
-
-        val lists = mutableListOf<String>()
-        for (i in 1..11) {
-            lists.add(i.toString())
-        }
-
-        when (moduleType) {
-            ButtonValue.BTN_GRID_ITEM_VERTICAL -> {
-                RecyclerViewUtils.setOrientation(
-                    binding.vidRv, RecyclerView.VERTICAL
-                )
-                GridVerticalTextAdapter(lists).bindAdapter(
-                    binding.vidRv
-                )
+                    ButtonValue.BTN_GRID_ITEM_HORIZONTAL -> {
+                        RecyclerViewUtils.setOrientation(
+                            binding.vidRv, RecyclerView.HORIZONTAL
+                        )
+                        GridHorizontalTextAdapter(lists).bindAdapter(
+                            binding.vidRv
+                        )
+                    }
+                }
+                GridColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
             }
-
-            ButtonValue.BTN_GRID_ITEM_HORIZONTAL -> {
-                RecyclerViewUtils.setOrientation(
-                    binding.vidRv, RecyclerView.HORIZONTAL
-                )
-                GridHorizontalTextAdapter(lists).bindAdapter(
-                    binding.vidRv
-                )
-            }
         }
-        GridColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
     }
-}
+)

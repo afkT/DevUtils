@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.recy_adapter.item_sticky
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.View
@@ -28,69 +29,69 @@ import java.util.*
  * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
 @Route(path = RouterPath.UI_EFFECT.ItemStickyActivity_PATH)
-class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is ItemStickyActivity) {
+            it.apply {
+                val parent = binding.vidRv.parent as? ViewGroup
+                // 根布局处理
+                QuickHelper.get(parent).setPadding(0)
+
+                // ====================
+                // = 使用自定义悬浮 View =
+                // ====================
+
+                val listener = object : PowerGroupListener {
+                    override fun getGroupName(position: Int): String {
+                        return itemStickyAdapter.getDataItem(position).timeTile
+                    }
+
+                    override fun getGroupView(position: Int): View? {
+                        TAG.log_dTag(
+                            message = position.toString()
+                        )
+                        val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)
+                        TextViewUtils.setText(
+                            view.findViewById(R.id.vid_title_tv),
+                            getGroupName(position)
+                        )
+                        return view
+                    }
+                }
+
+                val decoration1 = PowerfulStickyDecoration.Builder
+                    .init(listener)
+                    .setGroupHeight(AppSize.dp2px(50F))
+//                    // 重置 span ( 注意 : 使用 GridLayoutManager 时必须调用 )
+//                    .resetSpan(mRecyclerView, (GridLayoutManager) manager)
+                    .build()
+
+                // ===============
+                // = 默认悬浮 View =
+                // ===============
+
+                val groupListener = GroupListener { position ->
+                    itemStickyAdapter.getDataItem(position).timeTile
+                }
+
+                val decoration = StickyDecoration.Builder.init(groupListener)
+                    .setGroupBackground(ResourceUtils.getColor(R.color.color_f7))
+                    .setGroupTextColor(ResourceUtils.getColor(R.color.color_33))
+                    .setGroupTextSize(AppSize.sp2px(15.0F))
+                    .setTextSideMargin(AppSize.dp2px(10.0F))
+                    .build()
+
+                // 初始化布局管理器、适配器
+                itemStickyAdapter = ItemStickyAdapter(list)
+                binding.vidRv.addItemDecoration(decoration)
+                itemStickyAdapter.bindAdapter(binding.vidRv)
+            }
+        }
+    }
+) {
 
     // 适配器
     lateinit var itemStickyAdapter: ItemStickyAdapter
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        val parent = binding.vidRv.parent as? ViewGroup
-        // 根布局处理
-        QuickHelper.get(parent).setPadding(0)
-
-        // ====================
-        // = 使用自定义悬浮 View =
-        // ====================
-
-        val listener = object : PowerGroupListener {
-            override fun getGroupName(position: Int): String {
-                return itemStickyAdapter.getDataItem(position).timeTile
-            }
-
-            override fun getGroupView(position: Int): View? {
-                TAG.log_dTag(
-                    message = position.toString()
-                )
-                val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)
-                TextViewUtils.setText(
-                    view.findViewById(R.id.vid_title_tv),
-                    getGroupName(position)
-                )
-                return view
-            }
-        }
-
-        val decoration1 = PowerfulStickyDecoration.Builder
-            .init(listener)
-            .setGroupHeight(AppSize.dp2px(50F))
-//            // 重置 span ( 注意 : 使用 GridLayoutManager 时必须调用 )
-//            .resetSpan(mRecyclerView, (GridLayoutManager) manager)
-            .build()
-
-        // ===============
-        // = 默认悬浮 View =
-        // ===============
-
-        val groupListener = GroupListener { position ->
-            itemStickyAdapter.getDataItem(position).timeTile
-        }
-
-        val decoration = StickyDecoration.Builder.init(groupListener)
-            .setGroupBackground(ResourceUtils.getColor(R.color.color_f7))
-            .setGroupTextColor(ResourceUtils.getColor(R.color.color_33))
-            .setGroupTextSize(AppSize.sp2px(15.0F))
-            .setTextSideMargin(AppSize.dp2px(10.0F))
-            .build()
-
-        // 初始化布局管理器、适配器
-        itemStickyAdapter = ItemStickyAdapter(list)
-        binding.vidRv.addItemDecoration(decoration)
-        itemStickyAdapter.bindAdapter(binding.vidRv)
-    }
 
     private val list: List<ItemStickyBean>
         get() {

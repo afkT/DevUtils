@@ -32,7 +32,6 @@ class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, BaseP
     R.layout.activity_gpu_filter, simple_Agile = {
         if (it is GPUFilterACVActivity) {
             it.apply {
-
                 // 设置滤镜线程
                 filterThread = Runnable { setFilter() }
 

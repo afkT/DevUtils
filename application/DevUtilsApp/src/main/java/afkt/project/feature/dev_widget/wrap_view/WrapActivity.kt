@@ -1,12 +1,12 @@
 package afkt.project.feature.dev_widget.wrap_view
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityWrapBinding
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
@@ -23,26 +23,26 @@ import dev.utils.common.RandomUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.WrapActivity_PATH)
-class WrapActivity : BaseActivity<ActivityWrapBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_wrap
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val view = QuickHelper.get(BaseTextView(this))
-            .setText("刷新")
-            .setBold()
-            .setTextColors(ResourceUtils.getColor(R.color.red))
-            .setTextSizeBySp(15.0F)
-            .setPaddingLeft(30)
-            .setPaddingRight(30)
-            .setOnClick { initValue() }.getView<View>()
-        toolbar?.addView(view)
+class WrapActivity : BaseProjectActivity<ActivityWrapBinding, BaseProjectViewModel>(
+    R.layout.activity_wrap, simple_Agile = {
+        if (it is WrapActivity) {
+            it.apply {
+                val view = QuickHelper.get(BaseTextView(this))
+                    .setText("刷新")
+                    .setBold()
+                    .setTextColors(ResourceUtils.getColor(R.color.red))
+                    .setTextSizeBySp(15.0F)
+                    .setPaddingLeft(30)
+                    .setPaddingRight(30)
+                    .setOnClick { initValue() }.getView<View>()
+                toolbar?.addView(view)
+            }
+        }
     }
-
+) {
     override fun initValue() {
         super.initValue()
+
         binding.vidWrap
 //            // 设置最大行数
 //            .setMaxLine(RandomUtils.getRandom(10, 30))

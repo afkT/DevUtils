@@ -1,7 +1,8 @@
 package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityViewAssistBinding
@@ -20,23 +21,23 @@ import dev.widget.assist.ViewAssist
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ViewAssistActivity_PATH)
-class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
+class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, BaseProjectViewModel>(
+    R.layout.activity_view_assist, simple_Agile = {
+        if (it is ViewAssistActivity) {
+            it.apply {
+                viewAssist = ViewAssist.wrap(binding.vidFl)
 
-    private lateinit var viewAssist: ViewAssist
-
-    override fun baseLayoutId(): Int = R.layout.activity_view_assist
-
-    override fun initValue() {
-        super.initValue()
-
-        viewAssist = ViewAssist.wrap(binding.vidFl)
-
-        when (moduleType) {
-            ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
-            ButtonValue.BTN_VIEW_ASSIST_EMPTY -> emptyType()
-            ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> customType()
+                when (moduleType) {
+                    ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
+                    ButtonValue.BTN_VIEW_ASSIST_EMPTY -> emptyType()
+                    ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> customType()
+                }
+            }
         }
     }
+) {
+
+    private lateinit var viewAssist: ViewAssist
 
     private fun errorType() {
         ViewUtils.setPadding(binding.vidFl, AppSize.dp2px(50F))

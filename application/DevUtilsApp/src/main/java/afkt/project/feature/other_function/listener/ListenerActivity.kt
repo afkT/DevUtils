@@ -3,7 +3,7 @@ package afkt.project.feature.other_function.listener
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.base.project.ext.bindAdapter
+import afkt.project.base.project.ext.bindAdapterLong
 import afkt.project.data_model.button.ButtonList.listenerButtonValues
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
@@ -53,7 +53,7 @@ class ListenerActivity : BaseProjectActivity<ActivityCommonTipsBinding, BaseProj
                     .setTextColors(ResourceUtils.getColor(R.color.gray), view)
                 binding.vidLl.addView(view)
 
-                binding.vidInclude.vidRv.bindAdapter(
+                binding.vidInclude.vidRv.bindAdapterLong(
                     listenerButtonValues, { buttonValue ->
                         when (buttonValue.type) {
                             ButtonValue.BTN_WIFI_LISTENER -> wifiListener(true)

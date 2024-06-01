@@ -1,13 +1,13 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_concat
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
 import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter.*
 import afkt.project.feature.ui_effect.recy_adapter.createMainData
-import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import com.therouter.router.Route
@@ -21,18 +21,19 @@ import java.util.*
  * @see https://zhuanlan.zhihu.com/p/275635988
  */
 @Route(path = RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH)
-class RecyConcatAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+class RecyConcatAdapterActivity  : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is RecyConcatAdapterActivity) {
+            it.apply {
+                val parent = binding.vidRv.parent as? ViewGroup
+                // 根布局处理
+                QuickHelper.get(parent).setPadding(0)
 
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val parent = binding.vidRv.parent as? ViewGroup
-        // 根布局处理
-        QuickHelper.get(parent).setPadding(0)
-
-        convertAdapter()
+                convertAdapter()
+            }
+        }
     }
+) {
 
     private fun convertAdapter() {
         // 头部适配器

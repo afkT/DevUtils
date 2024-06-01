@@ -1,7 +1,6 @@
 package afkt.project.feature.dev_widget.progress_bar
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityProgressbarBinding
 import android.annotation.SuppressLint
@@ -9,46 +8,48 @@ import android.os.Handler
 import android.os.Message
 import com.therouter.router.Route
 import dev.utils.app.ActivityUtils
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 自定义 ProgressBar 样式 View
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ProgressBarActivity_PATH)
-class ProgressBarActivity : BaseActivity<ActivityProgressbarBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_progressbar
-
-    override fun initValue() {
-        super.initValue()
-
-//        // 内外圆环 + 数字 + 无扇形
-//        binding.vidLpb1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
-//            .setOuterRingWidth(AppSize.dp2px(5F).toFloat()) // 内环宽度
-//            .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
-//            .setProgressColor(ResourceUtils.getColor(R.color.color_88)).isCanvasNumber =
-//            true // 是否绘制数字
+class ProgressBarActivity : BaseProjectActivity<ActivityProgressbarBinding, BaseProjectViewModel>(
+    R.layout.activity_progressbar, simple_Agile = {
+        if (it is ProgressBarActivity) {
+            it.apply {
+//                // 内外圆环 + 数字 + 无扇形
+//                binding.vidLpb1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
+//                    .setOuterRingWidth(AppSize.dp2px(5F).toFloat()) // 内环宽度
+//                    .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+//                    .setProgressColor(ResourceUtils.getColor(R.color.color_88)).isCanvasNumber =
+//                    true // 是否绘制数字
 //
-//        // 扇形 + 数字 + 无内外圆环
-//        binding.vidLpb2.setProgressStyle(LoadProgressBar.ProgressStyle.FAN_SHAPED)
-//            .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)).isCanvasNumber =
-//            true // 是否绘制数字
+//                // 扇形 + 数字 + 无内外圆环
+//                binding.vidLpb2.setProgressStyle(LoadProgressBar.ProgressStyle.FAN_SHAPED)
+//                    .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)).isCanvasNumber =
+//                    true // 是否绘制数字
 //
-//        // 扇形 + 数字 + 外圆环
-//        binding.vidLpb3.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
-//            .setOuterRingWidth(AppSize.dp2px(1F).toFloat()) // 内环宽度
-//            .setOuterRingColor(Color.RED) // 内环颜色
-//            .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
-//            .setNumberTextColor(Color.parseColor("#FB7D00")).isCanvasNumber = true // 是否绘制数字
+//                // 扇形 + 数字 + 外圆环
+//                binding.vidLpb3.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
+//                    .setOuterRingWidth(AppSize.dp2px(1F).toFloat()) // 内环宽度
+//                    .setOuterRingColor(Color.RED) // 内环颜色
+//                    .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+//                    .setNumberTextColor(Color.parseColor("#FB7D00")).isCanvasNumber = true // 是否绘制数字
 //
-//        // 单独字体
-//        binding.vidLpb4.setProgressStyle(LoadProgressBar.ProgressStyle.NUMBER)
-//            .setNumberTextSize(20F).numberTextColor =
-//            ResourceUtils.getColor(R.color.deeppink) // 字体颜色
+//                // 单独字体
+//                binding.vidLpb4.setProgressStyle(LoadProgressBar.ProgressStyle.NUMBER)
+//                    .setNumberTextSize(20F).numberTextColor =
+//                    ResourceUtils.getColor(R.color.deeppink) // 字体颜色
 
-        // 延迟发送通知
-        handler.sendEmptyMessageDelayed(0, 100)
+                // 延迟发送通知
+                handler.sendEmptyMessageDelayed(0, 100)
+            }
+        }
     }
+) {
 
     @SuppressLint("HandlerLeak")
     private val handler = object : Handler() {

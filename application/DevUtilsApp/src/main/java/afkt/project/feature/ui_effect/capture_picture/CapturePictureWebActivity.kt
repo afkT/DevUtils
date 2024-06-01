@@ -5,7 +5,6 @@ import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureWebBinding
-import android.os.Bundle
 import android.view.View
 import com.therouter.router.Route
 import dev.base.DevSource
@@ -26,50 +25,44 @@ import dev.utils.common.FileUtils
 @Route(path = RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH)
 class CapturePictureWebActivity :
     BaseProjectActivity<ActivityCapturePictureWebBinding, BaseProjectViewModel>(
-        R.layout.activity_capture_picture_web
-    ) {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // 关闭 WebView 优化
-        CapturePictureUtils.enableSlowWholeDocumentDraw()
-        // 截图按钮
-        val view = QuickHelper.get(BaseTextView(this))
-            .setText("截图")
-            .setBold()
-            .setTextColors(ResourceUtils.getColor(R.color.white))
-            .setTextSizeBySp(15.0F)
-            .setPaddingLeft(30)
-            .setPaddingRight(30)
-            .setOnClick {
-                DevEngine.getStorage()?.insertImageToExternal(
-                    StorageItem.createExternalItem(
-                        "web.jpg"
-                    ),
-                    DevSource.create(
-                        CapturePictureUtils.snapshotByWebView(binding.vidWv)
-                    ),
-                    object : OnDevInsertListener {
-                        override fun onResult(
-                            result: StorageResult,
-                            params: StorageItem?,
-                            source: DevSource?
-                        ) {
-                            showToast(
-                                result.isSuccess(),
-                                "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
-                                "保存失败"
+        R.layout.activity_capture_picture_web, simple_Agile = {
+            if (it is CapturePictureWebActivity) {
+                it.apply {
+                    // 关闭 WebView 优化
+                    CapturePictureUtils.enableSlowWholeDocumentDraw()
+                    // 截图按钮
+                    val view = QuickHelper.get(BaseTextView(this))
+                        .setText("截图")
+                        .setBold()
+                        .setTextColors(ResourceUtils.getColor(R.color.white))
+                        .setTextSizeBySp(15.0F)
+                        .setPaddingLeft(30)
+                        .setPaddingRight(30)
+                        .setOnClick {
+                            DevEngine.getStorage()?.insertImageToExternal(
+                                StorageItem.createExternalItem("web.jpg"),
+                                DevSource.create(
+                                    CapturePictureUtils.snapshotByWebView(binding.vidWv)
+                                ),
+                                object : OnDevInsertListener {
+                                    override fun onResult(
+                                        result: StorageResult,
+                                        params: StorageItem?,
+                                        source: DevSource?
+                                    ) {
+                                        showToast(
+                                            result.isSuccess(),
+                                            "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                                            "保存失败"
+                                        )
+                                    }
+                                }
                             )
-                        }
-                    }
-                )
-            }.getView<View>()
-        toolbar?.addView(view)
-    }
-
-    override fun initValue() {
-        super.initValue()
-        // 加载网页
-        binding.vidWv.loadUrl("https://www.csdn.net/")
-    }
-}
+                        }.getView<View>()
+                    toolbar?.addView(view)
+                    // 加载网页
+                    binding.vidWv.loadUrl("https://www.csdn.net/")
+                }
+            }
+        }
+    )

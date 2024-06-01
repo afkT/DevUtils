@@ -1,7 +1,6 @@
 package afkt.project.feature.dev_widget.corner_label
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
 import android.view.Gravity
@@ -11,28 +10,31 @@ import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ListenerUtils
 import dev.utils.common.RandomUtils
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 
 /**
  * detail: 自定义角标 View
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.CornerLabelActivity_PATH)
-class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.activity_corner_label
-
-    override fun initListener() {
-        super.initListener()
-        ListenerUtils.setOnClicks(
-            this,
-            binding.vidBtnColorTv, binding.vidBtnLeftTv,
-            binding.vidBtnTopTv, binding.vidBtnTriangleTv,
-            binding.vidBtnText1MinusTv, binding.vidBtnText1PlusTv,
-            binding.vidBtnHeight1MinusTv, binding.vidBtnHeight1PlusTv,
-            binding.vidBtnText2MinusTv, binding.vidBtnText2PlusTv,
-            binding.vidBtnHeight2MinusTv, binding.vidBtnHeight2PlusTv
-        )
+class CornerLabelActivity : BaseProjectActivity<ActivityCornerLabelBinding, BaseProjectViewModel>(
+    R.layout.activity_corner_label, simple_Agile = {
+        if (it is CornerLabelActivity) {
+            it.apply {
+                ListenerUtils.setOnClicks(
+                    this,
+                    binding.vidBtnColorTv, binding.vidBtnLeftTv,
+                    binding.vidBtnTopTv, binding.vidBtnTriangleTv,
+                    binding.vidBtnText1MinusTv, binding.vidBtnText1PlusTv,
+                    binding.vidBtnHeight1MinusTv, binding.vidBtnHeight1PlusTv,
+                    binding.vidBtnText2MinusTv, binding.vidBtnText2PlusTv,
+                    binding.vidBtnHeight2MinusTv, binding.vidBtnHeight2PlusTv
+                )
+            }
+        }
     }
+) {
 
     override fun onClick(v: View) {
         super.onClick(v)

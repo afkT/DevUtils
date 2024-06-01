@@ -50,6 +50,20 @@ fun RecyclerView.bindAdapter(
     buttons: List<ButtonValue>,
     callback: ((ButtonValue) -> Unit) = {
         it.routerActivity()
+    }
+) {
+    bindAdapterLong(buttons, callback) { _ -> }
+}
+
+/**
+ * 初始化布局管理器、适配器
+ * @receiver RecyclerView
+ * @param buttons MutableList<ButtonValue>
+ */
+fun RecyclerView.bindAdapterLong(
+    buttons: List<ButtonValue>,
+    callback: ((ButtonValue) -> Unit) = {
+        it.routerActivity()
     },
     longCallback: ((ButtonValue) -> Unit) = {
     }

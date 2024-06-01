@@ -21,7 +21,6 @@ class CrashCatchActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Base
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is CrashCatchActivity) {
             it.apply {
-
                 /**
                  * 捕获异常处理 CrashUtils.getInstance().initialize()
                  * 参考 [BaseApplication.initCrash]

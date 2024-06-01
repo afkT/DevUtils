@@ -1,18 +1,18 @@
 package afkt.project.feature.ui_effect.toast_tint
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.project.ext.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ButtonAdapter
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.text.TextUtils.TruncateAt
 import com.therouter.router.Route
-import dev.callback.DevItemClickCallback
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils
 import utils_use.toast.ToastTintUse
@@ -23,20 +23,11 @@ import utils_use.toast.ToastTintUse
  * [ToastTintUse]
  */
 @Route(path = RouterPath.UI_EFFECT.ToastTintActivity_PATH)
-class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-
-    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
-
-    override fun initValue() {
-        super.initValue()
-
-        // 初始化布局管理器、适配器
-        ButtonAdapter(ButtonList.toastButtonValues)
-            .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-                override fun onItemClick(
-                    buttonValue: ButtonValue,
-                    param: Int
-                ) {
+class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is ToastTintActivity) {
+            it.apply {
+                binding.vidRv.bindAdapter(ButtonList.toastButtonValues) { buttonValue ->
                     when (buttonValue.type) {
                         ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
                         ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
@@ -51,9 +42,10 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                     }
                 }
-            }).bindAdapter(binding.vidRv)
+            }
+        }
     }
-
+) {
     /**
      * 自定义实现样式
      * [ToastTintUtils.SuccessStyle]

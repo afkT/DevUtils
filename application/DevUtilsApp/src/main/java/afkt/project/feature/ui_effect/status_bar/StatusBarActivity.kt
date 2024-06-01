@@ -1,7 +1,8 @@
 package afkt.project.feature.ui_effect.status_bar
 
 import afkt.project.R
-import afkt.project.base.app.BaseActivity
+import afkt.project.base.project.BaseProjectActivity
+import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityStatusBarBinding
 import android.view.View
@@ -16,32 +17,31 @@ import dev.utils.app.ResourceUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.StatusBarActivity_PATH)
-class StatusBarActivity : BaseActivity<ActivityStatusBarBinding>() {
+class StatusBarActivity : BaseProjectActivity<ActivityStatusBarBinding, BaseProjectViewModel>(
+    R.layout.activity_status_bar, simple_Agile = {
+        if (it is StatusBarActivity) {
+            it.apply {
+                // 判断是否显示
+                var display = true
 
-    // 判断是否显示
-    private var display = true
+                // 想要实现点击, 显示状态栏图标, 再次点击切换不显示, 并且整体不会上下移动
+                // 需要先设置 Activity  Theme => android:Theme.Light.NoTitleBar
+                // 第二就是 Activity 最外层布局 view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
 
-    override fun baseLayoutId(): Int = R.layout.activity_status_bar
-
-    override fun initValue() {
-        super.initValue()
-
-        // 想要实现点击, 显示状态栏图标, 再次点击切换不显示, 并且整体不会上下移动
-        // 需要先设置 Activity  Theme => android:Theme.Light.NoTitleBar
-        // 第二就是 Activity 最外层布局 view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-
-        // 设置状态栏 View 高度
-        val layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, BarUtils.getStatusBarHeight()
-        )
-        val statusView = View(this)
-        statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary))
-        statusView.layoutParams = layoutParams
-        contentAssist.rootLinear?.addView(statusView, 0)
-        // 设置全屏显示, 但是会被状态栏覆盖
-        contentAssist.rootLinear?.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        binding.vidToggleBtn.setOnClickListener { // 设置是否显示
-            BarUtils.setStatusBarVisibility(mActivity, !display.also { display = !it })
+                // 设置状态栏 View 高度
+                val layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, BarUtils.getStatusBarHeight()
+                )
+                val statusView = View(this)
+                statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary))
+                statusView.layoutParams = layoutParams
+                contentAssist.rootLinear?.addView(statusView, 0)
+                // 设置全屏显示, 但是会被状态栏覆盖
+                contentAssist.rootLinear?.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                binding.vidToggleBtn.setOnClickListener { // 设置是否显示
+                    BarUtils.setStatusBarVisibility(mActivity, !display.also { display = !it })
+                }
+            }
         }
     }
-}
+)

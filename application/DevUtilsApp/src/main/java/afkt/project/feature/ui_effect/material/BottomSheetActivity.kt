@@ -35,7 +35,7 @@ class BottomSheetActivity : BaseProjectActivity<ActivityBottomSheetBinding, Base
 //                // 代码设置
 //                mBehavior.isHideable = false
 
-                mBehavior = BottomSheetBehavior.from(binding.vidSheetLl)
+                val mBehavior = BottomSheetBehavior.from(binding.vidSheetLl)
                 mBehavior.addBottomSheetCallback(object :
                     BottomSheetBehavior.BottomSheetCallback() {
                     override fun onStateChanged(
@@ -98,7 +98,4 @@ class BottomSheetActivity : BaseProjectActivity<ActivityBottomSheetBinding, Base
             }
         }
     }
-) {
-
-    private lateinit var mBehavior: BottomSheetBehavior<LinearLayout>
-}
+)

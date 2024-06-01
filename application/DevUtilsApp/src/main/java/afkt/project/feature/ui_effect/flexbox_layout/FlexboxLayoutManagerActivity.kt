@@ -49,26 +49,30 @@ class FlexboxLayoutManagerActivity :
                         .setPaddingRight(30)
                         .setOnClick { initValue() }.getView<View>()
                     toolbar?.addView(view)
-
-                    val lists = mutableListOf<String>()
-                    for (i in 1..20) {
-                        val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
-                                RandomUtils.getRandomLetters(RandomUtils.getRandom(8))
-                        val randomText =
-                            i.toString() + "." + RandomUtils.getRandom(
-                                text.toCharArray(),
-                                text.length
-                            )
-                        lists.add(randomText)
-                    }
-
-                    val layoutManager = FlexboxLayoutManager(this)
-                    layoutManager.flexDirection = FlexDirection.ROW
-                    layoutManager.justifyContent = JustifyContent.FLEX_START
-
-                    binding.vidRv.layoutManager = layoutManager
-                    FlexboxTextAdapter(lists).bindAdapter(binding.vidRv)
                 }
             }
         }
-    )
+    ) {
+
+    override fun initValue() {
+        super.initValue()
+        val lists = mutableListOf<String>()
+        for (i in 1..20) {
+            val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
+                    RandomUtils.getRandomLetters(RandomUtils.getRandom(8))
+            val randomText =
+                i.toString() + "." + RandomUtils.getRandom(
+                    text.toCharArray(),
+                    text.length
+                )
+            lists.add(randomText)
+        }
+
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+
+        binding.vidRv.layoutManager = layoutManager
+        FlexboxTextAdapter(lists).bindAdapter(binding.vidRv)
+    }
+}

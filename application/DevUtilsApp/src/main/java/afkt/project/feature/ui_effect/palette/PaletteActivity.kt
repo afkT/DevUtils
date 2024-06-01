@@ -42,7 +42,7 @@ class PaletteActivity : BaseProjectActivity<ActivityPaletteBinding, PaletteViewM
                 list.add(newPaletteFragment(3))
                 list.add(newPaletteFragment(4))
                 list.add(newPaletteFragment(5))
-                binding.vidVp.adapter = MyPagerAdapter(this, list)
+                binding.vidVp.adapter = PalettePagerAdapter(this, list)
 
                 binding.vidVp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
@@ -62,7 +62,7 @@ class PaletteActivity : BaseProjectActivity<ActivityPaletteBinding, PaletteViewM
     }
 ) {
 
-    class MyPagerAdapter(
+    class PalettePagerAdapter(
         val activity: FragmentActivity,
         val list: MutableList<Fragment>
     ) : FragmentStateAdapter(activity) {
