@@ -1,5 +1,7 @@
 package dev.base.able
 
+import android.view.View
+
 /**
  * detail: 基类通用方法
  * @author Ttt
@@ -53,4 +55,23 @@ interface IDevBaseMethod {
      * 初始化其他操作
      */
     fun initOther()
+
+    // ==============
+    // = 触发前后方法 =
+    // ==============
+
+    /**
+     * Activity onCreate 创建之前触发
+     */
+    fun activityOnCreateBefore() {}
+
+    /**
+     * Inflate View 之前触发
+     */
+    fun beforeInflateView() {}
+
+    /**
+     * Inflate View 之后触发
+     */
+    fun afterInflateView(parentView: View) {}
 }

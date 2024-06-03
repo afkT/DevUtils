@@ -65,6 +65,8 @@ abstract class AbstractDevBaseFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
         assist.printLog("onCreateView")
+        // Inflate View 之前触发
+        beforeInflateView()
 
         if (mContentView != null) {
             // ViewUtils.removeSelfFromParent(mContentView)
@@ -75,6 +77,8 @@ abstract class AbstractDevBaseFragment : Fragment(),
         }
         // Content View 初始化处理
         contentInit(inflater, container)
+        // Inflate View 之后触发
+        mContentView?.let { afterInflateView(it) }
         return mContentView
     }
 

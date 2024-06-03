@@ -37,7 +37,7 @@ class SignActivity : BaseProjectActivity<ViewDataBinding, BaseProjectViewModel>(
             return signView
         }
     }
-)  {
+) {
     override fun isViewBinding(): Boolean {
         return false
     }

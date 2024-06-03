@@ -37,6 +37,8 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     // ==========
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Activity onCreate 创建之前触发
+        activityOnCreateBefore()
         super.onCreate(savedInstanceState)
         // 获取当前类名
         TAG = this.javaClass.simpleName
@@ -47,10 +49,16 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
             .printLog("onCreate")
         // 添加 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
+        // Inflate View 之前触发
+        beforeInflateView()
         // Content View 初始化处理
         contentInit(LayoutInflater.from(this), null)
         // 设置 Content View
-        mContentView?.let { setContentView(it) }
+        mContentView?.let {
+            setContentView(it)
+            // Inflate View 之后触发
+            afterInflateView(it)
+        }
     }
 
     override fun onStart() {
