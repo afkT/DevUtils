@@ -28,32 +28,7 @@ android {
     }
 }
 
-dependencies {
-    implementation project(':DevApp')
-    implementation project(':DevAssist')
-    implementation project(':DevBase')
-    implementation project(':DevBaseMVVM')
-    implementation project(':DevMVVM')
-    implementation project(':DevEngine')
-    implementation project(':DevWidget')
-
-    implementation project(':DevHttpCapture')
-    debugImplementation project(':DevHttpCaptureCompiler')
-    releaseImplementation project(':DevHttpCaptureCompilerRelease')
-
-    implementation project(':DevHttpManager')
-    implementation project(':DevRetrofit')
-
-    implementation project(':DevEnvironment')
-    kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
-    kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
-
-    // =========
-    // = 非 lib =
-    // =========
-
-    implementation project(':DevBaseView')
-    implementation project(':DevOther')
-    implementation project(':DevSKU')
-    implementation project(':DevSimple')
-}
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(dev_utils.deps_config)
+// DevUtils 项目其他 module 本地依赖
+apply from: rootProject.file(dev_utils.local_other)

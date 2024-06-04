@@ -176,10 +176,16 @@ implementation 'io.github.afkt:DevAppX:2.4.6'
 implementation 'io.github.afkt:DevAssist:1.4.1'
 
 // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'io.github.afkt:DevBase:1.1.7'
+implementation 'io.github.afkt:DevBase:1.1.8'
 
 // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.1.5'
+implementation 'io.github.afkt:DevBaseMVVM:1.1.6'
+
+// DevMVVM - DataBinding 工具类库
+implementation 'io.github.afkt:DevMVVM:1.0.4'
+
+// DevSimple - 简单敏捷开发库
+implementation 'io.github.afkt:DevSimple:1.0.1'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.1.3'

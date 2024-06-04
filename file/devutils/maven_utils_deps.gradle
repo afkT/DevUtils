@@ -1,0 +1,50 @@
+dependencies {
+
+    // ================
+    // = Dev 系列开发库 =
+    // ================
+
+    // https://github.com/afkT/DevUtils
+    // https://github.com/afkT/DevUtils/blob/master/README_API.md
+
+    // DevApp - Android 工具类库
+    api deps.dev.dev_app
+
+    // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
+    api deps.dev.dev_assist
+
+    // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+    api deps.dev.dev_base
+
+    // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
+    api deps.dev.dev_base_mvvm
+
+    // DevMVVM - DataBinding 工具类库
+    api deps.dev.dev_mvvm
+
+    // DevSimple - 简单敏捷开发库
+    api deps.dev.dev_simple
+
+    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+    api deps.dev.dev_engine
+
+    // DevWidget - 自定义 View UI 库
+    api deps.dev.dev_widget
+
+    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+    api deps.dev.dev_retrofit
+
+    // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+    api deps.dev.dev_http_manager
+
+    // DevHttpCapture - OkHttp 抓包工具库
+    api deps.dev.dev_http_capture
+    // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
+    debugImplementation deps.dev.dev_http_capture_compiler
+    releaseImplementation deps.dev.dev_http_capture_compiler_release
+
+    // DevEnvironment - Android 环境配置切换库
+    api deps.dev.dev_environment
+    kaptDebug deps.dev.dev_environment_compiler // debugAnnotationProcessor
+    kaptRelease deps.dev.dev_environment_compiler_release // releaseAnnotationProcessor
+}

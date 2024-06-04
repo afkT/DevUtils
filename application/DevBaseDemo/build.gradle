@@ -8,15 +8,7 @@ android {
     }
 }
 
-dependencies {
-    implementation project(':DevApp')
-    implementation project(':DevBaseMVVM')
-    implementation project(':DevMVVM')
-    implementation project(':DevEngine')
-
-    // =========
-    // = 非 lib =
-    // =========
-
-    implementation project(':DevOther')
-}
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(dev_utils.deps_config)
+// DevUtils 项目其他 module 本地依赖
+apply from: rootProject.file(dev_utils.local_other)

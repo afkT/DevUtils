@@ -1,0 +1,18 @@
+// 是否使用 Maven 依赖
+def isMavenDeps = false
+// 加载本地文件配置
+Properties properties = new Properties()
+File localPropertiesFile = new File(rootDir, "dev_utils.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+    // 是否使用 Maven 依赖
+    isMavenDeps = properties.getProperty("is_maven_deps").toBoolean()
+}
+
+if (isMavenDeps) {
+    // DevUtils 系列库 Maven 依赖
+    apply from: rootProject.file(dev_utils.maven)
+} else {
+    // DevUtils 系列库本地依赖
+    apply from: rootProject.file(dev_utils.local)
+}
