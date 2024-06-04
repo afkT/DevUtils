@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.8 *(2024-06-04)*
+----------------------------
+
+* `[Add]` IDevBaseMethod 新增 activityOnCreateBefore、beforeInflateView、afterInflateView 方法
+
 Version 1.1.7 *(2024-05-06)*
 ----------------------------
 
