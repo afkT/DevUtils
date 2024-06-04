@@ -24,9 +24,8 @@ dependencies {
     }
 }
 
-// gradlew clean
-// gradlew install
-// gradlew bintrayUpload
+// tasks-build-assemble
+// publishing-publishReleasePublicationToXXXXXRepository
 //apply from: rootProject.file(files.bintray_upload_android)
 //apply from: rootProject.file(files.sonatype_upload_android)
 if (isPublishing) {

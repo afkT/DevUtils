@@ -39,20 +39,20 @@ ext {
             dev_assist_versionName                   : "1.4.1",
 
             // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-            dev_base_versionCode                     : 117,
-            dev_base_versionName                     : "1.1.7",
+            dev_base_versionCode                     : 118,
+            dev_base_versionName                     : "1.1.8",
 
             // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-            dev_base_mvvm_versionCode                : 115,
-            dev_base_mvvm_versionName                : "1.1.5",
+            dev_base_mvvm_versionCode                : 116,
+            dev_base_mvvm_versionName                : "1.1.6",
 
             // DevMVVM - DataBinding 工具类库
-            dev_mvvm_versionCode                     : 103,
-            dev_mvvm_versionName                     : "1.0.3",
+            dev_mvvm_versionCode                     : 104,
+            dev_mvvm_versionName                     : "1.0.4",
 
             // DevSimple - 简单敏捷开发库
-            dev_simple_versionCode                   : 100,
-            dev_simple_versionName                   : "1.0.0",
+            dev_simple_versionCode                   : 101,
+            dev_simple_versionName                   : "1.0.1",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 113,
