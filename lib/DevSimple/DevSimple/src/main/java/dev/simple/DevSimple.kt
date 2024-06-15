@@ -18,6 +18,8 @@ package dev.simple
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
  * DevSimple README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
+ * DevAgile README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevHttpCapture Api
@@ -70,8 +72,4 @@ object DevSimple {
     fun getDevMVVMVersion(): String {
         return BuildConfig.DevMVVM_Version
     }
-
-    // =============
-    // = 对外公开方法 =
-    // =============
 }

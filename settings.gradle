@@ -47,6 +47,7 @@ environment_libs.forEach {
 
 def simple_libs = [
         "DevSimple",
+        "DevAgile",
 ]
 
 simple_libs.forEach {

@@ -25,6 +25,9 @@ dependencies {
     // DevSimple - 简单敏捷开发库
     api deps.dev.dev_simple
 
+    // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
+    api deps.dev.dev_agile
+
     // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
     api deps.dev.dev_engine
 

@@ -15,7 +15,7 @@ import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
 import com.therouter.router.Route
-import dev.assist.WebViewAssist
+import dev.agile.assist.WebViewAssist
 import dev.expand.engine.log.log_dTag
 
 /**

@@ -27,6 +27,8 @@ import dev.environment.log.LogUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md"/>
  *     DevSimple README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md"/>
+ *     DevAgile README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md"/>
  *     DevEngine README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevHttpCapture Api

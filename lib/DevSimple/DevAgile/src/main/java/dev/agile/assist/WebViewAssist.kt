@@ -1,5 +1,6 @@
-package dev.assist
+package dev.agile.assist
 
+import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.os.Build
 import android.view.KeyEvent
@@ -9,7 +10,7 @@ import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebSettings.RenderPriority
 import android.webkit.WebView.HitTestResult
 import dev.DevUtils
-import dev.assist.WebViewAssist.Builder.OnApplyListener
+import dev.agile.assist.WebViewAssist.Builder.OnApplyListener
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
@@ -393,6 +394,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param interfaceName 在 JavaScript 中公开对象的名称
      * @return [WebViewAssist]
      */
+    @SuppressLint("JavascriptInterface")
     fun addJavascriptInterface(
         obj: Any,
         interfaceName: String
@@ -925,6 +927,9 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
             builder.mAllowFileAccess = mAllowFileAccess
             builder.mAllowFileAccessFromFileURLs = mAllowFileAccessFromFileURLs
             builder.mAllowUniversalAccessFromFileURLs = mAllowUniversalAccessFromFileURLs
+            builder.mBlockNetworkLoads = mBlockNetworkLoads
+            builder.mBlockNetworkImage = mBlockNetworkImage
+            builder.mMediaPlaybackRequiresUserGesture = mMediaPlaybackRequiresUserGesture
             builder.mCacheMode = mCacheMode
             builder.mDomStorageEnabled = mDomStorageEnabled
             builder.mAppCacheEnabled = mAppCacheEnabled
@@ -961,6 +966,9 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
             this.mAllowFileAccess = true
             this.mAllowFileAccessFromFileURLs = false
             this.mAllowUniversalAccessFromFileURLs = false
+            this.mBlockNetworkLoads = false
+            this.mBlockNetworkImage = false
+            this.mMediaPlaybackRequiresUserGesture = true
             this.mCacheMode = WebSettings.LOAD_NO_CACHE
             this.mDomStorageEnabled = true
             this.mAppCacheEnabled = true
@@ -1037,6 +1045,15 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 
         // 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
         private var mAllowUniversalAccessFromFileURLs = false
+
+        // 是否不从网络加载资源
+        private var mBlockNetworkLoads = false
+
+        // 是否不从网络加载图像资源
+        private var mBlockNetworkImage = false
+
+        // 是否需要用户手势来播放媒体
+        private var mMediaPlaybackRequiresUserGesture = true
 
         // WebView 缓存模式
         private var mCacheMode = WebSettings.LOAD_NO_CACHE
@@ -1121,7 +1138,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
                         webSettings.userAgentString = mUserAgentString
                     }
 
-                    // 是否可以访问文件
+                    // 是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
                     webSettings.allowFileAccess = mAllowFileAccess
                     // 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -1132,6 +1149,12 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
                         webSettings.allowUniversalAccessFromFileURLs =
                             mAllowUniversalAccessFromFileURLs
                     }
+                    // 是否不从网络加载资源
+                    webSettings.blockNetworkLoads = mBlockNetworkLoads
+                    // 是否不从网络加载图像资源
+                    webSettings.blockNetworkImage = mBlockNetworkImage
+                    // 是否需要用户手势来播放媒体
+                    webSettings.mediaPlaybackRequiresUserGesture = mMediaPlaybackRequiresUserGesture
                     // 设置 WebView 缓存模式
                     if (mCacheMode > 0) {
                         // LOAD_CACHE_ONLY 不使用网络, 只读取本地缓存数据
@@ -1552,6 +1575,60 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          */
         fun setAllowUniversalAccessFromFileURLs(allowUniversalAccessFromFileURLs: Boolean): Builder {
             mAllowUniversalAccessFromFileURLs = allowUniversalAccessFromFileURLs
+            return this
+        }
+
+        /**
+         * 是否不从网络加载资源
+         * @return `true` yes, `false` no
+         */
+        fun isBlockNetworkLoads(): Boolean {
+            return mBlockNetworkLoads
+        }
+
+        /**
+         * 设置是否不从网络加载资源
+         * @param blockNetworkLoads `true` yes, `false` no
+         * @return [Builder]
+         */
+        fun setBlockNetworkLoads(blockNetworkLoads: Boolean): Builder {
+            mBlockNetworkLoads = blockNetworkLoads
+            return this
+        }
+
+        /**
+         * 是否不从网络加载图像资源
+         * @return `true` yes, `false` no
+         */
+        fun isBlockNetworkImage(): Boolean {
+            return mBlockNetworkImage
+        }
+
+        /**
+         * 设置是否不从网络加载图像资源
+         * @param blockNetworkImage `true` yes, `false` no
+         * @return [Builder]
+         */
+        fun setBlockNetworkImage(blockNetworkImage: Boolean): Builder {
+            mBlockNetworkImage = blockNetworkImage
+            return this
+        }
+
+        /**
+         * 是否需要用户手势来播放媒体
+         * @return `true` yes, `false` no
+         */
+        fun isMediaPlaybackRequiresUserGesture(): Boolean {
+            return mMediaPlaybackRequiresUserGesture
+        }
+
+        /**
+         * 设置是否需要用户手势来播放媒体
+         * @param mediaPlaybackRequiresUserGesture `true` yes, `false` no
+         * @return [Builder]
+         */
+        fun setMediaPlaybackRequiresUserGesture(mediaPlaybackRequiresUserGesture: Boolean): Builder {
+            mMediaPlaybackRequiresUserGesture = mediaPlaybackRequiresUserGesture
             return this
         }
 

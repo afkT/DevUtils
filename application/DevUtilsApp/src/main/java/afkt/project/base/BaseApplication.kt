@@ -15,7 +15,7 @@ import dev.DevHttpCapture
 import dev.DevHttpManager
 import dev.DevRetrofit
 import dev.DevUtils
-import dev.assist.WebViewAssist
+import dev.agile.assist.WebViewAssist
 import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine

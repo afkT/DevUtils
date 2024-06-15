@@ -54,6 +54,10 @@ ext {
             dev_simple_versionCode                   : 101,
             dev_simple_versionName                   : "1.0.1",
 
+            // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
+            dev_agile_versionCode                   : 100,
+            dev_agile_versionName                   : "1.0.0",
+
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 113,
             dev_engine_versionName                   : "1.1.3",

@@ -1,9 +1,7 @@
-package dev
-
-import dev.retrofit.BuildConfig
+package dev.agile
 
 /**
- * detail: Retrofit + Kotlin Coroutines 封装
+ * detail: DevAgile
  * @author Ttt
  * <p></p>
  * GitHub
@@ -37,11 +35,43 @@ import dev.retrofit.BuildConfig
  * DevJava Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  */
-object DevRetrofit {
+object DevAgile {
 
     // ============
     // = 工具类版本 =
     // ============
+
+    /**
+     * 获取 DevAgile 版本号
+     * @return DevAgile versionCode
+     */
+    fun getDevAgileVersionCode(): Int {
+        return BuildConfig.DevAgile_VersionCode
+    }
+
+    /**
+     * 获取 DevAgile 版本
+     * @return DevAgile versionName
+     */
+    fun getDevAgileVersion(): String {
+        return BuildConfig.DevAgile_Version
+    }
+
+    /**
+     * 获取 DevAssist 版本号
+     * @return DevAssist versionCode
+     */
+    fun getDevAssistVersionCode(): Int {
+        return BuildConfig.DevAssist_VersionCode
+    }
+
+    /**
+     * 获取 DevAssist 版本
+     * @return DevAssist versionName
+     */
+    fun getDevAssistVersion(): String {
+        return BuildConfig.DevAssist_Version
+    }
 
     /**
      * 获取 DevRetrofit 版本号
