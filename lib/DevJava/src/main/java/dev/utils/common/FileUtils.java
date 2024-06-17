@@ -643,6 +643,54 @@ public final class FileUtils {
     }
 
     /**
+     * 判断是否隐藏文件
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHidden2(final File file) {
+        return isHidden2(getAbsolutePath(file));
+    }
+
+    /**
+     * 判断是否隐藏文件
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHidden2(final String filePath) {
+        if (filePath != null) {
+            String temp = filePath.replaceAll("/../..", "")
+                    .replaceAll("\\...\\...", "")
+                    .replaceAll("\\..\\..", "");
+            return temp.contains("\\.") || temp.contains("/.");
+        }
+        return false;
+    }
+
+    /**
+     * 是否 Build 文件、文件夹判断
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBuild(final File file) {
+        return isBuild(getAbsolutePath(file));
+    }
+
+    /**
+     * 是否 Build 文件、文件夹判断
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBuild(final String filePath) {
+        if (filePath != null) {
+            if (filePath.contains("\\build\\")) return true;
+            if (filePath.endsWith("\\build")) return true;
+            if (filePath.contains("/build")) return true;
+            return (filePath.contains("/build/"));
+        }
+        return false;
+    }
+
+    /**
      * 文件是否可读
      * @param filePath 文件路径
      * @return {@code true} yes, {@code false} no
