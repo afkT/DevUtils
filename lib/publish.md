@@ -7,6 +7,7 @@
       - DevEngine                          | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
          - DevMVVM                         | DataBinding 工具类库
             - DevSimple                    | 简单敏捷开发库
+      - DevAgile                           | 简单敏捷开发库 ( 常用、零散代码 )
    - DevBase                               | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
       - DevBaseMVVM                        | MVVM ( ViewDataBinding + ViewModel ) 基类库
    - DevHttpCapture                        | OkHttp 抓包工具库

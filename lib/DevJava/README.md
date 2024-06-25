@@ -602,6 +602,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isFile | 判断是否文件 |
 | isDirectory | 判断是否文件夹 |
 | isHidden | 判断是否隐藏文件 |
+| isHidden2 | 判断是否隐藏文件 |
+| isBuild | 是否 Build 文件、文件夹判断 |
 | canRead | 文件是否可读 |
 | canWrite | 文件是否可写 |
 | canReadWrite | 文件是否可读写 |

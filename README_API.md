@@ -187,6 +187,9 @@ implementation 'io.github.afkt:DevMVVM:1.0.4'
 // DevSimple - 简单敏捷开发库
 implementation 'io.github.afkt:DevSimple:1.0.1'
 
+// DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
+implementation 'io.github.afkt:DevAgile:1.0.0'
+
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.1.3'
 

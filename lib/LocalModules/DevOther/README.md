@@ -33,7 +33,6 @@
                - demo          | WorkManager 使用 Demo
    - ktx                       | Kotlin 实现
       - dev                    | 根目录
-         - assist              | 常用辅助类封装
          - engine              | 兼容 Engine
             - media            | Media Selector Engine 多媒体资源选择
                - luck_siege_lib| LuckSiege PictureSelector Engine 实现
@@ -84,7 +83,6 @@
                - [demo](#javadevotherworkdemo)                  | WorkManager 使用 Demo
    - [ktx](#ktx)                                                | Kotlin 实现
       - [dev](#ktxdev)                                          | 根目录
-         - [assist](#ktxdevassist)                              | 常用辅助类封装
          - [engine](#ktxdevengine)                              | 兼容 Engine
             - [media](#ktxdevenginemedia)                       | Media Selector Engine 多媒体资源选择
                - [luck_siege_lib](#ktxdevenginemedialuck_siege_lib)| LuckSiege PictureSelector Engine 实现
@@ -1162,9 +1160,6 @@
 
 
 ## <span id="ktxdev">**`ktx.dev`**</span>
-
-
-## <span id="ktxdevassist">**`ktx.dev.assist`**</span>
 
 
 ## <span id="ktxdevengine">**`ktx.dev.engine`**</span>
