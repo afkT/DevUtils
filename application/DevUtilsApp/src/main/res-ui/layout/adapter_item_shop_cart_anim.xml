@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/vid_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/dp_10"
-        android:paddingRight="@dimen/dp_10"
-        android:paddingBottom="@dimen/dp_10"
-        tools:background="@color/color_f5"
-        tools:paddingTop="@dimen/dp_10">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_10"
+    tools:background="@color/color_f5"
+    tools:paddingTop="@dimen/dp_10">
 
     <dev.widget.ui.round.RoundFrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10"
-            app:dev_backgroundColor="@color/white"
-            app:dev_radius="@dimen/dp_10">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        app:dev_backgroundColor="@color/white"
+        app:dev_radius="@dimen/dp_10">
 
         <FrameLayout
-                android:id="@+id/vid_pic_fl"
-                android:layout_width="@dimen/dp_70"
-                android:layout_height="@dimen/dp_70"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_border_image"
-                android:padding="@dimen/dp_5">
+            android:id="@+id/vid_pic_fl"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_border_image"
+            android:padding="@dimen/dp_5">
 
             <dev.base.widget.BaseImageView
-                    android:id="@+id/vid_pic_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                android:id="@+id/vid_pic_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_80"
+            android:orientation="vertical">
+
+            <dev.base.widget.BaseTextView
+                android:id="@+id/vid_name_tv"
+                style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_70"
-                android:layout_marginLeft="@dimen/dp_80"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                tools:text="商品名" />
 
             <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_name_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center|left"
-                    android:maxLines="1"
-                    android:textColor="@color/color_33"
-                    android:textSize="@dimen/sp_16"
-                    tools:text="商品名" />
-
-            <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_price_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center|left"
-                    android:maxLines="1"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/sp_15"
-                    tools:text="@string/tools_price" />
+                android:id="@+id/vid_price_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:textColor="@color/red"
+                android:textSize="@dimen/sp_15"
+                tools:text="@string/tools_price" />
         </LinearLayout>
 
         <ImageView
-                android:id="@+id/vid_add_iv"
-                android:layout_width="@dimen/dp_25"
-                android:layout_height="@dimen/dp_25"
-                android:layout_gravity="bottom|right"
-                android:background="@drawable/icon_shop_cart_add_red" />
+            android:id="@+id/vid_add_iv"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/icon_shop_cart_add_red" />
     </dev.widget.ui.round.RoundFrameLayout>
 </LinearLayout>

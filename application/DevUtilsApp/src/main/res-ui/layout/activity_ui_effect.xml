@@ -1,205 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <dev.widget.custom.CustomNestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-                style="@style/AppTheme.padding_lr"
+            style="@style/AppTheme.padding_lr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_1_0_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_tab_left_selector"
+                    android:gravity="center"
+                    android:text="热门"
+                    android:textColor="@color/selector_tab_text_color" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_1_1_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_tab_right_selector"
+                    android:gravity="center"
+                    android:text="最新"
+                    android:textColor="@color/selector_tab_text_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_2_0_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="文章" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_2_1_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="视频" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_3_0_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="精选" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_3_1_tv"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="推荐" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <dev.base.widget.BaseButton
+                    android:id="@+id/vid_4_0_btn"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:text="登录" />
+
+                <dev.base.widget.BaseButton
+                    android:id="@+id/vid_4_1_btn"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:text="注册" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_240"
+                android:layout_height="@dimen/dp_150"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vid_5_0_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_240"
+                android:layout_height="@dimen/dp_150"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vid_6_0_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
                 android:orientation="vertical">
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_30"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
                 <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_1_0_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_tab_left_selector"
-                        android:gravity="center"
-                        android:text="热门"
-                        android:textColor="@color/selector_tab_text_color" />
-
-                <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_1_1_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_tab_right_selector"
-                        android:gravity="center"
-                        android:text="最新"
-                        android:textColor="@color/selector_tab_text_color" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_30"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
-                <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_2_0_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="文章" />
-
-                <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_2_1_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="视频" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_30"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
-                <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_3_0_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="精选" />
-
-                <dev.base.widget.BaseTextView
-                        android:id="@+id/vid_3_1_tv"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="推荐" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_40"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
-                <dev.base.widget.BaseButton
-                        android:id="@+id/vid_4_0_btn"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="@dimen/dp_5"
-                        android:text="登录" />
-
-                <dev.base.widget.BaseButton
-                        android:id="@+id/vid_4_1_btn"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/dp_5"
-                        android:text="注册" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="@dimen/dp_240"
-                    android:layout_height="@dimen/dp_150"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
-                <View
-                        android:id="@+id/vid_5_0_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="@dimen/dp_240"
-                    android:layout_height="@dimen/dp_150"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="horizontal">
-
-                <View
-                        android:id="@+id/vid_6_0_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="vertical">
-
-                <dev.base.widget.BaseTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="HorizontalScrollView Tab" />
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:text="HorizontalScrollView Tab" />
 
                 <HorizontalScrollView
-                        android:id="@+id/vid_7_0_sv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scrollbars="none">
+                    android:id="@+id/vid_7_0_sv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
 
                     <LinearLayout
-                            android:id="@+id/vid_7_0_ll"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal" />
+                        android:id="@+id/vid_7_0_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
                 </HorizontalScrollView>
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical">
 
                 <dev.base.widget.BaseTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="TabLayout Tab" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:text="TabLayout Tab" />
 
                 <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/vid_8_0_tl"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_44"
-                        android:background="@color/white"
-                        android:paddingLeft="@dimen/dp_0"
-                        android:paddingRight="@dimen/dp_0"
-                        app:tabBackground="@color/transparent"
-                        app:tabIndicatorHeight="@dimen/dp_0"
-                        app:tabMaxWidth="@dimen/dp_80"
-                        app:tabMinWidth="@dimen/dp_80"
-                        app:tabMode="scrollable" />
+                    android:id="@+id/vid_8_0_tl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_44"
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/dp_0"
+                    android:paddingRight="@dimen/dp_0"
+                    app:tabBackground="@color/transparent"
+                    app:tabIndicatorHeight="@dimen/dp_0"
+                    app:tabMaxWidth="@dimen/dp_80"
+                    app:tabMinWidth="@dimen/dp_80"
+                    app:tabMode="scrollable" />
 
                 <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/vid_9_0_tl"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_44"
-                        android:layout_marginTop="@dimen/dp_20"
-                        android:background="@color/white"
-                        android:paddingLeft="@dimen/dp_0"
-                        android:paddingRight="@dimen/dp_0"
-                        app:tabBackground="@color/transparent"
-                        app:tabIndicatorHeight="@dimen/dp_0"
-                        app:tabMode="fixed" />
+                    android:id="@+id/vid_9_0_tl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_44"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/dp_0"
+                    android:paddingRight="@dimen/dp_0"
+                    app:tabBackground="@color/transparent"
+                    app:tabIndicatorHeight="@dimen/dp_0"
+                    app:tabMode="fixed" />
             </LinearLayout>
 
             <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_50" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
         </LinearLayout>
     </dev.widget.custom.CustomNestedScrollView>
 </layout>

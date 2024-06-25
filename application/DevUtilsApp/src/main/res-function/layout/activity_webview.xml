@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <WebView
-            android:id="@+id/vid_wv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:id="@+id/vid_wv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </layout>

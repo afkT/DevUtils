@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                        android:id="@+id/vid_lpb1"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_120"
-                        android:layout_gravity="center"
-                        app:dev_canvasNumber="true"
-                        app:dev_outerRingColor="@color/khaki"
-                        app:dev_outerRingWidth="@dimen/dp_5"
-                        app:dev_progressColor="#888888"
-                        app:dev_progressStyle="rings" />
+                    android:id="@+id/vid_lpb1"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_gravity="center"
+                    app:dev_canvasNumber="true"
+                    app:dev_outerRingColor="@color/khaki"
+                    app:dev_outerRingWidth="@dimen/dp_5"
+                    app:dev_progressColor="#888888"
+                    app:dev_progressStyle="rings" />
             </FrameLayout>
 
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                        android:id="@+id/vid_lpb2"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_120"
-                        android:layout_gravity="center"
-                        app:dev_canvasNumber="true"
-                        app:dev_progressColor="@color/sky_blue"
-                        app:dev_progressStyle="fanShaped" />
+                    android:id="@+id/vid_lpb2"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_gravity="center"
+                    app:dev_canvasNumber="true"
+                    app:dev_progressColor="@color/sky_blue"
+                    app:dev_progressStyle="fanShaped" />
             </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                        android:id="@+id/vid_lpb3"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_120"
-                        android:layout_gravity="center"
-                        app:dev_canvasNumber="true"
-                        app:dev_numberTextColor="#FB7D00"
-                        app:dev_outerRingColor="@color/red"
-                        app:dev_outerRingWidth="@dimen/dp_1"
-                        app:dev_progressColor="@color/mediumturquoise"
-                        app:dev_progressStyle="arcFanShaped" />
+                    android:id="@+id/vid_lpb3"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_gravity="center"
+                    app:dev_canvasNumber="true"
+                    app:dev_numberTextColor="#FB7D00"
+                    app:dev_outerRingColor="@color/red"
+                    app:dev_outerRingWidth="@dimen/dp_1"
+                    app:dev_progressColor="@color/mediumturquoise"
+                    app:dev_progressStyle="arcFanShaped" />
             </FrameLayout>
 
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                        android:id="@+id/vid_lpb4"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_120"
-                        android:layout_gravity="center"
-                        app:dev_numberTextColor="@color/deeppink"
-                        app:dev_numberTextSize="@dimen/sp_40"
-                        app:dev_progressStyle="number" />
+                    android:id="@+id/vid_lpb4"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_gravity="center"
+                    app:dev_numberTextColor="@color/deeppink"
+                    app:dev_numberTextSize="@dimen/sp_40"
+                    app:dev_progressStyle="number" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.widget.ui.round.RoundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <dev.widget.ui.round.RoundTextView
-            android:layout_width="@dimen/dp_10"
-            android:layout_height="@dimen/dp_10"
-            app:dev_backgroundColor="@color/color_ff2e42"
-            app:dev_isRadiusAdjustBounds="true" />
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_10"
+        app:dev_backgroundColor="@color/color_ff2e42"
+        app:dev_isRadiusAdjustBounds="true" />
 </dev.widget.ui.round.RoundLinearLayout>

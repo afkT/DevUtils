@@ -2,28 +2,28 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <dev.widget.custom.CustomNestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_f5"
-            android:scrollbars="none">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f5"
+        android:scrollbars="none">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                    android:id="@+id/vid_ll"
-                    style="@style/AppTheme.padding_lr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:orientation="vertical" />
+                android:id="@+id/vid_ll"
+                style="@style/AppTheme.padding_lr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:orientation="vertical" />
 
             <include
-                    android:id="@+id/vid_include"
-                    layout="@layout/base_view_recyclerview" />
+                android:id="@+id/vid_include"
+                layout="@layout/base_view_recyclerview" />
         </LinearLayout>
     </dev.widget.custom.CustomNestedScrollView>
 </layout>

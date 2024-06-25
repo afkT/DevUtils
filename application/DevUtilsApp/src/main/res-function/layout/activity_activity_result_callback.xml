@@ -2,32 +2,32 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10">
 
             <dev.base.widget.BaseButton
-                    android:id="@+id/vid_select_btn"
-                    style="@style/AppTheme.Base_Button"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="选择图片" />
+                android:id="@+id/vid_select_btn"
+                style="@style/AppTheme.Base_Button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="选择图片" />
 
             <dev.widget.ui.ResizableImageView
-                    android:id="@+id/vid_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10" />
+                android:id="@+id/vid_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

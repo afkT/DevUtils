@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <dev.widget.custom.CustomNestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-                style="@style/AppTheme.padding_lr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            style="@style/AppTheme.padding_lr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <dev.base.widget.BaseButton
-                    android:id="@+id/vid_select_btn"
-                    style="@style/AppTheme.Base_Button"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="选择图片" />
+                android:id="@+id/vid_select_btn"
+                style="@style/AppTheme.Base_Button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="选择图片" />
 
             <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:textSize="@dimen/sp_17"
-                    tools:text="解析结果" />
+                android:id="@+id/vid_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textSize="@dimen/sp_17"
+                tools:text="解析结果" />
         </LinearLayout>
     </dev.widget.custom.CustomNestedScrollView>
 </layout>

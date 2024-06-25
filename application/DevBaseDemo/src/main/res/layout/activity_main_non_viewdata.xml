@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/vid_nsv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_d9"
-        android:fadingEdge="none"
-        android:fitsSystemWindows="true"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_nsv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_d9"
+    android:fadingEdge="none"
+    android:fitsSystemWindows="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
 
     <LinearLayout
-            android:id="@+id/vid_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:id="@+id/vid_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-                android:id="@+id/vid_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:padding="@dimen/dp_15"
-                android:textSize="@dimen/sp_20"
-                tools:text="非使用 Data 的 ViewDataBinding" />
+            android:id="@+id/vid_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="@dimen/dp_15"
+            android:textSize="@dimen/sp_20"
+            tools:text="非使用 Data 的 ViewDataBinding" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

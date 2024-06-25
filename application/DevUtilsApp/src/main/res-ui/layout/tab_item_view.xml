@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
         <dev.base.widget.BaseTextView
-                android:id="@+id/vid_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:textColor="@color/color_33" />
+            android:id="@+id/vid_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textColor="@color/color_33" />
 
         <View
-                android:id="@+id/vid_line_view"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_3"
-                android:layout_alignLeft="@id/vid_tv"
-                android:layout_alignRight="@id/vid_tv"
-                android:layout_alignParentBottom="true"
-                android:background="@color/red"
-                android:visibility="gone" />
+            android:id="@+id/vid_line_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_3"
+            android:layout_alignLeft="@id/vid_tv"
+            android:layout_alignRight="@id/vid_tv"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red"
+            android:visibility="gone" />
     </RelativeLayout>
 </LinearLayout>

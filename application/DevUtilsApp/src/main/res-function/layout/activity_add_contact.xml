@@ -1,125 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <dev.widget.custom.CustomNestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-                style="@style/AppTheme.padding_lr"
-                android:layout_width="match_parent"
+            style="@style/AppTheme.padding_lr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <dev.base.widget.BaseTextView
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginTop="@dimen/dp_15"
+                android:text="循环添加联系人"
+                android:textColor="@color/grey"
+                android:textStyle="bold" />
+
+            <View
+                style="@style/AppTheme.Base_Line_Vertical"
+                android:layout_marginTop="@dimen/dp_15"
+                android:background="@color/gray" />
+
+            <dev.base.widget.BaseTextView
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginTop="@dimen/dp_15"
+                android:text="例 :" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_15">
 
-            <dev.base.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     style="@style/AppTheme.Base_TextView"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:text="循环添加联系人"
-                    android:textColor="@color/grey"
-                    android:textStyle="bold" />
+                    android:layout_marginRight="@dimen/dp_150"
+                    android:gravity="left"
+                    android:text="137" />
 
-            <View
-                    style="@style/AppTheme.Base_Line_Vertical"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:background="@color/gray" />
-
-            <dev.base.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     style="@style/AppTheme.Base_TextView"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:text="例 :" />
-
-            <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_15">
+                    android:layout_marginLeft="@dimen/dp_150"
+                    android:gravity="right"
+                    android:text="5678" />
 
                 <dev.base.widget.BaseTextView
-                        style="@style/AppTheme.Base_TextView"
-                        android:layout_marginRight="@dimen/dp_150"
-                        android:gravity="left"
-                        android:text="137" />
-
-                <dev.base.widget.BaseTextView
-                        style="@style/AppTheme.Base_TextView"
-                        android:layout_marginLeft="@dimen/dp_150"
-                        android:gravity="right"
-                        android:text="5678" />
-
-                <dev.base.widget.BaseTextView
-                        style="@style/AppTheme.Base_TextView"
-                        android:layout_gravity="bottom"
-                        android:layout_marginTop="@dimen/dp_20"
-                        android:gravity="center"
-                        android:text="0000 - 9999" />
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="0000 - 9999" />
             </FrameLayout>
 
             <View
-                    style="@style/AppTheme.Base_Line_Vertical"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:background="@color/gray" />
+                style="@style/AppTheme.Base_Line_Vertical"
+                android:layout_marginTop="@dimen/dp_15"
+                android:background="@color/gray" />
 
             <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_15">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_15">
 
                 <dev.base.widget.BaseEditText
-                        android:id="@+id/vid_start_et"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_40"
-                        android:layout_marginRight="@dimen/dp_150"
-                        android:background="@drawable/shape_border_image"
-                        android:gravity="center"
-                        android:hint="137"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@color/color_33"
-                        android:textColorHint="@color/color_99"
-                        android:textSize="@dimen/sp_15" />
+                    android:id="@+id/vid_start_et"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginRight="@dimen/dp_150"
+                    android:background="@drawable/shape_border_image"
+                    android:gravity="center"
+                    android:hint="137"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/color_33"
+                    android:textColorHint="@color/color_99"
+                    android:textSize="@dimen/sp_15" />
 
                 <dev.base.widget.BaseEditText
-                        android:id="@+id/vid_end_et"
-                        android:layout_width="@dimen/dp_120"
-                        android:layout_height="@dimen/dp_40"
-                        android:layout_marginLeft="@dimen/dp_150"
-                        android:background="@drawable/shape_border_image"
-                        android:gravity="center"
-                        android:hint="5678"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@color/color_33"
-                        android:textColorHint="@color/color_99"
-                        android:textSize="@dimen/sp_15" />
+                    android:id="@+id/vid_end_et"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp_150"
+                    android:background="@drawable/shape_border_image"
+                    android:gravity="center"
+                    android:hint="5678"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/color_33"
+                    android:textColorHint="@color/color_99"
+                    android:textSize="@dimen/sp_15" />
             </FrameLayout>
 
             <View
-                    style="@style/AppTheme.Base_Line_Vertical"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:background="@color/gray" />
+                style="@style/AppTheme.Base_Line_Vertical"
+                android:layout_marginTop="@dimen/dp_15"
+                android:background="@color/gray" />
 
             <dev.base.widget.BaseButton
-                    android:id="@+id/vid_add_btn"
-                    style="@style/AppTheme.Base_Button"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="添加联系人" />
+                android:id="@+id/vid_add_btn"
+                style="@style/AppTheme.Base_Button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="添加联系人" />
 
             <dev.base.widget.BaseTextView
-                    android:id="@+id/vid_tips_tv"
-                    style="@style/AppTheme.Base_TextView"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:gravity="left"
-                    android:visibility="gone"
-                    tools:text="需创建 xx 条数据, 已创建 xx 条"
-                    tools:visibility="visible" />
+                android:id="@+id/vid_tips_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginTop="@dimen/dp_20"
+                android:gravity="left"
+                android:visibility="gone"
+                tools:text="需创建 xx 条数据, 已创建 xx 条"
+                tools:visibility="visible" />
         </LinearLayout>
     </dev.widget.custom.CustomNestedScrollView>
 </layout>
