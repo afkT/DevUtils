@@ -70,17 +70,6 @@ ext {
                     luban                               : "top.zibin:Luban:1.1.8",
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
                     kluban                              : "com.github.forJrking:KLuban:1.1.0",
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/core
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/compiler
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/ftp
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/sftp
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/m3u8
-                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core                           : "me.laoyuyu.aria:core:3.8.16",
-                    aria_compiler                       : "me.laoyuyu.aria:compiler:3.8.16",
-                    aria_ftp                            : "me.laoyuyu.aria:ftp:3.8.16",
-                    aria_sftp                           : "me.laoyuyu.aria:sftp:3.8.16",
-                    aria_m3u8                           : "me.laoyuyu.aria:m3u8:3.8.16",
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions                       : "com.github.getActivity:XXPermissions:18.63",
@@ -125,17 +114,17 @@ ext {
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-hooks
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-backtrace
                     // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-                    matrix_gradle_plugin          : "com.tencent.matrix:matrix-gradle-plugin:${versions.matrix_version}",
-                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${versions.matrix_version}",
-                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${versions.matrix_version}",
-                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:${versions.matrix_version}",
-                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:${versions.matrix_version}",
-                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:${versions.matrix_version}",
-                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${versions.matrix_version}",
-                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${versions.matrix_version}",
-                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${versions.matrix_version}",
-                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:${versions.matrix_version}",
-                    matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:${versions.matrix_version}",
+                    matrix_gradle_plugin          : "com.tencent.matrix:matrix-gradle-plugin:2.1.0",
+                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:2.1.0",
+                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:2.1.0",
+                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:2.1.0",
+                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:2.1.0",
+                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:2.1.0",
+                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:2.1.0",
+                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:2.1.0",
+                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:2.1.0",
+                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:2.1.0",
+                    matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:2.1.0",
 
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
                     xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
@@ -194,15 +183,12 @@ ext {
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
                     ucrop                           : "com.github.yalantis:ucrop:2.2.9", // 轻量级通用解决方案
                     ucrop_native                    : "com.github.yalantis:ucrop:2.2.9-native", // 手机原生功能支持
-                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
-                    // QMUI Android https://qmuiteam.com/android
-                    qmui                            : "com.qmuiteam:qmui:2.1.0",
                     // https://mvnrepository.com/artifact/io.github.cymchad/BaseRecyclerViewAdapterHelper4
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4",
+                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.6",
                     // https://mvnrepository.com/artifact/com.github.skydoves/transformationlayout
                     // Activity 跳转动画 https://github.com/skydoves/TransformationLayout
-                    transformation_layout           : "com.github.skydoves:transformationlayout:1.1.3",
+                    transformation_layout           : "com.github.skydoves:transformationlayout:1.1.4",
                     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
                     simple_ratingbar                : "com.github.williamyyu:SimpleRatingBar:1.5.1",
 
@@ -232,6 +218,20 @@ ext {
                     okgo                : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver            : "com.lzy.net:okserver:2.0.5",
+                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/core
+                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/compiler
+                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/ftp
+                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/sftp
+                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/m3u8
+                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
+                    aria_core           : "me.laoyuyu.aria:core:3.8.16",
+                    aria_compiler       : "me.laoyuyu.aria:compiler:3.8.16",
+                    aria_ftp            : "me.laoyuyu.aria:ftp:3.8.16",
+                    aria_sftp           : "me.laoyuyu.aria:sftp:3.8.16",
+                    aria_m3u8           : "me.laoyuyu.aria:m3u8:3.8.16",
+                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
+                    // QMUI Android https://qmuiteam.com/android
+                    qmui                : "com.qmuiteam:qmui:2.1.0",
             ]
     ]
 }
