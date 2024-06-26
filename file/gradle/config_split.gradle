@@ -38,6 +38,21 @@ ext {
                     auto_dispose                        : "com.uber.autodispose2:autodispose:2.2.1",
                     auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.2.1",
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.2.1",
+                    // https://mvnrepository.com/artifact/com.google.zxing/core
+                    // https://mvnrepository.com/artifact/com.google.zxing/android-core
+                    // 二维码 ZXing https://github.com/zxing/zxing
+                    zxing_code                          : "com.google.zxing:core:3.5.3",
+                    zxing_android_code                  : "com.google.zxing:android-core:3.3.0",
+                    // https://mvnrepository.com/artifact/top.zibin/Luban
+                    // https://mvnrepository.com/artifact/top.zibin/Luban?repo=jcenter
+                    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+                    luban                               : "top.zibin:Luban:1.1.8",
+                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
+                    kluban                              : "com.github.forJrking:KLuban:1.1.0",
+                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
+                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
+                    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
+                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.8",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -59,24 +74,6 @@ ext {
                     pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.11.2",
                     // 自定义相机 ( 按需引入 )
                     pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.11.2",
-                    // https://mvnrepository.com/artifact/com.google.zxing/core
-                    // https://mvnrepository.com/artifact/com.google.zxing/android-core
-                    // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code                          : "com.google.zxing:core:3.5.3",
-                    zxing_android_code                  : "com.google.zxing:android-core:3.3.0",
-                    // https://mvnrepository.com/artifact/top.zibin/Luban
-                    // https://mvnrepository.com/artifact/top.zibin/Luban?repo=jcenter
-                    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-                    luban                               : "top.zibin:Luban:1.1.8",
-                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
-                    kluban                              : "com.github.forJrking:KLuban:1.1.0",
-                    // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
-                    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:18.63",
-                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
-                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
-                    // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.8",
             ],
             "property"  : [
 
@@ -84,6 +81,11 @@ ext {
                     // = 性能检测、排查相关库 =
                     // ====================
 
+
+                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+                    xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
+                    // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
+                    and_res_guard_gradle_plugin   : "com.tencent.mm:AndResGuard-gradle-plugin:1.2.21",
                     // https://mvnrepository.com/artifact/com.tencent.bugly/crashreport
                     // https://mvnrepository.com/artifact/com.tencent.bugly/nativecrashreport
                     // Bugly https://bugly.qq.com/docs/
@@ -125,12 +127,6 @@ ext {
                     matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:2.1.0",
                     matrix_hooks                  : "com.tencent.matrix:matrix-hooks:2.1.0",
                     matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:2.1.0",
-
-                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-                    xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
-
-                    // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
-                    and_res_guard_gradle_plugin   : "com.tencent.mm:AndResGuard-gradle-plugin:1.2.21",
 
                     // 滴滴出行 DoraemonKit https://www.dokit.cn
 

@@ -364,6 +364,9 @@ ext {
                     retrofit_gson        : "com.squareup.retrofit2:converter-gson:2.11.0",
                     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/blob/master/retrofit-adapters/rxjava3
                     retrofit_rxjava3     : "com.squareup.retrofit2:adapter-rxjava3:2.11.0",
+                    // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
+                    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+                    xxPermissions        : "com.github.getActivity:XXPermissions:18.63",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android
@@ -390,10 +393,10 @@ ext {
                     // https://mvnrepository.com/artifact/cn.therouter/plugin
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
                     // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
-                    therouter_apt        : "cn.therouter:apt:1.2.2-rc9",
-                    therouter_router     : "cn.therouter:router:1.2.2-rc9",
-                    therouter_plugin     : "cn.therouter:plugin-agp8:1.2.2-rc9",
-//                    therouter_plugin     : "cn.therouter:plugin:1.2.2-rc9",
+                    therouter_apt        : "cn.therouter:apt:1.2.2",
+                    therouter_router     : "cn.therouter:router:1.2.2",
+                    therouter_plugin     : "cn.therouter:plugin-agp8:1.2.2",
+//                    therouter_plugin     : "cn.therouter:plugin:1.2.2",
             ],
             "aop"     : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
