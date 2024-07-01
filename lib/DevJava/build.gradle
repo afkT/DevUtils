@@ -2,11 +2,6 @@ apply from: rootProject.file(files.lib_java_gradle)
 
 version versions.dev_java_version
 
-compileJava {
-    sourceCompatibility versions.javaVersion_str
-    targetCompatibility versions.javaVersion_str
-}
-
 // 是否发布版本
 def isPublishing = false
 

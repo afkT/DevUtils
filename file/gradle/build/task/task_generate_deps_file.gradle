@@ -5,7 +5,7 @@
 import groovy.json.JsonOutput
 
 // 存储 config.gradle json 数据
-task saveConfigGradleJSON() {
+tasks.register('saveConfigGradleJSON') {
 //    println deps.toString()
     // 获取 ext.deps json 数据
     def depsJSON = JsonOutput.toJson(deps)
@@ -17,7 +17,7 @@ task saveConfigGradleJSON() {
 }
 
 // 生成 deps dependencies gradle
-task generateDepsDependencies() {
+tasks.register('generateDepsDependencies') {
     def newline = System.getProperty("line.separator")
     def newline2 = newline + newline
     def importSymbol = "implementation"

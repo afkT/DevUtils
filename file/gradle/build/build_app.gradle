@@ -76,6 +76,6 @@ dependencies {
 }
 
 // 编码设置
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }

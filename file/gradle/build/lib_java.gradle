@@ -1,6 +1,16 @@
 apply plugin: 'java-library'
 
+java {
+    sourceCompatibility = versions.javaVersion_str
+    targetCompatibility = versions.javaVersion_str
+}
+
+compileJava {
+    sourceCompatibility versions.javaVersion_str
+    targetCompatibility versions.javaVersion_str
+}
+
 // 编码设置
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
