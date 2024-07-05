@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.AppOpsManager;
+import android.app.DownloadManager;
 import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -523,6 +524,23 @@ public final class AppUtils {
      */
     public static DevicePolicyManager getDevicePolicyManager(final Context context) {
         return getSystemService(context, Context.DEVICE_POLICY_SERVICE);
+    }
+
+    /**
+     * 获取 DownloadManager
+     * @return {@link DownloadManager}
+     */
+    public static DownloadManager getDownloadManager() {
+        return getSystemService(Context.DOWNLOAD_SERVICE);
+    }
+
+    /**
+     * 获取 DownloadManager
+     * @param context Context
+     * @return {@link DownloadManager}
+     */
+    public static DownloadManager getDownloadManager(final Context context) {
+        return getSystemService(context, Context.DOWNLOAD_SERVICE);
     }
 
     /**

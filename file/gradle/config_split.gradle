@@ -74,6 +74,10 @@ ext {
                     pictureSelector_ucrop               : "io.github.lucksiege:ucrop:v3.11.2",
                     // 自定义相机 ( 按需引入 )
                     pictureSelector_camerax             : "io.github.lucksiege:camerax:v3.11.2",
+                    // https://mvnrepository.com/artifact/com.github.xuexiangjys/XUpdate
+                    // https://jitpack.io/#xuexiangjys/XUpdate
+                    // 版本更新框架 https://github.com/xuexiangjys/XUpdate/blob/master/README_ZH.md
+                    xupdate                             : "com.github.xuexiangjys:XUpdate:2.1.5",
             ],
             "property"  : [
 
@@ -187,6 +191,9 @@ ext {
                     transformation_layout           : "com.github.skydoves:transformationlayout:1.1.4",
                     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
                     simple_ratingbar                : "com.github.williamyyu:SimpleRatingBar:1.5.1",
+                    // https://mvnrepository.com/artifact/com.github.donkingliang/GroupedRecyclerViewAdapter
+                    // 悬浮吸顶分组 RecyclerView https://github.com/donkingliang/GroupedRecyclerViewAdapter
+                    grouped_adapter                 : "com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.3",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023

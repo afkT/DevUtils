@@ -450,7 +450,9 @@ ext {
                     smartrefresh_footer_classics           : "io.github.scwang90:refresh-footer-classics:2.1.0", // 经典加载
                     // https://mvnrepository.com/artifact/com.facebook.shimmer/shimmer
                     // 流光效果 View https://github.com/facebookarchive/shimmer-android
-                    shimmer                                : "com.facebook.shimmer:shimmer:0.5.0"
+                    shimmer                                : "com.facebook.shimmer:shimmer:0.5.0",
+                    // BRV RecyclerView 适配器 ( 悬浮吸顶 ) https://github.com/liangjingkanji/BRV
+                    brv_adapter                            : "com.github.liangjingkanji:BRV:1.5.8",
             ]
     ]
 }
