@@ -11,21 +11,21 @@ allprojects {
                     // = kotlin =
 
                     // stdlib
-                    "org.jetbrains.kotlin:kotlin-stdlib:2.0.0",
+                    "org.jetbrains.kotlin:kotlin-stdlib:2.0.20",
                     // core
                     "androidx.core:core-ktx:1.13.1",
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1",
                     // lifecycle_runtime
-                    "androidx.lifecycle:lifecycle-runtime-ktx:2.8.2",
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4",
                     // lifecycle_livedata
-                    "androidx.lifecycle:lifecycle-livedata-ktx:2.8.2",
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.8.4",
                     // lifecycle_viewmodel_savedstate
-                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.2",
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4",
                     // lifecycle_common_java8
-                    "androidx.lifecycle:lifecycle-common-java8:2.8.2",
+                    "androidx.lifecycle:lifecycle-common-java8:2.8.4",
                     // room_runtime
                     "androidx.room:room-runtime:2.6.1",
                     // room_compiler
@@ -33,13 +33,13 @@ allprojects {
                     // room
                     "androidx.room:room-ktx:2.6.1",
                     // work_runtime
-                    "androidx.work:work-runtime-ktx:2.9.0",
+                    "androidx.work:work-runtime-ktx:2.9.1",
                     // datastore_preferences
                     "androidx.datastore:datastore-preferences:1.1.1",
                     // fragment
-                    "androidx.fragment:fragment-ktx:1.8.0",
+                    "androidx.fragment:fragment-ktx:1.8.2",
                     // activity
-                    "androidx.activity:activity-ktx:1.9.0",
+                    "androidx.activity:activity-ktx:1.9.1",
                     // navigation_fragment
                     "androidx.navigation:navigation-fragment-ktx:2.7.7",
                     // navigation_ui
@@ -68,11 +68,11 @@ allprojects {
                     // design
                     "com.google.android.material:material:1.12.0",
                     // work_runtime
-                    "androidx.work:work-runtime:2.9.0",
+                    "androidx.work:work-runtime:2.9.1",
                     // fragment
-                    "androidx.fragment:fragment:1.8.0",
+                    "androidx.fragment:fragment:1.8.2",
                     // activity
-                    "androidx.activity:activity:1.9.0",
+                    "androidx.activity:activity:1.9.1",
                     // navigation_fragment
                     "androidx.navigation:navigation-fragment:2.7.7",
                     // navigation_ui
@@ -84,9 +84,9 @@ allprojects {
                     // startup
                     "androidx.startup:startup-runtime:1.1.1",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.51.1",
+                    "com.google.dagger:hilt-android:2.52",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.51.1",
+                    "com.google.dagger:hilt-android-compiler:2.52",
                     // swiperefreshlayout
                     "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
                     // exifinterface

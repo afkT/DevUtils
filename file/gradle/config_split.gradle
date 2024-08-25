@@ -20,7 +20,7 @@ ext {
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxandroid
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxkotlin
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.8",
+                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.9",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.2",
                     rxkotlin                            : "io.reactivex.rxjava3:rxkotlin:3.0.1",
@@ -52,7 +52,7 @@ ext {
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.8",
+                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.10",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -92,7 +92,7 @@ ext {
                     and_res_guard_gradle_plugin   : "com.tencent.mm:AndResGuard-gradle-plugin:1.2.21",
                     // https://mvnrepository.com/artifact/com.tencent.bugly/crashreport
                     // https://mvnrepository.com/artifact/com.tencent.bugly/nativecrashreport
-                    // Bugly https://bugly.qq.com/docs/
+                    // Bugly https://bugly.qq.com/docs
                     bugly                         : "com.tencent.bugly:crashreport:4.1.9.3",
                     bugly_ndk                     : "com.tencent.bugly:nativecrashreport:3.9.2",
                     // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
