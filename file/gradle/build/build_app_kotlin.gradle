@@ -18,6 +18,10 @@ android {
         multiDexEnabled true
     }
 
+    buildFeatures {
+        buildConfig true
+    }
+
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
