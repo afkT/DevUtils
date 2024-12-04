@@ -3,6 +3,7 @@ package dev.engine.json
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import com.google.gson.Strictness
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import dev.utils.JCLogUtils
@@ -205,7 +206,7 @@ internal object GsonUtils {
         if (gson != null) {
             try {
                 val reader = JsonReader(StringReader(json))
-                reader.isLenient = true
+                reader.setStrictness(Strictness.LENIENT)
                 val jsonElement = JsonParser.parseReader(reader)
                 return gson.toJson(jsonElement)
             } catch (e: Exception) {

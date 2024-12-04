@@ -10,20 +10,20 @@ ext {
             // 支持最小的 SDK
             app_minSdkVersion                        : 21,
             // Lib 编译 SDK 版本
-            lib_compileSdkVersion                    : 34,
+            lib_compileSdkVersion                    : 35,
             // 编译 SDK 版本
-            compileSdkVersion                        : 34,
+            compileSdkVersion                        : 35,
             // 向前兼容 SDK 版本
-            targetSdkVersion                         : 34,
+            targetSdkVersion                         : 35,
             // 构建工具版本
-            buildToolsVersion                        : "34.0.0",
+            buildToolsVersion                        : "35.0.0",
             // Java 版本
             javaVersion                              : JavaVersion.VERSION_1_8,
             javaVersion_str                          : "1.8",
             // Kotlin 版本
-            kotlin_version                           : "2.0.20",
-            kotlin_stdlib_version                    : "2.0.20",
-            dokka_plugin_version                     : "1.9.20",
+            kotlin_version                           : "2.1.0",
+            kotlin_stdlib_version                    : "2.1.0",
+            dokka_plugin_version                     : "2.0.0-Beta",
 
             // ===========
             // = Dev Lib =

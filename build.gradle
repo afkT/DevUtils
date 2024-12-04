@@ -30,7 +30,7 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'com.android.tools.build:gradle:8.7.3'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath rootProject.ext.deps.build.kotlin_gradle_plugin
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
@@ -43,8 +43,8 @@ buildscript {
         classpath rootProject.ext.deps.lib.therouter_plugin
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath rootProject.ext.deps.build.android_maven_gradle_plugin
-        // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
-        classpath rootProject.ext.deps.build.gradle_bintray_plugin
+//        // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
+//        classpath rootProject.ext.deps.build.gradle_bintray_plugin
     }
 }
 

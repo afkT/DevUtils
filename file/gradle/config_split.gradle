@@ -20,7 +20,7 @@ ext {
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxandroid
                     // https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxkotlin
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.9",
+                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.1.10",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.2",
                     rxkotlin                            : "io.reactivex.rxjava3:rxkotlin:3.0.1",
@@ -44,7 +44,6 @@ ext {
                     zxing_code                          : "com.google.zxing:core:3.5.3",
                     zxing_android_code                  : "com.google.zxing:android-core:3.3.0",
                     // https://mvnrepository.com/artifact/top.zibin/Luban
-                    // https://mvnrepository.com/artifact/top.zibin/Luban?repo=jcenter
                     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
                     luban                               : "top.zibin:Luban:1.1.8",
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
@@ -52,7 +51,7 @@ ext {
                     // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
                     anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.10",
+                    panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.12",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -107,7 +106,6 @@ ext {
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
-                    // https://mvnrepository.com/search?q=com.tencent.matrix
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-lib
                     // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-commons
@@ -175,7 +173,7 @@ ext {
                     // https://mvnrepository.com/artifact/com.gavin.com.library/stickyDecoration
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
                     stickyDecoration                : "com.github.Gavin-ZYX:StickyDecoration:1.6.1",
-                    // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView?repo=pnt-mvn
+                    // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView
                     // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                      : "com.contrarywind:Android-PickerView:4.1.9",
