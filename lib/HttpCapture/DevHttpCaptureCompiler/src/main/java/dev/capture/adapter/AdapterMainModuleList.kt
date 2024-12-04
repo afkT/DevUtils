@@ -73,7 +73,7 @@ internal class AdapterMainModuleList(
             intent.putExtra(DevFinal.STR.DATE, date)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 }

@@ -137,6 +137,7 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     // = override activity =
     // =====================
 
+    @Deprecated("deprecated onBackPressed()")
     override fun onBackPressed() {
         // 返回键拦截监听
         if (keyEventController.backIntercept?.intercept() == true) {

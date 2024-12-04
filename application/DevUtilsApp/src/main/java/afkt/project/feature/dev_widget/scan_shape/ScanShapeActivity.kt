@@ -65,7 +65,7 @@ class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProj
         binding.vidSsv.stopAnim()
         try {// 停止预览
             cameraAssist.stopPreview()
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 

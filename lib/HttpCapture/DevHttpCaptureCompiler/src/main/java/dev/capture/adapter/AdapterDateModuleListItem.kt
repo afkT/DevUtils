@@ -89,7 +89,7 @@ internal class AdapterDateModuleListItem(
             val intent = Intent(context, DevHttpCaptureFileActivity::class.java)
             intent.putExtra(DevFinal.STR.JSON, captureFile.toJson())
             context.startActivity(intent)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 }

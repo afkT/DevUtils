@@ -599,7 +599,7 @@ internal object SKUUtils {
     private fun ArrayList<Array<Int>>.cloneAdd(element: Array<Int?>) {
         try {
             add(element.requireNoNulls())
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 }

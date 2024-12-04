@@ -269,7 +269,7 @@ class QuickWifiHotUtils(
                 hotHandler.sendEmptyMessage(CHECK_HOT_CONN)
                 try {
                     sleep(500)
-                } catch (ignored: Exception) {
+                } catch (_: Exception) {
                 }
             }
         }

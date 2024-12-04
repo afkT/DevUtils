@@ -73,7 +73,7 @@ abstract class BaseInterceptor(
                     request, requestUrl, requestMethod,
                     protocol, requestHeaders
                 )
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
             if (isFilter) {
                 // 不需要抓包直接返回

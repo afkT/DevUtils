@@ -23,6 +23,7 @@ import dev.receiver.WifiReceiver.Companion.register
 import dev.receiver.WifiReceiver.Companion.setListener
 import dev.receiver.WifiReceiver.Companion.unregister
 import dev.utils.app.AppUtils
+import dev.utils.app.HandlerUtils
 import dev.utils.app.IntentUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -360,13 +361,13 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                 CHECK_HOTSOPT_STATE -> {
                     if (wifiHotUtils.closeWifiApCheck(true)) {
                         // 进行延迟检查
-                        Handler().postDelayed({
+                        HandlerUtils.postRunnable({
                             // 防止出现意外, 再次关闭
                             if (wifiHotUtils.closeWifiApCheck(true)) {
                                 try {
                                     // 堵塞 1.5 秒
                                     Thread.sleep(1500)
-                                } catch (ignored: Exception) {
+                                } catch (_: Exception) {
                                 }
                             }
                             // 防止页面已经关闭

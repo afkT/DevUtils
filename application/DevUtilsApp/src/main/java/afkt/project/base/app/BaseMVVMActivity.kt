@@ -24,7 +24,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
         super.onCreate(savedInstanceState)
         try {
             TheRouter.inject(this)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()

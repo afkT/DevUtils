@@ -3,6 +3,7 @@ package dev.capture
 import android.app.Activity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import com.google.gson.Strictness
 import com.google.gson.stream.JsonReader
 import dev.DevHttpCapture
 import dev.callback.DevCallback
@@ -81,7 +82,7 @@ internal object UtilsCompiler {
     private fun toJsonIndent(json: String?): String? {
         try {
             val reader = JsonReader(StringReader(json))
-            reader.isLenient = true
+            reader.setStrictness(Strictness.LENIENT)
             val jsonElement = JsonParser.parseReader(reader)
             return INDENT_GSON.toJson(jsonElement)
         } catch (e: Exception) {
@@ -192,7 +193,7 @@ internal object UtilsCompiler {
             HandlerUtils.postRunnable {
                 try {
                     callback.callback(isQuerying, size)
-                } catch (ignored: Exception) {
+                } catch (_: Exception) {
                 }
             }
         }

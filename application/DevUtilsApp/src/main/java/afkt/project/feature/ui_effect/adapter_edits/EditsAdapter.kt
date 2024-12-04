@@ -82,12 +82,12 @@ class EditsAdapter(data: List<EvaluateItem>) :
             try {
                 // 保存评价内容
                 getDataItem(pos).evaluateContent = charSequence.toString()
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
             try {
                 // 计算已经输入的内容长度
                 numberTv.text = "${120 - StringUtils.length(item.evaluateContent)}"
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
         }
     }

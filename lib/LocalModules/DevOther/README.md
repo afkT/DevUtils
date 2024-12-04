@@ -25,7 +25,6 @@
             - storage          | Storage Engine 外部、内部文件存储
          - other               | 第三方库封装工具类
             - cache            | 缓存工具类
-            - okgo             | OkGo 网络请求
             - retrofit_rxjava  | Retrofit RxJava 封装
                - response      | 请求响应解析
                - subscriber    | 请求响应处理
@@ -33,6 +32,7 @@
                - demo          | WorkManager 使用 Demo
    - ktx                       | Kotlin 实现
       - dev                    | 根目录
+         - assist              | 常用辅助类封装
          - engine              | 兼容 Engine
             - media            | Media Selector Engine 多媒体资源选择
                - luck_siege_lib| LuckSiege PictureSelector Engine 实现
@@ -75,7 +75,6 @@
             - [storage](#javadevenginestorage)                  | Storage Engine 外部、内部文件存储
          - [other](#javadevother)                               | 第三方库封装工具类
             - [cache](#javadevothercache)                       | 缓存工具类
-            - [okgo](#javadevotherokgo)                         | OkGo 网络请求
             - [retrofit_rxjava](#javadevotherretrofit_rxjava)   | Retrofit RxJava 封装
                - [response](#javadevotherretrofit_rxjavaresponse)| 请求响应解析
                - [subscriber](#javadevotherretrofit_rxjavasubscriber)| 请求响应处理
@@ -83,6 +82,7 @@
                - [demo](#javadevotherworkdemo)                  | WorkManager 使用 Demo
    - [ktx](#ktx)                                                | Kotlin 实现
       - [dev](#ktxdev)                                          | 根目录
+         - [assist](#ktxdevassist)                              | 常用辅助类封装
          - [engine](#ktxdevengine)                              | 兼容 Engine
             - [media](#ktxdevenginemedia)                       | Media Selector Engine 多媒体资源选择
                - [luck_siege_lib](#ktxdevenginemedialuck_siege_lib)| LuckSiege PictureSelector Engine 实现
@@ -981,58 +981,6 @@
 | clear | 清除所有数据 |
 
 
-## <span id="javadevotherokgo">**`java.dev.other.okgo`**</span>
-
-
-* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoCallback.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onStart | 请求网络开始前 ( UI 线程 ) |
-| onFinish | 请求网络结束后, UI 线程 |
-| uploadProgress | 上传过程中的进度回调, get 请求不回调 ( UI 线程 ) |
-| downloadProgress | 下载过程中的进度回调 ( UI 线程 ) |
-| onCacheSuccess | 缓存成功的回调 ( UI 线程 ) |
-| onError | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
-| onSuccess | 对返回数据进行操作的回调 ( UI 线程 ) |
-| convertResponse | 拿到响应后, 将数据转换成需要的格式 ( 子线程中执行, 可以是耗时操作 ) |
-| onSuccessResponse | 请求响应并处理数据无误 |
-| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
-
-
-* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoDemo.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getUserInfo | 获取用户信息 |
-| getUserList | 获取用户列表 |
-| uploadImage | 上传文件 |
-| uploadImages | 上传多个文件 |
-
-
-* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoResponse.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getDataString | 获取 Data 字符串 |
-| build | build Response 对象 |
-| setData | setData |
-| setMessage | setMessage |
-| setCode | setCode |
-| setToast | setToast |
-| setResult | setResult |
-| setOriginal | setOriginal |
-| setException | setException |
-
-
-* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther/src/main/java//java/dev/other/okgo/OkGoUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| initOkGo | 初始化 OkGo 配置 |
-| execute | 执行请求处理 |
-
-
 ## <span id="javadevotherretrofit_rxjava">**`java.dev.other.retrofit_rxjava`**</span>
 
 
@@ -1160,6 +1108,9 @@
 
 
 ## <span id="ktxdev">**`ktx.dev`**</span>
+
+
+## <span id="ktxdevassist">**`ktx.dev.assist`**</span>
 
 
 ## <span id="ktxdevengine">**`ktx.dev.engine`**</span>

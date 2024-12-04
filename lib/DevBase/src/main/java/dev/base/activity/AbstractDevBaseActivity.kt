@@ -97,6 +97,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
      * 返回键点击触发
      * 重新实现该方法必须保留 super.onBackPressed()
      */
+    @Deprecated("deprecated onBackPressed()")
     override fun onBackPressed() {
         super.onBackPressed()
         assist.printLog("onBackPressed")

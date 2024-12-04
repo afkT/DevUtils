@@ -27,7 +27,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         super.onCreate(savedInstanceState)
         try {
             TheRouter.inject(this)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
         // 初始化 ToolBar
         initToolBar()

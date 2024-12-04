@@ -5,13 +5,13 @@ import afkt.demo.databinding.FragmentParentDataBinding
 import afkt.demo.model.ActivityViewModel
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import dev.base.expand.mvvm.DevBaseMVVMFragment
 import dev.base.utils.ViewModelUtils
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.app.HandlerUtils
 import dev.utils.common.RandomUtils
 
 /**
@@ -49,7 +49,7 @@ class MVVMUtilsFragment :
             // 进行 ViewModel 绑定
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值
-            Handler().postDelayed({
+            HandlerUtils.postRunnable({
                 viewModel.number.value = RandomUtils.nextInt()
             }, (position + 1) * 1000L + 2000L)
             // 判断是否达到最大值

@@ -95,6 +95,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
         assist.printLog("onHiddenChanged - hidden: $hidden")
     }
 
+    @Deprecated("deprecated setUserVisibleHint(Boolean)")
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         assist.printLog("setUserVisibleHint")

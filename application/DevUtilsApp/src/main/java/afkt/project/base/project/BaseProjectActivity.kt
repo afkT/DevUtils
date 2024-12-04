@@ -81,7 +81,7 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             TheRouter.inject(this)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
         super.onCreate(savedInstanceState)
         // 插入 StateLayout

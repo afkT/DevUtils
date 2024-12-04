@@ -6,9 +6,9 @@ import afkt.demo.model.ActivityViewModel
 import afkt.demo.ui.fragment.ActivityMVVMFragment
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import dev.base.expand.mvvm.DevBaseMVVMActivity
+import dev.utils.app.HandlerUtils
 import dev.utils.common.ColorUtils
 
 /**
@@ -45,7 +45,7 @@ class MainActivityMVVMActivity :
         // 复用方法进行监听
         ViewModelTempUtils.observe(TAG, this, viewModel)
         // 临时改变值
-        Handler().postDelayed({
+        HandlerUtils.postRunnable({
             viewModel.number.value = Int.MAX_VALUE
         }, 2000)
     }

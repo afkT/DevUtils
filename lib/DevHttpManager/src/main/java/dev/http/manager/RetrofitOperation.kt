@@ -62,7 +62,7 @@ class RetrofitOperation private constructor(
                 RetrofitManager.getRetrofitResetListener()?.onResetBefore(
                     key, mRetrofit
                 )
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
             builder.onResetBefore(key, mRetrofit)
         }
@@ -70,7 +70,7 @@ class RetrofitOperation private constructor(
         // 获取全局 OkHttp Builder
         val okHttpBuilder = try {
             RetrofitManager.getOkHttpBuilder()?.createOkHttpBuilder(key)
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
             null
         }
         // 可以通过 mRetrofit?.baseUrl() 获取之前的配置
@@ -84,7 +84,7 @@ class RetrofitOperation private constructor(
                 RetrofitManager.getRetrofitResetListener()?.onReset(
                     key, mRetrofit
                 )
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
         }
         // 首次为初始化, 后续操作为重置操作

@@ -262,10 +262,6 @@ class OnPermissionCallbackImpl(
 ) : OnPermissionCallback {
 
     override fun onGranted(permissions: MutableList<String>, all: Boolean) {
-        if (permissions == null) {
-            call?.onCall(permissionArray, false)
-            return
-        }
         if (all) {
             call?.onCall(permissionArray, true)
         } else {
@@ -275,7 +271,7 @@ class OnPermissionCallbackImpl(
     }
 
     override fun onDenied(permissions: MutableList<String>, never: Boolean) {
-        if (fragment.activity == null || permissions == null) return
+        if (fragment.activity == null) return
         // 永久拒绝时让流程延续下去
         if (never) {
             call?.onCall(permissionArray, false)
@@ -286,9 +282,6 @@ class OnPermissionCallbackImpl(
 private val Array<out String>.isFilePermission: Boolean
     get() = this.contains(Permission.WRITE_EXTERNAL_STORAGE) ||
             this.contains(Permission.READ_EXTERNAL_STORAGE)
-
-private val Array<out String>.isCamera: Boolean
-    get() = this.contains(Permission.CAMERA)
 
 private val Array<out String>.toCompatPermissions: Array<out String>
     get() {

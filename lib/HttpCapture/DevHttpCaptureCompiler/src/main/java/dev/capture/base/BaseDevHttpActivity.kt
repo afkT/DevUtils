@@ -26,6 +26,7 @@ abstract class BaseDevHttpActivity<VB : ViewBinding> : Activity() {
         UtilsCompiler.removeActivity(this)
     }
 
+    @Deprecated("deprecated onBackPressed()")
     override fun onBackPressed() {
         finishOperate()
     }

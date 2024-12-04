@@ -194,8 +194,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
         )
         canvas.save()
         canvas.restore()
-        if (bitmap != null) return bitmap
-        throw Exception("addIconToBarCode failure")
+        return bitmap
     }
 
     // ==========

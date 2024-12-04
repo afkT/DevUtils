@@ -358,7 +358,7 @@ class ZXingDecodeAssist(
         view?.holder?.apply {
             try {
                 removeCallback(mHolderCallback)
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
             addCallback(mHolderCallback)
         }
