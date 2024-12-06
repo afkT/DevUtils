@@ -71,7 +71,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 }
 
 // 编码设置

@@ -14,6 +14,7 @@ import android.text.method.KeyListener;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
@@ -318,6 +319,27 @@ public interface IHelperByQuick<T> {
      * @return Helper
      */
     T setScrollContainer(boolean isScrollContainer);
+
+    /**
+     * 设置 View 是否使用 Outline 来裁剪
+     * @param clipToOutline {@code true} yes, {@code false} no
+     * @return Helper
+     */
+    T setClipToOutline(boolean clipToOutline);
+
+    /**
+     * 设置 View 轮廓裁剪、绘制
+     * @param provider {@link ViewOutlineProvider}
+     * @return Helper
+     */
+    T setOutlineProvider(ViewOutlineProvider provider);
+
+    /**
+     * 设置 View 轮廓裁剪、绘制并进行裁剪
+     * @param provider {@link ViewOutlineProvider}
+     * @return Helper
+     */
+    T setOutlineProviderClip(ViewOutlineProvider provider);
 
     /**
      * 设置下一个获取焦点的 View id

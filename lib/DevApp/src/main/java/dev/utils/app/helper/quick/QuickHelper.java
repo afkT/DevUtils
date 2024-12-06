@@ -14,6 +14,7 @@ import android.text.method.KeyListener;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -658,6 +659,39 @@ public final class QuickHelper
     @Override
     public QuickHelper setScrollContainer(boolean isScrollContainer) {
         ViewHelper.get().setScrollContainer(isScrollContainer, targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 是否使用 Outline 来裁剪
+     * @param clipToOutline {@code true} yes, {@code false} no
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setClipToOutline(boolean clipToOutline) {
+        ViewHelper.get().setClipToOutline(clipToOutline, targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 轮廓裁剪、绘制
+     * @param provider {@link ViewOutlineProvider}
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setOutlineProvider(ViewOutlineProvider provider) {
+        ViewHelper.get().setOutlineProvider(provider, targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 轮廓裁剪、绘制并进行裁剪
+     * @param provider {@link ViewOutlineProvider}
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setOutlineProviderClip(ViewOutlineProvider provider) {
+        ViewHelper.get().setOutlineProviderClip(provider, targetView());
         return this;
     }
 
