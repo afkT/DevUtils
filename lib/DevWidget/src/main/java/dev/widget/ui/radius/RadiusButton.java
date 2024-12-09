@@ -146,7 +146,7 @@ public class RadiusButton
      * @return {@link RadiusButton}
      */
     @Override
-    public RadiusButton clearRadius(boolean invalidate) {
+    public RadiusButton clearRadius(final boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;

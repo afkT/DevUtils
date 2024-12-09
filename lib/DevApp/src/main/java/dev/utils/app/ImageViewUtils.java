@@ -410,6 +410,48 @@ public final class ImageViewUtils {
         return imageView;
     }
 
+    // ==========
+    // = 移除背景 =
+    // ==========
+
+    /**
+     * 移除 ImageView Bitmap
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T removeImageBitmap(
+            final T imageView
+    ) {
+        if (imageView != null) {
+            try {
+                imageView.setImageBitmap(null);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeImageBitmap");
+            }
+        }
+        return imageView;
+    }
+
+    /**
+     * 移除 ImageView Drawable
+     * @param imageView {@link ImageView}
+     * @param <T>       泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T removeImageDrawable(
+            final T imageView
+    ) {
+        if (imageView != null) {
+            try {
+                imageView.setImageDrawable(null);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeImageDrawable");
+            }
+        }
+        return imageView;
+    }
+
     // =
 
     /**
@@ -577,7 +619,20 @@ public final class ImageViewUtils {
             @DrawableRes final int resId,
             final View... views
     ) {
-        return setBackgroundResources(resId, View.VISIBLE, views);
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    try {
+                        // 设置图片资源
+                        view.setBackgroundResource(resId);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setBackgroundResources");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -622,7 +677,21 @@ public final class ImageViewUtils {
             @DrawableRes final int resId,
             final View... views
     ) {
-        return setImageResources(resId, View.VISIBLE, views);
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置图片资源
+                        imageView.setImageResource(resId);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setImageResources");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -668,7 +737,21 @@ public final class ImageViewUtils {
             final Bitmap bitmap,
             final View... views
     ) {
-        return setImageBitmaps(bitmap, View.VISIBLE, views);
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置 Bitmap
+                        imageView.setImageBitmap(bitmap);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setImageBitmaps");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -714,7 +797,21 @@ public final class ImageViewUtils {
             final Drawable drawable,
             final View... views
     ) {
-        return setImageDrawables(drawable, View.VISIBLE, views);
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置 Drawable
+                        imageView.setImageDrawable(drawable);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setImageDrawables");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -748,6 +845,120 @@ public final class ImageViewUtils {
         return false;
     }
 
+    // ==========
+    // = 移除背景 =
+    // ==========
+
+    /**
+     * 移除 View Bitmap
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeImageBitmaps(
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置 Bitmap
+                        imageView.setImageBitmap(null);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "removeImageBitmaps");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 移除 View Bitmap
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeImageBitmaps(
+            final int isVisibility,
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置 Bitmap
+                        imageView.setImageBitmap(null);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "removeImageBitmaps");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除 View Drawable
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeImageDrawables(
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置 Drawable
+                        imageView.setImageDrawable(null);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "removeImageDrawables");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 移除 View Drawable
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeImageDrawables(
+            final int isVisibility,
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置显示状态
+                        imageView.setVisibility(isVisibility);
+                        // 设置 Drawable
+                        imageView.setImageDrawable(null);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "removeImageDrawables");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     // =
 
     /**
@@ -760,7 +971,21 @@ public final class ImageViewUtils {
             final ImageView.ScaleType scaleType,
             final View... views
     ) {
-        return setScaleTypes(scaleType, View.VISIBLE, views);
+        if (views != null) {
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
+                if (imageView != null) {
+                    try {
+                        // 设置缩放模式
+                        imageView.setScaleType(scaleType);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setScaleTypes");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**

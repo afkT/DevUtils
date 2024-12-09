@@ -146,7 +146,7 @@ public class RadiusTextView
      * @return {@link RadiusTextView}
      */
     @Override
-    public RadiusTextView clearRadius(boolean invalidate) {
+    public RadiusTextView clearRadius(final boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;

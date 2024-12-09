@@ -158,7 +158,7 @@ public class RadiusRelativeLayout
      * @return {@link RadiusRelativeLayout}
      */
     @Override
-    public RadiusRelativeLayout clearRadius(boolean invalidate) {
+    public RadiusRelativeLayout clearRadius(final boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;

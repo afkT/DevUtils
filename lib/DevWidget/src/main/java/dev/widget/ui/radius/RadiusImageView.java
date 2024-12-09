@@ -159,7 +159,7 @@ public class RadiusImageView
      * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusImageView clearRadius(boolean invalidate) {
+    public RadiusImageView clearRadius(final boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;

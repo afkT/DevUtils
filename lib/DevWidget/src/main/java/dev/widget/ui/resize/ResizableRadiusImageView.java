@@ -228,7 +228,7 @@ public class ResizableRadiusImageView
      * @return {@link ResizableRadiusImageView}
      */
     @Override
-    public ResizableRadiusImageView clearRadius(boolean invalidate) {
+    public ResizableRadiusImageView clearRadius(final boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;
