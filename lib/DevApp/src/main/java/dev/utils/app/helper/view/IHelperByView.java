@@ -1446,6 +1446,27 @@ public interface IHelperByView<T> {
     );
 
     /**
+     * 移除背景图片
+     * @param views View[]
+     * @return Helper
+     */
+    T removeBackground(View... views);
+
+    /**
+     * 移除背景图片 ( background、imageDrawable )
+     * @param views View[]
+     * @return Helper
+     */
+    T removeAllBackground(View... views);
+
+    /**
+     * 移除前景图片
+     * @param views View[]
+     * @return Helper
+     */
+    T removeForeground(View... views);
+
+    /**
      * View 着色处理
      * @param color 颜色值
      * @param views View[]

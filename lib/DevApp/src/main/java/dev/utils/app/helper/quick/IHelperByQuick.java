@@ -1020,6 +1020,24 @@ public interface IHelperByQuick<T> {
     T setForegroundTintMode(PorterDuff.Mode tintMode);
 
     /**
+     * 移除背景图片
+     * @return Helper
+     */
+    T removeBackground();
+
+    /**
+     * 移除背景图片 ( background、imageDrawable )
+     * @return Helper
+     */
+    T removeAllBackground();
+
+    /**
+     * 移除前景图片
+     * @return Helper
+     */
+    T removeForeground();
+
+    /**
      * View 着色处理
      * @param color 颜色值
      * @return Helper

@@ -1718,6 +1718,36 @@ public final class QuickHelper
     }
 
     /**
+     * 移除背景图片
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeBackground() {
+        ViewHelper.get().removeBackground(targetView());
+        return this;
+    }
+
+    /**
+     * 移除背景图片 ( background、imageDrawable )
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeAllBackground() {
+        ViewHelper.get().removeAllBackground(targetView());
+        return this;
+    }
+
+    /**
+     * 移除前景图片
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeForeground() {
+        ViewHelper.get().removeForeground(targetView());
+        return this;
+    }
+
+    /**
      * View 着色处理
      * @param color 颜色值
      * @return Helper
