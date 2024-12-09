@@ -73,6 +73,7 @@
         <attr name="dev_radiusLeftBottom" format="dimension" />
         <attr name="dev_radiusRightTop" format="dimension" />
         <attr name="dev_radiusRightBottom" format="dimension" />
+        <attr name="dev_clearRadius" format="boolean" />
         <attr name="dev_backgroundColor" format="color" />
         <attr name="dev_borderColor" format="color" />
         <attr name="dev_borderWidth" format="dimension" />

@@ -1,4 +1,4 @@
-package dev.widget.ui;
+package dev.widget.ui.radius;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -14,10 +14,6 @@ import dev.widget.utils.RadiusAttrs;
  * detail: 自定义圆角 View
  * @author Ttt
  * <pre>
- *     注意事项:
- *     该 View 会有锯齿情况
- *     如果需要裁剪 View 且四个角落都统一圆角可以使用 CardView 不增加阴影
- *     <p></p>
  *     区别于 {@link dev.widget.ui.round.RoundDrawable} 属于设置 Drawable
  *     这个是裁剪 View 为圆角效果
  *     <p></p>
@@ -26,10 +22,12 @@ import dev.widget.utils.RadiusAttrs;
  *     app:dev_radiusLeftBottom=""
  *     app:dev_radiusRightTop=""
  *     app:dev_radiusRightBottom=""
+ *     app:dev_clearRadius=""
  * </pre>
  */
 public class RadiusLayout
-        extends FrameLayout {
+        extends FrameLayout
+        implements IRadiusMethod<RadiusLayout> {
 
     private RadiusAttrs mRadiusAttrs;
 
@@ -83,6 +81,10 @@ public class RadiusLayout
         setWillNotDraw(false);
     }
 
+    // ============
+    // = override =
+    // ============
+
     @Override
     protected void onSizeChanged(
             int w,
@@ -113,6 +115,55 @@ public class RadiusLayout
         mRadiusAttrs.onSizeChanged(getWidth(), getHeight());
     }
 
+    // =================
+    // = IRadiusMethod =
+    // =================
+
+    // =============
+    // = Operation =
+    // =============
+
+    /**
+     * 是否清空绘制圆角值
+     * @return {@code true} yes, {@code false} no
+     */
+    @Override
+    public boolean isClearRadius() {
+        return mRadiusAttrs.isClearRadius();
+    }
+
+    /**
+     * 设置是否清空绘制圆角值
+     * @param clear {@code true} yes, {@code false} no
+     * @return {@link RadiusLayout}
+     */
+    @Override
+    public RadiusLayout setClearRadius(final boolean clear) {
+        mRadiusAttrs.setClearRadius(clear);
+        return this;
+    }
+
+    /**
+     * 清空绘制圆角值 ( 默认不进行绘制 )
+     * @return {@link RadiusLayout}
+     */
+    @Override
+    public RadiusLayout clearRadius() {
+        return clearRadius(false);
+    }
+
+    /**
+     * 清空绘制圆角值
+     * @param invalidate 是否进行绘制
+     * @return {@link RadiusLayout}
+     */
+    @Override
+    public RadiusLayout clearRadius(boolean invalidate) {
+        mRadiusAttrs.clearRadius();
+        if (invalidate) postInvalidate();
+        return this;
+    }
+
     // ===========
     // = get/set =
     // ===========
@@ -122,6 +173,7 @@ public class RadiusLayout
      * @param radius 圆角值
      * @return {@link RadiusLayout}
      */
+    @Override
     public RadiusLayout setRadius(final float radius) {
         mRadiusAttrs.setRadius(radius);
         postInvalidate();
@@ -133,6 +185,7 @@ public class RadiusLayout
      * @param radiusLeftTop 左上圆角值
      * @return {@link RadiusLayout}
      */
+    @Override
     public RadiusLayout setRadiusLeftTop(final float radiusLeftTop) {
         mRadiusAttrs.setRadiusLeftTop(radiusLeftTop);
         postInvalidate();
@@ -144,6 +197,7 @@ public class RadiusLayout
      * @param radiusLeftBottom 左下圆角值
      * @return {@link RadiusLayout}
      */
+    @Override
     public RadiusLayout setRadiusLeftBottom(final float radiusLeftBottom) {
         mRadiusAttrs.setRadiusLeftBottom(radiusLeftBottom);
         postInvalidate();
@@ -155,6 +209,7 @@ public class RadiusLayout
      * @param radiusRightTop 右上圆角值
      * @return {@link RadiusLayout}
      */
+    @Override
     public RadiusLayout setRadiusRightTop(final float radiusRightTop) {
         mRadiusAttrs.setRadiusRightTop(radiusRightTop);
         postInvalidate();
@@ -166,6 +221,7 @@ public class RadiusLayout
      * @param radiusRightBottom 右下圆角值
      * @return {@link RadiusLayout}
      */
+    @Override
     public RadiusLayout setRadiusRightBottom(final float radiusRightBottom) {
         mRadiusAttrs.setRadiusRightBottom(radiusRightBottom);
         postInvalidate();
@@ -179,7 +235,8 @@ public class RadiusLayout
      * @param radiusLeft 左边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusLeft(final int radiusLeft) {
+    @Override
+    public RadiusLayout setRadiusLeft(final float radiusLeft) {
         mRadiusAttrs.setRadiusLeft(radiusLeft);
         postInvalidate();
         return this;
@@ -190,7 +247,8 @@ public class RadiusLayout
      * @param radiusRight 右边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusRight(final int radiusRight) {
+    @Override
+    public RadiusLayout setRadiusRight(final float radiusRight) {
         mRadiusAttrs.setRadiusRight(radiusRight);
         postInvalidate();
         return this;
@@ -201,7 +259,8 @@ public class RadiusLayout
      * @param radiusTop 上边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusTop(final int radiusTop) {
+    @Override
+    public RadiusLayout setRadiusTop(final float radiusTop) {
         mRadiusAttrs.setRadiusTop(radiusTop);
         postInvalidate();
         return this;
@@ -212,7 +271,8 @@ public class RadiusLayout
      * @param radiusBottom 下边圆角值
      * @return {@link RadiusLayout}
      */
-    public RadiusLayout setRadiusBottom(final int radiusBottom) {
+    @Override
+    public RadiusLayout setRadiusBottom(final float radiusBottom) {
         mRadiusAttrs.setRadiusBottom(radiusBottom);
         postInvalidate();
         return this;
@@ -224,6 +284,7 @@ public class RadiusLayout
      * 获取圆角值
      * @return 圆角值
      */
+    @Override
     public float getRadius() {
         return mRadiusAttrs.getRadius();
     }
@@ -232,6 +293,7 @@ public class RadiusLayout
      * 获取左上圆角值
      * @return 左上圆角值
      */
+    @Override
     public float getRadiusLeftTop() {
         return mRadiusAttrs.getRadiusLeftTop();
     }
@@ -240,6 +302,7 @@ public class RadiusLayout
      * 获取左下圆角值
      * @return 左下圆角值
      */
+    @Override
     public float getRadiusLeftBottom() {
         return mRadiusAttrs.getRadiusLeftBottom();
     }
@@ -248,6 +311,7 @@ public class RadiusLayout
      * 获取右上圆角值
      * @return 右上圆角值
      */
+    @Override
     public float getRadiusRightTop() {
         return mRadiusAttrs.getRadiusRightTop();
     }
@@ -256,6 +320,7 @@ public class RadiusLayout
      * 获取右下圆角值
      * @return 右下圆角值
      */
+    @Override
     public float getRadiusRightBottom() {
         return mRadiusAttrs.getRadiusRightBottom();
     }
