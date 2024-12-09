@@ -1289,6 +1289,18 @@ public interface IHelperByQuick<T> {
     T setImageTintMode(PorterDuff.Mode tintMode);
 
     /**
+     * 移除 ImageView Bitmap
+     * @return Helper
+     */
+    T removeImageBitmap();
+
+    /**
+     * 移除 ImageView Drawable
+     * @return Helper
+     */
+    T removeImageDrawable();
+
+    /**
      * 设置 ImageView 缩放类型
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @return Helper

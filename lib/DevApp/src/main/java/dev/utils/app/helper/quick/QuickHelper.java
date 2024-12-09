@@ -2115,6 +2115,26 @@ public final class QuickHelper
     }
 
     /**
+     * 移除 ImageView Bitmap
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageBitmap() {
+        ViewHelper.get().removeImageBitmap(targetView());
+        return this;
+    }
+
+    /**
+     * 移除 ImageView Drawable
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageDrawable() {
+        ViewHelper.get().removeImageDrawable(targetView());
+        return this;
+    }
+
+    /**
      * 设置 ImageView 缩放类型
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @return Helper

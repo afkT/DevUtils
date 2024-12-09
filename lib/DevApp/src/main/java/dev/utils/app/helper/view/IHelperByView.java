@@ -1808,6 +1808,20 @@ public interface IHelperByView<T> {
     );
 
     /**
+     * 移除 ImageView Bitmap
+     * @param views    View[]
+     * @return Helper
+     */
+    T removeImageBitmap(View... views);
+
+    /**
+     * 移除 ImageView Drawable
+     * @param views    View[]
+     * @return Helper
+     */
+    T removeImageDrawable(View... views);
+
+    /**
      * 设置 ImageView 缩放类型
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @param views     View[]

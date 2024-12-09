@@ -416,6 +416,17 @@ public final class ImageViewUtils {
 
     /**
      * 移除 ImageView Bitmap
+     * @return {@link ImageView}
+     */
+    public static View removeImageBitmap(
+            final View view
+    ) {
+        removeImageBitmap(getImageView(view));
+        return view;
+    }
+
+    /**
+     * 移除 ImageView Bitmap
      * @param imageView {@link ImageView}
      * @param <T>       泛型
      * @return {@link ImageView}
@@ -431,6 +442,17 @@ public final class ImageViewUtils {
             }
         }
         return imageView;
+    }
+
+    /**
+     * 移除 ImageView Drawable
+     * @return {@link ImageView}
+     */
+    public static View removeImageDrawable(
+            final View view
+    ) {
+        removeImageDrawable(getImageView(view));
+        return view;
     }
 
     /**
