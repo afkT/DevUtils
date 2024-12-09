@@ -22,7 +22,7 @@
                 android:maxLines="1"
                 android:text="拍照并显示" />
 
-            <dev.widget.ui.ResizableImageView
+            <dev.widget.ui.resize.ResizableImageView
                 android:id="@+id/vid_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

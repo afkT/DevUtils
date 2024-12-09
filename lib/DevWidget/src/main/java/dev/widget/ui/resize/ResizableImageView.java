@@ -1,4 +1,4 @@
-package dev.widget.ui;
+package dev.widget.ui.resize;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
