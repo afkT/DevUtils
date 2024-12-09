@@ -12,7 +12,7 @@ import dev.widget.R;
 import dev.widget.ui.radius.IRadiusMethod;
 
 /**
- * detail: RadiusLayout 圆角属性封装处理类
+ * detail: 圆角属性封装处理类
  * @author arvinljw
  * @author Ttt
  */

@@ -81,7 +81,7 @@ public class ResizableImageView
 
     /**
      * 获取宽高监听事件
-     * @return {@link dev.utils.app.ViewUtils.OnWHListener}
+     * @return {@link ViewUtils.OnWHListener}
      */
     public ViewUtils.OnWHListener getWHListener() {
         return mWHListener;
@@ -89,7 +89,7 @@ public class ResizableImageView
 
     /**
      * 设置宽高监听事件
-     * @param whListener {@link dev.utils.app.ViewUtils.OnWHListener}
+     * @param whListener {@link ViewUtils.OnWHListener}
      * @return {@link ResizableImageView}
      */
     public ResizableImageView setWHListener(final ViewUtils.OnWHListener whListener) {
