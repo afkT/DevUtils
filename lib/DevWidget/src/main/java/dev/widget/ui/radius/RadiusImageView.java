@@ -1,17 +1,16 @@
 package dev.widget.ui.radius;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import dev.widget.utils.RadiusAttrs;
 
 /**
- * detail: 自定义圆角 RelativeLayout
+ * detail: 自定义圆角 ImageView
  * @author Ttt
  * <pre>
  *     区别于 {@link dev.widget.ui.round.RoundDrawable} 属于设置 Drawable
@@ -25,18 +24,18 @@ import dev.widget.utils.RadiusAttrs;
  *     app:dev_clearRadius=""
  * </pre>
  */
-public class RadiusRelativeLayout
-        extends RelativeLayout
-        implements IRadiusMethod<RadiusRelativeLayout> {
+public class RadiusImageView
+        extends AppCompatImageView
+        implements IRadiusMethod<RadiusImageView> {
 
     protected RadiusAttrs mRadiusAttrs;
 
-    public RadiusRelativeLayout(Context context) {
+    public RadiusImageView(Context context) {
         super(context);
         initAttrs(context, null, 0, 0);
     }
 
-    public RadiusRelativeLayout(
+    public RadiusImageView(
             Context context,
             AttributeSet attrs
     ) {
@@ -44,24 +43,13 @@ public class RadiusRelativeLayout
         initAttrs(context, attrs, 0, 0);
     }
 
-    public RadiusRelativeLayout(
+    public RadiusImageView(
             Context context,
             AttributeSet attrs,
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs, defStyleAttr, 0);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public RadiusRelativeLayout(
-            Context context,
-            AttributeSet attrs,
-            int defStyleAttr,
-            int defStyleRes
-    ) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
@@ -78,7 +66,6 @@ public class RadiusRelativeLayout
             final int defStyleRes
     ) {
         mRadiusAttrs = new RadiusAttrs(context, attrs, defStyleAttr, defStyleRes);
-        setWillNotDraw(false);
     }
 
     // ============
@@ -97,10 +84,24 @@ public class RadiusRelativeLayout
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    protected void onLayout(
+            boolean changed,
+            int l,
+            int t,
+            int r,
+            int b
+    ) {
+        super.onLayout(changed, l, t, r, b);
+        int w = this.getWidth();
+        int h = this.getHeight();
+        mRadiusAttrs.onSizeChanged(w, h);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
         canvas.save();
         canvas.clipPath(mRadiusAttrs.getPath());
-        super.draw(canvas);
+        super.onDraw(canvas);
         canvas.restore();
     }
 
@@ -135,30 +136,30 @@ public class RadiusRelativeLayout
     /**
      * 设置是否清空绘制圆角值
      * @param clear {@code true} yes, {@code false} no
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setClearRadius(final boolean clear) {
+    public RadiusImageView setClearRadius(final boolean clear) {
         mRadiusAttrs.setClearRadius(clear);
         return this;
     }
 
     /**
      * 清空绘制圆角值 ( 默认不进行绘制 )
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout clearRadius() {
+    public RadiusImageView clearRadius() {
         return clearRadius(false);
     }
 
     /**
      * 清空绘制圆角值
      * @param invalidate 是否进行绘制
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout clearRadius(boolean invalidate) {
+    public RadiusImageView clearRadius(boolean invalidate) {
         mRadiusAttrs.clearRadius();
         if (invalidate) postInvalidate();
         return this;
@@ -171,10 +172,10 @@ public class RadiusRelativeLayout
     /**
      * 设置圆角值
      * @param radius 圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadius(final float radius) {
+    public RadiusImageView setRadius(final float radius) {
         mRadiusAttrs.setRadius(radius);
         postInvalidate();
         return this;
@@ -183,10 +184,10 @@ public class RadiusRelativeLayout
     /**
      * 设置左上圆角值
      * @param radiusLeftTop 左上圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusLeftTop(final float radiusLeftTop) {
+    public RadiusImageView setRadiusLeftTop(final float radiusLeftTop) {
         mRadiusAttrs.setRadiusLeftTop(radiusLeftTop);
         postInvalidate();
         return this;
@@ -195,10 +196,10 @@ public class RadiusRelativeLayout
     /**
      * 设置左下圆角值
      * @param radiusLeftBottom 左下圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusLeftBottom(final float radiusLeftBottom) {
+    public RadiusImageView setRadiusLeftBottom(final float radiusLeftBottom) {
         mRadiusAttrs.setRadiusLeftBottom(radiusLeftBottom);
         postInvalidate();
         return this;
@@ -207,10 +208,10 @@ public class RadiusRelativeLayout
     /**
      * 设置右上圆角值
      * @param radiusRightTop 右上圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusRightTop(final float radiusRightTop) {
+    public RadiusImageView setRadiusRightTop(final float radiusRightTop) {
         mRadiusAttrs.setRadiusRightTop(radiusRightTop);
         postInvalidate();
         return this;
@@ -219,10 +220,10 @@ public class RadiusRelativeLayout
     /**
      * 设置右下圆角值
      * @param radiusRightBottom 右下圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusRightBottom(final float radiusRightBottom) {
+    public RadiusImageView setRadiusRightBottom(final float radiusRightBottom) {
         mRadiusAttrs.setRadiusRightBottom(radiusRightBottom);
         postInvalidate();
         return this;
@@ -233,10 +234,10 @@ public class RadiusRelativeLayout
     /**
      * 设置左上、左下圆角值
      * @param radiusLeft 左边圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusLeft(final float radiusLeft) {
+    public RadiusImageView setRadiusLeft(final float radiusLeft) {
         mRadiusAttrs.setRadiusLeft(radiusLeft);
         postInvalidate();
         return this;
@@ -245,10 +246,10 @@ public class RadiusRelativeLayout
     /**
      * 设置右上、右下圆角值
      * @param radiusRight 右边圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusRight(final float radiusRight) {
+    public RadiusImageView setRadiusRight(final float radiusRight) {
         mRadiusAttrs.setRadiusRight(radiusRight);
         postInvalidate();
         return this;
@@ -257,10 +258,10 @@ public class RadiusRelativeLayout
     /**
      * 设置左上、右上圆角值
      * @param radiusTop 上边圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusTop(final float radiusTop) {
+    public RadiusImageView setRadiusTop(final float radiusTop) {
         mRadiusAttrs.setRadiusTop(radiusTop);
         postInvalidate();
         return this;
@@ -269,10 +270,10 @@ public class RadiusRelativeLayout
     /**
      * 设置左下、右下圆角值
      * @param radiusBottom 下边圆角值
-     * @return {@link RadiusRelativeLayout}
+     * @return {@link RadiusImageView}
      */
     @Override
-    public RadiusRelativeLayout setRadiusBottom(final float radiusBottom) {
+    public RadiusImageView setRadiusBottom(final float radiusBottom) {
         mRadiusAttrs.setRadiusBottom(radiusBottom);
         postInvalidate();
         return this;

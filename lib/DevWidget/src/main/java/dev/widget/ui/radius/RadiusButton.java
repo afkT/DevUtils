@@ -28,7 +28,7 @@ public class RadiusButton
         extends AppCompatButton
         implements IRadiusMethod<RadiusButton> {
 
-    private RadiusAttrs mRadiusAttrs;
+    protected RadiusAttrs mRadiusAttrs;
 
     public RadiusButton(Context context) {
         super(context);

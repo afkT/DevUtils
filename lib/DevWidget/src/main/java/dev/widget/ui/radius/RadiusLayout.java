@@ -29,7 +29,7 @@ public class RadiusLayout
         extends FrameLayout
         implements IRadiusMethod<RadiusLayout> {
 
-    private RadiusAttrs mRadiusAttrs;
+    protected RadiusAttrs mRadiusAttrs;
 
     public RadiusLayout(Context context) {
         super(context);

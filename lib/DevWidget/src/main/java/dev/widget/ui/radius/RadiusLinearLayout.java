@@ -29,7 +29,7 @@ public class RadiusLinearLayout
         extends LinearLayout
         implements IRadiusMethod<RadiusLinearLayout> {
 
-    private RadiusAttrs mRadiusAttrs;
+    protected RadiusAttrs mRadiusAttrs;
 
     public RadiusLinearLayout(Context context) {
         super(context);

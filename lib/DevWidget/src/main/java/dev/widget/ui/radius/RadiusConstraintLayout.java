@@ -30,7 +30,7 @@ public class RadiusConstraintLayout
         extends ConstraintLayout
         implements IRadiusMethod<RadiusConstraintLayout> {
 
-    private RadiusAttrs mRadiusAttrs;
+    protected RadiusAttrs mRadiusAttrs;
 
     public RadiusConstraintLayout(Context context) {
         super(context);

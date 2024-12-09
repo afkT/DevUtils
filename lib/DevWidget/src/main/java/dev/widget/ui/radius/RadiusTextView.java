@@ -28,7 +28,7 @@ public class RadiusTextView
         extends AppCompatTextView
         implements IRadiusMethod<RadiusTextView> {
 
-    private RadiusAttrs mRadiusAttrs;
+    protected RadiusAttrs mRadiusAttrs;
 
     public RadiusTextView(Context context) {
         super(context);

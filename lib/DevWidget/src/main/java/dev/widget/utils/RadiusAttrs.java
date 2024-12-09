@@ -144,6 +144,14 @@ public class RadiusAttrs
         return mPath;
     }
 
+    /**
+     * 获取绘制区域
+     * @return {@link RectF}
+     */
+    public final RectF getRectF() {
+        return mRectF;
+    }
+
     // =================
     // = IRadiusMethod =
     // =================
