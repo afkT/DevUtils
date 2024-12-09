@@ -416,6 +416,7 @@ public final class ImageViewUtils {
 
     /**
      * 移除 ImageView Bitmap
+     * @param view {@link View}
      * @return {@link ImageView}
      */
     public static View removeImageBitmap(
@@ -446,6 +447,7 @@ public final class ImageViewUtils {
 
     /**
      * 移除 ImageView Drawable
+     * @param view {@link View}
      * @return {@link ImageView}
      */
     public static View removeImageDrawable(

@@ -19,6 +19,8 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
          - linear      | Linear ItemDecoration
       - function       | 需求功能 View
       - ui             | UI View
+         - radius      | 圆角相关 View
+         - resize      | 自适应高度 ImageView
          - round       | 圆角相关 View
       - utils          | 工具类目录
 ```
@@ -54,6 +56,8 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
          - [linear](#devwidgetdecorationlinear)        | Linear ItemDecoration
       - [function](#devwidgetfunction)                 | 需求功能 View
       - [ui](#devwidgetui)                             | UI View
+         - [radius](#devwidgetuiradius)                | 圆角相关 View
+         - [resize](#devwidgetuiresize)                | 自适应高度 ImageView
          - [round](#devwidgetuiround)                  | 圆角相关 View
       - [utils](#devwidgetutils)                       | 工具类目录
 
@@ -566,40 +570,6 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
 | setProgressStyle | 设置进度条样式 |
 
 
-* **自定义圆角 View ->** [RadiusLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/RadiusLayout.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onSizeChanged | onSizeChanged |
-| draw | draw |
-| onSaveInstanceState | onSaveInstanceState |
-| onRestoreInstanceState | onRestoreInstanceState |
-| setRadius | 设置圆角值 |
-| setRadiusLeftTop | 设置左上圆角值 |
-| setRadiusLeftBottom | 设置左下圆角值 |
-| setRadiusRightTop | 设置右上圆角值 |
-| setRadiusRightBottom | 设置右下圆角值 |
-| setRadiusLeft | 设置左上、左下圆角值 |
-| setRadiusRight | 设置右上、右下圆角值 |
-| setRadiusTop | 设置左上、右上圆角值 |
-| setRadiusBottom | 设置左下、右下圆角值 |
-| getRadius | 获取圆角值 |
-| getRadiusLeftTop | 获取左上圆角值 |
-| getRadiusLeftBottom | 获取左下圆角值 |
-| getRadiusRightTop | 获取右上圆角值 |
-| getRadiusRightBottom | 获取右下圆角值 |
-
-
-* **自动同比放大 ImageView ->** [ResizableImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ResizableImageView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-| getZoomHeight | 获取缩放后的高度 |
-| getWHListener | 获取宽高监听事件 |
-| setWHListener | 设置宽高监听事件 |
-
-
 * **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
 
 | 方法 | 注释 |
@@ -724,6 +694,267 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
 | setRowViewMargin | 设置 Row View 边距 |
 
 
+## <span id="devwidgetuiradius">**`dev.widget.ui.radius`**</span>
+
+
+* **圆角通用方法接口 ->** [IRadiusMethod.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/IRadiusMethod.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 Button ->** [RadiusButton.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusButton.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 ConstraintLayout ->** [RadiusConstraintLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusConstraintLayout.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 ImageView ->** [RadiusImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusImageView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| onLayout | onLayout |
+| onDraw | onDraw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 FrameLayout ->** [RadiusLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusLayout.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 LinearLayout ->** [RadiusLinearLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusLinearLayout.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 RelativeLayout ->** [RadiusRelativeLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusRelativeLayout.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自定义圆角 TextView ->** [RadiusTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/radius/RadiusTextView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
+## <span id="devwidgetuiresize">**`dev.widget.ui.resize`**</span>
+
+
+* **自动同比放大 ImageView ->** [ResizableImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/resize/ResizableImageView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+| getZoomHeight | 获取缩放后的高度 |
+| getWHListener | 获取宽高监听事件 |
+| setWHListener | 设置宽高监听事件 |
+
+
+* **自定义圆角自动同比放大 ImageView ->** [ResizableRadiusImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/resize/ResizableRadiusImageView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+| getZoomHeight | 获取缩放后的高度 |
+| getWHListener | 获取宽高监听事件 |
+| setWHListener | 设置宽高监听事件 |
+| onSizeChanged | onSizeChanged |
+| onLayout | onLayout |
+| onDraw | onDraw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
 ## <span id="devwidgetuiround">**`dev.widget.ui.round`**</span>
 
 
@@ -777,12 +1008,18 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
 ## <span id="devwidgetutils">**`dev.widget.utils`**</span>
 
 
-* **RadiusLayout 圆角属性封装处理类 ->** [RadiusAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusAttrs.java)
+* **圆角属性封装处理类 ->** [RadiusAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusAttrs.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
 | onSizeChanged | View 宽高改变时调用 |
 | getPath | 获取绘制路径 |
+| getRectF | 获取绘制区域 |
+| isClearRadius | 是否清空绘制圆角值 |
+| setClearRadius | 设置是否清空绘制圆角值 |
+| clearRadius | 清空绘制圆角值 ( 默认不进行绘制 ) |
 | setRadius | 设置圆角值 |
 | setRadiusLeftTop | 设置左上圆角值 |
 | setRadiusLeftBottom | 设置左下圆角值 |
@@ -797,8 +1034,6 @@ implementation 'io.github.afkt:DevWidgetX:1.2.3'
 | getRadiusLeftBottom | 获取左下圆角值 |
 | getRadiusRightTop | 获取右上圆角值 |
 | getRadiusRightBottom | 获取右下圆角值 |
-| onSaveInstanceState | onSaveInstanceState |
-| onRestoreInstanceState | onRestoreInstanceState |
 
 
 * **波浪 View Helper 类 ->** [WaveHelper.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/WaveHelper.java)

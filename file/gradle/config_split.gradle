@@ -84,7 +84,6 @@ ext {
                     // = 性能检测、排查相关库 =
                     // ====================
 
-
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
                     xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
                     // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md

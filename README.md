@@ -25,7 +25,7 @@
 
 
 <p align="center">
-	🔥 ( 持续更新，目前含 300+ 工具类 ) <a href="https://github.com/afkT/DevUtils/projects/1">Roadmap</a>
+	🔥 ( 持续更新，目前含 300+ 工具类 ) <a href="https://github.com/users/afkT/projects/1">Roadmap</a>
 	<br>
 	DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
 	<br>
