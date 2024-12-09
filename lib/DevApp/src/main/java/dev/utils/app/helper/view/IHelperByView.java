@@ -1809,14 +1809,14 @@ public interface IHelperByView<T> {
 
     /**
      * 移除 ImageView Bitmap
-     * @param views    View[]
+     * @param views View[]
      * @return Helper
      */
     T removeImageBitmap(View... views);
 
     /**
      * 移除 ImageView Drawable
-     * @param views    View[]
+     * @param views View[]
      * @return Helper
      */
     T removeImageDrawable(View... views);
@@ -1924,6 +1924,42 @@ public interface IHelperByView<T> {
      */
     T setImageDrawables(
             Drawable drawable,
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 移除 View Bitmap
+     * @param views View[]
+     * @return Helper
+     */
+    T removeImageBitmaps(View... views);
+
+    /**
+     * 移除 View Bitmap
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T removeImageBitmaps(
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 移除 View Drawable
+     * @param views View[]
+     * @return Helper
+     */
+    T removeImageDrawables(View... views);
+
+    /**
+     * 移除 View Drawable
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T removeImageDrawables(
             int isVisibility,
             View... views
     );

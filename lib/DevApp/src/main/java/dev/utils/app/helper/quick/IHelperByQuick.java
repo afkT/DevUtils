@@ -1380,6 +1380,32 @@ public interface IHelperByQuick<T> {
     );
 
     /**
+     * 移除 View Bitmap
+     * @return Helper
+     */
+    T removeImageBitmaps();
+
+    /**
+     * 移除 View Bitmap
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @return Helper
+     */
+    T removeImageBitmaps(int isVisibility);
+
+    /**
+     * 移除 View Drawable
+     * @return Helper
+     */
+    T removeImageDrawables();
+
+    /**
+     * 移除 View Drawable
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @return Helper
+     */
+    T removeImageDrawables(int isVisibility);
+
+    /**
      * 设置 View 缩放模式
      * @param scaleType {@link ImageView.ScaleType}
      * @return Helper

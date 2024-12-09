@@ -2250,6 +2250,48 @@ public final class QuickHelper
     }
 
     /**
+     * 移除 View Bitmap
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageBitmaps() {
+        ViewHelper.get().removeImageBitmaps(targetView());
+        return this;
+    }
+
+    /**
+     * 移除 View Bitmap
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageBitmaps(int isVisibility) {
+        ViewHelper.get().removeImageBitmaps(isVisibility, targetView());
+        return this;
+    }
+
+    /**
+     * 移除 View Drawable
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageDrawables() {
+        ViewHelper.get().removeImageDrawables(targetView());
+        return this;
+    }
+
+    /**
+     * 移除 View Drawable
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @return Helper
+     */
+    @Override
+    public QuickHelper removeImageDrawables(int isVisibility) {
+        ViewHelper.get().removeImageDrawables(isVisibility, targetView());
+        return this;
+    }
+
+    /**
      * 设置 View 缩放模式
      * @param scaleType {@link ImageView.ScaleType}
      * @return Helper
