@@ -24,9 +24,9 @@ public final class ReceiverUtils {
     // 日志 TAG
     private static final String TAG = ReceiverUtils.class.getSimpleName();
 
-    // ==========
-    // = 本地广播 =
-    // ==========
+    // ============
+    // = 应用内广播 =
+    // ============
 
     /**
      * 获取 LocalBroadcastManager
@@ -49,6 +49,76 @@ public final class ReceiverUtils {
             LogPrintUtils.eTag(TAG, e, "getLocalBroadcastManager");
         }
         return null;
+    }
+
+    /**
+     * 注册广播监听 ( 应用内广播 )
+     * @param receiver {@link BroadcastReceiver}
+     * @param filter   {@link IntentFilter}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
+        try {
+            getLocalBroadcastManager().registerReceiver(receiver, filter);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "local_registerReceiver");
+        }
+        return false;
+    }
+
+    /**
+     * 注销广播监听
+     * @param receiver {@link BroadcastReceiver}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_unregisterReceiver(
+            final BroadcastReceiver receiver
+    ) {
+        try {
+            getLocalBroadcastManager().unregisterReceiver(receiver);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "local_unregisterReceiver");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播 ( 应用内广播 )
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_sendBroadcast(
+            final Intent intent
+    ) {
+        try {
+            getLocalBroadcastManager().sendBroadcast(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "local_sendBroadcast");
+        }
+        return false;
+    }
+
+    /**
+     * 发送广播 ( 同步 ) ( 应用内广播 )
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_sendBroadcastSync(
+            final Intent intent
+    ) {
+        try {
+            getLocalBroadcastManager().sendBroadcastSync(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "local_sendBroadcastSync");
+        }
+        return false;
     }
 
     // =======
