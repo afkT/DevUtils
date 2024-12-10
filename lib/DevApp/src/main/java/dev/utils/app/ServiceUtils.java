@@ -79,6 +79,68 @@ public final class ServiceUtils {
         return Collections.emptySet();
     }
 
+    // =======
+    // = 服务 =
+    // =======
+
+    /**
+     * 启动服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(final Intent intent) {
+        return startService(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 启动服务
+     * @param context Context
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startService(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
+        try {
+            context.startService(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startService");
+        }
+        return false;
+    }
+
+    /**
+     * 停止服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(final Intent intent) {
+        return stopService(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 停止服务
+     * @param context Context
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopService(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
+        try {
+            context.stopService(intent);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopService");
+        }
+        return false;
+    }
+
     // ==========
     // = 启动服务 =
     // ==========

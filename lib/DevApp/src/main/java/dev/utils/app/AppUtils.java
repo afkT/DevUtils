@@ -45,6 +45,7 @@ import android.view.WindowMetrics;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.RequiresApi;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.File;
 import java.util.List;
@@ -143,6 +144,23 @@ public final class AppUtils {
     }
 
     // =
+
+    /**
+     * 获取 LocalBroadcastManager
+     * @return {@link LocalBroadcastManager}
+     */
+    public static LocalBroadcastManager getLocalBroadcastManager() {
+        return ReceiverUtils.getLocalBroadcastManager();
+    }
+
+    /**
+     * 获取 LocalBroadcastManager
+     * @param context Context
+     * @return {@link LocalBroadcastManager}
+     */
+    public static LocalBroadcastManager getLocalBroadcastManager(final Context context) {
+        return ReceiverUtils.getLocalBroadcastManager(context);
+    }
 
     /**
      * 获取 WindowManager
@@ -1258,7 +1276,7 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        return registerReceiverBool(DevUtils.getContext(), receiver, filter);
+        return ReceiverUtils.registerReceiverBool(receiver, filter);
     }
 
     /**
@@ -1273,17 +1291,8 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
-            } else {
-                context.registerReceiver(receiver, filter);
-            }
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerReceiverBool");
-        }
-        return false;
+
+        return ReceiverUtils.registerReceiverBool(context, receiver, filter);
     }
 
     /**
@@ -1299,7 +1308,7 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        return registerReceiverBool(DevUtils.getContext(), receiver, filter, flags);
+        return ReceiverUtils.registerReceiverBool(receiver, filter, flags);
     }
 
     /**
@@ -1317,13 +1326,7 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        try {
-            context.registerReceiver(receiver, filter, flags);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerReceiverBool");
-        }
-        return false;
+        return ReceiverUtils.registerReceiverBool(context, receiver, filter, flags);
     }
 
     // =
@@ -1338,7 +1341,7 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        return registerReceiver(DevUtils.getContext(), receiver, filter);
+        return ReceiverUtils.registerReceiver(receiver, filter);
     }
 
     /**
@@ -1353,16 +1356,7 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                return context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
-            } else {
-                return context.registerReceiver(receiver, filter);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerReceiver");
-        }
-        return null;
+        return ReceiverUtils.registerReceiver(context, receiver, filter);
     }
 
     /**
@@ -1378,7 +1372,7 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        return registerReceiver(DevUtils.getContext(), receiver, filter, flags);
+        return ReceiverUtils.registerReceiver(receiver, filter, flags);
     }
 
     /**
@@ -1396,12 +1390,7 @@ public final class AppUtils {
             final IntentFilter filter,
             final int flags
     ) {
-        try {
-            return context.registerReceiver(receiver, filter, flags);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerReceiver");
-        }
-        return null;
+        return ReceiverUtils.registerReceiver(context, receiver, filter, flags);
     }
 
     /**
@@ -1410,7 +1399,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean unregisterReceiver(final BroadcastReceiver receiver) {
-        return unregisterReceiver(DevUtils.getContext(), receiver);
+        return ReceiverUtils.unregisterReceiver(receiver);
     }
 
     /**
@@ -1423,14 +1412,7 @@ public final class AppUtils {
             final Context context,
             final BroadcastReceiver receiver
     ) {
-        if (context == null || receiver == null) return false;
-        try {
-            context.unregisterReceiver(receiver);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
-        }
-        return false;
+        return ReceiverUtils.unregisterReceiver(context, receiver);
     }
 
     // ==========
@@ -1443,7 +1425,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean sendBroadcast(final Intent intent) {
-        return sendBroadcast(DevUtils.getContext(), intent);
+        return ReceiverUtils.sendBroadcast(intent);
     }
 
     /**
@@ -1456,14 +1438,7 @@ public final class AppUtils {
             final Context context,
             final Intent intent
     ) {
-        if (context == null || intent == null) return false;
-        try {
-            context.sendBroadcast(intent);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "sendBroadcast");
-        }
-        return false;
+        return ReceiverUtils.sendBroadcast(context, intent);
     }
 
     /**
@@ -1476,7 +1451,7 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        return sendBroadcast(DevUtils.getContext(), intent, receiverPermission);
+        return ReceiverUtils.sendBroadcast(intent, receiverPermission);
     }
 
     /**
@@ -1491,14 +1466,7 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        if (context == null || intent == null || receiverPermission == null) return false;
-        try {
-            context.sendBroadcast(intent, receiverPermission);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "sendBroadcast");
-        }
-        return false;
+        return ReceiverUtils.sendBroadcast(context, intent, receiverPermission);
     }
 
     /**
@@ -1511,7 +1479,7 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        return sendOrderedBroadcast(DevUtils.getContext(), intent, receiverPermission);
+        return ReceiverUtils.sendOrderedBroadcast(intent, receiverPermission);
     }
 
     /**
@@ -1526,14 +1494,7 @@ public final class AppUtils {
             final Intent intent,
             final String receiverPermission
     ) {
-        if (context == null || intent == null || receiverPermission == null) return false;
-        try {
-            context.sendOrderedBroadcast(intent, receiverPermission);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "sendOrderedBroadcast");
-        }
-        return false;
+        return ReceiverUtils.sendOrderedBroadcast(context, intent, receiverPermission);
     }
 
     // =======
@@ -1546,7 +1507,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean startService(final Intent intent) {
-        return startService(DevUtils.getContext(), intent);
+        return ServiceUtils.startService(intent);
     }
 
     /**
@@ -1559,14 +1520,7 @@ public final class AppUtils {
             final Context context,
             final Intent intent
     ) {
-        if (context == null || intent == null) return false;
-        try {
-            context.startService(intent);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startService");
-        }
-        return false;
+        return ServiceUtils.startService(context, intent);
     }
 
     /**
@@ -1575,7 +1529,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopService(final Intent intent) {
-        return stopService(DevUtils.getContext(), intent);
+        return ServiceUtils.stopService(intent);
     }
 
     /**
@@ -1588,14 +1542,7 @@ public final class AppUtils {
             final Context context,
             final Intent intent
     ) {
-        if (context == null || intent == null) return false;
-        try {
-            context.stopService(intent);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "stopService");
-        }
-        return false;
+        return ServiceUtils.stopService(context, intent);
     }
 
     // ===========

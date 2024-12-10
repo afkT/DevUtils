@@ -13,7 +13,6 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
@@ -374,7 +373,6 @@ public final class PermissionUtils {
      * detail: 请求权限 Activity
      * @author Ttt
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public static class PermissionActivity
             extends Activity {
 
@@ -397,10 +395,10 @@ public final class PermissionUtils {
             super.onCreate(savedInstanceState);
             // 请求权限
             int size = sInstance.mPermissionsRequestLists.size();
-            requestPermissions(
-                    sInstance.mPermissionsRequestLists.toArray(
-                            new String[size]
-                    ), 1
+            // 请求权限
+            ActivityCompat.requestPermissions(this,
+                    sInstance.mPermissionsRequestLists.toArray(new String[size]),
+                    1
             );
         }
 
