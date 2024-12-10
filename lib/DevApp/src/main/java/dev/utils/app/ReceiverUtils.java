@@ -71,7 +71,7 @@ public final class ReceiverUtils {
     }
 
     /**
-     * 注销广播监听
+     * 注销广播监听 ( 应用内广播 )
      * @param receiver {@link BroadcastReceiver}
      * @return {@code true} success, {@code false} fail
      */

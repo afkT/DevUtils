@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.4.7 *(2024-12-XX)*
+----------------------------
+
+* `[Build]` bump minSdkVersion to 21
+
+* `[Add]` 新增 ReceiverUtils 广播相关工具类
+
+* `[Add]` 新增 ViewUtils#setClipToOutline、getClipToOutline、setOutlineProvider、getOutlineProvider、setOutlineProviderClip、removeBackground、removeAllBackground、removeForeground 方法
+
+* `[Add]` 新增 ImageViewUtils#removeImageBitmap、removeImageDrawable、removeImageBitmaps、removeImageDrawables 方法
+
+* `[Add]` 新增 FileUtils#isHidden2、isBuild 方法
+
 Version 2.4.6 *(2024-05-15)*
 ----------------------------
 

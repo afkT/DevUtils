@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.2.4 *(2024-12-XX)*
+----------------------------
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
+* `[Add]` 新增 RadiusImageView 自定义圆角 ImageView
+
+* `[Add]` 新增 IRadiusMethod 并规范化 Radius 系列通用实现自定义圆角 View
+
+* `[Add]` 新增 ResizableRadiusImageView 自定义圆角自动同比放大 ImageView
+
 Version 1.2.3 *(2024-05-06)*
 ----------------------------
 
