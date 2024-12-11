@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.1.4 *(2024-12-XX)*
+Version 1.1.4 *(2024-12-11)*
 ----------------------------
 
 * `[Chore]` 依赖 DevApp、DevAssist 库同步升级

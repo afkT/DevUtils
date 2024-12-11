@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.4.7 *(2024-12-XX)*
+Version 2.4.7 *(2024-12-11)*
 ----------------------------
 
 * `[Build]` bump minSdkVersion to 21
