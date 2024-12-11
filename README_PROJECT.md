@@ -45,16 +45,17 @@
 	</b>
 </p>
 
-![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
+
+![module][dev_module_img]
 
 
 ## Android 版本适配信息
 
 - [ ] 适配 Android 15 ( VanillaIceCream ) ???
-- [x] 适配 Android 14 ( UpsideDownCake ) [DevApp v2.4.4+](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-244-2024-01-18)
-- [x] 适配 Android 13 ( Tiramisu ) [DevApp v2.4.3+](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-243-2023-07-01)
-- [x] 适配 Android 11 ( R ) [DevApp v2.0.8+](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-208-2020-10-29)
-- [x] 适配 Android 10 ( Q ) [DevApp v1.8.6+](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-186-2019-12-25)
+- [x] 适配 Android 14 ( UpsideDownCake ) [DevApp v2.4.4+][DevApp v2.4.4+]
+- [x] 适配 Android 13 ( Tiramisu ) [DevApp v2.4.3+][DevApp v2.4.3+]
+- [x] 适配 Android 11 ( R ) [DevApp v2.0.8+][DevApp v2.0.8+]
+- [x] 适配 Android 10 ( Q ) [DevApp v1.8.6+][DevApp v1.8.6+]
 
 
 ## 项目目录结构（ 全部已迁移至 Maven Central ）
@@ -130,11 +131,37 @@
 
 ## 其他
 
+- **[DevComponent][DevComponent]** 【100% Kotlin 实现 Android 项目组件化示例代码】
+基于 Android JetPack + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）
+等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
+
+- **[DevUtils-repo][DevUtils-repo]** 该项目是针对 [DevUtils][DevUtils]
+  第三方库封装扩展、新技术 Demo 编写、大文件资源等迁移存储仓库，
+  减少 `DevUtils` 仓库大小方便快速 clone，并让 `DevUtils` 项目**更加纯粹**只保留 Dev 系列开发库相关代码。
+
+- **[JavaDoc API Generate][JavaDoc]** 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，
+  并且进行代码、注释间距规范检测，生成效果示范 [DevApp API 文档][DevApp API]
+
+- **[DevOther][DevOther]** 功能、工具类二次封装，直接 copy 使用【 大部分迁移至 DevUtils-repo 】
+
+- **[DevSKU][DevSKU]** 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
+
+
+## Download
+
+下载 DevUtils 系列开发库演示应用 [APK][Preview APK]
 
 
 
+<!-- === -->
+<!-- 链接 -->
+<!-- === -->
 
+<!-- ======== -->
+<!-- DevUtils -->
+<!-- ======== -->
 
+[DevUtils]: https://github.com/afkT/DevUtils
 [DevApp API]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md
 [DevApp ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md
 [DevAssist API]: https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md
@@ -166,3 +193,31 @@
 [DevEnvironment ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironment/CHANGELOG.md
 [DevJava API]: https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
 [DevJava ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevJava/CHANGELOG.md
+
+<!-- ============== -->
+<!-- DevUtils Other -->
+<!-- ============== -->
+
+[JavaDoc]: https://github.com/afkT/JavaDoc
+[DevComponent]: https://github.com/afkT/DevComponent
+[DevUtils-repo]: https://github.com/afkT/DevUtils-repo
+[DevSKU]: https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevSKU/src/main/java/dev/sku/SKU.kt
+[DevOther]: https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther
+
+<!-- ======= -->
+<!-- 零散汇总 -->
+<!-- ======= -->
+
+[Project Details README]: https://github.com/afkT/DevUtils/blob/master/README_PROJECT.md
+[pay_qrcode_img]: https://github.com/afkT/Resources/raw/main/art/pay_qrcode.png
+[dev_module_img]: https://github.com/afkT/DevUtils/raw/master/art/module.png
+[Preview APK]: https://github.com/afkT/Resources/blob/main/APK
+
+<!-- ====== -->
+<!-- 版本信息 -->
+<!-- ====== -->
+
+[DevApp v2.4.4+]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-244-2024-01-18
+[DevApp v2.4.3+]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-243-2023-07-01
+[DevApp v2.0.8+]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-208-2020-10-29
+[DevApp v1.8.6+]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md#version-186-2019-12-25

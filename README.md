@@ -25,7 +25,7 @@
 
 
 <p align="center">
-	🔥 ( 持续更新，目前含 300+ 工具类 ) <a href="https://github.com/users/afkT/projects/1">Roadmap</a>
+	🔥 ( 持续更新，目前含 300+ 工具类 )
 	<br>
 	DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用。
 	<br>
@@ -46,10 +46,10 @@
 </p>
 
 
-![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
+![module][dev_module_img]
 
 
-## Dev 系列开发库全部 Lib Gradle [API README](https://github.com/afkT/DevUtils/blob/master/README_API.md)、[DevApp API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+## Dev 系列开发库全部 Lib Gradle [DevApp API 文档][DevApp API]、[Project Details README][Project Details README]
 
 ```gradle
 
@@ -107,7 +107,7 @@ implementation 'io.github.afkt:DevJava:1.5.1' // 用于纯 Java 开发，如果�
 
 如果你喜欢 DevUtils 的设计，感觉它帮助到了你，并且很想支持该库的后续开发和维护，那么可以扫描下方的二维码，请作者喝一杯咖啡~
 
-![][pay_qrcodeImg]
+![][pay_qrcode_img]
 
 
 ## License
@@ -127,4 +127,11 @@ implementation 'io.github.afkt:DevJava:1.5.1' // 用于纯 Java 开发，如果�
     limitations under the License.
 
 
-[pay_qrcodeImg]: https://github.com/afkT/Resources/raw/main/art/pay_qrcode.png
+<!-- === -->
+<!-- 链接 -->
+<!-- === -->
+
+[DevApp API]: https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md
+[Project Details README]: https://github.com/afkT/DevUtils/blob/master/README_PROJECT.md
+[pay_qrcode_img]: https://github.com/afkT/Resources/raw/main/art/pay_qrcode.png
+[dev_module_img]: https://github.com/afkT/DevUtils/raw/master/art/module.png
