@@ -132,8 +132,8 @@
 ## 其他
 
 - **[DevComponent][DevComponent]** 【100% Kotlin 实现 Android 项目组件化示例代码】
-基于 Android JetPack + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）
-等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
+  基于 Android JetPack + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）
+  等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
 
 - **[DevUtils-repo][DevUtils-repo]** 该项目是针对 [DevUtils][DevUtils]
   第三方库封装扩展、新技术 Demo 编写、大文件资源等迁移存储仓库，
@@ -147,9 +147,11 @@
 - **[DevSKU][DevSKU]** 商品 SKU 组合封装实现 ( 如何使用搜索 DevSKUActivity )
 
 
-## Download
+## Download 预览
 
 下载 DevUtils 系列开发库演示应用 [APK][Preview APK]
+
+[DevWidget - 自定义 View UI 库部分效果预览][DevWidget Preview]
 
 
 
