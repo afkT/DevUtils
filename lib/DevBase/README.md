@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-implementation 'io.github.afkt:DevBase:1.1.8'
+implementation 'io.github.afkt:DevBase:1.1.9'
 ```
 
 ## 目录结构

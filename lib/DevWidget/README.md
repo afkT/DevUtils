@@ -3,7 +3,7 @@
 
 ```gradle
 // AndroidX
-implementation 'io.github.afkt:DevWidgetX:1.2.3'
+implementation 'io.github.afkt:DevWidgetX:1.2.4'
 ```
 
 ## 目录结构
