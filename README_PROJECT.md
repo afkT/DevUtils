@@ -220,13 +220,6 @@ implementation 'io.github.afkt:DevJava:1.5.2' // 用于纯 Java 开发，如果�
 ```
 
 
-## 赞赏
-
-如果你喜欢 DevUtils 的设计，感觉它帮助到了你，并且很想支持该库的后续开发和维护，那么可以扫描下方的二维码，请作者喝一杯咖啡~
-
-![][pay_qrcode_img]
-
-
 
 
 <!-- === -->
@@ -285,7 +278,6 @@ implementation 'io.github.afkt:DevJava:1.5.2' // 用于纯 Java 开发，如果�
 <!-- ======= -->
 
 [Project Details README]: https://github.com/afkT/DevUtils/blob/master/README_PROJECT.md
-[pay_qrcode_img]: https://github.com/afkT/Resources/raw/main/art/pay_qrcode.png
 [dev_module_img]: https://github.com/afkT/DevUtils/raw/master/art/module.png
 [Preview APK]: https://github.com/afkT/Resources/blob/main/APK
 

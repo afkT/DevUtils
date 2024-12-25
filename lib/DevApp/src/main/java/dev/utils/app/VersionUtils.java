@@ -240,6 +240,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 15.0 版本及以上
+     * @return 是否在 15.0 版本及以上
+     */
+    public static boolean isVanillaIceCream() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
@@ -322,6 +330,8 @@ public final class VersionUtils {
                 return "Android 13.0";
             case 34:
                 return "Android 14.0";
+            case 35:
+                return "Android 15.0";
         }
         return "unknown";
     }
@@ -409,6 +419,8 @@ public final class VersionUtils {
                 return "Android Tiramisu";
             case 34:
                 return "Android UpsideDownCake";
+            case 35:
+                return "Android VanillaIceCream";
         }
         return "unknown";
     }
