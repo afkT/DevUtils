@@ -47,7 +47,11 @@ public final class NotificationUtils {
         Context context = DevUtils.getContext();
         if (context != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                return AppUtils.getNotificationManager().areNotificationsEnabled();
+                try {
+                    return AppUtils.getNotificationManager().areNotificationsEnabled();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "isNotificationEnabled");
+                }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     AppOpsManager   appOps  = AppUtils.getAppOpsManager();
@@ -60,7 +64,8 @@ public final class NotificationUtils {
                     Field    opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
                     int      value                   = (Integer) opPostNotificationValue.get(Integer.class);
                     return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
-                } catch (Throwable ignore) {
+                } catch (Throwable e) {
+                    LogPrintUtils.eTag(TAG, e, "isNotificationEnabled");
                     return true;
                 }
             } else {
@@ -268,8 +273,7 @@ public final class NotificationUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (channel != null) {
                 try {
-                    NotificationManager notificationManager = AppUtils.getNotificationManager();
-                    notificationManager.createNotificationChannel(channel);
+                    AppUtils.getNotificationManager().createNotificationChannel(channel);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "createNotificationChannel");
                 }

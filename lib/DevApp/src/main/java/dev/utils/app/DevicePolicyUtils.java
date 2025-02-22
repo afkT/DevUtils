@@ -39,20 +39,6 @@ public final class DevicePolicyUtils {
         return sInstance;
     }
 
-    // 设备策略管理器
-    private DevicePolicyManager mDevicePolicyManager;
-
-    /**
-     * 获取 DevicePolicyManager
-     * @return {@link DevicePolicyManager}
-     */
-    public DevicePolicyManager getDevicePolicyManager() {
-        if (mDevicePolicyManager == null) {
-            mDevicePolicyManager = AppUtils.getDevicePolicyManager();
-        }
-        return mDevicePolicyManager;
-    }
-
     // =================
     // = ComponentName =
     // =================
@@ -65,7 +51,7 @@ public final class DevicePolicyUtils {
     public boolean isAdminActive(final ComponentName admin) {
         if (admin == null) return false;
         try {
-            return getDevicePolicyManager().isAdminActive(admin);
+            return AppUtils.getDevicePolicyManager().isAdminActive(admin);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAdminActive");
         }
@@ -112,7 +98,7 @@ public final class DevicePolicyUtils {
      */
     public boolean removeActiveAdmin(final ComponentName admin) {
         try {
-            getDevicePolicyManager().removeActiveAdmin(admin);
+            AppUtils.getDevicePolicyManager().removeActiveAdmin(admin);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "removeActiveAdmin");
@@ -156,7 +142,7 @@ public final class DevicePolicyUtils {
         if (!isAdminActive(admin)) return false;
         try {
             Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
-            getDevicePolicyManager().setPasswordQuality(admin, passwordType);
+            AppUtils.getDevicePolicyManager().setPasswordQuality(admin, passwordType);
             return AppUtils.startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setLockPassword");
@@ -172,7 +158,7 @@ public final class DevicePolicyUtils {
     public boolean lockNow(final ComponentName admin) {
         if (!isAdminActive(admin)) return false;
         try {
-            getDevicePolicyManager().lockNow();
+            AppUtils.getDevicePolicyManager().lockNow();
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "lockNow");
@@ -192,7 +178,7 @@ public final class DevicePolicyUtils {
     ) {
         if (!isAdminActive(admin)) return false;
         try {
-            getDevicePolicyManager().setMaximumTimeToLock(admin, delayMillis);
+            AppUtils.getDevicePolicyManager().setMaximumTimeToLock(admin, delayMillis);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "lockByTime");
@@ -208,7 +194,7 @@ public final class DevicePolicyUtils {
     public boolean wipeData(final ComponentName admin) {
         if (!isAdminActive(admin)) return false;
         try {
-            getDevicePolicyManager().wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
+            AppUtils.getDevicePolicyManager().wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "wipeData");
@@ -228,9 +214,8 @@ public final class DevicePolicyUtils {
     ) {
         if (!isAdminActive(admin)) return false;
         try {
-            return getDevicePolicyManager().resetPassword(
-                    password,
-                    DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY
+            return AppUtils.getDevicePolicyManager().resetPassword(
+                    password, DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "resetPassword");
@@ -250,7 +235,7 @@ public final class DevicePolicyUtils {
     ) {
         if (!isAdminActive(admin)) return false;
         try {
-            getDevicePolicyManager().setStorageEncryption(admin, encrypt);
+            AppUtils.getDevicePolicyManager().setStorageEncryption(admin, encrypt);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setStorageEncryption");
@@ -270,7 +255,7 @@ public final class DevicePolicyUtils {
     ) {
         if (!isAdminActive(admin)) return false;
         try {
-            getDevicePolicyManager().setCameraDisabled(admin, disabled);
+            AppUtils.getDevicePolicyManager().setCameraDisabled(admin, disabled);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setCameraDisabled");

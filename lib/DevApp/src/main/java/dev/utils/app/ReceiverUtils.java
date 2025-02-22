@@ -51,6 +51,8 @@ public final class ReceiverUtils {
         return null;
     }
 
+    // =
+
     /**
      * 注册广播监听 ( 应用内广播 )
      * @param receiver {@link BroadcastReceiver}
@@ -61,8 +63,28 @@ public final class ReceiverUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
+        return local_registerReceiver(
+                getLocalBroadcastManager(),
+                receiver, filter
+        );
+    }
+
+    /**
+     * 注册广播监听 ( 应用内广播 )
+     * @param localBroadcastManager {@link LocalBroadcastManager}
+     * @param receiver              {@link BroadcastReceiver}
+     * @param filter                {@link IntentFilter}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_registerReceiver(
+            final LocalBroadcastManager localBroadcastManager,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
+        if (receiver == null) return false;
+        if (localBroadcastManager == null) return false;
         try {
-            getLocalBroadcastManager().registerReceiver(receiver, filter);
+            localBroadcastManager.registerReceiver(receiver, filter);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "local_registerReceiver");
@@ -78,8 +100,23 @@ public final class ReceiverUtils {
     public static boolean local_unregisterReceiver(
             final BroadcastReceiver receiver
     ) {
+        return local_unregisterReceiver(getLocalBroadcastManager(), receiver);
+    }
+
+    /**
+     * 注销广播监听 ( 应用内广播 )
+     * @param localBroadcastManager {@link LocalBroadcastManager}
+     * @param receiver              {@link BroadcastReceiver}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_unregisterReceiver(
+            final LocalBroadcastManager localBroadcastManager,
+            final BroadcastReceiver receiver
+    ) {
+        if (receiver == null) return false;
+        if (localBroadcastManager == null) return false;
         try {
-            getLocalBroadcastManager().unregisterReceiver(receiver);
+            localBroadcastManager.unregisterReceiver(receiver);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "local_unregisterReceiver");
@@ -95,8 +132,23 @@ public final class ReceiverUtils {
     public static boolean local_sendBroadcast(
             final Intent intent
     ) {
+        return local_sendBroadcast(getLocalBroadcastManager(), intent);
+    }
+
+    /**
+     * 发送广播 ( 应用内广播 )
+     * @param localBroadcastManager {@link LocalBroadcastManager}
+     * @param intent                {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_sendBroadcast(
+            final LocalBroadcastManager localBroadcastManager,
+            final Intent intent
+    ) {
+        if (intent == null) return false;
+        if (localBroadcastManager == null) return false;
         try {
-            getLocalBroadcastManager().sendBroadcast(intent);
+            localBroadcastManager.sendBroadcast(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "local_sendBroadcast");
@@ -112,8 +164,23 @@ public final class ReceiverUtils {
     public static boolean local_sendBroadcastSync(
             final Intent intent
     ) {
+        return local_sendBroadcastSync(getLocalBroadcastManager(), intent);
+    }
+
+    /**
+     * 发送广播 ( 同步 ) ( 应用内广播 )
+     * @param localBroadcastManager {@link LocalBroadcastManager}
+     * @param intent                {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean local_sendBroadcastSync(
+            final LocalBroadcastManager localBroadcastManager,
+            final Intent intent
+    ) {
+        if (intent == null) return false;
+        if (localBroadcastManager == null) return false;
         try {
-            getLocalBroadcastManager().sendBroadcastSync(intent);
+            localBroadcastManager.sendBroadcastSync(intent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "local_sendBroadcastSync");
