@@ -44,8 +44,6 @@ public final class LocationUtils {
     private static       OnLocationChangeListener sListener;
     // 自定义定位事件
     private static       CustomLocationListener   sCustomLocationListener;
-    // 定位管理对象
-    private static       LocationManager          sLocationManager;
 
     /**
      * 判断 GPS 是否可用
@@ -150,16 +148,16 @@ public final class LocationUtils {
     ) {
         if (listener == null) return false;
         try {
-            sLocationManager = AppUtils.getLocationManager();
+            LocationManager locationManager = AppUtils.getLocationManager();
             if (!isLocationEnabled()) return false;
             sListener = listener;
-            String   provider = sLocationManager.getBestProvider(getCriteria(), true);
-            Location location = sLocationManager.getLastKnownLocation(provider);
+            String   provider = locationManager.getBestProvider(getCriteria(), true);
+            Location location = locationManager.getLastKnownLocation(provider);
             if (location != null) listener.getLastKnownLocation(location);
             if (sCustomLocationListener == null) {
                 sCustomLocationListener = new CustomLocationListener();
             }
-            sLocationManager.requestLocationUpdates(
+            locationManager.requestLocationUpdates(
                     provider, minTime, minDistance, sCustomLocationListener
             );
             return true;
@@ -179,12 +177,12 @@ public final class LocationUtils {
     })
     public static boolean unregister() {
         try {
-            if (sLocationManager != null) {
+            LocationManager locationManager = AppUtils.getLocationManager();
+            if (locationManager != null) {
                 if (sCustomLocationListener != null) {
-                    sLocationManager.removeUpdates(sCustomLocationListener);
+                    locationManager.removeUpdates(sCustomLocationListener);
                     sCustomLocationListener = null;
                 }
-                sLocationManager = null;
             }
             if (sListener != null) {
                 sListener = null;
@@ -214,33 +212,29 @@ public final class LocationUtils {
     ) {
         Location location = null;
         try {
-            sLocationManager = AppUtils.getLocationManager();
+            LocationManager locationManager = AppUtils.getLocationManager();
             if (isLocationEnabled()) {
-                sLocationManager.requestLocationUpdates(
+                locationManager.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER, millis, distance, listener
                 );
-                if (sLocationManager != null) {
-                    location = sLocationManager.getLastKnownLocation(
-                            LocationManager.NETWORK_PROVIDER
-                    );
-                    if (location != null) {
-                        sLocationManager.removeUpdates(listener);
-                        return location;
-                    }
+                location = locationManager.getLastKnownLocation(
+                        LocationManager.NETWORK_PROVIDER
+                );
+                if (location != null) {
+                    locationManager.removeUpdates(listener);
+                    return location;
                 }
             }
             if (isGpsEnabled()) {
-                sLocationManager.requestLocationUpdates(
+                locationManager.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER, millis, distance, listener
                 );
-                if (sLocationManager != null) {
-                    location = sLocationManager.getLastKnownLocation(
-                            LocationManager.GPS_PROVIDER
-                    );
-                    if (location != null) {
-                        sLocationManager.removeUpdates(listener);
-                        return location;
-                    }
+                location = locationManager.getLastKnownLocation(
+                        LocationManager.GPS_PROVIDER
+                );
+                if (location != null) {
+                    locationManager.removeUpdates(listener);
+                    return location;
                 }
             }
         } catch (Exception e) {
