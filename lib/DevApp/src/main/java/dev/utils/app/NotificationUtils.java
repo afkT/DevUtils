@@ -38,24 +38,6 @@ public final class NotificationUtils {
     // 日志 TAG
     private static final String TAG = NotificationUtils.class.getSimpleName();
 
-    // 通知栏管理类
-    private static NotificationManager sNotificationManager = null;
-
-    /**
-     * 获取通知栏管理对象
-     * @return {@link NotificationManager}
-     */
-    public static NotificationManager getNotificationManager() {
-        if (sNotificationManager == null) {
-            try {
-                sNotificationManager = AppUtils.getNotificationManager();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getNotificationManager");
-            }
-        }
-        return sNotificationManager;
-    }
-
     /**
      * 检查通知栏权限是否开启
      * 参考 SupportCompat 包中的: NotificationManagerCompat.from(context).areNotificationsEnabled();
@@ -136,9 +118,10 @@ public final class NotificationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cancelAll() {
-        if (getNotificationManager() != null) {
+        NotificationManager notificationManager = AppUtils.getNotificationManager();
+        if (notificationManager != null) {
             try {
-                sNotificationManager.cancelAll();
+                notificationManager.cancelAll();
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancelAll");
@@ -156,15 +139,16 @@ public final class NotificationUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean cancel(final int... args) {
-        if (getNotificationManager() != null && args != null) {
+        NotificationManager notificationManager = AppUtils.getNotificationManager();
+        if (notificationManager != null && args != null) {
             for (int id : args) {
                 try {
-                    sNotificationManager.cancel(id);
-                    return true;
+                    notificationManager.cancel(id);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "cancel - id: %s", id);
                 }
             }
+            return true;
         }
         return false;
     }
@@ -182,9 +166,10 @@ public final class NotificationUtils {
             final String tag,
             final int id
     ) {
-        if (getNotificationManager() != null && tag != null) {
+        NotificationManager notificationManager = AppUtils.getNotificationManager();
+        if (notificationManager != null && tag != null) {
             try {
-                sNotificationManager.cancel(tag, id);
+                notificationManager.cancel(tag, id);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "cancel - id: %s, tag: %s", id, tag);
@@ -203,9 +188,10 @@ public final class NotificationUtils {
             final int id,
             final Notification notification
     ) {
-        if (getNotificationManager() != null && notification != null) {
+        NotificationManager notificationManager = AppUtils.getNotificationManager();
+        if (notificationManager != null && notification != null) {
             try {
-                sNotificationManager.notify(id, notification);
+                notificationManager.notify(id, notification);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notify - id: %s", id);
@@ -226,9 +212,10 @@ public final class NotificationUtils {
             final int id,
             final Notification notification
     ) {
-        if (getNotificationManager() != null && tag != null && notification != null) {
+        NotificationManager notificationManager = AppUtils.getNotificationManager();
+        if (notificationManager != null && tag != null && notification != null) {
             try {
-                sNotificationManager.notify(tag, id, notification);
+                notificationManager.notify(tag, id, notification);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notify - id: %s, tag: %s", id, tag);
@@ -280,7 +267,12 @@ public final class NotificationUtils {
     public static NotificationChannel createNotificationChannel(final NotificationChannel channel) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (channel != null) {
-                getNotificationManager().createNotificationChannel(channel);
+                try {
+                    NotificationManager notificationManager = AppUtils.getNotificationManager();
+                    notificationManager.createNotificationChannel(channel);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "createNotificationChannel");
+                }
             }
             return channel;
         }
@@ -300,7 +292,10 @@ public final class NotificationUtils {
             final int requestCode
     ) {
         try {
-            return PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getActivity(
+                    DevUtils.getContext(), requestCode,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");
         }
