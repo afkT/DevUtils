@@ -58,6 +58,62 @@ public final class PowerManagerUtils {
     }
 
     /**
+     * 获取 PowerManager.WakeLock
+     * @return {@link PowerManager.WakeLock}
+     */
+    public PowerManager.WakeLock getWakeLock() {
+        return mWakeLock;
+    }
+
+    /**
+     * 设置 PowerManager.WakeLock
+     * @param wakeLock {@link PowerManager.WakeLock}
+     * @return {@link PowerManagerUtils}
+     */
+    public PowerManagerUtils setWakeLock(final PowerManager.WakeLock wakeLock) {
+        this.mWakeLock = wakeLock;
+        return this;
+    }
+
+    /**
+     * 唤醒屏幕锁
+     * @param wakeLock 设备唤醒对象
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("WakelockTimeout")
+    public boolean acquire(final PowerManager.WakeLock wakeLock) {
+        if (wakeLock != null && !wakeLock.isHeld()) {
+            try {
+                wakeLock.acquire();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "acquire");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 释放屏幕锁 ( 允许休眠时间自动黑屏 )
+     * @param wakeLock 设备唤醒对象
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("WakelockTimeout")
+    public boolean release(final PowerManager.WakeLock wakeLock) {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            try {
+                wakeLock.release();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "release");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
      * 屏幕是否打开 ( 亮屏 )
      * @return {@code true} yes, {@code false} no
      */
@@ -81,15 +137,7 @@ public final class PowerManagerUtils {
      */
     @SuppressLint("WakelockTimeout")
     public boolean turnScreenOn() {
-        if (mWakeLock != null && !mWakeLock.isHeld()) {
-            try {
-                mWakeLock.acquire();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "turnScreenOn");
-            }
-        }
-        return false;
+        return acquire(mWakeLock);
     }
 
     /**
@@ -97,34 +145,10 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     public boolean turnScreenOff() {
-        if (mWakeLock != null && mWakeLock.isHeld()) {
-            try {
-                mWakeLock.release();
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "turnScreenOff");
-            }
-        }
-        return false;
+        return release(mWakeLock);
     }
 
-    /**
-     * 获取 PowerManager.WakeLock
-     * @return {@link PowerManager.WakeLock}
-     */
-    public PowerManager.WakeLock getWakeLock() {
-        return mWakeLock;
-    }
-
-    /**
-     * 设置 PowerManager.WakeLock
-     * @param wakeLock {@link PowerManager.WakeLock}
-     * @return {@link PowerManagerUtils}
-     */
-    public PowerManagerUtils setWakeLock(final PowerManager.WakeLock wakeLock) {
-        this.mWakeLock = wakeLock;
-        return this;
-    }
+    // =
 
     /**
      * 设置屏幕常亮
@@ -145,31 +169,27 @@ public final class PowerManagerUtils {
     }
 
     /**
-     * 设置 WakeLock 常亮
+     * 创建 WakeLock 常亮配置
      * <pre>
-     *     Activity#onResume() 调用 setWakeLockToBright()
-     *     Activity#onPause() 调用 mWakeLock.release()
+     *     提前创建 WakeLock {@link #createWakeLockToBright()}
+     *     在 Activity#onResume() 中调用
+     *     // 常亮, 持有不黑屏
+     *     {@link PowerManagerUtils#getInstance()#acquire(PowerManager.WakeLock)}
+     *     在 Activity#onPause() 中调用
+     *     // 释放资源, 到休眠时间自动黑屏
+     *     {@link PowerManagerUtils#getInstance()#release(PowerManager.WakeLock)}
      * </pre>
      * @return {@link PowerManager.WakeLock}
      */
     @SuppressLint("WakelockTimeout")
-    public static PowerManager.WakeLock setWakeLockToBright() {
+    public static PowerManager.WakeLock createWakeLockToBright() {
         try {
-            PowerManager powerManager = AppUtils.getPowerManager();
-            // onResume()
-            PowerManager.WakeLock mWakeLock = powerManager.newWakeLock(
+            return AppUtils.getPowerManager().newWakeLock(
                     PowerManager.SCREEN_BRIGHT_WAKE_LOCK
                             | PowerManager.ON_AFTER_RELEASE, TAG
             );
-            mWakeLock.acquire(); // 常量, 持有不黑屏
-
-//        // onPause()
-//        if (mWakeLock != null) {
-//            mWakeLock.release(); // 释放资源, 到休眠时间自动黑屏
-//        }
-            return mWakeLock;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setWakeLockToBright");
+            LogPrintUtils.eTag(TAG, e, "createWakeLockToBright");
         }
         return null;
     }
