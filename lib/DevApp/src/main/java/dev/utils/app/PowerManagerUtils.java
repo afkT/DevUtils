@@ -39,8 +39,6 @@ public final class PowerManagerUtils {
         return sInstance;
     }
 
-    // 电源管理类
-    private PowerManager          mPowerManager;
     // 电源管理锁
     private PowerManager.WakeLock mWakeLock;
 
@@ -49,10 +47,12 @@ public final class PowerManagerUtils {
      */
     private PowerManagerUtils() {
         try {
-            // 获取系统服务
-            mPowerManager = AppUtils.getPowerManager();
+            PowerManager powerManager = AppUtils.getPowerManager();
             // 电源管理锁
-            mWakeLock = mPowerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, TAG);
+            mWakeLock = powerManager.newWakeLock(
+                    PowerManager.ACQUIRE_CAUSES_WAKEUP
+                            | PowerManager.FULL_WAKE_LOCK, TAG
+            );
         } catch (Exception ignored) {
         }
     }
@@ -62,13 +62,17 @@ public final class PowerManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isScreenOn() {
-        if (mPowerManager == null) {
-            return false;
+        PowerManager powerManager = AppUtils.getPowerManager();
+        if (powerManager == null) return false;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                return powerManager.isInteractive();
+            }
+            return powerManager.isScreenOn();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isScreenOn");
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return mPowerManager.isInteractive();
-        }
-        return mPowerManager.isScreenOn();
+        return false;
     }
 
     /**
@@ -123,24 +127,6 @@ public final class PowerManagerUtils {
     }
 
     /**
-     * 获取 PowerManager
-     * @return {@link PowerManager}
-     */
-    public PowerManager getPowerManager() {
-        return mPowerManager;
-    }
-
-    /**
-     * 设置 PowerManager
-     * @param powerManager {@link PowerManager}
-     * @return {@link PowerManagerUtils}
-     */
-    public PowerManagerUtils setPowerManager(final PowerManager powerManager) {
-        this.mPowerManager = powerManager;
-        return this;
-    }
-
-    /**
      * 设置屏幕常亮
      * @param activity {@link Activity}
      * @return {@code true} success, {@code false} fail
@@ -169,12 +155,12 @@ public final class PowerManagerUtils {
     @SuppressLint("WakelockTimeout")
     public static PowerManager.WakeLock setWakeLockToBright() {
         try {
+            PowerManager powerManager = AppUtils.getPowerManager();
             // onResume()
-            PowerManager.WakeLock mWakeLock = PowerManagerUtils.getInstance().getPowerManager()
-                    .newWakeLock(
-                            PowerManager.SCREEN_BRIGHT_WAKE_LOCK
-                                    | PowerManager.ON_AFTER_RELEASE, TAG
-                    );
+            PowerManager.WakeLock mWakeLock = powerManager.newWakeLock(
+                    PowerManager.SCREEN_BRIGHT_WAKE_LOCK
+                            | PowerManager.ON_AFTER_RELEASE, TAG
+            );
             mWakeLock.acquire(); // 常量, 持有不黑屏
 
 //        // onPause()

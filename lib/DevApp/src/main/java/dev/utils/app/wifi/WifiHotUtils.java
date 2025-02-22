@@ -196,8 +196,7 @@ public final class WifiHotUtils {
                                 "com.android.settings.TetherSettings"
                         )
                 );
-                AppUtils.startActivity(intent);
-                return true;
+                return AppUtils.startActivity(intent);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "startWifiAp");
             }
