@@ -443,11 +443,11 @@ public final class WifiUtils {
     public static String isConnectAPHot() {
         try {
             // 连接管理
-            ConnectivityManager manager = AppUtils.getConnectivityManager();
+            ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
-                NetworkInfo.State state = manager.getNetworkInfo(
+                NetworkInfo.State state = connectivityManager.getNetworkInfo(
                         ConnectivityManager.TYPE_WIFI
                 ).getState();
                 if ((state == NetworkInfo.State.CONNECTED)) {
@@ -456,9 +456,9 @@ public final class WifiUtils {
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = manager.getActiveNetwork();
+                Network network = connectivityManager.getActiveNetwork();
                 if (network != null) {
-                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(network);
                     // 判断是否连接 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         // 获取连接的 ssid

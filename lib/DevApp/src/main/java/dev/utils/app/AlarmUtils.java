@@ -63,13 +63,13 @@ public final class AlarmUtils {
             final PendingIntent pendingIntent
     ) {
         try {
-            AlarmManager manager = AppUtils.getAlarmManager();
+            AlarmManager alarmManager = AppUtils.getAlarmManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                manager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
+                alarmManager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                manager.setExact(type, triggerAtMillis, pendingIntent);
+                alarmManager.setExact(type, triggerAtMillis, pendingIntent);
             } else {
-                manager.set(type, triggerAtMillis, pendingIntent);
+                alarmManager.set(type, triggerAtMillis, pendingIntent);
             }
             return true;
         } catch (Exception e) {

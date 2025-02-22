@@ -59,11 +59,11 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager manager = AppUtils.getConnectivityManager();
+                ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
                 // 反射获取方法
-                Method method = manager.getClass().getMethod("getMobileDataEnabled");
+                Method method = connectivityManager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
-                state = (Boolean) method.invoke(manager);
+                state = (Boolean) method.invoke(connectivityManager);
             } else {
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 反射获取方法
@@ -91,13 +91,13 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager manager = AppUtils.getConnectivityManager();
+                ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
-                Method method = manager.getClass().getDeclaredMethod(
+                Method method = connectivityManager.getClass().getDeclaredMethod(
                         "setMobileDataEnabled", Boolean.TYPE
                 );
                 // 设置移动网络
-                method.invoke(manager, isOpen);
+                method.invoke(connectivityManager, isOpen);
             } else { // 需要 Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 通过反射设置移动网络
@@ -122,11 +122,11 @@ public final class NetWorkUtils {
     public static boolean isConnect() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
-            ConnectivityManager manager = AppUtils.getConnectivityManager();
+            ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 获取网络连接管理的对象
-                NetworkInfo info = manager.getActiveNetworkInfo();
+                NetworkInfo info = connectivityManager.getActiveNetworkInfo();
                 // 判断是否为 null
                 if (info != null) {
                     // 判断当前网络是否已经连接
@@ -136,7 +136,7 @@ public final class NetWorkUtils {
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = manager.getActiveNetwork();
+                Network network = connectivityManager.getActiveNetwork();
                 // 判断是否为 null
                 if (network != null) {
                     return true;
@@ -156,17 +156,17 @@ public final class NetWorkUtils {
     public static int getConnectType() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
-            ConnectivityManager manager = AppUtils.getConnectivityManager();
+            ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 Wifi
-                State wifiState = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                State wifiState = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == State.CONNECTED || wifiState == State.CONNECTING) {
                     return 1;
                 } else {
                     // 判断连接的是否移动网络
-                    State mobileState = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+                    State mobileState = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
                     // 判断移动网络是否连接上
                     if (mobileState == State.CONNECTED || mobileState == State.CONNECTING) {
                         return 2;
@@ -174,9 +174,9 @@ public final class NetWorkUtils {
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = manager.getActiveNetwork();
+                Network network = connectivityManager.getActiveNetwork();
                 if (network != null) {
-                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(network);
                     // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return 1;
@@ -443,15 +443,15 @@ public final class NetWorkUtils {
         } else {
             try {
                 // 获取网络连接状态
-                ConnectivityManager manager = AppUtils.getConnectivityManager();
+                ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = manager.getActiveNetwork();
+                Network network = connectivityManager.getActiveNetwork();
                 // 防止为 null
                 if (network != null) {
                     // 属于可用则修改为未知
                     netType = NetworkType.NETWORK_UNKNOWN;
                     // 获取网络连接信息
-                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(network);
                     // 判断是否连接 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         netType = NetworkType.NETWORK_WIFI;
