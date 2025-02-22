@@ -20,6 +20,9 @@ import dev.utils.LogPrintUtils;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public final class KeyguardUtils {
 
+    private KeyguardUtils() {
+    }
+
     // 日志 TAG
     private static final String TAG = KeyguardUtils.class.getSimpleName();
 

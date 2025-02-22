@@ -14,8 +14,6 @@ import dev.utils.app.wifi.WifiUtils
  * 开启热点前必须获取到所需权限
  */
 class QuickWifiHotUtils(
-    // Wifi 工具类
-    private val wifiUtils: WifiUtils,
     // Wifi 热点工具类
     private val wifiHotUtils: WifiHotUtils
 ) {
@@ -148,7 +146,7 @@ class QuickWifiHotUtils(
 
             // 是否延时检查
             var isPostDelayed = false
-            when (wifiUtils.wifiState) {
+            when (WifiUtils.getWifiState()) {
                 WifiManager.WIFI_STATE_ENABLED,
                 WifiManager.WIFI_STATE_ENABLING -> {
                     // case WifiManager.WIFI_STATE_UNKNOWN: // 未知
@@ -156,7 +154,7 @@ class QuickWifiHotUtils(
                     TAG.log_dTag(
                         message = "Wifi 已打开、正在打开"
                     )
-                    wifiUtils.closeWifi() // 关闭 Wifi
+                    WifiUtils.closeWifi() // 关闭 Wifi
                 }
 
                 WifiManager.WIFI_STATE_DISABLED -> {
@@ -294,7 +292,7 @@ class QuickWifiHotUtils(
         mHotSSID = ssid
         mHotPwd = pwd
         // 如果开启了 Wifi 则进行关闭 Wifi
-        if (wifiUtils.isOpenWifi) {
+        if (WifiUtils.isOpenWifi()) {
             // 开始进行线程检查
             setWifiCheck(true)
             // 开启线程

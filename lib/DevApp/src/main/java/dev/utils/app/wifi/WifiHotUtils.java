@@ -38,22 +38,9 @@ public final class WifiHotUtils {
     // 日志 TAG
     private static final String TAG = WifiHotUtils.class.getSimpleName();
 
-    // WifiManager 对象
-    private final WifiManager       mWifiManager;
-    // Wifi 热点配置
-    private       WifiConfiguration mAPWifiConfig;
-
-    /**
-     * 构造函数
-     */
-    public WifiHotUtils() {
-        // 初始化 WifiManager 对象
-        mWifiManager = AppUtils.getWifiManager();
-    }
-
-    // ============
-    // = Wifi 操作 =
-    // ============
+    // ==========
+    // = 热点配置 =
+    // ==========
 
     /**
      * 创建 Wifi 热点配置 ( 支持 无密码 / WPA2 PSK )
@@ -108,6 +95,13 @@ public final class WifiHotUtils {
         return null;
     }
 
+    // ==========
+    // = 具体功能 =
+    // ==========
+
+    // Wifi 热点配置
+    private WifiConfiguration mAPWifiConfig;
+
     /**
      * 开启 Wifi 热点
      * <pre>
@@ -123,6 +117,7 @@ public final class WifiHotUtils {
     })
     public boolean startWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
+        WifiManager wifiManager = AppUtils.getWifiManager();
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
@@ -134,7 +129,7 @@ public final class WifiHotUtils {
                 mAPWifiSSID = mAPWifiPwd = null;
                 // Android 8.0 是基于应用开启的, 必须使用固定生成的配置进行创建, 无法进行控制 (APP 关闭后, 热点自动关闭 )
                 // 必须有定位权限
-                mWifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
+                wifiManager.startLocalOnlyHotspot(new WifiManager.LocalOnlyHotspotCallback() {
                     @Override
                     public void onStarted(WifiManager.LocalOnlyHotspotReservation reservation) {
                         super.onStarted(reservation);
@@ -204,12 +199,12 @@ public final class WifiHotUtils {
             try {
                 // 需要 android.permission.WRITE_SETTINGS 权限
                 // 获取设置 Wifi 热点方法
-                Method method = mWifiManager.getClass().getMethod(
+                Method method = wifiManager.getClass().getMethod(
                         "setWifiApEnabled", WifiConfiguration.class,
                         boolean.class
                 );
                 // 开启 Wifi 热点
-                method.invoke(mWifiManager, wifiConfig, true);
+                method.invoke(wifiManager, wifiConfig, true);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "startWifiAp");
@@ -234,8 +229,9 @@ public final class WifiHotUtils {
             return true;
         }
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取设置 Wifi 热点方法
-            Method method = mWifiManager.getClass().getMethod(
+            Method method = wifiManager.getClass().getMethod(
                     "setWifiApEnabled", WifiConfiguration.class,
                     boolean.class
             );
@@ -261,7 +257,7 @@ public final class WifiHotUtils {
             wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
             wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
             // 开启 Wifi 热点
-            method.invoke(mWifiManager, wifiConfig, false);
+            method.invoke(wifiManager, wifiConfig, false);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "closeWifiAp");
@@ -300,10 +296,11 @@ public final class WifiHotUtils {
      */
     public int getWifiApState() {
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 反射获取方法
-            Method method = mWifiManager.getClass().getMethod("getWifiApState");
+            Method method = wifiManager.getClass().getMethod("getWifiApState");
             // 调用方法, 获取状态
-            int wifiApState = (Integer) method.invoke(mWifiManager);
+            int wifiApState = (Integer) method.invoke(wifiManager);
             // 打印状态
             LogPrintUtils.dTag(TAG, "WifiApState: %s", wifiApState);
             return wifiApState;
@@ -319,10 +316,11 @@ public final class WifiHotUtils {
      */
     public WifiConfiguration getWifiApConfiguration() {
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取 Wifi 热点方法
-            Method method = mWifiManager.getClass().getMethod("getWifiApConfiguration");
+            Method method = wifiManager.getClass().getMethod("getWifiApConfiguration");
             // 获取配置
-            return (WifiConfiguration) method.invoke(mWifiManager);
+            return (WifiConfiguration) method.invoke(wifiManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiApConfiguration");
         }
@@ -336,12 +334,13 @@ public final class WifiHotUtils {
      */
     public boolean setWifiApConfiguration(final WifiConfiguration apWifiConfig) {
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取设置 Wifi 热点方法
-            Method method = mWifiManager.getClass().getMethod(
+            Method method = wifiManager.getClass().getMethod(
                     "setWifiApConfiguration", WifiConfiguration.class
             );
             // 开启 Wifi 热点
-            return (boolean) method.invoke(mWifiManager, apWifiConfig);
+            return (boolean) method.invoke(wifiManager, apWifiConfig);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setWifiApConfiguration");
         }
@@ -377,14 +376,14 @@ public final class WifiHotUtils {
 
     /**
      * 关闭 Wifi 热点 ( 判断当前状态 )
-     * @param isExecute 是否执行关闭
+     * @param execute 是否执行关闭
      * @return {@code true} success, {@code false} fail
      */
-    public boolean closeWifiApCheck(final boolean isExecute) {
+    public boolean closeWifiApCheck(final boolean execute) {
         // 判断是否开启热点 ( 默认是 )
         boolean isOpen = true;
         // 判断是否执行关闭
-        boolean isExecuteClose = isExecute;
+        boolean isExecuteClose = execute;
         // 获取当前 Wifi 热点状态
         int wifiApState = getWifiApState();
         switch (wifiApState) {
@@ -439,8 +438,9 @@ public final class WifiHotUtils {
     @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public String getHotspotServiceIp() {
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 获取网关信息
-            DhcpInfo dhcpInfo = mWifiManager.getDhcpInfo();
+            DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
             // 获取服务器地址
             return intToString(dhcpInfo.serverAddress);
         } catch (Exception e) {
@@ -488,33 +488,12 @@ public final class WifiHotUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getHotspotAllotIp");
+            LogPrintUtils.eTag(TAG, e, "getConnectHotspotMsg");
         } finally {
             CloseUtils.closeIOQuietly(br);
         }
         return null;
     }
-
-//    /**
-//     * 获取连接的热点信息
-//     * @return 连接的热点信息
-//     */
-//    private String getConnectHotspotMsg() {
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                String[] arrays = line.split(" +");
-//                if (arrays.length >= 4) {
-//                    String ip = arrays[0]; // IP 地址
-//                    String mac = arrays[3]; // Mac 地址
-//                }
-//            }
-//        } catch (Exception e) {
-//            LogPrintUtils.eTag(TAG, e, "getConnectHotspotMsg");
-//        }
-//        return null;
-//    }
 
     /**
      * 获取热点拼接后的 IP 网关掩码
@@ -554,7 +533,7 @@ public final class WifiHotUtils {
     }
 
     // ===================
-    // = Android 8.0 相关 =
+    // = Android 8.0 适配 =
     // ===================
 
     // Wifi ssid

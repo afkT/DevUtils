@@ -45,16 +45,16 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                 binding.vidRv.bindAdapter(wifiButtonValues) { buttonValue ->
                     when (buttonValue.type) {
                         ButtonValue.BTN_WIFI_OPEN -> {
-                            if (wifiUtils.isOpenWifi) {
+                            if (WifiUtils.isOpenWifi()) {
                                 ToastTintUtils.error("Wifi 已打开")
                             } else {
-                                showToast(wifiUtils.openWifi(), "打开成功", "打开失败")
+                                showToast(WifiUtils.openWifi(), "打开成功", "打开失败")
                             }
                         }
 
                         ButtonValue.BTN_WIFI_CLOSE -> {
-                            if (wifiUtils.isOpenWifi) {
-                                showToast(wifiUtils.closeWifi(), "关闭成功", "关闭失败")
+                            if (WifiUtils.isOpenWifi()) {
+                                showToast(WifiUtils.closeWifi(), "关闭成功", "关闭失败")
                             } else {
                                 ToastTintUtils.error("Wifi 已关闭")
                             }
@@ -180,9 +180,6 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
         }
     }
 ) {
-
-    // Wifi 工具类
-    var wifiUtils = WifiUtils()
 
     // Wifi 热点工具类
     var wifiHotUtils = WifiHotUtils()
@@ -373,13 +370,13 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                             // 防止页面已经关闭
                             if (!isFinishing) {
                                 // 打开 Wifi
-                                wifiUtils.openWifi()
+                                WifiUtils.openWifi()
                             }
                         }, 1500)
                     } else { // 如果没有开启热点, 则判断是否开启 Wifi
                         // 判断是否开启 Wifi
-                        if (!wifiUtils.isOpenWifi) {
-                            wifiUtils.openWifi()
+                        if (!WifiUtils.isOpenWifi()) {
+                            WifiUtils.openWifi()
                         }
                     }
                 }

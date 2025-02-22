@@ -38,11 +38,11 @@ import dev.utils.common.ConvertUtils;
  */
 public final class WifiUtils {
 
+    private WifiUtils() {
+    }
+
     // 日志 TAG
     private static final String TAG = WifiUtils.class.getSimpleName();
-
-    // WifiManager 对象
-    private final WifiManager mWifiManager;
 
     // =======
     // = 常量 =
@@ -55,14 +55,6 @@ public final class WifiUtils {
     // wpa 加密方式
     public static final int WPA   = 2;
 
-    /**
-     * 构造函数
-     */
-    public WifiUtils() {
-        // 初始化 WifiManager 对象
-        mWifiManager = AppUtils.getWifiManager();
-    }
-
     // =======================
     // = Wifi 开关、连接状态获取 =
     // =======================
@@ -71,8 +63,13 @@ public final class WifiUtils {
      * 判断是否打开 Wifi
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isOpenWifi() {
-        return mWifiManager.isWifiEnabled();
+    public static boolean isOpenWifi() {
+        try {
+            return AppUtils.getWifiManager().isWifiEnabled();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isOpenWifi");
+        }
+        return false;
     }
 
     /**
@@ -80,11 +77,11 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean openWifi() {
+    public static boolean openWifi() {
         // 如果没有打开 Wifi, 才进行打开
         if (!isOpenWifi()) {
             try {
-                return mWifiManager.setWifiEnabled(true);
+                return AppUtils.getWifiManager().setWifiEnabled(true);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "openWifi");
             }
@@ -97,11 +94,11 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean closeWifi() {
+    public static boolean closeWifi() {
         // 如果已经打开了 Wifi, 才进行关闭
         if (isOpenWifi()) {
             try {
-                return mWifiManager.setWifiEnabled(false);
+                return AppUtils.getWifiManager().setWifiEnabled(false);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeWifi");
             }
@@ -118,9 +115,9 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean toggleWifiEnabled() {
+    public static boolean toggleWifiEnabled() {
         try {
-            return mWifiManager.setWifiEnabled(!isOpenWifi());
+            return AppUtils.getWifiManager().setWifiEnabled(!isOpenWifi());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "toggleWifiEnabled");
         }
@@ -132,14 +129,14 @@ public final class WifiUtils {
      * @return Wifi 连接状态
      */
     @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
-    public int getWifiState() {
+    public static int getWifiState() {
         // WifiManager.WIFI_STATE_ENABLED: // 已打开
         // WifiManager.WIFI_STATE_ENABLING: // 正在打开
         // WifiManager.WIFI_STATE_DISABLED: // 已关闭
         // WifiManager.WIFI_STATE_DISABLING: // 正在关闭
         // WifiManager.WIFI_STATE_UNKNOWN: // 未知
         try {
-            return mWifiManager.getWifiState();
+            return AppUtils.getWifiManager().getWifiState();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiState");
         }
@@ -155,9 +152,9 @@ public final class WifiUtils {
      * @return {@code true} 操作成功, {@code false} 操作失败
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean startScan() {
+    public static boolean startScan() {
         try {
-            return mWifiManager.startScan();
+            return AppUtils.getWifiManager().startScan();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startScan");
         }
@@ -172,9 +169,9 @@ public final class WifiUtils {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_WIFI_STATE
     })
-    public List<WifiConfiguration> getConfiguration() {
+    public static List<WifiConfiguration> getConfiguration() {
         try {
-            return mWifiManager.getConfiguredNetworks();
+            return AppUtils.getWifiManager().getConfiguredNetworks();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getConfiguration");
         }
@@ -185,10 +182,13 @@ public final class WifiUtils {
      * 获取附近的 Wifi 列表
      * @return {@link List<ScanResult>} 附近的 Wifi 列表
      */
-    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
-    public List<ScanResult> getWifiList() {
+    @RequiresPermission(allOf = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE
+    })
+    public static List<ScanResult> getWifiList() {
         try {
-            return mWifiManager.getScanResults();
+            return AppUtils.getWifiManager().getScanResults();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiList");
         }
@@ -200,9 +200,9 @@ public final class WifiUtils {
      * @return {@link WifiInfo}
      */
     @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
-    public WifiInfo getWifiInfo() {
+    public static WifiInfo getWifiInfo() {
         try {
-            return mWifiManager.getConnectionInfo();
+            return AppUtils.getWifiManager().getConnectionInfo();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiInfo");
         }
@@ -523,7 +523,7 @@ public final class WifiUtils {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_WIFI_STATE
     })
-    public WifiConfiguration isExists(final String ssid) {
+    public static WifiConfiguration isExists(final String ssid) {
         if (ssid == null) return null;
         // 获取 Wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
@@ -550,7 +550,7 @@ public final class WifiUtils {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_WIFI_STATE
     })
-    public WifiConfiguration isExists(final int networkId) {
+    public static WifiConfiguration isExists(final int networkId) {
         // 获取 Wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
         // 防止为 null
@@ -623,7 +623,7 @@ public final class WifiUtils {
             Manifest.permission.ACCESS_WIFI_STATE,
             Manifest.permission.CHANGE_WIFI_STATE
     })
-    public WifiConfiguration quickConnWifi(
+    public static WifiConfiguration quickConnWifi(
             final String ssid,
             final String pwd,
             final int type
@@ -645,7 +645,7 @@ public final class WifiUtils {
             Manifest.permission.ACCESS_WIFI_STATE,
             Manifest.permission.CHANGE_WIFI_STATE
     })
-    public WifiConfiguration quickConnWifi(
+    public static WifiConfiguration quickConnWifi(
             final String ssid,
             final String pwd,
             final int type,
@@ -662,6 +662,7 @@ public final class WifiUtils {
         // 7. 返回连接的配置信息
         // =
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 正常的 Wifi 连接配置
             WifiConfiguration connWifiConfig;
             // 如果需要通过静态 IP 方式连接, 则进行设置
@@ -689,22 +690,22 @@ public final class WifiUtils {
                 LogPrintUtils.dTag(TAG, "属于正常方式连接 (DHCP)");
             }
             // 判断当前准备连接的 Wifi, 是否存在配置文件
-            WifiConfiguration preWifiConfig = this.isExists(ssid);
+            WifiConfiguration preWifiConfig = isExists(ssid);
             // =
             if (preWifiConfig != null) {
                 // 存在则删除
-                boolean isRemove = mWifiManager.removeNetwork(preWifiConfig.networkId);
+                boolean isRemove = wifiManager.removeNetwork(preWifiConfig.networkId);
                 // 打印结果
                 LogPrintUtils.dTag(
                         TAG, "删除旧的配置信息 %s, isRemove: %s",
                         preWifiConfig.SSID, isRemove
                 );
                 // 保存配置
-                mWifiManager.saveConfiguration();
+                wifiManager.saveConfiguration();
             }
             // =
             // 连接网络
-            int nId = mWifiManager.addNetwork(connWifiConfig);
+            int nId = wifiManager.addNetwork(connWifiConfig);
             if (nId != -1) {
                 try {
                     // 获取当前连接的 Wifi 对象
@@ -712,9 +713,9 @@ public final class WifiUtils {
                     // 获取连接的 id
                     int networkId = wifiInfo.getNetworkId();
                     // 禁用网络
-                    boolean isDisable = mWifiManager.disableNetwork(networkId);
+                    boolean isDisable = wifiManager.disableNetwork(networkId);
                     // 断开之前的连接
-                    boolean isDisConnect = mWifiManager.disconnect();
+                    boolean isDisConnect = wifiManager.disconnect();
                     // 打印断开连接结果
                     LogPrintUtils.dTag(
                             TAG, "isDisConnect: %s, isDisable: %s",
@@ -724,10 +725,10 @@ public final class WifiUtils {
                     LogPrintUtils.eTag(TAG, e, "quickConnWifi 关闭连接出错: %s", nId);
                 }
                 // 开始连接
-                boolean result = mWifiManager.enableNetwork(nId, true);
+                boolean result = wifiManager.enableNetwork(nId, true);
                 // =
                 if (!result) {
-                    result = mWifiManager.enableNetwork(nId, true);
+                    result = wifiManager.enableNetwork(nId, true);
                 }
                 // 打印结果
                 LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) result: %s", result);
@@ -735,7 +736,7 @@ public final class WifiUtils {
                 // 尝试不带引号 SSID 连接
                 connWifiConfig.SSID = formatSSID(connWifiConfig.SSID, false);
                 // 连接网络
-                nId = mWifiManager.addNetwork(connWifiConfig);
+                nId = wifiManager.addNetwork(connWifiConfig);
                 if (nId != -1) {
                     try {
                         // 获取当前连接的 Wifi 对象
@@ -743,9 +744,9 @@ public final class WifiUtils {
                         // 获取连接的 id
                         int networkId = wifiInfo.getNetworkId();
                         // 禁用网络
-                        boolean isDisable = mWifiManager.disableNetwork(networkId);
+                        boolean isDisable = wifiManager.disableNetwork(networkId);
                         // 断开之前的连接
-                        boolean isDisConnect = mWifiManager.disconnect();
+                        boolean isDisConnect = wifiManager.disconnect();
                         // 打印断开连接结果
                         LogPrintUtils.dTag(
                                 TAG, "isDisConnect: %s, isDisable: %s",
@@ -755,10 +756,10 @@ public final class WifiUtils {
                         LogPrintUtils.eTag(TAG, e, "quickConnWifi 关闭连接出错: %s", nId);
                     }
                     // 开始连接
-                    boolean result = mWifiManager.enableNetwork(nId, true);
+                    boolean result = wifiManager.enableNetwork(nId, true);
                     // =
                     if (!result) {
-                        result = mWifiManager.enableNetwork(nId, true);
+                        result = wifiManager.enableNetwork(nId, true);
                     }
                     // 打印结果
                     LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) result: %s", result);
@@ -864,14 +865,15 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean removeWifiConfig(final WifiConfiguration wifiConfig) {
+    public static boolean removeWifiConfig(final WifiConfiguration wifiConfig) {
         // 如果等于 null 则直接返回
         if (wifiConfig == null) return false;
         try {
+            WifiManager wifiManager = AppUtils.getWifiManager();
             // 删除配置
-            boolean result = mWifiManager.removeNetwork(wifiConfig.networkId);
+            boolean result = wifiManager.removeNetwork(wifiConfig.networkId);
             // 保存操作
-            mWifiManager.saveConfiguration();
+            wifiManager.saveConfiguration();
             // 返回删除结果
             return result;
         } catch (Exception e) {
@@ -886,10 +888,11 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
-    public boolean disconnectWifi(final int networkId) {
+    public static boolean disconnectWifi(final int networkId) {
         try {
-            mWifiManager.disableNetwork(networkId);
-            return mWifiManager.disconnect();
+            WifiManager wifiManager = AppUtils.getWifiManager();
+            wifiManager.disableNetwork(networkId);
+            return wifiManager.disconnect();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "disconnectWifi");
         }
@@ -906,7 +909,7 @@ public final class WifiUtils {
      * @param ip         静态 IP
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(
+    private static WifiConfiguration setStaticWifiConfig(
             final WifiConfiguration wifiConfig,
             final String ip
     ) {
@@ -936,7 +939,7 @@ public final class WifiUtils {
      * @param networkPrefixLength 网络前缀长度
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(
+    private static WifiConfiguration setStaticWifiConfig(
             final WifiConfiguration wifiConfig,
             final String ip,
             final String gateway,
@@ -982,7 +985,7 @@ public final class WifiUtils {
      * @return IPv4 地址
      * @throws Exception 不属于 IPv4 地址
      */
-    private int inetAddressToInt(final InetAddress inetAddress) {
+    private static int inetAddressToInt(final InetAddress inetAddress) {
         byte[] data = inetAddress.getAddress();
         if (data.length != 4) {
             throw new IllegalArgumentException("Not an IPv4 address");
@@ -997,7 +1000,7 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setDNS(
+    private static void setDNS(
             final InetAddress dns,
             final WifiConfiguration wifiConfig
     )
@@ -1020,7 +1023,7 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setGateway(
+    private static void setGateway(
             final InetAddress gateway,
             final WifiConfiguration wifiConfig
     )
@@ -1045,7 +1048,7 @@ public final class WifiUtils {
      * @param wifiConfig   Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setIpAddress(
+    private static void setIpAddress(
             final InetAddress address,
             final int prefixLength,
             final WifiConfiguration wifiConfig
@@ -1073,7 +1076,7 @@ public final class WifiUtils {
      * @param object       Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setStaticIpConfig(
+    private static void setStaticIpConfig(
             final String ip,
             final String gateway,
             final String dns,
@@ -1115,7 +1118,7 @@ public final class WifiUtils {
      * @return 对应的字段
      * @throws Exception 获取失败, 抛出异常
      */
-    private Object getField(
+    private static Object getField(
             final Object object,
             final String name
     )
@@ -1131,7 +1134,7 @@ public final class WifiUtils {
      * @return 对应的字段
      * @throws Exception 获取失败, 抛出异常
      */
-    private Object getDeclaredField(
+    private static Object getDeclaredField(
             final Object object,
             final String name
     )
@@ -1148,7 +1151,7 @@ public final class WifiUtils {
      * @param name   字段名
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setEnumField(
+    private static void setEnumField(
             final Object object,
             final String value,
             final String name
@@ -1165,7 +1168,7 @@ public final class WifiUtils {
      * @param name   字段名
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setValueField(
+    private static void setValueField(
             final Object object,
             final Object val,
             final String name

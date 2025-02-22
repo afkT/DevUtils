@@ -18,6 +18,9 @@ import dev.utils.LogPrintUtils;
  */
 public final class PowerManagerUtils {
 
+    private PowerManagerUtils() {
+    }
+
     // 日志 TAG
     private static final String TAG = PowerManagerUtils.class.getSimpleName();
 
