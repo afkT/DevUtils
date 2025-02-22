@@ -5,6 +5,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import dev.utils.LogPrintUtils;
@@ -23,8 +24,6 @@ public final class ScreenSensorAssist {
     // = 重力传感器监听对象 =
     // ==================
 
-    // 传感器管理对象
-    private SensorManager             mSensorManager;
     // 重力传感器
     private Sensor                    mSensor;
     // 重力传感器监听事件
@@ -34,8 +33,6 @@ public final class ScreenSensorAssist {
     // = 重力传感器监听对象 ( 改变方向后, 判断参数不同 ) =
     // ===========================================
 
-    // 传感器管理对象 ( 切屏后 )
-    private SensorManager                   mSensorManagerChange;
     // 重力传感器监听事件 ( 切屏后 )
     private OrientationSensorChangeListener mListenerChange;
 
@@ -66,7 +63,7 @@ public final class ScreenSensorAssist {
     /**
      * 角度处理 Handler
      */
-    private final Handler mRotateHandler = new Handler() {
+    private final Handler mRotateHandler = new Handler(Looper.getMainLooper()) {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case CHANGE_ORIENTATION_WHAT:
@@ -144,13 +141,13 @@ public final class ScreenSensorAssist {
     private void initialize(final Handler handler) {
         this.mHandler = handler;
         // 注册重力感应器, 监听屏幕旋转
-        mSensorManager = AppUtils.getSensorManager();
-        mListener      = new OrientationSensorListener();
+        mListener = new OrientationSensorListener();
         // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
-        mSensorManagerChange = AppUtils.getSensorManager();
-        mListenerChange      = new OrientationSensorChangeListener();
+        mListenerChange = new OrientationSensorChangeListener();
         // 设置传感器
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensor = AppUtils.getSensorManager().getDefaultSensor(
+                Sensor.TYPE_ACCELEROMETER
+        );
     }
 
     /**
@@ -160,12 +157,14 @@ public final class ScreenSensorAssist {
      */
     public boolean start(final Handler handler) {
         mAllowChange = true;
+        LogPrintUtils.dTag(TAG, "start orientation listener.");
         try {
-            LogPrintUtils.dTag(TAG, "start orientation listener.");
             // 初始化操作
             initialize(handler);
             // 监听重力传感器
-            mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
+            AppUtils.getSensorManager().registerListener(
+                    mListener, mSensor, SensorManager.SENSOR_DELAY_UI
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "start");
@@ -181,11 +180,11 @@ public final class ScreenSensorAssist {
         mAllowChange = false;
         LogPrintUtils.dTag(TAG, "stop orientation listener.");
         try {
-            mSensorManager.unregisterListener(mListener);
+            AppUtils.getSensorManager().unregisterListener(mListener);
         } catch (Exception ignored) {
         }
         try {
-            mSensorManagerChange.unregisterListener(mListenerChange);
+            AppUtils.getSensorManager().unregisterListener(mListenerChange);
         } catch (Exception ignored) {
         }
         return true;
@@ -288,14 +287,30 @@ public final class ScreenSensorAssist {
             if (orientation > 225 && orientation < 315) {
                 // 检测到当前实际是横屏
                 if (!mPortrait) {
-                    mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
-                    mSensorManagerChange.unregisterListener(mListenerChange);
+                    try {
+                        AppUtils.getSensorManager().registerListener(
+                                mListener, mSensor, SensorManager.SENSOR_DELAY_UI
+                        );
+                    } catch (Exception ignored) {
+                    }
+                    try {
+                        AppUtils.getSensorManager().unregisterListener(mListenerChange);
+                    } catch (Exception ignored) {
+                    }
                 }
             } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {
                 // 检测到当前实际是竖屏
                 if (mPortrait) {
-                    mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
-                    mSensorManagerChange.unregisterListener(mListenerChange);
+                    try {
+                        AppUtils.getSensorManager().registerListener(
+                                mListener, mSensor, SensorManager.SENSOR_DELAY_UI
+                        );
+                    } catch (Exception ignored) {
+                    }
+                    try {
+                        AppUtils.getSensorManager().unregisterListener(mListenerChange);
+                    } catch (Exception ignored) {
+                    }
                 }
             }
         }

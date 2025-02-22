@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -309,7 +310,7 @@ public class SlideImageView
 
     // = 动画相关 =
 
-    private final Handler handler        = new Handler();
+    private final Handler handler        = new Handler(Looper.getMainLooper());
     // 动画滑动距离
     private       float   slideLength    = 10F;
     // 滑动速度 -> 时间
