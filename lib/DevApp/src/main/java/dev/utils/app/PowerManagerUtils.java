@@ -39,42 +39,6 @@ public final class PowerManagerUtils {
         return sInstance;
     }
 
-    // 电源管理锁
-    private PowerManager.WakeLock mWakeLock;
-
-    /**
-     * 构造函数
-     */
-    private PowerManagerUtils() {
-        try {
-            PowerManager powerManager = AppUtils.getPowerManager();
-            // 电源管理锁
-            mWakeLock = powerManager.newWakeLock(
-                    PowerManager.ACQUIRE_CAUSES_WAKEUP
-                            | PowerManager.FULL_WAKE_LOCK, TAG
-            );
-        } catch (Exception ignored) {
-        }
-    }
-
-    /**
-     * 获取 PowerManager.WakeLock
-     * @return {@link PowerManager.WakeLock}
-     */
-    public PowerManager.WakeLock getWakeLock() {
-        return mWakeLock;
-    }
-
-    /**
-     * 设置 PowerManager.WakeLock
-     * @param wakeLock {@link PowerManager.WakeLock}
-     * @return {@link PowerManagerUtils}
-     */
-    public PowerManagerUtils setWakeLock(final PowerManager.WakeLock wakeLock) {
-        this.mWakeLock = wakeLock;
-        return this;
-    }
-
     /**
      * 唤醒屏幕锁
      * @param wakeLock 设备唤醒对象
@@ -111,8 +75,6 @@ public final class PowerManagerUtils {
         return false;
     }
 
-    // =
-
     /**
      * 屏幕是否打开 ( 亮屏 )
      * @return {@code true} yes, {@code false} no
@@ -130,25 +92,6 @@ public final class PowerManagerUtils {
         }
         return false;
     }
-
-    /**
-     * 唤醒 / 点亮 屏幕
-     * @return {@code true} success, {@code false} fail
-     */
-    @SuppressLint("WakelockTimeout")
-    public boolean turnScreenOn() {
-        return acquire(mWakeLock);
-    }
-
-    /**
-     * 释放屏幕锁 ( 允许休眠时间自动黑屏 )
-     * @return {@code true} success, {@code false} fail
-     */
-    public boolean turnScreenOff() {
-        return release(mWakeLock);
-    }
-
-    // =
 
     /**
      * 设置屏幕常亮
@@ -192,5 +135,57 @@ public final class PowerManagerUtils {
             LogPrintUtils.eTag(TAG, e, "createWakeLockToBright");
         }
         return null;
+    }
+
+    // ====================
+    // = Default WakeLock =
+    // ====================
+
+    // 电源管理锁
+    private PowerManager.WakeLock mWakeLock;
+
+    /**
+     * 获取默认 PowerManager.WakeLock
+     * @return {@link PowerManager.WakeLock}
+     */
+    public PowerManager.WakeLock getDefaultWakeLock() {
+        if (mWakeLock != null) return mWakeLock;
+        try {
+            PowerManager powerManager = AppUtils.getPowerManager();
+            // 电源管理锁
+            mWakeLock = powerManager.newWakeLock(
+                    PowerManager.ACQUIRE_CAUSES_WAKEUP
+                            | PowerManager.FULL_WAKE_LOCK, TAG
+            );
+        } catch (Exception ignored) {
+        }
+        return mWakeLock;
+    }
+
+    /**
+     * 设置默认 PowerManager.WakeLock
+     * @param wakeLock {@link PowerManager.WakeLock}
+     * @return {@link PowerManagerUtils}
+     */
+    public PowerManagerUtils setDefaultWakeLock(final PowerManager.WakeLock wakeLock) {
+        this.mWakeLock = wakeLock;
+        return this;
+    }
+
+    /**
+     * 唤醒 / 点亮 屏幕
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("WakelockTimeout")
+    public boolean turnScreenOn() {
+        return acquire(getDefaultWakeLock());
+    }
+
+    /**
+     * 释放屏幕锁 ( 允许休眠时间自动黑屏 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean turnScreenOff() {
+        return release(getDefaultWakeLock());
     }
 }

@@ -41,31 +41,17 @@ public final class KeyguardUtils {
         return sInstance;
     }
 
-    // 锁屏管理类
-    private KeyguardManager              mKeyguardManager;
-    // android 26 开始过时
-    private KeyguardManager.KeyguardLock mKeyguardLock;
-
-    /**
-     * 构造函数
-     */
-    private KeyguardUtils() {
-        try {
-            mKeyguardManager = AppUtils.getKeyguardManager();
-            // 初始化锁
-            mKeyguardLock = mKeyguardManager.newKeyguardLock(TAG);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "KeyguardUtils");
-        }
-    }
-
     /**
      * 是否锁屏 ( android 4.1 以上支持 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isKeyguardLocked() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (mKeyguardManager != null) return mKeyguardManager.isKeyguardLocked();
+            try {
+                return AppUtils.getKeyguardManager().isKeyguardLocked();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isKeyguardLocked");
+            }
         }
         return false;
     }
@@ -76,7 +62,11 @@ public final class KeyguardUtils {
      */
     public boolean isKeyguardSecure() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (mKeyguardManager != null) return mKeyguardManager.isKeyguardSecure();
+            try {
+                return AppUtils.getKeyguardManager().isKeyguardSecure();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isKeyguardSecure");
+            }
         }
         return false;
     }
@@ -86,29 +76,96 @@ public final class KeyguardUtils {
      * @return {@code true} yes, {@code false} no
      */
     public boolean inKeyguardRestrictedInputMode() {
-        if (mKeyguardManager != null) return mKeyguardManager.inKeyguardRestrictedInputMode();
+        try {
+            return AppUtils.getKeyguardManager().inKeyguardRestrictedInputMode();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "inKeyguardRestrictedInputMode");
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 创建 KeyguardManager.KeyguardLock ( 通过 TAG 生成 )
+     * @param tag TAG
+     * @return {@link KeyguardManager.KeyguardLock}
+     */
+    public KeyguardManager.KeyguardLock newKeyguardLock(final String tag) {
+        KeyguardManager keyguardManager = AppUtils.getKeyguardManager();
+        if (keyguardManager != null && tag != null) {
+            try {
+                return keyguardManager.newKeyguardLock(tag);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "newKeyguardLock");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 屏蔽系统的屏保
+     * 利用 disableKeyguard 解锁, 解锁并不是真正的解锁, 只是把锁屏的界面隐藏掉而已
+     * @param keyguardLock {@link KeyguardManager.KeyguardLock}
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+    public boolean disableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
+        if (keyguardLock != null) {
+            try {
+                keyguardLock.disableKeyguard();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "disableKeyguard");
+            }
+        }
         return false;
     }
 
     /**
-     * 获取 KeyguardManager
-     * @return {@link KeyguardManager}
+     * 使能显示锁屏界面, 如果你之前调用了 disableKeyguard() 方法取消锁屏界面, 那么会马上显示锁屏界面
+     * @param keyguardLock {@link KeyguardManager.KeyguardLock}
+     * @return {@code true} success, {@code false} fail
      */
-    public KeyguardManager getKeyguardManager() {
-        return mKeyguardManager;
+    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
+    public boolean reenableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
+        if (keyguardLock != null) {
+            try {
+                keyguardLock.reenableKeyguard();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "reenableKeyguard");
+            }
+        }
+        return false;
+    }
+
+    // ========================
+    // = Default KeyguardLock =
+    // ========================
+
+    // android 26 开始过时
+    private KeyguardManager.KeyguardLock mKeyguardLock;
+
+    /**
+     * 获取默认 KeyguardManager.KeyguardLock
+     * @return {@link KeyguardManager.KeyguardLock}
+     */
+    public KeyguardManager.KeyguardLock getDefaultKeyguardLock() {
+        if (mKeyguardLock != null) return mKeyguardLock;
+        mKeyguardLock = newKeyguardLock(TAG);
+        return mKeyguardLock;
     }
 
     /**
-     * 设置 KeyguardManager
-     * @param keyguardManager {@link KeyguardManager}
+     * 设置默认 KeyguardManager.KeyguardLock
+     * @param keyguardLock {@link KeyguardManager.KeyguardLock}
      * @return {@link KeyguardUtils}
      */
-    public KeyguardUtils setKeyguardManager(final KeyguardManager keyguardManager) {
-        this.mKeyguardManager = keyguardManager;
+    public KeyguardUtils setDefaultKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
+        this.mKeyguardLock = keyguardLock;
         return this;
     }
-
-    // =
 
     /**
      * 屏蔽系统的屏保
@@ -117,11 +174,7 @@ public final class KeyguardUtils {
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public boolean disableKeyguard() {
-        if (mKeyguardLock != null) {
-            mKeyguardLock.disableKeyguard();
-            return true;
-        }
-        return false;
+        return disableKeyguard(getDefaultKeyguardLock());
     }
 
     /**
@@ -130,55 +183,6 @@ public final class KeyguardUtils {
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
     public boolean reenableKeyguard() {
-        if (mKeyguardLock != null) {
-            mKeyguardLock.reenableKeyguard();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 释放资源
-     * @return {@code true} success, {@code false} fail
-     */
-    @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
-    public boolean release() {
-        if (mKeyguardLock != null) {
-            mKeyguardLock.reenableKeyguard();
-            return true;
-        }
-        return false;
-    }
-
-    // =
-
-    /**
-     * 获取 KeyguardManager.KeyguardLock
-     * @return {@link KeyguardManager.KeyguardLock}
-     */
-    public KeyguardManager.KeyguardLock getKeyguardLock() {
-        return mKeyguardLock;
-    }
-
-    /**
-     * 设置 KeyguardManager.KeyguardLock
-     * @param keyguardLock {@link KeyguardManager.KeyguardLock}
-     * @return {@link KeyguardUtils}
-     */
-    public KeyguardUtils setKeyguardLock(final KeyguardManager.KeyguardLock keyguardLock) {
-        this.mKeyguardLock = keyguardLock;
-        return this;
-    }
-
-    /**
-     * 设置 KeyguardManager.KeyguardLock ( 通过 TAG 生成 )
-     * @param tag TAG
-     * @return {@link KeyguardUtils}
-     */
-    public KeyguardUtils setKeyguardLock(final String tag) {
-        if (mKeyguardManager != null && tag != null) {
-            mKeyguardLock = mKeyguardManager.newKeyguardLock(tag);
-        }
-        return this;
+        return reenableKeyguard(getDefaultKeyguardLock());
     }
 }
