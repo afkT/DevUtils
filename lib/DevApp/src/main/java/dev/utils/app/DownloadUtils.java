@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.common.CloseUtils;
 
 /**
  * detail: DownloadManager 工具类
@@ -193,12 +192,11 @@ public final class DownloadUtils {
         Cursor cursor = query(query);
         if (cursor != null) {
             try {
-                int statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-                return cursor.getInt(statusIndex);
+                return CursorUtils.getIntByNameThrows(cursor, DownloadManager.COLUMN_STATUS);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "queryStatus");
             } finally {
-                CloseUtils.closeIOQuietly(cursor);
+                CursorUtils.closeIOQuietly(cursor);
             }
         }
         return -1;
@@ -222,15 +220,13 @@ public final class DownloadUtils {
         Cursor cursor = query(query);
         if (cursor != null) {
             try {
-                int  progressIndex = cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
-                int  totalIndex    = cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
-                long progress      = cursor.getLong(progressIndex);
-                long total         = cursor.getLong(totalIndex);
+                long progress = CursorUtils.getLongByNameThrows(cursor, DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
+                long total    = CursorUtils.getLongByNameThrows(cursor, DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
                 return new long[]{progress, total};
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "queryBytes");
             } finally {
-                CloseUtils.closeIOQuietly(cursor);
+                CursorUtils.closeIOQuietly(cursor);
             }
         }
         return new long[]{-1L, -1L};
@@ -254,12 +250,11 @@ public final class DownloadUtils {
         Cursor cursor = query(query);
         if (cursor != null) {
             try {
-                int reasonIndex = cursor.getColumnIndex(DownloadManager.COLUMN_REASON);
-                return cursor.getString(reasonIndex);
+                return CursorUtils.getStringByNameThrows(cursor, DownloadManager.COLUMN_REASON);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "queryReason");
             } finally {
-                CloseUtils.closeIOQuietly(cursor);
+                CursorUtils.closeIOQuietly(cursor);
             }
         }
         return null;
