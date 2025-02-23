@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -406,14 +405,14 @@ public final class ScreenshotUtils {
                 return;
             }
             // 获取数据
-            long rowId = cursor.getLong(
-                    cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)
+            long rowId = CursorUtils.getLongByNameThrows(
+                    cursor, MediaStore.Images.ImageColumns._ID
             );
-            String data = cursor.getString(
-                    cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            String data = CursorUtils.getStringByNameThrows(
+                    cursor, MediaStore.Images.ImageColumns.DATA
             );
-            long dateTaken = cursor.getLong(
-                    cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATE_TAKEN)
+            long dateTaken = CursorUtils.getLongByNameThrows(
+                    cursor, MediaStore.Images.ImageColumns.DATE_TAKEN
             );
             if (checker != null) {
                 checker.onChecker(
@@ -423,7 +422,7 @@ public final class ScreenshotUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "handleMediaContentChange");
         } finally {
-            CloseUtils.closeIOQuietly(cursor);
+            CursorUtils.closeIOQuietly(cursor);
         }
     }
 

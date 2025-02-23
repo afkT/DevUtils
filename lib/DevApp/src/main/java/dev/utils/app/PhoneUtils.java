@@ -4,35 +4,21 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Xml;
 
 import androidx.annotation.RequiresPermission;
 
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import dev.DevUtils;
-import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.CloseUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -638,9 +624,9 @@ public final class PhoneUtils {
      *              ContentResolver resolver = getContentResolver();
      *              Cursor cursor = resolver.query(uri, null, null, null, null);
      *              while (cursor.moveToNext()) {
-     *                  num = cursor.getString(cursor.getColumnIndex("data1"));
+     *                  num = CursorUtils.getStringByName(cursor, "data1");
      *              }
-     *              CloseUtils.closeIOQuietly(cursor);
+     *              CursorUtils.closeIOQuietly(cursor);
      *              num = num.replaceAll("-", "");
      *          }
      *      }
@@ -659,144 +645,6 @@ public final class PhoneUtils {
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getContactNum");
             }
-        }
-        return false;
-    }
-
-    /**
-     * 获取手机联系人信息
-     * @return 手机联系人信息
-     */
-    public static List<Map<String, String>> getAllContactInfo() {
-        List<Map<String, String>> list = new ArrayList<>();
-        // 游标
-        Cursor cursor = null;
-        try {
-            ContentResolver resolver = ResourceUtils.getContentResolver();
-            Uri             raw_uri  = Uri.parse("content://com.android.contacts/raw_contacts");
-            Uri             date_uri = Uri.parse("content://com.android.contacts/data");
-            cursor = resolver.query(
-                    raw_uri, new String[]{"contact_id"},
-                    null, null, null
-            );
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    String contact_id = cursor.getString(0);
-                    if (!TextUtils.isEmpty(contact_id)) {
-                        Cursor c = resolver.query(
-                                date_uri, new String[]{"data1", "mimetype"},
-                                "raw_contact_id=?", new String[]{contact_id}, null
-                        );
-                        Map<String, String> map = new HashMap<>();
-                        if (c != null) {
-                            while (c.moveToNext()) {
-                                String data1    = c.getString(0);
-                                String mimetype = c.getString(1);
-                                if ("vnd.android.cursor.item/phone_v2".equals(mimetype)) {
-                                    map.put("phone", data1); // 电话
-                                } else if ("vnd.android.cursor.item/name".equals(mimetype)) {
-                                    map.put("name", data1); // 姓名
-                                }
-                            }
-                        }
-                        list.add(map);
-                        CloseUtils.closeIOQuietly(c);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAllContactInfo");
-        } finally {
-            CloseUtils.closeIOQuietly(cursor);
-        }
-        return list;
-    }
-
-    /**
-     * 获取手机联系人信息
-     * @return 手机联系人信息
-     */
-    public static List<Map<String, String>> getAllContactInfo2() {
-        List<Map<String, String>> list   = new ArrayList<>();
-        Cursor                    cursor = null;
-        try {
-            cursor = ResourceUtils.getContentResolver().query(
-                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null, null, null, null
-            );
-            while (cursor.moveToNext()) {
-                Map<String, String> map = new HashMap<>();
-                String phoneNumber = cursor.getString(
-                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-                ).trim().replaceAll(" ", "");
-                String phoneName = cursor.getString(
-                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-                ).trim();
-                map.put("phone", phoneNumber);
-                map.put("name", phoneName);
-                list.add(map);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAllContactInfo2");
-        } finally {
-            CloseUtils.closeIOQuietly(cursor);
-        }
-        return list;
-    }
-
-    /**
-     * 获取手机短信并保存到 xml 中
-     * @param filePath 文件路径
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean getAllSMS(final String filePath) {
-        Cursor cursor = null;
-        try {
-            ContentResolver resolver = ResourceUtils.getContentResolver();
-            Uri             uri      = Uri.parse("content://sms");
-            cursor = resolver.query(
-                    uri, new String[]{"address", "date", "type", "body"},
-                    null, null, null
-            );
-//            // 获取短信的个数
-//            int count = cursor.getCount();
-            XmlSerializer xmlSerializer = Xml.newSerializer();
-            xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), DevFinal.ENCODE.UTF_8);
-            xmlSerializer.startDocument(DevFinal.ENCODE.UTF_8, true);
-            xmlSerializer.startTag(null, "smss");
-            while (cursor.moveToNext()) {
-                xmlSerializer.startTag(null, "sms");
-
-                xmlSerializer.startTag(null, "address");
-                String address = cursor.getString(0);
-                xmlSerializer.text(address);
-                xmlSerializer.endTag(null, "address");
-
-                xmlSerializer.startTag(null, "date");
-                String date = cursor.getString(1);
-                xmlSerializer.text(date);
-                xmlSerializer.endTag(null, "date");
-
-                xmlSerializer.startTag(null, "type");
-                String type = cursor.getString(2);
-                xmlSerializer.text(type);
-                xmlSerializer.endTag(null, "type");
-
-                xmlSerializer.startTag(null, "body");
-                String body = cursor.getString(3);
-                xmlSerializer.text(body);
-                xmlSerializer.endTag(null, "body");
-
-                xmlSerializer.endTag(null, "sms");
-            }
-            xmlSerializer.endTag(null, "smss");
-            xmlSerializer.endDocument();
-            xmlSerializer.flush();
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAllSMS");
-        } finally {
-            CloseUtils.closeIOQuietly(cursor);
         }
         return false;
     }

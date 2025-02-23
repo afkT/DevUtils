@@ -21,7 +21,6 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.CloseUtils;
 
 /**
  * detail: 快捷方式工具类
@@ -60,16 +59,21 @@ public final class ShortCutUtils {
     public static boolean hasShortcut(final String name) {
         Cursor cursor = null;
         try {
-            Context         context  = DevUtils.getContext();
-            Uri             uri      = Uri.parse("content://" + getAuthority(context) + "/favorites?notify=true");
+            Context context = DevUtils.getContext();
+            Uri uri = Uri.parse(
+                    "content://" + getAuthority(context) + "/favorites?notify=true"
+            );
             ContentResolver resolver = context.getContentResolver();
-            cursor = resolver.query(uri, new String[]{"title", "iconResource"}, "title=?", new String[]{name}, null);
+            cursor = resolver.query(
+                    uri, new String[]{"title", "iconResource"},
+                    "title=?", new String[]{name}, null
+            );
             // 判断是否存在快捷方式
-            return (cursor != null && cursor.getCount() > 0);
+            return CursorUtils.existsCount(cursor);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "hasShortcut");
         } finally {
-            CloseUtils.closeIOQuietly(cursor);
+            CursorUtils.closeIOQuietly(cursor);
         }
         return false;
     }

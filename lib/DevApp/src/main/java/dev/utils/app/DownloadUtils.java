@@ -220,8 +220,12 @@ public final class DownloadUtils {
         Cursor cursor = query(query);
         if (cursor != null) {
             try {
-                long progress = CursorUtils.getLongByNameThrows(cursor, DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
-                long total    = CursorUtils.getLongByNameThrows(cursor, DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
+                long progress = CursorUtils.getLongByNameThrows(
+                        cursor, DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR
+                );
+                long total = CursorUtils.getLongByNameThrows(
+                        cursor, DownloadManager.COLUMN_TOTAL_SIZE_BYTES
+                );
                 return new long[]{progress, total};
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "queryBytes");

@@ -48,6 +48,15 @@ public final class CursorUtils {
     // ==========
 
     /**
+     * 对应游标是否存在数据
+     * @param cursor Cursor
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean existsCount(final Cursor cursor) {
+        return cursor != null && cursor.getCount() > 0;
+    }
+
+    /**
      * 获取对应列名的索引
      * @param cursor     Cursor
      * @param columnName 目标列的名字

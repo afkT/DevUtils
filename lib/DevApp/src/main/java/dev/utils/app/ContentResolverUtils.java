@@ -17,7 +17,6 @@ import java.util.Arrays;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.common.ArrayUtils;
-import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.FileUtils;
 
@@ -64,13 +63,12 @@ public final class ContentResolverUtils {
                     uri, projection, selection, selectionArgs, null
             );
             if (cursor != null && cursor.moveToFirst()) {
-                final int column_index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(column_index);
+                return CursorUtils.getStringByNameThrows(cursor, column);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDataColumn");
         } finally {
-            CloseUtils.closeIOQuietly(cursor);
+            CursorUtils.closeIOQuietly(cursor);
         }
         return null;
     }
@@ -89,13 +87,12 @@ public final class ContentResolverUtils {
                     uri, projection, null, null, null
             );
             if (cursor != null && cursor.moveToFirst()) {
-                final int column_index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(column_index);
+                return CursorUtils.getStringByNameThrows(cursor, column);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDisplayNameColumn");
         } finally {
-            CloseUtils.closeIOQuietly(cursor);
+            CursorUtils.closeIOQuietly(cursor);
         }
         return null;
     }
@@ -355,7 +352,7 @@ public final class ContentResolverUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "mediaQuery %s", filePath);
         } finally {
-            CloseUtils.closeIOQuietly(cursor);
+            CursorUtils.closeIOQuietly(cursor);
         }
         return null;
     }
@@ -454,13 +451,13 @@ public final class ContentResolverUtils {
                 Cursor cursor
         ) {
             String[] result = new String[2];
-            long rowId = cursor.getLong(
-                    cursor.getColumnIndex(MediaStore.Files.FileColumns._ID)
+            long rowId = CursorUtils.getLongByNameThrows(
+                    cursor, MediaStore.Files.FileColumns._ID
             );
             String volumeName = VOLUME_EXTERNAL;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                volumeName = cursor.getString(
-                        cursor.getColumnIndex(MediaStore.Files.FileColumns.VOLUME_NAME)
+                volumeName = CursorUtils.getStringByNameThrows(
+                        cursor, MediaStore.Files.FileColumns.VOLUME_NAME
                 );
             }
             result[0] = String.valueOf(rowId);
@@ -512,20 +509,35 @@ public final class ContentResolverUtils {
                 String filePath,
                 Cursor cursor
         ) {
-            String[] result       = new String[8];
-            long     rowId        = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
-            int      width        = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.WIDTH));
-            int      height       = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.HEIGHT));
-            String   mimeType     = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.MIME_TYPE));
-            long     mediaType    = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE));
-            String   dateAdded    = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_ADDED));
-            String   dateModified = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_MODIFIED));
-            long     duration     = 0;
+            String[] result = new String[8];
+            long rowId = CursorUtils.getLongByNameThrows(
+                    cursor, MediaStore.Files.FileColumns._ID
+            );
+            int width = CursorUtils.getIntByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.WIDTH
+            );
+            int height = CursorUtils.getIntByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.HEIGHT
+            );
+            String mimeType = CursorUtils.getStringByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.MIME_TYPE
+            );
+            int mediaType = CursorUtils.getIntByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.MEDIA_TYPE
+            );
+            String dateAdded = CursorUtils.getStringByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.DATE_ADDED
+            );
+            String dateModified = CursorUtils.getStringByNameThrows(
+                    cursor, MediaStore.Files.FileColumns.DATE_MODIFIED
+            );
+            long duration = 0;
             if (mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO
                     || mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO) {
-                duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION));
+                duration = CursorUtils.getLongByNameThrows(
+                        cursor, MediaStore.Files.FileColumns.DURATION
+                );
             }
-
             result[0] = String.valueOf(rowId);
             result[1] = String.valueOf(width);
             result[2] = String.valueOf(height);
