@@ -48,7 +48,7 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("WakelockTimeout")
-    public boolean acquire(final PowerManager.WakeLock wakeLock) {
+    public static boolean acquire(final PowerManager.WakeLock wakeLock) {
         if (wakeLock != null && !wakeLock.isHeld()) {
             try {
                 wakeLock.acquire();
@@ -66,7 +66,7 @@ public final class PowerManagerUtils {
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("WakelockTimeout")
-    public boolean release(final PowerManager.WakeLock wakeLock) {
+    public static boolean release(final PowerManager.WakeLock wakeLock) {
         if (wakeLock != null && wakeLock.isHeld()) {
             try {
                 wakeLock.release();
@@ -82,7 +82,7 @@ public final class PowerManagerUtils {
      * 屏幕是否打开 ( 亮屏 )
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isScreenOn() {
+    public static boolean isScreenOn() {
         PowerManager powerManager = AppUtils.getPowerManager();
         if (powerManager == null) return false;
         try {

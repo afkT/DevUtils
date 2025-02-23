@@ -48,7 +48,7 @@ public final class KeyguardUtils {
      * 是否锁屏 ( android 4.1 以上支持 )
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isKeyguardLocked() {
+    public static boolean isKeyguardLocked() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             try {
                 return AppUtils.getKeyguardManager().isKeyguardLocked();
@@ -63,7 +63,7 @@ public final class KeyguardUtils {
      * 是否有锁屏密码 ( android 4.1 以上支持 )
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isKeyguardSecure() {
+    public static boolean isKeyguardSecure() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             try {
                 return AppUtils.getKeyguardManager().isKeyguardSecure();
@@ -78,7 +78,7 @@ public final class KeyguardUtils {
      * 是否锁屏
      * @return {@code true} yes, {@code false} no
      */
-    public boolean inKeyguardRestrictedInputMode() {
+    public static boolean inKeyguardRestrictedInputMode() {
         try {
             return AppUtils.getKeyguardManager().inKeyguardRestrictedInputMode();
         } catch (Exception e) {
@@ -94,7 +94,7 @@ public final class KeyguardUtils {
      * @param tag TAG
      * @return {@link KeyguardManager.KeyguardLock}
      */
-    public KeyguardManager.KeyguardLock newKeyguardLock(final String tag) {
+    public static KeyguardManager.KeyguardLock newKeyguardLock(final String tag) {
         KeyguardManager keyguardManager = AppUtils.getKeyguardManager();
         if (keyguardManager != null && tag != null) {
             try {
@@ -113,7 +113,7 @@ public final class KeyguardUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
-    public boolean disableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
+    public static boolean disableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
         if (keyguardLock != null) {
             try {
                 keyguardLock.disableKeyguard();
@@ -131,7 +131,7 @@ public final class KeyguardUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.DISABLE_KEYGUARD)
-    public boolean reenableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
+    public static boolean reenableKeyguard(final KeyguardManager.KeyguardLock keyguardLock) {
         if (keyguardLock != null) {
             try {
                 keyguardLock.reenableKeyguard();

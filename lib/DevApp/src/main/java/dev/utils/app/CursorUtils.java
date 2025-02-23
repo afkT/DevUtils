@@ -158,7 +158,6 @@ public final class CursorUtils {
         return Cursor.FIELD_TYPE_NULL;
     }
 
-
     /**
      * 获取对应列名值类型
      * @param cursor     Cursor

@@ -242,7 +242,7 @@ public final class DownloadUtils {
     /**
      * 查询下载进度信息 ( 通过下载 ID )
      * @param id 下载 ID
-     * @return 下载进度信息[2], [0] = 当前进度, [1] = 总大小
+     * @return 下载进度信息 [2], [0] = 当前进度, [1] = 总大小
      */
     public static long[] queryBytesById(final long id) {
         Cursor cursor = query(createQueryById(id));
