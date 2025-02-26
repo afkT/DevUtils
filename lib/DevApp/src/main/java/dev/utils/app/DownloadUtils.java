@@ -183,6 +183,15 @@ public final class DownloadUtils {
         return new DownloadManager.Query().setFilterByStatus(flags);
     }
 
+    /**
+     * 通过下载 ID 查询下载信息
+     * @param id 下载 ID
+     * @return 下载信息
+     */
+    public static Cursor queryById(final long id) {
+        return query(createQueryById(id));
+    }
+
     // =
 
     /**
@@ -225,7 +234,7 @@ public final class DownloadUtils {
      */
     public static String queryUriById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getStringByNameThrows(
                         cursor, DownloadManager.COLUMN_URI
@@ -246,7 +255,7 @@ public final class DownloadUtils {
      */
     public static long[] queryBytesById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 long progress = CursorUtils.getLongByNameThrows(
                         cursor, DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR
@@ -271,7 +280,7 @@ public final class DownloadUtils {
      */
     public static int queryStatusById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getIntByNameThrows(
                         cursor, DownloadManager.COLUMN_STATUS
@@ -295,7 +304,7 @@ public final class DownloadUtils {
      */
     public static int queryReasonById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getIntByNameThrows(
                         cursor, DownloadManager.COLUMN_REASON
@@ -316,7 +325,7 @@ public final class DownloadUtils {
      */
     public static String queryMediaTypeById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getStringByNameThrows(
                         cursor, DownloadManager.COLUMN_MEDIA_TYPE
@@ -337,7 +346,7 @@ public final class DownloadUtils {
      */
     public static long queryLastModifiedById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getLongByNameThrows(
                         cursor, DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP
@@ -358,7 +367,7 @@ public final class DownloadUtils {
      */
     public static String queryTitleById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getStringByNameThrows(
                         cursor, DownloadManager.COLUMN_TITLE
@@ -379,7 +388,7 @@ public final class DownloadUtils {
      */
     public static String queryDescriptionById(final long id) {
         Cursor cursor = query(createQueryById(id));
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             try {
                 return CursorUtils.getStringByNameThrows(
                         cursor, DownloadManager.COLUMN_DESCRIPTION
@@ -439,7 +448,10 @@ public final class DownloadUtils {
             final Cursor cursor,
             final OnCursorInterceptor interceptor
     ) {
-        return _queryCursorSingle(cursor, interceptor, true);
+        if (cursor != null && cursor.moveToFirst()) {
+            return _queryCursorSingle(cursor, interceptor, true);
+        }
+        return null;
     }
 
     /**
@@ -449,7 +461,7 @@ public final class DownloadUtils {
      * @param closeCursor 是否关闭游标
      * @return 单条下载信息
      */
-    public static Map<String, Object> _queryCursorSingle(
+    private static Map<String, Object> _queryCursorSingle(
             final Cursor cursor,
             final OnCursorInterceptor interceptor,
             final boolean closeCursor
@@ -457,7 +469,7 @@ public final class DownloadUtils {
         if (cursor != null) {
             try {
                 // 下载 ID
-                int id = CursorUtils.getIntByName(
+                long id = CursorUtils.getLongByName(
                         cursor, DownloadManager.COLUMN_ID
                 );
                 // 下载地址

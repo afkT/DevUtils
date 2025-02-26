@@ -13,6 +13,7 @@ import dev.utils.common.CloseUtils;
  * @author Ttt
  * <pre>
  *     部分方法为组合快捷使用, 内部并不进行 Cursor 判空, 在使用前自行 Cursor 校验
+ *     前提需要自行调用 {@link Cursor#moveToFirst()} 类似移动游标操作
  * </pre>
  */
 public final class CursorUtils {
