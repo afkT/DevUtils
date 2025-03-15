@@ -57,7 +57,7 @@
 
                 <dev.base.widget.BaseTextView
                     android:id="@+id/vid_name_tv"
-                    style="@style/AppTheme.Base_TextView"
+                    style="@style/ViewTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_1"
@@ -69,7 +69,7 @@
 
                 <dev.base.widget.BaseTextView
                     android:id="@+id/vid_price_tv"
-                    style="@style/AppTheme.Base_TextView"
+                    style="@style/ViewTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_4"
@@ -85,7 +85,7 @@
                     android:orientation="horizontal">
 
                     <dev.base.widget.BaseTextView
-                        style="@style/AppTheme.Base_TextView"
+                        style="@style/ViewTheme.Base_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -149,7 +149,7 @@
 
             <dev.base.widget.BaseTextView
                 android:id="@+id/vid_number_tv"
-                style="@style/AppTheme.Base_TextView"
+                style="@style/ViewTheme.Base_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"

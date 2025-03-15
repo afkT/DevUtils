@@ -19,7 +19,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_first_add_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
@@ -28,7 +28,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_first_remove_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_10"
@@ -48,7 +48,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_line_add_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
@@ -57,7 +57,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_line_remove_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_10"
@@ -77,7 +77,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_last_add_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
@@ -86,7 +86,7 @@
 
         <dev.base.widget.BaseButton
             android:id="@+id/vid_last_remove_btn"
-            style="@style/AppTheme.Base_Button"
+            style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_10"

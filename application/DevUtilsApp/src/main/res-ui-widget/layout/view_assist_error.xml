@@ -11,7 +11,7 @@
         android:src="@drawable/icon_error" />
 
     <dev.base.widget.BaseTextView
-        style="@style/AppTheme.Base_TextView"
+        style="@style/ViewTheme.Base_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_20"

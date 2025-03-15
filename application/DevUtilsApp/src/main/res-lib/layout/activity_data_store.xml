@@ -8,7 +8,7 @@
 
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_content_tv"
-            style="@style/AppTheme.Base_TextView"
+            style="@style/ViewTheme.Base_TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_20"

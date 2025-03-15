@@ -15,7 +15,7 @@
 
     <dev.base.widget.BaseTextView
         android:id="@+id/vid_title_tv"
-        style="@style/AppTheme.Base_TextView"
+        style="@style/ViewTheme.Base_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

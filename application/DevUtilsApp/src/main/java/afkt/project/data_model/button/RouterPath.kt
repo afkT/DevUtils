@@ -47,8 +47,6 @@ object RouterPath {
 
         const val UIEffectActivity_PATH = "/activity/UIEffectActivity"
 
-        const val StatusBarActivity_PATH = "/activity/StatusBarActivity"
-
         const val TextCalcActivity_PATH = "/activity/TextCalcActivity"
 
         const val AdapterEditsActivity_PATH = "/activity/AdapterEditsActivity"

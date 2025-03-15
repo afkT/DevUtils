@@ -7,21 +7,21 @@
         android:scrollbars="none">
 
         <LinearLayout
-            style="@style/AppTheme.padding_lr"
+            style="@style/ViewTheme.padding_lr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <dev.base.widget.BaseButton
                 android:id="@+id/vid_create_btn"
-                style="@style/AppTheme.Base_Button"
+                style="@style/ViewTheme.Base_Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="生成二维码" />
 
             <dev.base.widget.BaseButton
                 android:id="@+id/vid_select_btn"
-                style="@style/AppTheme.Base_Button"
+                style="@style/ViewTheme.Base_Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="选择 Logo 图片" />

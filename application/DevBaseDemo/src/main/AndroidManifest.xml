@@ -27,51 +27,61 @@
         <activity
             android:name=".ui.activity.MainNonViewDataActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainBaseContentActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainApplicationViewModelActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainApplicationMVVMActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainActivityMVVMActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainFragmentMVVMActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainFragmentParentMVVMActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainBaseContentVMImplActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainMVVMUtilsActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
 
         <activity
             android:name=".ui.activity.MainViewPagerActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi" />
     </application>
 </manifest>

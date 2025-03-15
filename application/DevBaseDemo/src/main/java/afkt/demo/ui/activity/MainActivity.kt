@@ -25,16 +25,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // 随机设置背景色
         binding.vidInclude.color = ColorUtils.getRandomColor()
 
-//        // 跳转校验
-//        startActivity(Intent(this, MainNonViewDataActivity::class.java))
-//        startActivity(Intent(this, MainBaseContentActivity::class.java))
-//        startActivity(Intent(this, MainApplicationViewModelActivity::class.java))
-//        startActivity(Intent(this, MainApplicationMVVMActivity::class.java))
-//        startActivity(Intent(this, MainActivityMVVMActivity::class.java))
-//        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
-//        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
-//        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
-//        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
+////        // 跳转校验
+////        startActivity(Intent(this, MainNonViewDataActivity::class.java))
+////        startActivity(Intent(this, MainBaseContentActivity::class.java))
+////        startActivity(Intent(this, MainApplicationViewModelActivity::class.java))
+////        startActivity(Intent(this, MainApplicationMVVMActivity::class.java))
+////        startActivity(Intent(this, MainActivityMVVMActivity::class.java))
+////        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
+////        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
+////        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
+////        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
+//        startActivity(Intent(this, MainViewPagerActivity::class.java))
+
+        // 跳转校验
+        startActivity(Intent(this, MainNonViewDataActivity::class.java))
+        startActivity(Intent(this, MainBaseContentActivity::class.java))
+        startActivity(Intent(this, MainApplicationViewModelActivity::class.java))
+        startActivity(Intent(this, MainApplicationMVVMActivity::class.java))
+        startActivity(Intent(this, MainActivityMVVMActivity::class.java))
+        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
+        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
+        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
+        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
         startActivity(Intent(this, MainViewPagerActivity::class.java))
     }
 }

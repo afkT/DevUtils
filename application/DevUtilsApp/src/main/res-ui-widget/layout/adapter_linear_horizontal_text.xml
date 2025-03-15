@@ -2,7 +2,7 @@
 <dev.base.widget.BaseTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vid_tv"
-    style="@style/AppTheme.Base_TextView"
+    style="@style/ViewTheme.Base_TextView"
     android:layout_width="@dimen/dp_70"
     android:layout_height="@dimen/dp_200"
     android:background="@color/grey_tran20"

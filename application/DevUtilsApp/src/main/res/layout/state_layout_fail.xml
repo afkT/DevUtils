@@ -17,7 +17,7 @@
 
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_tips_tv"
-            style="@style/AppTheme.Base_TextView"
+            style="@style/ViewTheme.Base_TextView"
             android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
             android:textSize="@dimen/sp_15" />

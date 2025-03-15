@@ -14,7 +14,7 @@
 
             <LinearLayout
                 android:id="@+id/vid_ll"
-                style="@style/AppTheme.padding_lr"
+                style="@style/ViewTheme.padding_lr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"

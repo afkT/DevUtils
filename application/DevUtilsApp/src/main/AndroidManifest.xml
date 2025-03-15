@@ -101,7 +101,8 @@
             android:name=".feature.ModuleActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Button 列表 Activity -->
 
@@ -109,7 +110,8 @@
             android:name=".feature.ButtonItemActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 文章 MVP Activity -->
 
@@ -117,7 +119,8 @@
             android:name=".feature.framework.mvp.ArticleMVPActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 文章 MVVM Activity -->
 
@@ -125,7 +128,8 @@
             android:name=".feature.framework.mvvm.ArticleMVVMActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DataStore -->
 
@@ -133,7 +137,8 @@
             android:name=".feature.lib_frame.data_store.DataStoreActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ToastTint ( 着色美化 Toast ) -->
 
@@ -141,7 +146,8 @@
             android:name=".feature.ui_effect.toast_tint.ToastTintActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 常见 UI、GradientDrawable 效果等 -->
 
@@ -149,15 +155,8 @@
             android:name=".feature.ui_effect.common.UIEffectActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 点击 显示/隐藏 ( 状态栏 ) -->
-
-        <activity
-            android:name=".feature.ui_effect.status_bar.StatusBarActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 计算字体宽度、高度 -->
 
@@ -165,7 +164,8 @@
             android:name=".feature.ui_effect.text_calc.TextCalcActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Adapter Item EditText 输入监听 -->
 
@@ -173,7 +173,8 @@
             android:name=".feature.ui_effect.adapter_edits.AdapterEditsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 多选辅助类 MultiSelectAssist -->
 
@@ -181,7 +182,8 @@
             android:name=".feature.ui_effect.multi_select.MultiSelectActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- GPU ACV 文件滤镜效果 -->
 
@@ -189,7 +191,8 @@
             android:name=".feature.ui_effect.gpu.GPUFilterACVActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- GPU 滤镜效果 -->
 
@@ -197,7 +200,8 @@
             android:name=".feature.ui_effect.gpu.GPUFilterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 创建二维码 -->
 
@@ -205,7 +209,8 @@
             android:name=".feature.ui_effect.qrcode.QRCodeCreateActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 二维码图片解析 -->
 
@@ -213,7 +218,8 @@
             android:name=".feature.ui_effect.qrcode.QRCodeImageActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 二维码扫描解析 -->
 
@@ -221,7 +227,8 @@
             android:name=".feature.ui_effect.qrcode.QRCodeScanActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- CapturePictureUtils 截图工具类 -->
 
@@ -229,7 +236,8 @@
             android:name=".feature.ui_effect.capture_picture.CapturePictureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- CapturePictureUtils ListView 截图 -->
 
@@ -237,7 +245,8 @@
             android:name=".feature.ui_effect.capture_picture.CapturePictureListActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- CapturePictureUtils GridView 截图 -->
 
@@ -245,7 +254,8 @@
             android:name=".feature.ui_effect.capture_picture.CapturePictureGridActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- CapturePictureUtils RecyclerView 截图 -->
 
@@ -253,7 +263,8 @@
             android:name=".feature.ui_effect.capture_picture.CapturePictureRecyActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- CapturePictureUtils WebView 截图 -->
 
@@ -261,7 +272,8 @@
             android:name=".feature.ui_effect.capture_picture.CapturePictureWebActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 两个 TextView 显示效果 -->
 
@@ -269,7 +281,8 @@
             android:name=".feature.ui_effect.text_view.TextViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- RecyclerView 吸附效果 -->
 
@@ -277,7 +290,8 @@
             android:name=".feature.ui_effect.recy_adapter.item_sticky.ItemStickyActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- RecyclerView 滑动删除、上下滑动 -->
 
@@ -285,7 +299,8 @@
             android:name=".feature.ui_effect.recy_adapter.item_slide.RecyItemSlideActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- LinearSnapHelper - RecyclerView -->
 
@@ -293,7 +308,8 @@
             android:name=".feature.ui_effect.recy_adapter.linear_snap.LinearSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- LinearSnapHelper - 无线滑动 -->
 
@@ -301,7 +317,8 @@
             android:name=".feature.ui_effect.recy_adapter.linear_snap.LinearSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- PagerSnapHelper - RecyclerView -->
 
@@ -309,7 +326,8 @@
             android:name=".feature.ui_effect.recy_adapter.pager_snap.PagerSnapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- PagerSnapHelper - 无线滑动 -->
 
@@ -317,7 +335,8 @@
             android:name=".feature.ui_effect.recy_adapter.pager_snap.PagerSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Material ShapeableImageView -->
 
@@ -325,7 +344,8 @@
             android:name=".feature.ui_effect.material.ShapeableImageViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Material BottomSheet -->
 
@@ -333,7 +353,8 @@
             android:name=".feature.ui_effect.material.BottomSheetActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Material BottomSheetDialog -->
 
@@ -341,7 +362,8 @@
             android:name=".feature.ui_effect.material.BottomSheetDialogActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Palette 调色板 -->
 
@@ -349,7 +371,8 @@
             android:name=".feature.ui_effect.palette.PaletteActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Flexbox LayoutManager -->
 
@@ -357,7 +380,8 @@
             android:name=".feature.ui_effect.flexbox_layout.FlexboxLayoutManagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Material Chip、ChipGroups、ChipDrawable -->
 
@@ -365,7 +389,8 @@
             android:name=".feature.ui_effect.material.ChipActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.Material" />
+            android:theme="@style/AppTheme.NoActionBar.Material"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ViewPager2 -->
 
@@ -373,7 +398,8 @@
             android:name=".feature.ui_effect.view_pager2.ViewPager2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- RecyclerView - ConcatAdapter -->
 
@@ -381,7 +407,8 @@
             android:name=".feature.ui_effect.recy_adapter.adapter_concat.RecyConcatAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- RecyclerView MultiType Adapter -->
 
@@ -389,7 +416,8 @@
             android:name=".feature.ui_effect.recy_adapter.adapter_multitype.RecyMultiTypeAdapterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 购物车加入动画 -->
 
@@ -397,7 +425,8 @@
             android:name=".feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
 
@@ -405,7 +434,8 @@
             android:name=".feature.other_function.listener.ListenerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 通知栏监听服务 ( NotificationService ) -->
 
@@ -413,7 +443,8 @@
             android:name=".feature.other_function.service.NotificationServiceActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 无障碍监听服务 ( AccessibilityListenerService ) -->
 
@@ -421,7 +452,8 @@
             android:name=".feature.other_function.service.AccessibilityListenerServiceActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Wifi 相关 ( 热点 ) -->
 
@@ -429,7 +461,8 @@
             android:name=".feature.other_function.wifi.WifiActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 铃声、震动、通知栏等功能 -->
 
@@ -437,7 +470,8 @@
             android:name=".feature.other_function.dev_function.FunctionActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- TimerManager 定时器工具类 -->
 
@@ -445,7 +479,8 @@
             android:name=".feature.other_function.timer.TimerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevCache 缓存工具类 -->
 
@@ -453,7 +488,8 @@
             android:name=".feature.other_function.dev_function.CacheActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevLogger 日志工具类 -->
 
@@ -461,7 +497,8 @@
             android:name=".feature.other_function.dev_function.LoggerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 日志、异常文件记录保存 -->
 
@@ -469,7 +506,8 @@
             android:name=".feature.other_function.dev_function.FileRecordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 奔溃日志捕获 -->
 
@@ -477,7 +515,8 @@
             android:name=".feature.other_function.dev_function.CrashCatchActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 路径信息 -->
 
@@ -485,7 +524,8 @@
             android:name=".feature.other_function.dev_function.PathActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- WebView 辅助类 -->
 
@@ -493,7 +533,8 @@
             android:name=".feature.other_function.web_view.WebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Activity Result API -->
 
@@ -501,7 +542,8 @@
             android:name=".feature.other_function.dev_function.ActivityResultAPIActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- startActivityForResult Callback -->
 
@@ -509,7 +551,8 @@
             android:name=".feature.other_function.dev_function.ActivityResultCallbackActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 添加联系人 -->
 
@@ -517,7 +560,8 @@
             android:name=".feature.other_function.add_contact.AddContactActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 手机壁纸 -->
 
@@ -525,7 +569,8 @@
             android:name=".feature.other_function.dev_function.WallpaperActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 悬浮窗管理辅助类 ( 需权限 ) -->
 
@@ -533,7 +578,8 @@
             android:name=".feature.other_function.floating.FloatingWindowManagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 悬浮窗管理辅助类 ( 无需权限依赖 Activity ) -->
 
@@ -541,7 +587,8 @@
             android:name=".feature.other_function.floating.FloatingWindowManager2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 自定义扫描 View ( QRCode、AR ) -->
 
@@ -549,7 +596,8 @@
             android:name=".feature.dev_widget.scan_shape.ScanShapeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 自动换行 View -->
 
@@ -557,7 +605,8 @@
             android:name=".feature.dev_widget.wrap_view.WrapActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 签名 View -->
 
@@ -565,7 +614,8 @@
             android:name=".feature.dev_widget.sign_view.SignActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 换行监听 View -->
 
@@ -573,7 +623,8 @@
             android:name=".feature.dev_widget.line_view.LineActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 自定义点赞效果 View -->
 
@@ -581,7 +632,8 @@
             android:name=".feature.dev_widget.flow_like.FlowLikeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 自定义角标 View -->
 
@@ -589,7 +641,8 @@
             android:name=".feature.dev_widget.corner_label.CornerLabelActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ViewAssist Activity -->
 
@@ -597,7 +650,8 @@
             android:name=".feature.dev_widget.view_assist.ViewAssistActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ViewAssist RecyclerView Loading -->
 
@@ -605,7 +659,8 @@
             android:name=".feature.dev_widget.view_assist.ViewAssistRecyclerViewLoadActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 翻转卡片 View -->
 
@@ -613,7 +668,8 @@
             android:name=".feature.dev_widget.flip_card.FlipCardActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 波浪 View -->
 
@@ -621,7 +677,8 @@
             android:name=".feature.dev_widget.wave_view.WaveViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- 自定义 ProgressBar 样式 View -->
 
@@ -629,7 +686,8 @@
             android:name=".feature.dev_widget.progress_bar.ProgressBarActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ViewPager 滑动监听、控制滑动 -->
 
@@ -637,7 +695,8 @@
             android:name=".feature.dev_widget.view_pager.ViewPagerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Linear Color ItemDecoration -->
 
@@ -645,7 +704,8 @@
             android:name=".feature.dev_widget.recy_item_decoration.color_linear.LinearColorItemDecorationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- Grid Color ItemDecoration -->
 
@@ -653,7 +713,8 @@
             android:name=".feature.dev_widget.recy_item_decoration.color_grid.GridColorItemDecorationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevEnvironment 环境配置切换库 -->
 
@@ -661,7 +722,8 @@
             android:name=".feature.dev_environment.DevEnvironmentLibActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevAssist Engine 实现 -->
 
@@ -669,7 +731,8 @@
             android:name=".feature.dev_engine.DevAssistEngineActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevHttpCapture OkHttp 抓包工具库 -->
 
@@ -677,7 +740,8 @@
             android:name=".feature.dev_http_capture.DevHttpCaptureActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- DevSKU 商品 SKU 组合封装实现 -->
 
@@ -685,7 +749,8 @@
             android:name=".feature.dev_sku.DevSKUActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="DiscouragedApi" />
 
         <!-- ======== -->
         <!-- 服务相关 -->

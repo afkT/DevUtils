@@ -42,7 +42,7 @@
 
             <dev.base.widget.BaseTextView
                 android:id="@+id/vid_name_tv"
-                style="@style/AppTheme.Base_TextView"
+                style="@style/ViewTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -55,7 +55,7 @@
 
             <dev.base.widget.BaseTextView
                 android:id="@+id/vid_price_tv"
-                style="@style/AppTheme.Base_TextView"
+                style="@style/ViewTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

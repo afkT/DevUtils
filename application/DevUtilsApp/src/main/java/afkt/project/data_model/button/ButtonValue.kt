@@ -145,86 +145,83 @@ class ButtonValue(
         // 常见 UI、GradientDrawable 效果等
         const val BTN_UI_EFFECT = MODULE_UI + 100
 
-        // 点击 显示/隐藏 ( 状态栏 )
-        const val BTN_STATUS_BAR = MODULE_UI + 200
-
         // 计算字体宽度、高度
-        const val BTN_TEXT_CALC = MODULE_UI + 300
+        const val BTN_TEXT_CALC = MODULE_UI + 200
 
         // Adapter Item EditText 输入监听
-        const val BTN_ADAPTER_EDITS = MODULE_UI + 400
+        const val BTN_ADAPTER_EDITS = MODULE_UI + 300
 
         // 多选辅助类 MultiSelectAssist
-        const val BTN_MULTI_SELECT = MODULE_UI + 500
+        const val BTN_MULTI_SELECT = MODULE_UI + 400
 
         // GPU ACV 文件滤镜效果
-        const val BTN_GPU_ACV = MODULE_UI + 600
+        const val BTN_GPU_ACV = MODULE_UI + 500
 
         // GPU 滤镜效果
-        const val BTN_GPU_FILTER = MODULE_UI + 700
+        const val BTN_GPU_FILTER = MODULE_UI + 600
 
         // 创建二维码
-        const val BTN_QRCODE_CREATE = MODULE_UI + 800
+        const val BTN_QRCODE_CREATE = MODULE_UI + 700
 
         // 二维码图片解析
-        const val BTN_QRCODE_IMAGE = MODULE_UI + 900
+        const val BTN_QRCODE_IMAGE = MODULE_UI + 800
 
         // 二维码扫描解析
-        const val BTN_QRCODE_SCAN = MODULE_UI + 1000
+        const val BTN_QRCODE_SCAN = MODULE_UI + 900
 
         // CapturePictureUtils 截图工具类
-        const val BTN_CAPTURE_PICTURE = MODULE_UI + 1100
+        const val BTN_CAPTURE_PICTURE = MODULE_UI + 1000
 
         // 两个 TextView 显示效果
-        const val BTN_TEXTVIEW = MODULE_UI + 1200
+        const val BTN_TEXTVIEW = MODULE_UI + 1100
 
         // RecyclerView 吸附效果
-        const val BTN_ITEM_STICKY = MODULE_UI + 1300
+        const val BTN_ITEM_STICKY = MODULE_UI + 1200
 
         // RecyclerView 滑动删除、上下滑动
-        const val BTN_RECY_ITEM_SLIDE = MODULE_UI + 1400
+        const val BTN_RECY_ITEM_SLIDE = MODULE_UI + 1300
 
         // LinearSnapHelper - RecyclerView
-        const val BTN_RECY_LINEAR_SNAP = MODULE_UI + 1500
+        const val BTN_RECY_LINEAR_SNAP = MODULE_UI + 1400
 
         // LinearSnapHelper - 无限滑动
-        const val BTN_RECY_LINEAR_SNAP_MAX = MODULE_UI + 1600
+        const val BTN_RECY_LINEAR_SNAP_MAX = MODULE_UI + 1500
 
         // PagerSnapHelper - RecyclerView
-        const val BTN_RECY_PAGER_SNAP = MODULE_UI + 1700
+        const val BTN_RECY_PAGER_SNAP = MODULE_UI + 1600
 
         // PagerSnapHelper - 无限滑动
-        const val BTN_RECY_PAGER_SNAP_MAX = MODULE_UI + 1800
+        const val BTN_RECY_PAGER_SNAP_MAX = MODULE_UI + 1700
 
         // Material ShapeableImageView
-        const val BTN_SHAPEABLE_IMAGE_VIEW = MODULE_UI + 1900
+        const val BTN_SHAPEABLE_IMAGE_VIEW = MODULE_UI + 1800
 
         // Material BottomSheet
-        const val BTN_BOTTOM_SHEET = MODULE_UI + 2000
+        const val BTN_BOTTOM_SHEET = MODULE_UI + 1900
 
         // Material BottomSheetDialog
-        const val BTN_BOTTOM_SHEET_DIALOG = MODULE_UI + 2100
+        const val BTN_BOTTOM_SHEET_DIALOG = MODULE_UI + 2000
 
         // Palette 调色板
-        const val BTN_PALETTE = MODULE_UI + 2200
+        const val BTN_PALETTE = MODULE_UI + 2100
 
         // Flexbox LayoutManager
-        const val BTN_FLEXBOX_LAYOUTMANAGER = MODULE_UI + 2300
+        const val BTN_FLEXBOX_LAYOUTMANAGER = MODULE_UI + 2200
 
         // Material Chip、ChipGroups、ChipDrawable
-        const val BTN_CHIP = MODULE_UI + 2400
+        const val BTN_CHIP = MODULE_UI + 2300
 
         // ViewPager2
-        const val BTN_VIEWPAGER2 = MODULE_UI + 2500
+        const val BTN_VIEWPAGER2 = MODULE_UI + 2400
 
         // RecyclerView - ConcatAdapter
-        const val BTN_RECYCLERVIEW_CONCATADAPTER = MODULE_UI + 2600
+        const val BTN_RECYCLERVIEW_CONCATADAPTER = MODULE_UI + 2500
 
         // RecyclerView MultiType Adapter
-        const val BTN_RECYCLERVIEW_MULTITYPE_ADAPTER = MODULE_UI + 2700
+        const val BTN_RECYCLERVIEW_MULTITYPE_ADAPTER = MODULE_UI + 2600
 
         // 购物车加入动画
-        const val BTN_SHOP_CARD_ADD_ANIM = MODULE_UI + 2800
+        const val BTN_SHOP_CARD_ADD_ANIM = MODULE_UI + 2700
 
         // ==========
         // = 其他功能 =

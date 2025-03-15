@@ -8,7 +8,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            style="@style/AppTheme.padding_lr"
+            style="@style/ViewTheme.padding_lr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -41,7 +41,7 @@
                 app:closeIconTint="@color/white" />
 
             <dev.base.widget.BaseTextView
-                style="@style/AppTheme.Base_TextView"
+                style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 单行效果"
                 android:textColor="@color/grey"
@@ -98,7 +98,7 @@
             </dev.widget.custom.CustomHorizontalScrollView>
 
             <dev.base.widget.BaseTextView
-                style="@style/AppTheme.Base_TextView"
+                style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 多行效果"
                 android:textColor="@color/grey"

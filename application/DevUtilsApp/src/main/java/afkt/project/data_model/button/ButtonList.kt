@@ -186,10 +186,6 @@ object ButtonList {
             "常见 UI、GradientDrawable 效果等",
             RouterPath.UI_EFFECT.UIEffectActivity_PATH
         ),
-        ButtonValue.BTN_STATUS_BAR.buttonOf(
-            "点击 显示/隐藏 ( 状态栏 )",
-            RouterPath.UI_EFFECT.StatusBarActivity_PATH
-        ),
         ButtonValue.BTN_TEXT_CALC.buttonOf(
             "计算字体宽度、高度",
             RouterPath.UI_EFFECT.TextCalcActivity_PATH
