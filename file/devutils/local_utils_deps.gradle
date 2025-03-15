@@ -50,4 +50,7 @@ dependencies {
     api project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
+
+    // DevDeprecated - Dev 系列库弃用代码统一存储库
+    api project(':DevDeprecated')
 }

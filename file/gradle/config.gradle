@@ -29,15 +29,24 @@ ext {
                     // https://search.maven.org/search?q=io.github.afkt
                     // https://repo1.maven.org/maven2/io/github/afkt/
                     // https://mvnrepository.com/search?q=io.github.afkt
+
+                    // DevApp - Android 工具类库
                     dev_app                          : "io.github.afkt:DevAppX:${versions.dev_app_versionName}",
+                    // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
                     dev_assist                       : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
                     dev_base                         : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
+                    // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
                     dev_base_mvvm                    : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
+                    // DevMVVM - DataBinding 工具类库
                     dev_mvvm                         : "io.github.afkt:DevMVVM:${versions.dev_mvvm_versionName}",
+                    // DevSimple - 简单敏捷开发库
                     dev_simple                       : "io.github.afkt:DevSimple:${versions.dev_simple_versionName}",
+                    // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
                     dev_agile                        : "io.github.afkt:DevAgile:${versions.dev_agile_versionName}",
+                    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
                     dev_engine                       : "io.github.afkt:DevEngine:${versions.dev_engine_versionName}",
-                    dev_java                         : "io.github.afkt:DevJava:${versions.dev_java_version}",
+                    // DevWidget - 自定义 View UI 库
                     dev_widget                       : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
                     dev_environment                  : "io.github.afkt:DevEnvironment:${versions.dev_environment_version}",
@@ -52,6 +61,10 @@ ext {
                     dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
                     // DevRetrofit - Retrofit + Kotlin Coroutines 封装
                     dev_retrofit                     : "io.github.afkt:DevRetrofit:${versions.dev_retrofit_versionName}",
+                    // DevDeprecated - Dev 系列库弃用代码统一存储库
+                    dev_deprecated                   : "io.github.afkt:DevDeprecated:${versions.dev_deprecated_versionName}",
+                    // DevJava - Java 工具类库 ( 不依赖 android api )
+                    dev_java                         : "io.github.afkt:DevJava:${versions.dev_java_version}",
             ],
 
             // =================

@@ -13,6 +13,7 @@ def libs = [
         "DevHttpManager",
         "DevRetrofit",
         "DevWidget",
+        "DevDeprecated",
         "DevJava",
 ]
 

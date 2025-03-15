@@ -1,0 +1,37 @@
+apply from: rootProject.file(files.lib_app_gradle)
+
+android {
+    namespace "dev.deprecated"
+
+    defaultConfig {
+        versionCode versions.dev_deprecated_versionCode
+        versionName versions.dev_deprecated_versionName
+        // DevDeprecated Module Version
+        buildConfigField "int", "DevDeprecated_VersionCode", "${versions.dev_deprecated_versionCode}"
+        buildConfigField "String", "DevDeprecated_Version", "\"${versions.dev_deprecated_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_app
+    } else {
+        // 编译时使用
+        api project(':DevApp')
+    }
+}
+
+// tasks-build-assemble
+// publishing-publishReleasePublicationToXXXXXRepository
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

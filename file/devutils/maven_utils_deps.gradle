@@ -50,4 +50,7 @@ dependencies {
     api deps.dev.dev_environment
     kaptDebug deps.dev.dev_environment_compiler // debugAnnotationProcessor
     kaptRelease deps.dev.dev_environment_compiler_release // releaseAnnotationProcessor
+
+    // DevDeprecated - Dev 系列库弃用代码统一存储库
+    api deps.dev.dev_deprecated
 }

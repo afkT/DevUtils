@@ -54,8 +54,8 @@ ext {
             dev_simple_versionName                   : "1.0.2",
 
             // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-            dev_agile_versionCode                   : 101,
-            dev_agile_versionName                   : "1.0.1",
+            dev_agile_versionCode                    : 101,
+            dev_agile_versionName                    : "1.0.1",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 114,
@@ -85,6 +85,10 @@ ext {
             dev_environment_base_version             : "1.1.6",
             dev_environment_compiler_version         : "1.1.6",
             dev_environment_compiler_release_version : "1.1.6",
+
+            // DevDeprecated - Dev 系列库弃用代码统一存储库
+            dev_deprecated_versionCode               : 100,
+            dev_deprecated_versionName               : "1.0.0",
 
             // DevJava - Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                     : 152,
