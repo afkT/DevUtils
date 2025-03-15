@@ -3,7 +3,7 @@ package dev;
 import dev.deprecated.BuildConfig;
 
 /**
- * detail: 开发辅助类
+ * detail: Dev 系列库弃用代码统一存储库
  * @author Ttt
  * <pre>
  *     GitHub

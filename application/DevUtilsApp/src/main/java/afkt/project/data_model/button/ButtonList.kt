@@ -951,6 +951,22 @@ object ButtonList {
         )
     )
 
+    // ==================================
+    // = DevHttpCapture OkHttp 抓包工具库 =
+    // ==================================
+
+    /**
+     * 获取 DevHttpCapture Module Button Value 集合
+     * @return [List]
+     */
+    @JvmStatic
+    val moduleDevHttpCaptureButtonValues = mutableListOf(
+        ButtonValue.BTN_ENGINE_STORAGE.buttonOf(
+            "查看抓包数据",
+            RouterPath.EMPTY
+        )
+    )
+
     // =============================
     // = DevSKU 商品 SKU 组合封装实现 =
     // =============================

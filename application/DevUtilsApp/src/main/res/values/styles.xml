@@ -13,6 +13,8 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar.Material" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -31,9 +33,15 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="ViewTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="ViewTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
 
-    <style name="ViewTheme.ToolbarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="ViewTheme.ToolbarOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
 
     <!-- Button 默认样式 -->
 
@@ -52,6 +60,8 @@
         <item name="android:includeFontPadding">false</item>
         <!-- 表示可以点击 -->
         <item name="android:clickable">true</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
     </style>
 
     <!-- TextView 默认样式 -->
@@ -65,6 +75,8 @@
         <item name="android:textColor">@color/black</item>
         <!-- 不绘制边距 -->
         <item name="android:includeFontPadding">false</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
     </style>
 
     <!-- TextView 边距样式 -->
@@ -80,6 +92,8 @@
         <item name="android:layout_marginBottom">@dimen/dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
     </style>
 
     <!-- 左右 Margin 样式 -->

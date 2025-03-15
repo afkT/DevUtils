@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="DevEnvironmentAppTheme" parent="android:Theme.Light.NoTitleBar">
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
+</resources>
