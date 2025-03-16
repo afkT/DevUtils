@@ -18,13 +18,8 @@ import android.widget.LinearLayout
 import com.therouter.router.Route
 import dev.DevUtils
 import dev.expand.engine.log.log_dTag
-import dev.utils.app.assist.floating.DevFloatingCommon
-import dev.utils.app.assist.floating.DevFloatingListener
-import dev.utils.app.assist.floating.DevFloatingTouchIMPL
-import dev.utils.app.assist.floating.FloatingWindowManagerAssist
-import dev.utils.app.assist.floating.IFloatingTouch
+import dev.utils.app.assist.floating.*
 import dev.utils.app.toast.ToastTintUtils
-import dev.utils.app.toast.ToastUtils
 
 /**
  * detail: 悬浮窗管理辅助类 ( 需权限 )
@@ -70,7 +65,7 @@ class FloatingWindowManagerActivity :
         return if (FloatingWindowManagerAssist.checkOverlayPermission(this, true)) {
             true
         } else {
-            ToastUtils.showShort("请先开启悬浮窗权限")
+            ToastTintUtils.error("请先开启悬浮窗权限")
             false
         }
     }

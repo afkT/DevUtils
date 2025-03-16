@@ -25,7 +25,7 @@ import dev.engine.media.MediaConfig
 import dev.other.R
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
-import dev.utils.app.toast.ToastUtils
+import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 
 // =============================
@@ -209,7 +209,10 @@ class OnPermissionsInterceptListenerImpl : OnPermissionsInterceptListener {
             .request(OnPermissionCallbackImpl(fragment, permissionArray, call))
     }
 
-    override fun hasPermissions(fragment: Fragment?, permissionArray: Array<out String>?): Boolean {
+    override fun hasPermissions(
+        fragment: Fragment?,
+        permissionArray: Array<out String>?
+    ): Boolean {
         if (permissionArray == null || fragment == null) return false
         return XXPermissions.isGranted(
             fragment.requireContext(),
@@ -240,7 +243,7 @@ class OnPermissionDeniedListenerImpl : OnPermissionDeniedListener {
                 }
 
                 override fun onDenied() {
-                    ToastUtils.showShort("权限打开失败")
+                    ToastTintUtils.error("权限打开失败")
                     call?.onCall(false)
                 }
             }
@@ -261,7 +264,10 @@ class OnPermissionCallbackImpl(
     private val call: OnRequestPermissionListener?
 ) : OnPermissionCallback {
 
-    override fun onGranted(permissions: MutableList<String>, all: Boolean) {
+    override fun onGranted(
+        permissions: MutableList<String>,
+        all: Boolean
+    ) {
         if (all) {
             call?.onCall(permissionArray, true)
         } else {
@@ -270,7 +276,10 @@ class OnPermissionCallbackImpl(
         }
     }
 
-    override fun onDenied(permissions: MutableList<String>, never: Boolean) {
+    override fun onDenied(
+        permissions: MutableList<String>,
+        never: Boolean
+    ) {
         if (fragment.activity == null) return
         // 永久拒绝时让流程延续下去
         if (never) {

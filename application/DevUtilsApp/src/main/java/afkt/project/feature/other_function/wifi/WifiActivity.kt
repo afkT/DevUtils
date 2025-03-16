@@ -27,7 +27,6 @@ import dev.utils.app.HandlerUtils
 import dev.utils.app.IntentUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
-import dev.utils.app.toast.ToastUtils
 import dev.utils.app.wifi.WifiHotUtils
 import dev.utils.app.wifi.WifiUtils
 
@@ -65,7 +64,7 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                                 ToastTintUtils.error("Wifi 热点已打开")
                             } else {
                                 if (isOpenAPING) {
-                                    ToastUtils.showShort("Wifi 热点开启中")
+                                    ToastTintUtils.info("Wifi 热点开启中")
                                     return@bindAdapter
                                 }
                                 // = 8.0 特殊处理 =
@@ -132,7 +131,7 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                                     // 无法进行申请, 只能跳转到权限页面, 让用户开启
                                     // 获取写入设置权限 , 必须有这个权限, 否则无法开启
                                     if (!PermissionUtils.isGranted(Manifest.permission.WRITE_SETTINGS)) {
-                                        ToastUtils.showShort("开启热点需要修改系统设置权限")
+                                        ToastTintUtils.error("开启热点需要修改系统设置权限")
                                         // 如果没有权限则跳转过去
                                         AppUtils.startActivity(
                                             IntentUtils.getLaunchAppDetailsSettingsIntent(

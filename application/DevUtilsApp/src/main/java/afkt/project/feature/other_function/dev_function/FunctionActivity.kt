@@ -18,7 +18,6 @@ import dev.expand.engine.permission.permission_request
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.toast.ToastTintUtils
-import dev.utils.app.toast.ToastUtils
 
 /**
  * detail: 铃声、震动、通知栏等功能
@@ -152,7 +151,7 @@ class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BasePr
 
                         ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
                             val memoryInfo = MemoryUtils.printMemoryInfo()
-                            ToastUtils.showShort(memoryInfo)
+                            ToastTintUtils.info(memoryInfo)
                             TAG.log_dTag(
                                 message = memoryInfo
                             )
@@ -161,7 +160,7 @@ class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BasePr
                         ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
                             val deviceInfo =
                                 DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
-                            ToastUtils.showShort(deviceInfo)
+                            ToastTintUtils.info(deviceInfo)
                             TAG.log_dTag(
                                 message = deviceInfo
                             )

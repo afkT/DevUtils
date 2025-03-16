@@ -7,7 +7,7 @@ import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.permission.permission_againRequest
 import dev.expand.engine.permission.permission_request
-import dev.utils.app.toast.ToastUtils
+import dev.utils.app.toast.ToastTintUtils
 
 // ==========
 // = 申请权限 =
@@ -53,7 +53,7 @@ object PermissionRequestUse {
                         callback = this,
                         deniedList = deniedList
                     )
-                    ToastUtils.showShort("请开启读写手机存储权限.")
+                    ToastTintUtils.error("请开启读写手机存储权限")
                 }
             }
         )
@@ -89,7 +89,7 @@ object PermissionRequestUse {
                     // 拒绝了则再次请求处理
                     DevEngine.getPermission()
                         .againRequest(this@_permission, this, deniedList)
-                    ToastUtils.showShort("请开启读写手机存储权限.")
+                    ToastTintUtils.error("请开启读写手机存储权限")
                 }
             }
         )

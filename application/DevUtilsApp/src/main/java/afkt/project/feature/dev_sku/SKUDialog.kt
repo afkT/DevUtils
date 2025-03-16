@@ -13,7 +13,7 @@ import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.EditTextUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.toast.ToastUtils
+import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.BigDecimalUtils
 import dev.utils.common.ConvertUtils
 import kotlin.math.max
@@ -146,7 +146,7 @@ class SKUDialog(
                     callback.callback(spec, mNumberAssist.currentNumber, buyType)
                 }
             } else {
-                ToastUtils.showShort("请选择规格")
+                ToastTintUtils.error("请选择规格")
             }
         }
 

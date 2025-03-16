@@ -13,23 +13,15 @@ import android.content.DialogInterface
 import android.os.Handler
 import android.os.Message
 import android.provider.ContactsContract
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.provider.ContactsContract.CommonDataKinds.Phone
-import android.provider.ContactsContract.CommonDataKinds.StructuredName
+import android.provider.ContactsContract.CommonDataKinds.*
 import android.provider.ContactsContract.RawContacts
 import android.view.View
 import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.permission.permission_request
-import dev.utils.app.ActivityUtils
-import dev.utils.app.DialogUtils
+import dev.utils.app.*
 import dev.utils.app.DialogUtils.DialogListener
-import dev.utils.app.EditTextUtils
-import dev.utils.app.KeyBoardUtils
-import dev.utils.app.TextViewUtils
-import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
-import dev.utils.app.toast.ToastUtils
 import dev.utils.common.ConvertUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.thread.DevThreadManager
@@ -66,7 +58,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, BasePr
                                 deniedList: List<String>,
                                 notFoundList: List<String>
                             ) {
-                                ToastUtils.showShort("请开启联系人写入权限")
+                                ToastTintUtils.error("请开启联系人写入权限")
                             }
                         }
                     )
@@ -118,7 +110,8 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, BasePr
         val builder = StringBuilder()
         builder.append("将会创建 ").append(middle).append(" 条联系人数据\n")
         builder.append(tempNumber).append(" - ").append(tempNumber2)
-        DialogUtils.createAlertDialog(mActivity, "创建提示", builder.toString(),
+        DialogUtils.createAlertDialog(
+            mActivity, "创建提示", builder.toString(),
             "取消", "创建", object : DialogListener() {
                 override fun onLeftButton(dialog: DialogInterface) {
                     dialog.dismiss()
