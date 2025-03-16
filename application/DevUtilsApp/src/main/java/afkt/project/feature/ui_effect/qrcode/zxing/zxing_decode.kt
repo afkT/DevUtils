@@ -208,7 +208,7 @@ class DecodeHandler(
     private val mDecodeConfig: DecodeConfig,
     // 解码参数
     hints: Map<DecodeHintType, Any>
-) : Handler() {
+) : Handler(Looper.getMainLooper()) {
 
     // 日志 TAG
     private val TAG = DecodeHandler::class.java.simpleName

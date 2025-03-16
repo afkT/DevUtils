@@ -24,7 +24,7 @@ import dev.engine.log.DevLoggerEngineImpl
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
-import dev.engine.permission.XXPermissionEngineImpl
+import dev.engine.permission.XXPermissionsEngineImpl
 import dev.engine.push.DevPushEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
@@ -263,8 +263,8 @@ object DevEngine {
         // = Permission Engine 权限申请 =
         // ============================
 
-        // 初始化 XXPermission Engine 实现
-        DevPermissionEngine.setEngine(XXPermissionEngineImpl())
+        // 初始化 XXPermissions Engine 实现
+        DevPermissionEngine.setEngine(XXPermissionsEngineImpl())
 
         // =================================
         // = Storage Engine 外部、内部文件存储 =

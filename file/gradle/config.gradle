@@ -305,9 +305,6 @@ ext {
                     // 状态栏框架 https://github.com/gyf-dev/ImmersionBar
                     immersionBar         : "com.geyifeng.immersionbar:immersionbar:3.2.2",
                     immersionBar_ktx     : "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2",
-                    // https://mvnrepository.com/artifact/com.kongzue.dialogx/DialogX
-                    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
-                    dialogX              : "com.kongzue.dialogx:DialogX:0.0.49",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android

@@ -11,10 +11,10 @@ import dev.utils.common.ArrayUtils
 import dev.utils.common.CollectionUtils
 
 /**
- * detail: XXPermission Engine 实现
+ * detail: XXPermissions Engine 实现
  * @author Ttt
  */
-open class XXPermissionEngineImpl : IPermissionEngine {
+open class XXPermissionsEngineImpl : IPermissionEngine {
 
     // =============
     // = 对外公开方法 =

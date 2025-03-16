@@ -54,7 +54,7 @@ class FlipCardActivity : BaseProjectActivity<ActivityFlipCardBinding, BaseProjec
                 }, 1000 * 10)
 
 //                flipTimer = DevTimer.Builder(5000L, 5000L, -1)
-//                    .build().setHandler(Handler())
+//                    .build().setHandler(Handler(Looper.getMainLooper()))
 //                    .setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
 //                        if (!ActivityUtils.isFinishing(mActivity)) {
 ////                            binding.vidFcv1.flip()

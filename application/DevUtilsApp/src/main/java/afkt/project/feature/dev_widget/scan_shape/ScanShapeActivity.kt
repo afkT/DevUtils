@@ -11,13 +11,13 @@ import android.view.View
 import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_eTag
+import dev.expand.engine.permission.permission_isGranted
 import dev.expand.engine.permission.permission_request
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraUtils
-import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.ui.ScanShapeView
 
@@ -144,7 +144,11 @@ class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProj
         // 摄像头权限
         val cameraPermission = Manifest.permission.CAMERA
         // 判断是否允许权限
-        if (PermissionUtils.isGranted(cameraPermission)) {
+        if (
+            permission_isGranted(
+                permissions = arrayOf(cameraPermission)
+            )
+        ) {
             try {
                 // 打开摄像头
                 val camera = CameraUtils.open()

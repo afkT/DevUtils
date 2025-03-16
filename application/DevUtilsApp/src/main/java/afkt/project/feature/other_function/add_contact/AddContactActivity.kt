@@ -11,6 +11,7 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.*
@@ -252,7 +253,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, BasePr
     }
 
     @SuppressLint("HandlerLeak")
-    private var handler = object : Handler() {
+    private var handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             val value = index.getAndIncrement()

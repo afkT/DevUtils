@@ -4,16 +4,17 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_eTag
+import dev.expand.engine.permission.permission_isGranted
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
 import dev.utils.app.camera.camera1.CameraUtils
-import dev.utils.app.permission.PermissionUtils
 
 /**
  * detail: 预览回调
@@ -81,7 +82,7 @@ class CaptureHandler(
     private val mPreviewCallback: PreviewCallback?,
     // 解码结果回调
     private val mDecodeResult: DecodeResult
-) : Handler() {
+) : Handler(Looper.getMainLooper()) {
 
     // 日志 TAG
     private val TAG = CaptureHandler::class.java.simpleName
@@ -289,7 +290,10 @@ class ZXingDecodeAssist(
      * 在获取 [Operate.cameraPermission] 权限成功后调用
      */
     fun startPreview(view: SurfaceView?) {
-        if (PermissionUtils.isGranted(Manifest.permission.CAMERA)) {
+        val isGranted: Boolean = view?.context?.permission_isGranted(
+            permissions = arrayOf(Manifest.permission.CAMERA)
+        ) == true
+        if (isGranted) {
             try {
                 // 打开摄像头
                 val camera = CameraUtils.open()

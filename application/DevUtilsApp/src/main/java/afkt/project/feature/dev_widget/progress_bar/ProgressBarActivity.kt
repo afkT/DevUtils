@@ -7,6 +7,7 @@ import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityProgressbarBinding
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import com.therouter.router.Route
 import dev.utils.app.ActivityUtils
@@ -52,7 +53,7 @@ class ProgressBarActivity : BaseProjectActivity<ActivityProgressbarBinding, Base
 ) {
 
     @SuppressLint("HandlerLeak")
-    private val handler = object : Handler() {
+    private val handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             // 如果页面销毁了则不处理

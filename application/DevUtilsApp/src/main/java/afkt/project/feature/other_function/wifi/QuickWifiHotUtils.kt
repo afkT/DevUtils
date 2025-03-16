@@ -3,6 +3,7 @@ package afkt.project.feature.other_function.wifi
 import android.annotation.SuppressLint
 import android.net.wifi.WifiManager
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.wifi.WifiHotUtils
@@ -39,7 +40,7 @@ class QuickWifiHotUtils(
     var mOperate: Operate? = null
 
     @SuppressLint("HandlerLeak")
-    private val hotHandler: Handler = object : Handler() {
+    private val hotHandler: Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             // 如果属于需要销毁, 则全部不处理

@@ -197,6 +197,9 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.Othershe/CombineBitmap
                     // 群聊组合头像 https://github.com/shehuan/CombineBitmap
                     combineBitmap                   : "com.github.Othershe:CombineBitmap:1.0.5",
+                    // https://mvnrepository.com/artifact/com.kongzue.dialogx/DialogX
+                    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
+                    dialogX                         : "com.kongzue.dialogx:DialogX:0.0.49",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023

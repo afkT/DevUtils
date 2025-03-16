@@ -10,6 +10,7 @@ import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCommonTipsBinding
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.telephony.SmsMessage
 import android.view.OrientationEventListener
@@ -480,7 +481,7 @@ class ListenerActivity : BaseProjectActivity<ActivityCommonTipsBinding, BaseProj
         } else {
             ToastTintUtils.success("绑定屏幕旋转监听 ( 重力传感器 ) 成功, 请查看 Logcat")
             // 注册监听
-            screenSensorAssist.start(object : Handler() {
+            screenSensorAssist.start(object : Handler(Looper.getMainLooper()) {
                 override fun handleMessage(msg: Message) {
                     super.handleMessage(msg)
                     when (msg.what) {

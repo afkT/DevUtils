@@ -128,8 +128,8 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 可选实现方案：
 
-* 依赖 [DevApp PermissionUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/permission/PermissionUtils.java)
-  实现 [DevPermissionEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/permission/engine_dev_permission.kt)
+* 依赖 [XXPermissions 权限请求框架](https://github.com/getActivity/XXPermissions)
+  实现 [XXPermissionsEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/permission/engine_xxpermissions.kt)
 
 
 ### Storage Engine 外部、内部文件存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/storage)

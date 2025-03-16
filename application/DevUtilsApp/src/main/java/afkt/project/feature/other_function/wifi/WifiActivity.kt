@@ -13,10 +13,12 @@ import android.annotation.SuppressLint
 import android.net.wifi.WifiConfiguration
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
+import dev.expand.engine.permission.permission_isGranted
 import dev.expand.engine.permission.permission_request
 import dev.receiver.WifiReceiver
 import dev.receiver.WifiReceiver.Companion.register
@@ -25,7 +27,6 @@ import dev.receiver.WifiReceiver.Companion.unregister
 import dev.utils.app.AppUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.IntentUtils
-import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.wifi.WifiHotUtils
 import dev.utils.app.wifi.WifiUtils
@@ -130,7 +131,11 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
                                 } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) { // 7.0 及以下需要 WRITE_SETTINGS 权限
                                     // 无法进行申请, 只能跳转到权限页面, 让用户开启
                                     // 获取写入设置权限 , 必须有这个权限, 否则无法开启
-                                    if (!PermissionUtils.isGranted(Manifest.permission.WRITE_SETTINGS)) {
+                                    if (
+                                        !permission_isGranted(
+                                            permissions = arrayOf(Manifest.permission.WRITE_SETTINGS)
+                                        )
+                                    ) {
                                         ToastTintUtils.error("开启热点需要修改系统设置权限")
                                         // 如果没有权限则跳转过去
                                         AppUtils.startActivity(
@@ -349,7 +354,7 @@ class WifiActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjec
     private val CHECK_HOTSOPT_STATE = 100
 
     @SuppressLint("HandlerLeak")
-    var handler = object : Handler() {
+    var handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             when (msg.what) {

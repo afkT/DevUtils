@@ -9,6 +9,7 @@ import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.os.Handler
+import android.os.Looper
 import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.HandlerUtils
@@ -107,7 +108,7 @@ class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProje
 ) {
 
     // UI Handler
-    private val mUiHandler = Handler()
+    private val mUiHandler = Handler(Looper.getMainLooper())
 
     // 定时器
     private var mTimer: DevTimer? = null
