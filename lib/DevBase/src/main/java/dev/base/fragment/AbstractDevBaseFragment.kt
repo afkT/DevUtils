@@ -189,20 +189,6 @@ abstract class AbstractDevBaseFragment : Fragment(),
     // = IDevBaseUIOperation =
     // =======================
 
-    override fun showToast(
-        text: String?,
-        vararg formatArgs: Any
-    ) {
-        assist.showToast(text, formatArgs)
-    }
-
-    override fun showToast(
-        resId: Int,
-        vararg formatArgs: Any
-    ) {
-        assist.showToast(resId, formatArgs)
-    }
-
     override fun getDevPopupWindow(): PopupWindow? {
         return assist.getDevPopupWindow()
     }

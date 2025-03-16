@@ -7,7 +7,6 @@ import androidx.fragment.app.DialogFragment
 import dev.base.able.IDevBaseUIOperation
 import dev.utils.LogPrintUtils
 import dev.utils.app.DialogUtils
-import dev.utils.app.toast.ToastUtils
 
 /**
  * detail: DevBase 合并相同代码辅助类
@@ -77,20 +76,6 @@ class DevBaseAssist : IDevBaseUIOperation {
     // =======================
     // = IDevBaseUIOperation =
     // =======================
-
-    override fun showToast(
-        text: String?,
-        vararg formatArgs: Any
-    ) {
-        ToastUtils.showShort(mContext, text, *formatArgs)
-    }
-
-    override fun showToast(
-        resId: Int,
-        vararg formatArgs: Any
-    ) {
-        ToastUtils.showShort(mContext, resId, *formatArgs)
-    }
 
     override fun getDevPopupWindow(): PopupWindow? {
         return mDevPopupWindow

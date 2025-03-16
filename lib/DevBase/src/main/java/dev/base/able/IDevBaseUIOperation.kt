@@ -10,30 +10,6 @@ import androidx.fragment.app.DialogFragment
  */
 interface IDevBaseUIOperation {
 
-    // =========
-    // = Toast =
-    // =========
-
-    /**
-     * 显示 Toast
-     * @param text       Toast 提示文本
-     * @param formatArgs 格式化参数
-     */
-    fun showToast(
-        text: String?,
-        vararg formatArgs: Any
-    )
-
-    /**
-     * 显示 Toast
-     * @param resId       R.string.id
-     * @param formatArgs  格式化参数
-     */
-    fun showToast(
-        resId: Int,
-        vararg formatArgs: Any
-    )
-
     // ===============
     // = PopupWindow =
     // ===============
