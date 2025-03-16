@@ -5,4 +5,20 @@
         <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
+
+    <!-- Dialog 样式 -->
+    <style name="DevHttpCaptureCompilerDialogTheme" parent="@android:style/Theme.Dialog" />
+
+    <!-- Dialog 全屏透明样式 -->
+    <style name="DevHttpCaptureCompilerDialogFullScreenTheme" parent="DevHttpCaptureCompilerDialogTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
 </resources>

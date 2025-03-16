@@ -3,7 +3,7 @@ package dev.capture.model
 import android.app.Dialog
 import android.content.Context
 import dev.callback.DevCallback
-import dev.capture.R
+import dev.capture.compiler.R
 import dev.capture.compiler.databinding.DevHttpCaptureDataTypeDialogBinding
 import dev.capture.compiler.databinding.DevHttpCaptureGroupTypeDialogBinding
 import dev.capture.model.Items.GroupType
@@ -17,7 +17,7 @@ internal class Dialogs {
         context: Context,
         // 回调事件
         private val mCallback: DevCallback<Items.DataType>
-    ) : Dialog(context, R.style.DevDialogFullScreenTheme) {
+    ) : Dialog(context, R.style.DevHttpCaptureCompilerDialogFullScreenTheme) {
 
         private val binding = DevHttpCaptureDataTypeDialogBinding.inflate(
             layoutInflater
@@ -51,7 +51,7 @@ internal class Dialogs {
         context: Context,
         // 回调事件
         private val mCallback: DevCallback<GroupType>
-    ) : Dialog(context, R.style.DevDialogFullScreenTheme) {
+    ) : Dialog(context, R.style.DevHttpCaptureCompilerDialogFullScreenTheme) {
 
         private val binding = DevHttpCaptureGroupTypeDialogBinding.inflate(
             layoutInflater

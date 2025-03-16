@@ -2,6 +2,7 @@ package dev
 
 import android.content.Context
 import android.content.Intent
+import dev.capture.DevHttpCaptureToast
 import dev.capture.UrlFunctionGet
 import dev.capture.UtilsCompiler
 import dev.capture.activity.DevHttpCaptureMainActivity
@@ -116,5 +117,24 @@ object DevHttpCaptureCompiler {
      */
     fun removeUrlFunction(moduleName: String) {
         UtilsCompiler.removeUrlFunction(moduleName)
+    }
+
+    // ===============
+    // = 抓包库 Toast =
+    // ===============
+
+    /**
+     * 设置抓包库 Toast 实现
+     * @param toast DevHttpCaptureToast
+     */
+    fun setToastIMPL(toast: DevHttpCaptureToast) {
+        UtilsCompiler.setToastIMPL(toast)
+    }
+
+    /**
+     * 重置抓包库 Toast 实现
+     */
+    fun resetToastIMPL() {
+        UtilsCompiler.resetToastIMPL()
     }
 }

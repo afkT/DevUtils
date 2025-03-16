@@ -2,13 +2,16 @@ package dev.capture.activity
 
 import android.content.Intent
 import android.os.Bundle
+import dev.callback.DevCallback
 import dev.capture.UtilsCompiler
 import dev.capture.adapter.AdapterCaptureFile
 import dev.capture.base.BaseDevHttpActivity
 import dev.capture.compiler.R
 import dev.capture.compiler.databinding.DevHttpCaptureFileActivityBinding
+import dev.capture.model.Items
 import dev.utils.DevFinal
 import dev.utils.app.BarUtils
+import dev.utils.app.ClipboardUtils
 import dev.utils.app.ResourceUtils
 
 /**
@@ -59,7 +62,14 @@ class DevHttpCaptureFileActivity : BaseDevHttpActivity<DevHttpCaptureFileActivit
         // 设置标题
         binding.vidTitleInclude.vidTitleTv.setText(R.string.dev_http_capture_details_title)
         // 绑定适配器
-        mAdapter.bindAdapter(binding.vidRv)
+        mAdapter.setCallback(object : DevCallback<Items.FileItem>() {
+            override fun callback(item: Items.FileItem) {
+                ClipboardUtils.copyText(item.value)
+                UtilsCompiler.toastIMPL().success(
+                    R.string.dev_http_capture_copy_success
+                )
+            }
+        }).bindAdapter(binding.vidRv)
         // 设置数据源
         binding.vidRv.post {
             if (!isFinishing) {

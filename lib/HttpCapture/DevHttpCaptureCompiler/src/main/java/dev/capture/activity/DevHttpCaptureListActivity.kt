@@ -21,7 +21,6 @@ import dev.utils.app.DialogUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: DevHttpCapture 抓包数据列表
@@ -56,8 +55,8 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
             if (!isFinishing) {
                 if (isQuerying) {
                     if (size == 0) {
-                        ToastTintUtils.normal(
-                            ResourceUtils.getString(R.string.dev_http_capture_querying)
+                        UtilsCompiler.toastIMPL().normal(
+                            R.string.dev_http_capture_querying
                         )
                     }
                     return
@@ -80,8 +79,8 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
                     binding.vidRv,
                     binding.vidTipsInclude.vidTipsFl
                 )
-                ToastTintUtils.success(
-                    ResourceUtils.getString(R.string.dev_http_capture_query_complete)
+                UtilsCompiler.toastIMPL().success(
+                    R.string.dev_http_capture_query_complete
                 )
                 // 重置刷新点击处理
                 UtilsCompiler.resetRefreshClick()
@@ -204,8 +203,8 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
             }, binding.vidTabInclude.vidGroupLl)
             .setOnClick(object : OnDebouncingClickListener(UtilsCompiler.REFRESH_CLICK) {
                 override fun doClick(view: View) {
-                    ToastTintUtils.normal(
-                        ResourceUtils.getString(R.string.dev_http_capture_querying)
+                    UtilsCompiler.toastIMPL().normal(
+                        R.string.dev_http_capture_querying
                     )
                     if (!UtilsCompiler.isQuerying()) {
                         UtilsCompiler.queryData(
@@ -215,8 +214,8 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
                 }
 
                 override fun doInvalidClick(view: View) {
-                    ToastTintUtils.normal(
-                        ResourceUtils.getString(R.string.dev_http_capture_querying)
+                    UtilsCompiler.toastIMPL().normal(
+                        R.string.dev_http_capture_querying
                     )
                 }
             }, binding.vidRefreshFl)

@@ -1,11 +1,14 @@
 package dev.capture
 
 import android.app.Activity
+import android.widget.Toast
+import androidx.annotation.StringRes
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import com.google.gson.Strictness
 import com.google.gson.stream.JsonReader
 import dev.DevHttpCapture
+import dev.DevUtils
 import dev.callback.DevCallback
 import dev.capture.compiler.R
 import dev.capture.model.Items
@@ -323,87 +326,85 @@ internal object UtilsCompiler {
     fun getFileData(json: String?): List<Items.FileItem> {
         val lists = mutableListOf<Items.FileItem>()
         val captureFile = fromJson(json, CaptureFile::class.java)
-        if (captureFile != null) {
-            captureFile.getCaptureInfo()?.let { captureInfo ->
-                // 接口所属功能
-                val function = getUrlFunctionByInfo(captureFile, captureInfo)
-                if (StringUtils.isNotEmpty(function)) {
-                    lists.add(
-                        Items.FileItem(
-                            ResourceUtils.getString(R.string.dev_http_capture_url_function),
-                            function ?: ""
-                        )
-                    )
-                }
-
-                // 请求链接
+        captureFile?.getCaptureInfo()?.let { captureInfo ->
+            // 接口所属功能
+            val function = getUrlFunctionByInfo(captureFile, captureInfo)
+            if (StringUtils.isNotEmpty(function)) {
                 lists.add(
                     Items.FileItem(
-                        ResourceUtils.getString(R.string.dev_http_capture_request_url),
-                        captureInfo.requestUrl
-                    )
-                )
-
-                // 请求方法
-                lists.add(
-                    Items.FileItem(
-                        ResourceUtils.getString(R.string.dev_http_capture_request_method),
-                        captureInfo.requestMethod
-                    )
-                )
-
-                // 请求头信息
-                val requestHeader = mapToString(captureInfo.requestHeader).toString()
-                if (StringUtils.isNotEmpty(requestHeader)) {
-                    lists.add(
-                        Items.FileItem(
-                            ResourceUtils.getString(R.string.dev_http_capture_request_header),
-                            requestHeader
-                        )
-                    )
-                }
-
-                // 请求数据
-                val requestBody = mapToString(captureInfo.requestBody).toString()
-                if (StringUtils.isNotEmpty(requestBody)) {
-                    lists.add(
-                        Items.FileItem(
-                            ResourceUtils.getString(R.string.dev_http_capture_request_body),
-                            requestBody
-                        )
-                    )
-                }
-
-                // 响应状态
-                val responseStatus = mapToString(captureInfo.responseStatus).toString()
-                if (StringUtils.isNotEmpty(responseStatus)) {
-                    lists.add(
-                        Items.FileItem(
-                            ResourceUtils.getString(R.string.dev_http_capture_response_status),
-                            responseStatus
-                        )
-                    )
-                }
-
-                // 响应头信息
-                val responseHeader = mapToString(captureInfo.responseHeader).toString()
-                if (StringUtils.isNotEmpty(responseHeader)) {
-                    lists.add(
-                        Items.FileItem(
-                            ResourceUtils.getString(R.string.dev_http_capture_response_header),
-                            responseHeader
-                        )
-                    )
-                }
-
-                // 响应数据
-                lists.add(
-                    Items.FileItem(
-                        ResourceUtils.getString(R.string.dev_http_capture_response_body),
-                        toJsonIndent(captureInfo.responseBody) ?: ""
+                        ResourceUtils.getString(R.string.dev_http_capture_url_function),
+                        function ?: ""
                     )
                 )
             }
+
+            // 请求链接
+            lists.add(
+                Items.FileItem(
+                    ResourceUtils.getString(R.string.dev_http_capture_request_url),
+                    captureInfo.requestUrl
+                )
+            )
+
+            // 请求方法
+            lists.add(
+                Items.FileItem(
+                    ResourceUtils.getString(R.string.dev_http_capture_request_method),
+                    captureInfo.requestMethod
+                )
+            )
+
+            // 请求头信息
+            val requestHeader = mapToString(captureInfo.requestHeader).toString()
+            if (StringUtils.isNotEmpty(requestHeader)) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_header),
+                        requestHeader
+                    )
+                )
+            }
+
+            // 请求数据
+            val requestBody = mapToString(captureInfo.requestBody).toString()
+            if (StringUtils.isNotEmpty(requestBody)) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_body),
+                        requestBody
+                    )
+                )
+            }
+
+            // 响应状态
+            val responseStatus = mapToString(captureInfo.responseStatus).toString()
+            if (StringUtils.isNotEmpty(responseStatus)) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_response_status),
+                        responseStatus
+                    )
+                )
+            }
+
+            // 响应头信息
+            val responseHeader = mapToString(captureInfo.responseHeader).toString()
+            if (StringUtils.isNotEmpty(responseHeader)) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_response_header),
+                        responseHeader
+                    )
+                )
+            }
+
+            // 响应数据
+            lists.add(
+                Items.FileItem(
+                    ResourceUtils.getString(R.string.dev_http_capture_response_body),
+                    toJsonIndent(captureInfo.responseBody) ?: ""
+                )
+            )
         }
         return lists
     }
@@ -573,5 +574,53 @@ internal object UtilsCompiler {
 //            map[it.key] = toJsonIndent(it.value) ?: it.value
 //        }
         return MapUtils.mapToString(map, ": ")
+    }
+
+    // ===============
+    // = 抓包库 Toast =
+    // ===============
+
+    // Default DevHttpCaptureToast
+    private val DEFAULT_TOAST: DevHttpCaptureToast by lazy {
+        object : DevHttpCaptureToast {
+            override fun normal(@StringRes id: Int) {
+                success(id)
+            }
+
+            override fun success(@StringRes id: Int) {
+                try {
+                    Toast.makeText(
+                        DevUtils.getContext(), id, Toast.LENGTH_SHORT
+                    ).show()
+                } catch (_: Exception) {
+                }
+            }
+        }
+    }
+
+    // Toast 接口
+    private var mToast: DevHttpCaptureToast? = null
+
+    /**
+     * 获取抓包库 Toast 实现
+     * @return DevHttpCaptureToast
+     */
+    fun toastIMPL(): DevHttpCaptureToast {
+        return mToast ?: DEFAULT_TOAST
+    }
+
+    /**
+     * 设置抓包库 Toast 实现
+     * @param toast DevHttpCaptureToast
+     */
+    fun setToastIMPL(toast: DevHttpCaptureToast) {
+        mToast = toast
+    }
+
+    /**
+     * 重置抓包库 Toast 实现
+     */
+    fun resetToastIMPL() {
+        mToast = DEFAULT_TOAST
     }
 }
