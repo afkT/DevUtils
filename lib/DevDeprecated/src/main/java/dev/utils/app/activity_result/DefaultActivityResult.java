@@ -21,6 +21,7 @@ import dev.utils.common.DevCommonUtils;
  * @author Ttt
  * <pre>
  *     默认 Activity onActivityResult(int, int, Intent) 实现方式封装
+ *     推荐使用 {@link dev.utils.app.ActivityResultUtils}
  * </pre>
  */
 public final class DefaultActivityResult {

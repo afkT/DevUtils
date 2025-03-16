@@ -21,7 +21,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.KeyBoardUtils;
-import dev.utils.app.permission.PermissionUtils;
 
 /**
  * detail: Activity 生命周期辅助类
@@ -151,13 +150,8 @@ public final class ActivityLifecycleAssist {
         @Override
         public boolean filter(Activity activity) {
             if (activity != null) {
-                if (PermissionUtils.PERMISSION_ACTIVITY_CLASS_NAME.equals(activity.getClass().getName())) {
-                    // 如果相同则不处理 ( 该页面为内部权限框架, 申请权限页面 )
-                    return true;
-                } else {
-                    if (mActivityLifecycleFilter != null) {
-                        return mActivityLifecycleFilter.filter(activity);
-                    }
+                if (mActivityLifecycleFilter != null) {
+                    return mActivityLifecycleFilter.filter(activity);
                 }
             }
             return false;

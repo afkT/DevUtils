@@ -19,8 +19,8 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 
 import dev.DevUtils;
+import dev.deprecated.R;
 import dev.utils.LogPrintUtils;
-import dev.utils.R;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.image.ImageUtils;
@@ -1262,14 +1262,14 @@ public final class ToastTintUtils {
             try {
                 // 引入 View
                 final View toastLayout = LayoutInflater.from(context).inflate(
-                        dev.utils.R.layout.dev_toast_layout, null
+                        R.layout.dev_toast_layout, null
                 );
                 // 初始化 View
                 final ImageView toastIcon = toastLayout.findViewById(
-                        dev.utils.R.id.vid_toast_iv
+                        R.id.vid_toast_iv
                 );
                 final TextView toastTextView = toastLayout.findViewById(
-                        dev.utils.R.id.vid_toast_tv
+                        R.id.vid_toast_tv
                 );
 
                 // ================
@@ -1325,7 +1325,7 @@ public final class ToastTintUtils {
                 // 判断是否为 null
                 if (drawableFrame == null) {
                     drawableFrame = ResourceUtils.getNinePatchDrawable(
-                            dev.utils.R.drawable.dev_toast_frame
+                            R.drawable.dev_toast_frame
                     );
                     // 判断是否需要着色
                     if (style.getBackgroundTintColor() != 0) { // 根据背景色进行渲染透明图片

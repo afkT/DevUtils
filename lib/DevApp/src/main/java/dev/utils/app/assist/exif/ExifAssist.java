@@ -1,7 +1,6 @@
 package dev.utils.app.assist.exif;
 
 import android.Manifest;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
@@ -23,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.utils.app.permission.PermissionUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -54,8 +52,6 @@ import dev.utils.common.FileUtils;
  *     已提供 {@link ExifAssist#getByRequire(Uri)} 进行创建 ( 在申请权限成功后直接通过该方法创建即可 )
  *     或通过 {@link ExifAssist#requireOriginal(Uri)} 申请获取原始 Uri
  *     <p></p>
- *     申请权限方法已封装 {@link ExifAssist#requestPermission(Activity, PermissionUtils.PermissionCallback)}
- *     在 Callback onGranted() 方法中调用 {@link ExifAssist#getByRequire(Uri)} 即可
  *     以上所有方法都已进行版本适配处理直接调用无需额外逻辑判断
  * </pre>
  */
@@ -224,28 +220,6 @@ public final class ExifAssist {
             }
         }
         return uri;
-    }
-
-    /**
-     * 请求 ACCESS_MEDIA_LOCATION 权限并进行通知
-     * @param activity {@link Activity}
-     * @param callback {@link PermissionUtils.PermissionCallback}
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean requestPermission(
-            final Activity activity,
-            final PermissionUtils.PermissionCallback callback
-    ) {
-        if (activity == null) return false;
-        if (callback == null) return false;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            PermissionUtils.permission(
-                    Manifest.permission.ACCESS_MEDIA_LOCATION
-            ).callback(callback).request(activity);
-        } else {
-            callback.onGranted();
-        }
-        return true;
     }
 
     /**

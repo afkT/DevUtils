@@ -4,22 +4,6 @@
 
     <application>
 
-        <activity
-            android:name="dev.utils.app.permission.PermissionUtils$PermissionActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:multiprocess="true"
-            android:theme="@style/DevActivityTranslucentTheme"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-
-        <activity
-            android:name="dev.utils.app.activity_result.DefaultActivityResult$ResultActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:multiprocess="true"
-            android:theme="@style/DevActivityTranslucentTheme"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-
         <provider
             android:name="dev.DevUtils$FileProviderDevApp"
             android:authorities="${applicationId}.devapp.provider"

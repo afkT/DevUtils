@@ -10,7 +10,6 @@ import androidx.lifecycle.LifecycleOwner;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.activity_result.ActivityResultAssist;
-import dev.utils.app.activity_result.DefaultActivityResult;
 
 /**
  * detail: Activity Result 工具类
@@ -37,18 +36,6 @@ public final class ActivityResultUtils {
 
     // 日志 TAG
     private static final String TAG = ActivityResultUtils.class.getSimpleName();
-
-    // ===================================
-    // = 默认实现 ( 原始 onActivityResult ) =
-    // ===================================
-
-    /**
-     * 获取默认实现 ( 原始 onActivityResult ) 封装辅助类
-     * @return DefaultActivityResult
-     */
-    public static DefaultActivityResult getDefault() {
-        return DefaultActivityResult.getInstance();
-    }
 
     // =========================
     // = 新 Activity Result API =

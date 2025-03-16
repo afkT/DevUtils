@@ -22,7 +22,6 @@ import dev.utils.app.assist.lifecycle.ActivityLifecycleFilter;
 import dev.utils.app.assist.lifecycle.ActivityLifecycleGet;
 import dev.utils.app.assist.lifecycle.ActivityLifecycleNotify;
 import dev.utils.app.assist.record.AppRecordInsert;
-import dev.utils.app.toast.toaster.DevToast;
 import dev.utils.common.FileUtils;
 import dev.utils.common.assist.record.FileRecordUtils;
 
@@ -97,8 +96,6 @@ public final class DevUtils {
 
         // 初始化 Record
         FileRecordUtils.setRecordInsert(new AppRecordInsert(false));
-        // 初始化 Toast
-        DevToast.initialize(context);
 
         // ============
         // = Java Log =
