@@ -861,31 +861,4 @@ public final class ImageFilterUtils {
         }
         return null;
     }
-
-    // =
-
-    /**
-     * 将 YUV 格式的图片的源数据从横屏模式转为竖屏模式
-     * <pre>
-     *     注: 将源图片的宽高互换就是新图片的宽高
-     * </pre>
-     * @param sourceData YUV 格式的图片的源数据
-     * @param width      宽
-     * @param height     高
-     * @return byte[]
-     */
-    public static byte[] yuvLandscapeToPortrait(
-            final byte[] sourceData,
-            final int width,
-            final int height
-    ) {
-        if (sourceData == null || sourceData.length == 0) return null;
-        byte[] rotatedData = new byte[sourceData.length];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                rotatedData[x * height + height - y - 1] = sourceData[x + y * width];
-            }
-        }
-        return rotatedData;
-    }
 }

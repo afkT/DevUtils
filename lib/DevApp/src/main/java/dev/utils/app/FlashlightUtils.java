@@ -1,11 +1,10 @@
-package dev.utils.app.camera.camera1;
+package dev.utils.app;
 
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
 
 /**
  * detail: 手电筒工具类
