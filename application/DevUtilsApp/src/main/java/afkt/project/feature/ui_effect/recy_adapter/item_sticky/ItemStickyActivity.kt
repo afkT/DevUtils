@@ -20,7 +20,6 @@ import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
-import java.util.*
 
 /**
  * detail: RecyclerView 吸附效果

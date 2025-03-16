@@ -8,7 +8,7 @@ import dev.base.expand.mvp.MVP.IModel
 import dev.base.expand.mvp.MVP.IView
 import dev.retrofit.Notify
 import dev.retrofit.simpleLaunchExecuteRequest
-import java.util.UUID
+import java.util.*
 
 /**
  * detail: 文章 MVP Contract

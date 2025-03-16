@@ -103,7 +103,7 @@ public final class ToastTintUtils {
 
     /**
      * 设置 Toast 过滤器
-     * @param toastFilter {@link ToastUtils.Filter}
+     * @param toastFilter {@link ToastTintUtils.Filter}
      */
     public static void setToastFilter(final ToastTintUtils.Filter toastFilter) {
         ToastTintUtils.sToastFilter = toastFilter;

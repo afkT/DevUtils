@@ -26,7 +26,8 @@ import dev.widget.function.StateLayout
  * @author Ttt
  */
 open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel> :
-    BaseActivity<VDB, VM>, IFloatingActivity {
+    BaseActivity<VDB, VM>,
+    IFloatingActivity {
 
     // ==========
     // = 构造函数 =

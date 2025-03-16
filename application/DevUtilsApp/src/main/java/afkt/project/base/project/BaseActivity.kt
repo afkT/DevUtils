@@ -19,7 +19,8 @@ import dev.utils.app.assist.floating.IFloatingActivity
  * @author Ttt
  */
 open class BaseActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel> :
-    BaseAppActivity<VDB, VM>, IFloatingActivity {
+    BaseAppActivity<VDB, VM>,
+    IFloatingActivity {
 
     // ==========
     // = 构造函数 =

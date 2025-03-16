@@ -8,20 +8,13 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import androidx.annotation.IntDef
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.BinaryBitmap
-import com.google.zxing.DecodeHintType
-import com.google.zxing.MultiFormatReader
-import com.google.zxing.PlanarYUVLuminanceSource
-import com.google.zxing.ReaderException
-import com.google.zxing.Result
+import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import dev.expand.engine.log.log_dTag
 import java.io.ByteArrayOutputStream
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
-import java.util.EnumMap
-import java.util.EnumSet
+import java.util.*
 import java.util.concurrent.CountDownLatch
 
 const val WHAT_QUIT = 100

@@ -21,7 +21,10 @@ import dev.widget.function.SignView
 @Route(path = RouterPath.DEV_WIDGET.SignActivity_PATH)
 class SignActivity : BaseProjectActivity<ViewDataBinding, BaseProjectViewModel>(
     object : BindingActivityView {
-        override fun bind(value: AppCompatActivity, inflater: LayoutInflater): View {
+        override fun bind(
+            value: AppCompatActivity,
+            inflater: LayoutInflater
+        ): View {
             val signView = SignView(value)
             signView.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

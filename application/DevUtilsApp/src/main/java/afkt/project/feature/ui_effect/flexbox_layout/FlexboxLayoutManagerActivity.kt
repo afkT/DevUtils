@@ -17,7 +17,6 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
-import java.util.*
 
 /**
  * detail: Flexbox LayoutManager

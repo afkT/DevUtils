@@ -13,12 +13,7 @@ import androidx.core.content.ContextCompat
 import com.therouter.router.Route
 import dev.base.widget.BaseTextView
 import dev.expand.engine.log.log_dTag
-import dev.utils.app.HandlerUtils
-import dev.utils.app.ListenerUtils
-import dev.utils.app.ResourceUtils
-import dev.utils.app.ShapeUtils
-import dev.utils.app.StateListUtils
-import dev.utils.app.ViewUtils
+import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ArrayUtils
@@ -165,7 +160,8 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjec
         }
 
         TabLayoutAssist[binding.vid90Tl]?.apply {
-            setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toTypedArray(), 0, 3)),
+            setListTabs(
+                ArrayUtils.asList(ArrayUtils.subArray(listTabs.toTypedArray(), 0, 3)),
                 object : TabChangeListener {
                     override fun onTabChange(
                         tabItem: TabItem,

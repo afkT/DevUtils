@@ -3,7 +3,7 @@ package afkt.project.feature.other_function.floating
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.base.project.ext.bindAdapter
+import afkt.project.base.project.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
@@ -15,13 +15,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.therouter.router.Route
 import dev.utils.app.ViewUtils
-import dev.utils.app.assist.floating.DevFloatingCommon
-import dev.utils.app.assist.floating.DevFloatingEdgeIMPL
-import dev.utils.app.assist.floating.DevFloatingListener
-import dev.utils.app.assist.floating.DevFloatingTouchIMPL2
-import dev.utils.app.assist.floating.FloatingWindowManagerAssist2
-import dev.utils.app.assist.floating.IFloatingActivity
-import dev.utils.app.assist.floating.IFloatingOperate
+import dev.utils.app.assist.floating.*
 import dev.utils.app.toast.ToastTintUtils
 
 /**

@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.base.BaseApplication
 import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.base.project.ext.bindAdapter
+import afkt.project.base.project.bindAdapter
 import afkt.project.data_model.button.ButtonList
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath

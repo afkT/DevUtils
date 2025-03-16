@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
-import java.util.*
 
 /**
  * detail: RecyclerView - ConcatAdapter

@@ -16,7 +16,6 @@ import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
-import java.util.*
 
 /**
  * detail: Material Chip、ChipGroups、ChipDrawable

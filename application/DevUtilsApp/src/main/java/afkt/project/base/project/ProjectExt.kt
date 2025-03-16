@@ -1,4 +1,4 @@
-package afkt.project.base.project.ext
+package afkt.project.base.project
 
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.feature.ButtonAdapter
@@ -69,11 +69,17 @@ fun RecyclerView.bindAdapterLong(
 ) {
     ButtonAdapter(buttons)
         .setItemCallback(object : DevItemClickCallback<ButtonValue>() {
-            override fun onItemClick(buttonValue: ButtonValue, param: Int) {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
+            ) {
                 callback.invoke(buttonValue)
             }
 
-            override fun onItemLongClick(buttonValue: ButtonValue, param: Int) {
+            override fun onItemLongClick(
+                buttonValue: ButtonValue,
+                param: Int
+            ) {
                 longCallback.invoke(buttonValue)
             }
         }).bindAdapter(this)

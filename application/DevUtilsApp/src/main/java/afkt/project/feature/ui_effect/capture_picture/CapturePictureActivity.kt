@@ -3,7 +3,7 @@ package afkt.project.feature.ui_effect.capture_picture
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.base.project.ext.routerActivity
+import afkt.project.base.project.routerActivity
 import afkt.project.data_model.button.ButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
