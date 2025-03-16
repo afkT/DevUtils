@@ -43,9 +43,9 @@ class ViewPagerActivity : BaseProjectActivity<ActivityViewPagerBinding, BaseProj
                             message = "索引变动: $index"
                         )
                         if (mLeftScroll) {
-                            showToast("往左滑 - 从右往左")
+                            showToast(true, "往左滑 - 从右往左")
                         } else {
-                            showToast("往右滑 - 从左往右")
+                            showToast(false, "往右滑 - 从左往右")
                         }
                     }
                 })

@@ -12,11 +12,11 @@ import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_eTag
 import dev.expand.engine.permission.permission_request
+import dev.utils.app.FlashlightUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraUtils
-import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.ui.ScanShapeView

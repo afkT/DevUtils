@@ -11,7 +11,6 @@ import android.os.Message
 import android.os.Parcelable
 import dev.utils.LogPrintUtils
 import dev.utils.app.AppUtils
-import dev.utils.app.wifi.WifiUtils
 
 /**
  * detail: Wifi 监听广播
@@ -239,7 +238,6 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
                     // 通知消息
                     val msg = Message()
                     // 当前连接的 SSID
-                    msg.obj = WifiUtils.getSSID()
                     msg.what = UNKNOWN
                     // 判断连接状态
                     when (state) {

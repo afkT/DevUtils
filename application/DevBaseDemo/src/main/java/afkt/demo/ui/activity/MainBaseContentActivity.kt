@@ -12,6 +12,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
+import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.ColorUtils
 
@@ -50,7 +51,7 @@ class MainBaseContentActivity :
                 .setGravity(Gravity.CENTER)
                 .setBold()
                 .setOnClick { view ->
-                    showToast(TextViewUtils.getText(view))
+                    ToastTintUtils.normal(TextViewUtils.getText(view))
                 }
                 .getView()
         )
@@ -72,7 +73,7 @@ class MainBaseContentActivity :
                 .setMargin(ResourceUtils.getDimensionInt(R.dimen.dp_20))
                 .setLayoutGravity(Gravity.END or Gravity.BOTTOM)
                 .setOnClick {
-                    showToast("点击了悬浮 View")
+                    ToastTintUtils.normal("点击了悬浮 View")
                 }
         }
     }
