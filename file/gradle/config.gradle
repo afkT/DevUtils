@@ -295,6 +295,19 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions        : "com.github.getActivity:XXPermissions:20.0",
+                    // https://mvnrepository.com/artifact/com.github.getActivity/Toaster
+                    // 吐司框架 https://github.com/getActivity/Toaster
+                    toaster              : "com.github.getActivity:Toaster:12.8",
+                    // https://mvnrepository.com/artifact/com.github.getActivity/TitleBar
+                    // 标题栏框架 https://github.com/getActivity/TitleBar
+                    titleBar             : "com.github.getActivity:TitleBar:10.6",
+                    // https://mvnrepository.com/artifact/com.geyifeng.immersionbar/immersionbar
+                    // 状态栏框架 https://github.com/gyf-dev/ImmersionBar
+                    immersionBar         : "com.geyifeng.immersionbar:immersionbar:3.2.2",
+                    immersionBar_ktx     : "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2",
+                    // https://mvnrepository.com/artifact/com.kongzue.dialogx/DialogX
+                    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
+                    dialogX              : "com.kongzue.dialogx:DialogX:0.0.49",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // https://www.jianshu.com/p/9a2136ecbc7b
                     // 动画库 https://github.com/airbnb/lottie-android

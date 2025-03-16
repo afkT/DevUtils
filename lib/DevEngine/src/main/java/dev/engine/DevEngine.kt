@@ -3,6 +3,9 @@ package dev.engine
 import android.content.Context
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
+import dev.engine.DevEngine.createMMKVConfig
+import dev.engine.DevEngine.defaultEngine
+import dev.engine.DevEngine.defaultMMKVInitialize
 import dev.engine.analytics.DevAnalyticsEngine
 import dev.engine.barcode.DevBarCodeEngine
 import dev.engine.barcode.ZXingEngineImpl
@@ -21,7 +24,7 @@ import dev.engine.log.DevLoggerEngineImpl
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
-import dev.engine.permission.DevPermissionEngineImpl
+import dev.engine.permission.XXPermissionEngineImpl
 import dev.engine.push.DevPushEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
@@ -260,8 +263,8 @@ object DevEngine {
         // = Permission Engine 权限申请 =
         // ============================
 
-        // 初始化 DevUtils Permission Engine 实现
-        DevPermissionEngine.setEngine(DevPermissionEngineImpl())
+        // 初始化 XXPermission Engine 实现
+        DevPermissionEngine.setEngine(XXPermissionEngineImpl())
 
         // =================================
         // = Storage Engine 外部、内部文件存储 =

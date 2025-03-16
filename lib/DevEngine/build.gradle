@@ -34,6 +34,8 @@ dependencies {
     api deps.lib.fastjson2_android
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
     api deps.lib.mmkv
+    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+    api deps.lib.xxPermissions
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     api deps_split.lib.luban
     // 二维码 ZXing https://github.com/zxing/zxing

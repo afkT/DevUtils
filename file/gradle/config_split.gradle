@@ -77,6 +77,9 @@ ext {
                     // https://jitpack.io/#xuexiangjys/XUpdate
                     // 版本更新框架 https://github.com/xuexiangjys/XUpdate/blob/master/README_ZH.md
                     xupdate                             : "com.github.xuexiangjys:XUpdate:2.1.5",
+                    // https://mvnrepository.com/artifact/com.github.lzyzsd/jsbridge
+                    // JS 交互框架 https://github.com/uknownothingsnow/JsBridge
+                    jsBridge                            : "com.github.lzyzsd:jsbridge:1.0.4",
             ],
             "property"  : [
 
@@ -191,6 +194,9 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.donkingliang/GroupedRecyclerViewAdapter
                     // 悬浮吸顶分组 RecyclerView https://github.com/donkingliang/GroupedRecyclerViewAdapter
                     grouped_adapter                 : "com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.3",
+                    // https://mvnrepository.com/artifact/com.github.Othershe/CombineBitmap
+                    // 群聊组合头像 https://github.com/shehuan/CombineBitmap
+                    combineBitmap                   : "com.github.Othershe:CombineBitmap:1.0.5",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
