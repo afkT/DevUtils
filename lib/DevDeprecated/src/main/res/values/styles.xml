@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- android:theme="Theme.Light.NoTitleBar" 白色背景并无标题栏 -->
     <!-- android:theme="Theme.Translucent.NoTitleBar" 透明背景并无标题 -->
 
     <!-- 白色 背景 无标题样式 -->
-    <style name="DevNoTitleTheme" parent="android:Theme.Light.NoTitleBar" />
+    <style name="DevNoTitleTheme" parent="android:Theme.Light.NoTitleBar">
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
 
     <!-- 全屏 白色背景 无标题 样式 -->
-    <style name="DevFullscreenTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen" />
+    <style name="DevFullscreenTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen">
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
 
     <!-- Activity 样式 - 背景透明、跳转无动画 -->
     <style name="DevActivityNoAnimTheme" parent="DevNoTitleTheme">
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- Activity 样式 - 全屏、背景透明、跳转无动画 -->
@@ -22,6 +30,8 @@
         <item name="android:background">@color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- 设置 Activity 跳转 无动画样式 -->
@@ -38,6 +48,8 @@
         <item name="android:taskToFrontExitAnimation">@null</item>
         <item name="android:taskToBackEnterAnimation">@null</item>
         <item name="android:taskToBackExitAnimation">@null</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- Activity 透明样式 - 无标题、全屏、背景透明等 -->
@@ -52,23 +64,32 @@
         <item name="android:activityCloseEnterAnimation">@null</item>
         <item name="android:activityCloseExitAnimation">@null</item>
         <item name="android:statusBarColor">@color/transparent</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- AppCompatActivity -->
 
     <!-- 白色 背景 无标题、ActionBar 样式 -->
-    <style name="DevNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="DevNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
 
     <!-- 全屏 白色背景 无标题、ActionBar 样式 -->
     <style name="DevNoActionBarFullscreenTheme" parent="DevNoActionBarTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- AppCompatActivity 样式 - 无标题、ActionBar、背景透明、跳转无动画 -->
     <style name="DevActivityNoAnimNoActionBarTheme" parent="DevNoActionBarTheme">
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <!-- Dialog 样式 -->
@@ -86,5 +107,4 @@
         <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="android:windowBackground">@color/transparent</item>
     </style>
-
 </resources>

@@ -75,7 +75,7 @@ implementation 'io.github.afkt:DevAppX:2.4.7'
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/CHANGELOG.md)
 
-- 内部存在两个日志工具类 ( 工具类内部调用 )，对外使用 [DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md)
+- 内部存在两个日志工具类 ( 工具类内部调用 )，对外使用 [DevLogger](https://github.com/afkT/Resources/blob/main/utils_readme/logger/DevLogger.md)
 
 ```java
 // 整个工具类内部日志信息，都通过以下两个工具类输出打印，并且通过 DevUtils.openLog() 控制开关
@@ -94,7 +94,7 @@ DevUtils.openLog();
 DevUtils.openDebug();
 ```
 
-- 工具类部分模块配置与使用 - [Use and Config](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/USE_CONFIG.md)
+- 工具类部分模块配置与使用 - [Use and Config](https://github.com/afkT/Resources/blob/main/utils_readme/USE_CONFIG.md)
 
 - [View 链式调用快捷设置 Helper 类](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/helper/view/ViewHelper.java)
 
