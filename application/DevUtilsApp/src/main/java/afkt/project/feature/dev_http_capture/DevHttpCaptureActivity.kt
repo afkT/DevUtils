@@ -11,10 +11,12 @@ import android.graphics.Color
 import com.therouter.router.Route
 import dev.DevHttpCaptureCompiler
 import dev.base.widget.BaseTextView
+import dev.capture.DevHttpCaptureToast
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SpanUtils
 import dev.utils.app.helper.quick.QuickHelper
+import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: DevAssist Engine 实现
@@ -59,6 +61,17 @@ class DevHttpCaptureActivity :
                     // 初始化布局管理器、适配器
                     binding.vidRv.bindAdapter(moduleDevHttpCaptureButtonValues) { buttonValue ->
                         DevHttpCaptureCompiler.start(this)
+
+                        // 修改内部 Toast 样式【可不设置, 默认使用系统 Toast】
+                        DevHttpCaptureCompiler.setToastIMPL(object : DevHttpCaptureToast {
+                            override fun normal(id: Int) {
+                                ToastTintUtils.normal(ResourceUtils.getString(id))
+                            }
+
+                            override fun success(id: Int) {
+                                ToastTintUtils.success(ResourceUtils.getString(id))
+                            }
+                        })
                     }
                 }
             }

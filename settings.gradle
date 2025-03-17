@@ -1,6 +1,6 @@
-// =======
-// = Lib =
-// =======
+// =============
+// = Maven Lib =
+// =============
 
 def libs = [
         "DevApp",
@@ -9,10 +9,10 @@ def libs = [
         "DevBaseMVVM",
         "DevMVVM",
         "DevEngine",
-        "DevHttpCapture",
-        "DevHttpManager",
-        "DevRetrofit",
         "DevWidget",
+        "DevRetrofit",
+        "DevHttpManager",
+        "DevHttpCapture",
         "DevDeprecated",
         "DevJava",
 ]

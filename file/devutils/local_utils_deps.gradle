@@ -22,14 +22,14 @@ dependencies {
     // DevMVVM - DataBinding 工具类库
     api project(':DevMVVM')
 
+    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+    api project(':DevEngine')
+
     // DevSimple - 简单敏捷开发库
     api project(':DevSimple')
 
     // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
     api project(':DevAgile')
-
-    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-    api project(':DevEngine')
 
     // DevWidget - 自定义 View UI 库
     api project(':DevWidget')

@@ -49,6 +49,10 @@ ext {
             dev_mvvm_versionCode                     : 105,
             dev_mvvm_versionName                     : "1.0.5",
 
+            // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+            dev_engine_versionCode                   : 114,
+            dev_engine_versionName                   : "1.1.4",
+
             // DevSimple - 简单敏捷开发库
             dev_simple_versionCode                   : 102,
             dev_simple_versionName                   : "1.0.2",
@@ -57,27 +61,23 @@ ext {
             dev_agile_versionCode                    : 101,
             dev_agile_versionName                    : "1.0.1",
 
-            // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 114,
-            dev_engine_versionName                   : "1.1.4",
+            // DevWidget - 自定义 View UI 库
+            dev_widget_versionCode                   : 124,
+            dev_widget_versionName                   : "1.2.4",
+
+            // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+            dev_retrofit_versionCode                 : 106,
+            dev_retrofit_versionName                 : "1.0.6",
+
+            // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+            dev_http_manager_versionCode             : 107,
+            dev_http_manager_versionName             : "1.0.7",
 
             // DevHttpCapture - OkHttp 抓包工具库
             dev_http_capture_versionCode             : 118,
             dev_http_capture_versionName             : "1.1.8",
             dev_http_capture_compiler_version        : "1.1.8",
             dev_http_capture_compiler_release_version: "1.1.8",
-
-            // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-            dev_http_manager_versionCode             : 107,
-            dev_http_manager_versionName             : "1.0.7",
-
-            // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-            dev_retrofit_versionCode                 : 106,
-            dev_retrofit_versionName                 : "1.0.6",
-
-            // DevWidget - 自定义 View UI 库
-            dev_widget_versionCode                   : 124,
-            dev_widget_versionName                   : "1.2.4",
 
             // DevEnvironment - Android 环境配置切换库
             dev_environment_versionCode              : 116,

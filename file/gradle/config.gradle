@@ -40,27 +40,27 @@ ext {
                     dev_base_mvvm                    : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
                     // DevMVVM - DataBinding 工具类库
                     dev_mvvm                         : "io.github.afkt:DevMVVM:${versions.dev_mvvm_versionName}",
+                    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+                    dev_engine                       : "io.github.afkt:DevEngine:${versions.dev_engine_versionName}",
                     // DevSimple - 简单敏捷开发库
                     dev_simple                       : "io.github.afkt:DevSimple:${versions.dev_simple_versionName}",
                     // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
                     dev_agile                        : "io.github.afkt:DevAgile:${versions.dev_agile_versionName}",
-                    // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-                    dev_engine                       : "io.github.afkt:DevEngine:${versions.dev_engine_versionName}",
                     // DevWidget - 自定义 View UI 库
                     dev_widget                       : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
-                    // 环境配置切换库
+                    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+                    dev_retrofit                     : "io.github.afkt:DevRetrofit:${versions.dev_retrofit_versionName}",
+                    // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+                    dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
+                    // DevHttpCapture - OkHttp 抓包工具库
+                    dev_http_capture                 : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
+                    dev_http_capture_compiler        : "io.github.afkt:DevHttpCaptureCompiler:${versions.dev_http_capture_compiler_version}",
+                    dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
+                    // DevEnvironment - Android 环境配置切换库
                     dev_environment                  : "io.github.afkt:DevEnvironment:${versions.dev_environment_version}",
                     dev_environment_base             : "io.github.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
                     dev_environment_compiler         : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
                     dev_environment_compiler_release : "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}",
-                    // OkHttp 抓包工具库
-                    dev_http_capture                 : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
-                    dev_http_capture_compiler        : "io.github.afkt:DevHttpCaptureCompiler:${versions.dev_http_capture_compiler_version}",
-                    dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
-                    // OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-                    dev_http_manager                 : "io.github.afkt:DevHttpManager:${versions.dev_http_manager_versionName}",
-                    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-                    dev_retrofit                     : "io.github.afkt:DevRetrofit:${versions.dev_retrofit_versionName}",
                     // DevDeprecated - Dev 系列库弃用代码统一存储库
                     dev_deprecated                   : "io.github.afkt:DevDeprecated:${versions.dev_deprecated_versionName}",
                     // DevJava - Java 工具类库 ( 不依赖 android api )
@@ -296,7 +296,7 @@ ext {
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions        : "com.github.getActivity:XXPermissions:20.0",
                     // https://mvnrepository.com/artifact/com.github.getActivity/Toaster
-                    // 吐司框架 https://github.com/getActivity/Toaster
+                    // Toaster 吐司框架 https://github.com/getActivity/Toaster
                     toaster              : "com.github.getActivity:Toaster:12.8",
                     // https://mvnrepository.com/artifact/com.github.getActivity/TitleBar
                     // 标题栏框架 https://github.com/getActivity/TitleBar
