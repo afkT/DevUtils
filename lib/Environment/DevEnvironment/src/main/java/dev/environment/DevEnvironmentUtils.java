@@ -25,22 +25,24 @@ import dev.environment.log.LogUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
  *     DevMVVM README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md"/>
+ *     DevEngine README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevSimple README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md"/>
  *     DevAgile README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md"/>
- *     DevEngine README
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
- *     DevHttpCapture Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md"/>
- *     DevHttpManager Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md"/>
- *     DevRetrofit Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md"/>
  *     DevWidget Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md"/>
+ *     DevRetrofit Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md"/>
+ *     DevHttpManager Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md"/>
+ *     DevHttpCapture Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md"/>
  *     DevEnvironment Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
+ *     DevDeprecated Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/README.md"/>
  *     DevJava Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  * </pre>

@@ -16,20 +16,20 @@ package dev.agile
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
  * DevMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
+ * DevEngine README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevSimple README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
  * DevAgile README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md
- * DevEngine README
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
- * DevHttpCapture Api
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
- * DevHttpManager Api
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md
- * DevRetrofit Api
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md
  * DevWidget Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
+ * DevRetrofit Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/README.md
+ * DevHttpManager Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md
+ * DevHttpCapture Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
  * DevEnvironment Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/Environment
  * DevJava Api
