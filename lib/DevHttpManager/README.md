@@ -12,6 +12,7 @@
 ## Gradle
 
 ```gradle
+// DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
 implementation 'io.github.afkt:DevHttpManager:1.0.7'
 ```
 

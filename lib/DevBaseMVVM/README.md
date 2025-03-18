@@ -2,6 +2,7 @@
 ## Gradle
 
 ```gradle
+// DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
 implementation 'io.github.afkt:DevBaseMVVM:1.1.7'
 ```
 

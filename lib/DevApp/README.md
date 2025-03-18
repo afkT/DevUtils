@@ -6,6 +6,7 @@
 //implementation 'com.afkt:DevApp:1.9.4'
 
 // AndroidX ( Maven Central ) 
+// DevApp - Android 工具类库
 implementation 'io.github.afkt:DevAppX:2.4.7'
 ```
 
@@ -25,8 +26,6 @@ implementation 'io.github.afkt:DevAppX:2.4.7'
          - record               | 文件记录分析类
          - url                  | Url 携带信息解析
       - cache                   | 缓存工具类
-      - camera                  | 摄像头相关
-         - camera1              | android.hardware.Camera ( Camera1 相关 )
       - helper                  | 功能 Helper 辅助类
          - dev                  | Dev 工具类链式调用 Helper 类
          - flow                 | 流式 ( 链式 ) 连接 Helper 类
@@ -36,13 +35,9 @@ implementation 'io.github.afkt:DevAppX:2.4.7'
       - image                   | 图片相关处理
       - info                    | APP 信息、PackageInfo 等
       - logger                  | 日志库 DevLogger
-      - permission              | 权限工具类
       - player                  | 多媒体 ( 视频、音频 ) 播放封装
       - share                   | SharedPreferences 封装
       - timer                   | 定时器
-      - toast                   | Toast
-         - toaster              | Toaster 处理无通知权限
-      - wifi                    | Wifi、热点工具类
    - common                     | Java 工具类, 不依赖 android api
       - able                    | 通用接口定义
       - assist                  | 各种快捷辅助类
@@ -118,8 +113,6 @@ DevUtils.openDebug();
          - [record](#devutilsappassistrecord)                              | 文件记录分析类
          - [url](#devutilsappassisturl)                                    | Url 携带信息解析
       - [cache](#devutilsappcache)                                         | 缓存工具类
-      - [camera](#devutilsappcamera)                                       | 摄像头相关
-         - [camera1](#devutilsappcameracamera1)                            | android.hardware.Camera ( Camera1 相关 )
       - [helper](#devutilsapphelper)                                       | 功能 Helper 辅助类
          - [dev](#devutilsapphelperdev)                                    | Dev 工具类链式调用 Helper 类
          - [flow](#devutilsapphelperflow)                                  | 流式 ( 链式 ) 连接 Helper 类
@@ -129,13 +122,9 @@ DevUtils.openDebug();
       - [image](#devutilsappimage)                                         | 图片相关处理
       - [info](#devutilsappinfo)                                           | APP 信息、PackageInfo 等
       - [logger](#devutilsapplogger)                                       | 日志库 DevLogger
-      - [permission](#devutilsapppermission)                               | 权限工具类
       - [player](#devutilsappplayer)                                       | 多媒体 ( 视频、音频 ) 播放封装
       - [share](#devutilsappshare)                                         | SharedPreferences 封装
       - [timer](#devutilsapptimer)                                         | 定时器
-      - [toast](#devutilsapptoast)                                         | Toast
-         - [toaster](#devutilsapptoasttoaster)                             | Toaster 处理无通知权限
-      - [wifi](#devutilsappwifi)                                           | Wifi、热点工具类
    - [common](#devutilscommon)                                             | Java 工具类, 不依赖 android api
       - [able](#devutilscommonable)                                        | 通用接口定义
       - [assist](#devutilscommonassist)                                    | 各种快捷辅助类
@@ -205,7 +194,6 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
-| getDefault | 获取默认实现 ( 原始 onActivityResult ) 封装辅助类 |
 | launch | 执行 ActivityResultContract createIntent 并进行跳转 |
 | unregister | 取消启动器注册, 并释放回调监听 |
 | getContract | 获取创建启动器对应 ActivityResultContract |
@@ -688,6 +676,51 @@ DevUtils.openDebug();
 | handleException | 处理异常 |
 
 
+* **Cursor 游标工具类 ->** [CursorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/CursorUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| closeIO | 关闭 IO |
+| closeIOQuietly | 安静关闭 IO |
+| existsCount | 对应游标是否存在数据 |
+| getColumnIndex | 获取对应列名的索引 |
+| getColumnName | 获取对应列索引列名 |
+| getColumnNames | 获取所有列名 |
+| getColumnCount | 获取所有列数量 |
+| isNull | 判断对应列索引值是否为 null |
+| isNullByName | 判断对应列名的值是否为 null |
+| getType | 获取对应列索引值类型 |
+| getTypeByName | 获取对应列名值类型 |
+| getInt | 获取对应列索引值 |
+| getLong | 获取对应列索引值 |
+| getFloat | 获取对应列索引值 |
+| getDouble | 获取对应列索引值 |
+| getString | 获取对应列索引值 |
+| getShort | 获取对应列索引值 |
+| getBlob | 获取对应列索引值 |
+| getIntByName | 获取对应列名值 |
+| getLongByName | 获取对应列名值 |
+| getFloatByName | 获取对应列名值 |
+| getDoubleByName | 获取对应列名值 |
+| getStringByName | 获取对应列名值 |
+| getShortByName | 获取对应列名值 |
+| getBlobByName | 获取对应列名值 |
+| getIntThrows | 获取对应列索引值 |
+| getLongThrows | 获取对应列索引值 |
+| getFloatThrows | 获取对应列索引值 |
+| getDoubleThrows | 获取对应列索引值 |
+| getStringThrows | 获取对应列索引值 |
+| getShortThrows | 获取对应列索引值 |
+| getBlobThrows | 获取对应列索引值 |
+| getIntByNameThrows | 获取对应列名值 |
+| getLongByNameThrows | 获取对应列名值 |
+| getFloatByNameThrows | 获取对应列名值 |
+| getDoubleByNameThrows | 获取对应列名值 |
+| getStringByNameThrows | 获取对应列名值 |
+| getShortByNameThrows | 获取对应列名值 |
+| getBlobByNameThrows | 获取对应列名值 |
+
+
 * **数据库工具类 ( 导入导出等 ) ->** [DBUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/DBUtils.java)
 
 | 方法 | 注释 |
@@ -704,7 +737,6 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | getInstance | 获取 DevicePolicyUtils 实例 |
-| getDevicePolicyManager | 获取 DevicePolicyManager |
 | isAdminActive | 判断给定的组件是否启动 ( 活跃 ) 中 |
 | getActiveIntent | 获取激活跳转 Intent |
 | activeAdmin | 激活给定的组件 |
@@ -808,6 +840,48 @@ DevUtils.openDebug();
 | createViewDialog | 创建自定义 View 样式 Dialog |
 
 
+* **DownloadManager 工具类 ->** [DownloadUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/DownloadUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| enqueue | 加入队列进行下载 |
+| remove | 移除下载 |
+| query | 查询下载信息 |
+| openDownloadedFile | 打开下载文件 ( 下载成功才能打开 ) |
+| getUriForDownloadedFile | 获取下载文件 Uri |
+| getMimeTypeForDownloadedFile | 获取下载文件 MimeType 类型 |
+| createQueryById | 通过下载 ID 创建 Query 查询配置对象 |
+| createQueryByStatus | 通过下载状态创建 Query 查询配置对象 |
+| queryById | 通过下载 ID 查询下载信息 |
+| removeResult | 移除下载结果 ( 不对比 ids 数量和成功数量 ) |
+| removeResultEqual | 移除下载结果 ( 对比 ids 数量和成功数量 ) |
+| queryUriById | 查询下载地址 ( 通过下载 ID ) |
+| queryBytesById | 查询下载进度信息 ( 通过下载 ID ) |
+| queryStatusById | 查询下载状态 ( 通过下载 ID ) |
+| queryReasonById | 查询下载失败原因 ( 通过下载 ID ) |
+| queryMediaTypeById | 查询下载文件类型 ( 通过下载 ID ) |
+| queryLastModifiedById | 查询最近下载变更时间 ( 通过下载 ID ) |
+| queryTitleById | 查询下载标题 ( 通过下载 ID ) |
+| queryDescriptionById | 查询下载描述 ( 通过下载 ID ) |
+| queryCursorSingleById | 查询单条下载信息 ( 通过下载 ID ) |
+| queryCursorSingle | 查询单条下载信息 |
+| queryCursorMultipleByQuery | 查询多条下载信息 |
+| queryCursorMultiple | 查询多条下载信息 |
+| isValidStatus | 是否有效下载状态 ( 判断非 -1 ) |
+| isPendingStatus | 是否等待下载状态 |
+| isRunningStatus | 是否下载中状态 |
+| isPausedStatus | 是否暂停下载状态 |
+| isSuccessfulStatus | 是否下载成功状态 |
+| isFailedStatus | 是否下载失败状态 |
+| isValidStatusById | 是否有效下载状态 ( 判断非 -1 ) |
+| isPendingStatusById | 是否等待下载状态 |
+| isRunningStatusById | 是否下载中状态 |
+| isPausedStatusById | 是否暂停下载状态 |
+| isSuccessfulStatusById | 是否下载成功状态 |
+| isFailedStatusById | 是否下载失败状态 |
+| intercept | 拦截器回调方法 |
+
+
 * **EditText 工具类 ->** [EditTextUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/EditTextUtils.java)
 
 | 方法 | 注释 |
@@ -840,6 +914,19 @@ DevUtils.openDebug();
 | getNumberAndLettersKeyListener | 获取 DigitsKeyListener ( 限制只能输入字母和数字, 默认弹出英文软键盘 ) |
 | getNumberKeyListener | 获取 DigitsKeyListener ( 限制只能输入数字, 默认弹出数字列表 ) |
 | createDigitsKeyListener | 创建 DigitsKeyListener |
+
+
+* **手电筒工具类 ->** [FlashlightUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FlashlightUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getInstance | 获取 FlashlightUtils 实例 |
+| register | 注册摄像头 |
+| unregister | 注销摄像头 |
+| isFlashlightEnable | 是否支持手机闪光灯 |
+| setFlashlightOn | 打开闪光灯 |
+| setFlashlightOff | 关闭闪光灯 |
+| isFlashlightOn | 是否打开闪光灯 |
 
 
 * **Fragment 工具类 ->** [FragmentUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FragmentUtils.java)
@@ -1010,13 +1097,11 @@ DevUtils.openDebug();
 | isKeyguardLocked | 是否锁屏 ( android 4.1 以上支持 ) |
 | isKeyguardSecure | 是否有锁屏密码 ( android 4.1 以上支持 ) |
 | inKeyguardRestrictedInputMode | 是否锁屏 |
-| getKeyguardManager | 获取 KeyguardManager |
-| setKeyguardManager | 设置 KeyguardManager |
+| newKeyguardLock | 创建 KeyguardManager.KeyguardLock ( 通过 TAG 生成 ) |
 | disableKeyguard | 屏蔽系统的屏保 |
 | reenableKeyguard | 使能显示锁屏界面, 如果你之前调用了 disableKeyguard() 方法取消锁屏界面, 那么会马上显示锁屏界面 |
-| release | 释放资源 |
-| getKeyguardLock | 获取 KeyguardManager.KeyguardLock |
-| setKeyguardLock | 设置 KeyguardManager.KeyguardLock |
+| getDefaultKeyguardLock | 获取默认 KeyguardManager.KeyguardLock |
+| setDefaultKeyguardLock | 设置默认 KeyguardManager.KeyguardLock |
 
 
 * **语言工具类 ->** [LanguageUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/LanguageUtils.java)
@@ -1202,7 +1287,6 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
-| getNotificationManager | 获取通知栏管理对象 |
 | isNotificationEnabled | 检查通知栏权限是否开启 |
 | checkAndIntentSetting | 检查是否有获取通知栏信息权限并跳转设置页面 |
 | isNotificationListenerEnabled | 判断是否有获取通知栏信息权限 |
@@ -1336,9 +1420,6 @@ DevUtils.openDebug();
 | sendSms | 跳至发送短信界面 |
 | sendSmsSilent | 发送短信 |
 | getContactNum | 打开手机联系人界面点击联系人后便获取该号码 |
-| getAllContactInfo | 获取手机联系人信息 |
-| getAllContactInfo2 | 获取手机联系人信息 |
-| getAllSMS | 获取手机短信并保存到 xml 中 |
 
 
 * **电源管理工具类 ->** [PowerManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PowerManagerUtils.java)
@@ -1346,15 +1427,15 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | getInstance | 获取 PowerManagerUtils 实例 |
+| acquire | 唤醒屏幕锁 |
+| release | 释放屏幕锁 ( 允许休眠时间自动黑屏 ) |
 | isScreenOn | 屏幕是否打开 ( 亮屏 ) |
+| setBright | 设置屏幕常亮 |
+| createWakeLockToBright | 创建 WakeLock 常亮配置 |
+| getDefaultWakeLock | 获取默认 PowerManager.WakeLock |
+| setDefaultWakeLock | 设置默认 PowerManager.WakeLock |
 | turnScreenOn | 唤醒 / 点亮 屏幕 |
 | turnScreenOff | 释放屏幕锁 ( 允许休眠时间自动黑屏 ) |
-| getWakeLock | 获取 PowerManager.WakeLock |
-| setWakeLock | 设置 PowerManager.WakeLock |
-| getPowerManager | 获取 PowerManager |
-| setPowerManager | 设置 PowerManager |
-| setBright | 设置屏幕常亮 |
-| setWakeLockToBright | 设置 WakeLock 常亮 |
 
 
 * **进程相关工具类 ->** [ProcessUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ProcessUtils.java)
@@ -2319,19 +2400,6 @@ DevUtils.openDebug();
 | onState | 操作状态回调 |
 
 
-* **Activity Result 封装辅助类 ->** [DefaultActivityResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/activity_result/DefaultActivityResult.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getInstance | 获取 DefaultActivityResult 实例 |
-| startActivityForResult | Activity 跳转回传 |
-| onStartActivityForResult | 跳转 Activity 操作 |
-| onActivityResult | 回传处理 |
-| start | 跳转回传结果处理 Activity 内部方法 |
-| onCreate | onCreate |
-| onDestroy | onDestroy |
-
-
 ## <span id="devutilsappanim">**`dev.utils.app.anim`**</span>
 
 
@@ -2585,7 +2653,6 @@ DevUtils.openDebug();
 | get | get |
 | getByRequire | 创建可获取 EXIF 敏感信息辅助类 |
 | requireOriginal | 获取 EXIF 敏感信息, 请求获取原始 Uri |
-| requestPermission | 请求 ACCESS_MEDIA_LOCATION 权限并进行通知 |
 | isSupportedMimeType | 判断是否支持读取的资源类型 |
 | clone | 克隆图片 EXIF 读写信息 |
 | getExif | 获取图片 EXIF 操作接口 |
@@ -2990,85 +3057,6 @@ DevUtils.openDebug();
 | isParcelable | isParcelable |
 | isJSONObject | isJSONObject |
 | isJSONArray | isJSONArray |
-
-
-## <span id="devutilsappcamera">**`dev.utils.app.camera`**</span>
-
-
-## <span id="devutilsappcameracamera1">**`dev.utils.app.camera.camera1`**</span>
-
-
-* **摄像头自动获取焦点辅助类 ->** [AutoFocusAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/camera/camera1/AutoFocusAssist.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| setFocusModes | 设置对焦模式 |
-| isAutoFocus | 是否允许自动对焦 |
-| setAutoFocus | 设置是否开启自动对焦 |
-| start | 开始对焦 |
-| stop | 停止对焦 |
-
-
-* **摄像头辅助类 ->** [CameraAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/camera/camera1/CameraAssist.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| openDriver | 打开摄像头程序 |
-| closeDriver | 关闭摄像头程序 |
-| startPreview | 开始将 Camera 画面预览到手机上 |
-| stopPreview | 停止 Camera 画面预览 |
-| getCameraResolution | 获取相机分辨率 |
-| getPreviewSize | 获取预览分辨率 |
-| getCameraSizeAssist | 获取 Camera.Size 计算辅助类 |
-| getCamera | 获取摄像头 |
-| setCamera | 设置摄像头 |
-| setPreviewNotify | 设置预览回调 |
-| setAutoFocus | 设置是否开启自动对焦 |
-| isPreviewing | 是否预览中 |
-| setAutoInterval | 设置自动对焦时间间隔 |
-| isFlashlightEnable | 是否支持手机闪光灯 |
-| setFlashlightOn | 打开闪光灯 |
-| setFlashlightOff | 关闭闪光灯 |
-| isFlashlightOn | 是否打开闪光灯 |
-
-
-* **摄像头 ( 预览、输出大小 ) 辅助类 ->** [CameraSizeAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/camera/camera1/CameraSizeAssist.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getCamera | 获取摄像头 |
-| setPreviewSize | 设置预览大小 |
-| getPreviewSize | 根据手机支持的预览分辨率计算, 设置预览尺寸 |
-| setPictureSize | 设置拍照图片大小 |
-| getPictureSize | 根据手机支持的拍照分辨率计算 |
-| getVideoSize | 根据手机支持的视频录制分辨率计算 |
-
-
-* **摄像头相关工具类 ->** [CameraUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/camera/camera1/CameraUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| isSupportReverse | 判断是否支持反转摄像头 ( 是否存在前置摄像头 ) |
-| checkCameraFacing | 检查是否有指定的摄像头 |
-| isFrontCamera | 判断是否使用前置摄像头 |
-| isBackCamera | 判断是否使用后置摄像头 |
-| isUseCameraFacing | 判断使用的摄像头 |
-| freeCameraResource | 释放摄像头资源 |
-| initCamera | 初始化摄像头 |
-| open | 打开摄像头 |
-
-
-* **手电筒工具类 ->** [FlashlightUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/camera/camera1/FlashlightUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getInstance | 获取 FlashlightUtils 实例 |
-| register | 注册摄像头 |
-| unregister | 注销摄像头 |
-| isFlashlightEnable | 是否支持手机闪光灯 |
-| setFlashlightOn | 打开闪光灯 |
-| setFlashlightOff | 关闭闪光灯 |
-| isFlashlightOn | 是否打开闪光灯 |
 
 
 ## <span id="devutilsapphelper">**`dev.utils.app.helper`**</span>
@@ -4382,13 +4370,6 @@ DevUtils.openDebug();
 | getVideoThumbnail | 获取视频缩略图 |
 
 
-* **图片格式转换工具类 ->** [ImageConvertUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/image/ImageConvertUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| convertBMP | 图片转换 BMP 格式 byte[] 数据 |
-
-
 * **图片 ( 滤镜、效果 ) 工具类 ->** [ImageFilterUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/image/ImageFilterUtils.java)
 
 | 方法 | 注释 |
@@ -4406,7 +4387,6 @@ DevUtils.openDebug();
 | lum | 亮度处理 |
 | hue | 色相处理 |
 | lumHueSaturation | 亮度、色相、饱和度处理 |
-| yuvLandscapeToPortrait | 将 YUV 格式的图片的源数据从横屏模式转为竖屏模式 |
 
 
 * **Image ( Bitmap、Drawable 等 ) 工具类 ->** [ImageUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/image/ImageUtils.java)
@@ -4600,31 +4580,6 @@ DevUtils.openDebug();
 | tag | 设置 TAG |
 
 
-## <span id="devutilsapppermission">**`dev.utils.app.permission`**</span>
-
-
-* **权限请求工具类 ->** [PermissionUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/permission/PermissionUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| isGranted | 判断是否授予了权限 |
-| shouldShowRequestPermissionRationale | 获取拒绝权限询问勾选状态 |
-| getDeniedPermissionStatus | 获取拒绝权限询问状态集合 |
-| canRequestPackageInstalls | 是否存在 APK 安装权限 |
-| getAllPermissionToSet | 获取全部权限 |
-| getAllPermissionToList | 获取全部权限 |
-| getAppPermissionToList | 获取 APP 注册的权限 |
-| getAppPermissionToSet | 获取 APP 注册的权限 |
-| getAppPermission | 获取 APP 注册的权限 |
-| permission | 申请权限初始化 |
-| callback | 设置回调方法 |
-| setRequestPermissionsResult | 设置是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); |
-| request | 请求权限 |
-| onRequestPermissionsResult | 请求权限回调 ( 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); ) |
-| notifyPermissionsChange | 刷新权限改变处理 ( 清空已拒绝的权限记录 ) |
-| againRequest | 再次请求处理操作 |
-
-
 ## <span id="devutilsappplayer">**`dev.utils.app.player`**</span>
 
 
@@ -4762,148 +4717,6 @@ DevUtils.openDebug();
 | closeAllUUID | 关闭所有对应 UUID 定时器 |
 | startTimer | 运行定时器 |
 | stopTimer | 关闭定时器 |
-
-
-## <span id="devutilsapptoast">**`dev.utils.app.toast`**</span>
-
-
-* **自定义 View 着色美化 Toast 工具类 ->** [ToastTintUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/ToastTintUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| reset | 重置默认参数 |
-| setToastFilter | 设置 Toast 过滤器 |
-| setUseHandler | 设置是否使用 Handler 显示 Toast |
-| setNullText | 设置 Text 为 null 的文本 |
-| setUseConfig | 设置是否使用配置 |
-| setGravity | 设置 Toast 显示在屏幕上的位置 |
-| setMargin | 设置边距 |
-| getDefaultStyle | 获取默认样式 |
-| getNormalStyle | 获取 Normal 样式 |
-| getInfoStyle | 获取 Info 样式 |
-| getWarningStyle | 获取 Warning 样式 |
-| getErrorStyle | 获取 Error 样式 |
-| getSuccessStyle | 获取 Success 样式 |
-| setNormalStyle | 设置 Normal 样式 |
-| setInfoStyle | 设置 Info 样式 |
-| setWarningStyle | 设置 Warning 样式 |
-| setErrorStyle | 设置 Error 样式 |
-| setSuccessStyle | 设置 Success 样式 |
-| getInfoDrawable | 获取 Info 样式 icon |
-| getWarningDrawable | 获取 Warning 样式 icon |
-| getErrorDrawable | 获取 Error 样式 icon |
-| getSuccessDrawable | 获取 Success 样式 icon |
-| normal | normal 样式 Toast |
-| info | info 样式 Toast |
-| warning | warning 样式 Toast |
-| error | error 样式 Toast |
-| success | success 样式 Toast |
-| custom | custom Toast |
-
-
-* **Simple Toast 工具类 ( 简单的 Toast 工具类, 支持子线程弹出 Toast ) ->** [ToastUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/ToastUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| reset | 重置默认参数 |
-| setToastFilter | 设置 Toast 过滤器 |
-| setUseHandler | 设置是否使用 Handler 显示 Toast |
-| setNullText | 设置 Text 为 null 的文本 |
-| setUseConfig | 设置是否使用配置 |
-| setGravity | 设置 Toast 显示在屏幕上的位置 |
-| setMargin | 设置边距 |
-| showShort | 显示 LENGTH_SHORT Toast |
-| showLong | 显示 LENGTH_LONG Toast |
-| showToast | 显示 Toast |
-| showShortNew | 显示 new LENGTH_SHORT Toast |
-| showLongNew | 显示 new LENGTH_LONG Toast |
-| showToastNew | 显示新的 Toast |
-| newToastText | 获取一个新的 Text Toast |
-| showToastView | 显示 View Toast 方法 |
-| newToastView | 获取一个新的 View Toast |
-
-
-## <span id="devutilsapptoasttoaster">**`dev.utils.app.toast.toaster`**</span>
-
-
-* **Toast 工具类 ( 支持子线程弹出 Toast, 处理无通知权限 ) ->** [DevToast.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/toast/toaster/DevToast.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| reset | 重置默认参数 |
-| setUseHandler | 设置是否使用 Handler 显示 Toast |
-| setNullText | 设置 Text 为 null 的文本 |
-| setTextLength | 设置 Toast 文案长度转换 显示时间 |
-| initialize | 初始化调用 ( 内部已调用 ) |
-| style | 使用单次 Toast 样式配置 |
-| defaultStyle | 使用默认 Toast 样式 |
-| getToastStyle | 获取 Toast 样式配置 |
-| initStyle | 初始化 Toast 样式配置 |
-| initToastFilter | 初始化 Toast 过滤器 |
-| setView | 设置 Toast 显示的 View |
-| show | 显示 Toast |
-| cancel | 取消当前显示的 Toast |
-
-
-## <span id="devutilsappwifi">**`dev.utils.app.wifi`**</span>
-
-
-* **Wifi 热点工具类 ->** [WifiHotUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/wifi/WifiHotUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| createWifiConfigToAp | 创建 Wifi 热点配置 ( 支持 无密码 / WPA2 PSK ) |
-| startWifiAp | 开启 Wifi 热点 |
-| closeWifiAp | 关闭 Wifi 热点 |
-| getWifiApState | 获取 Wifi 热点状态 |
-| getWifiApConfiguration | 获取 Wifi 热点配置信息 |
-| setWifiApConfiguration | 设置 Wifi 热点配置信息 |
-| isOpenWifiAp | 判断是否打开 Wifi 热点 |
-| closeWifiApCheck | 关闭 Wifi 热点 ( 判断当前状态 ) |
-| isConnectHot | 是否有设备连接热点 |
-| getHotspotServiceIp | 获取热点主机 IP 地址 |
-| getHotspotAllotIp | 获取连接上的子网关热点 IP ( 一个 ) |
-| getConnectHotspotMsg | 获取连接的热点信息 |
-| getHotspotSplitIpMask | 获取热点拼接后的 IP 网关掩码 |
-| getApWifiSSID | 获取 Wifi 热点名 |
-| getApWifiPwd | 获取 Wifi 热点密码 |
-| setOnWifiAPListener | 设置 Wifi 热点监听事件 |
-
-
-* **Wifi 工具类 ->** [WifiUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/wifi/WifiUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| isOpenWifi | 判断是否打开 Wifi |
-| openWifi | 打开 Wifi |
-| closeWifi | 关闭 Wifi |
-| toggleWifiEnabled | 自动切换 Wifi 开关状态 |
-| getWifiState | 获取当前 Wifi 连接状态 |
-| startScan | 开始扫描 Wifi |
-| getConfiguration | 获取已配置 ( 连接过 ) 的 Wifi 配置 |
-| getWifiList | 获取附近的 Wifi 列表 |
-| getWifiInfo | 获取连接的 WifiInfo |
-| getMacAddress | 获取 MAC 地址 |
-| getBSSID | 获取连接的 BSSID |
-| getIPAddress | 获取 IP 地址 |
-| getNetworkId | 获取连接的 Network Id |
-| getSSID | 获取 Wifi SSID |
-| formatSSID | 判断是否存在 \"ssid\", 存在则裁剪返回 |
-| getPassword | 获取处理后的密码 |
-| isHexWepKey | 判断是否 wep 加密 |
-| getWifiType | 获取加密类型 |
-| getWifiTypeInt | 获取加密类型 |
-| getWifiTypeStr | 获取加密类型 |
-| isConnNull | 判断是否连接为 null ( unknown ssid ) |
-| isConnectAPHot | 获取连接的 Wifi 热点 SSID |
-| getSecurity | 获取 Wifi 加密类型 |
-| isExistsPwd | 判断 Wifi 加密类型, 是否为加密类型 |
-| isExists | 获取指定的 ssid 网络配置 ( 需连接保存过, 才存在 ) |
-| delWifiConfig | 删除指定的 Wifi ( SSID ) 配置信息 |
-| quickConnWifi | 快速连接 Wifi ( 不使用静态 IP 方式 ) |
-| createWifiConfig | 创建 Wifi 配置信息 |
-| removeWifiConfig | 移除 Wifi 配置信息 |
-| disconnectWifi | 断开指定 networkId 的网络 |
 
 
 ## <span id="devutilscommon">**`dev.utils.common`**</span>

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```gradle
-// AndroidX
+// DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.2.4'
 ```
 

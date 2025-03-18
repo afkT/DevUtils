@@ -12,6 +12,7 @@
 ## Gradle
 
 ```gradle
+// DevRetrofit - Retrofit + Kotlin Coroutines 封装
 implementation 'io.github.afkt:DevRetrofit:1.0.6'
 ```
 
