@@ -140,26 +140,6 @@ object DevEngine {
         return MMKVConfig(cipher, mmkv)
     }
 
-    // ============
-    // = 初始化方法 =
-    // ============
-
-    /**
-     * 完整初始化 ( 全面使用该库调用该方法初始化即可 )
-     * @param context Context
-     */
-    fun completeInitialize(context: Context) {
-        defaultMMKVInitialize(context)
-        // 如果 MMKV 不为 null 则进行初始化
-        MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
-            defaultEngine(createMMKVConfig(cipher = null, mmkv = mmkv))
-            return
-        }
-        defaultEngine()
-    }
-
-    // =
-
     /**
      * 使用 DevEngine 库内部默认实现 MMKV 初始化
      * @param context Context?
@@ -172,59 +152,69 @@ object DevEngine {
         return this
     }
 
+    // ============
+    // = 初始化方法 =
+    // ============
+
+    /**
+     * 完整初始化 ( 全面使用该库调用该方法初始化即可 )
+     * @param context Context
+     * @param cacheConfig Cache Engine Config
+     * @param keyValueConfig Key-Value Engine Config
+     * @param logConfig Log Config
+     * 会默认使用 MMKV
+     */
+    fun completeInitialize(
+        context: Context,
+        cacheConfig: CacheConfig? = CacheConfig(null, DevCache.newCache()),
+        keyValueConfig: IKeyValueEngine.EngineConfig? = null,
+        logConfig: LogConfig? = null
+    ) {
+        if (keyValueConfig == null) {
+            try {
+                defaultMMKVInitialize(context)
+                // 如果 MMKV 不为 null 则进行初始化
+                val mmkv = MMKVUtils.defaultHolder().mmkv
+                defaultEngine(
+                    cacheConfig,
+                    createMMKVConfig(cipher = null, mmkv = mmkv!!),
+                    logConfig
+                )
+                return
+            } catch (_: Exception) {
+            }
+        }
+        defaultEngine(cacheConfig, keyValueConfig, logConfig)
+    }
+
     /**
      * 使用 DevEngine 库内部默认实现 Engine
+     * @param context Context
+     * @param cacheConfig Cache Engine Config
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      * 接着调用该方法 [defaultEngine] 传入 [MMKVConfig] or [createMMKVConfig]
      */
     fun defaultEngine(
-        keyValueConfig: IKeyValueEngine.EngineConfig? = null
-    ) {
-        defaultEngine(
-            CacheConfig(null, DevCache.newCache()),
-            keyValueConfig
-        )
-    }
-
-    /**
-     * 使用 DevEngine 库内部默认实现 Engine
-     * @param cacheConfig Cache Engine Config
-     * @param keyValueConfig Key-Value Engine Config
-     * @param logConfig Log Config
-     * <p><p>
-     * 如果 Key-Value 是 MMKV Engine 则需要先调用 MMKV.initialize()
-     */
-    fun defaultEngine(
         cacheConfig: CacheConfig?,
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig? = null
     ) {
-
         // ========================
         // = BarCode Engine 条形码 =
         // ========================
 
         // 初始化 ZXing BarCode Engine 实现
-        DevBarCodeEngine.setEngine(ZXingEngineImpl())
-
-        // ===============
-        // = JSON Engine =
-        // ===============
-
-        // 初始化 Gson JSON Engine 实现
-        DevJSONEngine.setEngine(GsonEngineImpl())
-//        // 初始化 Fastjson JSON Engine 实现
-//        DevJSONEngine.setEngine(FastjsonEngineImpl())
+        defaultZXingEngineImpl()
 
         // ==============================
         // = Cache Engine 有效期键值对缓存 =
         // ==============================
 
-        cacheConfig?.apply {
+        cacheConfig?.let { config ->
             // 初始化 DevCache ( DevUtils ) Cache Engine 实现
-            DevCacheEngine.setEngine(DevCacheEngineImpl(this))
+            defaultDevCacheEngineImpl(config)
         }
 
         // ================================
@@ -232,26 +222,35 @@ object DevEngine {
         // ================================
 
         // 初始化 Luban Image Compress Engine 实现
-        DevCompressEngine.setEngine(LubanEngineImpl())
+        defaultLubanEngineImpl()
 
         // ====================================
         // = Image Engine 图片加载、下载、转格式等 =
         // ====================================
 
         // 初始化 Glide Image Engine 实现
-        DevImageEngine.setEngine(GlideEngineImpl())
+        defaultGlideEngineImpl()
+
+        // ===============
+        // = JSON Engine =
+        // ===============
+
+        // 初始化 Gson JSON Engine 实现
+        defaultGsonEngineImpl()
+//        // 初始化 Fastjson JSON Engine 实现
+//        defaultFastjsonEngineImpl()
 
         // ============================
         // = KeyValue Engine 键值对存储 =
         // ============================
 
-        keyValueConfig?.apply {
-            if (this is MMKVConfig) {
+        keyValueConfig?.let { config ->
+            if (config is MMKVConfig) {
                 // 初始化 MMKV Key-Value Engine 实现
-                DevKeyValueEngine.setEngine(MMKVKeyValueEngineImpl(this))
-            } else if (this is SPConfig) {
+                defaultMMKVKeyValueEngineImpl(config)
+            } else if (config is SPConfig) {
                 // 初始化 SharedPreferences Key-Value Engine 实现
-                DevKeyValueEngine.setEngine(SPKeyValueEngineImpl(this))
+                defaultSPKeyValueEngineImpl(config)
             }
         }
 
@@ -260,69 +259,43 @@ object DevEngine {
         // =====================
 
         // 初始化 DevLogger Log Engine 实现
-        DevLogEngine.setEngine(object : DevLoggerEngineImpl(logConfig) {
-            override fun isPrintLog(): Boolean {
-                // 属于 Debug 模式才打印日志
-                return DevUtils.isDebug()
-            }
-        })
+        defaultDevLoggerEngineImpl(logConfig)
 
         // =====================================
         // = Media Selector Engine 多媒体资源选择 =
         // =====================================
 
         // 初始化 PictureSelector Media Selector Engine 实现
-        DevMediaEngine.setEngine(PictureSelectorEngineImpl())
+        defaultPictureSelectorEngineImpl()
 
         // ============================
         // = Permission Engine 权限申请 =
         // ============================
 
         // 初始化 XXPermissions Engine 实现
-        DevPermissionEngine.setEngine(XXPermissionsEngineImpl())
+        defaultXXPermissionsEngineImpl()
 
         // =================================
         // = Storage Engine 外部、内部文件存储 =
         // =================================
 
         // 初始化 DevUtils MediaStore Engine 实现
-        DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
+        defaultDevMediaStoreEngineImpl()
     }
 
-    // ==================
-    // = 内置 Engine 实现 =
-    // ==================
+    // =====================
+    // = Engine 设置内部实现 =
+    // =====================
 
     // ========================
     // = BarCode Engine 条形码 =
     // ========================
 
     /**
-     * 创建 ZXing BarCode Engine 实现
-     * @return ZXing BarCode Engine 实现
+     * 默认初始化 ZXing BarCode Engine 实现
      */
-    fun newZXingEngineImpl(): ZXingEngineImpl {
-        return ZXingEngineImpl()
-    }
-
-    // ===============
-    // = JSON Engine =
-    // ===============
-
-    /**
-     * 创建 Gson JSON Engine 实现 ( JSON Engine )
-     * @return Gson JSON Engine 实现 ( JSON Engine )
-     */
-    fun newGsonEngineImpl(): GsonEngineImpl {
-        return GsonEngineImpl()
-    }
-
-    /**
-     * 创建 Fastjson JSON Engine 实现 ( JSON Engine )
-     * @return Fastjson JSON Engine 实现 ( JSON Engine )
-     */
-    fun newFastjsonEngineImpl(): FastjsonEngineImpl {
-        return FastjsonEngineImpl()
+    fun defaultZXingEngineImpl() {
+        DevBarCodeEngine.setEngine(newZXingEngineImpl())
     }
 
     // ==============================
@@ -330,12 +303,11 @@ object DevEngine {
     // ==============================
 
     /**
-     * 创建 DevCache ( DevUtils ) Cache Engine 实现
+     * 默认初始化 DevCache ( DevUtils ) Cache Engine 实现
      * @param config Cache Config
-     * @return DevCache ( DevUtils ) Cache Engine 实现
      */
-    fun newDevCacheEngineImpl(config: CacheConfig): DevCacheEngineImpl {
-        return DevCacheEngineImpl(config)
+    fun defaultDevCacheEngineImpl(config: CacheConfig) {
+        DevCacheEngine.setEngine(newDevCacheEngineImpl(config))
     }
 
     // ================================
@@ -343,11 +315,10 @@ object DevEngine {
     // ================================
 
     /**
-     * 创建 Luban Image Compress Engine 实现
-     * @return Luban Image Compress Engine 实现
+     * 默认初始化 Luban Image Compress Engine 实现
      */
-    fun newLubanEngineImpl(): LubanEngineImpl {
-        return LubanEngineImpl()
+    fun defaultLubanEngineImpl() {
+        DevCompressEngine.setEngine(newLubanEngineImpl())
     }
 
     // ====================================
@@ -355,11 +326,28 @@ object DevEngine {
     // ====================================
 
     /**
-     * 创建 Glide Image Engine 实现
-     * @return Glide Image Engine 实现
+     * 默认初始化 Glide Image Engine 实现
      */
-    fun newGlideEngineImpl(): GlideEngineImpl {
-        return GlideEngineImpl()
+    fun defaultGlideEngineImpl() {
+        DevImageEngine.setEngine(newGlideEngineImpl())
+    }
+
+    // ===============
+    // = JSON Engine =
+    // ===============
+
+    /**
+     * 默认初始化 Gson JSON Engine 实现 ( JSON Engine )
+     */
+    fun defaultGsonEngineImpl() {
+        DevJSONEngine.setEngine(newGsonEngineImpl())
+    }
+
+    /**
+     * 默认初始化 Fastjson JSON Engine 实现 ( JSON Engine )
+     */
+    fun defaultFastjsonEngineImpl() {
+        DevJSONEngine.setEngine(newFastjsonEngineImpl())
     }
 
     // ============================
@@ -367,21 +355,19 @@ object DevEngine {
     // ============================
 
     /**
-     * 创建 MMKV Key-Value Engine 实现
+     * 默认初始化 MMKV Key-Value Engine 实现
      * @param config MMKV Config
-     * @return MMKV Key-Value Engine 实现
      */
-    fun newMMKVKeyValueEngineImpl(config: MMKVConfig): MMKVKeyValueEngineImpl {
-        return MMKVKeyValueEngineImpl(config)
+    fun defaultMMKVKeyValueEngineImpl(config: MMKVConfig) {
+        DevKeyValueEngine.setEngine(newMMKVKeyValueEngineImpl(config))
     }
 
     /**
-     * 创建 SharedPreferences Key-Value Engine 实现
+     * 默认初始化 SharedPreferences Key-Value Engine 实现
      * @param config SharedPreferences Config
-     * @return SharedPreferences Key-Value Engine 实现
      */
-    fun newSPKeyValueEngineImpl(config: SPConfig): SPKeyValueEngineImpl {
-        return SPKeyValueEngineImpl(config)
+    fun defaultSPKeyValueEngineImpl(config: SPConfig) {
+        DevKeyValueEngine.setEngine(newSPKeyValueEngineImpl(config))
     }
 
     // =====================
@@ -389,17 +375,23 @@ object DevEngine {
     // =====================
 
     /**
-     * 创建 DevLogger Log Engine 实现
+     * 默认初始化 DevLogger Log Engine 实现
      * @param logConfig Log Config
-     * @return DevLogger Log Engine 实现
      */
-    fun newDevLoggerEngineImpl(logConfig: LogConfig?): DevLoggerEngineImpl {
-        return object : DevLoggerEngineImpl(logConfig) {
-            override fun isPrintLog(): Boolean {
-                // 属于 Debug 模式才打印日志
-                return DevUtils.isDebug()
-            }
-        }
+    fun defaultDevLoggerEngineImpl(logConfig: LogConfig?) {
+        DevLogEngine.setEngine(newDevLoggerEngineImpl(logConfig))
+    }
+
+    /**
+     * 默认初始化 DevLogger Log Engine 实现
+     * @param logConfig Log Config
+     * @param printLog 是否打印日志
+     */
+    fun defaultDevLoggerEngineImpl(
+        logConfig: LogConfig?,
+        printLog: () -> Boolean
+    ) {
+        DevLogEngine.setEngine(newDevLoggerEngineImpl(logConfig, printLog))
     }
 
     // =====================================
@@ -407,11 +399,10 @@ object DevEngine {
     // =====================================
 
     /**
-     * 创建 PictureSelector Media Selector Engine 实现
-     * @return PictureSelector Media Selector Engine 实现
+     * 默认初始化 PictureSelector Media Selector Engine 实现
      */
-    fun newPictureSelectorEngineImpl(): PictureSelectorEngineImpl {
-        return PictureSelectorEngineImpl()
+    fun defaultPictureSelectorEngineImpl() {
+        DevMediaEngine.setEngine(newPictureSelectorEngineImpl())
     }
 
     // ============================
@@ -419,11 +410,10 @@ object DevEngine {
     // ============================
 
     /**
-     * 创建 XXPermissions Engine 实现
-     * @return XXPermissions Engine 实现
+     * 默认初始化 XXPermissions Engine 实现
      */
-    fun newXXPermissionsEngineImpl(): XXPermissionsEngineImpl {
-        return XXPermissionsEngineImpl()
+    fun defaultXXPermissionsEngineImpl() {
+        DevPermissionEngine.setEngine(newXXPermissionsEngineImpl())
     }
 
     // =================================
@@ -431,11 +421,182 @@ object DevEngine {
     // =================================
 
     /**
-     * 创建 DevUtils MediaStore Engine 实现
-     * @return DevUtils MediaStore Engine 实现
+     * 默认初始化 DevUtils MediaStore Engine 实现
      */
-    fun newDevMediaStoreEngineImpl(): DevMediaStoreEngineImpl {
-        return DevMediaStoreEngineImpl()
+    fun defaultDevMediaStoreEngineImpl() {
+        DevStorageEngine.setEngine(newDevMediaStoreEngineImpl())
+    }
+
+    // ==============
+    // = Engine set =
+    // ==============
+
+    /**
+     * 设置 Analytics Engine
+     * @param key    key
+     * @param engine {@link IAnalyticsEngine}
+     */
+    fun <Config : IAnalyticsEngine.EngineConfig, Item : IAnalyticsEngine.EngineItem> setAnalyticsEngine(
+        key: String,
+        engine: IAnalyticsEngine<Config, Item>
+    ) {
+        DevAnalyticsEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 BarCode Engine
+     * @param key    key
+     * @param engine {@link IBarCodeEngine}
+     */
+    fun <Config : IBarCodeEngine.EngineConfig, Item : IBarCodeEngine.EngineItem, Result : IBarCodeEngine.EngineResult> setBarCodeEngine(
+        key: String,
+        engine: IBarCodeEngine<Config, Item, Result>
+    ) {
+        DevBarCodeEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Cache Engine
+     * @param key    key
+     * @param engine {@link ICacheEngine}
+     */
+    fun <Config : ICacheEngine.EngineConfig, Item : ICacheEngine.EngineItem> setCacheEngine(
+        key: String,
+        engine: ICacheEngine<Config, Item>
+    ) {
+        DevCacheEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Compress Engine
+     * @param key    key
+     * @param engine {@link ICompressEngine}
+     */
+    fun <Config : ICompressEngine.EngineConfig> setCompressEngine(
+        key: String,
+        engine: ICompressEngine<Config>
+    ) {
+        DevCompressEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Image Engine
+     * @param key    key
+     * @param engine {@link IImageEngine}
+     */
+    fun <Config : IImageEngine.EngineConfig> setImageEngine(
+        key: String,
+        engine: IImageEngine<Config>
+    ) {
+        DevImageEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 JSON Engine
+     * @param key    key
+     * @param engine {@link IJSONEngine}
+     */
+    fun <Config : IJSONEngine.EngineConfig> setJSONEngine(
+        key: String,
+        engine: IJSONEngine<Config>
+    ) {
+        DevJSONEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 KeyValue Engine
+     * @param key    key
+     * @param engine {@link IKeyValueEngine}
+     */
+    fun <Config : IKeyValueEngine.EngineConfig> setKeyValueEngine(
+        key: String,
+        engine: IKeyValueEngine<Config>
+    ) {
+        DevKeyValueEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Log Engine
+     * @param key    key
+     * @param engine {@link ILogEngine}
+     */
+    fun setLogEngine(
+        key: String,
+        engine: ILogEngine
+    ) {
+        DevLogEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Media Engine
+     * @param key    key
+     * @param engine {@link IMediaEngine}
+     */
+    fun <Config : IMediaEngine.EngineConfig, Data : IMediaEngine.EngineData> setMediaEngine(
+        key: String,
+        engine: IMediaEngine<Config, Data>
+    ) {
+        DevMediaEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Permission Engine
+     * @param key    key
+     * @param engine {@link IPermissionEngine}
+     */
+    fun setPermissionEngine(
+        key: String,
+        engine: IPermissionEngine
+    ) {
+        DevPermissionEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Push Engine
+     * @param key    key
+     * @param engine {@link IPushEngine}
+     */
+    fun <Config : IPushEngine.EngineConfig, Item : IPushEngine.EngineItem> setPushEngine(
+        key: String,
+        engine: IPushEngine<Config, Item>
+    ) {
+        DevPushEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Share Engine
+     * @param key    key
+     * @param engine {@link IShareEngine}
+     */
+    fun <Config : IShareEngine.EngineConfig, Item : IShareEngine.EngineItem> setShareEngine(
+        key: String,
+        engine: IShareEngine<Config, Item>
+    ) {
+        DevShareEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Storage Engine
+     * @param key    key
+     * @param engine {@link IStorageEngine}
+     */
+    fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> setStorageEngine(
+        key: String,
+        engine: IStorageEngine<Item, Result>
+    ) {
+        DevStorageEngine.setEngine(key, engine)
+    }
+
+    /**
+     * 设置 Toast Engine
+     * @param key    key
+     * @param engine {@link IToastEngine}
+     */
+    fun <Config : IToastEngine.EngineConfig, Item : IToastEngine.EngineItem> setToastEngine(
+        key: String,
+        engine: IToastEngine<Config, Item>
+    ) {
+        DevToastEngine.setEngine(key, engine)
     }
 
     // ==========
@@ -706,179 +867,168 @@ object DevEngine {
      */
     fun getToastAssist() = DevToastEngine.getAssist()
 
-    // ==========
-    // = 设置方法 =
-    // ==========
+    // ==================
+    // = 内置 Engine 实现 =
+    // ==================
 
-    // ==============
-    // = Engine set =
-    // ==============
+    // ========================
+    // = BarCode Engine 条形码 =
+    // ========================
 
     /**
-     * 设置 Analytics Engine
-     * @param key    key
-     * @param engine {@link IAnalyticsEngine}
+     * 创建 ZXing BarCode Engine 实现
+     * @return ZXing BarCode Engine 实现
      */
-    fun <Config : IAnalyticsEngine.EngineConfig, Item : IAnalyticsEngine.EngineItem> setAnalyticsEngine(
-        key: String,
-        engine: IAnalyticsEngine<Config, Item>
-    ) {
-        DevAnalyticsEngine.setEngine(key, engine)
+    fun newZXingEngineImpl(): ZXingEngineImpl {
+        return ZXingEngineImpl()
+    }
+
+    // ==============================
+    // = Cache Engine 有效期键值对缓存 =
+    // ==============================
+
+    /**
+     * 创建 DevCache ( DevUtils ) Cache Engine 实现
+     * @param config Cache Config
+     * @return DevCache ( DevUtils ) Cache Engine 实现
+     */
+    fun newDevCacheEngineImpl(config: CacheConfig): DevCacheEngineImpl {
+        return DevCacheEngineImpl(config)
+    }
+
+    // ================================
+    // = Image Compress Engine 图片压缩 =
+    // ================================
+
+    /**
+     * 创建 Luban Image Compress Engine 实现
+     * @return Luban Image Compress Engine 实现
+     */
+    fun newLubanEngineImpl(): LubanEngineImpl {
+        return LubanEngineImpl()
+    }
+
+    // ====================================
+    // = Image Engine 图片加载、下载、转格式等 =
+    // ====================================
+
+    /**
+     * 创建 Glide Image Engine 实现
+     * @return Glide Image Engine 实现
+     */
+    fun newGlideEngineImpl(): GlideEngineImpl {
+        return GlideEngineImpl()
+    }
+
+    // ===============
+    // = JSON Engine =
+    // ===============
+
+    /**
+     * 创建 Gson JSON Engine 实现 ( JSON Engine )
+     * @return Gson JSON Engine 实现 ( JSON Engine )
+     */
+    fun newGsonEngineImpl(): GsonEngineImpl {
+        return GsonEngineImpl()
     }
 
     /**
-     * 设置 BarCode Engine
-     * @param key    key
-     * @param engine {@link IBarCodeEngine}
+     * 创建 Fastjson JSON Engine 实现 ( JSON Engine )
+     * @return Fastjson JSON Engine 实现 ( JSON Engine )
      */
-    fun <Config : IBarCodeEngine.EngineConfig, Item : IBarCodeEngine.EngineItem, Result : IBarCodeEngine.EngineResult> setBarCodeEngine(
-        key: String,
-        engine: IBarCodeEngine<Config, Item, Result>
-    ) {
-        DevBarCodeEngine.setEngine(key, engine)
+    fun newFastjsonEngineImpl(): FastjsonEngineImpl {
+        return FastjsonEngineImpl()
+    }
+
+    // ============================
+    // = KeyValue Engine 键值对存储 =
+    // ============================
+
+    /**
+     * 创建 MMKV Key-Value Engine 实现
+     * @param config MMKV Config
+     * @return MMKV Key-Value Engine 实现
+     */
+    fun newMMKVKeyValueEngineImpl(config: MMKVConfig): MMKVKeyValueEngineImpl {
+        return MMKVKeyValueEngineImpl(config)
     }
 
     /**
-     * 设置 Cache Engine
-     * @param key    key
-     * @param engine {@link ICacheEngine}
+     * 创建 SharedPreferences Key-Value Engine 实现
+     * @param config SharedPreferences Config
+     * @return SharedPreferences Key-Value Engine 实现
      */
-    fun <Config : ICacheEngine.EngineConfig, Item : ICacheEngine.EngineItem> setCacheEngine(
-        key: String,
-        engine: ICacheEngine<Config, Item>
-    ) {
-        DevCacheEngine.setEngine(key, engine)
+    fun newSPKeyValueEngineImpl(config: SPConfig): SPKeyValueEngineImpl {
+        return SPKeyValueEngineImpl(config)
+    }
+
+    // =====================
+    // = Log Engine 日志打印 =
+    // =====================
+
+    /**
+     * 创建 DevLogger Log Engine 实现
+     * @param logConfig Log Config
+     * @return DevLogger Log Engine 实现
+     */
+    fun newDevLoggerEngineImpl(logConfig: LogConfig?): DevLoggerEngineImpl {
+        return newDevLoggerEngineImpl(logConfig) {
+            // 属于 Debug 模式才打印日志
+            DevUtils.isDebug()
+        }
     }
 
     /**
-     * 设置 Compress Engine
-     * @param key    key
-     * @param engine {@link ICompressEngine}
+     * 创建 DevLogger Log Engine 实现
+     * @param logConfig Log Config
+     * @param printLog 是否打印日志
+     * @return DevLogger Log Engine 实现
      */
-    fun <Config : ICompressEngine.EngineConfig> setCompressEngine(
-        key: String,
-        engine: ICompressEngine<Config>
-    ) {
-        DevCompressEngine.setEngine(key, engine)
+    fun newDevLoggerEngineImpl(
+        logConfig: LogConfig?,
+        printLog: () -> Boolean
+    ): DevLoggerEngineImpl {
+        return object : DevLoggerEngineImpl(logConfig) {
+            override fun isPrintLog(): Boolean {
+
+                return printLog()
+            }
+        }
     }
 
-    /**
-     * 设置 Image Engine
-     * @param key    key
-     * @param engine {@link IImageEngine}
-     */
-    fun <Config : IImageEngine.EngineConfig> setImageEngine(
-        key: String,
-        engine: IImageEngine<Config>
-    ) {
-        DevImageEngine.setEngine(key, engine)
-    }
+    // =====================================
+    // = Media Selector Engine 多媒体资源选择 =
+    // =====================================
 
     /**
-     * 设置 JSON Engine
-     * @param key    key
-     * @param engine {@link IJSONEngine}
+     * 创建 PictureSelector Media Selector Engine 实现
+     * @return PictureSelector Media Selector Engine 实现
      */
-    fun <Config : IJSONEngine.EngineConfig> setJSONEngine(
-        key: String,
-        engine: IJSONEngine<Config>
-    ) {
-        DevJSONEngine.setEngine(key, engine)
+    fun newPictureSelectorEngineImpl(): PictureSelectorEngineImpl {
+        return PictureSelectorEngineImpl()
     }
 
-    /**
-     * 设置 KeyValue Engine
-     * @param key    key
-     * @param engine {@link IKeyValueEngine}
-     */
-    fun <Config : IKeyValueEngine.EngineConfig> setKeyValueEngine(
-        key: String,
-        engine: IKeyValueEngine<Config>
-    ) {
-        DevKeyValueEngine.setEngine(key, engine)
-    }
+    // ============================
+    // = Permission Engine 权限申请 =
+    // ============================
 
     /**
-     * 设置 Log Engine
-     * @param key    key
-     * @param engine {@link ILogEngine}
+     * 创建 XXPermissions Engine 实现
+     * @return XXPermissions Engine 实现
      */
-    fun setLogEngine(
-        key: String,
-        engine: ILogEngine
-    ) {
-        DevLogEngine.setEngine(key, engine)
+    fun newXXPermissionsEngineImpl(): XXPermissionsEngineImpl {
+        return XXPermissionsEngineImpl()
     }
 
-    /**
-     * 设置 Media Engine
-     * @param key    key
-     * @param engine {@link IMediaEngine}
-     */
-    fun <Config : IMediaEngine.EngineConfig, Data : IMediaEngine.EngineData> setMediaEngine(
-        key: String,
-        engine: IMediaEngine<Config, Data>
-    ) {
-        DevMediaEngine.setEngine(key, engine)
-    }
+    // =================================
+    // = Storage Engine 外部、内部文件存储 =
+    // =================================
 
     /**
-     * 设置 Permission Engine
-     * @param key    key
-     * @param engine {@link IPermissionEngine}
+     * 创建 DevUtils MediaStore Engine 实现
+     * @return DevUtils MediaStore Engine 实现
      */
-    fun setPermissionEngine(
-        key: String,
-        engine: IPermissionEngine
-    ) {
-        DevPermissionEngine.setEngine(key, engine)
-    }
-
-    /**
-     * 设置 Push Engine
-     * @param key    key
-     * @param engine {@link IPushEngine}
-     */
-    fun <Config : IPushEngine.EngineConfig, Item : IPushEngine.EngineItem> setPushEngine(
-        key: String,
-        engine: IPushEngine<Config, Item>
-    ) {
-        DevPushEngine.setEngine(key, engine)
-    }
-
-    /**
-     * 设置 Share Engine
-     * @param key    key
-     * @param engine {@link IShareEngine}
-     */
-    fun <Config : IShareEngine.EngineConfig, Item : IShareEngine.EngineItem> setShareEngine(
-        key: String,
-        engine: IShareEngine<Config, Item>
-    ) {
-        DevShareEngine.setEngine(key, engine)
-    }
-
-    /**
-     * 设置 Storage Engine
-     * @param key    key
-     * @param engine {@link IStorageEngine}
-     */
-    fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> setStorageEngine(
-        key: String,
-        engine: IStorageEngine<Item, Result>
-    ) {
-        DevStorageEngine.setEngine(key, engine)
-    }
-
-    /**
-     * 设置 Toast Engine
-     * @param key    key
-     * @param engine {@link IToastEngine}
-     */
-    fun <Config : IToastEngine.EngineConfig, Item : IToastEngine.EngineItem> setToastEngine(
-        key: String,
-        engine: IToastEngine<Config, Item>
-    ) {
-        DevToastEngine.setEngine(key, engine)
+    fun newDevMediaStoreEngineImpl(): DevMediaStoreEngineImpl {
+        return DevMediaStoreEngineImpl()
     }
 }

@@ -80,6 +80,11 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.lzyzsd/jsbridge
                     // JS 交互框架 https://github.com/uknownothingsnow/JsBridge
                     jsBridge                            : "com.github.lzyzsd:jsbridge:1.0.4",
+                    // https://mvnrepository.com/artifact/io.github.petterpx/floatingx
+                    // https://mvnrepository.com/artifact/io.github.petterpx/floatingx-compose
+                    // 悬浮窗解决方案 https://github.com/Petterpx/FloatingX
+                    floatingx                           : "io.github.petterpx:floatingx:2.3.4",
+                    floatingx_compose                   : "io.github.petterpx:floatingx-compose:2.3.4",
             ],
             "property"  : [
 
