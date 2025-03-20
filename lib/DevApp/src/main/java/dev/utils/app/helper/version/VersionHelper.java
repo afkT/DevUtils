@@ -50,6 +50,7 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.com/about/versions/15"/>
  *     <p></p>
  *     Android 版本适配全套指南
+ *     @see <a href="https://juejin.cn/column/7409928343742103592"/>
  *     @see <a href="https://github.com/getActivity/AndroidVersionAdapter"/>
  * </pre>
  */

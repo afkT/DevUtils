@@ -64,6 +64,8 @@ implementation 'io.github.afkt:DevAppX:2.4.7'
 
 ## 事项
 
+- **`Permission`、`Toast`、`Wifi`、`Camera`** 相关代码迁移至 [DevDeprecated](https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/README.md)，如需使用依赖该库即可，无需做任何变更。
+
 - 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
 
 - [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)

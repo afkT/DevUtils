@@ -10,9 +10,9 @@ android {
         // DevEngine Module Version
         buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
         buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
-        // DevApp Module Version
-        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
-        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+        // DevAssist Module Version
+        buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+        buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
     }
 }
 
