@@ -3,11 +3,10 @@ package dev.engine
 import android.content.Context
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
-import dev.engine.DevEngine.createMMKVConfig
-import dev.engine.DevEngine.defaultEngine
 import dev.engine.DevEngine.defaultMMKVInitialize
 import dev.engine.analytics.DevAnalyticsEngine
 import dev.engine.analytics.IAnalyticsEngine
+import dev.engine.barcode.BarCodeConfig
 import dev.engine.barcode.DevBarCodeEngine
 import dev.engine.barcode.IBarCodeEngine
 import dev.engine.barcode.ZXingEngineImpl
@@ -44,6 +43,7 @@ import dev.engine.storage.DevStorageEngine
 import dev.engine.storage.IStorageEngine
 import dev.engine.toast.DevToastEngine
 import dev.engine.toast.IToastEngine
+import dev.engine.toast.ToasterEngineImpl
 import dev.utils.app.cache.DevCache
 import dev.utils.app.logger.LogConfig
 import dev.utils.common.cipher.Cipher
@@ -162,29 +162,33 @@ object DevEngine {
      * @param cacheConfig Cache Engine Config
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
-     * 会默认使用 MMKV
+     * @param barCodeConfig BarCode Config
+     * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
     fun completeInitialize(
         context: Context,
         cacheConfig: CacheConfig? = CacheConfig(null, DevCache.newCache()),
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
-        logConfig: LogConfig? = null
+        logConfig: LogConfig? = null,
+        barCodeConfig: BarCodeConfig? = null
     ) {
+        // 使用 DevEngine 库内部默认实现 MMKV 初始化
+        defaultMMKVInitialize(context)
+
         if (keyValueConfig == null) {
             try {
-                defaultMMKVInitialize(context)
                 // 如果 MMKV 不为 null 则进行初始化
                 val mmkv = MMKVUtils.defaultHolder().mmkv
-                defaultEngine(
-                    cacheConfig,
+                _defaultEngine(
+                    context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig
+                    logConfig, barCodeConfig
                 )
                 return
             } catch (_: Exception) {
             }
         }
-        defaultEngine(cacheConfig, keyValueConfig, logConfig)
+        _defaultEngine(context, cacheConfig, keyValueConfig, logConfig, barCodeConfig)
     }
 
     /**
@@ -193,20 +197,24 @@ object DevEngine {
      * @param cacheConfig Cache Engine Config
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
+     * @param barCodeConfig BarCode Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
-     * 接着调用该方法 [defaultEngine] 传入 [MMKVConfig] or [createMMKVConfig]
      */
-    fun defaultEngine(
+    private fun _defaultEngine(
+        context: Context,
         cacheConfig: CacheConfig?,
         keyValueConfig: IKeyValueEngine.EngineConfig?,
-        logConfig: LogConfig? = null
+        logConfig: LogConfig?,
+        barCodeConfig: BarCodeConfig?
     ) {
         // ========================
         // = BarCode Engine 条形码 =
         // ========================
 
         // 初始化 ZXing BarCode Engine 实现
-        defaultZXingEngineImpl()
+        defaultZXingEngineImpl().also { barCode ->
+            barCode.initialize(barCodeConfig)
+        }
 
         // ==============================
         // = Cache Engine 有效期键值对缓存 =
@@ -281,6 +289,15 @@ object DevEngine {
 
         // 初始化 DevUtils MediaStore Engine 实现
         defaultDevMediaStoreEngineImpl()
+
+        // =======================
+        // = Toast Engine 吐司提示 =
+        // =======================
+
+        // 默认初始化 Toaster Toast Engine 实现
+        defaultToasterEngineImpl().also { toast ->
+            toast.initialize(DevUtils.getApplication(context))
+        }
     }
 
     // =====================
@@ -293,9 +310,12 @@ object DevEngine {
 
     /**
      * 默认初始化 ZXing BarCode Engine 实现
+     * @return ZXingEngineImpl
      */
-    fun defaultZXingEngineImpl() {
-        DevBarCodeEngine.setEngine(newZXingEngineImpl())
+    fun defaultZXingEngineImpl(): ZXingEngineImpl {
+        return newZXingEngineImpl().apply {
+            DevBarCodeEngine.setEngine(this)
+        }
     }
 
     // ==============================
@@ -305,9 +325,12 @@ object DevEngine {
     /**
      * 默认初始化 DevCache ( DevUtils ) Cache Engine 实现
      * @param config Cache Config
+     * @return DevCacheEngineImpl
      */
-    fun defaultDevCacheEngineImpl(config: CacheConfig) {
-        DevCacheEngine.setEngine(newDevCacheEngineImpl(config))
+    fun defaultDevCacheEngineImpl(config: CacheConfig): DevCacheEngineImpl {
+        return newDevCacheEngineImpl(config).apply {
+            DevCacheEngine.setEngine(this)
+        }
     }
 
     // ================================
@@ -316,9 +339,12 @@ object DevEngine {
 
     /**
      * 默认初始化 Luban Image Compress Engine 实现
+     * @return LubanEngineImpl
      */
-    fun defaultLubanEngineImpl() {
-        DevCompressEngine.setEngine(newLubanEngineImpl())
+    fun defaultLubanEngineImpl(): LubanEngineImpl {
+        return newLubanEngineImpl().apply {
+            DevCompressEngine.setEngine(this)
+        }
     }
 
     // ====================================
@@ -327,9 +353,12 @@ object DevEngine {
 
     /**
      * 默认初始化 Glide Image Engine 实现
+     * @return GlideEngineImpl
      */
-    fun defaultGlideEngineImpl() {
-        DevImageEngine.setEngine(newGlideEngineImpl())
+    fun defaultGlideEngineImpl(): GlideEngineImpl {
+        return newGlideEngineImpl().apply {
+            DevImageEngine.setEngine(this)
+        }
     }
 
     // ===============
@@ -338,16 +367,22 @@ object DevEngine {
 
     /**
      * 默认初始化 Gson JSON Engine 实现 ( JSON Engine )
+     * @return GsonEngineImpl
      */
-    fun defaultGsonEngineImpl() {
-        DevJSONEngine.setEngine(newGsonEngineImpl())
+    fun defaultGsonEngineImpl(): GsonEngineImpl {
+        return newGsonEngineImpl().apply {
+            DevJSONEngine.setEngine(this)
+        }
     }
 
     /**
      * 默认初始化 Fastjson JSON Engine 实现 ( JSON Engine )
+     * @return FastjsonEngineImpl
      */
-    fun defaultFastjsonEngineImpl() {
-        DevJSONEngine.setEngine(newFastjsonEngineImpl())
+    fun defaultFastjsonEngineImpl(): FastjsonEngineImpl {
+        return newFastjsonEngineImpl().apply {
+            DevJSONEngine.setEngine(this)
+        }
     }
 
     // ============================
@@ -357,17 +392,23 @@ object DevEngine {
     /**
      * 默认初始化 MMKV Key-Value Engine 实现
      * @param config MMKV Config
+     * @return MMKVKeyValueEngineImpl
      */
-    fun defaultMMKVKeyValueEngineImpl(config: MMKVConfig) {
-        DevKeyValueEngine.setEngine(newMMKVKeyValueEngineImpl(config))
+    fun defaultMMKVKeyValueEngineImpl(config: MMKVConfig): MMKVKeyValueEngineImpl {
+        return newMMKVKeyValueEngineImpl(config).apply {
+            DevKeyValueEngine.setEngine(this)
+        }
     }
 
     /**
      * 默认初始化 SharedPreferences Key-Value Engine 实现
      * @param config SharedPreferences Config
+     * @return SPKeyValueEngineImpl
      */
-    fun defaultSPKeyValueEngineImpl(config: SPConfig) {
-        DevKeyValueEngine.setEngine(newSPKeyValueEngineImpl(config))
+    fun defaultSPKeyValueEngineImpl(config: SPConfig): SPKeyValueEngineImpl {
+        return newSPKeyValueEngineImpl(config).apply {
+            DevKeyValueEngine.setEngine(this)
+        }
     }
 
     // =====================
@@ -377,21 +418,27 @@ object DevEngine {
     /**
      * 默认初始化 DevLogger Log Engine 实现
      * @param logConfig Log Config
+     * @return DevLoggerEngineImpl
      */
-    fun defaultDevLoggerEngineImpl(logConfig: LogConfig?) {
-        DevLogEngine.setEngine(newDevLoggerEngineImpl(logConfig))
+    fun defaultDevLoggerEngineImpl(logConfig: LogConfig?): DevLoggerEngineImpl {
+        return newDevLoggerEngineImpl(logConfig).apply {
+            DevLogEngine.setEngine(this)
+        }
     }
 
     /**
      * 默认初始化 DevLogger Log Engine 实现
      * @param logConfig Log Config
      * @param printLog 是否打印日志
+     * @return DevLoggerEngineImpl
      */
     fun defaultDevLoggerEngineImpl(
         logConfig: LogConfig?,
         printLog: () -> Boolean
-    ) {
-        DevLogEngine.setEngine(newDevLoggerEngineImpl(logConfig, printLog))
+    ): DevLoggerEngineImpl {
+        return newDevLoggerEngineImpl(logConfig, printLog).apply {
+            DevLogEngine.setEngine(this)
+        }
     }
 
     // =====================================
@@ -400,9 +447,12 @@ object DevEngine {
 
     /**
      * 默认初始化 PictureSelector Media Selector Engine 实现
+     * @return PictureSelectorEngineImpl
      */
-    fun defaultPictureSelectorEngineImpl() {
-        DevMediaEngine.setEngine(newPictureSelectorEngineImpl())
+    fun defaultPictureSelectorEngineImpl(): PictureSelectorEngineImpl {
+        return newPictureSelectorEngineImpl().apply {
+            DevMediaEngine.setEngine(this)
+        }
     }
 
     // ============================
@@ -411,9 +461,12 @@ object DevEngine {
 
     /**
      * 默认初始化 XXPermissions Engine 实现
+     * @return XXPermissionsEngineImpl
      */
-    fun defaultXXPermissionsEngineImpl() {
-        DevPermissionEngine.setEngine(newXXPermissionsEngineImpl())
+    fun defaultXXPermissionsEngineImpl(): XXPermissionsEngineImpl {
+        return newXXPermissionsEngineImpl().apply {
+            DevPermissionEngine.setEngine(this)
+        }
     }
 
     // =================================
@@ -422,9 +475,26 @@ object DevEngine {
 
     /**
      * 默认初始化 DevUtils MediaStore Engine 实现
+     * @return DevMediaStoreEngineImpl
      */
-    fun defaultDevMediaStoreEngineImpl() {
-        DevStorageEngine.setEngine(newDevMediaStoreEngineImpl())
+    fun defaultDevMediaStoreEngineImpl(): DevMediaStoreEngineImpl {
+        return newDevMediaStoreEngineImpl().apply {
+            DevStorageEngine.setEngine(this)
+        }
+    }
+
+    // =======================
+    // = Toast Engine 吐司提示 =
+    // =======================
+
+    /**
+     * 默认初始化 Toaster Toast Engine 实现
+     * @return ToasterEngineImpl
+     */
+    fun defaultToasterEngineImpl(): ToasterEngineImpl {
+        return newToasterEngineImpl().apply {
+            DevToastEngine.setEngine(this)
+        }
     }
 
     // ==============
@@ -990,7 +1060,6 @@ object DevEngine {
     ): DevLoggerEngineImpl {
         return object : DevLoggerEngineImpl(logConfig) {
             override fun isPrintLog(): Boolean {
-
                 return printLog()
             }
         }
@@ -1030,5 +1099,16 @@ object DevEngine {
      */
     fun newDevMediaStoreEngineImpl(): DevMediaStoreEngineImpl {
         return DevMediaStoreEngineImpl()
+    }
+
+    // =======================
+    // = Toast Engine 吐司提示 =
+    // =======================
+
+    /**
+     * 默认初始化 Toaster Toast Engine 实现
+     */
+    fun newToasterEngineImpl(): ToasterEngineImpl {
+        return ToasterEngineImpl()
     }
 }

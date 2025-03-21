@@ -94,6 +94,38 @@ object DevMVVM {
         return BuildConfig.DevBaseMVVM_Version
     }
 
+    /**
+     * 获取 DevEngine 版本号
+     * @return DevEngine versionCode
+     */
+    fun getDevEngineVersionCode(): Int {
+        return BuildConfig.DevEngine_VersionCode
+    }
+
+    /**
+     * 获取 DevEngine 版本
+     * @return DevEngine versionName
+     */
+    fun getDevEngineVersion(): String {
+        return BuildConfig.DevEngine_Version
+    }
+
+    /**
+     * 获取 DevWidget 版本号
+     * @return DevWidget versionCode
+     */
+    fun getDevWidgetVersionCode(): Int {
+        return BuildConfig.DevWidget_VersionCode
+    }
+
+    /**
+     * 获取 DevWidget 版本
+     * @return DevWidget versionName
+     */
+    fun getDevWidgetVersion(): String {
+        return BuildConfig.DevWidget_Version
+    }
+
     // =============
     // = 对外公开方法 =
     // =============

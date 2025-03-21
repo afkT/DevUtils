@@ -5,6 +5,7 @@ import dev.engine.DevEngine
 import dev.engine.barcode.IBarCodeEngine
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.barcode.listener.BarCodeEncodeCallback
+import kotlin.Throws
 
 // ==========================================================
 // = IBarCodeEngine<EngineConfig, EngineItem, EngineResult> =
@@ -41,10 +42,10 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
     engine.getBarCodeEngine()?.initialize(config)
 }
 
-fun <Config : IBarCodeEngine.EngineConfig> barcode_getConfig(
+fun barcode_getConfig(
     engine: String? = null
-): Config? {
-    return engine.getBarCodeEngine()?.config as? Config
+): Any? {
+    return engine.getBarCodeEngine()?.config
 }
 
 // ==========
@@ -81,10 +82,10 @@ fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
 }
 
 @Throws(Exception::class)
-fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCodeSync(
+fun Bitmap.barcode_decodeBarCodeSync(
     engine: String? = null
-): Result? {
-    return engine.getBarCodeEngine()?.decodeBarCodeSync(this) as? Result
+): Any? {
+    return engine.getBarCodeEngine()?.decodeBarCodeSync(this)
 }
 
 // ==========

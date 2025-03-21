@@ -18,6 +18,12 @@ android {
         // DevBaseMVVM Module Version
         buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
         buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""
+        // DevEngine Module Version
+        buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
+        buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
+        // DevWidget Module Version
+        buildConfigField "int", "DevWidget_VersionCode", "${versions.dev_widget_versionCode}"
+        buildConfigField "String", "DevWidget_Version", "\"${versions.dev_widget_versionName}\""
     }
 }
 

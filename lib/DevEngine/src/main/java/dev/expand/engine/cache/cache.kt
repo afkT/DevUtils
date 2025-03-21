@@ -46,10 +46,10 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = 对外公开方法 =
 // =============
 
-fun <Config : ICacheEngine.EngineConfig> cache_getConfig(
+fun cache_getConfig(
     engine: String? = null
-): Config? {
-    return engine.getCacheEngine()?.config as? Config
+): Any? {
+    return engine.getCacheEngine()?.config
 }
 
 // =

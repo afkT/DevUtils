@@ -121,9 +121,9 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
 // = 转换 Message =
 // ===============
 
-fun <Item : IPushEngine.EngineItem> push_convertMessage(
+fun push_convertMessage(
     engine: String? = null,
     message: Any?
-): Item? {
-    return engine.getPushEngine()?.convertMessage(message) as? Item
+): Any? {
+    return engine.getPushEngine()?.convertMessage(message)
 }

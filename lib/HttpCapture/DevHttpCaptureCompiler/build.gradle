@@ -7,6 +7,15 @@ android {
     defaultConfig {
         versionCode versions.dev_http_capture_versionCode
         versionName versions.dev_http_capture_compiler_version
+        // DevHttpCaptureCompiler Module Version
+        buildConfigField "int", "DevHttpCaptureCompiler_VersionCode", "${versions.dev_http_capture_versionCode}"
+        buildConfigField "String", "DevHttpCaptureCompiler_Version", "\"${versions.dev_http_capture_compiler_version}\""
+        // DevAssist Module Version
+        buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+        buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
+        // DevHttpCapture Module Version
+        buildConfigField "int", "DevHttpCapture_VersionCode", "${versions.dev_http_capture_versionCode}"
+        buildConfigField "String", "DevHttpCapture_Version", "\"${versions.dev_http_capture_versionName}\""
     }
 }
 

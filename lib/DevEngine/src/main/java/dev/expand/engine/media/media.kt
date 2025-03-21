@@ -33,10 +33,10 @@ fun String?.getMediaEngine(): IMediaEngine<in IMediaEngine.EngineConfig, in IMed
 // = 配置方法 =
 // ==========
 
-fun <Config : IMediaEngine.EngineConfig> media_getConfig(
+fun media_getConfig(
     engine: String? = null
-): Config? {
-    return engine.getMediaEngine()?.config as? Config
+): Any? {
+    return engine.getMediaEngine()?.config
 }
 
 fun <Config : IMediaEngine.EngineConfig> media_setConfig(
@@ -172,10 +172,10 @@ fun Intent.media_getSelectorUris(
     return engine.getMediaEngine()?.getSelectorUris(this, original)
 }
 
-fun <Data : IMediaEngine.EngineData> Intent.media_getSingleSelector(
+fun Intent.media_getSingleSelector(
     engine: String? = null
-): Data? {
-    return engine.getMediaEngine()?.getSingleSelector(this) as? Data
+): Any? {
+    return engine.getMediaEngine()?.getSingleSelector(this)
 }
 
 fun Intent.media_getSingleSelectorUri(

@@ -40,10 +40,10 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = 对外公开方法 =
 // =============
 
-fun <Config : IKeyValueEngine.EngineConfig> kv_getConfig(
+fun kv_getConfig(
     engine: String? = null
-): Config? {
-    return engine.getKeyValueEngine()?.config as? Config
+): Any? {
+    return engine.getKeyValueEngine()?.config
 }
 
 // =
