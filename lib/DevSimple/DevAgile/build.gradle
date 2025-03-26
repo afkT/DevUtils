@@ -1,5 +1,4 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
-apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
@@ -18,6 +17,13 @@ android {
         // DevRetrofit Module Version
         buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
         buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+    }
+
+    buildFeatures {
+        // View Binding
+        viewBinding = true
+        // Data Binding
+        dataBinding = true
     }
 }
 

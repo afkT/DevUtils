@@ -1,5 +1,4 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
-apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
@@ -15,6 +14,13 @@ android {
         // DevMVVM Module Version
         buildConfigField "int", "DevMVVM_VersionCode", "${versions.dev_mvvm_versionCode}"
         buildConfigField "String", "DevMVVM_Version", "\"${versions.dev_mvvm_versionName}\""
+    }
+
+    buildFeatures {
+        // View Binding
+        viewBinding = true
+        // Data Binding
+        dataBinding = true
     }
 }
 

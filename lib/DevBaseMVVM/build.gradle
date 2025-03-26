@@ -1,5 +1,4 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
-apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 
 android {
     namespace "dev.base.mvvm"
@@ -13,6 +12,13 @@ android {
         // DevBase Module Version
         buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
         buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
+    }
+
+    buildFeatures {
+        // View Binding
+        viewBinding = true
+        // Data Binding
+        dataBinding = true
     }
 }
 
