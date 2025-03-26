@@ -392,6 +392,11 @@ ext {
                     shimmer                                : "com.facebook.shimmer:shimmer:0.5.0",
                     // BRV RecyclerView 适配器 ( 悬浮吸顶 ) https://github.com/liangjingkanji/BRV
                     brv_adapter                            : "com.github.liangjingkanji:BRV:1.6.1",
+                    // 万能阴影布局 https://github.com/lihangleo2/ShadowLayout
+                    shadowLayout                           : "com.github.lihangleo2:ShadowLayout:3.4.1",
+                    // https://mvnrepository.com/artifact/com.kongzue.dialogx/DialogX
+                    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
+                    dialogX                                : "com.kongzue.dialogx:DialogX:0.0.49",
             ]
     ]
 }
