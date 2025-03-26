@@ -1,6 +1,0 @@
-android {
-    buildFeatures {
-        // View Binding
-        viewBinding = true
-    }
-}

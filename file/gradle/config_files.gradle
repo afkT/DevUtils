@@ -6,86 +6,84 @@ ext {
 
     files = [
             // Android 项目构建配置
-            build_app_gradle                    : "file/gradle/build/build_app.gradle",
+            build_app_gradle              : "file/gradle/build/build_app.gradle",
             // Android Kotlin 项目构建配置
-            build_app_kotlin_gradle             : "file/gradle/build/build_app_kotlin.gradle",
+            build_app_kotlin_gradle       : "file/gradle/build/build_app_kotlin.gradle",
 
             // Android Lib 通用配置
-            lib_app_gradle                      : "file/gradle/build/lib_app.gradle",
+            lib_app_gradle                : "file/gradle/build/lib_app.gradle",
             // Android Kotlin Lib 通用配置
-            lib_app_kotlin_gradle               : "file/gradle/build/lib_app_kotlin.gradle",
-            // Android Bintray Upload
-            bintray_upload_android              : "file/gradle/upload/bintray/bintrayUploadAndroid.gradle",
-            // Android Sonatype Upload
-            sonatype_upload_android             : "file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle",
+            lib_app_kotlin_gradle         : "file/gradle/build/lib_app_kotlin.gradle",
 
             // Java Lib 通用配置
-            lib_java_gradle                     : "file/gradle/build/lib_java.gradle",
+            lib_java_gradle               : "file/gradle/build/lib_java.gradle",
             // Java Bintray Upload
-            bintray_upload_java                 : "file/gradle/upload/bintray/bintrayUploadJava.gradle",
+            bintray_upload_java           : "file/gradle/upload/bintray/bintrayUploadJava.gradle",
             // Java Sonatype Upload
-            sonatype_upload_java                : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
-
-            // Android lib 依赖配置
-            deps_android_lib                    : "file/gradle/deps/deps_android_lib.gradle",
-            // 第三方 lib 依赖配置
-            deps_other_lib                      : "file/gradle/deps/deps_other_lib.gradle",
-            // 性能检测相关 lib 依赖配置
-            deps_qa_lib                         : "file/gradle/deps/deps_qa_lib.gradle",
-
-            // ===============
-            // = Gradle Task =
-            // ===============
-
-            // 生成依赖库 deps 文件信息任务
-            task_generate_deps_file_gradle      : "file/gradle/build/task/task_generate_deps_file.gradle",
-
-            // ===========
-            // = Unified =
-            // ===========
-
-            // 第三方库版本强制统一处理
-            unified_library_config_gradle       : "file/gradle/build/unified/unified_library_config.gradle",
-            // 统一使用 View Binding 处理
-            unified_use_view_binding_gradle     : "file/gradle/build/unified/unified_use_view_binding.gradle",
-            // 统一使用 Data Binding 处理
-            unified_use_data_binding_gradle     : "file/gradle/build/unified/unified_use_data_binding.gradle",
-            // 统一使用 View、Data Binding 处理
-            unified_use_view_data_binding_gradle: "file/gradle/build/unified/unified_use_view_data_binding.gradle",
+            sonatype_upload_java          : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
+            // Android Bintray Upload
+            bintray_upload_android        : "file/gradle/upload/bintray/bintrayUploadAndroid.gradle",
+            // Android Sonatype Upload
+            sonatype_upload_android       : "file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle",
 
             // ==========
             // = Router =
             // ==========
 
             // Router App 构建配置
-            build_router_app_gradle             : "file/gradle/build/router/build_router_app.gradle",
+            build_router_app_gradle       : "file/gradle/build/router/build_router_app.gradle",
             // Router Module 构建配置
-            build_router_module_gradle          : "file/gradle/build/router/build_router_module.gradle",
+            build_router_module_gradle    : "file/gradle/build/router/build_router_module.gradle",
 
             // ARouter App 构建配置
-            build_arouter_app_gradle            : "file/gradle/build/router/arouter/build_arouter_app.gradle",
+            build_arouter_app_gradle      : "file/gradle/build/router/arouter/build_arouter_app.gradle",
             // ARouter Module 构建配置
-            build_arouter_module_gradle         : "file/gradle/build/router/arouter/build_arouter_module.gradle",
+            build_arouter_module_gradle   : "file/gradle/build/router/arouter/build_arouter_module.gradle",
 
             // TheRouter App 构建配置
-            build_therouter_app_gradle          : "file/gradle/build/router/therouter/build_therouter_app.gradle",
+            build_therouter_app_gradle    : "file/gradle/build/router/therouter/build_therouter_app.gradle",
             // TheRouter Module 构建配置
-            build_therouter_module_gradle       : "file/gradle/build/router/therouter/build_therouter_module.gradle",
+            build_therouter_module_gradle : "file/gradle/build/router/therouter/build_therouter_module.gradle",
+
+            // ===========
+            // = Unified =
+            // ===========
+
+            // 第三方库版本强制统一处理
+            unified_library_config_gradle : "file/gradle/build/unified/unified_library_config.gradle",
+
+            // ===============
+            // = Gradle Task =
+            // ===============
+
+            // 生成依赖库 deps 文件信息任务
+            task_generate_deps_file_gradle: "file/gradle/build/task/task_generate_deps_file.gradle",
     ]
 
-    dev_utils = [
-            // DevUtils 项目其他 module 本地依赖
-            local_other: "file/devutils/local_other_deps.gradle",
-            // DevUtils 系列库本地依赖
-            local      : "file/devutils/local_utils_deps.gradle",
+    deps_maven = [
+
+            // ==========
+            // = 开发依赖 =
+            // ==========
+
             // DevUtils 系列库 Maven 依赖
-            maven      : "file/devutils/maven_utils_deps.gradle",
+            deps_dev_utils : "file/deps/deps_dev_utils.gradle",
+            // Android lib 依赖配置
+            deps_android   : "file/deps/deps_android.gradle",
+            // 第三方 lib 依赖配置
+            deps_other     : "file/deps/deps_other.gradle",
+            // 性能检测相关 lib 依赖配置
+            deps_qa        : "file/deps/deps_qa.gradle",
 
             // ==============
             // = 统一依赖配置 =
             // ==============
 
             // DevUtils 项目统一依赖配置
-            deps_config: "file/devutils/dev_utils_deps.gradle"
+            prop_dev_utils : "file/deps/local/prop_dev_utils.gradle",
+            // DevUtils 系列库本地依赖
+            local_dev_utils: "file/deps/local/local_dev_utils.gradle",
+            // DevUtils 项目其他 module 本地依赖
+            local_other    : "file/deps/local/local_other.gradle",
     ]
 }

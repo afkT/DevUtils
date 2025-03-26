@@ -1,6 +1,10 @@
 apply from: rootProject.file(files.build_app_kotlin_gradle)
-apply from: rootProject.file(files.deps_other_lib)
 
 android {
     namespace "dev.other"
 }
+
+// Android lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_android)
+// 第三方 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_other)

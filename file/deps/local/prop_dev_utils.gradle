@@ -11,8 +11,8 @@ if (localPropertiesFile.exists()) {
 
 if (isMavenDeps) {
     // DevUtils 系列库 Maven 依赖
-    apply from: rootProject.file(dev_utils.maven)
+    apply from: rootProject.file(deps_maven.deps_dev_utils)
 } else {
     // DevUtils 系列库本地依赖
-    apply from: rootProject.file(dev_utils.local)
+    apply from: rootProject.file(deps_maven.local_dev_utils)
 }

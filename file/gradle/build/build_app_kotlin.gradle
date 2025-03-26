@@ -2,8 +2,6 @@ apply from: rootProject.file(files.lib_app_gradle)
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
-apply from: rootProject.file(files.deps_android_lib)
-apply from: rootProject.file(files.unified_use_view_data_binding_gradle)
 
 android {
 
@@ -20,6 +18,10 @@ android {
 
     buildFeatures {
         buildConfig true
+        // View Binding
+        viewBinding = true
+        // Data Binding
+        dataBinding = true
     }
 
     lintOptions {
@@ -38,4 +40,4 @@ android {
 }
 
 // DevUtils 项目统一依赖配置
-apply from: rootProject.file(dev_utils.deps_config)
+apply from: rootProject.file(deps_maven.prop_dev_utils)

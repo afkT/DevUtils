@@ -6,8 +6,8 @@ dependencies {
     // ====================
 
 //    // Bugly https://bugly.qq.com/docs/
-//    implementation deps_split.property.bugly
-//    implementation deps_split.property.bugly_ndk
+//    api deps_split.property.bugly
+//    api deps_split.property.bugly_ndk
 
 //    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
 //    debugImplementation deps_split.property.uetool
@@ -21,12 +21,12 @@ dependencies {
 //    releaseImplementation deps_split.property.blockcanary_no_op
 
 //    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-//    implementation(deps_split.property.matrix_android_lib) { changing = true }
-//    implementation(deps_split.property.matrix_android_commons) { changing = true }
-//    implementation(deps_split.property.matrix_trace_canary) { changing = true }
-//    implementation(deps_split.property.matrix_resource_canary_android) { changing = true }
-//    implementation(deps_split.property.matrix_resource_canary_common) { changing = true }
-//    implementation(deps_split.property.matrix_io_canary) { changing = true }
-//    implementation(deps_split.property.matrix_sqlite_lint) { changing = true }
-//    implementation(deps_split.property.matrix_battery_canary) { changing = true }
+//    api(deps_split.property.matrix_android_lib) { changing = true }
+//    api(deps_split.property.matrix_android_commons) { changing = true }
+//    api(deps_split.property.matrix_trace_canary) { changing = true }
+//    api(deps_split.property.matrix_resource_canary_android) { changing = true }
+//    api(deps_split.property.matrix_resource_canary_common) { changing = true }
+//    api(deps_split.property.matrix_io_canary) { changing = true }
+//    api(deps_split.property.matrix_sqlite_lint) { changing = true }
+//    api(deps_split.property.matrix_battery_canary) { changing = true }
 }

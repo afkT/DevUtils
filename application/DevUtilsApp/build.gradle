@@ -1,7 +1,5 @@
 apply from: rootProject.file(files.build_app_gradle)
 apply from: rootProject.file(files.build_router_app_gradle)
-apply from: rootProject.file(files.deps_other_lib)
-apply from: rootProject.file(files.deps_qa_lib)
 
 android {
     namespace "afkt.project"
@@ -28,7 +26,13 @@ android {
     }
 }
 
+// Android lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_android)
 // DevUtils 项目统一依赖配置
-apply from: rootProject.file(dev_utils.deps_config)
+apply from: rootProject.file(deps_maven.prop_dev_utils)
 // DevUtils 项目其他 module 本地依赖
-apply from: rootProject.file(dev_utils.local_other)
+apply from: rootProject.file(deps_maven.local_other)
+// 第三方 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_other)
+// 性能检测相关 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_qa)
