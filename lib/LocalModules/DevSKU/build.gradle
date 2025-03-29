@@ -3,3 +3,6 @@ apply from: rootProject.file(files.build_app_kotlin_gradle)
 android {
     namespace "dev.sku"
 }
+
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(deps_maven.prop_dev_utils)

@@ -39,6 +39,11 @@ open class MMKVKeyValueEngineImpl(
         this.mJSONEngine = engine
     }
 
+    private fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
+        if (mJSONEngine != null) return mJSONEngine
+        return DevJSONEngine.getEngine()
+    }
+
     // =============
     // = 对外公开方法 =
     // =============
@@ -118,7 +123,7 @@ open class MMKVKeyValueEngineImpl(
         key: String?,
         value: T
     ): Boolean {
-        return putString(key, mJSONEngine?.toJson(value))
+        return putString(key, _jsonEngine()?.toJson(value))
     }
 
     // =======
@@ -210,7 +215,7 @@ open class MMKVKeyValueEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        return mJSONEngine?.fromJson<T>(
+        return _jsonEngine()?.fromJson<T>(
             getString(key, null), typeOfT
         ) ?: return defaultValue
     }

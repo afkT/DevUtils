@@ -15,3 +15,6 @@ dependencies {
     implementation deps.widget.smartrefresh_header_classics
     implementation deps.widget.smartrefresh_footer_classics
 }
+
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(deps_maven.prop_dev_utils)

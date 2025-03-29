@@ -28,15 +28,16 @@ open class SPKeyValueEngineImpl(
     // SharedPreferences
     private val mPreference = mConfig.preference
 
-    init {
-        // SharedPreferences
-    }
-
     // JSON Engine
     private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
     fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine
+    }
+
+    private fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
+        if (mJSONEngine != null) return mJSONEngine
+        return DevJSONEngine.getEngine()
     }
 
     // =============
@@ -124,7 +125,7 @@ open class SPKeyValueEngineImpl(
         key: String?,
         value: T
     ): Boolean {
-        return putString(key, mJSONEngine?.toJson(value))
+        return putString(key, _jsonEngine()?.toJson(value))
     }
 
     // =======
@@ -216,7 +217,7 @@ open class SPKeyValueEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        return mJSONEngine?.fromJson<T>(
+        return _jsonEngine()?.fromJson<T>(
             getString(key, null), typeOfT
         ) ?: return defaultValue
     }

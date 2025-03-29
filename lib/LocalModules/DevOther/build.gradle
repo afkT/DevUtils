@@ -6,5 +6,7 @@ android {
 
 // Android lib 依赖配置
 apply from: rootProject.file(deps_maven.deps_android)
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(deps_maven.prop_dev_utils)
 // 第三方 lib 依赖配置
 apply from: rootProject.file(deps_maven.deps_other)

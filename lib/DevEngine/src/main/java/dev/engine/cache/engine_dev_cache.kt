@@ -25,6 +25,11 @@ open class DevCacheEngineImpl(
         this.mJSONEngine = engine
     }
 
+    private fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
+        if (mJSONEngine != null) return mJSONEngine
+        return DevJSONEngine.getEngine()
+    }
+
     // =============
     // = 对外公开方法 =
     // =============
@@ -223,7 +228,7 @@ open class DevCacheEngineImpl(
         value: T,
         validTime: Long
     ): Boolean {
-        val json = mJSONEngine?.toJson(value)
+        val json = _jsonEngine()?.toJson(value)
         return mConfig.mDevCache.put(key, json, validTime)
     }
 
@@ -392,7 +397,7 @@ open class DevCacheEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        return mJSONEngine?.fromJson<T>(
+        return _jsonEngine()?.fromJson<T>(
             getString(key, null), typeOfT
         ) ?: return defaultValue
     }
