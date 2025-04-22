@@ -1,6 +1,23 @@
 Change Log
 ==========
 
+Version 2.4.8 *(2025-03-21)*
+----------------------------
+
+* `[Feature]` 适配 Android 15 ( VanillaIceCream )
+
+* `[Add]` 新增 DownloadManager 工具类 DownloadUtils
+
+* `[Add]` 新增 Cursor 游标工具类 CursorUtils
+
+* `[Refactor]` 更新整个项目 Cursor 使用方法
+
+* `[Refactor]` 更新整个项目 SystemService 缓存代码
+
+* `[Move]` 迁移 DefaultActivityResult、PermissionUtils、Toast、Camera1、Wifi 实现代码到 DevDeprecated 库
+
+* `[Move]` 迁移无用资源文件到 DevDeprecated 库
+
 Version 2.4.7 *(2024-12-11)*
 ----------------------------
 

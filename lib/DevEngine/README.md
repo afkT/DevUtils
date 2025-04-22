@@ -36,8 +36,6 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 ## 依赖实现信息
 
-> **该库会依赖第三方库导致项目体积变大等情况**，可自行 copy 所需已实现代码进行修改使用
-
 已实现模块有（依赖第三方库实现列表如下展示）：
 
 * **BarCode 条形码**
@@ -51,6 +49,8 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **Permission 权限申请**
 * **Storage Engine 外部、内部文件存储**
 * **Toast Engine 吐司提示**
+
+> **该库会依赖第三方库导致项目体积变大等情况**，可自行 copy 所需已实现代码进行修改使用
 
 ## 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine)
 
@@ -180,6 +180,9 @@ private fun initEngine(appContext: Application) {
     DevEngine.defaultFastjsonEngineImpl()
     // 初始化 DevLogger Log Engine 实现
     DevEngine.defaultDevLoggerEngineImpl(logConfig)
+    
+    // 初始化 Xxx Engine 实现
+    DevEngine.defaultXxxEngineImpl()
 
     // =======
     // = 使用 =

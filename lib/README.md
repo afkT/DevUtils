@@ -87,5 +87,5 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.7' 
 implementation 'io.github.afkt:DevDeprecated:1.0.0'
 
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.5.3' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+implementation 'io.github.afkt:DevJava:1.5.3'
 ```
