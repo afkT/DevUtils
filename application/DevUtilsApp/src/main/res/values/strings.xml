@@ -3,4 +3,5 @@
     <string name="app_name">DevUtils</string>
     <string name="str_app_name">DevUtils</string>
     <string name="str_copy_suc">copy suc</string>
+    <string name="accessibility_description">accessibility description</string>
 </resources>

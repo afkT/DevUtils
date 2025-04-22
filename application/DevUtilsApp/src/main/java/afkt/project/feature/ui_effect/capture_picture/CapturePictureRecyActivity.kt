@@ -10,13 +10,13 @@ import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.therouter.router.Route
 import dev.adapter.DevDataAdapterExt
 import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import androidx.appcompat.widget.AppCompatTextView
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem

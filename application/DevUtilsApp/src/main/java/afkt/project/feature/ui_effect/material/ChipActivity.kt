@@ -6,9 +6,9 @@ import afkt.project.base.project.BaseProjectViewModel
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityChipBinding
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.chip.Chip
 import com.therouter.router.Route
-import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils

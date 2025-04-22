@@ -332,10 +332,6 @@ object ButtonList {
      * @return [List]
      */
     private val moduleOtherButtonValues = mutableListOf(
-        ButtonValue.BTN_LISTENER.buttonOf(
-            "事件 / 广播监听 ( 网络状态、屏幕旋转等 )",
-            RouterPath.OTHER_FUNCTION.ListenerActivity_PATH
-        ),
         ButtonValue.BTN_NOTIFICATION_SERVICE.buttonOf(
             "通知栏监听服务 ( NotificationService )",
             RouterPath.OTHER_FUNCTION.NotificationServiceActivity_PATH
@@ -343,10 +339,6 @@ object ButtonList {
         ButtonValue.BTN_ACCESSIBILITY_SERVICE.buttonOf(
             "无障碍监听服务 ( AccessibilityListenerService )",
             RouterPath.OTHER_FUNCTION.AccessibilityListenerServiceActivity_PATH
-        ),
-        ButtonValue.BTN_WIFI.buttonOf(
-            "Wifi 相关 ( 热点 )",
-            RouterPath.OTHER_FUNCTION.WifiActivity_PATH
         ),
         ButtonValue.BTN_FUNCTION.buttonOf(
             "铃声、震动、通知栏等功能",
@@ -490,38 +482,6 @@ object ButtonList {
         ),
         ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER.buttonOf(
             "注销监听",
-            RouterPath.EMPTY
-        )
-    )
-
-    /**
-     * 获取 Wifi Button Value 集合
-     * @return [List]
-     */
-    @JvmStatic
-    val wifiButtonValues = mutableListOf(
-        ButtonValue.BTN_WIFI_OPEN.buttonOf(
-            "打开 Wifi",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WIFI_CLOSE.buttonOf(
-            "关闭 Wifi",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WIFI_HOT_OPEN.buttonOf(
-            "打开 Wifi 热点",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WIFI_HOT_CLOSE.buttonOf(
-            "关闭 Wifi 热点",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WIFI_LISTENER_REGISTER.buttonOf(
-            "注册 Wifi 监听",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WIFI_LISTENER_UNREGISTER.buttonOf(
-            "注销 Wifi 监听",
             RouterPath.EMPTY
         )
     )

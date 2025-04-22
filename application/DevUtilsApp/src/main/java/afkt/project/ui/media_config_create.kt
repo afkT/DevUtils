@@ -12,6 +12,7 @@ import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.luck.lib.camerax.SimpleCameraX
+import com.luck.picture.lib.R
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.engine.ImageEngine
@@ -22,7 +23,6 @@ import com.luck.picture.lib.interfaces.OnRequestPermissionListener
 import com.luck.picture.lib.utils.ActivityCompatHelper
 import dev.engine.media.IMediaEngine
 import dev.engine.media.MediaConfig
-import dev.other.R
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
 import dev.utils.app.toast.ToastTintUtils

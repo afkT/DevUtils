@@ -227,38 +227,35 @@ class ButtonValue(
         // = 其他功能 =
         // ==========
 
-        // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
-        const val BTN_LISTENER = MODULE_OTHER
-
         // Wifi 监听
-        const val BTN_WIFI_LISTENER = BTN_LISTENER + 1
+        const val BTN_WIFI_LISTENER = MODULE_OTHER + 1
 
         // 网络监听
-        const val BTN_NETWORK_LISTENER = BTN_LISTENER + 2
+        const val BTN_NETWORK_LISTENER = MODULE_OTHER + 2
 
         // 电话监听
-        const val BTN_PHONE_LISTENER = BTN_LISTENER + 3
+        const val BTN_PHONE_LISTENER = MODULE_OTHER + 3
 
         // 短信监听
-        const val BTN_SMS_LISTENER = BTN_LISTENER + 4
+        const val BTN_SMS_LISTENER = MODULE_OTHER + 4
 
         // 时区、时间监听
-        const val BTN_TIME_LISTENER = BTN_LISTENER + 5
+        const val BTN_TIME_LISTENER = MODULE_OTHER + 5
 
         // 屏幕监听
-        const val BTN_SCREEN_LISTENER = BTN_LISTENER + 6
+        const val BTN_SCREEN_LISTENER = MODULE_OTHER + 6
 
         // 屏幕旋转监听 ( 重力传感器 )
-        const val BTN_ROTA_LISTENER = BTN_LISTENER + 7
+        const val BTN_ROTA_LISTENER = MODULE_OTHER + 7
 
         // 屏幕旋转监听 ( OrientationEventListener )
-        const val BTN_ROTA2_LISTENER = BTN_LISTENER + 8
+        const val BTN_ROTA2_LISTENER = MODULE_OTHER + 8
 
         // 电量监听
-        const val BTN_BATTERY_LISTENER = BTN_LISTENER + 9
+        const val BTN_BATTERY_LISTENER = MODULE_OTHER + 9
 
         // 应用状态监听
-        const val BTN_APP_STATE_LISTENER = BTN_LISTENER + 10
+        const val BTN_APP_STATE_LISTENER = MODULE_OTHER + 10
 
         // 通知栏监听服务 ( NotificationService )
         const val BTN_NOTIFICATION_SERVICE = MODULE_OTHER + 100
@@ -283,27 +280,6 @@ class ButtonValue(
 
         // 注销监听
         const val BTN_ACCESSIBILITY_SERVICE_UNREGISTER = BTN_ACCESSIBILITY_SERVICE + 3
-
-        // Wifi 相关 ( 热点 )
-        const val BTN_WIFI = MODULE_OTHER + 300
-
-        // 打开 Wifi
-        const val BTN_WIFI_OPEN = BTN_WIFI + 1
-
-        // 关闭 Wifi
-        const val BTN_WIFI_CLOSE = BTN_WIFI + 2
-
-        // 打开 Wifi 热点
-        const val BTN_WIFI_HOT_OPEN = BTN_WIFI + 3
-
-        // 关闭 Wifi 热点
-        const val BTN_WIFI_HOT_CLOSE = BTN_WIFI + 4
-
-        // 注册 Wifi 监听
-        const val BTN_WIFI_LISTENER_REGISTER = BTN_WIFI + 5
-
-        // 注销 Wifi 监听
-        const val BTN_WIFI_LISTENER_UNREGISTER = BTN_WIFI + 6
 
         // 铃声、震动、通知栏等功能
         const val BTN_FUNCTION = MODULE_OTHER + 400

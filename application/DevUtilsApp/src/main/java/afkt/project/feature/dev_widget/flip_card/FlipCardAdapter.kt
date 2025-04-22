@@ -3,8 +3,8 @@ package afkt.project.feature.dev_widget.flip_card
 import afkt.project.base.IMAGE_ROUND_10
 import android.content.Context
 import android.view.View
-import dev.base.DevSource
 import androidx.appcompat.widget.AppCompatImageView
+import dev.base.DevSource
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.widget.ui.FlipCardView

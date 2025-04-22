@@ -9,9 +9,9 @@ import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.therouter.router.Route
-import androidx.appcompat.widget.AppCompatTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper

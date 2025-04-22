@@ -1,4 +1,4 @@
-package dev.service
+package afkt.project.feature.other_function.service
 
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent

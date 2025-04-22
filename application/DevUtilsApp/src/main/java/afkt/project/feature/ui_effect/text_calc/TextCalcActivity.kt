@@ -7,8 +7,8 @@ import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.ActivityTextCalcBinding
 import android.graphics.Color
 import android.view.View
-import com.therouter.router.Route
 import androidx.appcompat.widget.AppCompatTextView
+import com.therouter.router.Route
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils

@@ -113,14 +113,10 @@ object RouterPath {
      */
     object OTHER_FUNCTION {
 
-        const val ListenerActivity_PATH = "/activity/ListenerActivity"
-
         const val NotificationServiceActivity_PATH = "/activity/NotificationServiceActivity"
 
         const val AccessibilityListenerServiceActivity_PATH =
             "/activity/AccessibilityListenerServiceActivity"
-
-        const val WifiActivity_PATH = "/activity/WifiActivity"
 
         const val FunctionActivity_PATH = "/activity/FunctionActivity"
 

@@ -4,6 +4,5 @@ dependencies {
     // = 本地非 lib module =
     // ====================
 
-    api project(':DevOther')
     api project(':DevSKU')
 }

@@ -10,8 +10,8 @@ import android.graphics.drawable.GradientDrawable
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
-import com.therouter.router.Route
 import androidx.appcompat.widget.AppCompatTextView
+import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
 import dev.utils.app.helper.quick.QuickHelper

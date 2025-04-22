@@ -3,9 +3,9 @@ package afkt.project.feature.ui_effect.common
 import afkt.project.R
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.HandlerUtils
 import dev.utils.app.helper.view.ViewHelper
 

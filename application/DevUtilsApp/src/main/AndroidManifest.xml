@@ -428,15 +428,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="DiscouragedApi" />
 
-        <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
-
-        <activity
-            android:name=".feature.other_function.listener.ListenerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="DiscouragedApi" />
-
         <!-- 通知栏监听服务 ( NotificationService ) -->
 
         <activity
@@ -450,15 +441,6 @@
 
         <activity
             android:name=".feature.other_function.service.AccessibilityListenerServiceActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="DiscouragedApi" />
-
-        <!-- Wifi 相关 ( 热点 ) -->
-
-        <activity
-            android:name=".feature.other_function.wifi.WifiActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

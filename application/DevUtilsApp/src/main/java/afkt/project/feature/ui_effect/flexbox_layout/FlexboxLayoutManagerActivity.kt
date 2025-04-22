@@ -7,11 +7,11 @@ import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.therouter.router.Route
-import androidx.appcompat.widget.AppCompatTextView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
