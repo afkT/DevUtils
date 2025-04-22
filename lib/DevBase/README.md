@@ -3,7 +3,7 @@
 
 ```gradle
 // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'io.github.afkt:DevBase:1.1.9'
+implementation 'io.github.afkt:DevBase:1.2.0'
 ```
 
 ## 目录结构

@@ -22,8 +22,8 @@ version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][m
 ```groovy
 dependencies {
     // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.8'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.8'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.9'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.9'
 }
 ```
 
@@ -91,5 +91,5 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.8-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.9-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt

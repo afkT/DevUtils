@@ -3,7 +3,7 @@
 
 ```gradle
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.4.2'
+implementation 'io.github.afkt:DevAssist:1.4.3'
 ```
 
 ## 目录结构
@@ -38,6 +38,7 @@ implementation 'io.github.afkt:DevAssist:1.4.2'
          - listener     | 分享回调事件
       - storage         | Storage Engine 外部、内部文件存储
          - listener     | Storage 存储结果事件
+      - toast           | Toast Engine 吐司提示
    - function           | 快捷方法执行相关
 ```
 
@@ -82,6 +83,7 @@ implementation 'io.github.afkt:DevAssist:1.4.2'
          - [listener](#devenginesharelistener)            | 分享回调事件
       - [storage](#devenginestorage)                      | Storage Engine 外部、内部文件存储
          - [listener](#devenginestoragelistener)          | Storage 存储结果事件
+      - [toast](#devenginetoast)                          | Toast Engine 吐司提示
    - [function](#devfunction)                             | 快捷方法执行相关
 
 
@@ -1604,6 +1606,41 @@ implementation 'io.github.afkt:DevAssist:1.4.2'
 | 方法 | 注释 |
 | :- | :- |
 | onResult | 插入多媒体资源结果方法 |
+
+
+## <span id="devenginetoast">**`dev.engine.toast`**</span>
+
+
+* **Toast Engine ->** [DevToastEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/toast/DevToastEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **Toast Engine 接口 ->** [IToastEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/toast/IToastEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| isInit | 判断 Toast 框架是否已经初始化 |
+| setDebugMode | 设置是否为调试模式 |
+| setConfig | 设置 Toast Config |
+| getConfig | 获取 Toast Config |
+| cancel | 取消 Toast 的显示 |
+| delayedShow | 延迟显示 Toast |
+| debugShow | debug 模式下显示 Toast |
+| showShort | 显示一个短 Toast |
+| showLong | 显示一个长 Toast |
+| show | 显示 Toast |
+| setView | 给当前 Toast 设置新的布局 |
+| setGravity | 设置 Toast 的位置 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>

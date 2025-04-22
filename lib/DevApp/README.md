@@ -7,7 +7,7 @@
 
 // AndroidX ( Maven Central ) 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.7'
+implementation 'io.github.afkt:DevAppX:2.4.8'
 ```
 
 ## 目录结构

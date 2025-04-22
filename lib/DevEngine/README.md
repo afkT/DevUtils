@@ -3,7 +3,7 @@
 
 ```gradle
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.1.4'
+implementation 'io.github.afkt:DevEngine:1.1.5'
 ```
 
 ## 目录结构
@@ -20,6 +20,7 @@ implementation 'io.github.afkt:DevEngine:1.1.4'
    - media              | Media Selector Engine 多媒体资源选择
    - permission         | Permission Engine 权限申请
    - storage            | Storage Engine 外部、内部文件存储
+   - toast              | Toast Engine 吐司提示
 ```
 
 

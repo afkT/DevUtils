@@ -30,68 +30,68 @@ ext {
             // ===========
 
             // DevApp - Android 工具类库
-            dev_app_versionCode                      : 247,
-            dev_app_versionName                      : "2.4.7",
+            dev_app_versionCode                      : 248,
+            dev_app_versionName                      : "2.4.8",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-            dev_assist_versionCode                   : 142,
-            dev_assist_versionName                   : "1.4.2",
+            dev_assist_versionCode                   : 143,
+            dev_assist_versionName                   : "1.4.3",
 
             // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-            dev_base_versionCode                     : 119,
-            dev_base_versionName                     : "1.1.9",
+            dev_base_versionCode                     : 120,
+            dev_base_versionName                     : "1.2.0",
 
             // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-            dev_base_mvvm_versionCode                : 117,
-            dev_base_mvvm_versionName                : "1.1.7",
+            dev_base_mvvm_versionCode                : 118,
+            dev_base_mvvm_versionName                : "1.1.8",
 
             // DevMVVM - DataBinding 工具类库
-            dev_mvvm_versionCode                     : 105,
-            dev_mvvm_versionName                     : "1.0.5",
+            dev_mvvm_versionCode                     : 106,
+            dev_mvvm_versionName                     : "1.0.6",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 114,
-            dev_engine_versionName                   : "1.1.4",
+            dev_engine_versionCode                   : 115,
+            dev_engine_versionName                   : "1.1.5",
 
             // DevSimple - 简单敏捷开发库
-            dev_simple_versionCode                   : 102,
-            dev_simple_versionName                   : "1.0.2",
+            dev_simple_versionCode                   : 103,
+            dev_simple_versionName                   : "1.0.3",
 
             // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-            dev_agile_versionCode                    : 101,
-            dev_agile_versionName                    : "1.0.1",
+            dev_agile_versionCode                    : 102,
+            dev_agile_versionName                    : "1.0.2",
 
             // DevWidget - 自定义 View UI 库
-            dev_widget_versionCode                   : 124,
-            dev_widget_versionName                   : "1.2.4",
+            dev_widget_versionCode                   : 125,
+            dev_widget_versionName                   : "1.2.5",
 
             // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-            dev_retrofit_versionCode                 : 106,
-            dev_retrofit_versionName                 : "1.0.6",
+            dev_retrofit_versionCode                 : 107,
+            dev_retrofit_versionName                 : "1.0.7",
 
             // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-            dev_http_manager_versionCode             : 107,
-            dev_http_manager_versionName             : "1.0.7",
+            dev_http_manager_versionCode             : 108,
+            dev_http_manager_versionName             : "1.0.8",
 
             // DevHttpCapture - OkHttp 抓包工具库
-            dev_http_capture_versionCode             : 118,
-            dev_http_capture_versionName             : "1.1.8",
-            dev_http_capture_compiler_version        : "1.1.8",
-            dev_http_capture_compiler_release_version: "1.1.8",
+            dev_http_capture_versionCode             : 119,
+            dev_http_capture_versionName             : "1.1.9",
+            dev_http_capture_compiler_version        : "1.1.9",
+            dev_http_capture_compiler_release_version: "1.1.9",
 
             // DevEnvironment - Android 环境配置切换库
-            dev_environment_versionCode              : 116,
-            dev_environment_version                  : "1.1.6",
-            dev_environment_base_version             : "1.1.6",
-            dev_environment_compiler_version         : "1.1.6",
-            dev_environment_compiler_release_version : "1.1.6",
+            dev_environment_versionCode              : 117,
+            dev_environment_version                  : "1.1.7",
+            dev_environment_base_version             : "1.1.7",
+            dev_environment_compiler_version         : "1.1.7",
+            dev_environment_compiler_release_version : "1.1.7",
 
             // DevDeprecated - Dev 系列库弃用代码统一存储库
             dev_deprecated_versionCode               : 100,
             dev_deprecated_versionName               : "1.0.0",
 
             // DevJava - Java 工具类库 ( 不依赖 android api )
-            dev_java_versionCode                     : 152,
-            dev_java_version                         : "1.5.2",
+            dev_java_versionCode                     : 153,
+            dev_java_version                         : "1.5.3",
     ]
 }
