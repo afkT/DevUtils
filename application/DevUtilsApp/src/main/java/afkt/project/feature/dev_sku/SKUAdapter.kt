@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.sku.SKU
 import dev.utils.app.ResourceUtils
 
 /**

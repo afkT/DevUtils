@@ -11,8 +11,6 @@ import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
 import dev.expand.engine.json.fromJson
-import dev.sku.SKU
-import dev.sku.SKUData
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils

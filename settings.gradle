@@ -56,27 +56,6 @@ simple_libs.forEach {
     project(":$it").projectDir = new File(rootDir, "lib/DevSimple/$it")
 }
 
-// =================
-// = Local Modules =
-// =================
-
-def local_modules = [
-        "DevSKU",
-]
-
-local_modules.forEach {
-    def itName = it
-
-    if (itName.indexOf("/") != -1) {
-        itName = itName.substring(
-                itName.lastIndexOf("/") + 1,
-                itName.length()
-        )
-    }
-    include(":$itName")
-    project(":$itName").projectDir = new File(rootDir, "lib/LocalModules/$it")
-}
-
 // ===============
 // = Application =
 // ===============

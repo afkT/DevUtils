@@ -7,9 +7,6 @@ ext {
     files = [
             // Android 项目构建配置
             build_app_gradle              : "file/gradle/build/build_app.gradle",
-            // Android Kotlin 项目构建配置
-            build_app_kotlin_gradle       : "file/gradle/build/build_app_kotlin.gradle",
-
             // Android Lib 通用配置
             lib_app_gradle                : "file/gradle/build/lib_app.gradle",
             // Android Kotlin Lib 通用配置
@@ -83,7 +80,5 @@ ext {
             prop_dev_utils : "file/deps/local/prop_dev_utils.gradle",
             // DevUtils 系列库本地依赖
             local_dev_utils: "file/deps/local/local_dev_utils.gradle",
-            // DevUtils 项目其他 module 本地依赖
-            local_other    : "file/deps/local/local_other.gradle",
     ]
 }
