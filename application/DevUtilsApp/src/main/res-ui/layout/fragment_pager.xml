@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_preface_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:textSize="@dimen/sp_17"
             tools:text="前言" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:textSize="@dimen/sp_28"
             tools:text="标题" />
 
-        <dev.base.widget.BaseImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/vid_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:scaleType="fitXY"
             tools:background="@drawable/bg_wallpaper" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -13,14 +13,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_select_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="选择图片" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tv"
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_10"

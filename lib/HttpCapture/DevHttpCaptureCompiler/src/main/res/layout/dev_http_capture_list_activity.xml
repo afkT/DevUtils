@@ -45,7 +45,7 @@
             android:layout_marginBottom="@dimen/dev_http_capture_action_margin_bottom"
             android:background="@drawable/dev_http_capture_action_round_bg">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/dev_http_capture_action_margin"

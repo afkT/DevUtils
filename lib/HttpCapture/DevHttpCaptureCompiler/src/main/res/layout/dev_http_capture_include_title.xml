@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     android:scrollbars="none">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_back_iv"
         android:layout_width="@dimen/dev_http_capture_include_title_height"
         android:layout_height="@dimen/dev_http_capture_include_title_height"

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/vid_close_iv"
             android:layout_width="@dimen/dp_44"
             android:layout_height="@dimen/dp_44"
@@ -29,13 +29,13 @@
             android:layout_marginRight="@dimen/dp_20"
             android:orientation="horizontal">
 
-            <dev.base.widget.BaseImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/vid_pic_iv"
                 android:layout_width="@dimen/dp_60"
                 android:layout_height="@dimen/dp_60"
                 tools:background="@mipmap/icon_launcher" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_price_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     android:layout_marginBottom="@dimen/dp_18"
                     android:orientation="horizontal">
 
-                    <dev.base.widget.BaseTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -102,7 +102,7 @@
                         app:dev_borderWidth="@dimen/dp_1"
                         app:dev_radius="@dimen/dp_8">
 
-                        <dev.base.widget.BaseImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/vid_left_iv"
                             android:layout_width="@dimen/dp_35"
                             android:layout_height="match_parent"
@@ -114,7 +114,7 @@
                             android:layout_height="match_parent"
                             android:background="@color/color_c7c7c7" />
 
-                        <dev.base.widget.BaseEditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/vid_number_et"
                             android:layout_width="@dimen/dp_61_5"
                             android:layout_height="match_parent"
@@ -136,7 +136,7 @@
                             android:layout_height="match_parent"
                             android:background="@color/color_c7c7c7" />
 
-                        <dev.base.widget.BaseImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/vid_right_iv"
                             android:layout_width="@dimen/dp_35"
                             android:layout_height="match_parent"
@@ -147,7 +147,7 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_confirm_tv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_36"

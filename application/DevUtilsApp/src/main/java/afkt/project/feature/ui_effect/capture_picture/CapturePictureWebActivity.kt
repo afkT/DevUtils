@@ -8,7 +8,7 @@ import afkt.project.databinding.ActivityCapturePictureWebBinding
 import android.view.View
 import com.therouter.router.Route
 import dev.base.DevSource
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
@@ -31,7 +31,7 @@ class CapturePictureWebActivity :
                     // 关闭 WebView 优化
                     CapturePictureUtils.enableSlowWholeDocumentDraw()
                     // 截图按钮
-                    val view = QuickHelper.get(BaseTextView(this))
+                    val view = QuickHelper.get(AppCompatTextView(this))
                         .setText("截图")
                         .setBold()
                         .setTextColors(ResourceUtils.getColor(R.color.white))

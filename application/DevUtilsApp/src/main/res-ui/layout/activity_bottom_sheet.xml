@@ -37,7 +37,7 @@
                     android:background="@drawable/shape_bg_blue_top_r10"
                     android:orientation="vertical">
 
-                    <dev.base.widget.BaseTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_60"
                         android:background="@drawable/shape_bg_black_top_r10"

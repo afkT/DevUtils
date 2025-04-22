@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

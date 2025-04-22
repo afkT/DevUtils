@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.HandlerUtils
 import dev.utils.app.helper.view.ViewHelper
 
@@ -157,7 +157,7 @@ class TabLayoutAssist private constructor(
      */
     private fun createTabView(position: Int): View {
         val view = LayoutInflater.from(mTabLayout.context).inflate(R.layout.tab_item_view, null)
-        val textView = view.findViewById<BaseTextView>(R.id.vid_tv)
+        val textView = view.findViewById<AppCompatTextView>(R.id.vid_tv)
         textView.text = mListTabs[position].title
         return view
     }

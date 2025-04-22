@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/dp_15"
     android:paddingBottom="@dimen/dp_10">
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_title_tv"
         style="@style/ViewTheme.Base_TextView"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:textSize="@dimen/sp_16"
         tools:text="Item Title" />
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_time_tv"
         style="@style/ViewTheme.Base_TextView"
         android:layout_width="match_parent"

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Gallery
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -56,9 +56,9 @@ class GPUFilterAdapter(
     /**
      * 创建 TextView
      * @param position 对应索引
-     * @return [BaseTextView]
+     * @return [AppCompatTextView]
      */
-    private fun createTextView(position: Int): BaseTextView {
+    private fun createTextView(position: Int): AppCompatTextView {
         val filterItem = getItem(position)
         val isSelect = (selectPosition == position)
         val width = AppSize.dp2px(100F)
@@ -66,7 +66,7 @@ class GPUFilterAdapter(
             width, Gallery.LayoutParams.MATCH_PARENT
         )
         // 初始化 View
-        return QuickHelper.get(BaseTextView(context))
+        return QuickHelper.get(AppCompatTextView(context))
             .setText(filterItem.filterName)
             .setBold(isSelect)
             .setGravity(Gravity.CENTER)

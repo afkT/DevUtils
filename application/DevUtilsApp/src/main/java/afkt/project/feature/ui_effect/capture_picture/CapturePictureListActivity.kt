@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.therouter.router.Route
 import dev.base.DevSource
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
@@ -36,7 +36,7 @@ class CapturePictureListActivity :
             if (it is CapturePictureListActivity) {
                 it.apply {
                     // 截图按钮
-                    val view = QuickHelper.get(BaseTextView(this))
+                    val view = QuickHelper.get(AppCompatTextView(this))
                         .setText("截图")
                         .setBold()
                         .setTextColors(ResourceUtils.getColor(R.color.white))

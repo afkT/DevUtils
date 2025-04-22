@@ -20,7 +20,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_1_0_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
@@ -29,7 +29,7 @@
                     android:text="热门"
                     android:textColor="@color/selector_tab_text_color" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_1_1_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
@@ -46,14 +46,14 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_2_0_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="文章" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_2_1_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
@@ -68,14 +68,14 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_3_0_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="精选" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_3_1_tv"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
@@ -90,14 +90,14 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/vid_4_0_btn"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/dp_5"
                     android:text="登录" />
 
-                <dev.base.widget.BaseButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/vid_4_1_btn"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="match_parent"
@@ -137,7 +137,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="vertical">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
@@ -164,7 +164,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:orientation="vertical">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"

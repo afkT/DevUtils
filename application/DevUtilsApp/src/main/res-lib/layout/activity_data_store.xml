@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_content_tv"
             style="@style/ViewTheme.Base_TextView"
             android:layout_width="match_parent"

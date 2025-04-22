@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tv"
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_height="@dimen/dp_100"

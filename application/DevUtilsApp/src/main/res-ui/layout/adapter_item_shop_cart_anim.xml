@@ -28,7 +28,7 @@
             android:background="@drawable/shape_border_image"
             android:padding="@dimen/dp_5">
 
-            <dev.base.widget.BaseImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/vid_pic_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -40,7 +40,7 @@
             android:layout_marginLeft="@dimen/dp_80"
             android:orientation="vertical">
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_name_tv"
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 android:textSize="@dimen/sp_16"
                 tools:text="商品名" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_price_tv"
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 tools:text="@string/tools_price" />
         </LinearLayout>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/vid_add_iv"
             android:layout_width="@dimen/dp_25"
             android:layout_height="@dimen/dp_25"

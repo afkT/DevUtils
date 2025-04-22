@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <dev.base.widget.BaseImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_bg_iv"
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_0"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.5">
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -38,7 +38,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,7 +48,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,7 +58,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -68,7 +68,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,7 +78,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tv6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -8,7 +8,7 @@ import afkt.project.databinding.ActivityTextCalcBinding
 import android.graphics.Color
 import android.view.View
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
@@ -29,7 +29,7 @@ class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, BaseProjec
                             RandomUtils.getRandomLetters(RandomUtils.getRandom(20))
 
                     val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
-                    val view = QuickHelper.get(BaseTextView(this))
+                    val view = QuickHelper.get(AppCompatTextView(this))
                         .setPadding(30)
                         .setMarginTop(40)
                         .setMarginBottom(20)
@@ -37,7 +37,7 @@ class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, BaseProjec
                         .setTextSizeBySp(RandomUtils.getRandom(13, 20).toFloat())
                         .setBold(RandomUtils.nextBoolean())
                         .setText(randomText).setOnClick { v ->
-                            val textView = v as BaseTextView
+                            val textView = v as AppCompatTextView
                             val text = textView.text.toString()
                             val builder = StringBuilder()
                             builder.append("字体总数: ").append(text.length)

@@ -5,12 +5,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <dev.base.widget.BaseImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
         android:src="@drawable/icon_error" />
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/ViewTheme.Base_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

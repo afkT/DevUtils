@@ -30,7 +30,7 @@
                     app:cardElevation="@dimen/dp_10"
                     tools:targetApi="lollipop">
 
-                    <dev.base.widget.BaseImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/dp_130"
                         android:layout_height="@dimen/dp_130"
                         android:layout_gravity="center"
@@ -92,7 +92,7 @@
                     app:cardElevation="@dimen/dp_10"
                     tools:targetApi="lollipop">
 
-                    <dev.base.widget.BaseImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/dp_130"
                         android:layout_height="@dimen/dp_130"
                         android:layout_gravity="center"
@@ -146,7 +146,7 @@
                 app:cardElevation="@dimen/dp_10"
                 tools:targetApi="lollipop">
 
-                <dev.base.widget.BaseImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_130"
                     android:layout_height="@dimen/dp_130"
                     android:layout_gravity="center"
@@ -169,7 +169,7 @@
                 android:layout_marginBottom="@dimen/dp_10"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_color_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -180,7 +180,7 @@
                     android:gravity="center"
                     android:text="color" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_left_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -191,7 +191,7 @@
                     android:gravity="center"
                     android:text="left" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_top_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -202,7 +202,7 @@
                     android:gravity="center"
                     android:text="top" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_triangle_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -221,7 +221,7 @@
                 android:layout_marginBottom="@dimen/dp_10"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_text1_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -232,7 +232,7 @@
                     android:gravity="center"
                     android:text="text1-" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_text1_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -243,7 +243,7 @@
                     android:gravity="center"
                     android:text="text1+" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_height1_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -254,7 +254,7 @@
                     android:gravity="center"
                     android:text="height1-" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_height1_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -273,7 +273,7 @@
                 android:layout_marginBottom="@dimen/dp_10"
                 android:orientation="horizontal">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_text2_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -284,7 +284,7 @@
                     android:gravity="center"
                     android:text="text2-" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_text2_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -295,7 +295,7 @@
                     android:gravity="center"
                     android:text="text2+" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_height2_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
@@ -306,7 +306,7 @@
                     android:gravity="center"
                     android:text="height2-" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_btn_height2_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"

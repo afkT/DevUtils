@@ -34,7 +34,7 @@
                 android:background="@drawable/shape_border_image"
                 android:padding="@dimen/dp_5">
 
-                <dev.base.widget.BaseImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/vid_pic_iv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -48,7 +48,7 @@
                 android:layout_toRightOf="@id/vid_pic_fl"
                 android:orientation="vertical">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_title_tv"
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:textSize="@dimen/sp_16"
                     tools:text="标题" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_time_tv"
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_width="match_parent"

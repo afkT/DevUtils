@@ -12,12 +12,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_save_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:text="保存壁纸" />
 
-            <dev.base.widget.BaseImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/vid_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

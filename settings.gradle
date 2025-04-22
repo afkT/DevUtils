@@ -61,7 +61,6 @@ simple_libs.forEach {
 // =================
 
 def local_modules = [
-        "DevBaseView",
         "DevOther",
         "DevSKU",
 ]

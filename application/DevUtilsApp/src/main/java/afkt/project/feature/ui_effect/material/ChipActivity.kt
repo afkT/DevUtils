@@ -8,7 +8,7 @@ import afkt.project.databinding.ActivityChipBinding
 import android.view.View
 import com.google.android.material.chip.Chip
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils
@@ -32,7 +32,7 @@ class ChipActivity : BaseProjectActivity<ActivityChipBinding, BaseProjectViewMod
     R.layout.activity_chip, simple_Agile = {
         if (it is ChipActivity) {
             it.apply {
-                val view = QuickHelper.get(BaseTextView(this))
+                val view = QuickHelper.get(AppCompatTextView(this))
                     .setText("刷新")
                     .setBold()
                     .setTextColors(ResourceUtils.getColor(R.color.red))

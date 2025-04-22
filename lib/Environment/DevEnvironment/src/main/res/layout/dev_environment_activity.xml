@@ -13,7 +13,7 @@
         android:background="@color/dev_environment_title_bg_color"
         android:orientation="horizontal">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/vid_back_iv"
             android:layout_width="@dimen/dev_environment_title_height"
             android:layout_height="@dimen/dev_environment_title_height"

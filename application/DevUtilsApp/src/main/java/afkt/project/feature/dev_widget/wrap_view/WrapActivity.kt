@@ -11,7 +11,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -27,7 +27,7 @@ class WrapActivity : BaseProjectActivity<ActivityWrapBinding, BaseProjectViewMod
     R.layout.activity_wrap, simple_Agile = {
         if (it is WrapActivity) {
             it.apply {
-                val view = QuickHelper.get(BaseTextView(this))
+                val view = QuickHelper.get(AppCompatTextView(this))
                     .setText("刷新")
                     .setBold()
                     .setTextColors(ResourceUtils.getColor(R.color.red))
@@ -73,8 +73,8 @@ class WrapActivity : BaseProjectActivity<ActivityWrapBinding, BaseProjectViewMod
         text: String,
         layoutParams: ViewGroup.LayoutParams,
         drawable: GradientDrawable
-    ): BaseTextView {
-        return QuickHelper.get(BaseTextView(this))
+    ): AppCompatTextView {
+        return QuickHelper.get(AppCompatTextView(this))
             .setLayoutParams(layoutParams)
             .setPadding(30, 15, 30, 15)
             .setBackground(drawable)

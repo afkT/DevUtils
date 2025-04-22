@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/dp_10"
     android:paddingRight="@dimen/dp_20">
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First ItemDecoration" />
@@ -17,7 +17,7 @@
         android:layout_height="@dimen/dp_50"
         android:orientation="horizontal">
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_first_add_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:text="Add" />
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_first_remove_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:text="Remove" />
     </LinearLayout>
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Line ItemDecoration" />
@@ -46,7 +46,7 @@
         android:layout_height="@dimen/dp_50"
         android:orientation="horizontal">
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_line_add_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:text="Add" />
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_line_remove_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:text="Remove" />
     </LinearLayout>
 
-    <dev.base.widget.BaseTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last ItemDecoration" />
@@ -75,7 +75,7 @@
         android:layout_height="@dimen/dp_50"
         android:orientation="horizontal">
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_last_add_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"
@@ -84,7 +84,7 @@
             android:layout_weight="1"
             android:text="Add" />
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_last_remove_btn"
             style="@style/ViewTheme.Base_Button"
             android:layout_width="match_parent"

@@ -8,9 +8,9 @@ import afkt.project.data_model.button.ButtonList.moduleDevHttpCaptureButtonValue
 import afkt.project.data_model.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.graphics.Color
+import androidx.appcompat.widget.AppCompatTextView
 import com.therouter.router.Route
 import dev.DevHttpCaptureCompiler
-import dev.base.widget.BaseTextView
 import dev.capture.DevHttpCaptureToast
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
@@ -47,14 +47,14 @@ class DevHttpCaptureActivity :
                         append(" 库 抓包库可视化功能")
                     }
 
-                    val view = QuickHelper.get(BaseTextView(it))
+                    val view = QuickHelper.get(AppCompatTextView(it))
                         .setText(span.create())
                         .setTextColors(ResourceUtils.getColor(R.color.black))
                         .setTextSizeBySp(15.0F)
                         .setLineSpacingAndMultiplier(15.0F, 1.1F)
                         .setPadding(ResourceUtils.getDimensionInt(R.dimen.dp_20))
                         .setPaddingBottom(ResourceUtils.getDimensionInt(R.dimen.dp_10), false)
-                        .getView<BaseTextView>()
+                        .getView<AppCompatTextView>()
                     // 添加 View
                     contentAssist.addContentView(view = view, index = 0)
 

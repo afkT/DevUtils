@@ -11,7 +11,7 @@ import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectLi
 import android.view.View
 import android.view.ViewGroup
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
@@ -75,22 +75,22 @@ class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Bas
     // =============
 
     // 编辑按钮
-    private var editView: BaseTextView? = null
+    private var editView: AppCompatTextView? = null
 
     // 取消编辑按钮
-    private var cancelView: BaseTextView? = null
+    private var cancelView: AppCompatTextView? = null
 
     // 确定按钮
-    private var confirmView: BaseTextView? = null
+    private var confirmView: AppCompatTextView? = null
 
     // 全选按钮
-    private var allSelectView: BaseTextView? = null
+    private var allSelectView: AppCompatTextView? = null
 
     // 非全选按钮
-    private var unAllSelectView: BaseTextView? = null
+    private var unAllSelectView: AppCompatTextView? = null
 
     // 反选按钮
-    private var inverseSelectView: BaseTextView? = null
+    private var inverseSelectView: AppCompatTextView? = null
 
     /**
      * 增加 Toolbar 按钮
@@ -158,13 +158,13 @@ class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Bas
      * 创建 TextView
      * @param text            文案
      * @param onClickListener 点击事件
-     * @return [BaseTextView]
+     * @return [AppCompatTextView]
      */
     private fun createTextView(
         text: String,
         onClickListener: View.OnClickListener
-    ): BaseTextView {
-        return QuickHelper.get(BaseTextView(this))
+    ): AppCompatTextView {
+        return QuickHelper.get(AppCompatTextView(this))
             .setVisibilitys(false) // 默认隐藏
             .setText(text)
             .setBold()

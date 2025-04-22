@@ -35,7 +35,7 @@
             android:textColor="@color/dev_environment_item_value_text_color"
             tools:text="Environment Value" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/vid_mark_iv"
             android:layout_width="@dimen/dev_environment_item_height"
             android:layout_height="@dimen/dev_environment_item_height"

@@ -15,7 +15,7 @@
             android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10">
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_take_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:ellipsize="end"

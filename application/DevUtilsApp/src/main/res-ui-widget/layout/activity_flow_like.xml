@@ -17,7 +17,7 @@
             app:dev_iconHeight="@dimen/dp_30"
             app:dev_iconWidth="@dimen/dp_30">
 
-            <dev.base.widget.BaseImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp_60"
                 android:layout_height="@dimen/dp_60"
                 android:layout_gravity="bottom|center"

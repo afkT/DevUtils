@@ -4,11 +4,11 @@ import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import dev.adapter.DevDataAdapter
 import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.base.widget.BaseImageView
 import dev.engine.image.listener.DrawableListener
 import dev.expand.engine.image.display
 import dev.mvvm.utils.toSource
@@ -45,7 +45,7 @@ class RecyclerLoadingAdapter(data: List<String>) :
     }
 
     private fun loadImage(
-        imageView: BaseImageView,
+        imageView: AppCompatImageView,
         viewAssist: ViewAssist,
         url: String
     ) {

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     tools:background="@color/sky_blue">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_icon_iv"
         android:layout_width="@dimen/dp_80"
         android:layout_height="@dimen/dp_80"

@@ -40,7 +40,7 @@
                 app:chipIconVisible="true"
                 app:closeIconTint="@color/white" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 单行效果"
@@ -97,7 +97,7 @@
                 </LinearLayout>
             </dev.widget.custom.CustomHorizontalScrollView>
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 多行效果"

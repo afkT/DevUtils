@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/dev_http_capture_include_tips_padding_bottom">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/dev_http_capture_include_tips_image_size"
             android:layout_height="@dimen/dev_http_capture_include_tips_image_size"
             android:background="@drawable/dev_http_capture_icon_tips" />

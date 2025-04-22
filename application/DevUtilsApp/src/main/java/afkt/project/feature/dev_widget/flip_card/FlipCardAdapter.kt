@@ -4,7 +4,7 @@ import afkt.project.base.IMAGE_ROUND_10
 import android.content.Context
 import android.view.View
 import dev.base.DevSource
-import dev.base.widget.BaseImageView
+import androidx.appcompat.widget.AppCompatImageView
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.widget.ui.FlipCardView
@@ -25,7 +25,7 @@ class FlipCardAdapter(val lists: List<DevSource>) : FlipCardView.Adapter {
         isFrontView: Boolean
     ): View? {
         context?.let {
-            val imageView = BaseImageView(it)
+            val imageView = AppCompatImageView(it)
             imageView.display(
                 source = lists[position],
                 config = IMAGE_ROUND_10.toImageConfig()

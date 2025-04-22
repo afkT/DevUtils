@@ -7,14 +7,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_allow_btn"
             style="@style/ViewTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="允许滑动" />
 
-        <dev.base.widget.BaseButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_ban_btn"
             style="@style/ViewTheme.Base_Button"
             android:ellipsize="end"

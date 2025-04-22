@@ -20,7 +20,7 @@
         app:cardElevation="@dimen/dp_10"
         tools:targetApi="lollipop">
 
-        <dev.base.widget.BaseImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_120"
             android:layout_gravity="center"

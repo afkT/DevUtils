@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     tools:ignore="UseCompoundDrawables">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_toast_iv"
         android:layout_width="@dimen/dev_toast_icon_size"
         android:layout_height="@dimen/dev_toast_icon_size"

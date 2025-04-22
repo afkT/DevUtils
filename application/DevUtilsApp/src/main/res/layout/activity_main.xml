@@ -33,14 +33,14 @@
                 app:cardElevation="@dimen/dp_10"
                 tools:targetApi="lollipop">
 
-                <dev.base.widget.BaseImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
                     android:background="@mipmap/icon" />
             </androidx.cardview.widget.CardView>
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/ViewTheme.Base_TextView"
                 android:gravity="center"
                 android:text="@{VersionUtils.convertSDKVersion()}"

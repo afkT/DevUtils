@@ -11,7 +11,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -39,7 +39,7 @@ class FlexboxLayoutManagerActivity :
                         AppSize.dp2px(5F)
                     )
 
-                    val view = QuickHelper.get(BaseTextView(this))
+                    val view = QuickHelper.get(AppCompatTextView(this))
                         .setText("刷新")
                         .setBold()
                         .setTextColors(ResourceUtils.getColor(R.color.red))

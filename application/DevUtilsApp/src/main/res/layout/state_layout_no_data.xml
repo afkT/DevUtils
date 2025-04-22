@@ -10,12 +10,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/dp_180"
             android:layout_height="@dimen/dp_180"
             android:background="@drawable/icon_tips" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_tips_tv"
             style="@style/ViewTheme.Base_TextView"
             android:layout_marginTop="@dimen/dp_20"

@@ -5,7 +5,7 @@
     android:layout_height="@dimen/dp_250"
     tools:background="@color/white">
 
-    <dev.base.widget.BaseImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

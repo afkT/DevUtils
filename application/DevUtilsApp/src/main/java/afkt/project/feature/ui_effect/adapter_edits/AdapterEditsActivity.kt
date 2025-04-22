@@ -9,7 +9,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.View
 import android.view.ViewGroup
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
@@ -26,7 +26,7 @@ class AdapterEditsActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Ba
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is AdapterEditsActivity) {
             it.apply {
-                val view = QuickHelper.get(BaseTextView(this))
+                val view = QuickHelper.get(AppCompatTextView(this))
                     .setText("提交")
                     .setBold()
                     .setTextColors(ResourceUtils.getColor(R.color.white))

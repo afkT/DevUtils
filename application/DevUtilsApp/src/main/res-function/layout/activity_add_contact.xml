@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="循环添加联系人"
@@ -25,7 +25,7 @@
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="例 :" />
@@ -36,19 +36,19 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dp_15">
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_marginRight="@dimen/dp_150"
                     android:gravity="left"
                     android:text="137" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_marginLeft="@dimen/dp_150"
                     android:gravity="right"
                     android:text="5678" />
 
-                <dev.base.widget.BaseTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="@dimen/dp_20"
@@ -67,7 +67,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dp_15">
 
-                <dev.base.widget.BaseEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/vid_start_et"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_40"
@@ -83,7 +83,7 @@
                     android:textColorHint="@color/color_99"
                     android:textSize="@dimen/sp_15" />
 
-                <dev.base.widget.BaseEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/vid_end_et"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_40"
@@ -105,14 +105,14 @@
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_add_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="添加联系人" />
 
-            <dev.base.widget.BaseTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tips_tv"
                 style="@style/ViewTheme.Base_TextView"
                 android:layout_marginTop="@dimen/dp_20"

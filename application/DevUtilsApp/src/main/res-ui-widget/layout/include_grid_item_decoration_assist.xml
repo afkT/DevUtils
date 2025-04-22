@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_10"
             android:text="Line"
             android:textStyle="bold" />
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Column ItemDecoration" />
@@ -29,7 +29,7 @@
             android:layout_height="@dimen/dp_50"
             android:orientation="horizontal">
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_column_add_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:text="Add" />
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_column_remove_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:text="Remove" />
         </LinearLayout>
 
-        <dev.base.widget.BaseTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Row ItemDecoration" />
@@ -58,7 +58,7 @@
             android:layout_height="@dimen/dp_50"
             android:orientation="horizontal">
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_row_add_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:text="Add" />
 
-            <dev.base.widget.BaseButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_row_remove_btn"
                 style="@style/ViewTheme.Base_Button"
                 android:layout_width="match_parent"

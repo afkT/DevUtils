@@ -11,7 +11,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.therouter.router.Route
-import dev.base.widget.BaseTextView
+import androidx.appcompat.widget.AppCompatTextView
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
@@ -109,7 +109,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjec
         // 循环添加 Tab
         for (i in 0 until listTabs.size) {
             val tabItem = listTabs[i]
-            val view = QuickHelper.get(BaseTextView(this))
+            val view = QuickHelper.get(AppCompatTextView(this))
                 .setText(tabItem.title)
                 .setTextColors(ResourceUtils.getColor(R.color.black))
                 .setPadding(30, 30, 30, 30)
@@ -219,8 +219,8 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjec
      * @param unClickTab 未点击 Tab
      */
     private fun changeTab1(
-        clickTab: BaseTextView,
-        unClickTab: BaseTextView
+        clickTab: AppCompatTextView,
+        unClickTab: AppCompatTextView
     ) {
         // 判断点击的是左边还是右边
         if (clickTab.id == R.id.vid_2_0_tv) { // 点击左边
@@ -243,8 +243,8 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjec
      * @param unClickTab 未点击 Tab
      */
     private fun changeTab2(
-        clickTab: BaseTextView,
-        unClickTab: BaseTextView
+        clickTab: AppCompatTextView,
+        unClickTab: AppCompatTextView
     ) {
         // 判断点击的是左边还是右边
         if (clickTab.id == R.id.vid_3_0_tv) { // 点击左边
