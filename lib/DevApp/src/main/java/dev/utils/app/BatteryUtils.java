@@ -16,8 +16,6 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     监控电池电量和充电状态
  *     @see <a href="https://developer.android.com/training/monitoring-device-state/battery-monitoring?hl=zh-cn#java"/>
- *     BatteryReceiver
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/LocalModules/DevOther/src/main/java/dev/receiver/BatteryReceiver.kt"/>
  * </pre>
  */
 public final class BatteryUtils {
