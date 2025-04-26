@@ -10,7 +10,7 @@ apply from: rootProject.file("file/gradle/versions.gradle")
  */
 ext {
     deps_split = [
-            "lib"       : [
+            "lib"      : [
 
                     // =================
                     // = 第三方快捷开发库 =
@@ -46,10 +46,6 @@ ext {
                     // https://mvnrepository.com/artifact/top.zibin/Luban
                     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
                     luban                               : "top.zibin:Luban:1.1.8",
-                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
-                    kluban                              : "com.github.forJrking:KLuban:1.1.0",
-                    // Anchors 启动框架 https://github.com/DSAppTeam/Anchors/blob/master/README-zh.md
-                    anchors                             : "com.github.DSAppTeam:Anchors:v1.1.8",
                     // 功能面板切换辅助 https://github.com/DSAppTeam/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.github.DSAppTeam:PanelSwitchHelper:v1.5.12",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
@@ -85,63 +81,45 @@ ext {
                     // 悬浮窗解决方案 https://github.com/Petterpx/FloatingX
                     floatingx                           : "io.github.petterpx:floatingx:2.3.4",
                     floatingx_compose                   : "io.github.petterpx:floatingx-compose:2.3.4",
+                    // ZIP 压缩解压库 https://github.com/srikanth-lingala/zip4j
+                    zip4j                               : "net.lingala.zip4j:zip4j:2.11.5",
+                    // https://mvnrepository.com/artifact/io.noties.markwon
+                    // https://noties.io/Markwon/docs/v4/install.html
+                    // Markdown 渲染框架 https://github.com/noties/Markwon
+                    markwon                             : "io.noties.markwon:core:4.6.2",
+                    markwon_image_glide                 : "io.noties.markwon:image-glide:4.6.2",
+                    markwon_ext_latex                   : "io.noties.markwon:ext-latex:4.6.2",
+                    markwon_ext_tables                  : "io.noties.markwon:ext-tables:4.6.2",
+                    markwon_html                        : "io.noties.markwon:html:4.6.2",
+                    markwon_linkify                     : "io.noties.markwon:linkify:4.6.2",
             ],
-            "property"  : [
+            "property" : [
 
                     // ====================
                     // = 性能检测、排查相关库 =
                     // ====================
 
-                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-                    xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
                     // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
-                    and_res_guard_gradle_plugin   : "com.tencent.mm:AndResGuard-gradle-plugin:1.2.21",
+                    and_res_guard_gradle_plugin: "com.tencent.mm:AndResGuard-gradle-plugin:1.2.21",
                     // https://mvnrepository.com/artifact/com.tencent.bugly/crashreport
                     // https://mvnrepository.com/artifact/com.tencent.bugly/nativecrashreport
                     // Bugly https://bugly.qq.com/docs
-                    bugly                         : "com.tencent.bugly:crashreport:4.1.9.3",
-                    bugly_ndk                     : "com.tencent.bugly:nativecrashreport:3.9.2",
+                    bugly                      : "com.tencent.bugly:crashreport:4.1.9.3",
+                    bugly_ndk                  : "com.tencent.bugly:nativecrashreport:3.9.2",
                     // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-                    uetool                        : "com.github.eleme.UETool:uetool:1.3.4",
-                    uetool_base                   : "com.github.eleme.UETool:uetool-base:1.3.4",
-                    uetool_no_op                  : "com.github.eleme.UETool:uetool-no-op:1.3.4",
+                    uetool                     : "com.github.eleme.UETool:uetool:1.3.4",
+                    uetool_base                : "com.github.eleme.UETool:uetool-base:1.3.4",
+                    uetool_no_op               : "com.github.eleme.UETool:uetool-no-op:1.3.4",
                     // https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
                     // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                    : "com.squareup.leakcanary:leakcanary-android:2.14",
+                    leakcanary                 : "com.squareup.leakcanary:leakcanary-android:2.14",
                     // https://mvnrepository.com/artifact/com.github.markzhai/blockcanary-android
                     // https://mvnrepository.com/artifact/com.github.markzhai/blockcanary-no-op
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-                    blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
-                    blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-lib
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-android-commons
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-trace-canary
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-resource-canary-android
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-resource-canary-common
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-io-canary
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-sqlite-lint-android-sdk
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-battery-canary
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-hooks
-                    // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-backtrace
-                    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-                    matrix_gradle_plugin          : "com.tencent.matrix:matrix-gradle-plugin:2.1.0",
-                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:2.1.0",
-                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:2.1.0",
-                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:2.1.0",
-                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:2.1.0",
-                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:2.1.0",
-                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:2.1.0",
-                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:2.1.0",
-                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:2.1.0",
-                    matrix_hooks                  : "com.tencent.matrix:matrix-hooks:2.1.0",
-                    matrix_backtrace              : "com.tencent.matrix:matrix-backtrace:2.1.0",
-
-                    // 滴滴出行 DoraemonKit https://www.dokit.cn
-
-                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
+                    blockcanary_android        : "com.github.markzhai:blockcanary-android:1.5.0",
+                    blockcanary_no_op          : "com.github.markzhai:blockcanary-no-op:1.5.0",
             ],
-            "build_apk" : [
+            "build_apk": [
 
                     // ===================================
                     // = APK 构建、打包相关 ( 多渠道、压缩等 ) =
@@ -153,7 +131,7 @@ ext {
                     // VasDolly 多渠道打包 https://github.com/Tencent/VasDolly
                     vas_dolly: "com.tencent.vasdolly:helper:3.0.6",
             ],
-            "widget"    : [
+            "widget"   : [
 
                     // ============================
                     // = 第三方简约小功能、UI 小组件等 =
@@ -188,6 +166,8 @@ ext {
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
                     ucrop                           : "com.github.yalantis:ucrop:2.2.9", // 轻量级通用解决方案
                     ucrop_native                    : "com.github.yalantis:ucrop:2.2.9-native", // 手机原生功能支持
+                    // 图片裁剪库 https://github.com/CanHub/Android-Image-Cropper
+                    android_image_cropper           : "com.vanniktech:android-image-cropper:4.6.0",
                     // https://mvnrepository.com/artifact/io.github.cymchad/BaseRecyclerViewAdapterHelper4
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.6",
@@ -202,47 +182,13 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.Othershe/CombineBitmap
                     // 群聊组合头像 https://github.com/shehuan/CombineBitmap
                     combineBitmap                   : "com.github.Othershe:CombineBitmap:1.0.5",
+                    // Android View 动画 https://github.com/daimajia/AndroidViewAnimations
+                    yoyo                            : "com.daimajia.androidanimations:library:2.4@aar",
+                    // 弹窗库 https://github.com/junixapp/XPopup
+                    xPopup                          : "com.github.li-xiaojun:XPopup:2.10.0",
 
-                    // 骨架屏 https://github.com/ethanhua/Skeleton
-                    // https://juejin.cn/post/6844903785215574023
-
-                    // 骨架屏 https://github.com/sharish/ShimmerRecyclerView
-                    // https://www.jianshu.com/p/9d27a1563a48
-
-                    // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
+                    // PaintedSkin 一款解决 Android App 换肤功能的框架
                     // https://github.com/CoderAlee/PaintedSkin
-            ],
-            "deprecated": [
-
-                    // ===================================
-                    // = 已经抛弃不再更新或者被其他库、技术取代 =
-                    // ===================================
-
-                    // ImageLoader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
-                    imageloader         : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
-                    // View 注入框架 https://github.com/JakeWharton/butterknife
-                    butterknife         : "com.jakewharton:butterknife:10.2.3",
-                    butterknife_compiler: "com.jakewharton:butterknife-compiler:10.2.3",
-                    // Kotlin ButterKnife https://github.com/JakeWharton/kotterknife
-                    kotterknife         : "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
-                    // OkGo https://github.com/jeasonlzy/okhttp-OkGo
-                    okgo                : "com.lzy.net:okgo:3.0.4",
-                    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
-                    okserver            : "com.lzy.net:okserver:2.0.5",
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/core
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/compiler
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/ftp
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/sftp
-                    // https://mvnrepository.com/artifact/me.laoyuyu.aria/m3u8
-                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core           : "me.laoyuyu.aria:core:3.8.16",
-                    aria_compiler       : "me.laoyuyu.aria:compiler:3.8.16",
-                    aria_ftp            : "me.laoyuyu.aria:ftp:3.8.16",
-                    aria_sftp           : "me.laoyuyu.aria:sftp:3.8.16",
-                    aria_m3u8           : "me.laoyuyu.aria:m3u8:3.8.16",
-                    // https://mvnrepository.com/artifact/com.qmuiteam/qmui
-                    // QMUI Android https://qmuiteam.com/android
-                    qmui                : "com.qmuiteam:qmui:2.1.0",
             ]
     ]
 }
