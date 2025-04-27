@@ -6,16 +6,16 @@ dependencies {
     // ============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    api deps_lib.lib.okhttp3
+    api deps_lib.common.okhttp3
     // Retrofit 网络请求库  https://github.com/square/retrofit
-    api deps_lib.lib.retrofit
+    api deps_lib.common.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
-    api deps_lib.lib.retrofit_gson
+    api deps_lib.common.retrofit_gson
     // Glide 图片加载框架 https://github.com/bumptech/glide
-    api deps_lib.lib.glide
-    kapt deps_lib.lib.glide_compiler
+    api deps_lib.common.glide
+    kapt deps_lib.common.glide_compiler
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
-    api deps_lib.lib.autosize
+    api deps_lib.common.autosize
 
     // ==========
     // = Widget =
@@ -24,9 +24,9 @@ dependencies {
     // Banner 库 https://github.com/youth5201314/banner
     api deps_lib.widget.banner
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    api deps_lib.widget.smartrefreshlayout
-    api deps_lib.widget.smartrefresh_header_classics
-    api deps_lib.widget.smartrefresh_footer_classics
+    api deps_lib.common_widget.smartrefreshlayout
+    api deps_lib.common_widget.smartrefresh_header_classics
+    api deps_lib.common_widget.smartrefresh_footer_classics
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     api deps_lib.widget.multitype
 
@@ -36,8 +36,6 @@ dependencies {
 
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps_lib.lib.pictureSelector
-//    api deps_lib.lib.pictureSelector_compress
-//    api deps_lib.lib.pictureSelector_ucrop
     api deps_lib.lib.pictureSelector_camerax
 
     // ==============

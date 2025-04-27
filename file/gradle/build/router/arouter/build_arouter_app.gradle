@@ -12,6 +12,6 @@ kapt {
 dependencies {
 
     // ARouter 路由 https://github.com/alibaba/ARouter
-    api deps_lib.lib.arouter_api // https://github.com/alibaba/ARouter/blob/master/README_CN.md
-    kapt deps_lib.lib.arouter_compiler
+    api deps_lib.router.arouter_api // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+    kapt deps_lib.router.arouter_compiler
 }

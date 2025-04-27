@@ -15,18 +15,4 @@ dependencies {
 
 //    // 内存检测工具 https://github.com/square/leakcanary
 //    debugImplementation deps_lib.property.leakcanary
-
-//    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-//    debugImplementation deps_lib.property.blockcanary_android
-//    releaseImplementation deps_lib.property.blockcanary_no_op
-
-//    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
-//    api(deps_lib.property.matrix_android_lib) { changing = true }
-//    api(deps_lib.property.matrix_android_commons) { changing = true }
-//    api(deps_lib.property.matrix_trace_canary) { changing = true }
-//    api(deps_lib.property.matrix_resource_canary_android) { changing = true }
-//    api(deps_lib.property.matrix_resource_canary_common) { changing = true }
-//    api(deps_lib.property.matrix_io_canary) { changing = true }
-//    api(deps_lib.property.matrix_sqlite_lint) { changing = true }
-//    api(deps_lib.property.matrix_battery_canary) { changing = true }
 }

@@ -26,18 +26,18 @@ dependencies {
     // ===================
 
     // Glide 图片加载框架 https://github.com/bumptech/glide
-    api deps_lib.lib.glide
-    kapt deps_lib.lib.glide_compiler
+    api deps_lib.common.glide
+    kapt deps_lib.common.glide_compiler
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-    api deps_lib.lib.mmkv
+    api deps_lib.common.mmkv
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-    api deps_lib.lib.xxPermissions
-    // Toaster 吐司框架 https://github.com/getActivity/Toaster
-    api deps_lib.lib.toaster
+    api deps_lib.common.xxPermissions
     // Gson https://github.com/google/gson
-    api deps_lib.lib.gson
+    api deps_lib.common.gson
     // Fastjson2 https://github.com/alibaba/fastjson2
-    api deps_lib.lib.fastjson2_android
+    api deps_lib.common.fastjson2_android
+    // Toaster 吐司框架 https://github.com/getActivity/Toaster
+    api deps_lib.common_widget.toaster
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     api deps_lib.lib.luban
     // 二维码 ZXing https://github.com/zxing/zxing
