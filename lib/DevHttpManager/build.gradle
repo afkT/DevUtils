@@ -21,9 +21,9 @@ def isPublishing = false
 
 dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    api deps.lib.okhttp3
+    api deps_lib.lib.okhttp3
     // Retrofit 网络请求库  https://github.com/square/retrofit
-    api deps.lib.retrofit
+    api deps_lib.lib.retrofit
 
     if (isPublishing) {
         // 打包时使用

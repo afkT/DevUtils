@@ -20,9 +20,9 @@ def isPublishing = false
 
 dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    api deps.lib.okhttp3
+    api deps_lib.lib.okhttp3
     // Gson https://github.com/google/gson
-    api deps.lib.gson
+    api deps_lib.lib.gson
 
     if (isPublishing) {
         // 打包时使用

@@ -6,52 +6,52 @@ dependencies {
     // ============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    api deps.lib.okhttp3
+    api deps_lib.lib.okhttp3
     // Retrofit 网络请求库  https://github.com/square/retrofit
-    api deps.lib.retrofit
+    api deps_lib.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
-    api deps.lib.retrofit_gson
+    api deps_lib.lib.retrofit_gson
     // Glide 图片加载框架 https://github.com/bumptech/glide
-    api deps.lib.glide
-    kapt deps.lib.glide_compiler
+    api deps_lib.lib.glide
+    kapt deps_lib.lib.glide_compiler
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
-    api deps.lib.autosize
+    api deps_lib.lib.autosize
 
     // ==========
     // = Widget =
     // ==========
 
     // Banner 库 https://github.com/youth5201314/banner
-    api deps.widget.banner
+    api deps_lib.widget.banner
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    api deps.widget.smartrefreshlayout
-    api deps.widget.smartrefresh_header_classics
-    api deps.widget.smartrefresh_footer_classics
+    api deps_lib.widget.smartrefreshlayout
+    api deps_lib.widget.smartrefresh_header_classics
+    api deps_lib.widget.smartrefresh_footer_classics
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-    api deps.widget.multitype
+    api deps_lib.widget.multitype
 
     // ==========================
     // = 其他第三方库 - 小功能、简约 =
     // ==========================
 
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    api deps_split.lib.pictureSelector
-//    api deps_split.lib.pictureSelector_compress
-//    api deps_split.lib.pictureSelector_ucrop
-    api deps_split.lib.pictureSelector_camerax
+    api deps_lib.lib.pictureSelector
+//    api deps_lib.lib.pictureSelector_compress
+//    api deps_lib.lib.pictureSelector_ucrop
+    api deps_lib.lib.pictureSelector_camerax
 
     // ==============
-    // = deps_split =
+    // = deps_lib =
     // ==============
 
     // GPU Filters https://github.com/cats-oss/android-gpuimage
-    api deps_split.widget.gpuimage
+    api deps_lib.widget.gpuimage
     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
-    api deps_split.widget.simple_ratingbar
+    api deps_lib.widget.simple_ratingbar
     // 加载动画效果 https://github.com/Kyson/WhorlView
-    api deps_split.widget.whorlviewlibrary
+    api deps_lib.widget.whorlviewlibrary
     // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
-    api deps_split.widget.loading_drawable
+    api deps_lib.widget.loading_drawable
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-    api deps_split.widget.stickyDecoration
+    api deps_lib.widget.stickyDecoration
 }

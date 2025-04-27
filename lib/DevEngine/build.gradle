@@ -26,24 +26,24 @@ dependencies {
     // ===================
 
     // Glide 图片加载框架 https://github.com/bumptech/glide
-    api deps.lib.glide
-    kapt deps.lib.glide_compiler
-    // Gson https://github.com/google/gson
-    api deps.lib.gson
-    // Fastjson2 https://github.com/alibaba/fastjson2
-    api deps.lib.fastjson2_android
+    api deps_lib.lib.glide
+    kapt deps_lib.lib.glide_compiler
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-    api deps.lib.mmkv
+    api deps_lib.lib.mmkv
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-    api deps.lib.xxPermissions
+    api deps_lib.lib.xxPermissions
     // Toaster 吐司框架 https://github.com/getActivity/Toaster
-    api deps.lib.toaster
+    api deps_lib.lib.toaster
+    // Gson https://github.com/google/gson
+    api deps_lib.lib.gson
+    // Fastjson2 https://github.com/alibaba/fastjson2
+    api deps_lib.lib.fastjson2_android
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-    api deps_split.lib.luban
+    api deps_lib.lib.luban
     // 二维码 ZXing https://github.com/zxing/zxing
-    api deps_split.lib.zxing_code
+    api deps_lib.lib.zxing_code
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    api deps_split.lib.pictureSelector
+    api deps_lib.lib.pictureSelector
 
     // =============
     // = DevEngine =

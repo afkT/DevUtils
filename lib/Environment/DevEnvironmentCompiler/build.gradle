@@ -6,9 +6,9 @@ version versions.dev_environment_compiler_version
 def isPublishing = false
 
 dependencies {
-    api deps.aop.javapoet
-    compileOnly deps.aop.auto_service
-    annotationProcessor deps.aop.auto_service
+    api deps_lib.aop.javapoet
+    compileOnly deps_lib.aop.auto_service
+    annotationProcessor deps_lib.aop.auto_service
 
     if (isPublishing) {
         // 打包时使用
