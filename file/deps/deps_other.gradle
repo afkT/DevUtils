@@ -2,7 +2,7 @@
 dependencies {
 
     // ============
-    // = 快捷开发库 =
+    // = 常用开发库 =
     // ============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
@@ -17,39 +17,44 @@ dependencies {
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     api deps_lib.common.autosize
 
-    // ==========
-    // = Widget =
-    // ==========
+    // ==============
+    // = 常用开发组件 =
+    // ==============
 
-    // Banner 库 https://github.com/youth5201314/banner
-    api deps_lib.widget.banner
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     api deps_lib.common_widget.smartrefreshlayout
     api deps_lib.common_widget.smartrefresh_header_classics
     api deps_lib.common_widget.smartrefresh_footer_classics
-    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-    api deps_lib.widget.multitype
 
-    // ==========================
-    // = 其他第三方库 - 小功能、简约 =
-    // ==========================
+    // ====================
+    // = UI 功能性相关组件库 =
+    // ====================
+
+    // Banner 库 https://github.com/youth5201314/banner
+    api deps_lib.feature_widget.banner
+    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
+    api deps_lib.feature_widget.multitype
+
+    // ===============
+    // = 图片相关组件库 =
+    // ===============
 
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    api deps_lib.lib.pictureSelector
-    api deps_lib.lib.pictureSelector_camerax
-
-    // ==============
-    // = deps_lib =
-    // ==============
-
+    api deps_lib.image_widget.pictureSelector
+    api deps_lib.image_widget.pictureSelector_camerax
     // GPU Filters https://github.com/cats-oss/android-gpuimage
-    api deps_lib.widget.gpuimage
-    // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
-    api deps_lib.widget.simple_ratingbar
-    // 加载动画效果 https://github.com/Kyson/WhorlView
-    api deps_lib.widget.whorlviewlibrary
-    // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
-    api deps_lib.widget.loading_drawable
+    api deps_lib.image_widget.gpuimage
+
+    // ===================
+    // = UI 效果相关组件库 =
+    // ===================
+
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-    api deps_lib.widget.stickyDecoration
+    api deps_lib.ui_widget.stickyDecoration
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    api deps_lib.ui_widget.whorlviewlibrary
+    // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
+    api deps_lib.ui_widget.loading_drawable
+    // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
+    api deps_lib.ui_widget.simple_ratingbar
 }

@@ -39,11 +39,11 @@ dependencies {
     // Toaster 吐司框架 https://github.com/getActivity/Toaster
     api deps_lib.common_widget.toaster
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-    api deps_lib.lib.luban
-    // 二维码 ZXing https://github.com/zxing/zxing
-    api deps_lib.lib.zxing_code
+    api deps_lib.image_widget.luban
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    api deps_lib.lib.pictureSelector
+    api deps_lib.image_widget.pictureSelector
+    // 二维码 ZXing https://github.com/zxing/zxing
+    api deps_lib.feature_lib.zxing_code
 
     // =============
     // = DevEngine =

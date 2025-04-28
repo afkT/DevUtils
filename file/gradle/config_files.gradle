@@ -70,7 +70,7 @@ ext {
             // 第三方 lib 依赖配置
             deps_other     : "file/deps/deps_other.gradle",
             // 性能检测相关 lib 依赖配置
-            deps_qa        : "file/deps/deps_qa.gradle",
+            deps_profiler  : "file/deps/deps_profiler.gradle",
 
             // ==============
             // = 统一依赖配置 =

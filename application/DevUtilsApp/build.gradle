@@ -33,4 +33,4 @@ apply from: rootProject.file(deps_maven.prop_dev_utils)
 // 第三方 lib 依赖配置
 apply from: rootProject.file(deps_maven.deps_other)
 // 性能检测相关 lib 依赖配置
-apply from: rootProject.file(deps_maven.deps_qa)
+apply from: rootProject.file(deps_maven.deps_profiler)
