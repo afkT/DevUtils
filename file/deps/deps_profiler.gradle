@@ -5,14 +5,14 @@ dependencies {
     // = 性能检测、排查相关库 =
     // ====================
 
-    // Bugly https://bugly.qq.com/docs
-    api deps_lib.profiler.bugly
-    api deps_lib.profiler.bugly_ndk
-
-    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-    debugImplementation deps_lib.profiler.uetool
-    releaseImplementation deps_lib.profiler.uetool_no_op
-
-    // 内存检测工具 https://github.com/square/leakcanary
-    debugImplementation deps_lib.profiler.leakcanary
+//    // Bugly https://bugly.qq.com/docs
+//    api deps_lib.profiler.bugly
+//    api deps_lib.profiler.bugly_ndk
+//
+//    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
+//    debugImplementation deps_lib.profiler.uetool
+//    releaseImplementation deps_lib.profiler.uetool_no_op
+//
+//    // 内存检测工具 https://github.com/square/leakcanary
+//    debugImplementation deps_lib.profiler.leakcanary
 }

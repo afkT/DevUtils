@@ -7,10 +7,10 @@ ext {
     files = [
             // Android 项目构建配置
             build_app_gradle              : "file/gradle/build/build_app.gradle",
-            // Android Lib 通用配置
-            lib_app_gradle                : "file/gradle/build/lib_app.gradle",
             // Android Kotlin Lib 通用配置
-            lib_app_kotlin_gradle         : "file/gradle/build/lib_app_kotlin.gradle",
+            lib_app_gradle                : "file/gradle/build/lib_app.gradle",
+            // Android Java Lib 通用配置
+            lib_app_java_gradle           : "file/gradle/build/lib_app_java.gradle",
 
             // Java Lib 通用配置
             lib_java_gradle               : "file/gradle/build/lib_java.gradle",
