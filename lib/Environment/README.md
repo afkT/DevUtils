@@ -82,6 +82,8 @@ dependencies {
 
 正常会在 `/build/generated/ap_generated_sources/debug/out/dev/environment` 内创建 DevEnvironment.java
 
+或者在 `/build/generated/source/kapt/debug/dev/environment` 内创建 DevEnvironment.java
+
 
 --------
 
@@ -192,7 +194,7 @@ public final class Config {
 
 ### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
-* DevEnvironmentCompiler 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
+* **DevEnvironmentCompiler** 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -208,7 +210,7 @@ public final class Config {
 
     7. `isXXAnnotation` 用于判断对应 Module 选中的 Environment 是否属于注解环境配置
 
-* DevEnvironmentCompilerRelease 属于 Release ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
+* **DevEnvironmentCompilerRelease** 属于 Release ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -225,12 +227,8 @@ public final class Config {
     7. `isXXAnnotation` 内部不实现代码，直接返回 true
     
 > DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
-
+>
 > 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
->
-> 无特殊需求一般用于 debugAnnotationProcessor DevEnvironmentCompiler
->
-> 如果需要 Release 下可切换环境则使用 annotationProcessor DevEnvironmentCompiler
 
 
 --------
@@ -240,14 +238,16 @@ public final class Config {
 
 示例：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 
-> 注：使用 DevEnvironmentCompilerRelease 注解编译生成不支持环境配置切换
+> 注：使用 **DevEnvironmentCompilerRelease** 注解编译生成不支持环境配置切换
 
 1. 通过代码方式设置 setXXEnvironment
 
 ```java
 // 如果准备设置环境等于当前选中的环境，则会返回 false
-EnvironmentBean custom = new EnvironmentBean("自定义配置",
-        "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
+EnvironmentBean custom = new EnvironmentBean(
+        "自定义配置", "https://custom.com", "动态自定义",
+                DevEnvironment.getServiceModule()
+);
 boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
 ```
 
