@@ -226,9 +226,9 @@ public final class Config {
 
     7. `isXXAnnotation` 内部不实现代码，直接返回 true
     
-> DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
+> **DevEnvironmentCompilerRelease** 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 >
-> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
+> 而 **DevEnvironmentCompiler** 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
 
 
 --------

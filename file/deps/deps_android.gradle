@@ -13,9 +13,13 @@ dependencies {
     api deps.kotlin.lifecycle_livedata
     api deps.kotlin.lifecycle_viewmodel_savedstate
     api deps.kotlin.lifecycle_common_java8
-    api deps.kotlin.datastore_preferences
     api deps.kotlin.fragment
     api deps.kotlin.activity
+    api deps.kotlin.navigation_fragment
+    api deps.kotlin.navigation_ui
+//    api deps.kotlin.work_runtime
+//    api deps.kotlin.palette
+    api deps.kotlin.datastore_preferences
 
     // ============
     // = androidx =

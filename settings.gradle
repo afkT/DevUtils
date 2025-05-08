@@ -73,6 +73,9 @@ def applications = [
         // ==========
 
         "DevBaseDemo",
+
+        // DevEnvironment - Android 环境配置切换库【使用示例】
+        "DevEnvironmentUse",
 ]
 
 applications.forEach {
