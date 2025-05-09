@@ -76,6 +76,9 @@ def applications = [
 
         // DevEnvironment - Android 环境配置切换库【使用示例】
         "DevEnvironmentUse",
+
+        // DevHttpCapture - OkHttp 抓包工具库【使用示例】
+        "DevHttpCaptureUse",
 ]
 
 applications.forEach {
