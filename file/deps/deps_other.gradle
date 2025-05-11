@@ -21,6 +21,10 @@ dependencies {
     // = 常用开发组件 =
     // ==============
 
+    // MVVM Adapter Binding https://github.com/evant/binding-collection-adapter
+    api deps_lib.common_widget.binding_collection_adapter
+    api deps_lib.common_widget.binding_collection_adapter_recyclerview
+    api deps_lib.common_widget.binding_collection_adapter_viewpager2
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     api deps_lib.common_widget.smartrefreshlayout
     api deps_lib.common_widget.smartrefresh_header_classics

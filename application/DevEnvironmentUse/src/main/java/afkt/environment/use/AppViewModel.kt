@@ -2,12 +2,14 @@ package afkt.environment.use
 
 import afkt.environment.use.base.BaseViewModel
 import android.view.View
+import androidx.databinding.ObservableField
 import com.kongzue.dialogx.dialogs.InputDialog
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.environment.bean.EnvironmentBean
 import dev.environment.listener.OnEnvironmentChangeListener
 import dev.expand.engine.log.log_dTag
+import dev.expand.engine.toast.toast_showLong
 import dev.expand.engine.toast.toast_showShort
 import dev.utils.common.StringUtils
 
@@ -50,6 +52,11 @@ class AppViewModel : BaseViewModel() {
     // ===============
     // = MainFragment =
     // ===============
+
+    // DevEnvironment:Version
+    val devEnvironmentVersion = ObservableField(
+        "DevEnvironment:${DevEnvironmentUtils.getDevEnvironmentVersion()}"
+    )
 
     // 内置切换环境 Activity【默认实现】
     val clickDefaultIMPL = View.OnClickListener { view ->
@@ -107,6 +114,7 @@ class AppViewModel : BaseViewModel() {
 //                            view.context, custom
 //                        )
 //                    }
+//                    // ...
                     // 方式二
                     DevEnvironmentUtils.setModuleEnvironment(
                         view.context, custom
@@ -117,5 +125,37 @@ class AppViewModel : BaseViewModel() {
                 clickDefaultIMPL.onClick(view)
                 return@setOkButton false
             }
+    }
+
+    // 是否 releaseAnnotationProcessor、kaptRelease 构建
+    val clickReleaseBuild = View.OnClickListener { view ->
+        val isRelease = DevEnvironment.isRelease()
+        toast_showShort(text = (if (isRelease) "release build" else "debug build"))
+    }
+
+    // 获取【Service】Release Environment
+    val clickGetServiceReleaseEnvironment = View.OnClickListener { view ->
+        val serviceRelease = DevEnvironment.getServiceReleaseEnvironment()
+        toast_showLong(text = "Service【Module】Release Environment：\n$serviceRelease")
+    }
+
+    // 获取【Service】Selected Environment
+    val clickGetServiceSelectedEnvironment = View.OnClickListener { view ->
+        val serviceSelected = DevEnvironment.getServiceEnvironment(view.context)
+        toast_showLong(text = "Service【Module】Selected Environment：\n$serviceSelected")
+    }
+
+    // 是否【Service】注解配置 Environment
+    val clickCheckServiceAnnotationEnvironment = View.OnClickListener { view ->
+        // 判断当前选中的 Environment 是否属于通过 @Environment 注解配置的环境，而不是通过自定义设置
+        val isAnnotation = DevEnvironment.isServiceAnnotation(view.context)
+        toast_showShort(text = (if (isAnnotation) "属于注解配置" else "属于自定义配置"))
+    }
+
+    // 重置【Service】Selected Environment
+    val clickResetServiceSelectedEnvironment = View.OnClickListener { view ->
+        // 重置当前选中的 Environment 默认设置为 Release Environment
+        val result = DevEnvironment.resetService(view.context)
+        toast_showShort(text = (if (result) "重置成功" else "重置失败"))
     }
 }

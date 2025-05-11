@@ -33,6 +33,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="@{viewModel.devEnvironmentVersion}"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickDefaultIMPL}"
@@ -41,12 +49,45 @@
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickSetServiceModule}"
-                    android:text="【自定义配置】动态配置【Service】Module" />
+                    android:text="【自定义】动态配置【Service】Module" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickSetAllModule}"
-                    android:text="【自定义配置】动态配置【全部】Module" />
+                    android:text="【自定义】动态配置【全部】Module" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="Service【Module】操作"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickReleaseBuild}"
+                    android:text="是否 releaseAnnotationProcessor 构建" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickGetServiceReleaseEnvironment}"
+                    android:text="获取【Service】Release Environment" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickGetServiceSelectedEnvironment}"
+                    android:text="获取【Service】Selected Environment" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCheckServiceAnnotationEnvironment}"
+                    android:text="是否【Service】注解配置 Environment" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickResetServiceSelectedEnvironment}"
+                    android:text="重置【Service】Selected Environment" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
