@@ -25,6 +25,8 @@ dependencies {
     api deps_lib.common_widget.smartrefreshlayout
     api deps_lib.common_widget.smartrefresh_header_classics
     api deps_lib.common_widget.smartrefresh_footer_classics
+    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
+    api deps_lib.common_widget.dialogX
 
     // ====================
     // = UI 功能性相关组件库 =

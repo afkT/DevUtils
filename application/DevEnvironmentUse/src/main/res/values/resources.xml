@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Text -->
+
     <string name="app_name" translatable="false">环境配置示例</string>
+    <string name="str_title" translatable="false">DevEnvironment 环境配置示例</string>
+
+    <!-- Application 样式 -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
@@ -10,5 +16,49 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:windowBackground">@drawable/launcher_bg</item>
+    </style>
+
+    <!-- View 样式 -->
+
+    <style name="ViewTheme">
+        <!-- 解决控件字母自动大写问题 -->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- Button 默认样式 -->
+
+    <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">60.0dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:paddingTop">15.0dp</item>
+        <item name="android:paddingBottom">15.0dp</item>
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <!-- TextView 默认样式 -->
+
+    <style name="ViewTheme.Base_TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18.0sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- 左右 padding 样式 -->
+
+    <style name="ViewTheme.padding_lr">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
     </style>
 </resources>

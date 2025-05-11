@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="afkt.environment.use">
 
     <application
+        android:name=".base.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
@@ -10,9 +12,15 @@
         android:roundIcon="@mipmap/icon_launcher_round"
         android:theme="@style/AppTheme.Launcher">
 
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
