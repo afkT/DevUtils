@@ -184,4 +184,7 @@ class AppViewModel : BaseViewModel() {
     fun postClickBack() {
         _clickBackEvent.value = Unit
     }
+
+    // 自定义 UI Adapter 模型
+    val customAdapterModel = CustomAdapterModel()
 }

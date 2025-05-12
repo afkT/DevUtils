@@ -22,5 +22,19 @@
             app:title="【自定义】切换环境【UI、功能】"
             app:titleSize="18.0sp"
             app:titleStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@null"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:itemBinding="@{viewModel.customAdapterModel.itemBinding}"
+            app:items="@{viewModel.customAdapterModel.items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </layout>

@@ -19,4 +19,10 @@ class CustomFragment : BaseFragment<FragmentCustomBinding, AppViewModel>(
             }
         }
     }
-)
+) {
+    override fun onResume() {
+        super.onResume()
+        // 转换 Item 数据
+        viewModel.customAdapterModel.convertItems()
+    }
+}

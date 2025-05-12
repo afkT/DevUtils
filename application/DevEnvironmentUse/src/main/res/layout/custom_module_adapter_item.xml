@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="dev.environment.bean.ModuleBean" />
+
+        <variable
+            name="itemValue"
+            type="ModuleBean" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55.0dp"
+        android:background="@color/grey_tran20"
+        android:gravity="center"
+        android:text="@{itemValue.alias}"
+        android:textColor="@color/black"
+        android:textSize="16.0sp"
+        android:textStyle="bold"
+        tools:text="Module" />
+</layout>
