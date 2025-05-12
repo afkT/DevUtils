@@ -3,6 +3,8 @@ package afkt.environment.use
 import afkt.environment.use.base.BaseViewModel
 import android.view.View
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.kongzue.dialogx.dialogs.InputDialog
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
@@ -53,6 +55,9 @@ class AppViewModel : BaseViewModel() {
     // = MainFragment =
     // ===============
 
+    private val _clickCustomEvent = MutableLiveData<Unit>()
+    val clickCustomEvent: LiveData<Unit> get() = _clickCustomEvent
+
     // DevEnvironment:Version
     val devEnvironmentVersion = ObservableField(
         "DevEnvironment:${DevEnvironmentUtils.getDevEnvironmentVersion()}"
@@ -62,6 +67,11 @@ class AppViewModel : BaseViewModel() {
     val clickDefaultIMPL = View.OnClickListener { view ->
         // 跳转 DevEnvironment Activity
         DevEnvironmentUtils.start(view.context)
+    }
+
+    //【自定义】切换环境【UI、功能】
+    val clickCustomIMPL = View.OnClickListener { view ->
+        _clickCustomEvent.value = Unit
     }
 
     //【自定义配置】动态配置【Service】Module
@@ -159,5 +169,19 @@ class AppViewModel : BaseViewModel() {
         // 重置当前选中的 Environment 默认设置为 Release Environment
         val result = DevEnvironment.resetService(view.context)
         toast_showShort(text = (if (result) "重置成功" else "重置失败"))
+    }
+
+    // =================
+    // = CustomFragment =
+    // =================
+
+    private val _clickBackEvent = MutableLiveData<Unit>()
+    val clickBackEvent: LiveData<Unit> get() = _clickBackEvent
+
+    /**
+     * 点击顶部返回按钮
+     */
+    fun postClickBack() {
+        _clickBackEvent.value = Unit
     }
 }

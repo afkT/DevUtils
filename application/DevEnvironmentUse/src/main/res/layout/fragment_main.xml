@@ -16,8 +16,7 @@
 
         <com.hjq.bar.TitleBar
             android:layout_width="match_parent"
-            android:layout_height="80.0dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             app:leftIcon="@null"
             app:title="@string/str_title"
             app:titleSize="18.0sp"
@@ -39,6 +38,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginTop="15.0dp"
                     android:layout_marginBottom="10.0dp"
                     android:gravity="left|bottom"
                     android:text="@{viewModel.devEnvironmentVersion}"
@@ -52,8 +52,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickDefaultIMPL}"
-                    android:text="【自定义】切换环境【功能】" />
+                    android:onClick="@{viewModel.clickCustomIMPL}"
+                    android:text="【自定义】切换环境【UI、功能】" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"

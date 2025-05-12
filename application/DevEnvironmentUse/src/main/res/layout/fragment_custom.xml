@@ -15,90 +15,12 @@
         android:orientation="vertical">
 
         <com.hjq.bar.TitleBar
-            android:layout_width="match_parent"
-            android:layout_height="80.0dp"
-            android:layout_marginTop="20dp"
-            app:leftIcon="@null"
-            app:title="@string/str_title"
+            android:id="@+id/vid_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lineVisible="false"
+            app:title="【自定义】切换环境【UI、功能】"
             app:titleSize="18.0sp"
             app:titleStyle="bold" />
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:fadingEdge="none"
-            android:overScrollMode="never"
-            android:scrollbars="none">
-
-            <LinearLayout
-                style="@style/ViewTheme.padding_lr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="@{viewModel.devEnvironmentVersion}"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickDefaultIMPL}"
-                    android:text="【内置实现】切换环境 Activity" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickDefaultIMPL}"
-                    android:text="【自定义】切换环境【功能】" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickSetServiceModule}"
-                    android:text="【自定义】动态配置【Service】Module" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickSetAllModule}"
-                    android:text="【自定义】动态配置【全部】Module" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="Service【Module】演示操作"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickReleaseBuild}"
-                    android:text="是否 releaseAnnotationProcessor 构建" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickGetServiceReleaseEnvironment}"
-                    android:text="获取【Service】Release Environment" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickGetServiceSelectedEnvironment}"
-                    android:text="获取【Service】Selected Environment" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickCheckServiceAnnotationEnvironment}"
-                    android:text="是否【Service】注解配置 Environment" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickResetServiceSelectedEnvironment}"
-                    android:text="重置【Service】Selected Environment" />
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

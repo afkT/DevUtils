@@ -1,9 +1,22 @@
 package afkt.environment.use
 
 import afkt.environment.use.base.BaseFragment
-import afkt.environment.use.databinding.FragmentMainBinding
+import afkt.environment.use.databinding.FragmentCustomBinding
+import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 import dev.simple.app.base.FragmentVMType
 
-class CustomFragment : BaseFragment<FragmentMainBinding, AppViewModel>(
-    R.layout.fragment_main, BR.viewModel, FragmentVMType.ACTIVITY
+class CustomFragment : BaseFragment<FragmentCustomBinding, AppViewModel>(
+    R.layout.fragment_custom, BR.viewModel,
+    FragmentVMType.ACTIVITY, simple_Agile = { frg ->
+        if (frg is CustomFragment) {
+            frg.apply {
+                binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
+                    override fun onLeftClick(titleBar: TitleBar) {
+                        viewModel.postClickBack()
+                    }
+                })
+            }
+        }
+    }
 )
