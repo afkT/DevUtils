@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -13,11 +14,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/ViewTheme.Base_TextView"
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
             android:layout_height="80.0dp"
-            android:text="@string/str_title"
-            android:textStyle="bold" />
+            android:layout_marginTop="20dp"
+            app:leftIcon="@null"
+            app:title="@string/str_title"
+            app:titleSize="18.0sp"
+            app:titleStyle="bold" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -60,7 +64,7 @@
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_marginBottom="10.0dp"
                     android:gravity="left|bottom"
-                    android:text="Service【Module】操作"
+                    android:text="Service【Module】演示操作"
                     android:textSize="16.0sp"
                     android:textStyle="bold" />
 

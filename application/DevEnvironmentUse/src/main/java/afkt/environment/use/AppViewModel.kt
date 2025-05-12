@@ -136,12 +136,14 @@ class AppViewModel : BaseViewModel() {
     // 获取【Service】Release Environment
     val clickGetServiceReleaseEnvironment = View.OnClickListener { view ->
         val serviceRelease = DevEnvironment.getServiceReleaseEnvironment()
+//        val serviceReleaseValue = serviceRelease.value
         toast_showLong(text = "Service【Module】Release Environment：\n$serviceRelease")
     }
 
     // 获取【Service】Selected Environment
     val clickGetServiceSelectedEnvironment = View.OnClickListener { view ->
         val serviceSelected = DevEnvironment.getServiceEnvironment(view.context)
+//        val serviceSelectedValue = DevEnvironment.getServiceEnvironmentValue(view.context)
         toast_showLong(text = "Service【Module】Selected Environment：\n$serviceSelected")
     }
 

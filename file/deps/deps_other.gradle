@@ -31,6 +31,8 @@ dependencies {
     api deps_lib.common_widget.smartrefresh_footer_classics
     // Dialog 弹窗框架 https://github.com/kongzue/DialogX
     api deps_lib.common_widget.dialogX
+    // 标题栏框架 https://github.com/getActivity/TitleBar
+    api deps_lib.common_widget.titleBar
 
     // ====================
     // = UI 功能性相关组件库 =
