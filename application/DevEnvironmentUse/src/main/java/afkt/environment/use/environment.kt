@@ -11,7 +11,7 @@ import dev.environment.annotation.Module
  * detail: Environment 配置
  * @author Ttt
  */
-private class Environment private constructor() {
+private class EnvironmentConfig private constructor() {
 
     // ==========
     // = Module =

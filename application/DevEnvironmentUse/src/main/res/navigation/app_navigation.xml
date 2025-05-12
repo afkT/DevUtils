@@ -7,4 +7,9 @@
         android:id="@+id/MainFragment"
         android:name="afkt.environment.use.MainFragment"
         android:label="MainFragment" />
+
+    <fragment
+        android:id="@+id/CustomFragment"
+        android:name="afkt.environment.use.CustomFragment"
+        android:label="CustomFragment" />
 </navigation>
