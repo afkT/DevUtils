@@ -130,11 +130,23 @@ class AppViewModel : BaseViewModel() {
                         view.context, custom
                     )
                 }
-                toast_showShort(text = "设置成功")
+                toast_showShort(text = "设置【全部】成功")
                 // 跳转进行查看更新值
-                clickDefaultIMPL.onClick(view)
+                clickCustomIMPL.onClick(view)
                 return@setOkButton false
             }
+    }
+
+    // 重置【全部】Selected Environment
+    val clickResetAllSelectedEnvironment = View.OnClickListener { view ->
+        val result = DevEnvironment.reset(view.context)
+        toast_showShort(text = (if (result) "重置【全部】成功" else "重置【全部】失败"))
+        // 跳转进行查看更新值
+        clickCustomIMPL.onClick(view)
+        /**
+         * 重置不是变更，所以不会触发 EnvironmentChangeListener 事件
+         * 可以在调用重置方法后自行实现后续逻辑等同 Listener 通知
+         */
     }
 
     // 是否 releaseAnnotationProcessor、kaptRelease 构建
@@ -168,7 +180,11 @@ class AppViewModel : BaseViewModel() {
     val clickResetServiceSelectedEnvironment = View.OnClickListener { view ->
         // 重置当前选中的 Environment 默认设置为 Release Environment
         val result = DevEnvironment.resetService(view.context)
-        toast_showShort(text = (if (result) "重置成功" else "重置失败"))
+        toast_showShort(text = (if (result) "重置【Service】成功" else "重置【Service】失败"))
+        /**
+         * 重置不是变更，所以不会触发 EnvironmentChangeListener 事件
+         * 可以在调用重置方法后自行实现后续逻辑等同 Listener 通知
+         */
     }
 
     // =================
@@ -187,4 +203,13 @@ class AppViewModel : BaseViewModel() {
 
     // 自定义 UI Adapter 模型
     val customAdapterModel = CustomAdapterModel()
+
+    // ==============
+    // = 使用示例介绍 =
+    // ==============
+
+    // 使用示例介绍文案
+    val useExampleText = ObservableField(StringBuilder().apply {
+        append("")
+    }.toString())
 }

@@ -17,17 +17,6 @@ import dev.utils.common.StringUtils
  */
 class AppApplication : MultiDexApplication() {
 
-    companion object {
-
-        /**
-         * 是否 Debug 模式
-         * @return `true` yes, `false` no
-         */
-        fun isDebug(): Boolean {
-            return DevUtils.isDebug()
-        }
-    }
-
     override fun onCreate() {
         super.onCreate()
 

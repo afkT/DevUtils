@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.text.Html" />
+
         <variable
             name="viewModel"
             type="afkt.environment.use.AppViewModel" />
@@ -65,6 +67,11 @@
                     android:onClick="@{viewModel.clickSetAllModule}"
                     android:text="【自定义】动态配置【全部】Module" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickResetAllSelectedEnvironment}"
+                    android:text="重置【全部】Selected Environment" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
                     android:layout_marginBottom="10.0dp"
@@ -98,6 +105,21 @@
                     android:onClick="@{viewModel.clickResetServiceSelectedEnvironment}"
                     android:text="重置【Service】Selected Environment" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="使用示例介绍"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="20.0dp"
+                    android:gravity="left|bottom"
+                    android:lineSpacingExtra="5.0dp"
+                    android:text="@{Html.fromHtml(viewModel.useExampleText)}"
+                    android:textSize="14.0sp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

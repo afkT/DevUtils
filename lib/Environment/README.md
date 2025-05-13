@@ -90,7 +90,7 @@ dependencies {
 
 ### API
 
-* **环境配置工具类 DevEnvironment.java**
+* **环境配置工具类 DevEnvironment.java**【自动生成】
 
 | 方法 | 注释 |
 | :- | :- |
@@ -109,22 +109,46 @@ dependencies {
 | isIMAnnotation | 是否 IM [ Module ] Annotation Environment Bean |
 
 ```java
-// 底部五个方法中 IM 属于 Module Name 例:
+/**
+ * 每个 @Module 都会生成七个方法, 以 IM Module 为例
+ * getIMModule()
+ * getIMReleaseEnvironment()
+ * getIMEnvironment()
+ * getIMEnvironmentValue()
+ * setIMEnvironment()
+ * resetIM()
+ * isIMAnnotation()
+ * 其中 IM 就是 class Name【Module】
+ */
 @Module(alias = "IM 模块")
 private class IM {
 }
 ```
 
 
-### 使用示例
+### 生成 DevEnvironment.java 配置类示例
 
 ```java
-public final class Config {
+/**
+ * detail: Environment 配置
+ * @author Ttt
+ */
+private final class EnvironmentConfig {
+
+    @Module(alias = "IM 模块")
+    private class IM {
+
+        @Environment(value = "https://im.release.com", isRelease = true, alias = "线上环境")
+        private String release;
+
+        @Environment(value = "https://im.debug.com", alias = "测试环境")
+        private String debug;
+    }
 
     @Module(alias = "服务器请求地址")
     private class Service {
 
-        @Environment(value = "https://www.wanandroid.com/", isRelease = true, alias = "线上环境")
+        @Environment(value = "https://release.com", isRelease = true, alias = "线上环境")
         private String release;
 
         @Environment(value = "https://debug.com", alias = "测试环境")
@@ -136,34 +160,14 @@ public final class Config {
         @Environment(value = "https://development.com", alias = "开发环境")
         private String development;
     }
-
-    @Module(alias = "开关")
-    private class Switch {
-
-        @Environment(value = "true", isRelease = true)
-        private String open;
-
-        @Environment(value = "false")
-        private String close;
-    }
-
-    @Module(alias = "IM 模块")
-    private class IM {
-
-        @Environment(value = "https://im.release.com/", isRelease = true, alias = "线上环境")
-        private String release;
-
-        @Environment(value = "https://im.debug.com", alias = "测试环境")
-        private String debug;
-    }
 }
 ```
 
-* **@Module**
+### @Module
 
 被 `@Module` 修饰的类或接口表示一个模块，每个 `@Module` 有 n ( n > 0 ) 个被 `@Environment` 修饰的属性，表示该模块中有 n 种环境配置
 
-* **@Environment**
+### @Environment
 
 被 `@Environment` 修饰的属性表示一个环境，必须指定 **value** 属性值，此外还有两个可选属性：**isRelease** 和 **alias**
 
@@ -182,7 +186,7 @@ public final class Config {
 
 * 模块环境改变接口（[OnEnvironmentChangeListener][OnEnvironmentChangeListener]）：模块环境发生变化时触发
 
-> 每个 `@Module`、`@Environment` 都会生成对应的 **ModuleBean**、**EnvironmentBean** 实体类
+> 每个 `@Module`、`@Environment` 注解，都会生成对应的 **ModuleBean**、**EnvironmentBean** 实体类
 
 * @Module 映射实体类（[ModuleBean][ModuleBean]）：@Module ( 注解标记类 ) 映射实体类
 
@@ -236,17 +240,15 @@ public final class Config {
 
 ### 切换环境方式
 
-示例：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
-
-> 注：使用 **DevEnvironmentCompilerRelease** 注解编译生成不支持环境配置切换
+> 注：使用 **DevEnvironmentCompilerRelease** 注解编译生成代码，不支持环境配置切换
 
 1. 通过代码方式设置 setXXEnvironment
 
 ```java
 // 如果准备设置环境等于当前选中的环境，则会返回 false
 EnvironmentBean custom = new EnvironmentBean(
-        "自定义配置", "https://custom.com", "动态自定义",
-                DevEnvironment.getServiceModule()
+        "自定义配置", "https://custom.com", 
+                "动态自定义", DevEnvironment.getServiceModule()
 );
 boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
 ```
@@ -279,8 +281,11 @@ DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() 
      * @param newEnvironment 该模块的最新环境
      */
     @Override
-    public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment,
-                    EnvironmentBean newEnvironment) {
+    public void onEnvironmentChanged(
+            ModuleBean module,
+            EnvironmentBean oldEnvironment,
+            EnvironmentBean newEnvironment
+    ) {
     }
 });
 // 移除环境改变监听事件
@@ -295,7 +300,6 @@ DevEnvironment.clearOnEnvironmentChangeListener();
 ```java
 // 有多少个 @Module 修饰，则会生成多少个 getXXModule 方法
 ModuleBean serviceModule = DevEnvironment.getServiceModule();
-ModuleBean switchModule = DevEnvironment.getSwitchModule();
 ModuleBean imModule = DevEnvironment.getIMModule();
 ```
 
@@ -304,13 +308,10 @@ ModuleBean imModule = DevEnvironment.getIMModule();
 
 ```java
 // getXXReleaseEnvironment 该方法返回 isRelease 值为 true 的 Environment ( 必须有且只有一个 )
-// 而 getXXEnvironment 获取的为当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
+// 而 getXXEnvironment 则是获取当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
 
 EnvironmentBean serviceReleaseEnvironment = DevEnvironment.getServiceReleaseEnvironment();
 EnvironmentBean serviceEnvironment = DevEnvironment.getServiceEnvironment(mContext);
-
-EnvironmentBean switchReleaseEnvironment = DevEnvironment.getSwitchReleaseEnvironment();
-EnvironmentBean switchEnvironment = DevEnvironment.getSwitchEnvironment(mContext);
 
 EnvironmentBean imReleaseEnvironment = DevEnvironment.getIMReleaseEnvironment();
 EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
@@ -319,16 +320,7 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 
 ### 实现原理
 
-同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk][link.mk] 技术链接
-
-
-### 示例参考
-
-DevEnvironment 文件生成配置：[HttpConstants][HttpConstants]
-
-DevEnvironment 使用：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
-
-> 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
+同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码
 
 
 
@@ -342,6 +334,3 @@ DevEnvironment 使用：[DevEnvironmentLibActivity][DevEnvironmentLibActivity]
 [OnEnvironmentChangeListener]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java
 [ModuleBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java
 [EnvironmentBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java
-[DevEnvironmentLibActivity]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/feature/dev_environment/DevEnvironmentLibActivity.kt
-[HttpConstants]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/HttpConstants.kt
-[link.mk]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md
