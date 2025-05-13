@@ -82,6 +82,11 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickSetServiceModule}"
+                    android:text="设置【Service】Module Environment" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickReleaseBuild}"
                     android:text="是否 releaseAnnotationProcessor 构建" />
 

@@ -87,6 +87,14 @@ dependencies {
 
 --------
 
+### 示例项目
+
+直接运行、查看使用示例项目代码！！！
+
+[DevEnvironmentUse][DevEnvironmentUse]！！！
+[DevEnvironmentUse][DevEnvironmentUse]！！！
+[DevEnvironmentUse][DevEnvironmentUse]！！！
+
 
 ### API
 
@@ -196,9 +204,9 @@ private final class EnvironmentConfig {
 --------
 
 
-### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
+### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 编译区别
 
-* **DevEnvironmentCompiler** 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
+* **DevEnvironmentCompiler** 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解编译才会实现该方法代码 )
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -212,9 +220,9 @@ private final class EnvironmentConfig {
 
     6. `resetXX` 用于删除对应 Module 选中的 Environment Config File
 
-    7. `isXXAnnotation` 用于判断对应 Module 选中的 Environment 是否属于注解环境配置
+    7. `isXXAnnotation` 用于判断对应 Module 选中的 Environment 是否属于注解环境配置 ( **是否通过 @Environment 注解** )
 
-* **DevEnvironmentCompilerRelease** 属于 Release ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
+* **DevEnvironmentCompilerRelease** 属于 Release ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，**每个 Module 只会生成一个常量 Environment，并且无法进行修改设置**
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -230,9 +238,9 @@ private final class EnvironmentConfig {
 
     7. `isXXAnnotation` 内部不实现代码，直接返回 true
     
-> **DevEnvironmentCompilerRelease** 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
+> **DevEnvironmentCompilerRelease** 编译生成的 DevEnvironment.java 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 >
-> 而 **DevEnvironmentCompiler** 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
+> 而 **DevEnvironmentCompiler** 编译生成的 DevEnvironment.java 类，允许修改选中的 Environment 并且支持可视化切换、代码方式切换
 
 
 --------
@@ -307,8 +315,13 @@ ModuleBean imModule = DevEnvironment.getIMModule();
 ### 获取 Module Environment
 
 ```java
-// getXXReleaseEnvironment 该方法返回 isRelease 值为 true 的 Environment ( 必须有且只有一个 )
-// 而 getXXEnvironment 则是获取当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
+/**
+ * getXXReleaseEnvironment 该方法返回 isRelease 值为 true 的 Environment ( 必须有且只有一个 )
+ * 
+ * 而 getXXEnvironment 则是获取当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
+ * 
+ * 只有通过 DevEnvironmentCompiler 编译生成的 DevEnvironment.java 类，允许修改选中的 Environment 并且支持可视化切换、代码方式切换
+ */
 
 EnvironmentBean serviceReleaseEnvironment = DevEnvironment.getServiceReleaseEnvironment();
 EnvironmentBean serviceEnvironment = DevEnvironment.getServiceEnvironment(mContext);
@@ -334,3 +347,4 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 [OnEnvironmentChangeListener]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java
 [ModuleBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java
 [EnvironmentBean]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java
+[DevEnvironmentUse]: https://github.com/afkT/DevUtils/blob/master/application/DevEnvironmentUse/src/main/java/afkt/environment/use
