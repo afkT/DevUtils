@@ -1,6 +1,9 @@
 package afkt.environment.use
 
 import android.content.Context
+import android.text.TextUtils
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
 import dev.DevUtils
@@ -8,6 +11,7 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
+import dev.mvvm.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 
 // ========================
@@ -36,7 +40,22 @@ class CustomAdapterModel {
     }.map(EnvironmentBean::class.java) { itemBinding, position, item ->
         itemBinding.clearExtras().set(
             BR.itemValue, R.layout.custom_environment_adapter_item
-        )
+        ).bindExtra(BR.itemClick, itemClick)
+            .bindExtra(BR.selectedMap, selectedMap)
+    }
+
+    val itemClick = object : BindingConsumer<EnvironmentBean> {
+        override fun accept(value: EnvironmentBean) {
+            // 属于 Release 构建则不处理
+            if (DevEnvironment.isRelease()) return
+
+            val module = value.module
+            selectedMap.put(module.name, value)
+            // 设置选中环境
+            DevEnvironmentUtils.setModuleEnvironment(
+                DevUtils.getContext(), value
+            )
+        }
     }
 }
 
@@ -84,4 +103,19 @@ fun CustomAdapterModel.convertItems(
     selectedMap.clear()
     selectedMap.putAll(_selectedMap.toMap())
     items.addAll(result)
+}
+
+// ==================
+// = BindingAdapter =
+// ==================
+
+@BindingAdapter("binding_environment_name")
+fun TextView.bindingEnvironmentName(
+    environment: EnvironmentBean
+) {
+    val name = environment.name
+    val alias = environment.alias
+    val valueText = if (TextUtils.isEmpty(alias)) name else alias
+    // 设置文本
+    this.text = valueText
 }
