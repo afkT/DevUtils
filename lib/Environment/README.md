@@ -258,21 +258,21 @@ EnvironmentBean custom = new EnvironmentBean(
         "自定义配置", "https://custom.com", 
                 "动态自定义", DevEnvironment.getServiceModule()
 );
-boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
+boolean result = DevEnvironment.setServiceEnvironment(context, custom);
 ```
 
 2. 通过可视化界面方式切换
 
 ```java
 // 显示右上角重启按钮
-boolean result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
+boolean result = DevEnvironmentUtils.start(context, new RestartCallback() {
     @Override
     public void onRestart() {
         ActivityUtils.getManager().exitApplication();
     }
 });
 // 不显示右上角重启按钮
-boolean result = DevEnvironmentActivity.start(mContext);
+boolean result = DevEnvironmentUtils.start(context);
 ```
 
 
@@ -324,10 +324,10 @@ ModuleBean imModule = DevEnvironment.getIMModule();
  */
 
 EnvironmentBean serviceReleaseEnvironment = DevEnvironment.getServiceReleaseEnvironment();
-EnvironmentBean serviceEnvironment = DevEnvironment.getServiceEnvironment(mContext);
+EnvironmentBean serviceEnvironment = DevEnvironment.getServiceEnvironment(context);
 
 EnvironmentBean imReleaseEnvironment = DevEnvironment.getIMReleaseEnvironment();
-EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
+EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(context);
 ```
 
 
