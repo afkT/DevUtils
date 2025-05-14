@@ -79,6 +79,9 @@ def applications = [
 
         // DevHttpCapture - OkHttp 抓包工具库【使用示例】
         "DevHttpCaptureUse",
+
+        // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+        "DevHttpManagerUse",
 ]
 
 applications.forEach {

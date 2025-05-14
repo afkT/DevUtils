@@ -1,7 +1,7 @@
-package afkt.httpcapture.use
+package afkt.httpmanager.use
 
-import afkt.httpcapture.use.base.BaseActivity
-import afkt.httpcapture.use.databinding.ActivityMainBinding
+import afkt.httpmanager.use.base.BaseActivity
+import afkt.httpmanager.use.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, AppViewModel>(
     R.layout.activity_main, BR.viewModel, simple_Agile = { act ->

@@ -1,0 +1,29 @@
+apply from: rootProject.file(files.build_app_gradle)
+
+android {
+    namespace "afkt.httpmanager.use"
+
+    defaultConfig {
+        applicationId "afkt.httpmanager.use"
+    }
+}
+
+// Android lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_android)
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(deps_maven.prop_dev_utils)
+// 第三方 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_other)
+
+dependencies {
+
+    // ================
+    // = Dev 系列开发库 =
+    // ================
+
+//    // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+//    api deps.dev.dev_http_manager
+
+    // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+    api project(':DevHttpManager')
+}
