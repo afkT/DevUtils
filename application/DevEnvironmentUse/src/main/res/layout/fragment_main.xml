@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -45,7 +46,8 @@
                     android:gravity="left|bottom"
                     android:text="@{viewModel.devEnvironmentVersion}"
                     android:textSize="16.0sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="DevEnvironment:Version" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"

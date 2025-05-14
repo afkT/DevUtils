@@ -1,5 +1,7 @@
 package afkt.httpcapture.use.base
 
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -9,6 +11,8 @@ import dev.simple.app.BaseAppActivity
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.inter.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
+import me.jessyan.autosize.AutoSizeCompat
+import me.jessyan.autosize.internal.CancelAdapt
 
 /**
  * detail: Activity MVVM 基类
@@ -63,5 +67,27 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    // ============
+    // = AutoSize =
+    // ============
+
+    override fun getResources(): Resources? {
+        if (this !is CancelAdapt) {
+            // 360 -> design_width_in_dp
+            if (super.getResources().configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                // 竖屏
+                AutoSizeCompat.autoConvertDensityBaseOnWidth(
+                    super.getResources(), 360.0f
+                )
+            } else {
+                // 横屏
+                AutoSizeCompat.autoConvertDensityBaseOnHeight(
+                    super.getResources(), 360.0f
+                )
+            }
+        }
+        return super.getResources()
     }
 }

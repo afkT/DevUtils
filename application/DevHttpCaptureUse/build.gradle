@@ -12,3 +12,24 @@ android {
 apply from: rootProject.file(deps_maven.deps_android)
 // DevUtils 项目统一依赖配置
 apply from: rootProject.file(deps_maven.prop_dev_utils)
+// 第三方 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_other)
+
+dependencies {
+
+    // ================
+    // = Dev 系列开发库 =
+    // ================
+
+//    // DevHttpCapture - OkHttp 抓包工具库
+//    api deps.dev.dev_http_capture
+//    // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
+//    debugImplementation deps.dev.dev_http_capture_compiler
+//    releaseImplementation deps.dev.dev_http_capture_compiler_release
+
+    // DevHttpCapture - OkHttp 抓包工具库
+    api project(':DevHttpCapture')
+    // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
+    debugImplementation project(':DevHttpCaptureCompiler')
+    releaseImplementation project(':DevHttpCaptureCompilerRelease')
+}
