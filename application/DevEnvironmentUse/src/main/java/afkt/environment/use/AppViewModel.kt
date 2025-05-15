@@ -208,8 +208,53 @@ class AppViewModel : BaseViewModel() {
     // = 使用示例介绍 =
     // ==============
 
+    private val tests = arrayOf(
+
+        "每个 <b>@Module</b> 都会生成七个方法，以 Service Module 演示操作为例, 具体查看示例代码",
+        "1. <font color='red'>getXXModule</font> 获取对应 Module 映射实体类 ModuleBean",
+        "2. <font color='red'>getXXReleaseEnvironment</font> 获取对应 Module isRelease 值为 true 的 Environment 映射实体类 EnvironmentBean",
+        "3. <font color='red'>getXXEnvironment</font> 获取对应 Module 选中的 Environment ( 默认选中 isRelease 值为 true 的 <b>@Environment</b> )",
+        "4. <font color='red'>getXXEnvironmentValue</font> 获取对应 Module 选中的 Environment Value",
+        "5. <font color='red'>setXXEnvironment</font> 设置对应 Module 选中的 Environment",
+        "6. <font color='red'>resetXX</font> 用于删除对应 Module 选中的 Environment Config File",
+        "7. <font color='red'>isXXAnnotation</font> 用于判断对应 Module 选中的 Environment 是否属于注解环境配置 ( <b>是否通过 @Environment 注解</b> )",
+
+        // =======
+        // = 依赖 =
+        // =======
+
+        "<font color='blue'><b>DevEnvironmentCompiler、DevEnvironmentCompilerRelease 编译区别：具体查看 README</b></font>",
+        "<font color='red'><b>DevEnvironmentCompilerRelease</b></font> 属于 Release ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，<b>每个 Module 只会生成一个常量 Environment，并且无法进行修改设置</b>",
+        "<font color='red'><b>DevEnvironmentCompiler</b></font> 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解编译才会实现该方法代码 )",
+
+        // ============
+        // = 可视化操作 =
+        // ============
+
+        "<font color='teal'><b>DevEnvironment 提供了可视化操作、代码操作两种方式，进行修改环境配置信息【具体查看示例代码】</b></font>",
+        "需依赖 <font color='red'><b>'io.github.afkt:DevEnvironment:version'</b></font>，<font color='blue'>内置可视化操作【强制竖屏】</font>，对于有横屏需求的项目，<font color='purple'>参考【自定义】切换环境【UI、功能】按钮实现代码</font>",
+        "【前提】修改环境变量配置，需通过依赖 <font color='red'><b>DevEnvironmentCompiler</b></font> 进行编译"
+    )
+
     // 使用示例介绍文案
     val useExampleText = ObservableField(StringBuilder().apply {
-        append("")
+//        // DevEnvironment - Android 环境配置切换库
+//        implementation 'io.github.afkt:DevEnvironment:version'
+//        kaptDebug 'io.github.afkt:DevEnvironmentCompiler:version'
+//        kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:version'
+
+        for (i in 0..7) {
+            append("${tests[i]}<br>")
+        }
+
+        append("<p></p><p></p>")
+        append(tests[8])
+        append("<p>${tests[9]}</p>")
+        append("<p>${tests[10]}</p>")
+
+        append("<p></p><p></p>")
+        append(tests[11])
+        append("<p>${tests[12]}</p>")
+        append(tests[13])
     }.toString())
 }
