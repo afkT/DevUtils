@@ -45,8 +45,6 @@ import dev.utils.common.assist.record.FileRecordUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevSimple README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md"/>
- *     DevAgile README
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md"/>
  *     DevWidget Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md"/>
  *     DevRetrofit Api
