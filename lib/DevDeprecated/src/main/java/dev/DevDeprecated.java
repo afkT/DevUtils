@@ -16,8 +16,6 @@ import dev.deprecated.BuildConfig;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md"/>
  *     DevBaseMVVM README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
- *     DevMVVM README
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md"/>
  *     DevEngine README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevSimple README

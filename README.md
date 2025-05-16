@@ -65,9 +65,6 @@ implementation 'io.github.afkt:DevBase:1.2.0'
 // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
 implementation 'io.github.afkt:DevBaseMVVM:1.1.8'
 
-// DevMVVM - DataBinding 工具类库
-implementation 'io.github.afkt:DevMVVM:1.0.6'
-
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.1.5'
 

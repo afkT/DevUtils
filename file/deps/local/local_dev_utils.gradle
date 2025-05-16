@@ -19,9 +19,6 @@ dependencies {
     // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
     api project(':DevBaseMVVM')
 
-    // DevMVVM - DataBinding 工具类库
-    api project(':DevMVVM')
-
     // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
     api project(':DevEngine')
 

@@ -14,8 +14,6 @@ package dev.base
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
  * DevBaseMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
- * DevMVVM README
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevSimple README

@@ -7,12 +7,11 @@ def dev_libs = [
         "DevAssist",
         "DevBase",
         "DevBaseMVVM",
-        "DevMVVM",
         "DevEngine",
+        "DevSimple",
         "DevWidget",
         "DevDeprecated",
         "DevJava",
-        "DevSimple",
 ]
 
 dev_libs.forEach {

@@ -1,5 +1,10 @@
 package dev.simple
 
+import dev.base.DevVariableExt
+import dev.engine.image.ImageConfig
+import dev.mvvm.base.Config
+import dev.mvvm.utils.image.AppImageConfig
+
 /**
  * detail: DevSimple
  * @author Ttt
@@ -14,8 +19,6 @@ package dev.simple
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
  * DevBaseMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
- * DevMVVM README
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevSimple README
@@ -55,19 +58,33 @@ object DevSimple {
         return BuildConfig.DevSimple_Version
     }
 
+    // =============
+    // = 对外公开方法 =
+    // =============
+
     /**
-     * 获取 DevMVVM 版本号
-     * @return DevMVVM versionCode
+     * 开启日志开关
      */
-    fun getDevMVVMVersionCode(): Int {
-        return BuildConfig.DevMVVM_VersionCode
+    fun openLog(): DevSimple {
+        Config.openLog()
+        return this
     }
 
     /**
-     * 获取 DevMVVM 版本
-     * @return DevMVVM versionName
+     * 设置默认点击时间间隔
+     * @param intervalTime 双击时间间隔
      */
-    fun getDevMVVMVersion(): String {
-        return BuildConfig.DevMVVM_Version
+    fun setIntervalTime(intervalTime: Long): DevSimple {
+        Config.setIntervalTime(intervalTime)
+        return this
+    }
+
+    /**
+     * 设置 ImageConfig 创建器
+     * @param creator Creator<String, ImageConfig, ImageConfig>
+     */
+    fun setImageCreator(creator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>): DevSimple {
+        AppImageConfig.setCreator(creator)
+        return this
     }
 }

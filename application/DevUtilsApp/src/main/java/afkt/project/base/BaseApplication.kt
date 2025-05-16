@@ -20,7 +20,6 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
-import dev.mvvm.DevMVVM
 import dev.mvvm.utils.image.AppImageConfig
 import dev.mvvm.utils.size.AppSize
 import dev.simple.DevSimple
@@ -128,7 +127,6 @@ class BaseApplication : MultiDexApplication() {
             .append("\nDevAssist 版本: ").append(DevAssist.getDevAssistVersion())
             .append("\nDevBase 版本: ").append(DevBase.getDevBaseVersion())
             .append("\nDevBaseMVVM 版本: ").append(DevBaseMVVM.getDevBaseMVVMVersion())
-            .append("\nDevMVVM 版本: ").append(DevMVVM.getDevMVVMVersion())
             .append("\nDevSimple 版本: ").append(DevSimple.getDevSimpleVersion())
             .append("\nDevEngine 版本: ").append(DevEngine.getDevEngineVersion())
             .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())
@@ -308,7 +306,7 @@ class BaseApplication : MultiDexApplication() {
      * 初始化 [AppImageConfig] ImageConfig Creator
      */
     private fun initAppImageConfigCreator() {
-        DevMVVM.setImageCreator { key, param ->
+        DevSimple.setImageCreator { key, param ->
             when (key) {
                 IMAGE_DEFAULT_CROP -> {
                     ImageConfig.create().apply {
@@ -405,7 +403,7 @@ private val IMAGE_ROUND = ImageConfig.create().apply {
 //    setRoundedCornersRadius(
 //        AppSize.dp2px(3F)
 //    )
-//}
+//
 
 // ============
 // = 使用方式二 =
