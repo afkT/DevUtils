@@ -28,9 +28,6 @@ dependencies {
     // DevSimple - 简单敏捷开发库
     api project(':DevSimple')
 
-    // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-    api project(':DevAgile')
-
     // DevWidget - 自定义 View UI 库
     api project(':DevWidget')
 

@@ -110,7 +110,6 @@
 - [DevMVVM - DataBinding 工具类库][DevMVVM API]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine API]
 - [DevSimple - 简单敏捷开发库][DevSimple API]
-- [DevAgile - 简单敏捷开发库 ( 常用、零散代码 )][DevAgile API]
 - [DevWidget - 自定义 View UI 库][DevWidget API]
 - [DevRetrofit - Retrofit + Kotlin Coroutines 封装][DevRetrofit API]
 - [DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )][DevHttpManager API]
@@ -129,7 +128,6 @@
 - [DevMVVM - DataBinding 工具类库][DevMVVM ChangeLog]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine ChangeLog]
 - [DevSimple - 简单敏捷开发库][DevSimple ChangeLog]
-- [DevAgile - 简单敏捷开发库 ( 常用、零散代码 )][DevAgile ChangeLog]
 - [DevWidget - 自定义 View UI 库][DevWidget ChangeLog]
 - [DevRetrofit - Retrofit + Kotlin Coroutines 封装][DevRetrofit ChangeLog]
 - [DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )][DevHttpManager ChangeLog]
@@ -184,9 +182,6 @@ implementation 'io.github.afkt:DevEngine:1.1.5'
 
 // DevSimple - 简单敏捷开发库
 implementation 'io.github.afkt:DevSimple:1.0.3'
-
-// DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-implementation 'io.github.afkt:DevAgile:1.0.2'
 
 // DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.2.5'

@@ -59,9 +59,6 @@ implementation 'io.github.afkt:DevEngine:1.1.5'
 // DevSimple - 简单敏捷开发库
 implementation 'io.github.afkt:DevSimple:1.0.3'
 
-// DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-implementation 'io.github.afkt:DevAgile:1.0.2'
-
 // DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.2.5'
 

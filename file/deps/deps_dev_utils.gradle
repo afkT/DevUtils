@@ -28,9 +28,6 @@ dependencies {
     // DevSimple - 简单敏捷开发库
     api deps.dev.dev_simple
 
-    // DevAgile - 简单敏捷开发库 ( 常用、零散代码 )
-    api deps.dev.dev_agile
-
     // DevWidget - 自定义 View UI 库
     api deps.dev.dev_widget
 

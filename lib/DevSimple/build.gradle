@@ -11,9 +11,24 @@ android {
         // DevSimple Module Version
         buildConfigField "int", "DevSimple_VersionCode", "${versions.dev_simple_versionCode}"
         buildConfigField "String", "DevSimple_Version", "\"${versions.dev_simple_versionName}\""
+        // DevAssist Module Version
+        buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+        buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
         // DevMVVM Module Version
         buildConfigField "int", "DevMVVM_VersionCode", "${versions.dev_mvvm_versionCode}"
         buildConfigField "String", "DevMVVM_Version", "\"${versions.dev_mvvm_versionName}\""
+        // DevBaseMVVM Module Version
+        buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
+        buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""
+        // DevRetrofit Module Version
+        buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
+        buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+        // DevEngine Module Version
+        buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
+        buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
+        // DevWidget Module Version
+        buildConfigField "int", "DevWidget_VersionCode", "${versions.dev_widget_versionCode}"
+        buildConfigField "String", "DevWidget_Version", "\"${versions.dev_widget_versionName}\""
     }
 
     buildFeatures {
@@ -31,9 +46,13 @@ dependencies {
     if (isPublishing) {
         // 打包时使用
         api deps.dev.dev_mvvm
+        api deps.dev.dev_assist
+        api deps.dev.dev_retrofit
     } else {
         // 编译时使用
         api project(':DevMVVM')
+        api project(':DevAssist')
+        api project(':DevRetrofit')
     }
 }
 

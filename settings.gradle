@@ -12,7 +12,6 @@ def dev_libs = [
         "DevWidget",
         "DevDeprecated",
         "DevJava",
-        "DevAgile",
         "DevSimple",
 ]
 
