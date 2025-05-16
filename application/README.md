@@ -6,9 +6,8 @@
 
 ```
 - application               | 根目录
-   - DevBaseDemo            | 临时测试代码、库调用调试 Demo
    - DevUtilsApp            | DevUtils 代码演示应用
+   - DevEnvironmentUse      | DevEnvironment - Android 环境配置切换库【使用示例】
+   - DevHttpCaptureUse      | DevHttpCapture - OkHttp 抓包工具库【使用示例】
+   - DevHttpManagerUse      | DevHttpManager - OkHttp 管理库【使用示例】
 ```
-
-
-## DevUtilsApp 为 Dev 系列开发库代码演示应用

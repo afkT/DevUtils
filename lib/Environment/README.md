@@ -209,13 +209,13 @@ private final class EnvironmentConfig {
 * **DevEnvironmentCompiler** 属于 Debug ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解编译才会实现该方法代码 )
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
-    
+
     2. `getXXReleaseEnvironment` 获取对应 Module isRelease 值为 true 的 Environment 映射实体类 EnvironmentBean
-    
+
     3. `getXXEnvironment` 获取对应 Module 选中的 Environment ( 默认选中 isRelease 值为 true 的 `@Environment` )
-    
+
     4. `getXXEnvironmentValue` 获取对应 Module 选中的 Environment Value
-    
+
     5. `setXXEnvironment` 设置对应 Module 选中的 Environment
 
     6. `resetXX` 用于删除对应 Module 选中的 Environment Config File
@@ -225,19 +225,19 @@ private final class EnvironmentConfig {
 * **DevEnvironmentCompilerRelease** 属于 Release ( 打包 / 编译 ) 注解处理器，使用该方式编译生成的 DevEnvironment.java 类，**每个 Module 只会生成一个常量 Environment，并且无法进行修改设置**
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
-    
+
     2. `getXXReleaseEnvironment` 获取对应 Module isRelease 值为 true 的 Environment 映射实体类 EnvironmentBean
-    
+
     3. `getXXEnvironment` 内部调用 `getXXReleaseEnvironment`
-    
+
     4. `getXXEnvironmentValue` 内部调用 `getXXEnvironment` 获取 Value
-    
+
     5. `setXXEnvironment` 内部不实现代码，直接返回 false ( 表示不支持设置 )
 
     6. `resetXX` 内部不实现代码，直接返回 false
 
     7. `isXXAnnotation` 内部不实现代码，直接返回 true
-    
+
 > **DevEnvironmentCompilerRelease** 编译生成的 DevEnvironment.java 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 >
 > 而 **DevEnvironmentCompiler** 编译生成的 DevEnvironment.java 类，允许修改选中的 Environment 并且支持可视化切换、代码方式切换

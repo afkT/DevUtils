@@ -54,7 +54,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 
 ## API 文档
 
-* **DevHttpManager 管理库方法 ->** [DevHttpManager.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt)
+* **DevHttpManager 管理库方法 ->** [DevHttpManager.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -64,7 +64,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 | getDevAppVersion | 获取 DevApp 版本 |
 
 
-* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
+* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -82,7 +82,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 | resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
 
 
-* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
+* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -98,7 +98,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 
 ## Retrofit 多 BaseUrl 管理功能
 
-* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
+* **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -115,16 +115,16 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 | reset | 重置处理 ( 重新构建 Retrofit ) |
 | resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
 
-### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager)
+### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager)
 
-* **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
+* **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
 
 | 方法 | 注释 |
 | :- | :- |
 | createOkHttpBuilder | 创建 OkHttp Builder |
 
 
-* **全局 Retrofit 重新构建监听事件 ->** [OnRetrofitResetListener.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/OnRetrofitResetListener.kt)
+* **全局 Retrofit 重新构建监听事件 ->** [OnRetrofitResetListener.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/OnRetrofitResetListener.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -132,7 +132,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 | onReset | 重新构建后调用 |
 
 
-* **Retrofit Builder 接口 ->** [RetrofitBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitBuilder.kt)
+* **Retrofit Builder 接口 ->** [RetrofitBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/RetrofitBuilder.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -141,7 +141,7 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 | onReset | 重新构建后调用 |
 
 
-* **Retrofit Operation ->** [RetrofitOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt)
+* **Retrofit Operation ->** [RetrofitOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -445,7 +445,7 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 
 ## OkHttp 上传、下载进度监听
 
-* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
+* **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -458,9 +458,9 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 | putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
 | putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
 
-### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress)
+### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress)
 
-* **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
+* **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -701,8 +701,8 @@ mOperation.addResponseListener(url, progressCallback)
 [DevComponent lib_network]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network
 [OkHttpBuilderGlobal]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/OkHttpBuilderGlobal.kt
 [RetrofitResetListenerGlobal]: https://github.com/afkT/DevComponent/blob/therouter/component/core/libs/lib_network/src/main/java/afkt_replace/core/lib/network/common/RetrofitResetListenerGlobal.kt
-[RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
-[ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
-[IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt
+[RetrofitOperation]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt
+[ProgressOperation]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt
+[IOperation]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress/operation/IOperation.kt
 [ProgressManagerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/ProgressManagerUse.kt
 [RetrofitManagerUse]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/base/http/RetrofitManagerUse.kt

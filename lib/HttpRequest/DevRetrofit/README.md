@@ -456,19 +456,19 @@ class TestActivity : AppCompatActivity() {
 
 
 
-[DevRetrofit]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit
-[包目录]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit
-[model.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt
-[model_ext.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model_ext.kt
-[request.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/request.kt
-[request_coroutines.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/request_coroutines.kt
-[request_coroutines_simple.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/request_coroutines_simple.kt
-[request_coroutines_simple_livedata.kt]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/request_coroutines_simple_livedata.kt
-[Base.Response]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt#L15
-[Base.Result]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt#L29
-[Notify.Callback]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt#L160
-[Notify.ResultCallback]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt#L230
-[Notify.GlobalCallback]: https://github.com/afkT/DevUtils/blob/master/lib/DevRetrofit/src/main/java/dev/retrofit/model.kt#L280
+[DevRetrofit]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit
+[包目录]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit
+[model.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt
+[model_ext.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model_ext.kt
+[request.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/request.kt
+[request_coroutines.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/request_coroutines.kt
+[request_coroutines_simple.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/request_coroutines_simple.kt
+[request_coroutines_simple_livedata.kt]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/request_coroutines_simple_livedata.kt
+[Base.Response]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt#L15
+[Base.Result]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt#L29
+[Notify.Callback]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt#L160
+[Notify.ResultCallback]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt#L230
+[Notify.GlobalCallback]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/src/main/java/dev/retrofit/model.kt#L280
 [DevRetrofitCoroutinesDemo]: https://github.com/afkT/DevUtils/blob/master/application/DevUtilsApp/src/main/java/afkt/project/use_demo/DevRetrofitCoroutinesDemo.kt
-[DevHttpCapture]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
-[DevHttpManager]: https://github.com/afkT/DevUtils/blob/master/lib/DevHttpManager/README.md
+[DevHttpCapture]: https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/README.md
+[DevHttpManager]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/README.md

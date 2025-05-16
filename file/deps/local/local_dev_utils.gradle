@@ -5,7 +5,7 @@ dependencies {
     // ================
 
     // https://github.com/afkT/DevUtils
-    // https://github.com/afkT/DevUtils/blob/master/README_API.md
+    // https://github.com/afkT/DevUtils/blob/master/README_PROJECT.md
 
     // DevApp - Android 工具类库
     api project(':DevApp')
