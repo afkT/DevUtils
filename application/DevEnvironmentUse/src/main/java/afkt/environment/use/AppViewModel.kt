@@ -256,5 +256,37 @@ class AppViewModel : BaseViewModel() {
         append(tests[11])
         append("<p>${tests[12]}</p>")
         append(tests[13])
+
+        /**
+         * 每个 @Module 都会生成七个方法，以 Service Module 演示操作为例, 具体查看示例代码
+         * 1. getXXModule() => 获取对应 Module 映射实体类 ModuleBean
+         * 2. getXXReleaseEnvironment() => 获取对应 Module isRelease 值为 true 的 Environment 映射实体类 EnvironmentBean
+         * 3. getXXEnvironment() => 获取对应 Module 选中的 Environment ( 默认选中 isRelease 值为 true 的 @Environment )
+         * 4. getXXEnvironmentValue() => 获取对应 Module 选中的 Environment Value
+         * 5. setXXEnvironment() => 设置对应 Module 选中的 Environment
+         * 6. resetXX() => 用于删除对应 Module 选中的 Environment Config File
+         * 7. isXXAnnotation() => 用于判断对应 Module 选中的 Environment 是否属于注解环境配置 ( 是否通过 @Environment 注解 )
+         */
+
+        /**
+         * DevEnvironmentCompiler、DevEnvironmentCompilerRelease 编译区别：具体查看 README
+         *
+         * DevEnvironmentCompilerRelease 属于 Release ( 打包 / 编译 ) 注解处理器
+         * 使用该方式编译生成的 DevEnvironment.java 类，
+         * 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
+         *
+         * DevEnvironmentCompiler 属于 Debug ( 打包 / 编译 ) 注解处理器
+         * 使用该方式编译生成的 DevEnvironment.java 类，
+         * 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解编译才会实现该方法代码 )
+         */
+
+        /**
+         * DevEnvironment 提供了可视化操作、代码操作两种方式，进行修改环境配置信息【具体查看示例代码】
+         *
+         * 需依赖 'io.github.afkt:DevEnvironment:version' 内置可视化操作【强制竖屏】
+         * 对于有横屏需求的项目，参考【自定义】切换环境【UI、功能】按钮实现代码
+         *
+         * 【前提】修改环境变量配置，需通过依赖 kapt 'io.github.afkt:DevEnvironmentCompiler:version' 进行编译
+         */
     }.toString())
 }

@@ -2,7 +2,7 @@
 // = Maven Lib =
 // =============
 
-def libs = [
+def dev_libs = [
         "DevApp",
         "DevAssist",
         "DevBase",
@@ -10,29 +10,18 @@ def libs = [
         "DevMVVM",
         "DevEngine",
         "DevWidget",
-        "DevRetrofit",
-        "DevHttpManager",
-        "DevHttpCapture",
         "DevDeprecated",
         "DevJava",
 ]
 
-libs.forEach {
+dev_libs.forEach {
     include(":$it")
     project(":$it").projectDir = new File(rootDir, "lib/$it")
 }
 
-def libs_compiler = [
-        "DevHttpCaptureCompiler",
-        "DevHttpCaptureCompilerRelease",
-]
-
-libs_compiler.forEach {
-    include(":$it")
-    if (it.startsWith("DevHttpCapture")) {
-        project(":$it").projectDir = new File(rootDir, "lib/HttpCapture/$it")
-    }
-}
+// ==================
+// = DevEnvironment =
+// ==================
 
 def environment_libs = [
         "DevEnvironment",
@@ -45,6 +34,39 @@ environment_libs.forEach {
     include(":$it")
     project(":$it").projectDir = new File(rootDir, "lib/Environment/$it")
 }
+
+// ==================
+// = DevHttpCapture =
+// ==================
+
+def http_capture_libs = [
+        "DevHttpCapture",
+        "DevHttpCaptureCompiler",
+        "DevHttpCaptureCompilerRelease",
+]
+
+http_capture_libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/HttpCapture/$it")
+}
+
+// ===============
+// = HttpRequest =
+// ===============
+
+def http_request_libs = [
+        "DevRetrofit",
+        "DevHttpManager",
+]
+
+http_request_libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/HttpRequest/$it")
+}
+
+// =============
+// = DevSimple =
+// =============
 
 def simple_libs = [
         "DevSimple",
@@ -69,10 +91,8 @@ def applications = [
         "DevUtilsApp",
 
         // ==========
-        // = 其他项目 =
+        // = 使用示例 =
         // ==========
-
-        "DevBaseDemo",
 
         // DevEnvironment - Android 环境配置切换库【使用示例】
         "DevEnvironmentUse",
@@ -80,7 +100,7 @@ def applications = [
         // DevHttpCapture - OkHttp 抓包工具库【使用示例】
         "DevHttpCaptureUse",
 
-        // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
+        // DevHttpManager - OkHttp 管理库【使用示例】
         "DevHttpManagerUse",
 ]
 
