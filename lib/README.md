@@ -11,13 +11,10 @@ Engine 兼容框架等
    - DevAssist                                   | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
    - DevBase                                     | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
    - DevBaseMVVM                                 | MVVM ( ViewDataBinding + ViewModel ) 基类库
-   - DevMVVM                                     | DataBinding 工具类库
    - DevEngine                                   | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+   - DevSimple                                   | 简单敏捷开发库
    - DevWidget                                   | 自定义 View UI 库
    - DevDeprecated                               | Dev 系列库弃用代码统一存储库
-   - DevSimple                                   | 简单敏捷开发库集合
-      - DevAgile                                 | 简单敏捷开发库 ( 常用、零散代码 )
-      - DevSimple                                | 简单敏捷开发库
    - Environment                                 | Android 环境配置切换库
       - DevEnvironment                           | 环境切换可视化 UI 操作
       - DevEnvironmentBase                       | 注解类、实体类、监听事件等通用基础

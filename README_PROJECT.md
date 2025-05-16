@@ -78,13 +78,10 @@
    - DevAssist                                   | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
    - DevBase                                     | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
    - DevBaseMVVM                                 | MVVM ( ViewDataBinding + ViewModel ) 基类库
-   - DevMVVM                                     | DataBinding 工具类库
    - DevEngine                                   | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+   - DevSimple                                   | 简单敏捷开发库
    - DevWidget                                   | 自定义 View UI 库
    - DevDeprecated                               | Dev 系列库弃用代码统一存储库
-   - DevSimple                                   | 简单敏捷开发库集合
-      - DevAgile                                 | 简单敏捷开发库 ( 常用、零散代码 )
-      - DevSimple                                | 简单敏捷开发库
    - Environment                                 | Android 环境配置切换库
       - DevEnvironment                           | 环境切换可视化 UI 操作
       - DevEnvironmentBase                       | 注解类、实体类、监听事件等通用基础
@@ -107,7 +104,6 @@
 - [DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等][DevAssist API]
 - [DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库][DevBase API]
 - [DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库][DevBaseMVVM API]
-- [DevMVVM - DataBinding 工具类库][DevMVVM API]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine API]
 - [DevSimple - 简单敏捷开发库][DevSimple API]
 - [DevWidget - 自定义 View UI 库][DevWidget API]
@@ -125,7 +121,6 @@
 - [DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等][DevAssist ChangeLog]
 - [DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库][DevBase ChangeLog]
 - [DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库][DevBaseMVVM ChangeLog]
-- [DevMVVM - DataBinding 工具类库][DevMVVM ChangeLog]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine ChangeLog]
 - [DevSimple - 简单敏捷开发库][DevSimple ChangeLog]
 - [DevWidget - 自定义 View UI 库][DevWidget ChangeLog]
@@ -229,14 +224,10 @@ implementation 'io.github.afkt:DevJava:1.5.3'
 [DevBase ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md
 [DevBaseMVVM API]: https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
 [DevBaseMVVM ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/CHANGELOG.md
-[DevMVVM API]: https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/README.md
-[DevMVVM ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevMVVM/CHANGELOG.md
 [DevEngine API]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
 [DevEngine ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/CHANGELOG.md
 [DevSimple API]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
 [DevSimple ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/CHANGELOG.md
-[DevAgile API]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/README.md
-[DevAgile ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevAgile/CHANGELOG.md
 [DevWidget API]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
 [DevWidget ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md
 [DevWidget Preview]: https://github.com/afkT/DevUtils-repo/blob/main/lib/DevWidget_Preview.md

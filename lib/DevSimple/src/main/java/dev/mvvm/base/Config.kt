@@ -4,7 +4,7 @@ import dev.expand.engine.log.log_isPrintLog
 import dev.utils.app.ClickUtils
 
 /**
- * detail: DevMVVM 通用配置方法
+ * detail: 通用配置方法
  * @author Ttt
  */
 object Config {
