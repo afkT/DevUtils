@@ -22,13 +22,22 @@ version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][m
 ```groovy
 dependencies {
     // DevHttpCapture - OkHttp 抓包工具库
-    implementation 'io.github.afkt:DevHttpCapture:1.1.7'
+    implementation 'io.github.afkt:DevHttpCapture:1.1.9'
 
     // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.7'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.7'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.9'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.9'
 }
 ```
+
+
+### 示例项目
+
+直接运行、查看使用示例项目代码！！！
+
+[DevHttpCaptureUse][DevHttpCaptureUse]！！！
+[DevHttpCaptureUse][DevHttpCaptureUse]！！！
+[DevHttpCaptureUse][DevHttpCaptureUse]！！！
 
 
 ### 使用示例
@@ -182,7 +191,7 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 | callEnd | 抓包结束 |
 
 
-## ## DevHttpCaptureCompiler API
+## DevHttpCaptureCompiler API
 
 * **OkHttp 抓包工具库 ->** [DevHttpCaptureCompiler.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.kt)
 
@@ -207,5 +216,6 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.7-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.9-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt
+[DevHttpCaptureUse]: https://github.com/afkT/DevUtils/blob/master/application/DevHttpCaptureUse/src/main/java/afkt/httpcapture/use
