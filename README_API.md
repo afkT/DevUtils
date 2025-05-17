@@ -238,7 +238,7 @@ implementation 'io.github.afkt:DevJava:1.5.3'
 [DevHttpCapture API]: https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/README.md
 [DevHttpCapture ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/CHANGELOG.md
 [DevEnvironment API]: https://github.com/afkT/DevUtils/blob/master/lib/Environment
-[DevEnvironment ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironment/CHANGELOG.md
+[DevEnvironment ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/CHANGELOG.md
 [DevDeprecated API]: https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/README.md
 [DevDeprecated ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/CHANGELOG.md
 [DevJava API]: https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
