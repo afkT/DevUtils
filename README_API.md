@@ -226,8 +226,8 @@ implementation 'io.github.afkt:DevJava:1.5.3'
 [DevBaseMVVM ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/CHANGELOG.md
 [DevEngine API]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
 [DevEngine ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/CHANGELOG.md
-[DevSimple API]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
-[DevSimple ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/CHANGELOG.md
+[DevSimple API]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/README.md
+[DevSimple ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/CHANGELOG.md
 [DevWidget API]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
 [DevWidget ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md
 [DevWidget Preview]: https://github.com/afkT/DevUtils-repo/blob/main/lib/DevWidget_Preview.md

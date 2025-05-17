@@ -20,7 +20,7 @@ import dev.capture.UrlFunctionGet
  * DevEngine README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevSimple README
- * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/DevSimple/README.md
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/README.md
  * DevWidget Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
  * DevRetrofit Api
