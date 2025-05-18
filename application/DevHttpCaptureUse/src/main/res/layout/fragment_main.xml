@@ -49,6 +49,11 @@
                     android:textStyle="bold"
                     tools:text="DevHttpCapture:Version" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCallbackInterceptor}"
+                    android:text="CallbackInterceptor 抓包拦截器" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

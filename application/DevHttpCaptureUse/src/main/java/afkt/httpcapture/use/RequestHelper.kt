@@ -34,8 +34,7 @@ interface APIService {
 object RetrofitAPI {
 
     /**
-     * 创建新的 API Service
-     * 每次都创建新的方便演示
+     * 创建新的 API Service【每次都创建新的方便演示】
      * @param builder OkHttpClient.Builder
      * @return [APIService]
      */

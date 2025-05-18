@@ -15,6 +15,9 @@ import dev.simple.app.controller.loading.BaseLoadingSkeletonController
  */
 open class ControllerViewModel : LifecycleViewModel() {
 
+    // 日志 TAG
+    val TAG = this.javaClass.simpleName
+
     // ======================================
     // = 受 isControllerViewModelInit() 控制 =
     // ======================================

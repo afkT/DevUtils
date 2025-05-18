@@ -21,9 +21,6 @@ import dev.utils.common.StringUtils
  */
 class AppViewModel : BaseViewModel() {
 
-    // 日志 TAG
-    private val TAG = AppViewModel::class.java.simpleName
-
     // 环境改变触发事件
     private val changeListener =
         OnEnvironmentChangeListener { module, oldEnvironment, newEnvironment ->

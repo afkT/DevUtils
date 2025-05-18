@@ -11,9 +11,6 @@ import dev.DevHttpManager
  */
 class AppViewModel : BaseViewModel() {
 
-    // 日志 TAG
-    private val TAG = AppViewModel::class.java.simpleName
-
     // ===============
     // = MainFragment =
     // ===============
