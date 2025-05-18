@@ -13,7 +13,7 @@ class CustomFragment : BaseFragment<FragmentCustomBinding, AppViewModel>(
             frg.apply {
                 binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
                     override fun onLeftClick(titleBar: TitleBar) {
-                        viewModel.postClickBack()
+                        viewModel.postBackPressed()
                     }
                 })
             }

@@ -191,16 +191,6 @@ class AppViewModel : BaseViewModel() {
     // = CustomFragment =
     // =================
 
-    private val _clickBackEvent = MutableLiveData<Unit>()
-    val clickBackEvent: LiveData<Unit> get() = _clickBackEvent
-
-    /**
-     * 点击顶部返回按钮
-     */
-    fun postClickBack() {
-        _clickBackEvent.value = Unit
-    }
-
     // 自定义 UI Adapter 模型
     val customAdapterModel = CustomAdapterModel()
 

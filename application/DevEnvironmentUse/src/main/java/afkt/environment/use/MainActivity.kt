@@ -16,7 +16,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, AppViewModel>(
                     // 显示【自定义】切换环境【UI、功能】Fragment
                     navController.navigate(R.id.CustomFragment)
                 }
-                viewModel.clickBackEvent.observe(this) {
+                viewModel.backPressedEvent.observe(this) {
                     val fragment = supportFragmentManager.findFragmentById(
                         binding.navContainer.id
                     ) as NavHostFragment
