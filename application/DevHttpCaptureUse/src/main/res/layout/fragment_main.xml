@@ -73,24 +73,29 @@
                     android:layout_marginTop="15.0dp"
                     android:layout_marginBottom="10.0dp"
                     android:gravity="left|bottom"
-                    android:text="CallbackInterceptor"
+                    android:text="CallbackInterceptor ( 无存储逻辑 ) "
                     android:textSize="16.0sp"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickCallbackInterceptor}"
-                    android:text="Http 抓包拦截器 ( 无存储逻辑 )" />
+                    android:text="Http 抓包拦截器" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorFilter}"
-                    android:text="Http 抓包拦截器 ( 无存储逻辑 ) 过滤请求" />
+                    android:text="Http 抓包拦截器 ( 过滤请求 )" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorEventFilter}"
-                    android:text="Http 抓包拦截器 ( 无存储逻辑 ) 事件处理拦截" />
+                    android:text="Http 抓包拦截器 ( 事件处理拦截 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCallbackInterceptorEventIMPL}"
+                    android:text="Http 抓包拦截器 ( 自定义抓包事件 )" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

@@ -205,7 +205,7 @@ abstract class BaseInterceptor(
             )
         }
 
-        // 是否过滤响应体信息 Map
+        // 是否过滤响应体信息
         if (!eventFilter.filterResponseBody(
                 request, response, responseHeaders, responseBody
             )

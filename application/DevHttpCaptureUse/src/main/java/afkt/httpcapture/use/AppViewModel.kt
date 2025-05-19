@@ -7,13 +7,11 @@ import dev.DevHttpCapture
 import dev.capture.CaptureInfo
 import dev.capture.interceptor.CallbackInterceptor
 import dev.capture.interceptor.SimpleInterceptor
-import dev.capture.interfaces.IHttpCaptureEnd
-import dev.capture.interfaces.IHttpCaptureEvent
-import dev.capture.interfaces.IHttpCaptureEventFilter
-import dev.capture.interfaces.IHttpFilter
+import dev.capture.interfaces.*
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_jsonTag
 import dev.retrofit.launchExecuteRequest
+import dev.utils.common.StringUtils
 import okhttp3.*
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -177,7 +175,7 @@ class AppViewModel : BaseViewModel() {
     // = CallbackInterceptor 过滤请求 =
     // ===============================
 
-    // Http 抓包拦截器 ( 无存储逻辑 ) 过滤请求
+    // Http 抓包拦截器 ( 过滤请求 )
     val clickCallbackInterceptorFilter = View.OnClickListener { view ->
         // 创建新的 API Service【每次都创建新的方便演示】
         val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
@@ -244,7 +242,7 @@ class AppViewModel : BaseViewModel() {
     // = CallbackInterceptor 事件处理拦截 =
     // ==================================
 
-    // Http 抓包拦截器 ( 无存储逻辑 ) 事件处理拦截
+    // Http 抓包拦截器 ( 事件处理拦截 )
     val clickCallbackInterceptorEventFilter = View.OnClickListener { view ->
         // 创建新的 API Service【每次都创建新的方便演示】
         val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
@@ -256,6 +254,22 @@ class AppViewModel : BaseViewModel() {
                     tag.log_jsonTag(json = info.toJson())
                 }
             }, eventFilter = callbackInterceptorEventFilter))
+
+//            // 设置 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
+//            addInterceptor(object : CallbackInterceptor(endCall = object : IHttpCaptureEnd {
+//                override fun callEnd(info: CaptureInfo) {
+//                    // 打印 Http 请求信息
+//                    val tag = "callback_event_filter_http_capture"
+//                    tag.log_jsonTag(json = info.toJson())
+//                }
+//            }, eventFilter = callbackInterceptorEventFilter) {
+//                /**
+//                 * 获取 Http 拦截过滤器
+//                 */
+//                override fun getHttpFilter(): IHttpFilter {
+//                    return callbackInterceptorHttpFilter
+//                }
+//            })
         })
         // 请求搜索热词列表
         requestHotkeys(apiService)
@@ -315,5 +329,96 @@ class AppViewModel : BaseViewModel() {
         }
 
         // ... 还有其他可以查看 IHttpCaptureEventFilter 或进行 Override Methods
+    }
+
+    // ===================================
+    // = CallbackInterceptor 自定义抓包事件 =
+    // ===================================
+
+    // Http 抓包拦截器 ( 自定义抓包事件 )
+    val clickCallbackInterceptorEventIMPL = View.OnClickListener { view ->
+        // 创建新的 API Service【每次都创建新的方便演示】
+        val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
+            // 设置 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
+            addInterceptor(CallbackInterceptor(endCall = object : IHttpCaptureEnd {
+                override fun callEnd(info: CaptureInfo) {
+                    /**
+                     * 设置自定义 Http 抓包事件回调实现后 eventIMPL = eventIMPL
+                     * 则不会触发该方法回调, 会触发实现类 [IHttpCaptureEvent.callEnd] 的方法回调
+                     */
+                }
+            }, eventIMPL = eventIMPL, eventFilter = callbackInterceptorEventFilter))
+        })
+        // 请求文章列表
+        requestArticleList(apiService)
+        // 请求搜索热词列表
+        requestHotkeys(apiService)
+        // 请求 Banner 列表
+        requestBanner(apiService)
+    }
+
+    // Http 抓包事件回调实现
+    private val eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
+
+        /**
+         * Http 抓包结束回调
+         * @param info 抓包信息封装类
+         */
+        override fun callEnd(info: CaptureInfo) {
+            // 打印 Http 请求信息
+            val tag = "callback_event_impl_http_capture"
+            tag.log_jsonTag(json = info.toJson())
+        }
+
+        // =
+
+        /**
+         * 生成请求链接字符串
+         * @param request 请求对象
+         * @param url 请求链接
+         * @return 请求链接字符串
+         */
+        override fun callRequestUrl(
+            request: Request,
+            url: HttpUrl
+        ): String {
+            // 如果请求链接中包含 hotkey 则进行过滤
+            if (url.toString().contains("hotkey")) {
+                /**
+                 * 将 https://www.wanandroid.com/hotkey/json
+                 * 替换为 https://www.wanandroid.com/██████/json
+                 * 并且设置到 [CaptureInfo.requestUrl]
+                 */
+                return StringUtils.replaceAll(
+                    url.toString(), "hotkey", "██████"
+                )
+            }
+            return super.callRequestUrl(request, url)
+        }
+
+        /**
+         * 生成响应体信息
+         * @param request 请求对象
+         * @param response 响应对象
+         * @param responseBody 响应体
+         * @return 响应体信息
+         */
+        override fun callResponseBody(
+            request: Request,
+            response: Response,
+            responseBody: ResponseBody
+        ): String {
+            // 如果属于 article 请求，则隐藏掉文章列表数据
+            if (request.url.toString().contains("article")) {
+                return "**【隐藏 Response Body 数据】**"
+            }
+            return super.callResponseBody(request, response, responseBody)
+        }
+
+        // ... 还有其他可以查看 IHttpCaptureEvent 或进行 Override Methods
+
+        /**
+         * 也可以完全自行实现抓包数据转换, 只需要传入 [IHttpCaptureEvent] 实现类即可
+         */
     }
 }

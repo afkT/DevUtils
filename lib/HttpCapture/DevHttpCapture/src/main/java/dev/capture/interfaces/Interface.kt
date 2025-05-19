@@ -207,11 +207,11 @@ interface IHttpCaptureEvent : IHttpCaptureEnd {
     ): String
 
     /**
-     * 生成响应体信息 Map
+     * 生成响应体信息
      * @param request 请求对象
      * @param response 响应对象
      * @param responseBody 响应体
-     * @return 响应体信息 Map
+     * @return 响应体信息
      */
     fun callResponseBody(
         request: Request,
@@ -385,7 +385,7 @@ interface IHttpCaptureEventFilter {
     ): Boolean = false
 
     /**
-     * 是否过滤响应体信息 Map
+     * 是否过滤响应体信息
      * @param request 请求对象
      * @param response 响应对象
      * @param headers 响应头信息
