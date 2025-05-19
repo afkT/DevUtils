@@ -1,12 +1,17 @@
-package dev.capture
+package dev.capture.interceptor
 
+import dev.capture.*
+import dev.capture.interfaces.HttpCaptureEventIMPL
+import dev.capture.interfaces.IHttpCaptureEvent
+import dev.capture.interfaces.IHttpCaptureEventFilter
+import dev.capture.interfaces.IHttpFilter
 import dev.utils.common.cipher.Encrypt
 
 /**
  * detail: Http 抓包拦截器 ( 存在存储抓包数据逻辑 )
  * @author Ttt
  */
-class HttpCaptureInterceptor(
+open class StorageInterceptor(
     // 模块名 ( 要求唯一性 )
     private val moduleName: String,
     // 抓包数据加密中间层

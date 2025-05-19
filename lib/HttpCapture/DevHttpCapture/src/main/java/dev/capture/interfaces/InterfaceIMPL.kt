@@ -1,5 +1,10 @@
-package dev.capture
+package dev.capture.interfaces
 
+import dev.capture.CaptureFile
+import dev.capture.CaptureInfo
+import dev.capture.CaptureRedact
+import dev.capture.Utils
+import dev.capture.interceptor.BaseInterceptor
 import dev.utils.common.ThrowableUtils
 import okhttp3.*
 import okhttp3.internal.http.promisesBody

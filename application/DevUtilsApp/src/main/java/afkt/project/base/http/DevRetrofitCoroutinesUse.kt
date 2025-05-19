@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.DevHttpCapture
-import dev.capture.CallbackInterceptor
+import dev.capture.interceptor.CallbackInterceptor
 import dev.capture.CaptureInfo
-import dev.capture.IHttpCaptureEnd
+import dev.capture.interfaces.IHttpCaptureEnd
 import dev.engine.DevEngine
 import dev.retrofit.*
 import dev.utils.LogPrintUtils

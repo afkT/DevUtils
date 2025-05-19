@@ -1,6 +1,6 @@
 package dev.capture
 
-import dev.capture.HttpCaptureEventIMPL.Companion.REDACT_REPLACE_VALUE
+import dev.capture.interfaces.HttpCaptureEventIMPL.Companion.REDACT_REPLACE_VALUE
 import dev.utils.common.FileUtils
 import java.io.File
 

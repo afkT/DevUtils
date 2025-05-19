@@ -4,9 +4,9 @@ import afkt.project.data_model.bean.ArticleBean
 import dev.DevHttpCapture
 import dev.DevHttpManager
 import dev.DevUtils
-import dev.capture.CallbackInterceptor
+import dev.capture.interceptor.CallbackInterceptor
 import dev.capture.CaptureInfo
-import dev.capture.IHttpCaptureEnd
+import dev.capture.interfaces.IHttpCaptureEnd
 import dev.environment.DevEnvironment
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.OnRetrofitResetListener

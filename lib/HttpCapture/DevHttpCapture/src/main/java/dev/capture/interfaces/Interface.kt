@@ -1,5 +1,8 @@
-package dev.capture
+package dev.capture.interfaces
 
+import dev.capture.CaptureInfo
+import dev.capture.CaptureItem
+import dev.capture.CaptureRedact
 import dev.utils.common.cipher.Encrypt
 import okhttp3.*
 import okio.Buffer
@@ -70,7 +73,7 @@ interface IHttpCapture {
 
     /**
      * 获取抓包信息隐藏字段
-     * @return [CaptureRedact]
+     * @return [dev.capture.CaptureRedact]
      */
     fun captureRedact(): CaptureRedact
 

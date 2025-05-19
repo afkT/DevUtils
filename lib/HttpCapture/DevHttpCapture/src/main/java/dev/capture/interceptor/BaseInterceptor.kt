@@ -1,12 +1,17 @@
-package dev.capture
+package dev.capture.interceptor
 
+import dev.capture.*
+import dev.capture.interfaces.HttpCaptureStorageEngine
+import dev.capture.interfaces.IHttpCapture
+import dev.capture.interfaces.IHttpCaptureEvent
+import dev.capture.interfaces.IHttpCaptureEventFilter
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
 import java.util.concurrent.TimeUnit
 
 /**
- * detail: 通用 Http 抓包拦截器
+ * detail: Base Http 抓包拦截器
  * @author Ttt
  */
 abstract class BaseInterceptor(

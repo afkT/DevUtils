@@ -1,6 +1,11 @@
 package dev
 
 import dev.capture.*
+import dev.capture.interceptor.StorageInterceptor
+import dev.capture.interfaces.HttpCaptureEventIMPL
+import dev.capture.interfaces.IHttpCapture
+import dev.capture.interfaces.IHttpCaptureEvent
+import dev.capture.interfaces.IHttpFilter
 import dev.utils.common.StringUtils
 import dev.utils.common.cipher.Encrypt
 import okhttp3.OkHttpClient
@@ -107,7 +112,7 @@ object DevHttpCapture {
     ): Boolean {
         if (StringUtils.isNotEmpty(moduleName)) {
             if (!sCaptureMaps.containsKey(moduleName)) {
-                val interceptor = HttpCaptureInterceptor(
+                val interceptor = StorageInterceptor(
                     moduleName, encrypt, httpFilter,
                     capture, eventIMPL
                 )

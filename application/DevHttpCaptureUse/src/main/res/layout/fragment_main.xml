@@ -51,8 +51,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{viewModel.clickCallbackInterceptor}"
-                    android:text="CallbackInterceptor 抓包拦截器" />
+                    android:onClick="@{viewModel.clickSimpleInterceptor}"
+                    android:text="简单的 Http 抓包拦截器" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

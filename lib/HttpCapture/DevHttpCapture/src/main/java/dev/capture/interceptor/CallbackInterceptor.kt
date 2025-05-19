@@ -1,5 +1,11 @@
-package dev.capture
+package dev.capture.interceptor
 
+import dev.capture.*
+import dev.capture.interfaces.HttpCaptureEventIMPL
+import dev.capture.interfaces.IHttpCaptureEnd
+import dev.capture.interfaces.IHttpCaptureEvent
+import dev.capture.interfaces.IHttpCaptureEventFilter
+import dev.capture.interfaces.IHttpFilter
 import dev.utils.common.cipher.Encrypt
 
 /**
