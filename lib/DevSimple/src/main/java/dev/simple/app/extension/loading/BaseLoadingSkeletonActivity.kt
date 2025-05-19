@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppActivity
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.inter.BindingActivityView
+import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.loading.BaseLoadingSkeletonController
 import dev.simple.app.controller.ui.skeleton.PageLoadingSkeletonFactory
 import dev.simple.app.controller.ui.theme.ActivityUITheme

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter
 import com.therouter.router.Autowired
 import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.inter.BindingActivityView
+import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils

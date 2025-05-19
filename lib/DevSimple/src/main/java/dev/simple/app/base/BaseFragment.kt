@@ -12,7 +12,7 @@ import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.simple.ISimpleAgile
 import dev.simple.app.controller.BaseUIController
 import dev.simple.app.controller.BaseVMController
-import dev.simple.app.controller.inter.IController
+import dev.simple.app.controller.interfaces.IController
 import dev.utils.app.ActivityUtils
 import dev.utils.common.ClassUtils
 

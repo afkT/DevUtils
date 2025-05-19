@@ -3,7 +3,7 @@ package dev.simple.app.extension.mvvm
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.inter.BindingActivityView
+import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.extension.theme.BaseUIThemeActivity
 
 /**

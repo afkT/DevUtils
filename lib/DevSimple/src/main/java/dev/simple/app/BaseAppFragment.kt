@@ -2,7 +2,7 @@ package dev.simple.app
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.inter.BindingFragmentView
+import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
 import dev.simple.app.controller.ui.theme.FragmentUITheme
 import dev.simple.app.extension.mvvm.BaseMVVMFragment

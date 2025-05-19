@@ -3,7 +3,7 @@ package dev.simple.app.extension.mvvm
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.inter.BindingFragmentView
+import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.extension.theme.BaseUIThemeFragment
 
 /**

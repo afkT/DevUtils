@@ -2,7 +2,7 @@ package dev.simple.app
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.inter.BindingActivityView
+import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.base.simple.factory.SimpleActivityIMPL
 import dev.simple.app.controller.ui.theme.ActivityUITheme
 import dev.simple.app.extension.mvvm.BaseMVVMActivity

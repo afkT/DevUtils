@@ -1,4 +1,4 @@
-package dev.simple.app.controller.inter
+package dev.simple.app.controller.interfaces
 
 import android.app.Activity
 import android.content.Context

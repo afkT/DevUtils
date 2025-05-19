@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.therouter.router.Route
-import dev.simple.app.base.inter.BindingActivityView
+import dev.simple.app.base.interfaces.BindingActivityView
 import dev.widget.function.SignView
 
 /**

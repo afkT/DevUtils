@@ -2,7 +2,7 @@ package dev.simple.app.controller
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppViewModel
-import dev.simple.app.controller.inter.IController
+import dev.simple.app.controller.interfaces.IController
 
 /**
  * detail: 基础 ViewModel 控制封装

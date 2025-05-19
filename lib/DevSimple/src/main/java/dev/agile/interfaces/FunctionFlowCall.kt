@@ -1,4 +1,4 @@
-package dev.agile.inter
+package dev.agile.interfaces
 
 /**
  * detail: 方法流程回调

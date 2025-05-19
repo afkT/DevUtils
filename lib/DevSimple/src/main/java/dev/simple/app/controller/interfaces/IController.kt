@@ -1,4 +1,4 @@
-package dev.simple.app.controller.inter
+package dev.simple.app.controller.interfaces
 
 /**
  * detail: Base 汇总控制器接口

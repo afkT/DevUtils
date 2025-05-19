@@ -3,7 +3,7 @@ package dev.agile.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.agile.app.AppExecutors
-import dev.agile.inter.FunctionFlowCall
+import dev.agile.interfaces.FunctionFlowCall
 import dev.retrofit.scopeExecuteRequest
 import kotlinx.coroutines.CoroutineScope
 

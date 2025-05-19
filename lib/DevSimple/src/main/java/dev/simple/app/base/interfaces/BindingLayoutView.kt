@@ -1,4 +1,4 @@
-package dev.simple.app.base.inter
+package dev.simple.app.base.interfaces
 
 import android.view.LayoutInflater
 import android.view.View

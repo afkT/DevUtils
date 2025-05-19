@@ -6,7 +6,7 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import dev.base.utils.assist.DevBaseContentAssist
-import dev.simple.app.controller.inter.IController
+import dev.simple.app.controller.interfaces.IController
 import dev.utils.app.BarUtils
 import dev.utils.app.assist.WindowAssist
 

@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppFragment
 import dev.simple.app.BaseAppViewModel
 import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.inter.BindingFragmentView
+import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.controller.loading.BaseLoadingSkeletonController
 import dev.simple.app.controller.ui.skeleton.PageLoadingSkeletonFactory
 import dev.simple.app.controller.ui.theme.FragmentUITheme
