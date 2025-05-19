@@ -1,15 +1,24 @@
 package dev.capture.interceptor
 
-import dev.capture.*
-import dev.capture.interfaces.HttpCaptureEventIMPL
-import dev.capture.interfaces.IHttpCaptureEvent
-import dev.capture.interfaces.IHttpCaptureEventFilter
-import dev.capture.interfaces.IHttpFilter
+import dev.capture.CaptureInfo
+import dev.capture.CaptureItem
+import dev.capture.CaptureRedact
+import dev.capture.Utils
+import dev.capture.interfaces.*
 import dev.utils.common.cipher.Encrypt
 
 /**
  * detail: Http 抓包拦截器 ( 存在存储抓包数据逻辑 )
  * @author Ttt
+ * 写入本地文件 ( 未开启线程，如果有性能要求可使用 [CallbackInterceptor]、[SimpleInterceptor] )
+ * 可以通过 [IHttpCaptureEnd] 回调信息 [CaptureInfo] 自行写入本地文件、数据库
+ * ============
+ * 该抓包拦截器适用于敏捷开发，搭配 DevHttpCaptureCompiler 可视化功能库
+ * 快捷展示存储的抓包数据，减少开发成本
+ * 如果抓包数据量过大且长期维护，建议使用 [CallbackInterceptor] 并自行实现存储逻辑、UI 可视化功能
+ * ============
+ * 该拦截器与 [CallbackInterceptor] 最大的区别在于 [BaseInterceptor] 中调用
+ * storageEngine.captureStorage() 进行存储操作
  */
 open class StorageInterceptor(
     // 模块名 ( 要求唯一性 )

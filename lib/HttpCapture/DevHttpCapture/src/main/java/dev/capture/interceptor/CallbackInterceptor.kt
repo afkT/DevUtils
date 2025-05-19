@@ -1,22 +1,16 @@
 package dev.capture.interceptor
 
-import dev.capture.*
-import dev.capture.interfaces.HttpCaptureEventIMPL
-import dev.capture.interfaces.IHttpCaptureEnd
-import dev.capture.interfaces.IHttpCaptureEvent
-import dev.capture.interfaces.IHttpCaptureEventFilter
-import dev.capture.interfaces.IHttpFilter
+import dev.capture.CaptureInfo
+import dev.capture.CaptureItem
+import dev.capture.CaptureRedact
+import dev.capture.interfaces.*
 import dev.utils.common.cipher.Encrypt
 
 /**
  * detail: Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 )
  * @author Ttt
- * 可通过此方式自行存储到数据库中
- * 支持两种初始化方式
- * // 只有结束回调
- * CallbackInterceptor(endCall = xxx)
- * // 可自定义解析逻辑
- * CallbackInterceptor(eventIMPL = xxx)
+ * 如果对 [StorageInterceptor] 存储性能以及逻辑实现代码，觉得太过复杂不够简洁优美
+ * 可以通过 [IHttpCaptureEnd] 回调信息 [CaptureInfo] 自行写入本地文件、数据库
  */
 open class CallbackInterceptor(
     // Http 抓包结束回调

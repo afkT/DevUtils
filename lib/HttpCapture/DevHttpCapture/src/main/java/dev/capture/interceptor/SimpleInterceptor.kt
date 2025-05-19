@@ -6,6 +6,7 @@ import dev.capture.interfaces.IHttpCaptureEnd
 /**
  * detail: 简单的 Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 )
  * @author Ttt
+ * 继承 [CallbackInterceptor] 简化其他参数，直接回调抓包信息 [CaptureInfo]
  */
 open class SimpleInterceptor(
     // Http 抓包结束回调

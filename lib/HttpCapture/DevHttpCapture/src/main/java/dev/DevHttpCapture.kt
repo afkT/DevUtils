@@ -1,6 +1,9 @@
 package dev
 
-import dev.capture.*
+import dev.capture.BuildConfig
+import dev.capture.CaptureInfo
+import dev.capture.CaptureItem
+import dev.capture.UtilsPublic
 import dev.capture.interceptor.StorageInterceptor
 import dev.capture.interfaces.HttpCaptureEventIMPL
 import dev.capture.interfaces.IHttpCapture
@@ -214,7 +217,7 @@ object DevHttpCapture {
 
     /**
      * 对外公开快捷工具类 ( UtilsPublic )
-     * @return UtilsPublic
+     * @return [UtilsPublic]
      */
     fun utils(): UtilsPublic {
         return UtilsPublic.get()
