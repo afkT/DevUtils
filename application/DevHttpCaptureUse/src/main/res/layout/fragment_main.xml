@@ -49,11 +49,38 @@
                     android:textStyle="bold"
                     tools:text="DevHttpCapture:Version" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginTop="15.0dp"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="SimpleInterceptor"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickSimpleInterceptor}"
                     android:text="简单的 Http 抓包拦截器" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickSimpleInterceptorFilter}"
+                    android:text="简单的 Http 抓包拦截器 ( 过滤请求 )" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginTop="15.0dp"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="CallbackInterceptor"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCallbackInterceptor}"
+                    android:text="Http 抓包拦截器 ( 无存储逻辑 )" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

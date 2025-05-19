@@ -25,6 +25,12 @@ interface APIService {
      */
     @GET("/article/list/{page}/json")
     suspend fun getArticleList(@Path("page") page: Int): BasePageResponse<ArticleBean>
+
+    /**
+     * 获取搜索热词列表
+     */
+    @GET("/hotkey/json")
+    suspend fun getHotkeys(): BaseResponse<List<Any>>
 }
 
 /**

@@ -7,7 +7,7 @@ import dev.capture.interfaces.*
 import dev.utils.common.cipher.Encrypt
 
 /**
- * detail: Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 )
+ * detail: Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
  * @author Ttt
  * 如果对 [StorageInterceptor] 存储性能以及逻辑实现代码，觉得太过复杂不够简洁优美
  * 可以通过 [IHttpCaptureEnd] 回调信息 [CaptureInfo] 自行写入本地文件、数据库
