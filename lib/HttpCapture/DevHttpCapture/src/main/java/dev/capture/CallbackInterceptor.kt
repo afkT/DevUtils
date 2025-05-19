@@ -5,6 +5,7 @@ import dev.utils.common.cipher.Encrypt
 /**
  * detail: Http 抓包拦截器 ( 无存储逻辑, 进行回调通知 )
  * @author Ttt
+ * 可通过此方式自行存储到数据库中
  * 支持两种初始化方式
  * // 只有结束回调
  * CallbackInterceptor(endCall = xxx)
@@ -19,10 +20,10 @@ open class CallbackInterceptor(
         override fun callEnd(info: CaptureInfo) {
             endCall?.callEnd(info)
         }
-    }
-) : BaseInterceptor(false, eventIMPL) {
-
-    private val TAG = CallbackInterceptor::class.java.simpleName
+    },
+    // Http 抓包事件处理拦截
+    eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
+) : BaseInterceptor(false, eventIMPL, eventFilter) {
 
     // 抓包信息隐藏字段
     private val captureRedact = CaptureRedact()
@@ -32,7 +33,7 @@ open class CallbackInterceptor(
     // ================
 
     final override fun getModuleName(): String {
-        return TAG
+        return ""
     }
 
     final override fun getEncrypt(): Encrypt? {

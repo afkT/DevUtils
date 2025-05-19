@@ -431,7 +431,10 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
  * @author Ttt
  */
 internal class HttpCaptureStorageEngine(
-    private val eventIMPL: IHttpCaptureEvent
+    // Http 抓包事件回调
+    private val eventIMPL: IHttpCaptureEvent,
+    // Http 抓包事件处理拦截
+    private val eventFilter: IHttpCaptureEventFilter
 ) {
 
     /**
@@ -445,29 +448,33 @@ internal class HttpCaptureStorageEngine(
         info: CaptureInfo,
         requestTime: Long
     ) {
+        // 是否属于存储抓包数据类型
         if (base.isStorageHttpCaptureType()) {
-            // 创建抓包文件信息
-            val captureFile = CaptureFile()
-                .setUrl(info.requestUrl)
-                .setMethod(info.requestMethod)
-                .setEncrypt(base.getEncrypt() != null)
-                .setModuleName(base.getModuleName())
-                .setTime(requestTime)
+            // 是否过滤抓包数据存储
+            if (!eventFilter.filterCaptureStorage(info)) {
+                // 创建抓包文件信息
+                val captureFile = CaptureFile()
+                    .setUrl(info.requestUrl)
+                    .setMethod(info.requestMethod)
+                    .setEncrypt(base.getEncrypt() != null)
+                    .setModuleName(base.getModuleName())
+                    .setTime(requestTime)
 
-            var httpCaptureData = info.toJson()
-            // 如果存在加密则进行处理
-            base.getEncrypt()?.let { encrypt ->
-                httpCaptureData = try {
-                    val bytes = encrypt.encrypt(httpCaptureData?.toByteArray())
-                    String(bytes)
-                } catch (e: Exception) {
-                    ThrowableUtils.getThrowable(e)
+                var httpCaptureData = info.toJson()
+                // 如果存在加密则进行处理
+                base.getEncrypt()?.let { encrypt ->
+                    httpCaptureData = try {
+                        val bytes = encrypt.encrypt(httpCaptureData?.toByteArray())
+                        String(bytes)
+                    } catch (e: Exception) {
+                        ThrowableUtils.getThrowable(e)
+                    }
                 }
+                // 保存抓包数据
+                captureFile.httpCaptureData = httpCaptureData
+                // 存储文件
+                Utils.saveHttpCaptureFile(captureFile)
             }
-            // 保存抓包数据
-            captureFile.httpCaptureData = httpCaptureData
-            // 存储文件
-            Utils.saveHttpCaptureFile(captureFile)
         }
         // 抓包结束
         eventIMPL.callEnd(info)

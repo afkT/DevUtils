@@ -19,8 +19,10 @@ class HttpCaptureInterceptor(
     eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
         override fun callEnd(info: CaptureInfo) {
         }
-    }
-) : BaseInterceptor(true, eventIMPL) {
+    },
+    // Http 抓包事件处理拦截
+    eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
+) : BaseInterceptor(true, eventIMPL, eventFilter) {
 
     // 抓包信息隐藏字段
     private val captureRedact = CaptureRedact()

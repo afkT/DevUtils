@@ -17,8 +17,7 @@ interface IHttpFilter {
      * @param method   请求方法
      * @param protocol 请求协议
      * @param headers  请求头信息
-     * @return `true` yes, `false` no
-     * 返回 true 则不进行存储 Http 请求信息
+     * @return `true` 拦截操作, `false` 不拦截
      */
     fun filter(
         request: Request,
@@ -248,4 +247,165 @@ interface IHttpCaptureEnd {
      * @param info 抓包数据
      */
     fun callEnd(info: CaptureInfo)
+}
+
+/**
+ * detail: Http 抓包事件处理拦截
+ * @author Ttt
+ * 用于拦截 [IHttpCaptureEvent] 对应事件数据是否进行转换
+ */
+interface IHttpCaptureEventFilter {
+
+    // ===========
+    // = request =
+    // ===========
+
+    /**
+     * 是否过滤请求链接字符串
+     * @param request  请求对象
+     * @param url      请求链接
+     * @param method   请求方法
+     * @param protocol 请求协议
+     * @param headers  请求头信息
+     * @param requestBody 请求体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterRequestUrl(
+        request: Request,
+        url: HttpUrl,
+        method: String,
+        protocol: Protocol,
+        headers: Headers,
+        requestBody: RequestBody?
+    ): Boolean = false
+
+    /**
+     * 是否过滤请求方法字符串
+     * @param request  请求对象
+     * @param url      请求链接
+     * @param method   请求方法
+     * @param protocol 请求协议
+     * @param headers  请求头信息
+     * @param requestBody 请求体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterRequestMethod(
+        request: Request,
+        url: HttpUrl,
+        method: String,
+        protocol: Protocol,
+        headers: Headers,
+        requestBody: RequestBody?
+    ): Boolean = false
+
+    /**
+     * 是否过滤请求头信息 Map
+     * @param request  请求对象
+     * @param url      请求链接
+     * @param method   请求方法
+     * @param protocol 请求协议
+     * @param headers  请求头信息
+     * @param requestBody 请求体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterRequestHeaders(
+        request: Request,
+        url: HttpUrl,
+        method: String,
+        protocol: Protocol,
+        headers: Headers,
+        requestBody: RequestBody?
+    ): Boolean = false
+
+    /**
+     * 是否过滤请求体信息 Map
+     * @param request  请求对象
+     * @param url      请求链接
+     * @param method   请求方法
+     * @param protocol 请求协议
+     * @param headers  请求头信息
+     * @param requestBody 请求体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterRequestBody(
+        request: Request,
+        url: HttpUrl,
+        method: String,
+        protocol: Protocol,
+        headers: Headers,
+        requestBody: RequestBody?
+    ): Boolean = false
+
+    // ============
+    // = response =
+    // ============
+
+    /**
+     * 是否过滤响应状态 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param headers 响应头信息
+     * @param responseBody 响应体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterResponseStatus(
+        request: Request,
+        response: Response,
+        headers: Headers,
+        responseBody: ResponseBody
+    ): Boolean = false
+
+    /**
+     * 是否过滤响应头信息 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param headers 响应头信息
+     * @param responseBody 响应体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterResponseHeaders(
+        request: Request,
+        response: Response,
+        headers: Headers,
+        responseBody: ResponseBody
+    ): Boolean = false
+
+    /**
+     * 是否过滤错误响应体信息
+     * @param request 请求对象
+     * @param error 异常信息
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterResponseBodyFailed(
+        request: Request,
+        error: Exception
+    ): Boolean = false
+
+    /**
+     * 是否过滤响应体信息 Map
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param headers 响应头信息
+     * @param responseBody 响应体
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterResponseBody(
+        request: Request,
+        response: Response,
+        headers: Headers,
+        responseBody: ResponseBody
+    ): Boolean = false
+
+    // ============================
+    // = HttpCaptureStorageEngine =
+    // ============================
+
+    /**
+     * 是否过滤抓包数据存储
+     * @param info 抓包信息封装类
+     * @return `true` 拦截操作, `false` 不拦截
+     */
+    fun filterCaptureStorage(
+        info: CaptureInfo
+    ): Boolean = false
 }
