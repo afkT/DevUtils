@@ -255,7 +255,7 @@ interface IHttpCaptureEnd {
 /**
  * detail: Http 抓包事件处理拦截
  * @author Ttt
- * 用于拦截 [IHttpCaptureEvent] 对应事件数据是否进行转换
+ * 用于拦截 [IHttpCaptureEvent] 对应事件数据是否进行转换并设置到 [CaptureInfo] 对应属性
  */
 interface IHttpCaptureEventFilter {
 

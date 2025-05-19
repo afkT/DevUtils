@@ -31,6 +31,12 @@ interface APIService {
      */
     @GET("/hotkey/json")
     suspend fun getHotkeys(): BaseResponse<List<Any>>
+
+    /**
+     * 获取 Banner 列表
+     */
+    @GET("/banner/json")
+    suspend fun getBanner(): BaseResponse<List<Any>>
 }
 
 /**

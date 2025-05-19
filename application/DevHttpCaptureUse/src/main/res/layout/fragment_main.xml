@@ -81,6 +81,16 @@
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickCallbackInterceptor}"
                     android:text="Http 抓包拦截器 ( 无存储逻辑 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCallbackInterceptorFilter}"
+                    android:text="Http 抓包拦截器 ( 无存储逻辑 ) 过滤请求" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCallbackInterceptorEventFilter}"
+                    android:text="Http 抓包拦截器 ( 无存储逻辑 ) 事件处理拦截" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
