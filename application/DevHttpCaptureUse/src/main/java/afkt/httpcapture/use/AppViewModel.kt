@@ -7,6 +7,8 @@ import dev.DevHttpCapture
 import dev.DevHttpCaptureCompiler
 import dev.capture.CaptureInfo
 import dev.capture.CaptureRedact
+import dev.capture.DevHttpCaptureToast
+import dev.capture.UrlFunctionGet
 import dev.capture.interceptor.CallbackInterceptor
 import dev.capture.interceptor.SimpleInterceptor
 import dev.capture.interceptor.StorageInterceptor
@@ -14,6 +16,7 @@ import dev.capture.interfaces.*
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_jsonTag
 import dev.expand.engine.toast.toast_showLong
+import dev.expand.engine.toast.toast_showShort
 import dev.retrofit.launchExecuteRequest
 import dev.utils.common.StringUtils
 import okhttp3.*
@@ -538,12 +541,34 @@ class AppViewModel : BaseViewModel() {
 
     //【默认】抓包数据可视化
     val clickDefaultIMPL = View.OnClickListener { view ->
+        // 显示全部抓包数据
         DevHttpCaptureCompiler.start(view.context)
+
+        // 抓包数据 Url 所属功能注释
+        httpCaptureUrlFunction()
     }
 
     //【默认】抓包数据可视化 ( 具体模块 )
     val clickDefaultIMPLModule = View.OnClickListener { view ->
+        // 显示具体模块抓包数据
         DevHttpCaptureCompiler.start(view.context, SHARE_MODULE)
+
+        // 抓包数据 Url 所属功能注释
+        httpCaptureUrlFunction()
+//        // 关闭所有抓包数据 Activity
+//        DevHttpCaptureCompiler.finishAllActivity()
+        // 重置抓包库 Toast 实现
+        DevHttpCaptureCompiler.resetToastIMPL()
+        // 设置抓包库 Toast 实现
+        DevHttpCaptureCompiler.setToastIMPL(object : DevHttpCaptureToast {
+            override fun normal(id: Int) {
+                toast_showShort(id = id)
+            }
+
+            override fun success(id: Int) {
+                toast_showShort(id = id)
+            }
+        })
     }
 
     //【自定义】抓包数据可视化
@@ -557,5 +582,46 @@ class AppViewModel : BaseViewModel() {
          * 根据回调 [CaptureInfo] 抓包数据调用 [CaptureInfo.toJson] 转换 JSON 传入数据库
          * 并实现对应的增删改查逻辑, 显示到对应的可视化页面上
          */
+    }
+
+    /**
+     * 抓包数据 Url 所属功能注释
+     * 非必须属于扩展功能
+     */
+    private fun httpCaptureUrlFunction() {
+        // 移除接口所属功能注释
+        DevHttpCaptureCompiler.removeUrlFunction(LOGIN_MODULE)
+        // 添加接口所属功能注释
+        DevHttpCaptureCompiler.putUrlFunction(
+            LOGIN_MODULE, object : UrlFunctionGet {
+
+                /**
+                 * 接口所属功能注释获取
+                 * @param moduleName    模块名 ( 要求唯一性 )
+                 * @param url           原始请求链接
+                 * @param method        请求方法
+                 * @param convertUrlKey url 匹配规则 ( 拆分 ? 前为 key 进行匹配 )
+                 * @param cacheFunction 缓存功能注释
+                 * @return 接口所属功能注释
+                 */
+                override fun toUrlFunction(
+                    moduleName: String,
+                    url: String,
+                    method: String,
+                    convertUrlKey: String?,
+                    cacheFunction: String?
+                ): String? {
+                    if (cacheFunction != null) return cacheFunction
+                    if (url.contains("/banner/json")) {
+                        return "获取 Banner 列表【 UrlFunctionGet 转换】"
+                    } else if (url.contains("/hotkey/json")) {
+                        return "获取搜索热词列表【 UrlFunctionGet 转换】"
+                    } else if (url.contains("/article/list/")) {
+                        //return "获取文章列表" // 默认不返回，对比显示
+                    }
+                    return null
+                }
+            }
+        )
     }
 }
