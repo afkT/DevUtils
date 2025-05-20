@@ -1,0 +1,29 @@
+apply from: rootProject.file(files.build_app_gradle)
+
+android {
+    namespace "afkt.retrofit.use"
+
+    defaultConfig {
+        applicationId "afkt.retrofit.use"
+    }
+}
+
+// Android lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_android)
+// DevUtils 项目统一依赖配置
+apply from: rootProject.file(deps_maven.prop_dev_utils)
+// 第三方 lib 依赖配置
+apply from: rootProject.file(deps_maven.deps_other)
+
+dependencies {
+
+    // ================
+    // = Dev 系列开发库 =
+    // ================
+
+//    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+//    api deps.dev.dev_retrofit
+
+    // DevRetrofit - Retrofit + Kotlin Coroutines 封装
+    api project(':DevRetrofit')
+}

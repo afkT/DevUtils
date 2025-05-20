@@ -86,6 +86,9 @@ def applications = [
         // DevHttpCapture - OkHttp 抓包工具库【使用示例】
         "DevHttpCaptureUse",
 
+        // DevRetrofit - Retrofit + Kotlin Coroutines 封装【使用示例】
+        "DevRetrofitUse",
+
         // DevHttpManager - OkHttp 管理库【使用示例】
         "DevHttpManagerUse",
 ]
