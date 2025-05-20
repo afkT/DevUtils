@@ -19,6 +19,8 @@ import dev.utils.common.cipher.Encrypt
  * ============
  * 该拦截器与 [CallbackInterceptor] 最大的区别在于 [BaseInterceptor] 中调用
  * storageEngine.captureStorage() 进行存储操作
+ * ============
+ * 后续不会重构 [StorageInterceptor] 拦截器存储逻辑，如有性能要求自行实现存储逻辑、UI 可视化功能
  */
 open class StorageInterceptor(
     // 模块名 ( 要求唯一性 )

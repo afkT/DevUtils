@@ -70,7 +70,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginTop="15.0dp"
                     android:layout_marginBottom="10.0dp"
                     android:gravity="left|bottom"
                     android:text="CallbackInterceptor ( 无存储逻辑 ) "
@@ -96,6 +95,47 @@
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorEventIMPL}"
                     android:text="Http 抓包拦截器 ( 自定义抓包事件 )" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="StorageInterceptor ( 抓包本地存储 ) "
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickStorageInterceptor}"
+                    android:text="Http 抓包拦截器 ( StorageInterceptor )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickStorageInterceptorDefault}"
+                    android:text="Http 抓包拦截器 ( DevHttpCapture API )" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="抓包数据可视化"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickDefaultIMPL}"
+                    android:text="【默认】抓包数据可视化" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickDefaultIMPLModule}"
+                    android:text="【默认】抓包数据可视化 ( 具体模块 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{viewModel.clickCustomIMPL}"
+                    android:text="【自定义】抓包数据可视化" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

@@ -2,6 +2,7 @@ package dev.capture
 
 import com.google.gson.GsonBuilder
 import dev.DevHttpCapture
+import dev.capture.Utils.getModulePath
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.PathUtils
@@ -482,7 +483,7 @@ internal object Utils {
                                 }
                             }
                         }
-                        if (captureItem.data.size != 0) {
+                        if (captureItem.data.isNotEmpty()) {
                             lists.add(captureItem)
                         }
                     }

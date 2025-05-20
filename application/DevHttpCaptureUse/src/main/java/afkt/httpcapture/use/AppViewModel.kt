@@ -4,15 +4,20 @@ import afkt.httpcapture.use.base.BaseViewModel
 import android.view.View
 import androidx.databinding.ObservableField
 import dev.DevHttpCapture
+import dev.DevHttpCaptureCompiler
 import dev.capture.CaptureInfo
+import dev.capture.CaptureRedact
 import dev.capture.interceptor.CallbackInterceptor
 import dev.capture.interceptor.SimpleInterceptor
+import dev.capture.interceptor.StorageInterceptor
 import dev.capture.interfaces.*
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_jsonTag
+import dev.expand.engine.toast.toast_showLong
 import dev.retrofit.launchExecuteRequest
 import dev.utils.common.StringUtils
 import okhttp3.*
+import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
@@ -357,7 +362,11 @@ class AppViewModel : BaseViewModel() {
         requestBanner(apiService)
     }
 
-    // Http 抓包事件回调实现
+    /**
+     * Http 抓包事件回调实现
+     * 并非对请求追加参数信息等，只是对请求及响应数据进行读取转换
+     * 方便扩展, 允许自行解析抓包数据
+     */
     private val eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
 
         /**
@@ -415,10 +424,138 @@ class AppViewModel : BaseViewModel() {
             return super.callResponseBody(request, response, responseBody)
         }
 
+        /**
+         * 生成请求头信息 Map
+         * @param request 请求对象
+         * @param headers 请求头信息
+         * @param requestBody 请求体
+         * @param captureRedact 抓包信息隐藏字段
+         * @return 请求头信息 Map
+         */
+        override fun callRequestHeaders(
+            request: Request,
+            headers: Headers,
+            requestBody: RequestBody?,
+            captureRedact: CaptureRedact
+        ): LinkedHashMap<String, String> {
+            val maps = super.callRequestHeaders(request, headers, requestBody, captureRedact)
+            // 统一给头信息追加内容
+            maps["追加请求头随机 UUID"] = UUID.randomUUID().toString()
+            return maps
+        }
+
         // ... 还有其他可以查看 IHttpCaptureEvent 或进行 Override Methods
 
         /**
          * 也可以完全自行实现抓包数据转换, 只需要传入 [IHttpCaptureEvent] 实现类即可
+         */
+    }
+
+    // ======================
+    // = StorageInterceptor =
+    // ======================
+
+    private val SHARE_MODULE = "ShareModule"
+    private val LOGIN_MODULE = "LoginModule"
+
+    // Http 抓包拦截器 ( 存在存储抓包数据逻辑 )
+    val clickStorageInterceptor = View.OnClickListener { view ->
+        // 创建新的 API Service【每次都创建新的方便演示】
+        val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
+            /**
+             * 设置 Http 抓包拦截器 ( 存在存储抓包数据逻辑 )
+             * [StorageInterceptor] 根据 moduleName 创建文件夹并进行存储抓包数据
+             * 禁止添加重复 moduleName [StorageInterceptor] 拦截器防止写入冲突
+             * 推荐通过 [DevHttpCapture.addInterceptor] 进行添加拦截器
+             */
+            addInterceptor(StorageInterceptor(SHARE_MODULE))
+            /**
+             * [StorageInterceptor] 其他构造参数可参考 [eventIMPL]、[callbackInterceptorEventFilter]
+             */
+        })
+        // 请求文章列表
+        requestArticleList(apiService)
+        // 请求搜索热词列表
+        requestHotkeys(apiService)
+        // 请求 Banner 列表
+        requestBanner(apiService)
+    }
+
+    // Http 抓包拦截器 ( DevHttpCapture API )
+    val clickStorageInterceptorDefault = View.OnClickListener { view ->
+        val demoAPI = false
+        // 创建新的 API Service【每次都创建新的方便演示】
+        val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
+            /**
+             * 主要就是以下四个方法
+             *
+             * // 添加 Http 抓包拦截处理 ( 默认进行抓包 )
+             * [DevHttpCapture.addInterceptor]
+             * // 更新对应 Module Http 抓包拦截处理
+             * [DevHttpCapture.updateInterceptor]
+             * // 移除对应 Module Http 抓包拦截
+             * [DevHttpCapture.removeInterceptor]
+             * // 是否存在对应 Module Http 抓包拦截
+             * [DevHttpCapture.containsInterceptor]
+             *
+             * 想要通过 [DevHttpCapture] API 进行控制
+             * 必须先调用 [DevHttpCapture.addInterceptor] 进行添加拦截器
+             * 内部有个 [Map] 存储拦截器对象并根据不同方法进行操作更新
+             *
+             * 也可以通过 [Map] + [StorageInterceptor] 自行实现
+             */
+
+            // 添加 Http 抓包拦截处理 ( 默认进行抓包 )
+            DevHttpCapture.addInterceptor(
+                builder = this, moduleName = LOGIN_MODULE
+            )
+            /**
+             * 以下代码不执行用于演示
+             */
+            if (demoAPI) {
+                /**
+                 * 更新对应 Module Http 抓包拦截处理 ( false 表示不进行抓包 )
+                 * 可以再次更新为 true 表示需要抓包存储
+                 */
+                DevHttpCapture.updateInterceptor(LOGIN_MODULE, false)
+                // 移除对应 Module Http 抓包拦截
+                DevHttpCapture.removeInterceptor(LOGIN_MODULE)
+                // 是否存在对应 Module Http 抓包拦截
+                DevHttpCapture.containsInterceptor(LOGIN_MODULE)
+            }
+        })
+        // 请求文章列表
+        requestArticleList(apiService)
+        // 请求搜索热词列表
+        requestHotkeys(apiService)
+        // 请求 Banner 列表
+        requestBanner(apiService)
+    }
+
+    // ===============
+    // = 抓包数据可视化 =
+    // ===============
+
+    //【默认】抓包数据可视化
+    val clickDefaultIMPL = View.OnClickListener { view ->
+        DevHttpCaptureCompiler.start(view.context)
+    }
+
+    //【默认】抓包数据可视化 ( 具体模块 )
+    val clickDefaultIMPLModule = View.OnClickListener { view ->
+        DevHttpCaptureCompiler.start(view.context, SHARE_MODULE)
+    }
+
+    //【自定义】抓包数据可视化
+    val clickCustomIMPL = View.OnClickListener { view ->
+        toast_showLong(text = "请查看点击事件【注释】")
+        /**
+         * 如果对 [StorageInterceptor] 存储性能以及逻辑实现代码，觉得太过复杂不够简洁优美
+         * 可以通过 [IHttpCaptureEnd] 回调信息 [CaptureInfo] 写入本地文件、数据库
+         */
+        /**
+         * 根据回调 [CaptureInfo] 抓包数据调用 [CaptureInfo.toJson] 转换 JSON 传入数据库
+         * 并实现对应的增删改查逻辑, 显示到对应的可视化页面上
          */
     }
 }

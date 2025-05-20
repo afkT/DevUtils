@@ -97,7 +97,8 @@ interface IHttpCapture {
 /**
  * detail: Http 抓包事件回调
  * @author Ttt
- * 方便二次扩展, 允许自行解析抓包数据
+ * 并非对请求追加参数信息等，只是对请求及响应数据进行读取转换
+ * 方便扩展, 允许自行解析抓包数据
  */
 interface IHttpCaptureEvent : IHttpCaptureEnd {
 
