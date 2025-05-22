@@ -1,7 +1,6 @@
 package afkt.project.base
 
 import afkt.project.R
-import afkt.project.base.http.RetrofitManagerUse
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -16,7 +15,6 @@ import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
 import dev.engine.image.ImageConfig
-import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_d
 import dev.expand.engine.log.log_i
@@ -161,8 +159,6 @@ class BaseApplication : MultiDexApplication() {
         initWebViewBuilder()
         // 初始化 App ImageConfig Creator
         initAppImageConfigCreator()
-        // 初始化 Android 环境配置切换库
-        initEnvironment()
         // 初始化其他 lib
         initOther()
     }
@@ -358,17 +354,6 @@ class BaseApplication : MultiDexApplication() {
                     null
                 }
             }
-        }
-    }
-
-    /**
-     * 初始化 Android 环境配置切换库
-     */
-    private fun initEnvironment() {
-        // 环境 ( 服务器地址 ) 改变通知
-        DevEnvironment.addOnEnvironmentChangeListener { _, _, _ ->
-            // 改变地址重新初始化
-            RetrofitManagerUse.operation().reset()
         }
     }
 

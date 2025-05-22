@@ -35,17 +35,9 @@ object ButtonList {
             "DevWidget UI 库",
             RouterPath.ModuleActivity_PATH
         ),
-        ButtonValue.MODULE_DEV_ENVIRONMENT.buttonOf(
-            "DevEnvironment 环境配置切换库",
-            RouterPath.DEV_LIBS.DevEnvironmentLibActivity_PATH
-        ),
         ButtonValue.MODULE_DEV_ASSIST_ENGINE.buttonOf(
             "DevAssist Engine 实现",
             RouterPath.DEV_LIBS.DevAssistEngineActivity_PATH
-        ),
-        ButtonValue.MODULE_DEV_HTTP_CAPTURE.buttonOf(
-            "DevHttpCapture OkHttp 抓包工具库",
-            RouterPath.DEV_LIBS.DevHttpCaptureActivity_PATH
         ),
         ButtonValue.MODULE_DEV_SKU.buttonOf(
             "DevSKU 商品 SKU 组合封装实现",
@@ -831,26 +823,6 @@ object ButtonList {
         )
     )
 
-    // ==============================
-    // = DevEnvironment 环境配置切换库 =
-    // ==============================
-
-    /**
-     * 获取 DevEnvironment Module Button Value 集合
-     * @return [List]
-     */
-    @JvmStatic
-    val moduleDevEnvironmentButtonValues = mutableListOf(
-        ButtonValue.BTN_DEV_ENVIRONMENT.buttonOf(
-            "环境配置切换",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_USE_CUSTOM.buttonOf(
-            "使用自定义配置",
-            RouterPath.EMPTY
-        )
-    )
-
     // ========================
     // = DevAssist Engine 实现 =
     // ========================
@@ -907,22 +879,6 @@ object ButtonList {
         ),
         ButtonValue.BTN_ENGINE_STORAGE.buttonOf(
             "Storage Engine 外部、内部文件存储",
-            RouterPath.EMPTY
-        )
-    )
-
-    // ==================================
-    // = DevHttpCapture OkHttp 抓包工具库 =
-    // ==================================
-
-    /**
-     * 获取 DevHttpCapture Module Button Value 集合
-     * @return [List]
-     */
-    @JvmStatic
-    val moduleDevHttpCaptureButtonValues = mutableListOf(
-        ButtonValue.BTN_ENGINE_STORAGE.buttonOf(
-            "查看抓包数据",
             RouterPath.EMPTY
         )
     )

@@ -28,13 +28,6 @@
     "params": {}
   },
   {
-    "path": "/activity/StatusBarActivity",
-    "className": "afkt.project.feature.ui_effect.status_bar.StatusBarActivity",
-    "action": "",
-    "description": "",
-    "params": {}
-  },
-  {
     "path": "/activity/ShopCartAddAnimActivity",
     "className": "afkt.project.feature.ui_effect.shop_cart_anim.ShopCartAddAnimActivity",
     "action": "",
@@ -231,13 +224,6 @@
     "params": {}
   },
   {
-    "path": "/activity/WifiActivity",
-    "className": "afkt.project.feature.other_function.wifi.WifiActivity",
-    "action": "",
-    "description": "",
-    "params": {}
-  },
-  {
     "path": "/activity/WebViewActivity",
     "className": "afkt.project.feature.other_function.web_view.WebViewActivity",
     "action": "",
@@ -261,13 +247,6 @@
   {
     "path": "/activity/AccessibilityListenerServiceActivity",
     "className": "afkt.project.feature.other_function.service.AccessibilityListenerServiceActivity",
-    "action": "",
-    "description": "",
-    "params": {}
-  },
-  {
-    "path": "/activity/ListenerActivity",
-    "className": "afkt.project.feature.other_function.listener.ListenerActivity",
     "action": "",
     "description": "",
     "params": {}

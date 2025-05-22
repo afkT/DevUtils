@@ -188,11 +188,7 @@ object RouterPath {
      */
     object DEV_LIBS {
 
-        const val DevEnvironmentLibActivity_PATH = "/activity/DevEnvironmentLibActivity"
-
         const val DevAssistEngineActivity_PATH = "/activity/DevAssistEngineActivity"
-
-        const val DevHttpCaptureActivity_PATH = "/activity/DevHttpCaptureActivity"
 
         const val DevSKUActivity_PATH = "/activity/DevSKUActivity"
     }

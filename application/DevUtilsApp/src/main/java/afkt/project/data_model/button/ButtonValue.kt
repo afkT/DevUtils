@@ -49,17 +49,11 @@ class ButtonValue(
         // DevWidget UI 库
         const val MODULE_DEV_WIDGET = BASE + 50000
 
-        // DevEnvironment 环境配置切换库
-        const val MODULE_DEV_ENVIRONMENT = BASE + 60000
-
         // DevAssist Engine 实现
-        const val MODULE_DEV_ASSIST_ENGINE = BASE + 70000
-
-        // DevHttpCapture OkHttp 抓包工具库
-        const val MODULE_DEV_HTTP_CAPTURE = BASE + 80000
+        const val MODULE_DEV_ASSIST_ENGINE = BASE + 60000
 
         // DevSKU 商品 SKU 组合封装实现
-        const val MODULE_DEV_SKU = BASE + 90000
+        const val MODULE_DEV_SKU = BASE + 70000
 
         // =============
         // = Framework =
@@ -518,16 +512,6 @@ class ButtonValue(
 
         // Grid Horizontal ItemDecoration
         const val BTN_GRID_ITEM_HORIZONTAL = BTN_GRID_ITEM_DECORATION + 2
-
-        // ==============================
-        // = DevEnvironment 环境配置切换库 =
-        // ==============================
-
-        // 环境配置切换
-        const val BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT
-
-        // 使用自定义配置
-        const val BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 100
 
         // ========================
         // = DevAssist Engine 实现 =

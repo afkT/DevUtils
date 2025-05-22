@@ -5,7 +5,7 @@
 
 * **并且是以 Module ( ModuleName Key ) 为基础，支持组件化不同 Module 各自的抓包功能**，支持实时开关抓包功能、可控 Http 拦截过滤器，并支持自定义数据转换。
 
-* 内置三个 Http 抓包拦截器，SimpleInterceptor ( 简单的抓包回调拦截器 )、CallbackInterceptor ( 无存储逻辑，进行回调通知 )、StorageInterceptor ( 存在存储抓包数据逻辑 )
+* 内置**三个** Http 抓包拦截器，**SimpleInterceptor** ( 简单的抓包回调拦截器 )、**CallbackInterceptor** ( 无存储逻辑，进行回调通知 )、**StorageInterceptor** ( 存在存储抓包数据逻辑 )
 
 * `DevHttpCaptureCompiler` 提供对 `DevHttpCapture` 抓包库可视化功能
 
