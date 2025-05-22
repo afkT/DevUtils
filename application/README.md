@@ -10,4 +10,5 @@
    - DevEnvironmentUse      | DevEnvironment - Android 环境配置切换库【使用示例】
    - DevHttpCaptureUse      | DevHttpCapture - OkHttp 抓包工具库【使用示例】
    - DevHttpManagerUse      | DevHttpManager - OkHttp 管理库【使用示例】
+   - DevRetrofitUse         | DevRetrofit - Retrofit + Kotlin Coroutines 封装【使用示例】
 ```

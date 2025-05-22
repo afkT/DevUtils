@@ -4,7 +4,7 @@ import dev.capture.CaptureInfo
 import dev.capture.interfaces.IHttpCaptureEnd
 
 /**
- * detail: 简单的 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
+ * detail: 简单的抓包回调拦截器 ( 无存储逻辑 )
  * @author Ttt
  * 继承 [CallbackInterceptor] 简化其他参数，直接回调抓包信息 [CaptureInfo]
  */

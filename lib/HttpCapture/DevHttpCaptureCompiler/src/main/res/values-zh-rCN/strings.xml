@@ -8,10 +8,12 @@
     <string name="dev_http_capture_copy_success">复制成功</string>
     <string name="dev_http_capture_cancel">取消</string>
     <string name="dev_http_capture_url_function">接口所属功能</string>
+    <string name="dev_http_capture_request_time">请求时间</string>
     <string name="dev_http_capture_request_method">请求方法</string>
     <string name="dev_http_capture_request_url">请求 Url</string>
     <string name="dev_http_capture_request_header">请求 Header</string>
     <string name="dev_http_capture_request_body">请求 Body</string>
+    <string name="dev_http_capture_response_time">响应时间</string>
     <string name="dev_http_capture_response_status">响应状态</string>
     <string name="dev_http_capture_response_header">响应 Header</string>
     <string name="dev_http_capture_response_body">响应 Body</string>

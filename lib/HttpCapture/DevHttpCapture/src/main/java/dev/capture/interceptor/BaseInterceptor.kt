@@ -1,6 +1,6 @@
 package dev.capture.interceptor
 
-import dev.capture.*
+import dev.capture.CaptureInfo
 import dev.capture.interfaces.HttpCaptureStorageEngine
 import dev.capture.interfaces.IHttpCapture
 import dev.capture.interfaces.IHttpCaptureEvent
@@ -61,6 +61,7 @@ abstract class BaseInterceptor(
         val captureInfo = CaptureInfo()
 
         val request = chain.request()
+        val requestTime = System.currentTimeMillis()
         val requestUrl = request.url
         val requestBody = request.body
         val requestMethod = request.method
@@ -93,6 +94,9 @@ abstract class BaseInterceptor(
         // ===========
         // = request =
         // ===========
+
+        // 请求时间 ( 毫秒 )
+        captureInfo.requestTime = requestTime
 
         // 是否过滤请求链接字符串
         if (!eventFilter.filterRequestUrl(
@@ -147,9 +151,6 @@ abstract class BaseInterceptor(
             )
         }
 
-        //【请求时间】
-        val requestTime = System.currentTimeMillis()
-
         // ============
         // = response =
         // ============
@@ -159,6 +160,8 @@ abstract class BaseInterceptor(
         try {
             response = chain.proceed(request)
         } catch (e: Exception) {
+            // 响应时间 ( 毫秒 )
+            captureInfo.responseTime = System.currentTimeMillis()
             // 是否过滤错误响应体信息
             if (!eventFilter.filterResponseBodyFailed(
                     request, e
@@ -173,6 +176,9 @@ abstract class BaseInterceptor(
             storageEngine.captureStorage(this, captureInfo, requestTime)
             throw e
         }
+        // 响应时间 ( 毫秒 )
+        captureInfo.responseTime = System.currentTimeMillis()
+        // 响应耗时
         val tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
 
         val responseBody = response.body!!

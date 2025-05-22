@@ -61,12 +61,12 @@
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickSimpleInterceptor}"
-                    android:text="简单的 Http 抓包拦截器" />
+                    android:text="简单的抓包回调拦截器" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{viewModel.clickSimpleInterceptorFilter}"
-                    android:text="简单的 Http 抓包拦截器 ( 过滤请求 )" />
+                    android:text="简单的抓包回调拦截器 ( 过滤请求 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.Base_TextView"

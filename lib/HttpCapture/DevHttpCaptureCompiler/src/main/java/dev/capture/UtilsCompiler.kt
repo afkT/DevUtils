@@ -12,12 +12,14 @@ import dev.DevUtils
 import dev.callback.DevCallback
 import dev.capture.compiler.R
 import dev.capture.model.Items
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.ClickUtils.ClickAssist
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.assist.ActivityManagerAssist
 import dev.utils.common.CollectionUtils
+import dev.utils.common.DateUtils
 import dev.utils.common.MapUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.comparator.sort.WindowsExplorerStringSimpleComparator
@@ -338,6 +340,17 @@ internal object UtilsCompiler {
                 )
             }
 
+            // 请求时间
+            if (captureInfo.requestTime > 0) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_request_time),
+                        DateUtils.formatTime(captureInfo.requestTime)
+                                + DevFinal.SYMBOL.NEW_LINE + captureInfo.requestTime
+                    )
+                )
+            }
+
             // 请求链接
             lists.add(
                 Items.FileItem(
@@ -372,6 +385,17 @@ internal object UtilsCompiler {
                     Items.FileItem(
                         ResourceUtils.getString(R.string.dev_http_capture_request_body),
                         requestBody
+                    )
+                )
+            }
+
+            // 响应时间
+            if (captureInfo.responseTime > 0) {
+                lists.add(
+                    Items.FileItem(
+                        ResourceUtils.getString(R.string.dev_http_capture_response_time),
+                        DateUtils.formatTime(captureInfo.responseTime)
+                                + DevFinal.SYMBOL.NEW_LINE + captureInfo.responseTime
                     )
                 )
             }

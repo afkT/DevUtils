@@ -70,6 +70,9 @@ class CaptureItem(
  */
 class CaptureInfo {
 
+    // 请求时间 ( 毫秒 )
+    var requestTime: Long = 0
+
     // 请求链接
     var requestUrl: String = ""
 
@@ -81,6 +84,9 @@ class CaptureInfo {
 
     // 请求数据
     val requestBody = linkedMapOf<String, String>()
+
+    // 响应时间 ( 毫秒 )
+    var responseTime: Long = 0
 
     // 响应状态
     val responseStatus = linkedMapOf<String, String>()

@@ -78,11 +78,11 @@ class AppViewModel : BaseViewModel() {
     // = SimpleInterceptor =
     // =====================
 
-    // 简单的 Http 抓包拦截器
+    // 简单的抓包回调拦截器
     val clickSimpleInterceptor = View.OnClickListener { view ->
         // 创建新的 API Service【每次都创建新的方便演示】
         val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
-            // 设置简单的 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
+            // 设置简单的抓包回调拦截器 ( 无存储逻辑 )
             addInterceptor(SimpleInterceptor { info ->
                 // 打印 Http 请求信息
                 val tag = "simple_http_capture"
@@ -97,11 +97,11 @@ class AppViewModel : BaseViewModel() {
     // = SimpleInterceptor 过滤请求 =
     // ============================
 
-    // 简单的 Http 抓包拦截器 ( 过滤请求 )
+    // 简单的抓包回调拦截器 ( 过滤请求 )
     val clickSimpleInterceptorFilter = View.OnClickListener { view ->
         // 创建新的 API Service【每次都创建新的方便演示】
         val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
-            // 设置简单的 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
+            // 设置简单的抓包回调拦截器 ( 无存储逻辑 )
             addInterceptor(object : SimpleInterceptor({ info ->
                 // 打印 Http 请求信息
                 val tag = "simple_filter_http_capture"

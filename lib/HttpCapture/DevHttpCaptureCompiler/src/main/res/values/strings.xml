@@ -11,10 +11,12 @@
     <string name="dev_http_capture_copy_success">Copy Success</string>
     <string name="dev_http_capture_cancel">cancel</string>
     <string name="dev_http_capture_url_function">Url Function</string>
+    <string name="dev_http_capture_request_time">Request Time</string>
     <string name="dev_http_capture_request_method">Request Method</string>
     <string name="dev_http_capture_request_url">Request Url</string>
     <string name="dev_http_capture_request_header">Request Header</string>
     <string name="dev_http_capture_request_body">Request Body</string>
+    <string name="dev_http_capture_response_time">Response Time</string>
     <string name="dev_http_capture_response_status">Response Status</string>
     <string name="dev_http_capture_response_header">Response Header</string>
     <string name="dev_http_capture_response_body">Response Body</string>
