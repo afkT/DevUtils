@@ -5,11 +5,9 @@
 
     <data>
 
-        <import type="android.text.Html" />
-
         <variable
             name="viewModel"
-            type="afkt.retrofit.use.AppViewModel" />
+            type="afkt.retrofit.use.MainViewModel" />
     </data>
 
     <LinearLayout
@@ -48,6 +46,21 @@
                     android:textSize="16.0sp"
                     android:textStyle="bold"
                     tools:text="DevRetrofit:Version" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(1)}"
+                    android:text="Request 示例" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(2)}"
+                    android:text="Simple Request 示例" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(3)}"
+                    android:text="LiveData Request 示例" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

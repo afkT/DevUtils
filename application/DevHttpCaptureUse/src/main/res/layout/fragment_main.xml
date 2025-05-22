@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="android.text.Html" />
-
         <variable
             name="viewModel"
             type="afkt.httpcapture.use.AppViewModel" />

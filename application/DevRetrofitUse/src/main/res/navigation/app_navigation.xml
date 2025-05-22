@@ -7,4 +7,9 @@
         android:id="@+id/MainFragment"
         android:name="afkt.retrofit.use.MainFragment"
         android:label="MainFragment" />
+
+    <fragment
+        android:id="@+id/RequestFragment"
+        android:name="afkt.retrofit.use.request.RequestFragment"
+        android:label="RequestFragment" />
 </navigation>

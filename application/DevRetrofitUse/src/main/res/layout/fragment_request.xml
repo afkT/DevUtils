@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="afkt.httpmanager.use.AppViewModel" />
+            type="afkt.retrofit.use.request.RequestViewModel" />
     </data>
 
     <LinearLayout
@@ -16,10 +16,11 @@
         android:orientation="vertical">
 
         <com.hjq.bar.TitleBar
-            android:layout_width="match_parent"
+            android:id="@+id/vid_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:leftIcon="@null"
-            app:title="@string/str_title"
+            app:lineVisible="false"
+            app:title="Request 示例"
             app:titleSize="18.0sp"
             app:titleStyle="bold" />
 
@@ -42,11 +43,10 @@
                     android:layout_marginTop="15.0dp"
                     android:layout_marginBottom="10.0dp"
                     android:gravity="left|bottom"
-                    android:text="@{viewModel.devHttpManagerVersion}"
+                    android:text="@{viewModel.tipsText}"
                     android:textSize="16.0sp"
                     android:textStyle="bold"
-                    tools:text="DevHttpManager:Version" />
-
+                    tools:text="Tips Text" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
