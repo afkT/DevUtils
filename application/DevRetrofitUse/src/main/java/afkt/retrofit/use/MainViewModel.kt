@@ -22,6 +22,14 @@ class MainViewModel : BaseViewModel() {
             1 -> _clickNavigateEvent.value = NavigateRes(
                 R.id.RequestFragment
             )
+
+            2 -> _clickNavigateEvent.value = NavigateRes(
+                R.id.SimpleFragment
+            )
+
+            3 -> _clickNavigateEvent.value = NavigateRes(
+                R.id.LiveDataFragment
+            )
         }
     }
 }

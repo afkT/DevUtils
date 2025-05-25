@@ -1159,6 +1159,69 @@ public final class QuickHelper
     }
 
     /**
+     * 设置 View 显示状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewVisible() {
+        ViewHelper.get().viewVisible(targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 显示状态
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewVisibles(View... views) {
+        ViewHelper.get().viewVisibles(views);
+        return this;
+    }
+
+    /**
+     * 设置 View 隐藏状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewGone() {
+        ViewHelper.get().viewGone(targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 隐藏状态
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewGones(View... views) {
+        ViewHelper.get().viewGones(views);
+        return this;
+    }
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewInVisible() {
+        ViewHelper.get().viewInVisible(targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QuickHelper viewInVisibles(View... views) {
+        ViewHelper.get().viewInVisibles(views);
+        return this;
+    }
+
+    /**
      * 把自身从父 View 中移除
      * @return Helper
      */

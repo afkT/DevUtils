@@ -929,6 +929,48 @@ public interface IHelperByView<T> {
     );
 
     /**
+     * 设置 View 显示状态
+     * @param view {@link View}
+     * @return Helper
+     */
+    T viewVisible(View view);
+
+    /**
+     * 设置 View 显示状态
+     * @param views View[]
+     * @return Helper
+     */
+    T viewVisibles(View... views);
+
+    /**
+     * 设置 View 隐藏状态
+     * @param view {@link View}
+     * @return Helper
+     */
+    T viewGone(View view);
+
+    /**
+     * 设置 View 隐藏状态
+     * @param views View[]
+     * @return Helper
+     */
+    T viewGones(View... views);
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @param view {@link View}
+     * @return Helper
+     */
+    T viewInVisible(View view);
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @param views View[]
+     * @return Helper
+     */
+    T viewInVisibles(View... views);
+
+    /**
      * 把自身从父 View 中移除
      * @param views View[]
      * @return Helper

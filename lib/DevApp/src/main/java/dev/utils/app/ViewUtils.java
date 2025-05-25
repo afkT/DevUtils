@@ -2876,6 +2876,68 @@ public final class ViewUtils {
     // =
 
     /**
+     * 设置 View 显示状态
+     * @param view {@link View}
+     */
+    public static void viewVisible(
+            final View view
+    ) {
+        setVisibility(View.VISIBLE, view);
+    }
+
+    /**
+     * 设置 View 显示状态
+     * @param views View[]
+     */
+    public static void viewVisibles(
+            final View... views
+    ) {
+        setVisibilitys(View.VISIBLE, views);
+    }
+
+    /**
+     * 设置 View 隐藏状态
+     * @param view {@link View}
+     */
+    public static void viewGone(
+            final View view
+    ) {
+        setVisibility(View.GONE, view);
+    }
+
+    /**
+     * 设置 View 隐藏状态
+     * @param views View[]
+     */
+    public static void viewGones(
+            final View... views
+    ) {
+        setVisibilitys(View.GONE, views);
+    }
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @param view {@link View}
+     */
+    public static void viewInVisible(
+            final View view
+    ) {
+        setVisibility(View.INVISIBLE, view);
+    }
+
+    /**
+     * 设置 View 隐藏占位状态
+     * @param views View[]
+     */
+    public static void viewInVisibles(
+            final View... views
+    ) {
+        setVisibilitys(View.INVISIBLE, views);
+    }
+
+    // =
+
+    /**
      * 把自身从父 View 中移除
      * @param view {@link View}
      * @return {@link View}
