@@ -9,6 +9,7 @@ import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.view.View;
@@ -1336,10 +1337,36 @@ public final class ImageUtils {
 
     /**
      * Drawable 转 Bitmap
+     * <pre>
+     *     需要注意的是传入如果是 {@link ColorDrawable} 没有宽高则会转换失败
+     * </pre>
      * @param drawable 待转换图片
      * @return {@link Bitmap}
      */
     public static Bitmap drawableToBitmap(final Drawable drawable) {
+        if (drawable == null) return null;
+        try {
+            Bitmap.Config config = (drawable.getOpacity() != PixelFormat.OPAQUE)
+                    ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+            return drawableToBitmap(drawable, config);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "drawableToBitmap");
+        }
+        return null;
+    }
+
+    /**
+     * Drawable 转 Bitmap
+     * <pre>
+     *     需要注意的是传入如果是 {@link ColorDrawable} 没有宽高则会转换失败
+     * </pre>
+     * @param drawable 待转换图片
+     * @return {@link Bitmap}
+     */
+    public static Bitmap drawableToBitmap(
+            final Drawable drawable,
+            final Bitmap.Config config
+    ) {
         if (drawable == null) return null;
         // 属于 BitmapDrawable 直接转换
         if (drawable instanceof BitmapDrawable) {
@@ -1356,9 +1383,6 @@ public final class ImageUtils {
             // 获取 drawable 的宽高
             int width  = drawable.getIntrinsicWidth();
             int height = drawable.getIntrinsicHeight();
-            // 获取 drawable 的颜色格式
-            Bitmap.Config config = (drawable.getOpacity() != PixelFormat.OPAQUE)
-                    ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
             // 创建 bitmap
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             // 创建 bitmap 画布
@@ -1371,6 +1395,55 @@ public final class ImageUtils {
             LogPrintUtils.eTag(TAG, e, "drawableToBitmap");
         }
         return null;
+    }
+
+    /**
+     * ColorDrawable 转 Bitmap
+     * @param drawable 待转换图片
+     * @param width    宽度
+     * @param height   高度
+     * @return {@link Bitmap}
+     */
+    public static Bitmap colorDrawableToBitmap(
+            final Drawable drawable,
+            final int width,
+            final int height
+    ) {
+        return colorDrawableToBitmap(
+                drawable, width, height, Bitmap.Config.ARGB_8888
+        );
+    }
+
+    /**
+     * ColorDrawable 转 Bitmap
+     * @param drawable 待转换图片
+     * @param width    宽度
+     * @param height   高度
+     * @param config   {@link Bitmap.Config}
+     * @return {@link Bitmap}
+     */
+    public static Bitmap colorDrawableToBitmap(
+            final Drawable drawable,
+            final int width,
+            final int height,
+            final Bitmap.Config config
+    ) {
+        if (drawable == null) return null;
+        if (drawable instanceof ColorDrawable) {
+            try {
+                // 创建 bitmap
+                Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                // 创建 bitmap 画布
+                Canvas canvas = new Canvas(bitmap);
+                drawable.setBounds(0, 0, width, height);
+                // 把 drawable 内容画到画布中
+                drawable.draw(canvas);
+                return bitmap;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "colorDrawableToBitmap");
+            }
+        }
+        return drawableToBitmap(drawable);
     }
 
     // =
