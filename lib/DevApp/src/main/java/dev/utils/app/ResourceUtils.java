@@ -10,10 +10,12 @@ import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -29,8 +31,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.IntRange;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.RawRes;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
@@ -1216,6 +1220,79 @@ public final class ResourceUtils {
             final File file
     ) {
         return ResourceAssist.get().saveRawFormFile(resId, file);
+    }
+
+    // ============
+    // = Typeface =
+    // ============
+
+    /**
+     * 获取 Assets 字体资源文件并创建 Typeface
+     * @param path 字体资源文件路径
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromAsset(final String path) {
+        return ResourceAssist.get().createFromAsset(path);
+    }
+
+    /**
+     * 通过字体资源文件并创建 Typeface
+     * @param file 字体资源文件
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromFile(final File file) {
+        return ResourceAssist.get().createFromFile(file);
+    }
+
+    /**
+     * 通过字体资源文件并创建 Typeface
+     * @param path 字体资源文件路径
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromFile(final String path) {
+        return ResourceAssist.get().createFromFile(path);
+    }
+
+    /**
+     * 获取系统字体并设置字体样式
+     * @param familyName 字体名
+     * @param style      字体样式
+     * @return {@link Typeface}
+     */
+    public static Typeface create(
+            final String familyName,
+            final int style
+    ) {
+        return ResourceAssist.get().create(familyName, style);
+    }
+
+    /**
+     * 创建最匹配字体、字体样式的 Typeface
+     * @param family 字体，如果为 null 则使用系统默认字体
+     * @param style  字体样式
+     * @return {@link Typeface}
+     */
+    public static Typeface create(
+            final Typeface family,
+            final int style
+    ) {
+        return ResourceAssist.get().create(family, style);
+    }
+
+    /**
+     * 创建最匹配字体、字体样式的 Typeface
+     * @param family 字体，如果为 null 则使用系统默认字体
+     * @param weight 字体权重
+     * @param italic 是否斜体样式
+     * @return {@link Typeface}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public static Typeface create(
+            final Typeface family,
+            @IntRange(from = 1, to = 1000) final int weight,
+            final boolean italic
+    ) {
+        return ResourceAssist.get().create(family, weight, italic);
     }
 
     // =========================
@@ -2523,5 +2600,102 @@ public final class ResourceUtils {
     ) {
         if (assist == null) return false;
         return assist.saveRawFormFile(resId, file);
+    }
+
+    // ============
+    // = Typeface =
+    // ============
+
+    /**
+     * 获取 Assets 字体资源文件并创建 Typeface
+     * @param assist {@link ResourceAssist}
+     * @param path   字体资源文件路径
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromAsset(
+            final ResourceAssist assist,
+            final String path
+    ) {
+        if (assist == null) return null;
+        return assist.createFromAsset(path);
+    }
+
+    /**
+     * 通过字体资源文件并创建 Typeface
+     * @param assist {@link ResourceAssist}
+     * @param file   字体资源文件
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromFile(
+            final ResourceAssist assist,
+            final File file
+    ) {
+        if (assist == null) return null;
+        return assist.createFromFile(file);
+    }
+
+    /**
+     * 通过字体资源文件并创建 Typeface
+     * @param assist {@link ResourceAssist}
+     * @param path   字体资源文件路径
+     * @return {@link Typeface}
+     */
+    public static Typeface createFromFile(
+            final ResourceAssist assist,
+            final String path
+    ) {
+        if (assist == null) return null;
+        return assist.createFromFile(path);
+    }
+
+    /**
+     * 获取系统字体并设置字体样式
+     * @param assist     {@link ResourceAssist}
+     * @param familyName 字体名
+     * @param style      字体样式
+     * @return {@link Typeface}
+     */
+    public static Typeface create(
+            final ResourceAssist assist,
+            final String familyName,
+            final int style
+    ) {
+        if (assist == null) return null;
+        return assist.create(familyName, style);
+    }
+
+    /**
+     * 创建最匹配字体、字体样式的 Typeface
+     * @param assist {@link ResourceAssist}
+     * @param family 字体，如果为 null 则使用系统默认字体
+     * @param style  字体样式
+     * @return {@link Typeface}
+     */
+    public static Typeface create(
+            final ResourceAssist assist,
+            final Typeface family,
+            final int style
+    ) {
+        if (assist == null) return null;
+        return assist.create(family, style);
+    }
+
+    /**
+     * 创建最匹配字体、字体样式的 Typeface
+     * @param assist {@link ResourceAssist}
+     * @param family 字体，如果为 null 则使用系统默认字体
+     * @param weight 字体权重
+     * @param italic 是否斜体样式
+     * @return {@link Typeface}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public static Typeface create(
+            final ResourceAssist assist,
+            final Typeface family,
+            @IntRange(from = 1, to = 1000) final int weight,
+            final boolean italic
+    ) {
+        if (assist == null) return null;
+        return assist.create(family, weight, italic);
     }
 }

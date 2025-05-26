@@ -135,6 +135,8 @@ ext {
                     // 二维码 ZXing https://github.com/zxing/zxing
                     zxing_code         : "com.google.zxing:core:3.5.3",
                     zxing_android_code : "com.google.zxing:android-core:3.3.0",
+                    // GSY 视频播放器 https://github.com/CarGuo/GSYVideoPlayer
+                    gsyVideoPlayer     : "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer:v10.1.0",
             ],
             "feature_widget": [
 
