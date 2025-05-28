@@ -43,10 +43,13 @@ ext {
                     okhttp3           : "com.squareup.okhttp3:okhttp:4.12.0",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
+                    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars
                     // Retrofit 网络请求库  https://github.com/square/retrofit
                     retrofit          : "com.squareup.retrofit2:retrofit:2.11.0",
                     // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
                     retrofit_gson     : "com.squareup.retrofit2:converter-gson:2.11.0",
+                    // Retrofit Scalars Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/scalars
+                    retrofit_scalars  : "com.squareup.retrofit2:converter-scalars:2.11.0",
                     // https://mvnrepository.com/artifact/com.github.JessYanCoding/AndroidAutoSize
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize          : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",

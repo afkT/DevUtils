@@ -1,0 +1,116 @@
+{
+    "code" : "200",
+    "message" : "国际摄影获奖数据查询成功",
+    "data" : [
+        {
+            "author" : "AuroraHunter_Norway",
+            "imageUrl" : "https://cdn.500px.com/photo/2025/aurora-over-tromso-1.jpg",
+            "imageName" : "极光帷幕",
+            "cameraBrand" : "Sony",
+            "model" : "A7R V",
+            "aperture" : "f/2.8",
+            "focalLength" : "14mm",
+            "iso" : "3200",
+            "awardCategory" : "自然现象"
+        },
+        {
+            "author" : "UrbanGeometric",
+            "imageUrl" : "https://cdn.behance.net/gallery/2026/nyc-symmetry.jpg",
+            "imageName" : "曼哈顿镜像",
+            "cameraBrand" : "Fujifilm",
+            "model" : "GFX100 II",
+            "aperture" : "f/11",
+            "focalLength" : "23mm",
+            "iso" : "100",
+            "awardCategory" : "城市建筑"
+        },
+        {
+            "author" : "WildlifeProtrack",
+            "imageUrl" : "https://astrobin-cdn.com/2025/cheetah-sprint.jpg",
+            "imageName" : "猎豹冲刺",
+            "cameraBrand" : "Canon",
+            "model" : "EOS R3",
+            "aperture" : "f/4",
+            "focalLength" : "600mm",
+            "iso" : "1600",
+            "awardCategory" : "野生动物"
+        },
+        {
+            "author" : "MilkyWayChaser",
+            "imageUrl" : "https://cdn.500px.com/photo/2025/galactic-core.jpg",
+            "imageName" : "银河之脊",
+            "cameraBrand" : "Nikon",
+            "model" : "Z9",
+            "aperture" : "f/1.8",
+            "focalLength" : "20mm",
+            "iso" : "6400",
+            "awardCategory" : "天文摄影"
+        },
+        {
+            "author" : "PortraitMasters",
+            "imageUrl" : "https://cdn.behance.net/gallery/2026/eyes-of-wisdom.jpg",
+            "imageName" : "岁月之眸",
+            "cameraBrand" : "Leica",
+            "model" : "M11",
+            "aperture" : "f/2",
+            "focalLength" : "50mm",
+            "iso" : "400",
+            "awardCategory" : "人像艺术"
+        },
+        {
+            "author" : "UnderwaterWorld",
+            "imageUrl" : "https://astrobin-cdn.com/2025/coral-reef-life.jpg",
+            "imageName" : "珊瑚王国",
+            "cameraBrand" : "Olympus",
+            "model" : "OM-D E-M1X",
+            "aperture" : "f/8",
+            "focalLength" : "8mm",
+            "iso" : "200",
+            "awardCategory" : "水下摄影"
+        },
+        {
+            "author" : "DroneVisionPro",
+            "imageUrl" : "https://cdn.500px.com/photo/2025/dubai-skyline.jpg",
+            "imageName" : "云端迪拜",
+            "cameraBrand" : "DJI",
+            "model" : "Zenmuse X7",
+            "aperture" : "f/5.6",
+            "focalLength" : "16mm",
+            "iso" : "100",
+            "awardCategory" : "航拍摄影"
+        },
+        {
+            "author" : "MacroArtistry",
+            "imageUrl" : "https://cdn.behance.net/gallery/2026/dew-on-spiderweb.jpg",
+            "imageName" : "蛛网晨露",
+            "cameraBrand" : "Canon",
+            "model" : "EOS R5",
+            "aperture" : "f/16",
+            "focalLength" : "100mm",
+            "iso" : "200",
+            "awardCategory" : "微距摄影"
+        },
+        {
+            "author" : "StreetMoment",
+            "imageUrl" : "https://astrobin-cdn.com/2025/tokyo-nightlife.jpg",
+            "imageName" : "东京夜曲",
+            "cameraBrand" : "Ricoh",
+            "model" : "GR IIIx",
+            "aperture" : "f/2.8",
+            "focalLength" : "40mm",
+            "iso" : "3200",
+            "awardCategory" : "街头摄影"
+        },
+        {
+            "author" : "BirdSpecialist",
+            "imageUrl" : "https://cdn.500px.com/photo/2025/snowy-owl-flight.jpg",
+            "imageName" : "雪鸮展翼",
+            "cameraBrand" : "Sony",
+            "model" : "A1",
+            "aperture" : "f/4",
+            "focalLength" : "400mm",
+            "iso" : "800",
+            "awardCategory" : "鸟类摄影"
+        }
+    ]
+}
