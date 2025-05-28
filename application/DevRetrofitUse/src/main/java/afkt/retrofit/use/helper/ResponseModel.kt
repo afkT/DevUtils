@@ -6,6 +6,15 @@ import dev.retrofit.Base
 // = 响应模型 =
 // ==========
 
+/**
+ * detail: Service Exception
+ * @author Ttt
+ */
+class ServiceException(
+    errorMessage: String?
+) : Exception(errorMessage.orEmpty())
+
+
 // ==============
 // = 通用响应模型 =
 // ==============
@@ -105,7 +114,7 @@ open class AppResponse<T> : Base.Response<T> {
 
     override fun isSuccess(): Boolean {
 //        // 方式一
-//        val _code = StringUtils.checkValue(getCode())
+//        val _code = getCode().orEmpty()
 //        return when (_code) {
 //            "200", "0" -> true
 //            else -> false
@@ -122,4 +131,7 @@ open class AppResponse<T> : Base.Response<T> {
  * detail: App 统一分页数据模型
  * @author Ttt
  */
-open class AppPageResponse<T> : AppResponse<BasePage<T>>()
+open class AppPageResponse<T> : AppResponse<BasePage<T>>() {
+
+    fun dataList(): List<T> = getData()?.datas.orEmpty()
+}

@@ -6,12 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-// =================
-// = 请求 Helper 类 =
-// =================
-
-// API Service Base URL
-private const val BASE_URL = "https://www.wanandroid.com"
+// ==============
+// = 请求 API 类 =
+// ==============
 
 /**
  * detail: 服务器接口 API Service
@@ -44,6 +41,9 @@ interface APIService {
  * @author Ttt
  */
 object RetrofitAPI {
+
+    // API Service Base URL
+    private const val BASE_URL = "https://www.wanandroid.com"
 
     /**
      * 创建新的 API Service【每次都创建新的方便演示】
