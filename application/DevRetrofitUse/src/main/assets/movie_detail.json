@@ -1,7 +1,7 @@
 {
-    "resultCode" : 200,
-    "reason" : "success",
-    "result" : {
+    "responseCode" : 0,
+    "responseMessage" : "获取详情成功",
+    "response" : {
         "id" : 574475,
         "backdrop_path" : "/uIpJPDNFoeX0TVml9smPrs9KUVx.jpg",
         "overview" : "著名恐怖片系列《死神来了》要拍第六部了。新线影业已聘请《电锯惊魂4/5/6/7》编剧Patrick Melton和Marcus Dunstan为《死神来了6》写剧本。",

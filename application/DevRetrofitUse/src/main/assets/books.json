@@ -1,8 +1,8 @@
 {
     "resultCode" : 200,
-    "reason" : "success",
+    "message" : "success",
     "result" : {
-        "data" : [
+        "datas" : [
             {
                 "title" : "于丹：重温最美古诗词",
                 "catalog" : "中国文学 散文 ",
@@ -31,9 +31,8 @@
                 "bytime" : "2013年2月7日"
             }
         ],
-        "page" : 3,
-        "total_pages" : 39,
-        "total_datas" : 101174
-    },
-    "error_code" : 0
+        "current" : 1,
+        "size" : 3,
+        "total" : 14
+    }
 }
