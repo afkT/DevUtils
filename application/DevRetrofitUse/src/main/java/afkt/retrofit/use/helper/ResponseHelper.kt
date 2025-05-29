@@ -1,6 +1,7 @@
 package afkt.retrofit.use.helper
 
 import afkt.retrofit.use.helper.ResponseHelper.globalCallbackIMPL
+import com.google.gson.Gson
 import dev.engine.json.JSONConfig
 import dev.expand.engine.json.toJson
 import dev.expand.engine.log.*
@@ -17,7 +18,9 @@ object ResponseHelper {
     val TAG = ResponseHelper::class.java.simpleName
 
     // JSON Config
-    private val jsonConfig = JSONConfig()
+    private val jsonConfig = JSONConfig().apply {
+        gson = Gson()
+    }
 
     // ==============
     // = 对外公开方法 =

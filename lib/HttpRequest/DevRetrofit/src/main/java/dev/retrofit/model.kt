@@ -31,6 +31,10 @@ class Base private constructor() {
         fun getMessage(): String?
 
         fun isSuccess(): Boolean
+
+        fun isSuccessWithData(): Boolean = (hasData() && isSuccess())
+
+        fun hasData(): Boolean = (getData() != null)
     }
 
     /**

@@ -45,30 +45,30 @@ class AppViewModel : BaseViewModel() {
     // ==============
 
     /**
-     * 请求文章列表
+     * 获取文章列表
      * @param apiService 服务器接口 API Service
      */
-    fun requestArticleList(apiService: APIService) {
+    fun fetchArticleList(apiService: APIService) {
         this.launchExecuteRequest(block = {
             apiService.getArticleList(page.incrementAndGet())
         }, start = {}, success = {}, error = {}, finish = {})
     }
 
     /**
-     * 请求搜索热词列表
+     * 获取搜索热词列表
      * @param apiService 服务器接口 API Service
      */
-    fun requestHotkeys(apiService: APIService) {
+    fun fetchHotkeys(apiService: APIService) {
         this.launchExecuteRequest(block = {
             apiService.getHotkeys()
         }, start = {}, success = {}, error = {}, finish = {})
     }
 
     /**
-     * 请求 Banner 列表
+     * 获取 Banner 列表
      * @param apiService 服务器接口 API Service
      */
-    fun requestBanner(apiService: APIService) {
+    fun fetchBanner(apiService: APIService) {
         this.launchExecuteRequest(block = {
             apiService.getBanner()
         }, start = {}, success = {}, error = {}, finish = {})
@@ -89,8 +89,8 @@ class AppViewModel : BaseViewModel() {
                 tag.log_jsonTag(json = info.toJson())
             })
         })
-        // 请求文章列表
-        requestArticleList(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
     }
 
     // ============================
@@ -115,10 +115,10 @@ class AppViewModel : BaseViewModel() {
                 }
             })
         })
-        // 请求文章列表
-        requestArticleList(apiService)
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
     }
 
     // Http 拦截过滤器
@@ -175,8 +175,8 @@ class AppViewModel : BaseViewModel() {
                 }
             }))
         })
-        // 请求文章列表
-        requestArticleList(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
     }
 
     // ===============================
@@ -203,10 +203,10 @@ class AppViewModel : BaseViewModel() {
                 }
             })
         })
-        // 请求文章列表
-        requestArticleList(apiService)
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
     }
 
     // Http 拦截过滤器
@@ -279,10 +279,10 @@ class AppViewModel : BaseViewModel() {
 //                }
 //            })
         })
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
-        // 请求 Banner 列表
-        requestBanner(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
+        // 获取 Banner 列表
+        fetchBanner(apiService)
     }
 
     /**
@@ -357,12 +357,12 @@ class AppViewModel : BaseViewModel() {
                 }
             }, eventIMPL = eventIMPL, eventFilter = callbackInterceptorEventFilter))
         })
-        // 请求文章列表
-        requestArticleList(apiService)
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
-        // 请求 Banner 列表
-        requestBanner(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
+        // 获取 Banner 列表
+        fetchBanner(apiService)
     }
 
     /**
@@ -476,12 +476,12 @@ class AppViewModel : BaseViewModel() {
              * [StorageInterceptor] 其他构造参数可参考 [eventIMPL]、[callbackInterceptorEventFilter]
              */
         })
-        // 请求文章列表
-        requestArticleList(apiService)
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
-        // 请求 Banner 列表
-        requestBanner(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
+        // 获取 Banner 列表
+        fetchBanner(apiService)
     }
 
     // Http 抓包拦截器 ( DevHttpCapture API )
@@ -527,12 +527,12 @@ class AppViewModel : BaseViewModel() {
                 DevHttpCapture.containsInterceptor(LOGIN_MODULE)
             }
         })
-        // 请求文章列表
-        requestArticleList(apiService)
-        // 请求搜索热词列表
-        requestHotkeys(apiService)
-        // 请求 Banner 列表
-        requestBanner(apiService)
+        // 获取文章列表
+        fetchArticleList(apiService)
+        // 获取搜索热词列表
+        fetchHotkeys(apiService)
+        // 获取 Banner 列表
+        fetchBanner(apiService)
     }
 
     // ===============
