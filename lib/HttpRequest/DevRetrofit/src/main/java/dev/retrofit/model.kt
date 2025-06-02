@@ -35,6 +35,8 @@ class Base private constructor() {
         fun isSuccessWithData(): Boolean = (hasData() && isSuccess())
 
         fun hasData(): Boolean = (getData() != null)
+
+        fun requireData(): T = getData()!!
     }
 
     /**

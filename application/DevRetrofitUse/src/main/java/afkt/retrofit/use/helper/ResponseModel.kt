@@ -54,9 +54,9 @@ data class BasePage<T>(
     val datas: List<T>
 )
 
-// =================
-// = Base.Response =
-// =================
+// =====================
+// = Base.Response 实现 =
+// =====================
 
 /**
  * detail: App 统一响应模型
@@ -88,9 +88,9 @@ open class AppResponse<T> : Base.Response<T> {
     private var responseMessage: String? = null
     private var response: T? = null
 
-    // =================
-    // = Base.Response =
-    // =================
+    // =====================
+    // = Base.Response 实现 =
+    // =====================
 
     override fun getData(): T? {
         if (data != null) return data

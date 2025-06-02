@@ -31,9 +31,9 @@ interface APIService {
     @GET("assets/photos.json")
     suspend fun getPhotoList(): BaseResponse<List<PhotoBean>>
 
-    // =================
-    // = Base.Response =
-    // =================
+    // =====================
+    // = Base.Response 实现 =
+    // =====================
 
     /**
      * 模拟请求错误
