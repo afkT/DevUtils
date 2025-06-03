@@ -47,6 +47,47 @@
                     android:textSize="16.0sp"
                     android:textStyle="bold"
                     tools:text="Tips Text" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="模拟请求错误"
+                    android:textColor="@color/sky_blue"
+                    android:textSize="14.0sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickMockError.invoke()}"
+                    android:text="请求错误 ( 后台统一格式 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickMockError2.invoke()}"
+                    android:text="请求错误 ( Base.Response 实现 )" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="摄影图片列表"
+                    android:textColor="@color/sky_blue"
+                    android:textSize="14.0sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickPhotoList.invoke()}"
+                    android:text="获取摄影图片列表 ( 后台统一格式 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickPhotoList2.invoke()}"
+                    android:text="获取摄影图片列表 ( Base.Response 实现 )" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickPhotoListCallback.invoke()}"
+                    android:text="获取摄影图片列表 ( 回调通知 )" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

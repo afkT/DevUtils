@@ -27,6 +27,18 @@ object ResponseHelper {
     // ==============
 
     /**
+     * 打印日志
+     * @param tag 日志打印 TAG
+     * @param message 日志信息
+     */
+    fun log(
+        tag: String,
+        message: String
+    ) {
+        tag.log_dTag(message = message)
+    }
+
+    /**
      * 处理【成功响应】数据
      * @param tag 日志打印 TAG
      * @param response 响应数据
@@ -76,7 +88,7 @@ object ResponseHelper {
     // ==========
 
     /**
-     * 获取全局通知回调实现
+     * 获取全局通知回调实现【日志 TAG 为 ResponseHelper】
      * @return [globalCallbackIMPL]
      */
     fun globalCallback(): Notify.GlobalCallback = globalCallbackIMPL
