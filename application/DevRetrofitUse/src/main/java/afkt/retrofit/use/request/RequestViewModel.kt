@@ -1,16 +1,9 @@
 package afkt.retrofit.use.request
 
 import afkt.retrofit.use.base.BaseViewModel
-import afkt.retrofit.use.helper.AppResponse
 import afkt.retrofit.use.helper.PhotoBean
 import afkt.retrofit.use.helper.ResponseHelper
 import androidx.databinding.ObservableField
-import dev.expand.engine.log.log_dTag
-import dev.expand.engine.log.log_eTag
-import dev.expand.engine.log.log_iTag
-import dev.expand.engine.log.log_vTag
-import dev.retrofit.Notify
-import java.util.*
 
 /**
  * detail: request_coroutines.kt 使用方法 ViewModel
@@ -24,6 +17,9 @@ class RequestViewModel(
     val tipsText = ObservableField(
         "DevRetrofit 库 request_coroutines.kt 封装使用示例"
     )
+
+    // 摄影图片列表
+    val photoList = ObservableField<List<PhotoBean>>()
 
     // ==============
     // = 模拟请求错误 =
@@ -126,58 +122,15 @@ class RequestViewModel(
         repository.fetchPhotoListCallback(
             this,
             // 当前请求每个阶段进行通知【日志 TAG 为 RequestStageCallback】
-            callback = RequestStageCallback<List<PhotoBean>>(
+            callback = ResponseHelper.RequestStageCallback<List<PhotoBean>>(
                 "RequestStageCallback"
             ).setParams("自定义参数"),
             // 全局通知回调方法【日志 TAG 为 ResponseHelper】
             globalCallback = ResponseHelper.globalCallback()
         ) {
             ResponseHelper.successResponse(tag, it)
-        }
-    }
-
-    /**
-     * detail: 当前请求每个阶段进行通知
-     * @author Ttt
-     */
-    private open class RequestStageCallback<T>(
-        private val tag: String
-    ) : Notify.Callback<AppResponse<T>>() {
-
-        override fun onStart(uuid: UUID) {
-            super.onStart(uuid)
-
-            tag.log_vTag(
-                message = "开始请求：uuid = $uuid, params = ${getParams()}"
-            )
-        }
-
-        override fun onFinish(uuid: UUID) {
-            super.onFinish(uuid)
-
-            tag.log_iTag(
-                message = "请求结束：uuid = $uuid, params = ${getParams()}"
-            )
-        }
-
-        override fun onSuccess(
-            uuid: UUID,
-            data: AppResponse<T>?
-        ) {
-            tag.log_dTag(
-                message = "请求成功：uuid = $uuid, params = ${getParams()}"
-            )
-            ResponseHelper.successResponse(tag, data)
-        }
-
-        override fun onError(
-            uuid: UUID,
-            error: Throwable?
-        ) {
-            tag.log_eTag(
-                message = "请求异常：uuid = $uuid, params = ${getParams()}",
-                throwable = error
-            )
+            // 更新数据
+            photoList.set(it)
         }
     }
 }

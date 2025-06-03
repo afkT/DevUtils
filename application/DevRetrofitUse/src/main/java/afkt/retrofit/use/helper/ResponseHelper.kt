@@ -84,7 +84,7 @@ object ResponseHelper {
     }
 
     // ==========
-    // = 回调方法 =
+    // = 全局回调 =
     // ==========
 
     /**
@@ -104,7 +104,7 @@ object ResponseHelper {
         ) {
             if (log_isPrintLog()) {
                 TAG.log_vTag(
-                    message = "开始请求：uuid = $uuid, params = $params"
+                    message = "【全局回调】开始请求：uuid = $uuid, params = $params"
                 )
             }
         }
@@ -116,7 +116,7 @@ object ResponseHelper {
         ) {
             if (log_isPrintLog()) {
                 TAG.log_dTag(
-                    message = "请求成功：uuid = $uuid, params = $params"
+                    message = "【全局回调】请求成功：uuid = $uuid, params = $params"
                 )
                 val json = data?.toJson(config = jsonConfig)
                 TAG.log_jsonTag(json = json)
@@ -130,7 +130,7 @@ object ResponseHelper {
         ) {
             if (log_isPrintLog()) {
                 TAG.log_eTag(
-                    message = "请求异常：uuid = $uuid, params = $params",
+                    message = "【全局回调】请求异常：uuid = $uuid, params = $params",
                     throwable = error
                 )
             }
@@ -142,9 +142,58 @@ object ResponseHelper {
         ) {
             if (log_isPrintLog()) {
                 TAG.log_iTag(
-                    message = "请求结束：uuid = $uuid, params = $params"
+                    message = "【全局回调】请求结束：uuid = $uuid, params = $params"
                 )
             }
+        }
+    }
+
+    // ============
+    // = 自定义回调 =
+    // ============
+
+    /**
+     * detail: 当前请求每个阶段进行通知
+     * @author Ttt
+     */
+    open class RequestStageCallback<T>(
+        val tag: String
+    ) : Notify.Callback<AppResponse<T>>() {
+
+        override fun onStart(uuid: UUID) {
+            super.onStart(uuid)
+
+            tag.log_vTag(
+                message = "【自定义回调】开始请求：uuid = $uuid, params = ${getParams()}"
+            )
+        }
+
+        override fun onFinish(uuid: UUID) {
+            super.onFinish(uuid)
+
+            tag.log_iTag(
+                message = "【自定义回调】请求结束：uuid = $uuid, params = ${getParams()}"
+            )
+        }
+
+        override fun onSuccess(
+            uuid: UUID,
+            data: AppResponse<T>?
+        ) {
+            tag.log_dTag(
+                message = "【自定义回调】请求成功：uuid = $uuid, params = ${getParams()}"
+            )
+            successResponse(tag, data)
+        }
+
+        override fun onError(
+            uuid: UUID,
+            error: Throwable?
+        ) {
+            tag.log_eTag(
+                message = "【自定义回调】请求异常：uuid = $uuid, params = ${getParams()}",
+                throwable = error
+            )
         }
     }
 }
