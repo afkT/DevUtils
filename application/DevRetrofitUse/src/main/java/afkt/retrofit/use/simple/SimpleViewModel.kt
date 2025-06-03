@@ -1,9 +1,7 @@
 package afkt.retrofit.use.simple
 
 import afkt.retrofit.use.base.BaseViewModel
-import afkt.retrofit.use.helper.AppResponse
-import afkt.retrofit.use.helper.MovieDetailBean
-import afkt.retrofit.use.helper.ResponseHelper
+import afkt.retrofit.use.helper.*
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,6 +44,15 @@ class SimpleViewModel(
     }
 
     // ==========
+    // = 书籍列表 =
+    // ==========
+
+    // 获取书籍列表
+    val clickBookList: () -> Unit = {
+        requestBookList()
+    }
+
+    // ==========
     // = 请求方法 =
     // ==========
 
@@ -76,26 +83,34 @@ class SimpleViewModel(
     }
 
     /**
-     * 获取电影详情信息 ( Result 回调 )
+     * 获取书籍列表
      */
-    private fun requestMovieDetailResult2() {
-        repository.fetchMovieDetailResult(
+    private fun requestBookList() {
+        repository.fetchBookList(
             this,
-            // 当前请求每个阶段进行通知【日志 TAG 为 SimpleViewModel_requestMovieDetailResult2】
-            callback = object : ResponseHelper.RequestResultStageCallback<MovieDetailBean>(
-                "SimpleViewModel_requestMovieDetailResult2"
+            // 当前请求每个阶段进行通知【日志 TAG 为 SimpleViewModel_requestBookList】
+            callback = object : ResponseHelper.RequestStageCallback<BasePage<BookBean>>(
+                "SimpleViewModel_requestBookList"
             ) {
                 override fun onSuccess(
                     uuid: UUID,
-                    data: Base.Result<MovieDetailBean, AppResponse<MovieDetailBean>>
+                    data: AppResponse<BasePage<BookBean>>?
                 ) {
                     super.onSuccess(uuid, data)
-                    // 请求成功才更新数据
-                    if (data.isSuccessWithData()) {
-                        _movieDetail.value = data.getData()
+
+                    data.hiIfNotNull { result ->
+                        if (result.isSuccessWithData()) {
+                            result.getData().hiIfNotNull { basePage ->
+                                basePage.datas.forEach {
+                                    ResponseHelper.log(tag, "${it.sub1} - ${it.catalog}")
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            },
+            // 全局通知回调方法【日志 TAG 为 ResponseHelper】
+            globalCallback = ResponseHelper.globalCallback()
         )
     }
 

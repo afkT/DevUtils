@@ -76,7 +76,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
+                    android:onClick="@{(v)->viewModel.clickBookList.invoke()}"
                     android:text="获取书籍列表" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
