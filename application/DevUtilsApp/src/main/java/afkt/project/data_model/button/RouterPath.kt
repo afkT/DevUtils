@@ -21,16 +21,6 @@ object RouterPath {
     // ==================
 
     /**
-     * Framework 架构
-     */
-    object FRAMEWORK {
-
-        const val ArticleMVPActivity_PATH = "/activity/ArticleMVPActivity"
-
-        const val ArticleMVVMActivity_PATH = "/activity/ArticleMVVMActivity"
-    }
-
-    /**
      * Lib 框架
      */
     object LIB_FRAME {

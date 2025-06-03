@@ -34,36 +34,23 @@ class ButtonValue(
 
         private const val BASE = 1001
 
-        // 架构
-        const val MODULE_FRAMEWORK = BASE + 10000
-
         // Lib
-        const val MODULE_LIB = BASE + 20000
+        const val MODULE_LIB = BASE + 10000
 
         // UI
-        const val MODULE_UI = BASE + 30000
+        const val MODULE_UI = BASE + 20000
 
         // 其他功能
-        const val MODULE_OTHER = BASE + 40000
+        const val MODULE_OTHER = BASE + 30000
 
         // DevWidget UI 库
-        const val MODULE_DEV_WIDGET = BASE + 50000
+        const val MODULE_DEV_WIDGET = BASE + 40000
 
         // DevAssist Engine 实现
-        const val MODULE_DEV_ASSIST_ENGINE = BASE + 60000
+        const val MODULE_DEV_ASSIST_ENGINE = BASE + 50000
 
         // DevSKU 商品 SKU 组合封装实现
-        const val MODULE_DEV_SKU = BASE + 70000
-
-        // =============
-        // = Framework =
-        // =============
-
-        // MVP
-        const val BTN_MVP = MODULE_FRAMEWORK
-
-        // MVVM
-        const val BTN_MVVM = BTN_MVP + 100
+        const val MODULE_DEV_SKU = BASE + 60000
 
         // =======
         // = Lib =

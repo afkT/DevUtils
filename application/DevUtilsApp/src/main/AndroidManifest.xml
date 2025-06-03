@@ -113,24 +113,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="DiscouragedApi" />
 
-        <!-- 文章 MVP Activity -->
-
-        <activity
-            android:name=".feature.framework.mvp.ArticleMVPActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="DiscouragedApi" />
-
-        <!-- 文章 MVVM Activity -->
-
-        <activity
-            android:name=".feature.framework.mvvm.ArticleMVVMActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="DiscouragedApi" />
-
         <!-- DataStore -->
 
         <activity

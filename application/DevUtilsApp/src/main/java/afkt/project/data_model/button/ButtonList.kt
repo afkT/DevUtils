@@ -15,10 +15,6 @@ object ButtonList {
      * @return [List]
      */
     val mainButtonValues = mutableListOf(
-        ButtonValue.MODULE_FRAMEWORK.buttonOf(
-            "Framework 架构",
-            RouterPath.ModuleActivity_PATH
-        ),
         ButtonValue.MODULE_LIB.buttonOf(
             "Lib 框架",
             RouterPath.ModuleActivity_PATH
@@ -52,7 +48,6 @@ object ButtonList {
      */
     fun getModuleButtonValues(type: Int): List<ButtonValue> {
         when (type) {
-            ButtonValue.MODULE_FRAMEWORK -> return moduleFrameworkButtonValues
             ButtonValue.MODULE_LIB -> return moduleLibButtonValues
             ButtonValue.MODULE_UI -> return moduleUIButtonValues
             ButtonValue.MODULE_OTHER -> return moduleOtherButtonValues
@@ -74,25 +69,6 @@ object ButtonList {
         }
         return emptyList()
     }
-
-    // =============
-    // = Framework =
-    // =============
-
-    /**
-     * 获取 Framework Module Button Value 集合
-     * @return [List]
-     */
-    private val moduleFrameworkButtonValues = mutableListOf(
-        ButtonValue.BTN_MVP.buttonOf(
-            "MVP",
-            RouterPath.FRAMEWORK.ArticleMVPActivity_PATH
-        ),
-        ButtonValue.BTN_MVVM.buttonOf(
-            "MVVM",
-            RouterPath.FRAMEWORK.ArticleMVVMActivity_PATH
-        )
-    )
 
     // =======
     // = Lib =

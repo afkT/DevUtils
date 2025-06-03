@@ -343,20 +343,6 @@
     "params": {}
   },
   {
-    "path": "/activity/ArticleMVVMActivity",
-    "className": "afkt.project.feature.framework.mvvm.ArticleMVVMActivity",
-    "action": "",
-    "description": "",
-    "params": {}
-  },
-  {
-    "path": "/activity/ArticleMVPActivity",
-    "className": "afkt.project.feature.framework.mvp.ArticleMVPActivity",
-    "action": "",
-    "description": "",
-    "params": {}
-  },
-  {
     "path": "/activity/WrapActivity",
     "className": "afkt.project.feature.dev_widget.wrap_view.WrapActivity",
     "action": "",
