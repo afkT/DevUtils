@@ -60,6 +60,11 @@
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
                     android:text="获取电影详情信息" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickMovieDetailResult.invoke()}"
+                    android:text="获取电影详情信息 ( Result 回调 )" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

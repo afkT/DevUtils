@@ -47,13 +47,11 @@ class Base private constructor() {
         private val response: R?,
         // 不为 null 表示出错抛出异常
         private val error: Throwable?,
+        // 错误类型 ( 简单定义 )
+        private val errorCode: ErrorCode = error.errorCode(),
         // 额外携带参数 ( 扩展使用 )
         private var params: Any? = null
-    ) { // : Response<T>
-
-        private val innerErrorCode: ErrorCode by lazy {
-            error.errorCode()
-        }
+    ) {
 
         // ===========
         // = get/set =
@@ -61,6 +59,10 @@ class Base private constructor() {
 
         fun getResponse(): R? {
             return response
+        }
+
+        fun requireResponse(): R {
+            return response!!
         }
 
         fun isError(): Boolean {
@@ -72,7 +74,7 @@ class Base private constructor() {
         }
 
         fun getErrorCode(): ErrorCode {
-            return innerErrorCode
+            return errorCode
         }
 
         // =
@@ -104,6 +106,18 @@ class Base private constructor() {
 
         fun isSuccess(): Boolean {
             return response?.isSuccess() ?: false
+        }
+
+        fun isSuccessWithData(): Boolean {
+            return response?.isSuccessWithData() ?: false
+        }
+
+        fun hasData(): Boolean {
+            return response?.hasData() ?: false
+        }
+
+        fun requireData(): T {
+            return response?.requireData()!!
         }
 
         // =========

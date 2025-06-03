@@ -5,7 +5,10 @@ import afkt.retrofit.use.helper.AppResponse
 import afkt.retrofit.use.helper.MovieDetailBean
 import afkt.retrofit.use.helper.ResponseHelper
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.retrofit.Base
 import java.util.*
 
 /**
@@ -22,7 +25,11 @@ class SimpleViewModel(
     )
 
     // 电影详情信息
-    val movieDetail = ObservableField<MovieDetailBean>()
+    val movieDetailOB = ObservableField<MovieDetailBean>()
+
+    // 电影详情信息
+    private val _movieDetail = MutableLiveData<MovieDetailBean>()
+    val movieDetail: LiveData<MovieDetailBean> = _movieDetail
 
     // ==============
     // = 电影详情信息 =
@@ -31,6 +38,11 @@ class SimpleViewModel(
     // 获取电影详情信息
     val clickMovieDetail: () -> Unit = {
         requestMovieDetail()
+    }
+
+    // 获取电影详情信息 ( Result 回调 )
+    val clickMovieDetailResult: () -> Unit = {
+        requestMovieDetailResult()
     }
 
     // ==========
@@ -45,8 +57,21 @@ class SimpleViewModel(
             this,
             // 当前请求每个阶段进行通知【日志 TAG 为 SimpleViewModel_requestMovieDetail】
             callback = MovieDetailCallback(
-                "SimpleViewModel_requestMovieDetail", movieDetail
+                "SimpleViewModel_requestMovieDetail", movieDetailOB
             ).setParams("{\"id\":130}")
+        )
+    }
+
+    /**
+     * 获取电影详情信息 ( Result 回调 )
+     */
+    private fun requestMovieDetailResult() {
+        repository.fetchMovieDetailResult(
+            this,
+            // 当前请求每个阶段进行通知【日志 TAG 为 SimpleViewModel_requestMovieDetailResult】
+            callback = MovieDetailResultCallback(
+                "SimpleViewModel_requestMovieDetailResult", _movieDetail
+            ).setParams("{\"timeMS\":${System.currentTimeMillis()}}")
         )
     }
 
@@ -72,10 +97,6 @@ class SimpleViewModel(
             data.hiIfNotNull { result ->
                 if (result.isSuccessWithData()) {
                     movieDetail.set(result.requireData())
-                    // 打印日志
-                    ResponseHelper.log(
-                        tag, "设置 ObservableField<MovieDetailBean> 值：${movieDetail.get()}"
-                    )
                 } else {
                     // 其他状态处理
                     if (result.isSuccess()) {
@@ -86,6 +107,31 @@ class SimpleViewModel(
                         val message = result.getMessage()
                     }
                 }
+            }
+        }
+    }
+
+    // ==============
+    // = Result 回调 =
+    // ==============
+
+    /**
+     * detail: 电影详情请求回调
+     * @author Ttt
+     */
+    private class MovieDetailResultCallback(
+        tag: String,
+        private val _movieDetail: MutableLiveData<MovieDetailBean>
+    ) : ResponseHelper.RequestResultStageCallback<MovieDetailBean>(tag) {
+
+        override fun onSuccess(
+            uuid: UUID,
+            data: Base.Result<MovieDetailBean, AppResponse<MovieDetailBean>>
+        ) {
+            super.onSuccess(uuid, data)
+            // 请求成功才更新数据
+            if (data.isSuccessWithData()) {
+                _movieDetail.value = data.requireData()
             }
         }
     }

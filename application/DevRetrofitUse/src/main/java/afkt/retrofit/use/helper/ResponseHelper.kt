@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import dev.engine.json.JSONConfig
 import dev.expand.engine.json.toJson
 import dev.expand.engine.log.*
+import dev.retrofit.Base
 import dev.retrofit.Notify
 import java.util.*
 
@@ -194,6 +195,45 @@ object ResponseHelper {
                 message = "【自定义回调】请求异常：uuid = $uuid, params = ${getParams()}",
                 throwable = error
             )
+        }
+    }
+
+    // ==============
+    // = Result 回调 =
+    // ==============
+
+    /**
+     * detail: 当前请求每个阶段进行通知
+     * @author Ttt
+     */
+    open class RequestResultStageCallback<T>(
+        val tag: String
+    ) : Notify.ResultCallback<T, AppResponse<T>>() {
+
+        override fun onStart(uuid: UUID) {
+            super.onStart(uuid)
+
+            tag.log_vTag(
+                message = "【Result 回调】开始请求：uuid = $uuid, params = ${getParams()}"
+            )
+        }
+
+        override fun onFinish(uuid: UUID) {
+            super.onFinish(uuid)
+
+            tag.log_iTag(
+                message = "【Result 回调】请求结束：uuid = $uuid, params = ${getParams()}"
+            )
+        }
+
+        override fun onSuccess(
+            uuid: UUID,
+            data: Base.Result<T, AppResponse<T>>
+        ) {
+            tag.log_dTag(
+                message = "【Result 回调】请求成功：uuid = $uuid, params = ${getParams()}"
+            )
+            successResponse(tag, data)
         }
     }
 }

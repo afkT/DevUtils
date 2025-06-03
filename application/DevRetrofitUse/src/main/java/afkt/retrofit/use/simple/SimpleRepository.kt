@@ -6,6 +6,7 @@ import afkt.retrofit.use.helper.MovieDetailBean
 import afkt.retrofit.use.helper.RetrofitAPI
 import dev.retrofit.Notify
 import dev.retrofit.simpleLaunchExecuteRequest
+import dev.retrofit.simpleLaunchExecuteResponseRequest
 
 /**
  * detail: Simple Request Repository
@@ -25,6 +26,24 @@ class SimpleRepository {
         globalCallback: Notify.GlobalCallback? = null
     ) {
         viewModel.simpleLaunchExecuteRequest(
+            block = {
+                RetrofitAPI.api().app_getMovieDetail()
+            },
+            callback = callback, globalCallback = globalCallback
+        )
+    }
+
+    /**
+     * 获取电影详情信息
+     */
+    fun fetchMovieDetailResult(
+        viewModel: BaseViewModel,
+        // 当前请求每个阶段进行通知
+        callback: Notify.ResultCallback<MovieDetailBean, AppResponse<MovieDetailBean>>,
+        // 全局通知回调方法 ( 创建一个全局通用传入 )
+        globalCallback: Notify.GlobalCallback? = null
+    ) {
+        viewModel.simpleLaunchExecuteResponseRequest(
             block = {
                 RetrofitAPI.api().app_getMovieDetail()
             },
