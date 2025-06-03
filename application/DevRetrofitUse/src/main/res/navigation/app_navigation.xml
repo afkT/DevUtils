@@ -17,9 +17,4 @@
         android:id="@+id/SimpleFragment"
         android:name="afkt.retrofit.use.simple.SimpleFragment"
         android:label="SimpleFragment" />
-
-    <fragment
-        android:id="@+id/LiveDataFragment"
-        android:name="afkt.retrofit.use.livedata.LiveDataFragment"
-        android:label="LiveDataFragment" />
 </navigation>

@@ -57,7 +57,7 @@ interface APIService {
      * 获取书籍列表
      */
     @GET("assets/books.json")
-    suspend fun app_getBookList(): AppPageResponse<BookBean>
+    suspend fun app_getBookList(): AppResponse<BasePage<BookBean>>
 }
 
 /**

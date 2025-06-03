@@ -126,12 +126,3 @@ open class AppResponse<T> : Base.Response<T> {
         return false
     }
 }
-
-/**
- * detail: App 统一分页数据模型
- * @author Ttt
- */
-open class AppPageResponse<T> : AppResponse<BasePage<T>>() {
-
-    fun dataList(): List<T> = getData()?.datas.orEmpty()
-}

@@ -18,9 +18,6 @@ class RequestViewModel(
         "DevRetrofit 库 request_coroutines.kt 封装使用示例"
     )
 
-    // 摄影图片列表
-    val photoList = ObservableField<List<PhotoBean>>()
-
     // ==============
     // = 模拟请求错误 =
     // ==============
@@ -129,8 +126,6 @@ class RequestViewModel(
             globalCallback = ResponseHelper.globalCallback()
         ) {
             ResponseHelper.successResponse(tag, it)
-            // 更新数据
-            photoList.set(it)
         }
     }
 }

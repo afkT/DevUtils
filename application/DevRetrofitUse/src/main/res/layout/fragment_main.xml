@@ -56,11 +56,6 @@
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{(v)->viewModel.clickNavigate.invoke(2)}"
                     android:text="Simple Request 示例" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(3)}"
-                    android:text="LiveData Request 示例" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
