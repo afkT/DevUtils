@@ -15,4 +15,20 @@ class LiveDataViewModel(
     val tipsText = ObservableField(
         "DevRetrofit 库 request_coroutines_simple_livedata.kt 封装使用示例"
     )
+
+    // ==============
+    // = 电影详情信息 =
+    // ==============
+
+    // 获取电影详情信息
+    val clickMovieDetail: () -> Unit = {
+    }
+
+    // ===========
+    // = 书籍列表 =
+    // ===========
+
+    // 获取书籍列表
+    val clickBookList: () -> Unit = {
+    }
 }

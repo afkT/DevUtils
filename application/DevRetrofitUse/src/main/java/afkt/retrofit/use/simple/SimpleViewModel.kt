@@ -75,6 +75,30 @@ class SimpleViewModel(
         )
     }
 
+    /**
+     * 获取电影详情信息 ( Result 回调 )
+     */
+    private fun requestMovieDetailResult2() {
+        repository.fetchMovieDetailResult(
+            this,
+            // 当前请求每个阶段进行通知【日志 TAG 为 SimpleViewModel_requestMovieDetailResult2】
+            callback = object : ResponseHelper.RequestResultStageCallback<MovieDetailBean>(
+                "SimpleViewModel_requestMovieDetailResult2"
+            ) {
+                override fun onSuccess(
+                    uuid: UUID,
+                    data: Base.Result<MovieDetailBean, AppResponse<MovieDetailBean>>
+                ) {
+                    super.onSuccess(uuid, data)
+                    // 请求成功才更新数据
+                    if (data.isSuccessWithData()) {
+                        _movieDetail.value = data.getData()
+                    }
+                }
+            }
+        )
+    }
+
     // ============
     // = 自定义回调 =
     // ============

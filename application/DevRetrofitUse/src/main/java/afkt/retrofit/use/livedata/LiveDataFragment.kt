@@ -20,4 +20,16 @@ class LiveDataFragment : BaseFragment<FragmentLivedataBinding, LiveDataViewModel
             }
         }
     }
-)
+) {
+    override fun initObserve() {
+        super.initObserve()
+//        // 监听电影详情信息变更
+//        viewModel.movieDetail.observe(this) { value ->
+//            // 打印日志
+//            ResponseHelper.log(
+//                "movieDetailLiveData",
+//                "设置 MutableLiveData<MovieDetailBean> 值：${value}"
+//            )
+//        }
+    }
+}

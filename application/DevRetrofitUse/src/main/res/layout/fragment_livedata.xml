@@ -47,6 +47,32 @@
                     android:textSize="16.0sp"
                     android:textStyle="bold"
                     tools:text="Tips Text" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="电影详情信息"
+                    android:textColor="@color/sky_blue"
+                    android:textSize="14.0sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
+                    android:text="获取电影详情信息" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.Base_TextView"
+                    android:layout_marginBottom="10.0dp"
+                    android:gravity="left|bottom"
+                    android:text="书籍列表"
+                    android:textColor="@color/sky_blue"
+                    android:textSize="14.0sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickBookList.invoke()}"
+                    android:text="获取书籍列表" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
