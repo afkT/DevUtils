@@ -23,7 +23,7 @@ class ServiceException(
  * 参考 error.json、photos.json 返回字段类型是通用
  * 但是对于 books.json、movie_detail.json 非通用的
  * 可以使用 [Base.Response] 实现，正常不会有这种情况
- * 只有在新旧 API 变更时可能出现、不同第三方接口、SDK 等
+ * 解决新旧 API 变更、使用第三方接口、SDK 等返回结构不一致时，可自定义解析类进行解析处理
  */
 
 /**
