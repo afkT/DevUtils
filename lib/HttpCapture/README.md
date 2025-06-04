@@ -12,10 +12,9 @@
 
 ### 最新版本
 
-module | DevHttpCapture | DevHttpCaptureCompiler | DevHttpCaptureCompilerRelease
-:---:|:---:|:---:|:---:
-version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][maven]
-
+| module  |     DevHttpCapture      | DevHttpCaptureCompiler  | DevHttpCaptureCompilerRelease |
+|:-------:|:-----------------------:|:-----------------------:|:-----------------------------:|
+| version | [![][maven_svg]][maven] | [![][maven_svg]][maven] |    [![][maven_svg]][maven]    |
 
 ### Gradle
 
@@ -86,19 +85,19 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 * **OkHttp 抓包工具库 ->** [DevHttpCapture.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/DevHttpCapture.kt#L47)
 
-| 方法 | 注释 |
-| :- | :- |
-| getDevHttpCaptureVersionCode | 获取 DevHttpCapture 版本号 |
-| getDevHttpCaptureVersion | 获取 DevHttpCapture 版本 |
-| getDevAppVersionCode | 获取 DevApp 版本号 |
-| getDevAppVersion | 获取 DevApp 版本 |
-| addInterceptor | 添加 Http 抓包拦截处理 |
-| removeInterceptor | 移除对应 Module Http 抓包拦截 |
-| updateInterceptor | 更新对应 Module Http 抓包拦截处理 |
-| containsInterceptor | 是否存在对应 Module Http 抓包拦截 |
-| getModulePath | 获取指定模块抓包存储路径 |
-| getModuleHttpCaptures | 获取指定模块所有抓包数据 |
-| utils | 对外公开快捷工具类 ( UtilsPublic ) |
+| 方法                           | 注释                        |
+|:-----------------------------|:--------------------------|
+| getDevHttpCaptureVersionCode | 获取 DevHttpCapture 版本号     |
+| getDevHttpCaptureVersion     | 获取 DevHttpCapture 版本      |
+| getDevAppVersionCode         | 获取 DevApp 版本号             |
+| getDevAppVersion             | 获取 DevApp 版本              |
+| addInterceptor               | 添加 Http 抓包拦截处理            |
+| removeInterceptor            | 移除对应 Module Http 抓包拦截     |
+| updateInterceptor            | 更新对应 Module Http 抓包拦截处理   |
+| containsInterceptor          | 是否存在对应 Module Http 抓包拦截   |
+| getModulePath                | 获取指定模块抓包存储路径              |
+| getModuleHttpCaptures        | 获取指定模块所有抓包数据              |
+| utils                        | 对外公开快捷工具类 ( UtilsPublic ) |
 
 
 ## <span id="devcapture">**`dev.capture`**</span>
@@ -109,88 +108,88 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 * **抓包信息封装类 ->** [CaptureInfo.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/DataModel.kt#L67)
 
-| 方法 | 注释 |
-| :- | :- |
-| requestTime | 请求时间 ( 毫秒 ) |
-| requestUrl | 请求链接 |
-| requestMethod | 请求方法 |
-| requestHeader | 请求头信息 |
-| requestBody | 请求数据 |
-| responseTime | 响应时间 ( 毫秒 ) |
-| responseStatus | 响应状态 |
-| responseHeader | 响应头信息 |
-| responseBody | 响应数据 |
-| toJson | 将对象转换为 JSON String |
+| 方法             | 注释                 |
+|:---------------|:-------------------|
+| requestTime    | 请求时间 ( 毫秒 )        |
+| requestUrl     | 请求链接               |
+| requestMethod  | 请求方法               |
+| requestHeader  | 请求头信息              |
+| requestBody    | 请求数据               |
+| responseTime   | 响应时间 ( 毫秒 )        |
+| responseStatus | 响应状态               |
+| responseHeader | 响应头信息              |
+| responseBody   | 响应数据               |
+| toJson         | 将对象转换为 JSON String |
 
 
 * **Http 拦截过滤器 ->** [IHttpFilter.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/interfaces/Interface.kt#L10)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法     | 注释                   |
+|:-------|:---------------------|
 | filter | 是否过滤该 Http 请求不进行抓包存储 |
 
 
 * **Http 抓包接口信息获取 ->** [IHttpCapture.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/interfaces/Interface.kt#L34)
 
-| 方法 | 注释 |
-| :- | :- |
-| getModuleName | 获取模块名 ( 要求唯一性 ) |
-| getEncrypt | 获取抓包数据加密中间层 |
-| getHttpFilter | 获取 Http 拦截过滤器 |
-| isCapture | 是否进行 Http 抓包拦截 |
-| setCapture | 设置是否进行 Http 抓包拦截 |
-| captureRedact | 获取抓包信息隐藏字段 |
-| getModulePath | 获取模块抓包存储路径 |
-| getModuleHttpCaptures | 获取模块所有抓包数据 |
+| 方法                    | 注释               |
+|:----------------------|:-----------------|
+| getModuleName         | 获取模块名 ( 要求唯一性 )  |
+| getEncrypt            | 获取抓包数据加密中间层      |
+| getHttpFilter         | 获取 Http 拦截过滤器    |
+| isCapture             | 是否进行 Http 抓包拦截   |
+| setCapture            | 设置是否进行 Http 抓包拦截 |
+| captureRedact         | 获取抓包信息隐藏字段       |
+| getModulePath         | 获取模块抓包存储路径       |
+| getModuleHttpCaptures | 获取模块所有抓包数据       |
 
 
 * **Http 抓包事件回调 ->** [IHttpCaptureEvent.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/interfaces/Interface.kt#L97)
 
-| 方法 | 注释 |
-| :- | :- |
-| callRequestUrl | 生成请求链接字符串 |
-| callRequestMethod | 生成请求方法字符串 |
-| callRequestHeaders | 生成请求头信息 Map |
-| callRequestBody | 生成请求体信息 Map |
-| callResponseStatus | 生成响应状态 Map |
-| callResponseHeaders | 生成响应头信息 Map |
-| callResponseBodyFailed | 生成错误响应体信息 |
-| callResponseBody | 生成响应体信息 Map |
-| converterRequestBody | 转换请求体信息 Map |
-| callEnd | 抓包结束 |
+| 方法                     | 注释          |
+|:-----------------------|:------------|
+| callRequestUrl         | 生成请求链接字符串   |
+| callRequestMethod      | 生成请求方法字符串   |
+| callRequestHeaders     | 生成请求头信息 Map |
+| callRequestBody        | 生成请求体信息 Map |
+| callResponseStatus     | 生成响应状态 Map  |
+| callResponseHeaders    | 生成响应头信息 Map |
+| callResponseBodyFailed | 生成错误响应体信息   |
+| callResponseBody       | 生成响应体信息 Map |
+| converterRequestBody   | 转换请求体信息 Map |
+| callEnd                | 抓包结束        |
 
 
 * **抓包存储文件 ->** [CaptureFile.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/DataModel.kt#L109)
 
-| 方法 | 注释 |
-| :- | :- |
-| getUrl | getUrl |
-| getMethod | getMethod |
-| isEncrypt | isEncrypt |
-| getTime | getTime |
-| getFileName | getFileName |
-| getModuleName | getModuleName |
-| getHttpCaptureData | 获取请求数据 ( 抓包数据 ) |
-| getCaptureInfo | 获取抓包信息封装类 |
-| toJson | 将对象转换为 JSON String |
-| deleteFile | 删除该对象抓包存储文件 |
-| getFile | 获取该对象抓包存储文件 |
-| getDataFile | 获取该对象抓包数据存储文件 |
+| 方法                 | 注释                 |
+|:-------------------|:-------------------|
+| getUrl             | getUrl             |
+| getMethod          | getMethod          |
+| isEncrypt          | isEncrypt          |
+| getTime            | getTime            |
+| getFileName        | getFileName        |
+| getModuleName      | getModuleName      |
+| getHttpCaptureData | 获取请求数据 ( 抓包数据 )    |
+| getCaptureInfo     | 获取抓包信息封装类          |
+| toJson             | 将对象转换为 JSON String |
+| deleteFile         | 删除该对象抓包存储文件        |
+| getFile            | 获取该对象抓包存储文件        |
+| getDataFile        | 获取该对象抓包数据存储文件      |
 
 
 * **对外公开快捷方法 ->** [UtilsPublic.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCapture/src/main/java/dev/capture/Utils.kt)
 
-| 方法 | 注释 |
-| :- | :- |
-| getStoragePath | 获取抓包存储路径 |
-| getModulePath | 获取指定模块抓包存储路径 |
-| getAllModuleName | 获取全部模块名 |
-| getAllModule | 获取全部模块所有抓包数据 |
-| deleteModule | 删除指定模块抓包数据 |
-| deleteAllModule | 删除全部模块抓包数据 |
-| getModuleFileSize | 获取指定模块抓包文件大小 |
-| getAllModuleFileSize | 获取全部模块抓包文件大小 |
-| getModuleFileLength | 获取指定模块抓包文件大小 |
+| 方法                     | 注释           |
+|:-----------------------|:-------------|
+| getStoragePath         | 获取抓包存储路径     |
+| getModulePath          | 获取指定模块抓包存储路径 |
+| getAllModuleName       | 获取全部模块名      |
+| getAllModule           | 获取全部模块所有抓包数据 |
+| deleteModule           | 删除指定模块抓包数据   |
+| deleteAllModule        | 删除全部模块抓包数据   |
+| getModuleFileSize      | 获取指定模块抓包文件大小 |
+| getAllModuleFileSize   | 获取全部模块抓包文件大小 |
+| getModuleFileLength    | 获取指定模块抓包文件大小 |
 | getAllModuleFileLength | 获取全部模块抓包文件大小 |
 
 
@@ -198,12 +197,12 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 * **OkHttp 抓包工具库 ->** [DevHttpCaptureCompiler.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/DevHttpCaptureCompiler.kt)
 
-| 方法 | 注释 |
-| :- | :- |
-| finishAllActivity | 结束所有 Activity |
-| start | 跳转抓包数据可视化 Activity |
-| putUrlFunction | 添加接口所属功能注释 |
-| removeUrlFunction | 移除接口所属功能注释 |
+| 方法                | 注释                 |
+|:------------------|:-------------------|
+| finishAllActivity | 结束所有 Activity      |
+| start             | 跳转抓包数据可视化 Activity |
+| putUrlFunction    | 添加接口所属功能注释         |
+| removeUrlFunction | 移除接口所属功能注释         |
 
 
 ## <span id="devcapture">**`dev.capture`**</span>
@@ -211,8 +210,8 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 * **接口所属功能注释获取 ->** [UrlFunctionGet.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpCapture/DevHttpCaptureCompiler/src/main/java/dev/capture/UrlFunctionGet.kt)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法            | 注释         |
+|:--------------|:-----------|
 | toUrlFunction | 接口所属功能注释获取 |
 
 

@@ -33,25 +33,24 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 
 ### 为什么不用 Gradle
 
-| 比较内容 | DevEnvironment | Gradle  Application Id 不同 | Gradle Application Id 相同 |
-|:-:|:--:|:--:|:--:|
-| 运行时切换环境 | :heavy_check_mark: | :x: | :x: |
-| 切换环境回调 | :heavy_check_mark: | :x: | :x: |
-| 切换环境逻辑 | 自动生成 | 需要自己实现 | 需要自己实现 |
-| N 套环境打包数量 | 1 个 | N 个 | N 个 |
-| 多套环境同时安装 | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| 支付等 SDK 包名校验 | :heavy_check_mark: | :x: | :heavy_check_mark: |
-| 多模块环境配置 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| 测试环境不泄露 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| …… | —— | —— | —— |
+|     比较内容     |   DevEnvironment   | Gradle  Application Id 不同 | Gradle Application Id 相同 |
+|:------------:|:------------------:|:-------------------------:|:------------------------:|
+|   运行时切换环境    | :heavy_check_mark: |            :x:            |           :x:            |
+|    切换环境回调    | :heavy_check_mark: |            :x:            |           :x:            |
+|    切换环境逻辑    |        自动生成        |          需要自己实现           |          需要自己实现          |
+|  N 套环境打包数量   |        1 个         |            N 个            |           N 个            |
+|   多套环境同时安装   | :heavy_check_mark: |    :heavy_check_mark:     |           :x:            |
+| 支付等 SDK 包名校验 | :heavy_check_mark: |            :x:            |    :heavy_check_mark:    |
+|   多模块环境配置    | :heavy_check_mark: |    :heavy_check_mark:     |    :heavy_check_mark:    |
+|   测试环境不泄露    | :heavy_check_mark: |    :heavy_check_mark:     |    :heavy_check_mark:    |
+|      ……      |         ——         |            ——             |            ——            |
 
 
 ### 最新版本
 
-module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
-:---:|:---:|:---:|:---:
-version | [![][maven_svg]][maven] | [![][maven_svg]][maven] | [![][maven_svg]][maven]
-
+| module  |     DevEnvironment      | DevEnvironmentCompiler  | DevEnvironmentCompilerRelease |
+|:-------:|:-----------------------:|:-----------------------:|:-----------------------------:|
+| version | [![][maven_svg]][maven] | [![][maven_svg]][maven] |    [![][maven_svg]][maven]    |
 
 ### Gradle
 
@@ -100,21 +99,21 @@ dependencies {
 
 * **环境配置工具类 DevEnvironment.java**【自动生成】
 
-| 方法 | 注释 |
-| :- | :- |
-| isRelease | 是否使用 releaseAnnotationProcessor 构建 |
-| getModuleList | 获取全部 ModuleBean 配置列表 |
-| addOnEnvironmentChangeListener | 添加模块环境改变触发事件 |
-| removeOnEnvironmentChangeListener | 移除模块环境改变触发事件 |
-| clearOnEnvironmentChangeListener | 清空模块环境改变触发事件 |
-| reset | 重置操作 |
-| getIMModule | 获取 IM [ Module ] Bean |
-| getIMReleaseEnvironment | 获取 IM [ Module ] Release Environment Bean |
-| getIMEnvironment | 获取 IM [ Module ] Selected Environment Bean |
-| getIMEnvironmentValue | 获取 IM [ Module ] Selected Environment Value |
-| setIMEnvironment | 设置 IM [ Module ] Selected Environment Bean |
-| resetIM | 重置 IM [ Module ] Selected Environment Bean |
-| isIMAnnotation | 是否 IM [ Module ] Annotation Environment Bean |
+| 方法                                | 注释                                           |
+|:----------------------------------|:---------------------------------------------|
+| isRelease                         | 是否使用 releaseAnnotationProcessor 构建           |
+| getModuleList                     | 获取全部 ModuleBean 配置列表                         |
+| addOnEnvironmentChangeListener    | 添加模块环境改变触发事件                                 |
+| removeOnEnvironmentChangeListener | 移除模块环境改变触发事件                                 |
+| clearOnEnvironmentChangeListener  | 清空模块环境改变触发事件                                 |
+| reset                             | 重置操作                                         |
+| getIMModule                       | 获取 IM [ Module ] Bean                        |
+| getIMReleaseEnvironment           | 获取 IM [ Module ] Release Environment Bean    |
+| getIMEnvironment                  | 获取 IM [ Module ] Selected Environment Bean   |
+| getIMEnvironmentValue             | 获取 IM [ Module ] Selected Environment Value  |
+| setIMEnvironment                  | 设置 IM [ Module ] Selected Environment Bean   |
+| resetIM                           | 重置 IM [ Module ] Selected Environment Bean   |
+| isIMAnnotation                    | 是否 IM [ Module ] Annotation Environment Bean |
 
 ```java
 /**

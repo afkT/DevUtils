@@ -56,98 +56,98 @@ implementation 'io.github.afkt:DevHttpManager:1.0.8'
 
 * **DevHttpManager 管理库方法 ->** [DevHttpManager.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法                           | 注释                    |
+|:-----------------------------|:----------------------|
 | getDevHttpManagerVersionCode | 获取 DevHttpManager 版本号 |
-| getDevHttpManagerVersion | 获取 DevHttpManager 版本 |
-| getDevAppVersionCode | 获取 DevApp 版本号 |
-| getDevAppVersion | 获取 DevApp 版本 |
+| getDevHttpManagerVersion     | 获取 DevHttpManager 版本  |
+| getDevAppVersionCode         | 获取 DevApp 版本号         |
+| getDevAppVersion             | 获取 DevApp 版本          |
 
 
 * **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
 
-| 方法 | 注释 |
-| :- | :- |
-| getOkHttpBuilder | 获取全局 OkHttp Builder 接口对象 |
-| setOkHttpBuilder | 设置全局 OkHttp Builder 接口对象 |
-| removeOkHttpBuilder | 移除全局 OkHttp Builder 接口对象 |
-| getRetrofitResetListener | 获取全局 Retrofit 重新构建监听事件 |
-| setRetrofitResetListener | 设置全局 Retrofit 重新构建监听事件 |
-| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件 |
-| getOperation | 获取 Retrofit Operation 操作对象 |
-| containsOperation | 通过 Key 判断是否存在 Retrofit Operation 操作对象 |
-| putRetrofitBuilder | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
-| removeRetrofitBuilder | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
-| reset | 重置处理 ( 重新构建 Retrofit ) |
-| resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
+| 方法                          | 注释                                             |
+|:----------------------------|:-----------------------------------------------|
+| getOkHttpBuilder            | 获取全局 OkHttp Builder 接口对象                       |
+| setOkHttpBuilder            | 设置全局 OkHttp Builder 接口对象                       |
+| removeOkHttpBuilder         | 移除全局 OkHttp Builder 接口对象                       |
+| getRetrofitResetListener    | 获取全局 Retrofit 重新构建监听事件                         |
+| setRetrofitResetListener    | 设置全局 Retrofit 重新构建监听事件                         |
+| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件                         |
+| getOperation                | 获取 Retrofit Operation 操作对象                     |
+| containsOperation           | 通过 Key 判断是否存在 Retrofit Operation 操作对象          |
+| putRetrofitBuilder          | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
+| removeRetrofitBuilder       | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
+| reset                       | 重置处理 ( 重新构建 Retrofit )                         |
+| resetAll                    | 重置处理 ( 重新构建全部 Retrofit )                       |
 
 
 * **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
-| 方法 | 注释 |
-| :- | :- |
-| getDefault | 获取全局默认 Progress Operation 操作对象 |
-| getOperation | 获取 Progress Operation 操作对象 |
-| containsOperation | 通过 Key 判断是否存在 Progress Operation 操作对象 |
-| removeOperation | 通过 Key 解绑并返回 Operation 操作对象 |
-| clearOperation | 清空所有 Progress Operation 操作对象 |
-| putOperationTypeAll | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
-| putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
-| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
+| 方法                       | 注释                                    |
+|:-------------------------|:--------------------------------------|
+| getDefault               | 获取全局默认 Progress Operation 操作对象        |
+| getOperation             | 获取 Progress Operation 操作对象            |
+| containsOperation        | 通过 Key 判断是否存在 Progress Operation 操作对象 |
+| removeOperation          | 通过 Key 解绑并返回 Operation 操作对象           |
+| clearOperation           | 清空所有 Progress Operation 操作对象          |
+| putOperationTypeAll      | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
+| putOperationTypeRequest  | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )  |
+| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )  |
 
 
 ## Retrofit 多 BaseUrl 管理功能
 
 * **RetrofitManager 方法 ->** [DevHttpManager.RM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L77)
 
-| 方法 | 注释 |
-| :- | :- |
-| getOkHttpBuilder | 获取全局 OkHttp Builder 接口对象 |
-| setOkHttpBuilder | 设置全局 OkHttp Builder 接口对象 |
-| removeOkHttpBuilder | 移除全局 OkHttp Builder 接口对象 |
-| getRetrofitResetListener | 获取全局 Retrofit 重新构建监听事件 |
-| setRetrofitResetListener | 设置全局 Retrofit 重新构建监听事件 |
-| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件 |
-| getOperation | 获取 Retrofit Operation 操作对象 |
-| containsOperation | 通过 Key 判断是否存在 Retrofit Operation 操作对象 |
-| putRetrofitBuilder | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
-| removeRetrofitBuilder | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
-| reset | 重置处理 ( 重新构建 Retrofit ) |
-| resetAll | 重置处理 ( 重新构建全部 Retrofit ) |
+| 方法                          | 注释                                             |
+|:----------------------------|:-----------------------------------------------|
+| getOkHttpBuilder            | 获取全局 OkHttp Builder 接口对象                       |
+| setOkHttpBuilder            | 设置全局 OkHttp Builder 接口对象                       |
+| removeOkHttpBuilder         | 移除全局 OkHttp Builder 接口对象                       |
+| getRetrofitResetListener    | 获取全局 Retrofit 重新构建监听事件                         |
+| setRetrofitResetListener    | 设置全局 Retrofit 重新构建监听事件                         |
+| removeRetrofitResetListener | 移除全局 Retrofit 重新构建监听事件                         |
+| getOperation                | 获取 Retrofit Operation 操作对象                     |
+| containsOperation           | 通过 Key 判断是否存在 Retrofit Operation 操作对象          |
+| putRetrofitBuilder          | 通过 Key 绑定存储 RetrofitBuilder 并返回 Operation 操作对象 |
+| removeRetrofitBuilder       | 通过 Key 解绑移除 RetrofitBuilder 并返回 Operation 操作对象 |
+| reset                       | 重置处理 ( 重新构建 Retrofit )                         |
+| resetAll                    | 重置处理 ( 重新构建全部 Retrofit )                       |
 
 ### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager)
 
 * **全局 OkHttp Builder 接口 ->** [OkHttpBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/OkHttpBuilder.kt)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法                  | 注释                |
+|:--------------------|:------------------|
 | createOkHttpBuilder | 创建 OkHttp Builder |
 
 
 * **全局 Retrofit 重新构建监听事件 ->** [OnRetrofitResetListener.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/OnRetrofitResetListener.kt)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法            | 注释      |
+|:--------------|:--------|
 | onResetBefore | 重新构建前调用 |
-| onReset | 重新构建后调用 |
+| onReset       | 重新构建后调用 |
 
 
 * **Retrofit Builder 接口 ->** [RetrofitBuilder.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/RetrofitBuilder.kt)
 
-| 方法 | 注释 |
-| :- | :- |
+| 方法                    | 注释                  |
+|:----------------------|:--------------------|
 | createRetrofitBuilder | 创建 Retrofit Builder |
-| onResetBefore | 重新构建前调用 |
-| onReset | 重新构建后调用 |
+| onResetBefore         | 重新构建前调用             |
+| onReset               | 重新构建后调用             |
 
 
 * **Retrofit Operation ->** [RetrofitOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/manager/RetrofitOperation.kt)
 
-| 方法 | 注释 |
-| :- | :- |
-| getRetrofit | 获取 Retrofit 对象 |
-| create | 通过 Retrofit 代理创建 Service |
-| reset | 重置处理 ( 重新构建 Retrofit ) |
+| 方法             | 注释                                   |
+|:---------------|:-------------------------------------|
+| getRetrofit    | 获取 Retrofit 对象                       |
+| create         | 通过 Retrofit 代理创建 Service             |
+| reset          | 重置处理 ( 重新构建 Retrofit )               |
 | resetAndCreate | 重置处理 ( 重新构建 Retrofit ) 并代理创建 Service |
 
 
@@ -447,49 +447,49 @@ private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
 
 * **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
-| 方法 | 注释 |
-| :- | :- |
-| getDefault | 获取全局默认 Progress Operation 操作对象 |
-| getOperation | 获取 Progress Operation 操作对象 |
-| containsOperation | 通过 Key 判断是否存在 Progress Operation 操作对象 |
-| removeOperation | 通过 Key 解绑并返回 Operation 操作对象 |
-| clearOperation | 清空所有 Progress Operation 操作对象 |
-| putOperationTypeAll | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
-| putOperationTypeRequest | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 ) |
-| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 ) |
+| 方法                       | 注释                                    |
+|:-------------------------|:--------------------------------------|
+| getDefault               | 获取全局默认 Progress Operation 操作对象        |
+| getOperation             | 获取 Progress Operation 操作对象            |
+| containsOperation        | 通过 Key 判断是否存在 Progress Operation 操作对象 |
+| removeOperation          | 通过 Key 解绑并返回 Operation 操作对象           |
+| clearOperation           | 清空所有 Progress Operation 操作对象          |
+| putOperationTypeAll      | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
+| putOperationTypeRequest  | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )  |
+| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )  |
 
 ### 具体实现代码 [目录](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress)
 
 * **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
 
-| 方法 | 注释 |
-| :- | :- |
-| setPlanType | 设置 Progress Operation 实现方式类型 |
-| wrap | 进行拦截器包装 ( 必须调用 ) |
-| isUseWrap | 是否已调用 wrap 方法 |
-| isDeprecated | 是否废弃不使用状态 |
-| isDefault | 是否全局默认操作对象 |
-| isTypeAll | 是否监听上下行 |
-| isTypeRequest | 是否监听上行 |
-| isTypeResponse | 是否监听下行 |
-| getPlanType | 获取 Progress Operation 实现方式类型 |
-| getRefreshTime | 获取回调刷新时间 ( 毫秒 ) |
-| setRefreshTime | 设置回调刷新时间 ( 毫秒 ) |
-| resetRefreshTime | 重置回调刷新时间 ( 毫秒 ) |
-| getCallback | 获取全局 Progress Callback |
-| setCallback | 设置全局 Progress Callback |
-| removeCallback | 移除全局 Progress Callback |
-| getHandler | 获取回调 UI 线程通知 Handler |
-| setHandler | 设置回调 UI 线程通知 Handler |
-| resetHandler | 重置回调 UI 线程通知 Handler |
-| removeSelfFromManager | 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态 |
-| recycleListener | 释放指定监听事件 |
-| addRequestListener | 添加指定 url 上行监听事件 |
-| clearRequestListener | 清空指定 url 上行所有监听事件 |
-| removeRequestListener | 移除指定 url 上行监听事件 |
-| addResponseListener | 添加指定 url 下行监听事件 |
-| clearResponseListener | 清空指定 url 下行所有监听事件 |
-| removeResponseListener | 移除指定 url 下行监听事件 |
+| 方法                     | 注释                                 |
+|:-----------------------|:-----------------------------------|
+| setPlanType            | 设置 Progress Operation 实现方式类型       |
+| wrap                   | 进行拦截器包装 ( 必须调用 )                   |
+| isUseWrap              | 是否已调用 wrap 方法                      |
+| isDeprecated           | 是否废弃不使用状态                          |
+| isDefault              | 是否全局默认操作对象                         |
+| isTypeAll              | 是否监听上下行                            |
+| isTypeRequest          | 是否监听上行                             |
+| isTypeResponse         | 是否监听下行                             |
+| getPlanType            | 获取 Progress Operation 实现方式类型       |
+| getRefreshTime         | 获取回调刷新时间 ( 毫秒 )                    |
+| setRefreshTime         | 设置回调刷新时间 ( 毫秒 )                    |
+| resetRefreshTime       | 重置回调刷新时间 ( 毫秒 )                    |
+| getCallback            | 获取全局 Progress Callback             |
+| setCallback            | 设置全局 Progress Callback             |
+| removeCallback         | 移除全局 Progress Callback             |
+| getHandler             | 获取回调 UI 线程通知 Handler               |
+| setHandler             | 设置回调 UI 线程通知 Handler               |
+| resetHandler           | 重置回调 UI 线程通知 Handler               |
+| removeSelfFromManager  | 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态 |
+| recycleListener        | 释放指定监听事件                           |
+| addRequestListener     | 添加指定 url 上行监听事件                    |
+| clearRequestListener   | 清空指定 url 上行所有监听事件                  |
+| removeRequestListener  | 移除指定 url 上行监听事件                    |
+| addResponseListener    | 添加指定 url 下行监听事件                    |
+| clearResponseListener  | 清空指定 url 下行所有监听事件                  |
+| removeResponseListener | 移除指定 url 下行监听事件                    |
 
 
 ## OkHttp 上传、下载进度监听使用
