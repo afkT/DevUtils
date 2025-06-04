@@ -1595,6 +1595,9 @@ DevUtils.openDebug();
 | geFileToListFromRaw | 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 ) |
 | saveAssetsFormFile | 获取 Assets 资源文件数据并保存到本地 |
 | saveRawFormFile | 获取 Raw 资源文件数据并保存到本地 |
+| createFromAsset | 获取 Assets 字体资源文件并创建 Typeface |
+| createFromFile | 通过字体资源文件并创建 Typeface |
+| create | 获取系统字体并设置字体样式 |
 
 
 * **资源文件工具类 ->** [ResourceUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ResourceUtils.java)
@@ -1665,6 +1668,9 @@ DevUtils.openDebug();
 | geFileToListFromRaw | 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 ) |
 | saveAssetsFormFile | 获取 Assets 资源文件数据并保存到本地 |
 | saveRawFormFile | 获取 Raw 资源文件数据并保存到本地 |
+| createFromAsset | 获取 Assets 字体资源文件并创建 Typeface |
+| createFromFile | 通过字体资源文件并创建 Typeface |
+| create | 获取系统字体并设置字体样式 |
 
 
 * **ROM 相关工具类 ->** [ROMUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ROMUtils.java)
@@ -2269,6 +2275,12 @@ DevUtils.openDebug();
 | reverseVisibilitys | 反转 View 显示的状态 |
 | toggleView | 切换 View 状态 |
 | toggleViews | 切换 View 状态 |
+| viewVisible | 设置 View 显示状态 |
+| viewVisibles | 设置 View 显示状态 |
+| viewGone | 设置 View 隐藏状态 |
+| viewGones | 设置 View 隐藏状态 |
+| viewInVisible | 设置 View 隐藏占位状态 |
+| viewInVisibles | 设置 View 隐藏占位状态 |
 | removeSelfFromParent | 把自身从父 View 中移除 |
 | isTouchInView | 判断触点是否落在该 View 上 |
 | requestLayoutParent | View 请求更新 |
@@ -2569,6 +2581,9 @@ DevUtils.openDebug();
 | geFileToListFromRaw | 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 ) |
 | saveAssetsFormFile | 获取 Assets 资源文件数据并保存到本地 |
 | saveRawFormFile | 获取 Raw 资源文件数据并保存到本地 |
+| createFromAsset | 获取 Assets 字体资源文件并创建 Typeface |
+| createFromFile | 通过字体资源文件并创建 Typeface |
+| create | 获取系统字体并设置字体样式 |
 
 
 * **屏幕传感器辅助类 ( 监听是否横竖屏 ) ->** [ScreenSensorAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/ScreenSensorAssist.java)
@@ -3419,6 +3434,12 @@ DevUtils.openDebug();
 | toggleVisibilitys | 切换 View 显示的状态 |
 | reverseVisibilitys | 反转 View 显示的状态 |
 | toggleViews | 切换 View 状态 |
+| viewVisible | 设置 View 显示状态 |
+| viewVisibles | 设置 View 显示状态 |
+| viewGone | 设置 View 隐藏状态 |
+| viewGones | 设置 View 隐藏状态 |
+| viewInVisible | 设置 View 隐藏占位状态 |
+| viewInVisibles | 设置 View 隐藏占位状态 |
 | removeSelfFromParent | 把自身从父 View 中移除 |
 | requestLayoutParent | View 请求更新 |
 | measureView | 测量 View |
@@ -3649,6 +3670,12 @@ DevUtils.openDebug();
 | toggleVisibilitys | 切换 View 显示的状态 |
 | reverseVisibilitys | 反转 View 显示的状态 |
 | toggleViews | 切换 View 状态 |
+| viewVisible | 设置 View 显示状态 |
+| viewVisibles | 设置 View 显示状态 |
+| viewGone | 设置 View 隐藏状态 |
+| viewGones | 设置 View 隐藏状态 |
+| viewInVisible | 设置 View 隐藏占位状态 |
+| viewInVisibles | 设置 View 隐藏占位状态 |
 | removeSelfFromParent | 把自身从父 View 中移除 |
 | requestLayoutParent | View 请求更新 |
 | measureView | 测量 View |
@@ -3949,6 +3976,12 @@ DevUtils.openDebug();
 | toggleVisibilitys | 切换 View 显示的状态 |
 | reverseVisibilitys | 反转 View 显示的状态 |
 | toggleViews | 切换 View 状态 |
+| viewVisible | 设置 View 显示状态 |
+| viewVisibles | 设置 View 显示状态 |
+| viewGone | 设置 View 隐藏状态 |
+| viewGones | 设置 View 隐藏状态 |
+| viewInVisible | 设置 View 隐藏占位状态 |
+| viewInVisibles | 设置 View 隐藏占位状态 |
 | removeSelfFromParent | 把自身从父 View 中移除 |
 | requestLayoutParent | View 请求更新 |
 | measureView | 测量 View |
@@ -4172,6 +4205,12 @@ DevUtils.openDebug();
 | toggleVisibilitys | 切换 View 显示的状态 |
 | reverseVisibilitys | 反转 View 显示的状态 |
 | toggleViews | 切换 View 状态 |
+| viewVisible | 设置 View 显示状态 |
+| viewVisibles | 设置 View 显示状态 |
+| viewGone | 设置 View 隐藏状态 |
+| viewGones | 设置 View 隐藏状态 |
+| viewInVisible | 设置 View 隐藏占位状态 |
+| viewInVisibles | 设置 View 隐藏占位状态 |
 | removeSelfFromParent | 把自身从父 View 中移除 |
 | requestLayoutParent | View 请求更新 |
 | measureView | 测量 View |
@@ -4430,6 +4469,7 @@ DevUtils.openDebug();
 | bitmapToDrawable | Bitmap 转 Drawable |
 | byteToDrawable | byte[] 转 Drawable |
 | drawableToBitmap | Drawable 转 Bitmap |
+| colorDrawableToBitmap | ColorDrawable 转 Bitmap |
 | setBounds | 设置 Drawable 绘制区域 |
 
 
