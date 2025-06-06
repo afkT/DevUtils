@@ -4,6 +4,7 @@ import afkt.httpmanager.use.base.BaseViewModel
 import afkt.httpmanager.use.feature.media.data.api.MediaAPI
 import afkt.httpmanager.use.feature.media.data.model.MovieDetailBean
 import afkt.httpmanager.use.feature.media.data.model.PhotoBean
+import afkt.httpmanager.use.network.helper.ResponseHelper
 import afkt.httpmanager.use.network.model.ServiceException
 import dev.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.retrofit.launchExecuteRequest
@@ -13,6 +14,9 @@ import dev.retrofit.launchExecuteRequest
  * @author Ttt
  */
 class RMRepository {
+
+    // 日志 TAG
+    private val TAG = RMRepository::class.java.simpleName
 
     /**
      * 获取摄影图片列表
@@ -57,6 +61,8 @@ class RMRepository {
             MediaAPI.api().getMovieDetail()
         }, start = {
             startBlock.invoke()
+            // 打印日志
+            ResponseHelper.startRequest(TAG)
         }, success = { result ->
             result.hiIfNotNull {
                 if (it.isSuccess()) {
@@ -65,10 +71,16 @@ class RMRepository {
                     throw ServiceException(it.getMessage())
                 }
             }
+//            // 打印日志
+//            ResponseHelper.successResponse(TAG, result)
         }, error = {
             errorBlock.invoke(it)
+            // 打印日志
+            ResponseHelper.errorResponse(TAG, it)
         }, finish = {
             finishBlock.invoke()
+            // 打印日志
+            ResponseHelper.finishRequest(TAG)
         })
     }
 }

@@ -62,6 +62,10 @@ class MediaAPI private constructor() {
     // ==================
 
     private fun apiBaseUrl(): HttpUrl {
+        /**
+         * 如果未使用 DevEnvironment 库
+         * 可以通过数据库、MMKV、静态变量等方式进行修改、读取等
+         */
         return DevEnvironment.getMediaEnvironmentValue(
             HttpCore.context()
         ).toHttpUrl()
