@@ -248,6 +248,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 16.0 版本及以上
+     * @return 是否在 16.0 版本及以上
+     */
+    public static boolean isBaklava() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
@@ -332,6 +340,8 @@ public final class VersionUtils {
                 return "Android 14.0";
             case 35:
                 return "Android 15.0";
+            case 36:
+                return "Android 16.0";
         }
         return "unknown";
     }
@@ -421,6 +431,8 @@ public final class VersionUtils {
                 return "Android UpsideDownCake";
             case 35:
                 return "Android VanillaIceCream";
+            case 36:
+                return "Android Baklava";
         }
         return "unknown";
     }

@@ -2,11 +2,11 @@ package afkt.retrofit.use.simple
 
 import afkt.retrofit.use.BR
 import afkt.retrofit.use.R
-import afkt.retrofit.use.base.AppApplication
 import afkt.retrofit.use.base.BaseFragment
 import afkt.retrofit.use.databinding.FragmentSimpleBinding
 import afkt.retrofit.use.helper.ResponseHelper
 import androidx.databinding.Observable
+import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 
@@ -16,7 +16,7 @@ class SimpleFragment : BaseFragment<FragmentSimpleBinding, SimpleViewModel>(
             frg.apply {
                 binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
                     override fun onLeftClick(titleBar: TitleBar) {
-                        AppApplication.viewModel()?.postBackPressed()
+                        findNavController().popBackStack()
                     }
                 })
             }
