@@ -7,4 +7,9 @@
         android:id="@+id/MainFragment"
         android:name="afkt.httpmanager.use.MainFragment"
         android:label="MainFragment" />
+
+    <fragment
+        android:id="@+id/RMFragment"
+        android:name="afkt.httpmanager.use.feature.media.RMFragment"
+        android:label="RMFragment" />
 </navigation>

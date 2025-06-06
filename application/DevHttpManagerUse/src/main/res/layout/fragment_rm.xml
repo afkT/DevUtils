@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
-            type="afkt.httpmanager.use.MainViewModel" />
+            type="afkt.httpmanager.use.feature.media.RMViewModel" />
     </data>
 
     <LinearLayout
@@ -16,10 +15,11 @@
         android:orientation="vertical">
 
         <com.hjq.bar.TitleBar
-            android:layout_width="match_parent"
+            android:id="@+id/vid_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:leftIcon="@null"
-            app:title="@string/str_title"
+            app:lineVisible="false"
+            app:title="Retrofit 多 BaseUrl 管理示例"
             app:titleSize="18.0sp"
             app:titleStyle="bold" />
 
@@ -38,27 +38,18 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Title"
-                    android:text="@{viewModel.devHttpManagerVersion}"
-                    tools:text="DevHttpManager:Version" />
-
-                <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.SubTitle"
-                    android:text="Retrofit Manager - RM" />
+                    android:text="媒体信息获取" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(1)}"
-                    android:text="Retrofit 多 BaseUrl 管理示例" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
-                    android:text="Progress Manager - PM" />
+                    android:onClick="@{(v)->viewModel.clickPhotoList.invoke()}"
+                    android:text="获取摄影图片列表" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickNavigate.invoke(2)}"
-                    android:text="OkHttp 上传、下载进度监听示例" />
+                    android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
+                    android:text="获取电影详情信息" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

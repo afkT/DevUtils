@@ -23,17 +23,7 @@ import okhttp3.*
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
-/**
- * detail: 整个 App ViewModel
- * @author Ttt
- */
-class AppViewModel : BaseViewModel() {
-
-    val page = AtomicInteger()
-
-    // ===============
-    // = MainFragment =
-    // ===============
+class MainViewModel : BaseViewModel() {
 
     // DevHttpCapture:Version
     val devHttpCaptureVersion = ObservableField(
@@ -43,6 +33,8 @@ class AppViewModel : BaseViewModel() {
     // ==============
     // = 统一请求方法 =
     // ==============
+
+    val page = AtomicInteger()
 
     /**
      * 获取文章列表

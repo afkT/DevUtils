@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="afkt.httpcapture.use.AppViewModel" />
+            type="afkt.httpcapture.use.MainViewModel" />
     </data>
 
     <LinearLayout
