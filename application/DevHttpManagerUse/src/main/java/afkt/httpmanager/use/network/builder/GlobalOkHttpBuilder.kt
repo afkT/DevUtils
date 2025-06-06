@@ -2,7 +2,6 @@ package afkt.httpmanager.use.network.builder
 
 import afkt.httpmanager.use.network.HttpCore
 import dev.capture.interceptor.SimpleInterceptor
-import dev.expand.engine.log.log_iTag
 import dev.expand.engine.log.log_isPrintLog
 import dev.expand.engine.log.log_jsonTag
 import dev.http.manager.OkHttpBuilder
@@ -25,7 +24,9 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
      */
     override fun createOkHttpBuilder(key: String): OkHttpClient.Builder {
         if (log_isPrintLog()) {
-            HttpCore.TAG.log_iTag(message = "[${key}] -【Global】OkHttpBuilder.createOkHttpBuilder()")
+            HttpCore.logProcess(
+                key, "【Global】OkHttpBuilder.createOkHttpBuilder()"
+            )
         }
         return commonOkHttpBuilder(key)
     }
@@ -47,13 +48,13 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
             // ==========
 
             // 全局的响应超时时间 ( 秒 )
-            callTimeout(15, TimeUnit.SECONDS)
+            callTimeout(6, TimeUnit.SECONDS)
             // 全局的读取超时时间
-            readTimeout(15, TimeUnit.SECONDS)
+            readTimeout(6, TimeUnit.SECONDS)
             // 全局的写入超时时间
-            writeTimeout(15, TimeUnit.SECONDS)
+            writeTimeout(6, TimeUnit.SECONDS)
             // 全局的连接超时时间
-            connectTimeout(15, TimeUnit.SECONDS)
+            connectTimeout(6, TimeUnit.SECONDS)
 
             // =============
             // = 不同版本构建 =
@@ -82,7 +83,9 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
         builder: OkHttpClient.Builder
     ) {
         if (log_isPrintLog()) {
-            HttpCore.TAG.log_iTag(message = "[${key}] -【Global】OkHttpBuilder.releaseOkHttpBuilder()")
+            HttpCore.logProcess(
+                key, "【Global】OkHttpBuilder.releaseOkHttpBuilder()"
+            )
         }
         builder.apply {}
     }
@@ -101,7 +104,9 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
         builder: OkHttpClient.Builder
     ) {
         if (log_isPrintLog()) {
-            HttpCore.TAG.log_iTag(message = "[${key}] -【Global】OkHttpBuilder.debugOkHttpBuilder()")
+            HttpCore.logProcess(
+                key, "【Global】OkHttpBuilder.debugOkHttpBuilder()"
+            )
         }
         builder.apply {
             // 设置简单的抓包回调拦截器 ( 无存储逻辑 )

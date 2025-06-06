@@ -50,6 +50,34 @@
                     style="@style/ViewTheme.Base_Button"
                     android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
                     android:text="获取电影详情信息" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="BaseUrl 切换" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickReleaseBaseUrl.invoke()}"
+                    android:text="切换【有效】环境" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickErrorBaseUrl.invoke()}"
+                    android:text="切换【无效】环境" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="RetrofitOperation" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickRetrofitReset.invoke()}"
+                    android:text="重新构建 Retrofit 方式" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickRetrofitManager.invoke()}"
+                    android:text="Retrofit Manager 操作方法" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

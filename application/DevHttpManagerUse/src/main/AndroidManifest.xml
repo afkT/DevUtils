@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="afkt.httpmanager.use">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".base.AppApplication"
         android:allowBackup="true"

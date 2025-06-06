@@ -3,7 +3,6 @@ package afkt.httpmanager.use.feature.media.data.api
 import afkt.httpmanager.use.network.HttpCore
 import dev.DevHttpManager
 import dev.environment.DevEnvironment
-import dev.expand.engine.log.log_iTag
 import dev.expand.engine.log.log_isPrintLog
 import dev.http.manager.RetrofitBuilder
 import dev.http.manager.RetrofitOperation
@@ -18,10 +17,10 @@ import retrofit2.Retrofit
  */
 class MediaAPI private constructor() {
 
-    // Media API Tag Key
-    private val NAME = MediaAPI::class.java.simpleName
-
     companion object {
+
+        // Media API Tag Key
+        val NAME = MediaAPI::class.java.simpleName
 
         private val instance: MediaAPI by lazy { MediaAPI() }
 
@@ -108,7 +107,9 @@ class MediaAPI private constructor() {
                 okHttp: OkHttpClient.Builder?
             ): Retrofit.Builder {
                 if (log_isPrintLog()) {
-                    HttpCore.TAG.log_iTag(message = "[${NAME}] -【Custom】RetrofitBuilder.createRetrofitBuilder()")
+                    HttpCore.logProcess(
+                        NAME, "【Custom】RetrofitBuilder.createRetrofitBuilder()"
+                    )
                 }
                 return HttpCore.createRetrofitBuilder(
                     httpUrl = httpUrl ?: apiBaseUrl(),
@@ -131,7 +132,9 @@ class MediaAPI private constructor() {
                 oldRetrofit: Retrofit?
             ) {
                 if (log_isPrintLog()) {
-                    HttpCore.TAG.log_iTag(message = "[${NAME}] -【Custom】RetrofitBuilder.onResetBefore()")
+                    HttpCore.logProcess(
+                        NAME, "【Custom】RetrofitBuilder.onResetBefore()"
+                    )
                 }
             }
 
@@ -146,11 +149,45 @@ class MediaAPI private constructor() {
                 newRetrofit: Retrofit?
             ) {
                 if (log_isPrintLog()) {
-                    HttpCore.TAG.log_iTag(message = "[${NAME}] -【Custom】RetrofitBuilder.onReset()")
+                    HttpCore.logProcess(
+                        NAME, "【Custom】RetrofitBuilder.onReset()"
+                    )
                 }
                 // 重新构建后创建新的代理对象
                 createAPI()
             }
+        }
+    }
+}
+
+// =======================
+// = MediaAPI 切换环境方法 =
+// =======================
+
+/**
+ * 设置 Media 模块 release environment baseUrl
+ * @param reset 是否通知重新构建 Retrofit
+ */
+fun MediaAPI.Companion.updateReleaseEnvironment(reset: Boolean = true) {
+    val newEnvironment = DevEnvironment.getMediaReleaseEnvironment()
+    // 切换 Release 环境
+    DevEnvironment.setMediaEnvironment(HttpCore.context(), newEnvironment)
+    // 通知重新构建 Retrofit
+    if (reset) operation().reset()
+}
+
+/**
+ * 设置 Media 模块 debug environment baseUrl
+ * @param reset 是否通知重新构建 Retrofit
+ */
+fun MediaAPI.Companion.updateDebugEnvironment(reset: Boolean = true) {
+    DevEnvironment.getMediaModule().environments.forEach { bean ->
+        if ("debug".equals(bean.name, true)) {
+            val newEnvironment = bean
+            // 切换环境
+            DevEnvironment.setMediaEnvironment(HttpCore.context(), newEnvironment)
+            // 通知重新构建 Retrofit
+            if (reset) operation().reset()
         }
     }
 }

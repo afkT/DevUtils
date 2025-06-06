@@ -6,6 +6,7 @@ import afkt.httpmanager.use.network.builder.GlobalRetrofitResetListener
 import android.content.Context
 import dev.DevHttpManager
 import dev.DevUtils
+import dev.expand.engine.log.log_iTag
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.OnRetrofitResetListener
 import dev.http.manager.RetrofitBuilder
@@ -34,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object HttpCore {
 
     // 日志 TAG
-    val TAG = HttpCore::class.java.simpleName
+    private val TAG = HttpCore::class.java.simpleName
 
     // 全局 OkHttp Builder
     private val mOkHttpBuilderGlobal = GlobalOkHttpBuilder()
@@ -116,6 +117,22 @@ object HttpCore {
             // 服务器地址
             baseUrl(httpUrl)
         }
+    }
+
+    // ===================
+    // = HttpCore 流程日志 =
+    // ===================
+
+    /**
+     * Log process
+     * @param key Module Key
+     * @param message Log Message
+     */
+    fun logProcess(
+        key: String,
+        message: String
+    ) {
+        TAG.log_iTag(message = "[${key}] -${message}")
     }
 }
 

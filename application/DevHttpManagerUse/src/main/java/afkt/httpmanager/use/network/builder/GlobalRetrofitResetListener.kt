@@ -1,7 +1,6 @@
 package afkt.httpmanager.use.network.builder
 
 import afkt.httpmanager.use.network.HttpCore
-import dev.expand.engine.log.log_iTag
 import dev.expand.engine.log.log_isPrintLog
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.OnRetrofitResetListener
@@ -32,7 +31,9 @@ class GlobalRetrofitResetListener : OnRetrofitResetListener {
         oldRetrofit: Retrofit?
     ) {
         if (log_isPrintLog()) {
-            HttpCore.TAG.log_iTag(message = "[${key}] -【Global】OnRetrofitResetListener.onResetBefore()")
+            HttpCore.logProcess(
+                key, "【Global】OnRetrofitResetListener.onResetBefore()"
+            )
         }
         oldRetrofit?.let { retrofit ->
             val factory = retrofit.callFactory()
@@ -54,7 +55,9 @@ class GlobalRetrofitResetListener : OnRetrofitResetListener {
         newRetrofit: Retrofit?
     ) {
         if (log_isPrintLog()) {
-            HttpCore.TAG.log_iTag(message = "[${key}] -【Global】OnRetrofitResetListener.onReset()")
+            HttpCore.logProcess(
+                key, "【Global】OnRetrofitResetListener.onReset()"
+            )
         }
         newRetrofit?.let { retrofit ->
             // 构建成功如自动请求等

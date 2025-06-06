@@ -28,8 +28,5 @@ private class EnvironmentConfig private constructor() {
 
         @Environment(value = "https://debug.github.com/", alias = "测试环境")
         private val debug: String? = null
-
-        @Environment(value = "https://development.github.com/", alias = "开发环境")
-        private val development: String? = null
     }
 }
