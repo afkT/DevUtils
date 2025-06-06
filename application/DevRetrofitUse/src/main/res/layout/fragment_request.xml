@@ -39,22 +39,13 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginTop="15.0dp"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.Title"
                     android:text="@{viewModel.tipsText}"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold"
                     tools:text="Tips Text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="模拟请求错误"
-                    android:textColor="@color/sky_blue"
-                    android:textSize="14.0sp" />
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="模拟请求错误" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
@@ -67,12 +58,8 @@
                     android:text="请求错误 ( Base.Response 实现 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="摄影图片列表"
-                    android:textColor="@color/sky_blue"
-                    android:textSize="14.0sp" />
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="摄影图片列表" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"

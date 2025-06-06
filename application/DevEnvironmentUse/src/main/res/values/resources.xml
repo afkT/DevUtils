@@ -25,6 +25,13 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- 左右 padding 样式 -->
+
+    <style name="ViewTheme.padding_lr">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
     <!-- Button 默认样式 -->
 
     <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
@@ -54,10 +61,22 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <!-- 左右 padding 样式 -->
+    <!-- TextView 标题样式 -->
 
-    <style name="ViewTheme.padding_lr">
-        <item name="android:paddingLeft">10.0dp</item>
-        <item name="android:paddingRight">10.0dp</item>
+    <style name="ViewTheme.Title" parent="ViewTheme.Base_TextView">
+        <item name="android:layout_marginTop">15.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- TextView 子标题样式 -->
+
+    <style name="ViewTheme.SubTitle" parent="ViewTheme.Base_TextView">
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/sky_blue</item>
     </style>
 </resources>

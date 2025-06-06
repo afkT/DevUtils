@@ -39,22 +39,13 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginTop="15.0dp"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.Title"
                     android:text="@{viewModel.tipsText}"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold"
                     tools:text="Tips Text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="电影详情信息"
-                    android:textColor="@color/sky_blue"
-                    android:textSize="14.0sp" />
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="电影详情信息" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
@@ -67,12 +58,8 @@
                     android:text="获取电影详情信息 ( Result 回调 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
-                    android:text="书籍列表"
-                    android:textColor="@color/sky_blue"
-                    android:textSize="14.0sp" />
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="书籍列表" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"

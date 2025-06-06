@@ -40,13 +40,8 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginTop="15.0dp"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.Title"
                     android:text="@{viewModel.devEnvironmentVersion}"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold"
                     tools:text="DevEnvironment:Version" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -75,9 +70,7 @@
                     android:text="重置【全部】Selected Environment" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.SubTitle"
                     android:text="Service【Module】演示操作"
                     android:textSize="16.0sp"
                     android:textStyle="bold" />
@@ -113,9 +106,7 @@
                     android:text="重置【Service】Selected Environment" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.SubTitle"
                     android:text="使用示例介绍"
                     android:textSize="16.0sp"
                     android:textStyle="bold" />

@@ -38,15 +38,25 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
-                    android:layout_marginTop="15.0dp"
-                    android:layout_marginBottom="10.0dp"
-                    android:gravity="left|bottom"
+                    style="@style/ViewTheme.Title"
                     android:text="@{viewModel.devHttpManagerVersion}"
-                    android:textSize="16.0sp"
-                    android:textStyle="bold"
                     tools:text="DevHttpManager:Version" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="Retrofit Manager - RM" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:text="Retrofit 多 BaseUrl 管理示例" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="Progress Manager - PM" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:text="OkHttp 上传、下载进度监听示例" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
