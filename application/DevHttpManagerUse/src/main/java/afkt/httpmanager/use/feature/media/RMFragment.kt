@@ -3,14 +3,14 @@ package afkt.httpmanager.use.feature.media
 import afkt.httpmanager.use.BR
 import afkt.httpmanager.use.R
 import afkt.httpmanager.use.base.BaseFragment
-import afkt.httpmanager.use.databinding.FragmentRmBinding
+import afkt.httpmanager.use.databinding.FragmentRetrofitManagerBinding
 import afkt.httpmanager.use.network.helper.ResponseHelper
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 
-class RMFragment : BaseFragment<FragmentRmBinding, RMViewModel>(
-    R.layout.fragment_rm, BR.viewModel, simple_Agile = { frg ->
+class RMFragment : BaseFragment<FragmentRetrofitManagerBinding, RMViewModel>(
+    R.layout.fragment_retrofit_manager, BR.viewModel, simple_Agile = { frg ->
         if (frg is RMFragment) {
             frg.apply {
                 binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {

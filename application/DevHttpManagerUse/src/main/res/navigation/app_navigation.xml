@@ -12,4 +12,9 @@
         android:id="@+id/RMFragment"
         android:name="afkt.httpmanager.use.feature.media.RMFragment"
         android:label="RMFragment" />
+
+    <fragment
+        android:id="@+id/PMFragment"
+        android:name="afkt.httpmanager.use.feature.progress.PMFragment"
+        android:label="PMFragment" />
 </navigation>

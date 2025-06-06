@@ -23,9 +23,9 @@ class MainViewModel : BaseViewModel() {
                 R.id.RMFragment
             )
 
-//            2 -> _clickNavigateEvent.value = NavigateRes(
-//                R.id.PMFragment
-//            )
+            2 -> _clickNavigateEvent.value = NavigateRes(
+                R.id.PMFragment
+            )
         }
     }
 }

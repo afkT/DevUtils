@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.httpmanager.use.feature.progress.PMViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/vid_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lineVisible="false"
+            app:title="OkHttp 上传、下载进度监听示例"
+            app:titleSize="18.0sp"
+            app:titleStyle="bold" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/ViewTheme.padding_lr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="上传监听" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="下载监听" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>
