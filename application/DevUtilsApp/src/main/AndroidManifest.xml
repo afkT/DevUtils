@@ -70,7 +70,7 @@
         android:requestLegacyExternalStorage="false"
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.Launcher"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,LockedOrientationActivity,UnusedAttribute"
         tools:replace="android:requestLegacyExternalStorage">

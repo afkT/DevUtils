@@ -37,7 +37,7 @@
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
-                    android:background="@mipmap/icon" />
+                    android:background="@mipmap/launcher_window_bg" />
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView

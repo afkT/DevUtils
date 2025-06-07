@@ -10,6 +10,14 @@
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <!-- 不设置为全屏防止状态栏隐藏紧接着又显示 -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:windowBackground">@drawable/launcher_bg</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
