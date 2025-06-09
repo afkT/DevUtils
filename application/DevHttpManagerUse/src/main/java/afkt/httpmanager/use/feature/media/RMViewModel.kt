@@ -102,13 +102,13 @@ class RMViewModel(
         // 方式一
         MediaAPI.operation().reset()
         // 方式一【指定链接】
-        MediaAPI.operation().reset("https://development.github.com/".toHttpUrl())
+        MediaAPI.operation().reset("https://github.com/afkT/DevUtils/".toHttpUrl())
 
         // 方式二【需要调用过 DevHttpManager.RM.putRetrofitBuilder() 进行存储】
         DevHttpManager.RM.reset(MediaAPI.NAME)
         // 方式二【指定链接】
         DevHttpManager.RM.reset(
-            MediaAPI.NAME, "https://development.github.com/".toHttpUrl()
+            MediaAPI.NAME, "https://github.com/afkT/DevUtils/".toHttpUrl()
         )
 
         // 方式三【重新构建全部 Retrofit】
@@ -128,10 +128,10 @@ class RMViewModel(
         operation.getRetrofit()
         operation.getRetrofit(true)
         operation.reset()
-        operation.reset("https://development.github.com/".toHttpUrl())
+        operation.reset("https://github.com/afkT/DevUtils/".toHttpUrl())
         operation.resetAndCreate(MediaService::class.java)
         operation.resetAndCreate(
-            MediaService::class.java, "https://development.github.com/".toHttpUrl()
+            MediaService::class.java, "https://github.com/afkT/DevUtils/".toHttpUrl()
         )
         operation.create(MediaService::class.java)
 

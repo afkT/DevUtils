@@ -48,13 +48,13 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
             // ==========
 
             // 全局的响应超时时间 ( 秒 )
-            callTimeout(6, TimeUnit.SECONDS)
+            callTimeout(5, TimeUnit.SECONDS)
             // 全局的读取超时时间
-            readTimeout(6, TimeUnit.SECONDS)
+            readTimeout(5, TimeUnit.SECONDS)
             // 全局的写入超时时间
-            writeTimeout(6, TimeUnit.SECONDS)
+            writeTimeout(5, TimeUnit.SECONDS)
             // 全局的连接超时时间
-            connectTimeout(6, TimeUnit.SECONDS)
+            connectTimeout(5, TimeUnit.SECONDS)
 
             // =============
             // = 不同版本构建 =
@@ -109,14 +109,31 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
             )
         }
         builder.apply {
-            // 设置简单的抓包回调拦截器 ( 无存储逻辑 )
-            addInterceptor(SimpleInterceptor { info ->
-                if (log_isPrintLog()) {
-                    // 打印 Http 请求信息
-                    val tag = "${key}_http_capture"
-                    tag.log_jsonTag(json = info.toJson())
-                }
-            })
+            // 是否忽略对应模块
+            if (!ignoreModule(key)) {
+                // 设置简单的抓包回调拦截器 ( 无存储逻辑 )
+                addInterceptor(SimpleInterceptor { info ->
+                    if (log_isPrintLog()) {
+                        // 打印 Http 请求信息
+                        val tag = "${key}_http_capture"
+                        tag.log_jsonTag(json = info.toJson())
+                    }
+                })
+            }
         }
     }
+}
+
+/**
+ * 是否忽略对应模块
+ * @param key Module Key
+ * @return `true` yes, `false` no
+ */
+private fun ignoreModule(key: String): Boolean {
+    // 属于下载模块则进行忽略, 避免打印抓包数据文件过大影响性能【自行控制调试情况下打印】
+    if (key.contains("download", true)) {
+        return true
+    }
+    // ...
+    return false
 }
