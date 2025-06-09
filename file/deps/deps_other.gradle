@@ -42,6 +42,8 @@ dependencies {
     api deps_lib.feature_widget.banner
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     api deps_lib.feature_widget.multitype
+    // 弹窗库 https://github.com/junixapp/XPopup
+    api deps_lib.feature_widget.xPopup
 
     // ===============
     // = 图片相关组件库 =

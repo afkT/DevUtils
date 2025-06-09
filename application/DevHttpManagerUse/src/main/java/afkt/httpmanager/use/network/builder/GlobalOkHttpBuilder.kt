@@ -108,6 +108,9 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
                 key, "【Global】OkHttpBuilder.debugOkHttpBuilder()"
             )
         }
+        // 如果属于下载模块则进行拦截设置其他配置
+        debugOkHttpBuilderByDownload(key, builder)
+
         builder.apply {
             // 是否忽略对应模块
             if (!ignoreModule(key)) {
@@ -122,6 +125,30 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
             }
         }
     }
+
+    /**
+     * debug 版本构建 Download Module OkHttp Builder
+     * @param key String
+     * @param builder Builder
+     */
+    private fun debugOkHttpBuilderByDownload(
+        key: String,
+        builder: OkHttpClient.Builder
+    ) {
+        // 判断是否下载模块
+        if (isDownloadModule(key)) {
+            builder.apply {
+                // 全局的响应超时时间 ( 秒 )
+                callTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                // 全局的读取超时时间
+                readTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                // 全局的写入超时时间
+                writeTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                // 全局的连接超时时间
+                connectTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+            }
+        }
+    }
 }
 
 /**
@@ -131,9 +158,18 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
  */
 private fun ignoreModule(key: String): Boolean {
     // 属于下载模块则进行忽略, 避免打印抓包数据文件过大影响性能【自行控制调试情况下打印】
-    if (key.contains("download", true)) {
+    if (isDownloadModule(key)) {
         return true
     }
     // ...
     return false
+}
+
+/**
+ * 是否属于下载模块
+ * @param key Module Key
+ * @return `true` yes, `false` no
+ */
+private fun isDownloadModule(key: String): Boolean {
+    return key.contains("download", true)
 }

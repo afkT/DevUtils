@@ -13,28 +13,29 @@ import dev.utils.app.toast.ToastTintUtils
 
 object ProgressHelper {
 
-    // 日志 TAG
-    val TAG = ProgressHelper::class.java.simpleName
-
     // JSON Config
     private val jsonConfig = JSONConfig().apply {
         gson = Gson()
     }
 
-    // ==============
-    // = 对外公开方法 =
-    // ==============
+    // =========
+    // = Toast =
+    // =========
 
     /**
-     * 打印日志
-     * @param tag 日志打印 TAG
-     * @param message 日志信息
+     * 显示操作 Toast
+     * @param text Toast 内容
      */
-    fun log(
-        tag: String = TAG,
-        message: String
-    ) {
-        tag.log_dTag(message = message)
+    fun toastNormal(text: String) {
+        ToastTintUtils.normal(text)
+    }
+
+    /**
+     * 显示操作异常 Toast
+     * @param text Toast 内容
+     */
+    fun toastError(text: String) {
+        ToastTintUtils.error(text)
     }
 
     /**

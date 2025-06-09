@@ -39,11 +39,45 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.SubTitle"
-                    android:text="上传监听" />
+                    android:text="DevHttpManager - 上传监听" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.SubTitle"
-                    android:text="下载监听" />
+                    android:text="DevHttpManager - 下载监听" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickDownloadVideo.invoke()}"
+                    android:text="下载视频" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickReDownloadVideo.invoke()}"
+                    android:text="重新下载视频" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickDownloadApk.invoke()}"
+                    android:text="下载 APK" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickReDownloadApk.invoke()}"
+                    android:text="重新下载 APK" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="OkHttp - 下载监听" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickDownloadVideoOkHttp.invoke()}"
+                    android:text="下载视频" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickReDownloadVideoOkHttp.invoke()}"
+                    android:text="重新下载视频" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
