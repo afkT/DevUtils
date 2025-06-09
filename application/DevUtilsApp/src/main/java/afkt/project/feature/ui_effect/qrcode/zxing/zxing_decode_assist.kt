@@ -188,7 +188,7 @@ class CaptureHandler(
         try {
             // 进行处理解析数据
             mDecodeThread.join(200L)
-        } catch (_: InterruptedException) {
+        } catch (_: Exception) {
         }
         // 移除堵塞在队列的消息
         removeMessages(WHAT_DECODE_SUCCEEDED)

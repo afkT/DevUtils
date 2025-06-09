@@ -197,4 +197,38 @@ public final class StreamUtils {
             return null;
         }
     }
+
+    // =================
+    // = 输入流写入输出流 =
+    // =================
+
+    // 无数据读取
+    public static final int EOF = -1;
+
+    /**
+     * 通过输入流写入输出流
+     * @param inputStream  {@link InputStream}
+     * @param outputStream {@link OutputStream}
+     * @param bufferSize   缓冲 Buffer 大小
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean inputWriteOutputStream(
+            final InputStream inputStream,
+            final OutputStream outputStream,
+            final int bufferSize
+    ) {
+        try {
+            byte[] data = new byte[bufferSize];
+            int    len;
+            while ((len = inputStream.read(data, 0, bufferSize)) != EOF) {
+                outputStream.write(data, 0, len);
+            }
+            return true;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "inputWriteOutputStream");
+            return false;
+        } finally {
+            CloseUtils.closeIOQuietly(inputStream, outputStream);
+        }
+    }
 }

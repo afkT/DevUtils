@@ -124,8 +124,8 @@ public final class DevCommonUtils {
         if (time > 0) {
             try {
                 Thread.sleep(time);
-            } catch (Throwable throwable) {
-                JCLogUtils.eTag(TAG, throwable, "sleepOperate");
+            } catch (Throwable e) {
+                JCLogUtils.eTag(TAG, e, "sleepOperate");
             }
         }
     }

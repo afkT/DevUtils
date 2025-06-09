@@ -1,6 +1,5 @@
 package dev.utils.common.validator;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -130,7 +129,7 @@ public final class IDCardUtils {
             Date   birthDate = null;
             try {
                 birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yy).parse(birthCode.substring(0, 2));
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "validateIdCard15");
             }
             Calendar calendar = Calendar.getInstance();
@@ -189,7 +188,7 @@ public final class IDCardUtils {
             String birthday = idCard.substring(6, 12);
             try {
                 birthDate = DateUtils.getSafeDateFormat(DevFinal.TIME.yyMMdd_HYPHEN).parse(birthday);
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "convert15CardTo18");
             }
             Calendar calendar = Calendar.getInstance();

@@ -186,7 +186,7 @@ class DecodeThread(
         get() {
             try {
                 mHandlerInitLatch.await()
-            } catch (_: InterruptedException) {
+            } catch (_: Exception) {
             }
             return mHandler
         }
@@ -295,7 +295,7 @@ class DecodeHandler(
             try {
                 val bitmap = BinaryBitmap(HybridBinarizer(source))
                 rawResult = mMultiFormatReader.decodeWithState(bitmap)
-            } catch (re: ReaderException) {
+            } catch (_: Exception) {
                 // continue
             } finally {
                 mMultiFormatReader.reset()

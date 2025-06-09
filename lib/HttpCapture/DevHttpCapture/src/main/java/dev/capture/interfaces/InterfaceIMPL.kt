@@ -10,7 +10,6 @@ import okhttp3.*
 import okhttp3.internal.http.promisesBody
 import okio.Buffer
 import okio.GzipSource
-import java.io.EOFException
 import java.nio.charset.Charset
 
 /**
@@ -291,7 +290,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                     }
                 }
                 return true
-            } catch (_: EOFException) {
+            } catch (_: Exception) {
                 return false // Truncated UTF-8 sequence.
             }
         }

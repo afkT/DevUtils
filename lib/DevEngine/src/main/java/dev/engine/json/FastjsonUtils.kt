@@ -95,7 +95,7 @@ internal object FastjsonUtils {
         try {
             val obj = JSON.parse(json)
             return obj != null
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             return false
         }
     }

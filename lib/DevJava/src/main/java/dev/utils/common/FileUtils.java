@@ -6,10 +6,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -271,7 +269,7 @@ public final class FileUtils {
         if (!createOrExistsDir(file.getParentFile())) return false;
         try {
             return file.createNewFile();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "createFileByDeleteOldFile");
             return false;
         }
@@ -786,7 +784,7 @@ public final class FileUtils {
         try {
             is  = new BufferedInputStream(new FileInputStream(file));
             pos = (is.read() << 8) + is.read();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileCharsetSimple");
         } finally {
             CloseUtils.closeIOQuietly(is);
@@ -1772,7 +1770,7 @@ public final class FileUtils {
             return FileIOUtils.writeFileFromIS(
                     destFile, new FileInputStream(srcFile), false
             ) && !(isMove && !deleteFile(srcFile));
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "copyOrMoveFile");
             return false;
         }

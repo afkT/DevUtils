@@ -115,8 +115,8 @@ public final class ProcessUtils {
                 processName = processName.trim();
             }
             return processName;
-        } catch (Throwable throwable) {
-            LogPrintUtils.eTag(TAG, throwable, "getProcessName");
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "getProcessName");
         } finally {
             CloseUtils.closeIOQuietly(br);
         }
