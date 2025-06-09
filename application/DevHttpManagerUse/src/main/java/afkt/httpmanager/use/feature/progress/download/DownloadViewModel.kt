@@ -19,10 +19,6 @@ open class DownloadViewModel() : UploadViewModel() {
     private val URL_MP4 = "https://speedtest.ks3-cn-beijing.ksyuncs.com/zhuanma-test/test.mp4"
     private val URL_APK = "https://speedtest.ks3-cn-beijing.ksyuncs.com/download/20181229.apk"
 
-    // 下载进度
-    private val _downloadMessage = MutableLiveData<String>()
-    val downloadMessage: LiveData<String> = _downloadMessage
-
     // ===========
     // = 点击事件 =
     // ===========
@@ -49,12 +45,20 @@ open class DownloadViewModel() : UploadViewModel() {
     }
 
     // 下载 APK
-    val clickDownloadApk: () -> Unit = {
+    val clickDownloadApk: () -> Unit = clickDownloadApk@{
+        if (DownloadHelper.isFileExists(URL_APK)) {
+            dismissDownloadDialog()
+            ProgressHelper.toastNormal("APK 文件已存在")
+            return@clickDownloadApk
+        }
+        // 开始下载 APK
+        downloadAPK()
     }
 
     // 重新下载 APK
     val clickReDownloadApk: () -> Unit = {
-
+        // 开始下载 APK
+        downloadAPK()
     }
 
     // ===================
@@ -88,9 +92,50 @@ open class DownloadViewModel() : UploadViewModel() {
         }
     }
 
+    /**
+     * 下载 APK
+     */
+    private fun downloadAPK() {
+        // 添加指定 url 下行监听事件 ( 每次下载使用新的 Callback )
+        DownloadAPI.progress().addResponseListener(
+            URL_APK, APKDownloadCallback(_downloadMessage)
+        )
+        // 删除已下载文件
+        DownloadHelper.deleteUrlDownloadFile(URL_APK)
+        // 开始下载文件
+        repository.downloadFile(this, URL_APK, startBlock = {
+            updateDownloadMessage("开始下载 APK")
+        }) {
+            DownloadHelper.writeFile(URL_APK, it)
+        }
+    }
+
     // ==========
     // = 内部方法 =
     // ==========
+
+    // 下载进度
+    private val _downloadMessage = MutableLiveData<String>()
+    val downloadMessage: LiveData<String> = _downloadMessage
+
+    /**
+     * Update download message
+     * @param text 提示文案
+     */
+    private fun updateDownloadMessage(text: String) {
+        _downloadMessage.postValue(text)
+    }
+
+    /**
+     * Dismiss download dialog
+     */
+    private fun dismissDownloadDialog() {
+        updateDownloadMessage("")
+    }
+
+    // ============
+    // = Callback =
+    // ============
 
     // 视频下载进度回调
     private val videoDownloadCallback = object : Progress.Callback {
@@ -133,17 +178,53 @@ open class DownloadViewModel() : UploadViewModel() {
     }
 
     /**
-     * Update download message
-     * @param text 提示文案
+     * detail: APK 下载进度回调
+     * @author Ttt
+     * 方式二：每次都用新的 Callback 对象 ( 一般用于多个地方需要监听同一文件下载进度 )
+     * 下载完成会自动回收该回调事件
      */
-    private fun updateDownloadMessage(text: String) {
-        _downloadMessage.postValue(text)
-    }
+    private class APKDownloadCallback(
+        private val _downloadMessage: MutableLiveData<String>
+    ) : Progress.Callback {
+        override fun onStart(progress: Progress) {
+            // 这里是请求响应了，真正的开始下载
+            updateDownloadMessage("下载中 0%")
+        }
 
-    /**
-     * Dismiss download dialog
-     */
-    private fun dismissDownloadDialog() {
-        updateDownloadMessage("")
+        override fun onProgress(progress: Progress) {
+            val message = "下载中 ${progress.getPercent()}%"
+            if (!StringUtils.equals(message, _downloadMessage.value)) {
+                updateDownloadMessage(message)
+            }
+        }
+
+        override fun onError(progress: Progress) {
+            ProgressHelper.toastError("APK 下载失败")
+        }
+
+        override fun onFinish(progress: Progress) {
+            ProgressHelper.toastSuccess("APK 下载成功")
+        }
+
+        override fun onEnd(progress: Progress) {
+            dismissDownloadDialog()
+        }
+
+        // =
+
+        /**
+         * Update download message
+         * @param text 提示文案
+         */
+        private fun updateDownloadMessage(text: String) {
+            _downloadMessage.postValue(text)
+        }
+
+        /**
+         * Dismiss download dialog
+         */
+        private fun dismissDownloadDialog() {
+            updateDownloadMessage("")
+        }
     }
 }

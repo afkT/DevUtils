@@ -263,9 +263,7 @@ class Progress private constructor(
      * @return 百分比值
      */
     fun getPercent(): Int {
-        return NumberUtils.percentI(
-            currentSize.toDouble(), totalSize.toDouble()
-        )
+        return (getPercentD() * 100).toInt()
     }
 
     /**
