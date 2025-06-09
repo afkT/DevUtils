@@ -256,7 +256,7 @@ public final class StreamUtils {
     public static boolean inputWriteOutputStreamCallback(
             final InputStream inputStream,
             final OutputStream outputStream,
-            final int totalSize,
+            final long totalSize,
             final WriteCallback callback
     ) {
         return inputWriteOutputStreamCallback(
@@ -277,7 +277,7 @@ public final class StreamUtils {
             final InputStream inputStream,
             final OutputStream outputStream,
             final int bufferSize,
-            final int totalSize,
+            final long totalSize,
             final WriteCallback callback
     ) {
         if (callback != null && totalSize > 0) {

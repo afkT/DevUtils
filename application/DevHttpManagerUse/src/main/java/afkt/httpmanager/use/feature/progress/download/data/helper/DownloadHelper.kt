@@ -4,8 +4,11 @@ import dev.agile.app.AppExecutors
 import dev.utils.app.PathUtils
 import dev.utils.common.FileIOUtils
 import dev.utils.common.FileUtils
+import dev.utils.common.StreamUtils
 import okhttp3.ResponseBody
+import java.io.BufferedOutputStream
 import java.io.File
+import java.io.FileOutputStream
 
 // =================
 // = 下载 Helper 类 =
@@ -86,6 +89,34 @@ object DownloadHelper {
             FileUtils.deleteFile(tempFile)
             val inputStream = body.byteStream()
             if (FileIOUtils.writeFileFromIS(tempFile, inputStream)) {
+                val file = urlDownloadFile(url)
+                FileUtils.deleteFile(file)
+                // 修改名字
+                FileUtils.rename(tempFile, file.name)
+            }
+        }
+    }
+
+    /**
+     * 写入文件 ( 回调通知进度 )
+     * @param url 下载链接
+     * @param body 请求响应体
+     */
+    fun writeFile(
+        url: String,
+        body: ResponseBody,
+        callback: StreamUtils.WriteCallback
+    ) {
+        AppExecutors.instance().networkIO().execute {
+            val tempFile = urlTempDownloadFile(url)
+            FileUtils.deleteFile(tempFile)
+            val outputStream = BufferedOutputStream(FileOutputStream(tempFile))
+            val inputStream = body.byteStream()
+            val totalSize = body.contentLength()
+            if (StreamUtils.inputWriteOutputStreamCallback(
+                    inputStream, outputStream, totalSize, callback
+                )
+            ) {
                 val file = urlDownloadFile(url)
                 FileUtils.deleteFile(file)
                 // 修改名字
