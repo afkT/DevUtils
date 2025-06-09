@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -179,14 +178,15 @@ public final class FileIOUtils {
         if (inputStream == null || !FileUtils.createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
+            int bufferSize = sBufferSize;
             os = new BufferedOutputStream(new FileOutputStream(file, append));
-            byte[] data = new byte[sBufferSize];
+            byte[] data = new byte[bufferSize];
             int    len;
-            while ((len = inputStream.read(data, 0, sBufferSize)) != EOF) {
+            while ((len = inputStream.read(data, 0, bufferSize)) != EOF) {
                 os.write(data, 0, len);
             }
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "writeFileFromIS");
             return false;
         } finally {
@@ -253,7 +253,7 @@ public final class FileIOUtils {
             bos = new BufferedOutputStream(new FileOutputStream(file, append));
             bos.write(bytes);
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByStream");
             return false;
         } finally {
@@ -334,7 +334,7 @@ public final class FileIOUtils {
             fc.write(ByteBuffer.wrap(bytes));
             if (isForce) fc.force(true);
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByChannel");
             return false;
         } finally {
@@ -411,7 +411,7 @@ public final class FileIOUtils {
             mbb.put(bytes);
             if (isForce) mbb.force();
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "writeFileFromBytesByMap");
             return false;
         } finally {
@@ -478,7 +478,7 @@ public final class FileIOUtils {
             bw = new BufferedWriter(new FileWriter(file, append));
             bw.write(content);
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "writeFileFromString");
             return false;
         } finally {
@@ -613,7 +613,7 @@ public final class FileIOUtils {
                 ++curLine;
             }
             return list;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "readFileToList");
             return null;
         } finally {
@@ -681,7 +681,7 @@ public final class FileIOUtils {
                 }
             }
             return builder.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "readFileToString");
             return null;
         } finally {
@@ -708,15 +708,16 @@ public final class FileIOUtils {
         FileInputStream       fis  = null;
         ByteArrayOutputStream baos = null;
         try {
+            int bufferSize = sBufferSize;
             fis  = new FileInputStream(file);
             baos = new ByteArrayOutputStream();
-            byte[] b = new byte[sBufferSize];
+            byte[] b = new byte[bufferSize];
             int    len;
-            while ((len = fis.read(b, 0, sBufferSize)) != EOF) {
+            while ((len = fis.read(b, 0, bufferSize)) != EOF) {
                 baos.write(b, 0, len);
             }
             return baos.toByteArray();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByStream");
             return null;
         } finally {
@@ -748,7 +749,7 @@ public final class FileIOUtils {
                 if (!((fc.read(byteBuffer)) > 0)) break;
             }
             return byteBuffer.array();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByChannel");
             return null;
         } finally {
@@ -780,7 +781,7 @@ public final class FileIOUtils {
             byte[]           result = new byte[size];
             mbb.get(result, 0, size);
             return result;
-        } catch (IOException e) {
+        } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "readFileToBytesByMap");
             return null;
         } finally {
@@ -802,8 +803,9 @@ public final class FileIOUtils {
     ) {
         if (inputStream == null || outputStream == null) return -1L;
         try {
-            byte[] data  = new byte[sBufferSize];
-            long   count = 0;
+            int    bufferSize = sBufferSize;
+            byte[] data       = new byte[bufferSize];
+            long   count      = 0;
             int    n;
             while (EOF != (n = inputStream.read(data))) {
                 outputStream.write(data, 0, n);

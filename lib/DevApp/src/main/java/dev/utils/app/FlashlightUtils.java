@@ -49,7 +49,7 @@ public final class FlashlightUtils {
     public boolean register() {
         try {
             mCamera = Camera.open(0);
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
             return false;
         }
         if (mCamera == null) return false;

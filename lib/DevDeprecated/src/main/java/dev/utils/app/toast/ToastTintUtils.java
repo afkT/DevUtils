@@ -1367,7 +1367,7 @@ public final class ToastTintUtils {
 
                 Handler handler = (Handler) field_handler.get(mTN);
                 field_handler.set(mTN, new SafeHandler(handler));
-            } catch (Exception ignore) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -1394,7 +1394,7 @@ public final class ToastTintUtils {
         public void dispatchMessage(Message msg) {
             try {
                 mHandler.dispatchMessage(msg);
-            } catch (Exception ignore) {
+            } catch (Exception ignored) {
             }
         }
     }

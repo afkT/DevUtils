@@ -295,7 +295,7 @@ public final class ROMUtils {
             Class<?> buildExClass = Class.forName("com.huawei.system.BuildEx");
             Object   osBrand      = buildExClass.getMethod("getOsBrand").invoke(buildExClass);
             return osBrand != null && ROM_HARMONY[0].equalsIgnoreCase(osBrand.toString());
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
         }
         return false;
     }
@@ -310,7 +310,7 @@ public final class ROMUtils {
             if (!TextUtils.isEmpty(manufacturer)) {
                 return manufacturer.toLowerCase();
             }
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
         }
         return UNKNOWN;
     }
@@ -325,7 +325,7 @@ public final class ROMUtils {
             if (!TextUtils.isEmpty(brand)) {
                 return brand.toLowerCase();
             }
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
         }
         return UNKNOWN;
     }
@@ -346,7 +346,7 @@ public final class ROMUtils {
                 if (!TextUtils.isEmpty(display)) {
                     ret = display.toLowerCase();
                 }
-            } catch (Throwable ignore) {
+            } catch (Throwable ignored) {
             }
         }
         if (TextUtils.isEmpty(ret)) {
@@ -385,7 +385,7 @@ public final class ROMUtils {
             if (ret != null) {
                 return ret;
             }
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
         } finally {
             CloseUtils.closeIOQuietly(input);
         }
@@ -405,7 +405,7 @@ public final class ROMUtils {
             );
             prop.load(is);
             return prop.getProperty(key, "");
-        } catch (Throwable ignore) {
+        } catch (Throwable ignored) {
         }
         return "";
     }

@@ -291,7 +291,7 @@ abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
                     }
                 }
                 return true
-            } catch (ignored: EOFException) {
+            } catch (_: EOFException) {
                 return false // Truncated UTF-8 sequence.
             }
         }

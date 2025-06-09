@@ -304,7 +304,7 @@ public final class KeyBoardUtils {
                     } else {
                         return;
                     }
-                } catch (Throwable ignore) {
+                } catch (Throwable ignored) {
                 }
             }
         } catch (Exception ignored) {

@@ -558,7 +558,7 @@ public final class NetWorkUtils {
                 try {
                     inetAddress = InetAddress.getByName(domain);
                     return inetAddress.getHostAddress();
-                } catch (UnknownHostException e) {
+                } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "getDomainAddress");
                 }
                 return null;
@@ -599,7 +599,7 @@ public final class NetWorkUtils {
                     }
                 }
             }
-        } catch (SocketException e) {
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIPAddress");
         }
         return null;

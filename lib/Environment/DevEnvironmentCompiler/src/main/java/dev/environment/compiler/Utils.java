@@ -795,7 +795,7 @@ final class Utils {
         codeBlockBuilder.add("    if (bw != null) {\n");
         codeBlockBuilder.add("        try {\n");
         codeBlockBuilder.add("            bw.close();\n");
-        codeBlockBuilder.add("        } catch (Exception ignore) {\n");
+        codeBlockBuilder.add("        } catch (Exception ignored) {\n");
         codeBlockBuilder.add("        }\n");
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
@@ -846,7 +846,7 @@ final class Utils {
         codeBlockBuilder.add("    if (br != null) {\n");
         codeBlockBuilder.add("        try {\n");
         codeBlockBuilder.add("            br.close();\n");
-        codeBlockBuilder.add("        } catch (Exception ignore) {\n");
+        codeBlockBuilder.add("        } catch (Exception ignored) {\n");
         codeBlockBuilder.add("        }\n");
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");

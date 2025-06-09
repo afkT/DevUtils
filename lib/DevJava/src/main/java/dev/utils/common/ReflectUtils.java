@@ -297,7 +297,7 @@ public final class ReflectUtils {
                 Field modifiersField = Field.class.getDeclaredField("modifiers");
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-            } catch (NoSuchFieldException ignore) {
+            } catch (NoSuchFieldException ignored) {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getField");
                 throw new ReflectException(e);
@@ -321,7 +321,7 @@ public final class ReflectUtils {
             do {
                 try {
                     return accessible(type.getDeclaredField(name));
-                } catch (NoSuchFieldException ignore) {
+                } catch (NoSuchFieldException ignored) {
                 }
                 type = type.getSuperclass();
             } while (type != null);
@@ -456,7 +456,7 @@ public final class ReflectUtils {
             do {
                 try {
                     return type.getDeclaredMethod(name, types);
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
                 type = type.getSuperclass();
             } while (type != null);

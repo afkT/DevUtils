@@ -46,7 +46,7 @@ public final class CloseUtils {
             if (closeable != null) {
                 try {
                     closeable.close();
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -81,7 +81,7 @@ public final class CloseUtils {
             if (flushable != null) {
                 try {
                     flushable.flush();
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
             }
         }

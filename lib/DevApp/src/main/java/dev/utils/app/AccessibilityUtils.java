@@ -112,7 +112,7 @@ public final class AccessibilityUtils {
                     ResourceUtils.getContentResolver(),
                     Settings.Secure.ACCESSIBILITY_ENABLED
             );
-        } catch (Settings.SettingNotFoundException e) {
+        } catch (Exception e) {
             LogPrintUtils.eTag(
                     TAG, e,
                     "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED"

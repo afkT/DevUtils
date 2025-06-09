@@ -176,7 +176,7 @@ public final class HttpURLConnectionUtils {
             if (connection != null) {
                 try { // 关闭底层连接 Socket
                     connection.disconnect();
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -263,7 +263,7 @@ public final class HttpURLConnectionUtils {
             if (connection != null) {
                 try { // 关闭底层连接 Socket
                     connection.disconnect();
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
             }
         }

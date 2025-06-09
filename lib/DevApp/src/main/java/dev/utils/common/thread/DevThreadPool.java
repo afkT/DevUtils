@@ -194,7 +194,7 @@ public final class DevThreadPool {
             mThreadPool.execute(() -> {
                 try {
                     method.invoke(object);
-                } catch (Exception ignore) {
+                } catch (Exception ignored) {
                 }
             });
         }
