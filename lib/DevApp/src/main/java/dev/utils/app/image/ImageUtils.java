@@ -203,7 +203,7 @@ public final class ImageUtils {
         if (inputStream == null) return ImageType.TYPE_UNKNOWN;
         try {
             byte[] bytes = new byte[12];
-            return inputStream.read(bytes, 0, 12) != -1 ? getImageType(bytes) : null;
+            return inputStream.read(bytes) != -1 ? getImageType(bytes) : null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageType");
             return ImageType.TYPE_UNKNOWN;

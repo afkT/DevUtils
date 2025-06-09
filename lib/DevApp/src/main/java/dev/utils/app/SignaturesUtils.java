@@ -322,7 +322,7 @@ public final class SignaturesUtils {
     ) {
         try {
             InputStream is = jarFile.getInputStream(jarEntry);
-            while (is.read(readBuffer, 0, readBuffer.length) != -1) {
+            while (is.read(readBuffer) != -1) {
             }
             CloseUtils.closeIOQuietly(is);
             return jarEntry != null ? jarEntry.getCertificates() : null;

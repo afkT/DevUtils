@@ -30,7 +30,7 @@ public final class StreamUtils {
             ByteArrayOutputStream baos   = new ByteArrayOutputStream();
             byte[]                buffer = new byte[1024];
             int                   len;
-            while ((len = inputStream.read(buffer, 0, 1024)) != -1) {
+            while ((len = inputStream.read(buffer)) != -1) {
                 baos.write(buffer, 0, len);
             }
             return baos;
@@ -209,6 +209,19 @@ public final class StreamUtils {
      * 通过输入流写入输出流
      * @param inputStream  {@link InputStream}
      * @param outputStream {@link OutputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean inputWriteOutputStream(
+            final InputStream inputStream,
+            final OutputStream outputStream
+    ) {
+        return inputWriteOutputStream(inputStream, outputStream, 2048);
+    }
+
+    /**
+     * 通过输入流写入输出流
+     * @param inputStream  {@link InputStream}
+     * @param outputStream {@link OutputStream}
      * @param bufferSize   缓冲 Buffer 大小
      * @return {@code true} success, {@code false} fail
      */
@@ -220,7 +233,7 @@ public final class StreamUtils {
         try {
             byte[] data = new byte[bufferSize];
             int    len;
-            while ((len = inputStream.read(data, 0, bufferSize)) != EOF) {
+            while ((len = inputStream.read(data)) != EOF) {
                 outputStream.write(data, 0, len);
             }
             return true;
@@ -230,5 +243,116 @@ public final class StreamUtils {
         } finally {
             CloseUtils.closeIOQuietly(inputStream, outputStream);
         }
+    }
+
+    /**
+     * 通过输入流写入输出流 ( 回调通知进度 )
+     * @param inputStream  {@link InputStream}
+     * @param outputStream {@link OutputStream}
+     * @param totalSize    数据总长度
+     * @param callback     写入回调
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean inputWriteOutputStreamCallback(
+            final InputStream inputStream,
+            final OutputStream outputStream,
+            final int totalSize,
+            final WriteCallback callback
+    ) {
+        return inputWriteOutputStreamCallback(
+                inputStream, outputStream, 2048, totalSize, callback
+        );
+    }
+
+    /**
+     * 通过输入流写入输出流 ( 回调通知进度 )
+     * @param inputStream  {@link InputStream}
+     * @param outputStream {@link OutputStream}
+     * @param bufferSize   缓冲 Buffer 大小
+     * @param totalSize    数据总长度
+     * @param callback     写入回调
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean inputWriteOutputStreamCallback(
+            final InputStream inputStream,
+            final OutputStream outputStream,
+            final int bufferSize,
+            final int totalSize,
+            final WriteCallback callback
+    ) {
+        if (callback != null && totalSize > 0) {
+            // 开始写入
+            callback.onStart();
+            try {
+                byte[] data        = new byte[bufferSize];
+                int    len;
+                int    currentSize = 0;
+                while ((len = inputStream.read(data)) != EOF) {
+                    outputStream.write(data, 0, len);
+                    // 累加已写入长度
+                    currentSize += len;
+                    // 计算百分比进度
+                    double percentD = (NumberUtils.percentD(
+                            currentSize, totalSize
+                    ) * 100);
+                    // 写入进度回调
+                    callback.onProgress(currentSize, totalSize, (int) percentD);
+                }
+                // 写入完成回调
+                callback.onFinish();
+                callback.onEnd();
+                return true;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "inputWriteOutputStreamCallback");
+                // 写入异常回调
+                callback.onError(e);
+                callback.onEnd();
+                return false;
+            } finally {
+                CloseUtils.closeIOQuietly(inputStream, outputStream);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * detail: 写入回调接口
+     * @author Ttt
+     */
+    public interface WriteCallback {
+
+        /**
+         * 开始写入
+         */
+        void onStart();
+
+        /**
+         * 写入进度回调
+         * @param currentSize 当前已写入长度
+         * @param totalSize   数据总长度
+         * @param percent     写入百分比
+         */
+        void onProgress(
+                long currentSize,
+                long totalSize,
+                int percent
+        );
+
+        /**
+         * 写入异常回调
+         * @param error 异常信息
+         */
+        void onError(Throwable error);
+
+        /**
+         * 写入完成回调
+         */
+        void onFinish();
+
+        /**
+         * 流程结束回调
+         * 不管是 {@link #onError)}、{@link #onFinish)} 最终都会触发该结束方法
+         */
+        void onEnd();
     }
 }

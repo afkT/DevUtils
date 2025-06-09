@@ -182,7 +182,7 @@ public final class FileIOUtils {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
             byte[] data = new byte[bufferSize];
             int    len;
-            while ((len = inputStream.read(data, 0, bufferSize)) != EOF) {
+            while ((len = inputStream.read(data)) != EOF) {
                 os.write(data, 0, len);
             }
             return true;
@@ -713,7 +713,7 @@ public final class FileIOUtils {
             baos = new ByteArrayOutputStream();
             byte[] b = new byte[bufferSize];
             int    len;
-            while ((len = fis.read(b, 0, bufferSize)) != EOF) {
+            while ((len = fis.read(b)) != EOF) {
                 baos.write(b, 0, len);
             }
             return baos.toByteArray();
