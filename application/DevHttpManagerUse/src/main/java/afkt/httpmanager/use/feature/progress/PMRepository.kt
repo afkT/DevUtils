@@ -2,6 +2,7 @@ package afkt.httpmanager.use.feature.progress
 
 import afkt.httpmanager.use.base.BaseViewModel
 import afkt.httpmanager.use.feature.progress.download.data.api.DownloadAPI
+import afkt.httpmanager.use.feature.progress.download.data.api.DownloadAPI2
 import afkt.httpmanager.use.network.helper.ResponseHelper
 import dev.retrofit.launchExecuteRequest
 import okhttp3.ResponseBody
@@ -28,6 +29,36 @@ class PMRepository {
     ) {
         viewModel.launchExecuteRequest(block = {
             DownloadAPI.api().downloadFile(url)
+        }, start = {
+            startBlock.invoke()
+            // 打印日志
+            ResponseHelper.startRequest(TAG)
+        }, success = { result ->
+            successBlock.invoke(result!!)
+        }, error = {
+            errorBlock.invoke(it)
+            // 打印日志
+            ResponseHelper.errorResponse(TAG, it)
+        }, finish = {
+            finishBlock.invoke()
+            // 打印日志
+            ResponseHelper.finishRequest(TAG)
+        })
+    }
+
+    /**
+     * 下载文件
+     */
+    fun downloadFile2(
+        viewModel: BaseViewModel,
+        url: String,
+        startBlock: () -> Unit = {},
+        finishBlock: () -> Unit = {},
+        errorBlock: (Throwable) -> Unit = {},
+        successBlock: (ResponseBody) -> Unit
+    ) {
+        viewModel.launchExecuteRequest(block = {
+            DownloadAPI2.api().downloadFile(url)
         }, start = {
             startBlock.invoke()
             // 打印日志

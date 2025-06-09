@@ -71,13 +71,13 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickDownloadVideoOkHttp.invoke()}"
-                    android:text="下载视频" />
+                    android:onClick="@{(v)->viewModel.clickDownloadGradle.invoke()}"
+                    android:text="下载 Gradle" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Base_Button"
-                    android:onClick="@{(v)->viewModel.clickReDownloadVideoOkHttp.invoke()}"
-                    android:text="重新下载视频" />
+                    android:onClick="@{(v)->viewModel.clickReDownloadGradle.invoke()}"
+                    android:text="重新下载 Gradle" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

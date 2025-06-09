@@ -139,13 +139,13 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
         if (isDownloadModule(key)) {
             builder.apply {
                 // 全局的响应超时时间 ( 秒 )
-                callTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                callTimeout(9999, TimeUnit.SECONDS)
                 // 全局的读取超时时间
-                readTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                readTimeout(9999, TimeUnit.SECONDS)
                 // 全局的写入超时时间
-                writeTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                writeTimeout(9999, TimeUnit.SECONDS)
                 // 全局的连接超时时间
-                connectTimeout(Long.MAX_VALUE, TimeUnit.SECONDS)
+                connectTimeout(9999, TimeUnit.SECONDS)
             }
         }
     }

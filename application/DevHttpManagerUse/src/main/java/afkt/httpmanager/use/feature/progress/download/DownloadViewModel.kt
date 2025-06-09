@@ -7,6 +7,7 @@ import afkt.httpmanager.use.network.helper.ProgressHelper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.http.progress.Progress
+import dev.utils.common.StreamUtils
 import dev.utils.common.StringUtils
 
 /**
@@ -18,6 +19,7 @@ open class DownloadViewModel() : UploadViewModel() {
     // 下载链接
     private val URL_MP4 = "https://speedtest.ks3-cn-beijing.ksyuncs.com/zhuanma-test/test.mp4"
     private val URL_APK = "https://speedtest.ks3-cn-beijing.ksyuncs.com/download/20181229.apk"
+    private val URL_GRADLE = "https://mirrors.aliyun.com/gradle/gradle-1.9-rc-1-src.zip"
 
     // ===========
     // = 点击事件 =
@@ -65,13 +67,21 @@ open class DownloadViewModel() : UploadViewModel() {
     // = OkHttp - 下载监听 =
     // ===================
 
-    // 下载视频
-    val clickDownloadVideoOkHttp: () -> Unit = {
+    // 下载 Gradle
+    val clickDownloadGradle: () -> Unit = clickDownloadGradle@{
+        if (DownloadHelper.isFileExists(URL_GRADLE)) {
+            dismissDownloadDialog()
+            ProgressHelper.toastNormal("Gradle 文件已存在")
+            return@clickDownloadGradle
+        }
+        // 开始下载 Gradle
+        downloadGradle()
     }
 
-    // 重新下载视频
-    val clickReDownloadVideoOkHttp: () -> Unit = {
-
+    // 重新下载 Gradle
+    val clickReDownloadGradle: () -> Unit = {
+        // 开始下载 Gradle
+        downloadGradle()
     }
 
     // ==========
@@ -87,8 +97,14 @@ open class DownloadViewModel() : UploadViewModel() {
         // 开始下载文件
         repository.downloadFile(this, URL_MP4, startBlock = {
             updateDownloadMessage("开始下载视频")
+        }, errorBlock = {
+            dismissDownloadDialog()
+            ProgressHelper.toastError("视频下载失败")
         }) {
-            DownloadHelper.writeFile(URL_MP4, it)
+            DownloadHelper.writeFile(URL_MP4, it) {
+                dismissDownloadDialog()
+                ProgressHelper.toastError("视频下载失败")
+            }
         }
     }
 
@@ -105,8 +121,60 @@ open class DownloadViewModel() : UploadViewModel() {
         // 开始下载文件
         repository.downloadFile(this, URL_APK, startBlock = {
             updateDownloadMessage("开始下载 APK")
+        }, errorBlock = {
+            dismissDownloadDialog()
+            ProgressHelper.toastError("APK 下载失败")
         }) {
-            DownloadHelper.writeFile(URL_APK, it)
+            DownloadHelper.writeFile(URL_APK, it) {
+                dismissDownloadDialog()
+                ProgressHelper.toastError("APK 下载失败")
+            }
+        }
+    }
+
+    /**
+     * 下载 Gradle
+     */
+    private fun downloadGradle() {
+        // 删除已下载文件
+        DownloadHelper.deleteUrlDownloadFile(URL_GRADLE)
+        // 开始下载文件
+        repository.downloadFile2(this, URL_GRADLE, startBlock = {
+            updateDownloadMessage("开始下载 Gradle")
+        }, errorBlock = {
+            dismissDownloadDialog()
+            ProgressHelper.toastError("Gradle 下载失败")
+        }) {
+            DownloadHelper.writeFile(
+                URL_GRADLE, it, object : StreamUtils.WriteCallback {
+                    override fun onStart() {
+                        updateDownloadMessage("下载中 0%")
+                    }
+
+                    override fun onProgress(
+                        currentSize: Long,
+                        totalSize: Long,
+                        percent: Int
+                    ) {
+                        val message = "下载中 ${percent}%"
+                        if (!StringUtils.equals(message, _downloadMessage.value)) {
+                            updateDownloadMessage(message)
+                        }
+                    }
+
+                    override fun onError(error: Throwable?) {
+                        ProgressHelper.toastError("Gradle 下载失败")
+                    }
+
+                    override fun onFinish() {
+                        ProgressHelper.toastSuccess("Gradle 下载成功")
+                    }
+
+                    override fun onEnd() {
+                        dismissDownloadDialog()
+                    }
+                }
+            )
         }
     }
 
