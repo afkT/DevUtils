@@ -41,6 +41,20 @@
                     style="@style/ViewTheme.SubTitle"
                     android:text="DevHttpManager - 上传监听" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickUploadImage.invoke()}"
+                    android:text="上传图片" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.SubTitle"
+                    android:text="OkHttp - 上传监听" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Base_Button"
+                    android:onClick="@{(v)->viewModel.clickUploadFile.invoke()}"
+                    android:text="上传文件" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.SubTitle"
                     android:text="DevHttpManager - 下载监听" />

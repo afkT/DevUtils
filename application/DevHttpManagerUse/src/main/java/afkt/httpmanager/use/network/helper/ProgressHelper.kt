@@ -118,4 +118,77 @@ object ProgressHelper {
     ) {
         tag.log_iTag(message = "下载结束：${progress.getUUID()}")
     }
+
+    // ==============
+    // = Upload Log =
+    // ==============
+
+    /**
+     * 上传中
+     * @param tag 日志打印 TAG
+     * @param progress 上传进度信息
+     */
+    fun ingUpload(
+        tag: String,
+        progress: Progress
+    ) {
+        tag.log_dTag(
+            message = "上传中：${progress.getUUID()}，上传速度：${
+                progress.getSpeed().getSpeedFormatSecond()
+            }，上传进度：${progress.getPercent()}%"
+        )
+    }
+
+    /**
+     * 上传成功
+     * @param tag 日志打印 TAG
+     * @param progress 上传进度信息
+     */
+    fun successUpload(
+        tag: String,
+        progress: Progress
+    ) {
+        tag.log_dTag(message = "上传成功：${progress.getUUID()}")
+        val json = progress.toJson(config = jsonConfig)
+        tag.log_jsonTag(json = json)
+    }
+
+    /**
+     * 上传失败
+     * @param tag 日志打印 TAG
+     * @param progress 上传进度信息
+     */
+    fun errorUpload(
+        tag: String,
+        progress: Progress
+    ) {
+        tag.log_eTag(
+            message = "上传失败：${progress.getUUID()}，当前上传进度：${progress.getPercent()}%",
+            throwable = progress.getException()
+        )
+    }
+
+    /**
+     * 开始上传
+     * @param tag 日志打印 TAG
+     * @param progress 上传进度信息
+     */
+    fun startUpload(
+        tag: String,
+        progress: Progress
+    ) {
+        tag.log_vTag(message = "开始上传：${progress.getUUID()}，文件大小：${progress.getTotalSizeFormat()}")
+    }
+
+    /**
+     * 上传结束
+     * @param tag 日志打印 TAG
+     * @param progress 上传进度信息
+     */
+    fun endUpload(
+        tag: String,
+        progress: Progress
+    ) {
+        tag.log_iTag(message = "上传结束：${progress.getUUID()}")
+    }
 }

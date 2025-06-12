@@ -108,8 +108,10 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
                 key, "【Global】OkHttpBuilder.debugOkHttpBuilder()"
             )
         }
-        // 如果属于下载模块则进行拦截设置其他配置
+        // 如果属于【下载】模块则进行拦截设置其他配置
         debugOkHttpBuilderByDownload(key, builder)
+        // 如果属于【上传】模块则进行拦截设置其他配置
+        debugOkHttpBuilderByUpload(key, builder)
 
         builder.apply {
             // 是否忽略对应模块
@@ -125,31 +127,11 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
             }
         }
     }
-
-    /**
-     * debug 版本构建 Download Module OkHttp Builder
-     * @param key String
-     * @param builder Builder
-     */
-    private fun debugOkHttpBuilderByDownload(
-        key: String,
-        builder: OkHttpClient.Builder
-    ) {
-        // 判断是否下载模块
-        if (isDownloadModule(key)) {
-            builder.apply {
-                // 全局的响应超时时间 ( 秒 )
-                callTimeout(9999, TimeUnit.SECONDS)
-                // 全局的读取超时时间
-                readTimeout(9999, TimeUnit.SECONDS)
-                // 全局的写入超时时间
-                writeTimeout(9999, TimeUnit.SECONDS)
-                // 全局的连接超时时间
-                connectTimeout(9999, TimeUnit.SECONDS)
-            }
-        }
-    }
 }
+
+// ==========
+// = Module =
+// ==========
 
 /**
  * 是否忽略对应模块
@@ -157,10 +139,10 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
  * @return `true` yes, `false` no
  */
 private fun ignoreModule(key: String): Boolean {
-    // 属于下载模块则进行忽略, 避免打印抓包数据文件过大影响性能【自行控制调试情况下打印】
-    if (isDownloadModule(key)) {
-        return true
-    }
+    // 属于【下载】模块则进行忽略, 避免打印抓包数据文件过大影响性能【自行控制调试情况下打印】
+    if (isDownloadModule(key)) return true
+    // 属于【上传】模块则进行忽略
+    if (isUploadModule(key)) return true
     // ...
     return false
 }
@@ -172,4 +154,65 @@ private fun ignoreModule(key: String): Boolean {
  */
 private fun isDownloadModule(key: String): Boolean {
     return key.contains("download", true)
+}
+
+/**
+ * 是否属于上传模块
+ * @param key Module Key
+ * @return `true` yes, `false` no
+ */
+private fun isUploadModule(key: String): Boolean {
+    return key.contains("upload", true)
+}
+
+// ==================
+// = OkHttp Builder =
+// ==================
+
+/**
+ * debug 版本构建 Download Module OkHttp Builder
+ * @param key String
+ * @param builder Builder
+ */
+private fun debugOkHttpBuilderByDownload(
+    key: String,
+    builder: OkHttpClient.Builder
+) {
+    // 判断是否【下载】模块
+    if (isDownloadModule(key)) {
+        builder.apply {
+            // 全局的响应超时时间 ( 秒 )
+            callTimeout(9999, TimeUnit.SECONDS)
+            // 全局的读取超时时间
+            readTimeout(9999, TimeUnit.SECONDS)
+            // 全局的写入超时时间
+            writeTimeout(9999, TimeUnit.SECONDS)
+            // 全局的连接超时时间
+            connectTimeout(9999, TimeUnit.SECONDS)
+        }
+    }
+}
+
+/**
+ * debug 版本构建 Upload Module OkHttp Builder
+ * @param key String
+ * @param builder Builder
+ */
+private fun debugOkHttpBuilderByUpload(
+    key: String,
+    builder: OkHttpClient.Builder
+) {
+    // 判断是否【上传】模块
+    if (isUploadModule(key)) {
+        builder.apply {
+            // 全局的响应超时时间 ( 秒 )
+            callTimeout(9999, TimeUnit.SECONDS)
+            // 全局的读取超时时间
+            readTimeout(9999, TimeUnit.SECONDS)
+            // 全局的写入超时时间
+            writeTimeout(9999, TimeUnit.SECONDS)
+            // 全局的连接超时时间
+            connectTimeout(9999, TimeUnit.SECONDS)
+        }
+    }
 }

@@ -6,13 +6,4 @@ import afkt.httpmanager.use.feature.progress.download.DownloadViewModel
  * detail: Progress Manager ViewModel
  * @author Ttt
  */
-class PMViewModel() : DownloadViewModel() {
-
-    // ===========
-    // = 点击事件 =
-    // ===========
-
-    // ==========
-    // = 请求方法 =
-    // ==========
-}
+class PMViewModel() : DownloadViewModel()

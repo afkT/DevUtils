@@ -16,6 +16,10 @@ class PMRepository {
     // 日志 TAG
     private val TAG = PMRepository::class.java.simpleName
 
+    // =======
+    // = 下载 =
+    // =======
+
     /**
      * 下载文件
      */
@@ -75,4 +79,8 @@ class PMRepository {
             ResponseHelper.finishRequest(TAG)
         })
     }
+
+    // =======
+    // = 上传 =
+    // =======
 }
