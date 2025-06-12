@@ -28,12 +28,24 @@ class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(
     override fun initObserve() {
         super.initObserve()
         // 监听下载消息
-        viewModel.downloadMessage.observe(this) { message ->
-            if (StringUtils.isNotEmpty(message)) {
-                showDownloadPopup(message)
-            } else {
-                dismissDownloadPopup()
-            }
+        viewModel.downloadMessage.observe(this) {
+            messageConsumer(it)
+        }
+        // 监听上传消息
+        viewModel.uploadMessage.observe(this) {
+            messageConsumer(it)
+        }
+    }
+
+    /**
+     * Message consumer
+     * @param message Message Content
+     */
+    private fun messageConsumer(message: String) {
+        if (StringUtils.isNotEmpty(message)) {
+            showProgressPopup(message)
+        } else {
+            dismissProgressPopup()
         }
     }
 
@@ -41,13 +53,13 @@ class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(
     // = 弹窗相关 =
     // ==========
 
-    // 下载弹窗
-    private var _downloadPopup: LoadingPopupView? = null
+    // 上传、下载进度信息弹窗
+    private var _progressPopup: LoadingPopupView? = null
 
-    private fun downloadPopup(): LoadingPopupView? {
-        if (_downloadPopup != null) return _downloadPopup
+    private fun progressPopup(): LoadingPopupView? {
+        if (_progressPopup != null) return _progressPopup
         try {
-            _downloadPopup = XPopup.Builder(requireContext())
+            _progressPopup = XPopup.Builder(requireContext())
                 .isViewMode(true)
                 .dismissOnBackPressed(false)
                 .dismissOnTouchOutside(false)
@@ -55,11 +67,11 @@ class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(
                 .asLoading("")
         } catch (_: Exception) {
         }
-        return _downloadPopup
+        return _progressPopup
     }
 
-    private fun showDownloadPopup(message: String) {
-        downloadPopup().hiIfNotNull {
+    private fun showProgressPopup(message: String) {
+        progressPopup().hiIfNotNull {
             it.setTitle(message)
             if (!it.isShow) {
                 it.show()
@@ -67,7 +79,7 @@ class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(
         }
     }
 
-    private fun dismissDownloadPopup() {
-        downloadPopup()?.dismiss()
+    private fun dismissProgressPopup() {
+        progressPopup()?.dismiss()
     }
 }

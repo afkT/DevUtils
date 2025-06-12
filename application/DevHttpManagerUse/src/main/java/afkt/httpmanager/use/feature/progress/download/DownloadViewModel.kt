@@ -26,22 +26,6 @@ open class DownloadViewModel() : UploadViewModel() {
     // ===========
 
     // ===========================
-    // = DevHttpManager - 上传监听 =
-    // ===========================
-
-    // 上传图片
-    val clickUploadImage: () -> Unit = clickUploadImage@{
-    }
-
-    // ===================
-    // = OkHttp - 上传监听 =
-    // ===================
-
-    // 上传文件
-    val clickUploadFile: () -> Unit = clickUploadFile@{
-    }
-
-    // ===========================
     // = DevHttpManager - 下载监听 =
     // ===========================
 
