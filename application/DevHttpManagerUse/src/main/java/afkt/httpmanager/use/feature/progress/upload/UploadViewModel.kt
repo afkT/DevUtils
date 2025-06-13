@@ -2,6 +2,7 @@ package afkt.httpmanager.use.feature.progress.upload
 
 import afkt.httpmanager.use.base.BaseViewModel
 import afkt.httpmanager.use.feature.progress.PMRepository
+import afkt.httpmanager.use.feature.progress.download.DownloadViewModel
 import afkt.httpmanager.use.feature.progress.upload.data.api.UploadAPI
 import afkt.httpmanager.use.feature.progress.upload.data.helper.UploadHelper
 import afkt.httpmanager.use.feature.progress.upload.data.helper.toRequestBody
@@ -76,8 +77,10 @@ open class UploadViewModel(
                 dismissUploadDialog()
                 ProgressHelper.toastError("上传失败：${it.message}")
             }) {
-                ResponseHelper.successResponse(TAG, it)
+                // 图片上传成功回调
+                dismissUploadDialog()
                 ProgressHelper.toastSuccess("图片上传成功")
+                ResponseHelper.successResponse("UploadViewModel", it)
             }
         }
     }
@@ -108,8 +111,10 @@ open class UploadViewModel(
                 dismissUploadDialog()
                 ProgressHelper.toastError("上传失败：${it.message}")
             }) {
-                ResponseHelper.successResponse(TAG, it)
+                // 图片上传成功回调
+                dismissUploadDialog()
                 ProgressHelper.toastSuccess("图片上传成功")
+                ResponseHelper.successResponse("UploadViewModel", it)
             }
         }
     }
@@ -157,14 +162,22 @@ open class UploadViewModel(
 
         override fun onError(progress: Progress) {
             ProgressHelper.toastError("图片上传失败")
+            dismissUploadDialog()
         }
 
         override fun onFinish(progress: Progress) {
-            // 仅代表请求响应成功，至于结果看服务器返回不一定表示上传成功，例如无权限等
+            // 仅代表请求读取结束，至于结果看服务器返回不一定表示上传成功，例如无权限等
+            updateUploadMessage("上传成功，等待响应") // 等服务器返回结果
         }
 
         override fun onEnd(progress: Progress) {
-            dismissUploadDialog()
+            // 这里表示 RequestBody 读取结束了，还需要等待服务器返回结果，不代表请求结束了
+
+            /**
+             * 可思考对比 [DownloadViewModel] 的 [Progress.Callback] 方法，作用不同，回调意思也不同
+             * 一个是请求 ( 服务器接收数据的读取进度，不代表响应回复 )
+             * 一个是下载 ( 表示服务器已经响应，回复结果了 )
+             */
         }
 
         /**
