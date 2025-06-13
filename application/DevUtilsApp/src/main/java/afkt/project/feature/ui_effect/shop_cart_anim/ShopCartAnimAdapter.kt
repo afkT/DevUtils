@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
-import afkt.project.base.IMAGE_ROUND_3
+import afkt.project.base.helper.IMAGE_ROUND_3
 import afkt.project.data_model.bean.CommodityItem
 import afkt.project.databinding.AdapterItemShopCartAnimBinding
 import android.view.View

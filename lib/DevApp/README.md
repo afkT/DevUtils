@@ -2115,6 +2115,7 @@ DevUtils.openDebug();
 | isTiramisu | 是否在 13.0 版本及以上 |
 | isUpsideDownCake | 是否在 14.0 版本及以上 |
 | isVanillaIceCream | 是否在 15.0 版本及以上 |
+| isBaklava | 是否在 16.0 版本及以上 |
 | convertSDKVersion | 转换 SDK 版本 convertSDKVersion(31) = Android 12.0 |
 | convertSDKVersionName | 转换 SDK 版本名字 convertSDKVersionName(31) = Android S |
 
@@ -5622,6 +5623,8 @@ DevUtils.openDebug();
 | stringToInputStream | String 转换输入流 |
 | outputStreamToString | 输出流转 String |
 | stringToOutputStream | String 转 输出流 |
+| inputWriteOutputStream | 通过输入流写入输出流 |
+| inputWriteOutputStreamCallback | 通过输入流写入输出流 ( 回调通知进度 ) |
 
 
 * **字符串工具类 ->** [StringUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/StringUtils.java)

@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
-import afkt.project.base.IMAGE_ROUND_3
+import afkt.project.base.helper.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
 import afkt.project.feature.ui_effect.recy_adapter.CommodityBean

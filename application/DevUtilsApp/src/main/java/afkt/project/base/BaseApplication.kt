@@ -1,23 +1,19 @@
 package afkt.project.base
 
 import afkt.project.R
+import afkt.project.base.helper.*
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
 import androidx.multidex.MultiDexApplication
 import com.therouter.TheRouter
-import dev.*
+import dev.DevUtils
 import dev.agile.assist.WebViewAssist
-import dev.base.DevBase
-import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
 import dev.engine.image.ImageConfig
-import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_d
-import dev.expand.engine.log.log_i
 import dev.mvvm.utils.image.AppImageConfig
 import dev.mvvm.utils.size.AppSize
 import dev.simple.DevSimple
@@ -31,10 +27,8 @@ import dev.utils.app.logger.LogLevel
 import dev.utils.common.DateUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.assist.TimeCounter
-import dev.widget.DevWidget
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import me.jessyan.autosize.AutoSizeConfig
 
 /**
  * detail: Base Application
@@ -42,20 +36,8 @@ import me.jessyan.autosize.AutoSizeConfig
  */
 class BaseApplication : MultiDexApplication() {
 
-    companion object {
-
-        /**
-         * 是否 Debug 模式
-         * @return `true` yes, `false` no
-         */
-        fun isDebug(): Boolean {
-            return DevUtils.isDebug()
-        }
-    }
-
     override fun onCreate() {
         super.onCreate()
-
         // 初始化计时器
         val timeCounter = TimeCounter()
 
@@ -68,7 +50,7 @@ class BaseApplication : MultiDexApplication() {
         // ============
 
         // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-        DevUtils.init(this.applicationContext)
+        DevUtils.init(this)
         // 初始化日志配置
         DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)
@@ -105,38 +87,8 @@ class BaseApplication : MultiDexApplication() {
         // 初始化
         initialize()
 
-        // 属于 Debug 才打印信息
-        if (isDebug()) printProInfo(timeCounter)
-    }
-
-    /**
-     * 打印项目信息
-     * @param timeCounter [TimeCounter]
-     */
-    private fun printProInfo(timeCounter: TimeCounter) {
-        val builder = StringBuilder()
-            .append("项目名: ").append(ResourceUtils.getString(R.string.str_app_name))
-            .append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(")
-            .append(VersionUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
-            .append("\nPackageName: ").append(AppUtils.getPackageName())
-            .append("\nVersionCode: ").append(AppUtils.getAppVersionCode())
-            .append("\nVersionName: ").append(AppUtils.getAppVersionName())
-            .append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion())
-            .append("\nDevAssist 版本: ").append(DevAssist.getDevAssistVersion())
-            .append("\nDevBase 版本: ").append(DevBase.getDevBaseVersion())
-            .append("\nDevBaseMVVM 版本: ").append(DevBaseMVVM.getDevBaseMVVMVersion())
-            .append("\nDevSimple 版本: ").append(DevSimple.getDevSimpleVersion())
-            .append("\nDevEngine 版本: ").append(DevEngine.getDevEngineVersion())
-            .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())
-            .append("\nDevHttpCapture 版本: ").append(DevHttpCapture.getDevHttpCaptureVersion())
-            .append("\nDevEnvironment 版本: ")
-            .append(DevEnvironmentUtils.getDevEnvironmentVersion())
-            .append("\nDevHttpManager 版本: ").append(DevHttpManager.getDevHttpManagerVersion())
-            .append("\nDevRetrofit 版本: ").append(DevRetrofit.getDevRetrofitVersion())
-            .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
-            .append("\n时间: ").append(DateUtils.getDateNow())
-            .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
-        log_i(message = builder.toString())
+        // 打印项目信息
+        ProjectHelper.printInfo(timeCounter)
     }
 
     // ============
@@ -159,8 +111,6 @@ class BaseApplication : MultiDexApplication() {
         initWebViewBuilder()
         // 初始化 App ImageConfig Creator
         initAppImageConfigCreator()
-        // 初始化其他 lib
-        initOther()
     }
 
     /**
@@ -272,10 +222,6 @@ class BaseApplication : MultiDexApplication() {
             setBuiltInZoomControls(false)
             // 显示缩放工具
             setDisplayZoomControls(false)
-            // Application Caches 地址
-            setAppCachePath(PathUtils.getInternal().getAppCachePath("cache"))
-            // 数据库缓存路径
-            setDatabasePath(PathUtils.getInternal().getAppCachePath("db"))
             // 渲染优先级高
             setRenderPriority(WebSettings.RenderPriority.HIGH)
             // 基础布局算法
@@ -356,48 +302,4 @@ class BaseApplication : MultiDexApplication() {
             }
         }
     }
-
-    /**
-     * 初始化其他 lib
-     */
-    private fun initOther() {
-        // https://github.com/JessYanCoding/AndroidAutoSize/blob/master/demo-subunits/src/main/java/me/jessyan/autosize/demo/subunits/BaseApplication.java
-        // 可不调用, 默认开启 DP 转换
-        AutoSizeConfig.getInstance().unitsManager.isSupportDP = true
-    }
 }
-
-// ================================
-// = dev.engine.image.ImageConfig =
-// ================================
-
-// ============
-// = 使用方式一 =
-// ============
-
-private val IMAGE_ROUND = ImageConfig.create().apply {
-    setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
-    setScaleType(ImageConfig.SCALE_NONE)
-}
-
-//val IMAGE_DEFAULT_CROP = ImageConfig.create().apply {
-//    setScaleType(ImageConfig.SCALE_CENTER_CROP)
-//}
-//
-//val IMAGE_ROUND_3 = ImageConfig.create(IMAGE_ROUND).apply {
-//    setRoundedCornersRadius(
-//        AppSize.dp2px(3F)
-//    )
-//
-
-// ============
-// = 使用方式二 =
-// ============
-
-// IMAGE_KEY.toImageConfig() => ImageConfig
-const val IMAGE_DEFAULT_CROP = "IMAGE_DEFAULT_CROP"
-const val IMAGE_DEFAULT_FIX = "IMAGE_DEFAULT_FIX"
-const val IMAGE_ROUND_3 = "IMAGE_ROUND_3"
-const val IMAGE_ROUND_10 = "IMAGE_ROUND_10"
-const val IMAGE_ROUND_CROP_10 = "IMAGE_ROUND_CROP_10"
-const val IMAGE_ROUND_FIX_10 = "IMAGE_ROUND_FIX_10"

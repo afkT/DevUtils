@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
-import afkt.project.base.IMAGE_ROUND_3
+import afkt.project.base.helper.IMAGE_ROUND_3
 import afkt.project.data_model.bean.EvaluateItem
 import afkt.project.databinding.AdapterItemEditsBinding
 import android.view.ViewGroup

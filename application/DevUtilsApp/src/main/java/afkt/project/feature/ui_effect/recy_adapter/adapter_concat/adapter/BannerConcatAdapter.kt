@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
-import afkt.project.base.IMAGE_ROUND_10
+import afkt.project.base.helper.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.feature.ui_effect.recy_adapter.BannerBean

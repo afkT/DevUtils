@@ -930,6 +930,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | stringToInputStream | String 转换输入流 |
 | outputStreamToString | 输出流转 String |
 | stringToOutputStream | String 转 输出流 |
+| inputWriteOutputStream | 通过输入流写入输出流 |
+| inputWriteOutputStreamCallback | 通过输入流写入输出流 ( 回调通知进度 ) |
 
 
 * **字符串工具类 ->** [StringUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/StringUtils.java)
