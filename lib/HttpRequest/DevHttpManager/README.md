@@ -190,46 +190,12 @@ mOperation.addResponseListener(url, progressCallback)
 
 通过返回的 [ProgressOperation][ProgressOperation] 对象进行操作，具体公开方法可以查看 [IOperation][IOperation] 接口
 
-* **Progress Operation ->** [ProgressOperation.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/http/progress/ProgressOperation.kt)
-
-| 方法                     | 注释                                 |
-|:-----------------------|:-----------------------------------|
-| setPlanType            | 设置 Progress Operation 实现方式类型       |
-| wrap                   | 进行拦截器包装 ( 必须调用 )                   |
-| isUseWrap              | 是否已调用 wrap 方法                      |
-| isDeprecated           | 是否废弃不使用状态                          |
-| isDefault              | 是否全局默认操作对象                         |
-| isTypeAll              | 是否监听上下行                            |
-| isTypeRequest          | 是否监听上行                             |
-| isTypeResponse         | 是否监听下行                             |
-| getPlanType            | 获取 Progress Operation 实现方式类型       |
-| getRefreshTime         | 获取回调刷新时间 ( 毫秒 )                    |
-| setRefreshTime         | 设置回调刷新时间 ( 毫秒 )                    |
-| resetRefreshTime       | 重置回调刷新时间 ( 毫秒 )                    |
-| getCallback            | 获取全局 Progress Callback             |
-| setCallback            | 设置全局 Progress Callback             |
-| removeCallback         | 移除全局 Progress Callback             |
-| getHandler             | 获取回调 UI 线程通知 Handler               |
-| setHandler             | 设置回调 UI 线程通知 Handler               |
-| resetHandler           | 重置回调 UI 线程通知 Handler               |
-| removeSelfFromManager  | 移除自身在 Manager Map 中的对象值, 并且标记为废弃状态 |
-| recycleListener        | 释放指定监听事件                           |
-| addRequestListener     | 添加指定 url 上行监听事件                    |
-| clearRequestListener   | 清空指定 url 上行所有监听事件                  |
-| removeRequestListener  | 移除指定 url 上行监听事件                    |
-| addResponseListener    | 添加指定 url 下行监听事件                    |
-| clearResponseListener  | 清空指定 url 下行所有监听事件                  |
-| removeResponseListener | 移除指定 url 下行监听事件                    |
-
-
 **完整使用查看示例项目 [DevHttpManagerUse - 上传、下载进度监听使用][DevHttpManagerUse - 上传、下载进度监听使用]**
-
-* 完整使用过程模拟代码
 
 ```kotlin
 /**
  * 需要切换内部实现方式, 必须先调用该方法
- * 实现方式差异可以查看 [ProgressOperation] 类注释
+ * 实现方式差异可以查看 ProgressOperation 类注释
  * 可不调用默认使用 PLAN_A
  */
 mOperation.setPlanType(ProgressOperation.PLAN_A)
