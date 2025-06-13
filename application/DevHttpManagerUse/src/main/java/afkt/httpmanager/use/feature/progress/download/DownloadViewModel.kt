@@ -67,7 +67,7 @@ open class DownloadViewModel() : UploadViewModel() {
     // = OkHttp - 下载监听 =
     // ===================
 
-    // 下载 Gradle
+    // 下载 Gradle ( 未使用 DevHttpManager )
     val clickDownloadGradle: () -> Unit = clickDownloadGradle@{
         if (DownloadHelper.isFileExists(URL_GRADLE)) {
             dismissDownloadDialog()
@@ -78,7 +78,7 @@ open class DownloadViewModel() : UploadViewModel() {
         downloadGradle()
     }
 
-    // 重新下载 Gradle
+    // 重新下载 Gradle ( 未使用 DevHttpManager )
     val clickReDownloadGradle: () -> Unit = {
         // 开始下载 Gradle
         downloadGradle()

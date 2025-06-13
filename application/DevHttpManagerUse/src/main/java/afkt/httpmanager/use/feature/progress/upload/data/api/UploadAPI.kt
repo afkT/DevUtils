@@ -112,7 +112,7 @@ class UploadAPI private constructor() {
             // 设置回调 UI 线程通知 Handler
             setHandler(HandlerUtils.getMainHandler())
             // 设置回调刷新时间 ( 毫秒 )
-            setRefreshTime(100L)
+            setRefreshTime(50L)
             // 设置全局 Progress Callback
             setCallback(object : Progress.Callback {
                 override fun onStart(progress: Progress) {

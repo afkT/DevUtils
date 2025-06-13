@@ -1,11 +1,18 @@
 package afkt.httpmanager.use.feature.progress.upload.data.helper
 
+import android.graphics.Bitmap
 import dev.agile.app.AppExecutors
 import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.utils.app.MediaStoreUtils
 import dev.utils.app.PathUtils
 import dev.utils.app.ResourceUtils
+import dev.utils.app.UriUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.FileUtils
+import dev.utils.common.StringUtils
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 // =================
@@ -30,14 +37,18 @@ object UploadHelper {
     /**
      * 保存上传文件
      * @param resName 资源名
+     * @param format 图片格式
      * @return File
      */
-    private fun saveUploadFile(resName: String): File? {
+    private fun saveUploadFile(
+        resName: String,
+        format: Bitmap.CompressFormat
+    ): File? {
         val filePath = uploadPath()
-        val file = FileUtils.getFile(filePath, "$resName.webp")
+        val file = FileUtils.getFile(filePath, "$resName.${format.toString().lowercase()}")
         if (FileUtils.isFileExists(file)) return file
         val bitmap = ResourceUtils.getBitmapMipmap(resName)
-        if (ImageUtils.saveBitmapToSDCardWEBP(bitmap, file)) return file
+        if (ImageUtils.saveBitmapToSDCard(bitmap, file, format, 100)) return file
         return null
     }
 
@@ -47,12 +58,47 @@ object UploadHelper {
     fun fileLists(callback: (List<File>) -> Unit) {
         AppExecutors.instance().diskIO().execute {
             val lists = mutableListOf<File>()
-            saveUploadFile("icon_launcher").hiIfNotNull { lists.add(it) }
-            saveUploadFile("icon_launcher_round").hiIfNotNull { lists.add(it) }
-            saveUploadFile("launcher_window_bg").hiIfNotNull { lists.add(it) }
+            mutableListOf(
+                "icon_launcher", "icon_launcher_round", "launcher_window_bg"
+            ).forEach { resName ->
+                // 每份文件存储 webp、png 两种格式防止上传速度过快，用于演示
+                saveUploadFile(resName, Bitmap.CompressFormat.WEBP).hiIfNotNull {
+                    lists.add(it)
+                }
+                saveUploadFile(resName, Bitmap.CompressFormat.PNG).hiIfNotNull {
+                    lists.add(it)
+                }
+            }
             AppExecutors.instance().mainThread().execute {
                 callback.invoke(lists)
             }
         }
     }
+}
+
+/**
+ * File 转 RequestBody
+ * @return File RequestBody
+ */
+fun File.toRequestBody(): RequestBody {
+    return asRequestBody(getMimeType().toMediaTypeOrNull())
+}
+
+/**
+ * 获取文件 MimeType
+ * @return File MimeType
+ */
+fun File.getMimeType(): String {
+    var result: String? = null
+    try {
+        val suffix = FileUtils.getFileSuffix(this)
+        result = MediaStoreUtils.getMimeTypeFromExtension(suffix)
+    } catch (_: Exception) {
+        try {
+            val uri = UriUtils.getUriForFile(this)
+            result = ResourceUtils.getContentResolver().getType(uri)
+        } catch (_: Exception) {
+        }
+    }
+    return StringUtils.checkValue(result)
 }

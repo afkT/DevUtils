@@ -2,9 +2,17 @@ package afkt.httpmanager.use.feature.progress.upload
 
 import afkt.httpmanager.use.base.BaseViewModel
 import afkt.httpmanager.use.feature.progress.PMRepository
+import afkt.httpmanager.use.feature.progress.upload.data.api.UploadAPI
 import afkt.httpmanager.use.feature.progress.upload.data.helper.UploadHelper
+import afkt.httpmanager.use.feature.progress.upload.data.helper.toRequestBody
+import afkt.httpmanager.use.network.helper.ProgressHelper
+import afkt.httpmanager.use.network.helper.ResponseHelper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dev.http.progress.Progress
+import dev.http.progress.ProgressRequestBody
+import dev.utils.common.StringUtils
+import okhttp3.MultipartBody
 
 /**
  * detail: Upload Manager ViewModel
@@ -29,7 +37,7 @@ open class UploadViewModel(
     // ===========================
 
     // 上传图片
-    val clickUploadImage: () -> Unit = clickUploadImage@{
+    val clickUploadImage: () -> Unit = {
         uploadImages()
     }
 
@@ -37,8 +45,9 @@ open class UploadViewModel(
     // = OkHttp - 上传监听 =
     // ===================
 
-    // 上传文件
-    val clickUploadFile: () -> Unit = clickUploadFile@{
+    // 上传图片 ( 未使用 DevHttpManager )
+    val clickUploadImage2: () -> Unit = {
+        uploadImages2()
     }
 
     // ==========
@@ -49,27 +58,59 @@ open class UploadViewModel(
      * 上传图片列表
      */
     private fun uploadImages() {
-//        repository.uploadFile(this, UPLOAD_URL)
-//        // 开始下载文件
-//        repository.downloadFile(this, URL_MP4, startBlock = {
-//            updateUploadMessage("开始上传多张图片")
-//        }, errorBlock = {
-//            dismissUploadDialog()
-//            ProgressHelper.toastError("图片上传失败")
-//        }) {
-//            UploadHelper.writeFile(URL_MP4, it) {
-//                dismissUploadDialog()
-//                ProgressHelper.toastError("图片上传失败")
-//            }
-//        }
-        updateUploadMessage("开始读取图片列表")
-        // 获取上传文件集合
+        updateUploadMessage("读取上传图片中")
+        // 获取上传图片集合
         UploadHelper.fileLists { files ->
-            if (files.isEmpty()) {
+            val body = MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                // Token - https://api.superbed.cn/admin
+                addFormDataPart("token", TOKEN)
+                // 添加全部图片
+                files.forEach { file ->
+                    addFormDataPart("file", file.name, file.toRequestBody())
+                }
+            }.build()
+            // 开始上传图片
+            repository.uploadFile(this, UPLOAD_URL, body, startBlock = {
+                updateUploadMessage("开始上传多张图片")
+            }, errorBlock = {
                 dismissUploadDialog()
-                return@fileLists
+                ProgressHelper.toastError("上传失败：${it.message}")
+            }) {
+                ResponseHelper.successResponse(TAG, it)
+                ProgressHelper.toastSuccess("图片上传成功")
             }
+        }
+    }
 
+    /**
+     * 上传图片列表 ( 未使用 DevHttpManager )
+     */
+    private fun uploadImages2() {
+        updateUploadMessage("读取上传图片中")
+        // 获取上传图片集合
+        UploadHelper.fileLists { files ->
+            val body = MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                // Token - https://api.superbed.cn/admin
+                addFormDataPart("token", TOKEN)
+                // 添加全部图片
+                files.forEach { file ->
+                    addFormDataPart("file", file.name, file.toRequestBody())
+                }
+            }.build()
+            // 使用 ProgressRequestBody 进行包装，获取读取进度
+            val progressBody = ProgressRequestBody(
+                delegate = body, refreshTime = 0L, callback = fileUploadCallback
+            )
+            // 开始上传图片
+            repository.uploadFile2(this, UPLOAD_URL, progressBody, startBlock = {
+                updateUploadMessage("开始上传多张图片")
+            }, errorBlock = {
+                dismissUploadDialog()
+                ProgressHelper.toastError("上传失败：${it.message}")
+            }) {
+                ResponseHelper.successResponse(TAG, it)
+                ProgressHelper.toastSuccess("图片上传成功")
+            }
         }
     }
 
@@ -94,5 +135,48 @@ open class UploadViewModel(
      */
     private fun dismissUploadDialog() {
         updateUploadMessage("")
+    }
+
+    // ============
+    // = Callback =
+    // ============
+
+    // 图片上传进度回调
+    private val fileUploadCallback = object : Progress.Callback {
+        override fun onStart(progress: Progress) {
+            // 这里是请求响应了，真正的开始上传
+            updateUploadMessage("上传中 0%")
+        }
+
+        override fun onProgress(progress: Progress) {
+            val message = "上传中 ${progress.getPercent()}%"
+            if (!StringUtils.equals(message, _uploadMessage.value)) {
+                updateUploadMessage(message)
+            }
+        }
+
+        override fun onError(progress: Progress) {
+            ProgressHelper.toastError("图片上传失败")
+        }
+
+        override fun onFinish(progress: Progress) {
+            // 仅代表请求响应成功，至于结果看服务器返回不一定表示上传成功，例如无权限等
+        }
+
+        override fun onEnd(progress: Progress) {
+            dismissUploadDialog()
+        }
+
+        /**
+         * 不自动回收，方便相同链接再次上传复用进度回调
+         */
+        override fun isAutoRecycle(progress: Progress): Boolean = false
+    }
+
+    init {
+        // 添加指定 url 上行监听事件
+        UploadAPI.progress().addRequestListener(
+            UPLOAD_URL, fileUploadCallback
+        )
     }
 }
