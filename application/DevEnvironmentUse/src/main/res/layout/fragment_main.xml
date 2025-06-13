@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="afkt.environment.use.AppViewModel" />
+            type="afkt.environment.use.MainViewModel" />
     </data>
 
     <LinearLayout

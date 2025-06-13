@@ -4,7 +4,7 @@ import afkt.environment.use.base.BaseActivity
 import afkt.environment.use.databinding.ActivityMainBinding
 import androidx.navigation.findNavController
 
-class MainActivity : BaseActivity<ActivityMainBinding, AppViewModel>(
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     R.layout.activity_main, BR.viewModel, simple_Agile = { act ->
         if (act is MainActivity) {
             act.apply {

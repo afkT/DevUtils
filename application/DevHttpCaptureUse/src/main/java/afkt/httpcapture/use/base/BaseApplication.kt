@@ -1,6 +1,5 @@
-package afkt.httpmanager.use.base
+package afkt.httpcapture.use.base
 
-import afkt.httpmanager.use.network.HttpCore
 import android.util.Log
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
@@ -16,7 +15,10 @@ import dev.utils.common.StringUtils
  * detail: Base Application
  * @author Ttt
  */
-class AppApplication : MultiDexApplication() {
+class BaseApplication : MultiDexApplication() {
+
+    // 日志 TAG
+    val TAG = "DevHttpCaptureUse_Log"
 
     override fun onCreate() {
         super.onCreate()
@@ -24,7 +26,7 @@ class AppApplication : MultiDexApplication() {
         // 初始化日志配置
         DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)
-                .tag("DevHttpManagerUse_Log")
+                .tag(TAG)
                 .sortLog(true) // 美化日志, 边框包围
                 .methodCount(0)
         )
@@ -54,25 +56,5 @@ class AppApplication : MultiDexApplication() {
 
         // DevEngine 完整初始化
         DevEngine.completeInitialize(this)
-
-        // ============
-        // = HttpCore =
-        // ============
-
-        // 初始化 Http Core
-        HttpCore.initialize(this)
-    }
-
-    companion object {
-
-        /**
-         * 是否 Release 版本标记
-         */
-        fun isRelease(): Boolean = !isDebug()
-
-        /**
-         * 是否 Debug 版本标记
-         */
-        fun isDebug(): Boolean = DevUtils.isDebug()
     }
 }

@@ -1,6 +1,6 @@
 package afkt.httpmanager.use.network
 
-import afkt.httpmanager.use.base.AppApplication
+import afkt.httpmanager.use.base.BaseApplication
 import afkt.httpmanager.use.network.builder.GlobalOkHttpBuilder
 import afkt.httpmanager.use.network.builder.GlobalRetrofitResetListener
 import android.content.Context
@@ -50,12 +50,12 @@ object HttpCore {
     /**
      * 是否 Release 版本标记
      */
-    fun isRelease(): Boolean = AppApplication.isRelease()
+    fun isRelease(): Boolean = BaseApplication.isRelease()
 
     /**
      * 是否 Debug 版本标记
      */
-    fun isDebug(): Boolean = AppApplication.isDebug()
+    fun isDebug(): Boolean = BaseApplication.isDebug()
 
     // =============
     // = 对外公开方法 =

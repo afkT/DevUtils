@@ -15,11 +15,7 @@ import dev.expand.engine.toast.toast_showLong
 import dev.expand.engine.toast.toast_showShort
 import dev.utils.common.StringUtils
 
-/**
- * detail: 整个 App ViewModel
- * @author Ttt
- */
-class AppViewModel : BaseViewModel() {
+class MainViewModel : BaseViewModel() {
 
     // 环境改变触发事件
     private val changeListener =

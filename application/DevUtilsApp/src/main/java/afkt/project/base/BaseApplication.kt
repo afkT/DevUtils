@@ -36,6 +36,9 @@ import dev.widget.function.StateLayout
  */
 class BaseApplication : MultiDexApplication() {
 
+    // 日志 TAG
+    val TAG = "DevUtils_Log"
+
     override fun onCreate() {
         super.onCreate()
         // 初始化计时器
@@ -54,7 +57,7 @@ class BaseApplication : MultiDexApplication() {
         // 初始化日志配置
         DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)
-                .tag("DevUtils_Log")
+                .tag(TAG)
                 .sortLog(true) // 美化日志, 边框包围
                 .methodCount(0)
         )

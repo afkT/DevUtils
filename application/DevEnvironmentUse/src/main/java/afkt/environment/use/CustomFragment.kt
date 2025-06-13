@@ -7,7 +7,7 @@ import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import dev.simple.app.base.FragmentVMType
 
-class CustomFragment : BaseFragment<FragmentCustomBinding, AppViewModel>(
+class CustomFragment : BaseFragment<FragmentCustomBinding, MainViewModel>(
     R.layout.fragment_custom, BR.viewModel,
     FragmentVMType.ACTIVITY, simple_Agile = { frg ->
         if (frg is CustomFragment) {
