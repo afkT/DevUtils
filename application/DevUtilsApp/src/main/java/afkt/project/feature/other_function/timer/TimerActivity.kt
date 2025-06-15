@@ -2,11 +2,11 @@ package afkt.project.feature.other_function.timer
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
-import afkt.project.data_model.button.ButtonList.timerButtonValues
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList.timerButtonValues
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.os.Handler
 import android.os.Looper
@@ -22,7 +22,7 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.TimerActivity_PATH)
-class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is TimerActivity) {
             it.apply {

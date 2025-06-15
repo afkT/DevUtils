@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig
@@ -38,7 +38,7 @@ import dev.widget.ui.ScanShapeView
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.QRCodeScanActivity_PATH)
-class QRCodeScanActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProjectViewModel>(
+class QRCodeScanActivity : BaseProjectActivity<ActivityScanShapeBinding, AppViewModel>(
     R.layout.activity_scan_shape, simple_Agile = {
         if (it is QRCodeScanActivity) {
             it.apply {

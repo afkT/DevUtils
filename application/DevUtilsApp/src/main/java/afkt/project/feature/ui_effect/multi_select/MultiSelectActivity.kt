@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.bean.CommodityItem
-import afkt.project.data_model.bean.CommodityItem.Companion.newCommodityItem
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.bean.CommodityItem
+import afkt.project.model.data.bean.CommodityItem.Companion.newCommodityItem
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
 import android.view.View
@@ -24,7 +24,7 @@ import dev.widget.decoration.linear.FirstLinearColorItemDecoration
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.MultiSelectActivity_PATH)
-class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is MultiSelectActivity) {
             it.apply {

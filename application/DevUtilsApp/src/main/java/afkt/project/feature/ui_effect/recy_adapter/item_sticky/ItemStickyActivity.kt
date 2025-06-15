@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.recy_adapter.item_sticky
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +28,7 @@ import dev.utils.common.RandomUtils
  * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
 @Route(path = RouterPath.UI_EFFECT.ItemStickyActivity_PATH)
-class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ItemStickyActivity) {
             it.apply {

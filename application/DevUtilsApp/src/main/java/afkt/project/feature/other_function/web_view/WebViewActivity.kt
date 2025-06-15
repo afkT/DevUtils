@@ -3,8 +3,8 @@ package afkt.project.feature.other_function.web_view
 import afkt.project.R
 import afkt.project.base.BaseApplication
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityWebviewBinding
 import android.net.http.SslError
 import android.view.KeyEvent
@@ -23,7 +23,7 @@ import dev.expand.engine.log.log_dTag
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.WebViewActivity_PATH)
-class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, BaseProjectViewModel>(
+class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel>(
     R.layout.activity_webview
 ) {
 

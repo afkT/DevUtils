@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.add_contact
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityAddContactBinding
 import android.Manifest
 import android.annotation.SuppressLint
@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.AddContactActivity_PATH)
-class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, BaseProjectViewModel>(
+class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppViewModel>(
     R.layout.activity_add_contact, simple_Agile = {
         if (it is AddContactActivity) {
             it.apply {

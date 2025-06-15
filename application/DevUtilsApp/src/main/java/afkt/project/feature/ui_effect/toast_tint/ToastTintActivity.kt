@@ -2,11 +2,11 @@ package afkt.project.feature.ui_effect.toast_tint
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
-import afkt.project.data_model.button.ButtonList
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.graphics.Color
 import android.graphics.Typeface
@@ -23,7 +23,7 @@ import utils_use.toast.ToastTintUse
  * [ToastTintUse]
  */
 @Route(path = RouterPath.UI_EFFECT.ToastTintActivity_PATH)
-class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ToastTintActivity) {
             it.apply {

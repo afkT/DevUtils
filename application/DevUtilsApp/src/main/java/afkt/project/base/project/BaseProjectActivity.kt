@@ -1,6 +1,7 @@
 package afkt.project.base.project
 
 import afkt.project.R
+import afkt.project.base.app.AppViewModel
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,7 +26,7 @@ import dev.widget.function.StateLayout
  * detail: 项目 BaseActivity
  * @author Ttt
  */
-open class BaseProjectActivity<VDB : ViewDataBinding, VM : BaseProjectViewModel> :
+open class BaseProjectActivity<VDB : ViewDataBinding, VM : AppViewModel> :
     BaseActivity<VDB, VM>,
     IFloatingActivity {
 

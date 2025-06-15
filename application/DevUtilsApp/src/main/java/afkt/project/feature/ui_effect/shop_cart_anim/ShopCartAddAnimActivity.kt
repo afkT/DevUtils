@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.bean.CommodityItem
-import afkt.project.data_model.bean.CommodityItem.Companion.newCommodityItem
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.bean.CommodityItem
+import afkt.project.model.data.bean.CommodityItem.Companion.newCommodityItem
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.ViewGroup
 import com.therouter.router.Route
@@ -19,7 +19,7 @@ import dev.widget.decoration.linear.FirstLinearColorItemDecoration
  */
 @Route(path = RouterPath.UI_EFFECT.ShopCartAddAnimActivity_PATH)
 class ShopCartAddAnimActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
             if (it is ShopCartAddAnimActivity) {
                 it.apply {

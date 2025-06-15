@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 
 import afkt.project.R
 import afkt.project.base.helper.IMAGE_ROUND_10
-import afkt.project.data_model.bean.ItemBean
+import afkt.project.model.data.bean.ItemBean
 import afkt.project.databinding.AdapterPagerSnapBinding
 import android.view.ViewGroup
 import android.widget.ImageView

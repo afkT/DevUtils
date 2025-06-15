@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.view_pager2
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityViewpager2Binding
 import android.view.Menu
 import android.view.MenuItem
@@ -21,7 +21,7 @@ import dev.utils.app.ResourceUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.ViewPager2Activity_PATH)
-class ViewPager2Activity : BaseProjectActivity<ActivityViewpager2Binding, BaseProjectViewModel>(
+class ViewPager2Activity : BaseProjectActivity<ActivityViewpager2Binding, AppViewModel>(
     R.layout.activity_viewpager2, simple_Agile = {
         if (it is ViewPager2Activity) {
             it.apply {

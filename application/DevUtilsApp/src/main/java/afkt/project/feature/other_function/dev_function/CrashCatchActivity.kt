@@ -3,11 +3,11 @@ package afkt.project.feature.other_function.dev_function
 import afkt.project.R
 import afkt.project.base.BaseApplication
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
-import afkt.project.data_model.button.ButtonList
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
 import dev.utils.app.toast.ToastTintUtils
@@ -17,7 +17,7 @@ import dev.utils.app.toast.ToastTintUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.CrashCatchActivity_PATH)
-class CrashCatchActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class CrashCatchActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is CrashCatchActivity) {
             it.apply {

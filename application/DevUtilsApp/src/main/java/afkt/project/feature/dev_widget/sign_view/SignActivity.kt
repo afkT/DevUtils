@@ -1,8 +1,8 @@
 package afkt.project.feature.dev_widget.sign_view
 
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -19,7 +19,7 @@ import dev.widget.function.SignView
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.SignActivity_PATH)
-class SignActivity : BaseProjectActivity<ViewDataBinding, BaseProjectViewModel>(
+class SignActivity : BaseProjectActivity<ViewDataBinding, AppViewModel>(
     object : BindingActivityView {
         override fun bind(
             value: AppCompatActivity,

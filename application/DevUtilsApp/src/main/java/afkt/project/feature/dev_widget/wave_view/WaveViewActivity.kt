@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.wave_view
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityWaveViewBinding
 import android.graphics.Color
 import android.widget.SeekBar
@@ -18,7 +18,7 @@ import dev.widget.utils.WaveHelper
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.WaveViewActivity_PATH)
-class WaveViewActivity : BaseProjectActivity<ActivityWaveViewBinding, BaseProjectViewModel>(
+class WaveViewActivity : BaseProjectActivity<ActivityWaveViewBinding, AppViewModel>(
     R.layout.activity_wave_view, simple_Agile = {
         if (it is WaveViewActivity) {
             it.apply {

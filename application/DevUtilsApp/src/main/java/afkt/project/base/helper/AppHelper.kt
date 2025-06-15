@@ -18,13 +18,13 @@ import dev.utils.common.assist.TimeCounter
 import dev.widget.DevWidget
 
 // =================
-// = 项目 Helper 类 =
+// = App Helper 类 =
 // =================
 
-object ProjectHelper {
+object AppHelper {
 
     // 日志 TAG
-    val TAG = ProjectHelper::class.java.simpleName
+    val TAG = AppHelper::class.java.simpleName
 
     // ==============
     // = 对外公开方法 =

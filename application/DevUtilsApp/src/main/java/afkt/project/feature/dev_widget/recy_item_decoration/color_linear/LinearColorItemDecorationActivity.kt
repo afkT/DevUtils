@@ -2,9 +2,9 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_linear
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityLinearItemDecorationBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearHorizontalTextAdapter
 import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearVerticalTextAdapter
@@ -18,7 +18,7 @@ import dev.utils.app.RecyclerViewUtils
  */
 @Route(path = RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH)
 class LinearColorItemDecorationActivity :
-    BaseProjectActivity<ActivityLinearItemDecorationBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityLinearItemDecorationBinding, AppViewModel>(
         R.layout.activity_linear_item_decoration, simple_Agile = {
             if (it is LinearColorItemDecorationActivity) {
                 it.apply {

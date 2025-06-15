@@ -91,7 +91,7 @@ class BaseApplication : MultiDexApplication() {
         initialize()
 
         // 打印项目信息
-        ProjectHelper.printInfo(timeCounter)
+        AppHelper.printInfo(timeCounter)
     }
 
     // ============

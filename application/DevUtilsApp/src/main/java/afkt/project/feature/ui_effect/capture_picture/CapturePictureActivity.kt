@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.routerActivity
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
 import android.graphics.Bitmap
 import android.view.View
@@ -25,7 +25,7 @@ import dev.utils.common.FileUtils
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureActivity_PATH)
 class CapturePictureActivity :
-    BaseProjectActivity<ActivityCapturePictureBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityCapturePictureBinding, AppViewModel>(
         R.layout.activity_capture_picture, simple_Agile = {
             if (it is CapturePictureActivity) {
                 it.apply {

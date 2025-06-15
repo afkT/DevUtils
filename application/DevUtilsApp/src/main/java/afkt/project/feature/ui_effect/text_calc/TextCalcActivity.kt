@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.text_calc
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityTextCalcBinding
 import android.graphics.Color
 import android.view.View
@@ -20,7 +20,7 @@ import dev.utils.common.RandomUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.TextCalcActivity_PATH)
-class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, BaseProjectViewModel>(
+class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, AppViewModel>(
     R.layout.activity_text_calc, simple_Agile = {
         if (it is TextCalcActivity) {
             it.apply {

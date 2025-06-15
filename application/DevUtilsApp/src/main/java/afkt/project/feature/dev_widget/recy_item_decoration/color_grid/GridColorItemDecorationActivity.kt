@@ -2,9 +2,9 @@ package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityGridItemDecorationBinding
 import afkt.project.feature.dev_widget.recy_item_decoration.common.GridHorizontalTextAdapter
 import afkt.project.feature.dev_widget.recy_item_decoration.common.GridVerticalTextAdapter
@@ -18,7 +18,7 @@ import dev.utils.app.RecyclerViewUtils
  */
 @Route(path = RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH)
 class GridColorItemDecorationActivity :
-    BaseProjectActivity<ActivityGridItemDecorationBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityGridItemDecorationBinding, AppViewModel>(
         R.layout.activity_grid_item_decoration, simple_Agile = {
             if (it is GridColorItemDecorationActivity) {
                 it.apply {

@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.recy_adapter.adapter_concat
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
 import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter.*
@@ -21,7 +21,7 @@ import dev.utils.app.helper.quick.QuickHelper
  */
 @Route(path = RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH)
 class RecyConcatAdapterActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
             if (it is RecyConcatAdapterActivity) {
                 it.apply {

@@ -2,11 +2,11 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
-import afkt.project.data_model.button.ButtonList.cacheButtonValues
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList.cacheButtonValues
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
 import dev.utils.app.PathUtils
@@ -21,7 +21,7 @@ import java.io.Serializable
  * [CacheUse]
  */
 @Route(path = RouterPath.OTHER_FUNCTION.CacheActivity_PATH)
-class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is CacheActivity) {
             it.apply {

@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.wrap_view
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityWrapBinding
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -23,7 +23,7 @@ import dev.utils.common.RandomUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.WrapActivity_PATH)
-class WrapActivity : BaseProjectActivity<ActivityWrapBinding, BaseProjectViewModel>(
+class WrapActivity : BaseProjectActivity<ActivityWrapBinding, AppViewModel>(
     R.layout.activity_wrap, simple_Agile = {
         if (it is WrapActivity) {
             it.apply {

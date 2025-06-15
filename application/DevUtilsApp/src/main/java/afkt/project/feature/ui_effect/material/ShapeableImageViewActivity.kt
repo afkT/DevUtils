@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityShapeableImageViewBinding
 import com.therouter.router.Route
 
@@ -14,6 +14,6 @@ import com.therouter.router.Route
  */
 @Route(path = RouterPath.UI_EFFECT.ShapeableImageViewActivity_PATH)
 class ShapeableImageViewActivity :
-    BaseProjectActivity<ActivityShapeableImageViewBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityShapeableImageViewBinding, AppViewModel>(
         R.layout.activity_shapeable_image_view
     )

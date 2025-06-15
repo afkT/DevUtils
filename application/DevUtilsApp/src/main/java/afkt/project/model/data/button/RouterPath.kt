@@ -1,4 +1,4 @@
-package afkt.project.data_model.button
+package afkt.project.model.data.button
 
 /**
  * detail: Router Path

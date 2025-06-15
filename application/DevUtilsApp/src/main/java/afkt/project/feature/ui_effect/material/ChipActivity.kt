@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityChipBinding
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
@@ -28,7 +28,7 @@ import dev.utils.common.RandomUtils
  * Activity 需要设置为 Theme.MaterialComponents 主题
  */
 @Route(path = RouterPath.UI_EFFECT.ChipActivity_PATH)
-class ChipActivity : BaseProjectActivity<ActivityChipBinding, BaseProjectViewModel>(
+class ChipActivity : BaseProjectActivity<ActivityChipBinding, AppViewModel>(
     R.layout.activity_chip, simple_Agile = {
         if (it is ChipActivity) {
             it.apply {

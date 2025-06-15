@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,7 +17,7 @@ import dev.utils.common.RandomUtils
  */
 @Route(path = RouterPath.DEV_WIDGET.ViewAssistRecyclerViewLoadActivity_PATH)
 class ViewAssistRecyclerViewLoadActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
             if (it is ViewAssistRecyclerViewLoadActivity) {
                 it.apply {

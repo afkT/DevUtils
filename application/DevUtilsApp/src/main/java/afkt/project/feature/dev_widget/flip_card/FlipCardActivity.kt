@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.flip_card
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityFlipCardBinding
 import com.therouter.router.Route
 import dev.base.DevSource
@@ -16,7 +16,7 @@ import dev.utils.app.timer.DevTimer
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.FlipCardActivity_PATH)
-class FlipCardActivity : BaseProjectActivity<ActivityFlipCardBinding, BaseProjectViewModel>(
+class FlipCardActivity : BaseProjectActivity<ActivityFlipCardBinding, AppViewModel>(
     R.layout.activity_flip_card, simple_Agile = {
         if (it is FlipCardActivity) {
             it.apply {

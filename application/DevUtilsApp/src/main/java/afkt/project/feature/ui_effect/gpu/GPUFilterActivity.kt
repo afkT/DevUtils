@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
@@ -27,7 +27,7 @@ import dev.utils.common.ScaleUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.GPUFilterActivity_PATH)
-class GPUFilterActivity : BaseProjectActivity<ActivityGpuFilterBinding, BaseProjectViewModel>(
+class GPUFilterActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppViewModel>(
     R.layout.activity_gpu_filter, simple_Agile = {
         if (it is GPUFilterActivity) {
             it.apply {

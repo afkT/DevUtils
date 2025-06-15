@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.ui.createGalleryConfig
 import android.content.Intent
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.QRCodeImageActivity_PATH)
-class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, BaseProjectViewModel>(
+class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, AppViewModel>(
     R.layout.activity_qrcode_image, simple_Agile = {
         if (it is QRCodeImageActivity) {
             it.apply {

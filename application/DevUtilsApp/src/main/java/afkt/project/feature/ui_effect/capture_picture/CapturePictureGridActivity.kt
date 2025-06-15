@@ -2,10 +2,10 @@ package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.bean.AdapterBean
-import afkt.project.data_model.bean.AdapterBean.Companion.newAdapterBeanList
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.bean.AdapterBean
+import afkt.project.model.data.bean.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureGridBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import android.view.LayoutInflater
@@ -31,7 +31,7 @@ import dev.utils.common.FileUtils
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureGridActivity_PATH)
 class CapturePictureGridActivity :
-    BaseProjectActivity<ActivityCapturePictureGridBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityCapturePictureGridBinding, AppViewModel>(
         R.layout.activity_capture_picture_grid, simple_Agile = {
             if (it is CapturePictureGridActivity) {
                 it.apply {

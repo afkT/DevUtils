@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.flow_like
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityFlowLikeBinding
 import com.therouter.router.Route
 
@@ -12,7 +12,7 @@ import com.therouter.router.Route
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.FlowLikeActivity_PATH)
-class FlowLikeActivity : BaseProjectActivity<ActivityFlowLikeBinding, BaseProjectViewModel>(
+class FlowLikeActivity : BaseProjectActivity<ActivityFlowLikeBinding, AppViewModel>(
     R.layout.activity_flow_like, simple_Agile = {
         if (it is FlowLikeActivity) {
             it.apply {

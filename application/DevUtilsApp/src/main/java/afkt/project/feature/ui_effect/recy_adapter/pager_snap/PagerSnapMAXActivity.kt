@@ -2,9 +2,9 @@ package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.bean.ItemBean
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.bean.ItemBean
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +21,7 @@ import dev.utils.app.helper.quick.QuickHelper
  * PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  */
 @Route(path = RouterPath.UI_EFFECT.PagerSnapMAXActivity_PATH)
-class PagerSnapMAXActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class PagerSnapMAXActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is PagerSnapMAXActivity) {
             it.apply {

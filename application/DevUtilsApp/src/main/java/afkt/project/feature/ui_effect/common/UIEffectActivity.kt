@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.common
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
 import android.graphics.Color
@@ -23,7 +23,7 @@ import dev.utils.common.ArrayUtils
  * @author Ttt
  */
 @Route(path = RouterPath.UI_EFFECT.UIEffectActivity_PATH)
-class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, BaseProjectViewModel>(
+class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewModel>(
     R.layout.activity_ui_effect
 ) {
 

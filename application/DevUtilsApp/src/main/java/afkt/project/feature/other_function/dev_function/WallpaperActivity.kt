@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
 import com.therouter.router.Route
 import dev.base.DevSource
@@ -22,7 +22,7 @@ import dev.utils.common.FileUtils
  * @author Ttt
  */
 @Route(path = RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH)
-class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, BaseProjectViewModel>(
+class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, AppViewModel>(
     R.layout.activity_wallpaper, simple_Agile = {
         if (it is WallpaperActivity) {
             it.apply {

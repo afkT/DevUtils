@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.recy_adapter.item_slide
 
 import afkt.project.R
 import afkt.project.base.helper.IMAGE_ROUND_3
-import afkt.project.data_model.bean.CommodityItem
+import afkt.project.model.data.bean.CommodityItem
 import afkt.project.databinding.AdapterMultiSelectBinding
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

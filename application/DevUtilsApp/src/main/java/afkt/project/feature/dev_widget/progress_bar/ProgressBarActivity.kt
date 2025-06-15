@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.progress_bar
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityProgressbarBinding
 import android.annotation.SuppressLint
 import android.os.Handler
@@ -17,7 +17,7 @@ import dev.utils.app.ActivityUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ProgressBarActivity_PATH)
-class ProgressBarActivity : BaseProjectActivity<ActivityProgressbarBinding, BaseProjectViewModel>(
+class ProgressBarActivity : BaseProjectActivity<ActivityProgressbarBinding, AppViewModel>(
     R.layout.activity_progressbar, simple_Agile = {
         if (it is ProgressBarActivity) {
             it.apply {

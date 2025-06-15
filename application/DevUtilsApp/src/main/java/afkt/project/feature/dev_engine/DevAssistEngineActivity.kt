@@ -2,10 +2,10 @@ package afkt.project.feature.dev_engine
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
-import afkt.project.data_model.button.ButtonList.moduleDevAssistEngineButtonValues
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList.moduleDevAssistEngineButtonValues
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.graphics.Color
 import androidx.appcompat.widget.AppCompatTextView
@@ -27,7 +27,7 @@ import dev.utils.app.helper.quick.QuickHelper
  */
 @Route(path = RouterPath.DEV_LIBS.DevAssistEngineActivity_PATH)
 class DevAssistEngineActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
             if (it is DevAssistEngineActivity) {
                 it.apply {

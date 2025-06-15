@@ -2,9 +2,9 @@ package afkt.project.feature.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityViewAssistBinding
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +21,7 @@ import dev.widget.assist.ViewAssist
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ViewAssistActivity_PATH)
-class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, BaseProjectViewModel>(
+class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, AppViewModel>(
     R.layout.activity_view_assist, simple_Agile = {
         if (it is ViewAssistActivity) {
             it.apply {

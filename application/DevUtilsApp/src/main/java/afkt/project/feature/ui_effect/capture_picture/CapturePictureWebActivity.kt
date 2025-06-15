@@ -2,8 +2,8 @@ package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityCapturePictureWebBinding
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
@@ -24,7 +24,7 @@ import dev.utils.common.FileUtils
  */
 @Route(path = RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH)
 class CapturePictureWebActivity :
-    BaseProjectActivity<ActivityCapturePictureWebBinding, BaseProjectViewModel>(
+    BaseProjectActivity<ActivityCapturePictureWebBinding, AppViewModel>(
         R.layout.activity_capture_picture_web, simple_Agile = {
             if (it is CapturePictureWebActivity) {
                 it.apply {

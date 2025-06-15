@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.scan_shape
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import android.Manifest
 import android.view.SurfaceHolder
@@ -26,7 +26,7 @@ import dev.widget.ui.ScanShapeView
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.ScanShapeActivity_PATH)
-class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, BaseProjectViewModel>(
+class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, AppViewModel>(
     R.layout.activity_scan_shape, simple_Agile = {
         if (it is ScanShapeActivity) {
             it.apply {

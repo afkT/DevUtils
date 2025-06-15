@@ -2,12 +2,12 @@ package afkt.project.feature.dev_sku
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.project.bindAdapter
 import afkt.project.base.project.routerActivity
-import afkt.project.data_model.button.ButtonList
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.data_model.button.RouterPath
+import afkt.project.model.data.button.ButtonList
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
 import dev.expand.engine.json.fromJson
@@ -21,7 +21,7 @@ import dev.utils.common.CollectionUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_LIBS.DevSKUActivity_PATH)
-class DevSKUActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, BaseProjectViewModel>(
+class DevSKUActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is DevSKUActivity) {
             it.apply {

@@ -1,7 +1,7 @@
 package afkt.project.base.project
 
-import afkt.project.data_model.button.ButtonValue
-import afkt.project.feature.ButtonAdapter
+import afkt.project.model.data.button.ButtonValue
+import afkt.project.model.adapter.ButtonAdapter
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter

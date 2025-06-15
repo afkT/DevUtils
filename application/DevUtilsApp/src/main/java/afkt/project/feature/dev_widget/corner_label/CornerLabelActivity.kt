@@ -2,8 +2,8 @@ package afkt.project.feature.dev_widget.corner_label
 
 import afkt.project.R
 import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.BaseProjectViewModel
-import afkt.project.data_model.button.RouterPath
+import afkt.project.base.app.AppViewModel
+import afkt.project.model.data.button.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
 import android.view.Gravity
 import android.view.View
@@ -18,7 +18,7 @@ import dev.utils.common.RandomUtils
  * @author Ttt
  */
 @Route(path = RouterPath.DEV_WIDGET.CornerLabelActivity_PATH)
-class CornerLabelActivity : BaseProjectActivity<ActivityCornerLabelBinding, BaseProjectViewModel>(
+class CornerLabelActivity : BaseProjectActivity<ActivityCornerLabelBinding, AppViewModel>(
     R.layout.activity_corner_label, simple_Agile = {
         if (it is CornerLabelActivity) {
             it.apply {
