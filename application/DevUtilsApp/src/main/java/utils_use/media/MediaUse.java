@@ -100,7 +100,6 @@ public final class MediaUse {
         // =
 
         // 播放音频
-        DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
         DevMediaManager.getInstance().playPrepareAssets("a.mp3");
         DevMediaManager.getInstance().playPrepare(PathUtils.getSDCard().getSDCardPath() + "/a.mp3");
         DevMediaManager.getInstance().playPrepare("http://xxx.mp3");

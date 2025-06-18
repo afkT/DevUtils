@@ -1,15 +1,15 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.base.project.BaseProjectActivity
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
+import afkt.project.model.data.button.RouterPath
 import afkt.project.ui.createGalleryConfig
 import android.Manifest
 import android.content.Intent
@@ -64,7 +64,11 @@ class QRCodeScanActivity : BaseProjectActivity<ActivityScanShapeBinding, AppView
     private var mInactivityTimerAssist = InactivityTimerAssist(this)
 
     // 扫描成功响声 + 震动
-    private var mBeepVibrateAssist = BeepVibrateAssist(this, R.raw.dev_beep)
+    private var mBeepVibrateAssist = BeepVibrateAssist(
+        this, BeepVibrateAssist.buildMediaPlayer(
+            ResourceUtils.openFd("beep.ogg"), 0.1F
+        )
+    )
 
     override fun onDestroy() {
         // 销毁处理

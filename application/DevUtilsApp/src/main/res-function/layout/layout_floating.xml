@@ -9,5 +9,5 @@
         android:id="@+id/vid_icon_iv"
         android:layout_width="@dimen/dp_80"
         android:layout_height="@dimen/dp_80"
-        android:background="@drawable/icon_tips" />
+        android:background="@mipmap/icon_tips" />
 </FrameLayout>

@@ -16,6 +16,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.VibrationUtils;
+import dev.utils.app.player.DevMediaManager;
 import dev.utils.common.CloseUtils;
 
 /**
@@ -51,60 +52,15 @@ public final class BeepVibrateAssist
 
     /**
      * 构造函数
-     * @param activity {@link Activity}
-     * @param rawId    R.raw.id
+     * @param activity    {@link Activity}
+     * @param mediaPlayer {@link MediaPlayer}
      */
     public BeepVibrateAssist(
             final Activity activity,
-            @RawRes final int rawId
+            final MediaPlayer mediaPlayer
     ) {
-        this.mActivity    = new WeakReference<>(activity);
-        this.mMediaPlayer = buildMediaPlayer(rawId);
-    }
-
-    /**
-     * 构造函数
-     * @param activity {@link Activity}
-     * @param filePath 文件路径
-     */
-    public BeepVibrateAssist(
-            final Activity activity,
-            final String filePath
-    ) {
-        this.mActivity    = new WeakReference<>(activity);
-        this.mMediaPlayer = buildMediaPlayer(filePath);
-    }
-
-    // =============
-    // = 内部判断方法 =
-    // =============
-
-    /**
-     * 判断是否允许播放声音
-     * <pre>
-     *     RINGER_MODE_NORMAL( 普通 )、RINGER_MODE_SILENT( 静音 )、RINGER_MODE_VIBRATE( 震动 )
-     * </pre>
-     * @return {@code true} 允许, {@code false} 不允许
-     */
-    private boolean shouldBeep() {
-        AudioManager audioManager = AppUtils.getAudioManager();
-        // 只有属于普通模式才播放
-        return (audioManager != null && audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL);
-    }
-
-    /**
-     * 更新播放流处理
-     */
-    private synchronized void streamUpdate() {
-        if (shouldBeep() && mMediaPlayer != null) {
-            try {
-                // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
-                // so we now play on the music stream.
-                mActivity.get().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "streamUpdate");
-            }
-        }
+        this(activity);
+        this.setMediaPlayer(mediaPlayer);
     }
 
     // =============
@@ -196,18 +152,41 @@ public final class BeepVibrateAssist
         }
     }
 
+    // =============
+    // = 内部判断方法 =
+    // =============
+
+    /**
+     * 判断是否允许播放声音
+     * <pre>
+     *     RINGER_MODE_NORMAL( 普通 )、RINGER_MODE_SILENT( 静音 )、RINGER_MODE_VIBRATE( 震动 )
+     * </pre>
+     * @return {@code true} 允许, {@code false} 不允许
+     */
+    private boolean shouldBeep() {
+        AudioManager audioManager = AppUtils.getAudioManager();
+        // 只有属于普通模式才播放
+        return (audioManager != null && audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL);
+    }
+
+    /**
+     * 更新播放流处理
+     */
+    private synchronized void streamUpdate() {
+        if (shouldBeep() && mMediaPlayer != null) {
+            try {
+                // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
+                // so we now play on the music stream.
+                mActivity.get().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "streamUpdate");
+            }
+        }
+    }
+
     // =======================
     // = 创建 MediaPlayer 处理 =
     // =======================
-
-    /**
-     * 创建 MediaPlayer 对象
-     * @param rawId R.raw.id
-     * @return {@link MediaPlayer}
-     */
-    public static MediaPlayer buildMediaPlayer(@RawRes final int rawId) {
-        return buildMediaPlayer(rawId, 0.1F);
-    }
 
     /**
      * 创建 MediaPlayer 对象
@@ -219,54 +198,34 @@ public final class BeepVibrateAssist
             @RawRes final int rawId,
             final float beepVolume
     ) {
-        final MediaPlayer mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setOnCompletionListener(
-                mp -> LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion")
-        );
-        mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public synchronized boolean onError(
-                    MediaPlayer mp,
-                    int what,
-                    int extra
-            ) {
-                LogPrintUtils.dTag(
-                        TAG, "buildMediaPlayer onError what: %s, extra: %s",
-                        what, extra
-                );
-                // 播放异常, 直接不处理
-                return true;
-            }
-        });
-        try {
-            AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
-            try {
-                mediaPlayer.setDataSource(
-                        afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength()
-                );
-            } finally {
-                CloseUtils.closeIOQuietly(afd);
-            }
-            mediaPlayer.setVolume(beepVolume, beepVolume);
-            mediaPlayer.prepare();
-            return mediaPlayer;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "buildMediaPlayer");
-            mediaPlayer.release();
-            return null;
-        }
+        return buildMediaPlayer(ResourceUtils.openRawResourceFd(rawId), beepVolume);
     }
-
-    // =
 
     /**
      * 创建 MediaPlayer 对象
-     * @param filePath 文件路径
+     * @param afd        {@link AssetFileDescriptor}
+     * @param beepVolume 音量
      * @return {@link MediaPlayer}
      */
-    public static MediaPlayer buildMediaPlayer(final String filePath) {
-        return buildMediaPlayer(filePath, 0.1F);
+    public static MediaPlayer buildMediaPlayer(
+            final AssetFileDescriptor afd,
+            final float beepVolume
+    ) {
+        if (afd == null) return null;
+        return buildMediaPlayer(new DevMediaManager.MediaSet() {
+            @Override
+            public void setMediaConfig(MediaPlayer mediaPlayer)
+                    throws Exception {
+                try {
+                    mediaPlayer.setDataSource(
+                            afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength()
+                    );
+                } finally {
+                    CloseUtils.closeIOQuietly(afd);
+                }
+                mediaPlayer.setVolume(beepVolume, beepVolume);
+            }
+        });
     }
 
     /**
@@ -279,6 +238,24 @@ public final class BeepVibrateAssist
             final String filePath,
             final float beepVolume
     ) {
+        if (filePath == null) return null;
+        return buildMediaPlayer(new DevMediaManager.MediaSet() {
+            @Override
+            public void setMediaConfig(MediaPlayer mediaPlayer)
+                    throws Exception {
+                mediaPlayer.setDataSource(filePath);
+                mediaPlayer.setVolume(beepVolume, beepVolume);
+            }
+        });
+    }
+
+    /**
+     * 创建 MediaPlayer 对象
+     * @param mediaSet 播放设置
+     * @return {@link MediaPlayer}
+     */
+    public static MediaPlayer buildMediaPlayer(final DevMediaManager.MediaSet mediaSet) {
+        if (mediaSet == null) return null;
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnCompletionListener(
@@ -300,8 +277,10 @@ public final class BeepVibrateAssist
             }
         });
         try {
-            mediaPlayer.setDataSource(filePath);
-            mediaPlayer.setVolume(beepVolume, beepVolume);
+            mediaPlayer.setLooping(mediaSet.isLooping());
+            mediaPlayer.setVolume(mediaSet.getVolume(), mediaSet.getVolume());
+            // 设置播放配置
+            mediaSet.setMediaConfig(mediaPlayer);
             mediaPlayer.prepare();
             return mediaPlayer;
         } catch (Exception e) {

@@ -325,7 +325,7 @@ public final class DevMediaManager
             if (mediaSet.getVolume() >= 0F) {
                 mMediaPlayer.setVolume(mediaSet.getVolume(), mediaSet.getVolume());
             }
-            // 设置播放路径
+            // 设置播放配置
             mediaSet.setMediaConfig(mMediaPlayer);
             // 异步加载
             mMediaPlayer.prepareAsync();
