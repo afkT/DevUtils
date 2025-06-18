@@ -16,56 +16,56 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_screen_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="当前屏幕截图 ( 含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_screen1_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="当前屏幕截图 ( 不含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_linear_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="LinearLayout 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_scroll_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="ScrollView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_list_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="ListView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_grid_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="GridView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_recy_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="RecyclerView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_webview_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Webview 截图" />

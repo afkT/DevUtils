@@ -45,27 +45,27 @@
                     tools:text="DevEnvironment:Version" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickDefaultIMPL}"
                     android:text="【内置实现】切换环境 Activity" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCustomIMPL}"
                     android:text="【自定义】切换环境【UI、功能】" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickSetServiceModule}"
                     android:text="【自定义】动态配置【Service】Module" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickSetAllModule}"
                     android:text="【自定义】动态配置【全部】Module" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickResetAllSelectedEnvironment}"
                     android:text="重置【全部】Selected Environment" />
 
@@ -76,32 +76,32 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickSetServiceModule}"
                     android:text="设置【Service】Module Environment" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickReleaseBuild}"
                     android:text="是否 releaseAnnotationProcessor 构建" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickGetServiceReleaseEnvironment}"
                     android:text="获取【Service】Release Environment" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickGetServiceSelectedEnvironment}"
                     android:text="获取【Service】Selected Environment" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCheckServiceAnnotationEnvironment}"
                     android:text="是否【Service】注解配置 Environment" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickResetServiceSelectedEnvironment}"
                     android:text="重置【Service】Selected Environment" />
 
@@ -112,7 +112,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
+                    style="@style/ViewTheme.TextView"
                     android:layout_marginBottom="20.0dp"
                     android:gravity="left|bottom"
                     android:lineSpacingExtra="5.0dp"

@@ -41,7 +41,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:gravity="center"
                 android:text="@{VersionUtils.convertSDKVersion()}"
                 tools:text="Android 14.0" />

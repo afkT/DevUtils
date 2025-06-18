@@ -14,7 +14,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="循环添加联系人"
                 android:textColor="@color/grey"
@@ -26,7 +26,7 @@
                 android:background="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="例 :" />
 
@@ -37,19 +37,19 @@
                 android:layout_marginTop="@dimen/dp_15">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
+                    style="@style/ViewTheme.TextView"
                     android:layout_marginRight="@dimen/dp_150"
                     android:gravity="left"
                     android:text="137" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
+                    style="@style/ViewTheme.TextView"
                     android:layout_marginLeft="@dimen/dp_150"
                     android:gravity="right"
                     android:text="5678" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Base_TextView"
+                    style="@style/ViewTheme.TextView"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="@dimen/dp_20"
                     android:gravity="center"
@@ -107,14 +107,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_add_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="添加联系人" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tips_tv"
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_20"
                 android:gravity="left"
                 android:visibility="gone"

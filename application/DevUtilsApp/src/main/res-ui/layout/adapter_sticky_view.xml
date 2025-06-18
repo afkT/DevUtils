@@ -15,7 +15,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_title_tv"
-        style="@style/ViewTheme.Base_TextView"
+        style="@style/ViewTheme.TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

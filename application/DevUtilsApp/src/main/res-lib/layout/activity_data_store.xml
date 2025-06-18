@@ -8,7 +8,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vid_content_tv"
-            style="@style/ViewTheme.Base_TextView"
+            style="@style/ViewTheme.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_20"

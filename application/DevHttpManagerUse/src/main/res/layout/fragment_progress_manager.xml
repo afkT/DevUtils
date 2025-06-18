@@ -42,12 +42,12 @@
                     android:text="上传进度监听" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickUploadImage.invoke()}"
                     android:text="上传图片" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickUploadImage2.invoke()}"
                     android:text="上传图片 ( 未使用 DevHttpManager )" />
 
@@ -56,32 +56,32 @@
                     android:text="下载进度监听" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickDownloadVideo.invoke()}"
                     android:text="下载视频" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickReDownloadVideo.invoke()}"
                     android:text="重新下载视频" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickDownloadApk.invoke()}"
                     android:text="下载 APK" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickReDownloadApk.invoke()}"
                     android:text="重新下载 APK" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickDownloadGradle.invoke()}"
                     android:text="下载 Gradle ( 未使用 DevHttpManager )" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickReDownloadGradle.invoke()}"
                     android:text="重新下载 Gradle ( 未使用 DevHttpManager )" />
             </LinearLayout>

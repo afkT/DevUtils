@@ -13,7 +13,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tv"
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_height="@dimen/dp_100"
                 android:gravity="center"
                 android:lineSpacingExtra="@dimen/dp_5" />
@@ -24,7 +24,7 @@
 
             <dev.widget.function.LineTextView
                 android:id="@+id/vid_content_tv"
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_margin="@dimen/dp_15"
                 android:gravity="center"
                 android:lineSpacingExtra="@dimen/dp_5" />

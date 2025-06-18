@@ -10,7 +10,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
-    <style name="AppTheme.Launcher" parent="AppTheme">
+    <style name="AppTheme.Launcher">
         <!-- 不设置为全屏防止状态栏隐藏紧接着又显示 -->
         <item name="android:windowFullscreen">false</item>
         <item name="android:splitMotionEvents">false</item>
@@ -31,7 +31,7 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
-    <!-- Button 默认样式 -->
+    <!-- Button 基础样式 -->
 
     <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
@@ -49,7 +49,11 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
-    <!-- TextView 默认样式 -->
+    <!-- Button 样式 -->
+
+    <style name="ViewTheme.Button" parent="ViewTheme.Base_Button" />
+
+    <!-- TextView 基础样式 -->
 
     <style name="ViewTheme.Base_TextView">
         <item name="android:layout_width">match_parent</item>
@@ -60,9 +64,13 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- TextView 样式 -->
+
+    <style name="ViewTheme.TextView" parent="ViewTheme.Base_TextView" />
+
     <!-- TextView 标题样式 -->
 
-    <style name="ViewTheme.Title" parent="ViewTheme.Base_TextView">
+    <style name="ViewTheme.Title" parent="ViewTheme.TextView">
         <item name="android:layout_marginTop">15.0dp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
@@ -72,7 +80,7 @@
 
     <!-- TextView 子标题样式 -->
 
-    <style name="ViewTheme.SubTitle" parent="ViewTheme.Base_TextView">
+    <style name="ViewTheme.SubTitle" parent="ViewTheme.TextView">
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
         <item name="android:textSize">14.0sp</item>

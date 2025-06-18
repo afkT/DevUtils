@@ -47,12 +47,12 @@
                     android:text="SimpleInterceptor" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickSimpleInterceptor}"
                     android:text="简单的抓包回调拦截器" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickSimpleInterceptorFilter}"
                     android:text="简单的抓包回调拦截器 ( 过滤请求 )" />
 
@@ -61,22 +61,22 @@
                     android:text="CallbackInterceptor ( 无存储逻辑 ) " />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCallbackInterceptor}"
                     android:text="Http 抓包拦截器" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorFilter}"
                     android:text="Http 抓包拦截器 ( 过滤请求 )" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorEventFilter}"
                     android:text="Http 抓包拦截器 ( 事件处理拦截 )" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCallbackInterceptorEventIMPL}"
                     android:text="Http 抓包拦截器 ( 自定义抓包事件 )" />
 
@@ -85,12 +85,12 @@
                     android:text="StorageInterceptor ( 抓包本地存储 ) " />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickStorageInterceptor}"
                     android:text="Http 抓包拦截器 ( StorageInterceptor )" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickStorageInterceptorDefault}"
                     android:text="Http 抓包拦截器 ( DevHttpCapture API )" />
 
@@ -99,17 +99,17 @@
                     android:text="抓包数据可视化" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickDefaultIMPL}"
                     android:text="【默认】抓包数据可视化" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickDefaultIMPLModule}"
                     android:text="【默认】抓包数据可视化 ( 具体模块 )" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{viewModel.clickCustomIMPL}"
                     android:text="【自定义】抓包数据可视化" />
             </LinearLayout>

@@ -12,20 +12,9 @@
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#ff4081</color>
 
-    <!--    &lt;!&ndash; Application 样式 &ndash;&gt;-->
-
-    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />-->
-
-    <!--    <style name="AppTheme.Launcher" parent="AppTheme">-->
-    <!--        &lt;!&ndash; 不设置为全屏防止状态栏隐藏紧接着又显示 &ndash;&gt;-->
-    <!--        <item name="android:windowFullscreen">false</item>-->
-    <!--        <item name="android:splitMotionEvents">false</item>-->
-    <!--        <item name="android:windowEnableSplitTouch">false</item>-->
-    <!--        <item name="android:windowBackground">@drawable/launcher_bg</item>-->
-    <!--    </style>-->
+    <!-- Application 样式 -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- 主题颜色 -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -33,7 +22,7 @@
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
-    <style name="AppTheme.Launcher" parent="AppTheme">
+    <style name="AppTheme.Launcher">
         <!-- 不设置为全屏防止状态栏隐藏紧接着又显示 -->
         <item name="android:windowFullscreen">false</item>
         <item name="android:splitMotionEvents">false</item>
@@ -44,18 +33,9 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.Material" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- 主题颜色 -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
-    </style>
+    <style name="AppTheme.NoActionBar.Material" parent="Theme.MaterialComponents.Light.NoActionBar" />
 
     <!-- View 样式 -->
 
@@ -93,7 +73,7 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <!-- Button 默认样式 -->
+    <!-- Button 基础样式 -->
 
     <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
@@ -111,14 +91,18 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
+    <!-- Button 样式 -->
+
+    <style name="ViewTheme.Button" parent="ViewTheme.Base_Button" />
+
     <!-- Button 单行样式 -->
 
-    <style name="ViewTheme.SingleButton" parent="ViewTheme.Base_Button">
+    <style name="ViewTheme.SingleButton" parent="ViewTheme.Button">
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
 
-    <!-- TextView 默认样式 -->
+    <!-- TextView 基础样式 -->
 
     <style name="ViewTheme.Base_TextView">
         <item name="android:layout_width">match_parent</item>
@@ -129,9 +113,13 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- TextView 样式 -->
+
+    <style name="ViewTheme.TextView" parent="ViewTheme.Base_TextView" />
+
     <!-- TextView 标题样式 -->
 
-    <style name="ViewTheme.Title" parent="ViewTheme.Base_TextView">
+    <style name="ViewTheme.Title" parent="ViewTheme.TextView">
         <item name="android:layout_marginTop">15.0dp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
@@ -141,7 +129,7 @@
 
     <!-- TextView 子标题样式 -->
 
-    <style name="ViewTheme.SubTitle" parent="ViewTheme.Base_TextView">
+    <style name="ViewTheme.SubTitle" parent="ViewTheme.TextView">
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
         <item name="android:textSize">14.0sp</item>

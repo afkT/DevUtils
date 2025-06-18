@@ -48,12 +48,12 @@
                     android:text="电影详情信息" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickMovieDetail.invoke()}"
                     android:text="获取电影详情信息" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickMovieDetailResult.invoke()}"
                     android:text="获取电影详情信息 ( Result 回调 )" />
 
@@ -62,7 +62,7 @@
                     android:text="书籍列表" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickBookList.invoke()}"
                     android:text="获取书籍列表" />
             </LinearLayout>

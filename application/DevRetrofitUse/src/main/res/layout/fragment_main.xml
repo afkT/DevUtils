@@ -43,12 +43,12 @@
                     tools:text="DevRetrofit:Version" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickNavigate.invoke(1)}"
                     android:text="Request 示例" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/ViewTheme.Base_Button"
+                    style="@style/ViewTheme.Button"
                     android:onClick="@{(v)->viewModel.clickNavigate.invoke(2)}"
                     android:text="Simple Request 示例" />
             </LinearLayout>

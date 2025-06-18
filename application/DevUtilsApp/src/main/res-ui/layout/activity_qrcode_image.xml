@@ -15,14 +15,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_select_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="选择图片" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_tv"
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_10"
                 android:textSize="@dimen/sp_17"
                 tools:text="解析结果" />

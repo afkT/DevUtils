@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vid_tv"
-    style="@style/ViewTheme.Base_TextView"
+    style="@style/ViewTheme.TextView"
     android:layout_width="@dimen/dp_70"
     android:layout_height="@dimen/dp_70"
     android:background="@color/grey_tran20"

@@ -9,14 +9,14 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_allow_btn"
-            style="@style/ViewTheme.Base_Button"
+            style="@style/ViewTheme.Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="允许滑动" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vid_ban_btn"
-            style="@style/ViewTheme.Base_Button"
+            style="@style/ViewTheme.Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="禁止滑动" />

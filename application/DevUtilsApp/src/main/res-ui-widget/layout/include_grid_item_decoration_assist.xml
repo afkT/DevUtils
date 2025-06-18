@@ -31,7 +31,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_column_add_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/dp_10"
@@ -40,7 +40,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_column_remove_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_10"
@@ -60,7 +60,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_row_add_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/dp_10"
@@ -69,7 +69,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_line_row_remove_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_10"

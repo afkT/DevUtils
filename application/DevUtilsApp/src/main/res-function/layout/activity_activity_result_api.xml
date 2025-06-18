@@ -17,7 +17,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_take_btn"
-                style="@style/ViewTheme.Base_Button"
+                style="@style/ViewTheme.Button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="拍照并显示" />

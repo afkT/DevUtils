@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vid_tv"
-    style="@style/ViewTheme.Base_TextView" />
+    style="@style/ViewTheme.TextView" />

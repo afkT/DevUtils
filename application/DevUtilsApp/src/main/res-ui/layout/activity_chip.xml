@@ -41,7 +41,7 @@
                 app:closeIconTint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 单行效果"
                 android:textColor="@color/grey"
@@ -98,7 +98,7 @@
             </dev.widget.custom.CustomHorizontalScrollView>
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.Base_TextView"
+                style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 多行效果"
                 android:textColor="@color/grey"
