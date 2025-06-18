@@ -8,7 +8,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            style="@style/ViewTheme.padding_lr"
+            style="@style/ViewTheme.Padding.LR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -21,7 +21,7 @@
                 android:textStyle="bold" />
 
             <View
-                style="@style/ViewTheme.line_Vertical"
+                style="@style/ViewTheme.Line.Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
@@ -57,7 +57,7 @@
             </FrameLayout>
 
             <View
-                style="@style/ViewTheme.line_Vertical"
+                style="@style/ViewTheme.Line.Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
@@ -101,7 +101,7 @@
             </FrameLayout>
 
             <View
-                style="@style/ViewTheme.line_Vertical"
+                style="@style/ViewTheme.Line.Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 

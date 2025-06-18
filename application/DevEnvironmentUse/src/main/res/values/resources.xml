@@ -21,26 +21,19 @@
     <!-- View 样式 -->
 
     <style name="ViewTheme">
-        <item name="textAllCaps">false</item>
-    </style>
-
-    <!-- 左右 padding 样式 -->
-
-    <style name="ViewTheme.padding_lr">
-        <item name="android:paddingLeft">10.0dp</item>
-        <item name="android:paddingRight">10.0dp</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <!-- Button 基础样式 -->
 
-    <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
+    <style name="ViewTheme.Button" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">60.0dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center</item>
-        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:textSize">16.0sp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:paddingTop">15.0dp</item>
@@ -49,28 +42,20 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
-    <!-- Button 样式 -->
-
-    <style name="ViewTheme.Button" parent="ViewTheme.Base_Button" />
-
     <!-- TextView 基础样式 -->
 
-    <style name="ViewTheme.Base_TextView">
+    <style name="ViewTheme.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center</item>
-        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
     </style>
-
-    <!-- TextView 样式 -->
-
-    <style name="ViewTheme.TextView" parent="ViewTheme.Base_TextView" />
 
     <!-- TextView 标题样式 -->
 
-    <style name="ViewTheme.Title" parent="ViewTheme.TextView">
+    <style name="ViewTheme.TextView.Title">
         <item name="android:layout_marginTop">15.0dp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
@@ -80,10 +65,26 @@
 
     <!-- TextView 子标题样式 -->
 
-    <style name="ViewTheme.SubTitle" parent="ViewTheme.TextView">
+    <style name="ViewTheme.TextView.SubTitle">
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:gravity">left</item>
         <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">@color/sky_blue</item>
+    </style>
+
+    <!-- Padding、Margin 样式 -->
+
+    <style name="ViewTheme.Padding" />
+
+    <style name="ViewTheme.Margin" />
+
+    <style name="ViewTheme.Padding.LR">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.Margin.LR">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
     </style>
 </resources>

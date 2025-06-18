@@ -32,13 +32,13 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Title"
+                    style="@style/ViewTheme.TextView.Title"
                     android:text="@{viewModel.devRetrofitVersion}"
                     tools:text="DevRetrofit:Version" />
 

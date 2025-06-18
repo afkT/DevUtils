@@ -32,13 +32,13 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="媒体信息获取" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -52,7 +52,7 @@
                     android:text="获取电影详情信息" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="BaseUrl 切换" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -66,7 +66,7 @@
                     android:text="切换【无效】环境" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="RetrofitOperation" />
 
                 <androidx.appcompat.widget.AppCompatButton

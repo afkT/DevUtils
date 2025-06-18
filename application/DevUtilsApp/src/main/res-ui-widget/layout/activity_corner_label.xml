@@ -25,7 +25,6 @@
                     android:layout_margin="@dimen/dp_20"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:stateListAnimator="@drawable/touch"
                     app:cardCornerRadius="@dimen/dp_10"
                     app:cardElevation="@dimen/dp_10"
                     tools:targetApi="lollipop">
@@ -87,7 +86,6 @@
                     android:layout_margin="@dimen/dp_20"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:stateListAnimator="@drawable/touch"
                     app:cardCornerRadius="@dimen/dp_10"
                     app:cardElevation="@dimen/dp_10"
                     tools:targetApi="lollipop">
@@ -141,7 +139,6 @@
                 android:layout_margin="@dimen/dp_20"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:stateListAnimator="@drawable/touch"
                 app:cardCornerRadius="@dimen/dp_10"
                 app:cardElevation="@dimen/dp_10"
                 tools:targetApi="lollipop">

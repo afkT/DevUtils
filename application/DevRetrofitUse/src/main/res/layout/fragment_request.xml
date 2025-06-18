@@ -33,18 +33,18 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Title"
+                    style="@style/ViewTheme.TextView.Title"
                     android:text="@{viewModel.tipsText}"
                     tools:text="Tips Text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="模拟请求错误" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -58,7 +58,7 @@
                     android:text="请求错误 ( Base.Response 实现 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="摄影图片列表" />
 
                 <androidx.appcompat.widget.AppCompatButton

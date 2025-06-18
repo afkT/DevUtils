@@ -11,5 +11,7 @@
         android:width="200.0dp"
         android:height="200.0dp"
         android:drawable="@mipmap/launcher_window_bg"
-        android:gravity="center" />
+        android:gravity="center"
+        tools:height="130.0dp"
+        tools:width="130.0dp" />
 </layer-list>

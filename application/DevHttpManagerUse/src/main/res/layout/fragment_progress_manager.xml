@@ -32,13 +32,13 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="上传进度监听" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -52,7 +52,7 @@
                     android:text="上传图片 ( 未使用 DevHttpManager )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="下载进度监听" />
 
                 <androidx.appcompat.widget.AppCompatButton

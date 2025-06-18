@@ -9,7 +9,7 @@
 
         <LinearLayout
             android:id="@+id/vid_ll"
-            style="@style/ViewTheme.padding_lr"
+            style="@style/ViewTheme.Padding.LR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

@@ -14,7 +14,7 @@
 
     <!-- Application 样式 -->
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -30,18 +30,9 @@
         <item name="android:windowBackground">@drawable/launcher_bg</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.Material" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="AppTheme.Material" parent="Theme.MaterialComponents.Light.NoActionBar" />
 
     <!-- View 样式 -->
-
-    <style name="ViewTheme">
-        <item name="textAllCaps">false</item>
-    </style>
 
     <!-- AppBarLayout、Toolbar -->
 
@@ -49,40 +40,16 @@
 
     <style name="ViewTheme.ToolbarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!-- 左右 padding、margin 样式 -->
-
-    <style name="ViewTheme.padding_lr">
-        <item name="android:paddingLeft">10.0dp</item>
-        <item name="android:paddingRight">10.0dp</item>
-    </style>
-
-    <style name="ViewTheme.margin_lr">
-        <item name="android:layout_marginLeft">10.0dp</item>
-        <item name="android:layout_marginRight">10.0dp</item>
-    </style>
-
-    <!-- 分割线样式 -->
-
-    <style name="ViewTheme.line_Vertical">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-    </style>
-
-    <style name="ViewTheme.line_Horizontal">
-        <item name="android:layout_width">0.5dp</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
     <!-- Button 基础样式 -->
 
-    <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
+    <style name="ViewTheme.Button" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">60.0dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center</item>
-        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:textSize">16.0sp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
         <item name="android:paddingTop">15.0dp</item>
@@ -91,49 +58,61 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
-    <!-- Button 样式 -->
-
-    <style name="ViewTheme.Button" parent="ViewTheme.Base_Button" />
-
-    <!-- Button 单行样式 -->
-
-    <style name="ViewTheme.SingleButton" parent="ViewTheme.Button">
-        <item name="android:ellipsize">end</item>
-        <item name="android:maxLines">1</item>
-    </style>
-
     <!-- TextView 基础样式 -->
 
-    <style name="ViewTheme.Base_TextView">
+    <style name="ViewTheme.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center</item>
-        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
-    <!-- TextView 样式 -->
+    <!-- Button 单行样式 -->
 
-    <style name="ViewTheme.TextView" parent="ViewTheme.Base_TextView" />
-
-    <!-- TextView 标题样式 -->
-
-    <style name="ViewTheme.Title" parent="ViewTheme.TextView">
-        <item name="android:layout_marginTop">15.0dp</item>
-        <item name="android:layout_marginBottom">10.0dp</item>
-        <item name="android:gravity">left</item>
-        <item name="android:textSize">16.0sp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="ViewTheme.Button.Single">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
     </style>
 
-    <!-- TextView 子标题样式 -->
+    <!-- TextView 文本居中样式 -->
 
-    <style name="ViewTheme.SubTitle" parent="ViewTheme.TextView">
-        <item name="android:layout_marginBottom">10.0dp</item>
-        <item name="android:gravity">left</item>
-        <item name="android:textSize">14.0sp</item>
-        <item name="android:textColor">@color/sky_blue</item>
+    <style name="ViewTheme.TextView.TextCenter">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Padding、Margin 样式 -->
+
+    <style name="ViewTheme.Padding.LR">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.Margin.LR">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- RecyclerView 样式 -->
+
+    <style name="ViewTheme.RecyclerView.Margin.LR">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- 分割线样式 -->
+
+    <style name="ViewTheme.Line" />
+
+    <style name="ViewTheme.Line.Vertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="ViewTheme.Line.Horizontal">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <!-- 临时保留等待删除 -->
@@ -166,5 +145,4 @@
             <enum name="CoolWaitLoadingRenderer" value="15" />
         </attr>
     </declare-styleable>
-
 </resources>

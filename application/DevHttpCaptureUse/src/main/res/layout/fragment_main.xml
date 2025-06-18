@@ -32,18 +32,18 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Title"
+                    style="@style/ViewTheme.TextView.Title"
                     android:text="@{viewModel.devHttpCaptureVersion}"
                     tools:text="DevHttpCapture:Version" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="SimpleInterceptor" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -57,7 +57,7 @@
                     android:text="简单的抓包回调拦截器 ( 过滤请求 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="CallbackInterceptor ( 无存储逻辑 ) " />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -81,7 +81,7 @@
                     android:text="Http 抓包拦截器 ( 自定义抓包事件 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="StorageInterceptor ( 抓包本地存储 ) " />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -95,7 +95,7 @@
                     android:text="Http 抓包拦截器 ( DevHttpCapture API )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="抓包数据可视化" />
 
                 <androidx.appcompat.widget.AppCompatButton

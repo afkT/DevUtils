@@ -15,7 +15,7 @@
     </data>
 
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/ViewTheme.SingleButton"
+        style="@style/ViewTheme.Button.Single"
         android:onClick="@{()->itemClick.accept(itemValue)}"
         android:text="@{itemValue.text}" />
 </layout>

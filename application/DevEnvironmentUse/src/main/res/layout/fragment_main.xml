@@ -34,13 +34,13 @@
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/ViewTheme.padding_lr"
+                style="@style/ViewTheme.Padding.LR"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.Title"
+                    style="@style/ViewTheme.TextView.Title"
                     android:text="@{viewModel.devEnvironmentVersion}"
                     tools:text="DevEnvironment:Version" />
 
@@ -70,7 +70,7 @@
                     android:text="重置【全部】Selected Environment" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="Service【Module】演示操作"
                     android:textSize="16.0sp"
                     android:textStyle="bold" />
@@ -106,7 +106,7 @@
                     android:text="重置【Service】Selected Environment" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ViewTheme.SubTitle"
+                    style="@style/ViewTheme.TextView.SubTitle"
                     android:text="使用示例介绍"
                     android:textSize="16.0sp"
                     android:textStyle="bold" />
