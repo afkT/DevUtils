@@ -19,7 +19,7 @@
                 android:lineSpacingExtra="@dimen/dp_5" />
 
             <View
-                style="@style/ViewTheme.Base_Line_Vertical"
+                style="@style/ViewTheme.line_Vertical"
                 android:background="@color/gray" />
 
             <dev.widget.function.LineTextView

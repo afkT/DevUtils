@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
 import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.base.project.BaseProjectActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
+import afkt.project.model.data.button.RouterPath
 import afkt.project.ui.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
@@ -17,7 +17,10 @@ import dev.engine.image.listener.BitmapListener
 import dev.expand.engine.image.loadBitmap
 import dev.mvvm.utils.toSource
 import dev.utils.DevFinal
-import dev.utils.app.*
+import dev.utils.app.ClipboardUtils
+import dev.utils.app.HandlerUtils
+import dev.utils.app.ListenerUtils
+import dev.utils.app.TextViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
@@ -47,7 +50,7 @@ class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, AppV
                                 // 复制到剪切板
                                 ClipboardUtils.copyText(text)
                                 // 进行提示
-                                ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + " -> " + text)
+                                ToastTintUtils.success("复制成功 -> $text")
                             }
                         }
                     }, binding.vidSelectBtn, binding.vidTv

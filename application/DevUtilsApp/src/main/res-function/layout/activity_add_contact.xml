@@ -21,7 +21,7 @@
                 android:textStyle="bold" />
 
             <View
-                style="@style/ViewTheme.Base_Line_Vertical"
+                style="@style/ViewTheme.line_Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
@@ -57,7 +57,7 @@
             </FrameLayout>
 
             <View
-                style="@style/ViewTheme.Base_Line_Vertical"
+                style="@style/ViewTheme.line_Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 
@@ -101,7 +101,7 @@
             </FrameLayout>
 
             <View
-                style="@style/ViewTheme.Base_Line_Vertical"
+                style="@style/ViewTheme.line_Vertical"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/gray" />
 

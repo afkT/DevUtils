@@ -21,7 +21,6 @@
     <!-- View 样式 -->
 
     <style name="ViewTheme">
-        <!-- 解决控件字母自动大写问题 -->
         <item name="textAllCaps">false</item>
     </style>
 

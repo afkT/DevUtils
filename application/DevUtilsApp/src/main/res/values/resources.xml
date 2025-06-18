@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Text -->
+
+    <string name="app_name" translatable="false">DevUtils 示例</string>
+    <string name="accessibility_description" translatable="false">无障碍监听</string>
+
+    <!-- Color -->
+
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <!--    &lt;!&ndash; Application 样式 &ndash;&gt;-->
+
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />-->
+
+    <!--    <style name="AppTheme.Launcher" parent="AppTheme">-->
+    <!--        &lt;!&ndash; 不设置为全屏防止状态栏隐藏紧接着又显示 &ndash;&gt;-->
+    <!--        <item name="android:windowFullscreen">false</item>-->
+    <!--        <item name="android:splitMotionEvents">false</item>-->
+    <!--        <item name="android:windowEnableSplitTouch">false</item>-->
+    <!--        <item name="android:windowBackground">@drawable/launcher_bg</item>-->
+    <!--    </style>-->
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- 主题颜色 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
+
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <!-- 不设置为全屏防止状态栏隐藏紧接着又显示 -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:windowBackground">@drawable/launcher_bg</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Material" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- 主题颜色 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
+
+    <!-- View 样式 -->
+
+    <style name="ViewTheme">
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- AppBarLayout、Toolbar -->
+
+    <style name="ViewTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ViewTheme.ToolbarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- 左右 padding、margin 样式 -->
+
+    <style name="ViewTheme.padding_lr">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.margin_lr">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- 分割线样式 -->
+
+    <style name="ViewTheme.line_Vertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="ViewTheme.line_Horizontal">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- Button 默认样式 -->
+
+    <style name="ViewTheme.Base_Button" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">60.0dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:paddingTop">15.0dp</item>
+        <item name="android:paddingBottom">15.0dp</item>
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <!-- Button 单行样式 -->
+
+    <style name="ViewTheme.SingleButton" parent="ViewTheme.Base_Button">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!-- TextView 默认样式 -->
+
+    <style name="ViewTheme.Base_TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- TextView 标题样式 -->
+
+    <style name="ViewTheme.Title" parent="ViewTheme.Base_TextView">
+        <item name="android:layout_marginTop">15.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- TextView 子标题样式 -->
+
+    <style name="ViewTheme.SubTitle" parent="ViewTheme.Base_TextView">
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/sky_blue</item>
+    </style>
+
+    <!-- 临时保留等待删除 -->
+
+    <integer name="grid_columns">3</integer>
+
+    <declare-styleable name="LoadingView">
+        <attr name="loading_renderer">
+            <!-- circle rotate -->
+            <enum name="MaterialLoadingRenderer" value="0" />
+            <enum name="LevelLoadingRenderer" value="1" />
+            <enum name="WhorlLoadingRenderer" value="2" />
+            <enum name="GearLoadingRenderer" value="3" />
+            <!-- circle jump -->
+            <enum name="SwapLoadingRenderer" value="4" />
+            <enum name="GuardLoadingRenderer" value="5" />
+            <enum name="DanceLoadingRenderer" value="6" />
+            <enum name="CollisionLoadingRenderer" value="7" />
+            <!--Scenery-->
+            <enum name="DayNightLoadingRenderer" value="8" />
+            <enum name="ElectricFanLoadingRenderer" value="9" />
+            <!-- Animal -->
+            <enum name="FishLoadingRenderer" value="10" />
+            <enum name="GhostsEyeLoadingRenderer" value="11" />
+            <!-- Goods -->
+            <enum name="BalloonLoadingRenderer" value="12" />
+            <enum name="WaterBottleLoadingRenderer" value="13" />
+            <!-- ShapeChange -->
+            <enum name="CircleBroodLoadingRenderer" value="14" />
+            <enum name="CoolWaitLoadingRenderer" value="15" />
+        </attr>
+    </declare-styleable>
+
+</resources>

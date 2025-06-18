@@ -15,8 +15,7 @@
     </data>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/vid_btn"
-        style="@style/ViewTheme.Base_Button"
-        android:ellipsize="end"
-        android:maxLines="1" />
+        style="@style/ViewTheme.SingleButton"
+        android:onClick="@{()->itemClick.accept(itemValue)}"
+        android:text="@{itemValue.text}" />
 </layout>

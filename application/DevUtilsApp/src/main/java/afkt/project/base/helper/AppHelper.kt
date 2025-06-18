@@ -36,7 +36,7 @@ object AppHelper {
      */
     fun printInfo(timeCounter: TimeCounter) {
         val builder = StringBuilder()
-            .append("项目名: ").append(ResourceUtils.getString(R.string.str_app_name))
+            .append("项目名: ").append(ResourceUtils.getString(R.string.app_name))
             .append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(")
             .append(VersionUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
             .append("\nPackageName: ").append(AppUtils.getPackageName())
