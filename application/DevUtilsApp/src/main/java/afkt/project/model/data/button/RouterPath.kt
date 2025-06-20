@@ -12,10 +12,6 @@ object RouterPath {
 
     const val EMPTY = ""
 
-    const val ModuleActivity_PATH = "/activity/ModuleActivity"
-
-    const val ButtonItemActivity_PATH = "/activity/ButtonItemActivity"
-
     // ==================
     // = 按功能模块列表循序 =
     // ==================

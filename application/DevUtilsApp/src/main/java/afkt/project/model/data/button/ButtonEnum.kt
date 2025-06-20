@@ -27,15 +27,15 @@ enum class ButtonEnum(
 
     BTN_LIB_ROOM("Room"),
 
-    BTN_LIB_DATA_STORE("DataStore"),
-
-    BTN_LIB_EVENT_BUS("EventBusUtils"),
+    BTN_LIB_DATA_STORE("DataStoreUtils"),
 
     BTN_LIB_GLIDE("GlideUtils"),
 
-    BTN_LIB_IMAGE_LOADER("ImageLoaderUtils"),
-
     BTN_LIB_GSON("GsonUtils"),
+
+    BTN_LIB_MMKV("MMKVUtils"),
+
+    BTN_LIB_WORK_MANAGER("WorkManagerUtils"),
 
     BTN_LIB_FASTJSON("FastjsonUtils"),
 
@@ -43,13 +43,11 @@ enum class ButtonEnum(
 
     BTN_LIB_PICTURE_SELECTOR("PictureSelectorUtils"),
 
-    BTN_LIB_OKGO("OkGoUtils"),
-
     BTN_LIB_LUBAN("LubanUtils"),
 
-    BTN_LIB_MMKV("MMKVUtils"),
+    BTN_LIB_EVENT_BUS("EventBusUtils"),
 
-    BTN_LIB_WORK_MANAGER("WorkManagerUtils"),
+    BTN_LIB_IMAGE_LOADER("ImageLoaderUtils"),
 
     // ======
     // = UI =

@@ -34,9 +34,6 @@ class ButtonValue(
 
         private const val BASE = 1001
 
-        // Lib
-        const val MODULE_LIB = BASE + 10000
-
         // UI
         const val MODULE_UI = BASE + 20000
 
@@ -51,52 +48,6 @@ class ButtonValue(
 
         // DevSKU 商品 SKU 组合封装实现
         const val MODULE_DEV_SKU = BASE + 60000
-
-        // =======
-        // = Lib =
-        // =======
-
-        // EventBusUtils
-        const val BTN_EVENT_BUS = MODULE_LIB
-
-        // GreenDAO
-        const val BTN_GREEN_DAO = MODULE_LIB + 1
-
-        // Room
-        const val BTN_ROOM = MODULE_LIB + 2
-
-        // DataStore
-        const val BTN_DATA_STORE = MODULE_LIB + 3
-
-        // GlideUtils
-        const val BTN_GLIDE = MODULE_LIB + 4
-
-        // ImageLoaderUtils
-        const val BTN_IMAGE_LOADER = MODULE_LIB + 5
-
-        // GsonUtils
-        const val BTN_GSON = MODULE_LIB + 6
-
-        // FastjsonUtils
-        const val BTN_FASTJSON = MODULE_LIB + 7
-
-        // ZXingUtils
-        const val BTN_ZXING = MODULE_LIB + 8
-
-        // PictureSelectorUtils
-        const val BTN_PICTURE_SELECTOR = MODULE_LIB + 9
-
-        // OkGoUtils
-        const val BTN_OKGO = MODULE_LIB + 10
-
-        // LubanUtils
-        const val BTN_LUBAN = MODULE_LIB + 11
-
-        // MMKVUtils
-        const val BTN_MMKV = MODULE_LIB + 12
-
-        // WorkManagerUtils
-        const val BTN_WORK_MANAGER = MODULE_LIB + 13
 
         // ======
         // = UI =

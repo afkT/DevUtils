@@ -15,21 +15,17 @@ object ButtonList {
      * @return [List]
      */
     val mainButtonValues = mutableListOf(
-        ButtonValue.MODULE_LIB.buttonOf(
-            "Lib 框架",
-            RouterPath.ModuleActivity_PATH
-        ),
         ButtonValue.MODULE_UI.buttonOf(
             "UI 效果",
-            RouterPath.ModuleActivity_PATH
+            RouterPath.EMPTY
         ),
         ButtonValue.MODULE_OTHER.buttonOf(
             "其他功能",
-            RouterPath.ModuleActivity_PATH
+            RouterPath.EMPTY
         ),
         ButtonValue.MODULE_DEV_WIDGET.buttonOf(
             "DevWidget UI 库",
-            RouterPath.ModuleActivity_PATH
+            RouterPath.EMPTY
         ),
         ButtonValue.MODULE_DEV_ASSIST_ENGINE.buttonOf(
             "DevAssist Engine 实现",
@@ -48,7 +44,6 @@ object ButtonList {
      */
     fun getModuleButtonValues(type: Int): List<ButtonValue> {
         when (type) {
-            ButtonValue.MODULE_LIB -> return moduleLibButtonValues
             ButtonValue.MODULE_UI -> return moduleUIButtonValues
             ButtonValue.MODULE_OTHER -> return moduleOtherButtonValues
             ButtonValue.MODULE_DEV_WIDGET -> return moduleDevWidgetButtonValues
@@ -69,73 +64,6 @@ object ButtonList {
         }
         return emptyList()
     }
-
-    // =======
-    // = Lib =
-    // =======
-
-    /**
-     * 获取 Lib Module Button Value 集合
-     * @return [List]
-     */
-    private val moduleLibButtonValues = mutableListOf(
-        ButtonValue.BTN_GREEN_DAO.buttonOf(
-            "GreenDAO",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ROOM.buttonOf(
-            "Room",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_DATA_STORE.buttonOf(
-            "DataStore",
-            RouterPath.LIB_FRAME.DataStoreActivity_PATH
-        ),
-        ButtonValue.BTN_EVENT_BUS.buttonOf(
-            "EventBusUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_GLIDE.buttonOf(
-            "GlideUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_IMAGE_LOADER.buttonOf(
-            "ImageLoaderUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_GSON.buttonOf(
-            "GsonUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_FASTJSON.buttonOf(
-            "FastjsonUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ZXING.buttonOf(
-            "ZXingUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_PICTURE_SELECTOR.buttonOf(
-            "PictureSelectorUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_OKGO.buttonOf(
-            "OkGoUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_LUBAN.buttonOf(
-            "LubanUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_MMKV.buttonOf(
-            "MMKVUtils",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_WORK_MANAGER.buttonOf(
-            "WorkManagerUtils",
-            RouterPath.EMPTY
-        )
-    )
 
     // ======
     // = UI =
@@ -726,7 +654,7 @@ object ButtonList {
         ),
         ButtonValue.BTN_VIEW_ASSIST.buttonOf(
             "View 填充辅助类",
-            RouterPath.ButtonItemActivity_PATH
+            RouterPath.EMPTY
         ),
         ButtonValue.BTN_FLIP_CARD_VIEW.buttonOf(
             "翻转卡片 View",
@@ -738,11 +666,11 @@ object ButtonList {
         ),
         ButtonValue.BTN_LINEAR_ITEM_DECORATION.buttonOf(
             "Linear Color ItemDecoration",
-            RouterPath.ButtonItemActivity_PATH
+            RouterPath.EMPTY
         ),
         ButtonValue.BTN_GRID_ITEM_DECORATION.buttonOf(
             "Grid Color ItemDecoration",
-            RouterPath.ButtonItemActivity_PATH
+            RouterPath.EMPTY
         )
     )
 

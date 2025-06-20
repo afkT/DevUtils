@@ -24,18 +24,6 @@ fun ButtonValue.routerActivity() {
         .navigation(DevUtils.getContext())
 }
 
-/**
- * 跳转方法
- * @param clazz       跳转
- * @return `true` success, `false` fail
- */
-fun ButtonValue.classStartActivity(clazz: Class<*>?): Boolean {
-    val intent = Intent(DevUtils.getContext(), clazz)
-    intent.putExtra(DevFinal.STR.TYPE, this.type)
-    intent.putExtra(DevFinal.STR.TITLE, this.text)
-    return AppUtils.startActivity(intent)
-}
-
 // ============
 // = 适配器相关 =
 // ============
