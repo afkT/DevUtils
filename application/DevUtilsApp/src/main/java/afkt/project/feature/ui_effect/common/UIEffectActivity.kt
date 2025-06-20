@@ -41,7 +41,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         changeTab2(binding.vid31Tv, binding.vid30Tv)
 
         // 动态设置
-        StateListUtils.newSelector(R.drawable.btn_pressed, R.drawable.btn_normal)
+        StateListUtils.newSelector(R.mipmap.btn_pressed, R.mipmap.btn_normal)
             .also { binding.vid40Btn.background = it }
 
         binding.vid40Btn.setTextColor(

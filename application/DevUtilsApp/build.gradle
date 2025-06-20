@@ -12,13 +12,8 @@ android {
         main {
             // 优化 res 资源管理, 使用 sourceSets 资源分包
             res.srcDirs = [
-                    'src/main/res', // 全局通用资源文件
-                    'src/main/res-base', // Base 基础资源
-                    'src/main/res-function', // 其他功能
-                    'src/main/res-lib', // Lib 框架
-                    'src/main/res-sku', // 商品 SKU
-                    'src/main/res-ui', // UI 效果
-                    'src/main/res-ui-widget', // DevWidget UI 库
+                    'src/main/res',
+                    'src/main/res-features',
             ]
         }
     }

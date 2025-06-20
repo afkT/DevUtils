@@ -7,4 +7,9 @@
         android:id="@+id/MainFragment"
         android:name="afkt.project.MainFragment"
         android:label="MainFragment" />
+
+    <fragment
+        android:id="@+id/LibUtilsFragment"
+        android:name="afkt.project.features.LibUtilsFragment"
+        android:label="LibUtilsFragment" />
 </navigation>

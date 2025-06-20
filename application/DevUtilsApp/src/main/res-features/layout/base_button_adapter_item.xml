@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="afkt.project.model.data.button.ButtonEnum" />
+
+        <variable
+            name="itemClick"
+            type="dev.mvvm.command.BindingConsumer&lt;ButtonEnum&gt;" />
+
+        <variable
+            name="itemValue"
+            type="ButtonEnum" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/ViewTheme.Button.Single"
+        android:onClick="@{()->itemClick.accept(itemValue)}"
+        android:text="@{itemValue.text}" />
+</layout>

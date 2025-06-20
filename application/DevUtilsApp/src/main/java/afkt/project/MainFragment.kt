@@ -2,18 +2,13 @@ package afkt.project
 
 import afkt.project.base.app.AppFragment
 import afkt.project.base.app.AppViewModel
-import afkt.project.base.project.routerActivity
 import afkt.project.databinding.MainFragmentBinding
 import afkt.project.model.adapter.ButtonAdapterModel
-import afkt.project.model.data.button.ButtonList
+import afkt.project.model.data.button.convertItemsModule
 
 class MainFragment : AppFragment<MainFragmentBinding, MainViewModel>(
     R.layout.main_fragment, BR.viewModel
-) {
-    override fun initValue() {
-        viewModel.buttonAdapterModel.addAllAndClear(ButtonList.mainButtonValues)
-    }
-}
+)
 
 /**
  * detail: Main Fragment ViewModel
@@ -24,6 +19,8 @@ class MainViewModel : AppViewModel() {
 
     // Button Adapter Model
     val buttonAdapterModel = ButtonAdapterModel {
-        it.routerActivity()
+//        it.routerActivity()
+    }.apply {
+        convertItemsModule()
     }
 }

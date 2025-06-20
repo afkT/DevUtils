@@ -1,6 +1,6 @@
 package afkt.project.base
 
-import afkt.project.model.data.IntentData
+import afkt.project.model.basic.IntentData
 import android.os.Bundle
 import dev.simple.app.BaseAppViewModel
 

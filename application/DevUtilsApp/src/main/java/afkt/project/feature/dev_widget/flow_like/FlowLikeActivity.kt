@@ -38,11 +38,11 @@ class FlowLikeActivity : BaseProjectActivity<ActivityFlowLikeBinding, AppViewMod
 
                 // 设置漂浮图标
                 binding.vidFlv.setDrawablesById(
-                    R.drawable.icon_live_brow_1,
-                    R.drawable.icon_live_brow_2,
-                    R.drawable.icon_live_brow_3,
-                    R.drawable.icon_live_brow_4,
-                    R.drawable.icon_live_brow_5
+                    R.mipmap.icon_live_brow_1,
+                    R.mipmap.icon_live_brow_2,
+                    R.mipmap.icon_live_brow_3,
+                    R.mipmap.icon_live_brow_4,
+                    R.mipmap.icon_live_brow_5
                 )
                 binding.vidFlv.setOnClickListener {
                     binding.vidFlv.like()
