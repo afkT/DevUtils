@@ -1,11 +1,8 @@
 package afkt.retrofit.use.base
 
 import android.util.Log
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
-import dev.base.utils.ViewModelUtils
 import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
@@ -18,8 +15,7 @@ import dev.utils.common.StringUtils
  * detail: Base Application
  * @author Ttt
  */
-class BaseApplication : MultiDexApplication(),
-    ViewModelStoreOwner {
+class BaseApplication : MultiDexApplication() {
 
     // 日志 TAG
     val TAG = "DevRetrofitUse_Log"
@@ -60,38 +56,5 @@ class BaseApplication : MultiDexApplication(),
 
         // DevEngine 完整初始化
         DevEngine.completeInitialize(this)
-
-        application = this
-        // 全局 ViewModel
-        mAppViewModelStore = ViewModelStore()
     }
-
-    // ==========
-    // = 静态方法 =
-    // ==========
-
-    companion object {
-
-        private lateinit var application: BaseApplication
-
-        fun app(): BaseApplication {
-            return application
-        }
-
-        fun viewModel(): BaseViewModel? {
-            return ViewModelUtils.getAppViewModel(
-                application, BaseViewModel::class.java
-            )
-        }
-    }
-
-    // =======================
-    // = ViewModelStoreOwner =
-    // =======================
-
-    // ViewModelStore
-    private lateinit var mAppViewModelStore: ViewModelStore
-
-    override val viewModelStore: ViewModelStore
-        get() = mAppViewModelStore
 }

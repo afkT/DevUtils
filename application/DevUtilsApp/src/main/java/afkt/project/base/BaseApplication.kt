@@ -1,16 +1,20 @@
 package afkt.project.base
 
 import afkt.project.R
+import afkt.project.base.app.AppViewModel
 import afkt.project.base.helper.*
 import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import com.therouter.TheRouter
 import dev.DevUtils
 import dev.agile.assist.WebViewAssist
+import dev.base.utils.ViewModelUtils
 import dev.engine.DevEngine
 import dev.engine.image.ImageConfig
 import dev.expand.engine.log.log_d
@@ -34,7 +38,8 @@ import dev.widget.function.StateLayout
  * detail: Base Application
  * @author Ttt
  */
-class BaseApplication : MultiDexApplication() {
+class BaseApplication : MultiDexApplication(),
+    ViewModelStoreOwner {
 
     // 日志 TAG
     val TAG = "DevUtils_Log"
@@ -102,6 +107,9 @@ class BaseApplication : MultiDexApplication() {
      * 统一初始化方法
      */
     private fun initialize() {
+        application = this
+        // 全局 ViewModel
+        mAppViewModelStore = ViewModelStore()
         // 初始化引擎
         initEngine()
         // 初始化异常捕获处理
@@ -305,4 +313,45 @@ class BaseApplication : MultiDexApplication() {
             }
         }
     }
+
+    // ==========
+    // = 静态方法 =
+    // ==========
+
+    companion object {
+
+        private lateinit var application: BaseApplication
+
+        private val viewModel: AppViewModel by lazy {
+            ViewModelUtils.getAppViewModel(
+                application, AppViewModel::class.java
+            )!!
+        }
+
+        fun app(): BaseApplication {
+            return application
+        }
+
+        fun viewModel(): AppViewModel {
+            return viewModel
+        }
+    }
+
+    // =======================
+    // = ViewModelStoreOwner =
+    // =======================
+
+    // ViewModelStore
+    private lateinit var mAppViewModelStore: ViewModelStore
+
+    override val viewModelStore: ViewModelStore
+        get() = mAppViewModelStore
+}
+
+/**
+ * 获取全局 ViewModel
+ * @return Application ViewModel
+ */
+fun appViewModel(): AppViewModel {
+    return BaseApplication.viewModel()
 }

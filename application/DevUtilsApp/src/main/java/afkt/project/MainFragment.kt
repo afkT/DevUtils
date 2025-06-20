@@ -18,9 +18,7 @@ class MainFragment : AppFragment<MainFragmentBinding, MainViewModel>(
 class MainViewModel : AppViewModel() {
 
     // Button Adapter Model
-    val buttonAdapterModel = ButtonAdapterModel {
-//        it.routerActivity()
-    }.apply {
+    val buttonAdapterModel = ButtonAdapterModel().apply {
         convertItemsModule()
     }
 }
