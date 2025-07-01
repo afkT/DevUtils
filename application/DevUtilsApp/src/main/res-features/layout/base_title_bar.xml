@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,8 +15,20 @@
             type="ButtonEnum" />
     </data>
 
-    <com.hjq.bar.TitleBar
-        android:id="@+id/vid_title"
+    <com.lihang.ShadowLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:hl_angle="270"
+        app:hl_endColor="@color/colorPrimary"
+        app:hl_startColor="@color/colorPrimaryDark">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/vid_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barStyle="transparent"
+            app:lineVisible="false"
+            app:titleSize="18.0sp"
+            app:titleStyle="bold" />
+    </com.lihang.ShadowLayout>
 </layout>

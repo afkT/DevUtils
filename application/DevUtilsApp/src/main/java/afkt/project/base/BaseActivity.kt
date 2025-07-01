@@ -4,8 +4,6 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppActivity
 import dev.simple.app.base.ActivityVMType
@@ -61,12 +59,12 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        // 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
+//        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
     }
 
     // ============

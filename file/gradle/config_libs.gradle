@@ -88,6 +88,9 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.getActivity/Toaster
                     // Toaster 吐司框架 https://github.com/getActivity/Toaster
                     toaster                                : "com.github.getActivity:Toaster:12.8",
+                    // https://mvnrepository.com/artifact/com.github.getActivity/EasyWindow
+                    // 悬浮窗框架 https://github.com/getActivity/EasyWindow
+                    easyWindow                             : "com.github.getActivity:EasyWindow:12.2",
                     // https://mvnrepository.com/artifact/com.geyifeng.immersionbar/immersionbar
                     // 状态栏框架 https://github.com/gyf-dev/ImmersionBar
                     immersionBar                           : "com.geyifeng.immersionbar:immersionbar:3.2.2",

@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="dev.utils.app.VersionUtils" />
 
         <variable
             name="viewModel"
             type="afkt.project.features.LibUtilsViewModel" />
     </data>
 
-    <LinearLayout style="@style/ViewTheme.LinearLayout">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_30"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/dp_25"
-            app:cardElevation="@dimen/dp_10">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/dp_120"
-                android:layout_height="@dimen/dp_120"
-                android:layout_gravity="center"
-                android:background="@mipmap/launcher_window_bg" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/ViewTheme.TextView.TextCenter"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:text="@{VersionUtils.convertSDKVersion()}"
-            tools:text="Android X" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            style="@style/ViewTheme.RecyclerView.Margin.LR"
-            app:itemBinding="@{viewModel.buttonAdapterModel.itemBinding}"
-            app:items="@{viewModel.buttonAdapterModel.items}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/ViewTheme.RecyclerView.Margin.LR"
+        android:visibility="visible"
+        app:itemBinding="@{viewModel.buttonAdapterModel.itemBinding}"
+        app:items="@{viewModel.buttonAdapterModel.items}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </layout>

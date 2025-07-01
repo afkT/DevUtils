@@ -5,7 +5,6 @@ import afkt.project.R
 import afkt.project.base.appViewModel
 import afkt.project.model.basic.AdapterModel
 import afkt.project.model.data.button.ButtonEnum
-import afkt.project.model.data.button.fragmentId
 import dev.mvvm.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
@@ -23,7 +22,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
  */
 class ButtonAdapterModel(
     var clickItem: (ButtonEnum) -> Unit = {
-        appViewModel().navigate(it.fragmentId())
+        appViewModel().navigate(it)
     }
 ) : AdapterModel<ButtonEnum>() {
 

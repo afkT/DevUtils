@@ -1,7 +1,19 @@
 package afkt.project.model.data.button
 
 import afkt.project.R
+import afkt.project.model.basic.IntentData
+import android.os.Bundle
 import dev.utils.DevFinal
+
+// =================================
+// = ButtonEnum 映射 Fragment Title =
+// =================================
+
+fun ButtonEnum.title(): Bundle? {
+    return IntentData.with().setTitle(
+        this.text
+    ).insert()
+}
 
 // ==============================
 // = ButtonEnum 映射 Fragment Id =

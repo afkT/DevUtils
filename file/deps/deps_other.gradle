@@ -33,6 +33,8 @@ dependencies {
     api deps_lib.common_widget.dialogX
     // 标题栏框架 https://github.com/getActivity/TitleBar
     api deps_lib.common_widget.titleBar
+    // 万能阴影布局 https://github.com/lihangleo2/ShadowLayout
+    api deps_lib.common_widget.shadowLayout
 
     // ====================
     // = UI 功能性相关组件库 =
