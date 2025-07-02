@@ -1,6 +1,7 @@
 package afkt.project.base.app
 
 import afkt.project.base.BaseViewModel
+import afkt.project.model.adapter.ButtonAdapterModel
 import afkt.project.model.data.button.ButtonEnum
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,4 +30,11 @@ open class AppViewModel : BaseViewModel() {
     fun popBackStack() {
         _fragPopBack.value = System.currentTimeMillis()
     }
+
+    // ======================
+    // = ButtonAdapterModel =
+    // ======================
+
+    // Button Adapter Model
+    val buttonAdapterModel = ButtonAdapterModel()
 }

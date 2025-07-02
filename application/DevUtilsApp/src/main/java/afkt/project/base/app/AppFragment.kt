@@ -92,8 +92,11 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
     ) {
         viewModel.intentReader(arguments)
         super.onViewCreated(view, savedInstanceState)
-        // 不添加 TitleBar 则添加 Top Padding
-        if (!isAddTitleBar()) {
+        // 添加 TitleBar 则不设置顶部状态栏边距
+        if (isAddTitleBar()) {
+            setStatusBarHeightPadding(binding.root)
+        } else {
+            // 默认设置顶部状态栏、底部导航栏边距
             setOnApplyWindowInsetsListener(binding.root)
         }
     }
@@ -122,6 +125,26 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
             v.setPadding(
                 systemBars.left, systemBars.top,
                 systemBars.right, bottom
+            )
+            insets
+        }
+    }
+
+    /**
+     * 设置状态栏高度边距
+     * @param view [View]
+     * @param paddingTop 是否设置 Padding Top
+     */
+    private fun setStatusBarHeightPadding(
+        view: View,
+        paddingTop: Boolean = false
+    ) {
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val top = if (paddingTop) systemBars.top else 0
+            v.setPadding(
+                systemBars.left, top,
+                systemBars.right, systemBars.bottom
             )
             insets
         }

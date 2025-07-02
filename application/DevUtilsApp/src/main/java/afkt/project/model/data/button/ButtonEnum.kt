@@ -47,8 +47,6 @@ enum class ButtonEnum(
 
     BTN_LIB_EVENT_BUS("EventBusUtils"),
 
-    BTN_LIB_IMAGE_LOADER("ImageLoaderUtils"),
-
     // ======
     // = UI =
     // ======

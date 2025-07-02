@@ -3,7 +3,6 @@ package afkt.project
 import afkt.project.base.app.AppFragment
 import afkt.project.base.app.AppViewModel
 import afkt.project.databinding.MainFragmentBinding
-import afkt.project.model.adapter.ButtonAdapterModel
 import afkt.project.model.data.button.convertItemsModule
 
 class MainFragment : AppFragment<MainFragmentBinding, MainViewModel>(
@@ -17,8 +16,7 @@ class MainFragment : AppFragment<MainFragmentBinding, MainViewModel>(
  */
 class MainViewModel : AppViewModel() {
 
-    // Button Adapter Model
-    val buttonAdapterModel = ButtonAdapterModel().apply {
-        convertItemsModule()
+    init {
+        buttonAdapterModel.convertItemsModule()
     }
 }
