@@ -582,7 +582,7 @@ public final class PhoneUtils {
                 sentIntent = PendingIntent.getBroadcast(
                         DevUtils.getContext(), 0,
                         new Intent("send"),
-                        PendingIntent.FLAG_IMMUTABLE
+                        PendingIntent.FLAG_MUTABLE
                 );
             } else {
                 sentIntent = PendingIntent.getBroadcast(

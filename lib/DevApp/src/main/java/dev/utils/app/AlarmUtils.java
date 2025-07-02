@@ -144,7 +144,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -194,7 +194,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -254,7 +254,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -306,7 +306,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -336,7 +336,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -362,7 +362,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -392,7 +392,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -416,7 +416,7 @@ public final class AlarmUtils {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
                     context, requestCode, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
