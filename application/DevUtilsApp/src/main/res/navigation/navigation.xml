@@ -12,4 +12,9 @@
         android:id="@+id/LibUtilsFragment"
         android:name="afkt.project.features.LibUtilsFragment"
         android:label="LibUtilsFragment" />
+
+    <fragment
+        android:id="@+id/DevAssistEngineFragment"
+        android:name="afkt.project.features.DevAssistEngineFragment"
+        android:label="DevAssistEngineFragment" />
 </navigation>

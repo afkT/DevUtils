@@ -51,7 +51,6 @@ enum class ButtonEnum(
     // = UI =
     // ======
 
-
     BTN_TOAST_TINT("ToastTint ( 着色美化 Toast )"),
 
     BTN_UI_EFFECT("常见 UI、GradientDrawable 效果等"),
@@ -310,7 +309,15 @@ enum class ButtonEnum(
 
     BTN_GRID_ITEM_HORIZONTAL("Grid Horizontal ItemDecoration"),
 
+    BTN_SKU_DIALOG("显示商品 SKU Dialog"),
+
+    // =========
+    // = Engine =
+    // =========
+
     BTN_ENGINE_ANALYTICS("Analytics Engine 数据统计 ( 埋点 )"),
+
+    BTN_ENGINE_BAR_CODE("BarCode Engine 条形码、二维码处理"),
 
     BTN_ENGINE_CACHE("Cache Engine 有效期键值对缓存"),
 
@@ -318,7 +325,7 @@ enum class ButtonEnum(
 
     BTN_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等"),
 
-    BTN_ENGINE_JSON("JSON Engine"),
+    BTN_ENGINE_JSON("JSON Engine 映射"),
 
     BTN_ENGINE_KEYVALUE("KeyValue Engine 键值对存储"),
 
@@ -334,5 +341,5 @@ enum class ButtonEnum(
 
     BTN_ENGINE_STORAGE("Storage Engine 外部、内部文件存储"),
 
-    BTN_SKU_DIALOG("显示商品 SKU Dialog"),
+    BTN_ENGINE_TOAST("Toast Engine 吐司提示"),
 }

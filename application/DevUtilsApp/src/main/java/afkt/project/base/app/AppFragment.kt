@@ -2,6 +2,7 @@ package afkt.project.base.app
 
 import afkt.project.base.BaseFragment
 import afkt.project.databinding.BaseTitleBarBinding
+import afkt.project.model.adapter.ButtonAdapterModel
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.controller.ui.theme.FragmentUITheme
 import dev.utils.common.StringUtils
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 /**
  * detail: Base App Fragment
@@ -149,4 +152,36 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
             insets
         }
     }
+}
+
+/**
+ * 检查当前 Fragment 是否为指定类型，如果是则执行回调
+ * @param T 目标 Fragment 类型，必须是 AppFragment 的子类
+ * @param action 当 Fragment 匹配类型时执行的回调
+ */
+@OptIn(ExperimentalContracts::class)
+inline fun <reified T : AppFragment<*, *>> Any?.checkFragment(
+    action: T.() -> Unit
+) {
+    contract {
+        returns() implies (this@checkFragment is T)
+    }
+    // 当 Fragment 非空且是目标类型时执行回调
+    (this as? T)?.apply(action)
+}
+
+/**
+ * 简化检查并操作 buttonAdapterModel
+ * @param T 目标 Fragment 类型 ( 必须包含 buttonAdapterModel 属性 )
+ * @param action 在 buttonAdapterModel 上执行的操作
+ */
+@OptIn(ExperimentalContracts::class)
+inline fun <reified T : AppFragment<*, *>> Any?.applyToButtonAdapter(
+    action: ButtonAdapterModel.() -> Unit
+) {
+    contract {
+        returns() implies (this@applyToButtonAdapter is T)
+    }
+    // 当对象是目标 Fragment 类型时，获取 buttonAdapterModel 并执行操作
+    (this as? T)?.viewModel?.buttonAdapterModel?.apply(action)
 }

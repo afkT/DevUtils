@@ -26,6 +26,7 @@ fun ButtonEnum.title(): Bundle? {
 fun ButtonEnum.fragmentId(): Int {
     return when (this) {
         ButtonEnum.MODULE_LIB -> R.id.LibUtilsFragment
+        ButtonEnum.MODULE_DEV_ASSIST_ENGINE -> R.id.DevAssistEngineFragment
         else -> DevFinal.DEFAULT.ERROR_INT
     }
 }
