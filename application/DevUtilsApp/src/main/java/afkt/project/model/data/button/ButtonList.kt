@@ -6,37 +6,6 @@ package afkt.project.model.data.button
  */
 object ButtonList {
 
-    // ==========
-    // = 获取集合 =
-    // ==========
-
-    /**
-     * 获取 Main Button Value 集合
-     * @return [List]
-     */
-    val mainButtonValues = mutableListOf(
-        ButtonValue.MODULE_UI.buttonOf(
-            "UI 效果",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.MODULE_OTHER.buttonOf(
-            "其他功能",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.MODULE_DEV_WIDGET.buttonOf(
-            "DevWidget UI 库",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.MODULE_DEV_ASSIST_ENGINE.buttonOf(
-            "DevAssist Engine 实现",
-            RouterPath.DEV_LIBS.DevAssistEngineActivity_PATH
-        ),
-        ButtonValue.MODULE_DEV_SKU.buttonOf(
-            "DevSKU 商品 SKU 组合封装实现",
-            RouterPath.DEV_LIBS.DevSKUActivity_PATH
-        )
-    )
-
     /**
      * 获取 Module 功能 Button Value 集合
      * @param type Module Type
@@ -724,66 +693,6 @@ object ButtonList {
         ButtonValue.BTN_GRID_ITEM_HORIZONTAL.buttonOf(
             "Grid Horizontal ItemDecoration",
             RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH
-        )
-    )
-
-    // ========================
-    // = DevAssist Engine 实现 =
-    // ========================
-
-    /**
-     * 获取 DevAssist Engine Module Button Value 集合
-     * @return [List]
-     */
-    @JvmStatic
-    val moduleDevAssistEngineButtonValues = mutableListOf(
-        ButtonValue.BTN_ENGINE_ANALYTICS.buttonOf(
-            "Analytics Engine 数据统计 ( 埋点 )",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_CACHE.buttonOf(
-            "Cache Engine 有效期键值对缓存",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_IMAGE_COMPRESS.buttonOf(
-            "Image Compress Engine 图片压缩",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_IMAGE.buttonOf(
-            "Image Engine 图片加载、下载、转格式等",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_JSON.buttonOf(
-            "JSON Engine",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_KEYVALUE.buttonOf(
-            "KeyValue Engine 键值对存储",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_LOG.buttonOf(
-            "Log Engine 日志打印",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_MEDIA_SELECTOR.buttonOf(
-            "Media Selector Engine 多媒体资源选择",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_PERMISSION.buttonOf(
-            "Permission Engine 权限申请",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_PUSH.buttonOf(
-            "Push Engine 推送平台处理",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_SHARE.buttonOf(
-            "Share Engine 分享平台处理",
-            RouterPath.EMPTY
-        ),
-        ButtonValue.BTN_ENGINE_STORAGE.buttonOf(
-            "Storage Engine 外部、内部文件存储",
-            RouterPath.EMPTY
         )
     )
 

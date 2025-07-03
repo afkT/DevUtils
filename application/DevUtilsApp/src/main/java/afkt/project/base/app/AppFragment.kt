@@ -160,11 +160,11 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
  * @param action 当 Fragment 匹配类型时执行的回调
  */
 @OptIn(ExperimentalContracts::class)
-inline fun <reified T : AppFragment<*, *>> Any?.checkFragment(
+inline fun <reified T : AppFragment<*, *>> Any?.asFragment(
     action: T.() -> Unit
 ) {
     contract {
-        returns() implies (this@checkFragment is T)
+        returns() implies (this@asFragment is T)
     }
     // 当 Fragment 非空且是目标类型时执行回调
     (this as? T)?.apply(action)
