@@ -1,11 +1,11 @@
 package afkt.project.feature.ui_effect.common
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
+import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View

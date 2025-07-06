@@ -1,14 +1,12 @@
-package afkt.project.base.project
+package afkt.project.app.project
 
-import afkt.project.model.data.button.ButtonValue
 import afkt.project.model.adapter.ButtonAdapter
-import android.content.Intent
+import afkt.project.model.data.button.ButtonValue
 import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter
 import dev.DevUtils
 import dev.callback.DevItemClickCallback
 import dev.utils.DevFinal
-import dev.utils.app.AppUtils
 
 // ==========
 // = 跳转通用 =

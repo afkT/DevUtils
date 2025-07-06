@@ -1,7 +1,7 @@
 package afkt.project.feature.dev_sku
 
 import afkt.project.R
-import afkt.project.base.helper.IMAGE_ROUND_10
+import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.SkuDialogSpecBinding
 import android.app.Dialog
 import android.view.Gravity

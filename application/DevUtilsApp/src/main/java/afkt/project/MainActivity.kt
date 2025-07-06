@@ -1,8 +1,8 @@
 package afkt.project
 
-import afkt.project.base.app.AppActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.appViewModel
+import afkt.project.app.AppActivity
+import afkt.project.app.AppViewModel
+import afkt.project.app.base.appViewModel
 import afkt.project.databinding.MainActivityBinding
 import afkt.project.model.data.button.fragmentId
 import afkt.project.model.data.button.title

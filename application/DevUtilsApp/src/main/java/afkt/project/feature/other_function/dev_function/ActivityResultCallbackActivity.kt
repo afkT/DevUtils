@@ -1,10 +1,10 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
+import afkt.project.model.data.button.RouterPath
 import afkt.project.ui.createGalleryConfig
 import android.app.Activity
 import android.content.Intent

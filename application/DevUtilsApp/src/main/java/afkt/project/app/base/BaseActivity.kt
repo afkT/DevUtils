@@ -1,6 +1,6 @@
-package afkt.project.base
+package afkt.project.app.base
 
-import android.content.res.Configuration
+import afkt.project.app.helper.autoResources
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -9,8 +9,6 @@ import dev.simple.app.BaseAppActivity
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
-import me.jessyan.autosize.AutoSizeCompat
-import me.jessyan.autosize.internal.CancelAdapt
 
 /**
  * detail: Activity MVVM 基类
@@ -72,20 +70,6 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     // ============
 
     override fun getResources(): Resources? {
-        if (this !is CancelAdapt) {
-            // 360 -> design_width_in_dp
-            if (super.getResources().configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // 竖屏
-                AutoSizeCompat.autoConvertDensityBaseOnWidth(
-                    super.getResources(), 360.0f
-                )
-            } else {
-                // 横屏
-                AutoSizeCompat.autoConvertDensityBaseOnHeight(
-                    super.getResources(), 360.0f
-                )
-            }
-        }
-        return super.getResources()
+        return autoResources(super.getResources())
     }
 }

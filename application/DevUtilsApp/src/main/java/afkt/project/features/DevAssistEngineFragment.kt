@@ -2,9 +2,8 @@ package afkt.project.features
 
 import afkt.project.BR
 import afkt.project.R
-import afkt.project.base.app.AppFragment
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.app.asFragment
+import afkt.project.app.AppFragment
+import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentRecyclerViewBinding
 import afkt.project.model.data.button.convertItemsEngine
 import android.graphics.Color
@@ -16,6 +15,7 @@ import dev.engine.log.DevLogEngine
 import dev.engine.log.DevLoggerEngineImpl
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.toast.toast_showLong
+import dev.simple.app.base.asFragment
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SpanUtils

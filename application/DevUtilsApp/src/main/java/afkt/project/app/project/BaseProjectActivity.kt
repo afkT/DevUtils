@@ -1,7 +1,7 @@
-package afkt.project.base.project
+package afkt.project.app.project
 
 import afkt.project.R
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter
 import com.therouter.router.Autowired
 import dev.simple.app.base.ActivityVMType

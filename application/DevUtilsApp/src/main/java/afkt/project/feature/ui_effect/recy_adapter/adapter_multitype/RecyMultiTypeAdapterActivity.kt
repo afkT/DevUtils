@@ -1,12 +1,12 @@
 package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.*
 import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.*
+import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import com.drakeet.multitype.MultiTypeAdapter
 import com.therouter.router.Route

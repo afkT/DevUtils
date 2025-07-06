@@ -1,6 +1,6 @@
 package afkt.project.feature.ui_effect.palette
 
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.palette.graphics.Palette
 

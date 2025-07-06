@@ -1,6 +1,6 @@
-package afkt.project.base.project
+package afkt.project.app.project
 
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
 import afkt.project.feature.other_function.floating.Utils2
 import android.app.Activity
 import android.view.View

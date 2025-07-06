@@ -1,10 +1,10 @@
 package afkt.project.feature.dev_widget.flip_card
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityFlipCardBinding
+import afkt.project.model.data.button.RouterPath
 import com.therouter.router.Route
 import dev.base.DevSource
 import dev.utils.app.HandlerUtils

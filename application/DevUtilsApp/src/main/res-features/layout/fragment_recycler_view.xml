@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="afkt.project.base.app.AppViewModel" />
+            type="afkt.project.app.AppViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView

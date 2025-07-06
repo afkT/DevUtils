@@ -1,7 +1,7 @@
 package afkt.project.feature.dev_widget.sign_view
 
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.Paint

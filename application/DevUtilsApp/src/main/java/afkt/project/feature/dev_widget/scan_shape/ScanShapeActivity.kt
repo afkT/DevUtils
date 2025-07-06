@@ -1,10 +1,10 @@
 package afkt.project.feature.dev_widget.scan_shape
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityScanShapeBinding
+import afkt.project.model.data.button.RouterPath
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View

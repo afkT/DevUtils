@@ -1,13 +1,13 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.project.bindAdapter
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
+import afkt.project.app.project.bindAdapter
+import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList
 import afkt.project.model.data.button.ButtonValue
 import afkt.project.model.data.button.RouterPath
-import afkt.project.databinding.BaseViewRecyclerviewBinding
 import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal

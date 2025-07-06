@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
-import afkt.project.base.helper.IMAGE_ROUND_3
-import afkt.project.model.data.bean.EvaluateItem
+import afkt.project.app.helper.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
+import afkt.project.model.data.bean.EvaluateItem
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH

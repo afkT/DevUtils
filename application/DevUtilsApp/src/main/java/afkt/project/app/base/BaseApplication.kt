@@ -1,8 +1,8 @@
-package afkt.project.base
+package afkt.project.app.base
 
 import afkt.project.R
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.helper.*
+import afkt.project.app.AppViewModel
+import afkt.project.app.helper.*
 import android.content.Context
 import android.net.Uri
 import android.util.Log

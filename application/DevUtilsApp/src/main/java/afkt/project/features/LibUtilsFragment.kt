@@ -2,9 +2,9 @@ package afkt.project.features
 
 import afkt.project.BR
 import afkt.project.R
-import afkt.project.base.app.AppFragment
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.app.applyToButtonAdapter
+import afkt.project.app.AppFragment
+import afkt.project.app.AppViewModel
+import afkt.project.app.applyToButtonAdapter
 import afkt.project.databinding.FragmentRecyclerViewBinding
 import afkt.project.model.data.button.ButtonEnum
 import afkt.project.model.data.button.convertItemsLib

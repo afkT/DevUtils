@@ -1,13 +1,13 @@
 package afkt.project.feature.ui_effect.gpu
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getGPUImageToneCurveFilter
 import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
+import afkt.project.model.data.button.RouterPath
 import afkt.project.ui.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap

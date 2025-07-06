@@ -1,6 +1,6 @@
-package afkt.project.base.app
+package afkt.project.app
 
-import afkt.project.base.BaseFragment
+import afkt.project.app.base.BaseFragment
 import afkt.project.databinding.BaseTitleBarBinding
 import afkt.project.model.adapter.ButtonAdapterModel
 import android.content.Context
@@ -152,22 +152,6 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
             insets
         }
     }
-}
-
-/**
- * 检查当前 Fragment 是否为指定类型，如果是则执行回调
- * @param T 目标 Fragment 类型，必须是 AppFragment 的子类
- * @param action 当 Fragment 匹配类型时执行的回调
- */
-@OptIn(ExperimentalContracts::class)
-inline fun <reified T : AppFragment<*, *>> Any?.asFragment(
-    action: T.() -> Unit
-) {
-    contract {
-        returns() implies (this@asFragment is T)
-    }
-    // 当 Fragment 非空且是目标类型时执行回调
-    (this as? T)?.apply(action)
 }
 
 /**

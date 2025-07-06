@@ -1,6 +1,6 @@
-package afkt.project.base.app
+package afkt.project.app
 
-import afkt.project.base.BaseViewModel
+import afkt.project.app.base.BaseViewModel
 import afkt.project.model.adapter.ButtonAdapterModel
 import afkt.project.model.data.button.ButtonEnum
 import androidx.lifecycle.LiveData

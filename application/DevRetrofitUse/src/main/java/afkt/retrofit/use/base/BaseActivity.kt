@@ -1,18 +1,14 @@
 package afkt.retrofit.use.base
 
-import android.content.res.Configuration
+import afkt.retrofit.use.app.autoResources
+import afkt.retrofit.use.app.commonEnableEdgeToEdge
 import android.content.res.Resources
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppActivity
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
-import me.jessyan.autosize.AutoSizeCompat
-import me.jessyan.autosize.internal.CancelAdapt
 
 /**
  * detail: Activity MVVM 基类
@@ -59,14 +55,8 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        // 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        // 通用 Enable edge to edge【适配 API 35+】
+        commonEnableEdgeToEdge()
     }
 
     // ============
@@ -74,20 +64,6 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     // ============
 
     override fun getResources(): Resources? {
-        if (this !is CancelAdapt) {
-            // 360 -> design_width_in_dp
-            if (super.getResources().configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // 竖屏
-                AutoSizeCompat.autoConvertDensityBaseOnWidth(
-                    super.getResources(), 360.0f
-                )
-            } else {
-                // 横屏
-                AutoSizeCompat.autoConvertDensityBaseOnHeight(
-                    super.getResources(), 360.0f
-                )
-            }
-        }
-        return super.getResources()
+        return autoResources(super.getResources())
     }
 }

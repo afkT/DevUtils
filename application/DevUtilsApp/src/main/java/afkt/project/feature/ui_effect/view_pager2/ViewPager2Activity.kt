@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.view_pager2
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewpager2Binding
+import afkt.project.model.data.button.RouterPath
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View

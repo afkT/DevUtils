@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.material
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityChipBinding
+import afkt.project.model.data.button.RouterPath
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.chip.Chip

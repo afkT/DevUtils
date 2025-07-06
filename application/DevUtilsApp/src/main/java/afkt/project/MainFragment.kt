@@ -1,7 +1,7 @@
 package afkt.project
 
-import afkt.project.base.app.AppFragment
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppFragment
+import afkt.project.app.AppViewModel
 import afkt.project.databinding.MainFragmentBinding
 import afkt.project.model.data.button.convertItemsModule
 

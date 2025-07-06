@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.palette
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityPaletteBinding
+import afkt.project.model.data.button.RouterPath
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter

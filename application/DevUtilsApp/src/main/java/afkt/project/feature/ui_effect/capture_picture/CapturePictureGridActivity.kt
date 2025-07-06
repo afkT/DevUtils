@@ -1,13 +1,13 @@
 package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
+import afkt.project.databinding.ActivityCapturePictureGridBinding
+import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.data.bean.AdapterBean
 import afkt.project.model.data.bean.AdapterBean.Companion.newAdapterBeanList
 import afkt.project.model.data.button.RouterPath
-import afkt.project.databinding.ActivityCapturePictureGridBinding
-import afkt.project.databinding.AdapterCapturePictureBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

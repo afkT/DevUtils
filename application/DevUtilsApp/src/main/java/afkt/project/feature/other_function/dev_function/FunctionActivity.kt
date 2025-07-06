@@ -2,9 +2,9 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.MainActivity
 import afkt.project.R
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.project.bindAdapter
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
+import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.functionButtonValues
 import afkt.project.model.data.button.ButtonValue

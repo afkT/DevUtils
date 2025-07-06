@@ -1,6 +1,6 @@
 package afkt.project.feature.dev_widget.flip_card
 
-import afkt.project.base.helper.IMAGE_ROUND_10
+import afkt.project.app.helper.IMAGE_ROUND_10
 import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView

@@ -1,8 +1,8 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.project.BaseProjectActivity
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.feature.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig

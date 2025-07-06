@@ -1,11 +1,11 @@
 package afkt.project.feature.ui_effect.recy_adapter.pager_snap
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.ItemBean
 import afkt.project.model.data.button.RouterPath
-import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper

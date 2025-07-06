@@ -1,4 +1,4 @@
-package afkt.project.base
+package afkt.project.app.base
 
 import afkt.project.model.basic.IntentData
 import android.os.Bundle

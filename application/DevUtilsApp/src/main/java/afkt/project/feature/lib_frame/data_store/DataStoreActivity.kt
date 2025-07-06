@@ -1,10 +1,10 @@
 package afkt.project.feature.lib_frame.data_store
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityDataStoreBinding
+import afkt.project.model.data.button.RouterPath
 import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
 import kotlinx.coroutines.launch

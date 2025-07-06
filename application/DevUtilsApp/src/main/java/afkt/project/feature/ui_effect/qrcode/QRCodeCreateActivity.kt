@@ -1,10 +1,10 @@
 package afkt.project.feature.ui_effect.qrcode
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.model.data.button.RouterPath
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityQrcodeCreateBinding
+import afkt.project.model.data.button.RouterPath
 import afkt.project.ui.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap

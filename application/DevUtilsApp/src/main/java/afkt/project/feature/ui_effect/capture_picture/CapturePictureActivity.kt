@@ -1,12 +1,12 @@
 package afkt.project.feature.ui_effect.capture_picture
 
 import afkt.project.R
-import afkt.project.base.project.BaseProjectActivity
-import afkt.project.base.app.AppViewModel
-import afkt.project.base.project.routerActivity
+import afkt.project.app.AppViewModel
+import afkt.project.app.project.BaseProjectActivity
+import afkt.project.app.project.routerActivity
+import afkt.project.databinding.ActivityCapturePictureBinding
 import afkt.project.model.data.button.ButtonValue
 import afkt.project.model.data.button.RouterPath
-import afkt.project.databinding.ActivityCapturePictureBinding
 import android.graphics.Bitmap
 import android.view.View
 import com.therouter.router.Route

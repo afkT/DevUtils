@@ -6,18 +6,17 @@ import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import dev.simple.app.base.FragmentVMType
+import dev.simple.app.base.asFragment
 
 class CustomFragment : BaseFragment<FragmentCustomBinding, MainViewModel>(
     R.layout.fragment_custom, BR.viewModel,
     FragmentVMType.ACTIVITY, simple_Agile = { frg ->
-        if (frg is CustomFragment) {
-            frg.apply {
-                binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
-                    override fun onLeftClick(titleBar: TitleBar) {
-                        findNavController().popBackStack()
-                    }
-                })
-            }
+        frg.asFragment<CustomFragment> {
+            binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(titleBar: TitleBar) {
+                    findNavController().popBackStack()
+                }
+            })
         }
     }
 ) {
