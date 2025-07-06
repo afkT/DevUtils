@@ -67,7 +67,8 @@ interface APIService {
 object RetrofitAPI {
 
     // API Service Base URL
-    private const val BASE_URL = "https://raw.githubusercontent.com/afkT/DevUtils/refs/heads/master/application/DevRetrofitUse/src/main/"
+    private const val BASE_URL =
+        "https://raw.githubusercontent.com/afkT/DevUtils/refs/heads/master/application/DevRetrofitUse/src/main/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()

@@ -9,17 +9,16 @@ import androidx.databinding.Observable
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
+import dev.simple.app.base.asFragment
 
 class SimpleFragment : BaseFragment<FragmentSimpleBinding, SimpleViewModel>(
     R.layout.fragment_simple, BR.viewModel, simple_Agile = { frg ->
-        if (frg is SimpleFragment) {
-            frg.apply {
-                binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
-                    override fun onLeftClick(titleBar: TitleBar) {
-                        findNavController().popBackStack()
-                    }
-                })
-            }
+        frg.asFragment<SimpleFragment> {
+            binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(titleBar: TitleBar) {
+                    findNavController().popBackStack()
+                }
+            })
         }
     }
 ) {

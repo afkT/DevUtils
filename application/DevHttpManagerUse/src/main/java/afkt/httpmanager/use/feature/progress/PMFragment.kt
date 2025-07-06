@@ -10,18 +10,17 @@ import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.app.base.asFragment
 import dev.utils.common.StringUtils
 
 class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(
     R.layout.fragment_progress_manager, BR.viewModel, simple_Agile = { frg ->
-        if (frg is PMFragment) {
-            frg.apply {
-                binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
-                    override fun onLeftClick(titleBar: TitleBar) {
-                        findNavController().popBackStack()
-                    }
-                })
-            }
+        frg.asFragment<PMFragment> {
+            binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(titleBar: TitleBar) {
+                    findNavController().popBackStack()
+                }
+            })
         }
     }
 ) {

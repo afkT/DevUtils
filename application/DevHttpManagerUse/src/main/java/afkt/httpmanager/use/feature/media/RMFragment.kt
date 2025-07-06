@@ -8,17 +8,16 @@ import afkt.httpmanager.use.network.helper.ResponseHelper
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
+import dev.simple.app.base.asFragment
 
 class RMFragment : BaseFragment<FragmentRetrofitManagerBinding, RMViewModel>(
     R.layout.fragment_retrofit_manager, BR.viewModel, simple_Agile = { frg ->
-        if (frg is RMFragment) {
-            frg.apply {
-                binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
-                    override fun onLeftClick(titleBar: TitleBar) {
-                        findNavController().popBackStack()
-                    }
-                })
-            }
+        frg.asFragment<RMFragment> {
+            binding.vidTitle.setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(titleBar: TitleBar) {
+                    findNavController().popBackStack()
+                }
+            })
         }
     }
 ) {
