@@ -4,8 +4,8 @@ import afkt.project.app.AppActivity
 import afkt.project.app.AppViewModel
 import afkt.project.app.base.appViewModel
 import afkt.project.databinding.MainActivityBinding
-import afkt.project.model.data.button.fragmentId
-import afkt.project.model.data.button.title
+import afkt.project.model.button.fragmentId
+import afkt.project.model.button.title
 import androidx.navigation.findNavController
 import dev.utils.DevFinal
 

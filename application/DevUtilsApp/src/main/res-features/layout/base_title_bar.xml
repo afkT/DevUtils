@@ -2,19 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <import type="afkt.project.model.data.button.ButtonEnum" />
-
-        <variable
-            name="itemClick"
-            type="dev.mvvm.command.BindingConsumer&lt;ButtonEnum&gt;" />
-
-        <variable
-            name="itemValue"
-            type="ButtonEnum" />
-    </data>
-
     <com.lihang.ShadowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

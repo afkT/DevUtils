@@ -2,7 +2,7 @@ package afkt.project.app
 
 import afkt.project.app.base.BaseFragment
 import afkt.project.databinding.BaseTitleBarBinding
-import afkt.project.model.adapter.ButtonAdapterModel
+import afkt.project.model.button.ButtonAdapterModel
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater

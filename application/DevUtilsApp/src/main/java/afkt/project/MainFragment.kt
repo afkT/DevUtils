@@ -3,7 +3,7 @@ package afkt.project
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.MainFragmentBinding
-import afkt.project.model.data.button.convertItemsModule
+import afkt.project.model.button.convertItemsModule
 
 class MainFragment : AppFragment<MainFragmentBinding, MainViewModel>(
     R.layout.main_fragment, BR.viewModel

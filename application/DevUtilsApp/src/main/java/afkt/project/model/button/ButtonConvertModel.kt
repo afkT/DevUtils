@@ -1,6 +1,5 @@
-package afkt.project.model.data.button
+package afkt.project.model.button
 
-import afkt.project.model.adapter.ButtonAdapterModel
 import dev.utils.common.StringUtils
 
 /**

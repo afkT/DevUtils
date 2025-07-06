@@ -6,8 +6,8 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.app.applyToButtonAdapter
 import afkt.project.databinding.FragmentRecyclerViewBinding
-import afkt.project.model.data.button.ButtonEnum
-import afkt.project.model.data.button.convertItemsLib
+import afkt.project.model.button.ButtonEnum
+import afkt.project.model.button.convertItemsLib
 import dev.expand.engine.toast.toast_showShort
 
 class LibUtilsFragment : AppFragment<FragmentRecyclerViewBinding, AppViewModel>(

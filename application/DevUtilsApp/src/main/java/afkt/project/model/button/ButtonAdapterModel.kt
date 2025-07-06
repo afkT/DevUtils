@@ -1,10 +1,9 @@
-package afkt.project.model.adapter
+package afkt.project.model.button
 
 import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.base.appViewModel
 import afkt.project.model.basic.AdapterModel
-import afkt.project.model.data.button.ButtonEnum
 import dev.mvvm.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 

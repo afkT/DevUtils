@@ -1,4 +1,4 @@
-package afkt.project.model.data.button
+package afkt.project.model.button
 
 /**
  * detail: Button 枚举类型

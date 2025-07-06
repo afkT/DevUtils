@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="afkt.project.model.data.button.ButtonEnum" />
+        <import type="afkt.project.model.button.ButtonEnum" />
 
         <variable
             name="itemClick"

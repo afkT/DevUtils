@@ -1,4 +1,4 @@
-package afkt.project.model.data.button
+package afkt.project.model.button
 
 import afkt.project.R
 import afkt.project.model.basic.IntentData
