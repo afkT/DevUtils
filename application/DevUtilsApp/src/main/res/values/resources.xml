@@ -117,8 +117,6 @@
 
     <!-- 临时保留等待删除 -->
 
-    <integer name="grid_columns">3</integer>
-
     <declare-styleable name="LoadingView">
         <attr name="loading_renderer">
             <!-- circle rotate -->

@@ -7,7 +7,7 @@ import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
 import afkt.project.model.data.button.RouterPath
-import afkt.project.ui.createGalleryConfig
+import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View

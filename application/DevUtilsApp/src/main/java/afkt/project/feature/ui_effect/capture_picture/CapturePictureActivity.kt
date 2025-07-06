@@ -53,8 +53,8 @@ class CapturePictureActivity :
                         this,
                         binding.vidScreenBtn, binding.vidScreen1Btn,
                         binding.vidLinearBtn, binding.vidScrollBtn,
-                        binding.vidListBtn, binding.vidGridBtn,
-                        binding.vidRecyBtn, binding.vidWebviewBtn
+                        binding.vidListBtn, binding.vidRecyBtn,
+                        binding.vidWebviewBtn
                     )
                 }
             }
@@ -99,14 +99,6 @@ class CapturePictureActivity :
                 ButtonValue(
                     1, "CapturePictureUtils ListView 截图",
                     RouterPath.UI_EFFECT.CapturePictureListActivity_PATH
-                ).routerActivity()
-            }
-
-            R.id.vid_grid_btn -> {
-
-                ButtonValue(
-                    2, "CapturePictureUtils GridView 截图",
-                    RouterPath.UI_EFFECT.CapturePictureGridActivity_PATH
                 ).routerActivity()
             }
 

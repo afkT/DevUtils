@@ -3,7 +3,6 @@ package afkt.project.feature.ui_effect.view_pager2
 import afkt.project.R
 import afkt.project.app.project.BaseFragment
 import afkt.project.databinding.FragmentPagerBinding
-import afkt.project.ui.widget.VerticalScrollView
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View

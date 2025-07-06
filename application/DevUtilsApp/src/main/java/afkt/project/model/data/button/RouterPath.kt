@@ -53,8 +53,6 @@ object RouterPath {
 
         const val CapturePictureListActivity_PATH = "/activity/CapturePictureListActivity"
 
-        const val CapturePictureGridActivity_PATH = "/activity/CapturePictureGridActivity"
-
         const val CapturePictureRecyActivity_PATH = "/activity/CapturePictureRecyActivity"
 
         const val CapturePictureWebActivity_PATH = "/activity/CapturePictureWebActivity"

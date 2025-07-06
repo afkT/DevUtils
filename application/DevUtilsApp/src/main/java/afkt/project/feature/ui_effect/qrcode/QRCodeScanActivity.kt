@@ -10,7 +10,7 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
 import afkt.project.model.data.button.RouterPath
-import afkt.project.ui.createGalleryConfig
+import afkt.project.model.engine.createGalleryConfig
 import android.Manifest
 import android.content.Intent
 import android.graphics.Rect

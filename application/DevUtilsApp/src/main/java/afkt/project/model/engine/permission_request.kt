@@ -1,4 +1,4 @@
-package afkt.project.ui
+package afkt.project.model.engine
 
 import android.Manifest
 import android.app.Activity

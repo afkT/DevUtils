@@ -5,7 +5,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
 import afkt.project.model.data.button.RouterPath
-import afkt.project.ui.createGalleryConfig
+import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import com.therouter.router.Route

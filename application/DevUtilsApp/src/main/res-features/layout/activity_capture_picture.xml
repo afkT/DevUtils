@@ -50,13 +50,6 @@
                 android:text="ListView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_grid_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="GridView 截图" />
-
-            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_recy_btn"
                 style="@style/ViewTheme.Button"
                 android:ellipsize="end"

@@ -1,6 +1,6 @@
 package afkt.project.app.project
 
-import afkt.project.model.adapter.ButtonAdapter
+import afkt.project.model.data.button.ButtonAdapter
 import afkt.project.model.data.button.ButtonValue
 import androidx.recyclerview.widget.RecyclerView
 import com.therouter.TheRouter
