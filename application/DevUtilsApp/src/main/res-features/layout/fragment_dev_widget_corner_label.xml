@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.CornerLabelViewModel" />
+    </data>
+
     <dev.widget.custom.CustomNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

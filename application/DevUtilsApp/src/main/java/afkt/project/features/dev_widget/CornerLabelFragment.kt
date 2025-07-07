@@ -1,44 +1,67 @@
-package afkt.project.feature.dev_widget.corner_label
+package afkt.project.features.dev_widget
 
+import afkt.project.BR
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityCornerLabelBinding
-import afkt.project.model.data.button.RouterPath
+import afkt.project.databinding.FragmentDevWidgetCornerLabelBinding
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
-import dev.utils.app.ListenerUtils
+import dev.simple.app.base.asFragment
 import dev.utils.common.RandomUtils
+import dev.utils.common.assist.WeakReferenceAssist
+import dev.widget.ui.CornerLabelView
 
 /**
  * detail: 自定义角标 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.CornerLabelActivity_PATH)
-class CornerLabelActivity : BaseProjectActivity<ActivityCornerLabelBinding, AppViewModel>(
-    R.layout.activity_corner_label, simple_Agile = {
-        if (it is CornerLabelActivity) {
-            it.apply {
-                ListenerUtils.setOnClicks(
-                    this,
-                    binding.vidBtnColorTv, binding.vidBtnLeftTv,
-                    binding.vidBtnTopTv, binding.vidBtnTriangleTv,
-                    binding.vidBtnText1MinusTv, binding.vidBtnText1PlusTv,
-                    binding.vidBtnHeight1MinusTv, binding.vidBtnHeight1PlusTv,
-                    binding.vidBtnText2MinusTv, binding.vidBtnText2PlusTv,
-                    binding.vidBtnHeight2MinusTv, binding.vidBtnHeight2PlusTv
-                )
-            }
+class CornerLabelFragment : AppFragment<FragmentDevWidgetCornerLabelBinding, CornerLabelViewModel>(
+    R.layout.fragment_dev_widget_corner_label, BR.viewModel, simple_Agile = { frg ->
+        frg.asFragment<CornerLabelFragment> {
+            viewModel.initialize(binding.vidClv)
         }
     }
-) {
+)
 
-    override fun onClick(v: View) {
-        super.onClick(v)
-        val labelView = binding.vidClv
+class CornerLabelViewModel : AppViewModel() {
+
+    // 自定义角标 View 弱引用辅助类
+    private val assist = WeakReferenceAssist<CornerLabelView>()
+
+    // 随机文案
+    private val TEXTS = arrayOf(
+        "滿減", "赠品", "满送", "包邮", "拼图", "新人", "砍价", "预售", "众筹"
+    )
+
+    private var convertPx = 0F
+    private var mText1Index = 3
+    private var mText1Height = 12F
+    private var mText2Index = 3
+    private var mText2Height = 8F
+    private var mLeft = true
+    private var mTop = true
+    private var mTriangle = false
+
+    // ==============
+    // = 对外公开方法 =
+    // ==============
+
+    /**
+     * 初始化方法
+     */
+    fun initialize(view: CornerLabelView?) {
+        assist.singleWeakValue = view
+    }
+
+    // ==========
+    // = 点击事件 =
+    // ==========
+
+    fun onClick(v: View) {
+        val labelView = assist.singleWeakValue
         val layoutParams: FrameLayout.LayoutParams
         when (v.id) {
             R.id.vid_btn_color_tv -> labelView.setFillColor(
@@ -130,18 +153,5 @@ class CornerLabelActivity : BaseProjectActivity<ActivityCornerLabelBinding, AppV
                 labelView.setTextHeight2(convertPx)
             }
         }
-    }
-
-    private var convertPx = 0F
-    private var mText1Index = 3
-    private var mText1Height = 12F
-    private var mText2Index = 3
-    private var mText2Height = 8F
-    private var mLeft = true
-    private var mTop = true
-    private var mTriangle = false
-
-    companion object {
-        val TEXTS = arrayOf("滿減", "赠品", "满送", "包邮", "拼图", "新人", "砍价", "预售", "众筹")
     }
 }

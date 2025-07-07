@@ -4,7 +4,6 @@ import afkt.project.app.AppActivity
 import afkt.project.app.AppViewModel
 import afkt.project.app.base.appViewModel
 import afkt.project.databinding.MainActivityBinding
-import afkt.project.model.button.fragmentId
 import afkt.project.model.button.title
 import androidx.navigation.findNavController
 import dev.utils.DevFinal
@@ -16,10 +15,9 @@ class MainActivity : AppActivity<MainActivityBinding, AppViewModel>(
         super.initObserve()
         // navigate fragment
         appViewModel().fragNavigate.observe(this) { btn ->
-            val fragId = btn.fragmentId()
-            if (fragId == DevFinal.DEFAULT.ERROR_INT) return@observe
+            if (btn.fragmentId == DevFinal.DEFAULT.ERROR_INT) return@observe
             findNavController(binding.navContainer.id)
-                .navigate(fragId, btn.title())
+                .navigate(btn.fragmentId, btn.title())
         }
         // fragment popBackStack
         appViewModel().fragPopBack.observe(this) {

@@ -8,13 +8,30 @@
         android:name="afkt.project.MainFragment"
         android:label="MainFragment" />
 
+    <!-- Lib Utils -->
+
     <fragment
         android:id="@+id/LibUtilsFragment"
         android:name="afkt.project.features.LibUtilsFragment"
         android:label="LibUtilsFragment" />
 
+    <!-- DevAssist -->
+
     <fragment
         android:id="@+id/DevAssistEngineFragment"
         android:name="afkt.project.features.DevAssistEngineFragment"
         android:label="DevAssistEngineFragment" />
+
+    <!-- DevWidget -->
+
+    <fragment
+        android:id="@+id/DevWidgetFragment"
+        android:name="afkt.project.features.DevWidgetFragment"
+        android:label="DevWidgetFragment" />
+
+    <fragment
+        android:id="@+id/CornerLabelFragment"
+        android:name="afkt.project.features.dev_widget.CornerLabelFragment"
+        android:label="CornerLabelFragment" />
+
 </navigation>

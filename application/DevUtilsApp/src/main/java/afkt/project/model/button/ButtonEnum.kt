@@ -1,21 +1,42 @@
 package afkt.project.model.button
 
+import afkt.project.R
+import afkt.project.model.basic.IntentData
+import android.os.Bundle
+import dev.utils.DevFinal
+
+// =================================
+// = ButtonEnum 映射 Fragment Title =
+// =================================
+
+fun ButtonEnum.title(): Bundle? {
+    return IntentData.with().setTitle(
+        this.text
+    ).insert()
+}
+
+// ==========
+// = 枚举类型 =
+// ==========
+
 /**
  * detail: Button 枚举类型
  * @author Ttt
  */
 enum class ButtonEnum(
-    val text: String
+    val text: String,
+    // 对应的 Fragment
+    val fragmentId: Int = DevFinal.DEFAULT.ERROR_INT
 ) {
-    MODULE_LIB("Lib Utils"),
+    MODULE_LIB("Lib Utils", R.id.LibUtilsFragment),
 
     MODULE_UI("UI 效果"),
 
     MODULE_OTHER("其他功能"),
 
-    MODULE_DEV_WIDGET("DevWidget UI 库"),
+    MODULE_DEV_WIDGET("DevWidget UI 库", R.id.DevWidgetFragment),
 
-    MODULE_DEV_ASSIST_ENGINE("DevAssist Engine 实现"),
+    MODULE_DEV_ASSIST_ENGINE("DevAssist Engine 实现", R.id.DevAssistEngineFragment),
 
     MODULE_DEV_SKU("DevSKU 商品 SKU 组合封装实现"),
 
@@ -23,29 +44,104 @@ enum class ButtonEnum(
     // = Lib Utils =
     // =============
 
-    BTN_LIB_GREEN_DAO("GreenDAO"),
+    BTN_LIB_UTILS_GREEN_DAO("GreenDAO"),
 
-    BTN_LIB_ROOM("Room"),
+    BTN_LIB_UTILS_ROOM("Room"),
 
-    BTN_LIB_DATA_STORE("DataStoreUtils"),
+    BTN_LIB_UTILS_DATA_STORE("DataStoreUtils"),
 
-    BTN_LIB_GLIDE("GlideUtils"),
+    BTN_LIB_UTILS_GLIDE("GlideUtils"),
 
-    BTN_LIB_GSON("GsonUtils"),
+    BTN_LIB_UTILS_GSON("GsonUtils"),
 
-    BTN_LIB_MMKV("MMKVUtils"),
+    BTN_LIB_UTILS_MMKV("MMKVUtils"),
 
-    BTN_LIB_WORK_MANAGER("WorkManagerUtils"),
+    BTN_LIB_UTILS_WORK_MANAGER("WorkManagerUtils"),
 
-    BTN_LIB_FASTJSON("FastjsonUtils"),
+    BTN_LIB_UTILS_FASTJSON("FastjsonUtils"),
 
-    BTN_LIB_ZXING("ZXingUtils"),
+    BTN_LIB_UTILS_ZXING("ZXingUtils"),
 
-    BTN_LIB_PICTURE_SELECTOR("PictureSelectorUtils"),
+    BTN_LIB_UTILS_PICTURE_SELECTOR("PictureSelectorUtils"),
 
-    BTN_LIB_LUBAN("LubanUtils"),
+    BTN_LIB_UTILS_LUBAN("LubanUtils"),
 
-    BTN_LIB_EVENT_BUS("EventBusUtils"),
+    BTN_LIB_UTILS_EVENT_BUS("EventBusUtils"),
+
+    // =============
+    // = DevWidget =
+    // =============
+
+    BTN_DEV_WIDGET_VIEW_PAGER("ViewPager 滑动监听、控制滑动"),
+
+    BTN_DEV_WIDGET_CUSTOM_PROGRESS_BAR("自定义 ProgressBar 样式 View"),
+
+    BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )"),
+
+    BTN_DEV_WIDGET_WRAP_VIEW("自动换行 View"),
+
+    BTN_DEV_WIDGET_SIGN_VIEW("签名 View"),
+
+    BTN_DEV_WIDGET_LINE_VIEW("换行监听 View"),
+
+    BTN_DEV_WIDGET_LIKE_VIEW("自定义点赞效果 View"),
+
+    BTN_DEV_WIDGET_CORNER_LABEL_VIEW("自定义角标 View"),
+
+    BTN_DEV_WIDGET_FLIP_CARD_VIEW("翻转卡片 View"),
+
+    BTN_DEV_WIDGET_WAVE_VIEW("波浪 View"),
+
+    BTN_DEV_WIDGET_VIEW_ASSIST("View 填充辅助类"),
+
+    BTN_DEV_WIDGET_VIEW_ASSIST_1_RECYCLER("RecyclerView ( loading )"),
+
+    BTN_DEV_WIDGET_VIEW_ASSIST_1_ERROR("Error ( failed )"),
+
+    BTN_DEV_WIDGET_VIEW_ASSIST_1_EMPTY("Empty ( data )"),
+
+    BTN_DEV_WIDGET_VIEW_ASSIST_1_CUSTOM("Custom Type"),
+
+    BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL("Linear Vertical ItemDecoration"),
+
+    BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL("Linear Horizontal ItemDecoration"),
+
+    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL("Grid Vertical ItemDecoration"),
+
+    BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL("Grid Horizontal ItemDecoration"),
+
+    // ===================
+    // = DevAssist Engine =
+    // ===================
+
+    BTN_DEV_ASSIST_ENGINE_ANALYTICS("Analytics Engine 数据统计 ( 埋点 )"),
+
+    BTN_DEV_ASSIST_ENGINE_BAR_CODE("BarCode Engine 条形码、二维码处理"),
+
+    BTN_DEV_ASSIST_ENGINE_CACHE("Cache Engine 有效期键值对缓存"),
+
+    BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩"),
+
+    BTN_DEV_ASSIST_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等"),
+
+    BTN_DEV_ASSIST_ENGINE_JSON("JSON Engine 映射"),
+
+    BTN_DEV_ASSIST_ENGINE_KEYVALUE("KeyValue Engine 键值对存储"),
+
+    BTN_DEV_ASSIST_ENGINE_LOG("Log Engine 日志打印"),
+
+    BTN_DEV_ASSIST_ENGINE_MEDIA_SELECTOR("Media Selector Engine 多媒体资源选择"),
+
+    BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请"),
+
+    BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理"),
+
+    BTN_DEV_ASSIST_ENGINE_SHARE("Share Engine 分享平台处理"),
+
+    BTN_DEV_ASSIST_ENGINE_STORAGE("Storage Engine 外部、内部文件存储"),
+
+    BTN_DEV_ASSIST_ENGINE_TOAST("Toast Engine 吐司提示"),
+
 
     // ======
     // = UI =
@@ -267,79 +363,5 @@ enum class ButtonEnum(
 
     BTN_CLOSE_FLOATING_WINDOW("关闭悬浮窗"),
 
-    BTN_VIEW_PAGER("ViewPager 滑动监听、控制滑动"),
-
-    BTN_CUSTOM_PROGRESS_BAR("自定义 ProgressBar 样式 View"),
-
-    BTN_SCAN_VIEW("自定义扫描 View ( QRCode、AR )"),
-
-    BTN_WRAP_VIEW("自动换行 View"),
-
-    BTN_SIGN_VIEW("签名 View"),
-
-    BTN_LINE_VIEW("换行监听 View"),
-
-    BTN_LIKE_VIEW("自定义点赞效果 View"),
-
-    BTN_CORNER_LABEL_VIEW("自定义角标 View"),
-
-    BTN_VIEW_ASSIST("View 填充辅助类"),
-
-    BTN_FLIP_CARD_VIEW("翻转卡片 View"),
-
-    BTN_WAVE_VIEW("波浪 View"),
-
-    BTN_LINEAR_ITEM_DECORATION("Linear Color ItemDecoration"),
-
-    BTN_GRID_ITEM_DECORATION("Grid Color ItemDecoration"),
-
-    BTN_VIEW_ASSIST_RECYCLER("RecyclerView ( loading )"),
-
-    BTN_VIEW_ASSIST_ERROR("Error ( failed )"),
-
-    BTN_VIEW_ASSIST_EMPTY("Empty ( data )"),
-
-    BTN_VIEW_ASSIST_CUSTOM("Custom Type"),
-
-    BTN_LINEAR_ITEM_VERTICAL("Linear Vertical ItemDecoration"),
-
-    BTN_LINEAR_ITEM_HORIZONTAL("Linear Horizontal ItemDecoration"),
-
-    BTN_GRID_ITEM_VERTICAL("Grid Vertical ItemDecoration"),
-
-    BTN_GRID_ITEM_HORIZONTAL("Grid Horizontal ItemDecoration"),
-
     BTN_SKU_DIALOG("显示商品 SKU Dialog"),
-
-    // =========
-    // = Engine =
-    // =========
-
-    BTN_ENGINE_ANALYTICS("Analytics Engine 数据统计 ( 埋点 )"),
-
-    BTN_ENGINE_BAR_CODE("BarCode Engine 条形码、二维码处理"),
-
-    BTN_ENGINE_CACHE("Cache Engine 有效期键值对缓存"),
-
-    BTN_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩"),
-
-    BTN_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等"),
-
-    BTN_ENGINE_JSON("JSON Engine 映射"),
-
-    BTN_ENGINE_KEYVALUE("KeyValue Engine 键值对存储"),
-
-    BTN_ENGINE_LOG("Log Engine 日志打印"),
-
-    BTN_ENGINE_MEDIA_SELECTOR("Media Selector Engine 多媒体资源选择"),
-
-    BTN_ENGINE_PERMISSION("Permission Engine 权限申请"),
-
-    BTN_ENGINE_PUSH("Push Engine 推送平台处理"),
-
-    BTN_ENGINE_SHARE("Share Engine 分享平台处理"),
-
-    BTN_ENGINE_STORAGE("Storage Engine 外部、内部文件存储"),
-
-    BTN_ENGINE_TOAST("Toast Engine 吐司提示"),
 }

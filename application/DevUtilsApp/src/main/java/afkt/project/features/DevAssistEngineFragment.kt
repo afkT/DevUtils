@@ -5,7 +5,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentRecyclerViewBinding
-import afkt.project.model.button.convertItemsEngine
+import afkt.project.model.button.convertItemsDevAssistEngineMain
 import android.graphics.Color
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
@@ -25,17 +25,15 @@ class DevAssistEngineFragment : AppFragment<FragmentRecyclerViewBinding, AppView
     R.layout.fragment_recycler_view, BR.viewModel,
     simple_Agile = { frg ->
         frg.asFragment<DevAssistEngineFragment> {
-            viewModel.buttonAdapterModel.apply {
-                // 初始化数据并设置点击事件
-                convertItemsEngine().setOnItemClick { btn ->
-                    val builder = StringBuilder()
-                        .append("Java 实现在【DevUtils-repo】DevOther")
-                        .append(DevFinal.SYMBOL.NEW_LINE)
-                        .append("java.dev.engine 目录下")
-                        .append(DevFinal.SYMBOL.NEW_LINE)
-                        .append("Kotlin 实现已封装为 DevEngine 库")
-                    toast_showLong(text = builder.toString())
-                }
+            // 初始化数据并设置点击事件
+            viewModel.buttonAdapterModel.convertItemsDevAssistEngineMain { btn ->
+                val builder = StringBuilder()
+                    .append("Java 实现在【DevUtils-repo】DevOther")
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("java.dev.engine 目录下")
+                    .append(DevFinal.SYMBOL.NEW_LINE)
+                    .append("Kotlin 实现已封装为 DevEngine 库")
+                toast_showLong(text = builder.toString())
             }
             // 追加 TextView
             contentAssist.addContentView(createTextView(), 0)

@@ -11,7 +11,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 typealias ButtonClick = (ButtonEnum) -> Unit
 
 // Button Item 默认点击事件
-private val DEFAULT_CLICK: ButtonClick = {
+val DEFAULT_CLICK: ButtonClick = {
     appViewModel().navigate(it)
 }
 
@@ -42,8 +42,8 @@ class ButtonAdapterModel() : AdapterModel<ButtonEnum>() {
 
     private var clickItem: ButtonClick = DEFAULT_CLICK
 
-    fun setOnItemClick(click: ButtonClick): ButtonAdapterModel {
-        clickItem = click
+    fun setOnItemClick(listener: ButtonClick): ButtonAdapterModel {
+        clickItem = listener
         return this
     }
 }

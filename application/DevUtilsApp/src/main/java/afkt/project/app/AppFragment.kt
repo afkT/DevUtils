@@ -169,3 +169,14 @@ inline fun <reified T : AppFragment<*, *>> Any?.applyToButtonAdapter(
     // 当对象是目标 Fragment 类型时，获取 buttonAdapterModel 并执行操作
     (this as? T)?.viewModel?.buttonAdapterModel?.apply(action)
 }
+
+/**
+ * 简化检查并返回 ButtonAdapterModel
+ * @return ButtonAdapterModel
+ */
+fun Any?.buttonAdapter(): ButtonAdapterModel? {
+    if (this is AppFragment<*, *>) {
+        return viewModel.buttonAdapterModel
+    }
+    return null
+}
