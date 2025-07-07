@@ -39,4 +39,9 @@
         android:name="afkt.project.features.dev_widget.FlowLikeFragment"
         android:label="FlowLikeFragment" />
 
+    <fragment
+        android:id="@+id/ProgressBarFragment"
+        android:name="afkt.project.features.dev_widget.ProgressBarFragment"
+        android:label="ProgressBarFragment" />
+
 </navigation>

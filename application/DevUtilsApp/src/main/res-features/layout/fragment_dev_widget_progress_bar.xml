@@ -19,7 +19,7 @@
                 android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                    android:id="@+id/vid_lpb1"
+                    android:id="@+id/vid_progress1"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
@@ -36,7 +36,7 @@
                 android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                    android:id="@+id/vid_lpb2"
+                    android:id="@+id/vid_progress2"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
@@ -58,7 +58,7 @@
                 android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                    android:id="@+id/vid_lpb3"
+                    android:id="@+id/vid_progress3"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
@@ -76,7 +76,7 @@
                 android:layout_weight="1">
 
                 <dev.widget.ui.LoadProgressBar
-                    android:id="@+id/vid_lpb4"
+                    android:id="@+id/vid_progress4"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"

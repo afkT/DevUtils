@@ -4,11 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityLinearItemDecorationBinding
-import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearHorizontalTextAdapter
-import afkt.project.feature.dev_widget.recy_item_decoration.common.LinearVerticalTextAdapter
-import afkt.project.model.data.button.ButtonValue
-import androidx.recyclerview.widget.RecyclerView
-import dev.utils.app.RecyclerViewUtils
 
 /**
  * detail: Linear Color ItemDecoration

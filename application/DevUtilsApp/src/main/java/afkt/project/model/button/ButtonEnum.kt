@@ -74,7 +74,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_VIEW_PAGER("ViewPager 滑动监听、控制滑动"),
 
-    BTN_DEV_WIDGET_CUSTOM_PROGRESS_BAR("自定义 ProgressBar 样式 View"),
+    BTN_DEV_WIDGET_CUSTOM_PROGRESS_BAR("自定义 ProgressBar 样式 View", R.id.ProgressBarFragment),
 
     BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )"),
 
