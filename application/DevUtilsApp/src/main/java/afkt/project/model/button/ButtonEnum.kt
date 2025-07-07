@@ -48,8 +48,6 @@ enum class ButtonEnum(
 
     BTN_LIB_UTILS_ROOM("Room"),
 
-    BTN_LIB_UTILS_DATA_STORE("DataStoreUtils"),
-
     BTN_LIB_UTILS_GLIDE("GlideUtils"),
 
     BTN_LIB_UTILS_GSON("GsonUtils"),
@@ -59,6 +57,8 @@ enum class ButtonEnum(
     BTN_LIB_UTILS_WORK_MANAGER("WorkManagerUtils"),
 
     BTN_LIB_UTILS_FASTJSON("FastjsonUtils"),
+
+    BTN_LIB_UTILS_DATA_STORE("DataStoreUtils"),
 
     BTN_LIB_UTILS_ZXING("ZXingUtils"),
 
@@ -84,7 +84,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_LINE_VIEW("换行监听 View"),
 
-    BTN_DEV_WIDGET_LIKE_VIEW("自定义点赞效果 View"),
+    BTN_DEV_WIDGET_LIKE_VIEW("自定义点赞效果 View", R.id.FlowLikeFragment),
 
     BTN_DEV_WIDGET_CORNER_LABEL_VIEW("自定义角标 View", R.id.CornerLabelFragment),
 

@@ -34,4 +34,9 @@
         android:name="afkt.project.features.dev_widget.CornerLabelFragment"
         android:label="CornerLabelFragment" />
 
+    <fragment
+        android:id="@+id/FlowLikeFragment"
+        android:name="afkt.project.features.dev_widget.FlowLikeFragment"
+        android:label="FlowLikeFragment" />
+
 </navigation>

@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.progress_bar
+package afkt.project.features.dev_widget
 
 import afkt.project.R
 import afkt.project.app.AppViewModel

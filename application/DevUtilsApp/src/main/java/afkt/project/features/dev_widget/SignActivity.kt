@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.sign_view
+package afkt.project.features.dev_widget
 
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
