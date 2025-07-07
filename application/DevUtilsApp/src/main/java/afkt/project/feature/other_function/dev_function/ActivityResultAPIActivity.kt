@@ -4,12 +4,10 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityActivityResultApiBinding
-import afkt.project.model.data.button.RouterPath
 import android.Manifest
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
-import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.image.display
 import dev.expand.engine.log.log_dTag
@@ -24,7 +22,6 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: Activity Result API
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.ActivityResultAPIActivity_PATH)
 class ActivityResultAPIActivity :
     BaseProjectActivity<ActivityActivityResultApiBinding, AppViewModel>(
         R.layout.activity_activity_result_api, simple_Agile = {

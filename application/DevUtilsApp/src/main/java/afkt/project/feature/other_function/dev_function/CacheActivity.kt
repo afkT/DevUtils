@@ -7,8 +7,6 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.cacheButtonValues
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.utils.app.PathUtils
 import dev.utils.app.cache.DevCache
 import dev.utils.app.toast.ToastTintUtils
@@ -20,7 +18,6 @@ import java.io.Serializable
  * @author Ttt
  * [CacheUse]
  */
-@Route(path = RouterPath.OTHER_FUNCTION.CacheActivity_PATH)
 class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is CacheActivity) {

@@ -7,10 +7,8 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
 import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter.*
 import afkt.project.feature.ui_effect.recy_adapter.createMainData
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
-import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
@@ -19,7 +17,6 @@ import dev.utils.app.helper.quick.QuickHelper
  * @see https://mp.weixin.qq.com/s/QTaz45aLucX9mivVMbCZPQ
  * @see https://zhuanlan.zhihu.com/p/275635988
  */
-@Route(path = RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH)
 class RecyConcatAdapterActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

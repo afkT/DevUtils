@@ -5,12 +5,10 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.ItemBean
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ListViewUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -20,7 +18,6 @@ import dev.utils.app.helper.quick.QuickHelper
  * @author Ttt
  * PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  */
-@Route(path = RouterPath.UI_EFFECT.PagerSnapMAXActivity_PATH)
 class PagerSnapMAXActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is PagerSnapMAXActivity) {

@@ -5,7 +5,6 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.base.BaseApplication
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityWebviewBinding
-import afkt.project.model.data.button.RouterPath
 import android.net.http.SslError
 import android.view.KeyEvent
 import android.view.View.OnLongClickListener
@@ -14,7 +13,6 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
-import com.therouter.router.Route
 import dev.agile.assist.WebViewAssist
 import dev.expand.engine.log.log_dTag
 
@@ -22,7 +20,6 @@ import dev.expand.engine.log.log_dTag
  * detail: WebView 辅助类
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.WebViewActivity_PATH)
 class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel>(
     R.layout.activity_webview
 ) {

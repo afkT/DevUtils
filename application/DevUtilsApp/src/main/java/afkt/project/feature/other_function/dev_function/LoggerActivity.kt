@@ -7,8 +7,6 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.loggerButtonValues
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.utils.app.toast.ToastTintUtils
@@ -19,7 +17,6 @@ import utils_use.logger.LoggerUse
  * @author Ttt
  * [LoggerUse]
  */
-@Route(path = RouterPath.OTHER_FUNCTION.LoggerActivity_PATH)
 class LoggerActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

@@ -7,13 +7,11 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.therouter.router.Route
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
 import dev.utils.app.toast.ToastTintUtils
@@ -22,7 +20,6 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.FloatingWindowManager2Activity_PATH)
 class FloatingWindowManager2Activity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

@@ -7,8 +7,6 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.fileRecordButtonValues
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.utils.app.toast.ToastTintUtils
 import utils_use.record.FileRecordUse
 
@@ -17,7 +15,6 @@ import utils_use.record.FileRecordUse
  * @author Ttt
  * [FileRecordUse]
  */
-@Route(path = RouterPath.OTHER_FUNCTION.FileRecordActivity_PATH)
 class FileRecordActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is FileRecordActivity) {

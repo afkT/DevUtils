@@ -7,11 +7,9 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.notificationServiceButtonValues
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.toast.ToastTintUtils
@@ -23,7 +21,6 @@ import dev.utils.app.toast.ToastTintUtils
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
-@Route(path = RouterPath.OTHER_FUNCTION.NotificationServiceActivity_PATH)
 class NotificationServiceActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

@@ -4,14 +4,12 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import com.gavin.com.library.PowerfulStickyDecoration
 import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.mvvm.utils.size.AppSize
 import dev.utils.DevFinal
@@ -27,7 +25,6 @@ import dev.utils.common.RandomUtils
  * RecyclerView 实现顶部吸附效果
  * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
-@Route(path = RouterPath.UI_EFFECT.ItemStickyActivity_PATH)
 class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ItemStickyActivity) {

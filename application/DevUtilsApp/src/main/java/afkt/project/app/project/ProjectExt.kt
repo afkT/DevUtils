@@ -3,10 +3,7 @@ package afkt.project.app.project
 import afkt.project.model.data.button.ButtonAdapter
 import afkt.project.model.data.button.ButtonValue
 import androidx.recyclerview.widget.RecyclerView
-import com.therouter.TheRouter
-import dev.DevUtils
 import dev.callback.DevItemClickCallback
-import dev.utils.DevFinal
 
 // ==========
 // = 跳转通用 =
@@ -16,10 +13,6 @@ import dev.utils.DevFinal
  * Router 跳转方法
  */
 fun ButtonValue.routerActivity() {
-    TheRouter.build(this.path)
-        .withInt(DevFinal.STR.TYPE, this.type)
-        .withString(DevFinal.STR.TITLE, this.text)
-        .navigation(DevUtils.getContext())
 }
 
 // ============

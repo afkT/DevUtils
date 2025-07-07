@@ -4,11 +4,9 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityChipBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.chip.Chip
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils
@@ -27,7 +25,6 @@ import dev.utils.common.RandomUtils
  * 注意事项:
  * Activity 需要设置为 Theme.MaterialComponents 主题
  */
-@Route(path = RouterPath.UI_EFFECT.ChipActivity_PATH)
 class ChipActivity : BaseProjectActivity<ActivityChipBinding, AppViewModel>(
     R.layout.activity_chip, simple_Agile = {
         if (it is ChipActivity) {

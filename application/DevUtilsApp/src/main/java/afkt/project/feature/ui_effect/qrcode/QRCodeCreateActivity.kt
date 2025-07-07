@@ -4,12 +4,10 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityQrcodeCreateBinding
-import afkt.project.model.data.button.RouterPath
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
-import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeData
 import dev.mvvm.utils.size.AppSize
@@ -22,7 +20,6 @@ import dev.utils.common.ThrowableUtils
  * detail: 创建二维码
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.QRCodeCreateActivity_PATH)
 class QRCodeCreateActivity : BaseProjectActivity<ActivityQrcodeCreateBinding, AppViewModel>(
     R.layout.activity_qrcode_create, simple_Agile = {
         if (it is QRCodeCreateActivity) {

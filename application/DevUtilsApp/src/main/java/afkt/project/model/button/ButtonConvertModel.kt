@@ -73,8 +73,6 @@ fun ButtonAdapterModel.convertItemsDevAssistEngineMain(
 )
 
 // DevWidget 列表入口
-fun ButtonAdapterModel.convertItemsDevWidgetMain(
-    listener: ButtonClick
-) = _batchItemsSubPage(
-    "BTN_DEV_WIDGET_", listener
+fun ButtonAdapterModel.convertItemsDevWidgetMain() = _batchItemsSubPage(
+    "BTN_DEV_WIDGET_"
 )

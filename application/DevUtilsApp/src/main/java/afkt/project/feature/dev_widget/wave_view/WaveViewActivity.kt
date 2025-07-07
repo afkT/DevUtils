@@ -4,10 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityWaveViewBinding
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.widget.SeekBar
-import com.therouter.router.Route
 import dev.utils.app.BarUtils
 import dev.utils.app.ResourceUtils
 import dev.widget.ui.WaveView
@@ -17,7 +15,6 @@ import dev.widget.utils.WaveHelper
  * detail: 波浪 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.WaveViewActivity_PATH)
 class WaveViewActivity : BaseProjectActivity<ActivityWaveViewBinding, AppViewModel>(
     R.layout.activity_wave_view, simple_Agile = {
         if (it is WaveViewActivity) {

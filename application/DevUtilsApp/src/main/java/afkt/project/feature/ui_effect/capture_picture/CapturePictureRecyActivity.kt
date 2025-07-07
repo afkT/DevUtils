@@ -7,12 +7,10 @@ import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.data.bean.AdapterBean
 import afkt.project.model.data.bean.AdapterBean.Companion.newAdapterBeanList
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.therouter.router.Route
 import dev.adapter.DevDataAdapterExt
 import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
@@ -31,7 +29,6 @@ import dev.utils.common.FileUtils
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.CapturePictureRecyActivity_PATH)
 class CapturePictureRecyActivity :
     BaseProjectActivity<ActivityCapturePictureRecyBinding, AppViewModel>(
         R.layout.activity_capture_picture_recy, simple_Agile = {

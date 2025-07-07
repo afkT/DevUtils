@@ -4,16 +4,13 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityDataStoreBinding
-import afkt.project.model.data.button.RouterPath
 import androidx.lifecycle.lifecycleScope
-import com.therouter.router.Route
 import kotlinx.coroutines.launch
 
 /**
  * detail: DataStore Use Activity
  * @author Ttt
  */
-@Route(path = RouterPath.LIB_FRAME.DataStoreActivity_PATH)
 class DataStoreActivity : BaseProjectActivity<ActivityDataStoreBinding, AppViewModel>(
     R.layout.activity_data_store, simple_Agile = {
         if (it is DataStoreActivity) {

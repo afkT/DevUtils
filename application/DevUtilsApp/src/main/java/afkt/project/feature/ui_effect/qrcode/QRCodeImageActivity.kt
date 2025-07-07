@@ -4,11 +4,9 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityQrcodeImageBinding
-import afkt.project.model.data.button.RouterPath
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
@@ -31,7 +29,6 @@ import kotlinx.coroutines.launch
  * detail: 二维码图片解析
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.QRCodeImageActivity_PATH)
 class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, AppViewModel>(
     R.layout.activity_qrcode_image, simple_Agile = {
         if (it is QRCodeImageActivity) {

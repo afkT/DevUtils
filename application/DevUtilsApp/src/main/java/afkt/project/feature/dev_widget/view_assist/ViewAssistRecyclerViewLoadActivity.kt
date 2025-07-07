@@ -4,10 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.RandomUtils
 
@@ -15,7 +13,6 @@ import dev.utils.common.RandomUtils
  * detail: ViewAssist RecyclerView Loading
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.ViewAssistRecyclerViewLoadActivity_PATH)
 class ViewAssistRecyclerViewLoadActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

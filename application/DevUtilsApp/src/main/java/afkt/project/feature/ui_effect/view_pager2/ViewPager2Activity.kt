@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewpager2Binding
-import afkt.project.model.data.button.RouterPath
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,14 +12,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 
 /**
  * detail: ViewPager2
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.ViewPager2Activity_PATH)
 class ViewPager2Activity : BaseProjectActivity<ActivityViewpager2Binding, AppViewModel>(
     R.layout.activity_viewpager2, simple_Agile = {
         if (it is ViewPager2Activity) {

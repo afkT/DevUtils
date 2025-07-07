@@ -11,7 +11,6 @@ import android.webkit.WebSettings
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
-import com.therouter.TheRouter
 import dev.DevUtils
 import dev.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
@@ -46,12 +45,9 @@ class BaseApplication : MultiDexApplication(),
 
     override fun onCreate() {
         super.onCreate()
+
         // 初始化计时器
         val timeCounter = TimeCounter()
-
-        TheRouter.isDebug = true
-        // 推荐在 Application 中初始化
-        TheRouter.init(this)
 
         // ============
         // = DevUtils =

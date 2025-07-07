@@ -8,10 +8,8 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList.functionButtonValues
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.Manifest
 import android.os.Build
-import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.permission.permission_request
@@ -23,7 +21,6 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.FunctionActivity_PATH)
 class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is FunctionActivity) {

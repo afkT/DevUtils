@@ -9,7 +9,6 @@ import afkt.project.feature.ui_effect.qrcode.zxing.DecodeConfig
 import afkt.project.feature.ui_effect.qrcode.zxing.DecodeResult
 import afkt.project.feature.ui_effect.qrcode.zxing.Operate
 import afkt.project.feature.ui_effect.qrcode.zxing.ZXingDecodeAssist
-import afkt.project.model.data.button.RouterPath
 import afkt.project.model.engine.createGalleryConfig
 import android.Manifest
 import android.content.Intent
@@ -19,7 +18,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import com.google.zxing.Result
-import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.engine.barcode.BarCodeResult
 import dev.engine.barcode.listener.BarCodeDecodeCallback
@@ -37,7 +35,6 @@ import dev.widget.ui.ScanShapeView
  * detail: 二维码扫描解析
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.QRCodeScanActivity_PATH)
 class QRCodeScanActivity : BaseProjectActivity<ActivityScanShapeBinding, AppViewModel>(
     R.layout.activity_scan_shape, simple_Agile = {
         if (it is QRCodeScanActivity) {

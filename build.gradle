@@ -35,16 +35,8 @@ buildscript {
         classpath rootProject.ext.deps.build.kotlin_gradle_plugin
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
         classpath rootProject.ext.deps.build.dokka_gradle_plugin
-//        // ARouter AutoRegister https://mvnrepository.com/artifact/com.alibaba/arouter-register
-//        classpath rootProject.ext.deps_lib.router.arouter_register
-//        // ARouter https://www.jitpack.io/#jadepeakpoet/ARouter
-//        classpath rootProject.ext.deps_lib.router.arouter_register_fork
-        // TheRouter AutoRegister https://mvnrepository.com/artifact/cn.therouter/plugin
-        classpath rootProject.ext.deps_lib.router.therouter_plugin
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath rootProject.ext.deps.build.android_maven_gradle_plugin
-//        // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
-//        classpath rootProject.ext.deps.build.gradle_bintray_plugin
     }
 }
 

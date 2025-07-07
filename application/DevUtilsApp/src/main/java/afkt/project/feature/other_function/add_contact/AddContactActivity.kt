@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityAddContactBinding
-import afkt.project.model.data.button.RouterPath
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentUris
@@ -17,7 +16,6 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.*
 import android.provider.ContactsContract.RawContacts
 import android.view.View
-import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.permission.permission_request
 import dev.utils.app.*
@@ -34,7 +32,6 @@ import java.util.concurrent.atomic.AtomicInteger
  * detail: 添加联系人
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.AddContactActivity_PATH)
 class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppViewModel>(
     R.layout.activity_add_contact, simple_Agile = {
         if (it is AddContactActivity) {

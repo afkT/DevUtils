@@ -7,13 +7,11 @@ import afkt.project.databinding.ActivityCapturePictureListBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.data.bean.AdapterBean
 import afkt.project.model.data.bean.AdapterBean.Companion.newAdapterBeanList
-import afkt.project.model.data.button.RouterPath
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.appcompat.widget.AppCompatTextView
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
@@ -29,7 +27,6 @@ import dev.utils.common.FileUtils
  * detail: CapturePictureUtils ListView 截图
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.CapturePictureListActivity_PATH)
 class CapturePictureListActivity :
     BaseProjectActivity<ActivityCapturePictureListBinding, AppViewModel>(
         R.layout.activity_capture_picture_list, simple_Agile = {

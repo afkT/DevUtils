@@ -5,10 +5,8 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewAssistBinding
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.view.LayoutInflater
 import android.view.View
-import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
@@ -20,18 +18,17 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist Activity
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.ViewAssistActivity_PATH)
 class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, AppViewModel>(
     R.layout.activity_view_assist, simple_Agile = {
         if (it is ViewAssistActivity) {
             it.apply {
                 viewAssist = ViewAssist.wrap(binding.vidFl)
 
-                when (moduleType) {
-                    ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
-                    ButtonValue.BTN_VIEW_ASSIST_EMPTY -> emptyType()
-                    ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> customType()
-                }
+//                when (moduleType) {
+//                    ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
+//                    ButtonValue.BTN_VIEW_ASSIST_EMPTY -> emptyType()
+//                    ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> customType()
+//                }
             }
         }
     }

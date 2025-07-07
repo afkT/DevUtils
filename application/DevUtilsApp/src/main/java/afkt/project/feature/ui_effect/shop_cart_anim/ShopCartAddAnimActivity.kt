@@ -6,9 +6,7 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.CommodityItem
 import afkt.project.model.data.bean.CommodityItem.Companion.newCommodityItem
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
@@ -17,7 +15,6 @@ import dev.widget.decoration.linear.FirstLinearColorItemDecoration
  * detail: 购物车加入动画
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.ShopCartAddAnimActivity_PATH)
 class ShopCartAddAnimActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

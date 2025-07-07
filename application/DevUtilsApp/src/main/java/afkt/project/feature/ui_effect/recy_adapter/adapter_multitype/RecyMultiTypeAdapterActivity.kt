@@ -6,17 +6,14 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.recy_adapter.*
 import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.*
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import com.drakeet.multitype.MultiTypeAdapter
-import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: RecyclerView MultiType Adapter
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.RecyMultiTypeAdapterActivity_PATH)
 class RecyMultiTypeAdapterActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

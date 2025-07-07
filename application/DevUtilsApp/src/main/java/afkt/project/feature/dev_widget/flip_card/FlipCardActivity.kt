@@ -4,8 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityFlipCardBinding
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
@@ -15,7 +13,6 @@ import dev.utils.app.timer.DevTimer
  * detail: 翻转卡片 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.FlipCardActivity_PATH)
 class FlipCardActivity : BaseProjectActivity<ActivityFlipCardBinding, AppViewModel>(
     R.layout.activity_flip_card, simple_Agile = {
         if (it is FlipCardActivity) {

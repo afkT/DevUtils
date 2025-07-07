@@ -4,14 +4,11 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityFlowLikeBinding
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 
 /**
  * detail: 自定义点赞效果 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.FlowLikeActivity_PATH)
 class FlowLikeActivity : BaseProjectActivity<ActivityFlowLikeBinding, AppViewModel>(
     R.layout.activity_flow_like, simple_Agile = {
         if (it is FlowLikeActivity) {

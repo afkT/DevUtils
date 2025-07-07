@@ -5,11 +5,10 @@ package afkt.project.model.data.button
  * @author Ttt
  */
 fun Int.buttonOf(
-    text: String,
-    path: String
+    text: String
 ): ButtonValue {
     return ButtonValue(
-        this, text, path
+        this, text, ""
     )
 }
 

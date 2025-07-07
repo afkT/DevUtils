@@ -44,116 +44,88 @@ object ButtonList {
      */
     private val moduleUIButtonValues = mutableListOf(
         ButtonValue.BTN_TOAST_TINT.buttonOf(
-            "ToastTint ( 着色美化 Toast )",
-            RouterPath.UI_EFFECT.ToastTintActivity_PATH
+            "ToastTint ( 着色美化 Toast )"
         ),
         ButtonValue.BTN_UI_EFFECT.buttonOf(
-            "常见 UI、GradientDrawable 效果等",
-            RouterPath.UI_EFFECT.UIEffectActivity_PATH
+            "常见 UI、GradientDrawable 效果等"
         ),
         ButtonValue.BTN_TEXT_CALC.buttonOf(
-            "计算字体宽度、高度",
-            RouterPath.UI_EFFECT.TextCalcActivity_PATH
+            "计算字体宽度、高度"
         ),
         ButtonValue.BTN_ADAPTER_EDITS.buttonOf(
-            "Adapter Item EditText 输入监听",
-            RouterPath.UI_EFFECT.AdapterEditsActivity_PATH
+            "Adapter Item EditText 输入监听"
         ),
         ButtonValue.BTN_MULTI_SELECT.buttonOf(
-            "多选辅助类 MultiSelectAssist",
-            RouterPath.UI_EFFECT.MultiSelectActivity_PATH
+            "多选辅助类 MultiSelectAssist"
         ),
         ButtonValue.BTN_GPU_ACV.buttonOf(
-            "GPU ACV 文件滤镜效果",
-            RouterPath.UI_EFFECT.GPUFilterACVActivity_PATH
+            "GPU ACV 文件滤镜效果"
         ),
         ButtonValue.BTN_GPU_FILTER.buttonOf(
-            "GPU 滤镜效果",
-            RouterPath.UI_EFFECT.GPUFilterActivity_PATH
+            "GPU 滤镜效果"
         ),
         ButtonValue.BTN_QRCODE_CREATE.buttonOf(
-            "创建二维码",
-            RouterPath.UI_EFFECT.QRCodeCreateActivity_PATH
+            "创建二维码"
         ),
         ButtonValue.BTN_QRCODE_IMAGE.buttonOf(
-            "二维码图片解析",
-            RouterPath.UI_EFFECT.QRCodeImageActivity_PATH
+            "二维码图片解析"
         ),
         ButtonValue.BTN_QRCODE_SCAN.buttonOf(
-            "二维码扫描解析",
-            RouterPath.UI_EFFECT.QRCodeScanActivity_PATH
+            "二维码扫描解析"
         ),
         ButtonValue.BTN_CAPTURE_PICTURE.buttonOf(
-            "CapturePictureUtils 截图工具类",
-            RouterPath.UI_EFFECT.CapturePictureActivity_PATH
+            "CapturePictureUtils 截图工具类"
         ),
         ButtonValue.BTN_TEXTVIEW.buttonOf(
-            "两个 TextView 显示效果",
-            RouterPath.UI_EFFECT.TextViewActivity_PATH
+            "两个 TextView 显示效果"
         ),
         ButtonValue.BTN_ITEM_STICKY.buttonOf(
-            "RecyclerView 吸附效果",
-            RouterPath.UI_EFFECT.ItemStickyActivity_PATH
+            "RecyclerView 吸附效果"
         ),
         ButtonValue.BTN_RECY_ITEM_SLIDE.buttonOf(
-            "RecyclerView 滑动删除、上下滑动",
-            RouterPath.UI_EFFECT.RecyItemSlideActivity_PATH
+            "RecyclerView 滑动删除、上下滑动"
         ),
         ButtonValue.BTN_RECY_LINEAR_SNAP.buttonOf(
-            "LinearSnapHelper - RecyclerView",
-            RouterPath.UI_EFFECT.LinearSnapActivity_PATH
+            "LinearSnapHelper - RecyclerView"
         ),
         ButtonValue.BTN_RECY_LINEAR_SNAP_MAX.buttonOf(
-            "LinearSnapHelper - 无限滑动",
-            RouterPath.UI_EFFECT.LinearSnapMAXActivity_PATH
+            "LinearSnapHelper - 无限滑动"
         ),
         ButtonValue.BTN_RECY_PAGER_SNAP.buttonOf(
-            "PagerSnapHelper - RecyclerView",
-            RouterPath.UI_EFFECT.PagerSnapActivity_PATH
+            "PagerSnapHelper - RecyclerView"
         ),
         ButtonValue.BTN_RECY_PAGER_SNAP_MAX.buttonOf(
-            "PagerSnapHelper - 无限滑动",
-            RouterPath.UI_EFFECT.PagerSnapMAXActivity_PATH
+            "PagerSnapHelper - 无限滑动"
         ),
         ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW.buttonOf(
-            "Material ShapeableImageView",
-            RouterPath.UI_EFFECT.ShapeableImageViewActivity_PATH
+            "Material ShapeableImageView"
         ),
         ButtonValue.BTN_BOTTOM_SHEET.buttonOf(
-            "Material BottomSheet",
-            RouterPath.UI_EFFECT.BottomSheetActivity_PATH
+            "Material BottomSheet"
         ),
         ButtonValue.BTN_BOTTOM_SHEET_DIALOG.buttonOf(
-            "Material BottomSheetDialog",
-            RouterPath.UI_EFFECT.BottomSheetDialogActivity_PATH
+            "Material BottomSheetDialog"
         ),
         ButtonValue.BTN_PALETTE.buttonOf(
-            "Palette 调色板",
-            RouterPath.UI_EFFECT.PaletteActivity_PATH
+            "Palette 调色板"
         ),
         ButtonValue.BTN_FLEXBOX_LAYOUTMANAGER.buttonOf(
-            "Flexbox LayoutManager",
-            RouterPath.UI_EFFECT.FlexboxLayoutManagerActivity_PATH
+            "Flexbox LayoutManager"
         ),
         ButtonValue.BTN_CHIP.buttonOf(
-            "Material Chip、ChipGroups、ChipDrawable",
-            RouterPath.UI_EFFECT.ChipActivity_PATH
+            "Material Chip、ChipGroups、ChipDrawable"
         ),
         ButtonValue.BTN_VIEWPAGER2.buttonOf(
-            "ViewPager2",
-            RouterPath.UI_EFFECT.ViewPager2Activity_PATH
+            "ViewPager2"
         ),
         ButtonValue.BTN_RECYCLERVIEW_CONCATADAPTER.buttonOf(
-            "RecyclerView - ConcatAdapter",
-            RouterPath.UI_EFFECT.RecyConcatAdapterActivity_PATH
+            "RecyclerView - ConcatAdapter"
         ),
         ButtonValue.BTN_RECYCLERVIEW_MULTITYPE_ADAPTER.buttonOf(
-            "RecyclerView MultiType Adapter",
-            RouterPath.UI_EFFECT.RecyMultiTypeAdapterActivity_PATH
+            "RecyclerView MultiType Adapter"
         ),
         ButtonValue.BTN_SHOP_CARD_ADD_ANIM.buttonOf(
-            "购物车加入动画",
-            RouterPath.UI_EFFECT.ShopCartAddAnimActivity_PATH
+            "购物车加入动画"
         )
     )
 
@@ -163,28 +135,22 @@ object ButtonList {
      */
     val toastButtonValues = mutableListOf(
         ButtonValue.BTN_TOAST_TINT_SUCCESS.buttonOf(
-            "Toast Success",
-            RouterPath.EMPTY
+            "Toast Success"
         ),
         ButtonValue.BTN_TOAST_TINT_ERROR.buttonOf(
-            "Toast Error",
-            RouterPath.EMPTY
+            "Toast Error"
         ),
         ButtonValue.BTN_TOAST_TINT_INFO.buttonOf(
-            "Toast Info",
-            RouterPath.EMPTY
+            "Toast Info"
         ),
         ButtonValue.BTN_TOAST_TINT_NORMAL.buttonOf(
-            "Toast Normal",
-            RouterPath.EMPTY
+            "Toast Normal"
         ),
         ButtonValue.BTN_TOAST_TINT_WARNING.buttonOf(
-            "Toast Warning",
-            RouterPath.EMPTY
+            "Toast Warning"
         ),
         ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE.buttonOf(
-            "Toast Custom Style",
-            RouterPath.EMPTY
+            "Toast Custom Style"
         )
     )
 
@@ -198,68 +164,52 @@ object ButtonList {
      */
     private val moduleOtherButtonValues = mutableListOf(
         ButtonValue.BTN_NOTIFICATION_SERVICE.buttonOf(
-            "通知栏监听服务 ( NotificationService )",
-            RouterPath.OTHER_FUNCTION.NotificationServiceActivity_PATH
+            "通知栏监听服务 ( NotificationService )"
         ),
         ButtonValue.BTN_ACCESSIBILITY_SERVICE.buttonOf(
-            "无障碍监听服务 ( AccessibilityListenerService )",
-            RouterPath.OTHER_FUNCTION.AccessibilityListenerServiceActivity_PATH
+            "无障碍监听服务 ( AccessibilityListenerService )"
         ),
         ButtonValue.BTN_FUNCTION.buttonOf(
-            "铃声、震动、通知栏等功能",
-            RouterPath.OTHER_FUNCTION.FunctionActivity_PATH
+            "铃声、震动、通知栏等功能"
         ),
         ButtonValue.BTN_TIMER.buttonOf(
-            "TimerManager 定时器工具类",
-            RouterPath.OTHER_FUNCTION.TimerActivity_PATH
+            "TimerManager 定时器工具类"
         ),
         ButtonValue.BTN_CACHE.buttonOf(
-            "DevCache 缓存工具类",
-            RouterPath.OTHER_FUNCTION.CacheActivity_PATH
+            "DevCache 缓存工具类"
         ),
         ButtonValue.BTN_LOGGER.buttonOf(
-            "DevLogger 日志工具类",
-            RouterPath.OTHER_FUNCTION.LoggerActivity_PATH
+            "DevLogger 日志工具类"
         ),
         ButtonValue.BTN_FILE_RECORD.buttonOf(
-            "日志、异常文件记录保存",
-            RouterPath.OTHER_FUNCTION.FileRecordActivity_PATH
+            "日志、异常文件记录保存"
         ),
         ButtonValue.BTN_CRASH.buttonOf(
-            "奔溃日志捕获",
-            RouterPath.OTHER_FUNCTION.CrashCatchActivity_PATH
+            "奔溃日志捕获"
         ),
         ButtonValue.BTN_PATH.buttonOf(
-            "路径信息",
-            RouterPath.OTHER_FUNCTION.PathActivity_PATH
+            "路径信息"
         ),
         ButtonValue.BTN_WEBVIEW.buttonOf(
-            "WebView 辅助类",
-            RouterPath.OTHER_FUNCTION.WebViewActivity_PATH
+            "WebView 辅助类"
         ),
         ButtonValue.BTN_ACTIVITY_RESULT_API.buttonOf(
-            "Activity Result API",
-            RouterPath.OTHER_FUNCTION.ActivityResultAPIActivity_PATH
+            "Activity Result API"
         ),
         ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK.buttonOf(
-            "startActivityForResult Callback",
-            RouterPath.OTHER_FUNCTION.ActivityResultCallbackActivity_PATH
+            "startActivityForResult Callback"
         ),
         ButtonValue.BTN_ADD_CONTACT.buttonOf(
-            "添加联系人",
-            RouterPath.OTHER_FUNCTION.AddContactActivity_PATH
+            "添加联系人"
         ),
         ButtonValue.BTN_WALLPAPER.buttonOf(
-            "手机壁纸",
-            RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH
+            "手机壁纸"
         ),
         ButtonValue.BTN_FLOATING_WINDOW_MANAGER.buttonOf(
-            "悬浮窗管理辅助类 ( 需权限 )",
-            RouterPath.OTHER_FUNCTION.FloatingWindowManagerActivity_PATH
+            "悬浮窗管理辅助类 ( 需权限 )"
         ),
         ButtonValue.BTN_FLOATING_WINDOW_MANAGER2.buttonOf(
-            "悬浮窗管理辅助类 ( 无需权限依赖 Activity )",
-            RouterPath.OTHER_FUNCTION.FloatingWindowManager2Activity_PATH
+            "悬浮窗管理辅助类 ( 无需权限依赖 Activity )"
         )
     )
 
@@ -270,44 +220,34 @@ object ButtonList {
     @JvmStatic
     val listenerButtonValues = mutableListOf(
         ButtonValue.BTN_WIFI_LISTENER.buttonOf(
-            "Wifi 监听",
-            RouterPath.EMPTY
+            "Wifi 监听"
         ),
         ButtonValue.BTN_NETWORK_LISTENER.buttonOf(
-            "网络监听",
-            RouterPath.EMPTY
+            "网络监听"
         ),
         ButtonValue.BTN_PHONE_LISTENER.buttonOf(
-            "电话监听",
-            RouterPath.EMPTY
+            "电话监听"
         ),
         ButtonValue.BTN_SMS_LISTENER.buttonOf(
-            "短信监听",
-            RouterPath.EMPTY
+            "短信监听"
         ),
         ButtonValue.BTN_TIME_LISTENER.buttonOf(
-            "时区、时间监听",
-            RouterPath.EMPTY
+            "时区、时间监听"
         ),
         ButtonValue.BTN_SCREEN_LISTENER.buttonOf(
-            "屏幕监听",
-            RouterPath.EMPTY
+            "屏幕监听"
         ),
         ButtonValue.BTN_ROTA_LISTENER.buttonOf(
-            "屏幕旋转监听 ( 重力传感器 )",
-            RouterPath.EMPTY
+            "屏幕旋转监听 ( 重力传感器 )"
         ),
         ButtonValue.BTN_ROTA2_LISTENER.buttonOf(
-            "屏幕旋转监听 ( OrientationEventListener )",
-            RouterPath.EMPTY
+            "屏幕旋转监听 ( OrientationEventListener )"
         ),
         ButtonValue.BTN_BATTERY_LISTENER.buttonOf(
-            "电量监听",
-            RouterPath.EMPTY
+            "电量监听"
         ),
         ButtonValue.BTN_APP_STATE_LISTENER.buttonOf(
-            "应用状态监听",
-            RouterPath.EMPTY
+            "应用状态监听"
         )
     )
 
@@ -318,16 +258,13 @@ object ButtonList {
     @JvmStatic
     val notificationServiceButtonValues = mutableListOf(
         ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK.buttonOf(
-            "检查是否开启",
-            RouterPath.EMPTY
+            "检查是否开启"
         ),
         ButtonValue.BTN_NOTIFICATION_SERVICE_REGISTER.buttonOf(
-            "开始监听",
-            RouterPath.EMPTY
+            "开始监听"
         ),
         ButtonValue.BTN_NOTIFICATION_SERVICE_UNREGISTER.buttonOf(
-            "注销监听",
-            RouterPath.EMPTY
+            "注销监听"
         )
     )
 
@@ -338,16 +275,13 @@ object ButtonList {
     @JvmStatic
     val accessibilityListenerServiceButtonValues = mutableListOf(
         ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK.buttonOf(
-            "检查是否开启",
-            RouterPath.EMPTY
+            "检查是否开启"
         ),
         ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER.buttonOf(
-            "开始监听",
-            RouterPath.EMPTY
+            "开始监听"
         ),
         ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER.buttonOf(
-            "注销监听",
-            RouterPath.EMPTY
+            "注销监听"
         )
     )
 
@@ -358,76 +292,58 @@ object ButtonList {
     @JvmStatic
     val functionButtonValues = mutableListOf(
         ButtonValue.BTN_FUNCTION_VIBRATE.buttonOf(
-            "震动",
-            RouterPath.EMPTY
+            "震动"
         ),
         ButtonValue.BTN_FUNCTION_BEEP.buttonOf(
-            "铃声 - 播放一小段音频",
-            RouterPath.EMPTY
+            "铃声 - 播放一小段音频"
         ),
         ButtonValue.BTN_FUNCTION_NOTIFICATION_CHECK.buttonOf(
-            "是否存在通知权限",
-            RouterPath.EMPTY
+            "是否存在通知权限"
         ),
         ButtonValue.BTN_FUNCTION_NOTIFICATION_OPEN.buttonOf(
-            "开启通知权限",
-            RouterPath.EMPTY
+            "开启通知权限"
         ),
         ButtonValue.BTN_FUNCTION_NOTIFICATION.buttonOf(
-            "通知消息",
-            RouterPath.EMPTY
+            "通知消息"
         ),
         ButtonValue.BTN_FUNCTION_NOTIFICATION_REMOVE.buttonOf(
-            "移除消息",
-            RouterPath.EMPTY
+            "移除消息"
         ),
         ButtonValue.BTN_FUNCTION_HOME.buttonOf(
-            "回到桌面",
-            RouterPath.EMPTY
+            "回到桌面"
         ),
         ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN.buttonOf(
-            "打开手电筒",
-            RouterPath.EMPTY
+            "打开手电筒"
         ),
         ButtonValue.BTN_FUNCTION_FLASHLIGHT_CLOSE.buttonOf(
-            "关闭手电筒",
-            RouterPath.EMPTY
+            "关闭手电筒"
         ),
         ButtonValue.BTN_FUNCTION_SHORTCUT_CHECK.buttonOf(
-            "是否创建桌面快捷方式",
-            RouterPath.EMPTY
+            "是否创建桌面快捷方式"
         ),
         ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE.buttonOf(
-            "创建桌面快捷方式",
-            RouterPath.EMPTY
+            "创建桌面快捷方式"
         ),
         ButtonValue.BTN_FUNCTION_SHORTCUT_DELETE.buttonOf(
-            "删除桌面快捷方式",
-            RouterPath.EMPTY
+            "删除桌面快捷方式"
         ),
         ButtonValue.BTN_FUNCTION_MEMORY_PRINT.buttonOf(
-            "打印内存信息",
-            RouterPath.EMPTY
+            "打印内存信息"
         ),
         ButtonValue.BTN_FUNCTION_DEVICE_PRINT.buttonOf(
-            "打印设备信息",
-            RouterPath.EMPTY
+            "打印设备信息"
         ),
         ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS.buttonOf(
-            "跳转到 APP 设置详情页面",
-            RouterPath.EMPTY
+            "跳转到 APP 设置详情页面"
         ),
         ButtonValue.BTN_FUNCTION_GPS_SETTINGS.buttonOf(
-            "打开 GPS 设置界面",
-            RouterPath.EMPTY
+            "打开 GPS 设置界面"
         ),
         ButtonValue.BTN_FUNCTION_WIRELESS_SETTINGS.buttonOf(
-            "打开网络设置界面",
-            RouterPath.EMPTY
+            "打开网络设置界面"
         ),
         ButtonValue.BTN_FUNCTION_SYS_SETTINGS.buttonOf(
-            "跳转到系统设置页面",
-            RouterPath.EMPTY
+            "跳转到系统设置页面"
         )
     )
 
@@ -438,28 +354,22 @@ object ButtonList {
     @JvmStatic
     val timerButtonValues = mutableListOf(
         ButtonValue.BTN_TIMER_START.buttonOf(
-            "启动定时器",
-            RouterPath.EMPTY
+            "启动定时器"
         ),
         ButtonValue.BTN_TIMER_STOP.buttonOf(
-            "停止定时器",
-            RouterPath.EMPTY
+            "停止定时器"
         ),
         ButtonValue.BTN_TIMER_RESTART.buttonOf(
-            "重新启动定时器",
-            RouterPath.EMPTY
+            "重新启动定时器"
         ),
         ButtonValue.BTN_TIMER_CHECK.buttonOf(
-            "定时器是否启动",
-            RouterPath.EMPTY
+            "定时器是否启动"
         ),
         ButtonValue.BTN_TIMER_GET.buttonOf(
-            "获取定时器",
-            RouterPath.EMPTY
+            "获取定时器"
         ),
         ButtonValue.BTN_TIMER_GET_NUMBER.buttonOf(
-            "获取运行次数",
-            RouterPath.EMPTY
+            "获取运行次数"
         )
     )
 
@@ -470,40 +380,31 @@ object ButtonList {
     @JvmStatic
     val cacheButtonValues = mutableListOf(
         ButtonValue.BTN_CACHE_STRING.buttonOf(
-            "存储字符串",
-            RouterPath.EMPTY
+            "存储字符串"
         ),
         ButtonValue.BTN_CACHE_STRING_TIME.buttonOf(
-            "存储有效期字符串",
-            RouterPath.EMPTY
+            "存储有效期字符串"
         ),
         ButtonValue.BTN_CACHE_STRING_GET.buttonOf(
-            "获取字符串",
-            RouterPath.EMPTY
+            "获取字符串"
         ),
         ButtonValue.BTN_CACHE_BEAN.buttonOf(
-            "存储实体类",
-            RouterPath.EMPTY
+            "存储实体类"
         ),
         ButtonValue.BTN_CACHE_BEAN_TIME.buttonOf(
-            "存储有效期实体类",
-            RouterPath.EMPTY
+            "存储有效期实体类"
         ),
         ButtonValue.BTN_CACHE_BEAN_GET.buttonOf(
-            "获取实体类",
-            RouterPath.EMPTY
+            "获取实体类"
         ),
         ButtonValue.BTN_CACHE_FILE.buttonOf(
-            "存储到指定位置",
-            RouterPath.EMPTY
+            "存储到指定位置"
         ),
         ButtonValue.BTN_CACHE_FILE_GET.buttonOf(
-            "获取指定位置缓存数据",
-            RouterPath.EMPTY
+            "获取指定位置缓存数据"
         ),
         ButtonValue.BTN_CACHE_CLEAR.buttonOf(
-            "清除全部数据",
-            RouterPath.EMPTY
+            "清除全部数据"
         )
     )
 
@@ -514,12 +415,10 @@ object ButtonList {
     @JvmStatic
     val loggerButtonValues = mutableListOf(
         ButtonValue.BTN_LOGGER_PRINT.buttonOf(
-            "打印日志",
-            RouterPath.EMPTY
+            "打印日志"
         ),
         ButtonValue.BTN_LOGGER_TIME.buttonOf(
-            "打印日志耗时测试",
-            RouterPath.EMPTY
+            "打印日志耗时测试"
         )
     )
 
@@ -530,8 +429,7 @@ object ButtonList {
     @JvmStatic
     val fileRecordButtonValues = mutableListOf(
         ButtonValue.BTN_FILE_RECORD_UTILS.buttonOf(
-            "FileRecordUtils 工具类",
-            RouterPath.EMPTY
+            "FileRecordUtils 工具类"
         )
     )
 
@@ -541,8 +439,7 @@ object ButtonList {
      */
     val crashButtonValues = mutableListOf(
         ButtonValue.BTN_CRASH_CLICK_CATCH.buttonOf(
-            "点击崩溃捕获信息",
-            RouterPath.EMPTY
+            "点击崩溃捕获信息"
         )
     )
 
@@ -552,16 +449,13 @@ object ButtonList {
      */
     val pathButtonValues = mutableListOf(
         ButtonValue.BTN_PATH_INTERNAL.buttonOf(
-            "内部存储路径",
-            RouterPath.EMPTY
+            "内部存储路径"
         ),
         ButtonValue.BTN_PATH_APP_EXTERNAL.buttonOf(
-            "应用外部存储路径",
-            RouterPath.EMPTY
+            "应用外部存储路径"
         ),
         ButtonValue.BTN_PATH_SDCARD.buttonOf(
-            "外部存储路径 ( SDCard )",
-            RouterPath.EMPTY
+            "外部存储路径 ( SDCard )"
         )
     )
 
@@ -571,12 +465,10 @@ object ButtonList {
      */
     val floatingWindowButtonValues = mutableListOf(
         ButtonValue.BTN_OPEN_FLOATING_WINDOW.buttonOf(
-            "打开悬浮窗",
-            RouterPath.EMPTY
+            "打开悬浮窗"
         ),
         ButtonValue.BTN_CLOSE_FLOATING_WINDOW.buttonOf(
-            "关闭悬浮窗",
-            RouterPath.EMPTY
+            "关闭悬浮窗"
         )
     )
 
@@ -590,56 +482,43 @@ object ButtonList {
      */
     private val moduleDevWidgetButtonValues = mutableListOf(
         ButtonValue.BTN_VIEW_PAGER.buttonOf(
-            "ViewPager 滑动监听、控制滑动",
-            RouterPath.DEV_WIDGET.ViewPagerActivity_PATH
+            "ViewPager 滑动监听、控制滑动"
         ),
         ButtonValue.BTN_CUSTOM_PROGRESS_BAR.buttonOf(
-            "自定义 ProgressBar 样式 View",
-            RouterPath.DEV_WIDGET.ProgressBarActivity_PATH
+            "自定义 ProgressBar 样式 View"
         ),
         ButtonValue.BTN_SCAN_VIEW.buttonOf(
-            "自定义扫描 View ( QRCode、AR )",
-            RouterPath.DEV_WIDGET.ScanShapeActivity_PATH
+            "自定义扫描 View ( QRCode、AR )"
         ),
         ButtonValue.BTN_WRAP_VIEW.buttonOf(
-            "自动换行 View",
-            RouterPath.DEV_WIDGET.WrapActivity_PATH
+            "自动换行 View"
         ),
         ButtonValue.BTN_SIGN_VIEW.buttonOf(
-            "签名 View",
-            RouterPath.DEV_WIDGET.SignActivity_PATH
+            "签名 View"
         ),
         ButtonValue.BTN_LINE_VIEW.buttonOf(
-            "换行监听 View",
-            RouterPath.DEV_WIDGET.LineActivity_PATH
+            "换行监听 View"
         ),
         ButtonValue.BTN_LIKE_VIEW.buttonOf(
-            "自定义点赞效果 View",
-            RouterPath.DEV_WIDGET.FlowLikeActivity_PATH
+            "自定义点赞效果 View"
         ),
         ButtonValue.BTN_CORNER_LABEL_VIEW.buttonOf(
-            "自定义角标 View",
-            RouterPath.DEV_WIDGET.CornerLabelActivity_PATH
+            "自定义角标 View"
         ),
         ButtonValue.BTN_VIEW_ASSIST.buttonOf(
-            "View 填充辅助类",
-            RouterPath.EMPTY
+            "View 填充辅助类"
         ),
         ButtonValue.BTN_FLIP_CARD_VIEW.buttonOf(
-            "翻转卡片 View",
-            RouterPath.DEV_WIDGET.FlipCardActivity_PATH
+            "翻转卡片 View"
         ),
         ButtonValue.BTN_WAVE_VIEW.buttonOf(
-            "波浪 View",
-            RouterPath.DEV_WIDGET.WaveViewActivity_PATH
+            "波浪 View"
         ),
         ButtonValue.BTN_LINEAR_ITEM_DECORATION.buttonOf(
-            "Linear Color ItemDecoration",
-            RouterPath.EMPTY
+            "Linear Color ItemDecoration"
         ),
         ButtonValue.BTN_GRID_ITEM_DECORATION.buttonOf(
-            "Grid Color ItemDecoration",
-            RouterPath.EMPTY
+            "Grid Color ItemDecoration"
         )
     )
 
@@ -649,20 +528,16 @@ object ButtonList {
      */
     private val viewAssistButtonValues = mutableListOf(
         ButtonValue.BTN_VIEW_ASSIST_RECYCLER.buttonOf(
-            "RecyclerView ( loading )",
-            RouterPath.DEV_WIDGET.ViewAssistRecyclerViewLoadActivity_PATH
+            "RecyclerView ( loading )"
         ),
         ButtonValue.BTN_VIEW_ASSIST_ERROR.buttonOf(
-            "Error ( failed )",
-            RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
+            "Error ( failed )"
         ),
         ButtonValue.BTN_VIEW_ASSIST_EMPTY.buttonOf(
-            "Empty ( data )",
-            RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
+            "Empty ( data )"
         ),
         ButtonValue.BTN_VIEW_ASSIST_CUSTOM.buttonOf(
-            "Custom Type",
-            RouterPath.DEV_WIDGET.ViewAssistActivity_PATH
+            "Custom Type"
         )
     )
 
@@ -672,12 +547,10 @@ object ButtonList {
      */
     private val linearItemDecorationButtonValues = mutableListOf(
         ButtonValue.BTN_LINEAR_ITEM_VERTICAL.buttonOf(
-            "Linear Vertical ItemDecoration",
-            RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH
+            "Linear Vertical ItemDecoration"
         ),
         ButtonValue.BTN_LINEAR_ITEM_HORIZONTAL.buttonOf(
-            "Linear Horizontal ItemDecoration",
-            RouterPath.DEV_WIDGET.LinearColorItemDecorationActivity_PATH
+            "Linear Horizontal ItemDecoration"
         )
     )
 
@@ -687,12 +560,10 @@ object ButtonList {
      */
     private val gridItemDecorationButtonValues = mutableListOf(
         ButtonValue.BTN_GRID_ITEM_VERTICAL.buttonOf(
-            "Grid Vertical ItemDecoration",
-            RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH
+            "Grid Vertical ItemDecoration"
         ),
         ButtonValue.BTN_GRID_ITEM_HORIZONTAL.buttonOf(
-            "Grid Horizontal ItemDecoration",
-            RouterPath.DEV_WIDGET.GridColorItemDecorationActivity_PATH
+            "Grid Horizontal ItemDecoration"
         )
     )
 
@@ -707,8 +578,7 @@ object ButtonList {
     @JvmStatic
     val moduleDevSKUButtonValues = mutableListOf(
         ButtonValue.BTN_SKU_DIALOG.buttonOf(
-            "显示商品 SKU Dialog",
-            RouterPath.EMPTY
+            "显示商品 SKU Dialog"
         )
     )
 }

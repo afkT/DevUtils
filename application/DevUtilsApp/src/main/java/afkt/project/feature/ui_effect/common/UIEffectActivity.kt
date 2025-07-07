@@ -5,13 +5,11 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.*
 import dev.utils.app.helper.quick.QuickHelper
@@ -22,7 +20,6 @@ import dev.utils.common.ArrayUtils
  * detail: 常见 UI、GradientDrawable 效果等
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.UIEffectActivity_PATH)
 class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewModel>(
     R.layout.activity_ui_effect
 ) {

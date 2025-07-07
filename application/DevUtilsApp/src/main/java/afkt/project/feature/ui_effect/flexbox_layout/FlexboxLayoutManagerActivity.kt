@@ -4,14 +4,12 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import com.therouter.router.Route
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -26,7 +24,6 @@ import dev.utils.common.RandomUtils
  * Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
  * @see https://juejin.im/post/58d1035161ff4b00603ca9c4
  */
-@Route(path = RouterPath.UI_EFFECT.FlexboxLayoutManagerActivity_PATH)
 class FlexboxLayoutManagerActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

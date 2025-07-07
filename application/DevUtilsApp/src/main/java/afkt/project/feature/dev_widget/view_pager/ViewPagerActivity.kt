@@ -4,8 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewPagerBinding
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.widget.custom.CustomViewPager.OnDirectionListener
 
@@ -13,7 +11,6 @@ import dev.widget.custom.CustomViewPager.OnDirectionListener
  * detail: ViewPager 滑动监听、控制滑动
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.ViewPagerActivity_PATH)
 class ViewPagerActivity : BaseProjectActivity<ActivityViewPagerBinding, AppViewModel>(
     R.layout.activity_view_pager, simple_Agile = {
         if (it is ViewPagerActivity) {

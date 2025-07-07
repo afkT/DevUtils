@@ -7,12 +7,10 @@ import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.button.ButtonList
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.text.TextUtils.TruncateAt
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils
 import utils_use.toast.ToastTintUse
@@ -22,7 +20,6 @@ import utils_use.toast.ToastTintUse
  * @author Ttt
  * [ToastTintUse]
  */
-@Route(path = RouterPath.UI_EFFECT.ToastTintActivity_PATH)
 class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ToastTintActivity) {

@@ -4,8 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityWallpaperBinding
-import afkt.project.model.data.button.RouterPath
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
@@ -21,7 +19,6 @@ import dev.utils.common.FileUtils
  * detail: 手机壁纸
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.WallpaperActivity_PATH)
 class WallpaperActivity : BaseProjectActivity<ActivityWallpaperBinding, AppViewModel>(
     R.layout.activity_wallpaper, simple_Agile = {
         if (it is WallpaperActivity) {

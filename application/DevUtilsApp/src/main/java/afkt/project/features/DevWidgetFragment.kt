@@ -10,5 +10,5 @@ import afkt.project.model.button.convertItemsDevWidgetMain
 
 class DevWidgetFragment : AppFragment<FragmentRecyclerViewBinding, AppViewModel>(
     R.layout.fragment_recycler_view, BR.viewModel,
-    simple_Agile = { frg -> frg.buttonAdapter()?.convertItemsDevWidgetMain {} }
+    simple_Agile = { frg -> frg.buttonAdapter()?.convertItemsDevWidgetMain() }
 )

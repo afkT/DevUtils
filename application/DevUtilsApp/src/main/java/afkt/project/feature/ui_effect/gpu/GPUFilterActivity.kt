@@ -6,13 +6,11 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
-import afkt.project.model.data.button.RouterPath
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
-import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.expand.engine.log.log_eTag
 import dev.utils.app.HandlerUtils
@@ -26,7 +24,6 @@ import dev.utils.common.ScaleUtils
  * detail: GPU 滤镜效果
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.GPUFilterActivity_PATH)
 class GPUFilterActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppViewModel>(
     R.layout.activity_gpu_filter, simple_Agile = {
         if (it is GPUFilterActivity) {

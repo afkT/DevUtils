@@ -6,12 +6,10 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.ItemBean
 import afkt.project.model.data.bean.ItemBean.Companion.newItemBean
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.therouter.router.Route
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
@@ -19,7 +17,6 @@ import dev.utils.app.helper.quick.QuickHelper
  * @author Ttt
  * LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  */
-@Route(path = RouterPath.UI_EFFECT.LinearSnapActivity_PATH)
 class LinearSnapActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is LinearSnapActivity) {

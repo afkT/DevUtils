@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="labelView"
+            type="dev.widget.ui.CornerLabelView" />
+
+        <variable
             name="viewModel"
             type="afkt.project.features.dev_widget.CornerLabelViewModel" />
     </data>
@@ -174,7 +178,6 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_color_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -182,10 +185,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickColor.invoke(labelView)}"
                     android:text="color" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_left_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -193,10 +196,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickLeft.invoke(labelView)}"
                     android:text="left" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_top_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -204,10 +207,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickTop.invoke(labelView)}"
                     android:text="top" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_triangle_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -215,6 +218,7 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickTriangle.invoke(labelView)}"
                     android:text="triangle" />
             </LinearLayout>
 
@@ -226,7 +230,6 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_text1_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -234,10 +237,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickText1Minus.invoke(labelView)}"
                     android:text="text1-" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_text1_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -245,10 +248,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickText1Plus.invoke(labelView)}"
                     android:text="text1+" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_height1_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -256,10 +259,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickHeight1Minus.invoke(labelView)}"
                     android:text="height1-" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_height1_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -267,6 +270,7 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickHeight1Plus.invoke(labelView)}"
                     android:text="height1+" />
             </LinearLayout>
 
@@ -278,7 +282,6 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_text2_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -286,10 +289,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickText2Minus.invoke(labelView)}"
                     android:text="text2-" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_text2_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -297,10 +300,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickText2Plus.invoke(labelView)}"
                     android:text="text2+" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_height2_minus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -308,10 +311,10 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickHeight2Minus.invoke(labelView)}"
                     android:text="height2-" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_btn_height2_plus_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="center"
@@ -319,6 +322,7 @@
                     android:layout_weight="1"
                     android:background="#DDD"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.clickHeight2Plus.invoke(labelView)}"
                     android:text="height2+" />
             </LinearLayout>
         </LinearLayout>

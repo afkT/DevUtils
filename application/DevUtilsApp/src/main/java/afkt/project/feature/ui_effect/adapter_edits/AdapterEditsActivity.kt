@@ -5,11 +5,9 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.EvaluateItem
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
@@ -21,7 +19,6 @@ import dev.widget.decoration.linear.FirstLinearColorItemDecoration
  * detail: Adapter Item EditText 输入监听
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.AdapterEditsActivity_PATH)
 class AdapterEditsActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is AdapterEditsActivity) {

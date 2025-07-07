@@ -4,10 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityCapturePictureWebBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
@@ -22,7 +20,6 @@ import dev.utils.common.FileUtils
  * detail: CapturePictureUtils WebView 截图
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH)
 class CapturePictureWebActivity :
     BaseProjectActivity<ActivityCapturePictureWebBinding, AppViewModel>(
         R.layout.activity_capture_picture_web, simple_Agile = {

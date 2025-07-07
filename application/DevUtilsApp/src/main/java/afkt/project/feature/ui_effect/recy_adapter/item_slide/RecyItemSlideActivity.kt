@@ -5,11 +5,9 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.data.bean.CommodityItem
-import afkt.project.model.data.button.RouterPath
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
@@ -23,7 +21,6 @@ import java.util.*
  * RecyclerView 扩展
  * @see https://www.jianshu.com/p/c769f4ed298f
  */
-@Route(path = RouterPath.UI_EFFECT.RecyItemSlideActivity_PATH)
 class RecyItemSlideActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {

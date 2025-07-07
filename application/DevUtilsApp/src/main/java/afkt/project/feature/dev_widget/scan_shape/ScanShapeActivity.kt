@@ -4,11 +4,9 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityScanShapeBinding
-import afkt.project.model.data.button.RouterPath
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
-import com.therouter.router.Route
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_eTag
 import dev.expand.engine.permission.permission_isGranted
@@ -25,7 +23,6 @@ import dev.widget.ui.ScanShapeView
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.ScanShapeActivity_PATH)
 class ScanShapeActivity : BaseProjectActivity<ActivityScanShapeBinding, AppViewModel>(
     R.layout.activity_scan_shape, simple_Agile = {
         if (it is ScanShapeActivity) {

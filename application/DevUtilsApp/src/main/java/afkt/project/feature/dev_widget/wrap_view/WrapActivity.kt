@@ -4,14 +4,12 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityWrapBinding
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import com.therouter.router.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -22,7 +20,6 @@ import dev.utils.common.RandomUtils
  * detail: 自动换行 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.WrapActivity_PATH)
 class WrapActivity : BaseProjectActivity<ActivityWrapBinding, AppViewModel>(
     R.layout.activity_wrap, simple_Agile = {
         if (it is WrapActivity) {

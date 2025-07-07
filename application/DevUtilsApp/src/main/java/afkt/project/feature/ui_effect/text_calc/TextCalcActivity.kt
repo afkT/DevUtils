@@ -4,11 +4,9 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityTextCalcBinding
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Color
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import com.therouter.router.Route
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
@@ -19,7 +17,6 @@ import dev.utils.common.RandomUtils
  * detail: 计算字体宽度、高度
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.TextCalcActivity_PATH)
 class TextCalcActivity : BaseProjectActivity<ActivityTextCalcBinding, AppViewModel>(
     R.layout.activity_text_calc, simple_Agile = {
         if (it is TextCalcActivity) {

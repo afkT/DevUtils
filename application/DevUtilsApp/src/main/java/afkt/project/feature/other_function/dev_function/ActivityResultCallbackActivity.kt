@@ -4,11 +4,9 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
-import afkt.project.model.data.button.RouterPath
 import afkt.project.model.engine.createGalleryConfig
 import android.app.Activity
 import android.content.Intent
-import com.therouter.router.Route
 import dev.engine.DevEngine
 import dev.expand.engine.image.display
 import dev.mvvm.utils.toSource
@@ -18,7 +16,6 @@ import dev.utils.app.activity_result.DefaultActivityResult
  * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
-@Route(path = RouterPath.OTHER_FUNCTION.ActivityResultCallbackActivity_PATH)
 class ActivityResultCallbackActivity :
     BaseProjectActivity<ActivityActivityResultCallbackBinding, AppViewModel>(
         R.layout.activity_activity_result_callback, simple_Agile = {

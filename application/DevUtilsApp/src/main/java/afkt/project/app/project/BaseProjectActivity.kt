@@ -10,12 +10,9 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import com.therouter.TheRouter
-import com.therouter.router.Autowired
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
-import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.IFloatingActivity
 import dev.utils.app.toast.ToastTintUtils
@@ -71,19 +68,7 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : AppViewModel> :
     // ToolBar
     var toolbar: Toolbar? = null
 
-    @JvmField
-    @Autowired(name = DevFinal.STR.TITLE)
-    var moduleTitle: String? = null
-
-    @JvmField
-    @Autowired(name = DevFinal.STR.TYPE)
-    var moduleType: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        try {
-            TheRouter.inject(this)
-        } catch (_: Exception) {
-        }
         super.onCreate(savedInstanceState)
         // 插入 StateLayout
         insertStateLayout()
@@ -129,7 +114,7 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : AppViewModel> :
             // 设置点击事件
             toolbar?.setNavigationOnClickListener { finish() }
             // 设置 ToolBar 标题
-            toolbar?.title = moduleTitle
+            toolbar?.title = "moduleTitle"
             return titleView
         }
     }

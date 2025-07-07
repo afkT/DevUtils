@@ -4,10 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityBottomSheetBinding
-import afkt.project.model.data.button.RouterPath
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.therouter.router.Route
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.ViewUtils
 
@@ -15,7 +13,6 @@ import dev.utils.app.ViewUtils
  * detail: Material BottomSheet
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.BottomSheetActivity_PATH)
 class BottomSheetActivity : BaseProjectActivity<ActivityBottomSheetBinding, AppViewModel>(
     R.layout.activity_bottom_sheet, simple_Agile = {
         if (it is BottomSheetActivity) {

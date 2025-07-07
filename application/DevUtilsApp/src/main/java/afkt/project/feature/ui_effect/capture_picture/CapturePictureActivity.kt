@@ -6,10 +6,8 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.app.project.routerActivity
 import afkt.project.databinding.ActivityCapturePictureBinding
 import afkt.project.model.data.button.ButtonValue
-import afkt.project.model.data.button.RouterPath
 import android.graphics.Bitmap
 import android.view.View
-import com.therouter.router.Route
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
@@ -23,7 +21,6 @@ import dev.utils.common.FileUtils
  * detail: CapturePictureUtils 截图工具类
  * @author Ttt
  */
-@Route(path = RouterPath.UI_EFFECT.CapturePictureActivity_PATH)
 class CapturePictureActivity :
     BaseProjectActivity<ActivityCapturePictureBinding, AppViewModel>(
         R.layout.activity_capture_picture, simple_Agile = {
@@ -97,22 +94,19 @@ class CapturePictureActivity :
 
             R.id.vid_list_btn -> {
                 ButtonValue(
-                    1, "CapturePictureUtils ListView 截图",
-                    RouterPath.UI_EFFECT.CapturePictureListActivity_PATH
+                    1, "CapturePictureUtils ListView 截图", ""
                 ).routerActivity()
             }
 
             R.id.vid_recy_btn -> {
                 ButtonValue(
-                    3, "CapturePictureUtils RecyclerView 截图",
-                    RouterPath.UI_EFFECT.CapturePictureRecyActivity_PATH
+                    3, "CapturePictureUtils RecyclerView 截图", ""
                 ).routerActivity()
             }
 
             R.id.vid_webview_btn -> {
                 ButtonValue(
-                    4, "CapturePictureUtils WebView 截图",
-                    RouterPath.UI_EFFECT.CapturePictureWebActivity_PATH
+                    4, "CapturePictureUtils WebView 截图", ""
                 ).routerActivity()
             }
         }

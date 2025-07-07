@@ -4,19 +4,16 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityProgressbarBinding
-import afkt.project.model.data.button.RouterPath
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import com.therouter.router.Route
 import dev.utils.app.ActivityUtils
 
 /**
  * detail: 自定义 ProgressBar 样式 View
  * @author Ttt
  */
-@Route(path = RouterPath.DEV_WIDGET.ProgressBarActivity_PATH)
 class ProgressBarActivity : BaseProjectActivity<ActivityProgressbarBinding, AppViewModel>(
     R.layout.activity_progressbar, simple_Agile = {
         if (it is ProgressBarActivity) {
