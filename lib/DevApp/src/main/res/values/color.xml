@@ -24,6 +24,8 @@
     <!-- 紫色 -->
     <color name="purple">#800080</color>
 
+    <!-- 透明颜色值 -->
+
     <!-- 透明 -->
     <color name="transparent">#00000000</color>
 

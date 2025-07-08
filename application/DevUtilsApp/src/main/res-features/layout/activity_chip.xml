@@ -44,7 +44,7 @@
                 style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 单行效果"
-                android:textColor="@color/grey"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <dev.widget.custom.CustomHorizontalScrollView
@@ -101,7 +101,7 @@
                 style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="ChipGroup 多行效果"
-                android:textColor="@color/grey"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup

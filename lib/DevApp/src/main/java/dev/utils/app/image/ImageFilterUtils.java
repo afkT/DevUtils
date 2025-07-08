@@ -649,15 +649,15 @@ public final class ImageFilterUtils {
 //            int alpha = 0xFF << 24; // 默认将 bitmap 当成 24 色图片
 //            for (int i = 0; i < height; i++) {
 //                for (int j = 0; j < width; j++) {
-//                    int grey = pixels[width * i + j];
+//                    int gray = pixels[width * i + j];
 //
-//                    int red = ((grey & 0x00FF0000) >> 16);
-//                    int green = ((grey & 0x0000FF00) >> 8);
-//                    int blue = (grey & 0x000000FF);
+//                    int red = ((gray & 0x00FF0000) >> 16);
+//                    int green = ((gray & 0x0000FF00) >> 8);
+//                    int blue = (gray & 0x000000FF);
 //
-//                    grey = (int) ((float) red * 0.3 + (float) green * 0.59 + (float) blue * 0.11);
-//                    grey = alpha | (grey << 16) | (grey << 8) | grey;
-//                    pixels[width * i + j] = grey;
+//                    gray = (int) ((float) red * 0.3 + (float) green * 0.59 + (float) blue * 0.11);
+//                    gray = alpha | (gray << 16) | (gray << 8) | gray;
+//                    pixels[width * i + j] = gray;
 //                }
 //            }
 //            Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);

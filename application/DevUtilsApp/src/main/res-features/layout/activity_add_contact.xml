@@ -17,7 +17,7 @@
                 style="@style/ViewTheme.TextView"
                 android:layout_marginTop="@dimen/dp_15"
                 android:text="循环添加联系人"
-                android:textColor="@color/grey"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <View
