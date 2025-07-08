@@ -8,6 +8,6 @@
     android:gravity="center|left"
     android:maxLines="1"
     android:textSize="@dimen/sp_20"
-    tools:background="@color/lightcoral"
+    tools:background="@color/orange"
     tools:paddingLeft="@dimen/dp_20"
     tools:text="Android" />

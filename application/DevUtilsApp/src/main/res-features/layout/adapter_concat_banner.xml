@@ -3,4 +3,4 @@
     android:id="@+id/vid_banner"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_180"
-    android:background="@color/powderblue" />
+    android:background="@color/blue" />

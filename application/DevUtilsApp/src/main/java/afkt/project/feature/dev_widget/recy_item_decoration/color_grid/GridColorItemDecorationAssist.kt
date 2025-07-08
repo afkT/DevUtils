@@ -51,7 +51,7 @@ internal class GridColorItemDecorationAssist(
 
         lineColumnList.add(
             GridColumnColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.CHOCOLATE
+                spanCount, vertical, height, ColorUtils.PINK
             )
         )
         lineColumnList.add(
@@ -67,7 +67,7 @@ internal class GridColorItemDecorationAssist(
 
         lineRowList.add(
             GridRowColorItemDecoration(
-                spanCount, vertical, height, ColorUtils.CHOCOLATE
+                spanCount, vertical, height, ColorUtils.PINK
             )
         )
         lineRowList.add(

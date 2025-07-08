@@ -95,7 +95,7 @@ internal class LinearColorItemDecorationAssist(
 
         lineList.add(
             LinearColorItemDecoration(
-                vertical, height, ColorUtils.CHOCOLATE
+                vertical, height, ColorUtils.BLACK
             )
         )
         lineList.add(

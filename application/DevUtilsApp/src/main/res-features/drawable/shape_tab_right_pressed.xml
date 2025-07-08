@@ -5,8 +5,8 @@
         android:bottomRightRadius="@dimen/dp_3"
         android:topRightRadius="@dimen/dp_3" />
 
-    <solid android:color="@color/skyblue" />
+    <solid android:color="@color/blue" />
 
-    <solid android:color="@color/skyblue" />
+    <solid android:color="@color/blue" />
 
 </shape>

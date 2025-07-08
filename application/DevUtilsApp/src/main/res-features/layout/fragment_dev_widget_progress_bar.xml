@@ -24,7 +24,7 @@
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
                     app:dev_canvasNumber="true"
-                    app:dev_outerRingColor="@color/khaki"
+                    app:dev_outerRingColor="@color/gold"
                     app:dev_outerRingWidth="@dimen/dp_5"
                     app:dev_progressColor="#888888"
                     app:dev_progressStyle="rings" />
@@ -41,7 +41,7 @@
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
                     app:dev_canvasNumber="true"
-                    app:dev_progressColor="@color/sky_blue"
+                    app:dev_progressColor="@color/blue"
                     app:dev_progressStyle="fanShaped" />
             </FrameLayout>
         </LinearLayout>
@@ -66,7 +66,7 @@
                     app:dev_numberTextColor="#FB7D00"
                     app:dev_outerRingColor="@color/red"
                     app:dev_outerRingWidth="@dimen/dp_1"
-                    app:dev_progressColor="@color/mediumturquoise"
+                    app:dev_progressColor="@color/pink"
                     app:dev_progressStyle="arcFanShaped" />
             </FrameLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center"
-                    app:dev_numberTextColor="@color/deeppink"
+                    app:dev_numberTextColor="@color/pink"
                     app:dev_numberTextSize="@dimen/sp_40"
                     app:dev_progressStyle="number" />
             </FrameLayout>

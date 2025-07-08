@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:background="@color/sky_blue">
+    tools:background="@color/blue">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/vid_icon_iv"

@@ -24,30 +24,30 @@ import dev.widget.R;
  *     内外圆环 + 数字 + 无扇形
  *     view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
  *              .setOuterRingWidth(SizeUtils.dp2px(5)) // 内环宽度
- *              .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+ *              .setOuterRingColor(ResourceUtils.getColor(R.color.gold)) // 内环颜色
  *              .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
  *     <dev.widget.ui.LoadProgressBar
  *        app:dev_canvasNumber="true"
- *        app:dev_outerRingColor="@color/khaki"
+ *        app:dev_outerRingColor="@color/gold"
  *        app:dev_outerRingWidth="5.0dp"
  *        app:dev_progressColor="#888888"
  *        app:dev_progressStyle="rings"/>
  *     <p></p>
  *     扇形 + 数字 + 无内外圆环
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
- *              .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.blue)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
  *     <dev.widget.ui.LoadProgressBar
  *        app:dev_canvasNumber="true"
- *        app:dev_progressColor="@color/sky_blue"
+ *        app:dev_progressColor="@color/blue"
  *        app:dev_progressStyle="fanShaped"/>
  *     <p></p>
  *     扇形 + 数字 + 外圆环
  *     view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
  *              .setOuterRingWidth(SizeUtils.dp2px(1)) // 内环宽度
  *              .setOuterRingColor(Color.RED) // 内环颜色
- *              .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.pink)) // 进度颜色
  *              .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
  *              .setCanvasNumber(true); // 是否绘制数字
  *     <dev.widget.ui.LoadProgressBar
@@ -55,15 +55,15 @@ import dev.widget.R;
  *        app:dev_numberTextColor="#FB7D00"
  *        app:dev_outerRingColor="@color/red"
  *        app:dev_outerRingWidth="1.0dp"
- *        app:dev_progressColor="@color/mediumturquoise"
+ *        app:dev_progressColor="@color/pink"
  *        app:dev_progressStyle="arcFanShaped"/>
  *     <p></p>
  *     单独字体
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
  *              .setNumberTextSize(20F) // 字体大小
- *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
+ *              .setNumberTextColor(ResourceUtils.getColor(R.color.pink)); // 字体颜色
  *     <dev.widget.ui.LoadProgressBar
- *        app:dev_numberTextColor="@color/deeppink"
+ *        app:dev_numberTextColor="@color/pink"
  *        app:dev_numberTextSize="40.0sp"
  *        app:dev_progressStyle="number"/>
  *     <p></p>

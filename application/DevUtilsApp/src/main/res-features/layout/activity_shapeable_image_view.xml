@@ -27,7 +27,7 @@
                 android:background="@mipmap/bg_wallpaper"
                 android:padding="@dimen/dp_2"
                 app:shapeAppearanceOverlay="@style/roundedCornerStyle"
-                app:strokeColor="@color/sky_blue"
+                app:strokeColor="@color/blue"
                 app:strokeWidth="@dimen/dp_4" />
 
             <com.google.android.material.imageview.ShapeableImageView

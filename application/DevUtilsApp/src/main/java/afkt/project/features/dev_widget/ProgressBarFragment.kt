@@ -26,26 +26,26 @@ class ProgressBarFragment : AppFragment<FragmentDevWidgetProgressBarBinding, App
 //            // 内外圆环 + 数字 + 无扇形
 //            binding.vidProgress1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
 //                .setOuterRingWidth(AppSize.dp2px(5F).toFloat()) // 内环宽度
-//                .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+//                .setOuterRingColor(ResourceUtils.getColor(R.color.gold)) // 内环颜色
 //                .setProgressColor(ResourceUtils.getColor(R.color.color_88)).isCanvasNumber =
 //                true // 是否绘制数字
 //
 //            // 扇形 + 数字 + 无内外圆环
 //            binding.vidProgress2.setProgressStyle(LoadProgressBar.ProgressStyle.FAN_SHAPED)
-//                .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)).isCanvasNumber =
+//                .setProgressColor(ResourceUtils.getColor(R.color.blue)).isCanvasNumber =
 //                true // 是否绘制数字
 //
 //            // 扇形 + 数字 + 外圆环
 //            binding.vidProgress3.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
 //                .setOuterRingWidth(AppSize.dp2px(1F).toFloat()) // 内环宽度
 //                .setOuterRingColor(Color.RED) // 内环颜色
-//                .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+//                .setProgressColor(ResourceUtils.getColor(R.color.pink)) // 进度颜色
 //                .setNumberTextColor(Color.parseColor("#FB7D00")).isCanvasNumber = true // 是否绘制数字
 //
 //            // 单独字体
 //            binding.vidProgress4.setProgressStyle(LoadProgressBar.ProgressStyle.NUMBER)
 //                .setNumberTextSize(20F).numberTextColor =
-//                ResourceUtils.getColor(R.color.deeppink) // 字体颜色
+//                ResourceUtils.getColor(R.color.pink) // 字体颜色
 
             // 延迟发送通知
             handler.sendEmptyMessageDelayed(0, 100)

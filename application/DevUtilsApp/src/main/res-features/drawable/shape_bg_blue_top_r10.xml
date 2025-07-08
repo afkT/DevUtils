@@ -9,6 +9,6 @@
         android:topLeftRadius="@dimen/dp_10"
         android:topRightRadius="@dimen/dp_10" />
 
-    <solid android:color="@color/sky_blue" />
+    <solid android:color="@color/blue" />
 
 </shape>

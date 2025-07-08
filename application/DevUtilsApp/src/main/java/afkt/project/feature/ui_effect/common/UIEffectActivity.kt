@@ -55,8 +55,8 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
 
         // 设置点击效果
         val drawable1 = ShapeUtils.newShape(10F, ResourceUtils.getColor(R.color.black))
-            .setStroke(5, ResourceUtils.getColor(R.color.darkorange)).drawable
-        val drawable2 = ShapeUtils.newShape(10F, ResourceUtils.getColor(R.color.sky_blue))
+            .setStroke(5, ResourceUtils.getColor(R.color.gold)).drawable
+        val drawable2 = ShapeUtils.newShape(10F, ResourceUtils.getColor(R.color.blue))
             .setStroke(5, ResourceUtils.getColor(R.color.gray)).drawable
 
         StateListUtils.newSelector(drawable2, drawable1)
@@ -79,7 +79,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
 
         val colors = IntArray(3)
         colors[0] = ContextCompat.getColor(this, R.color.black)
-        colors[1] = ContextCompat.getColor(this, R.color.sky_blue)
+        colors[1] = ContextCompat.getColor(this, R.color.blue)
         colors[2] = ContextCompat.getColor(this, R.color.orange)
         val drawable = ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, colors).drawable
 //        drawable.gradientType = GradientDrawable.LINEAR_GRADIENT   // 线性渐变, 这是默认设置
@@ -247,13 +247,13 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         if (clickTab.id == R.id.vid_3_0_tv) { // 点击左边
             // 设置选中颜色
             ShapeUtils.newShape().setCornerRadiusLeft(10F)
-                .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                .setColor(ResourceUtils.getColor(R.color.blue))
                 .setDrawable(clickTab)
 
             // 设置未选中颜色
             val drawable1 = ShapeUtils.newShape()
                 .setCornerRadiusRight(10F)
-                .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                .setColor(ResourceUtils.getColor(R.color.blue))
                 .drawable
             val drawable2 = ShapeUtils.newShape()
                 .setCornerRadiusRight(10F)
@@ -263,13 +263,13 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         } else {
             // 设置选中颜色
             ShapeUtils.newShape().setCornerRadiusRight(10F)
-                .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                .setColor(ResourceUtils.getColor(R.color.blue))
                 .setDrawable(clickTab)
 
             // 设置未选中颜色
             val drawable1 = ShapeUtils.newShape()
                 .setCornerRadiusLeft(10F)
-                .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                .setColor(ResourceUtils.getColor(R.color.blue))
                 .drawable
             val drawable2 = ShapeUtils.newShape()
                 .setCornerRadiusLeft(10F)

@@ -215,7 +215,7 @@ public final class StreamUtils {
             final InputStream inputStream,
             final OutputStream outputStream
     ) {
-        return inputWriteOutputStream(inputStream, outputStream, 2048);
+        return inputWriteOutputStream(inputStream, outputStream, 8192);
     }
 
     /**
@@ -256,11 +256,11 @@ public final class StreamUtils {
     public static boolean inputWriteOutputStreamCallback(
             final InputStream inputStream,
             final OutputStream outputStream,
-            final int totalSize,
+            final long totalSize,
             final WriteCallback callback
     ) {
         return inputWriteOutputStreamCallback(
-                inputStream, outputStream, 2048, totalSize, callback
+                inputStream, outputStream, 8192, totalSize, callback
         );
     }
 
@@ -277,7 +277,7 @@ public final class StreamUtils {
             final InputStream inputStream,
             final OutputStream outputStream,
             final int bufferSize,
-            final int totalSize,
+            final long totalSize,
             final WriteCallback callback
     ) {
         if (callback != null && totalSize > 0) {
