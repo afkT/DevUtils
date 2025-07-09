@@ -3,10 +3,7 @@ package afkt.project.feature.other_function.timer
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.ButtonList.timerButtonValues
-import afkt.project.model.data.button.ButtonValue
 import android.os.Handler
 import android.os.Looper
 import dev.expand.engine.log.log_dTag
@@ -22,84 +19,84 @@ import dev.utils.app.toast.ToastTintUtils
 class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is TimerActivity) {
-            it.apply {
-                binding.vidRv.bindAdapter(timerButtonValues) { buttonValue ->
-                    // 获取操作结果
-                    val result: Boolean
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_TIMER_START -> {
-                            if (mTimer == null) {
-                                // 初始化定时器
-                                mTimer = DevTimer.Builder(500L, 2000L, -1, TAG).build()
-                                // 设置回调通过 Handler 触发
-                                mTimer?.apply {
-                                    setHandler(mUiHandler)
-                                    setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
-                                        // 触发次数
-                                        if (number == 1) {
-                                            TAG.log_dTag(
-                                                message = "第一次触发, 0.5 秒延迟"
-                                            )
-                                        } else {
-                                            TAG.log_dTag(
-                                                message = "每隔 2 秒触发一次, 触发次数: $number"
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                            mTimer?.apply {
-                                if (isRunning) {
-                                    showToast(false, "定时器已经启动, 请查看 Logcat")
-                                } else {
-                                    showToast(true, "定时器启动成功, 请查看 Logcat")
-                                    // 运行定时器
-                                    start()
-                                }
-                            }
-                        }
-
-                        ButtonValue.BTN_TIMER_STOP -> {
-                            result = mTimer?.isRunning ?: false
-                            showToast(result, "定时器关闭成功", "定时器未启动")
-                            if (result) mTimer?.stop()
-                            // 回收定时器
-                            TimerManager.recycle()
-                        }
-
-                        ButtonValue.BTN_TIMER_RESTART -> {
-                            mTimer?.let {
-                                showToast(true, "定时器启动成功, 请查看 Logcat")
-                                // 运行定时器
-                                it.start()
-                                return@let
-                            }
-                            showToast(false, "请先初始化定时器")
-                        }
-
-                        ButtonValue.BTN_TIMER_CHECK -> {
-                            result = mTimer?.isRunning ?: false
-                            showToast(result, "定时器已启动", "定时器未启动")
-                        }
-
-                        ButtonValue.BTN_TIMER_GET -> {
-                            val timerTAG = TimerManager.getTimer(TAG)
-                            showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
-                        }
-
-                        ButtonValue.BTN_TIMER_GET_NUMBER -> {
-                            result = mTimer?.isRunning ?: false
-                            showToast(
-                                result,
-                                "定时器运行次数: ${mTimer?.triggerNumber}",
-                                "定时器未启动"
-                            )
-                        }
-
-                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                    }
-                }
-            }
+//            it.apply {
+//                binding.vidRv.bindAdapter(timerButtonValues) { buttonValue ->
+//                    // 获取操作结果
+//                    val result: Boolean
+//                    when (buttonValue.type) {
+//                        ButtonValue.BTN_TIMER_START -> {
+//                            if (mTimer == null) {
+//                                // 初始化定时器
+//                                mTimer = DevTimer.Builder(500L, 2000L, -1, TAG).build()
+//                                // 设置回调通过 Handler 触发
+//                                mTimer?.apply {
+//                                    setHandler(mUiHandler)
+//                                    setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
+//                                        // 触发次数
+//                                        if (number == 1) {
+//                                            TAG.log_dTag(
+//                                                message = "第一次触发, 0.5 秒延迟"
+//                                            )
+//                                        } else {
+//                                            TAG.log_dTag(
+//                                                message = "每隔 2 秒触发一次, 触发次数: $number"
+//                                            )
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            mTimer?.apply {
+//                                if (isRunning) {
+//                                    showToast(false, "定时器已经启动, 请查看 Logcat")
+//                                } else {
+//                                    showToast(true, "定时器启动成功, 请查看 Logcat")
+//                                    // 运行定时器
+//                                    start()
+//                                }
+//                            }
+//                        }
+//
+//                        ButtonValue.BTN_TIMER_STOP -> {
+//                            result = mTimer?.isRunning ?: false
+//                            showToast(result, "定时器关闭成功", "定时器未启动")
+//                            if (result) mTimer?.stop()
+//                            // 回收定时器
+//                            TimerManager.recycle()
+//                        }
+//
+//                        ButtonValue.BTN_TIMER_RESTART -> {
+//                            mTimer?.let {
+//                                showToast(true, "定时器启动成功, 请查看 Logcat")
+//                                // 运行定时器
+//                                it.start()
+//                                return@let
+//                            }
+//                            showToast(false, "请先初始化定时器")
+//                        }
+//
+//                        ButtonValue.BTN_TIMER_CHECK -> {
+//                            result = mTimer?.isRunning ?: false
+//                            showToast(result, "定时器已启动", "定时器未启动")
+//                        }
+//
+//                        ButtonValue.BTN_TIMER_GET -> {
+//                            val timerTAG = TimerManager.getTimer(TAG)
+//                            showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
+//                        }
+//
+//                        ButtonValue.BTN_TIMER_GET_NUMBER -> {
+//                            result = mTimer?.isRunning ?: false
+//                            showToast(
+//                                result,
+//                                "定时器运行次数: ${mTimer?.triggerNumber}",
+//                                "定时器未启动"
+//                            )
+//                        }
+//
+//                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+//                    }
+//                }
+//            }
         }
     }
 ) {

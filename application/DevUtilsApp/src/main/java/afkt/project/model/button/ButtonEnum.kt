@@ -82,7 +82,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_SIGN_VIEW("签名 View"),
 
-    BTN_DEV_WIDGET_LINE_VIEW("换行监听 View"),
+    BTN_DEV_WIDGET_LINE_TEXT_VIEW("TextView 换行监听"),
 
     BTN_DEV_WIDGET_LIKE_VIEW("自定义点赞效果 View", R.id.FlowLikeFragment),
 

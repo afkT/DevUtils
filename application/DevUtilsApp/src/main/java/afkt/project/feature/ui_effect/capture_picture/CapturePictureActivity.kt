@@ -3,9 +3,7 @@ package afkt.project.feature.ui_effect.capture_picture
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.routerActivity
 import afkt.project.databinding.ActivityCapturePictureBinding
-import afkt.project.model.data.button.ButtonValue
 import android.graphics.Bitmap
 import android.view.View
 import dev.base.DevSource
@@ -92,23 +90,23 @@ class CapturePictureActivity :
                 )
             }
 
-            R.id.vid_list_btn -> {
-                ButtonValue(
-                    1, "CapturePictureUtils ListView 截图", ""
-                ).routerActivity()
-            }
-
-            R.id.vid_recy_btn -> {
-                ButtonValue(
-                    3, "CapturePictureUtils RecyclerView 截图", ""
-                ).routerActivity()
-            }
-
-            R.id.vid_webview_btn -> {
-                ButtonValue(
-                    4, "CapturePictureUtils WebView 截图", ""
-                ).routerActivity()
-            }
+//            R.id.vid_list_btn -> {
+//                ButtonValue(
+//                    1, "CapturePictureUtils ListView 截图", ""
+//                ).routerActivity()
+//            }
+//
+//            R.id.vid_recy_btn -> {
+//                ButtonValue(
+//                    3, "CapturePictureUtils RecyclerView 截图", ""
+//                ).routerActivity()
+//            }
+//
+//            R.id.vid_webview_btn -> {
+//                ButtonValue(
+//                    4, "CapturePictureUtils WebView 截图", ""
+//                ).routerActivity()
+//            }
         }
     }
 

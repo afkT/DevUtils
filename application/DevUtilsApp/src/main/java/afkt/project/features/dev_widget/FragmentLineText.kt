@@ -3,19 +3,19 @@ package afkt.project.features.dev_widget
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityLineBinding
+import afkt.project.databinding.FragmentDevWidgetLineTextBinding
 import android.graphics.Color
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 换行监听 View
+ * detail: TextView 换行监听
  * @author Ttt
  */
-class LineActivity : BaseProjectActivity<ActivityLineBinding, AppViewModel>(
-    R.layout.activity_line, simple_Agile = {
-        if (it is LineActivity) {
+class FragmentLineText : BaseProjectActivity<FragmentDevWidgetLineTextBinding, AppViewModel>(
+    R.layout.fragment_dev_widget_line_text, simple_Agile = {
+        if (it is FragmentLineText) {
             it.apply {
                 // 设置监听
                 binding.vidContentTv.setNewLineCallback { isNewLine, line ->

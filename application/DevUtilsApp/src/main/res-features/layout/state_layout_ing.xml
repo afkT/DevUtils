@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <com.tt.whorlviewlibrary.WhorlView
-            android:id="@+id/vid_whv"
-            android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_50"
-            app:whorlview_circle_colors="#F14336_#ffffff_#5677fc_#F44336_#4CAF50"
-            app:whorlview_circle_speed="270"
-            app:whorlview_parallax="medium"
-            app:whorlview_strokeWidth="8"
-            app:whorlview_sweepAngle="90" />
-    </LinearLayout>
+    <!-- 加载中 - 动画 View -->
 </FrameLayout>

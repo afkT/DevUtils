@@ -1,4 +1,4 @@
-// 第三方 lib 依赖配置
+// DevUtils 示例项目 - 第三方 lib 依赖配置
 dependencies {
 
     // ============
@@ -63,10 +63,15 @@ dependencies {
 
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
     api deps_lib.ui_widget.stickyDecoration
-    // 加载动画效果 https://github.com/Kyson/WhorlView
-    api deps_lib.ui_widget.whorlviewlibrary
     // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
     api deps_lib.ui_widget.loading_drawable
     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
     api deps_lib.ui_widget.simple_ratingbar
+
+    // ===============
+    // = 动画相关组件库 =
+    // ===============
+
+    // 动画库 https://github.com/airbnb/lottie-android
+    api deps_lib.anim_widget.lottie
 }

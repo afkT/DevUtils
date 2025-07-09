@@ -22,8 +22,11 @@ import dev.mvvm.utils.size.AppSize
 import dev.simple.DevSimple
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
-import dev.utils.app.*
+import dev.utils.app.ActivityUtils
+import dev.utils.app.CrashUtils
 import dev.utils.app.CrashUtils.CrashCatchListener
+import dev.utils.app.ScreenshotUtils
+import dev.utils.app.VersionUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
@@ -204,13 +207,11 @@ class BaseApplication : MultiDexApplication(),
                 oldType: Int,
                 view: View
             ) {
-                if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
-                    val vidTipsTv = ViewUtils.findViewById<View>(view, R.id.vid_tips_tv)
-                    TextViewUtils.setText(vidTipsTv, "暂无数据")
-                } else if (type == ViewAssist.TYPE_FAILED) { // FAIL
-                    val vidTipsTv = ViewUtils.findViewById<View>(view, R.id.vid_tips_tv)
-                    TextViewUtils.setText(vidTipsTv, "请求失败, 请稍后重试!")
-                }
+//                if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
+//                    val findView = ViewUtils.findViewById<View>(view, R.id.viewId)
+//                } else if (type == ViewAssist.TYPE_FAILED) { // FAIL
+//                    val findView = ViewUtils.findViewById<View>(view, R.id.viewId)
+//                }
             }
         })
             .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing)

@@ -3,10 +3,7 @@ package afkt.project.feature.other_function.dev_function
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.ButtonList.loggerButtonValues
-import afkt.project.model.data.button.ButtonValue
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.utils.app.toast.ToastTintUtils
@@ -41,21 +38,21 @@ class LoggerActivity :
                         // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx)
 //                    DevLogger.initialize(this)
                     }
-                    binding.vidRv.bindAdapter(loggerButtonValues) { buttonValue ->
-                        when (buttonValue.type) {
-                            ButtonValue.BTN_LOGGER_PRINT -> {
-                                showToast(true, "打印成功, 请查看 Logcat")
-                                LoggerUse.tempLog()
-                            }
-
-                            ButtonValue.BTN_LOGGER_TIME -> {
-                                showToast(true, "打印成功, 请查看 Logcat")
-                                LoggerUse.testTime()
-                            }
-
-                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                        }
-                    }
+//                    binding.vidRv.bindAdapter(loggerButtonValues) { buttonValue ->
+//                        when (buttonValue.type) {
+//                            ButtonValue.BTN_LOGGER_PRINT -> {
+//                                showToast(true, "打印成功, 请查看 Logcat")
+//                                LoggerUse.tempLog()
+//                            }
+//
+//                            ButtonValue.BTN_LOGGER_TIME -> {
+//                                showToast(true, "打印成功, 请查看 Logcat")
+//                                LoggerUse.testTime()
+//                            }
+//
+//                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+//                        }
+//                    }
                 }
             }
         }

@@ -199,9 +199,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.donkingliang/GroupedRecyclerViewAdapter
                     // 悬浮吸顶分组 RecyclerView https://github.com/donkingliang/GroupedRecyclerViewAdapter
                     grouped_adapter     : "com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.3",
-                    // https://mvnrepository.com/artifact/com.tt/whorlviewlibrary
-                    // 加载动画效果 https://github.com/Kyson/WhorlView
-                    whorlviewlibrary    : "com.tt:whorlviewlibrary:1.0.3",
+                    // 3D 按钮效果 https://github.com/AD0608/ThreeDButtonLayout
+                    threeDButtonLayout  : "com.github.AD0608:ThreeDButtonLayout:1.0.0",
                     // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
                     loading_drawable    : "com.github.elmliu:loadingdrawable:1.0",
                     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar

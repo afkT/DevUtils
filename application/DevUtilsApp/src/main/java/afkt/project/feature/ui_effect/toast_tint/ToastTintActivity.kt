@@ -3,10 +3,7 @@ package afkt.project.feature.ui_effect.toast_tint
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.ButtonList
-import afkt.project.model.data.button.ButtonValue
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
@@ -23,23 +20,23 @@ import utils_use.toast.ToastTintUse
 class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
         if (it is ToastTintActivity) {
-            it.apply {
-                binding.vidRv.bindAdapter(ButtonList.toastButtonValues) { buttonValue ->
-                    when (buttonValue.type) {
-                        ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
-                        ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
-                        ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
-                        ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
-                        ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
-                        ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
-                            TempStyle(), "Custom Style Toast",
-                            ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
-                        )
-
-                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                    }
-                }
-            }
+//            it.apply {
+//                binding.vidRv.bindAdapter(ButtonList.toastButtonValues) { buttonValue ->
+//                    when (buttonValue.type) {
+//                        ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
+//                        ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
+//                        ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
+//                        ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
+//                        ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
+//                        ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
+//                            TempStyle(), "Custom Style Toast",
+//                            ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
+//                        )
+//
+//                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
+//                    }
+//                }
+//            }
         }
     }
 ) {

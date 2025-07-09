@@ -3,10 +3,7 @@ package afkt.project.feature.other_function.floating
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.ButtonList
-import afkt.project.model.data.button.ButtonValue
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
@@ -23,29 +20,29 @@ import dev.utils.app.toast.ToastTintUtils
 class FloatingWindowManager2Activity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is FloatingWindowManager2Activity) {
-                it.apply {
-                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
-                        when (buttonValue.type) {
-                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
-                                Utils2.instance.apply {
-                                    isNeedsAdd = true
-                                    // 添加悬浮窗 View
-                                    addFloatingView(it)
-                                }
-                            }
-
-                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
-                                Utils2.instance.apply {
-                                    isNeedsAdd = false
-                                    // 移除所有悬浮窗 View
-                                    removeAllFloatingView()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+//            if (it is FloatingWindowManager2Activity) {
+//                it.apply {
+//                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
+//                        when (buttonValue.type) {
+//                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
+//                                Utils2.instance.apply {
+//                                    isNeedsAdd = true
+//                                    // 添加悬浮窗 View
+//                                    addFloatingView(it)
+//                                }
+//                            }
+//
+//                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
+//                                Utils2.instance.apply {
+//                                    isNeedsAdd = false
+//                                    // 移除所有悬浮窗 View
+//                                    removeAllFloatingView()
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
         })
 
 // ==========

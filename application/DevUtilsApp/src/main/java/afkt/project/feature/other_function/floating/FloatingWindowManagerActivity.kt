@@ -3,10 +3,7 @@ package afkt.project.feature.other_function.floating
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.app.project.bindAdapter
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.button.ButtonList
-import afkt.project.model.data.button.ButtonValue
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -27,21 +24,21 @@ class FloatingWindowManagerActivity :
     BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
             if (it is FloatingWindowManagerActivity) {
-                it.apply {
-                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
-                        when (buttonValue.type) {
-                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
-                                if (checkOverlayPermission()) {
-                                    Utils.instance.addView()
-                                }
-                            }
-
-                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
-                                Utils.instance.removeView()
-                            }
-                        }
-                    }
-                }
+//                it.apply {
+//                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
+//                        when (buttonValue.type) {
+//                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
+//                                if (checkOverlayPermission()) {
+//                                    Utils.instance.addView()
+//                                }
+//                            }
+//
+//                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
+//                                Utils.instance.removeView()
+//                            }
+//                        }
+//                    }
+//                }
             }
         }
     ) {
