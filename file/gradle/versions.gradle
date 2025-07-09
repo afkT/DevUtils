@@ -6,9 +6,9 @@ ext {
             // 版本名
             versionName                              : "9.9.9",
             // 支持最小的 SDK
-            lib_minSdkVersion                        : 21,
+            lib_minSdkVersion                        : 23,
             // 支持最小的 SDK
-            app_minSdkVersion                        : 21,
+            app_minSdkVersion                        : 23,
             // Lib 编译 SDK 版本
             lib_compileSdkVersion                    : 36,
             // 编译 SDK 版本
@@ -21,9 +21,9 @@ ext {
             javaVersion                              : JavaVersion.VERSION_1_8,
             javaVersion_str                          : "1.8",
             // Kotlin 版本
-            kotlin_version                           : "2.1.0",
-            kotlin_stdlib_version                    : "2.1.0",
-            dokka_plugin_version                     : "2.0.0-Beta",
+            kotlin_version                           : "2.2.0",
+            kotlin_stdlib_version                    : "2.2.0",
+            dokka_plugin_version                     : "2.0.0",
 
             // ===========
             // = Dev Lib =
