@@ -14,9 +14,6 @@ import dev.widget.utils.WidgetAttrs;
  * detail: 自定义 NestedScrollView 滑动监听、滑动控制
  * @author Ttt
  * <pre>
- *     ScrollView 默认位置不是最顶部解决方案
- *     @see <a href="https://blog.csdn.net/jiaoyaning1210/article/details/51084246"/>
- *     <p></p>
  *     app:dev_slide=""
  *     app:dev_maxWidth=""
  *     app:dev_maxHeight=""

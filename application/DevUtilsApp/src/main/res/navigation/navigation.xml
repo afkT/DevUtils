@@ -44,4 +44,8 @@
         android:name="afkt.project.features.dev_widget.ProgressBarFragment"
         android:label="ProgressBarFragment" />
 
+    <fragment
+        android:id="@+id/LineTextFragment"
+        android:name="afkt.project.features.dev_widget.LineTextFragment"
+        android:label="LineTextFragment" />
 </navigation>
