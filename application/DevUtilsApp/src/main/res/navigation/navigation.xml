@@ -48,4 +48,9 @@
         android:id="@+id/LineTextFragment"
         android:name="afkt.project.features.dev_widget.LineTextFragment"
         android:label="LineTextFragment" />
+
+    <fragment
+        android:id="@+id/SignViewFragment"
+        android:name="afkt.project.features.dev_widget.SignViewFragment"
+        android:label="SignViewFragment" />
 </navigation>

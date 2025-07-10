@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|left"
     android:orientation="horizontal"
-    app:dev_backgroundColor="@color/black_tran40"
+    app:dev_backgroundColor="@color/black_40"
     app:dev_radiusRightBottom="@dimen/dp_10"
     app:dev_radiusRightTop="@dimen/dp_10"
     tools:layout_marginBottom="@dimen/dp_70">

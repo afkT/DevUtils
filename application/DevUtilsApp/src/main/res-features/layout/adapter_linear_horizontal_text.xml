@@ -5,7 +5,7 @@
     style="@style/ViewTheme.TextView"
     android:layout_width="@dimen/dp_70"
     android:layout_height="@dimen/dp_200"
-    android:background="@color/gray_tran20"
+    android:background="@color/gray_20"
     android:ellipsize="end"
     android:gravity="center"
     android:includeFontPadding="false"

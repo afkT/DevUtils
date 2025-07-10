@@ -77,7 +77,7 @@ class LineTextViewModel : AppViewModel() {
             builder.append("\n换行数量: ").append(line)
             infoText.set(builder.toString())
         }
-        // 默认点击
-        view.performClick()
+        // 默认随机生成文本
+        randomText()
     }
 }

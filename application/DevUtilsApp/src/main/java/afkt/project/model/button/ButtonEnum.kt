@@ -80,7 +80,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_WRAP_VIEW("自动换行 View"),
 
-    BTN_DEV_WIDGET_SIGN_VIEW("签名 View"),
+    BTN_DEV_WIDGET_SIGN_VIEW("签名 View", R.id.SignViewFragment),
 
     BTN_DEV_WIDGET_LINE_TEXT_VIEW("TextView 换行监听", R.id.LineTextFragment),
 

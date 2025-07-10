@@ -13,7 +13,7 @@
             android:id="@+id/vid_bg_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_tran40"
+            android:background="@color/black_40"
             android:visibility="gone"
             tools:visibility="visible" />
 
