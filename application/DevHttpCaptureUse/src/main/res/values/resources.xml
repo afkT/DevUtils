@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
 
     <!-- Text -->
 
-    <string name="app_name" translatable="false">OkHttp 抓包示例</string>
-    <string name="str_title" translatable="false">DevHttpCapture - OkHttp 抓包示例</string>
+    <string name="app_name">OkHttp 抓包示例</string>
+    <string name="str_title">DevHttpCapture - OkHttp 抓包示例</string>
 
     <!-- Application 样式 -->
 

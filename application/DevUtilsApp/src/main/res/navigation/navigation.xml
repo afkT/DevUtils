@@ -53,4 +53,9 @@
         android:id="@+id/SignViewFragment"
         android:name="afkt.project.features.dev_widget.SignViewFragment"
         android:label="SignViewFragment" />
+
+    <fragment
+        android:id="@+id/WrapViewFragment"
+        android:name="afkt.project.features.dev_widget.WrapViewFragment"
+        android:label="WrapViewFragment" />
 </navigation>

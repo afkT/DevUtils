@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
 
     <!-- Text -->
 
-    <string name="app_name" translatable="false">环境配置示例</string>
-    <string name="str_title" translatable="false">DevEnvironment 环境配置示例</string>
+    <string name="app_name">环境配置示例</string>
+    <string name="str_title">DevEnvironment 环境配置示例</string>
 
     <!-- Application 样式 -->
 

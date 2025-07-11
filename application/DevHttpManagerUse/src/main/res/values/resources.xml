@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
 
     <!-- Text -->
 
-    <string name="app_name" translatable="false">OkHttp 管理示例</string>
-    <string name="str_title" translatable="false">DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )</string>
+    <string name="app_name">OkHttp 管理示例</string>
+    <string name="str_title">DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )</string>
 
     <!-- Application 样式 -->
 

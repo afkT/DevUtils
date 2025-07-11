@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
 
     <!-- Text -->
 
-    <string name="app_name" translatable="false">DevUtils 示例</string>
-    <string name="accessibility_description" translatable="false">无障碍监听</string>
+    <string name="app_name">DevUtils 示例</string>
+    <string name="accessibility_description">无障碍监听</string>
 
     <!-- Color -->
 

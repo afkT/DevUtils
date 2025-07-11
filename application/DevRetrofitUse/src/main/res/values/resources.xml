@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
 
     <!-- Text -->
 
-    <string name="app_name" translatable="false">Retrofit 请求示例</string>
-    <string name="str_title" translatable="false">DevRetrofit - Retrofit + Kotlin Coroutines 封装示例</string>
+    <string name="app_name">Retrofit 请求示例</string>
+    <string name="str_title">DevRetrofit - Retrofit + Kotlin Coroutines 封装示例</string>
 
     <!-- Application 样式 -->
 

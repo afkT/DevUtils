@@ -78,7 +78,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )"),
 
-    BTN_DEV_WIDGET_WRAP_VIEW("自动换行 View"),
+    BTN_DEV_WIDGET_WRAP_VIEW("自动换行 View", R.id.WrapViewFragment),
 
     BTN_DEV_WIDGET_SIGN_VIEW("签名 View", R.id.SignViewFragment),
 

@@ -1,44 +1,27 @@
 package afkt.project.features.dev_widget
 
+import afkt.project.BR
+import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
+import afkt.project.databinding.FragmentDevWidgetSignViewBinding
 import android.graphics.Color
 import android.graphics.Paint
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.LinearLayout
-import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import dev.simple.app.base.interfaces.BindingFragmentView
-import dev.widget.function.SignView
+import dev.simple.app.base.asFragment
 
 /**
  * detail: 签名 View
  * @author Ttt
  */
-class SignViewFragment : AppFragment<ViewDataBinding, AppViewModel>(
-    object : BindingFragmentView {
-        override fun bind(
-            value: Fragment,
-            inflater: LayoutInflater
-        ): View {
-            val signView = SignView(value.context)
-            signView.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-            )
-
+class SignViewFragment : AppFragment<FragmentDevWidgetSignViewBinding, AppViewModel>(
+    R.layout.fragment_dev_widget_sign_view, BR.viewModel, simple_Agile = { frg ->
+        frg.asFragment<SignViewFragment> {
             // 设置画笔
             val paint = Paint(Paint.ANTI_ALIAS_FLAG)
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = 30F
             paint.color = Color.BLACK
-            signView.paint = paint
-            return signView
+            binding.vidSign.paint = paint
         }
     }
-) {
-    override fun isViewBinding(): Boolean {
-        return false
-    }
-}
+)
