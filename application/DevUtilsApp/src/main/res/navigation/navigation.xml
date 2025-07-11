@@ -58,4 +58,9 @@
         android:id="@+id/WrapViewFragment"
         android:name="afkt.project.features.dev_widget.WrapViewFragment"
         android:label="WrapViewFragment" />
+
+    <fragment
+        android:id="@+id/WaveViewFragment"
+        android:name="afkt.project.features.dev_widget.WaveViewFragment"
+        android:label="WaveViewFragment" />
 </navigation>
