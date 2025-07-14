@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.ViewPagerViewModel" />
+    </data>
+
     <LinearLayout
         style="@style/ViewTheme.Padding.LR"
         android:layout_width="match_parent"
@@ -8,17 +15,17 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/vid_allow_btn"
             style="@style/ViewTheme.Button"
             android:ellipsize="end"
             android:maxLines="1"
+            android:onClick="@{viewModel.clickEnable}"
             android:text="允许滑动" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/vid_ban_btn"
             style="@style/ViewTheme.Button"
             android:ellipsize="end"
             android:maxLines="1"
+            android:onClick="@{viewModel.clickDisable}"
             android:text="禁止滑动" />
 
         <dev.widget.custom.CustomViewPager

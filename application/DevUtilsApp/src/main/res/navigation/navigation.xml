@@ -63,4 +63,9 @@
         android:id="@+id/WaveViewFragment"
         android:name="afkt.project.features.dev_widget.WaveViewFragment"
         android:label="WaveViewFragment" />
+
+    <fragment
+        android:id="@+id/ViewPagerFragment"
+        android:name="afkt.project.features.dev_widget.ViewPagerFragment"
+        android:label="ViewPagerFragment" />
 </navigation>

@@ -67,7 +67,10 @@ public final class StateListUtils {
     ) {
         try {
             // 颜色值
-            int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
+            int[] colors = new int[]{
+                    Color.parseColor(pressed),
+                    Color.parseColor(normal)
+            };
             // 状态值
             int[][] states = new int[2][];
             states[0] = new int[]{android.R.attr.state_pressed}; // 选中状态
@@ -94,7 +97,11 @@ public final class StateListUtils {
     ) {
         try {
             // 颜色值
-            int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
+            int[] colors = new int[]{
+                    Color.parseColor(selected),
+                    Color.parseColor(pressed),
+                    Color.parseColor(normal)
+            };
             // 状态值
             int[][] states = new int[3][];
             states[0] = new int[]{android.R.attr.state_selected}; // 选中状态
@@ -126,8 +133,11 @@ public final class StateListUtils {
     ) {
         try {
             // 颜色值
-            int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed),
-                    Color.parseColor(focused), Color.parseColor(checked), Color.parseColor(normal)};
+            int[] colors = new int[]{
+                    Color.parseColor(selected), Color.parseColor(pressed),
+                    Color.parseColor(focused), Color.parseColor(checked),
+                    Color.parseColor(normal)
+            };
             // 状态值
             int[][] states = new int[5][];
             states[0] = new int[]{android.R.attr.state_selected}; // 选中状态

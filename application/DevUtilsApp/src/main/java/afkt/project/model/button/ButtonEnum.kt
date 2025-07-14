@@ -72,7 +72,7 @@ enum class ButtonEnum(
     // = DevWidget =
     // =============
 
-    BTN_DEV_WIDGET_VIEW_PAGER("ViewPager 滑动监听、控制滑动"),
+    BTN_DEV_WIDGET_VIEW_PAGER("ViewPager 滑动监听、控制滑动", R.id.ViewPagerFragment),
 
     BTN_DEV_WIDGET_CUSTOM_PROGRESS_BAR("自定义 ProgressBar 样式 View", R.id.ProgressBarFragment),
 

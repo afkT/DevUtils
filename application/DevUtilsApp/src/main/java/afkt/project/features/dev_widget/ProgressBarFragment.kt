@@ -58,7 +58,7 @@ class ProgressBarFragment : AppFragment<FragmentDevWidgetProgressBarBinding, App
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             // 如果页面销毁了则不处理
-            if (ActivityUtils.isFinishing(mActivity)) return
+            if (ActivityUtils.isFinishing(activity)) return
             try {
                 val progress = binding.vidProgress1.progress + 1
                 // 每次进行累加
