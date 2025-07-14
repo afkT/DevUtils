@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.common
+package afkt.project.features.dev_widget.item_decoration.common
 
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearVerticalTextBinding

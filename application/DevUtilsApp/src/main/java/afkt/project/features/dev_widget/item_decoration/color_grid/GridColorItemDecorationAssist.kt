@@ -1,7 +1,7 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
+package afkt.project.features.dev_widget.item_decoration.color_grid
 
 import afkt.project.databinding.IncludeGridItemDecorationAssistBinding
-import afkt.project.feature.dev_widget.recy_item_decoration.CommonColorItemDecorationAssist
+import afkt.project.features.dev_widget.item_decoration.CommonColorItemDecorationAssist
 import androidx.recyclerview.widget.RecyclerView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.RecyclerViewUtils
@@ -41,7 +41,7 @@ internal class GridColorItemDecorationAssist(
     // ============
 
     init {
-        val height = AppSize.dp2pxf(10.0F)
+        val height = AppSize.dp2pxf(recyclerView.context, 10.0F)
         val vertical = RecyclerViewUtils.canScrollVertically(recyclerView)
         val spanCount = RecyclerViewUtils.getSpanCount(recyclerView)
 

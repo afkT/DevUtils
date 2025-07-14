@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.recy_item_decoration
+package afkt.project.features.dev_widget.item_decoration
 
 import androidx.recyclerview.widget.RecyclerView
 import dev.mvvm.utils.size.AppSize

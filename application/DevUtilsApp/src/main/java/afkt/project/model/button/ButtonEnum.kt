@@ -6,13 +6,14 @@ import android.os.Bundle
 import dev.utils.DevFinal
 
 // =================================
-// = ButtonEnum 映射 Fragment Title =
+// = ButtonEnum 映射 Fragment 传参 =
 // =================================
 
-fun ButtonEnum.title(): Bundle? {
-    return IntentData.with().setTitle(
-        this.text
-    ).insert()
+fun ButtonEnum.args(): Bundle? {
+    return IntentData.with()
+        .setTitle(this.text)
+        .setType(this.name)
+        .insert()
 }
 
 // ==========

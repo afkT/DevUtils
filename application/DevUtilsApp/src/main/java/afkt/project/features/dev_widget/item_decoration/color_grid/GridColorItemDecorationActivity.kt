@@ -1,17 +1,18 @@
-package afkt.project.feature.dev_widget.recy_item_decoration.color_grid
+package afkt.project.features.dev_widget.item_decoration.color_grid
 
+import afkt.project.BR
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityGridItemDecorationBinding
+import afkt.project.databinding.FragmentDevWidgetGridItemDecorationBinding
 
 /**
  * detail: Grid Color ItemDecoration
  * @author Ttt
  */
 class GridColorItemDecorationActivity :
-    BaseProjectActivity<ActivityGridItemDecorationBinding, AppViewModel>(
-        R.layout.activity_grid_item_decoration, simple_Agile = {
+    AppFragment<FragmentDevWidgetGridItemDecorationBinding, AppViewModel>(
+        R.layout.fragment_dev_widget_grid_item_decoration, BR.viewModel, simple_Agile = {
             if (it is GridColorItemDecorationActivity) {
                 it.apply {
                     val lists = mutableListOf<String>()
