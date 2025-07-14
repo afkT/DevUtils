@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="scanShape"
+            type="dev.widget.ui.ScanShapeView" />
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.scan_shape.ScanShapeViewModel" />
+    </data>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,33 +44,33 @@
                 tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/vid_flashlight_iv"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_20"
-                android:background="@drawable/shape_flashlight_selector" />
+                android:background="@drawable/shape_flashlight_selector"
+                android:onClick="@{()->viewModel.clickFlashlight.invoke()}"
+                android:selected="@{viewModel.flashlightStatus}" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/vid_square_iv"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_20"
-                android:background="@mipmap/icon_square" />
+                android:background="@mipmap/icon_square"
+                android:onClick="@{()->viewModel.clickSquare.invoke(scanShape)}" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/vid_hexagon_iv"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_20"
-                android:background="@mipmap/icon_hexagon" />
+                android:background="@mipmap/icon_hexagon"
+                android:onClick="@{()->viewModel.clickHexagon.invoke(scanShape)}" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/vid_annulus_iv"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_20"
-                android:background="@mipmap/icon_annulus" />
-
+                android:background="@mipmap/icon_annulus"
+                android:onClick="@{()->viewModel.clickAnnulus.invoke(scanShape)}" />
         </LinearLayout>
     </FrameLayout>
 </layout>

@@ -73,4 +73,9 @@
         android:id="@+id/FlipCardFragment"
         android:name="afkt.project.features.dev_widget.FlipCardFragment"
         android:label="FlipCardFragment" />
+
+    <fragment
+        android:id="@+id/ScanShapeFragment"
+        android:name="afkt.project.features.dev_widget.scan_shape.ScanShapeFragment"
+        android:label="ScanShapeFragment" />
 </navigation>
