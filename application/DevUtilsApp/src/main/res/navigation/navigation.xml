@@ -68,4 +68,9 @@
         android:id="@+id/ViewPagerFragment"
         android:name="afkt.project.features.dev_widget.ViewPagerFragment"
         android:label="ViewPagerFragment" />
+
+    <fragment
+        android:id="@+id/FlipCardFragment"
+        android:name="afkt.project.features.dev_widget.FlipCardFragment"
+        android:label="FlipCardFragment" />
 </navigation>

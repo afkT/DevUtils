@@ -88,7 +88,7 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_CORNER_LABEL_VIEW("自定义角标 View", R.id.CornerLabelFragment),
 
-    BTN_DEV_WIDGET_FLIP_CARD_VIEW("翻转卡片 View"),
+    BTN_DEV_WIDGET_FLIP_CARD_VIEW("翻转卡片 View", R.id.FlipCardFragment),
 
     BTN_DEV_WIDGET_WAVE_VIEW("波浪 View", R.id.WaveViewFragment),
 
