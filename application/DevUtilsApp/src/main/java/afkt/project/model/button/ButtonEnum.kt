@@ -103,13 +103,25 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_VIEW_ASSIST_1_CUSTOM("Custom Type"),
 
-    BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL("Linear Vertical ItemDecoration"),
+    BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL(
+        "Linear Vertical ItemDecoration",
+        R.id.LinearVerticalFragment
+    ),
 
-    BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL("Linear Horizontal ItemDecoration"),
+    BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL(
+        "Linear Horizontal ItemDecoration",
+        R.id.LinearHorizontalFragment
+    ),
 
-    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL("Grid Vertical ItemDecoration"),
+    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL(
+        "Grid Vertical ItemDecoration",
+        R.id.GridVerticalFragment
+    ),
 
-    BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL("Grid Horizontal ItemDecoration"),
+    BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL(
+        "Grid Horizontal ItemDecoration",
+        R.id.GridHorizontalFragment
+    ),
 
     // ===================
     // = DevAssist Engine =

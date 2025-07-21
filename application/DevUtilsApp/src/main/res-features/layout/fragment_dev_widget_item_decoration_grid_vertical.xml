@@ -2,16 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+    <data>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.item_decoration.GridVerticalViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
 
             <include
                 android:id="@+id/vid_include"
@@ -19,9 +19,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/vid_rv"
+                style="@style/ViewTheme.RecyclerView.Nested.False"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                app:itemBinding="@{viewModel.adapter.itemBinding}"
+                app:items="@{viewModel.adapter.items}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3" />
         </LinearLayout>

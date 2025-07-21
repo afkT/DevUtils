@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.item_decoration.LinearVerticalViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
+
+            <include
+                android:id="@+id/vid_include"
+                layout="@layout/include_linear_item_decoration_assist" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vid_rv"
+                style="@style/ViewTheme.RecyclerView.Nested.False"
+                android:orientation="vertical"
+                app:itemBinding="@{viewModel.adapter.itemBinding}"
+                app:items="@{viewModel.adapter.items}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

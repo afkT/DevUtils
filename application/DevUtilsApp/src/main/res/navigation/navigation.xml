@@ -78,4 +78,24 @@
         android:id="@+id/ScanShapeFragment"
         android:name="afkt.project.features.dev_widget.scan_shape.ScanShapeFragment"
         android:label="ScanShapeFragment" />
+
+    <fragment
+        android:id="@+id/LinearHorizontalFragment"
+        android:name="afkt.project.features.dev_widget.item_decoration.LinearHorizontalFragment"
+        android:label="LinearHorizontalFragment" />
+
+    <fragment
+        android:id="@+id/LinearVerticalFragment"
+        android:name="afkt.project.features.dev_widget.item_decoration.LinearVerticalFragment"
+        android:label="LinearVerticalFragment" />
+
+    <fragment
+        android:id="@+id/GridHorizontalFragment"
+        android:name="afkt.project.features.dev_widget.item_decoration.GridHorizontalFragment"
+        android:label="GridHorizontalFragment" />
+
+    <fragment
+        android:id="@+id/GridVerticalFragment"
+        android:name="afkt.project.features.dev_widget.item_decoration.GridVerticalFragment"
+        android:label="GridVerticalFragment" />
 </navigation>

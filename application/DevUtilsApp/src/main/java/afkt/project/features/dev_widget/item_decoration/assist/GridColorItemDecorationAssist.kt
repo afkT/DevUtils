@@ -1,7 +1,6 @@
-package afkt.project.features.dev_widget.item_decoration.color_grid
+package afkt.project.features.dev_widget.item_decoration.assist
 
 import afkt.project.databinding.IncludeGridItemDecorationAssistBinding
-import afkt.project.features.dev_widget.item_decoration.CommonColorItemDecorationAssist
 import androidx.recyclerview.widget.RecyclerView
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.RecyclerViewUtils

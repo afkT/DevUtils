@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemValue"
+            type="String" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/ViewTheme.TextView"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:background="@color/gray_20"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@{itemValue}"
+        android:textSize="@dimen/sp_15"
+        tools:text="Text" />
+</layout>
