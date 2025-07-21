@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.text_view
+package afkt.project.features.ui_effect.text_view
 
 import afkt.project.R
 import afkt.project.app.AppViewModel

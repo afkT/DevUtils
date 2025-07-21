@@ -98,4 +98,11 @@
         android:id="@+id/GridVerticalFragment"
         android:name="afkt.project.features.dev_widget.item_decoration.GridVerticalFragment"
         android:label="GridVerticalFragment" />
+
+    <!-- UI Effect -->
+
+    <fragment
+        android:id="@+id/UIEffectFragment"
+        android:name="afkt.project.features.UIEffectFragment"
+        android:label="UIEffectFragment" />
 </navigation>

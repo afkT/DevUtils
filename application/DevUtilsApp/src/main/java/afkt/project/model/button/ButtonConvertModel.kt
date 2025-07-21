@@ -76,3 +76,8 @@ fun ButtonAdapterModel.convertItemsDevAssistEngineMain(
 fun ButtonAdapterModel.convertItemsDevWidgetMain() = _batchItemsSubPage(
     "BTN_DEV_WIDGET_"
 )
+
+// UI Effect 列表入口
+fun ButtonAdapterModel.convertItemsUIEffectMain() = _batchItems(
+    "BTN_UI_EFFECT_"
+)
