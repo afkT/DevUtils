@@ -10,12 +10,12 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import dev.expand.engine.toast.toast_showShort
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView
 import dev.simple.app.controller.ui.theme.ActivityUITheme
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.IFloatingActivity
-import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
 
 /**
@@ -154,10 +154,6 @@ open class BaseProjectActivity<VDB : ViewDataBinding, VM : AppViewModel> :
         success: Boolean,
         text: String?
     ) {
-        if (success) {
-            ToastTintUtils.success(text)
-        } else {
-            ToastTintUtils.error(text)
-        }
+        toast_showShort(text = text)
     }
 }

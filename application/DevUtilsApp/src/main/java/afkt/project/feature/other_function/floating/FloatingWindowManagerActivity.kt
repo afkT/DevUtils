@@ -14,7 +14,7 @@ import android.widget.LinearLayout
 import dev.DevUtils
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.assist.floating.*
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 悬浮窗管理辅助类 ( 需权限 )
@@ -59,7 +59,7 @@ class FloatingWindowManagerActivity :
         return if (FloatingWindowManagerAssist.checkOverlayPermission(this, true)) {
             true
         } else {
-            ToastTintUtils.error("请先开启悬浮窗权限")
+            toast_showShort(text = "请先开启悬浮窗权限")
             false
         }
     }
@@ -104,7 +104,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        ToastTintUtils.info("触发点击")
+                        toast_showShort(text = "触发点击")
                     }
                     return true
                 }
@@ -115,7 +115,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        ToastTintUtils.info("触发长按")
+                        toast_showShort(text = "触发长按")
                     }
                     return true
                 }

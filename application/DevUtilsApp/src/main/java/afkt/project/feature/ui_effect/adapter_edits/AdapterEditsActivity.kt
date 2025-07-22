@@ -12,7 +12,7 @@ import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 
 /**
@@ -41,7 +41,7 @@ class AdapterEditsActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Ap
                         TAG.log_dTag(
                             message = builder.toString()
                         )
-                        ToastTintUtils.success("数据已打印, 请查看 Logcat")
+                        toast_showShort(text = "数据已打印, 请查看 Logcat")
                     }.getView<View>()
                 toolbar?.addView(view)
 

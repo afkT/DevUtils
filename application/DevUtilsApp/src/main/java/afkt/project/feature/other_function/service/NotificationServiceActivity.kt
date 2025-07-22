@@ -9,7 +9,7 @@ import android.os.Build
 import android.service.notification.StatusBarNotification
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 通知栏监听服务 ( NotificationService )
@@ -104,7 +104,7 @@ class NotificationServiceActivity :
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         val bundle = it.extras
                         for (key in bundle.keySet()) {
-                            builder.append(DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.get(key))
+                            builder.append(DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.getString(key))
                         }
                     }
                     TAG.log_dTag(

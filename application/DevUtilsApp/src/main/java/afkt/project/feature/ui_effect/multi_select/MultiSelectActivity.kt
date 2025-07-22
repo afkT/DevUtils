@@ -14,7 +14,7 @@ import dev.expand.engine.log.log_dTag
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 
 /**
@@ -126,7 +126,7 @@ class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, App
             builder.append("\n是否选中: ").append(adapter.isSelect)
             builder.append("\n选中数量: ").append(adapter.selectSize)
             builder.append("\n总数: ").append(adapter.dataCount)
-            ToastTintUtils.normal(builder.toString())
+            toast_showShort(text = builder.toString())
         }.also { confirmView = it })
 
         toolbar?.addView(createTextView("全选") {

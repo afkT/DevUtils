@@ -18,9 +18,9 @@ import android.provider.ContactsContract.RawContacts
 import android.view.View
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.permission.permission_request
+import dev.expand.engine.toast.toast_showShort
 import dev.utils.app.*
 import dev.utils.app.DialogUtils.DialogListener
-import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ConvertUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.thread.DevThreadManager
@@ -38,7 +38,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
             it.apply {
                 binding.vidAddBtn.setOnClickListener(View.OnClickListener {
                     if (running) {
-                        ToastTintUtils.warning("运行中")
+                        toast_showShort(text = "运行中")
                         return@OnClickListener
                     }
                     permission_request(
@@ -56,7 +56,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
                                 deniedList: List<String>,
                                 notFoundList: List<String>
                             ) {
-                                ToastTintUtils.error("请开启联系人写入权限")
+                                toast_showShort(text = "请开启联系人写入权限")
                             }
                         }
                     )
@@ -85,12 +85,12 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
         // 判断是否符合条件
         val temp = start + end
         if (!ValidatorUtils.isNumber(temp)) {
-            ToastTintUtils.error("请输入数字")
+            toast_showShort(text = "请输入数字")
             return
         }
         val length = temp.length
         if (length >= 11) {
-            ToastTintUtils.error("开头与结尾需少于11位")
+            toast_showShort(text = "开头与结尾需少于11位")
             return
         }
         val diff = 11 - length
@@ -101,7 +101,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
         val tempNumber2 = start + StringUtils.forString(diff, "9") + end
         // 判断是否手机号
         if (!ValiToPhoneUtils.isPhone(tempNumber)) {
-            ToastTintUtils.error("请输入正确的手机号")
+            toast_showShort(text = "请输入正确的手机号")
             return
         }
         // 进行提示
@@ -134,7 +134,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
         end: String,
         count: Int
     ) {
-        ToastTintUtils.normal("创建中...")
+        toast_showShort(text = "创建中...")
         ViewUtils.setVisibility(true, binding.vidTipsTv)
         KeyBoardUtils.closeKeyboard()
         this.count = count
@@ -257,7 +257,7 @@ class AddContactActivity : BaseProjectActivity<ActivityAddContactBinding, AppVie
             if (count == value + 1) {
                 val tips = "$count 条数据, 创建成功"
                 TextViewUtils.setText(binding.vidTipsTv, tips)
-                ToastTintUtils.success(tips)
+                toast_showShort(text = tips)
                 running = false
             } else {
                 TextViewUtils.setText(

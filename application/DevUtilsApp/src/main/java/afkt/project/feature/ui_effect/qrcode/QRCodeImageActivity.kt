@@ -19,7 +19,7 @@ import dev.utils.app.ClipboardUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.TextViewUtils
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 import kotlinx.coroutines.MainScope
@@ -47,7 +47,7 @@ class QRCodeImageActivity : BaseProjectActivity<ActivityQrcodeImageBinding, AppV
                                 // 复制到剪切板
                                 ClipboardUtils.copyText(text)
                                 // 进行提示
-                                ToastTintUtils.success("复制成功 -> $text")
+                                toast_showShort(text = "复制成功 -> $text")
                             }
                         }
                     }, binding.vidSelectBtn, binding.vidTv

@@ -18,7 +18,6 @@ import dev.simple.app.base.asFragment
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraUtils
-import dev.utils.app.toast.ToastTintUtils
 import dev.widget.ui.ScanShapeView
 
 /**
@@ -141,7 +140,7 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
                         deniedList: List<String>,
                         notFoundList: List<String>
                     ) {
-                        ToastTintUtils.warning("需要摄像头权限预览")
+                        toast_showShort(text = "需要摄像头权限预览")
                     }
                 }
             )

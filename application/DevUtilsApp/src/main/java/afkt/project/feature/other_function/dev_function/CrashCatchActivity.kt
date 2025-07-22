@@ -5,7 +5,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.base.BaseApplication
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 奔溃日志捕获

@@ -16,7 +16,7 @@ import dev.expand.engine.permission.permission_request
 import dev.mvvm.utils.toSource
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.activity_result.ActivityResultAssist
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: Activity Result API
@@ -45,7 +45,7 @@ class ActivityResultAPIActivity :
                                         callback = this,
                                         deniedList = deniedList
                                     )
-                                    ToastTintUtils.warning("拍照需摄像头权限")
+                                    toast_showShort(text = "拍照需摄像头权限")
                                 }
                             }
                         )
@@ -65,7 +65,7 @@ class ActivityResultAPIActivity :
             if (it) {
                 binding.vidIv.display(source = mAssist?.inputValue?.toSource())
             } else {
-                ToastTintUtils.warning("非成功操作")
+                toast_showShort(text = "非成功操作")
             }
         }.setOperateCallback(object : ActivityResultAssist.OperateCallback<Uri>() {
 

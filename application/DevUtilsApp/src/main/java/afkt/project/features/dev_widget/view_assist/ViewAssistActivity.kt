@@ -6,11 +6,11 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewAssistBinding
 import android.view.LayoutInflater
 import android.view.View
+import dev.expand.engine.toast.toast_showShort
 import dev.mvvm.utils.size.AppSize
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.toast.ToastTintUtils
 import dev.widget.assist.ViewAssist
 
 /**
@@ -73,7 +73,7 @@ class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, AppVie
                 type: Int
             ) {
                 ListenerUtils.setOnClicks({
-                    ToastTintUtils.normal("click retry")
+                    toast_showShort(text = "click retry")
                     assist.setTag("").showIng()
                 }, view)
             }
@@ -157,7 +157,7 @@ class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, AppVie
                 type: Int
             ) {
                 ListenerUtils.setOnClicks(
-                    { ToastTintUtils.normal("Custom Type") },
+                    { toast_showShort(text = "Custom Type") },
                     view.findViewById(R.id.vid_cv)
                 )
             }

@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
-import dev.utils.app.toast.ToastTintUtils
+import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
@@ -89,7 +89,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    ToastTintUtils.info("触发点击")
+                    toast_showShort(text = "触发点击")
                 }
                 return true
             }
@@ -100,7 +100,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    ToastTintUtils.info("触发长按")
+                    toast_showShort(text = "触发长按")
                 }
                 return true
             }

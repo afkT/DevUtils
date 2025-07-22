@@ -6,8 +6,6 @@ import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.accessibility.AccessibilityEvent
 import dev.expand.engine.log.log_dTag
-import dev.utils.app.AppUtils
-import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 无障碍监听服务 ( AccessibilityListenerService )
@@ -68,13 +66,13 @@ class AccessibilityListenerServiceActivity :
         AccessibilityListenerService.setListener(object :
             AccessibilityListenerService.Listener {
             override fun onAccessibilityEvent(
-                accessibilityEvent: AccessibilityEvent?,
-                accessibilityListenerService: AccessibilityListenerService?
+                event: AccessibilityEvent?,
+                service: AccessibilityListenerService?
             ) {
                 val builder = StringBuilder()
                     .append("onAccessibilityEvent")
                     .append("\naccessibilityEvent: ")
-                    .append(accessibilityEvent)
+                    .append(event)
                 TAG.log_dTag(
                     message = builder.toString()
                 )

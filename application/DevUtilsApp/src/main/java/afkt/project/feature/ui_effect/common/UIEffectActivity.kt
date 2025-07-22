@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import dev.expand.engine.log.log_dTag
 import dev.utils.app.*
+import dev.utils.app.assist.ResourceColor
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ArrayUtils
@@ -229,7 +230,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         }
         // = 字体效果 =
         // 选中变白色
-        clickTab.setTextColor(resources.getColor(R.color.white))
+        clickTab.setTextColor(ResourceColor.get().getColor(R.color.white))
         // 未选中增加点击效果
         unClickTab.setTextColor(ResourceUtils.getColorStateList(R.color.selector_tab_text_color))
     }
@@ -279,7 +280,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         }
         // = 字体效果 =
         // 选中变白色
-        clickTab.setTextColor(resources.getColor(R.color.white))
+        clickTab.setTextColor(ResourceColor.get().getColor(R.color.white))
         // 设置未选中颜色
         unClickTab.setTextColor(StateListUtils.createColorStateList(R.color.white, R.color.red))
     }
