@@ -1,6 +1,7 @@
 package afkt.project.feature.other_function.floating
 
 import afkt.project.R
+import afkt.project.app.AppContext
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
@@ -125,7 +126,7 @@ internal class Utils private constructor() {
 
     // 悬浮 View
     private val mFloatingView: FloatingView by lazy {
-        FloatingView(DevUtils.getContext(), mTouchAssist)
+        FloatingView(AppContext.context(), mTouchAssist)
     }
 
     /**

@@ -1,7 +1,7 @@
 package afkt.project.app
 
 import afkt.project.R
-import afkt.project.app.base.BaseFragment
+import afkt.project.app.basic.BaseFragment
 import afkt.project.databinding.BaseTitleBarBinding
 import afkt.project.model.button.ButtonAdapterModel
 import android.content.Context

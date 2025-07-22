@@ -1,4 +1,4 @@
-package afkt.project.app.base
+package afkt.project.app.basic
 
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.BaseAppFragment

@@ -2,7 +2,7 @@ package afkt.project.feature.other_function.web_view
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
-import afkt.project.app.base.BaseApplication
+import afkt.project.app.basic.BaseApplication
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityWebviewBinding
 import android.net.http.SslError

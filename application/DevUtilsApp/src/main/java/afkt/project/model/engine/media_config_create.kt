@@ -68,7 +68,7 @@ fun Activity.createGalleryConfig(): IMediaEngine.EngineConfig {
 }
 
 /**
- * detail: PictureSelector 相册图片加载引擎
+ * detail: PictureSelector 相册图片加载 Engine
  * @author luck
  */
 class LuckImageEngineImpl private constructor() : ImageEngine {

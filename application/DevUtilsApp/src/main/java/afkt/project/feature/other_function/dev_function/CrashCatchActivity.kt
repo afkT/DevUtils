@@ -2,10 +2,8 @@ package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
-import afkt.project.app.base.BaseApplication
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 奔溃日志捕获

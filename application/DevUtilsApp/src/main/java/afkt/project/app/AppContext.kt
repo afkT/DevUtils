@@ -1,118 +1,67 @@
-package afkt.project.app.base
+package afkt.project.app
 
 import afkt.project.R
-import afkt.project.app.AppViewModel
+import afkt.project.app.basic.BaseApplication
 import afkt.project.app.helper.*
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
-import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
-import dev.engine.DevEngine
 import dev.engine.image.ImageConfig
 import dev.expand.engine.log.log_d
 import dev.mvvm.utils.image.AppImageConfig
 import dev.mvvm.utils.size.AppSize
 import dev.simple.DevSimple
 import dev.utils.DevFinal
-import dev.utils.LogPrintUtils
-import dev.utils.app.ActivityUtils
-import dev.utils.app.CrashUtils
-import dev.utils.app.CrashUtils.CrashCatchListener
 import dev.utils.app.ScreenshotUtils
 import dev.utils.app.VersionUtils
-import dev.utils.app.logger.DevLogger
-import dev.utils.app.logger.LogConfig
-import dev.utils.app.logger.LogLevel
 import dev.utils.common.DateUtils
-import dev.utils.common.StringUtils
 import dev.utils.common.assist.TimeCounter
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 
 /**
- * detail: Base Application
+ * detail: App Application
  * @author Ttt
  */
-class BaseApplication : MultiDexApplication(),
-    ViewModelStoreOwner {
+class AppContext : BaseApplication() {
 
-    // 日志 TAG
-    val TAG = "DevUtils_Log"
+    companion object {
 
-    override fun onCreate() {
-        super.onCreate()
+        // 日志 TAG
+        val TAG = "DevUtilsApp_Log"
 
-        // 初始化计时器
-        val timeCounter = TimeCounter()
+        private val viewModel: AppViewModel by lazy {
+            ViewModelUtils.getAppViewModel(
+                application(),
+                AppViewModel::class.java
+            )!!
+        }
 
-        // ============
-        // = DevUtils =
-        // ============
+        fun viewModel(): AppViewModel {
+            return viewModel
+        }
 
-        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-        DevUtils.init(this)
-        // 初始化日志配置
-        DevLogger.initialize(
-            LogConfig().logLevel(LogLevel.DEBUG)
-                .tag(TAG)
-                .sortLog(true) // 美化日志, 边框包围
-                .methodCount(0)
-        )
-        // 打开 lib 内部日志 - 线上环境, 不调用方法
-        DevUtils.openLog()
-        DevUtils.openDebug()
+        fun context(): Context {
+            return DevUtils.getContext()
+        }
 
-        // 可进行日志拦截编码
-        // DevLogger.setPrint(new DevLogger.Print())
-        // JCLogUtils.setPrint(new JCLogUtils.Print())
-        LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, msg ->
-            if (msg == null) return@Print
-            // 进行编码处理
-            val message = StringUtils.strEncode(msg, DevFinal.ENCODE.UTF_8)
-            when (logType) {
-                Log.VERBOSE -> Log.v(tag, message)
-                Log.DEBUG -> Log.d(tag, message)
-                Log.INFO -> Log.i(tag, message)
-                Log.WARN -> Log.w(tag, message)
-                Log.ERROR -> Log.e(tag, message)
-                Log.ASSERT -> Log.wtf(tag, message)
-                else -> Log.wtf(tag, message)
-            }
-        })
-
-        // ============
-        // = 初始化操作 =
-        // ============
-
-        // 初始化
-        initialize()
-
-        // 打印项目信息
-        AppHelper.printInfo(timeCounter)
+        fun context(context: Context?): Context {
+            return DevUtils.getContext(context)
+        }
     }
 
-    // ============
-    // = 初始化方法 =
-    // ============
+    // ===========
+    // = override =
+    // ===========
 
-    /**
-     * 统一初始化方法
-     */
-    private fun initialize() {
-        application = this
-        // 全局 ViewModel
-        mAppViewModelStore = ViewModelStore()
-        // 初始化引擎
-        initEngine()
-        // 初始化异常捕获处理
-        initCrash()
+    override fun onCreate() {
+        // 初始化计时器
+        val timeCounter = TimeCounter()
+        super.onCreate()
         // 初始化截图监听
         initScreenshot()
         // 初始化状态布局配置
@@ -121,40 +70,8 @@ class BaseApplication : MultiDexApplication(),
         initWebViewBuilder()
         // 初始化 App ImageConfig Creator
         initAppImageConfigCreator()
-    }
-
-    /**
-     * 初始化引擎
-     */
-    private fun initEngine() {
-        // DevEngine 完整初始化
-        DevEngine.completeInitialize(this)
-    }
-
-    /**
-     * 初始化异常捕获处理
-     */
-    private fun initCrash() {
-        // 捕获异常处理 => 在 BaseApplication 中调用
-        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
-            override fun handleException(ex: Throwable) {
-                // 保存日志信息
-            }
-
-            override fun uncaughtException(
-                context: Context,
-                thread: Thread,
-                ex: Throwable
-            ) {
-//                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
-//                System.exit(-1)
-//                // 从操作系统中结束掉当前程序的进程
-//                android.os.Process.killProcess(android.os.Process.myPid())
-                // 关闭 APP
-                ActivityUtils.getManager().exitApplication()
-                // 可启动新的 Activity 显示异常信息、打开 APP 等
-            }
-        })
+        // 打印项目信息
+        AppHelper.printInfo(timeCounter)
     }
 
     /**
@@ -310,39 +227,6 @@ class BaseApplication : MultiDexApplication(),
             }
         }
     }
-
-    // ==========
-    // = 静态方法 =
-    // ==========
-
-    companion object {
-
-        private lateinit var application: BaseApplication
-
-        private val viewModel: AppViewModel by lazy {
-            ViewModelUtils.getAppViewModel(
-                application, AppViewModel::class.java
-            )!!
-        }
-
-        fun app(): BaseApplication {
-            return application
-        }
-
-        fun viewModel(): AppViewModel {
-            return viewModel
-        }
-    }
-
-    // =======================
-    // = ViewModelStoreOwner =
-    // =======================
-
-    // ViewModelStore
-    private lateinit var mAppViewModelStore: ViewModelStore
-
-    override val viewModelStore: ViewModelStore
-        get() = mAppViewModelStore
 }
 
 /**
@@ -350,5 +234,5 @@ class BaseApplication : MultiDexApplication(),
  * @return Application ViewModel
  */
 fun appViewModel(): AppViewModel {
-    return BaseApplication.viewModel()
+    return AppContext.viewModel()
 }

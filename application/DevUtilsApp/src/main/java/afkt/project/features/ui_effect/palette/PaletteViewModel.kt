@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.palette
+package afkt.project.features.ui_effect.palette
 
 import afkt.project.app.AppViewModel
 import androidx.lifecycle.MutableLiveData

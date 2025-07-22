@@ -1,7 +1,7 @@
 package afkt.project.app.helper
 
 import afkt.project.R
-import afkt.project.app.base.BaseActivity
+import afkt.project.app.basic.BaseActivity
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build

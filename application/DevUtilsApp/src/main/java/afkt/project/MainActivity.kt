@@ -2,7 +2,7 @@ package afkt.project
 
 import afkt.project.app.AppActivity
 import afkt.project.app.AppViewModel
-import afkt.project.app.base.appViewModel
+import afkt.project.app.appViewModel
 import afkt.project.databinding.MainActivityBinding
 import afkt.project.model.button.args
 import androidx.navigation.findNavController

@@ -1,6 +1,6 @@
 package afkt.project.app
 
-import afkt.project.app.base.BaseActivity
+import afkt.project.app.basic.BaseActivity
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView

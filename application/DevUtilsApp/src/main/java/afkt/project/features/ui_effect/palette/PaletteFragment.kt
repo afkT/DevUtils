@@ -1,13 +1,12 @@
-package afkt.project.feature.ui_effect.palette
+package afkt.project.features.ui_effect.palette
 
 import afkt.project.R
-import afkt.project.app.project.BaseFragment
+import afkt.project.app.AppFragment
 import afkt.project.databinding.FragmentPaletteBinding
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import androidx.palette.graphics.Palette
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
@@ -20,17 +19,15 @@ fun newPaletteFragment(position: Int) = PaletteFragment().apply {
     arguments = bundleOf(DevFinal.STR.POSITION to position)
 }
 
-class PaletteFragment : BaseFragment<FragmentPaletteBinding>() {
+class PaletteFragment : AppFragment<FragmentPaletteBinding, PaletteViewModel>(
+    R.layout.fragment_palette
+) {
 
     private var palette: Palette? = null
 
     private var position: Int = 0
 
     private var wallpaper: WeakReference<Bitmap>? = null
-
-    private val viewModel by activityViewModels<PaletteViewModel>()
-
-    override fun baseContentId(): Int = R.layout.fragment_palette
 
     override fun onViewCreated(
         view: View,

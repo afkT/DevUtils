@@ -1,4 +1,4 @@
-package afkt.project.app.base
+package afkt.project.app.basic
 
 import afkt.project.app.helper.autoResources
 import android.content.res.Resources
@@ -56,13 +56,6 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-//        // 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
-//        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
     }
 
     // ============

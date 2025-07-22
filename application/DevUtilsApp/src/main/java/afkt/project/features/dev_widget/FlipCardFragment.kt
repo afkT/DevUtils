@@ -2,6 +2,7 @@ package afkt.project.features.dev_widget
 
 import afkt.project.BR
 import afkt.project.R
+import afkt.project.app.AppContext
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.app.helper.IMAGE_ROUND_10
@@ -29,7 +30,7 @@ import dev.widget.ui.FlipCardView
 class FlipCardFragment : AppFragment<FragmentDevWidgetFlipCardBinding, AppViewModel>(
     R.layout.fragment_dev_widget_flip_card, BR.viewModel, simple_Agile = { frg ->
         frg.asFragment<FlipCardFragment> {
-            val context = DevUtils.getContext()
+            val context = AppContext.context()
             // 自定义动画效果
             binding.vidFcv.setInOutAnimator(
                 AnimatorInflater.loadAnimator(context, R.animator.dev_flip_card_in),
