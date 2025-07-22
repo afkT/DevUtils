@@ -130,4 +130,9 @@
         android:id="@+id/ViewPager2Fragment"
         android:name="afkt.project.features.ui_effect.ViewPager2Fragment"
         android:label="ViewPager2Fragment" />
+
+    <fragment
+        android:id="@+id/SKUFragment"
+        android:name="afkt.project.features.ui_effect.sku.SKUFragment"
+        android:label="SKUFragment" />
 </navigation>

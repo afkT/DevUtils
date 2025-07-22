@@ -11,6 +11,15 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#ff4081</color>
+    <color name="color_ff2e42">#ff2e42</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+    <color name="color_0575e6">#0575e6</color>
+    <color name="color_3f51b5">#3f51b5</color>
+    <color name="color_3f51b5_05">#0d3f51b5</color>
+    <color name="color_c7c7c7">#c7c7c7</color>
+    <color name="color_bdb9b8">#bdb9b8</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_282828">#282828</color>
 
     <!-- Application 样式 -->
 

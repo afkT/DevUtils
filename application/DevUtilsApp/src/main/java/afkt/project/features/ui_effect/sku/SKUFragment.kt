@@ -1,65 +1,65 @@
 package afkt.project.features.ui_effect.sku
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentUiEffectSkuBinding
+import dev.expand.engine.json.fromJson
+import dev.expand.engine.toast.toast_showShort
+import dev.simple.app.base.asFragment
+import dev.utils.DevFinal
+import dev.utils.app.ResourceUtils
 import dev.utils.common.CollectionUtils
 
 /**
  * detail: 商品 SKU 组合封装实现
  * @author Ttt
  */
-class DevSKUActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is DevSKUActivity) {
-            it.apply {
-//                binding.vidRv.bindAdapter(ButtonList.moduleDevSKUButtonValues) { buttonValue ->
-//                    when (buttonValue.type) {
-//                        ButtonValue.BTN_SKU_DIALOG -> {
-//                            val skuFileName = "sku_test.json" // sku.json
-//                            val skuFileContent = ResourceUtils.readStringFromAssets(skuFileName)
-//                            val commoditySKU = skuFileContent.fromJson(
-//                                classOfT = CommoditySKU::class.java
-//                            )
-//
-//                            // ==============
-//                            // = SKU Dialog =
-//                            // ==============
-//
-//                            commoditySKU?.let { model ->
-//                                SKUDialog(it, object : SKUCallback {
-//                                    override fun callback(
-//                                        spec: Spec,
-//                                        number: Int,
-//                                        buyType: BuyType
-//                                    ) {
-//                                        ToastTintUtils.success(StringBuilder().apply {
-//                                            append("购买数量: ")
-//                                            append(number)
-//                                            append(DevFinal.SYMBOL.NEW_LINE)
-//                                            append("购买方式: ")
-//                                            append(buyType.desc)
-//                                            append(DevFinal.SYMBOL.NEW_LINE)
-//                                            append("规格名: ")
-//                                            append(spec.specName)
-//                                            append(DevFinal.SYMBOL.NEW_LINE)
-//                                            append("规格 id: ")
-//                                            append(spec.specId)
-//                                        }.toString())
-//                                    }
-//                                }).apply {
-//                                    // 显示 SKU Dialog
-//                                    assist.setDevDialog(this)
-//                                        .showDialog(BuyType.BUY, model, 1045)
-//                                }
-//                            }
-//                        }
-//
-//                        else -> buttonValue.routerActivity()
-//                    }
-//                }
+class SKUFragment : AppFragment<FragmentUiEffectSkuBinding, AppViewModel>(
+    R.layout.fragment_ui_effect_sku, simple_Agile = { frg ->
+        frg.asFragment<SKUFragment> {
+            binding.vidSku.setOnClickListener { view ->
+                val skuFileName = "sku_test.json" // sku.json
+                val skuFileContent = ResourceUtils.readStringFromAssets(skuFileName)
+                val commoditySKU = skuFileContent.fromJson(
+                    classOfT = CommoditySKU::class.java
+                )
+
+                // ==============
+                // = SKU Dialog =
+                // ==============
+
+                commoditySKU?.let { model ->
+                    SKUDialog(view.context, object : SKUCallback {
+                        override fun callback(
+                            spec: Spec,
+                            number: Int,
+                            buyType: BuyType
+                        ) {
+                            toast_showShort(
+                                text = StringBuilder().apply {
+                                    append("购买数量: ")
+                                    append(number)
+                                    append(DevFinal.SYMBOL.NEW_LINE)
+                                    append("购买方式: ")
+                                    append(buyType.desc)
+                                    append(DevFinal.SYMBOL.NEW_LINE)
+                                    append("规格名: ")
+                                    append(spec.specName)
+                                    append(DevFinal.SYMBOL.NEW_LINE)
+                                    append("规格 id: ")
+                                    append(spec.specId)
+                                }.toString()
+                            )
+                        }
+                    }).apply {
+                        // 显示 SKU Dialog
+                        assist.setDevDialog(this)
+                            .showDialog(BuyType.BUY, model, 1045)
+                    }
+                }
             }
+            binding.vidSku.performClick()
         }
     }
 )

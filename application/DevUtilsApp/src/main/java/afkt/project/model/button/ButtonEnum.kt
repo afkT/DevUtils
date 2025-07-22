@@ -161,7 +161,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_TEXTVIEW("两个 TextView 显示效果", R.id.TextViewFragment),
 
-    BTN_UI_EFFECT_SKU("商品 SKU 组合封装实现"),
+    BTN_UI_EFFECT_SKU("商品 SKU 组合封装实现", R.id.SKUFragment),
 
     BTN_UI_EFFECT_ADAPTER_EDITS("Adapter Item EditText 输入监听"),
 

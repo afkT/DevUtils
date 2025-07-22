@@ -22,7 +22,7 @@ class SKUAdapter(
 ) : DevDataAdapterExt<SKU.Attr, DevBaseViewBindingVH<SkuAdapterSpecBinding>>() {
 
     // 字体颜色
-    private val color92ba37 = ResourceColor.get().getColor(R.color.color_92ba37)
+    private val color3f51b5 = ResourceColor.get().getColor(R.color.color_3f51b5)
     private val color999999 = ResourceColor.get().getColor(R.color.color_999999)
 
     override fun onCreateViewHolder(
@@ -65,8 +65,8 @@ class SKUAdapter(
             if (isSelect(attr.id, attrValue)) {
                 // 已选中
                 vidValueTv.apply {
-                    setTextColor(color92ba37)
-                    setBackgroundResource(R.drawable.sku_shape_stroked_92ba37_corners6)
+                    setTextColor(color3f51b5)
+                    setBackgroundResource(R.drawable.sku_shape_stroked_3f51b5_corners6)
                     setOnClickListener {
                         unselect(attr.id)
                         // 刷新状态数据

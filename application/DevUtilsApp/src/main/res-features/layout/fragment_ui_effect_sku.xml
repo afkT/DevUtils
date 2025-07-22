@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/vid_sku"
+                style="@style/ViewTheme.Button.Single"
+                android:text="显示商品 SDK Dialog" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

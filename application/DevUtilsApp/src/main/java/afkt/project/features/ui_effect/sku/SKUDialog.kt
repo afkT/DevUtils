@@ -4,16 +4,16 @@ import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.SkuDialogSpecBinding
 import android.app.Dialog
+import android.content.Context
 import android.view.Gravity
-import androidx.fragment.app.FragmentActivity
 import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.expand.engine.image.display
+import dev.expand.engine.toast.toast_showShort
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.EditTextUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.BigDecimalUtils
 import dev.utils.common.ConvertUtils
 import kotlin.math.max
@@ -75,9 +75,9 @@ interface SKUCallback {
  * @author Ttt
  */
 class SKUDialog(
-    activity: FragmentActivity,
+    context: Context,
     private val callback: SKUCallback
-) : Dialog(activity, R.style.DevDialogFullScreenTheme) {
+) : Dialog(context, R.style.DevDialogFullScreenTheme) {
 
     private val binding: SkuDialogSpecBinding by lazy {
         SkuDialogSpecBinding.inflate(layoutInflater)
@@ -146,7 +146,7 @@ class SKUDialog(
                     callback.callback(spec, mNumberAssist.currentNumber, buyType)
                 }
             } else {
-                ToastTintUtils.error("请选择规格")
+                toast_showShort(text = "请选择规格")
             }
         }
 

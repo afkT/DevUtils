@@ -155,7 +155,7 @@
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_12"
-            android:background="@drawable/sku_gradient_92ba37_bfe076_corners10"
+            android:background="@drawable/sku_gradient_0575e6_3f51b5_corners10"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="确定"
