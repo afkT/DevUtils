@@ -74,14 +74,14 @@ class WrapViewModel : AppViewModel() {
             val randomText = "$i." + RandomUtils.getRandom(
                 text.toCharArray(), text.length
             )
-            wrapView.addView(createView(wrapView.context, randomText, layoutParams, drawable))
+            wrapView.addView(createTextView(wrapView.context, randomText, layoutParams, drawable))
         }
     }
 
     /**
-     * 随机创建 View
+     * 创建随机 TextView
      */
-    private fun createView(
+    private fun createTextView(
         context: Context,
         text: String,
         layoutParams: ViewGroup.LayoutParams,

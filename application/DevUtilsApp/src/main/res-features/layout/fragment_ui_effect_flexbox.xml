@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.ui_effect.FlexboxViewModel" />
+    </data>
+
+
+    <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickRefresh}"
+            android:text="刷新" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vid_rv"
+            style="@style/ViewTheme.RecyclerView.Margin.LR"
+            app:itemBinding="@{viewModel.adapter.itemBinding}"
+            app:items="@{viewModel.adapter.items}" />
+    </LinearLayout>
+</layout>

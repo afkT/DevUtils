@@ -78,23 +78,19 @@ enum class ButtonEnum(
     BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )", R.id.ScanShapeFragment),
 
     BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL(
-        "Linear Vertical ItemDecoration",
-        R.id.LinearVerticalFragment
+        "Linear Vertical ItemDecoration", R.id.LinearVerticalFragment
     ),
 
     BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL(
-        "Linear Horizontal ItemDecoration",
-        R.id.LinearHorizontalFragment
+        "Linear Horizontal ItemDecoration", R.id.LinearHorizontalFragment
     ),
 
     BTN_DEV_WIDGET_GRID_ITEM_VERTICAL(
-        "Grid Vertical ItemDecoration",
-        R.id.GridVerticalFragment
+        "Grid Vertical ItemDecoration", R.id.GridVerticalFragment
     ),
 
     BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL(
-        "Grid Horizontal ItemDecoration",
-        R.id.GridHorizontalFragment
+        "Grid Horizontal ItemDecoration", R.id.GridHorizontalFragment
     ),
 
     BTN_DEV_WIDGET_VIEW_ASSIST("View 填充辅助类"),
@@ -157,23 +153,11 @@ enum class ButtonEnum(
     // = UI Effect =
     // =============
 
-    BTN_UI_EFFECT_TOAST_TINT("ToastTint ( 着色美化 Toast )"),
-
-    BTN_UI_EFFECT_TOAST_TINT_SUCCESS("Toast Success"),
-
-    BTN_UI_EFFECT_TOAST_TINT_ERROR("Toast Error"),
-
-    BTN_UI_EFFECT_TOAST_TINT_INFO("Toast Info"),
-
-    BTN_UI_EFFECT_TOAST_TINT_NORMAL("Toast Normal"),
-
-    BTN_UI_EFFECT_TOAST_TINT_WARNING("Toast Warning"),
-
-    BTN_UI_EFFECT_TOAST_TINT_CUSTOM_STYLE("Toast Custom Style"),
+    BTN_UI_EFFECT_TOAST_TINT("ToastTint ( 着色美化 Toast )", R.id.ToastTintFragment),
 
     BTN_UI_EFFECT_UI_EFFECT("常见 UI、GradientDrawable 效果等"),
 
-    BTN_UI_EFFECT_TEXT_CALC("计算字体宽度、高度"),
+    BTN_UI_EFFECT_TEXT_CALC("计算字体宽度、高度", R.id.TextCalcFragment),
 
     BTN_UI_EFFECT_ADAPTER_EDITS("Adapter Item EditText 输入监听"),
 
@@ -191,7 +175,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
 
-    BTN_UI_EFFECT_TEXTVIEW("两个 TextView 显示效果"),
+    BTN_UI_EFFECT_TEXTVIEW("两个 TextView 显示效果", R.id.TextViewFragment),
 
     BTN_UI_EFFECT_ITEM_STICKY("RecyclerView 吸附效果"),
 
@@ -213,7 +197,9 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_PALETTE("Palette 调色板"),
 
-    BTN_UI_EFFECT_FLEXBOX_LAYOUTMANAGER("Flexbox LayoutManager"),
+    BTN_UI_EFFECT_FLEXBOX_LAYOUT_MANAGER(
+        "Flexbox LayoutManager", R.id.FlexboxFragment
+    ),
 
     BTN_UI_EFFECT_CHIP("Material Chip、ChipGroups、ChipDrawable"),
 

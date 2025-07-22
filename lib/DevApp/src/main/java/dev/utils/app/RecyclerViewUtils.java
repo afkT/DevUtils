@@ -23,25 +23,6 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     RecyclerView 截图使用 {@link CapturePictureUtils}
  *     RecyclerView 滑动使用 {@link ListViewUtils}
- *     <p></p>
- *     判断当前 view 是否在屏幕可见
- *     @see <a href="https://www.jianshu.com/p/85e8b9de5ecc"/>
- *     判断 RecyclerView 中 View 的可见性
- *     @see <a href="https://blog.csdn.net/xlh1191860939/article/details/113182209"/>
- *     RecyclerView 嵌套 EditText, EditText 获取焦点时滑动异常问题解决记录 ( requestChildRectangleOnScreen )
- *     @see <a href="https://blog.csdn.net/sunnyjerry/article/details/104416593"/>
- *     解决 ScrollView 嵌套 RecyclerView 的显示及滑动问题
- *     @see <a href="https://segmentfault.com/a/1190000011553735"/>
- *     RecyclerView 使用 GridLayoutManager 间距设置
- *     @see <a href="https://www.jianshu.com/p/f85923bd14ba"/>
- *     Android 可伸缩布局 - FlexboxLayout ( 支持 RecyclerView 集成 )
- *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
- *     Recycleview 中 item 没有填满屏幕的问题
- *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79363971"/>
- *     android RecyclerView 悬浮吸顶效果
- *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6"/>
- *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
- *     <p></p>
  *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
  *     int findFirstCompletelyVisibleItemPosition = linearManager.findFirstCompletelyVisibleItemPosition();
  *     // 最后一个完整的可见的 item 位置

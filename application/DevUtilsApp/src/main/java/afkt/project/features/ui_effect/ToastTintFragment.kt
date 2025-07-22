@@ -1,45 +1,57 @@
-package afkt.project.feature.ui_effect.toast_tint
+package afkt.project.features.ui_effect
 
+import afkt.project.BR
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentUiEffectToastTintBinding
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.text.TextUtils.TruncateAt
+import android.text.TextUtils
+import android.view.View
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils
-import utils_use.toast.ToastTintUse
 
 /**
  * detail: ToastTint ( 着色美化 Toast )
  * @author Ttt
- * [ToastTintUse]
  */
-class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is ToastTintActivity) {
-//            it.apply {
-//                binding.vidRv.bindAdapter(ButtonList.toastButtonValues) { buttonValue ->
-//                    when (buttonValue.type) {
-//                        ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
-//                        ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
-//                        ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
-//                        ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
-//                        ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
-//                        ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
-//                            TempStyle(), "Custom Style Toast",
-//                            ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
-//                        )
-//
-//                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-//                    }
-//                }
-//            }
-        }
+class ToastTintFragment : AppFragment<FragmentUiEffectToastTintBinding, ToastTintViewModel>(
+    R.layout.fragment_ui_effect_toast_tint, BR.viewModel
+)
+
+class ToastTintViewModel : AppViewModel() {
+
+    var clickToastSuccess = View.OnClickListener { view ->
+        ToastTintUtils.success("Success Style Toast")
     }
-) {
+
+    var clickToastError = View.OnClickListener { view ->
+        ToastTintUtils.error("Error Style Toast")
+    }
+
+    var clickToastInfo = View.OnClickListener { view ->
+        ToastTintUtils.info("Info Style Toast")
+    }
+
+    var clickToastNormal = View.OnClickListener { view ->
+        ToastTintUtils.normal("Normal Style Toast")
+    }
+
+    var clickToastWarning = View.OnClickListener { view ->
+        ToastTintUtils.warning("Warning Style Toast")
+    }
+
+    var clickToastCustom = View.OnClickListener { view ->
+        ToastTintUtils.custom(
+            TempStyle(), "Custom Style Toast",
+            ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
+        )
+    }
+
+    // =
+
     /**
      * 自定义实现样式
      * [ToastTintUtils.SuccessStyle]
@@ -79,7 +91,7 @@ class ToastTintActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppVi
         /**
          * Ellipsize 效果
          */
-        override fun getEllipsize(): TruncateAt? = null
+        override fun getEllipsize(): TextUtils.TruncateAt? = null
 
         /**
          * 字体样式

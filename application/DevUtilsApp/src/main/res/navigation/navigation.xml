@@ -105,4 +105,24 @@
         android:id="@+id/UIEffectFragment"
         android:name="afkt.project.features.UIEffectFragment"
         android:label="UIEffectFragment" />
+
+    <fragment
+        android:id="@+id/TextCalcFragment"
+        android:name="afkt.project.features.ui_effect.TextCalcFragment"
+        android:label="TextCalcFragment" />
+
+    <fragment
+        android:id="@+id/TextViewFragment"
+        android:name="afkt.project.features.ui_effect.TextViewFragment"
+        android:label="TextViewFragment" />
+
+    <fragment
+        android:id="@+id/ToastTintFragment"
+        android:name="afkt.project.features.ui_effect.ToastTintFragment"
+        android:label="ToastTintFragment" />
+
+    <fragment
+        android:id="@+id/FlexboxFragment"
+        android:name="afkt.project.features.ui_effect.FlexboxFragment"
+        android:label="FlexboxFragment" />
 </navigation>

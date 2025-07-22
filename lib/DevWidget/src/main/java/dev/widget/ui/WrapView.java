@@ -14,11 +14,6 @@ import dev.widget.R;
  * detail: 换行 View
  * @author Ttt
  * <pre>
- *     Google FlexboxLayout 推荐使用该库, 支持 RecyclerView ( FlexboxLayoutManager )
- *     @see <a href="https://github.com/google/flexbox-layout"/>
- *     Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
- *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
- *     <p></p>
  *     app:dev_maxLine=""
  *     app:dev_rowTopMargin=""
  *     app:dev_viewLeftMargin=""
