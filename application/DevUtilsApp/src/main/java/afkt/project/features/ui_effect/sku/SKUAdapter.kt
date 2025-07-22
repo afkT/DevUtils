@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_sku
+package afkt.project.features.ui_effect.sku
 
 import afkt.project.R
 import afkt.project.databinding.SkuAdapterSpecBinding
@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.utils.app.ResourceUtils
+import dev.utils.app.assist.ResourceColor
 
 /**
  * detail: SKU 适配器
@@ -22,8 +22,8 @@ class SKUAdapter(
 ) : DevDataAdapterExt<SKU.Attr, DevBaseViewBindingVH<SkuAdapterSpecBinding>>() {
 
     // 字体颜色
-    private val color92ba37 = ResourceUtils.getColor(R.color.color_92ba37)
-    private val color999999 = ResourceUtils.getColor(R.color.color_999999)
+    private val color92ba37 = ResourceColor.get().getColor(R.color.color_92ba37)
+    private val color999999 = ResourceColor.get().getColor(R.color.color_999999)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

@@ -11,5 +11,5 @@
         android:layout_height="@dimen/dp_200"
         android:layout_gravity="center"
         android:layout_margin="@dimen/dp_10"
-        tools:background="@drawable/bg_wallpaper2" />
+        tools:background="@mipmap/bg_wallpaper2" />
 </LinearLayout>

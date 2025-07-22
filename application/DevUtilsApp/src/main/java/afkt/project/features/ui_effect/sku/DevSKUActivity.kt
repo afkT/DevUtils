@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_sku
+package afkt.project.features.ui_effect.sku
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
@@ -7,7 +7,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding
 import dev.utils.common.CollectionUtils
 
 /**
- * detail: DevSKU 商品 SKU 组合封装实现
+ * detail: 商品 SKU 组合封装实现
  * @author Ttt
  */
 class DevSKUActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
@@ -97,15 +97,15 @@ data class AttrValue(
     val attrValue: String
 )
 
-// =================
-// = DevSKU 转换处理 =
-// =================
+// ==============
+// = SKU 转换处理 =
+// ==============
 
 /**
- * detail: DevSKU [SKU] 封装类转换
+ * detail: [SKU] 封装类转换
  * @author Ttt
- * 如何使用 DevSKU:
- * 首先编写 Convert 类将服务器返回的信息转换为 DevSKU 封装类
+ * 如何使用:
+ * 首先编写 Convert 类将服务器返回的信息转换为 SKU 封装类
  * [SKU.Model]      数据集基本模型
  * [SKU.Attr]       属性
  * [SKU.AttrValue]  属性值
@@ -118,9 +118,9 @@ class SKUConvert {
     // SKU 数据处理包装 ( 对外公开快捷使用 )
     val skuData = SKUData<Spec>()
 
-    // ===============================================
-    // = 以下方法作用于将服务器返回的信息转换为 DevSKU 封装类 =
-    // ===============================================
+    // =============================================
+    // = 以下方法作用于将服务器返回的信息转换为 SKU 封装类 =
+    // =============================================
 
     /**
      * 转换数据

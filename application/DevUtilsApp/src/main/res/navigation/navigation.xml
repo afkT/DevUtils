@@ -125,4 +125,9 @@
         android:id="@+id/FlexboxFragment"
         android:name="afkt.project.features.ui_effect.FlexboxFragment"
         android:label="FlexboxFragment" />
+
+    <fragment
+        android:id="@+id/ViewPager2Fragment"
+        android:name="afkt.project.features.ui_effect.ViewPager2Fragment"
+        android:label="ViewPager2Fragment" />
 </navigation>

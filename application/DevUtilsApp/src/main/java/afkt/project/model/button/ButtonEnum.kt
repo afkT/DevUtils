@@ -153,11 +153,15 @@ enum class ButtonEnum(
     // = UI Effect =
     // =============
 
-    BTN_UI_EFFECT_TOAST_TINT("ToastTint ( 着色美化 Toast )", R.id.ToastTintFragment),
-
     BTN_UI_EFFECT_UI_EFFECT("常见 UI、GradientDrawable 效果等"),
 
+    BTN_UI_EFFECT_TOAST_TINT("ToastTint ( 着色美化 Toast )", R.id.ToastTintFragment),
+
     BTN_UI_EFFECT_TEXT_CALC("计算字体宽度、高度", R.id.TextCalcFragment),
+
+    BTN_UI_EFFECT_TEXTVIEW("两个 TextView 显示效果", R.id.TextViewFragment),
+
+    BTN_UI_EFFECT_SKU("商品 SKU 组合封装实现"),
 
     BTN_UI_EFFECT_ADAPTER_EDITS("Adapter Item EditText 输入监听"),
 
@@ -173,11 +177,27 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_QRCODE_SCAN("二维码扫描解析"),
 
+    BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画"),
+
     BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
 
-    BTN_UI_EFFECT_TEXTVIEW("两个 TextView 显示效果", R.id.TextViewFragment),
+    BTN_UI_EFFECT_PALETTE("Palette 调色板"),
 
-    BTN_UI_EFFECT_ITEM_STICKY("RecyclerView 吸附效果"),
+    BTN_UI_EFFECT_VIEWPAGER2("ViewPager2", R.id.ViewPager2Fragment),
+
+    BTN_UI_EFFECT_MATERIAL_CHIP("Material Chip、ChipGroups、ChipDrawable"),
+
+    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW("Material ShapeableImageView"),
+
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET("Material BottomSheet"),
+
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG("Material BottomSheetDialog"),
+
+    BTN_UI_EFFECT_RECY_FLEXBOX(
+        "Flexbox LayoutManager", R.id.FlexboxFragment
+    ),
+
+    BTN_UI_EFFECT_RECY_ITEM_STICKY("RecyclerView 吸附效果"),
 
     BTN_UI_EFFECT_RECY_ITEM_SLIDE("RecyclerView 滑动删除、上下滑动"),
 
@@ -189,29 +209,9 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_PAGER_SNAP_MAX("PagerSnapHelper - 无限滑动"),
 
-    BTN_UI_EFFECT_SHAPEABLE_IMAGE_VIEW("Material ShapeableImageView"),
+    BTN_UI_EFFECT_RECY_CONCATADAPTER("RecyclerView - ConcatAdapter"),
 
-    BTN_UI_EFFECT_BOTTOM_SHEET("Material BottomSheet"),
-
-    BTN_UI_EFFECT_BOTTOM_SHEET_DIALOG("Material BottomSheetDialog"),
-
-    BTN_UI_EFFECT_PALETTE("Palette 调色板"),
-
-    BTN_UI_EFFECT_FLEXBOX_LAYOUT_MANAGER(
-        "Flexbox LayoutManager", R.id.FlexboxFragment
-    ),
-
-    BTN_UI_EFFECT_CHIP("Material Chip、ChipGroups、ChipDrawable"),
-
-    BTN_UI_EFFECT_VIEWPAGER2("ViewPager2"),
-
-    BTN_UI_EFFECT_RECYCLERVIEW_CONCATADAPTER("RecyclerView - ConcatAdapter"),
-
-    BTN_UI_EFFECT_RECYCLERVIEW_MULTITYPE_ADAPTER("RecyclerView MultiType Adapter"),
-
-    BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画"),
-
-    BTN_UI_EFFECT_SKU("DevSKU 商品 SKU 组合封装实现"),
+    BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER("RecyclerView MultiType Adapter"),
 
     // ==================
     // = Other Function =

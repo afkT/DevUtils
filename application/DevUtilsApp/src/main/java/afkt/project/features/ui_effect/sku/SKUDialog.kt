@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_sku
+package afkt.project.features.ui_effect.sku
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_10
@@ -83,7 +83,7 @@ class SKUDialog(
         SkuDialogSpecBinding.inflate(layoutInflater)
     }
 
-    // DevSKU [SKU] 封装类转换
+    // [SKU] 封装类转换
     private val skuConvert = SKUConvert()
 
     // SKU 适配器
@@ -226,7 +226,7 @@ class SKUDialog(
             // = 数量监听事件接口 =
             // =================
 
-            numberListener = object : INumberListener {
+            setNumberListener(object : INumberListener {
                 override fun onPrepareChanged(
                     isAdd: Boolean,
                     curNumber: Int,
@@ -253,38 +253,37 @@ class SKUDialog(
                         binding.vidNumberEt, curNumber.toString()
                     )
                 }
-            }
+            })
 
             // ==========
             // = 输入监听 =
             // ==========
 
-            binding.vidNumberEt
-                .addTextChangedListener(object : EditTextUtils.DevTextWatcher() {
-                    override fun onTextChanged(
-                        text: CharSequence,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        val inputNumber = ConvertUtils.toInt(text)
-                        // 数量相同则不处理
-                        if (inputNumber == currentNumber) {
-                            return
-                        }
-                        // 如果小于最小值则修改为最小值
-                        if (isLessThanMinNumber(inputNumber)) {
-                            currentNumber = MIN_NUMBER
-                            return
-                        }
-                        // 如果大于最大值则修改为最大值
-                        if (isGreaterThanMaxNumber(inputNumber)) {
-                            currentNumber = MAX_NUMBER
-                            return
-                        }
-                        currentNumber = inputNumber
+            binding.vidNumberEt.addTextChangedListener(object : EditTextUtils.DevTextWatcher() {
+                override fun onTextChanged(
+                    text: CharSequence,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    val inputNumber = ConvertUtils.toInt(text)
+                    // 数量相同则不处理
+                    if (inputNumber == currentNumber) {
+                        return
                     }
-                })
+                    // 如果小于最小值则修改为最小值
+                    if (isLessThanMinNumber(inputNumber)) {
+                        mNumberAssist.setCurrentNumber(MIN_NUMBER)
+                        return
+                    }
+                    // 如果大于最大值则修改为最大值
+                    if (isGreaterThanMaxNumber(inputNumber)) {
+                        mNumberAssist.setCurrentNumber(MAX_NUMBER)
+                        return
+                    }
+                    mNumberAssist.setCurrentNumber(inputNumber)
+                }
+            })
 
             // ==========
             // = 按钮处理 =

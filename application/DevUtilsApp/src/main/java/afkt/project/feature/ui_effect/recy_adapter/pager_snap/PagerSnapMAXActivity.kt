@@ -31,8 +31,9 @@ class PagerSnapMAXActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Ap
 
                 // 初始化布局管理器、适配器
                 val adapter = PagerSnapMAXAdapter(lists)
-                binding.vidRv.layoutManager =
-                    LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
+                binding.vidRv.layoutManager = LinearLayoutManager(
+                    this, RecyclerView.HORIZONTAL, false
+                ) // VERTICAL
                 adapter.bindAdapter(binding.vidRv)
                 val helper = PagerSnapHelper()
                 helper.attachToRecyclerView(binding.vidRv)

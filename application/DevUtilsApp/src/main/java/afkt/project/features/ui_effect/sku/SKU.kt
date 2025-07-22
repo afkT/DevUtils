@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_sku
+package afkt.project.features.ui_effect.sku
 
 import android.text.TextUtils
 import dev.base.multiselect.DevMultiSelectMap

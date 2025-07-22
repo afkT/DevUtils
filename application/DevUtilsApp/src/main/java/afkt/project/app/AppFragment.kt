@@ -1,5 +1,6 @@
 package afkt.project.app
 
+import afkt.project.R
 import afkt.project.app.base.BaseFragment
 import afkt.project.databinding.BaseTitleBarBinding
 import afkt.project.model.button.ButtonAdapterModel
@@ -17,6 +18,7 @@ import com.hjq.bar.TitleBar
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.controller.ui.theme.FragmentUITheme
+import dev.utils.app.ViewUtils
 import dev.utils.common.StringUtils
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
@@ -150,6 +152,28 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
                 systemBars.right, systemBars.bottom
             )
             insets
+        }
+    }
+
+    // ==========
+    // = 快捷方法 =
+    // ==========
+
+    /**
+     * 设置 TitleBar 右边文案以及点击事件
+     * @param title
+     * @param listener
+     */
+    fun setTitleBarRight(
+        title: CharSequence,
+        listener: View.OnClickListener
+    ) {
+        // 设置右边切换按钮
+        val titleView = contentAssist.titleLinear?.getChildAt(0)
+        val titleBar = ViewUtils.findViewById<TitleBar>(titleView, R.id.vid_title)
+        titleBar?.apply {
+            setRightTitle(title)
+            rightView.setOnClickListener(listener)
         }
     }
 }

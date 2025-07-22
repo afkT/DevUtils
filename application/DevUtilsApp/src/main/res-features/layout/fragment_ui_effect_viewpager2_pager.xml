@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <dev.widget.custom.CustomNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vid_preface_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_15"
+                android:textSize="@dimen/sp_17"
+                tools:text="前言" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vid_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_15"
+                android:gravity="center"
+                android:textSize="@dimen/sp_28"
+                tools:text="标题" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/vid_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_15"
+                android:scaleType="fitXY"
+                tools:background="@mipmap/bg_wallpaper" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vid_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_15"
+                android:textSize="@dimen/sp_20"
+                tools:text="内容" />
+        </LinearLayout>
+    </dev.widget.custom.CustomNestedScrollView>
+</layout>

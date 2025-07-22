@@ -1,4 +1,4 @@
-package afkt.project.feature.dev_widget.view_assist
+package afkt.project.features.dev_widget.view_assist
 
 import afkt.project.R
 import afkt.project.databinding.AdapterRecyclerLoadingBinding
