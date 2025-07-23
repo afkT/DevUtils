@@ -181,7 +181,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
 
-    BTN_UI_EFFECT_PALETTE("Palette 调色板"),
+    BTN_UI_EFFECT_PALETTE("Palette 调色板", R.id.PaletteFragment),
 
     BTN_UI_EFFECT_VIEWPAGER2("ViewPager2", R.id.ViewPager2Fragment),
 

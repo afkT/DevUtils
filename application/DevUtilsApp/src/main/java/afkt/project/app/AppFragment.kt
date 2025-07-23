@@ -15,6 +15,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
+import com.lihang.ShadowLayout
 import dev.simple.app.base.FragmentVMType
 import dev.simple.app.base.interfaces.BindingFragmentView
 import dev.simple.app.controller.ui.theme.FragmentUITheme
@@ -101,8 +102,10 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         if (isAddTitleBar()) {
             setStatusBarHeightPadding(binding.root)
         } else {
-            // 默认设置顶部状态栏、底部导航栏边距
-            setOnApplyWindowInsetsListener(binding.root)
+            if (isApplyWindowInsets()) {
+                // 默认设置顶部状态栏、底部导航栏边距
+                setOnApplyWindowInsetsListener(binding.root)
+            }
         }
     }
 
@@ -110,6 +113,9 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         // 存在标题才添加 TitleBar
         return StringUtils.isNotEmpty(viewModel.intentData.getTitle())
     }
+
+    // 是否设置顶部状态栏、底部导航栏边距
+    open fun isApplyWindowInsets(): Boolean = true
 
     // ==========
     // = 内部方法 =
@@ -120,7 +126,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
      * @param view [View]
      * @param paddingBottom 是否设置 Padding Bottom
      */
-    private fun setOnApplyWindowInsetsListener(
+    fun setOnApplyWindowInsetsListener(
         view: View,
         paddingBottom: Boolean = true
     ) {
@@ -140,7 +146,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
      * @param view [View]
      * @param paddingTop 是否设置 Padding Top
      */
-    private fun setStatusBarHeightPadding(
+    fun setStatusBarHeightPadding(
         view: View,
         paddingTop: Boolean = false
     ) {
@@ -169,12 +175,26 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         listener: View.OnClickListener
     ) {
         // 设置右边切换按钮
-        val titleView = contentAssist.titleLinear?.getChildAt(0)
-        val titleBar = ViewUtils.findViewById<TitleBar>(titleView, R.id.vid_title)
-        titleBar?.apply {
+        titleBar()?.apply {
             setRightTitle(title)
             rightView.setOnClickListener(listener)
         }
+    }
+
+    /**
+     * 获取 Title View
+     */
+    fun titleView(): ShadowLayout? {
+        val titleView = contentAssist.titleLinear?.getChildAt(0)
+        if (titleView is ShadowLayout) return titleView
+        return null
+    }
+
+    /**
+     * 获取 TitleBar
+     */
+    fun titleBar(): TitleBar? {
+        return ViewUtils.findViewById(titleView(), R.id.vid_title)
     }
 }
 
