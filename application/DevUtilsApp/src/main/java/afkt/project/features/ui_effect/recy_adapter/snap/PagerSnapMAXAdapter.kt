@@ -1,9 +1,8 @@
-package afkt.project.feature.ui_effect.recy_adapter.pager_snap
+package afkt.project.features.ui_effect.recy_adapter.snap
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterPagerSnapBinding
-import afkt.project.model.data.bean.ItemBean
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -18,8 +17,8 @@ import dev.mvvm.utils.toSource
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-class PagerSnapMAXAdapter(data: List<ItemBean>) :
-    DevDataAdapter<ItemBean, RecyclerView.ViewHolder>() {
+class PagerSnapMAXAdapter(data: List<SnapItemModel>) :
+    DevDataAdapter<SnapItemModel, RecyclerView.ViewHolder>() {
 
     init {
         setDataList(data, false)
@@ -55,14 +54,14 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) :
         viewHolder: RecyclerView.ViewHolder,
         position: Int
     ) {
-        val size = dataSize
-        if (size != 0) {
-            val holder = viewHolder as DevBaseViewDataBindingVH<AdapterPagerSnapBinding>
-            val index = position % size
-
-            holder.binding.page = "$position - $index"
-            holder.binding.item = getDataItem(index)
-        }
+//        val size = dataSize
+//        if (size != 0) {
+//            val holder = viewHolder as DevBaseViewDataBindingVH<AdapterPagerSnapBinding>
+//            val index = position % size
+//
+//            holder.binding.page = "$position - $index"
+//            holder.binding.item = getDataItem(index)
+//        }
     }
 
     companion object {

@@ -132,12 +132,17 @@
         android:label="ViewPager2Fragment" />
 
     <fragment
+        android:id="@+id/SKUFragment"
+        android:name="afkt.project.features.ui_effect.sku.SKUFragment"
+        android:label="SKUFragment" />
+
+    <fragment
         android:id="@+id/PaletteFragment"
         android:name="afkt.project.features.ui_effect.palette.PaletteFragment"
         android:label="PaletteFragment" />
 
     <fragment
-        android:id="@+id/SKUFragment"
-        android:name="afkt.project.features.ui_effect.sku.SKUFragment"
-        android:label="SKUFragment" />
+        android:id="@+id/LinearSnapFragment"
+        android:name="afkt.project.features.ui_effect.recy_adapter.snap.LinearSnapFragment"
+        android:label="LinearSnapFragment" />
 </navigation>

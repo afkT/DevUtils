@@ -201,7 +201,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_ITEM_SLIDE("RecyclerView 滑动删除、上下滑动"),
 
-    BTN_UI_EFFECT_RECY_LINEAR_SNAP("LinearSnapHelper - RecyclerView"),
+    BTN_UI_EFFECT_RECY_LINEAR_SNAP("LinearSnapHelper - RecyclerView", R.id.LinearSnapFragment),
 
     BTN_UI_EFFECT_RECY_LINEAR_SNAP_MAX("LinearSnapHelper - 无限滑动"),
 

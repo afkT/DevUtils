@@ -1,11 +1,9 @@
-package afkt.project.feature.ui_effect.recy_adapter.linear_snap
+package afkt.project.features.ui_effect.recy_adapter.snap
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.bean.ItemBean
-import afkt.project.model.data.bean.ItemBean.Companion.newItemBean
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -28,8 +26,7 @@ class LinearSnapMAXActivity :
                     // 根布局处理
                     QuickHelper.get(parent).setPadding(0)
 
-                    val lists = mutableListOf<ItemBean>()
-                    for (i in 0..9) lists.add(newItemBean())
+                    val lists = SnapItemModel.randomItemLists()
 
                     // 初始化布局管理器、适配器
                     val adapter = LinearSnapMAXAdapter(lists)

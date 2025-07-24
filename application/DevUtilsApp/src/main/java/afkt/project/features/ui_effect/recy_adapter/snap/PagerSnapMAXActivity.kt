@@ -1,10 +1,9 @@
-package afkt.project.feature.ui_effect.recy_adapter.pager_snap
+package afkt.project.features.ui_effect.recy_adapter.snap
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.bean.ItemBean
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -26,8 +25,7 @@ class PagerSnapMAXActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Ap
                 // 根布局处理
                 QuickHelper.get(parent).setPadding(0)
 
-                val lists = mutableListOf<ItemBean>()
-                for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
+                val lists = SnapItemModel.randomItemPagerLists()
 
                 // 初始化布局管理器、适配器
                 val adapter = PagerSnapMAXAdapter(lists)

@@ -6,18 +6,13 @@
     <data>
 
         <variable
-            name="item"
+            name="itemValue"
             type="afkt.project.features.ui_effect.recy_adapter.snap.SnapItemModel" />
-
-        <variable
-            name="page"
-            type="String" />
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         tools:background="@color/color_f5">
 
         <androidx.cardview.widget.CardView
@@ -25,67 +20,61 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/dp_12"
-            android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="@dimen/dp_15"
-            app:cardElevation="@dimen/dp_5"
-            tools:targetApi="lollipop">
+            app:cardElevation="@dimen/dp_5">
 
             <LinearLayout
-                android:layout_width="@dimen/dp_220"
+                android:layout_width="@dimen/dp_200"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_15"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/vid_iv"
-                    android:layout_width="@dimen/dp_220"
-                    android:layout_height="@dimen/dp_391"
-                    app:imageUrl="@{item.imageUrl}" />
+                    android:layout_width="@dimen/dp_200"
+                    android:layout_height="@dimen/dp_200"
+                    app:binding_url="@{itemValue.imageUrl}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_title_tv"
                     style="@style/ViewTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{item.title}"
+                    android:text="@{itemValue.title}"
                     android:textSize="@dimen/sp_25"
                     tools:text="这是标题" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_subtitle_tv"
                     style="@style/ViewTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_5"
-                    android:text="@{item.subtitle}"
+                    android:text="@{itemValue.subtitle}"
                     android:textColor="@color/color_55"
                     android:textSize="@dimen/sp_16"
                     tools:text="这是副标题" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_time_tv"
                     style="@style/ViewTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_5"
-                    android:text="@{item.timeFormat}"
+                    android:text="@{itemValue.timeFormat}"
                     android:textColor="@color/color_99"
                     android:textSize="@dimen/sp_13"
                     tools:text="2020.06.17" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/vid_index_tv"
                 style="@style/ViewTheme.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_margin="@dimen/dp_10"
-                android:text="@{page}"
+                android:text="@{itemValue.index}"
                 android:textColor="@color/color_55"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"

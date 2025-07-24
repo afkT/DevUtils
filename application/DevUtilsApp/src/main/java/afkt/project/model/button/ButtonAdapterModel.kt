@@ -33,7 +33,7 @@ class ButtonAdapterModel() : AdapterModel<ButtonEnum>() {
 
     // Item Binding
     val itemBinding = ItemBinding.of<ButtonEnum>(
-        BR.itemValue, R.layout.base_button_adapter_item
+        BR.itemValue, R.layout.adapter_item_button_enum
     ).bindExtra(BR.itemClick, itemClick)
 
     // ==========
