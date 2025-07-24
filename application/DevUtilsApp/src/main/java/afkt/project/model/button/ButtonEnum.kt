@@ -197,7 +197,7 @@ enum class ButtonEnum(
         "Flexbox LayoutManager", R.id.FlexboxFragment
     ),
 
-    BTN_UI_EFFECT_RECY_ITEM_STICKY("RecyclerView 吸附效果"),
+    BTN_UI_EFFECT_RECY_ITEM_STICKY("RecyclerView 吸附效果", R.id.ItemStickyFragment),
 
     BTN_UI_EFFECT_RECY_ITEM_SLIDE("RecyclerView 滑动删除、上下滑动"),
 
