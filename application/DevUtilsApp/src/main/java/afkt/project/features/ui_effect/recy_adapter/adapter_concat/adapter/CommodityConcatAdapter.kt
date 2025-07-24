@@ -1,10 +1,10 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
 import afkt.project.databinding.AdapterMultiSelectBinding
-import afkt.project.feature.ui_effect.recy_adapter.CommodityBean
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.CommodityBean
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

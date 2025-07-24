@@ -11,7 +11,7 @@ import dev.simple.app.base.asFragment
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**
- * detail: LinearSnapHelper - RecyclerView
+ * detail: RecyclerView - LinearSnapHelper
  * @author Ttt
  * LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  */

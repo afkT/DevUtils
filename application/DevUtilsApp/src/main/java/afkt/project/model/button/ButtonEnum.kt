@@ -43,9 +43,9 @@ enum class ButtonEnum(
     // = Lib Utils =
     // =============
 
-    BTN_LIB_UTILS_GREEN_DAO("GreenDAO"),
+    BTN_LIB_UTILS_DB_GREEN_DAO("GreenDAO"),
 
-    BTN_LIB_UTILS_ROOM("Room"),
+    BTN_LIB_UTILS_DB_ROOM("Room"),
 
     BTN_LIB_UTILS_GLIDE("GlideUtils"),
 
@@ -201,11 +201,9 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_ITEM_SLIDE("RecyclerView 滑动删除、上下滑动"),
 
-    BTN_UI_EFFECT_RECY_LINEAR_SNAP("LinearSnapHelper - RecyclerView", R.id.LinearSnapFragment),
+    BTN_UI_EFFECT_RECY_LINEAR_SNAP("RecyclerView - LinearSnapHelper", R.id.LinearSnapFragment),
 
-    BTN_UI_EFFECT_RECY_PAGER_SNAP("PagerSnapHelper - RecyclerView", R.id.PagerSnapFragment),
-
-    BTN_UI_EFFECT_RECY_PAGER_SNAP_MAX("PagerSnapHelper - 无限滑动"),
+    BTN_UI_EFFECT_RECY_PAGER_SNAP("RecyclerView - PagerSnapHelper", R.id.PagerSnapFragment),
 
     BTN_UI_EFFECT_RECY_CONCATADAPTER("RecyclerView - ConcatAdapter"),
 

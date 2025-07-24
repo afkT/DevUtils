@@ -1,14 +1,15 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatShapeableImageBinding
-import afkt.project.feature.ui_effect.recy_adapter.ShapeableImageBean
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ShapeableImageBeanItem
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.drakeet.multitype.ItemViewBinder
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.RelativeCornerSize
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
-import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
@@ -19,30 +20,25 @@ import dev.utils.app.ResourceUtils
  * detail: ShapeableImage Adapter
  * @author Ttt
  */
-class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) :
-    DevDataAdapter<ShapeableImageBean, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
-
-    init {
-        setDataList(data, false)
-    }
+class ShapeableImageItemViewBinder :
+    ItemViewBinder<ShapeableImageBeanItem, DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>>() {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        inflater: LayoutInflater,
+        parent: ViewGroup
     ): DevBaseViewBindingVH<AdapterConcatShapeableImageBinding> {
         return newBindingViewHolder(parent, R.layout.adapter_concat_shapeable_image)
     }
 
     override fun onBindViewHolder(
         holder: DevBaseViewBindingVH<AdapterConcatShapeableImageBinding>,
-        position: Int
+        item: ShapeableImageBeanItem
     ) {
-        val item = getDataItem(position)
+        val itemObj = item.obj
         holder.binding.vidIv.display(
-            source = item.imageUrl.toSource(),
+            source = itemObj.imageUrl.toSource()
         )
-
-        when (item.type) {
+        when (itemObj.type) {
             1 -> { // 圆形
                 holder.binding.vidIv.shapeAppearanceModel = ShapeAppearanceModel.builder()
                     .setAllCorners(RoundedCornerTreatment())
@@ -77,9 +73,5 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) :
                     .build()
             }
         }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return R.layout.adapter_concat_shapeable_image
     }
 }

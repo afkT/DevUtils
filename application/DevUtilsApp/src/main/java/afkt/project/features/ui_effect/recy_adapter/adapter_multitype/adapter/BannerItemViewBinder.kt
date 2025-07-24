@@ -1,17 +1,21 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
-import afkt.project.feature.ui_effect.recy_adapter.BannerBean
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.BannerBean
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.BannerBeanItem
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.drakeet.multitype.ItemViewBinder
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
@@ -20,33 +24,26 @@ import dev.mvvm.utils.toSource
  * detail: Banner Adapter
  * @author Ttt
  */
-class BannerConcatAdapter(
-    private val owner: LifecycleOwner,
-    private val bannerLists: List<BannerBean>
-) : RecyclerView.Adapter<BannerConcatAdapter.ItemHolder>() {
+class BannerItemViewBinder(
+    private val owner: LifecycleOwner
+) : ItemViewBinder<BannerBeanItem, DevBaseViewBindingVH<AdapterConcatBannerBinding>>() {
 
     var context: Context? = null
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ItemHolder {
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ): DevBaseViewBindingVH<AdapterConcatBannerBinding> {
         context = parent.context
-
-        return ItemHolder(
-            AdapterConcatBannerBinding.inflate(
-                LayoutInflater.from(context),
-                parent, false
-            )
-        )
+        return newBindingViewHolder(parent, R.layout.adapter_concat_banner)
     }
 
     override fun onBindViewHolder(
-        holder: ItemHolder,
-        position: Int
+        holder: DevBaseViewBindingVH<AdapterConcatBannerBinding>,
+        item: BannerBeanItem
     ) {
         holder.binding.vidBanner.setAdapter(
-            object : BannerAdapter<BannerBean, BannerViewHolder>(bannerLists) {
+            object : BannerAdapter<BannerBean, BannerViewHolder>(item.obj) {
                 override fun onCreateHolder(
                     parent: ViewGroup,
                     viewType: Int
@@ -74,18 +71,6 @@ class BannerConcatAdapter(
         ).addBannerLifecycleObserver(owner)
             .indicator = CircleIndicator(context)
     }
-
-    override fun getItemCount(): Int {
-        return 1
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return R.layout.adapter_concat_banner
-    }
-
-    class ItemHolder(val binding: AdapterConcatBannerBinding) : RecyclerView.ViewHolder(
-        binding.root
-    )
 
     class BannerViewHolder(val binding: AdapterConcatBannerImageBinding) : RecyclerView.ViewHolder(
         binding.root

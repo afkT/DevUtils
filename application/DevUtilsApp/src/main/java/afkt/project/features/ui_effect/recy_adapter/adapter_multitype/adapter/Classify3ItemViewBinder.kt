@@ -1,8 +1,8 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatClassifyBinding
-import afkt.project.feature.ui_effect.recy_adapter.ClassifyBeanItem3
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ClassifyBeanItem3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder

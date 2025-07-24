@@ -1,8 +1,8 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatHeaderFooterBinding
-import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.HeaderFooterItem
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH

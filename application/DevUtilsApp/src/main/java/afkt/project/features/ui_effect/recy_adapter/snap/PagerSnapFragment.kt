@@ -11,7 +11,7 @@ import dev.simple.app.base.asFragment
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**
- * detail: PagerSnapHelper - RecyclerView
+ * detail: RecyclerView - PagerSnapHelper
  * @author Ttt
  * PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  */

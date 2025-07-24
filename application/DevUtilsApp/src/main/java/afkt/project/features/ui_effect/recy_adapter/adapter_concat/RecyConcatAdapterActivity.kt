@@ -1,12 +1,10 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat
+package afkt.project.features.ui_effect.recy_adapter.adapter_concat
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ui_effect.recy_adapter.HeaderFooterItem
 import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter.*
-import afkt.project.feature.ui_effect.recy_adapter.createMainData
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import dev.utils.app.helper.quick.QuickHelper

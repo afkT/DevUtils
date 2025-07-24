@@ -1,15 +1,20 @@
-package afkt.project.feature.ui_effect.recy_adapter.item_sticky
+package afkt.project.features.ui_effect.recy_adapter
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
+import afkt.project.databinding.AdapterItemStickyBinding
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.data.bean.AdapterBean
 import android.view.View
 import android.view.ViewGroup
 import com.gavin.com.library.PowerfulStickyDecoration
 import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.log.log_dTag
 import dev.mvvm.utils.size.AppSize
 import dev.utils.DevFinal
@@ -17,6 +22,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
+import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils
 
 /**
@@ -25,9 +31,9 @@ import dev.utils.common.RandomUtils
  * RecyclerView 实现顶部吸附效果
  * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
-class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class ItemStickyFragment : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is ItemStickyActivity) {
+        if (it is ItemStickyFragment) {
             it.apply {
                 val parent = binding.vidRv.parent as? ViewGroup
                 // 根布局处理
@@ -107,4 +113,64 @@ class ItemStickyActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppV
             }
             return lists
         }
+}
+
+/**
+ * detail: Item 实体类
+ * @author Ttt
+ */
+class ItemStickyBean(
+    // 标题
+    title: String,
+    // 时间
+    time: Long
+) : AdapterBean(title, "") {
+
+    // 时间格式化
+    val timeFormat: String
+
+    // 吸附标题
+    val timeTile: String
+
+    init {
+        val format = DevFinal.TIME.yyyyMMdd_POINT
+        // 进行格式化
+        timeFormat = DateUtils.formatTime(time, format)
+        // 获取当前时间
+        val currentTime = DateUtils.getDateNow(format)
+        // 设置标题
+        timeTile = if (currentTime == timeFormat) {
+            "今日"
+        } else {
+            DateUtils.formatTime(time, DevFinal.TIME.ZH_MMdd)
+        }
+    }
+}
+
+/**
+ * detail: 吸附 Item 预览 View Adapter
+ * @author Ttt
+ */
+class ItemStickyAdapter(data: List<ItemStickyBean>) :
+    DevDataAdapter<ItemStickyBean, DevBaseViewBindingVH<AdapterItemStickyBinding>>() {
+
+    init {
+        setDataList(data, false)
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterItemStickyBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_item_sticky)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterItemStickyBinding>,
+        position: Int
+    ) {
+        val item = getDataItem(position)
+        holder.binding.vidTitleTv.text = item.title
+        holder.binding.vidTimeTv.text = item.timeFormat
+    }
 }

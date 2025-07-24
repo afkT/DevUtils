@@ -1,10 +1,20 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_multitype
+package afkt.project.features.ui_effect.recy_adapter.adapter_multitype
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.feature.ui_effect.recy_adapter.*
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ArticleBean1Item
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.BannerBeanItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ClassifyBeanItem1
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ClassifyBeanItem2
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ClassifyBeanItem3
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.CommodityBeanItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.CommodityEvaluateBeanItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.HeaderFooterItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ShapeableImageBeanItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.convertMainDataItem
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.createMainData
 import afkt.project.feature.ui_effect.recy_adapter.adapter_multitype.adapter.*
 import android.view.ViewGroup
 import com.drakeet.multitype.MultiTypeAdapter

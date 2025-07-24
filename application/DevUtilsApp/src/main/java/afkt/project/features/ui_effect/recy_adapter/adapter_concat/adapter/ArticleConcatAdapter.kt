@@ -1,8 +1,8 @@
-package afkt.project.feature.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recy_adapter.adapter_concat.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatArticleBinding
-import afkt.project.feature.ui_effect.recy_adapter.ArticleBean1
+import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ArticleBean1
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
