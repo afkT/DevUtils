@@ -147,6 +147,11 @@
         android:label="ItemStickyFragment" />
 
     <fragment
+        android:id="@+id/ItemSlideFragment"
+        android:name="afkt.project.features.ui_effect.recycler_view.ItemSlideFragment"
+        android:label="ItemSlideFragment" />
+
+    <fragment
         android:id="@+id/LinearSnapFragment"
         android:name="afkt.project.features.ui_effect.recycler_view.snap.LinearSnapFragment"
         android:label="LinearSnapFragment" />

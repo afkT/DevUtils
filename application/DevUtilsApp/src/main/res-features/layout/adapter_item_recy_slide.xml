@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemValue"
+            type="afkt.project.features.ui_effect.recycler_view.SlideItemModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_f5"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        tools:paddingTop="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bg_white_r10"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <FrameLayout
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_70"
+                android:background="@drawable/shape_border_image"
+                android:padding="@dimen/dp_5">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/vid_pic_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:binding_url="@{itemValue.picture}" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:text="@{itemValue.name}"
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="商品名" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ViewTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:text="@{itemValue.priceText}"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp_15"
+                    tools:text="@string/tools_price" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

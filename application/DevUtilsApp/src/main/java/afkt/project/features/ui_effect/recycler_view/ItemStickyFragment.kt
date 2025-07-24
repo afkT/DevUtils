@@ -47,7 +47,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
                     TAG.log_dTag(message = position.toString())
 
                     val view = layoutInflater.inflate(
-                        R.layout.adapter_item_sticky_title, null
+                        R.layout.adapter_item_recy_sticky_title, null
                     )
                     TextViewUtils.setText(
                         view.findViewById(R.id.vid_title_tv),
@@ -85,15 +85,15 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
 class ItemStickyViewModel : AppViewModel() {
 
     val adapter = ItemStickyAdapter().apply {
-        addAllAndClear(ItemStickyModel.randomList())
+        addAllAndClear(StickyItemModel.randomList())
     }
 }
 
-class ItemStickyAdapter() : AdapterModel<ItemStickyModel>() {
+class ItemStickyAdapter() : AdapterModel<StickyItemModel>() {
 
     // Item Binding
-    val itemBinding = ItemBinding.of<ItemStickyModel>(
-        BR.itemValue, R.layout.adapter_item_sticky
+    val itemBinding = ItemBinding.of<StickyItemModel>(
+        BR.itemValue, R.layout.adapter_item_recy_sticky
     )
 }
 
@@ -101,7 +101,7 @@ class ItemStickyAdapter() : AdapterModel<ItemStickyModel>() {
  * detail: 吸附 Item 数据模型
  * @author Ttt
  */
-class ItemStickyModel(
+class StickyItemModel(
     // 标题
     val title: String,
     // 时间
@@ -130,15 +130,15 @@ class ItemStickyModel(
 
     companion object {
 
-        fun randomList(): MutableList<ItemStickyModel> {
-            val lists = mutableListOf<ItemStickyModel>()
+        fun randomList(): MutableList<StickyItemModel> {
+            val lists = mutableListOf<StickyItemModel>()
             var currentTime = System.currentTimeMillis()
             for (i in 0..9) {
                 val number = RandomUtils.getRandom(4, 10)
                 currentTime -= DevFinal.TIME.DAY_MS * number
                 for (y in 0..number) {
                     val title = ChineseUtils.randomWord(RandomUtils.getRandom(3, 12))
-                    lists.add(ItemStickyModel(title, currentTime))
+                    lists.add(StickyItemModel(title, currentTime))
                 }
             }
             return lists
