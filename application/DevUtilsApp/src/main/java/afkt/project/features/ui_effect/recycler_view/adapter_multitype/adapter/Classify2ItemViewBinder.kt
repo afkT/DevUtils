@@ -1,8 +1,8 @@
-package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
+package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatClassifyBinding
-import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ClassifyBeanItem1
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.ClassifyBeanItem2
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -12,11 +12,11 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
- * detail: 一级分类 Adapter
+ * detail: 二级分类 Adapter
  * @author Ttt
  */
-class Classify1ItemViewBinder :
-    ItemViewBinder<ClassifyBeanItem1, DevBaseViewBindingVH<AdapterConcatClassifyBinding>>() {
+class Classify2ItemViewBinder :
+    ItemViewBinder<ClassifyBeanItem2, DevBaseViewBindingVH<AdapterConcatClassifyBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
@@ -27,13 +27,13 @@ class Classify1ItemViewBinder :
 
     override fun onBindViewHolder(
         holder: DevBaseViewBindingVH<AdapterConcatClassifyBinding>,
-        item: ClassifyBeanItem1
+        item: ClassifyBeanItem2
     ) {
         val itemObj = item.obj
 
         QuickHelper.get(holder.binding.vidTitleTv)
             .setText(itemObj.name)
             .setBackgroundColor(itemObj.background)
-            .setPaddingLeft(ResourceUtils.getDimensionInt(R.dimen.dp_20))
+            .setPaddingLeft(ResourceUtils.getDimensionInt(R.dimen.dp_40))
     }
 }

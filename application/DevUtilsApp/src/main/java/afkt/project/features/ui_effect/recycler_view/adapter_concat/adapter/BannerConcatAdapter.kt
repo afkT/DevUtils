@@ -1,10 +1,10 @@
-package afkt.project.features.ui_effect.recy_adapter.adapter_concat.adapter
+package afkt.project.features.ui_effect.recycler_view.adapter_concat.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
-import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.BannerBean
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.BannerBean
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="afkt.project.features.ui_effect.recy_adapter.snap.PagerSnapViewModel" />
+            type="afkt.project.features.ui_effect.recycler_view.snap.PagerSnapViewModel" />
     </data>
 
     <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">

@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.qrcode
+package afkt.project.features.ui_effect.qrcode
 
 import afkt.project.R
 import afkt.project.app.AppViewModel

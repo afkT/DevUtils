@@ -1,9 +1,9 @@
-package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
+package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterItemEditsBinding
-import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.CommodityEvaluateBeanItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityEvaluateBeanItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder

@@ -143,11 +143,11 @@
 
     <fragment
         android:id="@+id/LinearSnapFragment"
-        android:name="afkt.project.features.ui_effect.recy_adapter.snap.LinearSnapFragment"
+        android:name="afkt.project.features.ui_effect.recycler_view.snap.LinearSnapFragment"
         android:label="LinearSnapFragment" />
 
     <fragment
         android:id="@+id/PagerSnapFragment"
-        android:name="afkt.project.features.ui_effect.recy_adapter.snap.PagerSnapFragment"
+        android:name="afkt.project.features.ui_effect.recycler_view.snap.PagerSnapFragment"
         android:label="PagerSnapFragment" />
 </navigation>

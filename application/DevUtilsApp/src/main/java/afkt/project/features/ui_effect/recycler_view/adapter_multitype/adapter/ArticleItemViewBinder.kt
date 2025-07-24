@@ -1,8 +1,8 @@
-package afkt.project.features.ui_effect.recy_adapter.adapter_multitype.adapter
+package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatArticleBinding
-import afkt.project.feature.ui_effect.recy_adapter.adapter_concat.ArticleBean1Item
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.ArticleBean1Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder

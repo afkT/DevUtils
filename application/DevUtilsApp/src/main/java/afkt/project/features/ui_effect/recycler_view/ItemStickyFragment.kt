@@ -1,4 +1,4 @@
-package afkt.project.features.ui_effect.recy_adapter
+package afkt.project.features.ui_effect.recycler_view
 
 import afkt.project.R
 import afkt.project.app.AppViewModel

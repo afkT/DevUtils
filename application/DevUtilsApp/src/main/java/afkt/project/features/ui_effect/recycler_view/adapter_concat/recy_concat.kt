@@ -1,4 +1,4 @@
-package afkt.project.features.ui_effect.recy_adapter.adapter_concat
+package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
 import android.graphics.Bitmap
 import dev.utils.app.ResourceUtils

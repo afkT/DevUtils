@@ -1,4 +1,4 @@
-package afkt.project.features.ui_effect.recy_adapter.snap
+package afkt.project.features.ui_effect.recycler_view.snap
 
 import dev.utils.DevFinal
 import dev.utils.common.ChineseUtils
