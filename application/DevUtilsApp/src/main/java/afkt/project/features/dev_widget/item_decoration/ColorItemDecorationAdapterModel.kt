@@ -13,7 +13,7 @@ class GridHorizontalTextAdapter() : AdapterModel<String>() {
 
     // Item Binding
     val itemBinding = ItemBinding.of<String>(
-        BR.itemValue, R.layout.adapter_item_grid_horizontal_text
+        BR.itemValue, R.layout.adapter_item_decoration_grid_horizontal_text
     )
 }
 
@@ -21,7 +21,7 @@ class GridVerticalTextAdapter() : AdapterModel<String>() {
 
     // Item Binding
     val itemBinding = ItemBinding.of<String>(
-        BR.itemValue, R.layout.adapter_item_grid_vertical_text
+        BR.itemValue, R.layout.adapter_item_decoration_grid_vertical_text
     )
 }
 
@@ -29,7 +29,7 @@ class LinearHorizontalTextAdapter() : AdapterModel<String>() {
 
     // Item Binding
     val itemBinding = ItemBinding.of<String>(
-        BR.itemValue, R.layout.adapter_item_linear_horizontal_text
+        BR.itemValue, R.layout.adapter_item_decoration_linear_horizontal_text
     )
 }
 
@@ -37,6 +37,6 @@ class LinearVerticalTextAdapter() : AdapterModel<String>() {
 
     // Item Binding
     val itemBinding = ItemBinding.of<String>(
-        BR.itemValue, R.layout.adapter_item_linear_vertical_text
+        BR.itemValue, R.layout.adapter_item_decoration_linear_vertical_text
     )
 }

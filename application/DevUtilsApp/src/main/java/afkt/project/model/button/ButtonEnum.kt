@@ -203,9 +203,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_LINEAR_SNAP("LinearSnapHelper - RecyclerView", R.id.LinearSnapFragment),
 
-    BTN_UI_EFFECT_RECY_LINEAR_SNAP_MAX("LinearSnapHelper - 无限滑动"),
-
-    BTN_UI_EFFECT_RECY_PAGER_SNAP("PagerSnapHelper - RecyclerView"),
+    BTN_UI_EFFECT_RECY_PAGER_SNAP("PagerSnapHelper - RecyclerView", R.id.PagerSnapFragment),
 
     BTN_UI_EFFECT_RECY_PAGER_SNAP_MAX("PagerSnapHelper - 无限滑动"),
 

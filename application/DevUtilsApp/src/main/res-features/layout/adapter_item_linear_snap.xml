@@ -31,7 +31,6 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/vid_iv"
                     android:layout_width="@dimen/dp_200"
                     android:layout_height="@dimen/dp_200"
                     app:binding_url="@{itemValue.imageUrl}" />
@@ -67,18 +66,6 @@
                     android:textSize="@dimen/sp_13"
                     tools:text="2020.06.17" />
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/ViewTheme.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="@dimen/dp_10"
-                android:text="@{itemValue.index}"
-                android:textColor="@color/color_55"
-                android:textSize="@dimen/sp_16"
-                android:textStyle="bold"
-                tools:text="0 - 0" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </layout>

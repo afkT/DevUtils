@@ -1,6 +1,5 @@
 package afkt.project.features.ui_effect.recy_adapter.snap
 
-import androidx.databinding.ObservableField
 import dev.utils.DevFinal
 import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils
@@ -15,15 +14,11 @@ class SnapItemModel(
     val title: String,
     // 副标题
     val subtitle: String,
-    // 内容
-    val content: String,
     // 图片路径
     var imageUrl: String?,
     // 时间
     val timeFormat: String
 ) {
-
-    val index = ObservableField<String>("")
 
     companion object {
 
@@ -39,7 +34,6 @@ class SnapItemModel(
             return SnapItemModel(
                 title = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10)),
                 subtitle = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10)),
-                content = ChineseUtils.randomWord(RandomUtils.getRandom(30, 60)),
                 imageUrl = String.format(
                     "https://picsum.photos/id/%s/500",
                     RandomUtils.getRandom(1, 50)
@@ -63,13 +57,13 @@ class SnapItemModel(
 
         // =
 
-        fun randomItemLists(max: Int = 9): MutableList<SnapItemModel> {
+        fun randomItemLists(max: Int = 10): MutableList<SnapItemModel> {
             val lists = mutableListOf<SnapItemModel>()
             for (i in 0..max) lists.add(newSnapItem())
             return lists
         }
 
-        fun randomItemPagerLists(max: Int = 9): MutableList<SnapItemModel> {
+        fun randomItemPagerLists(max: Int = 10): MutableList<SnapItemModel> {
             val lists = mutableListOf<SnapItemModel>()
             for (i in 0..max) lists.add(newSnapItemPager())
             return lists
