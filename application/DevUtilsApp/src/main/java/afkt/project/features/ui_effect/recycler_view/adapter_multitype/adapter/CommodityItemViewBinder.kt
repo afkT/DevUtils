@@ -1,7 +1,7 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
-import afkt.project.app.helper.IMAGE_ROUND_3
+import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBeanItem
 import android.view.LayoutInflater

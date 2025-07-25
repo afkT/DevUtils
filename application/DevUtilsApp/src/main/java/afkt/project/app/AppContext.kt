@@ -2,7 +2,7 @@ package afkt.project.app
 
 import afkt.project.R
 import afkt.project.app.basic.BaseApplication
-import afkt.project.app.helper.*
+import afkt.project.model.engine.initAppImageConfigCreator
 import android.content.Context
 import android.net.Uri
 import android.view.View
@@ -10,11 +10,7 @@ import android.webkit.WebSettings
 import dev.DevUtils
 import dev.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
-import dev.engine.image.ImageConfig
 import dev.expand.engine.log.log_d
-import dev.mvvm.utils.image.AppImageConfig
-import dev.mvvm.utils.size.AppSize
-import dev.simple.DevSimple
 import dev.utils.DevFinal
 import dev.utils.app.ScreenshotUtils
 import dev.utils.app.VersionUtils
@@ -166,65 +162,6 @@ class AppContext : BaseApplication() {
             })
             // WebViewAssist 构造函数会使用全局配置
             WebViewAssist.setGlobalBuilder(this)
-        }
-    }
-
-    /**
-     * 初始化 [AppImageConfig] ImageConfig Creator
-     */
-    private fun initAppImageConfigCreator() {
-        DevSimple.setImageCreator { key, param ->
-            when (key) {
-                IMAGE_DEFAULT_CROP -> {
-                    ImageConfig.create().apply {
-                        setScaleType(ImageConfig.SCALE_CENTER_CROP)
-                    }
-                }
-
-                IMAGE_DEFAULT_FIX -> {
-                    ImageConfig.create().apply {
-                        setScaleType(ImageConfig.SCALE_FIT_CENTER)
-                    }
-                }
-
-                IMAGE_ROUND_3 -> {
-                    ImageConfig.create(IMAGE_ROUND).apply {
-                        setRoundedCornersRadius(
-                            AppSize.dp2px(3F)
-                        )
-                    }
-                }
-
-                IMAGE_ROUND_10 -> {
-                    ImageConfig.create(IMAGE_ROUND).apply {
-                        setRoundedCornersRadius(
-                            AppSize.dp2px(10F)
-                        )
-                    }
-                }
-
-                IMAGE_ROUND_CROP_10 -> {
-                    ImageConfig.create(IMAGE_ROUND).apply {
-                        setRoundedCornersRadius(
-                            AppSize.dp2px(10F)
-                        )
-                        setScaleType(ImageConfig.SCALE_CENTER_CROP)
-                    }
-                }
-
-                IMAGE_ROUND_FIX_10 -> {
-                    ImageConfig.create(IMAGE_ROUND).apply {
-                        setRoundedCornersRadius(
-                            AppSize.dp2px(10F)
-                        )
-                        setScaleType(ImageConfig.SCALE_FIT_CENTER)
-                    }
-                }
-
-                else -> {
-                    null
-                }
-            }
         }
     }
 }

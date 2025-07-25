@@ -1,7 +1,7 @@
 package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
-import afkt.project.app.helper.IMAGE_ROUND_3
+import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.model.data.bean.CommodityItem
 import android.view.View

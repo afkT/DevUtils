@@ -5,7 +5,7 @@ import afkt.project.R
 import afkt.project.app.AppContext
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.helper.IMAGE_ROUND_10
+import afkt.project.model.engine.IMAGE_ROUND_10
 import afkt.project.databinding.FragmentDevWidgetFlipCardBinding
 import android.animation.AnimatorInflater
 import android.content.Context

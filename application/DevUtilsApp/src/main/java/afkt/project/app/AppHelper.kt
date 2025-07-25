@@ -1,4 +1,4 @@
-package afkt.project.app.helper
+package afkt.project.app
 
 import afkt.project.R
 import afkt.project.app.basic.BaseActivity
@@ -13,7 +13,6 @@ import dev.*
 import dev.base.DevBase
 import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
-import dev.engine.image.ImageConfig
 import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_iTag
 import dev.simple.DevSimple
@@ -69,42 +68,6 @@ object AppHelper {
         TAG.log_iTag(message = builder.toString())
     }
 }
-
-// ================================
-// = dev.engine.image.ImageConfig =
-// ================================
-
-// ============
-// = 使用方式一 =
-// ============
-
-val IMAGE_ROUND = ImageConfig.create().apply {
-    setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
-    setScaleType(ImageConfig.SCALE_NONE)
-}
-
-//val IMAGE_DEFAULT_CROP = ImageConfig.create().apply {
-//    setScaleType(ImageConfig.SCALE_CENTER_CROP)
-//}
-//
-//val IMAGE_ROUND_3 = ImageConfig.create(IMAGE_ROUND).apply {
-//    setRoundedCornersRadius(
-//        AppSize.dp2px(3F)
-//    )
-//
-
-// ============
-// = 使用方式二 =
-// ============
-
-// IMAGE_KEY.toImageConfig() => ImageConfig
-const val IMAGE_DEFAULT_CROP = "IMAGE_DEFAULT_CROP"
-const val IMAGE_DEFAULT_FIX = "IMAGE_DEFAULT_FIX"
-const val IMAGE_ROUND_3 = "IMAGE_ROUND_3"
-const val IMAGE_ROUND_10 = "IMAGE_ROUND_10"
-const val IMAGE_ROUND_CROP_10 = "IMAGE_ROUND_CROP_10"
-const val IMAGE_ROUND_FIX_10 = "IMAGE_ROUND_FIX_10"
-
 
 // ================
 // = BaseActivity =
