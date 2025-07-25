@@ -5,16 +5,16 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
-import afkt.project.model.data.bean.CommodityItem
-import afkt.project.model.data.bean.CommodityItem.Companion.newCommodityItem
+import afkt.project.model.CommodityItem
+import afkt.project.model.CommodityItem.Companion.newCommodityItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import dev.expand.engine.log.log_dTag
+import dev.expand.engine.toast.toast_showShort
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.expand.engine.toast.toast_showShort
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 
 /**

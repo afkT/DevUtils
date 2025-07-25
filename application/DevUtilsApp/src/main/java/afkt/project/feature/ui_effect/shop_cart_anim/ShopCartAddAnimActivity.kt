@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.data.bean.CommodityItem
-import afkt.project.model.data.bean.CommodityItem.Companion.newCommodityItem
+import afkt.project.model.CommodityItem
+import afkt.project.model.CommodityItem.Companion.newCommodityItem
 import android.view.ViewGroup
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

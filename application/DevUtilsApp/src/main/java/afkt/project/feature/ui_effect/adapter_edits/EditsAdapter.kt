@@ -1,17 +1,15 @@
 package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
-import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
-import afkt.project.model.data.bean.EvaluateItem
+import afkt.project.model.EvaluateItem
+import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
-import dev.mvvm.utils.toPriceString
-import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.mvvm.utils.toSource
 import dev.utils.common.StringUtils
 
@@ -49,8 +47,7 @@ class EditsAdapter(data: List<EvaluateItem>) :
         holder.binding.vidNameTv.text = commodity.name
 
         // 商品价格
-        holder.binding.vidPriceTv.text =
-            commodity.price.toPriceString()?.toRMBSubZeroAndDot()
+        holder.binding.vidPriceTv.text = commodity.priceText
 
         // 商品图片
         holder.binding.vidPicIv.display(

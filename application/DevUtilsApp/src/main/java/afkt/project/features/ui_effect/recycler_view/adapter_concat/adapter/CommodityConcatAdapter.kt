@@ -1,18 +1,16 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_concat.adapter
 
 import afkt.project.R
-import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
 import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
+import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
-import dev.mvvm.utils.toPriceString
-import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
@@ -71,10 +69,8 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
                 // 商品名
                 .setText(item.name, holder.binding.vidNameTv)
                 // 商品价格
-                .setText(
-                    item.price.toPriceString()?.toRMBSubZeroAndDot(),
-                    holder.binding.vidPriceTv
-                )
+                .setText(item.priceText, holder.binding.vidPriceTv)
+
             // 商品图片
             holder.binding.vidPicIv.display(
                 source = item.picture.toSource(),
@@ -88,10 +84,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
                 // 商品名
                 .setText(item.name, holder.binding.vidNameTv)
                 // 商品价格
-                .setText(
-                    item.price.toPriceString()?.toRMBSubZeroAndDot(),
-                    holder.binding.vidPriceTv
-                )
+                .setText(item.priceText, holder.binding.vidPriceTv)
                 // 评价内容
                 .setText(item.evaluateContent, holder.binding.vidContentEt)
                 // 禁止点击评价输入框

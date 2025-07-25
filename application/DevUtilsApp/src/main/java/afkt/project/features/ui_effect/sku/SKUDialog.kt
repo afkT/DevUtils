@@ -1,8 +1,8 @@
 package afkt.project.features.ui_effect.sku
 
 import afkt.project.R
-import afkt.project.model.engine.IMAGE_ROUND_10
 import afkt.project.databinding.SkuDialogSpecBinding
+import afkt.project.model.engine.IMAGE_ROUND_10
 import android.app.Dialog
 import android.content.Context
 import android.view.Gravity

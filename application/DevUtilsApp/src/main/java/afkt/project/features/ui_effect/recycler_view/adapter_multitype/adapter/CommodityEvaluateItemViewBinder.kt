@@ -1,9 +1,9 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
-import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityEvaluateBeanItem
+import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
@@ -11,8 +11,6 @@ import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
-import dev.mvvm.utils.toPriceString
-import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
@@ -49,10 +47,7 @@ class CommodityEvaluateItemViewBinder :
             // 商品名
             .setText(itemObj.name, holder.binding.vidNameTv)
             // 商品价格
-            .setText(
-                itemObj.price.toPriceString()?.toRMBSubZeroAndDot(),
-                holder.binding.vidPriceTv
-            )
+            .setText(itemObj.priceText, holder.binding.vidPriceTv)
             // 评价内容
             .setText(itemObj.evaluateContent, holder.binding.vidContentEt)
             // 禁止点击评价输入框

@@ -12,10 +12,9 @@ import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
-import dev.DevUtils
 import dev.expand.engine.log.log_dTag
-import dev.utils.app.assist.floating.*
 import dev.expand.engine.toast.toast_showShort
+import dev.utils.app.assist.floating.*
 
 /**
  * detail: 悬浮窗管理辅助类 ( 需权限 )

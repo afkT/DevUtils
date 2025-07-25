@@ -1,6 +1,8 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
 import android.graphics.Bitmap
+import dev.mvvm.utils.toPriceString
+import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.utils.app.ResourceUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ChineseUtils
@@ -59,7 +61,7 @@ class CommodityBean(
     // 商品图片
     val picture: String,
     // 商品价格
-    val price: Double,
+    price: Double,
     // 商品类型 ( 是否评价商品 )
     val isEvaluateCommodity: Boolean = false,
     // 商品评价等级
@@ -68,7 +70,9 @@ class CommodityBean(
     var evaluateContent: String? = "",
     // 是否首个向上边距 ( MultiType 使用 )
     var isFirst: Boolean = false
-)
+) {
+    val priceText = price.toPriceString()?.toRMBSubZeroAndDot()
+}
 
 /**
  * detail: ShapeableImageView 实体类

@@ -1,9 +1,9 @@
 package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
-import afkt.project.model.engine.IMAGE_ROUND_3
 import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
-import afkt.project.model.data.bean.CommodityItem
+import afkt.project.model.CommodityItem
+import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.View
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt2
@@ -11,8 +11,6 @@ import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
-import dev.mvvm.utils.toPriceString
-import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.mvvm.utils.toSource
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.view.ViewHelper
@@ -44,10 +42,8 @@ class MultiSelectAdapter(data: List<CommodityItem?>) :
         // 商品信息
         ViewHelper.get()
             .setText(item?.name, holder.binding.vidNameTv)
-            .setText(
-                item?.price?.toPriceString()?.toRMBSubZeroAndDot(),
-                holder.binding.vidPriceTv
-            )
+            .setText(item?.priceText, holder.binding.vidPriceTv)
+
         // 商品图片
         holder.binding.vidPicIv.display(
             source = item?.picture?.toSource(),

@@ -5,13 +5,12 @@ import afkt.project.R
 import afkt.project.app.AppContext
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.model.engine.IMAGE_ROUND_10
 import afkt.project.databinding.FragmentDevWidgetFlipCardBinding
+import afkt.project.model.engine.IMAGE_ROUND_10
 import android.animation.AnimatorInflater
 import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
-import dev.DevUtils
 import dev.base.DevSource
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
