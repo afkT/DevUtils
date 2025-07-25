@@ -5,6 +5,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetWrapViewBinding
+import afkt.project.model.helper.RandomHelper
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -16,7 +17,6 @@ import dev.simple.app.base.asFragment
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import dev.widget.ui.WrapView
 
@@ -69,11 +69,7 @@ class WrapViewModel : AppViewModel() {
             30F, ResourceUtils.getColor(R.color.color_88)
         ).drawable
         for (i in 1..20) {
-            val text = ChineseUtils.randomWord(RandomUtils.getRandom(7)) +
-                    RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
-            val randomText = "$i." + RandomUtils.getRandom(
-                text.toCharArray(), text.length
-            )
+            val randomText = "$i." + RandomHelper.randomText(7, 5)
             wrapView.addView(createTextView(wrapView.context, randomText, layoutParams, drawable))
         }
     }

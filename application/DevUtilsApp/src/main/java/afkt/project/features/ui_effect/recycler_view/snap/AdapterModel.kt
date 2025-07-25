@@ -1,9 +1,8 @@
 package afkt.project.features.ui_effect.recycler_view.snap
 
+import afkt.project.model.helper.RandomHelper
 import dev.utils.DevFinal
-import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils
-import dev.utils.common.RandomUtils
 
 /**
  * detail: LinearSnapHelper、PagerSnapHelper Adapter Item 数据模型
@@ -27,18 +26,14 @@ class SnapItemModel(
          * @return [SnapItemModel]
          */
         private fun newSnapItem(): SnapItemModel {
-            val time = System.currentTimeMillis() - RandomUtils.nextLongRange(
-                DevFinal.TIME.MINUTE_MS,
-                DevFinal.TIME.DAY_MS
-            )
             return SnapItemModel(
-                title = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10)),
-                subtitle = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10)),
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/500",
-                    RandomUtils.getRandom(1, 50)
-                ),
-                timeFormat = DateUtils.formatTime(time, DevFinal.TIME.yyyyMMdd_POINT)
+                title = RandomHelper.randomWordRange(5, 10),
+                subtitle = RandomHelper.randomWordRange(5, 10),
+                imageUrl = RandomHelper.randomImage500(),
+                timeFormat = DateUtils.formatTime(
+                    RandomHelper.randomTimeDiff(),
+                    DevFinal.TIME.yyyyMMdd_POINT
+                )
             )
         }
 
@@ -48,10 +43,7 @@ class SnapItemModel(
          */
         private fun newSnapItemPager(): SnapItemModel {
             return newSnapItem().apply {
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/1080/1920",
-                    RandomUtils.getRandom(1, 50)
-                )
+                imageUrl = RandomHelper.randomImage1080x1920()
             }
         }
 

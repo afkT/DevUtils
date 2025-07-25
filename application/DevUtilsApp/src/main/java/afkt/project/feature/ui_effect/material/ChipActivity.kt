@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityChipBinding
+import afkt.project.model.helper.RandomHelper
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.chip.Chip
@@ -11,9 +12,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.common.ChineseUtils
 import dev.utils.common.ColorUtils
-import dev.utils.common.RandomUtils
 
 /**
  * detail: Material Chip、ChipGroups、ChipDrawable
@@ -48,20 +47,16 @@ class ChipActivity : BaseProjectActivity<ActivityChipBinding, AppViewModel>(
         binding.vidGroup.removeAllViews()
 
         for (i in 1..20) {
-            val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
-                    RandomUtils.getRandomLetters(RandomUtils.getRandom(5))
-            val randomText =
-                i.toString() + "." + RandomUtils.getRandom(text.toCharArray(), text.length)
-
             val chip = ViewUtils.inflate(this, R.layout.include_chip) as? Chip
             chip?.run {
                 // 随机颜色
                 val pressed = ColorUtils.getRandomColorString()
                 val normal = ColorUtils.getRandomColorString()
 
-                chip.text = randomText
-                chip.chipBackgroundColor =
-                    StateListUtils.createColorStateList(pressed, normal)
+                chip.text = "$i." + RandomHelper.randomText(8, 5)
+                chip.chipBackgroundColor = StateListUtils.createColorStateList(
+                    pressed, normal
+                )
                 binding.vidGroup.addView(this)
             }
         }

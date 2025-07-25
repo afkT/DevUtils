@@ -6,6 +6,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectItemStickyBinding
 import afkt.project.model.basic.AdapterModel
+import afkt.project.model.helper.RandomHelper
 import android.annotation.SuppressLint
 import android.view.View
 import com.gavin.com.library.PowerfulStickyDecoration
@@ -18,7 +19,6 @@ import dev.simple.app.base.asFragment
 import dev.utils.DevFinal
 import dev.utils.app.TextViewUtils
 import dev.utils.app.assist.ResourceColor
-import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils
 import dev.utils.common.StringUtils
@@ -137,7 +137,7 @@ class StickyItemModel(
                 val number = RandomUtils.getRandom(4, 10)
                 currentTime -= DevFinal.TIME.DAY_MS * number
                 for (y in 0..number) {
-                    val title = ChineseUtils.randomWord(RandomUtils.getRandom(3, 12))
+                    val title = RandomHelper.randomWordRange(3, 12)
                     lists.add(StickyItemModel(title, currentTime))
                 }
             }

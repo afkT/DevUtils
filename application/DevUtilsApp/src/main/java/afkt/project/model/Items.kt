@@ -1,8 +1,8 @@
 package afkt.project.model
 
+import afkt.project.model.helper.RandomHelper
 import dev.mvvm.utils.toPriceString
 import dev.mvvm.utils.toRMBSubZeroAndDot
-import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
 /**
@@ -23,13 +23,8 @@ class EvaluateItem {
     var commodityItem: CommodityItem
 
     init {
-        val text =
-            ChineseUtils.randomWord(RandomUtils.getRandom(50)) + RandomUtils.getRandomLetters(
-                RandomUtils.getRandom(10)
-            )
-        val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
-        evaluateContent = randomText
-        evaluateLevel = RandomUtils.getRandom(6).toFloat()
+        evaluateContent = RandomHelper.randomText(50, 10)
+        evaluateLevel = RandomHelper.randomFloat(max = 6)
         commodityItem = CommodityItem.newCommodityItem()
     }
 }
@@ -55,9 +50,9 @@ class CommodityItem(
          */
         fun newCommodityItem(): CommodityItem {
             return CommodityItem(
-                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
-                picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
-                price = RandomUtils.nextDoubleRange(15.1, 79.3)
+                name = RandomHelper.randomWordRange(5, 40),
+                picture = RandomHelper.randomImage200X(),
+                price = RandomHelper.randomPrice()
             )
         }
     }
@@ -83,12 +78,9 @@ open class AdapterBean(
          */
         private fun newAdapterBean(position: Int): AdapterBean {
             val number = RandomUtils.getRandom(10, 100) + (10 + position / 3) * 3
-            val content = "${position + 1}." + ChineseUtils.randomWord(
-                RandomUtils.getRandom(number)
-            )
             return AdapterBean(
-                title = ChineseUtils.randomWord(2),
-                content = content
+                title = RandomHelper.randomWord(2),
+                content = "${position + 1}." + RandomHelper.randomWordRange(max = number)
             )
         }
 

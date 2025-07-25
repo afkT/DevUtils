@@ -5,6 +5,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectViewpager2Binding
 import afkt.project.databinding.FragmentUiEffectViewpager2PagerBinding
+import afkt.project.model.helper.RandomHelper
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
@@ -24,8 +25,6 @@ import dev.utils.app.ViewUtils
 import dev.utils.app.assist.ResourceColor
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.image.ImageUtils
-import dev.utils.common.ChineseUtils
-import dev.utils.common.RandomUtils
 
 /**
  * detail: ViewPager2
@@ -153,10 +152,10 @@ class PagerFragment : AppFragment<FragmentUiEffectViewpager2PagerBinding, AppVie
     ) {
         super.onViewCreated(view, savedInstanceState)
         val position = arguments?.getInt(DevFinal.STR.POSITION) ?: 1
-        val titleText = "${position}.${ChineseUtils.randomWord(5)}"
-        binding.vidPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
+        val titleText = "${position}.${RandomHelper.randomWord(5)}"
+        binding.vidPrefaceTv.text = RandomHelper.randomWordRange(30, 100)
         binding.vidTitleTv.text = titleText
-        binding.vidContentTv.text = ChineseUtils.randomWord(400)
+        binding.vidContentTv.text = RandomHelper.randomWord(400)
         binding.vidIv.setImageBitmap(getBitmap(position))
     }
 

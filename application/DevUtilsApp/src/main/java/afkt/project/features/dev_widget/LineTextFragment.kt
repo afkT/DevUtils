@@ -5,12 +5,12 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetLineTextBinding
+import afkt.project.model.helper.RandomHelper
 import android.graphics.Color
 import android.view.View
 import androidx.databinding.ObservableField
 import dev.simple.app.base.asFragment
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import dev.widget.function.LineTextView
 
@@ -45,10 +45,7 @@ class LineTextViewModel : AppViewModel() {
     // ==========
 
     private fun randomText() {
-        val text = ChineseUtils.randomWord(RandomUtils.getRandom(300)) +
-                RandomUtils.getRandomLetters(RandomUtils.getRandom(50))
-        val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
-        contentText.set(randomText)
+        contentText.set(RandomHelper.randomText(300, 50))
     }
 
     /**
@@ -58,7 +55,7 @@ class LineTextViewModel : AppViewModel() {
     private fun randomConfig(view: View) {
         QuickHelper.get(view)
             .setTextColors(Color.BLACK)
-            .setTextSizeBySp(RandomUtils.getRandom(13, 25).toFloat())
+            .setTextSizeBySp(RandomHelper.randomFloat(13, 25))
             .setBold(RandomUtils.nextBoolean())
     }
 

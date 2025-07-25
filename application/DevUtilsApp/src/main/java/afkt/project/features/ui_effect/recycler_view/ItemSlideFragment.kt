@@ -6,6 +6,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectItemSlideBinding
 import afkt.project.model.basic.AdapterModel
+import afkt.project.model.helper.RandomHelper
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import dev.mvvm.utils.toPriceString
@@ -14,8 +15,6 @@ import dev.simple.app.base.asFragment
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.common.ChineseUtils
-import dev.utils.common.RandomUtils
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import java.util.*
@@ -138,9 +137,9 @@ class SlideItemModel(
 
         private fun newSlideItem(index: Int): SlideItemModel {
             return SlideItemModel(
-                name = "${index}. " + ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
-                picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
-                price = RandomUtils.nextDoubleRange(15.1, 79.3)
+                name = "${index}. " + RandomHelper.randomWordRange(5, 40),
+                picture = RandomHelper.randomImage200X(),
+                price = RandomHelper.randomPrice()
             )
         }
 

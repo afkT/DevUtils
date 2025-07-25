@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectTextCalcBinding
+import afkt.project.model.helper.RandomHelper
 import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.widget.AppCompatTextView
@@ -12,7 +13,6 @@ import dev.simple.app.base.asFragment
 import dev.utils.DevFinal
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
 /**
@@ -23,13 +23,9 @@ class TextCalcFragment : AppFragment<FragmentUiEffectTextCalcBinding, AppViewMod
     R.layout.fragment_ui_effect_text_calc, simple_Agile = { frg ->
         frg.asFragment<TextCalcFragment> {
             for (i in 0..14) {
-                // 随机生成文本
-                val text = ChineseUtils.randomWord(RandomUtils.getRandom(100)) +
-                        RandomUtils.getRandomLetters(RandomUtils.getRandom(20))
-
-                val randomText = RandomUtils.getRandom(text.toCharArray(), text.length)
                 val randomTextView = createTextView(
-                    randomText, binding.vidLl.context
+                    RandomHelper.randomText(100, 20),
+                    binding.vidLl.context
                 )
                 binding.vidLl.addView(randomTextView)
                 randomTextView.setOnClickListener { view ->
@@ -90,7 +86,7 @@ private fun createTextView(
         .setMarginTop(40)
         .setMarginBottom(20)
         .setTextColors(Color.BLACK)
-        .setTextSizeBySp(RandomUtils.getRandom(13, 20).toFloat())
+        .setTextSizeBySp(RandomHelper.randomFloat(13, 20))
         .setBold(RandomUtils.nextBoolean())
         .setText(text).getView()
 }

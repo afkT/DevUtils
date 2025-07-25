@@ -1,5 +1,6 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
+import afkt.project.model.helper.RandomHelper
 import android.graphics.Bitmap
 import dev.mvvm.utils.toPriceString
 import dev.mvvm.utils.toRMBSubZeroAndDot
@@ -161,10 +162,7 @@ private fun createBannerLists(): List<BannerBean> {
             add(
                 BannerBean(
                     id = position.toString(),
-                    imageUrl = String.format(
-                        "https://picsum.photos/id/%s/800/400",
-                        RandomUtils.getRandom(10, 20)
-                    )
+                    imageUrl = RandomHelper.randomImage800x400()
                 )
             )
         }
@@ -184,7 +182,7 @@ private fun createClassifyLists(): List<ClassifyBean> {
             // 添加一级分类
             ClassifyBean(
                 id = "0-0",
-                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+                name = RandomHelper.randomWordRange(5, 15),
                 rootId = "0",
                 background = level0Bg,
                 // 创建二级分类
@@ -198,7 +196,7 @@ private fun createClassifyLists(): List<ClassifyBean> {
             // 添加一级分类
             ClassifyBean(
                 id = "0-1",
-                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+                name = RandomHelper.randomWordRange(5, 15),
                 rootId = "0",
                 background = level0Bg,
             )
@@ -208,7 +206,7 @@ private fun createClassifyLists(): List<ClassifyBean> {
             // 添加一级分类
             ClassifyBean(
                 id = "0-2",
-                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+                name = RandomHelper.randomWordRange(5, 15),
                 rootId = "0",
                 background = level0Bg,
                 // 创建二级分类
@@ -221,7 +219,7 @@ private fun createClassifyLists(): List<ClassifyBean> {
         // 创建一级分类
         val temp = ClassifyBean(
             id = "0-3",
-            name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+            name = RandomHelper.randomWordRange(5, 15),
             rootId = "0",
             background = level0Bg,
             // 创建二级分类
@@ -245,7 +243,7 @@ private fun createClassifyLists(): List<ClassifyBean> {
             // 添加一级分类
             ClassifyBean(
                 id = "0-4",
-                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+                name = RandomHelper.randomWordRange(5, 15),
                 rootId = "0",
                 background = level0Bg,
                 // 创建二级分类
@@ -268,11 +266,11 @@ private fun createCommodityLists(): List<CommodityBean> {
             add(
                 CommodityBean(
                     // 商品名
-                    name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                    name = RandomHelper.randomWordRange(5, 40),
                     // 商品图片
-                    picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                    picture = RandomHelper.randomImage200X(),
                     // 商品价格
-                    price = RandomUtils.nextDoubleRange(15.1, 79.3),
+                    price = RandomHelper.randomPrice(),
                 )
             )
         }
@@ -285,17 +283,17 @@ private fun createCommodityLists(): List<CommodityBean> {
             add(
                 CommodityBean(
                     // 商品名
-                    name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                    name = RandomHelper.randomWordRange(5, 40),
                     // 商品图片
-                    picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                    picture = RandomHelper.randomImage200X(),
                     // 商品价格
-                    price = RandomUtils.nextDoubleRange(15.1, 79.3),
+                    price = RandomHelper.randomPrice(),
                     // 商品类型 ( 是否评价商品 )
                     isEvaluateCommodity = true,
                     // 商品评价等级
-                    evaluateLevel = RandomUtils.getRandom(6).toFloat(),
+                    evaluateLevel = RandomHelper.randomFloat(max = 6),
                     // 商品评价内容
-                    evaluateContent = ChineseUtils.randomWord(RandomUtils.getRandom(12, 60))
+                    evaluateContent = RandomHelper.randomWordRange(12, 60)
                 )
             )
         }
@@ -313,25 +311,25 @@ private fun createShapeableImageLists(): List<ShapeableImageBean> {
         add(
             ShapeableImageBean(
                 type = 1, // 圆形
-                imageUrl = "https://picsum.photos/id/11/400"
+                imageUrl = RandomHelper.randomImage400(11)
             )
         )
         add(
             ShapeableImageBean(
                 type = 2, // 圆角
-                imageUrl = "https://picsum.photos/id/12/400"
+                imageUrl = RandomHelper.randomImage400(12)
             )
         )
         add(
             ShapeableImageBean(
                 type = 3, // 水滴形
-                imageUrl = "https://picsum.photos/id/13/400"
+                imageUrl = RandomHelper.randomImage400(13)
             )
         )
         add(
             ShapeableImageBean(
                 type = 4, // 叶子形状
-                imageUrl = "https://picsum.photos/id/14/400"
+                imageUrl = RandomHelper.randomImage400(14)
             )
         )
     }
@@ -346,9 +344,9 @@ private fun createArticleLists(): List<ArticleBean1> {
                         ChineseUtils.numberToCHN(
                             position.toString(), false
                         )
-                    }篇: ${ChineseUtils.randomWord(5)}",
+                    }篇: ${RandomHelper.randomWord(5)}",
                     pictures = randomBitmap(position),
-                    content = ChineseUtils.randomWord(RandomUtils.getRandom(50, 100)),
+                    content = RandomHelper.randomWordRange(50, 100),
                     background = ColorUtils.getRandomColor()
                 )
             )
@@ -381,7 +379,7 @@ private fun randomClassifyList(
             add(
                 ClassifyBean(
                     id = "$level-$position",
-                    name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 15)),
+                    name = RandomHelper.randomWordRange(5, 15),
                     rootId = rootId,
                     background = background,
                     subLists = null

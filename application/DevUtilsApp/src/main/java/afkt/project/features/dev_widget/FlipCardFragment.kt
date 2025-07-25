@@ -7,6 +7,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetFlipCardBinding
 import afkt.project.model.engine.IMAGE_ROUND_10
+import afkt.project.model.helper.RandomHelper
 import android.animation.AnimatorInflater
 import android.content.Context
 import android.view.View
@@ -19,7 +20,6 @@ import dev.utils.app.ActivityUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.timer.DevTimer
-import dev.utils.common.RandomUtils
 import dev.widget.ui.FlipCardView
 
 /**
@@ -43,7 +43,7 @@ class FlipCardFragment : AppFragment<FragmentDevWidgetFlipCardBinding, AppViewMo
                     DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_3)),
                     DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_4)),
                     DevSource.create(ResourceUtils.openRawResource(R.raw.wallpaper_5)),
-                    DevSource.create("https://picsum.photos/20${RandomUtils.getRandom(0, 10)}"),
+                    DevSource.create(RandomHelper.randomImage200X()),
                 )
             )
         }
