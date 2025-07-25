@@ -185,13 +185,19 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_VIEWPAGER2("ViewPager2", R.id.ViewPager2Fragment),
 
-    BTN_UI_EFFECT_MATERIAL_CHIP("Material Chip、ChipGroups、ChipDrawable"),
+    BTN_UI_EFFECT_MATERIAL_CHIP(
+        "Material Chip、ChipGroups、ChipDrawable", R.id.ChipFragment
+    ),
 
-    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW("Material ShapeableImageView"),
+    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW(
+        "Material ShapeableImageView", R.id.ShapeableImageViewFragment
+    ),
 
-    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET("Material BottomSheet"),
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET("Material BottomSheet", R.id.BottomSheetFragment),
 
-    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG("Material BottomSheetDialog"),
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG(
+        "Material BottomSheetDialog", R.id.BottomSheetDialogFragment
+    ),
 
     BTN_UI_EFFECT_RECY_FLEXBOX(
         "Flexbox LayoutManager", R.id.FlexboxFragment

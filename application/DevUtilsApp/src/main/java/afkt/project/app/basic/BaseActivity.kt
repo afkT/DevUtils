@@ -1,6 +1,6 @@
 package afkt.project.app.basic
 
-import afkt.project.app.autoResources
+import afkt.project.model.helper.autoResources
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

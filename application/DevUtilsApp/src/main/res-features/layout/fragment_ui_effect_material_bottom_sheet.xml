@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/activity_shapeable_image_view" />
+        <include layout="@layout/fragment_ui_effect_material_shapeable_image_view" />
 
         <View
             android:id="@+id/vid_bg_view"
@@ -47,7 +47,7 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_28" />
 
-                    <include layout="@layout/activity_shapeable_image_view" />
+                    <include layout="@layout/fragment_ui_effect_material_shapeable_image_view" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

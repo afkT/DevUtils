@@ -170,4 +170,24 @@
         android:id="@+id/MultiTypeAdapterFragment"
         android:name="afkt.project.features.ui_effect.recycler_view.adapter_multitype.MultiTypeAdapterFragment"
         android:label="MultiTypeAdapterFragment" />
+
+    <fragment
+        android:id="@+id/ChipFragment"
+        android:name="afkt.project.features.ui_effect.material.ChipFragment"
+        android:label="ChipFragment" />
+
+    <fragment
+        android:id="@+id/ShapeableImageViewFragment"
+        android:name="afkt.project.features.ui_effect.material.ShapeableImageViewFragment"
+        android:label="ShapeableImageViewFragment" />
+
+    <fragment
+        android:id="@+id/BottomSheetFragment"
+        android:name="afkt.project.features.ui_effect.material.BottomSheetFragment"
+        android:label="BottomSheetFragment" />
+
+    <fragment
+        android:id="@+id/BottomSheetDialogFragment"
+        android:name="afkt.project.features.ui_effect.material.BottomSheetDialogFragment"
+        android:label="BottomSheetDialogFragment" />
 </navigation>

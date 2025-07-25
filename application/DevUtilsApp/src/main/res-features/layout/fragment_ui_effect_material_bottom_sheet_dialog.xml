@@ -6,6 +6,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/activity_shapeable_image_view" />
+        <include layout="@layout/fragment_ui_effect_material_shapeable_image_view" />
     </LinearLayout>
 </layout>

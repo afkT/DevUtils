@@ -3,6 +3,7 @@ package afkt.project.app
 import afkt.project.R
 import afkt.project.app.basic.BaseApplication
 import afkt.project.model.engine.initAppImageConfigCreator
+import afkt.project.model.helper.AppHelper
 import android.content.Context
 import android.net.Uri
 import android.view.View

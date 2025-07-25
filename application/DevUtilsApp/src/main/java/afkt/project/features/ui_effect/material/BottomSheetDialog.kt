@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.material
+package afkt.project.features.ui_effect.material
 
 import afkt.project.R
 import android.os.Bundle
@@ -25,7 +25,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_bottom_sheet, container, false)
+        return inflater.inflate(R.layout.dialog_material_bottom_sheet, container, false)
     }
 
     override fun onStart() {
@@ -33,7 +33,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
         val mDialog = dialog as? BottomSheetDialog?
         val bottomSheet =
-            mDialog?.delegate?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            mDialog?.delegate?.findViewById<FrameLayout>(R.id.design_bottom_sheet)
         bottomSheet?.apply {
 //            val layoutParams = layoutParams as CoordinatorLayout.LayoutParams
 //            // 最大高度

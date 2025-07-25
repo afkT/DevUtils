@@ -1,4 +1,4 @@
-package afkt.project.app
+package afkt.project.model.helper
 
 import afkt.project.R
 import afkt.project.app.basic.BaseActivity
