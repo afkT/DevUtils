@@ -2,8 +2,8 @@ package afkt.project.features.ui_effect.recycler_view.adapter_concat.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
-import afkt.project.databinding.AdapterItemEditsBinding
-import afkt.project.databinding.AdapterMultiSelectBinding
+import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
+import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,10 +33,10 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
         viewType: Int
     ): RecyclerView.ViewHolder {
         parentContext(parent)
-        if (viewType == R.layout.adapter_item_edits) {
+        if (viewType == R.layout.adapter_concat_commodity_evaluate) {
             // 商品评价类型
             return CommodityEvaluateHolder(
-                AdapterItemEditsBinding.inflate(
+                AdapterConcatCommodityEvaluateBinding.inflate(
                     LayoutInflater.from(context),
                     parent, false
                 )
@@ -44,7 +44,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
         }
         // 商品类型
         return CommodityHolder(
-            AdapterMultiSelectBinding.inflate(
+            AdapterConcatCommodityMultiSelectBinding.inflate(
                 LayoutInflater.from(context),
                 parent, false
             )
@@ -115,17 +115,17 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
     override fun getItemViewType(position: Int): Int {
         if (getDataItem(position).isEvaluateCommodity) {
             // 商品评价类型
-            return R.layout.adapter_item_edits
+            return R.layout.adapter_concat_commodity_evaluate
         }
         // 商品类型
-        return R.layout.adapter_multi_select
+        return R.layout.adapter_concat_commodity_multi_select
     }
 
-    class CommodityHolder(val binding: AdapterMultiSelectBinding) : RecyclerView.ViewHolder(
+    class CommodityHolder(val binding: AdapterConcatCommodityMultiSelectBinding) : RecyclerView.ViewHolder(
         binding.root
     )
 
-    class CommodityEvaluateHolder(val binding: AdapterItemEditsBinding) : RecyclerView.ViewHolder(
+    class CommodityEvaluateHolder(val binding: AdapterConcatCommodityEvaluateBinding) : RecyclerView.ViewHolder(
         binding.root
     )
 }

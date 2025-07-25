@@ -2,7 +2,7 @@ package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
-import afkt.project.databinding.AdapterItemEditsBinding
+import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityEvaluateBeanItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,17 +22,17 @@ import dev.utils.app.helper.view.ViewHelper
  * @author Ttt
  */
 class CommodityEvaluateItemViewBinder :
-    ItemViewBinder<CommodityEvaluateBeanItem, DevBaseViewBindingVH<AdapterItemEditsBinding>>() {
+    ItemViewBinder<CommodityEvaluateBeanItem, DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ): DevBaseViewBindingVH<AdapterItemEditsBinding> {
-        return newBindingViewHolder(parent, R.layout.adapter_item_edits)
+    ): DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_concat_commodity_evaluate)
     }
 
     override fun onBindViewHolder(
-        holder: DevBaseViewBindingVH<AdapterItemEditsBinding>,
+        holder: DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>,
         item: CommodityEvaluateBeanItem
     ) {
         // 统一设置背景

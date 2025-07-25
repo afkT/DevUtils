@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
-import afkt.project.databinding.AdapterMultiSelectBinding
+import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.model.data.bean.CommodityItem
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +22,7 @@ import dev.utils.app.helper.view.ViewHelper
  * @author Ttt
  */
 class MultiSelectAdapter(data: List<CommodityItem?>) :
-    DevDataAdapterExt2<CommodityItem?, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+    DevDataAdapterExt2<CommodityItem?, DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>>() {
 
     init {
         setDataList(data, false)
@@ -31,12 +31,12 @@ class MultiSelectAdapter(data: List<CommodityItem?>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DevBaseViewBindingVH<AdapterMultiSelectBinding> {
-        return newBindingViewHolder(parent, R.layout.adapter_multi_select)
+    ): DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_concat_commodity_multi_select)
     }
 
     override fun onBindViewHolder(
-        holder: DevBaseViewBindingVH<AdapterMultiSelectBinding>,
+        holder: DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>,
         position: Int
     ) {
         val item = getDataItem(position)

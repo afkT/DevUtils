@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
-import afkt.project.databinding.AdapterItemEditsBinding
+import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
 import afkt.project.model.data.bean.EvaluateItem
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
@@ -20,7 +20,7 @@ import dev.utils.common.StringUtils
  * @author Ttt
  */
 class EditsAdapter(data: List<EvaluateItem>) :
-    DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterItemEditsBinding>>() {
+    DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>>() {
 
     init {
         setDataList(data, false)
@@ -29,12 +29,12 @@ class EditsAdapter(data: List<EvaluateItem>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DevBaseViewBindingVH<AdapterItemEditsBinding> {
-        return newBindingViewHolder(parent, R.layout.adapter_item_edits)
+    ): DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_concat_commodity_evaluate)
     }
 
     override fun onBindViewHolder(
-        holder: DevBaseViewBindingVH<AdapterItemEditsBinding>,
+        holder: DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>,
         position: Int
     ) {
         val item = getDataItem(position)

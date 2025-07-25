@@ -2,7 +2,7 @@ package afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter
 
 import afkt.project.R
 import afkt.project.app.helper.IMAGE_ROUND_3
-import afkt.project.databinding.AdapterMultiSelectBinding
+import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBeanItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,17 +22,17 @@ import dev.utils.app.helper.view.ViewHelper
  * @author Ttt
  */
 class CommodityItemViewBinder :
-    ItemViewBinder<CommodityBeanItem, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
+    ItemViewBinder<CommodityBeanItem, DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ): DevBaseViewBindingVH<AdapterMultiSelectBinding> {
-        return newBindingViewHolder(parent, R.layout.adapter_multi_select)
+    ): DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_concat_commodity_multi_select)
     }
 
     override fun onBindViewHolder(
-        holder: DevBaseViewBindingVH<AdapterMultiSelectBinding>,
+        holder: DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>,
         item: CommodityBeanItem
     ) {
         // 统一设置背景
