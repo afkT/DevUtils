@@ -38,11 +38,11 @@ class EvaluateItem {
  */
 class CommodityItem(
     // 商品名
-    val commodityName: String? = null,
+    val name: String? = null,
     // 商品图片
-    val commodityPicture: String? = null,
+    val picture: String? = null,
     // 商品价格
-    val commodityPrice: Double
+    val price: Double
 ) {
 
     companion object {
@@ -52,9 +52,9 @@ class CommodityItem(
          */
         fun newCommodityItem(): CommodityItem {
             return CommodityItem(
-                commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
-                commodityPicture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
-                commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3)
+                name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                price = RandomUtils.nextDoubleRange(15.1, 79.3)
             )
         }
     }

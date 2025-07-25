@@ -5,7 +5,6 @@ import afkt.project.app.helper.IMAGE_ROUND_10
 import afkt.project.databinding.AdapterConcatBannerBinding
 import afkt.project.databinding.AdapterConcatBannerImageBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.BannerBean
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -25,17 +24,14 @@ class BannerConcatAdapter(
     private val bannerLists: List<BannerBean>
 ) : RecyclerView.Adapter<BannerConcatAdapter.ItemHolder>() {
 
-    var context: Context? = null
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ItemHolder {
-        context = parent.context
 
         return ItemHolder(
             AdapterConcatBannerBinding.inflate(
-                LayoutInflater.from(context),
+                LayoutInflater.from(parent.context),
                 parent, false
             )
         )
@@ -72,7 +68,9 @@ class BannerConcatAdapter(
                 }
             }
         ).addBannerLifecycleObserver(owner)
-            .indicator = CircleIndicator(context)
+            .indicator = CircleIndicator(
+            holder.binding.root.context
+        )
     }
 
     override fun getItemCount(): Int {

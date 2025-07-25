@@ -1,34 +1,23 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentUiEffectConcatAdapterBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.adapter.*
-import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
-import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: RecyclerView - ConcatAdapter
  * @author Ttt
- * @see https://mp.weixin.qq.com/s/QTaz45aLucX9mivVMbCZPQ
- * @see https://zhuanlan.zhihu.com/p/275635988
  */
-class RecyConcatAdapterActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-        R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is RecyConcatAdapterActivity) {
-                it.apply {
-                    val parent = binding.vidRv.parent as? ViewGroup
-                    // 根布局处理
-                    QuickHelper.get(parent).setPadding(0)
-
-                    convertAdapter()
-                }
-            }
-        }
-    ) {
+class ConcatAdapterFragment : AppFragment<FragmentUiEffectConcatAdapterBinding, AppViewModel>(
+    R.layout.fragment_ui_effect_concat_adapter
+) {
+    override fun initView() {
+        super.initView()
+        convertAdapter()
+    }
 
     private fun convertAdapter() {
         // 头部适配器

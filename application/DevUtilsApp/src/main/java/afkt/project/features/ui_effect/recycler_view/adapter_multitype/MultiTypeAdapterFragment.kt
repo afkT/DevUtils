@@ -1,43 +1,24 @@
 package afkt.project.features.ui_effect.recycler_view.adapter_multitype
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.ArticleBean1Item
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.BannerBeanItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.ClassifyBeanItem1
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.ClassifyBeanItem2
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.ClassifyBeanItem3
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBeanItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityEvaluateBeanItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.HeaderFooterItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.ShapeableImageBeanItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.convertMainDataItem
-import afkt.project.features.ui_effect.recycler_view.adapter_concat.createMainData
+import afkt.project.databinding.FragmentUiEffectConcatAdapterBinding
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.*
 import afkt.project.features.ui_effect.recycler_view.adapter_multitype.adapter.*
-import android.view.ViewGroup
 import com.drakeet.multitype.MultiTypeAdapter
-import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: RecyclerView MultiType Adapter
  * @author Ttt
  */
-class RecyMultiTypeAdapterActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-        R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is RecyMultiTypeAdapterActivity) {
-                it.apply {
-                    val parent = binding.vidRv.parent as? ViewGroup
-                    // 根布局处理
-                    QuickHelper.get(parent).setPadding(0)
-
-                    convertAdapter()
-                }
-            }
-        }
-    ) {
+class MultiTypeAdapterFragment : AppFragment<FragmentUiEffectConcatAdapterBinding, AppViewModel>(
+    R.layout.fragment_ui_effect_concat_adapter
+) {
+    override fun initView() {
+        super.initView()
+        convertAdapter()
+    }
 
     private fun convertAdapter() {
         val mainData = createMainData()

@@ -42,14 +42,14 @@ class ShopCartAnimAdapter(data: List<CommodityItem?>) :
 
         // 商品信息
         ViewHelper.get()
-            .setText(item?.commodityName, holder.binding.vidNameTv)
+            .setText(item?.name, holder.binding.vidNameTv)
             .setText(
-                item?.commodityPrice?.toPriceString()?.toRMBSubZeroAndDot(),
+                item?.price?.toPriceString()?.toRMBSubZeroAndDot(),
                 holder.binding.vidPriceTv
             )
         // 商品图片
         holder.binding.vidPicIv.display(
-            source = item?.commodityPicture?.toSource(),
+            source = item?.picture?.toSource(),
             config = IMAGE_ROUND_3.toImageConfig()
         )
         // 点击加入购物车

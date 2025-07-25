@@ -46,7 +46,7 @@ class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, App
                             val item = adapter.getDataItem(position)
                             TAG.log_dTag(
                                 message = "新状态: %s, 商品名: %s",
-                                args = arrayOf(now, item?.commodityName)
+                                args = arrayOf(now, item?.name)
                             )
                         }
                     })

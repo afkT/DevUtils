@@ -46,15 +46,15 @@ class EditsAdapter(data: List<EvaluateItem>) :
         val commodity = item.commodityItem
 
         // 商品名
-        holder.binding.vidNameTv.text = commodity.commodityName
+        holder.binding.vidNameTv.text = commodity.name
 
         // 商品价格
         holder.binding.vidPriceTv.text =
-            commodity.commodityPrice.toPriceString()?.toRMBSubZeroAndDot()
+            commodity.price.toPriceString()?.toRMBSubZeroAndDot()
 
         // 商品图片
         holder.binding.vidPicIv.display(
-            source = commodity.commodityPicture?.toSource(),
+            source = commodity.picture?.toSource(),
             config = IMAGE_ROUND_3.toImageConfig()
         )
         // 评星等级

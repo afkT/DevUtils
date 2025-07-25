@@ -160,4 +160,14 @@
         android:id="@+id/PagerSnapFragment"
         android:name="afkt.project.features.ui_effect.recycler_view.snap.PagerSnapFragment"
         android:label="PagerSnapFragment" />
+
+    <fragment
+        android:id="@+id/ConcatAdapterFragment"
+        android:name="afkt.project.features.ui_effect.recycler_view.adapter_concat.ConcatAdapterFragment"
+        android:label="ConcatAdapterFragment" />
+
+    <fragment
+        android:id="@+id/MultiTypeAdapterFragment"
+        android:name="afkt.project.features.ui_effect.recycler_view.adapter_multitype.MultiTypeAdapterFragment"
+        android:label="MultiTypeAdapterFragment" />
 </navigation>

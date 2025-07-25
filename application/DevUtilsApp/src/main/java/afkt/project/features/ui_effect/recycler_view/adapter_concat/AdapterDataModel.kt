@@ -55,11 +55,11 @@ class ClassifyBean(
  */
 class CommodityBean(
     // 商品名
-    val commodityName: String,
+    val name: String,
     // 商品图片
-    val commodityPicture: String,
+    val picture: String,
     // 商品价格
-    val commodityPrice: Double,
+    val price: Double,
     // 商品类型 ( 是否评价商品 )
     val isEvaluateCommodity: Boolean = false,
     // 商品评价等级
@@ -264,11 +264,11 @@ private fun createCommodityLists(): List<CommodityBean> {
             add(
                 CommodityBean(
                     // 商品名
-                    commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                    name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
                     // 商品图片
-                    commodityPicture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                    picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
                     // 商品价格
-                    commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3),
+                    price = RandomUtils.nextDoubleRange(15.1, 79.3),
                 )
             )
         }
@@ -281,11 +281,11 @@ private fun createCommodityLists(): List<CommodityBean> {
             add(
                 CommodityBean(
                     // 商品名
-                    commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                    name = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
                     // 商品图片
-                    commodityPicture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                    picture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
                     // 商品价格
-                    commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3),
+                    price = RandomUtils.nextDoubleRange(15.1, 79.3),
                     // 商品类型 ( 是否评价商品 )
                     isEvaluateCommodity = true,
                     // 商品评价等级

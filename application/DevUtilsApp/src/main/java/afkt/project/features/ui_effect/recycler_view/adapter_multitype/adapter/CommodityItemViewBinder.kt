@@ -49,15 +49,15 @@ class CommodityItemViewBinder :
             // 判断是否显示边距
             .setVisibilitys(itemObj.isFirst, holder.binding.vidLineView)
             // 商品名
-            .setText(itemObj.commodityName, holder.binding.vidNameTv)
+            .setText(itemObj.name, holder.binding.vidNameTv)
             // 商品价格
             .setText(
-                itemObj.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                itemObj.price.toPriceString()?.toRMBSubZeroAndDot(),
                 holder.binding.vidPriceTv
             )
         // 商品图片
         holder.binding.vidPicIv.display(
-            source = itemObj.commodityPicture.toSource(),
+            source = itemObj.picture.toSource(),
             config = IMAGE_ROUND_3.toImageConfig()
         )
     }

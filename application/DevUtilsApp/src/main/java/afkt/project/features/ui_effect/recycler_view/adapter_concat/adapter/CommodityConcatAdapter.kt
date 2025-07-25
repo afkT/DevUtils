@@ -69,15 +69,15 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
                 // 判断是否显示边距
                 .setVisibilitys(position == 0, holder.binding.vidLineView)
                 // 商品名
-                .setText(item.commodityName, holder.binding.vidNameTv)
+                .setText(item.name, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
-                    item.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                    item.price.toPriceString()?.toRMBSubZeroAndDot(),
                     holder.binding.vidPriceTv
                 )
             // 商品图片
             holder.binding.vidPicIv.display(
-                source = item.commodityPicture.toSource(),
+                source = item.picture.toSource(),
                 config = IMAGE_ROUND_3.toImageConfig()
             )
 
@@ -86,10 +86,10 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
                 // 判断是否显示边距
                 .setVisibilitys(position == 0, holder.binding.vidLineView)
                 // 商品名
-                .setText(item.commodityName, holder.binding.vidNameTv)
+                .setText(item.name, holder.binding.vidNameTv)
                 // 商品价格
                 .setText(
-                    item.commodityPrice.toPriceString()?.toRMBSubZeroAndDot(),
+                    item.price.toPriceString()?.toRMBSubZeroAndDot(),
                     holder.binding.vidPriceTv
                 )
                 // 评价内容
@@ -99,7 +99,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) :
 
             // 商品图片
             holder.binding.vidPicIv.display(
-                source = item.commodityPicture.toSource(),
+                source = item.picture.toSource(),
                 config = IMAGE_ROUND_3.toImageConfig()
             )
             // 评星等级

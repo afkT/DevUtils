@@ -205,9 +205,11 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_PAGER_SNAP("RecyclerView - PagerSnapHelper", R.id.PagerSnapFragment),
 
-    BTN_UI_EFFECT_RECY_CONCATADAPTER("RecyclerView - ConcatAdapter"),
+    BTN_UI_EFFECT_RECY_CONCAT_ADAPTER("RecyclerView - ConcatAdapter", R.id.ConcatAdapterFragment),
 
-    BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER("RecyclerView MultiType Adapter"),
+    BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER(
+        "RecyclerView MultiType Adapter", R.id.MultiTypeAdapterFragment
+    ),
 
     // ==================
     // = Other Function =
