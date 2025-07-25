@@ -31,7 +31,7 @@ val IMAGE_ROUND = ImageConfig.create().apply {
 //    setRoundedCornersRadius(
 //        AppSize.dp2px(3F)
 //    )
-//
+//}
 
 // ============
 // = 使用方式二 =

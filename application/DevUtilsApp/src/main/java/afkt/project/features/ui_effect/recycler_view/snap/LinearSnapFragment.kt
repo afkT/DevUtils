@@ -27,7 +27,7 @@ class LinearSnapFragment : AppFragment<FragmentUiEffectLinearSnapBinding, Linear
 class LinearSnapViewModel : AppViewModel() {
 
     val adapter = LinearSnapAdapter().apply {
-        addAllAndClear(SnapItemModel.randomItemLists())
+        addAll(SnapItemModel.randomItemLists())
     }
 }
 

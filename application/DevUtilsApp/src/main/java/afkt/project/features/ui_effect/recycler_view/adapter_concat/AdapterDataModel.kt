@@ -255,6 +255,34 @@ private fun createClassifyLists(): List<ClassifyBean> {
     }
 }
 
+fun createCommodity(): CommodityBean {
+    return CommodityBean(
+        // 商品名
+        name = RandomHelper.randomWordRange(5, 40),
+        // 商品图片
+        picture = RandomHelper.randomImage200X(),
+        // 商品价格
+        price = RandomHelper.randomPrice(),
+    )
+}
+
+fun createCommodityEvaluate(): CommodityBean {
+    return CommodityBean(
+        // 商品名
+        name = RandomHelper.randomWordRange(5, 40),
+        // 商品图片
+        picture = RandomHelper.randomImage200X(),
+        // 商品价格
+        price = RandomHelper.randomPrice(),
+        // 商品类型 ( 是否评价商品 )
+        isEvaluateCommodity = true,
+        // 商品评价等级
+        evaluateLevel = RandomHelper.randomFloat(max = 6),
+        // 商品评价内容
+        evaluateContent = RandomHelper.randomText(50, 10)
+    )
+}
+
 private fun createCommodityLists(): List<CommodityBean> {
     return ArrayList<CommodityBean>().apply {
 
@@ -263,16 +291,7 @@ private fun createCommodityLists(): List<CommodityBean> {
         // =============
 
         for (position in 1 until 5) {
-            add(
-                CommodityBean(
-                    // 商品名
-                    name = RandomHelper.randomWordRange(5, 40),
-                    // 商品图片
-                    picture = RandomHelper.randomImage200X(),
-                    // 商品价格
-                    price = RandomHelper.randomPrice(),
-                )
-            )
+            add(createCommodity())
         }
 
         // =============
@@ -280,22 +299,7 @@ private fun createCommodityLists(): List<CommodityBean> {
         // =============
 
         for (position in 1 until 5) {
-            add(
-                CommodityBean(
-                    // 商品名
-                    name = RandomHelper.randomWordRange(5, 40),
-                    // 商品图片
-                    picture = RandomHelper.randomImage200X(),
-                    // 商品价格
-                    price = RandomHelper.randomPrice(),
-                    // 商品类型 ( 是否评价商品 )
-                    isEvaluateCommodity = true,
-                    // 商品评价等级
-                    evaluateLevel = RandomHelper.randomFloat(max = 6),
-                    // 商品评价内容
-                    evaluateContent = RandomHelper.randomWordRange(12, 60)
-                )
-            )
+            add(createCommodityEvaluate())
         }
 
         // =============

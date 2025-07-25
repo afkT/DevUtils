@@ -85,7 +85,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
 class ItemStickyViewModel : AppViewModel() {
 
     val adapter = ItemStickyAdapter().apply {
-        addAllAndClear(StickyItemModel.randomList())
+        addAll(StickyItemModel.randomList())
     }
 }
 

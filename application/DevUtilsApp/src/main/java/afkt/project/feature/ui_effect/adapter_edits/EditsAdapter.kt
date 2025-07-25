@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.adapter_edits
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatCommodityEvaluateBinding
-import afkt.project.model.EvaluateItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapterExt
@@ -17,8 +17,8 @@ import dev.utils.common.StringUtils
  * detail: Item EditText 输入监听 Adapter
  * @author Ttt
  */
-class EditsAdapter(data: List<EvaluateItem>) :
-    DevDataAdapterExt<EvaluateItem, DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>>() {
+class EditsAdapter(data: List<CommodityBean>) :
+    DevDataAdapterExt<CommodityBean, DevBaseViewBindingVH<AdapterConcatCommodityEvaluateBinding>>() {
 
     init {
         setDataList(data, false)
@@ -41,17 +41,15 @@ class EditsAdapter(data: List<EvaluateItem>) :
         // = 商品信息 =
         // ==========
 
-        val commodity = item.commodityItem
-
         // 商品名
-        holder.binding.vidNameTv.text = commodity.name
+        holder.binding.vidNameTv.text = item.name
 
         // 商品价格
-        holder.binding.vidPriceTv.text = commodity.priceText
+        holder.binding.vidPriceTv.text = item.priceText
 
         // 商品图片
         holder.binding.vidPicIv.display(
-            source = commodity.picture?.toSource(),
+            source = item.picture.toSource(),
             config = IMAGE_ROUND_3.toImageConfig()
         )
         // 评星等级

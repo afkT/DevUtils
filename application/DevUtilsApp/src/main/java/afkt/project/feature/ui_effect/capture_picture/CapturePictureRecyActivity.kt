@@ -5,8 +5,8 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
-import afkt.project.model.AdapterBean
-import afkt.project.model.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.feature.ui_effect.capture_picture.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.model.helper.RandomHelper
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -24,6 +24,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.FileUtils
+import dev.utils.common.RandomUtils
 
 /**
  * detail: CapturePictureUtils RecyclerView 截图
@@ -113,3 +114,45 @@ class CapturePictureRecyActivity :
             }
         }
     )
+
+
+/**
+ * detail: 适配器实体类
+ * @author Ttt
+ */
+open class AdapterBean(
+    // 标题
+    val title: String,
+    // 内容
+    val content: String,
+) {
+
+    companion object {
+
+        /**
+         * 创建适配器实体类
+         * @param position 索引
+         * @return [AdapterBean]
+         */
+        private fun newAdapterBean(position: Int): AdapterBean {
+            val number = RandomUtils.getRandom(10, 100) + (10 + position / 3) * 3
+            return AdapterBean(
+                title = RandomHelper.randomWord(2),
+                content = "${position + 1}." + RandomHelper.randomWordRange(max = number)
+            )
+        }
+
+        /**
+         * 获取适配器实体类集合
+         * @param count 集合总数
+         * @return 适配器实体类集合
+         */
+        fun newAdapterBeanList(count: Int): List<AdapterBean> {
+            val lists = mutableListOf<AdapterBean>()
+            for (i in 0 until count) {
+                lists.add(newAdapterBean(i))
+            }
+            return lists
+        }
+    }
+}

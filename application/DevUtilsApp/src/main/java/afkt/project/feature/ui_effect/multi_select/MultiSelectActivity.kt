@@ -5,8 +5,8 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.feature.ui_effect.multi_select.MultiSelectAdapter.OnSelectListener
-import afkt.project.model.CommodityItem
-import afkt.project.model.CommodityItem.Companion.newCommodityItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -33,8 +33,8 @@ class MultiSelectActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, App
                 QuickHelper.get(parent).setPadding(0)
                     .setBackgroundColor(ResourceUtils.getColor(R.color.color_33))
 
-                val lists = mutableListOf<CommodityItem>()
-                for (i in 0..14) lists.add(newCommodityItem())
+                val lists = mutableListOf<CommodityBean>()
+                for (i in 0..14) lists.add(createCommodity())
 
                 // 初始化布局管理器、适配器
                 adapter = MultiSelectAdapter(lists)

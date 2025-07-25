@@ -4,8 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.CommodityItem
-import afkt.project.model.CommodityItem.Companion.newCommodityItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
 import android.view.ViewGroup
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -28,8 +28,8 @@ class ShopCartAddAnimActivity :
                     // 创建购物车悬浮
                     val shopCartFloating = ShopCartFloating(this)
 
-                    val lists = mutableListOf<CommodityItem>()
-                    for (i in 0..14) lists.add(newCommodityItem())
+                    val lists = mutableListOf<CommodityBean>()
+                    for (i in 0..14) lists.add(createCommodity())
 
                     // 初始化布局管理器、适配器
                     ShopCartAnimAdapter(lists).setClickListener {

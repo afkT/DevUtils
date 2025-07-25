@@ -5,8 +5,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityCapturePictureListBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
-import afkt.project.model.AdapterBean
-import afkt.project.model.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.feature.ui_effect.capture_picture.AdapterBean.Companion.newAdapterBeanList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

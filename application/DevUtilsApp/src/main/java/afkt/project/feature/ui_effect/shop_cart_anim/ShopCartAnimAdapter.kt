@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.shop_cart_anim
 
 import afkt.project.R
 import afkt.project.databinding.AdapterItemShopCartAnimBinding
-import afkt.project.model.CommodityItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +18,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: 购物车动画 Adapter
  * @author Ttt
  */
-class ShopCartAnimAdapter(data: List<CommodityItem?>) :
-    DevDataAdapterExt<CommodityItem?, DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>>() {
+class ShopCartAnimAdapter(data: List<CommodityBean>) :
+    DevDataAdapterExt<CommodityBean, DevBaseViewBindingVH<AdapterItemShopCartAnimBinding>>() {
 
     init {
         setDataList(data, false)

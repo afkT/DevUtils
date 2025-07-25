@@ -5,12 +5,11 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectItemSlideBinding
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
 import afkt.project.model.basic.AdapterModel
-import afkt.project.model.helper.RandomHelper
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import dev.mvvm.utils.toPriceString
-import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.simple.app.base.asFragment
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
@@ -107,48 +106,16 @@ class ItemSlideFragment : AppFragment<FragmentUiEffectItemSlideBinding, ItemSlid
 class ItemSlideViewModel : AppViewModel() {
 
     val adapter = ItemSlideAdapter().apply {
-        addAllAndClear(SlideItemModel.randomList())
+        val lists = mutableListOf<CommodityBean>()
+        for (i in 0..39) lists.add(createCommodity())
+        addAll(lists)
     }
 }
 
-class ItemSlideAdapter() : AdapterModel<SlideItemModel>() {
+class ItemSlideAdapter() : AdapterModel<CommodityBean>() {
 
     // Item Binding
-    val itemBinding = ItemBinding.of<SlideItemModel>(
+    val itemBinding = ItemBinding.of<CommodityBean>(
         BR.itemValue, R.layout.adapter_item_recy_slide
     )
-}
-
-/**
- * detail: 滑动拖拽 Item 数据模型
- * @author Ttt
- */
-class SlideItemModel(
-    // 商品名
-    val name: String? = null,
-    // 图片
-    val picture: String? = null,
-    // 价格
-    price: Double
-) {
-    val priceText = price.toPriceString()?.toRMBSubZeroAndDot()
-
-    companion object {
-
-        private fun newSlideItem(index: Int): SlideItemModel {
-            return SlideItemModel(
-                name = "${index}. " + RandomHelper.randomWordRange(5, 40),
-                picture = RandomHelper.randomImage200X(),
-                price = RandomHelper.randomPrice()
-            )
-        }
-
-        // =
-
-        fun randomList(): MutableList<SlideItemModel> {
-            val lists = mutableListOf<SlideItemModel>()
-            for (i in 0..39) lists.add(newSlideItem(i))
-            return lists
-        }
-    }
 }

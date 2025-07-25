@@ -4,7 +4,8 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.EvaluateItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodityEvaluate
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -60,8 +61,8 @@ class AdapterEditsActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, Ap
     override fun initValue() {
         super.initValue()
 
-        val lists = mutableListOf<EvaluateItem>()
-        for (i in 0..5) lists.add(EvaluateItem())
+        val lists = mutableListOf<CommodityBean>()
+        for (i in 0..5) lists.add(createCommodityEvaluate())
         // 默认清空第一条数据内容
         lists[0].evaluateContent = ""
 

@@ -2,7 +2,7 @@ package afkt.project.feature.ui_effect.multi_select
 
 import afkt.project.R
 import afkt.project.databinding.AdapterConcatCommodityMultiSelectBinding
-import afkt.project.model.CommodityItem
+import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +19,8 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: 多选 Adapter
  * @author Ttt
  */
-class MultiSelectAdapter(data: List<CommodityItem?>) :
-    DevDataAdapterExt2<CommodityItem?, DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>>() {
+class MultiSelectAdapter(data: List<CommodityBean>) :
+    DevDataAdapterExt2<CommodityBean, DevBaseViewBindingVH<AdapterConcatCommodityMultiSelectBinding>>() {
 
     init {
         setDataList(data, false)
@@ -75,7 +75,7 @@ class MultiSelectAdapter(data: List<CommodityItem?>) :
     // =======
 
     override fun getMultiSelectKey(
-        item: CommodityItem?,
+        item: CommodityBean,
         position: Int
     ): String {
         return position.toString()
