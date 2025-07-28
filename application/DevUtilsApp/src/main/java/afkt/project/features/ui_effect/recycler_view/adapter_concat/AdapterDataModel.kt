@@ -2,6 +2,8 @@ package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
 import afkt.project.model.helper.RandomHelper
 import android.graphics.Bitmap
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableFloat
 import dev.mvvm.utils.toPriceString
 import dev.mvvm.utils.toRMBSubZeroAndDot
 import dev.utils.app.ResourceUtils
@@ -9,6 +11,7 @@ import dev.utils.app.image.ImageUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils
+import dev.utils.common.StringUtils
 
 // =====================
 // = 模拟 - 后台返回实体类 =
@@ -68,11 +71,25 @@ class CommodityBean(
     // 商品评价等级
     var evaluateLevel: Float = 0F,
     // 商品评价内容
-    var evaluateContent: String? = "",
+    var evaluateContent: String = "",
     // 是否首个向上边距 ( MultiType 使用 )
     var isFirst: Boolean = false
 ) {
     val priceText = price.toPriceString()?.toRMBSubZeroAndDot()
+
+    // 输入的内容
+    val inputText = ObservableField<String>(evaluateContent)
+
+    // 输入数量
+    val inputNumberText = ObservableField<String>()
+
+    // 评价等级
+    val ratingValue = ObservableFloat(evaluateLevel)
+
+    init {
+        val inputNumber = StringUtils.length(evaluateContent)
+        inputNumberText.set("${120 - inputNumber}")
+    }
 }
 
 /**

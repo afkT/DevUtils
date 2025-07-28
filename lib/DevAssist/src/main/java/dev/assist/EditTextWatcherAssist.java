@@ -33,6 +33,24 @@ public class EditTextWatcherAssist<T> {
 
     /**
      * 绑定事件
+     * @param text     待设置文本
+     * @param position 索引
+     * @param editText EditText
+     * @param object   Object
+     * @param listener 输入监听回调事件
+     */
+    public void bindListener(
+            final CharSequence text,
+            final int position,
+            final EditText editText,
+            final T object,
+            final InputListener<T> listener
+    ) {
+        bindListener(text, position, editText, object, listener, null);
+    }
+
+    /**
+     * 绑定事件
      * @param text          待设置文本
      * @param position      索引
      * @param editText      EditText

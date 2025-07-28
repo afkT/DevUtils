@@ -93,6 +93,16 @@ open class AdapterModel<T> {
     /**
      * 循环处理
      */
+    fun newForEach(action: (T) -> Unit) {
+        val newItems = items.toMutableList()
+        for (item in newItems) {
+            action(item)
+        }
+    }
+
+    /**
+     * 循环处理
+     */
     fun forEachReturn(action: (T) -> Boolean) {
         for (item in items) {
             if (action(item)) return

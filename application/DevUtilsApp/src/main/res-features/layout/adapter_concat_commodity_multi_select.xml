@@ -1,95 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/vid_ll"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_10"
-    android:paddingBottom="@dimen/dp_10"
-    tools:background="@color/color_f5"
-    tools:paddingTop="@dimen/dp_10">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/vid_line_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_10"
-        android:visibility="gone" />
+    <data>
+
+        <import type="dev.base.multiselect.DevMultiSelectMap" />
+
+        <import type="androidx.databinding.ObservableBoolean" />
+
+        <import type="afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean" />
+
+        <variable
+            name="itemValue"
+            type="CommodityBean" />
+
+        <variable
+            name="itemKey"
+            type="String" />
+
+        <variable
+            name="assist"
+            type="DevMultiSelectMap&lt;String,CommodityBean&gt;" />
+
+        <variable
+            name="switchBool"
+            type="ObservableBoolean" />
+    </data>
 
     <LinearLayout
+        android:id="@+id/vid_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg_white_r10"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/dp_10"
-        android:paddingRight="@dimen/dp_10">
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        tools:background="@color/color_f5"
+        tools:paddingTop="@dimen/dp_10">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/vid_iv"
-            android:layout_width="@dimen/dp_20"
-            android:layout_height="@dimen/dp_20"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/dp_10"
-            android:background="@drawable/shape_multiselect_selector"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <RelativeLayout
+        <View
+            android:id="@+id/vid_line_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10">
+            android:layout_height="@dimen/dp_10"
+            android:visibility="gone" />
 
-            <FrameLayout
-                android:id="@+id/vid_pic_fl"
-                android:layout_width="@dimen/dp_70"
-                android:layout_height="@dimen/dp_70"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/shape_border_image"
-                android:padding="@dimen/dp_5">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bg_white_r10"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/vid_pic_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/vid_iv"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_multiselect_selector"
+                android:visibility="gone"
+                app:binding_select_assist="@{assist}"
+                app:binding_select_item_key="@{itemKey}"
+                app:binding_select_item_value="@{itemValue}"
+                app:binding_select_switch="@{switchBool}"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/dp_8"
-                android:layout_toRightOf="@id/vid_pic_fl"
-                android:orientation="vertical">
+                android:layout_height="@dimen/dp_70"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_name_tv"
-                    style="@style/ViewTheme.TextView"
+                <FrameLayout
+                    android:id="@+id/vid_pic_fl"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_70"
+                    android:background="@drawable/shape_border_image"
+                    android:padding="@dimen/dp_5">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/vid_pic_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:binding_url="@{itemValue.picture}" />
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center|left"
-                    android:maxLines="1"
-                    android:textColor="@color/color_33"
-                    android:textSize="@dimen/sp_16"
-                    tools:text="商品名" />
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/vid_price_tv"
-                    style="@style/ViewTheme.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center|left"
-                    android:maxLines="1"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/sp_15"
-                    tools:text="@string/tools_price" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/vid_name_tv"
+                        style="@style/ViewTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center|left"
+                        android:maxLines="1"
+                        android:text="@{itemValue.name}"
+                        android:textColor="@color/color_33"
+                        android:textSize="@dimen/sp_16"
+                        tools:text="商品名" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/vid_price_tv"
+                        style="@style/ViewTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center|left"
+                        android:maxLines="1"
+                        android:text="@{itemValue.priceText}"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/sp_15"
+                        tools:text="@string/tools_price" />
+                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

@@ -190,4 +190,14 @@
         android:id="@+id/BottomSheetDialogFragment"
         android:name="afkt.project.features.ui_effect.material.BottomSheetDialogFragment"
         android:label="BottomSheetDialogFragment" />
+
+    <fragment
+        android:id="@+id/MultiEditsFragment"
+        android:name="afkt.project.features.ui_effect.MultiEditsFragment"
+        android:label="MultiEditsFragment" />
+
+    <fragment
+        android:id="@+id/MultiSelectFragment"
+        android:name="afkt.project.features.ui_effect.MultiSelectFragment"
+        android:label="MultiSelectFragment" />
 </navigation>

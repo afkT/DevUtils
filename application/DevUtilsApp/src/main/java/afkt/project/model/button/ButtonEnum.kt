@@ -77,21 +77,13 @@ enum class ButtonEnum(
 
     BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )", R.id.ScanShapeFragment),
 
-    BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL(
-        "Linear Vertical ItemDecoration", R.id.LinearVerticalFragment
-    ),
+    BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL("Linear Vertical ItemDecoration", R.id.LinearVerticalFragment),
 
-    BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL(
-        "Linear Horizontal ItemDecoration", R.id.LinearHorizontalFragment
-    ),
+    BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL("Linear Horizontal ItemDecoration", R.id.LinearHorizontalFragment),
 
-    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL(
-        "Grid Vertical ItemDecoration", R.id.GridVerticalFragment
-    ),
+    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL("Grid Vertical ItemDecoration", R.id.GridVerticalFragment),
 
-    BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL(
-        "Grid Horizontal ItemDecoration", R.id.GridHorizontalFragment
-    ),
+    BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL("Grid Horizontal ItemDecoration", R.id.GridHorizontalFragment),
 
     BTN_DEV_WIDGET_VIEW_ASSIST("View 填充辅助类"),
 
@@ -163,9 +155,9 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_SKU("商品 SKU 组合封装实现", R.id.SKUFragment),
 
-    BTN_UI_EFFECT_ADAPTER_EDITS("Adapter Item EditText 输入监听"),
+    BTN_UI_EFFECT_ADAPTER_EDITS("Adapter Item EditText 输入监听", R.id.MultiEditsFragment),
 
-    BTN_UI_EFFECT_MULTI_SELECT("多选辅助类 MultiSelectAssist"),
+    BTN_UI_EFFECT_MULTI_SELECT("多选辅助类 MultiSelectAssist", R.id.MultiSelectFragment),
 
     BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果"),
 
@@ -185,23 +177,15 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_VIEWPAGER2("ViewPager2", R.id.ViewPager2Fragment),
 
-    BTN_UI_EFFECT_MATERIAL_CHIP(
-        "Material Chip、ChipGroups、ChipDrawable", R.id.ChipFragment
-    ),
+    BTN_UI_EFFECT_MATERIAL_CHIP("Material Chip、ChipGroups、ChipDrawable", R.id.ChipFragment),
 
-    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW(
-        "Material ShapeableImageView", R.id.ShapeableImageViewFragment
-    ),
+    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW("Material ShapeableImageView", R.id.ShapeableImageViewFragment),
 
     BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET("Material BottomSheet", R.id.BottomSheetFragment),
 
-    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG(
-        "Material BottomSheetDialog", R.id.BottomSheetDialogFragment
-    ),
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG("Material BottomSheetDialog", R.id.BottomSheetDialogFragment),
 
-    BTN_UI_EFFECT_RECY_FLEXBOX(
-        "Flexbox LayoutManager", R.id.FlexboxFragment
-    ),
+    BTN_UI_EFFECT_RECY_FLEXBOX("Flexbox LayoutManager", R.id.FlexboxFragment),
 
     BTN_UI_EFFECT_RECY_ITEM_STICKY("RecyclerView 吸附效果", R.id.ItemStickyFragment),
 
@@ -213,9 +197,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_CONCAT_ADAPTER("RecyclerView - ConcatAdapter", R.id.ConcatAdapterFragment),
 
-    BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER(
-        "RecyclerView MultiType Adapter", R.id.MultiTypeAdapterFragment
-    ),
+    BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER("RecyclerView MultiType Adapter", R.id.MultiTypeAdapterFragment),
 
     // ==================
     // = Other Function =
