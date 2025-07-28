@@ -200,4 +200,9 @@
         android:id="@+id/MultiSelectFragment"
         android:name="afkt.project.features.ui_effect.MultiSelectFragment"
         android:label="MultiSelectFragment" />
+
+    <fragment
+        android:id="@+id/ShopCartFragment"
+        android:name="afkt.project.features.ui_effect.shop_cart.ShopCartFragment"
+        android:label="ShopCartFragment" />
 </navigation>

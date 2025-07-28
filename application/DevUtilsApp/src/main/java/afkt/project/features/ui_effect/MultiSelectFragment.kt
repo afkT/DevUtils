@@ -44,6 +44,8 @@ class MultiSelectFragment : AppFragment<FragmentUiEffectMultiSelectBinding, Mult
         // 点击取消按钮，变回编辑状态
         viewModel.clickCancel = View.OnClickListener { view ->
             nonEditState()
+            // 清空数据【恢复状态】
+            viewModel.adapter.clearSelectAll()
         }
     }
 
@@ -79,7 +81,7 @@ class MultiSelectViewModel : AppViewModel() {
 
     val adapter = MultiSelectAdapter().apply {
         val lists = mutableListOf<CommodityBean>()
-        for (i in 1 until 1000) lists.add(createCommodity())
+        for (i in 0 until 500) lists.add(createCommodity())
         addAll(lists)
     }
 
@@ -89,7 +91,6 @@ class MultiSelectViewModel : AppViewModel() {
 
     val clickUnAllSelect = View.OnClickListener { view ->
         adapter.clearSelectAll()
-        adapter.refresh()
     }
 
     val clickInverseSelect = View.OnClickListener { view ->

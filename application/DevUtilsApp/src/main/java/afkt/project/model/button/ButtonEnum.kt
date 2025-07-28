@@ -159,6 +159,10 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_MULTI_SELECT("多选辅助类 MultiSelectAssist", R.id.MultiSelectFragment),
 
+    BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画", R.id.ShopCartFragment),
+
+    BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
+
     BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果"),
 
     BTN_UI_EFFECT_GPU_FILTER("GPU 滤镜效果"),
@@ -168,10 +172,6 @@ enum class ButtonEnum(
     BTN_UI_EFFECT_QRCODE_IMAGE("二维码图片解析"),
 
     BTN_UI_EFFECT_QRCODE_SCAN("二维码扫描解析"),
-
-    BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画"),
-
-    BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
 
     BTN_UI_EFFECT_PALETTE("Palette 调色板", R.id.PaletteFragment),
 
