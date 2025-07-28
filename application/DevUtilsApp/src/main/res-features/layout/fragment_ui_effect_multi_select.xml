@@ -13,6 +13,37 @@
         style="@style/ViewTheme.LinearLayout.Vertical"
         android:background="@color/color_33">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:binding_visibleOrGone="@{viewModel.adapter.selectSwitch}">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.clickAllSelect}"
+                android:text="全选" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.clickUnAllSelect}"
+                android:text="非全选" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.clickInverseSelect}"
+                android:text="反选" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:layout_weight="1"
+                android:onClick="@{viewModel.clickCancel}"
+                android:text="取消" />
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vid_rv"
             style="@style/ViewTheme.RecyclerView"

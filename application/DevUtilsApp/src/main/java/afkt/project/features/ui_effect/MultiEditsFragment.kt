@@ -35,7 +35,7 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
                 )
             )
 
-            setTitleBarRight("提交") { view ->
+            setTitleBarRight("完成") { view ->
                 val builder = StringBuilder()
                 viewModel.adapter.forEach { item ->
                     builder.append(DevFinal.SYMBOL.NEW_LINE)
