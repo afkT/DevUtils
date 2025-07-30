@@ -9,6 +9,9 @@ import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBea
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
 import afkt.project.model.basic.AdapterModel
 import android.view.View
+import androidx.databinding.ObservableField
+import dev.assist.NumberControlAssist
+import dev.base.number.INumberListener
 import dev.simple.app.base.asFragment
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -29,7 +32,7 @@ class ShopCartFragment : AppFragment<FragmentUiEffectShopCartBinding, ShopCartVi
             )
             val animation = ShopCartAnimation()
             viewModel.adapter.viewClick = { view ->
-                animation.executeAnim(view, binding.vidRv)
+                viewModel.executeAnim(view, binding.vidNumberTv)
             }
         }
     }
@@ -41,6 +44,50 @@ class ShopCartViewModel : AppViewModel() {
         val lists = mutableListOf<CommodityBean>()
         for (i in 0 until 15) lists.add(createCommodity())
         addAllAndClear(lists)
+    }
+
+    // =
+
+    // 购物车数量
+    val numberText = ObservableField<String>("0")
+
+    // 购物车动画
+    private val animation = ShopCartAnimation()
+
+    // 数量控制辅助类
+    private val numberControl = NumberControlAssist(
+        0, Int.MAX_VALUE
+    ).setNumberListener(object : INumberListener {
+        override fun onPrepareChanged(
+            isAdd: Boolean,
+            curNumber: Int,
+            afterNumber: Int
+        ): Boolean {
+            return true
+        }
+
+        override fun onNumberChanged(
+            isAdd: Boolean,
+            curNumber: Int
+        ) {
+        }
+    }).setCurrentNumber(0)
+
+    /**
+     * 执行添加购物车动画
+     * @param view View
+     */
+    fun executeAnim(
+        view: View,
+        endView: View
+    ) {
+        numberControl.addNumber().apply {
+            val number = if (currentNumber > 99) "99+" else currentNumber.toString()
+            // 设置购买数量
+            numberText.set(number)
+        }
+        // 开始动画
+        animation.startAnim(view, endView)
     }
 }
 

@@ -466,8 +466,6 @@ internal class SKUController<T> {
 /**
  * detail: SKU 快捷工具类
  * @author Ttt
- * 电商平台商品 SKU 组合查询算法实现
- * @see https://hooray.github.io/posts/8b2bd6f8
  * SKU 算法探讨 ( Android 版 )
  * @see https://www.jianshu.com/p/45c7d9dfe5fc
  * SKU 选择解决方案

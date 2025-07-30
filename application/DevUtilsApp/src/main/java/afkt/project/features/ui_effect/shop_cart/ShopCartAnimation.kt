@@ -1,6 +1,5 @@
 package afkt.project.features.ui_effect.shop_cart
 
-import afkt.project.R
 import afkt.project.databinding.IncludeShopCartRedDotViewBinding
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -11,78 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
-import dev.assist.NumberControlAssist
-import dev.base.number.INumberListener
-import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ArrayUtils
 
 /**
- * detail: 购物车动画包装类
- * @author Ttt
- */
-class ShopCartAnimation() {
-
-    // 数量控制辅助类
-    private val numberControl = NumberControlAssist(0, Int.MAX_VALUE).setNumberListener(
-        object : INumberListener {
-            override fun onPrepareChanged(
-                isAdd: Boolean,
-                curNumber: Int,
-                afterNumber: Int
-            ): Boolean {
-                return true
-            }
-
-            override fun onNumberChanged(
-                isAdd: Boolean,
-                curNumber: Int
-            ) {
-            }
-        }
-    )
-
-//    private val binding: IncludeBottomShopCartFloatingBinding by lazy {
-//        IncludeBottomShopCartFloatingBinding.inflate(
-//            activity.layoutInflater,
-//            null, false
-//        ).apply {
-//            numberControl.currentNumber = 0
-//            // 设置购买数量
-//            QuickHelper.get(vidCartNumberTv)
-//                .setText(numberControl.currentNumber.toString())
-//                .setVisibilitys(true)
-//        }
-//    }
-
-    // 购物车动画
-    private val animation = InternalAnimation()
-
-    /**
-     * 执行添加购物车动画
-     * @param view View
-     */
-    fun executeAnim(
-        view: View,
-        endView: View
-    ) {
-//        numberControl.addNumber().apply {
-//            val numberTxt = if (currentNumber > 99) "99+" else currentNumber.toString()
-//            // 设置购买数量
-//            QuickHelper.get(binding.vidCartNumberTv)
-//                .setText(numberTxt)
-//        }
-        // 开始动画
-        animation.startAnim(view, endView)
-    }
-}
-
-/**
  * detail: 购物车动画
  * @author Ttt
  */
-private class InternalAnimation {
+class ShopCartAnimation {
 
     fun startAnim(
         startView: View,
@@ -166,8 +102,8 @@ private class InternalAnimation {
         val endOffsetX = ArrayUtils.get(wh, 0) / 2
         val endOffsetY = -ArrayUtils.get(wh, 1) / 3
         // 中间点偏移值
-        val controlOffsetX = ResourceUtils.getDimensionInt(R.dimen.dp_50)
-        val controlOffsetY = ResourceUtils.getDimensionInt(R.dimen.dp_200)
+        val controlOffsetX = 0
+        val controlOffsetY = 0
         // 开始、结束位置
         val startPosition = Point(cX, cY)
         val endPosition = Point(toX + endOffsetX, toY + endOffsetY)

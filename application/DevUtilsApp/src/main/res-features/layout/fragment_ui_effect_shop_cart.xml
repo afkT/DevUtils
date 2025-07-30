@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,8 +10,8 @@
             type="afkt.project.features.ui_effect.shop_cart.ShopCartViewModel" />
     </data>
 
-    <LinearLayout
-        style="@style/ViewTheme.LinearLayout.Vertical"
+    <FrameLayout
+        style="@style/ViewTheme.FrameLayout.Match"
         android:background="@color/color_33">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -19,5 +20,44 @@
             app:itemBinding="@{viewModel.adapter.itemBinding}"
             app:items="@{viewModel.adapter.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </LinearLayout>
+
+        <dev.widget.ui.round.RoundFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginBottom="@dimen/dp_70"
+            android:orientation="horizontal"
+            app:dev_backgroundColor="@color/black_40"
+            app:dev_radiusRightBottom="@dimen/dp_10"
+            app:dev_radiusRightTop="@dimen/dp_10">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginRight="@dimen/dp_10"
+                android:padding="@dimen/dp_8"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_shop_cart_white" />
+
+            <dev.widget.ui.round.RoundTextView
+                android:id="@+id/vid_number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_3"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/dp_4"
+                android:paddingRight="@dimen/dp_4"
+                android:text="@{viewModel.numberText}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                app:dev_backgroundColor="@color/color_ff2e42"
+                app:dev_borderColor="@color/white"
+                app:dev_borderWidth="@dimen/dp_1"
+                app:dev_radius="@dimen/dp_10"
+                tools:text="0" />
+        </dev.widget.ui.round.RoundFrameLayout>
+    </FrameLayout>
 </layout>
