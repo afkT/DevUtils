@@ -224,7 +224,15 @@ class DecodeHandler(
             decode(message.obj as ByteArray, message.arg1, message.arg2)
         } else if (message.what == WHAT_QUIT) {
             mRunning = false
-            Looper.myLooper()?.quit()
+            try {
+                /**
+                 * 因为使用 单 Activity 多 Fragment 显示
+                 * 调用该方法会抛出异常, 不允许退出主线程
+                 * 多 Activity 则不会影响, 统一进行捕获异常
+                 */
+                Looper.myLooper()?.quit()
+            } catch (_: Exception) {
+            }
         }
     }
 

@@ -54,6 +54,8 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
         try {
             // 停止动画
             binding.vidSsv.stopAnim()
+            // 关闭手电筒
+            viewModel.closeFlashlight()
             // 停止预览
             viewModel.cameraAssist.stopPreview()
         } catch (_: Exception) {
@@ -148,7 +150,7 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
     }
 }
 
-class ScanShapeViewModel : AppViewModel() {
+open class ScanShapeViewModel : AppViewModel() {
 
     // 摄像头辅助类
     val cameraAssist = CameraAssist()
@@ -228,7 +230,7 @@ class ScanShapeViewModel : AppViewModel() {
      * 设置手电筒开关
      * @param open 是否打开
      */
-    private fun setFlashlight(open: Boolean) {
+    open fun setFlashlight(open: Boolean) {
         if (open) {
             cameraAssist.setFlashlightOn()
         } else {
