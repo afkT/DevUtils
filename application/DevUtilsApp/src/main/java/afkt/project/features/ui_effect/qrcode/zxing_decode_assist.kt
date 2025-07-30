@@ -1,6 +1,5 @@
-package afkt.project.feature.ui_effect.qrcode.zxing
+package afkt.project.features.ui_effect.qrcode
 
-import afkt.project.feature.ui_effect.qrcode.zxing.DecodeFormat.DecodeMode
 import android.Manifest
 import android.hardware.Camera
 import android.os.Handler
@@ -231,7 +230,7 @@ class ZXingDecodeAssist(
     private val TAG = ZXingDecodeAssist::class.java.simpleName
 
     // 解码类型
-    @DecodeMode
+    @DecodeFormat.DecodeMode
     private val DECODE_MODE = DecodeFormat.ALL
 
     // 摄像头辅助类

@@ -205,4 +205,9 @@
         android:id="@+id/ShopCartFragment"
         android:name="afkt.project.features.ui_effect.shop_cart.ShopCartFragment"
         android:label="ShopCartFragment" />
+
+    <fragment
+        android:id="@+id/QRCodeScanFragment"
+        android:name="afkt.project.features.ui_effect.qrcode.QRCodeScanFragment"
+        android:label="QRCodeScanFragment" />
 </navigation>

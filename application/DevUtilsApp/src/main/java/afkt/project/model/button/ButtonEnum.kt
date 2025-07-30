@@ -167,11 +167,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_GPU_FILTER("GPU 滤镜效果"),
 
-    BTN_UI_EFFECT_QRCODE_CREATE("创建二维码"),
-
-    BTN_UI_EFFECT_QRCODE_IMAGE("二维码图片解析"),
-
-    BTN_UI_EFFECT_QRCODE_SCAN("二维码扫描解析"),
+    BTN_UI_EFFECT_QRCODE_SCAN("二维码扫描解析", R.id.QRCodeScanFragment),
 
     BTN_UI_EFFECT_PALETTE("Palette 调色板", R.id.PaletteFragment),
 

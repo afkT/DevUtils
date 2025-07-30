@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.qrcode.zxing
+package afkt.project.features.ui_effect.qrcode
 
 import android.graphics.Bitmap
 import android.graphics.Rect
@@ -82,29 +82,21 @@ interface DecodeResult {
  */
 object DecodeFormat {
 
-    // 1D 解码
-    private val PRODUCT_FORMATS: Set<BarcodeFormat>
-    private val INDUSTRIAL_FORMATS: Set<BarcodeFormat>
-    private val ONE_D_FORMATS: MutableSet<BarcodeFormat>
-
-    // 二维码解码
-    private val QR_CODE_FORMATS: Set<BarcodeFormat>
-
-    init {
-        // 1D 解码类型
-        PRODUCT_FORMATS = EnumSet.of(
-            BarcodeFormat.UPC_A, BarcodeFormat.UPC_E, BarcodeFormat.EAN_13,
-            BarcodeFormat.EAN_8, BarcodeFormat.RSS_14, BarcodeFormat.RSS_EXPANDED
-        )
-        INDUSTRIAL_FORMATS = EnumSet.of(
-            BarcodeFormat.CODE_39, BarcodeFormat.CODE_93,
-            BarcodeFormat.CODE_128, BarcodeFormat.ITF, BarcodeFormat.CODABAR
-        )
-        ONE_D_FORMATS = EnumSet.copyOf(PRODUCT_FORMATS)
-        ONE_D_FORMATS.addAll(INDUSTRIAL_FORMATS)
-        // 二维码解码类型
-        QR_CODE_FORMATS = EnumSet.of(BarcodeFormat.QR_CODE)
+    // 1D 解码类型
+    private val PRODUCT_FORMATS = EnumSet.of(
+        BarcodeFormat.UPC_A, BarcodeFormat.UPC_E, BarcodeFormat.EAN_13,
+        BarcodeFormat.EAN_8, BarcodeFormat.RSS_14, BarcodeFormat.RSS_EXPANDED
+    )
+    private val INDUSTRIAL_FORMATS = EnumSet.of(
+        BarcodeFormat.CODE_39, BarcodeFormat.CODE_93,
+        BarcodeFormat.CODE_128, BarcodeFormat.ITF, BarcodeFormat.CODABAR
+    )
+    private val ONE_D_FORMATS = EnumSet.copyOf(PRODUCT_FORMATS).apply {
+        addAll(INDUSTRIAL_FORMATS)
     }
+
+    // 二维码解码类型
+    private val QR_CODE_FORMATS = EnumSet.of(BarcodeFormat.QR_CODE)
 
     /**
      * 获取二维码解码类型集合
@@ -253,8 +245,10 @@ class DecodeHandler(
             val pixels = it.renderThumbnail()
             val width = it.thumbnailWidth
             val height = it.thumbnailHeight
-            val bitmap =
-                Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888)
+            val bitmap = Bitmap.createBitmap(
+                pixels, 0, width,
+                width, height, Bitmap.Config.ARGB_8888
+            )
             val out = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out)
             bundle.putByteArray(DecodeConfig.BARCODE_BITMAP, out.toByteArray())
@@ -290,33 +284,31 @@ class DecodeHandler(
 
         // 处理数据
         var rawResult: Result? = null
-        val source = buildLuminanceSource(rotatedData, size.width, size.height)
-        if (source != null) {
-            try {
-                val bitmap = BinaryBitmap(HybridBinarizer(source))
-                rawResult = mMultiFormatReader.decodeWithState(bitmap)
-            } catch (_: Exception) {
-                // continue
-            } finally {
-                mMultiFormatReader.reset()
-            }
+        val source = buildLuminanceSource(
+            rotatedData, size.width, size.height
+        )
+        try {
+            val bitmap = BinaryBitmap(HybridBinarizer(source))
+            rawResult = mMultiFormatReader.decodeWithState(bitmap)
+        } catch (_: Exception) {
+            // continue
+        } finally {
+            mMultiFormatReader.reset()
         }
         val handler = mDecodeConfig.getHandler()
         if (rawResult != null) {
-            TAG.log_dTag(
-                message = "解析成功, 发送数据"
-            )
+            TAG.log_dTag(message = "解析成功, 发送数据")
             if (handler != null) {
-                val message = Message.obtain(handler, WHAT_DECODE_SUCCEEDED, rawResult)
+                val message = Message.obtain(
+                    handler, WHAT_DECODE_SUCCEEDED, rawResult
+                )
                 val bundle = Bundle()
                 bundleThumbnail(source, bundle)
                 message.data = bundle
                 message.sendToTarget()
             }
         } else {
-            TAG.log_dTag(
-                message = "解析失败"
-            )
+            TAG.log_dTag(message = "解析失败")
             if (handler != null) {
                 val message = Message.obtain(handler, WHAT_DECODE_FAILED)
                 message.sendToTarget()
@@ -337,31 +329,39 @@ class DecodeHandler(
         width: Int,
         height: Int
     ): PlanarYUVLuminanceSource {
-        TAG.log_dTag(
-            message = "buildLuminanceSource 解析摄像头数据"
-        )
+        TAG.log_dTag(message = "buildLuminanceSource 解析摄像头数据")
         // 判断是否裁减
         return if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常
             if (mDecodeConfig.isError()) {
-                PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
+                PlanarYUVLuminanceSource(
+                    data, width, height,
+                    0, 0, width, height, false
+                )
             } else {
                 try {
                     // 获取裁减识别区域
                     val rect = mDecodeConfig.getCropRect() as Rect
                     PlanarYUVLuminanceSource(
                         data, width, height,
-                        rect.left, rect.top, rect.width(), rect.height(), false
+                        rect.left, rect.top, rect.width(),
+                        rect.height(), false
                     )
                 } catch (e: Exception) { // 出现异常时, 使用全屏解析, 不解析指定识别区域
                     // 设置异常
                     mDecodeConfig.setError(true, e)
                     // 全屏处理
-                    PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
+                    PlanarYUVLuminanceSource(
+                        data, width, height,
+                        0, 0, width, height, false
+                    )
                 }
             }
         } else {
-            PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
+            PlanarYUVLuminanceSource(
+                data, width, height,
+                0, 0, width, height, false
+            )
         }
     }
 }
