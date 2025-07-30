@@ -8,6 +8,7 @@ import android.animation.ValueAnimator
 import android.graphics.Point
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import dev.utils.app.ViewUtils
@@ -31,10 +32,12 @@ class ShopCartAnimation {
         // 动画时间
         val duration = 2000L
 
-        startPoints[1] -= startView.height
+        // 添加在对应的 Fragment 显示的 View 中
+        val parent: ViewGroup = startView.rootView as ViewGroup
         // 动画 View - 小红点
         val animBinding = IncludeShopCartRedDotViewBinding.inflate(
-            LayoutInflater.from(startView.context)
+            LayoutInflater.from(startView.context),
+            parent, true
         )
         QuickHelper.get(animBinding.root)
             .setMargin(startPoints[0], startPoints[1], 0, 0)
@@ -102,7 +105,7 @@ class ShopCartAnimation {
         val endOffsetX = ArrayUtils.get(wh, 0) / 2
         val endOffsetY = -ArrayUtils.get(wh, 1) / 3
         // 中间点偏移值
-        val controlOffsetX = 0
+        val controlOffsetX = 0 // 可以设置结束点偏移位置
         val controlOffsetY = 0
         // 开始、结束位置
         val startPosition = Point(cX, cY)

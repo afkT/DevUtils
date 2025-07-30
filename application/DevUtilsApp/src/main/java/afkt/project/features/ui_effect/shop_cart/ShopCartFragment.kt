@@ -86,8 +86,13 @@ class ShopCartViewModel : AppViewModel() {
             // 设置购买数量
             numberText.set(number)
         }
-        // 开始动画
-        animation.startAnim(view, endView)
+        try {
+            // 开始动画
+            animation.startAnim(view, endView)
+        } catch (_: Exception) {
+            // 防止 IncludeShopCartRedDotViewBinding.inflate() 添加到 parent 获取失败
+            // 最好直接传入最外层 FrameLayout View，然后传入 inflate 中参数 parent
+        }
     }
 }
 
