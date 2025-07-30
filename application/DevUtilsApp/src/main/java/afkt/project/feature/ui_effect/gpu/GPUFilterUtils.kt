@@ -23,7 +23,6 @@ object GPUFilterUtils {
      * @param inputStream [InputStream]
      * @return [GPUImageToneCurveFilter]
      */
-    @JvmStatic
     fun getGPUImageToneCurveFilter(inputStream: InputStream?): GPUImageToneCurveFilter? {
         if (inputStream != null) {
             try {
@@ -49,7 +48,6 @@ object GPUFilterUtils {
      * @param gpuImageFilter [GPUImageFilter]
      * @return 滤镜后的 Bitmap
      */
-    @JvmStatic
     fun getFilterBitmap(
         gpuImage: GPUImage?,
         gpuImageFilter: GPUImageFilter?
@@ -68,7 +66,6 @@ object GPUFilterUtils {
      * @param gpuImageFilter [GPUImageFilter]
      * @return 滤镜后的 Bitmap
      */
-    @JvmStatic
     fun getFilterBitmap(
         context: Context?,
         bitmap: Bitmap?,
@@ -90,7 +87,6 @@ object GPUFilterUtils {
      * @param gpuImageFilter [GPUImageFilter]
      * @return 滤镜后的 Bitmap
      */
-    @JvmStatic
     fun getFilterBitmap(
         gpuImage: GPUImage?,
         bitmap: Bitmap?,

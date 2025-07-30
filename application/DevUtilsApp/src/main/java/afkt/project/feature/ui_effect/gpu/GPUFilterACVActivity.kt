@@ -4,8 +4,6 @@ import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityGpuFilterBinding
-import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
-import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getGPUImageToneCurveFilter
 import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
@@ -127,8 +125,12 @@ class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppVi
             // 获取滤镜文件实体类
             val acvFileBean = gpuFilterACVAdapter.getItem(position)
             // 设置滤镜效果
-            val gpuFilter = getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath))
-            val bitmapFilter = getFilterBitmap(this, selectBitmap, gpuFilter)
+            val gpuFilter = GPUFilterUtils.getGPUImageToneCurveFilter(
+                ResourceUtils.open(acvFileBean.acvPath)
+            )
+            val bitmapFilter = GPUFilterUtils.getFilterBitmap(
+                this, selectBitmap, gpuFilter
+            )
             bitmapFilter?.let {
                 val wh = ScaleUtils.calcScaleToWidthI(
                     ScreenUtils.getScreenWidth().toDouble(),

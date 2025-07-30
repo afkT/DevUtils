@@ -227,8 +227,6 @@ enum class ButtonEnum(
 
     BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK("startActivityForResult Callback"),
 
-    BTN_OTHER_FUN_ADD_CONTACT("添加联系人"),
-
     BTN_OTHER_FUN_WALLPAPER("手机壁纸"),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER("悬浮窗管理辅助类 ( 需权限 )"),

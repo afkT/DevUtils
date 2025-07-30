@@ -4,62 +4,56 @@
 
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 读写权限 -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 所有文件管理权限 -->
-    <uses-permission
-        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
-    <!-- 获取所有应用列表 -->
-    <uses-permission
-        android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="QueryAllPackagesPermission" />
-    <!-- 改变 Wifi 状态 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 获取 Wifi 状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 改变网络状态 -->
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 改变 Wifi 状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 网络定位权限 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 改变网络状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- GPS 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 摄像头权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 麦克风设置权限 -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <!-- 录音权限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!-- 允许访问震动设备 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 发送短信 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <!-- 读取短信 -->
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <!-- 快捷方式创建、卸载权限 -->
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
-    <!-- 通讯录读写权限 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!-- 网络定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 读取设置 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS" />
+    <!-- 快捷方式创建、卸载权限 -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <!-- 允许访问震动设备 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <!-- 设置壁纸权限 -->
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <!-- 读取电话状态 -->
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <!-- 窗口悬浮权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- 读取壁纸权限 -->
-    <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL" />
+    <!-- 录音权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 麦克风设置权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 读取短信 -->
+    <uses-permission
+        android:name="android.permission.RECEIVE_SMS"
+        tools:ignore="SmsAndCallLogPolicy" />
+    <!-- 发送短信 -->
+    <uses-permission
+        android:name="android.permission.SEND_SMS"
+        tools:ignore="SmsAndCallLogPolicy" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <!-- 读取电话状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_CALL_LOG"
+        tools:ignore="SmsAndCallLogPolicy" />
+    <!-- 摄像头权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".app.AppContext"

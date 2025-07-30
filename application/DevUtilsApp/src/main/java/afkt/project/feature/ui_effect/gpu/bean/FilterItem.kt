@@ -106,7 +106,6 @@ class FilterItem(
          * @param type 滤镜类型
          * @return [GPUImageFilter]
          */
-        @JvmStatic
         fun createFilterForType(type: FilterType?): GPUImageFilter? {
             return when (type) {
                 FilterType.CONTRAST -> GPUImageContrastFilter(2.0F)

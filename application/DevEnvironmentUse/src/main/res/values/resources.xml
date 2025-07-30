@@ -20,9 +20,7 @@
 
     <!-- View 样式 -->
 
-    <style name="ViewTheme">
-        <item name="android:textAllCaps">false</item>
-    </style>
+    <style name="ViewTheme" />
 
     <!-- Button 基础样式 -->
 

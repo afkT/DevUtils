@@ -19,7 +19,7 @@
                 android:text="@{viewModel.infoText}" />
 
             <View
-                style="@style/ViewTheme.Line.Vertical"
+                style="@style/ViewTheme.Divider.Vertical"
                 android:background="@color/gray" />
 
             <dev.widget.function.LineTextView

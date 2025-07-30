@@ -5,7 +5,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.feature.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
-import afkt.project.feature.ui_effect.gpu.bean.FilterItem.Companion.createFilterForType
+import afkt.project.feature.ui_effect.gpu.bean.FilterItem
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
@@ -116,7 +116,9 @@ class GPUFilterActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppViewM
             val filterItem = gpuFilterAdapter.getItem(position)
             // 设置滤镜效果
             val bitmapFilter = getFilterBitmap(
-                this, selectBitmap, createFilterForType(filterItem.filterType)
+                this, selectBitmap, FilterItem.createFilterForType(
+                    filterItem.filterType
+                )
             )
             bitmapFilter?.let {
                 val wh = ScaleUtils.calcScaleToWidthI(

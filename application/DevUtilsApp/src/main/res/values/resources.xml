@@ -65,6 +65,13 @@
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
+    <!-- Button 单行样式 -->
+
+    <style name="ViewTheme.Button.Single">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
     <!-- TextView 基础样式 -->
 
     <style name="ViewTheme.TextView">
@@ -74,13 +81,6 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">false</item>
-    </style>
-
-    <!-- Button 单行样式 -->
-
-    <style name="ViewTheme.Button.Single">
-        <item name="android:ellipsize">end</item>
-        <item name="android:maxLines">1</item>
     </style>
 
     <!-- TextView 文本居中样式 -->
@@ -110,14 +110,12 @@
 
     <!-- 分割线样式 -->
 
-    <style name="ViewTheme.Line" />
-
-    <style name="ViewTheme.Line.Vertical">
+    <style name="ViewTheme.Divider.Vertical">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
     </style>
 
-    <style name="ViewTheme.Line.Horizontal">
+    <style name="ViewTheme.Divider.Horizontal">
         <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>

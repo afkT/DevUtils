@@ -3,9 +3,11 @@
 
     <!-- View 样式 -->
 
-    <style name="ViewTheme">
-        <item name="android:textAllCaps">false</item>
-    </style>
+    <style name="ViewTheme" />
+
+    <!-- 分割线样式 -->
+
+    <style name="ViewTheme.Divider" />
 
     <!-- Padding、Margin 基础样式 -->
 
@@ -44,6 +46,23 @@
     <style name="ViewTheme.LinearLayout.Margin" />
 
     <style name="ViewTheme.LinearLayout.Padding" />
+
+    <!-- FrameLayout 基础样式 -->
+
+    <style name="ViewTheme.FrameLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.FrameLayout.Match">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- FrameLayout 边距基础样式 -->
+
+    <style name="ViewTheme.FrameLayout.Margin" />
+
+    <style name="ViewTheme.FrameLayout.Padding" />
 
     <!-- NestedScrollView 基础样式 -->
 
@@ -106,4 +125,34 @@
     <style name="ViewTheme.RecyclerView.Margin" />
 
     <style name="ViewTheme.RecyclerView.Padding" />
+
+    <!-- TextView 基础样式 -->
+
+    <style name="ViewTheme.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ViewTheme.TextView.Single">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="ViewTheme.TextView.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.TextView.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.TextView.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>
