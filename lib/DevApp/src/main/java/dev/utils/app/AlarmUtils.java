@@ -13,12 +13,6 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: AlarmManager ( 全局定时器、闹钟 ) 工具类
  * @author Ttt
- * <pre>
- *     指定时长或以周期形式执行某项操作
- *     @see <a href="https://www.cnblogs.com/zyw-205520/p/4040923.html"/>
- *     关于使用 AlarmManager 的注意事项
- *     @see <a href="https://www.jianshu.com/p/d69a90bc44c0"/>
- * </pre>
  */
 public final class AlarmUtils {
 

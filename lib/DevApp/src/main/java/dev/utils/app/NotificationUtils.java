@@ -26,9 +26,6 @@ import dev.utils.app.assist.ResourceAssist;
 /**
  * detail: 通知栏管理工具类
  * @author Ttt
- * <pre>
- *     @see <a href="https://www.jianshu.com/p/cf5f6c30019d"/>
- * </pre>
  */
 public final class NotificationUtils {
 

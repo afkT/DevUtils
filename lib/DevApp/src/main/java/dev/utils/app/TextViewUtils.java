@@ -30,16 +30,6 @@ import dev.utils.LogPrintUtils;
  * detail: TextView 工具类
  * @author Ttt
  * <pre>
- *     获取字体信息 Paint.FontMetrics
- *     @see <a href="https://blog.csdn.net/superbigcupid/article/details/47153139"/>
- *     @see <a href="http://www.cnblogs.com/tianzhijiexian/p/4297664.html"/>
- *     <p></p>
- *     TextView 设置行间距、行高, 以及字间距
- *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79564271"/>
- *     <p></p>
- *     android:includeFontPadding
- *     @see <a href="https://blog.csdn.net/bdmh/article/details/78110557"/>
- *     <p></p>
  *     设置文字水平间距: {@link TextViewUtils#setLetterSpacing(View, float)}
  *     android:letterSpacing
  *     设置文字行间距 ( 行高 ): {@link TextViewUtils#setLineSpacing(View, float)}、{@link TextViewUtils#setLineSpacingAndMultiplier(View, float, float)}

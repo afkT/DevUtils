@@ -13,13 +13,6 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 类型工具类
  * @author Ttt
- * <pre>
- *     Java 中与泛型相关的接口之 ParameterizedType
- *     @see <a href="https://www.jianshu.com/p/cfa74c980b25"/>
- *     Java 知识总结之 Type
- *     @see <a href="https://www.jianshu.com/p/0f3eda48d611"/>
- *     @see <a href="https://www.cnblogs.com/wytiger/p/11412072.html"/>
- * </pre>
  */
 public final class TypeUtils {
 

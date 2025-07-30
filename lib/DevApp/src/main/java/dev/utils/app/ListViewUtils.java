@@ -19,9 +19,6 @@ import dev.utils.common.NumberUtils;
  * detail: List View ( 列表 View ) 相关工具类
  * @author Ttt
  * <pre>
- *     Fading Edge 让你的 View 更有层次感
- *     @see <a href="https://blog.csdn.net/u012702547/article/details/52913538"/>
- *     <p></p>
  *     android:descendantFocusability="blocksDescendants"
  *     android:overScrollMode="never"
  *     android:scrollbars="none"

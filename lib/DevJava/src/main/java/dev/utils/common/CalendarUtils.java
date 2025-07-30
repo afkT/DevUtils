@@ -9,14 +9,6 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 日历工具类
  * @author Ttt
- * <pre>
- *     公历、农历转换
- *     @see <a href="https://github.com/isee15/Lunar-Solar-Calendar-Converter/blob/master/Java/cn/z/LunarSolarConverter.java"/>
- *     关于日历实现代码里 0x04bd8, 0x04ae0, 0x0a570 的解释
- *     @see <a href="https://blog.csdn.net/onlyonecoder/article/details/8484118"/>
- *     Android 农历和节气相关工具类 ( 记录 )
- *     @see <a href="https://my.oschina.net/lanyu96/blog/3059730"/>
- * </pre>
  */
 public final class CalendarUtils {
 

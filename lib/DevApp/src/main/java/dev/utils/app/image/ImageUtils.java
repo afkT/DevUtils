@@ -38,12 +38,9 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     图片文件头标识信息
- *     @see <a href="https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578220&idx=1&sn=bdc57c640427984e240b19d8b9e10a15&chksm=84b3b1ebb3c438fdcbd446e9f28abd2713e685246efedfc133eb453ca41d08730dbf297ba1a4&scene=4#wechat_redirect"/>
  *     @see <a href="https://developers.google.com/speed/webp/docs/riff_container"/>
  *     各类文件的文件头标志
- *     @see <a href="https://www.garykessler.net/library/file_sigs.html"/>
  *     @see <a href="https://blog.csdn.net/feixi7358/article/details/87712812"/>
- *     @see <a href="http://www.manongjc.com/article/56456.html"/>
  * </pre>
  */
 public final class ImageUtils {

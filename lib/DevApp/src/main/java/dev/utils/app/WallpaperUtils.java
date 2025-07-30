@@ -33,9 +33,6 @@ import dev.utils.LogPrintUtils;
  *     {@link WallpaperManager#FLAG_SYSTEM}
  *     锁屏壁纸
  *     {@link WallpaperManager#FLAG_LOCK}
- *     <p></p>
- *     动态壁纸可参考 ( 支持 Gif、Camera、Video 动态壁纸 ) :
- *     @see <a href="https://github.com/tyhjh/liveWallpaper"/>
  * </pre>
  */
 public final class WallpaperUtils {

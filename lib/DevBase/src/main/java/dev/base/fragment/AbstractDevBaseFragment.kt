@@ -15,8 +15,6 @@ import dev.base.utils.assist.DevBaseAssist
 /**
  * detail: Fragment 抽象基类
  * @author Ttt
- * androidx 来袭, Fragment 如何更简单的实现懒加载
- * @see https://mp.weixin.qq.com/s/3iZOIy5-F5qfXS22buFxrA
  */
 abstract class AbstractDevBaseFragment : Fragment(),
     IDevBase {

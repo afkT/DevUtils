@@ -24,8 +24,6 @@ import dev.utils.common.FileUtils;
  * detail: ContentResolver 工具类
  * @author Ttt
  * <pre>
- *     @see <a href="https://blog.csdn.net/lemon_blue/article/details/52353851"/>
- *     <p></p>
  *     例: content://xxxx/49
  *     可通过 {@link ContentUris#parseId(Uri)} 获取 49
  * </pre>

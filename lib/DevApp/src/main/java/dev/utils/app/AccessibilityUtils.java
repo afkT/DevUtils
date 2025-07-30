@@ -29,10 +29,6 @@ import dev.utils.common.StringUtils;
  * detail: 无障碍功能工具类
  * @author Ttt
  * <pre>
- *     @see <a href="https://www.jianshu.com/p/981e7de2c7be"/>
- *     @see <a href="https://www.jianshu.com/p/f67e950d84f7"/>
- *     @see <a href="https://blog.csdn.net/dd864140130/article/details/51794318"/>
- *     <p></p>
  *     AccessibilityService 在 API < 18 的时候使用 AccessibilityService
  *     所需权限
  *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>

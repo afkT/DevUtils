@@ -9,13 +9,7 @@ import static java.lang.Math.PI;
  *     地球坐标系 (WGS-84)
  *     火星坐标系 (GCJ-02)
  *     百度坐标系 (BD09)
- *     <p></p>
  *     @see <a href="https://github.com/hujiulong/gcoord"/>
- *     @see <a href="https://www.cnblogs.com/milkmap/p/3768379.html"/>
- *     根据两点经纬度计算距离
- *     @see <a href="https://www.cnblogs.com/ycsfwhh/archive/2010/12/20/1911232.html"/>
- *     根据经纬度计算两点之间的距离的公式推导过程以及 google.maps 的测距函数
- *     @see <a href="https://blog.csdn.net/xiejm2333/article/details/73297004"/>
  *     <p></p>
  *     1. WGS84 坐标系: 即地球坐标系, 国际上通用的坐标系, 设备一般包含 GPS 芯片或者北斗芯片获取的经纬度为 WGS84 地理坐标系
  *     谷歌地图采用的是 WGS84 地理坐标系 ( 中国范围除外 ) GPS 设备得到的经纬度就是在 WGS84 坐标系下的经纬度, 通常通过底层接口得到的定位信息都是 WGS84 坐标系

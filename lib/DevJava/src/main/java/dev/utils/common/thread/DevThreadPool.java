@@ -17,8 +17,6 @@ import java.util.concurrent.TimeoutException;
  * detail: 线程池 ( 构建类 )
  * @author Ttt
  * <pre>
- *     @see <a href="https://www.jianshu.com/p/4d4634c92253"/>
- *     <p></p>
  *     创建线程池 ( 参数 )
  *     1. 线程池里面管理多少个线程
  *     2. 如果排队满了, 额外的开的线程数
@@ -102,10 +100,6 @@ public final class DevThreadPool {
     /**
      * detail: 线程池初始化枚举类型
      * @author Ttt
-     * <pre>
-     *     @see <a href="http://blog.csdn.net/a369414641/article/details/48342253"/>
-     *     @see <a href="http://blog.csdn.net/vking_wang/article/details/9619137"/>
-     * </pre>
      */
     public enum DevThreadPoolType {
 

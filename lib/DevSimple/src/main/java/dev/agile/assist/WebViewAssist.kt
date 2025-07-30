@@ -18,16 +18,6 @@ import dev.utils.app.ViewUtils
  * detail: WebView 辅助类
  * @author Ttt
  * WebView 截图使用 [dev.utils.app.CapturePictureUtils.snapshotByWebView]
- * WebView 全面解析
- * @see https://www.jianshu.com/p/3e0136c9e748
- * Android WebView 常见问题及解决方案汇总
- * @see https://www.cnblogs.com/Free-Thinker/p/6179016.html
- * WebView 与 JavaScript 的交互总结
- * @see https://www.jianshu.com/p/5cc2eae14e07
- * WebView 使用漏洞
- * @see https://blog.csdn.net/carson_ho/article/details/64904635
- * Android Webview H5 交互之 LocalStorage
- * @see https://www.jianshu.com/p/379a0681ce25
  */
 class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 

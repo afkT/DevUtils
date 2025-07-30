@@ -8,10 +8,6 @@ package dev.utils.common.encrypt;
  *     可用于 IM 二进制数据包加密
  *     1. 能够实现加密
  *     2. 采用异或加密算法不会改变二进制数据的长度这对二进制数据包封包起到不小的好处
- *     也可用于记事本等场景
- *     <p></p>
- *     参考链接
- *     @see <a href="http://www.cnblogs.com/whoislcj/p/5944917.html"/>
  * </pre>
  */
 public final class XorUtils {

@@ -18,10 +18,6 @@ import kotlin.collections.set
  * 支持组件化 module 存储、以及默认通用 mmkv 对象
  * 基于 mmap 的高性能通用 key-value 组件
  * @see https://github.com/Tencent/MMKV/blob/master/README_CN.md
- * Google 再见 SharedPreferences 拥抱 Jetpack DataStore
- * @see https://juejin.im/post/6881442312560803853
- * Google 再见 SharedPreferences 拥抱 Jetpack DataStore
- * @see https://juejin.im/post/6888847647802097672
  * 使用:
  * [defaultHolder].encode/decodeXxx
  * [get].encode/decodeXxx

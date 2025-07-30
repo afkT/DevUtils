@@ -12,9 +12,6 @@ import dev.utils.LogPrintUtils;
  * detail: 音频管理工具类
  * @author Ttt
  * <pre>
- *     AudioManager 的作用: 调整音量和控制响铃模式
- *     @see <a href="https://blog.csdn.net/feiduclear_up/article/details/78383451"/>
- *     <p></p>
  *     声音分类
  *     STREAM_VOICE_CALL: 通话声音
  *     STREAM_SYSTEM: 系统声音, 包括按键声音等

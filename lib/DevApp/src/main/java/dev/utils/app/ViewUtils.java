@@ -42,44 +42,6 @@ import dev.utils.common.FieldUtils;
 /**
  * detail: View 操作相关工具类
  * @author Ttt
- * <pre>
- *     组件设置 setCompoundDrawables 不生效解决办法
- *     @see <a href="https://blog.csdn.net/qq_26971803/article/details/54347598"/>
- *     Android 常用布局属性
- *     @see <a href="https://www.jianshu.com/p/78e2dfb6d244"/>
- *     Android 应用坐标系统全面详解
- *     @see <a href="https://blog.csdn.net/yanbober/article/details/50419117"/>
- *     Android 获取 View 准确宽高的三种方法
- *     @see <a href="https://blog.csdn.net/yztbydh/article/details/80857016"/>
- *     getLocalVisibleRect()、getGlobalVisibleRect()、getLocationOnScreen()、getLocationInWindow() 方法浅析
- *     @see <a href="https://blog.csdn.net/qq1282675628/article/details/112358024"/>
- *     <p></p>
- *     RelativeLayout 的特有属性
- *     属性值为 true、false
- *     android:layout_centerHrizontal 位于父控件的横向中间位置
- *     android:layout_centerVertical 位于父控件的纵向中间位置
- *     android:layout_centerInparent 位于父控件的纵横向中间位置
- *     android:layout_alignParentBottom 贴紧父元素的下边缘
- *     android:layout_alignParentLeft 贴紧父元素的左边缘
- *     android:layout_alignParentRight 贴紧父元素的右边缘
- *     android:layout_alignParentTop 贴紧父元素的上边缘
- *     android:layout_alignParentStart 将控件开始位置与父控件的开始位置对齐
- *     android:layout_alignParentEnd 将控件结束位置与父控件的结束位置对齐
- *     属性值为引用 id
- *     android:layout_below 在某元素的下方
- *     android:layout_above 在某元素的的上方
- *     android:layout_toLeftOf 在某元素的左边
- *     android:layout_toRightOf 在某元素的右边
- *     android:layout_toStartOf 在某元素的开始位置
- *     android:layout_toEndOf 在某元素的结束位置
- *     android:layout_alignTop 本元素的上边缘和某元素的的上边缘对齐
- *     android:layout_alignLeft 本元素的左边缘和某元素的的左边缘对齐
- *     android:layout_alignBottom 本元素的下边缘和某元素的的下边缘对齐
- *     android:layout_alignRight 本元素的右边缘和某元素的的右边缘对齐
- *     android:layout_alignStart 本元素与某元素开始位置对齐
- *     android:layout_alignEnd 本元素与某元素结束位置对齐
- *     android:layout_alignBaseline 将当前控件的基线与指定 id 控件 t 的基线对齐
- * </pre>
  */
 public final class ViewUtils {
 

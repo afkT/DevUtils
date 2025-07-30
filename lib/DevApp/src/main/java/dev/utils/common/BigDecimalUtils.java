@@ -9,10 +9,6 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 资金运算工具类
  * @author Ttt
- * <pre>
- *     @see <a href="https://www.cnblogs.com/liqforstudy/p/5652517.html"/>
- *     @see <a href="https://blog.csdn.net/mo_cold_rain/article/details/81366310"/>
- * </pre>
  */
 public final class BigDecimalUtils {
 

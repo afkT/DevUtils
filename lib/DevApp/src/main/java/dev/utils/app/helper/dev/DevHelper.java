@@ -56,12 +56,6 @@ import dev.utils.common.ForUtils;
 /**
  * detail: Dev 工具类链式调用 Helper 类
  * @author Ttt
- * <pre>
- *     通过 DevApp 工具类快捷实现
- *     <p></p>
- *     DevApp Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"/>
- * </pre>
  */
 public final class DevHelper
         extends BaseHelper<DevHelper>

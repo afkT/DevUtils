@@ -13,18 +13,6 @@ import androidx.annotation.RequiresApi;
  * detail: Shape 工具类
  * @author Ttt
  * <pre>
- *     Android XML shape 标签使用详解 ( apk 瘦身, 减少内存好帮手 )
- *     @see <a href="https://www.cnblogs.com/popfisher/p/6238119.html"/>
- *     Android GradientDrawable 静态使用和动态使用
- *     @see <a href="https://www.cnblogs.com/popfisher/p/5606690.html"/>
- *     Android 开发之 Shape 详细解读
- *     @see <a href="https://www.cnblogs.com/lang-yu/p/6112052.html"/>
- *     layer-list 的基本使用介绍
- *     @see <a href="https://blog.csdn.net/north1989/article/details/53485729"/>
- *     使用 layer-list 实现特殊的效果
- *     @see <a href="https://www.cnblogs.com/jianglijs/p/9441074.html"/>
- * </pre>
- * <pre>
  *     <shape
  *         android:shape=[rectangle | oval | line | ring]  矩形 ( 默认 ) 、椭圆形、直线形、环形
  *         android:useLevel=[true | false]                 使用 LevelListDrawable 对象需设置为 true, 设置为 true 无渐变, false 有渐变色

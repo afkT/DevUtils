@@ -25,14 +25,6 @@ import dev.utils.common.FileUtils;
  * <pre>
  *     Awesome ADB 一份超全超详细的 ADB 用法大全
  *     @see <a href="https://github.com/mzlogin/awesome-adb"/>
- *     <p></p>
- *     adb shell input
- *     @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
- *     <p></p>
- *     grep 是 linux 下的命令, windows 用 findstr
- *     开启 Thread 执行, 非主线程, 否则无响应并无效
- *     <p></p>
- *     导出 ANR 日志如果无 ROOT 权限可通过 adb bugreport 导出压缩包 ( 文件存储在 adb 文件目录下 )
  * </pre>
  */
 public final class ADBUtils {

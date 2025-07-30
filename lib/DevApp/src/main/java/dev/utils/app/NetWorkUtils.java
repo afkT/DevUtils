@@ -30,7 +30,6 @@ import dev.utils.LogPrintUtils;
  * detail: 网络管理工具类
  * @author Ttt
  * <pre>
- *     @see <a href="https://blog.csdn.net/Clear_ws/article/details/78204150"/>
  *     所需权限
  *     <uses-permission android:name="android.permission.INTERNET"/>
  *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>

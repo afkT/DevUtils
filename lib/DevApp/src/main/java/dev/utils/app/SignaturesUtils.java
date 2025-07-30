@@ -32,10 +32,6 @@ import dev.utils.common.DateUtils;
 /**
  * detail: 签名工具类 ( 获取 APP 签名信息 )
  * @author Ttt
- * <pre>
- *     Android 的 APK 应用签名机制以及读取签名的方法
- *     @see <a href="http://www.jb51.net/article/79894.htm"/>
- * </pre>
  */
 public final class SignaturesUtils {
 

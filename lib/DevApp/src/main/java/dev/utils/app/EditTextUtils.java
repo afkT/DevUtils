@@ -25,26 +25,6 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: EditText 工具类
  * @author Ttt
- * <pre>
- *     EditText 属性大全 ( 不局限于仅仅是 EditText )
- *     @see <a href="https://my.oschina.net/xsjayz/blog/121685"/>
- *     <p></p>
- *     EditText 多行显示及所有属性
- *     @see <a href="https://www.cnblogs.com/zhujiabin/p/5736470.html"/>
- *     <p></p>
- *     EditText 设置不自动获取焦点, 点击后才获取, 并弹出软键盘
- *     @see <a href="https://blog.csdn.net/juvary/article/details/80151358"/>
- *     <p></p>
- *     EditText 点击无反应解决办法
- *     @see <a href="https://blog.csdn.net/cccheer/article/details/79218143"/>
- *     <p></p>
- *     EditText 限制输入的 4 种方法
- *     @see <a href="https://blog.csdn.net/zhoujn90/article/details/44983905"/>
- *     <p></p>
- *     自定义 EditText 光标和下划线颜色
- *     @see <a href="https://segmentfault.com/a/1190000009507919"/>
- *     @see <a href="https://blog.csdn.net/qq_20451879/article/details/79075272"/>
- * </pre>
  */
 public final class EditTextUtils {
 
@@ -754,10 +734,6 @@ public final class EditTextUtils {
     /**
      * detail: 开发输入监听抽象类
      * @author Ttt
-     * <pre>
-     *     @see <a href="https://blog.csdn.net/zhuwentao2150/article/details/51546773"/>
-     *     editText.addTextChangedListener(DevTextWatcher);
-     * </pre>
      */
     public static abstract class DevTextWatcher
             implements TextWatcher {

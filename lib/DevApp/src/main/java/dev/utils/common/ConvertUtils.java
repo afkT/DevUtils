@@ -23,9 +23,6 @@ import dev.utils.JCLogUtils;
  *     Oct( 八进制 )
  *     Dec( 十进制 )
  *     Hex( 十六进制 ) 以 0x 开始的数据表示十六进制
- *     <p></p>
- *     位移加密: bytesBitwiseAND(byte[] bytes)
- *     @see <a href="http://www.runoob.com/java/java-operators.html"/>
  * </pre>
  */
 public final class ConvertUtils {

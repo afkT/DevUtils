@@ -21,9 +21,6 @@ import dev.utils.common.FileUtils;
  *     断点续传下载将需要下载的文件分成若干个分片分别下载, 所有分片都下载完成后, 将所有分片合并成完整的文件
  *     也可以用于断点续传上传 ( 分片续传 )
  *     <p></p>
- *     RandomAccessFile 简介与使用
- *     @see <a href="https://blog.csdn.net/qq_31615049/article/details/88562892"/>
- *     <p></p>
  *     可用 {@link FileUtils#getFileMD5(File)} 进行校验分片合并后与源文件 MD5 值是否一致
  * </pre>
  */

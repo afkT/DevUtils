@@ -36,12 +36,6 @@ import dev.utils.common.NumberUtils;
  * detail: 截图工具类
  * @author Ttt
  * <pre>
- *     截图
- *     @see <a href="https://www.cnblogs.com/angel88/p/7933437.html"/>
- *     WebView 截长图解决方案
- *     @see <a href="https://www.jianshu.com/p/0faa70e88441"/>
- *     X5 WebView 使用 snapshotWholePage 方法清晰截图
- *     @see <a href="https://www.v2ex.com/t/583020"/>
  *     针对 SurfaceView、Surface、Window 截图可使用
  *     {@link android.view.PixelCopy} 进行实现
  * </pre>

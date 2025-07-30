@@ -438,7 +438,7 @@ public final class ColorUtils {
                 JCLogUtils.eTag(TAG, e, "parseColor");
             }
         }
-        return Integer.MAX_VALUE;
+        return -1;
     }
 
     /**

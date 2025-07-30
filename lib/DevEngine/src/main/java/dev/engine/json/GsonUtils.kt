@@ -14,8 +14,6 @@ import java.lang.reflect.Type
 /**
  * detail: Gson 工具类
  * @author Ttt
- * Gson 详细使用
- * @see https://www.jianshu.com/p/d62c2be60617
  */
 internal object GsonUtils {
 

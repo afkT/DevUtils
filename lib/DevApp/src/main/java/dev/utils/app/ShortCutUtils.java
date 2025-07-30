@@ -34,9 +34,6 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS"/>
  *     <p></p>
  *     READ_SETTINGS 用于判断是否存在快捷图标
- *     <p></p>
- *     @see <a href="https://www.jianshu.com/p/18be986553db"/>
- *     @see <a href="https://blog.csdn.net/m0_37218227/article/details/84071043"/>
  * </pre>
  */
 public final class ShortCutUtils {
