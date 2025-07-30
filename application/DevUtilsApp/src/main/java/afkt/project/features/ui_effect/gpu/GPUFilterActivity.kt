@@ -1,10 +1,10 @@
-package afkt.project.feature.ui_effect.gpu
+package afkt.project.features.ui_effect.gpu
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityGpuFilterBinding
-import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
+import afkt.project.databinding.FragmentUiEffectGpuFilterBinding
+import afkt.project.features.ui_effect.gpu.GPUFilterUtils.getFilterBitmap
 import afkt.project.model.engine.createGalleryConfig
 import android.content.Intent
 import android.graphics.Bitmap
@@ -20,27 +20,19 @@ import dev.utils.app.image.ImageUtils
 import dev.utils.common.ScaleUtils
 
 /**
- * detail: GPU ACV 文件滤镜效果
+ * detail: GPU 滤镜效果
  * @author Ttt
  */
-class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppViewModel>(
-    R.layout.activity_gpu_filter, simple_Agile = {
-        if (it is GPUFilterACVActivity) {
+class GPUFilterActivity : BaseProjectActivity<FragmentUiEffectGpuFilterBinding, AppViewModel>(
+    R.layout.fragment_ui_effect_gpu_filter, simple_Agile = {
+        if (it is GPUFilterActivity) {
             it.apply {
                 // 设置滤镜线程
                 filterThread = Runnable { setFilter() }
 
-                // 初始化数据
-                listACVFiles.add(ACVFileBean("August", "filter/August.acv"))
-                listACVFiles.add(ACVFileBean("Darker", "filter/Darker.acv"))
-                listACVFiles.add(ACVFileBean("Dream", "filter/Dream.acv"))
-                listACVFiles.add(ACVFileBean("Fornature", "filter/Fornature.acv"))
-                listACVFiles.add(ACVFileBean("Greens", "filter/Greens.acv"))
-                listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
-
                 // 设置适配器
-                binding.vidGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
-                    gpuFilterACVAdapter = it
+                binding.vidGallery.adapter = GPUFilterAdapter(this).also {
+                    gpuFilterAdapter = it
                 }
                 binding.vidGallery.onItemSelectedListener =
                     object : AdapterView.OnItemSelectedListener {
@@ -50,7 +42,7 @@ class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppVi
                             position: Int,
                             id: Long
                         ) {
-                            gpuFilterACVAdapter.setSelectPosition(position)
+                            gpuFilterAdapter.setSelectPosition(position)
                             // 延迟一会进行滤镜
                             HandlerUtils.removeRunnable(filterThread)
                             HandlerUtils.postRunnable(filterThread, 500)
@@ -71,17 +63,14 @@ class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppVi
 ) {
 
     // 适配器
-    private lateinit var gpuFilterACVAdapter: GPUFilterACVAdapter
-
-    // ACV 文件集合
-    private val listACVFiles = mutableListOf<ACVFileBean>()
+    lateinit var gpuFilterAdapter: GPUFilterAdapter
 
     // 图片 Bitmap
     private var selectBitmap: Bitmap? = null
 
     companion object {
         // 滤镜线程
-        private var filterThread: Runnable? = null
+        var filterThread: Runnable? = null
     }
 
     override fun onDestroy() {
@@ -122,14 +111,13 @@ class GPUFilterACVActivity : BaseProjectActivity<ActivityGpuFilterBinding, AppVi
             if (selectBitmap == null) return
             // 获取选中的滤镜
             val position = binding.vidGallery.selectedItemPosition
-            // 获取滤镜文件实体类
-            val acvFileBean = gpuFilterACVAdapter.getItem(position)
+            // 获取滤镜 Item
+            val filterItem = gpuFilterAdapter.getItem(position)
             // 设置滤镜效果
-            val gpuFilter = GPUFilterUtils.getGPUImageToneCurveFilter(
-                ResourceUtils.open(acvFileBean.acvPath)
-            )
-            val bitmapFilter = GPUFilterUtils.getFilterBitmap(
-                this, selectBitmap, gpuFilter
+            val bitmapFilter = getFilterBitmap(
+                this, selectBitmap, FilterItem.createFilterForType(
+                    filterItem.filterType
+                )
             )
             bitmapFilter?.let {
                 val wh = ScaleUtils.calcScaleToWidthI(

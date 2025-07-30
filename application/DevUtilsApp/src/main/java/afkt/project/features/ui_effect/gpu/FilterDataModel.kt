@@ -1,9 +1,34 @@
-package afkt.project.feature.ui_effect.gpu.bean
+package afkt.project.features.ui_effect.gpu
 
 import android.graphics.PointF
 import dev.expand.engine.log.log_eTag
 import jp.co.cyberagent.android.gpuimage.filter.*
 import java.util.*
+
+/**
+ * detail: ACV 文件 Item
+ * @author Ttt
+ */
+class ACVFileItem(
+    // ACV 名
+    val acvName: String,
+    // 文件地址
+    val acvPath: String
+) {
+    companion object {
+
+        fun acvFileLists(): MutableList<ACVFileItem> {
+            val lists = mutableListOf<ACVFileItem>()
+            lists.add(ACVFileItem("August", "filter/August.acv"))
+            lists.add(ACVFileItem("Darker", "filter/Darker.acv"))
+            lists.add(ACVFileItem("Dream", "filter/Dream.acv"))
+            lists.add(ACVFileItem("Fornature", "filter/Fornature.acv"))
+            lists.add(ACVFileItem("Greens", "filter/Greens.acv"))
+            lists.add(ACVFileItem("Miami", "filter/Miami.acv"))
+            return lists
+        }
+    }
+}
 
 /**
  * detail: 滤镜类型 Item
@@ -282,9 +307,9 @@ class FilterItem(
                 FilterType.FALSE_COLOR -> GPUImageFalseColorFilter()
                 FilterType.COLOR_BALANCE -> GPUImageColorBalanceFilter()
                 FilterType.LEVELS_FILTER_MIN -> {
-                    val levelsFilter = GPUImageLevelsFilter()
-                    levelsFilter.setMin(0.0F, 3.0F, 1.0F)
-                    levelsFilter
+                    GPUImageLevelsFilter().apply {
+                        setMin(0.0F, 3.0F, 1.0F)
+                    }
                 }
 
                 FilterType.HALFTONE -> GPUImageHalftoneFilter()

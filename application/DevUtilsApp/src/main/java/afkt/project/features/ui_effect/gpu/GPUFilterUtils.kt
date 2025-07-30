@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.gpu
+package afkt.project.features.ui_effect.gpu
 
 import android.content.Context
 import android.graphics.Bitmap

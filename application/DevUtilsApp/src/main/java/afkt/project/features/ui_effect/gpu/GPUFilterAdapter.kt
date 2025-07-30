@@ -1,7 +1,6 @@
-package afkt.project.feature.ui_effect.gpu
+package afkt.project.features.ui_effect.gpu
 
 import afkt.project.R
-import afkt.project.feature.ui_effect.gpu.bean.ACVFileBean
 import android.content.Context
 import android.view.Gravity
 import android.view.View
@@ -14,25 +13,22 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
- * detail: GPU ACV 文件滤镜效果适配器
+ * detail: GPU 滤镜效果适配器
  * @author Ttt
  */
-class GPUFilterACVAdapter(
-    // Context
-    private val context: Context,
-    // ACV 文件集合
-    private val listACVFiles: List<ACVFileBean>
+class GPUFilterAdapter(
+    private val context: Context
 ) : BaseAdapter() {
 
     // 当前选中索引
     private var selectPosition = -1
 
     override fun getCount(): Int {
-        return listACVFiles.size
+        return FilterItem.FILTER_LISTS.size
     }
 
-    override fun getItem(position: Int): ACVFileBean {
-        return listACVFiles[position]
+    override fun getItem(position: Int): FilterItem {
+        return FilterItem.FILTER_LISTS[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -62,7 +58,7 @@ class GPUFilterACVAdapter(
      * @return [AppCompatTextView]
      */
     private fun createTextView(position: Int): AppCompatTextView {
-        val acvFileBean = getItem(position)
+        val filterItem = getItem(position)
         val isSelect = (selectPosition == position)
         val width = AppSize.dp2px(100F)
         val layoutParams = Gallery.LayoutParams(
@@ -70,7 +66,7 @@ class GPUFilterACVAdapter(
         )
         // 初始化 View
         return QuickHelper.get(AppCompatTextView(context))
-            .setText(acvFileBean.acvName)
+            .setText(filterItem.filterName)
             .setBold(isSelect)
             .setGravity(Gravity.CENTER)
             .setTextColors(ResourceUtils.getColor(if (isSelect) R.color.red else R.color.black))
