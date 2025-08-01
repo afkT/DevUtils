@@ -19,10 +19,7 @@
             android:onClick="@{viewModel.clickRefresh}"
             android:text="刷新" />
 
-        <dev.widget.custom.CustomNestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+        <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView.Match">
 
             <LinearLayout
                 style="@style/ViewTheme.Padding.LR"
@@ -130,6 +127,6 @@
                     app:singleLine="false"
                     app:singleSelection="true" />
             </LinearLayout>
-        </dev.widget.custom.CustomNestedScrollView>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

@@ -74,14 +74,15 @@
         <item name="android:scrollbars">none</item>
     </style>
 
+    <style name="ViewTheme.NestedScrollView.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- NestedScrollView 样式 -->
 
     <style name="ViewTheme.NestedScrollView.FillView">
         <item name="android:fillViewport">true</item>
-    </style>
-
-    <style name="ViewTheme.NestedScrollView.White">
-        <item name="android:background">@android:color/white</item>
     </style>
 
     <!-- NestedScrollView 边距基础样式 -->

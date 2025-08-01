@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_35"
                     android:gravity="center_vertical"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_35"
                     android:gravity="center_vertical"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_35"
                     android:gravity="center_vertical"

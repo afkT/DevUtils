@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <dev.widget.custom.CustomNestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+    <data>
 
-        <LinearLayout
-            style="@style/ViewTheme.Padding.LR"
+        <variable
+            name="viewModel"
+            type="afkt.project.features.ui_effect.gpu.GPUFilterViewModel" />
+    </data>
+
+    <LinearLayout
+        style="@style/ViewTheme.LinearLayout.Padding.LR"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickSelect}"
+            android:text="选择图片" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vid_rv"
+            style="@style/ViewTheme.RecyclerView.Nested.False"
+            android:orientation="horizontal"
+            app:itemBinding="@{viewModel.adapter.itemBinding}"
+            app:items="@{viewModel.adapter.items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/ViewTheme.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@{viewModel.filterName}"
+            android:textSize="@dimen/sp_15"
+            tools:text="Filter Name" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_select_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="选择图片" />
-
-            <dev.widget.custom.CustomGallery
-                android:id="@+id/vid_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_70" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/vid_iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_20" />
-        </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_20"
+            app:binding_filter_bitmap="@{viewModel.filterBitmap}" />
+    </LinearLayout>
 </layout>

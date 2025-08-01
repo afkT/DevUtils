@@ -175,6 +175,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.contrarywind/Android-PickerView
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                      : "com.contrarywind:Android-PickerView:4.1.9",
+                    // GravitySnapHelper https://github.com/rubensousa/GravitySnapHelper
+                    gravity_snaphelper              : "com.github.rubensousa:gravitysnaphelper:2.2.2",
             ],
             "ui_widget"     : [
 

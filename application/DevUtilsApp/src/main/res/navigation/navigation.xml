@@ -210,4 +210,14 @@
         android:id="@+id/QRCodeScanFragment"
         android:name="afkt.project.features.ui_effect.qrcode.QRCodeScanFragment"
         android:label="QRCodeScanFragment" />
+
+    <fragment
+        android:id="@+id/GPUFilterFragment"
+        android:name="afkt.project.features.ui_effect.gpu.GPUFilterFragment"
+        android:label="GPUFilterFragment" />
+
+    <fragment
+        android:id="@+id/GPUFilterACVFragment"
+        android:name="afkt.project.features.ui_effect.gpu.GPUFilterACVFragment"
+        android:label="GPUFilterACVFragment" />
 </navigation>

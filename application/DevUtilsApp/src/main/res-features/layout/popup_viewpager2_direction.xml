@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:background="@color/white">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_menu_ltr"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
@@ -13,7 +13,7 @@
         android:includeFontPadding="false"
         android:text="LTR 布局" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_menu_rtl"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
@@ -22,7 +22,7 @@
         android:includeFontPadding="false"
         android:text="RTL 布局" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_menu_horizontal"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
@@ -31,7 +31,7 @@
         android:includeFontPadding="false"
         android:text="水平滑动" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_menu_vertical"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"
@@ -40,7 +40,7 @@
         android:includeFontPadding="false"
         android:text="垂直滑动" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/vid_menu_reset"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_40"

@@ -2,17 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <dev.widget.custom.CustomNestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:scrollbars="none">
+    <androidx.core.widget.NestedScrollView
+        style="@style/ViewTheme.NestedScrollView.Match"
+        android:background="@color/white">
 
-        <LinearLayout
-            style="@style/ViewTheme.Padding.LR"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Padding.LR">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_preface_tv"
@@ -47,5 +41,5 @@
                 android:textSize="@dimen/sp_20"
                 tools:text="内容" />
         </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -46,6 +46,8 @@ dependencies {
     api deps_lib.feature_widget.multitype
     // 弹窗库 https://github.com/junixapp/XPopup
     api deps_lib.feature_widget.xPopup
+    // GravitySnapHelper https://github.com/rubensousa/GravitySnapHelper
+    api deps_lib.feature_widget.gravity_snaphelper
 
     // ===============
     // = 图片相关组件库 =

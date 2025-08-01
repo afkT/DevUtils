@@ -149,7 +149,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
                 ) {
                     TAG.log_dTag(
                         message = "TabItem: %s, pos: %s",
-                        args = arrayOf(tabItem.title, pos)
+                        args = arrayOf<Any>(tabItem.title, pos)
                     )
                     // 设置选中
                     setSelect(pos)
@@ -167,7 +167,7 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
                     ) {
                         TAG.log_dTag(
                             message = "TabItem: %s, pos: %s",
-                            args = arrayOf(tabItem.title, pos)
+                            args = arrayOf<Any>(tabItem.title, pos)
                         )
                     }
                 }

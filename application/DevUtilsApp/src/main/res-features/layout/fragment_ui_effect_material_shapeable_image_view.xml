@@ -2,16 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <dev.widget.custom.CustomNestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView.Match">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            style="@style/ViewTheme.LinearLayout.Vertical"
+            android:gravity="center">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="@dimen/dp_200"
@@ -83,5 +78,5 @@
                 android:background="@mipmap/bg_wallpaper"
                 app:shapeAppearanceOverlay="@style/waterImageStyle" />
         </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

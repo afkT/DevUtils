@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemValue"
+            type="afkt.project.features.ui_effect.gpu.GPUFilterItem" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/ViewTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="@{itemValue.filterName}"
+        android:textSize="@dimen/sp_15"
+        tools:text="Text" />
+</layout>

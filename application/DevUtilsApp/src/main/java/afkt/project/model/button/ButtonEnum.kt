@@ -163,9 +163,9 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
 
-    BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果"),
+    BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果", R.id.GPUFilterACVFragment),
 
-    BTN_UI_EFFECT_GPU_FILTER("GPU 滤镜效果"),
+    BTN_UI_EFFECT_GPU_FILTER("GPU 滤镜效果", R.id.GPUFilterFragment),
 
     BTN_UI_EFFECT_QRCODE_SCAN("二维码扫描解析", R.id.QRCodeScanFragment),
 
@@ -222,8 +222,6 @@ enum class ButtonEnum(
     BTN_OTHER_FUN_ACTIVITY_RESULT_API("Activity Result API"),
 
     BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK("startActivityForResult Callback"),
-
-    BTN_OTHER_FUN_WALLPAPER("手机壁纸"),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER("悬浮窗管理辅助类 ( 需权限 )"),
 

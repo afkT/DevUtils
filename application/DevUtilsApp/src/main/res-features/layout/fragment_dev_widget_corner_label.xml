@@ -14,16 +14,11 @@
             type="afkt.project.features.dev_widget.CornerLabelViewModel" />
     </data>
 
-    <dev.widget.custom.CustomNestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_f9"
-        android:scrollbars="none">
+    <androidx.core.widget.NestedScrollView
+        style="@style/ViewTheme.NestedScrollView.Match"
+        android:background="@color/color_f9">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -326,5 +321,5 @@
                     android:text="height2+" />
             </LinearLayout>
         </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>
