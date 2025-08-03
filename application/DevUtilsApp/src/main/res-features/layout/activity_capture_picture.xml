@@ -1,68 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <dev.widget.custom.CustomNestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/vid_nsv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        style="@style/ViewTheme.NestedScrollView.Match">
 
         <LinearLayout
             android:id="@+id/vid_ll"
-            style="@style/ViewTheme.Padding.LR"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/ViewTheme.LinearLayout.Padding.LR">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_screen_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="当前屏幕截图 ( 含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_screen1_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="当前屏幕截图 ( 不含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_linear_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="LinearLayout 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_scroll_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="ScrollView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_list_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="ListView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_recy_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="RecyclerView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_webview_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="Webview 截图" />
-
         </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

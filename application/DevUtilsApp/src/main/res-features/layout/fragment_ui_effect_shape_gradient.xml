@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <dev.widget.custom.CustomNestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView.Match">
 
         <LinearLayout
-            style="@style/ViewTheme.Padding.LR"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/ViewTheme.LinearLayout.Padding.LR"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -26,7 +21,7 @@
                     android:background="@drawable/shape_tab_left_selector"
                     android:gravity="center"
                     android:text="热门"
-                    android:textColor="@color/selector_tab_text_color" />
+                    android:textColor="@color/text_color_333333_ffffff_selector" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/vid_1_1_tv"
@@ -35,7 +30,7 @@
                     android:background="@drawable/shape_tab_right_selector"
                     android:gravity="center"
                     android:text="最新"
-                    android:textColor="@color/selector_tab_text_color" />
+                    android:textColor="@color/text_color_333333_ffffff_selector" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,5 +125,5 @@
                     android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
-    </dev.widget.custom.CustomNestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

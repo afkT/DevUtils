@@ -17,9 +17,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vid_select_btn"
-                style="@style/ViewTheme.Button"
-                android:ellipsize="end"
-                android:maxLines="1"
+                style="@style/ViewTheme.Button.Single"
                 android:text="选择图片" />
 
             <dev.widget.ui.resize.ResizableImageView

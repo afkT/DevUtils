@@ -141,7 +141,7 @@ class ShapeGradientFragment : AppFragment<FragmentUiEffectShapeGradientBinding, 
         // 选中变白色
         clickTab.setTextColor(ResourceColor.get().getColor(R.color.white))
         // 未选中增加点击效果
-        unClickTab.setTextColor(ResourceUtils.getColorStateList(R.color.selector_tab_text_color))
+        unClickTab.setTextColor(ResourceUtils.getColorStateList(R.color.text_color_333333_ffffff_selector))
     }
 
     /**

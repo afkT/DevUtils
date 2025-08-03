@@ -161,7 +161,7 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画", R.id.ShopCartFragment),
 
-    BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类"),
+    BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类", R.id.CapturePictureFragment),
 
     BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果", R.id.GPUFilterACVFragment),
 

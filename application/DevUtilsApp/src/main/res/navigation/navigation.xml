@@ -225,4 +225,9 @@
         android:id="@+id/ShapeGradientFragment"
         android:name="afkt.project.features.ui_effect.ShapeGradientFragment"
         android:label="ShapeGradientFragment" />
+
+    <fragment
+        android:id="@+id/CapturePictureFragment"
+        android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureFragment"
+        android:label="CapturePictureFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package afkt.project.feature.ui_effect.capture_picture
+package afkt.project.features.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.app.AppViewModel

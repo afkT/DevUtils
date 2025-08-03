@@ -1,11 +1,11 @@
-package afkt.project.feature.ui_effect.capture_picture
+package afkt.project.features.ui_effect.capture_picture
 
 import afkt.project.R
 import afkt.project.app.AppViewModel
 import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
-import afkt.project.feature.ui_effect.capture_picture.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.features.ui_effect.capture_picture.AdapterBean.Companion.newAdapterBeanList
 import afkt.project.model.helper.RandomHelper
 import android.view.View
 import android.view.ViewGroup
@@ -84,7 +84,7 @@ class CapturePictureRecyActivity :
 
                     binding.vidRv.adapter =
                         object :
-                            DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
+                            dev.adapter.DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
 
                             init {
                                 setDataList(newAdapterBeanList(15), false)
