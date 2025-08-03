@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <dev.widget.custom.CustomNestedScrollView
         android:layout_width="match_parent"
@@ -130,76 +129,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:text="HorizontalScrollView Tab" />
-
-                <HorizontalScrollView
-                    android:id="@+id/vid_7_0_sv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:id="@+id/vid_7_0_ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" />
-                </HorizontalScrollView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginBottom="@dimen/dp_10"
-                    android:text="TabLayout Tab" />
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/vid_8_0_tl"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_44"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/dp_0"
-                    android:paddingRight="@dimen/dp_0"
-                    app:tabBackground="@color/transparent"
-                    app:tabIndicatorHeight="@dimen/dp_0"
-                    app:tabMaxWidth="@dimen/dp_80"
-                    app:tabMinWidth="@dimen/dp_80"
-                    app:tabMode="scrollable" />
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/vid_9_0_tl"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_44"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/dp_0"
-                    android:paddingRight="@dimen/dp_0"
-                    app:tabBackground="@color/transparent"
-                    app:tabIndicatorHeight="@dimen/dp_0"
-                    app:tabMode="fixed" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_50" />
         </LinearLayout>
     </dev.widget.custom.CustomNestedScrollView>
 </layout>

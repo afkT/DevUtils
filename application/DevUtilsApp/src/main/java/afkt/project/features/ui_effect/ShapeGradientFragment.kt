@@ -1,32 +1,27 @@
-package afkt.project.feature.ui_effect.common
+package afkt.project.features.ui_effect
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityUiEffectBinding
-import afkt.project.feature.ui_effect.common.TabLayoutAssist.TabChangeListener
+import afkt.project.databinding.FragmentUiEffectShapeGradientBinding
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import dev.expand.engine.log.log_dTag
-import dev.utils.app.*
+import dev.utils.app.ListenerUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.ShapeUtils
+import dev.utils.app.StateListUtils
 import dev.utils.app.assist.ResourceColor
-import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.ArrayUtils
 
 /**
- * detail: 常见 UI、GradientDrawable 效果等
+ * detail: Shape、GradientDrawable 效果
  * @author Ttt
  */
-class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewModel>(
-    R.layout.activity_ui_effect
+class ShapeGradientFragment : AppFragment<FragmentUiEffectShapeGradientBinding, AppViewModel>(
+    R.layout.fragment_ui_effect_shape_gradient
 ) {
-
-    // 当前选中的索引
-    private var selectTabIndex = -1
 
     override fun initValue() {
         super.initValue()
@@ -79,100 +74,14 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         ).setDrawable(binding.vid50View)
 
         val colors = IntArray(3)
-        colors[0] = ContextCompat.getColor(this, R.color.black)
-        colors[1] = ContextCompat.getColor(this, R.color.blue)
-        colors[2] = ContextCompat.getColor(this, R.color.orange)
+        colors[0] = ResourceColor.get().getColor(R.color.black)
+        colors[1] = ResourceColor.get().getColor(R.color.blue)
+        colors[2] = ResourceColor.get().getColor(R.color.orange)
         val drawable = ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, colors).drawable
 //        drawable.gradientType = GradientDrawable.LINEAR_GRADIENT   // 线性渐变, 这是默认设置
 //        drawable.gradientType = GradientDrawable.RADIAL_GRADIENT   // 放射性渐变, 以开始色为中心
         drawable.gradientType = GradientDrawable.SWEEP_GRADIENT     // 扫描线式的渐变
         binding.vid60View.background = drawable
-
-        // ============================
-        // = HorizontalScrollView Tab =
-        // ============================
-
-        // Tab 数据
-        val listTabs = mutableListOf<TabItem>()
-        listTabs.add(TabItem("全部", 0))
-        listTabs.add(TabItem("待付款", 1))
-        listTabs.add(TabItem("待发货", 2))
-        listTabs.add(TabItem("待收货", 3))
-        listTabs.add(TabItem("待评价", 4))
-        listTabs.add(TabItem("已取消", 5))
-        listTabs.add(TabItem("已完成", 6))
-        listTabs.add(TabItem("已关闭", 7))
-        listTabs.add(TabItem("售后", 8))
-
-        // 循环添加 Tab
-        for (i in 0 until listTabs.size) {
-            val tabItem = listTabs[i]
-            val view = QuickHelper.get(AppCompatTextView(this))
-                .setText(tabItem.title)
-                .setTextColors(ResourceUtils.getColor(R.color.black))
-                .setPadding(30, 30, 30, 30)
-                .setOnClick {
-                    ViewHelper.get()
-                        .setBold(
-                            false,
-                            ViewUtils.getChildAt(binding.vid70Ll, selectTabIndex)
-                        )
-                        .setTextColors(
-                            ResourceUtils.getColor(R.color.black),
-                            ViewUtils.getChildAt(
-                                binding.vid70Ll, selectTabIndex
-                            )
-                        )
-                        .setBold(true, ViewUtils.getChildAt(binding.vid70Ll, i))
-                        .setTextColors(
-                            ResourceUtils.getColor(R.color.red),
-                            ViewUtils.getChildAt(binding.vid70Ll, i)
-                        )
-                    // 修改索引
-                    selectTabIndex = i
-                    // 滑动 Tab 处理
-                    scrollTab(i)
-                }.getView<View>()
-            binding.vid70Ll.addView(view)
-        }
-        ViewUtils.getChildAt<View>(binding.vid70Ll).performClick()
-
-        // =================
-        // = TabLayout Tab =
-        // =================
-
-        TabLayoutAssist[binding.vid80Tl]?.apply {
-            setListTabs(listTabs, object : TabChangeListener {
-                override fun onTabChange(
-                    tabItem: TabItem,
-                    pos: Int
-                ) {
-                    TAG.log_dTag(
-                        message = "TabItem: %s, pos: %s",
-                        args = arrayOf<Any>(tabItem.title, pos)
-                    )
-                    // 设置选中
-                    setSelect(pos)
-                }
-            }).setSelect(tabCount - 1)
-        }
-
-        TabLayoutAssist[binding.vid90Tl]?.apply {
-            setListTabs(
-                ArrayUtils.asList(ArrayUtils.subArray(listTabs.toTypedArray(), 0, 3)),
-                object : TabChangeListener {
-                    override fun onTabChange(
-                        tabItem: TabItem,
-                        pos: Int
-                    ) {
-                        TAG.log_dTag(
-                            message = "TabItem: %s, pos: %s",
-                            args = arrayOf<Any>(tabItem.title, pos)
-                        )
-                    }
-                }
-            ).setSelect(0)
-        }
     }
 
     override fun initListener() {
@@ -283,25 +192,5 @@ class UIEffectActivity : BaseProjectActivity<ActivityUiEffectBinding, AppViewMod
         clickTab.setTextColor(ResourceColor.get().getColor(R.color.white))
         // 设置未选中颜色
         unClickTab.setTextColor(StateListUtils.createColorStateList(R.color.white, R.color.red))
-    }
-
-    /**
-     * 滑动 Tab 处理
-     * @param position 需要滑动的索引
-     */
-    private fun scrollTab(position: Int) {
-        // 延时移动
-        HandlerUtils.postRunnable({
-            var x = 0
-            // 循环遍历
-            for (i in 1 until position) {
-                binding.vid70Ll.getChildAt(i)?.apply {
-                    // 累加宽度
-                    x += width
-                }
-            }
-            // 开始移动位置
-            binding.vid70Sv.scrollTo(x, 0)
-        }, 50)
     }
 }

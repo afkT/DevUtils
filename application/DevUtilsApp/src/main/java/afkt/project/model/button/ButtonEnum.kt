@@ -145,7 +145,7 @@ enum class ButtonEnum(
     // = UI Effect =
     // =============
 
-    BTN_UI_EFFECT_UI_EFFECT("常见 UI、GradientDrawable 效果等"),
+    BTN_UI_EFFECT_UI_EFFECT("Shape、GradientDrawable 效果", R.id.ShapeGradientFragment),
 
     BTN_UI_EFFECT_TOAST_TINT("ToastTint ( 着色美化 Toast )", R.id.ToastTintFragment),
 

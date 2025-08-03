@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.expand.engine.log.log_eTag
 import dev.simple.app.base.asFragment
+import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
 import dev.utils.app.activity_result.ActivityResultAssist
@@ -29,6 +30,7 @@ import dev.utils.app.image.ImageUtils
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
 import dev.widget.decoration.linear.LastLinearColorItemDecoration
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import java.lang.ref.WeakReference
 
 /**
  * detail: GPU 滤镜效果
@@ -73,6 +75,8 @@ class GPUFilterViewModel : AppViewModel() {
      * 初始化 RecyclerView
      */
     fun initializeRecyclerView(recyclerView: RecyclerView) {
+        weakView = WeakReference<RecyclerView>(recyclerView)
+        // 设置 ItemDecoration
         QuickHelper.get(recyclerView).removeAllItemDecoration()
             .addItemDecoration(
                 FirstLinearColorItemDecoration(
@@ -105,6 +109,9 @@ class GPUFilterViewModel : AppViewModel() {
     // ==========
     // = 选择图片 =
     // ==========
+
+    // 持有 RecyclerView
+    private var weakView = WeakReference<RecyclerView>(null)
 
     // 相册选择图片回传辅助类
     var imageAssist: ActivityResultAssist<String, Uri?>? = null
@@ -141,7 +148,23 @@ class GPUFilterViewModel : AppViewModel() {
      * 获取当前选中的 GPUFilter Item
      */
     private fun currentItem(): GPUFilterItem? {
-        val position = helper.currentSnappedPosition.coerceAtLeast(0)
+        var position = helper.currentSnappedPosition
+        // 第一个和最后一个会为 -1
+        if (position == RecyclerView.NO_POSITION) {
+            // 最后一条可见 Item 索引
+            val lastIndex = RecyclerViewUtils.findLastVisibleItemPosition(
+                weakView.get()
+            )
+            if (lastIndex != -1) {
+                // 如果属于最后一条 Item 则返回最后一条索引
+                position = if (lastIndex == (adapter.count() - 1)) {
+                    lastIndex
+                } else {
+                    // 如果为原本为 -1 并且最后一条不可见则表示为第一条
+                    0
+                }
+            }
+        }
         val item = adapter.getOrNull(position)
         filterName.set(item?.filterName)
         return item

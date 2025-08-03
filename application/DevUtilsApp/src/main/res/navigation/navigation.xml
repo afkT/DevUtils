@@ -220,4 +220,9 @@
         android:id="@+id/GPUFilterACVFragment"
         android:name="afkt.project.features.ui_effect.gpu.GPUFilterACVFragment"
         android:label="GPUFilterACVFragment" />
+
+    <fragment
+        android:id="@+id/ShapeGradientFragment"
+        android:name="afkt.project.features.ui_effect.ShapeGradientFragment"
+        android:label="ShapeGradientFragment" />
 </navigation>
