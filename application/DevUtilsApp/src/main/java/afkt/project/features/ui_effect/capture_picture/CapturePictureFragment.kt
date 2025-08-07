@@ -4,15 +4,22 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.ActivityCapturePictureBinding
+import afkt.project.databinding.FragmentUiEffectCapturePictureBinding
+import afkt.project.features.ui_effect.capture_picture.CapturePictureFragment.Companion.saveBitmap
+import afkt.project.model.button.ButtonEnum
+import afkt.project.model.button.click
 import android.graphics.Bitmap
 import android.view.View
+import android.widget.LinearLayout
+import androidx.core.widget.NestedScrollView
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
 import dev.expand.engine.toast.toast_showShort
+import dev.simple.app.base.asFragment
+import dev.utils.app.ActivityUtils
 import dev.utils.app.CapturePictureUtils
 import dev.utils.common.FileUtils
 
@@ -42,65 +49,15 @@ import dev.utils.common.FileUtils
  * | snapshotByGridView | 通过 GridView 绘制为 Bitmap |
  * | snapshotByRecyclerView | 通过 RecyclerView 绘制为 Bitmap |
  */
-class CapturePictureFragment : AppFragment<ActivityCapturePictureBinding, AppViewModel>(
-    R.layout.activity_capture_picture, BR.viewModel,
-    simple_Agile = {
-    }
-) {
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.vid_screen_btn -> {
-                saveBitmap(
-                    "screen.jpg",
-                    CapturePictureUtils.snapshotWithStatusBar(mActivity)
-                )
-            }
-
-            R.id.vid_screen1_btn -> {
-                saveBitmap(
-                    "screen1.jpg",
-                    CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
-                )
-            }
-
-            R.id.vid_linear_btn -> {
-                // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
-                // 以上方法都是使用 snapshotByView
-                saveBitmap(
-                    "linear.jpg",
-                    CapturePictureUtils.snapshotByLinearLayout(binding.vidLl)
-                )
-            }
-
-            R.id.vid_scroll_btn -> {
-                // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
-                saveBitmap(
-                    "scroll.jpg",
-                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidNsv)
-                )
-            }
-
-//            R.id.vid_list_btn -> {
-//                ButtonValue(
-//                    1, "CapturePictureUtils ListView 截图", ""
-//                ).routerActivity()
-//            }
-//
-//            R.id.vid_recy_btn -> {
-//                ButtonValue(
-//                    3, "CapturePictureUtils RecyclerView 截图", ""
-//                ).routerActivity()
-//            }
-//
-//            R.id.vid_webview_btn -> {
-//                ButtonValue(
-//                    4, "CapturePictureUtils WebView 截图", ""
-//                ).routerActivity()
-//            }
+class CapturePictureFragment : AppFragment<FragmentUiEffectCapturePictureBinding, CapturePictureViewModel>(
+    R.layout.fragment_ui_effect_capture_picture, BR.viewModel,
+    simple_Agile = { frg ->
+        frg.asFragment<CapturePictureFragment> {
+            binding.setVariable(BR.linearLayout, binding.vidLl)
+            binding.setVariable(BR.nestedScrollView, binding.vidNsv)
         }
     }
+) {
 
     companion object {
 
@@ -133,5 +90,60 @@ class CapturePictureFragment : AppFragment<ActivityCapturePictureBinding, AppVie
                 }
             )
         }
+    }
+}
+
+class CapturePictureViewModel : AppViewModel() {
+
+    // 当前屏幕截图 ( 含状态栏 )
+    val clickScreenBtn: (View) -> Unit = { view ->
+        val activity = ActivityUtils.getActivity(view)
+        saveBitmap(
+            "screen_with_status_bar.jpg",
+            CapturePictureUtils.snapshotWithStatusBar(activity)
+        )
+    }
+
+    // 当前屏幕截图 ( 不含状态栏 )
+    val clickScreen1Btn: (View) -> Unit = { view ->
+        val activity = ActivityUtils.getActivity(view)
+        saveBitmap(
+            "screen_without_status_bar.jpg",
+            CapturePictureUtils.snapshotWithoutStatusBar(activity)
+        )
+    }
+
+    // LinearLayout 截图
+    val clickLinearBtn: (LinearLayout?) -> Unit = { view ->
+        // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
+        // 以上方法都是使用 snapshotByView
+        saveBitmap(
+            "linear_layout.jpg",
+            CapturePictureUtils.snapshotByLinearLayout(view)
+        )
+    }
+
+    // 当前屏幕截图 ( 不含状态栏 )
+    val clickScrollBtn: (NestedScrollView?) -> Unit = { view ->
+        // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
+        saveBitmap(
+            "scroll_view.jpg",
+            CapturePictureUtils.snapshotByNestedScrollView(view)
+        )
+    }
+
+    // ListView 截图
+    val clickListViewBtn: (View) -> Unit = { view ->
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_LIST_VIEW.click()
+    }
+
+    // RecyclerView 截图
+    val clickRecyclerViewBtn: (View) -> Unit = { view ->
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_RECYCLER_VIEW.click()
+    }
+
+    // Webview 截图
+    val clickWebViewBtn: (View) -> Unit = { view ->
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_WEB_VIEW.click()
     }
 }

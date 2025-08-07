@@ -230,4 +230,19 @@
         android:id="@+id/CapturePictureFragment"
         android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureFragment"
         android:label="CapturePictureFragment" />
+
+    <fragment
+        android:id="@+id/CapturePictureListViewFragment"
+        android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureListViewFragment"
+        android:label="CapturePictureListViewFragment" />
+
+    <fragment
+        android:id="@+id/CapturePictureRecyclerViewFragment"
+        android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureRecyclerViewFragment"
+        android:label="CapturePictureRecyclerViewFragment" />
+
+    <fragment
+        android:id="@+id/CapturePictureWebViewFragment"
+        android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureWebViewFragment"
+        android:label="CapturePictureWebViewFragment" />
 </navigation>

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="linearLayout"
+            type="android.widget.LinearLayout" />
+
+        <variable
+            name="nestedScrollView"
+            type="androidx.core.widget.NestedScrollView" />
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.ui_effect.capture_picture.CapturePictureViewModel" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/vid_nsv"
         style="@style/ViewTheme.NestedScrollView.Match">
@@ -10,38 +25,38 @@
             style="@style/ViewTheme.LinearLayout.Padding.LR">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_screen_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickScreenBtn.invoke(v)}"
                 android:text="当前屏幕截图 ( 含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_screen1_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickScreen1Btn.invoke(v)}"
                 android:text="当前屏幕截图 ( 不含状态栏 )" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_linear_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickLinearBtn.invoke(linearLayout)}"
                 android:text="LinearLayout 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_scroll_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickScrollBtn.invoke(nestedScrollView)}"
                 android:text="ScrollView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_list_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickListViewBtn.invoke(v)}"
                 android:text="ListView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_recy_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickRecyclerViewBtn.invoke(v)}"
                 android:text="RecyclerView 截图" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/vid_webview_btn"
                 style="@style/ViewTheme.Button.Single"
+                android:onClick="@{(v)->viewModel.clickWebViewBtn.invoke(v)}"
                 android:text="Webview 截图" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -7,6 +7,11 @@ import afkt.project.model.basic.AdapterModel
 import dev.mvvm.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
+// Button 点击操作
+fun ButtonEnum.click() {
+    DEFAULT_CLICK.invoke(this)
+}
+
 // Button Item 点击事件
 typealias ButtonClick = (ButtonEnum) -> Unit
 
