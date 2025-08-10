@@ -31,24 +31,28 @@
                 app:behavior_peekHeight="@dimen/dp_60"
                 app:layout_behavior="@string/bottom_sheet_behavior">
 
-                <LinearLayout
+                <dev.widget.ui.round.RoundLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_bg_blue_top_r10"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:dev_backgroundColor="@color/blue"
+                    app:dev_radiusLeftTop="@dimen/dp_10"
+                    app:dev_radiusRightTop="@dimen/dp_10">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <dev.widget.ui.round.RoundTextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_60"
-                        android:background="@drawable/shape_bg_black_top_r10"
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:text="ShapeableImageView"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp_28" />
+                        android:textSize="@dimen/sp_28"
+                        app:dev_backgroundColor="@color/black"
+                        app:dev_radiusLeftTop="@dimen/dp_10"
+                        app:dev_radiusRightTop="@dimen/dp_10" />
 
                     <include layout="@layout/fragment_ui_effect_material_shapeable_image_view" />
-                </LinearLayout>
+                </dev.widget.ui.round.RoundLinearLayout>
             </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </FrameLayout>

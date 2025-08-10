@@ -375,6 +375,4 @@ enum class ButtonEnum(
     BTN_OTHER_FUN_OPEN_FLOATING_WINDOW("打开悬浮窗"),
 
     BTN_OTHER_FUN_CLOSE_FLOATING_WINDOW("关闭悬浮窗"),
-
-    BTN_OTHER_FUN_SKU_DIALOG("显示商品 SKU Dialog"),
 }
