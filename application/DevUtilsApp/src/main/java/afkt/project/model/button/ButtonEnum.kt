@@ -33,7 +33,7 @@ enum class ButtonEnum(
 
     MODULE_UI_EFFECT("UI 效果", R.id.UIEffectFragment),
 
-    MODULE_OTHER_FUN("其他功能"),
+    MODULE_OTHER_FUN("其他功能", R.id.OtherFunctionFragment),
 
     MODULE_DEV_WIDGET("DevWidget UI 库", R.id.DevWidgetFragment),
 

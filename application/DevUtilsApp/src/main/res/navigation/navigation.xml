@@ -245,4 +245,11 @@
         android:id="@+id/CapturePictureWebViewFragment"
         android:name="afkt.project.features.ui_effect.capture_picture.CapturePictureWebViewFragment"
         android:label="CapturePictureWebViewFragment" />
+
+    <!-- Other Function -->
+
+    <fragment
+        android:id="@+id/OtherFunctionFragment"
+        android:name="afkt.project.features.OtherFunctionFragment"
+        android:label="OtherFunctionFragment" />
 </navigation>
