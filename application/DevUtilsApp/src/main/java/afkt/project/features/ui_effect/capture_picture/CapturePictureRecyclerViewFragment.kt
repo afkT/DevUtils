@@ -1,123 +1,69 @@
 package afkt.project.features.ui_effect.capture_picture
 
+import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.databinding.FragmentUiEffectCapturePictureRecyclerViewBinding
-import afkt.project.features.ui_effect.capture_picture.AdapterBean.Companion.newAdapterBeanList
+import afkt.project.model.basic.AdapterModel
 import afkt.project.model.helper.RandomHelper
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import dev.base.DevSource
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
-import dev.engine.DevEngine
-import dev.engine.storage.OnDevInsertListener
-import dev.engine.storage.StorageItem
-import dev.engine.storage.StorageResult
+import dev.simple.app.base.asFragment
 import dev.utils.app.CapturePictureUtils
-import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.quick.QuickHelper
-import dev.utils.app.helper.view.ViewHelper
-import dev.utils.common.FileUtils
 import dev.utils.common.RandomUtils
+import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
  */
-class CapturePictureRecyclerViewFragment : AppFragment<FragmentUiEffectCapturePictureRecyclerViewBinding, AppViewModel>(
-    R.layout.fragment_ui_effect_capture_picture_recycler_view, simple_Agile = {
-        if (it is CapturePictureRecyclerViewFragment) {
-            it.apply {
-                // 截图按钮
-                val view = QuickHelper.get(AppCompatTextView(requireActivity()))
-                    .setText("截图")
-                    .setBold()
-                    .setTextColors(ResourceUtils.getColor(R.color.white))
-                    .setTextSizeBySp(15.0F)
-                    .setPaddingLeft(30)
-                    .setPaddingRight(30)
-                    .setOnClick {
-                        // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
-                        // 以及对于的横、竖屏效果截图
-                        DevEngine.getStorage()?.insertImageToExternal(
-                            StorageItem.createExternalItem("recy.jpg"),
-                            DevSource.create(
-                                CapturePictureUtils.snapshotByRecyclerView(binding.vidRv)
-                            ),
-                            object : OnDevInsertListener {
-                                override fun onResult(
-                                    result: StorageResult,
-                                    params: StorageItem?,
-                                    source: DevSource?
-                                ) {
-                                    showToast(
-                                        result.isSuccess(),
-                                        "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
-                                        "保存失败"
-                                    )
-                                }
-                            }
-                        )
-                    }.getView<View>()
-
-//                    binding.vidRv.layoutManager = LinearLayoutManager(this)
-//                    binding.vidRv.layoutManager =
-//                        LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-//
-//                    binding.vidRv.layoutManager = GridLayoutManager(this, 3)
-//                    binding.vidRv.layoutManager =
-//                        GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
-//
-//                    binding.vidRv.layoutManager =
-//                        StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
-
-                binding.vidRv.layoutManager =
-                    StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-
-                binding.vidRv.adapter =
-                    object :
-                        dev.adapter.DevDataAdapterExt<AdapterBean, DevBaseViewBindingVH<AdapterCapturePictureBinding>>() {
-
-                        init {
-                            setDataList(newAdapterBeanList(15), false)
-                        }
-
-                        override fun onCreateViewHolder(
-                            parent: ViewGroup,
-                            viewType: Int
-                        ): DevBaseViewBindingVH<AdapterCapturePictureBinding> {
-                            return newBindingViewHolder(
-                                parent,
-                                R.layout.adapter_capture_picture
-                            )
-                        }
-
-                        override fun onBindViewHolder(
-                            holder: DevBaseViewBindingVH<AdapterCapturePictureBinding>,
-                            position: Int
-                        ) {
-                            val item = getDataItem(position)
-                            ViewHelper.get()
-                                .setText(item.title, holder.binding.vidTitleTv)
-                                .setText(item.content, holder.binding.vidContentTv)
-                        }
-                    }
+class CapturePictureRecyclerViewFragment : AppFragment<FragmentUiEffectCapturePictureRecyclerViewBinding, CapturePictureRecyclerViewModel>(
+    R.layout.fragment_ui_effect_capture_picture_recycler_view, BR.viewModel,
+    simple_Agile = { frg ->
+        frg.asFragment<CapturePictureRecyclerViewFragment> {
+            setTitleBarRight("截图") { view ->
+                val bitmap = CapturePictureUtils.snapshotByRecyclerView(binding.vidRv)
+                CapturePictureFragment.saveBitmap("recycler_view.jpg", bitmap)
             }
+            // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
+            // 以及对于的横、竖屏效果截图
+
+//            binding.vidRv.layoutManager = LinearLayoutManager(this)
+//            binding.vidRv.layoutManager = LinearLayoutManager(
+//                this, LinearLayoutManager.HORIZONTAL, false
+//            )
+//
+//            binding.vidRv.layoutManager = GridLayoutManager(this, 3)
+//            binding.vidRv.layoutManager = GridLayoutManager(
+//                this, 3, GridLayoutManager.HORIZONTAL, false
+//            )
+//
+//            binding.vidRv.layoutManager = StaggeredGridLayoutManager(
+//                3, StaggeredGridLayoutManager.HORIZONTAL
+//            )
+            binding.vidRv.layoutManager = StaggeredGridLayoutManager(
+                3, StaggeredGridLayoutManager.VERTICAL
+            )
         }
     }
 )
 
+open class CapturePictureRecyclerViewModel : AppViewModel() {
 
-/**
- * detail: 适配器实体类
- * @author Ttt
- */
-open class AdapterBean(
+    val adapter = CapturePictureAdapter().apply {
+        addAllAndClear(CapturePictureBean.newAdapterBeanList(15))
+    }
+}
+
+class CapturePictureAdapter() : AdapterModel<CapturePictureBean>() {
+
+    // Item Binding
+    val itemBinding = ItemBinding.of<CapturePictureBean>(
+        BR.itemValue, R.layout.adapter_item_capture_picture
+    )
+}
+
+class CapturePictureBean(
     // 标题
     val title: String,
     // 内容
@@ -129,11 +75,11 @@ open class AdapterBean(
         /**
          * 创建适配器实体类
          * @param position 索引
-         * @return [AdapterBean]
+         * @return [CapturePictureBean]
          */
-        private fun newAdapterBean(position: Int): AdapterBean {
+        private fun newAdapterBean(position: Int): CapturePictureBean {
             val number = RandomUtils.getRandom(10, 100) + (10 + position / 3) * 3
-            return AdapterBean(
+            return CapturePictureBean(
                 title = RandomHelper.randomWord(2),
                 content = "${position + 1}." + RandomHelper.randomWordRange(max = number)
             )
@@ -144,8 +90,8 @@ open class AdapterBean(
          * @param count 集合总数
          * @return 适配器实体类集合
          */
-        fun newAdapterBeanList(count: Int): List<AdapterBean> {
-            val lists = mutableListOf<AdapterBean>()
+        fun newAdapterBeanList(count: Int): List<CapturePictureBean> {
+            val lists = mutableListOf<CapturePictureBean>()
             for (i in 0 until count) {
                 lists.add(newAdapterBean(i))
             }

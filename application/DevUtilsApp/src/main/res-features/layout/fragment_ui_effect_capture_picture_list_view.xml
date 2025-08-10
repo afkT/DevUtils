@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.ui_effect.capture_picture.CapturePictureListViewModel" />
+    </data>
 
     <ListView
         android:id="@+id/vid_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@null"
-        android:listSelector="@null" />
+        android:listSelector="@null"
+        app:itemBinding="@{viewModel.adapter.itemBinding}"
+        app:items="@{viewModel.adapter.items}" />
 </layout>
