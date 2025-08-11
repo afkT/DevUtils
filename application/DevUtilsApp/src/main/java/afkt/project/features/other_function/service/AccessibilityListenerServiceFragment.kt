@@ -1,11 +1,15 @@
 package afkt.project.features.other_function.service
 
+import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionAccessibilityListenerServiceBinding
+import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import dev.expand.engine.log.log_dTag
+import dev.expand.engine.toast.toast_showShort
+import dev.utils.app.AppUtils
 
 /**
  * detail: 无障碍监听服务 ( AccessibilityListenerService )
@@ -14,41 +18,8 @@ import dev.expand.engine.log.log_dTag
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
-class AccessibilityListenerServiceFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is AccessibilityListenerServiceFragment) {
-//                it.apply {
-//                    binding.vidRv.bindAdapter(accessibilityListenerServiceButtonValues) { buttonValue ->
-//                        when (buttonValue.type) {
-//                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK -> {
-//                                val check = AccessibilityListenerService.isAccessibilitySettingsOn(
-//                                    AppUtils.getPackageName()
-//                                )
-//                                showToast(check, "已开启无障碍功能", "未开启无障碍功能")
-//                            }
-//
-//                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_REGISTER -> {
-//                                if (!AccessibilityListenerService.checkAccessibility()) {
-//                                    showToast(false, "请先开启无障碍功能")
-//                                } else {
-//                                    showToast(true, "绑定无障碍监听服务成功, 请查看 Logcat")
-//                                    // 注册监听
-//                                    AccessibilityListenerService.startService()
-//                                }
-//                            }
-//
-//                            ButtonValue.BTN_ACCESSIBILITY_SERVICE_UNREGISTER -> {
-//                                showToast(true, "注销无障碍监听服务成功")
-//                                // 注销监听
-//                                AccessibilityListenerService.stopService()
-//                            }
-//
-//                            else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-//                        }
-//                    }
-//                }
-        }
-    }
+class AccessibilityListenerServiceFragment : AppFragment<FragmentOtherFunctionAccessibilityListenerServiceBinding, AccessibilityListenerServiceViewModel>(
+    R.layout.fragment_other_function_accessibility_listener_service, BR.viewModel
 ) {
 
     override fun onDestroy() {
@@ -60,7 +31,11 @@ class AccessibilityListenerServiceFragment : AppFragment<BaseViewRecyclerviewBin
 
     override fun initListener() {
         super.initListener()
-
+        /**
+         * 【默认监听的是微信】
+         * android:packageNames="com.tencent.mm"
+         * 如果需要监听全部应用则移除这一句即可
+         */
         // 设置监听事件
         AccessibilityListenerService.setListener(object :
             AccessibilityListenerService.Listener {
@@ -72,31 +47,53 @@ class AccessibilityListenerServiceFragment : AppFragment<BaseViewRecyclerviewBin
                     .append("onAccessibilityEvent")
                     .append("\naccessibilityEvent: ")
                     .append(event)
-                TAG.log_dTag(
-                    message = builder.toString()
-                )
+                TAG.log_dTag(message = builder.toString())
             }
 
             override fun onInterrupt() {
                 super.onInterrupt()
-                TAG.log_dTag(
-                    message = "onInterrupt"
-                )
+                TAG.log_dTag(message = "onInterrupt")
             }
 
             override fun onServiceCreated(service: AccessibilityListenerService?) {
                 super.onServiceCreated(service)
-                TAG.log_dTag(
-                    message = "onServiceCreated"
-                )
+                TAG.log_dTag(message = "onServiceCreated")
             }
 
             override fun onServiceDestroy() {
                 super.onServiceDestroy()
-                TAG.log_dTag(
-                    message = "onServiceDestroy"
-                )
+                TAG.log_dTag(message = "onServiceDestroy")
             }
         })
+    }
+}
+
+class AccessibilityListenerServiceViewModel : AppViewModel() {
+
+    val clickCheck = View.OnClickListener { view ->
+        val check = AccessibilityListenerService.isAccessibilitySettingsOn(
+            AppUtils.getPackageName()
+        )
+        if (check) {
+            toast_showShort(text = "已开启无障碍功能")
+        } else {
+            toast_showShort(text = "未开启无障碍功能")
+        }
+    }
+
+    val clickRegister = View.OnClickListener { view ->
+        if (!AccessibilityListenerService.checkAccessibility()) {
+            toast_showShort(text = "请先开启无障碍功能")
+        } else {
+            toast_showShort(text = "绑定无障碍监听服务成功, 请查看 Logcat")
+            // 注册监听
+            AccessibilityListenerService.startService()
+        }
+    }
+
+    val clickUnRegister = View.OnClickListener { view ->
+        toast_showShort(text = "注销无障碍监听服务成功")
+        // 注销监听
+        AccessibilityListenerService.stopService()
     }
 }

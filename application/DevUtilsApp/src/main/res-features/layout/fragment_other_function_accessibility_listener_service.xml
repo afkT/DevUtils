@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.other_function.service.AccessibilityListenerServiceViewModel" />
+    </data>
+
+    <LinearLayout
+        style="@style/ViewTheme.Padding.LR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickCheck}"
+            android:text="检查是否开启" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickRegister}"
+            android:text="开始监听" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickUnRegister}"
+            android:text="注销监听" />
+    </LinearLayout>
+</layout>
