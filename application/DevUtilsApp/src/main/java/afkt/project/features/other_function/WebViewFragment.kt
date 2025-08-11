@@ -1,17 +1,15 @@
-package afkt.project.feature.other_function.web_view
+package afkt.project.features.other_function
 
 import afkt.project.R
+import afkt.project.app.AppContext
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.basic.BaseApplication
-import afkt.project.app.project.BaseProjectActivity
-import afkt.project.databinding.ActivityWebviewBinding
+import afkt.project.databinding.FragmentOtherFunctionWebViewBinding
 import android.net.http.SslError
-import android.view.KeyEvent
-import android.view.View.OnLongClickListener
+import android.view.View
 import android.webkit.SslErrorHandler
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
 import dev.agile.assist.WebViewAssist
 import dev.expand.engine.log.log_dTag
@@ -20,10 +18,9 @@ import dev.expand.engine.log.log_dTag
  * detail: WebView 辅助类
  * @author Ttt
  */
-class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel>(
-    R.layout.activity_webview
+class WebViewFragment : AppFragment<FragmentOtherFunctionWebViewBinding, AppViewModel>(
+    R.layout.fragment_other_function_web_view
 ) {
-
     // WebView 辅助类
     private val mWebViewAssist = WebViewAssist()
 
@@ -31,10 +28,10 @@ class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel
         super.initValue()
 
         // 长按监听事件
-        binding.vidWv.setOnLongClickListener(OnLongClickListener { view ->
+        binding.vidWv.setOnLongClickListener(View.OnLongClickListener { view ->
             ((view as WebView).hitTestResult).let { result ->
                 when (result.type) {
-                    HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
+                    WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra
                         TAG.log_dTag(
                             message = "SRC_IMAGE_ANCHOR_TYPE $imgUrl"
@@ -95,7 +92,7 @@ class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel
         })
         /**
          * 默认使用全局配置
-         * [BaseApplication.initWebViewBuilder]
+         * [AppContext.initWebViewBuilder]
          */
 //        // 如果使用全局配置, 则直接调用 apply 方法
 //        mWebViewAssist.apply()
@@ -113,30 +110,32 @@ class WebViewActivity : BaseProjectActivity<ActivityWebviewBinding, AppViewModel
                     builder: WebViewAssist.Builder
                 ) {
                     applyListener?.onApply(webViewAssist, builder)
-                    // BaseApplication 也会打印 WebViewAssist Builder onApply
-                    TAG.log_dTag(
-                        message = "自定义监听"
-                    )
-                    // 全局配置或者自定义配置以外, 再次配置操作
-                    // 加载网页
-                    mWebViewAssist.loadUrl("https://www.csdn.net/")
+                    // AppContext 也会打印 WebViewAssist Builder onApply
+                    TAG.log_dTag(message = "自定义监听")
+                    // 全局配置或者自定义配置以外, 再次配置其他操作
                 }
             })
             // 应用配置
             mWebViewAssist.setBuilder(builder, true)
+            // 加载网页
+            mWebViewAssist.loadUrl("https://www.csdn.net/")
         }
-    }
-
-    override fun onKeyDown(
-        keyCode: Int,
-        event: KeyEvent
-    ): Boolean {
-        if (mWebViewAssist.handlerKeyDown(keyCode, event)) return true
-        return super.onKeyDown(keyCode, event)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mWebViewAssist.destroy()
+    }
+
+    override fun initListener() {
+        super.initListener()
+        // 监听返回键处理
+        mWebViewAssist.getWebView()?.setOnKeyListener { view, keyCode, event ->
+            if (mWebViewAssist.handlerKeyDown(keyCode, event)) {
+                // 消费事件
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
     }
 }

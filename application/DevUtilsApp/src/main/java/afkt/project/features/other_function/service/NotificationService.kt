@@ -1,4 +1,4 @@
-package afkt.project.feature.other_function.service
+package afkt.project.features.other_function.service
 
 import android.annotation.TargetApi
 import android.content.Intent

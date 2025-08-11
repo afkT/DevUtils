@@ -78,20 +78,19 @@ enum class ButtonEnum(
     BTN_DEV_WIDGET_SCAN_VIEW("自定义扫描 View ( QRCode、AR )", R.id.ScanShapeFragment),
 
     BTN_DEV_WIDGET_LINEAR_ITEM_VERTICAL(
-        "Linear Vertical ItemDecoration",
-        R.id.LinearVerticalFragment
+        "Linear Vertical ItemDecoration", R.id.LinearVerticalFragment
     ),
 
     BTN_DEV_WIDGET_LINEAR_ITEM_HORIZONTAL(
-        "Linear Horizontal ItemDecoration",
-        R.id.LinearHorizontalFragment
+        "Linear Horizontal ItemDecoration", R.id.LinearHorizontalFragment
     ),
 
-    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL("Grid Vertical ItemDecoration", R.id.GridVerticalFragment),
+    BTN_DEV_WIDGET_GRID_ITEM_VERTICAL(
+        "Grid Vertical ItemDecoration", R.id.GridVerticalFragment
+    ),
 
     BTN_DEV_WIDGET_GRID_ITEM_HORIZONTAL(
-        "Grid Horizontal ItemDecoration",
-        R.id.GridHorizontalFragment
+        "Grid Horizontal ItemDecoration", R.id.GridHorizontalFragment
     ),
 
     BTN_DEV_WIDGET_VIEW_ASSIST("View 填充辅助类"),
@@ -170,21 +169,20 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_SHOP_CARD_ADD_ANIM("购物车加入动画", R.id.ShopCartFragment),
 
-    BTN_UI_EFFECT_CAPTURE_PICTURE("CapturePictureUtils 截图工具类", R.id.CapturePictureFragment),
+    BTN_UI_EFFECT_CAPTURE_PICTURE(
+        "CapturePictureUtils 截图工具类", R.id.CapturePictureFragment
+    ),
 
     BTN_UI_EFFECT_CAPTURE_PICTURE_1_LIST_VIEW(
-        "CapturePictureUtils ListView 截图",
-        R.id.CapturePictureListViewFragment
+        "CapturePictureUtils ListView 截图", R.id.CapturePictureListViewFragment
     ),
 
     BTN_UI_EFFECT_CAPTURE_PICTURE_1_RECYCLER_VIEW(
-        "CapturePictureUtils RecyclerView 截图工具类",
-        R.id.CapturePictureRecyclerViewFragment
+        "CapturePictureUtils RecyclerView 截图工具类", R.id.CapturePictureRecyclerViewFragment
     ),
 
     BTN_UI_EFFECT_CAPTURE_PICTURE_1_WEB_VIEW(
-        "CapturePictureUtils WebView 截图工具类",
-        R.id.CapturePictureWebViewFragment
+        "CapturePictureUtils WebView 截图工具类", R.id.CapturePictureWebViewFragment
     ),
 
     BTN_UI_EFFECT_GPU_ACV("GPU ACV 文件滤镜效果", R.id.GPUFilterACVFragment),
@@ -197,18 +195,20 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_VIEWPAGER2("ViewPager2", R.id.ViewPager2Fragment),
 
-    BTN_UI_EFFECT_MATERIAL_CHIP("Material Chip、ChipGroups、ChipDrawable", R.id.ChipFragment),
-
-    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW(
-        "Material ShapeableImageView",
-        R.id.ShapeableImageViewFragment
+    BTN_UI_EFFECT_MATERIAL_CHIP(
+        "Material Chip、ChipGroups、ChipDrawable", R.id.ChipFragment
     ),
 
-    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET("Material BottomSheet", R.id.BottomSheetFragment),
+    BTN_UI_EFFECT_MATERIAL_SHAPEABLE_IMAGE_VIEW(
+        "Material ShapeableImageView", R.id.ShapeableImageViewFragment
+    ),
+
+    BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET(
+        "Material BottomSheet", R.id.BottomSheetFragment
+    ),
 
     BTN_UI_EFFECT_MATERIAL_BOTTOM_SHEET_DIALOG(
-        "Material BottomSheetDialog",
-        R.id.BottomSheetDialogFragment
+        "Material BottomSheetDialog", R.id.BottomSheetDialogFragment
     ),
 
     BTN_UI_EFFECT_RECY_FLEXBOX("Flexbox LayoutManager", R.id.FlexboxFragment),
@@ -221,20 +221,33 @@ enum class ButtonEnum(
 
     BTN_UI_EFFECT_RECY_PAGER_SNAP("RecyclerView - PagerSnapHelper", R.id.PagerSnapFragment),
 
-    BTN_UI_EFFECT_RECY_CONCAT_ADAPTER("RecyclerView - ConcatAdapter", R.id.ConcatAdapterFragment),
+    BTN_UI_EFFECT_RECY_CONCAT_ADAPTER(
+        "RecyclerView - ConcatAdapter", R.id.ConcatAdapterFragment
+    ),
 
     BTN_UI_EFFECT_RECY_MULTITYPE_ADAPTER(
-        "RecyclerView MultiType Adapter",
-        R.id.MultiTypeAdapterFragment
+        "RecyclerView MultiType Adapter", R.id.MultiTypeAdapterFragment
     ),
 
     // ==================
     // = Other Function =
     // ==================
 
-    BTN_OTHER_FUN_NOTIFICATION_SERVICE("通知栏监听服务 ( NotificationService )"),
+    BTN_OTHER_FUN_NOTIFICATION_SERVICE(
+        "通知栏监听服务 ( NotificationService )", R.id.NotificationServiceFragment
+    ),
 
-    BTN_OTHER_FUN_ACCESSIBILITY_SERVICE("无障碍监听服务 ( AccessibilityListenerService )"),
+    BTN_OTHER_FUN_ACCESSIBILITY_SERVICE(
+        "无障碍监听服务 ( AccessibilityListenerService )", R.id.AccessibilityListenerServiceFragment
+    ),
+
+    BTN_OTHER_FUN_ACTIVITY_RESULT_API(
+        "Activity Result API"
+    ),
+
+    BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK(
+        "startActivityForResult Callback"
+    ),
 
     BTN_OTHER_FUN_FUNCTION("铃声、震动、通知栏等功能"),
 
@@ -250,129 +263,9 @@ enum class ButtonEnum(
 
     BTN_OTHER_FUN_PATH("路径信息"),
 
-    BTN_OTHER_FUN_WEBVIEW("WebView 辅助类"),
-
-    BTN_OTHER_FUN_ACTIVITY_RESULT_API("Activity Result API"),
-
-    BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK("startActivityForResult Callback"),
+    BTN_OTHER_FUN_WEBVIEW("WebView 辅助类", R.id.WebViewFragment),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER("悬浮窗管理辅助类 ( 需权限 )"),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER2("悬浮窗管理辅助类 ( 无需权限依赖 Activity )"),
-
-    BTN_OTHER_FUN_WIFI_LISTENER("Wifi 监听"),
-
-    BTN_OTHER_FUN_NETWORK_LISTENER("网络监听"),
-
-    BTN_OTHER_FUN_PHONE_LISTENER("电话监听"),
-
-    BTN_OTHER_FUN_SMS_LISTENER("短信监听"),
-
-    BTN_OTHER_FUN_TIME_LISTENER("时区、时间监听"),
-
-    BTN_OTHER_FUN_SCREEN_LISTENER("屏幕监听"),
-
-    BTN_OTHER_FUN_ROTA_LISTENER("屏幕旋转监听 ( 重力传感器 )"),
-
-    BTN_OTHER_FUN_ROTA2_LISTENER("屏幕旋转监听 ( OrientationEventListener )"),
-
-    BTN_OTHER_FUN_BATTERY_LISTENER("电量监听"),
-
-    BTN_OTHER_FUN_APP_STATE_LISTENER("应用状态监听"),
-
-    BTN_OTHER_FUN_NOTIFICATION_SERVICE_CHECK("检查是否开启"),
-
-    BTN_OTHER_FUN_NOTIFICATION_SERVICE_REGISTER("开始监听"),
-
-    BTN_OTHER_FUN_NOTIFICATION_SERVICE_UNREGISTER("注销监听"),
-
-    BTN_OTHER_FUN_ACCESSIBILITY_SERVICE_CHECK("检查是否开启"),
-
-    BTN_OTHER_FUN_ACCESSIBILITY_SERVICE_REGISTER("开始监听"),
-
-    BTN_OTHER_FUN_ACCESSIBILITY_SERVICE_UNREGISTER("注销监听"),
-
-    BTN_OTHER_FUN_FUNCTION_VIBRATE("震动"),
-
-    BTN_OTHER_FUN_FUNCTION_BEEP("铃声 - 播放一小段音频"),
-
-    BTN_OTHER_FUN_FUNCTION_NOTIFICATION_CHECK("是否存在通知权限"),
-
-    BTN_OTHER_FUN_FUNCTION_NOTIFICATION_OPEN("开启通知权限"),
-
-    BTN_OTHER_FUN_FUNCTION_NOTIFICATION("通知消息"),
-
-    BTN_OTHER_FUN_FUNCTION_NOTIFICATION_REMOVE("移除消息"),
-
-    BTN_OTHER_FUN_FUNCTION_HOME("回到桌面"),
-
-    BTN_OTHER_FUN_FUNCTION_FLASHLIGHT_OPEN("打开手电筒"),
-
-    BTN_OTHER_FUN_FUNCTION_FLASHLIGHT_CLOSE("关闭手电筒"),
-
-    BTN_OTHER_FUN_FUNCTION_SHORTCUT_CHECK("是否创建桌面快捷方式"),
-
-    BTN_OTHER_FUN_FUNCTION_SHORTCUT_CREATE("创建桌面快捷方式"),
-
-    BTN_OTHER_FUN_FUNCTION_SHORTCUT_DELETE("删除桌面快捷方式"),
-
-    BTN_OTHER_FUN_FUNCTION_MEMORY_PRINT("打印内存信息"),
-
-    BTN_OTHER_FUN_FUNCTION_DEVICE_PRINT("打印设备信息"),
-
-    BTN_OTHER_FUN_FUNCTION_APP_DETAILS_SETTINGS("跳转到 APP 设置详情页面"),
-
-    BTN_OTHER_FUN_FUNCTION_GPS_SETTINGS("打开 GPS 设置界面"),
-
-    BTN_OTHER_FUN_FUNCTION_WIRELESS_SETTINGS("打开网络设置界面"),
-
-    BTN_OTHER_FUN_FUNCTION_SYS_SETTINGS("跳转到系统设置页面"),
-
-    BTN_OTHER_FUN_TIMER_START("启动定时器"),
-
-    BTN_OTHER_FUN_TIMER_STOP("停止定时器"),
-
-    BTN_OTHER_FUN_TIMER_RESTART("重新启动定时器"),
-
-    BTN_OTHER_FUN_TIMER_CHECK("定时器是否启动"),
-
-    BTN_OTHER_FUN_TIMER_GET("获取定时器"),
-
-    BTN_OTHER_FUN_TIMER_GET_NUMBER("获取运行次数"),
-
-    BTN_OTHER_FUN_CACHE_STRING("存储字符串"),
-
-    BTN_OTHER_FUN_CACHE_STRING_TIME("存储有效期字符串"),
-
-    BTN_OTHER_FUN_CACHE_STRING_GET("获取字符串"),
-
-    BTN_OTHER_FUN_CACHE_BEAN("存储实体类"),
-
-    BTN_OTHER_FUN_CACHE_BEAN_TIME("存储有效期实体类"),
-
-    BTN_OTHER_FUN_CACHE_BEAN_GET("获取实体类"),
-
-    BTN_OTHER_FUN_CACHE_FILE("存储到指定位置"),
-
-    BTN_OTHER_FUN_CACHE_FILE_GET("获取指定位置缓存数据"),
-
-    BTN_OTHER_FUN_CACHE_CLEAR("清除全部数据"),
-
-    BTN_OTHER_FUN_LOGGER_PRINT("打印日志"),
-
-    BTN_OTHER_FUN_LOGGER_TIME("打印日志耗时测试"),
-
-    BTN_OTHER_FUN_FILE_RECORD_UTILS("FileRecordUtils 工具类"),
-
-    BTN_OTHER_FUN_CRASH_CLICK_CATCH("点击崩溃捕获信息"),
-
-    BTN_OTHER_FUN_PATH_INTERNAL("内部存储路径"),
-
-    BTN_OTHER_FUN_PATH_APP_EXTERNAL("应用外部存储路径"),
-
-    BTN_OTHER_FUN_PATH_SDCARD("外部存储路径 ( SDCard )"),
-
-    BTN_OTHER_FUN_OPEN_FLOATING_WINDOW("打开悬浮窗"),
-
-    BTN_OTHER_FUN_CLOSE_FLOATING_WINDOW("关闭悬浮窗"),
 }

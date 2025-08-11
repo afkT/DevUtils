@@ -1,8 +1,8 @@
-package afkt.project.feature.other_function.service
+package afkt.project.features.other_function.service
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.view.accessibility.AccessibilityEvent
 import dev.expand.engine.log.log_dTag
@@ -14,10 +14,9 @@ import dev.expand.engine.log.log_dTag
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
-class AccessibilityListenerServiceActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-        R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is AccessibilityListenerServiceActivity) {
+class AccessibilityListenerServiceFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is AccessibilityListenerServiceFragment) {
 //                it.apply {
 //                    binding.vidRv.bindAdapter(accessibilityListenerServiceButtonValues) { buttonValue ->
 //                        when (buttonValue.type) {
@@ -48,9 +47,9 @@ class AccessibilityListenerServiceActivity :
 //                        }
 //                    }
 //                }
-            }
         }
-    ) {
+    }
+) {
 
     override fun onDestroy() {
         super.onDestroy()

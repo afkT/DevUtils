@@ -252,4 +252,19 @@
         android:id="@+id/OtherFunctionFragment"
         android:name="afkt.project.features.OtherFunctionFragment"
         android:label="OtherFunctionFragment" />
+
+    <fragment
+        android:id="@+id/AccessibilityListenerServiceFragment"
+        android:name="afkt.project.features.other_function.service.AccessibilityListenerServiceFragment"
+        android:label="AccessibilityListenerServiceFragment" />
+
+    <fragment
+        android:id="@+id/NotificationServiceFragment"
+        android:name="afkt.project.features.other_function.service.NotificationServiceFragment"
+        android:label="NotificationServiceFragment" />
+
+    <fragment
+        android:id="@+id/WebViewFragment"
+        android:name="afkt.project.features.other_function.WebViewFragment"
+        android:label="WebViewFragment" />
 </navigation>

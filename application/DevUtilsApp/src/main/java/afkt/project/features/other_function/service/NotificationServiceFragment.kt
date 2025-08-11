@@ -1,15 +1,14 @@
-package afkt.project.feature.other_function.service
+package afkt.project.features.other_function.service
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
 import dev.expand.engine.log.log_dTag
 import dev.utils.DevFinal
-import dev.expand.engine.toast.toast_showShort
 
 /**
  * detail: 通知栏监听服务 ( NotificationService )
@@ -18,10 +17,9 @@ import dev.expand.engine.toast.toast_showShort
  * 所需权限
  * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
-class NotificationServiceActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
-        R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is NotificationServiceActivity) {
+class NotificationServiceFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
+    R.layout.base_view_recyclerview, simple_Agile = {
+        if (it is NotificationServiceFragment) {
 //                it.apply {
 //                    binding.vidRv.bindAdapter(notificationServiceButtonValues) { buttonValue ->
 //                        when (buttonValue.type) {
@@ -50,9 +48,9 @@ class NotificationServiceActivity :
 //                        }
 //                    }
 //                }
-            }
         }
-    ) {
+    }
+) {
 
     override fun onDestroy() {
         super.onDestroy()
@@ -104,7 +102,11 @@ class NotificationServiceActivity :
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         val bundle = it.extras
                         for (key in bundle.keySet()) {
-                            builder.append(DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.getString(key))
+                            builder.append(
+                                DevFinal.SYMBOL.NEW_LINE + key + ": " + bundle.getString(
+                                    key
+                                )
+                            )
                         }
                     }
                     TAG.log_dTag(

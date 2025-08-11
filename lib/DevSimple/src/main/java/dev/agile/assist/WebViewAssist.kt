@@ -707,20 +707,18 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param keyCode 按键类型
      * @param event   按键事件
      * @return `true` 拦截事件, `false` 不拦截接着处理
-     * Activity use
-     * @Override
-     * public boolean onKeyDown(int keyCode, KeyEvent event) {
-     *      if (webViewAssist.handlerKeyDown(keyCode, event)) return true
-     *      return super.onKeyDown(keyCode, event)
-     * }
      */
     fun handlerKeyDown(
         keyCode: Int,
-        event: KeyEvent?
+        event: KeyEvent
     ): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && canGoBack()) {
-            goBack()
-            return true
+        // 只处理按下事件, 避免重复触发
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
+            // 检查 WebView 是否可以后退
+            if (canGoBack()) {
+                goBack()
+                return true
+            }
         }
         return false
     }
