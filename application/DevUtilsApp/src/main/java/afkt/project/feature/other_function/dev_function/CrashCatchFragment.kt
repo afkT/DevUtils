@@ -1,17 +1,17 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 
 /**
  * detail: 奔溃日志捕获
  * @author Ttt
  */
-class CrashCatchActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class CrashCatchFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is CrashCatchActivity) {
+        if (it is CrashCatchFragment) {
 //            it.apply {
 //                /**
 //                 * 捕获异常处理 CrashUtils.getInstance().initialize()

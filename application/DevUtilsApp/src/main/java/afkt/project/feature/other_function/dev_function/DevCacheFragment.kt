@@ -1,12 +1,9 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import dev.utils.app.PathUtils
-import dev.utils.app.cache.DevCache
-import dev.expand.engine.toast.toast_showShort
 import utils_use.cache.CacheUse
 import java.io.Serializable
 
@@ -15,9 +12,9 @@ import java.io.Serializable
  * @author Ttt
  * [CacheUse]
  */
-class CacheActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class DevCacheFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is CacheActivity) {
+        if (it is DevCacheFragment) {
 //            it.apply {
 //                binding.vidRv.bindAdapter(cacheButtonValues) { buttonValue ->
 //                    // 获取字符串

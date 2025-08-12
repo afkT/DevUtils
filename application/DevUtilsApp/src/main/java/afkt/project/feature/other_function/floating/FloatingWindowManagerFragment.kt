@@ -2,8 +2,8 @@ package afkt.project.feature.other_function.floating
 
 import afkt.project.R
 import afkt.project.app.AppContext
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.annotation.SuppressLint
 import android.content.Context
@@ -20,10 +20,9 @@ import dev.utils.app.assist.floating.*
  * detail: 悬浮窗管理辅助类 ( 需权限 )
  * @author Ttt
  */
-class FloatingWindowManagerActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class FloatingWindowManagerFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is FloatingWindowManagerActivity) {
+            if (it is FloatingWindowManagerFragment) {
 //                it.apply {
 //                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
 //                        when (buttonValue.type) {
@@ -56,12 +55,13 @@ class FloatingWindowManagerActivity :
     }
 
     private fun checkOverlayPermission(): Boolean {
-        return if (FloatingWindowManagerAssist.checkOverlayPermission(this, true)) {
-            true
-        } else {
-            toast_showShort(text = "请先开启悬浮窗权限")
-            false
-        }
+//        return if (FloatingWindowManagerAssist.checkOverlayPermission(this, true)) {
+//            true
+//        } else {
+//            toast_showShort(text = "请先开启悬浮窗权限")
+//            false
+//        }
+        return false
     }
 }
 

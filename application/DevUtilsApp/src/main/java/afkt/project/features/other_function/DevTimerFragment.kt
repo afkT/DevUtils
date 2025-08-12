@@ -1,8 +1,8 @@
-package afkt.project.feature.other_function.timer
+package afkt.project.features.other_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.os.Handler
 import android.os.Looper
@@ -15,9 +15,9 @@ import dev.utils.app.timer.TimerManager
  * detail: TimerManager 定时器工具类
  * @author Ttt
  */
-class TimerActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class DevTimerFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is TimerActivity) {
+        if (it is DevTimerFragment) {
 //            it.apply {
 //                binding.vidRv.bindAdapter(timerButtonValues) { buttonValue ->
 //                    // 获取操作结果

@@ -1,55 +1,50 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityActivityResultApiBinding
-import android.Manifest
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
-import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.image.display
 import dev.expand.engine.log.log_dTag
-import dev.expand.engine.permission.permission_againRequest
-import dev.expand.engine.permission.permission_request
 import dev.expand.engine.toast.toast_showShort
 import dev.mvvm.utils.toSource
-import dev.utils.app.MediaStoreUtils
 import dev.utils.app.activity_result.ActivityResultAssist
 
 /**
  * detail: Activity Result API
  * @author Ttt
  */
-class ActivityResultAPIActivity :
-    BaseProjectActivity<ActivityActivityResultApiBinding, AppViewModel>(
+class ActivityResultAPIFragment :
+    AppFragment<ActivityActivityResultApiBinding, AppViewModel>(
         R.layout.activity_activity_result_api, simple_Agile = {
-            if (it is ActivityResultAPIActivity) {
+            if (it is ActivityResultAPIFragment) {
                 it.apply {
-                    binding.vidTakeBtn.setOnClickListener {
-                        permission_request(
-                            permissions = arrayOf(Manifest.permission.CAMERA),
-                            callback = object : IPermissionEngine.Callback {
-                                override fun onGranted() {
-                                    mAssist?.launch(MediaStoreUtils.createImageUri())
-                                }
-
-                                override fun onDenied(
-                                    grantedList: MutableList<String>?,
-                                    deniedList: MutableList<String>?,
-                                    notFoundList: MutableList<String>?
-                                ) {
-                                    // 拒绝了则再次请求处理
-                                    permission_againRequest(
-                                        callback = this,
-                                        deniedList = deniedList
-                                    )
-                                    toast_showShort(text = "拍照需摄像头权限")
-                                }
-                            }
-                        )
-                    }
+//                    binding.vidTakeBtn.setOnClickListener {
+//                        permission_request(
+//                            permissions = arrayOf(Manifest.permission.CAMERA),
+//                            callback = object : IPermissionEngine.Callback {
+//                                override fun onGranted() {
+//                                    mAssist?.launch(MediaStoreUtils.createImageUri())
+//                                }
+//
+//                                override fun onDenied(
+//                                    grantedList: MutableList<String>?,
+//                                    deniedList: MutableList<String>?,
+//                                    notFoundList: MutableList<String>?
+//                                ) {
+//                                    // 拒绝了则再次请求处理
+//                                    permission_againRequest(
+//                                        callback = this,
+//                                        deniedList = deniedList
+//                                    )
+//                                    toast_showShort(text = "拍照需摄像头权限")
+//                                }
+//                            }
+//                        )
+//                    }
                 }
             }
         }

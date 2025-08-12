@@ -267,4 +267,59 @@
         android:id="@+id/WebViewFragment"
         android:name="afkt.project.features.other_function.WebViewFragment"
         android:label="WebViewFragment" />
+
+    <fragment
+        android:id="@+id/DevTimerFragment"
+        android:name="afkt.project.features.other_function.DevTimerFragment"
+        android:label="DevTimerFragment" />
+
+    <fragment
+        android:id="@+id/ActivityResultAPIFragment"
+        android:name="afkt.project.feature.other_function.dev_function.ActivityResultAPIFragment"
+        android:label="ActivityResultAPIFragment" />
+
+    <fragment
+        android:id="@+id/ActivityResultCallbackFragment"
+        android:name="afkt.project.feature.other_function.dev_function.ActivityResultCallbackFragment"
+        android:label="ActivityResultCallbackFragment" />
+
+    <fragment
+        android:id="@+id/FunctionFragment"
+        android:name="afkt.project.feature.other_function.dev_function.FunctionFragment"
+        android:label="FunctionFragment" />
+
+    <fragment
+        android:id="@+id/DevCacheFragment"
+        android:name="afkt.project.feature.other_function.dev_function.DevCacheFragment"
+        android:label="DevCacheFragment" />
+
+    <fragment
+        android:id="@+id/DevLoggerFragment"
+        android:name="afkt.project.feature.other_function.dev_function.DevLoggerFragment"
+        android:label="DevLoggerFragment" />
+
+    <fragment
+        android:id="@+id/FileRecordFragment"
+        android:name="afkt.project.feature.other_function.dev_function.FileRecordFragment"
+        android:label="FileRecordFragment" />
+
+    <fragment
+        android:id="@+id/CrashCatchFragment"
+        android:name="afkt.project.feature.other_function.dev_function.CrashCatchFragment"
+        android:label="CrashCatchFragment" />
+
+    <fragment
+        android:id="@+id/PathFragment"
+        android:name="afkt.project.feature.other_function.dev_function.PathFragment"
+        android:label="PathFragment" />
+
+    <fragment
+        android:id="@+id/FloatingWindowManager2Fragment"
+        android:name="afkt.project.feature.other_function.floating.FloatingWindowManager2Fragment"
+        android:label="FloatingWindowManager2Fragment" />
+
+    <fragment
+        android:id="@+id/FloatingWindowManagerFragment"
+        android:name="afkt.project.feature.other_function.floating.FloatingWindowManagerFragment"
+        android:label="FloatingWindowManagerFragment" />
 </navigation>

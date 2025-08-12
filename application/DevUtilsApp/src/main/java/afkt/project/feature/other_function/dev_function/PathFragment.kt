@@ -1,22 +1,17 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import dev.expand.engine.log.log_dTag
-import dev.utils.DevFinal
-import dev.utils.app.PathUtils
-import dev.expand.engine.toast.toast_showShort
-import dev.utils.common.StringUtils
 
 /**
  * detail: 路径信息
  * @author Ttt
  */
-class PathActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class PathFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is PathActivity) {
+        if (it is PathFragment) {
             it.apply {
 //                binding.vidRv.bindAdapter(ButtonList.pathButtonValues) { buttonValue ->
 //                    val builder = StringBuilder()

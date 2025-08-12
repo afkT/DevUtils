@@ -1,26 +1,18 @@
 package afkt.project.feature.other_function.dev_function
 
-import afkt.project.MainActivity
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import android.Manifest
-import android.os.Build
-import dev.engine.permission.IPermissionEngine
-import dev.expand.engine.log.log_dTag
-import dev.expand.engine.permission.permission_request
-import dev.utils.app.*
-import dev.utils.app.assist.BeepVibrateAssist
-import dev.expand.engine.toast.toast_showShort
+import dev.utils.app.FlashlightUtils
 
 /**
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-class FunctionActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class FunctionFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is FunctionActivity) {
+        if (it is FunctionFragment) {
 //            it.apply {
 //                binding.vidRv.bindAdapter(functionButtonValues) { buttonValue ->
 //                    // 获取操作结果

@@ -1,8 +1,8 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import afkt.project.model.engine.createGalleryConfig
 import android.app.Activity
@@ -16,10 +16,10 @@ import dev.utils.app.activity_result.DefaultActivityResult
  * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
-class ActivityResultCallbackActivity :
-    BaseProjectActivity<ActivityActivityResultCallbackBinding, AppViewModel>(
+class ActivityResultCallbackFragment :
+    AppFragment<ActivityActivityResultCallbackBinding, AppViewModel>(
         R.layout.activity_activity_result_callback, simple_Agile = {
-            if (it is ActivityResultCallbackActivity) {
+            if (it is ActivityResultCallbackFragment) {
                 it.apply {
                     binding.vidSelectBtn.setOnClickListener {
                         DefaultActivityResult.getInstance().startActivityForResult(
@@ -41,12 +41,12 @@ class ActivityResultCallbackActivity :
                                     if (imgUri != null) {
                                         binding.vidIv.display(source = imgUri.toSource())
                                     } else {
-                                        Thread {
-                                            Thread.sleep(100L)
-                                            // 延迟 100 毫秒是防止 Activity 销毁对应的 Toast 显示在已销毁的 Activity
-                                            // 导致实际预览效果 Toast 并没有显示
-                                            showToast(false, "非成功操作")
-                                        }.start()
+//                                        Thread {
+//                                            Thread.sleep(100L)
+//                                            // 延迟 100 毫秒是防止 Activity 销毁对应的 Toast 显示在已销毁的 Activity
+//                                            // 导致实际预览效果 Toast 并没有显示
+//                                            showToast(false, "非成功操作")
+//                                        }.start()
                                     }
                                 }
                             })

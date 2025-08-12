@@ -1,8 +1,8 @@
 package afkt.project.features.dev_widget.view_assist
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.ActivityViewAssistBinding
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +17,9 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist Activity
  * @author Ttt
  */
-class ViewAssistActivity : BaseProjectActivity<ActivityViewAssistBinding, AppViewModel>(
+class ViewAssistFragment : AppFragment<ActivityViewAssistBinding, AppViewModel>(
     R.layout.activity_view_assist, simple_Agile = {
-        if (it is ViewAssistActivity) {
+        if (it is ViewAssistFragment) {
             it.apply {
                 viewAssist = ViewAssist.wrap(binding.vidFl)
 

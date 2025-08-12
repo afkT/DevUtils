@@ -1,8 +1,8 @@
 package afkt.project.feature.other_function.floating
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import android.graphics.PointF
 import android.view.MotionEvent
@@ -17,8 +17,7 @@ import dev.utils.app.assist.floating.*
  * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
  * @author Ttt
  */
-class FloatingWindowManager2Activity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class FloatingWindowManager2Fragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
 //            if (it is FloatingWindowManager2Activity) {
 //                it.apply {

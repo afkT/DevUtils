@@ -242,30 +242,34 @@ enum class ButtonEnum(
     ),
 
     BTN_OTHER_FUN_ACTIVITY_RESULT_API(
-        "Activity Result API"
+        "Activity Result API", R.id.ActivityResultAPIFragment
     ),
 
     BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK(
-        "startActivityForResult Callback"
+        "startActivityForResult Callback", R.id.ActivityResultCallbackFragment
     ),
 
-    BTN_OTHER_FUN_FUNCTION("铃声、震动、通知栏等功能"),
+    BTN_OTHER_FUN_FUNCTION("铃声、震动、通知栏等功能", R.id.FunctionFragment),
 
-    BTN_OTHER_FUN_TIMER("TimerManager 定时器工具类"),
+    BTN_OTHER_FUN_TIMER("TimerManager 定时器工具类", R.id.DevTimerFragment),
 
-    BTN_OTHER_FUN_CACHE("DevCache 缓存工具类"),
+    BTN_OTHER_FUN_CACHE("DevCache 缓存工具类", R.id.DevCacheFragment),
 
-    BTN_OTHER_FUN_LOGGER("DevLogger 日志工具类"),
+    BTN_OTHER_FUN_LOGGER("DevLogger 日志工具类", R.id.DevLoggerFragment),
 
-    BTN_OTHER_FUN_FILE_RECORD("日志、异常文件记录保存"),
+    BTN_OTHER_FUN_FILE_RECORD("日志、异常文件记录保存", R.id.FileRecordFragment),
 
-    BTN_OTHER_FUN_CRASH("奔溃日志捕获"),
+    BTN_OTHER_FUN_CRASH("奔溃日志捕获", R.id.CrashCatchFragment),
 
-    BTN_OTHER_FUN_PATH("路径信息"),
+    BTN_OTHER_FUN_PATH("路径信息", R.id.PathFragment),
 
     BTN_OTHER_FUN_WEBVIEW("WebView 辅助类", R.id.WebViewFragment),
 
-    BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER("悬浮窗管理辅助类 ( 需权限 )"),
+    BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER(
+        "悬浮窗管理辅助类 ( 需权限 )", R.id.FloatingWindowManager2Fragment
+    ),
 
-    BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER2("悬浮窗管理辅助类 ( 无需权限依赖 Activity )"),
+    BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER2(
+        "悬浮窗管理辅助类 ( 无需权限依赖 Activity )", R.id.FloatingWindowManagerFragment
+    ),
 }

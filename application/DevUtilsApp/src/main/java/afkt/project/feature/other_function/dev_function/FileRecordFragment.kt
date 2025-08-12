@@ -1,8 +1,8 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import utils_use.record.FileRecordUse
 
@@ -11,9 +11,9 @@ import utils_use.record.FileRecordUse
  * @author Ttt
  * [FileRecordUse]
  */
-class FileRecordActivity : BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class FileRecordFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
     R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is FileRecordActivity) {
+        if (it is FileRecordFragment) {
 //            it.apply {
 //                binding.vidRv.bindAdapter(fileRecordButtonValues) { buttonValue ->
 //                    when (buttonValue.type) {

@@ -1,8 +1,8 @@
 package afkt.project.feature.other_function.dev_function
 
 import afkt.project.R
+import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.app.project.BaseProjectActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
@@ -13,10 +13,9 @@ import utils_use.logger.LoggerUse
  * @author Ttt
  * [LoggerUse]
  */
-class LoggerActivity :
-    BaseProjectActivity<BaseViewRecyclerviewBinding, AppViewModel>(
+class DevLoggerFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
         R.layout.base_view_recyclerview, simple_Agile = {
-            if (it is LoggerActivity) {
+            if (it is DevLoggerFragment) {
                 it.apply {
                     // 初始化日志配置
                     LogConfig().apply {
