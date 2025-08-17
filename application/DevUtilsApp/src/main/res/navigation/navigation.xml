@@ -300,7 +300,7 @@
 
     <fragment
         android:id="@+id/FileRecordFragment"
-        android:name="afkt.project.feature.other_function.dev_function.FileRecordFragment"
+        android:name="afkt.project.features.other_function.FileRecordFragment"
         android:label="FileRecordFragment" />
 
     <fragment
@@ -310,7 +310,7 @@
 
     <fragment
         android:id="@+id/PathFragment"
-        android:name="afkt.project.feature.other_function.dev_function.PathFragment"
+        android:name="afkt.project.features.other_function.PathFragment"
         android:label="PathFragment" />
 
     <fragment

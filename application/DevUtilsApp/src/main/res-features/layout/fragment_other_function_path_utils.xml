@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.other_function.PathViewModel" />
+    </data>
+
+    <LinearLayout
+        style="@style/ViewTheme.Padding.LR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickInternal}"
+            android:text="内部存储路径" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickAppExternal}"
+            android:text="应用外部存储路径" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickSDCard}"
+            android:text="外部存储路径 ( SDCard )" />
+    </LinearLayout>
+</layout>

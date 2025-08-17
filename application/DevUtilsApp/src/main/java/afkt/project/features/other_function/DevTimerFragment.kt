@@ -1,12 +1,15 @@
 package afkt.project.features.other_function
 
+import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionDevTimerBinding
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import dev.expand.engine.log.log_dTag
+import dev.expand.engine.toast.toast_showShort
 import dev.utils.app.HandlerUtils
 import dev.utils.app.timer.DevTimer
 import dev.utils.app.timer.TimerManager
@@ -15,99 +18,47 @@ import dev.utils.app.timer.TimerManager
  * detail: TimerManager 定时器工具类
  * @author Ttt
  */
-class DevTimerFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
-    R.layout.base_view_recyclerview, simple_Agile = {
-        if (it is DevTimerFragment) {
-//            it.apply {
-//                binding.vidRv.bindAdapter(timerButtonValues) { buttonValue ->
-//                    // 获取操作结果
-//                    val result: Boolean
-//                    when (buttonValue.type) {
-//                        ButtonValue.BTN_TIMER_START -> {
-//                            if (mTimer == null) {
-//                                // 初始化定时器
-//                                mTimer = DevTimer.Builder(500L, 2000L, -1, TAG).build()
-//                                // 设置回调通过 Handler 触发
-//                                mTimer?.apply {
-//                                    setHandler(mUiHandler)
-//                                    setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
-//                                        // 触发次数
-//                                        if (number == 1) {
-//                                            TAG.log_dTag(
-//                                                message = "第一次触发, 0.5 秒延迟"
-//                                            )
-//                                        } else {
-//                                            TAG.log_dTag(
-//                                                message = "每隔 2 秒触发一次, 触发次数: $number"
-//                                            )
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            mTimer?.apply {
-//                                if (isRunning) {
-//                                    showToast(false, "定时器已经启动, 请查看 Logcat")
-//                                } else {
-//                                    showToast(true, "定时器启动成功, 请查看 Logcat")
-//                                    // 运行定时器
-//                                    start()
-//                                }
-//                            }
-//                        }
-//
-//                        ButtonValue.BTN_TIMER_STOP -> {
-//                            result = mTimer?.isRunning ?: false
-//                            showToast(result, "定时器关闭成功", "定时器未启动")
-//                            if (result) mTimer?.stop()
-//                            // 回收定时器
-//                            TimerManager.recycle()
-//                        }
-//
-//                        ButtonValue.BTN_TIMER_RESTART -> {
-//                            mTimer?.let {
-//                                showToast(true, "定时器启动成功, 请查看 Logcat")
-//                                // 运行定时器
-//                                it.start()
-//                                return@let
-//                            }
-//                            showToast(false, "请先初始化定时器")
-//                        }
-//
-//                        ButtonValue.BTN_TIMER_CHECK -> {
-//                            result = mTimer?.isRunning ?: false
-//                            showToast(result, "定时器已启动", "定时器未启动")
-//                        }
-//
-//                        ButtonValue.BTN_TIMER_GET -> {
-//                            val timerTAG = TimerManager.getTimer(TAG)
-//                            showToast(timerTAG != null, "获取定时器成功", "暂无该定时器")
-//                        }
-//
-//                        ButtonValue.BTN_TIMER_GET_NUMBER -> {
-//                            result = mTimer?.isRunning ?: false
-//                            showToast(
-//                                result,
-//                                "定时器运行次数: ${mTimer?.triggerNumber}",
-//                                "定时器未启动"
-//                            )
-//                        }
-//
-//                        else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-//                    }
-//                }
-//            }
-        }
-    }
+class DevTimerFragment : AppFragment<FragmentOtherFunctionDevTimerBinding, DevTimerViewModel>(
+    R.layout.fragment_other_function_dev_timer, BR.viewModel
 ) {
+    override fun onDestroy() {
+        super.onDestroy()
+        // 关闭所有对应 TAG 定时器
+        TimerManager.closeAllTag(TAG)
+    }
+}
+
+class DevTimerViewModel : AppViewModel() {
+
+    // 快捷【创建】定时器
+    private val quickTimer: DevTimer by lazy {
+        /**
+         * 0.5 秒 触发第一次，接着每隔 2 秒触发一次，-1 表示触发次数为无限次触发
+         * 如果不需要存入 [TimerManager] 则可不传入 TAG
+         */
+        DevTimer.Builder(
+            500L, 2000L,
+            -1, TAG
+        ).build().setHandler(HandlerUtils.getMainHandler())
+            .setCallback { timer, number, end, infinite ->
+                /**
+                 * 触发回调方法
+                 * @param timer    定时器
+                 * @param number   触发次数
+                 * @param end      是否结束
+                 * @param infinite 是否无限循环
+                 */
+                TAG.log_dTag(message = "触发次数: $number")
+            }
+    }
 
     // UI Handler
     private val mUiHandler = Handler(Looper.getMainLooper())
 
-    // 定时器
-    private var mTimer: DevTimer? = null
-
-    override fun initListener() {
-        super.initListener()
+    /**
+     * API 使用方法
+     */
+    private fun use() {
         val timer = DevTimer.Builder(1500L)
             .setDelay(100L)     // 延迟时间 ( 多少毫秒后开始执行 )
             .setPeriod(1500L)   // 循环时间 ( 每隔多少毫秒执行一次 )
@@ -151,9 +102,100 @@ class DevTimerFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
         TimerManager.getTimers(TAG)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // 关闭所有对应 TAG 定时器
-        TimerManager.closeAllTag(TAG)
+    // 定时器
+    private var mTimer: DevTimer? = null
+
+    // 启动定时器
+    val clickStart = View.OnClickListener { view ->
+        if (mTimer == null) {
+            // 初始化定时器
+            mTimer = DevTimer.Builder(
+                500L, 2000L, -1, TAG
+            ).build().apply {
+                // 设置回调通过 Handler 触发
+                setHandler(mUiHandler)
+                // 设置回调事件
+                setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
+                    // 触发次数
+                    if (number == 1) {
+                        TAG.log_dTag(
+                            message = "第一次触发, 0.5 秒延迟"
+                        )
+                    } else {
+                        TAG.log_dTag(
+                            message = "每隔 2 秒触发一次, 触发次数: $number"
+                        )
+                    }
+                }
+            }
+        }
+        mTimer?.apply {
+            if (isRunning) {
+                toast_showShort(text = "定时器已经启动, 请查看 Logcat")
+            } else {
+                toast_showShort(text = "定时器启动成功, 请查看 Logcat")
+                // 运行定时器
+                start()
+            }
+        }
+    }
+
+    // ==========
+    // = 点击事件 =
+    // ==========
+
+    // 停止定时器
+    val clickStop = View.OnClickListener { view ->
+        val result = mTimer?.isRunning ?: false
+        if (result) {
+            toast_showShort(text = "定时器关闭成功")
+            // 关闭定时器
+            mTimer?.stop()
+//            // 回收定时器【可不调用】
+//            TimerManager.recycle()
+        } else {
+            toast_showShort(text = "定时器未启动")
+        }
+    }
+
+    // 重启定时器
+    val clickReStart = View.OnClickListener { view ->
+        if (mTimer != null) {
+            toast_showShort(text = "定时器启动成功, 请查看 Logcat")
+            // 运行定时器
+            mTimer?.start()
+            return@OnClickListener
+        }
+        toast_showShort(text = "请先初始化定时器")
+    }
+
+    // 定时器是否启动
+    val clickCheck = View.OnClickListener { view ->
+        val result = mTimer?.isRunning ?: false
+        if (result) {
+            toast_showShort(text = "定时器已启动")
+        } else {
+            toast_showShort(text = "定时器未启动")
+        }
+    }
+
+    // 获取定时器
+    val clickGet = View.OnClickListener { view ->
+        val timerTAG = TimerManager.getTimer(TAG)
+        if (timerTAG != null) {
+            toast_showShort(text = "获取定时器成功 ${timerTAG}")
+        } else {
+            toast_showShort(text = "暂无该定时器")
+        }
+    }
+
+    // 获取运行次数
+    val clickGetNumber = View.OnClickListener { view ->
+        val result = mTimer?.isRunning ?: false
+        if (result) {
+            toast_showShort(text = "定时器运行次数: ${mTimer?.triggerNumber}")
+        } else {
+            toast_showShort(text = "定时器未启动")
+        }
     }
 }
