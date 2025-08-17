@@ -141,7 +141,7 @@ open class BaseApplication : MultiDexApplication(),
                 thread: Thread,
                 ex: Throwable
             ) {
-                // 重新跳转到首页
+                // 重启应用【跳转到首页】
                 val intent = Intent(context, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 context.startActivity(intent)

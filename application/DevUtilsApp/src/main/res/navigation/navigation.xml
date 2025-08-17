@@ -295,7 +295,7 @@
 
     <fragment
         android:id="@+id/DevLoggerFragment"
-        android:name="afkt.project.feature.other_function.dev_function.DevLoggerFragment"
+        android:name="afkt.project.features.other_function.DevLoggerFragment"
         android:label="DevLoggerFragment" />
 
     <fragment
@@ -304,9 +304,9 @@
         android:label="FileRecordFragment" />
 
     <fragment
-        android:id="@+id/CrashCatchFragment"
-        android:name="afkt.project.feature.other_function.dev_function.CrashCatchFragment"
-        android:label="CrashCatchFragment" />
+        android:id="@+id/CrashFragment"
+        android:name="afkt.project.features.other_function.CrashFragment"
+        android:label="CrashFragment" />
 
     <fragment
         android:id="@+id/PathFragment"

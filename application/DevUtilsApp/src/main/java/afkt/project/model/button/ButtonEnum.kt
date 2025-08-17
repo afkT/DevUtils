@@ -259,7 +259,7 @@ enum class ButtonEnum(
 
     BTN_OTHER_FUN_FILE_RECORD("日志、异常文件记录保存", R.id.FileRecordFragment),
 
-    BTN_OTHER_FUN_CRASH("奔溃日志捕获", R.id.CrashCatchFragment),
+    BTN_OTHER_FUN_CRASH("奔溃日志捕获", R.id.CrashFragment),
 
     BTN_OTHER_FUN_PATH("路径信息", R.id.PathFragment),
 
