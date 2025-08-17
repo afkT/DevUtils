@@ -285,12 +285,12 @@
 
     <fragment
         android:id="@+id/FunctionFragment"
-        android:name="afkt.project.feature.other_function.dev_function.FunctionFragment"
+        android:name="afkt.project.features.other_function.FunctionFragment"
         android:label="FunctionFragment" />
 
     <fragment
         android:id="@+id/DevCacheFragment"
-        android:name="afkt.project.feature.other_function.dev_function.DevCacheFragment"
+        android:name="afkt.project.features.other_function.DevCacheFragment"
         android:label="DevCacheFragment" />
 
     <fragment
