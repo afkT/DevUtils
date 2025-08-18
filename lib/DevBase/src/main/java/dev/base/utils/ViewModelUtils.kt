@@ -24,8 +24,8 @@ object ViewModelUtils {
 
     /**
      * 获取 Activity ViewModel
-     * @param activity [FragmentActivity]
-     * @param modelClass [ViewModel]
+     * @param activity [androidx.fragment.app.FragmentActivity]
+     * @param modelClass [androidx.lifecycle.ViewModel]
      * @return [T]
      */
     fun <T : ViewModel> getActivityViewModel(
@@ -47,7 +47,7 @@ object ViewModelUtils {
 
     /**
      * 获取 Fragment ViewModel
-     * @param fragment [Fragment]
+     * @param fragment [androidx.fragment.app.Fragment]
      * @param modelClass [ViewModel]
      * @return [T]
      */
@@ -70,7 +70,7 @@ object ViewModelUtils {
 
     /**
      * 获取 Application ViewModel
-     * @param application [Application]
+     * @param application [android.app.Application]
      * @param modelClass [ViewModel]
      * @return [T]
      */

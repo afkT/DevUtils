@@ -17,6 +17,8 @@ android {
     buildFeatures {
         // View Binding
         viewBinding = true
+        // Data Binding
+        dataBinding = true
     }
 }
 
@@ -24,15 +26,18 @@ android {
 def isPublishing = false
 
 dependencies {
+    api deps.androidx.design
+    api deps.androidx.appcompat
+    api deps.kotlin.activity
+    api deps.kotlin.fragment
     api deps.kotlin.stdlib
     api deps.kotlin.core
     api deps.kotlin.coroutines
     api deps.kotlin.lifecycle_runtime
     api deps.kotlin.lifecycle_common_java8
-    api deps.kotlin.fragment
-    api deps.kotlin.activity
-    api deps.androidx.design
-    api deps.androidx.appcompat
+    api deps.kotlin.lifecycle_viewmodel
+    api deps.kotlin.lifecycle_livedata
+    api deps.kotlin.lifecycle_viewmodel_savedstate
 
     if (isPublishing) {
         // 打包时使用

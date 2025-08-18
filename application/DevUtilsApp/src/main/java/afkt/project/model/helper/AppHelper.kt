@@ -11,7 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dev.*
 import dev.base.DevBase
-import dev.base.DevBaseMVVM
 import dev.engine.DevEngine
 import dev.environment.DevEnvironmentUtils
 import dev.expand.engine.log.log_iTag
@@ -53,7 +52,6 @@ object AppHelper {
             .append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion())
             .append("\nDevAssist 版本: ").append(DevAssist.getDevAssistVersion())
             .append("\nDevBase 版本: ").append(DevBase.getDevBaseVersion())
-            .append("\nDevBaseMVVM 版本: ").append(DevBaseMVVM.getDevBaseMVVMVersion())
             .append("\nDevSimple 版本: ").append(DevSimple.getDevSimpleVersion())
             .append("\nDevEngine 版本: ").append(DevEngine.getDevEngineVersion())
             .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())

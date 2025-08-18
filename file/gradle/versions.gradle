@@ -41,10 +41,6 @@ ext {
             dev_base_versionCode                     : 120,
             dev_base_versionName                     : "1.2.0",
 
-            // DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-            dev_base_mvvm_versionCode                : 118,
-            dev_base_mvvm_versionName                : "1.1.8",
-
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
             dev_engine_versionCode                   : 115,
             dev_engine_versionName                   : "1.1.5",

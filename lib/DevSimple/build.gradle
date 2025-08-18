@@ -14,9 +14,6 @@ android {
         // DevAssist Module Version
         buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
         buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
-        // DevBaseMVVM Module Version
-        buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
-        buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""
         // DevEngine Module Version
         buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
         buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
@@ -43,14 +40,14 @@ dependencies {
     if (isPublishing) {
         // 打包时使用
         api deps.dev.dev_assist
-        api deps.dev.dev_base_mvvm
+        api deps.dev.dev_base
         api deps.dev.dev_engine
         api deps.dev.dev_widget
         api deps.dev.dev_retrofit
     } else {
         // 编译时使用
         api project(':DevAssist')
-        api project(':DevBaseMVVM')
+        api project(':DevBase')
         api project(':DevEngine')
         api project(':DevWidget')
         api project(':DevRetrofit')

@@ -6,7 +6,6 @@ def dev_libs = [
         "DevApp",
         "DevAssist",
         "DevBase",
-        "DevBaseMVVM",
         "DevEngine",
         "DevSimple",
         "DevWidget",

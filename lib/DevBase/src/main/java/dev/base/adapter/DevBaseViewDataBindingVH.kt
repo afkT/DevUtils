@@ -53,13 +53,13 @@ fun <VDB : ViewDataBinding> newDataBindingViewHolder(
     parent: ViewGroup,
     @LayoutRes resource: Int
 ): DevBaseViewDataBindingVH<VDB> =
-    DevBaseViewDataBindingVH.create(parent, resource)
+    DevBaseViewDataBindingVH.Companion.create(parent, resource)
 
 fun <VDB : ViewDataBinding> newDataBindingViewHolder(
     context: Context,
     @LayoutRes resource: Int
 ): DevBaseViewDataBindingVH<VDB> =
-    DevBaseViewDataBindingVH.create(context, resource)
+    DevBaseViewDataBindingVH.Companion.create(context, resource)
 
 fun <VDB : ViewDataBinding> newDataBindingViewHolder(
     view: View,
