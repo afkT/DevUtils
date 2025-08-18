@@ -14,8 +14,6 @@ import dev.assist.BuildConfig;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md"/>
  *     DevBase README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md"/>
- *     DevBaseMVVM README
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
  *     DevEngine README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md"/>
  *     DevSimple README

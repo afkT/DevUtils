@@ -59,11 +59,8 @@ implementation 'io.github.afkt:DevAppX:2.4.8'
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.4.3'
 
-// DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+// DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
 implementation 'io.github.afkt:DevBase:1.2.0'
-
-// DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.1.8'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.1.5'

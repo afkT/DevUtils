@@ -76,8 +76,7 @@
 - lib                                            | 根目录
    - DevApp                                      | Android 工具类库
    - DevAssist                                   | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-   - DevBase                                     | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-   - DevBaseMVVM                                 | MVVM ( ViewDataBinding + ViewModel ) 基类库
+   - DevBase                                     | Base ( Activity、Fragment ) MVP、MVVM 基类库
    - DevEngine                                   | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
    - DevSimple                                   | 简单敏捷开发库
    - DevWidget                                   | 自定义 View UI 库
@@ -102,8 +101,7 @@
 
 - **[DevApp - Android 工具类库][DevApp API]**
 - [DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等][DevAssist API]
-- [DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库][DevBase API]
-- [DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库][DevBaseMVVM API]
+- [DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库][DevBase API]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine API]
 - [DevSimple - 简单敏捷开发库][DevSimple API]
 - [DevWidget - 自定义 View UI 库][DevWidget API]
@@ -119,8 +117,7 @@
 
 - **[DevApp - Android 工具类库][DevApp ChangeLog]**
 - [DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等][DevAssist ChangeLog]
-- [DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库][DevBase ChangeLog]
-- [DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库][DevBaseMVVM ChangeLog]
+- [DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库][DevBase ChangeLog]
 - [DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用][DevEngine ChangeLog]
 - [DevSimple - 简单敏捷开发库][DevSimple ChangeLog]
 - [DevWidget - 自定义 View UI 库][DevWidget ChangeLog]
@@ -163,11 +160,8 @@ implementation 'io.github.afkt:DevAppX:2.4.8'
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.4.3'
 
-// DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+// DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
 implementation 'io.github.afkt:DevBase:1.2.0'
-
-// DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.1.8'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
 implementation 'io.github.afkt:DevEngine:1.1.5'
@@ -222,8 +216,6 @@ implementation 'io.github.afkt:DevJava:1.5.3'
 [DevAssist ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/CHANGELOG.md
 [DevBase API]: https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
 [DevBase ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md
-[DevBaseMVVM API]: https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
-[DevBaseMVVM ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/CHANGELOG.md
 [DevEngine API]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
 [DevEngine ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/CHANGELOG.md
 [DevSimple API]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/README.md

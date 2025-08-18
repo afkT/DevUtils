@@ -37,7 +37,7 @@ ext {
             dev_assist_versionCode                   : 143,
             dev_assist_versionName                   : "1.4.3",
 
-            // DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+            // DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
             dev_base_versionCode                     : 120,
             dev_base_versionName                     : "1.2.0",
 
