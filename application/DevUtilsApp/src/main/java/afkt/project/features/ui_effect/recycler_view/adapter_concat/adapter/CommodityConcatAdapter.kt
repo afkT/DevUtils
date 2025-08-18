@@ -19,8 +19,9 @@ import dev.utils.app.helper.view.ViewHelper
  * detail: Commodity、Evaluate Adapter
  * @author Ttt
  */
-class CommodityConcatAdapter(data: List<CommodityBean>) :
-    DevDataAdapter<CommodityBean, RecyclerView.ViewHolder>() {
+class CommodityConcatAdapter(
+    data: List<CommodityBean>
+) : DevDataAdapter<CommodityBean, RecyclerView.ViewHolder>() {
 
     init {
         setDataList(data, false)

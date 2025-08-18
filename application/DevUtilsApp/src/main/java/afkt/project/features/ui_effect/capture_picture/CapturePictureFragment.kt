@@ -134,16 +134,16 @@ class CapturePictureViewModel : AppViewModel() {
 
     // ListView 截图
     val clickListViewBtn: (View) -> Unit = { view ->
-        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_LIST_VIEW.click()
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_LIST_VIEW.click()
     }
 
     // RecyclerView 截图
     val clickRecyclerViewBtn: (View) -> Unit = { view ->
-        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_RECYCLER_VIEW.click()
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_RECYCLER_VIEW.click()
     }
 
     // Webview 截图
     val clickWebViewBtn: (View) -> Unit = { view ->
-        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_1_WEB_VIEW.click()
+        ButtonEnum.BTN_UI_EFFECT_CAPTURE_PICTURE_WEB_VIEW.click()
     }
 }

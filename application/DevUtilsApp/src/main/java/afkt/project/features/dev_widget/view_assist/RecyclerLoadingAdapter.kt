@@ -1,7 +1,7 @@
 package afkt.project.features.dev_widget.view_assist
 
 import afkt.project.R
-import afkt.project.databinding.AdapterRecyclerLoadingBinding
+import afkt.project.databinding.AdapterItemRecyclerLoadingBinding
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
@@ -18,8 +18,9 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist RecyclerView 适配器
  * @author Ttt
  */
-class RecyclerLoadingAdapter(data: List<String>) :
-    DevDataAdapter<String, DevBaseViewBindingVH<AdapterRecyclerLoadingBinding>>() {
+class RecyclerLoadingAdapter(
+    data: List<String>
+) : DevDataAdapter<String, DevBaseViewBindingVH<AdapterItemRecyclerLoadingBinding>>() {
 
     init {
         setDataList(data, false)
@@ -28,12 +29,12 @@ class RecyclerLoadingAdapter(data: List<String>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DevBaseViewBindingVH<AdapterRecyclerLoadingBinding> {
-        return newBindingViewHolder(parent, R.layout.adapter_recycler_loading)
+    ): DevBaseViewBindingVH<AdapterItemRecyclerLoadingBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_item_recycler_loading)
     }
 
     override fun onBindViewHolder(
-        holder: DevBaseViewBindingVH<AdapterRecyclerLoadingBinding>,
+        holder: DevBaseViewBindingVH<AdapterItemRecyclerLoadingBinding>,
         position: Int
     ) {
         val url = getDataItem(position)

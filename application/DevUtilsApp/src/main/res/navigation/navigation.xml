@@ -99,6 +99,26 @@
         android:name="afkt.project.features.dev_widget.item_decoration.GridVerticalFragment"
         android:label="GridVerticalFragment" />
 
+    <fragment
+        android:id="@+id/ViewAssistCustomFragment"
+        android:name="afkt.project.features.dev_widget.view_assist.ViewAssistCustomFragment"
+        android:label="ViewAssistCustomFragment" />
+
+    <fragment
+        android:id="@+id/ViewAssistEmptyFragment"
+        android:name="afkt.project.features.dev_widget.view_assist.ViewAssistEmptyFragment"
+        android:label="ViewAssistEmptyFragment" />
+
+    <fragment
+        android:id="@+id/ViewAssistErrorFragment"
+        android:name="afkt.project.features.dev_widget.view_assist.ViewAssistErrorFragment"
+        android:label="ViewAssistErrorFragment" />
+
+    <fragment
+        android:id="@+id/ViewAssistRecyclerViewLoadingFragment"
+        android:name="afkt.project.features.dev_widget.view_assist.ViewAssistRecyclerViewLoadingFragment"
+        android:label="ViewAssistRecyclerViewLoadingFragment" />
+
     <!-- UI Effect -->
 
     <fragment

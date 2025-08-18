@@ -25,32 +25,6 @@ private fun ButtonAdapterModel._batchItems(
     return this
 }
 
-/**
- * 批量处理 Button Item【忽略二级页面】
- * @param name 前缀名
- * @param listener Item 点击事件
- * 减少时间及维护难度，统一进行循环批量处理
- */
-private fun ButtonAdapterModel._batchItemsSubPage(
-    name: String,
-    listener: ButtonClick = DEFAULT_CLICK
-): ButtonAdapterModel {
-    if (StringUtils.isEmpty(name)) return this
-    val lists = mutableListOf<ButtonEnum>()
-    ButtonEnum.entries.forEach { btn ->
-        if (btn.name.startsWith(name, true)) {
-            val subName = btn.name.substring(name.length)
-            val isSubPage = subName.contains("_\\d{1,10}".toRegex())
-            // 不是二级页面才进行添加
-            if (!isSubPage) lists.add(btn)
-        }
-    }
-    addAllAndClear(lists)
-    // 设置点击事件
-    setOnItemClick(listener)
-    return this
-}
-
 // =============================
 // = Button Adapter 数据模型转换 =
 // =============================
@@ -73,7 +47,7 @@ fun ButtonAdapterModel.convertItemsDevAssistEngineMain(
 )
 
 // DevWidget 列表入口
-fun ButtonAdapterModel.convertItemsDevWidgetMain() = _batchItemsSubPage(
+fun ButtonAdapterModel.convertItemsDevWidgetMain() = _batchItems(
     "BTN_DEV_WIDGET_"
 )
 
@@ -83,6 +57,6 @@ fun ButtonAdapterModel.convertItemsUIEffectMain() = _batchItems(
 )
 
 // Other Function 列表入口
-fun ButtonAdapterModel.convertItemsOtherFunctionMain() = _batchItemsSubPage(
+fun ButtonAdapterModel.convertItemsOtherFunctionMain() = _batchItems(
     "BTN_OTHER_FUN_"
 )

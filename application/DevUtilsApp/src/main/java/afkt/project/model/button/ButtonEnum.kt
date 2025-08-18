@@ -5,9 +5,9 @@ import afkt.project.model.basic.IntentData
 import android.os.Bundle
 import dev.utils.DevFinal
 
-// =================================
+// ===============================
 // = ButtonEnum 映射 Fragment 传参 =
-// =================================
+// ===============================
 
 fun ButtonEnum.args(): Bundle? {
     return IntentData.with()
@@ -93,15 +93,21 @@ enum class ButtonEnum(
         "Grid Horizontal ItemDecoration", R.id.GridHorizontalFragment
     ),
 
-    BTN_DEV_WIDGET_VIEW_ASSIST("View 填充辅助类"),
+    BTN_DEV_WIDGET_VIEW_ASSIST_RECYCLER(
+        "ViewAssist RecyclerView ( loading )", R.id.ViewAssistRecyclerViewLoadingFragment
+    ),
 
-    BTN_DEV_WIDGET_VIEW_ASSIST_1_RECYCLER("RecyclerView ( loading )"),
+    BTN_DEV_WIDGET_VIEW_ASSIST_ERROR(
+        "ViewAssist Error ( failed )", R.id.ViewAssistErrorFragment
+    ),
 
-    BTN_DEV_WIDGET_VIEW_ASSIST_1_ERROR("Error ( failed )"),
+    BTN_DEV_WIDGET_VIEW_ASSIST_EMPTY(
+        "ViewAssist Empty ( data )", R.id.ViewAssistEmptyFragment
+    ),
 
-    BTN_DEV_WIDGET_VIEW_ASSIST_1_EMPTY("Empty ( data )"),
-
-    BTN_DEV_WIDGET_VIEW_ASSIST_1_CUSTOM("Custom Type"),
+    BTN_DEV_WIDGET_VIEW_ASSIST_CUSTOM(
+        "ViewAssist Custom Type", R.id.ViewAssistCustomFragment
+    ),
 
     BTN_DEV_WIDGET_FLIP_CARD_VIEW("翻转卡片 View", R.id.FlipCardFragment),
 
@@ -173,15 +179,15 @@ enum class ButtonEnum(
         "CapturePictureUtils 截图工具类", R.id.CapturePictureFragment
     ),
 
-    BTN_UI_EFFECT_CAPTURE_PICTURE_1_LIST_VIEW(
+    BTN_UI_EFFECT_CAPTURE_PICTURE_LIST_VIEW(
         "CapturePictureUtils ListView 截图", R.id.CapturePictureListViewFragment
     ),
 
-    BTN_UI_EFFECT_CAPTURE_PICTURE_1_RECYCLER_VIEW(
+    BTN_UI_EFFECT_CAPTURE_PICTURE_RECYCLER_VIEW(
         "CapturePictureUtils RecyclerView 截图工具类", R.id.CapturePictureRecyclerViewFragment
     ),
 
-    BTN_UI_EFFECT_CAPTURE_PICTURE_1_WEB_VIEW(
+    BTN_UI_EFFECT_CAPTURE_PICTURE_WEB_VIEW(
         "CapturePictureUtils WebView 截图工具类", R.id.CapturePictureWebViewFragment
     ),
 

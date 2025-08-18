@@ -6,10 +6,11 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.helper.RandomHelper
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import dev.utils.app.helper.quick.QuickHelper
 
 /**
- * detail: ViewAssist RecyclerView Loading
+ * detail: ViewAssist RecyclerView ( loading )
  * @author Ttt
  */
 class ViewAssistRecyclerViewLoadingFragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
@@ -24,9 +25,9 @@ class ViewAssistRecyclerViewLoadingFragment : AppFragment<BaseViewRecyclerviewBi
                 for (i in 0..19) {
                     lists.add(RandomHelper.randomImage1080x1920(1000))
                 }
-//                // 初始化布局管理器、适配器
-//                binding.vidRv.layoutManager = GridLayoutManager(this, 2)
-//                RecyclerLoadingAdapter(lists).bindAdapter(binding.vidRv)
+                // 初始化布局管理器、适配器
+                binding.vidRv.layoutManager = GridLayoutManager(this.activity, 2)
+                RecyclerLoadingAdapter(lists).bindAdapter(binding.vidRv)
             }
         }
     }
