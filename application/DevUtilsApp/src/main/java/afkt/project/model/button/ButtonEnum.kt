@@ -245,10 +245,6 @@ enum class ButtonEnum(
         "Activity Result API", R.id.ActivityResultAPIFragment
     ),
 
-    BTN_OTHER_FUN_ACTIVITY_RESULT_CALLBACK(
-        "startActivityForResult Callback", R.id.ActivityResultCallbackFragment
-    ),
-
     BTN_OTHER_FUN_FUNCTION("铃声、震动、通知栏等功能", R.id.FunctionFragment),
 
     BTN_OTHER_FUN_TIMER("TimerManager 定时器工具类", R.id.DevTimerFragment),

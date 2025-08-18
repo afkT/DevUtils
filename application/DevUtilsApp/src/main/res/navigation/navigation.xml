@@ -275,13 +275,8 @@
 
     <fragment
         android:id="@+id/ActivityResultAPIFragment"
-        android:name="afkt.project.feature.other_function.dev_function.ActivityResultAPIFragment"
+        android:name="afkt.project.features.other_function.ActivityResultAPIFragment"
         android:label="ActivityResultAPIFragment" />
-
-    <fragment
-        android:id="@+id/ActivityResultCallbackFragment"
-        android:name="afkt.project.feature.other_function.dev_function.ActivityResultCallbackFragment"
-        android:label="ActivityResultCallbackFragment" />
 
     <fragment
         android:id="@+id/FunctionFragment"
