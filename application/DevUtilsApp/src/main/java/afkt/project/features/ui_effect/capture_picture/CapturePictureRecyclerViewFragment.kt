@@ -50,7 +50,7 @@ class CapturePictureRecyclerViewFragment : AppFragment<FragmentUiEffectCapturePi
 
 open class CapturePictureRecyclerViewModel : AppViewModel() {
 
-    val adapter = CapturePictureAdapter().apply {
+    val adapterModel = CapturePictureAdapter().apply {
         addAllAndClear(CapturePictureBean.newAdapterBeanList(15))
     }
 }

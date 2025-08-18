@@ -26,7 +26,7 @@ class PagerSnapFragment : AppFragment<FragmentUiEffectPagerSnapBinding, PagerSna
 
 class PagerSnapViewModel : AppViewModel() {
 
-    val adapter = PagerSnapAdapter().apply {
+    val adapterModel = PagerSnapAdapter().apply {
         addAll(SnapItemModel.randomItemPagerLists())
     }
 }

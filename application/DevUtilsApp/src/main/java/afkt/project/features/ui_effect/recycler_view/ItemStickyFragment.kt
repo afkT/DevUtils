@@ -38,7 +38,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
 
             val listener = object : PowerGroupListener {
                 override fun getGroupName(position: Int): String {
-                    val title = viewModel.adapter.getOrNull(position)?.stickyTile
+                    val title = viewModel.adapterModel.getOrNull(position)?.stickyTile
                     return StringUtils.checkValue(title)
                 }
 
@@ -67,7 +67,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
             // ===============
 
             val groupListener = GroupListener { position ->
-                val title = viewModel.adapter.getOrNull(position)?.stickyTile
+                val title = viewModel.adapterModel.getOrNull(position)?.stickyTile
                 StringUtils.checkValue(title)
             }
 
@@ -84,7 +84,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
 
 class ItemStickyViewModel : AppViewModel() {
 
-    val adapter = ItemStickyAdapter().apply {
+    val adapterModel = ItemStickyAdapter().apply {
         addAll(StickyItemModel.randomList())
     }
 }

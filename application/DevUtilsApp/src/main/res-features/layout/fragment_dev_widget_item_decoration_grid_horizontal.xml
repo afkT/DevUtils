@@ -22,8 +22,8 @@
                 style="@style/ViewTheme.RecyclerView.Nested.False"
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
-                app:itemBinding="@{viewModel.adapter.itemBinding}"
-                app:items="@{viewModel.adapter.items}"
+                app:itemBinding="@{viewModel.adapterModel.itemBinding}"
+                app:items="@{viewModel.adapterModel.items}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3" />
         </LinearLayout>

@@ -20,7 +20,7 @@ class GridHorizontalFragment : AppFragment<FragmentDevWidgetItemDecorationGridHo
             for (i in 1..11) {
                 lists.add(i.toString())
             }
-            viewModel.adapter.addAll(lists)
+            viewModel.adapterModel.addAll(lists)
             GridColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
         }
     }
@@ -28,5 +28,5 @@ class GridHorizontalFragment : AppFragment<FragmentDevWidgetItemDecorationGridHo
 
 class GridHorizontalViewModel : AppViewModel() {
 
-    val adapter = GridHorizontalTextAdapter()
+    val adapterModel = GridHorizontalTextAdapter()
 }

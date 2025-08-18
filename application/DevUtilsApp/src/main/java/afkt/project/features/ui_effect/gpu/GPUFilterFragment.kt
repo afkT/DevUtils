@@ -41,7 +41,7 @@ class GPUFilterFragment : AppFragment<FragmentUiEffectGpuFilterBinding, GPUFilte
     simple_Agile = { frg ->
         frg.asFragment<GPUFilterFragment> {
             viewModel.initializeRecyclerView(binding.vidRv)
-            viewModel.adapter.addAllAndClear(GPUFilterItem.FILTER_LISTS)
+            viewModel.adapterModel.addAllAndClear(GPUFilterItem.FILTER_LISTS)
             // 初始化相册选择图片处理
             viewModel.initializeImageSelect(this)
         }
@@ -50,7 +50,7 @@ class GPUFilterFragment : AppFragment<FragmentUiEffectGpuFilterBinding, GPUFilte
 
 class GPUFilterViewModel : AppViewModel() {
 
-    val adapter = GPUFilterAdapter()
+    val adapterModel = GPUFilterAdapter()
 
     // 滤镜名
     val filterName = ObservableField<String>()
@@ -157,7 +157,7 @@ class GPUFilterViewModel : AppViewModel() {
             )
             if (lastIndex != -1) {
                 // 如果属于最后一条 Item 则返回最后一条索引
-                position = if (lastIndex == (adapter.count() - 1)) {
+                position = if (lastIndex == (adapterModel.count() - 1)) {
                     lastIndex
                 } else {
                     // 如果为原本为 -1 并且最后一条不可见则表示为第一条
@@ -165,7 +165,7 @@ class GPUFilterViewModel : AppViewModel() {
                 }
             }
         }
-        val item = adapter.getOrNull(position)
+        val item = adapterModel.getOrNull(position)
         filterName.set(item?.filterName)
         return item
     }

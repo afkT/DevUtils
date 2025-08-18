@@ -45,16 +45,16 @@ class MultiSelectFragment : AppFragment<FragmentUiEffectMultiSelectBinding, Mult
         viewModel.clickCancel = View.OnClickListener { view ->
             nonEditState()
             // 清空数据【恢复状态】
-            viewModel.adapter.clearSelectAll()
+            viewModel.adapterModel.clearSelectAll()
         }
     }
 
     private fun editState() {
-        viewModel.adapter.setEditState(true)
+        viewModel.adapterModel.setEditState(true)
         setTitleBarRight("完成") { view ->
             nonEditState()
 
-            val adapter = viewModel.adapter
+            val adapter = viewModel.adapterModel
             val builder = StringBuilder()
             builder.append("是否全选: ").append(adapter.isSelectAll)
             builder.append("\n是否选中: ").append(adapter.isSelect)
@@ -67,10 +67,10 @@ class MultiSelectFragment : AppFragment<FragmentUiEffectMultiSelectBinding, Mult
     }
 
     private fun nonEditState() {
-        viewModel.adapter.setEditState(false)
+        viewModel.adapterModel.setEditState(false)
         setTitleBarRight("编辑") { view ->
             // 清空数据【恢复状态】
-            viewModel.adapter.clearSelectAll()
+            viewModel.adapterModel.clearSelectAll()
             // 切换编辑状态
             editState()
         }
@@ -79,22 +79,22 @@ class MultiSelectFragment : AppFragment<FragmentUiEffectMultiSelectBinding, Mult
 
 class MultiSelectViewModel : AppViewModel() {
 
-    val adapter = MultiSelectAdapter().apply {
+    val adapterModel = MultiSelectAdapter().apply {
         val lists = mutableListOf<CommodityBean>()
         for (i in 0 until 500) lists.add(createCommodity())
         addAll(lists)
     }
 
     val clickAllSelect = View.OnClickListener { view ->
-        adapter.selectAll()
+        adapterModel.selectAll()
     }
 
     val clickUnAllSelect = View.OnClickListener { view ->
-        adapter.clearSelectAll()
+        adapterModel.clearSelectAll()
     }
 
     val clickInverseSelect = View.OnClickListener { view ->
-        adapter.inverseSelect()
+        adapterModel.inverseSelect()
     }
 
     var clickCancel = View.OnClickListener { view -> }

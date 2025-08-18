@@ -11,7 +11,7 @@ class GPUFilterACVFragment : AppFragment<FragmentUiEffectGpuFilterBinding, GPUFi
     simple_Agile = { frg ->
         frg.asFragment<GPUFilterACVFragment> {
             viewModel.initializeRecyclerView(binding.vidRv)
-            viewModel.adapter.addAllAndClear(GPUFilterItem.ACV_LISTS)
+            viewModel.adapterModel.addAllAndClear(GPUFilterItem.ACV_LISTS)
             // 初始化相册选择图片处理
             viewModel.initializeImageSelect(this)
         }

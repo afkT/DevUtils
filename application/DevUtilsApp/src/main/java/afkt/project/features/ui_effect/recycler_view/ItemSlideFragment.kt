@@ -67,7 +67,7 @@ class ItemSlideFragment : AppFragment<FragmentUiEffectItemSlideBinding, ItemSlid
                 ): Boolean {
                     val fromPosition = viewHolder.bindingAdapterPosition
                     val toPosition = target.bindingAdapterPosition
-                    Collections.swap(viewModel.adapter.items, fromPosition, toPosition)
+                    Collections.swap(viewModel.adapterModel.items, fromPosition, toPosition)
                     RecyclerViewUtils.getAdapter<RecyclerView.Adapter<*>>(
                         binding.vidRv
                     )?.notifyItemMoved(fromPosition, toPosition)
@@ -88,7 +88,7 @@ class ItemSlideFragment : AppFragment<FragmentUiEffectItemSlideBinding, ItemSlid
                         RecyclerViewUtils.getAdapter<RecyclerView.Adapter<*>>(
                             binding.vidRv
                         )?.apply {
-                            viewModel.adapter.items.removeAt(position)
+                            viewModel.adapterModel.items.removeAt(position)
 //                            /**
 //                             * 例如有特殊需求, 需弹窗确认, 可以先触发调用
 //                             * 接着弹窗, 确认要删除才移除对应 position
@@ -105,7 +105,7 @@ class ItemSlideFragment : AppFragment<FragmentUiEffectItemSlideBinding, ItemSlid
 
 class ItemSlideViewModel : AppViewModel() {
 
-    val adapter = ItemSlideAdapter().apply {
+    val adapterModel = ItemSlideAdapter().apply {
         val lists = mutableListOf<CommodityBean>()
         for (i in 0..39) lists.add(createCommodity())
         addAll(lists)

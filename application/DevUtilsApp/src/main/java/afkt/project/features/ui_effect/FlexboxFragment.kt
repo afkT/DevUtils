@@ -35,7 +35,7 @@ class FlexboxFragment : AppFragment<FragmentUiEffectFlexboxBinding, FlexboxViewM
 
 class FlexboxViewModel : AppViewModel() {
 
-    val adapter = FlexboxAdapter()
+    val adapterModel = FlexboxAdapter()
 
     var clickRefresh = View.OnClickListener { view ->
         randomData()
@@ -50,7 +50,7 @@ class FlexboxViewModel : AppViewModel() {
         for (i in 1..20) {
             lists.add("$i." + RandomHelper.randomText(8, 8))
         }
-        adapter.addAllAndClear(lists)
+        adapterModel.addAllAndClear(lists)
     }
 }
 

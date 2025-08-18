@@ -37,7 +37,7 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
 
             setTitleBarRight("完成") { view ->
                 val builder = StringBuilder()
-                viewModel.adapter.forEach { item ->
+                viewModel.adapterModel.forEach { item ->
                     builder.append(DevFinal.SYMBOL.NEW_LINE)
                         .append("evaluateContent: ").append(item.inputText.get())
                         .append(DevFinal.SYMBOL.NEW_LINE)
@@ -53,7 +53,7 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
 
 class MultiEditsViewModel : AppViewModel() {
 
-    val adapter = MultiEditsAdapter().apply {
+    val adapterModel = MultiEditsAdapter().apply {
         val lists = mutableListOf<CommodityBean>()
         for (i in 1 until 10) lists.add(createCommodityEvaluate())
         addAll(lists)

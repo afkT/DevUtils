@@ -20,7 +20,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vid_rv"
             style="@style/ViewTheme.RecyclerView.Margin.LR"
-            app:itemBinding="@{viewModel.adapter.itemBinding}"
-            app:items="@{viewModel.adapter.items}" />
+            app:itemBinding="@{viewModel.adapterModel.itemBinding}"
+            app:items="@{viewModel.adapterModel.items}" />
     </LinearLayout>
 </layout>

@@ -31,7 +31,7 @@ class ShopCartFragment : AppFragment<FragmentUiEffectShopCartBinding, ShopCartVi
                 )
             )
             val animation = ShopCartAnimation()
-            viewModel.adapter.viewClick = { view ->
+            viewModel.adapterModel.viewClick = { view ->
                 viewModel.executeAnim(view, binding.vidNumberTv)
             }
         }
@@ -40,7 +40,7 @@ class ShopCartFragment : AppFragment<FragmentUiEffectShopCartBinding, ShopCartVi
 
 class ShopCartViewModel : AppViewModel() {
 
-    val adapter = ShopCartAdapter().apply {
+    val adapterModel = ShopCartAdapter().apply {
         val lists = mutableListOf<CommodityBean>()
         for (i in 0 until 15) lists.add(createCommodity())
         addAllAndClear(lists)

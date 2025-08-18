@@ -20,7 +20,7 @@ class GridVerticalFragment : AppFragment<FragmentDevWidgetItemDecorationGridVert
             for (i in 1..11) {
                 lists.add(i.toString())
             }
-            viewModel.adapter.addAll(lists)
+            viewModel.adapterModel.addAll(lists)
             GridColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
         }
     }
@@ -28,5 +28,5 @@ class GridVerticalFragment : AppFragment<FragmentDevWidgetItemDecorationGridVert
 
 class GridVerticalViewModel : AppViewModel() {
 
-    val adapter = GridVerticalTextAdapter()
+    val adapterModel = GridVerticalTextAdapter()
 }

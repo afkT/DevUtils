@@ -15,6 +15,6 @@
         android:layout_height="match_parent"
         android:background="@null"
         android:listSelector="@null"
-        app:itemBinding="@{viewModel.adapter.itemBinding}"
-        app:items="@{viewModel.adapter.items}" />
+        app:itemBinding="@{viewModel.adapterModel.itemBinding}"
+        app:items="@{viewModel.adapterModel.items}" />
 </layout>

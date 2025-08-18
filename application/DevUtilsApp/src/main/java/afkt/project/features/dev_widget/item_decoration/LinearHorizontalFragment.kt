@@ -16,7 +16,7 @@ class LinearHorizontalFragment : AppFragment<FragmentDevWidgetItemDecorationLine
     R.layout.fragment_dev_widget_item_decoration_linear_horizontal, BR.viewModel,
     simple_Agile = { frg ->
         frg.asFragment<LinearHorizontalFragment> {
-            viewModel.adapter.addAll(mutableListOf("1", "2", "3"))
+            viewModel.adapterModel.addAll(mutableListOf("1", "2", "3"))
             LinearColorItemDecorationAssist(binding.vidRv, binding.vidInclude)
         }
     }
@@ -24,5 +24,5 @@ class LinearHorizontalFragment : AppFragment<FragmentDevWidgetItemDecorationLine
 
 class LinearHorizontalViewModel : AppViewModel() {
 
-    val adapter = LinearHorizontalTextAdapter()
+    val adapterModel = LinearHorizontalTextAdapter()
 }
