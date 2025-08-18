@@ -113,7 +113,7 @@ internal class Utils private constructor() {
         }
     }
 
-    // 悬浮窗管理辅助类
+    // 悬浮窗管理辅助类 ( 需权限 )
     private val mAssist = FloatingWindowManagerAssist()
 
     // 悬浮窗触摸辅助类实现

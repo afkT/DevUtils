@@ -2,15 +2,21 @@ package afkt.project.features.other_function.floating
 
 import afkt.project.BR
 import afkt.project.R
+import afkt.project.app.AppActivity
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentOtherFunctionFloating2Binding
+import android.app.Activity
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import dev.expand.engine.toast.toast_showShort
+import dev.utils.app.ActivityUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
 
@@ -29,11 +35,22 @@ class FloatingWindowManager2ViewModel : AppViewModel() {
 
     // 打开悬浮窗
     val clickOpen = View.OnClickListener { view ->
-//        Utils2.instance.apply {
-//            isNeedsAdd = true
-//            // 添加悬浮窗 View
-//            addFloatingView(it)
-//        }
+        Utils2.instance.apply {
+            isNeedsAdd = true
+
+            /**
+             * 因为这里是使用单 Activity 多 Fragment 方式，非多 Activity 方式
+             * 所以需要获取 BaseActivity 的 floatingLifecycle 进行添加悬浮窗 View
+             * 如果当前是 BaseActivity 并且实现了 [IFloatingActivity]
+             * 则可直接调用 addFloatingView(IFloatingActivity@this)
+             * 或者类似 activity.floatingLifecycle.addFloatingView()
+             */
+            val activity = ActivityUtils.getActivity(view)
+            if (activity is AppActivity<*, *>) {
+                // 添加悬浮窗 View
+                activity.floatingLifecycle.addFloatingView()
+            }
+        }
     }
 
     // 关闭悬浮窗
@@ -43,6 +60,140 @@ class FloatingWindowManager2ViewModel : AppViewModel() {
             // 移除所有悬浮窗 View
             removeAllFloatingView()
         }
+    }
+}
+
+// ========================
+// = 悬浮窗实现方式 ( 两种 ) =
+// ========================
+
+// ==============
+// = 实现方式【一】=
+// ==============
+
+/**
+ * detail: 实现方式【一】
+ * @author Ttt
+ * 该实现方式无需 BaseActivity 实现 [IFloatingActivity]
+ * 而是通过 BaseActivity 监听生命周期在 [onResume]、[onDestroy] 中添加和移除悬浮 View
+ * 该方式最简单，只需要创建该类即可，并且不影响 Base 代码【自动添加到 R.id.content 中】
+ */
+class FloatingLifecycle(
+    private val activity: AppCompatActivity
+) : DefaultLifecycleObserver,
+    IFloatingActivity {
+
+    init {
+        activity.lifecycle.addObserver(this)
+    }
+
+    // =====================
+    // = IFloatingActivity =
+    // =====================
+
+    override fun getAttachActivity(): Activity {
+        return activity
+    }
+
+    override fun getMapFloatingKey(): String {
+        return this.toString()
+    }
+
+    override fun getMapFloatingView(): View {
+        return Utils2.instance.createFloatingView(this)
+    }
+
+    override fun getMapFloatingViewLayoutParams(): ViewGroup.LayoutParams {
+        return Utils2.instance.createLayoutParams(this)
+    }
+
+    // ============================
+    // = DefaultLifecycleObserver =
+    // ============================
+
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
+        // 添加悬浮窗 View
+        addFloatingView()
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        super.onDestroy(owner)
+        // 移除悬浮窗 View
+        removeFloatingView()
+    }
+
+    // =
+
+    fun addFloatingView() {
+        // 添加悬浮窗 View
+        Utils2.instance.addFloatingView(this)
+    }
+
+    fun removeFloatingView() {
+        // 移除悬浮窗 View
+        Utils2.instance.removeFloatingView(this)
+    }
+}
+
+// ==============
+// = 实现方式【二】=
+// ==============
+
+/**
+ * detail: 实现方式【二】
+ * @author Ttt
+ * 该实现方式需要 BaseActivity 实现 [IFloatingActivity]
+ */
+private class BaseActivity : AppCompatActivity(),
+    IFloatingActivity {
+
+    // =====================
+    // = IFloatingActivity =
+    // =====================
+
+    override fun getAttachActivity(): Activity {
+        return this
+    }
+
+    override fun getMapFloatingKey(): String {
+        return this.toString()
+    }
+
+    override fun getMapFloatingView(): View {
+        return Utils2.instance.createFloatingView(this)
+    }
+
+    override fun getMapFloatingViewLayoutParams(): ViewGroup.LayoutParams {
+        return Utils2.instance.createLayoutParams(this)
+    }
+
+    // ==========
+    // = 生命周期 =
+    // ==========
+
+    override fun onResume() {
+        super.onResume()
+        // 添加悬浮窗 View
+        addFloatingView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // 移除悬浮窗 View
+        removeFloatingView()
+    }
+
+    // =
+
+    fun addFloatingView() {
+        // 添加悬浮窗 View
+        Utils2.instance.addFloatingView(this)
+    }
+
+    fun removeFloatingView() {
+        // 移除悬浮窗 View
+        Utils2.instance.removeFloatingView(this)
     }
 }
 
@@ -63,7 +214,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
         }
     }
 
-    // 悬浮窗管理辅助类
+    // 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
     private val mAssist = object : FloatingWindowManagerAssist2() {
         override fun updateViewLayout(
             floatingActivity: IFloatingActivity,

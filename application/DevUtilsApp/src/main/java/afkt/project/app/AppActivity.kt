@@ -1,6 +1,7 @@
 package afkt.project.app
 
 import afkt.project.app.basic.BaseActivity
+import afkt.project.features.other_function.floating.FloatingLifecycle
 import androidx.databinding.ViewDataBinding
 import dev.simple.app.base.ActivityVMType
 import dev.simple.app.base.interfaces.BindingActivityView
@@ -44,4 +45,12 @@ open class AppActivity<VDB : ViewDataBinding, VM : AppViewModel> :
         bindLayoutView, bindViewModelId, vmType,
         simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
     )
+
+    // ===============
+    // = 悬浮窗实现方式 =
+    // ===============
+
+    val floatingLifecycle: FloatingLifecycle by lazy {
+        FloatingLifecycle(this)
+    }
 }
