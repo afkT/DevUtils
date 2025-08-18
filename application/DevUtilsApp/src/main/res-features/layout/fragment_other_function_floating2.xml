@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.other_function.floating.FloatingWindowManager2ViewModel" />
+    </data>
+
+    <LinearLayout
+        style="@style/ViewTheme.Padding.LR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickOpen}"
+            android:text="打开悬浮窗" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ViewTheme.Button.Single"
+            android:onClick="@{viewModel.clickClose}"
+            android:text="关闭悬浮窗" />
+    </LinearLayout>
+</layout>

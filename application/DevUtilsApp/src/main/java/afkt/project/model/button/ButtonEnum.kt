@@ -262,10 +262,10 @@ enum class ButtonEnum(
     BTN_OTHER_FUN_WEBVIEW("WebView 辅助类", R.id.WebViewFragment),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER(
-        "悬浮窗管理辅助类 ( 需权限 )", R.id.FloatingWindowManager2Fragment
+        "悬浮窗管理辅助类 ( 需权限 )", R.id.FloatingWindowManagerFragment
     ),
 
     BTN_OTHER_FUN_FLOATING_WINDOW_MANAGER2(
-        "悬浮窗管理辅助类 ( 无需权限依赖 Activity )", R.id.FloatingWindowManagerFragment
+        "悬浮窗管理辅助类 ( 无需权限依赖 Activity )", R.id.FloatingWindowManager2Fragment
     ),
 }

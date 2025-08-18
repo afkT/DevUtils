@@ -4,7 +4,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.view.SurfaceView;
 
-import afkt.project.R;
 import dev.utils.app.PathUtils;
 import dev.utils.app.player.DevMediaManager;
 import dev.utils.app.player.DevVideoPlayerControl;

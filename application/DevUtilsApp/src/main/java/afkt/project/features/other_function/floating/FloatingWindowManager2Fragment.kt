@@ -1,9 +1,10 @@
-package afkt.project.feature.other_function.floating
+package afkt.project.features.other_function.floating
 
+import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionFloating2Binding
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
@@ -14,35 +15,36 @@ import dev.utils.app.ViewUtils
 import dev.utils.app.assist.floating.*
 
 /**
- * detail: 悬浮窗管理辅助类 ( 无需权限依赖 Activity )
+ * detail: 悬浮窗管理辅助类 ( 无需权限，依赖 Activity )
  * @author Ttt
+ * 推荐使用
+ * 悬浮窗框架 https://github.com/getActivity/EasyWindow
+ * 悬浮窗解决方案 https://github.com/Petterpx/FloatingX
  */
-class FloatingWindowManager2Fragment : AppFragment<BaseViewRecyclerviewBinding, AppViewModel>(
-        R.layout.base_view_recyclerview, simple_Agile = {
-//            if (it is FloatingWindowManager2Activity) {
-//                it.apply {
-//                    binding.vidRv.bindAdapter(ButtonList.floatingWindowButtonValues) { buttonValue ->
-//                        when (buttonValue.type) {
-//                            ButtonValue.BTN_OPEN_FLOATING_WINDOW -> {
-//                                Utils2.instance.apply {
-//                                    isNeedsAdd = true
-//                                    // 添加悬浮窗 View
-//                                    addFloatingView(it)
-//                                }
-//                            }
-//
-//                            ButtonValue.BTN_CLOSE_FLOATING_WINDOW -> {
-//                                Utils2.instance.apply {
-//                                    isNeedsAdd = false
-//                                    // 移除所有悬浮窗 View
-//                                    removeAllFloatingView()
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-        })
+class FloatingWindowManager2Fragment : AppFragment<FragmentOtherFunctionFloating2Binding, FloatingWindowManager2ViewModel>(
+    R.layout.fragment_other_function_floating2, BR.viewModel
+)
+
+class FloatingWindowManager2ViewModel : AppViewModel() {
+
+    // 打开悬浮窗
+    val clickOpen = View.OnClickListener { view ->
+//        Utils2.instance.apply {
+//            isNeedsAdd = true
+//            // 添加悬浮窗 View
+//            addFloatingView(it)
+//        }
+    }
+
+    // 关闭悬浮窗
+    val clickClose = View.OnClickListener { view ->
+        Utils2.instance.apply {
+            isNeedsAdd = false
+            // 移除所有悬浮窗 View
+            removeAllFloatingView()
+        }
+    }
+}
 
 // ==========
 // = 实现代码 =
@@ -149,7 +151,9 @@ internal class Utils2 private constructor() : IFloatingOperate {
         floatingActivity: IFloatingActivity,
         view: View
     ) {
-        ViewUtils.setMargin(view, mTouchAssist.x, mTouchAssist.y, 0, 0)
+        ViewUtils.setMargin(
+            view, mTouchAssist.x, mTouchAssist.y, 0, 0
+        )
     }
 
     override fun isNeedsAdd(): Boolean {

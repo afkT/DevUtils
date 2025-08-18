@@ -146,9 +146,9 @@ class ActivityResultAPIViewModel : AppViewModel() {
         }
     }
 
-    fun intentRouter() {
+    private fun intentRouter() {
         intentResultAssist.hiIfNotNull {
-            val intent = IntentUtils.getLaunchAppDetailsSettingsIntent()
+            val intent = IntentUtils.getManageOverlayPermissionIntent()
             it.launch(intent)
         }
     }

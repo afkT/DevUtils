@@ -1,10 +1,6 @@
 package afkt.project.app.basic
 
-import afkt.project.MainActivity
 import afkt.project.app.AppContext
-import android.content.Context
-import android.content.Intent
-import android.os.Process
 import android.util.Log
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -13,13 +9,10 @@ import dev.DevUtils
 import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
-import dev.utils.app.CrashUtils
-import dev.utils.app.CrashUtils.CrashCatchListener
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.utils.common.StringUtils
-import kotlin.system.exitProcess
 
 /**
  * detail: Base Application
@@ -114,8 +107,6 @@ open class BaseApplication : MultiDexApplication(),
         mAppViewModelStore = ViewModelStore()
         // 初始化 Engine
         initEngine()
-        // 初始化异常捕获处理
-        initCrash()
     }
 
     /**
@@ -124,31 +115,5 @@ open class BaseApplication : MultiDexApplication(),
     private fun initEngine() {
         // DevEngine 完整初始化
         DevEngine.completeInitialize(this)
-    }
-
-    /**
-     * 初始化异常捕获处理
-     */
-    private fun initCrash() {
-        // 捕获异常处理 => 在 BaseApplication 中调用
-        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
-            override fun handleException(ex: Throwable) {
-                // 保存日志信息
-            }
-
-            override fun uncaughtException(
-                context: Context,
-                thread: Thread,
-                ex: Throwable
-            ) {
-                // 重启应用【跳转到首页】
-                val intent = Intent(context, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                context.startActivity(intent)
-                // 关闭进程
-                Process.killProcess(Process.myPid())
-                exitProcess(1)
-            }
-        })
     }
 }

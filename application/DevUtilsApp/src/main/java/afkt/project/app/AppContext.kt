@@ -1,11 +1,14 @@
 package afkt.project.app
 
+import afkt.project.MainActivity
 import afkt.project.R
 import afkt.project.app.basic.BaseApplication
 import afkt.project.model.engine.initAppImageConfigCreator
 import afkt.project.model.helper.AppHelper
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
+import android.os.Process
 import android.view.View
 import android.webkit.WebSettings
 import dev.DevUtils
@@ -13,12 +16,15 @@ import dev.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
 import dev.expand.engine.log.log_d
 import dev.utils.DevFinal
+import dev.utils.app.CrashUtils
+import dev.utils.app.CrashUtils.CrashCatchListener
 import dev.utils.app.ScreenshotUtils
 import dev.utils.app.VersionUtils
 import dev.utils.common.DateUtils
 import dev.utils.common.assist.TimeCounter
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
+import kotlin.system.exitProcess
 
 /**
  * detail: App Application
@@ -65,6 +71,8 @@ class AppContext : BaseApplication() {
         initStateLayout()
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder()
+        // 初始化异常捕获处理
+        initCrash()
         // 初始化 App ImageConfig Creator
         initAppImageConfigCreator()
         // 打印项目信息
@@ -164,6 +172,32 @@ class AppContext : BaseApplication() {
             // WebViewAssist 构造函数会使用全局配置
             WebViewAssist.setGlobalBuilder(this)
         }
+    }
+
+    /**
+     * 初始化异常捕获处理
+     */
+    private fun initCrash() {
+        // 捕获异常处理 => 在 BaseApplication 中调用
+        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
+            override fun handleException(ex: Throwable) {
+                // 保存日志信息
+            }
+
+            override fun uncaughtException(
+                context: Context,
+                thread: Thread,
+                ex: Throwable
+            ) {
+                // 重启应用【跳转到首页】
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                context.startActivity(intent)
+                // 关闭进程
+                android.os.Process.killProcess(Process.myPid())
+                exitProcess(1)
+            }
+        })
     }
 }
 
