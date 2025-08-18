@@ -18,5 +18,4 @@
         android:text="error click retry"
         android:textColor="@color/color_88"
         android:textSize="@dimen/sp_20" />
-
 </LinearLayout>

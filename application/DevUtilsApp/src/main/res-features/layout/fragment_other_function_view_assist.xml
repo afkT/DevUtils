@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
-        android:id="@+id/vid_fl"
+        android:id="@+id/vid_skeleton"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </layout>

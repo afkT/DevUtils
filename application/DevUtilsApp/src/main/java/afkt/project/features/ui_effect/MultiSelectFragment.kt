@@ -105,7 +105,8 @@ class MultiSelectViewModel : AppViewModel() {
  * 并且全选、反选等使用额外的 ObservableBoolean 来进行标记状态，避免循环整个 List 进行添加、删除等
  * 根据情况而定，选择不同的方案，最简单则是该方式
  */
-class MultiSelectAdapter() : AdapterModel<CommodityBean>(), IMultiSelectEdit<MultiSelectAdapter> {
+class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
+    IMultiSelectEdit<MultiSelectAdapter> {
 
     // 刷新处理
     val refreshOP = ObservableLong()
