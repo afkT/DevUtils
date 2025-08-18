@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_widget.view_assist.ViewAssistRecyclerViewLoadingViewModel" />
+    </data>
+
+    <LinearLayout
+        style="@style/ViewTheme.LinearLayout.Vertical"
+        android:visibility="visible">
+
+        <androidx.recyclerview.widget.RecyclerView
+            style="@style/ViewTheme.RecyclerView"
+            app:adapter="@{viewModel.adapter}"
+            app:itemBinding="@{viewModel.adapterModel.itemBinding}"
+            app:items="@{viewModel.adapterModel.items}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
+    </LinearLayout>
+</layout>
