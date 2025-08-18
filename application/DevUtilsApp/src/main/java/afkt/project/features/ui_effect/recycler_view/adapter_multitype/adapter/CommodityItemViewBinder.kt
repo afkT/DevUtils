@@ -7,8 +7,8 @@ import afkt.project.model.engine.IMAGE_ROUND_3
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
+import dev.base.utils.adapter.DevBaseViewBindingVH
+import dev.base.utils.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource

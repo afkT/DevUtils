@@ -1,4 +1,4 @@
-package dev.base.fragment
+package dev.base.app
 
 import android.app.Dialog
 import android.content.Context

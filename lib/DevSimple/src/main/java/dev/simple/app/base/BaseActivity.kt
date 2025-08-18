@@ -23,7 +23,9 @@ import dev.utils.common.ClassUtils
 abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseContentMVVMActivity<VDB, VM>(),
-    IController, ISimpleAgile, IActivityLifecycle {
+    IController,
+    ISimpleAgile,
+    IActivityLifecycle {
 
     // Activity
     open val mActivity: AppCompatActivity get() = this

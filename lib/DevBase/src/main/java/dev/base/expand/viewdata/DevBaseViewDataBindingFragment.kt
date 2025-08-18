@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.base.able.IDevBaseViewDataBinding
-import dev.base.fragment.DevBaseFragment
+import dev.base.app.DevBaseFragment
 
 /**
  * detail: Fragment ViewDataBinding 基类

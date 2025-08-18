@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.base.able.IDevBaseViewModel
-import dev.base.activity.DevBaseActivity
+import dev.base.app.DevBaseActivity
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**

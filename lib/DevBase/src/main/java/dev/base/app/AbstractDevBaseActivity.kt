@@ -1,4 +1,4 @@
-package dev.base.activity
+package dev.base.app
 
 import android.app.Dialog
 import android.os.Bundle

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.base.able.IDevBaseViewDataBinding
-import dev.base.activity.DevBaseActivity
+import dev.base.app.DevBaseActivity
 
 /**
  * detail: Activity ViewDataBinding 基类

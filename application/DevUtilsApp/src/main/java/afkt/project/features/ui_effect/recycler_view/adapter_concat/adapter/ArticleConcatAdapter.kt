@@ -5,8 +5,8 @@ import afkt.project.databinding.AdapterConcatArticleBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.ArticleBean1
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
+import dev.base.utils.adapter.DevBaseViewBindingVH
+import dev.base.utils.adapter.newBindingViewHolder
 import dev.utils.app.helper.view.ViewHelper
 
 /**

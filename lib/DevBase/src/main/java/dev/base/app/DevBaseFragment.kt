@@ -1,12 +1,12 @@
-package dev.base.activity
+package dev.base.app
 
 import android.view.View
 
 /**
- * detail: Activity 基类
+ * detail: Fragment 基类
  * @author Ttt
  */
-abstract class DevBaseActivity : AbstractDevBaseActivity(),
+abstract class DevBaseFragment : AbstractDevBaseFragment(),
     View.OnClickListener {
     override fun onClick(v: View) {}
 }

@@ -6,8 +6,8 @@ import afkt.project.features.ui_effect.recycler_view.adapter_concat.HeaderFooter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
+import dev.base.utils.adapter.DevBaseViewBindingVH
+import dev.base.utils.adapter.newBindingViewHolder
 
 /**
  * detail: Header、Footer Adapter

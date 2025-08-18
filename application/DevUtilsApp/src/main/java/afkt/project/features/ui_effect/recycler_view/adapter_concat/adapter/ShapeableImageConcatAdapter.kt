@@ -9,8 +9,8 @@ import com.google.android.material.shape.RelativeCornerSize
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import dev.adapter.DevDataAdapter
-import dev.base.adapter.DevBaseViewBindingVH
-import dev.base.adapter.newBindingViewHolder
+import dev.base.utils.adapter.DevBaseViewBindingVH
+import dev.base.utils.adapter.newBindingViewHolder
 import dev.expand.engine.image.display
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils

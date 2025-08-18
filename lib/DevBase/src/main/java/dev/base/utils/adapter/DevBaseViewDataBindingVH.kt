@@ -1,4 +1,4 @@
-package dev.base.adapter
+package dev.base.utils.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,31 +21,34 @@ class DevBaseViewDataBindingVH<VDB : ViewDataBinding>(val binding: VDB) : Recycl
         fun <VDB : ViewDataBinding> create(
             parent: ViewGroup,
             @LayoutRes resource: Int
-        ) =
-            DevBaseViewDataBindingVH(
-                DataBindingUtil.bind<VDB>(
-                    LayoutInflater.from(parent.context).inflate(resource, null)
-                )!!
-            )
+        ) = DevBaseViewDataBindingVH(
+            DataBindingUtil.bind<VDB>(
+                LayoutInflater.from(parent.context).inflate(
+                    resource, null
+                )
+            )!!
+        )
 
         @JvmStatic
         fun <VDB : ViewDataBinding> create(
             context: Context,
             @LayoutRes resource: Int
-        ) =
-            DevBaseViewDataBindingVH(
-                DataBindingUtil.bind<VDB>(
-                    LayoutInflater.from(context).inflate(resource, null)
-                )!!
-            )
+        ) = DevBaseViewDataBindingVH(
+            DataBindingUtil.bind<VDB>(
+                LayoutInflater.from(context).inflate(
+                    resource, null
+                )
+            )!!
+        )
 
         @JvmStatic
         fun <VDB : ViewDataBinding> create(
             view: View
-        ) =
-            DevBaseViewDataBindingVH(
-                DataBindingUtil.bind<VDB>(view)!!
-            )
+        ) = DevBaseViewDataBindingVH(
+            DataBindingUtil.bind<VDB>(
+                view
+            )!!
+        )
     }
 }
 

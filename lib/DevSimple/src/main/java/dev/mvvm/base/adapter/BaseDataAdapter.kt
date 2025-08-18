@@ -3,8 +3,8 @@ package dev.mvvm.base.adapter
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import dev.adapter.DevDataAdapter
-import dev.base.adapter.DevBaseViewDataBindingVH
-import dev.base.adapter.newDataBindingViewHolder
+import dev.base.utils.adapter.DevBaseViewDataBindingVH
+import dev.base.utils.adapter.newDataBindingViewHolder
 import dev.mvvm.base.adapter.item.ItemBinding
 import dev.mvvm.base.adapter.item.ItemLifecycle
 

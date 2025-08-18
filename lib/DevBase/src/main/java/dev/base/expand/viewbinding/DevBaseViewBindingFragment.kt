@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import dev.base.able.IDevBaseViewBinding
-import dev.base.fragment.DevBaseFragment
+import dev.base.app.DevBaseFragment
 import dev.base.utils.ViewBindingUtils
 
 /**

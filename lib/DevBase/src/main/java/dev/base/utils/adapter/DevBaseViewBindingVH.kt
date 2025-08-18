@@ -1,4 +1,4 @@
-package dev.base.adapter
+package dev.base.utils.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -22,38 +22,39 @@ class DevBaseViewBindingVH<VB : ViewBinding>(val binding: VB) : RecyclerView.Vie
             clazz: Class<VB>,
             parent: ViewGroup,
             @LayoutRes resource: Int
-        ) =
-            DevBaseViewBindingVH(
-                ViewBindingUtils.viewBinding(
-                    view = LayoutInflater.from(parent.context).inflate(resource, parent, false),
-                    clazz = clazz
-                )
+        ) = DevBaseViewBindingVH(
+            ViewBindingUtils.viewBinding(
+                view = LayoutInflater.from(parent.context).inflate(
+                    resource, parent, false
+                ),
+                clazz = clazz
             )
+        )
 
         @JvmStatic
         fun <VB : ViewBinding> create(
             clazz: Class<VB>,
             context: Context,
             @LayoutRes resource: Int
-        ) =
-            DevBaseViewBindingVH(
-                ViewBindingUtils.viewBinding(
-                    view = LayoutInflater.from(context).inflate(resource, null),
-                    clazz = clazz
-                )
+        ) = DevBaseViewBindingVH(
+            ViewBindingUtils.viewBinding(
+                view = LayoutInflater.from(context).inflate(
+                    resource, null
+                ),
+                clazz = clazz
             )
+        )
 
         @JvmStatic
         fun <VB : ViewBinding> create(
             clazz: Class<VB>,
             view: View
-        ) =
-            DevBaseViewBindingVH(
-                ViewBindingUtils.viewBinding(
-                    view = view,
-                    clazz = clazz
-                )
+        ) = DevBaseViewBindingVH(
+            ViewBindingUtils.viewBinding(
+                view = view,
+                clazz = clazz
             )
+        )
     }
 }
 

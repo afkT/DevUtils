@@ -1,7 +1,7 @@
 package dev.base.expand.mvp
 
 import android.os.Bundle
-import dev.base.activity.DevBaseActivity
+import dev.base.app.DevBaseActivity
 
 /**
  * detail: MVP Activity 基类

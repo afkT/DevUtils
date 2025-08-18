@@ -1,7 +1,7 @@
 package dev.base.expand.mvp
 
 import android.os.Bundle
-import dev.base.fragment.DevBaseFragment
+import dev.base.app.DevBaseFragment
 
 /**
  * detail: MVP Fragment 基类

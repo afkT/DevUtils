@@ -23,7 +23,8 @@ import dev.utils.common.ClassUtils
 abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private val vmType: FragmentVMType = FragmentVMType.FRAGMENT
 ) : DevBaseContentMVVMFragment<VDB, VM>(),
-    IController, ISimpleAgile {
+    IController,
+    ISimpleAgile {
 
     // Activity
     open val mActivity: FragmentActivity get() = requireActivity()
