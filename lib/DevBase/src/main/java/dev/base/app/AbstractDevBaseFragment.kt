@@ -1,13 +1,10 @@
 package dev.base.app
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupWindow
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import dev.base.able.IDevBase
 import dev.base.utils.assist.DevBaseAssist
@@ -41,9 +38,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
         // 获取当前类名
         TAG = this.javaClass.simpleName
         // 设置数据
-        assist
-            .setTag(TAG)
-            .setContext(context)
+        assist.setTag(TAG)
             .printLog("onAttach")
     }
 
@@ -181,54 +176,5 @@ abstract class AbstractDevBaseFragment : Fragment(),
 
     override fun initOther() {
         assist.printLog("initOther")
-    }
-
-    // =======================
-    // = IDevBaseUIOperation =
-    // =======================
-
-    override fun getDevPopupWindow(): PopupWindow? {
-        return assist.getDevPopupWindow()
-    }
-
-    override fun <T : PopupWindow> setDevPopupWindow(popupWindow: T): T {
-        return assist.setDevPopupWindow(popupWindow)
-    }
-
-    override fun <T : PopupWindow> setDevPopupWindow(
-        isClose: Boolean,
-        popupWindow: T
-    ): T {
-        return assist.setDevPopupWindow(isClose, popupWindow)
-    }
-
-    override fun getDevDialog(): Dialog? {
-        return assist.getDevDialog()
-    }
-
-    override fun <T : Dialog> setDevDialog(dialog: T): T {
-        return assist.setDevDialog(dialog)
-    }
-
-    override fun <T : Dialog> setDevDialog(
-        isClose: Boolean,
-        dialog: T
-    ): T {
-        return assist.setDevDialog(isClose, dialog)
-    }
-
-    override fun getDevDialogFragment(): DialogFragment? {
-        return assist.getDevDialogFragment()
-    }
-
-    override fun <T : DialogFragment> setDevDialogFragment(dialog: T): T {
-        return assist.setDevDialogFragment(dialog)
-    }
-
-    override fun <T : DialogFragment> setDevDialogFragment(
-        isClose: Boolean,
-        dialog: T
-    ): T {
-        return assist.setDevDialogFragment(isClose, dialog)
     }
 }

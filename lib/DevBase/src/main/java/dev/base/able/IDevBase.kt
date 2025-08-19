@@ -6,5 +6,4 @@ package dev.base.able
  */
 interface IDevBase : IDevBaseConfig,
     IDevBaseContent,
-    IDevBaseMethod,
-    IDevBaseUIOperation
+    IDevBaseMethod

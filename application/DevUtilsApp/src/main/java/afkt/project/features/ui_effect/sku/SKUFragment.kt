@@ -54,8 +54,7 @@ class SKUFragment : AppFragment<FragmentUiEffectSkuBinding, AppViewModel>(
                         }
                     }).apply {
                         // 显示 SKU Dialog
-                        assist.setDevDialog(this)
-                            .showDialog(BuyType.BUY, model, 1045)
+                        showDialog(BuyType.BUY, model, 1045)
                     }
                 }
             }
