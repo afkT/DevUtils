@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import dev.base.able.IDevBase
+import dev.base.core.able.IDevBase
 import dev.base.databinding.BaseContentViewBinding
 import dev.base.utils.assist.DevBaseAssist
 import dev.base.utils.assist.DevBaseContentAssist
@@ -43,6 +43,8 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         // 获取当前类名
         TAG = this.javaClass.simpleName
+        // 是否安全处理 addView
+        contentAssist.setSafe(isContentAssistSafe())
         // Activity onCreate 创建之前触发
         activityOnCreateBefore()
         super.onCreate(savedInstanceState)

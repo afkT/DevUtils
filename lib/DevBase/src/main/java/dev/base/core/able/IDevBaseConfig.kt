@@ -1,4 +1,6 @@
-package dev.base.able
+package dev.base.core.able
+
+import dev.base.utils.assist.DevBaseContentAssist
 
 /**
  * detail: 基类配置
@@ -13,4 +15,10 @@ interface IDevBaseConfig {
     fun isActivityManager(): Boolean {
         return true
     }
+
+    /**
+     * [DevBaseContentAssist] 是否安全处理
+     * @return `true` yes, `false` no
+     */
+    fun isContentAssistSafe(): Boolean = true
 }

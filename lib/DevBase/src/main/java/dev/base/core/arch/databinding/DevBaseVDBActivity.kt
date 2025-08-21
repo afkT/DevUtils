@@ -1,11 +1,11 @@
-package dev.base.core.arch.viewdata
+package dev.base.core.arch.databinding
 
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import dev.base.able.IDevBaseViewDataBinding
 import dev.base.core.AbstractDevBaseActivity
+import dev.base.core.able.IDevBaseViewDataBinding
 
 /**
  * detail: Activity ViewDataBinding 基类

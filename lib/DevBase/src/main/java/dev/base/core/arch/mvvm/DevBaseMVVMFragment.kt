@@ -5,8 +5,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dev.base.able.IDevBaseViewModel
-import dev.base.core.arch.viewdata.DevBaseVDBFragment
+import dev.base.core.able.IDevBaseViewModel
+import dev.base.core.arch.databinding.DevBaseVDBFragment
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**

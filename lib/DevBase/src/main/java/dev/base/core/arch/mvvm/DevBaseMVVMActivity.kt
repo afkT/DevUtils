@@ -5,13 +5,14 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dev.base.able.IDevBaseViewModel
-import dev.base.core.arch.viewdata.DevBaseVDBActivity
+import dev.base.core.able.IDevBaseViewModel
+import dev.base.core.arch.databinding.DevBaseVDBActivity
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**
  * detail: Activity MVVM 基类
  * @author Ttt
+ * 需要自己实现 ViewModel 初始化
  */
 abstract class DevBaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     DevBaseVDBActivity<VDB>(),

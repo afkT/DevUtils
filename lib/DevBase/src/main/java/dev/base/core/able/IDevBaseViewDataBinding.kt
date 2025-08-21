@@ -1,4 +1,4 @@
-package dev.base.able
+package dev.base.core.able
 
 import android.view.View
 import androidx.databinding.ViewDataBinding

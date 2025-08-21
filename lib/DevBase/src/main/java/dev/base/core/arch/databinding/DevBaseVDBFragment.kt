@@ -1,4 +1,4 @@
-package dev.base.core.arch.viewdata
+package dev.base.core.arch.databinding
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import dev.base.able.IDevBaseViewDataBinding
 import dev.base.core.AbstractDevBaseFragment
+import dev.base.core.able.IDevBaseViewDataBinding
 
 /**
  * detail: Fragment ViewDataBinding 基类

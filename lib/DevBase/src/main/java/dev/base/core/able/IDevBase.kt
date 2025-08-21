@@ -1,4 +1,4 @@
-package dev.base.able
+package dev.base.core.able
 
 /**
  * detail: 基类相关方法

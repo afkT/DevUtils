@@ -2,7 +2,7 @@ package dev.base.core.arch.mvp
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import dev.base.core.arch.viewdata.DevBaseVDBActivity
+import dev.base.core.arch.databinding.DevBaseVDBActivity
 
 /**
  * detail: MVP Activity 基类

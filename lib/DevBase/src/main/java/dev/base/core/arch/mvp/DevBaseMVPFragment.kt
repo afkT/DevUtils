@@ -2,7 +2,7 @@ package dev.base.core.arch.mvp
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import dev.base.core.arch.viewdata.DevBaseVDBFragment
+import dev.base.core.arch.databinding.DevBaseVDBFragment
 
 /**
  * detail: MVP Fragment 基类
