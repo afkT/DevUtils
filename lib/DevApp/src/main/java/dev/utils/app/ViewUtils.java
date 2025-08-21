@@ -913,7 +913,7 @@ public final class ViewUtils {
         if (view == null) return false;
         Rect    rect      = new Rect();
         boolean isVisible = getGlobalVisibleRect(view, rect);
-        return isVisible && (rect.bottom - rect.top >= view.getHeight());
+        return isVisible && (rect.width() > 0 && rect.height() > 0);
     }
 
     // =

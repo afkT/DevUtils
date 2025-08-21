@@ -1,7 +1,7 @@
 package dev.base.expand.mvp
 
 import android.os.Bundle
-import dev.base.app.DevBaseActivity
+import dev.base.core.AbstractDevBaseActivity
 
 /**
  * detail: MVP Activity 基类
@@ -9,7 +9,7 @@ import dev.base.app.DevBaseActivity
  * 需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
  */
 abstract class DevBaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
-    DevBaseActivity() {
+    AbstractDevBaseActivity() {
 
     // MVP Presenter
     lateinit var presenter: P

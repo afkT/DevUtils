@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.base.able.IDevBaseViewModel
-import dev.base.app.DevBaseFragment
+import dev.base.core.AbstractDevBaseFragment
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**
  * detail: Fragment ViewModel 基类
  * @author Ttt
  */
-abstract class DevBaseViewModelFragment<VM : ViewModel> : DevBaseFragment(),
+abstract class DevBaseViewModelFragment<VM : ViewModel> : AbstractDevBaseFragment(),
     IDevBaseViewModel<VM> {
 
     lateinit var viewModel: VM

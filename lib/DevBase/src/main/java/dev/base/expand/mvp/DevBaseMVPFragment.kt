@@ -1,14 +1,14 @@
 package dev.base.expand.mvp
 
 import android.os.Bundle
-import dev.base.app.DevBaseFragment
+import dev.base.core.AbstractDevBaseFragment
 
 /**
  * detail: MVP Fragment 基类
  * @author Ttt
  */
 abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
-    DevBaseFragment() {
+    AbstractDevBaseFragment() {
 
     // MVP Presenter
     lateinit var presenter: P

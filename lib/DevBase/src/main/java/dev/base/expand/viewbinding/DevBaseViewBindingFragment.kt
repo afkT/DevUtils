@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import dev.base.able.IDevBaseViewBinding
-import dev.base.app.DevBaseFragment
+import dev.base.core.AbstractDevBaseFragment
 import dev.base.utils.ViewBindingUtils
 
 /**
  * detail: Fragment ViewBinding 基类
  * @author Ttt
  */
-abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
+abstract class DevBaseViewBindingFragment<VB : ViewBinding> : AbstractDevBaseFragment(),
     IDevBaseViewBinding<VB> {
 
     private var _binding: VB? = null

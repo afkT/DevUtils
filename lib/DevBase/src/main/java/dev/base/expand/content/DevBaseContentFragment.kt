@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import dev.base.R
 import dev.base.able.IDevBaseLayout
-import dev.base.app.DevBaseFragment
+import dev.base.core.AbstractDevBaseFragment
 import dev.base.utils.assist.DevBaseContentAssist
 
 /**
  * detail: Content Fragment 基类
  * @author Ttt
  */
-abstract class DevBaseContentFragment : DevBaseFragment(),
+abstract class DevBaseContentFragment : AbstractDevBaseFragment(),
     IDevBaseLayout {
 
     @JvmField // Layout View

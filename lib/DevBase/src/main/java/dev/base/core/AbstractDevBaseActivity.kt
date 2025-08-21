@@ -1,4 +1,4 @@
-package dev.base.app
+package dev.base.core
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,14 +34,13 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     // ==========
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // 获取当前类名
+        TAG = this.javaClass.simpleName
         // Activity onCreate 创建之前触发
         activityOnCreateBefore()
         super.onCreate(savedInstanceState)
-        // 获取当前类名
-        TAG = this.javaClass.simpleName
-        // 设置数据
-        assist
-            .setTag(TAG)
+        // 设置 TAG
+        assist.setTag(TAG)
             .printLog("onCreate")
         // 添加 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)

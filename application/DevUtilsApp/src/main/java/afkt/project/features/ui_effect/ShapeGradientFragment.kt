@@ -6,7 +6,6 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectShapeGradientBinding
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ResourceUtils
@@ -87,33 +86,30 @@ class ShapeGradientFragment : AppFragment<FragmentUiEffectShapeGradientBinding, 
     override fun initListener() {
         super.initListener()
         ListenerUtils.setOnClicks(
-            this,
+            { v ->
+                when (v.id) {
+                    R.id.vid_1_0_tv -> {
+                        ViewHelper.get()
+                            .setSelected(true, binding.vid10Tv)
+                            .setSelected(false, binding.vid11Tv)
+                    }
+
+                    R.id.vid_1_1_tv -> {
+                        ViewHelper.get()
+                            .setSelected(true, binding.vid11Tv)
+                            .setSelected(false, binding.vid10Tv)
+                    }
+
+                    R.id.vid_2_0_tv -> changeTab1(binding.vid20Tv, binding.vid21Tv)
+                    R.id.vid_2_1_tv -> changeTab1(binding.vid21Tv, binding.vid20Tv)
+                    R.id.vid_3_0_tv -> changeTab2(binding.vid30Tv, binding.vid31Tv)
+                    R.id.vid_3_1_tv -> changeTab2(binding.vid31Tv, binding.vid30Tv)
+                }
+            },
             binding.vid10Tv, binding.vid11Tv,
             binding.vid20Tv, binding.vid21Tv,
             binding.vid30Tv, binding.vid31Tv
         )
-    }
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.vid_1_0_tv -> {
-                ViewHelper.get()
-                    .setSelected(true, binding.vid10Tv)
-                    .setSelected(false, binding.vid11Tv)
-            }
-
-            R.id.vid_1_1_tv -> {
-                ViewHelper.get()
-                    .setSelected(true, binding.vid11Tv)
-                    .setSelected(false, binding.vid10Tv)
-            }
-
-            R.id.vid_2_0_tv -> changeTab1(binding.vid20Tv, binding.vid21Tv)
-            R.id.vid_2_1_tv -> changeTab1(binding.vid21Tv, binding.vid20Tv)
-            R.id.vid_3_0_tv -> changeTab2(binding.vid30Tv, binding.vid31Tv)
-            R.id.vid_3_1_tv -> changeTab2(binding.vid31Tv, binding.vid30Tv)
-        }
     }
 
     // ==========

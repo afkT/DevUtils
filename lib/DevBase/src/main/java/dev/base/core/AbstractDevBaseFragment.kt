@@ -1,4 +1,4 @@
-package dev.base.app
+package dev.base.core
 
 import android.content.Context
 import android.os.Bundle
@@ -37,7 +37,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
         super.onAttach(context)
         // 获取当前类名
         TAG = this.javaClass.simpleName
-        // 设置数据
+        // 设置 TAG
         assist.setTag(TAG)
             .printLog("onAttach")
     }
