@@ -1,4 +1,4 @@
-package dev.base.core.able
+package dev.base.core.interfaces
 
 /**
  * detail: 基类相关方法

@@ -1,4 +1,4 @@
-package dev.base.core.able
+package dev.base.core.interfaces
 
 import dev.base.utils.assist.DevBaseContentAssist
 

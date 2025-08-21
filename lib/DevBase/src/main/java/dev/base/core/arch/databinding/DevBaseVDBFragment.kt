@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.base.core.AbstractDevBaseFragment
-import dev.base.core.able.IDevBaseViewDataBinding
+import dev.base.core.interfaces.IDevBaseViewDataBinding
 
 /**
  * detail: Fragment ViewDataBinding 基类
  * @author Ttt
  */
 abstract class DevBaseVDBFragment<VDB : ViewDataBinding> : AbstractDevBaseFragment(),
-    IDevBaseViewDataBinding<VDB> {
+    IDevBaseViewDataBinding {
 
     private var _binding: VDB? = null
     val binding: VDB get() = _binding!!

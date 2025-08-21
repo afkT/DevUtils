@@ -1,4 +1,4 @@
-package dev.simple.app.base.interfaces
+package dev.base.simple.interfaces.binding
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment
  */
 interface BindingLayoutView<T> {
 
-    fun bind(value: T, inflater: LayoutInflater): View?
+    fun bind(
+        value: T,
+        inflater: LayoutInflater
+    ): View?
 }
 
 interface BindingActivityView : BindingLayoutView<AppCompatActivity>

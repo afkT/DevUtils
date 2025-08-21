@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import dev.base.core.able.IDevBase
+import dev.base.core.interfaces.IDevBase
 import dev.base.databinding.BaseContentViewBinding
 import dev.base.utils.assist.DevBaseAssist
 import dev.base.utils.assist.DevBaseContentAssist

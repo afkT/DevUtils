@@ -1,13 +1,12 @@
-package dev.base.core.able
+package dev.base.core.interfaces
 
 import android.view.View
-import androidx.databinding.ViewDataBinding
 
 /**
  * detail: 基类 ViewDataBinding 接口
  * @author Ttt
  */
-interface IDevBaseViewDataBinding<VDB : ViewDataBinding> {
+interface IDevBaseViewDataBinding {
 
     /**
      * 获取待 Bind View

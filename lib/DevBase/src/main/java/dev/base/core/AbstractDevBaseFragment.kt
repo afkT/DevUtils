@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import dev.base.core.able.IDevBase
+import dev.base.core.interfaces.IDevBase
 import dev.base.databinding.BaseContentViewBinding
 import dev.base.utils.assist.DevBaseAssist
 import dev.base.utils.assist.DevBaseContentAssist

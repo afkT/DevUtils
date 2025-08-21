@@ -1,4 +1,4 @@
-package dev.simple.app.base.lifecycle
+package dev.base.simple.interfaces.lifecycle
 
 import dev.utils.app.assist.lifecycle.AbstractActivityLifecycle
 import dev.utils.app.assist.lifecycle.fragment.AbstractFragmentLifecycle

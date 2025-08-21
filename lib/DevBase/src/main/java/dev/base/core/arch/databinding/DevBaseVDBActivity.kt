@@ -5,14 +5,14 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.base.core.AbstractDevBaseActivity
-import dev.base.core.able.IDevBaseViewDataBinding
+import dev.base.core.interfaces.IDevBaseViewDataBinding
 
 /**
  * detail: Activity ViewDataBinding 基类
  * @author Ttt
  */
 abstract class DevBaseVDBActivity<VDB : ViewDataBinding> : AbstractDevBaseActivity(),
-    IDevBaseViewDataBinding<VDB> {
+    IDevBaseViewDataBinding {
 
     lateinit var binding: VDB
 
