@@ -1,4 +1,4 @@
-package dev.base.expand.mvvm
+package dev.base.core.arch.mvvm
 
 import android.app.Application
 import androidx.databinding.ViewDataBinding
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.base.able.IDevBaseViewModel
-import dev.base.expand.viewdata.DevBaseViewDataBindingActivity
+import dev.base.core.arch.viewdata.DevBaseVDBActivity
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**
@@ -14,8 +14,8 @@ import dev.base.utils.assist.DevBaseViewModelAssist
  * @author Ttt
  */
 abstract class DevBaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
-    DevBaseViewDataBindingActivity<VDB>(),
-    IDevBaseViewModel<VM> {
+    DevBaseVDBActivity<VDB>(),
+    IDevBaseViewModel {
 
     lateinit var viewModel: VM
 

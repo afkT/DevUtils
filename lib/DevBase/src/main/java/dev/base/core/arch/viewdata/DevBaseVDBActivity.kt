@@ -1,4 +1,4 @@
-package dev.base.expand.viewdata
+package dev.base.core.arch.viewdata
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,7 @@ import dev.base.core.AbstractDevBaseActivity
  * detail: Activity ViewDataBinding 基类
  * @author Ttt
  */
-abstract class DevBaseViewDataBindingActivity<VDB : ViewDataBinding> : AbstractDevBaseActivity(),
+abstract class DevBaseVDBActivity<VDB : ViewDataBinding> : AbstractDevBaseActivity(),
     IDevBaseViewDataBinding<VDB> {
 
     lateinit var binding: VDB
@@ -36,6 +36,6 @@ abstract class DevBaseViewDataBindingActivity<VDB : ViewDataBinding> : AbstractD
     // ===========================
 
     final override fun getBindingView(): View? {
-        return mContentView
+        return layoutView
     }
 }

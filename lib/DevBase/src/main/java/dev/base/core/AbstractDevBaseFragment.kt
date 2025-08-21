@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import dev.base.able.IDevBase
+import dev.base.databinding.BaseContentViewBinding
 import dev.base.utils.assist.DevBaseAssist
+import dev.base.utils.assist.DevBaseContentAssist
 
 /**
  * detail: Fragment 抽象基类
@@ -23,11 +26,11 @@ abstract class AbstractDevBaseFragment : Fragment(),
     @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
     protected var TAG = AbstractDevBaseFragment::class.java.simpleName
 
-    @JvmField // Content View
-    protected var mContentView: View? = null
-
     @JvmField // DevBase 合并相同代码辅助类
     protected var assist = DevBaseAssist()
+
+    @JvmField // DevBase ContentView 填充辅助类
+    protected var contentAssist = DevBaseContentAssist()
 
     // ==========
     // = 生命周期 =
@@ -38,8 +41,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
         // 获取当前类名
         TAG = this.javaClass.simpleName
         // 设置 TAG
-        assist.setTag(TAG)
-            .printLog("onAttach")
+        assist.setTag(TAG).printLog("onAttach")
     }
 
     override fun onDetach() {
@@ -60,19 +62,18 @@ abstract class AbstractDevBaseFragment : Fragment(),
         assist.printLog("onCreateView")
         // Inflate View 之前触发
         beforeInflateView()
-
-        if (mContentView != null) {
-            // ViewUtils.removeSelfFromParent(mContentView)
-            val parent = mContentView!!.parent as? ViewGroup
-            // 删除已经在显示的 View 防止切回来不加载一片空白
-            parent?.removeView(mContentView)
-            mContentView = null
+        // DevBase ContentView 填充
+        BaseContentViewBinding.inflate(
+            layoutInflater
+        ).apply {
+            // 设置 Binding
+            contentAssist.bind(this)
+            // Inflate View 之后触发
+            afterInflateView(root)
+            // 插入布局【具体实际布局】
+            insertLayout()
         }
-        // Content View 初始化处理
-        contentInit(inflater, container)
-        // Inflate View 之后触发
-        mContentView?.let { afterInflateView(it) }
-        return mContentView
+        return contentAssist.bindingRoot()
     }
 
     override fun onViewCreated(
@@ -124,32 +125,6 @@ abstract class AbstractDevBaseFragment : Fragment(),
         assist.printLog("onDestroy")
     }
 
-    // ===================
-    // = IDevBaseContent =
-    // ===================
-
-    /**
-     * Content View 初始化处理
-     * @param inflater  [LayoutInflater]
-     * @param container [ViewGroup]
-     */
-    private fun contentInit(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) {
-        if (mContentView != null) return
-        // 使用 baseContentId()
-        if (baseContentId() != 0) {
-            try {
-                mContentView = inflater.inflate(baseContentId(), container, false)
-            } catch (e: Exception) {
-                assist.printLog(e, "contentInit - baseContentId")
-            }
-        }
-        // 如果 View 等于 null, 则使用 baseContentView()
-        if (mContentView == null) mContentView = baseContentView()
-    }
-
     // ==================
     // = IDevBaseMethod =
     // ==================
@@ -176,5 +151,52 @@ abstract class AbstractDevBaseFragment : Fragment(),
 
     override fun initOther() {
         assist.printLog("initOther")
+    }
+
+    // ==================
+    // = IDevBaseLayout =
+    // ==================
+
+    @JvmField // Layout View
+    protected var layoutView: View? = null
+
+    /**
+     * Layout View 初始化处理
+     * @param inflater  [LayoutInflater]
+     */
+    private fun layoutInit(
+        inflater: LayoutInflater
+    ) {
+        if (layoutView != null) return
+        // 使用 baseLayoutId()
+        if (baseLayoutId() != 0) {
+            try {
+                layoutView = inflater.inflate(baseLayoutId(), null, false)
+            } catch (e: Exception) {
+                assist.printLog(e, "layoutInit - baseLayoutId")
+            }
+        }
+        // 如果 View 等于 null, 则使用 baseLayoutView()
+        if (layoutView == null) layoutView = baseLayoutView()
+    }
+
+    /**
+     * 插入布局【具体实际布局】
+     */
+    private fun insertLayout() {
+        // Layout View 初始化处理
+        layoutInit(layoutInflater)
+        // 添加到 contentLinear
+        if (isLayoutMatchParent()) {
+            contentAssist.addContentView(
+                layoutView,
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
+            )
+        } else {
+            contentAssist.addContentView(layoutView)
+        }
     }
 }

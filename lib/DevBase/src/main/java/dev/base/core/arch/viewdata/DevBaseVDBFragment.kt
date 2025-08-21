@@ -1,4 +1,4 @@
-package dev.base.expand.content
+package dev.base.core.arch.viewdata
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dev.base.able.IDevBaseViewDataBinding
+import dev.base.core.AbstractDevBaseFragment
 
 /**
- * detail: Content Fragment ViewDataBinding 基类
+ * detail: Fragment ViewDataBinding 基类
  * @author Ttt
  */
-abstract class DevBaseContentViewDataBindingFragment<VDB : ViewDataBinding> :
-    DevBaseContentFragment(),
+abstract class DevBaseVDBFragment<VDB : ViewDataBinding> : AbstractDevBaseFragment(),
     IDevBaseViewDataBinding<VDB> {
 
     private var _binding: VDB? = null
@@ -31,7 +31,7 @@ abstract class DevBaseContentViewDataBindingFragment<VDB : ViewDataBinding> :
             // 支持 LiveData 绑定 xml 数据改变 UI 自动会更新
             _binding?.lifecycleOwner = this
         }
-        return mContentView
+        return contentAssist.bindingRoot()
     }
 
     override fun onDestroyView() {

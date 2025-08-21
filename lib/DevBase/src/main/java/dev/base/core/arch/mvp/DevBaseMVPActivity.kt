@@ -1,15 +1,16 @@
-package dev.base.expand.content
+package dev.base.core.arch.mvp
 
 import android.os.Bundle
-import androidx.viewbinding.ViewBinding
-import dev.base.expand.mvp.MVP
+import androidx.databinding.ViewDataBinding
+import dev.base.core.arch.viewdata.DevBaseVDBActivity
 
 /**
- * detail: Content MVP Activity ViewBinding 基类
+ * detail: MVP Activity 基类
  * @author Ttt
+ * 需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
  */
-abstract class DevBaseContentMVPViewBindingActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>, VB : ViewBinding> :
-    DevBaseContentViewBindingActivity<VB>() {
+abstract class DevBaseMVPActivity<VDB : ViewDataBinding, P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
+    DevBaseVDBActivity<VDB>() {
 
     // MVP Presenter
     lateinit var presenter: P

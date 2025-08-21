@@ -5,5 +5,5 @@ package dev.base.able
  * @author Ttt
  */
 interface IDevBase : IDevBaseConfig,
-    IDevBaseContent,
+    IDevBaseLayout,
     IDevBaseMethod

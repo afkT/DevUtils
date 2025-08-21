@@ -1,4 +1,4 @@
-package dev.base.expand.content
+package dev.base.core.arch.mvvm
 
 import android.app.Application
 import androidx.databinding.ViewDataBinding
@@ -6,15 +6,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.base.able.IDevBaseViewModel
+import dev.base.core.arch.viewdata.DevBaseVDBFragment
 import dev.base.utils.assist.DevBaseViewModelAssist
 
 /**
- * detail: Content Fragment MVVM 基类
+ * detail: Fragment MVVM 基类
  * @author Ttt
  */
-abstract class DevBaseContentMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
-    DevBaseContentViewDataBindingFragment<VDB>(),
-    IDevBaseViewModel<VM> {
+abstract class DevBaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
+    DevBaseVDBFragment<VDB>(),
+    IDevBaseViewModel {
 
     lateinit var viewModel: VM
 

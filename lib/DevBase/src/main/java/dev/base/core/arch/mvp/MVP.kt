@@ -1,4 +1,4 @@
-package dev.base.expand.mvp
+package dev.base.core.arch.mvp
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner

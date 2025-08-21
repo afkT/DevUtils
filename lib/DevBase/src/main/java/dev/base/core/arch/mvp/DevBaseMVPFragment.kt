@@ -1,14 +1,15 @@
-package dev.base.expand.mvp
+package dev.base.core.arch.mvp
 
 import android.os.Bundle
-import dev.base.core.AbstractDevBaseFragment
+import androidx.databinding.ViewDataBinding
+import dev.base.core.arch.viewdata.DevBaseVDBFragment
 
 /**
  * detail: MVP Fragment 基类
  * @author Ttt
  */
-abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
-    AbstractDevBaseFragment() {
+abstract class DevBaseMVPFragment<VDB : ViewDataBinding, P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
+    DevBaseVDBFragment<VDB>() {
 
     // MVP Presenter
     lateinit var presenter: P

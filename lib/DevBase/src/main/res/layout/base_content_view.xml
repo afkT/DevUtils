@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_root_ll"
+    android:id="@+id/root_linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -9,7 +9,7 @@
     <!-- Status Bar -->
 
     <LinearLayout
-        android:id="@+id/vid_status_bar_ll"
+        android:id="@+id/status_bar_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
@@ -17,7 +17,7 @@
     <!-- Title -->
 
     <LinearLayout
-        android:id="@+id/vid_title_ll"
+        android:id="@+id/title_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
@@ -31,14 +31,14 @@
         <!-- 内容主体 -->
 
         <FrameLayout
-            android:id="@+id/vid_body_fl"
+            android:id="@+id/body_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <!-- 填充容器 -->
 
             <LinearLayout
-                android:id="@+id/vid_content_ll"
+                android:id="@+id/content_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" />
@@ -46,7 +46,7 @@
             <!-- 状态布局容器 -->
 
             <LinearLayout
-                android:id="@+id/vid_state_ll"
+                android:id="@+id/state_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -56,7 +56,7 @@
         <!-- 悬浮容器 -->
 
         <FrameLayout
-            android:id="@+id/vid_float_fl"
+            android:id="@+id/float_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
  * detail: 基类 ViewModel 接口
  * @author Ttt
  */
-interface IDevBaseViewModel<VDB : ViewModel> {
+interface IDevBaseViewModel {
 
     /**
      * 初始化 [ViewModel]

@@ -1,11 +1,9 @@
 package dev.base.utils.assist
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import dev.base.R
+import dev.base.databinding.BaseContentViewBinding
+import dev.utils.app.ViewUtils
 
 /**
  * detail: DevBase ContentView 填充辅助类
@@ -16,80 +14,25 @@ import dev.base.R
  */
 class DevBaseContentAssist {
 
+    // Content View Binding
+    private lateinit var binding: BaseContentViewBinding
+
     // 是否安全处理 ( 建议跟随 BuildConfig.DEBUG 取反处理, 开发阶段抛出异常 )
     private var mSafe = false
 
-    // 最外层 Layout
-    @JvmField
-    var rootLinear: LinearLayout? = null
-
-    // StatusBar Layout
-    @JvmField
-    var statusBarLinear: LinearLayout? = null
-
-    // Title Layout
-    @JvmField
-    var titleLinear: LinearLayout? = null
-
-    // Body Layout
-    @JvmField
-    var bodyFrame: FrameLayout? = null
-
-    // 填充容器
-    @JvmField
-    var contentLinear: LinearLayout? = null
-
-    // 状态布局容器
-    @JvmField
-    var stateLinear: LinearLayout? = null
-
-    // 悬浮容器
-    @JvmField
-    var floatFrame: FrameLayout? = null
-
-    fun bind(activity: Activity): DevBaseContentAssist {
-        // R.layout.base_content_view
-        this.rootLinear = activity.findViewById(R.id.vid_root_ll)
-        this.statusBarLinear = activity.findViewById(R.id.vid_status_bar_ll)
-        this.titleLinear = activity.findViewById(R.id.vid_title_ll)
-        this.bodyFrame = activity.findViewById(R.id.vid_body_fl)
-        this.contentLinear = activity.findViewById(R.id.vid_content_ll)
-        this.stateLinear = activity.findViewById(R.id.vid_state_ll)
-        this.floatFrame = activity.findViewById(R.id.vid_float_fl)
-        return this
-    }
-
-    fun bind(view: View?): DevBaseContentAssist {
-        if (view != null) {
-            // R.layout.base_content_view
-            this.rootLinear = view.findViewById(R.id.vid_root_ll)
-            this.statusBarLinear = view.findViewById(R.id.vid_status_bar_ll)
-            this.titleLinear = view.findViewById(R.id.vid_title_ll)
-            this.bodyFrame = view.findViewById(R.id.vid_body_fl)
-            this.contentLinear = view.findViewById(R.id.vid_content_ll)
-            this.stateLinear = view.findViewById(R.id.vid_state_ll)
-            this.floatFrame = view.findViewById(R.id.vid_float_fl)
+    fun bind(newBinding: BaseContentViewBinding) {
+        try {
+            // 如果已经初始化了则先移除
+            if (::binding.isInitialized) {
+                ViewUtils.removeSelfFromParent(binding.root)
+            }
+        } catch (_: Exception) {
         }
-        return this
+        this.binding = newBinding
     }
 
-    fun bind(
-        rootLinear: LinearLayout?,
-        statusBarLinear: LinearLayout?,
-        titleLinear: LinearLayout?,
-        bodyFrame: FrameLayout?,
-        contentLinear: LinearLayout?,
-        stateLinear: LinearLayout?,
-        floatFrame: FrameLayout?,
-    ): DevBaseContentAssist {
-        this.rootLinear = rootLinear
-        this.statusBarLinear = statusBarLinear
-        this.titleLinear = titleLinear
-        this.bodyFrame = bodyFrame
-        this.contentLinear = contentLinear
-        this.stateLinear = stateLinear
-        this.floatFrame = floatFrame
-        return this
+    fun bindingRoot(): View {
+        return binding.root
     }
 
     // =============
@@ -113,7 +56,7 @@ class DevBaseContentAssist {
     }
 
     // ==========
-    // = 显隐操作 =
+    // = 显示操作 =
     // ==========
 
     /**
@@ -121,7 +64,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleStatusBarLinear(): DevBaseContentAssist {
-        return setVisibility(true, statusBarLinear)
+        return setVisibility(true, binding.statusBarLinear)
     }
 
     /**
@@ -129,7 +72,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleTitleLinear(): DevBaseContentAssist {
-        return setVisibility(true, titleLinear)
+        return setVisibility(true, binding.titleLinear)
     }
 
     /**
@@ -137,7 +80,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleBodyFrame(): DevBaseContentAssist {
-        return setVisibility(true, bodyFrame)
+        return setVisibility(true, binding.bodyFrame)
     }
 
     /**
@@ -145,7 +88,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleContentLinear(): DevBaseContentAssist {
-        return setVisibility(true, contentLinear)
+        return setVisibility(true, binding.contentLinear)
     }
 
     /**
@@ -153,7 +96,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleStateLinear(): DevBaseContentAssist {
-        return setVisibility(true, stateLinear)
+        return setVisibility(true, binding.stateLinear)
     }
 
     /**
@@ -161,17 +104,19 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleFloatFrame(): DevBaseContentAssist {
-        return setVisibility(true, floatFrame)
+        return setVisibility(true, binding.floatFrame)
     }
 
-    // =
+    // ==========
+    // = 隐藏操作 =
+    // ==========
 
     /**
      * 隐藏 statusBarLinear
      * @return [DevBaseContentAssist]
      */
     fun goneStatusBarLinear(): DevBaseContentAssist {
-        return setVisibility(false, statusBarLinear)
+        return setVisibility(false, binding.statusBarLinear)
     }
 
     /**
@@ -179,7 +124,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneTitleLinear(): DevBaseContentAssist {
-        return setVisibility(false, titleLinear)
+        return setVisibility(false, binding.titleLinear)
     }
 
     /**
@@ -187,7 +132,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneBodyFrame(): DevBaseContentAssist {
-        return setVisibility(false, bodyFrame)
+        return setVisibility(false, binding.bodyFrame)
     }
 
     /**
@@ -195,7 +140,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneContentLinear(): DevBaseContentAssist {
-        return setVisibility(false, contentLinear)
+        return setVisibility(false, binding.contentLinear)
     }
 
     /**
@@ -203,7 +148,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneStateLinear(): DevBaseContentAssist {
-        return setVisibility(false, stateLinear)
+        return setVisibility(false, binding.stateLinear)
     }
 
     /**
@@ -211,7 +156,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneFloatFrame(): DevBaseContentAssist {
-        return setVisibility(false, floatFrame)
+        return setVisibility(false, binding.floatFrame)
     }
 
     // ============
@@ -223,7 +168,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addRootView(view: View?): DevBaseContentAssist {
-        return addView(rootLinear, view, -1)
+        return addView(binding.rootLinear, view, -1)
     }
 
     /**
@@ -234,7 +179,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(rootLinear, view, index)
+        return addView(binding.rootLinear, view, index)
     }
 
     /**
@@ -245,7 +190,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(rootLinear, view, -1, params)
+        return addView(binding.rootLinear, view, -1, params)
     }
 
     /**
@@ -257,7 +202,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(rootLinear, view, index, params)
+        return addView(binding.rootLinear, view, index, params)
     }
 
     /**
@@ -265,7 +210,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addStatusBarView(view: View?): DevBaseContentAssist {
-        return addView(statusBarLinear, view, -1)
+        return addView(binding.statusBarLinear, view, -1)
     }
 
     /**
@@ -276,7 +221,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(statusBarLinear, view, index)
+        return addView(binding.statusBarLinear, view, index)
     }
 
     /**
@@ -287,7 +232,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(statusBarLinear, view, -1, params)
+        return addView(binding.statusBarLinear, view, -1, params)
     }
 
     /**
@@ -299,7 +244,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(statusBarLinear, view, index, params)
+        return addView(binding.statusBarLinear, view, index, params)
     }
 
     /**
@@ -307,7 +252,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addTitleView(view: View?): DevBaseContentAssist {
-        return addView(titleLinear, view, -1)
+        return addView(binding.titleLinear, view, -1)
     }
 
     /**
@@ -318,7 +263,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(titleLinear, view, index)
+        return addView(binding.titleLinear, view, index)
     }
 
     /**
@@ -329,7 +274,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(titleLinear, view, -1, params)
+        return addView(binding.titleLinear, view, -1, params)
     }
 
     /**
@@ -341,7 +286,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(titleLinear, view, index, params)
+        return addView(binding.titleLinear, view, index, params)
     }
 
     /**
@@ -349,7 +294,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addBodyView(view: View?): DevBaseContentAssist {
-        return addView(bodyFrame, view, -1)
+        return addView(binding.bodyFrame, view, -1)
     }
 
     /**
@@ -360,7 +305,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(bodyFrame, view, index)
+        return addView(binding.bodyFrame, view, index)
     }
 
     /**
@@ -371,7 +316,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(bodyFrame, view, -1, params)
+        return addView(binding.bodyFrame, view, -1, params)
     }
 
     /**
@@ -383,7 +328,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(bodyFrame, view, index, params)
+        return addView(binding.bodyFrame, view, index, params)
     }
 
     /**
@@ -391,7 +336,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addContentView(view: View?): DevBaseContentAssist {
-        return addView(contentLinear, view, -1)
+        return addView(binding.contentLinear, view, -1)
     }
 
     /**
@@ -402,7 +347,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(contentLinear, view, index)
+        return addView(binding.contentLinear, view, index)
     }
 
     /**
@@ -413,7 +358,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(contentLinear, view, -1, params)
+        return addView(binding.contentLinear, view, -1, params)
     }
 
     /**
@@ -425,7 +370,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(contentLinear, view, index, params)
+        return addView(binding.contentLinear, view, index, params)
     }
 
     /**
@@ -433,7 +378,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addStateView(view: View?): DevBaseContentAssist {
-        return addView(stateLinear, view, -1)
+        return addView(binding.stateLinear, view, -1)
     }
 
     /**
@@ -444,7 +389,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(stateLinear, view, index)
+        return addView(binding.stateLinear, view, index)
     }
 
     /**
@@ -455,7 +400,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(stateLinear, view, -1, params)
+        return addView(binding.stateLinear, view, -1, params)
     }
 
     /**
@@ -467,7 +412,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(stateLinear, view, index, params)
+        return addView(binding.stateLinear, view, index, params)
     }
 
     /**
@@ -475,7 +420,7 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun addFloatView(view: View?): DevBaseContentAssist {
-        return addView(floatFrame, view, -1)
+        return addView(binding.floatFrame, view, -1)
     }
 
     /**
@@ -486,7 +431,7 @@ class DevBaseContentAssist {
         view: View?,
         index: Int
     ): DevBaseContentAssist {
-        return addView(floatFrame, view, index)
+        return addView(binding.floatFrame, view, index)
     }
 
     /**
@@ -497,7 +442,7 @@ class DevBaseContentAssist {
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(floatFrame, view, -1, params)
+        return addView(binding.floatFrame, view, -1, params)
     }
 
     /**
@@ -509,7 +454,7 @@ class DevBaseContentAssist {
         index: Int,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
-        return addView(floatFrame, view, index, params)
+        return addView(binding.floatFrame, view, index, params)
     }
 
     // ==========
