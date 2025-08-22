@@ -1,9 +1,9 @@
-package dev.base.simple.interfaces
+package dev.base.simple.contracts.factory
 
 /**
  * detail: 敏捷简化开发扩展工厂类
  * @author Ttt
- * 具体查看 [ISimpleAgile]
+ * 具体查看 [dev.base.simple.contracts.ISimpleAgile]
  */
 interface SimpleAgileFactory<SimpleTClass> {
 

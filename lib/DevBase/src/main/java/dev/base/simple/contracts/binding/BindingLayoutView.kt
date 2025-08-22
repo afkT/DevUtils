@@ -1,4 +1,4 @@
-package dev.base.simple.interfaces.binding
+package dev.base.simple.contracts.binding
 
 import android.view.LayoutInflater
 import android.view.View

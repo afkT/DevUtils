@@ -1,4 +1,4 @@
-package dev.base.simple.agile.factory
+package dev.base.simple.contracts.factory
 
 // ============
 // = Activity =

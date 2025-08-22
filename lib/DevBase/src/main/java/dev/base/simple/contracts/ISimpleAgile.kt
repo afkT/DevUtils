@@ -1,4 +1,4 @@
-package dev.base.simple.interfaces
+package dev.base.simple.contracts
 
 import dev.base.core.arch.mvvm.DevBaseMVVMActivity
 import dev.base.core.arch.mvvm.DevBaseMVVMFragment

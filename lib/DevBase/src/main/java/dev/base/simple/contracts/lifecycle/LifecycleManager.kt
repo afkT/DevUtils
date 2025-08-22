@@ -1,4 +1,4 @@
-package dev.base.simple.interfaces.lifecycle
+package dev.base.simple.contracts.lifecycle
 
 import dev.utils.app.assist.lifecycle.current.ThisActivityLifecycleAssist
 

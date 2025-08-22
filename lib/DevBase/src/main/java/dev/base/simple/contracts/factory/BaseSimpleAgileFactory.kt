@@ -1,6 +1,6 @@
-package dev.base.simple.agile.factory
+package dev.base.simple.contracts.factory
 
-import dev.base.simple.interfaces.SimpleAgileFactory
+import dev.base.simple.contracts.factory.SimpleAgileFactory
 
 open class BaseSimpleAgileFactory<SimpleTClass>(
     private val simple_Init: ((SimpleTClass) -> Unit)?,

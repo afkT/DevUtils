@@ -1,4 +1,4 @@
-package dev.base.simple.agile
+package dev.base.simple
 
 /**
  * detail: Activity ViewModel 创建类型
