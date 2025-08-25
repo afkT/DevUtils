@@ -16,7 +16,7 @@ import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
-import dev.expand.engine.image.display
+import dev.engine.extensions.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 

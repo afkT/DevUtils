@@ -1,4 +1,4 @@
-package dev.expand.engine.log
+package dev.engine.extensions.log
 
 import dev.engine.DevEngine
 import dev.engine.log.ILogEngine

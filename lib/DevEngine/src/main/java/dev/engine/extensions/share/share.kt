@@ -1,4 +1,4 @@
-package dev.expand.engine.share
+package dev.engine.extensions.share
 
 import android.app.Activity
 import android.app.Application

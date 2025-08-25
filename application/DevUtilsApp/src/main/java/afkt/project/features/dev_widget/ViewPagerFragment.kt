@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import dev.base.simple.extensions.asFragment
-import dev.expand.engine.log.log_dTag
-import dev.expand.engine.toast.toast_showShort
+import dev.engine.extensions.log.log_dTag
+import dev.engine.extensions.toast.toast_showShort
 import dev.widget.custom.CustomViewPager
 
 /**

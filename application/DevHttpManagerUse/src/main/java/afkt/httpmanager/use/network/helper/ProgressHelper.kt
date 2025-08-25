@@ -1,9 +1,9 @@
 package afkt.httpmanager.use.network.helper
 
 import com.google.gson.Gson
-import dev.engine.json.JSONConfig
-import dev.expand.engine.json.toJson
-import dev.expand.engine.log.*
+import dev.engine.core.json.JSONConfig
+import dev.engine.extensions.json.toJson
+import dev.engine.extensions.log.*
 import dev.http.progress.Progress
 import dev.utils.app.toast.ToastTintUtils
 

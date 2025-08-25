@@ -11,7 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
-import dev.expand.engine.image.display
+import dev.engine.extensions.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import dev.utils.app.TextViewUtils;
 
-import static dev.expand.engine.log.LogKt.log_dTag;
+import static dev.engine.extensions.log.LogKt.log_dTag;
 
 /**
  * detail: 计算字体宽度、高度

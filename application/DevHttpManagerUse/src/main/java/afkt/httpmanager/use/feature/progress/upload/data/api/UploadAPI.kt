@@ -3,7 +3,7 @@ package afkt.httpmanager.use.feature.progress.upload.data.api
 import afkt.httpmanager.use.network.HttpCore
 import afkt.httpmanager.use.network.helper.ProgressHelper
 import dev.DevHttpManager
-import dev.expand.engine.log.log_isPrintLog
+import dev.engine.extensions.log.log_isPrintLog
 import dev.http.manager.RetrofitBuilder
 import dev.http.manager.RetrofitOperation
 import dev.http.progress.Progress

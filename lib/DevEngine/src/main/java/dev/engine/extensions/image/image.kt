@@ -1,4 +1,4 @@
-package dev.expand.engine.image
+package dev.engine.extensions.image
 
 import android.content.Context
 import android.graphics.Bitmap

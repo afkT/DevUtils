@@ -1,4 +1,4 @@
-package dev.expand.engine.permission
+package dev.engine.extensions.permission
 
 import android.app.Activity
 import android.content.Context

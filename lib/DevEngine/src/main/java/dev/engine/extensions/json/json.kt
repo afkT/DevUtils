@@ -1,4 +1,4 @@
-package dev.expand.engine.json
+package dev.engine.extensions.json
 
 import dev.engine.DevEngine
 import dev.engine.json.IJSONEngine

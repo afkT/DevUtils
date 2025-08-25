@@ -1,6 +1,6 @@
 package dev.mvvm.base
 
-import dev.expand.engine.log.log_isPrintLog
+import dev.engine.extensions.log.log_isPrintLog
 import dev.mvvm.base.Config.intervalTime
 import dev.utils.app.ClickUtils
 

@@ -1,4 +1,4 @@
-package dev.expand.engine.analytics
+package dev.engine.extensions.analytics
 
 import android.app.Application
 import android.content.Context

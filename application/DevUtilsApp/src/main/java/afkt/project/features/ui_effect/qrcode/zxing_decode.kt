@@ -10,7 +10,7 @@ import android.os.Message
 import androidx.annotation.IntDef
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import dev.expand.engine.log.log_dTag
+import dev.engine.extensions.log.log_dTag
 import java.io.ByteArrayOutputStream
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

@@ -2,7 +2,7 @@ package afkt.project.features.ui_effect.gpu
 
 import android.content.Context
 import android.graphics.Bitmap
-import dev.expand.engine.log.log_eTag
+import dev.engine.extensions.log.log_eTag
 import dev.utils.common.CloseUtils
 import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter

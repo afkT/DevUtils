@@ -1,4 +1,4 @@
-package dev.expand.engine.compress
+package dev.engine.extensions.compress
 
 import dev.engine.DevEngine
 import dev.engine.compress.ICompressEngine

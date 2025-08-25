@@ -2,8 +2,8 @@ package afkt.httpmanager.use.network.builder
 
 import afkt.httpmanager.use.network.HttpCore
 import dev.capture.interceptor.SimpleInterceptor
-import dev.expand.engine.log.log_isPrintLog
-import dev.expand.engine.log.log_jsonTag
+import dev.engine.extensions.log.log_isPrintLog
+import dev.engine.extensions.log.log_jsonTag
 import dev.http.manager.OkHttpBuilder
 import dev.http.manager.RetrofitBuilder
 import okhttp3.OkHttpClient

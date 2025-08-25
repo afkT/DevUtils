@@ -2,7 +2,7 @@ package dev.mvvm.binding.listener
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import dev.expand.engine.log.log_dTag
+import dev.engine.extensions.log.log_dTag
 import dev.mvvm.base.Config
 import dev.mvvm.command.BindingConsumer
 import dev.utils.app.ClickUtils

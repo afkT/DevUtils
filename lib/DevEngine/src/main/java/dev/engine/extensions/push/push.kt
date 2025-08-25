@@ -1,4 +1,4 @@
-package dev.expand.engine.push
+package dev.engine.extensions.push
 
 import android.app.Application
 import android.content.Context

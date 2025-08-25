@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
-import dev.expand.engine.image.display
+import dev.engine.extensions.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils

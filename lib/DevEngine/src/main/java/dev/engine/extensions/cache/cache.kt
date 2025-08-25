@@ -1,4 +1,4 @@
-package dev.expand.engine.cache
+package dev.engine.extensions.cache
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable

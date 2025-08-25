@@ -12,7 +12,7 @@ import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
-import dev.expand.engine.image.display
+import dev.engine.extensions.image.display
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 

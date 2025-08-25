@@ -1,4 +1,4 @@
-package dev.expand.engine.media
+package dev.engine.extensions.media
 
 import android.app.Activity
 import android.content.Context

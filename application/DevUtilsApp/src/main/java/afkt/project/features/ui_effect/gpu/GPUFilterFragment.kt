@@ -19,7 +19,7 @@ import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.base.simple.extensions.asFragment
-import dev.expand.engine.log.log_eTag
+import dev.engine.extensions.log.log_eTag
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils

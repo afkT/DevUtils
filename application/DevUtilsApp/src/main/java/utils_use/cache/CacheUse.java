@@ -6,7 +6,7 @@ import java.io.Serializable;
 import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
 
-import static dev.expand.engine.log.LogKt.log_dTag;
+import static dev.engine.extensions.log.LogKt.log_dTag;
 
 /**
  * detail: 缓存使用方法

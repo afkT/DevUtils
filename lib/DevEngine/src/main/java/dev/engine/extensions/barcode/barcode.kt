@@ -1,11 +1,10 @@
-package dev.expand.engine.barcode
+package dev.engine.extensions.barcode
 
 import android.graphics.Bitmap
 import dev.engine.DevEngine
 import dev.engine.barcode.IBarCodeEngine
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.barcode.listener.BarCodeEncodeCallback
-import kotlin.Throws
 
 // ==========================================================
 // = IBarCodeEngine<EngineConfig, EngineItem, EngineResult> =

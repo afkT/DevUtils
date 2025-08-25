@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
-import dev.expand.engine.image.display
+import dev.engine.extensions.image.display
 import dev.mvvm.utils.image.toImageConfig
 import dev.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
