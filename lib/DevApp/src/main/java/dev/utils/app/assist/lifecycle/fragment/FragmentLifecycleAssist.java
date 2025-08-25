@@ -9,8 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.lang.ref.WeakReference;
+
 import dev.utils.LogPrintUtils;
-import dev.utils.common.able.Getable;
 
 /**
  * detail: Fragment 生命周期辅助类
@@ -22,20 +23,16 @@ import dev.utils.common.able.Getable;
 public final class FragmentLifecycleAssist {
 
     // 日志 TAG
-    private static final String                       TAG = FragmentLifecycleAssist.class.getSimpleName();
-    // FragmentManager Getable
-    private final        Getable.Get<FragmentManager> mGetAble;
+    private static final String                         TAG = FragmentLifecycleAssist.class.getSimpleName();
+    // FragmentManager
+    private final        WeakReference<FragmentManager> mManager;
 
     // ==========
     // = 构造函数 =
     // ==========
 
     public FragmentLifecycleAssist(final FragmentManager manager) {
-        this.mGetAble = () -> manager;
-    }
-
-    public FragmentLifecycleAssist(final Getable.Get<FragmentManager> getAble) {
-        this.mGetAble = getAble;
+        this.mManager = new WeakReference<>(manager);
     }
 
     // =============
@@ -80,12 +77,10 @@ public final class FragmentLifecycleAssist {
     public FragmentLifecycleAssist registerFragmentLifecycleCallbacks(final boolean recursive) {
         // 先移除监听
         unregisterFragmentLifecycleCallbacks();
-        if (mGetAble != null) {
-            try {
-                mGetAble.get().registerFragmentLifecycleCallbacks(FRAGMENT_LIFECYCLE, recursive);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "registerFragmentLifecycleCallbacks");
-            }
+        try {
+            mManager.get().registerFragmentLifecycleCallbacks(FRAGMENT_LIFECYCLE, recursive);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "registerFragmentLifecycleCallbacks");
         }
         return this;
     }
@@ -95,12 +90,10 @@ public final class FragmentLifecycleAssist {
      * @return {@link FragmentLifecycleAssist}
      */
     public FragmentLifecycleAssist unregisterFragmentLifecycleCallbacks() {
-        if (mGetAble != null) {
-            try {
-                mGetAble.get().unregisterFragmentLifecycleCallbacks(FRAGMENT_LIFECYCLE);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "unregisterFragmentLifecycleCallbacks");
-            }
+        try {
+            mManager.get().unregisterFragmentLifecycleCallbacks(FRAGMENT_LIFECYCLE);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "unregisterFragmentLifecycleCallbacks");
         }
         return this;
     }
