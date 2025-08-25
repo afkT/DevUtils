@@ -5,9 +5,9 @@ import afkt.retrofit.use.helper.AppResponse
 import afkt.retrofit.use.helper.PhotoBean
 import afkt.retrofit.use.helper.RetrofitAPI
 import afkt.retrofit.use.helper.ServiceException
-import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.retrofit.Notify
 import dev.retrofit.launchExecuteRequest
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 
 /**
  * detail: Request Repository

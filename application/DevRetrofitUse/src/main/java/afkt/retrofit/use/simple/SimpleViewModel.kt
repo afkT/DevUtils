@@ -5,8 +5,8 @@ import afkt.retrofit.use.helper.*
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.retrofit.Base
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import java.util.*
 
 /**

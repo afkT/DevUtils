@@ -29,6 +29,8 @@ import dev.capture.UrlFunctionGet
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
  * DevEnvironment Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/Environment
+ * DevDeprecated Api
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/README.md
  * DevJava Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
  */

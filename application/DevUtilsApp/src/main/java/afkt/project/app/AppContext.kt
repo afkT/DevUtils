@@ -12,9 +12,9 @@ import android.os.Process
 import android.view.View
 import android.webkit.WebSettings
 import dev.DevUtils
-import dev.simple.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
 import dev.engine.extensions.log.log_d
+import dev.simple.agile.assist.WebViewAssist
 import dev.utils.DevFinal
 import dev.utils.app.CrashUtils
 import dev.utils.app.CrashUtils.CrashCatchListener

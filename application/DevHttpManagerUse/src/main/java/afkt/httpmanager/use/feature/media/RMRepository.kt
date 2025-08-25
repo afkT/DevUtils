@@ -6,8 +6,8 @@ import afkt.httpmanager.use.feature.media.data.model.MovieDetailBean
 import afkt.httpmanager.use.feature.media.data.model.PhotoBean
 import afkt.httpmanager.use.network.helper.ResponseHelper
 import afkt.httpmanager.use.network.model.ServiceException
-import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.retrofit.launchExecuteRequest
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 
 /**
  * detail: Retrofit Manager Request Repository
