@@ -21,7 +21,6 @@ inline fun <reified T : DevSimpleFragment<*, *>> Any?.asFragment(
     (this as? T)?.apply(action)
 }
 
-
 /**
  * 检查当前 Activity 是否为指定类型，如果是则执行回调
  * @param T 目标 Activity 类型，必须是 DevSimpleActivity 的子类

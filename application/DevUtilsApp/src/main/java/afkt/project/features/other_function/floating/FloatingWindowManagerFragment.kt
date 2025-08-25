@@ -118,7 +118,7 @@ internal class Utils private constructor() {
 
     // 悬浮窗触摸辅助类实现
     private val mTouchAssist: IFloatingTouch by lazy {
-        object : DevFloatingTouchIMPL() {
+        object : DevFloatingTouchImpl() {
             override fun updateViewLayout(
                 view: View?,
                 dx: Int,

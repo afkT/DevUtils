@@ -7,7 +7,7 @@ import android.view.View;
  * detail: DevApp 悬浮窗触摸辅助类实现
  * @author Ttt
  */
-public abstract class DevFloatingTouchIMPL
+public abstract class DevFloatingTouchImpl
         implements IFloatingTouch {
 
     // ==========

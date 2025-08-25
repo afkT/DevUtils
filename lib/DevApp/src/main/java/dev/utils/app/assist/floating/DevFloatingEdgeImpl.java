@@ -11,7 +11,7 @@ import dev.utils.app.ViewUtils;
  * detail: DevApp 悬浮窗边缘检测辅助类实现
  * @author Ttt
  */
-public class DevFloatingEdgeIMPL
+public class DevFloatingEdgeImpl
         implements IFloatingEdge {
 
     // 最大显示高度
@@ -65,9 +65,9 @@ public class DevFloatingEdgeIMPL
     /**
      * 设置 View 最大显示高度
      * @param maxHeight View 最大显示高度
-     * @return {@link DevFloatingEdgeIMPL}
+     * @return {@link DevFloatingEdgeImpl}
      */
-    public DevFloatingEdgeIMPL setMaxHeight(final int maxHeight) {
+    public DevFloatingEdgeImpl setMaxHeight(final int maxHeight) {
         this.mMaxHeight = maxHeight;
         return this;
     }
@@ -83,9 +83,9 @@ public class DevFloatingEdgeIMPL
     /**
      * 设置向上边距
      * @param margin 向上边距
-     * @return {@link DevFloatingEdgeIMPL}
+     * @return {@link DevFloatingEdgeImpl}
      */
-    public DevFloatingEdgeIMPL setMarginTop(final int margin) {
+    public DevFloatingEdgeImpl setMarginTop(final int margin) {
         this.mMarginTop = margin;
         return this;
     }
@@ -101,9 +101,9 @@ public class DevFloatingEdgeIMPL
     /**
      * 设置向下边距
      * @param margin 向下边距
-     * @return {@link DevFloatingEdgeIMPL}
+     * @return {@link DevFloatingEdgeImpl}
      */
-    public DevFloatingEdgeIMPL setMarginBottom(final int margin) {
+    public DevFloatingEdgeImpl setMarginBottom(final int margin) {
         this.mMarginBottom = margin;
         return this;
     }
@@ -114,17 +114,17 @@ public class DevFloatingEdgeIMPL
 
     /**
      * 设置向上边距为状态栏高度
-     * @return {@link DevFloatingEdgeIMPL}
+     * @return {@link DevFloatingEdgeImpl}
      */
-    public DevFloatingEdgeIMPL setStatusBarHeightMargin() {
+    public DevFloatingEdgeImpl setStatusBarHeightMargin() {
         return setMarginTop(BarUtils.getStatusBarHeight2());
     }
 
     /**
      * 设置向下边距为底部导航栏高度
-     * @return {@link DevFloatingEdgeIMPL}
+     * @return {@link DevFloatingEdgeImpl}
      */
-    public DevFloatingEdgeIMPL setNavigationBarHeightMargin() {
+    public DevFloatingEdgeImpl setNavigationBarHeightMargin() {
         if (ScreenUtils.checkDeviceHasNavigationBar()) {
             return setMarginBottom(ScreenUtils.getNavigationBarHeight());
         }

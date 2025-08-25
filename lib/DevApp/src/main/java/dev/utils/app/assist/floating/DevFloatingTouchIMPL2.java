@@ -14,7 +14,7 @@ public class DevFloatingTouchIMPL2
         implements IFloatingTouch {
 
     public DevFloatingTouchIMPL2() {
-        this(new DevFloatingEdgeIMPL());
+        this(new DevFloatingEdgeImpl());
     }
 
     public DevFloatingTouchIMPL2(final IFloatingEdge floatingEdge) {

@@ -14,7 +14,6 @@ class ServiceException(
     errorMessage: String?
 ) : Exception(errorMessage.orEmpty())
 
-
 // ==============
 // = 通用响应模型 =
 // ==============

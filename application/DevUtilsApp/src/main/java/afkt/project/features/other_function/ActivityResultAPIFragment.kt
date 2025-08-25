@@ -127,7 +127,6 @@ class ActivityResultAPIViewModel : AppViewModel() {
     // 跳转回传辅助类
     private var intentResultAssist: ActivityResultAssist<Intent, ActivityResult>? = null
 
-
     /**
      * 初始化【跳转 Intent】回传处理
      */

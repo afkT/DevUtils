@@ -9,7 +9,6 @@
             type="afkt.project.features.ui_effect.FlexboxViewModel" />
     </data>
 
-
     <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
 
         <androidx.appcompat.widget.AppCompatButton

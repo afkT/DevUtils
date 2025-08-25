@@ -229,7 +229,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
 
     // 悬浮窗触摸辅助类实现
     private val mTouchAssist = DevFloatingTouchIMPL2().apply {
-        (floatingEdge as? DevFloatingEdgeIMPL)?.let { edge ->
+        (floatingEdge as? DevFloatingEdgeImpl)?.let { edge ->
             edge.setStatusBarHeightMargin()
             edge.setNavigationBarHeightMargin()
         }

@@ -173,7 +173,6 @@ public final class ResourceColor {
         return _getStringColor(colorStr, defaultValue);
     }
 
-
     // ==========
     // = 内部方法 =
     // ==========
