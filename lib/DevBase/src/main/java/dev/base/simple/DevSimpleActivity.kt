@@ -1,20 +1,19 @@
-package dev.simple.app
+package dev.base.simple
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.interfaces.BindingActivityView
-import dev.simple.app.base.simple.factory.SimpleActivityIMPL
-import dev.simple.app.controller.ui.theme.ActivityUITheme
-import dev.simple.app.extension.mvvm.BaseMVVMActivity
+import androidx.lifecycle.ViewModel
+import dev.base.simple.contracts.binding.BindingActivityView
+import dev.base.simple.contracts.factory.SimpleActivityIMPL
+import dev.base.simple.mvvm.DevSimpleMVVMActivity
 
 /**
- * detail: Base App MVVM Activity
+ * detail: Simple MVVM Activity
  * @author Ttt
  * 如有额外参数等可统一在此基类增加, 避免污染底层基类过于复杂、混乱
  * 使用方法【统一继承该类即可】
  */
-abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
-    BaseMVVMActivity<VDB, VM> {
+abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
+    DevSimpleMVVMActivity<VDB, VM> {
 
     // ==========
     // = 构造函数 =
@@ -24,13 +23,13 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 //        bindLayoutId: Int,
 //        bindViewModelId: Int,
 //        vmType: ActivityVMType = ActivityVMType.ACTIVITY
-//    ) : super(bindLayoutId, bindViewModelId, vmType)
+//    ) : super(bindLayoutId, null, bindViewModelId, vmType)
 //
 //    constructor(
 //        bindLayoutView: BindingActivityView?,
 //        bindViewModelId: Int,
 //        vmType: ActivityVMType = ActivityVMType.ACTIVITY
-//    ) : super(bindLayoutView, bindViewModelId, vmType)
+//    ) : super(0, bindLayoutView, bindViewModelId, vmType)
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -50,10 +49,9 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
-    ) : super(bindLayoutId, bindViewModelId, vmType) {
+    ) : super(bindLayoutId, null, bindViewModelId, vmType) {
         simpleFactory = SimpleActivityIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+            simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
 
@@ -65,10 +63,9 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
-    ) : super(bindLayoutView, bindViewModelId, vmType) {
+    ) : super(0, bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleActivityIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+            simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
 
@@ -92,15 +89,5 @@ abstract class BaseAppActivity<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 
     override fun simplePreLoad() {
         simpleFactory.simplePreLoad(this)
-    }
-
-    // ===========================
-    // = 敏捷简化开发扩展 - UITheme =
-    // ===========================
-
-    override fun createActivityUITheme(theme: ActivityUITheme): ActivityUITheme {
-        return super.createActivityUITheme(
-            simpleFactory.simpleUITheme(theme)
-        )
     }
 }

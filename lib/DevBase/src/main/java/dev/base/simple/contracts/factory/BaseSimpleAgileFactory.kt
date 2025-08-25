@@ -1,7 +1,5 @@
 package dev.base.simple.contracts.factory
 
-import dev.base.simple.contracts.factory.SimpleAgileFactory
-
 open class BaseSimpleAgileFactory<SimpleTClass>(
     private val simple_Init: ((SimpleTClass) -> Unit)?,
     private val simple_Start: ((SimpleTClass) -> Unit)?,

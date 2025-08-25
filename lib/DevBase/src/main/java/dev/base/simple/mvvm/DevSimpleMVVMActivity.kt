@@ -1,51 +1,35 @@
-package dev.simple.app.base
+package dev.base.simple.mvvm
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModel
 import dev.DevUtils
-import dev.base.expand.content.DevBaseContentMVVMActivity
-import dev.simple.app.BaseAppViewModel
-import dev.simple.app.base.lifecycle.IActivityLifecycle
-import dev.simple.app.base.lifecycle.LifecycleManager
-import dev.simple.app.base.simple.ISimpleAgile
-import dev.simple.app.controller.BaseKeyEventController
-import dev.simple.app.controller.BaseUIController
-import dev.simple.app.controller.BaseVMController
-import dev.simple.app.controller.interfaces.IController
-import dev.utils.app.ActivityUtils
+import dev.base.core.arch.mvvm.DevBaseMVVMActivity
+import dev.base.simple.ActivityVMType
+import dev.base.simple.contracts.ISimpleAgile
+import dev.base.simple.contracts.binding.BindingActivityView
+import dev.base.simple.contracts.lifecycle.IActivityLifecycle
+import dev.base.simple.contracts.lifecycle.LifecycleManager
 import dev.utils.common.ClassUtils
 
 /**
- * detail: Base MVVM Activity
+ * detail: DevBase MVVM Simple Activity
  * @author Ttt
+ * 在 [DevBaseMVVMActivity] 基础上实现 ViewModel 初始化
+ * 以及进行敏捷简化开发扩展接口
  */
-abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
+abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
+    private val bindLayoutId: Int = 0,
+    private val bindLayoutView: BindingActivityView? = null,
+    private val bindViewModelId: Int = 0,
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
-) : DevBaseContentMVVMActivity<VDB, VM>(),
-    IController,
+) : DevBaseMVVMActivity<VDB, VM>(),
     ISimpleAgile,
     IActivityLifecycle {
 
-    // Activity
-    open val mActivity: AppCompatActivity get() = this
-
-    // 基础 ViewModel 控制封装
-    private val vmController: BaseVMController<VDB, VM> = BaseVMController(this)
-
-    // 基础 UI 控制封装
-    open val uiController: BaseUIController by lazy {
-        BaseUIController(contentAssist, this, this)
-    }
-
-    // 基础 KeyEvent 物理按键 控制封装
-    open val keyEventController = BaseKeyEventController()
-
-    // =
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        // 初始化 UI 样式
-        uiController.initialize(this)
         super.onCreate(savedInstanceState)
         // 是否监听生命周期 ( 实现了则表示需要监听 )
         activityLifecycleIMPL()?.let { impl ->
@@ -60,8 +44,6 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
         simpleStart()
         // 初始化 ViewModel
         initViewModel()
-        // 添加基础骨架 View
-        uiController.addSkeletonView(this)
         // 简化预加载
         simplePreLoad()
         // 预加载方法
@@ -122,44 +104,36 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private fun innerViewModel(vmObject: VM) {
         try {
             viewModel = vmObject
-            lifecycle.addObserver(vmObject)
-            // 初始化 ViewModel 属性值
-            vmController.initialize(
-                binding = binding,
-                viewModel = vmObject,
-                uiController = uiController,
-                keyEventController = keyEventController
-            )
+            if (vmObject is LifecycleObserver) {
+                lifecycle.addObserver(vmObject)
+            }
         } catch (e: Exception) {
             assist.printLog(e, "innerViewModel")
         }
+        try {
+            // 关联 ViewModel 对象值
+            binding.setVariable(bindViewModelId, viewModel)
+        } catch (_: Exception) {
+        }
     }
 
-    // =====================
-    // = override activity =
-    // =====================
-
-    @Deprecated("deprecated onBackPressed()")
-    override fun onBackPressed() {
-        // 返回键拦截监听
-        if (keyEventController.backIntercept?.intercept() == true) {
-            return
-        }
-        // 返回键退出 App 拦截监听
-        if (keyEventController.exitBackIntercept?.intercept() == true) {
-            return
-        }
-        super.onBackPressed()
-    }
-
-    // ==========
-    // = 快捷方法 =
-    // ==========
+    // ==================
+    // = IDevBaseLayout =
+    // ==================
 
     /**
-     * 关闭当前 Activity
+     * 获取 Layout Id ( 用于 contentLinear addView )
+     * @return Layout Id
      */
-    fun finishActivity() {
-        ActivityUtils.getManager().finishActivity(this)
+    override fun baseLayoutId(): Int {
+        return bindLayoutId
+    }
+
+    /**
+     * 获取 Layout View ( 用于 contentLinear addView )
+     * @return Layout View
+     */
+    override fun baseLayoutView(): View? {
+        return bindLayoutView?.bind(this, layoutInflater)
     }
 }

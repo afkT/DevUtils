@@ -1,20 +1,17 @@
-package dev.simple.app
+package dev.base.simple
 
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.interfaces.BindingFragmentView
-import dev.simple.app.base.simple.factory.SimpleFragmentIMPL
-import dev.simple.app.controller.ui.theme.FragmentUITheme
-import dev.simple.app.extension.mvvm.BaseMVVMFragment
+import androidx.lifecycle.ViewModel
+import dev.base.simple.contracts.binding.BindingFragmentView
+import dev.base.simple.contracts.factory.SimpleFragmentIMPL
+import dev.base.simple.mvvm.DevSimpleMVVMFragment
 
 /**
- * detail: Base App MVVM Fragment
+ * detail: Simple MVVM Fragment
  * @author Ttt
- * 如有额外参数等可统一在此基类增加, 避免污染底层基类过于复杂、混乱
- * 使用方法【统一继承该类即可】
  */
-abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
-    BaseMVVMFragment<VDB, VM> {
+abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
+    DevSimpleMVVMFragment<VDB, VM> {
 
     // ==========
     // = 构造函数 =
@@ -24,13 +21,13 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 //        bindLayoutId: Int,
 //        bindViewModelId: Int,
 //        vmType: FragmentVMType = FragmentVMType.FRAGMENT
-//    ) : super(bindLayoutId, bindViewModelId, vmType)
+//    ) : super(bindLayoutId, null, bindViewModelId, vmType)
 //
 //    constructor(
 //        bindLayoutView: BindingFragmentView,
 //        bindViewModelId: Int,
 //        vmType: FragmentVMType = FragmentVMType.FRAGMENT
-//    ) : super(bindLayoutView, bindViewModelId, vmType)
+//    ) : super(0, bindLayoutView, bindViewModelId, vmType)
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -50,10 +47,9 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
-    ) : super(bindLayoutId, bindViewModelId, vmType) {
+    ) : super(bindLayoutId, null, bindViewModelId, vmType) {
         simpleFactory = SimpleFragmentIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+            simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
 
@@ -65,10 +61,9 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((FragmentUITheme) -> FragmentUITheme)? = null
-    ) : super(bindLayoutView, bindViewModelId, vmType) {
+    ) : super(0, bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleFragmentIMPL.of(
-            simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+            simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
 
@@ -92,15 +87,5 @@ abstract class BaseAppFragment<VDB : ViewDataBinding, VM : BaseAppViewModel> :
 
     override fun simplePreLoad() {
         simpleFactory.simplePreLoad(this)
-    }
-
-    // ===========================
-    // = 敏捷简化开发扩展 - UITheme =
-    // ===========================
-
-    override fun createFragmentUITheme(theme: FragmentUITheme): FragmentUITheme {
-        return super.createFragmentUITheme(
-            simpleFactory.simpleUITheme(theme)
-        )
     }
 }

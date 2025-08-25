@@ -1,43 +1,30 @@
-package dev.simple.app.base
+package dev.base.simple.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModel
 import dev.DevUtils
-import dev.base.expand.content.DevBaseContentMVVMFragment
-import dev.simple.app.BaseAppViewModel
-import dev.simple.app.base.simple.ISimpleAgile
-import dev.simple.app.controller.BaseUIController
-import dev.simple.app.controller.BaseVMController
-import dev.simple.app.controller.interfaces.IController
-import dev.utils.app.ActivityUtils
+import dev.base.core.arch.mvvm.DevBaseMVVMFragment
+import dev.base.simple.FragmentVMType
+import dev.base.simple.contracts.ISimpleAgile
+import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.utils.common.ClassUtils
 
 /**
- * detail: Base MVVM Fragment
+ * detail: DevBase MVVM Simple Fragment
  * @author Ttt
  */
-abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
+abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
+    private val bindLayoutId: Int = 0,
+    private val bindLayoutView: BindingFragmentView? = null,
+    private val bindViewModelId: Int = 0,
     private val vmType: FragmentVMType = FragmentVMType.FRAGMENT
-) : DevBaseContentMVVMFragment<VDB, VM>(),
-    IController,
+) : DevBaseMVVMFragment<VDB, VM>(),
     ISimpleAgile {
-
-    // Activity
-    open val mActivity: FragmentActivity get() = requireActivity()
-
-    // 基础 ViewModel 控制封装
-    private val vmController: BaseVMController<VDB, VM> = BaseVMController(this)
-
-    // 基础 UI 控制封装
-    open val uiController: BaseUIController by lazy {
-        BaseUIController(contentAssist, this, this)
-    }
-
-    // =
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +38,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
         innerInitialize()
         // 内部初始化后开始流程调用
         simpleStart()
-        return mContentView
+        return contentAssist.bindingRoot()
     }
 
     override fun onViewCreated(
@@ -61,8 +48,6 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
         super.onViewCreated(view, savedInstanceState)
         // 初始化 ViewModel
         initViewModel()
-        // 添加基础骨架 View
-        uiController.addSkeletonView(context)
         // 简化预加载
         simplePreLoad()
         // 预加载方法
@@ -131,27 +116,36 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseAppViewModel>(
     private fun innerViewModel(vmObject: VM) {
         try {
             viewModel = vmObject
-            lifecycle.addObserver(vmObject)
-            // 初始化 ViewModel 属性值
-            vmController.initialize(
-                binding = binding,
-                viewModel = vmObject,
-                uiController = uiController,
-                keyEventController = null
-            )
+            if (vmObject is LifecycleObserver) {
+                lifecycle.addObserver(vmObject)
+            }
         } catch (e: Exception) {
             assist.printLog(e, "innerViewModel")
         }
+        try {
+            // 关联 ViewModel 对象值
+            binding.setVariable(bindViewModelId, viewModel)
+        } catch (_: Exception) {
+        }
     }
 
-    // ==========
-    // = 快捷方法 =
-    // ==========
+    // ==================
+    // = IDevBaseLayout =
+    // ==================
 
     /**
-     * 关闭当前 Activity
+     * 获取 Layout Id ( 用于 contentLinear addView )
+     * @return Layout Id
      */
-    fun finishActivity() {
-        ActivityUtils.getManager().finishActivity(activity)
+    override fun baseLayoutId(): Int {
+        return bindLayoutId
+    }
+
+    /**
+     * 获取 Layout View ( 用于 contentLinear addView )
+     * @return Layout View
+     */
+    override fun baseLayoutView(): View? {
+        return bindLayoutView?.bind(this, layoutInflater)
     }
 }
