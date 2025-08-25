@@ -13,7 +13,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
 import dev.utils.app.helper.quick.QuickHelper

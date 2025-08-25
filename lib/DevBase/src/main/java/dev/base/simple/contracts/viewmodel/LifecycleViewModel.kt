@@ -8,4 +8,8 @@ import androidx.lifecycle.ViewModel
  * @author Ttt
  */
 open class LifecycleViewModel : ViewModel(),
-    DefaultLifecycleObserver
+    DefaultLifecycleObserver {
+
+    // 日志 TAG
+    val TAG = this.javaClass.simpleName
+}

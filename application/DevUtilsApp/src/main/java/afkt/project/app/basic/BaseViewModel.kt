@@ -2,13 +2,13 @@ package afkt.project.app.basic
 
 import afkt.project.model.basic.IntentData
 import android.os.Bundle
-import dev.simple.app.BaseAppViewModel
+import dev.base.simple.contracts.viewmodel.LifecycleViewModel
 
 /**
  * detail: Base ViewModel
  * @author Ttt
  */
-open class BaseViewModel : BaseAppViewModel() {
+open class BaseViewModel : LifecycleViewModel() {
 
     // Intent 传参读写辅助类
     val intentData = IntentData.with()

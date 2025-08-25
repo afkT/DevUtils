@@ -18,7 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.AttachPopupView
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils

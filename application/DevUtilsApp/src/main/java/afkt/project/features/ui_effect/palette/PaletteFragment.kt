@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
-import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.asFragment
+import dev.base.simple.FragmentVMType
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: Palette 调色板

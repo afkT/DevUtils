@@ -8,7 +8,7 @@ import afkt.project.databinding.FragmentDevWidgetWaveViewBinding
 import android.widget.SeekBar
 import androidx.core.graphics.toColorInt
 import com.lihang.ShadowLayout
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.ResourceUtils
 import dev.widget.ui.WaveView
 import dev.widget.utils.WaveHelper
@@ -21,7 +21,7 @@ class WaveViewFragment : AppFragment<FragmentDevWidgetWaveViewBinding, AppViewMo
     R.layout.fragment_dev_widget_wave_view, BR.viewModel,
     simple_Agile = { frg ->
         frg.asFragment<WaveViewFragment> {
-            val titleView = contentAssist.titleLinear?.getChildAt(0)
+            val titleView = contentAssist.titleLinear().getChildAt(0)
             if (titleView is ShadowLayout) {
                 titleView.setLayoutBackground(
                     ResourceUtils.getColor(R.color.color_55)

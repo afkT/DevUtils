@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetFlowLikeBinding
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: 自定义点赞效果 View

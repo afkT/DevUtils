@@ -4,7 +4,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectMaterialBottomSheetDialogBinding
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: Material BottomSheetDialog

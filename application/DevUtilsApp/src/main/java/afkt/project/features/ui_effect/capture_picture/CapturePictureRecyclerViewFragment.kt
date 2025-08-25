@@ -8,7 +8,7 @@ import afkt.project.databinding.FragmentUiEffectCapturePictureRecyclerViewBindin
 import afkt.project.model.basic.AdapterModel
 import afkt.project.model.helper.RandomHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.CapturePictureUtils
 import dev.utils.common.RandomUtils
 import me.tatarka.bindingcollectionadapter2.ItemBinding

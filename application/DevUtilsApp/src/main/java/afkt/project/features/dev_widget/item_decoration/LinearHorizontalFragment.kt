@@ -6,7 +6,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetItemDecorationLinearHorizontalBinding
 import afkt.project.features.dev_widget.item_decoration.assist.LinearColorItemDecorationAssist
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: Linear Horizontal Color ItemDecoration

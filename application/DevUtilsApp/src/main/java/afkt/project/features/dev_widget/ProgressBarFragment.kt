@@ -8,7 +8,7 @@ import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.ActivityUtils
 
 /**

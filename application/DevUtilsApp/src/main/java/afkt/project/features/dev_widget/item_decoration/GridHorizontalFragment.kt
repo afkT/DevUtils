@@ -6,7 +6,7 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetItemDecorationGridHorizontalBinding
 import afkt.project.features.dev_widget.item_decoration.assist.GridColorItemDecorationAssist
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: Grid Horizontal Color ItemDecoration

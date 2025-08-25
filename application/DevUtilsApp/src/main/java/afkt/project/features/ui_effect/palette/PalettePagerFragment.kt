@@ -10,7 +10,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.palette.graphics.Palette
-import dev.simple.app.base.FragmentVMType
+import dev.base.simple.FragmentVMType
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

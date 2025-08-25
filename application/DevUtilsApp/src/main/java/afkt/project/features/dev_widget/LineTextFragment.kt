@@ -9,7 +9,7 @@ import afkt.project.model.helper.RandomHelper
 import android.graphics.Color
 import android.view.View
 import androidx.databinding.ObservableField
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.RandomUtils
 import dev.widget.function.LineTextView

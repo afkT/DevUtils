@@ -5,8 +5,8 @@ import afkt.environment.use.databinding.FragmentCustomBinding
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
-import dev.simple.app.base.FragmentVMType
-import dev.simple.app.base.asFragment
+import dev.base.simple.FragmentVMType
+import dev.base.simple.extensions.asFragment
 
 class CustomFragment : BaseFragment<FragmentCustomBinding, MainViewModel>(
     R.layout.fragment_custom, BR.viewModel,

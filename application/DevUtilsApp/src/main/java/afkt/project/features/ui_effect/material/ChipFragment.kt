@@ -9,7 +9,7 @@ import afkt.project.model.helper.RandomHelper
 import android.view.View
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils
 import dev.utils.common.ColorUtils

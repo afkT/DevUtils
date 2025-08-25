@@ -3,9 +3,8 @@ package afkt.project.app
 import afkt.project.app.basic.BaseActivity
 import afkt.project.features.other_function.floating.FloatingLifecycle
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.interfaces.BindingActivityView
-import dev.simple.app.controller.ui.theme.ActivityUITheme
+import dev.base.simple.ActivityVMType
+import dev.base.simple.contracts.binding.BindingActivityView
 
 /**
  * detail: Base App Activity
@@ -25,11 +24,10 @@ open class AppActivity<VDB : ViewDataBinding, VM : AppViewModel> :
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
-        simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
+        simple_Agile: ((Any) -> Unit)? = null
     ) : super(
         bindLayoutId, bindViewModelId, vmType,
-        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile
     )
 
     constructor(
@@ -39,11 +37,10 @@ open class AppActivity<VDB : ViewDataBinding, VM : AppViewModel> :
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
-        simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
+        simple_Agile: ((Any) -> Unit)? = null
     ) : super(
         bindLayoutView, bindViewModelId, vmType,
-        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile
     )
 
     // ===============

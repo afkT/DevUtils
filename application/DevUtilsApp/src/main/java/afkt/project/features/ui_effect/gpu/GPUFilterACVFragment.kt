@@ -4,7 +4,7 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.databinding.FragmentUiEffectGpuFilterBinding
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 class GPUFilterACVFragment : AppFragment<FragmentUiEffectGpuFilterBinding, GPUFilterViewModel>(
     R.layout.fragment_ui_effect_gpu_filter, BR.viewModel,

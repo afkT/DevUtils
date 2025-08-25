@@ -13,12 +13,12 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.widget.NestedScrollView
 import dev.base.DevSource
+import dev.base.simple.extensions.asFragment
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
 import dev.expand.engine.toast.toast_showShort
-import dev.simple.app.base.asFragment
 import dev.utils.app.ActivityUtils
 import dev.utils.app.CapturePictureUtils
 import dev.utils.common.FileUtils

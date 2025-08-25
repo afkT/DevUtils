@@ -3,7 +3,7 @@ package afkt.environment.use
 import afkt.environment.use.base.BaseActivity
 import afkt.environment.use.databinding.ActivityMainBinding
 import androidx.navigation.findNavController
-import dev.simple.app.base.asActivity
+import dev.base.simple.extensions.asActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     R.layout.activity_main, BR.viewModel, simple_Agile = { act ->

@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import dev.base.simple.extensions.asFragment
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.toast.toast_showShort
-import dev.simple.app.base.asFragment
 import dev.widget.custom.CustomViewPager
 
 /**

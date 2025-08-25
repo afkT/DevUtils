@@ -16,6 +16,7 @@ import android.os.Handler
 import android.view.SurfaceView
 import androidx.lifecycle.lifecycleScope
 import com.google.zxing.Result
+import dev.base.simple.extensions.asFragment
 import dev.engine.barcode.BarCodeResult
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
@@ -24,7 +25,6 @@ import dev.expand.engine.permission.permission_isGranted
 import dev.expand.engine.permission.permission_request
 import dev.expand.engine.toast.toast_showLong
 import dev.expand.engine.toast.toast_showShort
-import dev.simple.app.base.asFragment
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.assist.BeepVibrateAssist

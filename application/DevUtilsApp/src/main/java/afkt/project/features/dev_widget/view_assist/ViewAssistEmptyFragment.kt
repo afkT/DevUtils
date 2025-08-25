@@ -7,7 +7,7 @@ import afkt.project.databinding.FragmentOtherFunctionViewAssistBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.HandlerUtils
 import dev.widget.assist.ViewAssist
 

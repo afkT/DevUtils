@@ -10,7 +10,7 @@ import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommod
 import afkt.project.model.basic.AdapterModel
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

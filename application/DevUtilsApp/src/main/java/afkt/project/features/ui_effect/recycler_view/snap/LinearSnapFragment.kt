@@ -7,7 +7,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectLinearSnapBinding
 import afkt.project.model.basic.AdapterModel
 import androidx.recyclerview.widget.LinearSnapHelper
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**

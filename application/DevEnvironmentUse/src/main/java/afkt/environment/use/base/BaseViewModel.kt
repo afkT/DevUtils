@@ -1,9 +1,9 @@
 package afkt.environment.use.base
 
-import dev.simple.app.BaseAppViewModel
+import dev.base.simple.contracts.viewmodel.LifecycleViewModel
 
 /**
  * detail: Base ViewModel
  * @author Ttt
  */
-open class BaseViewModel : BaseAppViewModel()
+open class BaseViewModel : LifecycleViewModel()

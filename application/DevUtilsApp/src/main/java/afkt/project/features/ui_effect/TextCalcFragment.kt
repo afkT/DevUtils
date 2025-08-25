@@ -8,8 +8,8 @@ import afkt.project.model.helper.RandomHelper
 import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.widget.AppCompatTextView
+import dev.base.simple.extensions.asFragment
 import dev.expand.engine.toast.toast_showShort
-import dev.simple.app.base.asFragment
 import dev.utils.DevFinal
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.quick.QuickHelper

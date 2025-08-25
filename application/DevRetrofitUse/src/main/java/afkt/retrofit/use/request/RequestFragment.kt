@@ -7,7 +7,7 @@ import afkt.retrofit.use.databinding.FragmentRequestBinding
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 class RequestFragment : BaseFragment<FragmentRequestBinding, RequestViewModel>(
     R.layout.fragment_request, BR.viewModel, simple_Agile = { frg ->

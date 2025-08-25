@@ -7,8 +7,8 @@ import afkt.project.databinding.FragmentOtherFunctionViewAssistBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dev.base.simple.extensions.asFragment
 import dev.expand.engine.toast.toast_showShort
-import dev.simple.app.base.asFragment
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
 import dev.widget.assist.ViewAssist

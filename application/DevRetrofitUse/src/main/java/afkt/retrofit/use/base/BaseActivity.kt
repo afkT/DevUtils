@@ -5,17 +5,16 @@ import afkt.retrofit.use.app.commonEnableEdgeToEdge
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import dev.simple.app.BaseAppActivity
-import dev.simple.app.base.ActivityVMType
-import dev.simple.app.base.interfaces.BindingActivityView
-import dev.simple.app.controller.ui.theme.ActivityUITheme
+import dev.base.simple.ActivityVMType
+import dev.base.simple.DevSimpleActivity
+import dev.base.simple.contracts.binding.BindingActivityView
 
 /**
  * detail: Activity MVVM 基类
  * @author Ttt
  */
 open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
-    BaseAppActivity<VDB, VM> {
+    DevSimpleActivity<VDB, VM> {
 
     // ==========
     // = 构造函数 =
@@ -28,11 +27,10 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
-        simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
+        simple_Agile: ((Any) -> Unit)? = null
     ) : super(
         bindLayoutId, bindViewModelId, vmType,
-        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile
     )
 
     constructor(
@@ -42,11 +40,10 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
-        simple_Agile: ((Any) -> Unit)? = null,
-        simple_UITheme: ((ActivityUITheme) -> ActivityUITheme)? = null
+        simple_Agile: ((Any) -> Unit)? = null
     ) : super(
         bindLayoutView, bindViewModelId, vmType,
-        simple_Init, simple_Start, simple_PreLoad, simple_Agile, simple_UITheme
+        simple_Init, simple_Start, simple_PreLoad, simple_Agile
     )
 
     // ============

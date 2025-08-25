@@ -13,9 +13,9 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import dev.base.DevSource
+import dev.base.simple.extensions.asFragment
 import dev.expand.engine.image.display
 import dev.mvvm.utils.image.toImageConfig
-import dev.simple.app.base.asFragment
 import dev.utils.app.ActivityUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils

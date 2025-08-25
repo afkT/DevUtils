@@ -4,7 +4,7 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.databinding.FragmentUiEffectCapturePictureListViewBinding
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 import dev.utils.app.CapturePictureUtils
 
 /**

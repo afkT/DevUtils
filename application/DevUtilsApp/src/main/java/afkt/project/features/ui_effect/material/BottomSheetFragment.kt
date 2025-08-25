@@ -6,8 +6,8 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectMaterialBottomSheetBinding
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dev.base.simple.extensions.asFragment
 import dev.expand.engine.log.log_dTag
-import dev.simple.app.base.asFragment
 import dev.utils.app.ViewUtils
 
 /**

@@ -7,7 +7,7 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetSignViewBinding
 import android.graphics.Color
 import android.graphics.Paint
-import dev.simple.app.base.asFragment
+import dev.base.simple.extensions.asFragment
 
 /**
  * detail: 签名 View
