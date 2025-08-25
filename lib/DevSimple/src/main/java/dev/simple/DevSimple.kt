@@ -2,8 +2,8 @@ package dev.simple
 
 import dev.base.DevVariableExt
 import dev.engine.core.image.ImageConfig
-import dev.mvvm.base.Config
-import dev.mvvm.utils.image.AppImageConfig
+import dev.simple.mvvm.base.Config
+import dev.simple.mvvm.utils.image.AppImageConfig
 
 /**
  * detail: DevSimple

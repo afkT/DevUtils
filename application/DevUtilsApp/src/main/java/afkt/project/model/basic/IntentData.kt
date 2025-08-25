@@ -2,7 +2,7 @@ package afkt.project.model.basic
 
 import android.content.Intent
 import android.os.Bundle
-import dev.agile.intent.BaseIntent
+import dev.simple.agile.intent.BaseIntent
 import dev.base.DevIntent
 
 private object IntentKey {

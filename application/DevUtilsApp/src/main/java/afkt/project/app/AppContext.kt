@@ -12,7 +12,7 @@ import android.os.Process
 import android.view.View
 import android.webkit.WebSettings
 import dev.DevUtils
-import dev.agile.assist.WebViewAssist
+import dev.simple.agile.assist.WebViewAssist
 import dev.base.utils.ViewModelUtils
 import dev.engine.extensions.log.log_d
 import dev.utils.DevFinal

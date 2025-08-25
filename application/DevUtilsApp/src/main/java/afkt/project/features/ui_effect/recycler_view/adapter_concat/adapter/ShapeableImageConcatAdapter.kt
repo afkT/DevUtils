@@ -12,7 +12,7 @@ import dev.adapter.DevDataAdapter
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
 import dev.engine.extensions.image.display
-import dev.mvvm.utils.toSource
+import dev.simple.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 
 /**

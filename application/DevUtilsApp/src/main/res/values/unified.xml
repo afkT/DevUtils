@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
+
+    <string name="tools_price">¥17.2</string>
 
     <!-- 线条 -->
     <dimen name="line_0_5">0.5dp</dimen>

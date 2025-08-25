@@ -4,7 +4,7 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.appViewModel
 import afkt.project.model.basic.AdapterModel
-import dev.mvvm.command.BindingConsumer
+import dev.simple.mvvm.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 // Button 点击操作

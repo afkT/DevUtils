@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.engine.extensions.image.display
-import dev.mvvm.utils.image.toImageConfig
-import dev.mvvm.utils.toSource
+import dev.simple.mvvm.utils.image.toImageConfig
+import dev.simple.mvvm.utils.toSource
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 

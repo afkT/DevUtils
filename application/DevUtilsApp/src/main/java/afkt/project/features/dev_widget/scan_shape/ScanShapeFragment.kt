@@ -14,7 +14,7 @@ import dev.engine.extensions.permission.permission_isGranted
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
-import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraUtils

@@ -11,7 +11,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import dev.agile.assist.WebViewAssist
+import dev.simple.agile.assist.WebViewAssist
 import dev.engine.extensions.log.log_dTag
 
 /**

@@ -1,6 +1,6 @@
 package afkt.httpmanager.use.feature.progress.download.data.helper
 
-import dev.agile.app.AppExecutors
+import dev.simple.agile.app.AppExecutors
 import dev.utils.app.PathUtils
 import dev.utils.common.FileIOUtils
 import dev.utils.common.FileUtils

@@ -3,7 +3,7 @@ package afkt.project.features.dev_widget.scan_shape
 import afkt.project.R
 import android.graphics.Color
 import android.graphics.Rect
-import dev.mvvm.utils.size.AppSize
+import dev.simple.mvvm.utils.size.AppSize
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
 import dev.widget.ui.ScanShapeView

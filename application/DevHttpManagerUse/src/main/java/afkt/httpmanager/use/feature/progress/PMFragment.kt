@@ -10,7 +10,7 @@ import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 import dev.base.simple.extensions.asFragment
-import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.utils.common.StringUtils
 
 class PMFragment : BaseFragment<FragmentProgressManagerBinding, PMViewModel>(

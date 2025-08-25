@@ -7,7 +7,7 @@ import afkt.httpmanager.use.feature.progress.upload.data.api.UploadAPI
 import afkt.httpmanager.use.feature.progress.upload.data.api.UploadAPI2
 import afkt.httpmanager.use.feature.progress.upload.data.model.UploadBean
 import afkt.httpmanager.use.network.helper.ResponseHelper
-import dev.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
 import dev.retrofit.launchExecuteRequest
 import dev.utils.common.StringUtils
 import okhttp3.RequestBody

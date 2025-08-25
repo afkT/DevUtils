@@ -2,8 +2,8 @@ package afkt.project.model.engine
 
 import afkt.project.app.AppContext
 import dev.engine.core.image.ImageConfig
-import dev.mvvm.utils.image.AppImageConfig
-import dev.mvvm.utils.size.AppSize
+import dev.simple.mvvm.utils.image.AppImageConfig
+import dev.simple.mvvm.utils.size.AppSize
 import dev.simple.DevSimple
 
 // =============================
