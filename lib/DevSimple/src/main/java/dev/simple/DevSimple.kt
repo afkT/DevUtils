@@ -1,7 +1,7 @@
 package dev.simple
 
 import dev.base.DevVariableExt
-import dev.engine.image.ImageConfig
+import dev.engine.core.image.ImageConfig
 import dev.mvvm.base.Config
 import dev.mvvm.utils.image.AppImageConfig
 

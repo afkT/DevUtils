@@ -17,7 +17,7 @@ import android.view.SurfaceView
 import androidx.lifecycle.lifecycleScope
 import com.google.zxing.Result
 import dev.base.simple.extensions.asFragment
-import dev.engine.barcode.BarCodeResult
+import dev.engine.core.barcode.BarCodeResult
 import dev.engine.permission.IPermissionEngine
 import dev.expand.engine.log.log_dTag
 import dev.expand.engine.log.log_eTag
