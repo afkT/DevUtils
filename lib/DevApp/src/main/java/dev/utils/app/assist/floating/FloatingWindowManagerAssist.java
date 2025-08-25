@@ -30,13 +30,13 @@ public class FloatingWindowManagerAssist {
     public static final int    REQUEST_CODE = 112233;
 
     // 悬浮窗管理辅助类实现
-    private final AssistIMPL IMPL;
+    private final AssistImpl IMPL;
 
     public FloatingWindowManagerAssist() {
-        this(new DevAssistIMPL());
+        this(new DevAssistImpl());
     }
 
-    public FloatingWindowManagerAssist(final AssistIMPL impl) {
+    public FloatingWindowManagerAssist(final AssistImpl impl) {
         this.IMPL = impl;
     }
 
@@ -46,9 +46,9 @@ public class FloatingWindowManagerAssist {
 
     /**
      * 获取悬浮窗管理辅助类实现
-     * @return {@link AssistIMPL}
+     * @return {@link AssistImpl}
      */
-    public AssistIMPL getIMPL() {
+    public AssistImpl getIMPL() {
         return IMPL;
     }
 
@@ -240,7 +240,7 @@ public class FloatingWindowManagerAssist {
      *     防止后续版本适配等差异化预留
      * </pre>
      */
-    public interface AssistIMPL {
+    public interface AssistImpl {
 
         /**
          * 获取悬浮窗管理类
@@ -261,8 +261,8 @@ public class FloatingWindowManagerAssist {
      * detail: DevApp 悬浮窗管理辅助类实现
      * @author Ttt
      */
-    public static class DevAssistIMPL
-            implements AssistIMPL {
+    public static class DevAssistImpl
+            implements AssistImpl {
 
         // Window Manager
         private WindowManager              mWindowManager;

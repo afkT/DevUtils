@@ -8,7 +8,7 @@ import android.view.View;
  * @author Ttt
  * <pre>
  *     {@link FloatingWindowManagerAssist2}
- *     {@link DevFloatingTouchIMPL2}
+ *     {@link DevFloatingTouchImpl2}
  *     悬浮窗触摸使用
  * </pre>
  */

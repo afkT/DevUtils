@@ -16,7 +16,7 @@ open class CallbackInterceptor(
     // Http 抓包结束回调
     endCall: IHttpCaptureEnd? = null,
     // Http 抓包事件回调
-    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
+    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
         override fun callEnd(info: CaptureInfo) {
             endCall?.callEnd(info)
         }

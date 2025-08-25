@@ -32,7 +32,7 @@ open class StorageInterceptor(
     // 是否进行 Http 抓包拦截
     private var capture: Boolean = true,
     // Http 抓包事件回调
-    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
+    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
         override fun callEnd(info: CaptureInfo) {
         }
     },

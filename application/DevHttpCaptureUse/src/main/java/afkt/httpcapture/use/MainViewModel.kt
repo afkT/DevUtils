@@ -362,7 +362,7 @@ class MainViewModel : BaseViewModel() {
      * 并非对请求追加参数信息等，只是对请求及响应数据进行读取转换
      * 方便扩展, 允许自行解析抓包数据
      */
-    private val eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
+    private val eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
 
         /**
          * Http 抓包结束回调

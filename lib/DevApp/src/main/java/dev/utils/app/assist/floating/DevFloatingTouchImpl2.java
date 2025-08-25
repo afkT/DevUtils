@@ -10,14 +10,14 @@ import dev.utils.app.ViewUtils;
  * detail: DevApp 悬浮窗触摸辅助类实现
  * @author Ttt
  */
-public class DevFloatingTouchIMPL2
+public class DevFloatingTouchImpl2
         implements IFloatingTouch {
 
-    public DevFloatingTouchIMPL2() {
+    public DevFloatingTouchImpl2() {
         this(new DevFloatingEdgeImpl());
     }
 
-    public DevFloatingTouchIMPL2(final IFloatingEdge floatingEdge) {
+    public DevFloatingTouchImpl2(final IFloatingEdge floatingEdge) {
         this.mFloatingEdge = floatingEdge;
     }
 
@@ -108,7 +108,7 @@ public class DevFloatingTouchIMPL2
      * @param x X 轴坐标
      * @return DevFloatingTouchIMPL2
      */
-    public DevFloatingTouchIMPL2 setX(final int x) {
+    public DevFloatingTouchImpl2 setX(final int x) {
         this.mX = x;
         return this;
     }
@@ -126,7 +126,7 @@ public class DevFloatingTouchIMPL2
      * @param y Y 轴坐标
      * @return DevFloatingTouchIMPL2
      */
-    public DevFloatingTouchIMPL2 setY(final int y) {
+    public DevFloatingTouchImpl2 setY(final int y) {
         this.mY = y;
         return this;
     }
@@ -149,7 +149,7 @@ public class DevFloatingTouchIMPL2
      * @param floatingEdge 悬浮窗边缘检测接口
      * @return DevFloatingTouchIMPL2
      */
-    public DevFloatingTouchIMPL2 setFloatingEdge(final IFloatingEdge floatingEdge) {
+    public DevFloatingTouchImpl2 setFloatingEdge(final IFloatingEdge floatingEdge) {
         this.mFloatingEdge = floatingEdge;
         return this;
     }

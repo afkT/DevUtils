@@ -104,7 +104,7 @@ public class FloatingWindowManagerAssist2
      * 更新悬浮窗 View Layout
      * <pre>
      *     如需更新 View 坐标
-     *     则重写该方法, 搭配 {@link DevFloatingTouchIMPL2} 使用
+     *     则重写该方法, 搭配 {@link DevFloatingTouchImpl2} 使用
      * </pre>
      * @param floatingActivity 悬浮窗辅助类接口
      * @param view             {@link View}

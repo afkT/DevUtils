@@ -5,7 +5,7 @@ import dev.capture.CaptureInfo
 import dev.capture.CaptureItem
 import dev.capture.UtilsPublic
 import dev.capture.interceptor.StorageInterceptor
-import dev.capture.interfaces.HttpCaptureEventIMPL
+import dev.capture.interfaces.HttpCaptureEventImpl
 import dev.capture.interfaces.IHttpCapture
 import dev.capture.interfaces.IHttpCaptureEvent
 import dev.capture.interfaces.IHttpFilter
@@ -108,7 +108,7 @@ object DevHttpCapture {
         encrypt: Encrypt? = null,
         httpFilter: IHttpFilter? = null,
         capture: Boolean = true,
-        eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventIMPL() {
+        eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
             override fun callEnd(info: CaptureInfo) {
             }
         }

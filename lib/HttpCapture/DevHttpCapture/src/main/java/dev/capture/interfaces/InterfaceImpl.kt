@@ -16,7 +16,7 @@ import java.nio.charset.Charset
  * detail: Http 抓包事件回调实现类
  * @author Ttt
  */
-abstract class HttpCaptureEventIMPL : IHttpCaptureEvent {
+abstract class HttpCaptureEventImpl : IHttpCaptureEvent {
 
     val UTF_8 = Charset.forName("UTF-8")
 
