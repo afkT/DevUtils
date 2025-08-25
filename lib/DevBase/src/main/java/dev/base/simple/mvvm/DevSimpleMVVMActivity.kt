@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import dev.DevUtils
 import dev.base.core.arch.mvvm.DevBaseMVVMActivity
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.contracts.ISimpleAgile
 import dev.base.simple.contracts.binding.BindingActivityView
@@ -21,9 +22,9 @@ import dev.utils.common.ClassUtils
  * 以及进行敏捷简化开发扩展接口
  */
 abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
-    private val bindLayoutId: Int = 0,
+    private val bindLayoutId: Int = IDevBase.NONE,
     private val bindLayoutView: BindingActivityView? = null,
-    private val bindViewModelId: Int = 0,
+    private val bindViewModelId: Int = IDevBase.NONE,
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseMVVMActivity<VDB, VM>(),
     ISimpleAgile,

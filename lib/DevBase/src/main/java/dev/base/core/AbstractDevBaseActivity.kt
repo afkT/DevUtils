@@ -159,7 +159,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     ) {
         if (layoutView != null) return
         // 使用 baseLayoutId()
-        if (baseLayoutId() != 0) {
+        if (baseLayoutId() != IDevBase.NONE) {
             try {
                 layoutView = inflater.inflate(baseLayoutId(), null, false)
             } catch (e: Exception) {

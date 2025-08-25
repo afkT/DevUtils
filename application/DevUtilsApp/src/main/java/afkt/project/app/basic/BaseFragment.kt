@@ -1,6 +1,7 @@
 package afkt.project.app.basic
 
 import androidx.databinding.ViewDataBinding
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.DevSimpleFragment
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.binding.BindingFragmentView
@@ -18,7 +19,7 @@ open class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     constructor(
         bindLayoutId: Int,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
@@ -31,7 +32,7 @@ open class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     constructor(
         bindLayoutView: BindingFragmentView,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,

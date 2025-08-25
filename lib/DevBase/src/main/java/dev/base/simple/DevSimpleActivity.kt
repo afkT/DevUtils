@@ -2,6 +2,7 @@ package dev.base.simple
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.contracts.binding.BindingActivityView
 import dev.base.simple.contracts.factory.SimpleActivityIMPL
 import dev.base.simple.mvvm.DevSimpleMVVMActivity
@@ -29,7 +30,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
 //        bindLayoutView: BindingActivityView?,
 //        bindViewModelId: Int,
 //        vmType: ActivityVMType = ActivityVMType.ACTIVITY
-//    ) : super(0, bindLayoutView, bindViewModelId, vmType)
+//    ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType)
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -63,7 +64,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-    ) : super(0, bindLayoutView, bindViewModelId, vmType) {
+    ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleActivityIMPL.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )

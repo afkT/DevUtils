@@ -5,6 +5,7 @@ import afkt.environment.use.app.commonEnableEdgeToEdge
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.DevSimpleActivity
 import dev.base.simple.contracts.binding.BindingActivityView
@@ -22,7 +23,7 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     constructor(
         bindLayoutId: Int,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
@@ -35,7 +36,7 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     constructor(
         bindLayoutView: BindingActivityView?,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,

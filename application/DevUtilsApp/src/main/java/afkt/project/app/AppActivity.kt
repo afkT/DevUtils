@@ -3,6 +3,7 @@ package afkt.project.app
 import afkt.project.app.basic.BaseActivity
 import afkt.project.features.other_function.floating.FloatingLifecycle
 import androidx.databinding.ViewDataBinding
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.contracts.binding.BindingActivityView
 
@@ -19,7 +20,7 @@ open class AppActivity<VDB : ViewDataBinding, VM : AppViewModel> :
 
     constructor(
         bindLayoutId: Int,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
@@ -32,7 +33,7 @@ open class AppActivity<VDB : ViewDataBinding, VM : AppViewModel> :
 
     constructor(
         bindLayoutView: BindingActivityView?,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: ActivityVMType = ActivityVMType.ACTIVITY,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,

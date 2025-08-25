@@ -2,6 +2,7 @@ package dev.base.simple
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.base.simple.contracts.factory.SimpleFragmentIMPL
 import dev.base.simple.mvvm.DevSimpleMVVMFragment
@@ -27,7 +28,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
 //        bindLayoutView: BindingFragmentView,
 //        bindViewModelId: Int,
 //        vmType: FragmentVMType = FragmentVMType.FRAGMENT
-//    ) : super(0, bindLayoutView, bindViewModelId, vmType)
+//    ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType)
 
     // ====================
     // = 敏捷简化开发扩展接口 =
@@ -61,7 +62,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
         simple_Start: ((Any) -> Unit)? = null,
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
-    ) : super(0, bindLayoutView, bindViewModelId, vmType) {
+    ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType) {
         simpleFactory = SimpleFragmentIMPL.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )

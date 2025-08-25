@@ -6,4 +6,9 @@ package dev.base.core.interfaces
  */
 interface IDevBase : IDevBaseConfig,
     IDevBaseLayout,
-    IDevBaseMethod
+    IDevBaseMethod {
+
+    companion object {
+        val NONE = 0
+    }
+}

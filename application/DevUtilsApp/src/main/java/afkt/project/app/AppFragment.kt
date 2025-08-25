@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.lihang.ShadowLayout
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.utils.app.ViewUtils
@@ -34,7 +35,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
 
     constructor(
         bindLayoutId: Int,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,
@@ -47,7 +48,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
 
     constructor(
         bindLayoutView: BindingFragmentView,
-        bindViewModelId: Int = -1,
+        bindViewModelId: Int = IDevBase.NONE,
         vmType: FragmentVMType = FragmentVMType.FRAGMENT,
         simple_Init: ((Any) -> Unit)? = null,
         simple_Start: ((Any) -> Unit)? = null,

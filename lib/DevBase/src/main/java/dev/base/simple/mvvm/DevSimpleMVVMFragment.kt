@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import dev.DevUtils
 import dev.base.core.arch.mvvm.DevBaseMVVMFragment
+import dev.base.core.interfaces.IDevBase
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.ISimpleAgile
 import dev.base.simple.contracts.binding.BindingFragmentView
@@ -19,9 +20,9 @@ import dev.utils.common.ClassUtils
  * @author Ttt
  */
 abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
-    private val bindLayoutId: Int = 0,
+    private val bindLayoutId: Int = IDevBase.NONE,
     private val bindLayoutView: BindingFragmentView? = null,
-    private val bindViewModelId: Int = 0,
+    private val bindViewModelId: Int = IDevBase.NONE,
     private val vmType: FragmentVMType = FragmentVMType.FRAGMENT
 ) : DevBaseMVVMFragment<VDB, VM>(),
     ISimpleAgile {
