@@ -55,7 +55,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
             if (!isFinishing) {
                 if (isQuerying) {
                     if (size == 0) {
-                        UtilsCompiler.toastIMPL().normal(
+                        UtilsCompiler.toastImpl().normal(
                             R.string.dev_http_capture_querying
                         )
                     }
@@ -79,7 +79,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
                     binding.vidRv,
                     binding.vidTipsInclude.vidTipsFl
                 )
-                UtilsCompiler.toastIMPL().success(
+                UtilsCompiler.toastImpl().success(
                     R.string.dev_http_capture_query_complete
                 )
                 // 重置刷新点击处理
@@ -203,7 +203,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
             }, binding.vidTabInclude.vidGroupLl)
             .setOnClick(object : OnDebouncingClickListener(UtilsCompiler.REFRESH_CLICK) {
                 override fun doClick(view: View) {
-                    UtilsCompiler.toastIMPL().normal(
+                    UtilsCompiler.toastImpl().normal(
                         R.string.dev_http_capture_querying
                     )
                     if (!UtilsCompiler.isQuerying()) {
@@ -214,7 +214,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
                 }
 
                 override fun doInvalidClick(view: View) {
-                    UtilsCompiler.toastIMPL().normal(
+                    UtilsCompiler.toastImpl().normal(
                         R.string.dev_http_capture_querying
                     )
                 }

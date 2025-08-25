@@ -18,7 +18,7 @@ abstract class BaseInterceptor(
     // 是否属于存储抓包数据类型
     private val storageHttpCaptureType: Boolean,
     // Http 抓包事件回调
-    private val eventIMPL: IHttpCaptureEvent,
+    private val eventImpl: IHttpCaptureEvent,
     // Http 抓包事件处理拦截
     private val eventFilter: IHttpCaptureEventFilter
 ) : Interceptor,
@@ -26,7 +26,7 @@ abstract class BaseInterceptor(
 
     // 抓包数据本地存储实现 Engine
     private val storageEngine = HttpCaptureStorageEngine(
-        eventIMPL, eventFilter
+        eventImpl, eventFilter
     )
 
     /**
@@ -105,7 +105,7 @@ abstract class BaseInterceptor(
             )
         ) {
             //【请求链接】
-            captureInfo.requestUrl = eventIMPL.callRequestUrl(
+            captureInfo.requestUrl = eventImpl.callRequestUrl(
                 request, requestUrl
             )
         }
@@ -117,7 +117,7 @@ abstract class BaseInterceptor(
             )
         ) {
             //【请求方法】
-            captureInfo.requestMethod = eventIMPL.callRequestMethod(
+            captureInfo.requestMethod = eventImpl.callRequestMethod(
                 request, requestMethod, protocol, requestBody
             )
         }
@@ -130,7 +130,7 @@ abstract class BaseInterceptor(
         ) {
             //【请求头信息】
             captureInfo.requestHeader.putAll(
-                eventIMPL.callRequestHeaders(
+                eventImpl.callRequestHeaders(
                     request, requestHeaders, requestBody,
                     captureRedact()
                 )
@@ -145,7 +145,7 @@ abstract class BaseInterceptor(
         ) {
             //【请求体数据】
             captureInfo.requestBody.putAll(
-                eventIMPL.callRequestBody(
+                eventImpl.callRequestBody(
                     request, requestBody, captureRedact()
                 )
             )
@@ -168,7 +168,7 @@ abstract class BaseInterceptor(
                 )
             ) {
                 //【响应数据】
-                captureInfo.responseBody = eventIMPL.callResponseBodyFailed(
+                captureInfo.responseBody = eventImpl.callResponseBodyFailed(
                     request, e
                 )
             }
@@ -191,7 +191,7 @@ abstract class BaseInterceptor(
         ) {
             //【响应状态】
             captureInfo.responseStatus.putAll(
-                eventIMPL.callResponseStatus(
+                eventImpl.callResponseStatus(
                     request, response, responseBody, tookMs
                 )
             )
@@ -204,7 +204,7 @@ abstract class BaseInterceptor(
         ) {
             //【响应头信息】
             captureInfo.responseHeader.putAll(
-                eventIMPL.callResponseHeaders(
+                eventImpl.callResponseHeaders(
                     request, response, responseHeaders,
                     responseBody, captureRedact()
                 )
@@ -217,7 +217,7 @@ abstract class BaseInterceptor(
             )
         ) {
             //【响应数据】
-            captureInfo.responseBody = eventIMPL.callResponseBody(
+            captureInfo.responseBody = eventImpl.callResponseBody(
                 request, response, responseBody
             )
         }

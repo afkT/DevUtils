@@ -13,7 +13,7 @@ object AppChannel : AbstractChannelFlavors {
 
     // 渠道信息实现
     private val IMPL: AbstractChannelFlavors by lazy {
-        newChannelFlavorsIMPL()
+        newChannelFlavorsImpl()
     }
 
     // ==============
@@ -92,17 +92,17 @@ object AppChannel : AbstractChannelFlavors {
     // ==========
 
     // 多渠道实现类名 ( 类名必须一致且包名位置相同 )
-    private const val IMPL_CLASS_NAME = "dev.simple.agile.channel.ChannelFlavorsIMPL"
+    private const val IMPL_CLASS_NAME = "dev.simple.agile.channel.ChannelFlavorsImpl"
 
     /**
      * 通过 class 创建多渠道实例
-     * @return AbstractChannelFlavors IMPL
+     * @return AbstractChannelFlavors Impl
      */
-    private fun newChannelFlavorsIMPL(): AbstractChannelFlavors {
+    private fun newChannelFlavorsImpl(): AbstractChannelFlavors {
         return try {
             val clazz = Class.forName(IMPL_CLASS_NAME)
-            val channelIMPL = clazz.newInstance()
-            channelIMPL as AbstractChannelFlavors
+            val channelImpl = clazz.newInstance()
+            channelImpl as AbstractChannelFlavors
         } catch (e: Exception) {
             NotFoundChannelFlavors(ThrowableUtils.getThrowable(e))
         }

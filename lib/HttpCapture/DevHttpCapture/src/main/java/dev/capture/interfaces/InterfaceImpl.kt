@@ -436,7 +436,7 @@ abstract class HttpCaptureEventImpl : IHttpCaptureEvent {
  */
 internal class HttpCaptureStorageEngine(
     // Http 抓包事件回调
-    private val eventIMPL: IHttpCaptureEvent,
+    private val eventImpl: IHttpCaptureEvent,
     // Http 抓包事件处理拦截
     private val eventFilter: IHttpCaptureEventFilter
 ) {
@@ -481,6 +481,6 @@ internal class HttpCaptureStorageEngine(
             }
         }
         // 抓包结束
-        eventIMPL.callEnd(info)
+        eventImpl.callEnd(info)
     }
 }

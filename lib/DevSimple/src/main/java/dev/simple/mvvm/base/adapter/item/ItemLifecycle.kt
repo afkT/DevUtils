@@ -39,11 +39,11 @@ class ItemLifecycle private constructor() {
         return this
     }
 
-    fun getLifecycleIMPL(): BindingGet<LifecycleOwner?>? {
+    fun getLifecycleImpl(): BindingGet<LifecycleOwner?>? {
         return lifecycleGet
     }
 
-    fun setLifecycleIMPL(implGET: BindingGet<LifecycleOwner?>?): ItemLifecycle {
+    fun setLifecycleImpl(implGET: BindingGet<LifecycleOwner?>?): ItemLifecycle {
         lifecycleGet = implGET
         return this
     }

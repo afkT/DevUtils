@@ -57,13 +57,13 @@ class MainViewModel : BaseViewModel() {
     )
 
     // 内置切换环境 Activity【默认实现】
-    val clickDefaultIMPL = View.OnClickListener { view ->
+    val clickDefaultImpl = View.OnClickListener { view ->
         // 跳转 DevEnvironment Activity
         DevEnvironmentUtils.start(view.context)
     }
 
     //【自定义】切换环境【UI、功能】
-    val clickCustomIMPL = View.OnClickListener { view ->
+    val clickCustomImpl = View.OnClickListener { view ->
         _clickCustomEvent.value = Unit
     }
 
@@ -89,7 +89,7 @@ class MainViewModel : BaseViewModel() {
                 )
                 toast_showShort(text = (if (result) "设置成功" else "设置失败"))
                 // 跳转进行查看更新值
-                clickDefaultIMPL.onClick(view)
+                clickDefaultImpl.onClick(view)
                 return@setOkButton false
             }
     }
@@ -125,7 +125,7 @@ class MainViewModel : BaseViewModel() {
                 }
                 toast_showShort(text = "设置【全部】成功")
                 // 跳转进行查看更新值
-                clickCustomIMPL.onClick(view)
+                clickCustomImpl.onClick(view)
                 return@setOkButton false
             }
     }
@@ -135,7 +135,7 @@ class MainViewModel : BaseViewModel() {
         val result = DevEnvironment.reset(view.context)
         toast_showShort(text = (if (result) "重置【全部】成功" else "重置【全部】失败"))
         // 跳转进行查看更新值
-        clickCustomIMPL.onClick(view)
+        clickCustomImpl.onClick(view)
         /**
          * 重置不是变更，所以不会触发 EnvironmentChangeListener 事件
          * 可以在调用重置方法后自行实现后续逻辑等同 Listener 通知

@@ -48,7 +48,7 @@ public class FloatingWindowManagerAssist {
      * 获取悬浮窗管理辅助类实现
      * @return {@link AssistImpl}
      */
-    public AssistImpl getIMPL() {
+    public AssistImpl getImpl() {
         return IMPL;
     }
 

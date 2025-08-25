@@ -77,7 +77,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickCallbackInterceptorEventIMPL}"
+                    android:onClick="@{viewModel.clickCallbackInterceptorEventImpl}"
                     android:text="Http 抓包拦截器 ( 自定义抓包事件 )" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -100,17 +100,17 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickDefaultIMPL}"
+                    android:onClick="@{viewModel.clickDefaultImpl}"
                     android:text="【默认】抓包数据可视化" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickDefaultIMPLModule}"
+                    android:onClick="@{viewModel.clickDefaultImplModule}"
                     android:text="【默认】抓包数据可视化 ( 具体模块 )" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickCustomIMPL}"
+                    android:onClick="@{viewModel.clickCustomImpl}"
                     android:text="【自定义】抓包数据可视化" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

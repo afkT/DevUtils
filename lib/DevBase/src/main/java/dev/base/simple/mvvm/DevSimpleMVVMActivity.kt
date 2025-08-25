@@ -33,7 +33,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 是否监听生命周期 ( 实现了则表示需要监听 )
-        activityLifecycleIMPL()?.let { impl ->
+        activityLifecycleImpl()?.let { impl ->
             // 添加 Activity 生命周期通知事件
             LifecycleManager.activity().addListener(this, impl)
         }

@@ -106,7 +106,7 @@ public class DevFloatingTouchImpl2
     /**
      * 设置 X 轴坐标
      * @param x X 轴坐标
-     * @return DevFloatingTouchIMPL2
+     * @return {@link DevFloatingTouchImpl2}
      */
     public DevFloatingTouchImpl2 setX(final int x) {
         this.mX = x;
@@ -124,7 +124,7 @@ public class DevFloatingTouchImpl2
     /**
      * 设置 Y 轴坐标
      * @param y Y 轴坐标
-     * @return DevFloatingTouchIMPL2
+     * @return {@link DevFloatingTouchImpl2}
      */
     public DevFloatingTouchImpl2 setY(final int y) {
         this.mY = y;
@@ -147,7 +147,7 @@ public class DevFloatingTouchImpl2
     /**
      * 设置悬浮窗边缘检测接口实现
      * @param floatingEdge 悬浮窗边缘检测接口
-     * @return DevFloatingTouchIMPL2
+     * @return {@link DevFloatingTouchImpl2}
      */
     public DevFloatingTouchImpl2 setFloatingEdge(final IFloatingEdge floatingEdge) {
         this.mFloatingEdge = floatingEdge;

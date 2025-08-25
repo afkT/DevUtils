@@ -26,7 +26,7 @@ interface IActivityLifecycle : ILifecycle {
      * 获取 Activity LifecycleCallbacks 抽象类实现类
      * @return AbstractActivityLifecycle?
      */
-    fun activityLifecycleIMPL(): AbstractActivityLifecycle? = null
+    fun activityLifecycleImpl(): AbstractActivityLifecycle? = null
 }
 
 /**
@@ -39,5 +39,5 @@ interface IFragmentLifecycle : ILifecycle {
      * 获取 Fragment LifecycleCallbacks 抽象类实现类
      * @return AbstractFragmentLifecycle?
      */
-    fun fragmentLifecycleIMPL(): AbstractFragmentLifecycle? = null
+    fun fragmentLifecycleImpl(): AbstractFragmentLifecycle? = null
 }

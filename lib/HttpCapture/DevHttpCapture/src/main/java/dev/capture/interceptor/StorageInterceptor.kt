@@ -32,13 +32,13 @@ open class StorageInterceptor(
     // 是否进行 Http 抓包拦截
     private var capture: Boolean = true,
     // Http 抓包事件回调
-    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
+    eventImpl: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
         override fun callEnd(info: CaptureInfo) {
         }
     },
     // Http 抓包事件处理拦截
     eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
-) : BaseInterceptor(true, eventIMPL, eventFilter) {
+) : BaseInterceptor(true, eventImpl, eventFilter) {
 
     // 抓包信息隐藏字段
     private val captureRedact = CaptureRedact()

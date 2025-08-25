@@ -123,14 +123,14 @@ object DevHttpCaptureCompiler {
      * 设置抓包库 Toast 实现
      * @param toast DevHttpCaptureToast
      */
-    fun setToastIMPL(toast: DevHttpCaptureToast) {
-        UtilsCompiler.setToastIMPL(toast)
+    fun setToastImpl(toast: DevHttpCaptureToast) {
+        UtilsCompiler.setToastImpl(toast)
     }
 
     /**
      * 重置抓包库 Toast 实现
      */
-    fun resetToastIMPL() {
-        UtilsCompiler.resetToastIMPL()
+    fun resetToastImpl() {
+        UtilsCompiler.resetToastImpl()
     }
 }

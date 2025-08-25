@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import dev.base.core.interfaces.IDevBase
 import dev.base.simple.contracts.binding.BindingFragmentView
-import dev.base.simple.contracts.factory.SimpleFragmentIMPL
+import dev.base.simple.contracts.factory.SimpleFragmentImpl
 import dev.base.simple.mvvm.DevSimpleMVVMFragment
 
 /**
@@ -49,7 +49,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
     ) : super(bindLayoutId, null, bindViewModelId, vmType) {
-        simpleFactory = SimpleFragmentIMPL.of(
+        simpleFactory = SimpleFragmentImpl.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
@@ -63,7 +63,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
     ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType) {
-        simpleFactory = SimpleFragmentIMPL.of(
+        simpleFactory = SimpleFragmentImpl.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
@@ -72,7 +72,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleFragmentIMPL
+    private val simpleFactory: SimpleFragmentImpl
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

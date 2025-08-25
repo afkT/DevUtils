@@ -629,7 +629,7 @@ internal object UtilsCompiler {
      * 获取抓包库 Toast 实现
      * @return DevHttpCaptureToast
      */
-    fun toastIMPL(): DevHttpCaptureToast {
+    fun toastImpl(): DevHttpCaptureToast {
         return mToast ?: DEFAULT_TOAST
     }
 
@@ -637,14 +637,14 @@ internal object UtilsCompiler {
      * 设置抓包库 Toast 实现
      * @param toast DevHttpCaptureToast
      */
-    fun setToastIMPL(toast: DevHttpCaptureToast) {
+    fun setToastImpl(toast: DevHttpCaptureToast) {
         mToast = toast
     }
 
     /**
      * 重置抓包库 Toast 实现
      */
-    fun resetToastIMPL() {
+    fun resetToastImpl() {
         mToast = DEFAULT_TOAST
     }
 }

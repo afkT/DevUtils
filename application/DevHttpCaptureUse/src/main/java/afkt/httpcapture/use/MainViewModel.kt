@@ -336,18 +336,18 @@ class MainViewModel : BaseViewModel() {
     // ===================================
 
     // Http 抓包拦截器 ( 自定义抓包事件 )
-    val clickCallbackInterceptorEventIMPL = View.OnClickListener { view ->
+    val clickCallbackInterceptorEventImpl = View.OnClickListener { view ->
         // 创建新的 API Service【每次都创建新的方便演示】
         val apiService = RetrofitAPI.newAPI(OkHttpClient.Builder().apply {
             // 设置 Http 抓包拦截器 ( 无存储逻辑, 通过回调通知 )
             addInterceptor(CallbackInterceptor(endCall = object : IHttpCaptureEnd {
                 override fun callEnd(info: CaptureInfo) {
                     /**
-                     * 设置自定义 Http 抓包事件回调实现后 eventIMPL = eventIMPL
+                     * 设置自定义 Http 抓包事件回调实现后 eventImpl = eventImpl
                      * 则不会触发该方法回调, 会触发实现类 [IHttpCaptureEvent.callEnd] 的方法回调
                      */
                 }
-            }, eventIMPL = eventIMPL, eventFilter = callbackInterceptorEventFilter))
+            }, eventImpl = eventImpl, eventFilter = callbackInterceptorEventFilter))
         })
         // 获取文章列表
         fetchArticleList(apiService)
@@ -362,7 +362,7 @@ class MainViewModel : BaseViewModel() {
      * 并非对请求追加参数信息等，只是对请求及响应数据进行读取转换
      * 方便扩展, 允许自行解析抓包数据
      */
-    private val eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
+    private val eventImpl: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
 
         /**
          * Http 抓包结束回调
@@ -465,7 +465,7 @@ class MainViewModel : BaseViewModel() {
              */
             addInterceptor(StorageInterceptor(SHARE_MODULE))
             /**
-             * [StorageInterceptor] 其他构造参数可参考 [eventIMPL]、[callbackInterceptorEventFilter]
+             * [StorageInterceptor] 其他构造参数可参考 [eventImpl]、[callbackInterceptorEventFilter]
              */
         })
         // 获取文章列表
@@ -532,7 +532,7 @@ class MainViewModel : BaseViewModel() {
     // ===============
 
     //【默认】抓包数据可视化
-    val clickDefaultIMPL = View.OnClickListener { view ->
+    val clickDefaultImpl = View.OnClickListener { view ->
         // 显示全部抓包数据
         DevHttpCaptureCompiler.start(view.context)
 
@@ -541,7 +541,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     //【默认】抓包数据可视化 ( 具体模块 )
-    val clickDefaultIMPLModule = View.OnClickListener { view ->
+    val clickDefaultImplModule = View.OnClickListener { view ->
         // 显示具体模块抓包数据
         DevHttpCaptureCompiler.start(view.context, SHARE_MODULE)
 
@@ -550,9 +550,9 @@ class MainViewModel : BaseViewModel() {
 //        // 关闭所有抓包数据 Activity
 //        DevHttpCaptureCompiler.finishAllActivity()
         // 重置抓包库 Toast 实现
-        DevHttpCaptureCompiler.resetToastIMPL()
+        DevHttpCaptureCompiler.resetToastImpl()
         // 设置抓包库 Toast 实现
-        DevHttpCaptureCompiler.setToastIMPL(object : DevHttpCaptureToast {
+        DevHttpCaptureCompiler.setToastImpl(object : DevHttpCaptureToast {
             override fun normal(id: Int) {
                 toast_showShort(id = id)
             }
@@ -564,7 +564,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     //【自定义】抓包数据可视化
-    val clickCustomIMPL = View.OnClickListener { view ->
+    val clickCustomImpl = View.OnClickListener { view ->
         toast_showLong(text = "请查看点击事件【注释】")
         /**
          * 如果对 [StorageInterceptor] 存储性能以及逻辑实现代码，觉得太过复杂不够简洁优美

@@ -4,7 +4,7 @@ package dev.base.simple.contracts.factory
 // = Activity =
 // ============
 
-class SimpleActivityIMPL private constructor(
+class SimpleActivityImpl private constructor(
     simple_Init: ((Any) -> Unit)?,
     simple_Start: ((Any) -> Unit)?,
     simple_PreLoad: ((Any) -> Unit)?,
@@ -20,8 +20,8 @@ class SimpleActivityIMPL private constructor(
             simple_Start: ((Any) -> Unit)? = null,
             simple_PreLoad: ((Any) -> Unit)? = null,
             simple_Agile: ((Any) -> Unit)? = null
-        ): SimpleActivityIMPL {
-            return SimpleActivityIMPL(
+        ): SimpleActivityImpl {
+            return SimpleActivityImpl(
                 simple_Init, simple_Start, simple_PreLoad, simple_Agile
             )
         }
@@ -32,7 +32,7 @@ class SimpleActivityIMPL private constructor(
 // = Fragment =
 // ============
 
-class SimpleFragmentIMPL private constructor(
+class SimpleFragmentImpl private constructor(
     simple_Init: ((Any) -> Unit)?,
     simple_Start: ((Any) -> Unit)?,
     simple_PreLoad: ((Any) -> Unit)?,
@@ -48,8 +48,8 @@ class SimpleFragmentIMPL private constructor(
             simple_Start: ((Any) -> Unit)? = null,
             simple_PreLoad: ((Any) -> Unit)? = null,
             simple_Agile: ((Any) -> Unit)? = null
-        ): SimpleFragmentIMPL {
-            return SimpleFragmentIMPL(
+        ): SimpleFragmentImpl {
+            return SimpleFragmentImpl(
                 simple_Init, simple_Start, simple_PreLoad, simple_Agile
             )
         }

@@ -1,6 +1,6 @@
 package afkt.retrofit.use.helper
 
-import afkt.retrofit.use.helper.ResponseHelper.globalCallbackIMPL
+import afkt.retrofit.use.helper.ResponseHelper.globalCallbackImpl
 import com.google.gson.Gson
 import dev.engine.core.json.JSONConfig
 import dev.engine.extensions.json.toJson
@@ -90,15 +90,15 @@ object ResponseHelper {
 
     /**
      * 获取全局通知回调实现【日志 TAG 为 ResponseHelper】
-     * @return [globalCallbackIMPL]
+     * @return [globalCallbackImpl]
      */
-    fun globalCallback(): Notify.GlobalCallback = globalCallbackIMPL
+    fun globalCallback(): Notify.GlobalCallback = globalCallbackImpl
 
     /**
      * detail: 全局通知回调方法 - 实现
      * @author Ttt
      */
-    private val globalCallbackIMPL = object : Notify.GlobalCallback {
+    private val globalCallbackImpl = object : Notify.GlobalCallback {
         override fun onStart(
             uuid: UUID,
             params: Any?

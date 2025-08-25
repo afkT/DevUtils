@@ -99,7 +99,7 @@ object DevHttpCapture {
      * @param encrypt    抓包数据加密中间层
      * @param httpFilter Http 拦截过滤器
      * @param capture    是否进行 Http 抓包拦截
-     * @param eventIMPL  Http 抓包事件回调
+     * @param eventImpl  Http 抓包事件回调
      * @return `true` success, `false` fail
      */
     fun addInterceptor(
@@ -108,7 +108,7 @@ object DevHttpCapture {
         encrypt: Encrypt? = null,
         httpFilter: IHttpFilter? = null,
         capture: Boolean = true,
-        eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
+        eventImpl: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
             override fun callEnd(info: CaptureInfo) {
             }
         }
@@ -117,7 +117,7 @@ object DevHttpCapture {
             if (!sCaptureMaps.containsKey(moduleName)) {
                 val interceptor = StorageInterceptor(
                     moduleName, encrypt, httpFilter,
-                    capture, eventIMPL
+                    capture, eventImpl
                 )
                 // 添加抓包拦截
                 builder.addInterceptor(interceptor)

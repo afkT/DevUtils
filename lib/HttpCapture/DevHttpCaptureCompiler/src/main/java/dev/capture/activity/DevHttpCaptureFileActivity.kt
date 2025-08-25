@@ -65,7 +65,7 @@ class DevHttpCaptureFileActivity : BaseDevHttpActivity<DevHttpCaptureFileActivit
         mAdapter.setCallback(object : DevCallback<Items.FileItem>() {
             override fun callback(item: Items.FileItem) {
                 ClipboardUtils.copyText(item.value)
-                UtilsCompiler.toastIMPL().success(
+                UtilsCompiler.toastImpl().success(
                     R.string.dev_http_capture_copy_success
                 )
             }

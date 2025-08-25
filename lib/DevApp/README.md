@@ -2752,7 +2752,7 @@ DevUtils.openDebug();
 | callback | callback |
 
 
-* **DevApp 悬浮窗边缘检测辅助类实现 ->** [DevFloatingEdgeIMPL.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingEdgeIMPL.java)
+* **DevApp 悬浮窗边缘检测辅助类实现 ->** [DevFloatingEdgeImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingEdgeImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -2777,7 +2777,7 @@ DevUtils.openDebug();
 | setLongClickIntervalTime | 获取长按事件间隔时间 |
 
 
-* **DevApp 悬浮窗触摸辅助类实现 ->** [DevFloatingTouchIMPL.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingTouchIMPL.java)
+* **DevApp 悬浮窗触摸辅助类实现 ->** [DevFloatingTouchImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingTouchImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -2787,7 +2787,7 @@ DevUtils.openDebug();
 | getCommon | 获取悬浮窗通用代码 |
 
 
-* **DevApp 悬浮窗触摸辅助类实现 ->** [DevFloatingTouchIMPL2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingTouchIMPL2.java)
+* **DevApp 悬浮窗触摸辅助类实现 ->** [DevFloatingTouchImpl2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingTouchImpl2.java)
 
 | 方法 | 注释 |
 | :- | :- |

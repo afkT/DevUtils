@@ -16,14 +16,14 @@ open class CallbackInterceptor(
     // Http 抓包结束回调
     endCall: IHttpCaptureEnd? = null,
     // Http 抓包事件回调
-    eventIMPL: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
+    eventImpl: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
         override fun callEnd(info: CaptureInfo) {
             endCall?.callEnd(info)
         }
     },
     // Http 抓包事件处理拦截
     eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
-) : BaseInterceptor(false, eventIMPL, eventFilter) {
+) : BaseInterceptor(false, eventImpl, eventFilter) {
 
     // 抓包信息隐藏字段
     private val captureRedact = CaptureRedact()

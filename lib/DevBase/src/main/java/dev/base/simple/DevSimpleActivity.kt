@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import dev.base.core.interfaces.IDevBase
 import dev.base.simple.contracts.binding.BindingActivityView
-import dev.base.simple.contracts.factory.SimpleActivityIMPL
+import dev.base.simple.contracts.factory.SimpleActivityImpl
 import dev.base.simple.mvvm.DevSimpleMVVMActivity
 
 /**
@@ -51,7 +51,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
     ) : super(bindLayoutId, null, bindViewModelId, vmType) {
-        simpleFactory = SimpleActivityIMPL.of(
+        simpleFactory = SimpleActivityImpl.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
@@ -65,7 +65,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
         simple_PreLoad: ((Any) -> Unit)? = null,
         simple_Agile: ((Any) -> Unit)? = null,
     ) : super(IDevBase.NONE, bindLayoutView, bindViewModelId, vmType) {
-        simpleFactory = SimpleActivityIMPL.of(
+        simpleFactory = SimpleActivityImpl.of(
             simple_Init, simple_Start, simple_PreLoad, simple_Agile
         )
     }
@@ -74,7 +74,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleActivityIMPL
+    private val simpleFactory: SimpleActivityImpl
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

@@ -190,7 +190,7 @@ Version 2.3.2 *(2021-12-30)*
 
 * `[Refactor]` 修改整个 DevFinal 常量类，并统一使用该常量类
 
-* `[Add]` IFloatingEdge、DevFloatingEdgeIMPL、DevFloatingTouchIMPL2 等悬浮窗边缘检测、触摸实现类
+* `[Add]` IFloatingEdge、DevFloatingEdgeImpl、DevFloatingTouchImpl2 等悬浮窗边缘检测、触摸实现类
 
 * `[Add]` QuickHelper#setX、setY
 

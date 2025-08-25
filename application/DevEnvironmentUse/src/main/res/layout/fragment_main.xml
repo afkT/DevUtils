@@ -46,12 +46,12 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickDefaultIMPL}"
+                    android:onClick="@{viewModel.clickDefaultImpl}"
                     android:text="【内置实现】切换环境 Activity" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/ViewTheme.Button"
-                    android:onClick="@{viewModel.clickCustomIMPL}"
+                    android:onClick="@{viewModel.clickCustomImpl}"
                     android:text="【自定义】切换环境【UI、功能】" />
 
                 <androidx.appcompat.widget.AppCompatButton
