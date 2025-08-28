@@ -11,7 +11,7 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
-import dev.simple.mvvm.command.BindingConsumer
+import dev.simple.core.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 
 // ========================

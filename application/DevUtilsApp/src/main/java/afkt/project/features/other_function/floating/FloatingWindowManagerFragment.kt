@@ -20,7 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.toast.toast_showShort
-import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.core.utils.hi.hiif.hiIfNotNull
 import dev.utils.app.IntentUtils
 import dev.utils.app.activity_result.ActivityResultAssist
 import dev.utils.app.assist.floating.*

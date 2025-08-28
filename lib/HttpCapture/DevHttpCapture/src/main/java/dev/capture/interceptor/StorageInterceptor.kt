@@ -80,4 +80,4 @@ open class StorageInterceptor(
             moduleName, encrypt != null
         )
     }
-}
+}

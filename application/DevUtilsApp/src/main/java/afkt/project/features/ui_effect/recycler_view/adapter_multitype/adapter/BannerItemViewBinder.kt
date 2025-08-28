@@ -17,8 +17,8 @@ import com.youth.banner.indicator.CircleIndicator
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
 import dev.engine.extensions.image.display
-import dev.simple.mvvm.utils.image.toImageConfig
-import dev.simple.mvvm.utils.toSource
+import dev.simple.core.utils.image.toImageConfig
+import dev.simple.core.utils.toSource
 
 /**
  * detail: Banner Adapter

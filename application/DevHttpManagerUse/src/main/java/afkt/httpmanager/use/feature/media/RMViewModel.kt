@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import dev.DevHttpManager
 import dev.environment.DevEnvironment
 import dev.http.manager.RetrofitOperation
-import dev.simple.mvvm.utils.hi.hiif.hiIfNotNull
+import dev.simple.core.utils.hi.hiif.hiIfNotNull
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
 /**

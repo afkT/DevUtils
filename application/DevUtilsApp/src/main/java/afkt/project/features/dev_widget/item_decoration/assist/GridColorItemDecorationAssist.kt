@@ -2,7 +2,7 @@ package afkt.project.features.dev_widget.item_decoration.assist
 
 import afkt.project.databinding.IncludeGridItemDecorationAssistBinding
 import androidx.recyclerview.widget.RecyclerView
-import dev.simple.mvvm.utils.size.AppSize
+import dev.simple.core.utils.size.AppSize
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils

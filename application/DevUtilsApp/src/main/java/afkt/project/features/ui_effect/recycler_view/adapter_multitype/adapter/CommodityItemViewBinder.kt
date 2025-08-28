@@ -10,8 +10,8 @@ import com.drakeet.multitype.ItemViewBinder
 import dev.base.utils.adapter.DevBaseViewBindingVH
 import dev.base.utils.adapter.newBindingViewHolder
 import dev.engine.extensions.image.display
-import dev.simple.mvvm.utils.image.toImageConfig
-import dev.simple.mvvm.utils.toSource
+import dev.simple.core.utils.image.toImageConfig
+import dev.simple.core.utils.toSource
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.view.ViewHelper
 

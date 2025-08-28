@@ -7,7 +7,7 @@
 
         <variable
             name="itemClick"
-            type="dev.simple.mvvm.command.BindingConsumer&lt;ButtonEnum&gt;" />
+            type="dev.simple.core.command.BindingConsumer&lt;ButtonEnum&gt;" />
 
         <variable
             name="itemValue"

@@ -11,7 +11,7 @@
 
         <variable
             name="itemClick"
-            type="dev.simple.mvvm.command.BindingConsumer&lt;EnvironmentBean&gt;" />
+            type="dev.simple.core.command.BindingConsumer&lt;EnvironmentBean&gt;" />
 
         <variable
             name="itemValue"
