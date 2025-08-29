@@ -5,13 +5,13 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectFlexboxBinding
-import afkt.project.model.basic.AdapterModel
 import afkt.project.model.helper.RandomHelper
 import android.view.View
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import dev.base.simple.extensions.asFragment
+import dev.simple.core.app.adapter.AdapterModel
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**

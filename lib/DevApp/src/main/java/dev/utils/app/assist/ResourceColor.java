@@ -178,7 +178,7 @@ public final class ResourceColor {
     // ==========
 
     // 默认值
-    public static final int DF_INT = DevFinal.DEFAULT.INT;
+    public static final int DF_INT   = DevFinal.DEFAULT.INT;
     public static final int DF_ERROR = DevFinal.DEFAULT.ERROR_INT;
 
     // Int Color 颜色存储

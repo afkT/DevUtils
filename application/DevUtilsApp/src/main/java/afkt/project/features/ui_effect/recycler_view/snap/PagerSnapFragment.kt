@@ -5,9 +5,9 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectPagerSnapBinding
-import afkt.project.model.basic.AdapterModel
 import androidx.recyclerview.widget.PagerSnapHelper
 import dev.base.simple.extensions.asFragment
+import dev.simple.core.app.adapter.AdapterModel
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**

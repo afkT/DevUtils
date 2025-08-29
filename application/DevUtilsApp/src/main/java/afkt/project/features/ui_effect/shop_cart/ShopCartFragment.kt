@@ -7,12 +7,12 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectShopCartBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
-import afkt.project.model.basic.AdapterModel
 import android.view.View
 import androidx.databinding.ObservableField
 import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.base.simple.extensions.asFragment
+import dev.simple.core.app.adapter.AdapterModel
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration

@@ -5,10 +5,10 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectCapturePictureRecyclerViewBinding
-import afkt.project.model.basic.AdapterModel
 import afkt.project.model.helper.RandomHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dev.base.simple.extensions.asFragment
+import dev.simple.core.app.adapter.AdapterModel
 import dev.utils.app.CapturePictureUtils
 import dev.utils.common.RandomUtils
 import me.tatarka.bindingcollectionadapter2.ItemBinding

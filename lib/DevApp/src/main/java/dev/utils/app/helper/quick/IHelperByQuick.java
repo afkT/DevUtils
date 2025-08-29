@@ -644,40 +644,40 @@ public interface IHelperByQuick<T> {
      * 设置 View 显示状态
      * @return Helper
      */
-    T  viewVisible();
+    T viewVisible();
 
     /**
      * 设置 View 显示状态
      * @param views View[]
      * @return Helper
      */
-    T  viewVisibles(View... views);
+    T viewVisibles(View... views);
 
     /**
      * 设置 View 隐藏状态
      * @return Helper
      */
-    T  viewGone();
+    T viewGone();
 
     /**
      * 设置 View 隐藏状态
      * @param views View[]
      * @return Helper
      */
-    T  viewGones(View... views);
+    T viewGones(View... views);
 
     /**
      * 设置 View 隐藏占位状态
      * @return Helper
      */
-    T  viewInVisible();
+    T viewInVisible();
 
     /**
      * 设置 View 隐藏占位状态
      * @param views View[]
      * @return Helper
      */
-    T  viewInVisibles(View... views);
+    T viewInVisibles(View... views);
 
     /**
      * 把自身从父 View 中移除

@@ -7,10 +7,10 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectItemSlideBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
-import afkt.project.model.basic.AdapterModel
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import dev.base.simple.extensions.asFragment
+import dev.simple.core.app.adapter.AdapterModel
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

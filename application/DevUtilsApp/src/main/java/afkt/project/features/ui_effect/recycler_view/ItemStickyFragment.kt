@@ -5,7 +5,6 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectItemStickyBinding
-import afkt.project.model.basic.AdapterModel
 import afkt.project.model.helper.RandomHelper
 import android.annotation.SuppressLint
 import android.view.View
@@ -15,6 +14,7 @@ import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_dTag
+import dev.simple.core.app.adapter.AdapterModel
 import dev.simple.core.utils.size.AppSize
 import dev.utils.DevFinal
 import dev.utils.app.TextViewUtils

@@ -3,7 +3,7 @@ package afkt.project.model.button
 import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.appViewModel
-import afkt.project.model.basic.AdapterModel
+import dev.simple.core.app.adapter.AdapterModel
 import dev.simple.core.command.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 

@@ -7,7 +7,6 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectMultiEditsBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodityEvaluate
-import afkt.project.model.basic.AdapterModel
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import com.willy.ratingbar.ScaleRatingBar
@@ -15,6 +14,7 @@ import dev.assist.EditTextWatcherAssist
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.toast.toast_showShort
+import dev.simple.core.app.adapter.AdapterModel
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

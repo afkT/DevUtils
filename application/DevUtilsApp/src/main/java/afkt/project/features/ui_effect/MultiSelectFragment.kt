@@ -7,7 +7,6 @@ import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentUiEffectMultiSelectBinding
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean
 import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommodity
-import afkt.project.model.basic.AdapterModel
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
@@ -17,6 +16,7 @@ import dev.base.multiselect.DevMultiSelectMap
 import dev.base.multiselect.IMultiSelectEdit
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.toast.toast_showShort
+import dev.simple.core.app.adapter.AdapterModel
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper

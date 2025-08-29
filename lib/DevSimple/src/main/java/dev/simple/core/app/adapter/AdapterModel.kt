@@ -1,9 +1,9 @@
-package afkt.project.model.basic
+package dev.simple.core.app.adapter
 
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.RecyclerView.ItemAnimator
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * detail: Adapter 模型
@@ -15,7 +15,7 @@ open class AdapterModel<T> {
     val items = ObservableArrayList<T>()
 
     // Item 动画
-    val itemAnimator = ObservableField<ItemAnimator>(DefaultItemAnimator())
+    val itemAnimator = ObservableField<RecyclerView.ItemAnimator>(DefaultItemAnimator())
 
     // ==========
     // = 通用方法 =
