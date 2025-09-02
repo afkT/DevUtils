@@ -13,8 +13,8 @@ import androidx.databinding.ViewDataBinding
 import dev.base.DevSource
 import dev.engine.extensions.image.display
 import dev.engine.image.listener.DrawableListener
-import dev.simple.core.app.adapter.AdapterModel
-import dev.simple.core.utils.toSource
+import dev.simple.core.adapter.AdapterModel
+import dev.simple.extensions.toSource
 import dev.widget.assist.ViewAssist
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
 import me.tatarka.bindingcollectionadapter2.ItemBinding

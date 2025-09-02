@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_eTag
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils

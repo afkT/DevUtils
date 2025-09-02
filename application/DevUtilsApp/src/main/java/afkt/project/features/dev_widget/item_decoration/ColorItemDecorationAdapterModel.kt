@@ -2,7 +2,7 @@ package afkt.project.features.dev_widget.item_decoration
 
 import afkt.project.BR
 import afkt.project.R
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 // ====================================

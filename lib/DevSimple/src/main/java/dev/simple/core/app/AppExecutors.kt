@@ -8,8 +8,6 @@ import java.util.concurrent.Executors
 /**
  * detail: 整个应用程序的全局线程池
  * @author Google
- * @see https://github.com/android/architecture-components-samples
- * AppExecutors.kt
  */
 class AppExecutors(
     private val diskIO: Executor,

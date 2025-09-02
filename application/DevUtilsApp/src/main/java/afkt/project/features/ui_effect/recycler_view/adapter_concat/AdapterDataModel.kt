@@ -4,8 +4,8 @@ import afkt.project.model.helper.RandomHelper
 import android.graphics.Bitmap
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableFloat
-import dev.simple.core.utils.toPriceString
-import dev.simple.core.utils.toRMBSubZeroAndDot
+import dev.simple.extensions.toPriceString
+import dev.simple.extensions.toRMBSubZeroAndDot
 import dev.utils.app.ResourceUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ChineseUtils

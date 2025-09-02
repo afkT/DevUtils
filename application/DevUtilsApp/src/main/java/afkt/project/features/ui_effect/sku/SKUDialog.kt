@@ -10,8 +10,8 @@ import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.engine.extensions.image.display
 import dev.engine.extensions.toast.toast_showShort
-import dev.simple.core.utils.image.toImageConfig
-import dev.simple.core.utils.toSource
+import dev.simple.extensions.image.toImageConfig
+import dev.simple.extensions.toSource
 import dev.utils.app.EditTextUtils
 import dev.utils.app.ViewUtils
 import dev.utils.common.BigDecimalUtils

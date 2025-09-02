@@ -14,8 +14,8 @@ import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_dTag
-import dev.simple.core.app.adapter.AdapterModel
-import dev.simple.core.utils.size.AppSize
+import dev.simple.core.adapter.AdapterModel
+import dev.simple.extensions.size.AppSize
 import dev.utils.DevFinal
 import dev.utils.app.TextViewUtils
 import dev.utils.app.assist.ResourceColor

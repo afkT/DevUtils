@@ -11,7 +11,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import dev.base.simple.extensions.asFragment
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 /**

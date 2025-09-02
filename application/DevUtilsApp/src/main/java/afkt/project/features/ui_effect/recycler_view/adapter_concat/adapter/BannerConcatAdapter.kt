@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import dev.engine.extensions.image.display
-import dev.simple.core.utils.image.toImageConfig
-import dev.simple.core.utils.toSource
+import dev.simple.extensions.image.toImageConfig
+import dev.simple.extensions.toSource
 
 /**
  * detail: Banner Adapter

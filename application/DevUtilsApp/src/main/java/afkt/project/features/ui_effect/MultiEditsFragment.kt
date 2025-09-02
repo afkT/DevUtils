@@ -14,7 +14,7 @@ import dev.assist.EditTextWatcherAssist
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.toast.toast_showShort
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper

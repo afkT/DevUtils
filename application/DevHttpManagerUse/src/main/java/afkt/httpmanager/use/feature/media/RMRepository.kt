@@ -7,7 +7,7 @@ import afkt.httpmanager.use.feature.media.data.model.PhotoBean
 import afkt.httpmanager.use.network.helper.ResponseHelper
 import afkt.httpmanager.use.network.model.ServiceException
 import dev.retrofit.launchExecuteRequest
-import dev.simple.core.utils.hi.hiif.hiIfNotNull
+import dev.simple.extensions.hi.hiif.hiIfNotNull
 
 /**
  * detail: Retrofit Manager Request Repository

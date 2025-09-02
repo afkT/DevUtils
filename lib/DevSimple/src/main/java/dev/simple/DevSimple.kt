@@ -2,8 +2,7 @@ package dev.simple
 
 import dev.base.DevVariableExt
 import dev.engine.core.image.ImageConfig
-import dev.simple.core.base.Config
-import dev.simple.core.utils.image.AppImageConfig
+import dev.simple.extensions.image.AppImageConfig
 
 /**
  * detail: DevSimple
@@ -61,23 +60,6 @@ object DevSimple {
     // =============
     // = 对外公开方法 =
     // =============
-
-    /**
-     * 开启日志开关
-     */
-    fun openLog(): DevSimple {
-        Config.openLog()
-        return this
-    }
-
-    /**
-     * 设置默认点击时间间隔
-     * @param intervalTime 双击时间间隔
-     */
-    fun setIntervalTime(intervalTime: Long): DevSimple {
-        Config.setIntervalTime(intervalTime)
-        return this
-    }
 
     /**
      * 设置 ImageConfig 创建器

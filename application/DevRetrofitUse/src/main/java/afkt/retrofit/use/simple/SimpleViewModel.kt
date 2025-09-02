@@ -6,7 +6,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.retrofit.Base
-import dev.simple.core.utils.hi.hiif.hiIfNotNull
+import dev.simple.extensions.hi.hiif.hiIfNotNull
 import java.util.*
 
 /**

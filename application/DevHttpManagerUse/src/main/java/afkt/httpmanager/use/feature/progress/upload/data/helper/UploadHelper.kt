@@ -2,7 +2,7 @@ package afkt.httpmanager.use.feature.progress.upload.data.helper
 
 import android.graphics.Bitmap
 import dev.simple.core.app.AppExecutors
-import dev.simple.core.utils.hi.hiif.hiIfNotNull
+import dev.simple.extensions.hi.hiif.hiIfNotNull
 import dev.utils.app.MediaStoreUtils
 import dev.utils.app.PathUtils
 import dev.utils.app.ResourceUtils

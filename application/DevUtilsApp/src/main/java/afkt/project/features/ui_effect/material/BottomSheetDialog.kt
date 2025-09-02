@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dev.simple.core.utils.size.AppSize
+import dev.simple.extensions.size.AppSize
 import dev.utils.app.ResourceUtils
 
 /**

@@ -12,7 +12,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import dev.engine.extensions.log.log_dTag
-import dev.simple.core.assist.WebViewAssist
+import dev.simple.features.web.WebViewAssist
 
 /**
  * detail: WebView 辅助类

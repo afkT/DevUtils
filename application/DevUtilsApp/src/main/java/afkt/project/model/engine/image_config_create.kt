@@ -3,7 +3,7 @@ package afkt.project.model.engine
 import afkt.project.app.AppContext
 import dev.engine.core.image.ImageConfig
 import dev.simple.DevSimple
-import dev.simple.core.utils.size.AppSize
+import dev.simple.extensions.size.AppSize
 
 // =============================
 // = IImageEngine.EngineConfig =

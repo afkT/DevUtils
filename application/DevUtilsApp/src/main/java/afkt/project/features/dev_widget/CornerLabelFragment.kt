@@ -8,7 +8,7 @@ import afkt.project.databinding.FragmentDevWidgetCornerLabelBinding
 import android.view.Gravity
 import android.widget.FrameLayout
 import dev.base.simple.extensions.asFragment
-import dev.simple.core.utils.size.AppSize
+import dev.simple.extensions.size.AppSize
 import dev.utils.common.RandomUtils
 import dev.widget.ui.CornerLabelView
 

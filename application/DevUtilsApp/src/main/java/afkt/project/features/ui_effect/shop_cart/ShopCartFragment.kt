@@ -12,7 +12,7 @@ import androidx.databinding.ObservableField
 import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.base.simple.extensions.asFragment
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration

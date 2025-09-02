@@ -57,6 +57,8 @@ ext {
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
 //                    xxPermissions     : "com.github.getActivity:XXPermissions:25.0",
                     xxPermissions     : "com.github.getActivity:XXPermissions:20.0",
+                    // 设备兼容框架 https://github.com/getActivity/DeviceCompat
+                    deviceCompat      : "com.github.getActivity:DeviceCompat:1.2",
             ],
 
             "common_widget" : [

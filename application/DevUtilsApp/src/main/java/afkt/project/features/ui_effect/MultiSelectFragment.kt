@@ -16,7 +16,7 @@ import dev.base.multiselect.DevMultiSelectMap
 import dev.base.multiselect.IMultiSelectEdit
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.toast.toast_showShort
-import dev.simple.core.app.adapter.AdapterModel
+import dev.simple.core.adapter.AdapterModel
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
