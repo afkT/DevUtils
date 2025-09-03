@@ -1,4 +1,4 @@
-package dev.simple.core.intent
+package dev.simple.core.app
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,8 +25,8 @@ abstract class BaseIntent<T> {
 
     /**
      * 插入数据
-     * @param intent [Intent]
-     * @return [Intent]
+     * @param intent [android.content.Intent]
+     * @return [android.content.Intent]
      */
     fun insert(intent: Intent?): Intent? {
         return mIntent.insert(intent)
@@ -34,7 +34,7 @@ abstract class BaseIntent<T> {
 
     /**
      * 插入数据
-     * @return [Bundle]
+     * @return [android.os.Bundle]
      */
     fun insert(): Bundle? {
         return mIntent.insert()

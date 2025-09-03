@@ -53,16 +53,30 @@ class AppExecutors(
 
     companion object {
 
-        fun instance(): AppExecutors {
-            return Holder.holder
-        }
-
         fun newExecutors(
             diskIO: Executor = Executors.newFixedThreadPool(5),
             networkIO: Executor = Executors.newFixedThreadPool(5),
             mainThread: MainExecutor = MainThreadExecutor()
         ): AppExecutors {
             return AppExecutors(diskIO, networkIO, mainThread)
+        }
+
+        // =
+
+        fun instance(): AppExecutors {
+            return Holder.holder
+        }
+
+        fun diskIO(): Executor {
+            return instance().diskIO()
+        }
+
+        fun networkIO(): Executor {
+            return instance().networkIO()
+        }
+
+        fun mainThread(): MainExecutor {
+            return instance().mainThread()
         }
     }
 

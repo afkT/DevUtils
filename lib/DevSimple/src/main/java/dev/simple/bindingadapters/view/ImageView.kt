@@ -15,8 +15,6 @@ import dev.simple.extensions.toSource
 
 private const val TAG = "Image_BindingAdapter"
 
-//, "binding_placeholderRes"
-
 @BindingAdapter(
     value = ["binding_url", "binding_engine", "binding_listener"],
     requireAll = false

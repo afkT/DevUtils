@@ -2,7 +2,7 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import dev.simple.features.ui.attribute.Paddings
+import dev.simple.bindingadapters.view.attribute.Paddings
 import dev.utils.app.ViewUtils
 
 // ==============================

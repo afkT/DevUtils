@@ -86,7 +86,7 @@ object DownloadHelper {
         body: ResponseBody,
         errorBlock: (Throwable) -> Unit = {}
     ) {
-        AppExecutors.instance().networkIO().execute {
+        AppExecutors.networkIO().execute {
             try {
                 val tempFile = urlTempDownloadFile(url)
                 FileUtils.deleteFile(tempFile)
@@ -114,7 +114,7 @@ object DownloadHelper {
         body: ResponseBody,
         callback: StreamUtils.WriteCallback
     ) {
-        AppExecutors.instance().networkIO().execute {
+        AppExecutors.networkIO().execute {
             try {
                 val tempFile = urlTempDownloadFile(url)
                 FileUtils.deleteFile(tempFile)

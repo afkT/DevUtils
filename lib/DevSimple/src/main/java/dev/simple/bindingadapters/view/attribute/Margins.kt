@@ -1,4 +1,4 @@
-package dev.simple.features.ui.attribute
+package dev.simple.bindingadapters.view.attribute
 
 /**
  * detail: 通用 Margin 类

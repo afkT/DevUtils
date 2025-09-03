@@ -56,7 +56,7 @@ object UploadHelper {
      * 获取上传文件集合
      */
     fun fileLists(callback: (List<File>) -> Unit) {
-        AppExecutors.instance().diskIO().execute {
+        AppExecutors.diskIO().execute {
             val lists = mutableListOf<File>()
             mutableListOf(
                 "icon_launcher", "icon_launcher_round", "launcher_window_bg"
@@ -69,7 +69,7 @@ object UploadHelper {
                     lists.add(it)
                 }
             }
-            AppExecutors.instance().mainThread().execute {
+            AppExecutors.mainThread().execute {
                 callback.invoke(lists)
             }
         }
