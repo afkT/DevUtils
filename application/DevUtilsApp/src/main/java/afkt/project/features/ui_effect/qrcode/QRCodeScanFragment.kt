@@ -256,9 +256,9 @@ class QRCodeScanCode(
             // 以下代码只是为了解决停留在此页面可以一直扫码, 实际扫码成功应该回传
             zxingDecodeAssist.captureHandler()?.let {
                 // 延迟重置, 否则手机一直震动 ( 扫描成功, 重置后又解析成功连续触发 )
-                HandlerUtils.postRunnable({
+                HandlerUtils.postRunnable(1000) {
                     it.restartPreviewAndDecode()
-                }, 1000)
+                }
             }
         }
     }

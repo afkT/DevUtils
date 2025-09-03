@@ -194,6 +194,21 @@ public final class QuickHelper
 
     /**
      * 在主线程 Handler 中执行延迟任务
+     * @param delayMillis 延迟时间
+     * @param runnable    可执行的任务
+     * @return Helper
+     */
+    @Override
+    public QuickHelper postRunnable(
+            long delayMillis,
+            Runnable runnable
+    ) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
      * @param number      轮询次数

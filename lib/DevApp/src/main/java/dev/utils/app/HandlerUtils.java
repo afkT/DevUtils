@@ -68,6 +68,20 @@ public final class HandlerUtils {
 
     /**
      * 在主线程 Handler 中执行延迟任务
+     * @param delayMillis 延迟时间
+     * @param runnable    可执行的任务
+     */
+    public static void postRunnable(
+            final long delayMillis,
+            final Runnable runnable
+    ) {
+        if (runnable != null) {
+            getMainHandler().postDelayed(runnable, delayMillis);
+        }
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
      * @param number      轮询次数

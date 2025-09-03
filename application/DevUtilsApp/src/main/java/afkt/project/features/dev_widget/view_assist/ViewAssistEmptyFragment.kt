@@ -62,9 +62,9 @@ class ViewAssistEmptyViewModel : AppViewModel() {
                 view: View,
                 type: Int
             ) {
-                HandlerUtils.postRunnable({
+                HandlerUtils.postRunnable(1500L) {
                     assist.showType(TYPE_EMPTY_DATA)
-                }, 1500L)
+                }
             }
         }).register(TYPE_EMPTY_DATA, object : ViewAssist.Adapter {
             override fun onCreateView(

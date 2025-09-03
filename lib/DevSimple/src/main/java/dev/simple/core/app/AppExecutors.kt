@@ -12,7 +12,7 @@ import java.util.concurrent.Executors
 class AppExecutors(
     private val diskIO: Executor,
     private val networkIO: Executor,
-    private val mainThread: Executor
+    private val mainThread: MainExecutor
 ) {
 
     fun diskIO(): Executor {
@@ -23,14 +23,29 @@ class AppExecutors(
         return networkIO
     }
 
-    fun mainThread(): Executor {
+    fun mainThread(): MainExecutor {
         return mainThread
     }
 
-    private class MainThreadExecutor : Executor {
+    interface MainExecutor : Executor {
+
+        fun execute(
+            delayMillis: Long,
+            command: Runnable
+        )
+    }
+
+    class MainThreadExecutor : MainExecutor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())
         override fun execute(command: Runnable) {
             mainThreadHandler.post(command)
+        }
+
+        override fun execute(
+            delayMillis: Long,
+            command: Runnable
+        ) {
+            mainThreadHandler.postDelayed(command, delayMillis)
         }
     }
 
@@ -38,20 +53,25 @@ class AppExecutors(
 
     companion object {
 
-        fun newDefault(): AppExecutors {
-            return AppExecutors(
-                Executors.newSingleThreadExecutor(),
-                Executors.newFixedThreadPool(3),
-                MainThreadExecutor()
-            )
-        }
-
         fun instance(): AppExecutors {
             return Holder.holder
+        }
+
+        fun newExecutors(
+            diskIO: Executor = Executors.newFixedThreadPool(5),
+            networkIO: Executor = Executors.newFixedThreadPool(5),
+            mainThread: MainExecutor = MainThreadExecutor()
+        ): AppExecutors {
+            return AppExecutors(diskIO, networkIO, mainThread)
         }
     }
 
     private object Holder {
-        val holder = newDefault()
+
+        val holder = AppExecutors(
+            Executors.newSingleThreadExecutor(),
+            Executors.newFixedThreadPool(3),
+            MainThreadExecutor()
+        )
     }
 }

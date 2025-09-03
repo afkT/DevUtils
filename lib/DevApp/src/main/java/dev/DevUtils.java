@@ -266,6 +266,18 @@ public final class DevUtils {
     }
 
     /**
+     * 执行 UI 线程任务 ( 延时执行 )
+     * @param delayMillis 延时执行时间 ( 毫秒 )
+     * @param runnable    线程任务
+     */
+    public static void runOnUiThread(
+            final long delayMillis,
+            final Runnable runnable
+    ) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
+    }
+
+    /**
      * 开启日志开关
      */
     public static void openLog() {

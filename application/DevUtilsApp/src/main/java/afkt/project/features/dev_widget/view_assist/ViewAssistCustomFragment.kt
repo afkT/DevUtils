@@ -64,9 +64,9 @@ class ViewAssistCustomViewModel : AppViewModel() {
                 view: View,
                 type: Int
             ) {
-                HandlerUtils.postRunnable({
+                HandlerUtils.postRunnable(1500L) {
                     assist.showType(TYPE_SUCCESS)
-                }, 1500L)
+                }
             }
         }).register(TYPE_SUCCESS, object : ViewAssist.Adapter {
             override fun onCreateView(

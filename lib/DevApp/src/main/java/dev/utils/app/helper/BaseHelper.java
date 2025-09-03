@@ -111,6 +111,17 @@ public abstract class BaseHelper<Helper> {
 
     /**
      * 在主线程 Handler 中执行延迟任务
+     * @param delayMillis 延迟时间
+     * @param runnable    可执行的任务
+     * @return Helper
+     */
+    public abstract Helper postRunnable(
+            long delayMillis,
+            Runnable runnable
+    );
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
      * @param number      轮询次数

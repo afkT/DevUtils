@@ -67,13 +67,13 @@ class ViewAssistErrorViewModel : AppViewModel() {
                 /**
                  * 显示 [TYPE_ING] View，延迟切换状态 Type
                  */
-                HandlerUtils.postRunnable({
+                HandlerUtils.postRunnable(1500L) {
                     if (assist.tag == null) {
                         assist.showType(TYPE_FAILED)
                     } else {
                         assist.showType(TYPE_SUCCESS)
                     }
-                }, 1500L)
+                }
             }
         }).register(TYPE_FAILED, object : ViewAssist.Adapter {
             override fun onCreateView(
