@@ -83,3 +83,5 @@ tasks.withType(JavaCompile).configureEach {
 
 // 第三方库版本强制统一处理
 apply from: rootProject.file(files.unified_library_config_gradle)
+//// 生成依赖库 deps 文件信息任务【升级全部第三方库后才放开打印依赖信息】
+//apply from: rootProject.file(files.task_generate_deps_file_gradle)

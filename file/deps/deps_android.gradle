@@ -38,4 +38,5 @@ dependencies {
     api deps.androidx.activity
     api deps.androidx.palette
     api deps.androidx.flexbox
+    api deps.androidx.localbroadcastManager
 }

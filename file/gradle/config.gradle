@@ -75,7 +75,7 @@ ext {
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_stdlib_version}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
-                    core                          : "androidx.core:core-ktx:1.16.0",
+                    core                          : "androidx.core:core-ktx:1.17.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
                     coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
@@ -85,29 +85,29 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.9.1",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.9.3",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.9.1",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.9.3",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.1",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.3",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.9.1",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.9.3",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
                     // https://developer.android.com/jetpack/androidx/releases/activity
                     activity                      : "androidx.activity:activity-ktx:1.11.0-rc01",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-                    fragment                      : "androidx.fragment:fragment-ktx:1.8.8",
+                    fragment                      : "androidx.fragment:fragment-ktx:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.1",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.1",
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.3",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.3",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
                     // WorkManager Kotlin + coroutines
-                    work_runtime                  : "androidx.work:work-runtime-ktx:2.10.2",
+                    work_runtime                  : "androidx.work:work-runtime-ktx:2.10.3",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -141,16 +141,16 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.activity/activity
                     activity             : "androidx.activity:activity:1.11.0-rc01",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
-                    fragment             : "androidx.fragment:fragment:1.8.8",
+                    fragment             : "androidx.fragment:fragment:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.9.1",
-                    navigation_ui        : "androidx.navigation:navigation-ui:2.9.1",
+                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.9.3",
+                    navigation_ui        : "androidx.navigation:navigation-ui:2.9.3",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
-                    work_runtime         : "androidx.work:work-runtime:2.10.2",
+                    work_runtime         : "androidx.work:work-runtime:2.10.3",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
                     sqlite               : "androidx.sqlite:sqlite:2.5.2", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/androidx.palette/palette
@@ -158,7 +158,7 @@ ext {
                     palette              : "androidx.palette:palette:1.0.0",
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件
-                    design               : "com.google.android.material:material:1.12.0",
+                    design               : "com.google.android.material:material:1.13.0",
                     // https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
                     // https://github.com/google/flexbox-layout
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
@@ -169,11 +169,14 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/exifinterface
                     exifinterface        : "androidx.exifinterface:exifinterface:1.4.1",
+                    // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
+                    // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/localbroadcastmanager
+                    localbroadcastManager        : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.56.2",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.56.2",
+                    hilt_android         : "com.google.dagger:hilt-android:2.57.1",
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.57.1",
             ],
     ]
 }

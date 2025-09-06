@@ -54,7 +54,7 @@ ext {
             // ===============
 
             // 生成依赖库 deps 文件信息任务
-            task_generate_deps_file_gradle: "file/gradle/build/task/task_generate_deps_file.gradle",
+            task_generate_deps_file_gradle: "file/gradle/task/task_generate_deps_file.gradle",
     ]
 
     deps_maven = [

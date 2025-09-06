@@ -22,6 +22,7 @@ dependencies {
     api deps.androidx.design
     api deps.androidx.appcompat
     api deps.androidx.exifinterface
+    api deps.androidx.localbroadcastManager
 }
 
 // tasks-build-assemble
