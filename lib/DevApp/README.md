@@ -39,7 +39,6 @@ implementation 'io.github.afkt:DevAppX:2.4.8'
       - share                   | SharedPreferences 封装
       - timer                   | 定时器
    - common                     | Java 工具类, 不依赖 android api
-      - able                    | 通用接口定义
       - assist                  | 各种快捷辅助类
          - record               | 文件记录分析类
          - search               | 搜索相关 ( 文件搜索等 )
@@ -128,7 +127,6 @@ DevUtils.openDebug();
       - [share](#devutilsappshare)                                         | SharedPreferences 封装
       - [timer](#devutilsapptimer)                                         | 定时器
    - [common](#devutilscommon)                                             | Java 工具类, 不依赖 android api
-      - [able](#devutilscommonable)                                        | 通用接口定义
       - [assist](#devutilscommonassist)                                    | 各种快捷辅助类
          - [record](#devutilscommonassistrecord)                           | 文件记录分析类
          - [search](#devutilscommonassistsearch)                           | 搜索相关 ( 文件搜索等 )
@@ -2587,6 +2585,16 @@ DevUtils.openDebug();
 | create | 获取系统字体并设置字体样式 |
 
 
+* **Resources Color 辅助类 ->** [ResourceColor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/ResourceColor.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取 ResourceColor |
+| getColor | 获取 Color |
+| getColorById | 通过 R.color.id 获取 Color |
+| getColorByARGB | 通过 argb/rgb color String 获取 Color |
+
+
 * **屏幕传感器辅助类 ( 监听是否横竖屏 ) ->** [ScreenSensorAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/ScreenSensorAssist.java)
 
 | 方法 | 注释 |
@@ -2808,7 +2816,7 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
-| getIMPL | 获取悬浮窗管理辅助类实现 |
+| getImpl | 获取悬浮窗管理辅助类实现 |
 | getWindowManager | 获取 WindowManager |
 | getLayoutParams | 获取 Window LayoutParams |
 | addView | 添加悬浮 View |
@@ -5750,9 +5758,6 @@ DevUtils.openDebug();
 | unzipFileByKeyword | 解压带有关键字的文件 |
 | getFilesPath | 获取压缩文件中的文件路径链表 |
 | getComments | 获取压缩文件中的注释链表 |
-
-
-## <span id="devutilscommonable">**`dev.utils.common.able`**</span>
 
 
 ## <span id="devutilscommonassist">**`dev.utils.common.assist`**</span>

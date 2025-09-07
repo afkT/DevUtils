@@ -26,6 +26,7 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
       - cache           | Cache Engine 有效期键值对缓存
       - compress        | Image Compress Engine 图片压缩
          - listener     | 图片压缩回调事件
+      - debug           | Debug 编译辅助开发 Engine
       - image           | Image Engine 图片加载、下载、转格式等
          - listener     | 图片加载监听事件
       - json            | JSON Engine 映射
@@ -71,6 +72,7 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
       - [cache](#devenginecache)                          | Cache Engine 有效期键值对缓存
       - [compress](#devenginecompress)                    | Image Compress Engine 图片压缩
          - [listener](#devenginecompresslistener)         | 图片压缩回调事件
+      - [debug](#devenginedebug)                          | Debug 编译辅助开发 Engine
       - [image](#devengineimage)                          | Image Engine 图片加载、下载、转格式等
          - [listener](#devengineimagelistener)            | 图片加载监听事件
       - [json](#devenginejson)                            | JSON Engine 映射
@@ -1229,6 +1231,34 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
 | 方法 | 注释 |
 | :- | :- |
 | rename | 压缩前调用该方法用于修改压缩后文件名 |
+
+
+## <span id="devenginedebug">**`dev.engine.debug`**</span>
+
+
+* **Debug 编译辅助开发 Engine ->** [DevDebugEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/debug/DevDebugEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **Debug 编译辅助开发 Engine 接口 ->** [IDebugEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/debug/IDebugEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| isDisplayDebugFunction | 是否显示 Debug 功能开关 |
+| setDebugFunction | 设置 Debug 功能开关 |
+| attachDebug | 连接 ( 显示 ) Debug 功能关联 |
+| detachDebug | 分离 ( 隐藏 ) Debug 功能关联 |
+| updateConfig | 更新 Debug Config |
 
 
 ## <span id="devengineimage">**`dev.engine.image`**</span>
