@@ -2,10 +2,6 @@
 ## Gradle
 
 ```gradle
-// Android ( 1.9.4 以后只更新 AndroidX ) JCenter
-//implementation 'com.afkt:DevApp:1.9.4'
-
-// AndroidX ( Maven Central ) 
 // DevApp - Android 工具类库
 implementation 'io.github.afkt:DevAppX:2.4.8'
 ```

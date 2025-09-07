@@ -71,98 +71,98 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 ## 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine)
 
 
-### BarCode 条形码 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/barcode)
+### BarCode 条形码 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/barcode)
 
 可选实现方案：
 
-* 依赖 [ZXing](https://github.com/zxing/zxing) 实现 [ZXingEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/barcode/ZXingEngineImpl.kt)
+* 依赖 [ZXing](https://github.com/zxing/zxing) 实现 [ZXingEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/barcode/ZXingEngineImpl.kt)
 
 
-### Cache 有效期键值对缓存 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/cache)
+### Cache 有效期键值对缓存 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/cache)
 
 可选实现方案：
 
 * 依赖 [DevApp DevCache](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
-  实现 [DevCacheEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/cache/engine_dev_cache.kt)
+  实现 [DevCacheEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/cache/engine_dev_cache.kt)
 
 
-### Image Compress 图片压缩 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/compress)
+### Image Compress 图片压缩 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/compress)
 
 可选实现方案：
 
 * 依赖 [Luban 鲁班图片压缩](https://github.com/Curzibn/Luban)
-  实现 [LubanEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/compress/engine_luban.kt)
+  实现 [LubanEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/compress/engine_luban.kt)
 
 
-### Image 图片加载、下载、转格式 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/image)
+### Image 图片加载、下载、转格式 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/image)
 
 可选实现方案：
 
 * 依赖 [Glide 图片加载框架](https://github.com/bumptech/glide)
-  实现 [GlideEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/image/engine_glide.kt)
+  实现 [GlideEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/image/engine_glide.kt)
 
 
-### JSON 映射 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/json)
+### JSON 映射 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/json)
 
 可选实现方案：
 
 * 依赖 [Gson](https://github.com/google/gson)
-  实现 [GsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/json/engine_gson.kt)
+  实现 [GsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/json/engine_gson.kt)
 
 * 依赖 [Fastjson2](https://github.com/alibaba/fastjson2)
-  实现 [FastjsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/json/engine_fastjson.kt)
+  实现 [FastjsonEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/json/engine_fastjson.kt)
 
 
-### KeyValue 键值对存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/keyvalue)
+### KeyValue 键值对存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/keyvalue)
 
 可选实现方案：
 
 * 依赖 [基于 mmap 的高性能通用 key-value 组件 MMKV](https://github.com/Tencent/MMKV/blob/master/README_CN.md)
-  实现 [MMKVKeyValueEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/keyvalue/engine_mmkv.kt)
+  实现 [MMKVKeyValueEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/keyvalue/engine_mmkv.kt)
 
 * 依赖 [DevApp SharedPreferences 封装](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share)
-  实现 [SPKeyValueEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/keyvalue/engine_sp.kt)
+  实现 [SPKeyValueEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/keyvalue/engine_sp.kt)
 
 
-### Log 日志打印 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/log)
+### Log 日志打印 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/log)
 
 可选实现方案：
 
 * 依赖 [DevApp DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger)
-  实现 [DevLoggerEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/log/engine_dev_logger.kt)
+  实现 [DevLoggerEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/log/engine_dev_logger.kt)
 
 
-### Media Selector 多媒体资源选择 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/media)
+### Media Selector 多媒体资源选择 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/media)
 
 可选实现方案：
 
 * 依赖 [Android 平台下的图片选择器 PictureSelector](https://github.com/LuckSiege/PictureSelector)
-  实现 [PictureSelectorEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/media/engine_picture_selector.kt)
+  实现 [PictureSelectorEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/media/engine_picture_selector.kt)
 
 
-### Permission 权限申请 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/permission)
+### Permission 权限申请 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/permission)
 
 可选实现方案：
 
 * 依赖 [XXPermissions 权限请求框架](https://github.com/getActivity/XXPermissions)
-  实现 [XXPermissionsEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/permission/engine_xxpermissions.kt)
+  实现 [XXPermissionsEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/permission/engine_xxpermissions.kt)
 
 
-### Storage Engine 外部、内部文件存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/storage)
+### Storage Engine 外部、内部文件存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/storage)
 
 可选实现方案：
 
 * 依赖 [DevApp MediaStoreUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/MediaStoreUtils.java)
   、[UriUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/UriUtils.java)
-  实现 [DevMediaStoreEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/storage/engine_dev_media_store.kt)
+  实现 [DevMediaStoreEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/storage/engine_dev_media_store.kt)
 
 
-### Toast Engine 吐司提示 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/toast)
+### Toast Engine 吐司提示 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/toast)
 
 可选实现方案：
 
 * 依赖 [Toaster 吐司框架](https://github.com/getActivity/Toaster)
-  实现 [ToasterEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/toast/engine_toaster.kt)
+  实现 [ToasterEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/toast/engine_toaster.kt)
 
 
 ## 使用示例

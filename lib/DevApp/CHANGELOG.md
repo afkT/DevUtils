@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+Version 2.4.9 *(2025-09-08)*
+----------------------------
+
+* `[Add]` 新增 Resources Color 辅助类
+
+* `[Add]` 新增 DevUtils#viewVisible、viewVisibles、viewGone、viewGones、viewInVisible、viewInVisibles 方法
+
+* `[Add]` 新增 ImageUtils#colorDrawableToBitmap 方法
+
+* `[Add]` 新增 ResourceUtils#createFromAsset、createFromFile、create 方法
+
+* `[Add]` 新增整个项目 PendingIntent.FLAG_MUTABLE Flag
+
+* `[Update]` 简化 ColorUtils、color.xml 部分颜色变量并更新部分 color 资源命名
+
+* `[Update]` 修改部分 IMPL 文件、变量、类命名为 Impl
+
+* `[Delete]` 删除 common.able 定义的接口文件，简化工具类构成
+
 Version 2.4.8 *(2025-03-21)*
 ----------------------------
 
