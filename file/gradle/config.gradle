@@ -16,8 +16,6 @@ ext {
                     dokka_gradle_plugin        : "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka_plugin_version}",
                     // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
                     android_maven_gradle_plugin: "com.github.dcendents:android-maven-gradle-plugin:2.1",
-                    // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
-                    gradle_bintray_plugin      : "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
             ],
 
             // ================

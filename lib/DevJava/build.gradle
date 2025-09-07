@@ -7,8 +7,6 @@ def isPublishing = false
 
 // tasks-build-assemble
 // publishing-publishReleasePublicationToXXXXXRepository
-//apply from: rootProject.file(files.bintray_upload_java)
-//apply from: rootProject.file(files.sonatype_upload_java)
 if (isPublishing) {
     apply from: rootProject.file(files.sonatype_upload_java)
 }
