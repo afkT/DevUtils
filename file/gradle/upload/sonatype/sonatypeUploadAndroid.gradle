@@ -4,22 +4,13 @@ apply plugin: "signing"
 
 // load properties
 Properties properties = new Properties()
-File localPropertiesFile = new File(rootDir, "sonatype.properties")
+File localPropertiesFile = new File(rootDir, "/file/gradle/upload/sonatype/sonatype.properties")
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }
 File projectPropertiesFile = project.file("project.properties")
 if (projectPropertiesFile.exists()) {
     properties.load(projectPropertiesFile.newDataInputStream())
-}
-
-// =========================================
-// = 本地 sonatype properties 文件防止意外上传 =
-// =========================================
-
-localPropertiesFile = new File(rootDir, "../../File/sonatype.properties")
-if (localPropertiesFile.exists()) {
-    properties.load(localPropertiesFile.newDataInputStream())
 }
 
 // =======
@@ -47,12 +38,7 @@ def ossrhPassword = properties.getProperty("ossrhPassword")
 
 def javadocName = properties.getProperty("javadoc.name")
 
-// 适配 macOS 非使用绝对路径
-if (!new File(signingSecretKeyRingFile).exists()) {
-    signingSecretKeyRingFile = new File(
-            rootDir, signingSecretKeyRingFile
-    ).getAbsolutePath()
-}
+signingSecretKeyRingFile = new File(rootDir, signingSecretKeyRingFile).getAbsolutePath()
 
 ext["signing.keyId"] = signingKeyId
 ext["signing.password"] = signingPassword
