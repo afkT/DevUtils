@@ -12,7 +12,9 @@ import dev.base.simple.ActivityVMType
 import dev.base.simple.contracts.ISimpleAgile
 import dev.base.simple.contracts.binding.BindingActivityView
 import dev.base.simple.contracts.lifecycle.IActivityLifecycle
+import dev.base.simple.contracts.lifecycle.IFragmentLifecycle
 import dev.base.simple.contracts.lifecycle.LifecycleManager
+import dev.utils.app.assist.lifecycle.fragment.FragmentLifecycleAssist
 import dev.utils.common.ClassUtils
 
 /**
@@ -28,15 +30,13 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
     private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseMVVMActivity<VDB, VM>(),
     ISimpleAgile,
-    IActivityLifecycle {
+    IActivityLifecycle,
+    IFragmentLifecycle {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 是否监听生命周期 ( 实现了则表示需要监听 )
-        activityLifecycleImpl()?.let { impl ->
-            // 添加 Activity 生命周期通知事件
-            LifecycleManager.activity().addListener(this, impl)
-        }
+        // 监听生命周期
+        addLifecycleListener()
         // 内部初始化前调用
         simpleInit()
         // 内部初始化
@@ -47,8 +47,6 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
         initViewModel()
         // 简化预加载
         simplePreLoad()
-        // 预加载方法
-        preLoad()
         // 初始化方法
         initOrder()
         // 敏捷开发简化调用
@@ -136,5 +134,40 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
      */
     override fun baseLayoutView(): View? {
         return bindLayoutView?.bind(this, layoutInflater)
+    }
+
+    // ==============
+    // = ILifecycle =
+    // ==============
+
+    // Fragment 生命周期辅助类
+    private val _fragmentLifecycleAssist: FragmentLifecycleAssist by lazy {
+        FragmentLifecycleAssist(supportFragmentManager)
+    }
+
+    /**
+     * 获取 Fragment 生命周期辅助类
+     * @return [FragmentLifecycleAssist]
+     */
+    fun fragmentLifecycleAssist(): FragmentLifecycleAssist {
+        return _fragmentLifecycleAssist
+    }
+
+    /**
+     * 监听生命周期
+     */
+    private fun addLifecycleListener() {
+        // 是否监听生命周期 ( 实现了则表示需要监听 )
+        activityLifecycleImpl()?.let { impl ->
+            // 添加 Activity 生命周期通知事件
+            LifecycleManager.activity().addListener(this, impl)
+        }
+        // 是否监听生命周期 ( 实现了则表示需要监听 )
+        fragmentLifecycleImpl()?.let { impl ->
+            // 注册绑定 Fragment 生命周期事件处理
+            fragmentLifecycleAssist().registerFragmentLifecycleCallbacks(true)
+            // 添加 Fragment 生命周期通知事件
+            fragmentLifecycleAssist().setAbstractFragmentLifecycle(impl)
+        }
     }
 }

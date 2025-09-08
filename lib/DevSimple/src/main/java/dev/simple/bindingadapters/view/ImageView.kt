@@ -8,6 +8,7 @@ import dev.engine.extensions.image.display
 import dev.engine.image.listener.LoadListener
 import dev.simple.extensions.hi.hiif.hiIfNotNullWith
 import dev.simple.extensions.toSource
+import dev.utils.common.StringUtils
 
 // ========================
 // = Image BindingAdapter =
@@ -20,22 +21,24 @@ private const val TAG = "Image_BindingAdapter"
     requireAll = false
 )
 fun ImageView.bindingImageUrl(
-    url: String,
+    url: String?,
     engine: String?,
     listener: LoadListener<Bitmap>?
 ) {
-    listener.hiIfNotNullWith({
-        this.display(
-            engine = engine,
-            source = url.toSource(),
-            listener = it
-        )
-    }, {
-        this.display(
-            engine = engine,
-            source = url.toSource()
-        )
-    })
+    if (StringUtils.isNotEmpty(url)) {
+        listener.hiIfNotNullWith({
+            this.display(
+                engine = engine,
+                source = url?.toSource(),
+                listener = it
+            )
+        }, {
+            this.display(
+                engine = engine,
+                source = url?.toSource()
+            )
+        })
+    }
 }
 
 @BindingAdapter(

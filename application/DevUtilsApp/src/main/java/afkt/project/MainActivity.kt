@@ -25,4 +25,16 @@ class MainActivity : AppActivity<MainActivityBinding, AppViewModel>(
                 .popBackStack()
         }
     }
+
+//    // Fragment LifecycleCallbacks 抽象类
+//    override fun fragmentLifecycleImpl(): AbstractFragmentLifecycle? {
+//        return object : AbstractFragmentLifecycle() {
+//            override fun onFragmentResumed(
+//                fm: FragmentManager,
+//                fragment: Fragment
+//            ) {
+//                Log.d("QWOEKQWEQWEQ", "onFragmentResumed() -> $fragment")
+//            }
+//        }
+//    }
 }

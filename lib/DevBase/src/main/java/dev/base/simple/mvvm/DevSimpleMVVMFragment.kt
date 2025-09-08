@@ -51,8 +51,6 @@ abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
         initViewModel()
         // 简化预加载
         simplePreLoad()
-        // 预加载方法
-        preLoad()
         // 初始化方法
         initOrder()
         // 敏捷开发简化调用

@@ -235,22 +235,24 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
     requireAll = true
 )
 fun AppCompatImageView.bindingMultiSelectListener(
-    itemValue: CommodityBean,
-    itemKey: String,
-    assist: DevMultiSelectMap<String, CommodityBean>,
-    switchBool: ObservableBoolean,
-    refreshLong: ObservableLong
+    itemValue: CommodityBean?,
+    itemKey: String?,
+    assist: DevMultiSelectMap<String, CommodityBean>?,
+    switchBool: ObservableBoolean?,
+    refreshLong: ObservableLong?
 ) {
     // 如果打开了开关才进行显示
-    if (ViewUtils.setVisibility(switchBool.get(), this)) {
-        // 判断是否选中
-        val isSelected = assist.isSelectKey(itemKey)
-        ViewUtils.setSelected(isSelected, this)
-        // 设置点击事件
-        setOnClickListener { view ->
-            assist.toggle(itemKey, itemValue)
-            // 更新状态
-            ViewUtils.setSelected(assist.isSelectKey(itemKey), view)
+    if (ViewUtils.setVisibility(switchBool?.get() == true, this)) {
+        if (assist != null) {
+            // 判断是否选中
+            val isSelected = assist.isSelectKey(itemKey)
+            ViewUtils.setSelected(isSelected, this)
+            // 设置点击事件
+            setOnClickListener { view ->
+                assist.toggle(itemKey, itemValue)
+                // 更新状态
+                ViewUtils.setSelected(assist.isSelectKey(itemKey), view)
+            }
         }
     }
 }

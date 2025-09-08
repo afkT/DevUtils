@@ -19,14 +19,6 @@ interface IDevBaseMethod {
         initOther()
     }
 
-    /**
-     * 预加载方法 ( 需主动调用, 预留可选 )
-     * 例:
-     * Activity : [preLoad] ( onCreate ) => [initOrder] ( onCreate )
-     * Fragment : [preLoad] ( onCreateView ) => [initOrder] ( onViewCreated )
-     */
-    fun preLoad() {}
-
     // ============
     // = 初始化方法 =
     // ============

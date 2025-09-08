@@ -85,31 +85,38 @@ class MultiEditsAdapter() : AdapterModel<CommodityBean>() {
     requireAll = true
 )
 fun EditText.bindingMultiEditsInputListener(
-    itemValue: CommodityBean,
+    itemValue: CommodityBean?,
     itemIndex: Int,
-    textWatcherAssist: EditTextWatcherAssist<CommodityBean>
+    textWatcherAssist: EditTextWatcherAssist<CommodityBean>?
 ) {
-    textWatcherAssist.bindListener(
-        itemValue.inputText.get(), itemIndex, this, itemValue
-    ) { inputText, _, position, item ->
-        val input = inputText.toString()
-        val inputNumber = StringUtils.length(input)
-        item.inputNumberText.set("${120 - inputNumber}")
+    if (itemValue != null && textWatcherAssist != null) {
+        textWatcherAssist.bindListener(
+            itemValue.inputText.get(), itemIndex,
+            this, itemValue
+        ) { inputText, _, position, item ->
+            val input = inputText.toString()
+            val inputNumber = StringUtils.length(input)
+            item.inputNumberText.set("${120 - inputNumber}")
+        }
     }
 }
 
 @BindingAdapter("binding_rating_item_listener")
 fun ScaleRatingBar.bindingRatingChangeListener(
-    itemValue: CommodityBean
+    itemValue: CommodityBean?
 ) {
-    this.setOnRatingChangeListener { _, rating, _ ->
-        itemValue.ratingValue.set(rating)
+    if (itemValue != null) {
+        this.setOnRatingChangeListener { _, rating, _ ->
+            itemValue.ratingValue.set(rating)
+        }
     }
 }
 
 @BindingAdapter("binding_rating_item_value")
 fun ScaleRatingBar.bindingRatingValue(
-    itemValue: CommodityBean
+    itemValue: CommodityBean?
 ) {
-    this.rating = itemValue.ratingValue.get()
+    if (itemValue != null) {
+        this.rating = itemValue.ratingValue.get()
+    }
 }
