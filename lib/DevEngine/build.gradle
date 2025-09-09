@@ -44,6 +44,8 @@ dependencies {
     api deps_lib.image_widget.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
     api deps_lib.feature_lib.zxing_code
+    // 设备兼容框架 https://github.com/getActivity/DeviceCompat
+    api deps_lib.common.deviceCompat
 
     // =============
     // = DevEngine =

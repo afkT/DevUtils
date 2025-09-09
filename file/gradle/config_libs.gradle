@@ -55,7 +55,7 @@ ext {
                     autosize          : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-//                    xxPermissions     : "com.github.getActivity:XXPermissions:25.0",
+//                    xxPermissions     : "com.github.getActivity:XXPermissions:26.5",
                     xxPermissions     : "com.github.getActivity:XXPermissions:20.0",
                     // 设备兼容框架 https://github.com/getActivity/DeviceCompat
                     deviceCompat      : "com.github.getActivity:DeviceCompat:1.6",
@@ -219,6 +219,12 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.skydoves/transformationlayout
                     // Activity 跳转动画 https://github.com/skydoves/TransformationLayout
                     transformation_layout: "com.github.skydoves:transformationlayout:1.1.6",
+                    // Gif、WebP 动画库 https://github.com/penfeizhou/APNG4Android/blob/master/README-zh_CN.md
+                    awebp                : "com.github.penfeizhou.android.animation:awebp:3.0.4",
+                    // PAG 动画库 https://github.com/Tencent/libpag/blob/main/README.zh_CN.md
+                    pag                  : "com.tencent.tav:libpag:4.4.35",
+                    // Gif 预览库 https://github.com/koral--/android-gif-drawable
+                    gifDrawable          : "pl.droidsonroids.gif:android-gif-drawable:1.2.29",
             ],
             "image_widget"  : [
 
