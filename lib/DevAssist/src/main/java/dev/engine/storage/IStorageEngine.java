@@ -32,14 +32,14 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * detail: Storage ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     /**
      * detail: Storage Result
      * @author Ttt
      */
-    class EngineResult {
+    interface EngineResult {
     }
 
     // =============

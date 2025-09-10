@@ -125,17 +125,17 @@ object DevEngine {
 
     /**
      * 创建 MMKV Config
-     * @param cipher 加解密中间层
      * @param mmkv [MMKV]
+     * @param cipher 加解密中间层
      * @return [MMKVConfig]
      * <p></p>
      * 需先调用 [defaultMMKVInitialize]
      */
     fun createMMKVConfig(
-        cipher: Cipher? = null,
-        mmkv: MMKV
+        mmkv: MMKV,
+        cipher: Cipher? = null
     ): MMKVConfig {
-        return MMKVConfig(cipher, mmkv)
+        return MMKVConfig(mmkv, cipher)
     }
 
     /**
@@ -165,7 +165,7 @@ object DevEngine {
      */
     fun completeInitialize(
         context: Context,
-        cacheConfig: CacheConfig? = CacheConfig(null, DevCache.newCache()),
+        cacheConfig: CacheConfig? = CacheConfig(DevCache.newCache(), null),
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
         barCodeConfig: BarCodeConfig? = null

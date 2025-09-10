@@ -13,14 +13,14 @@ public interface IToastEngine<Config extends IToastEngine.EngineConfig,
      * detail: Toast Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: Toast ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     // =============

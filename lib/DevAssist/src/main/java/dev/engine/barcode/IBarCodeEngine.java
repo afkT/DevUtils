@@ -17,21 +17,21 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
      * detail: BarCode Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: BarCode ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     /**
      * detail: BarCode Result
      * @author Ttt
      */
-    class EngineResult {
+    interface EngineResult {
     }
 
     // =============

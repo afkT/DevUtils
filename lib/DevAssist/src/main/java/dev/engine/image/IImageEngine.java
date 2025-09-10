@@ -24,7 +24,7 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
      * detail: Image Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     // ====================

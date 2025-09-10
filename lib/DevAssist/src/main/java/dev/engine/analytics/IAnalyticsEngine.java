@@ -14,14 +14,14 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
      * detail: Analytics Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: Analytics ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     // =============

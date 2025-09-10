@@ -11,6 +11,20 @@ import java.util.List;
  */
 public interface IPermissionEngine {
 
+    /**
+     * detail: Permission Config
+     * @author Ttt
+     */
+    interface EngineConfig {
+    }
+
+    /**
+     * detail: Permission Item
+     * @author Ttt
+     */
+    interface EngineItem {
+    }
+
     // =============
     // = 请求权限回调 =
     // =============

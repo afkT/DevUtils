@@ -13,9 +13,10 @@ import java.lang.reflect.Type
  * @author Ttt
  */
 open class MMKVConfig(
-    cipher: Cipher?,
-    val mmkv: MMKV
-) : IKeyValueEngine.EngineConfig(cipher)
+    val mmkv: MMKV,
+    // 通用加解密中间层
+    val cipher: Cipher? = null
+) : IKeyValueEngine.EngineConfig
 
 /**
  * detail: MMKV Key-Value Engine 实现

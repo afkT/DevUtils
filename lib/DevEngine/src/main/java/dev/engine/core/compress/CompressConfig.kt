@@ -13,7 +13,7 @@ open class CompressConfig @JvmOverloads constructor(
     val focusAlpha: Boolean = true,
     // 压缩图片存储路径
     val targetDir: String? = null
-) : ICompressEngine.EngineConfig() {
+) : ICompressEngine.EngineConfig {
 
     // 压缩失败、异常是否结束压缩
     private var mFailFinish = false

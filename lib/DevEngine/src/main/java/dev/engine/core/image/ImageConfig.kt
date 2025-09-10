@@ -13,7 +13,7 @@ import dev.engine.image.IImageEngine
  */
 open class ImageConfig private constructor(
     config: ImageConfig?
-) : IImageEngine.EngineConfig() {
+) : IImageEngine.EngineConfig {
 
     // 是否缓存到 SDCard
     private var mCacheDisk = true

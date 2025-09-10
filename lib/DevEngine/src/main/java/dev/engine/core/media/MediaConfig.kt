@@ -9,7 +9,7 @@ import dev.engine.media.IMediaEngine
  * 所以新增一个 mLibCustomConfig 第三方库自定义配置
  * 要求必须设置第三方库配置、参数等自行转换进行使用
  */
-open class MediaConfig : IMediaEngine.EngineConfig() {
+open class MediaConfig : IMediaEngine.EngineConfig {
 
     // 第三方库自定义配置 ( 可自行强转 )
     private var mLibCustomConfig: Any? = null

@@ -18,14 +18,14 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
      * detail: Share Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: Share ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     // =============

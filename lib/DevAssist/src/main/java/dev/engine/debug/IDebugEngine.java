@@ -12,7 +12,7 @@ public interface IDebugEngine<Config extends IDebugEngine.EngineConfig> {
      * detail: Debug Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     // =============

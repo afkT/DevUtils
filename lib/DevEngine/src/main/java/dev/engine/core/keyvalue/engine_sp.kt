@@ -13,10 +13,11 @@ import java.lang.reflect.Type
  * @author Ttt
  */
 open class SPConfig(
-    cipher: Cipher?,
     // SharedPreferences
-    val preference: IPreference
-) : IKeyValueEngine.EngineConfig(cipher)
+    val preference: IPreference,
+    // 通用加解密中间层
+    val cipher: Cipher? = null
+) : IKeyValueEngine.EngineConfig
 
 /**
  * detail: SharedPreferences Key-Value Engine 实现

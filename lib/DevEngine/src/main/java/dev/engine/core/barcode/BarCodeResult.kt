@@ -10,7 +10,7 @@ import dev.engine.barcode.IBarCodeEngine
  */
 open class BarCodeResult(
     private val mResult: Result?
-) : IBarCodeEngine.EngineResult() {
+) : IBarCodeEngine.EngineResult {
 
     // =============
     // = 对外公开方法 =

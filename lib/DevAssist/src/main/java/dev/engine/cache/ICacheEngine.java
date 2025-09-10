@@ -11,8 +11,6 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import dev.utils.common.cipher.Cipher;
-
 /**
  * detail: Cache Engine 接口
  * @author Ttt
@@ -24,54 +22,14 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      * detail: Cache Config
      * @author Ttt
      */
-    class EngineConfig {
-
-        // 通用加解密中间层
-        public final Cipher cipher;
-
-        public EngineConfig(Cipher cipher) {
-            this.cipher = cipher;
-        }
+    interface EngineConfig {
     }
 
     /**
      * detail: Cache ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
-
-        // 存储 Key
-        public final String  key;
-        // 存储类型
-        public final int     type;
-        // 文件大小
-        public final long    size;
-        // 保存时间 ( 毫秒 )
-        public final long    saveTime;
-        // 有效期 ( 毫秒 )
-        public final long    validTime;
-        // 是否永久有效
-        public final boolean isPermanent;
-        // 是否过期
-        public final boolean isDue;
-
-        public EngineItem(
-                String key,
-                int type,
-                long size,
-                long saveTime,
-                long validTime,
-                boolean isPermanent,
-                boolean isDue
-        ) {
-            this.key         = key;
-            this.type        = type;
-            this.size        = size;
-            this.saveTime    = saveTime;
-            this.validTime   = validTime;
-            this.isPermanent = isPermanent;
-            this.isDue       = isDue;
-        }
+    interface EngineItem {
     }
 
     // =============

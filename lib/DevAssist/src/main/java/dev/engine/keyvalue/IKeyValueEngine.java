@@ -2,8 +2,6 @@ package dev.engine.keyvalue;
 
 import java.lang.reflect.Type;
 
-import dev.utils.common.cipher.Cipher;
-
 /**
  * detail: Key-Value Engine 接口
  * @author Ttt
@@ -14,16 +12,7 @@ public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
      * detail: Key-Value Config
      * @author Ttt
      */
-    class EngineConfig {
-
-        // 通用加解密中间层
-        public final Cipher cipher;
-
-        public EngineConfig(
-                Cipher cipher
-        ) {
-            this.cipher = cipher;
-        }
+    interface EngineConfig {
     }
 
     // =============

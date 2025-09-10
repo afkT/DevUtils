@@ -7,11 +7,18 @@ import dev.engine.cache.ICacheEngine
  * @author Ttt
  */
 open class DataItem(
-    key: String?,
-    type: Int,
-    size: Long,
-    saveTime: Long,
-    validTime: Long,
-    isPermanent: Boolean,
-    isDue: Boolean
-) : ICacheEngine.EngineItem(key, type, size, saveTime, validTime, isPermanent, isDue)
+    // 存储 Key
+    val key: String?,
+    // 存储类型
+    val type: Int,
+    // 文件大小
+    val size: Long,
+    // 保存时间 ( 毫秒 )
+    val saveTime: Long,
+    // 有效期 ( 毫秒 )
+    val validTime: Long,
+    // 是否永久有效
+    val isPermanent: Boolean,
+    // 是否过期
+    val isDue: Boolean
+) : ICacheEngine.EngineItem

@@ -14,14 +14,14 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
      * detail: Push Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: Push ( Data、Params ) Item
      * @author Ttt
      */
-    class EngineItem {
+    interface EngineItem {
     }
 
     // =============

@@ -13,7 +13,7 @@ import java.io.File
 open class StorageResult(
     // 存储结果
     private val mInsertResult: Boolean
-) : IStorageEngine.EngineResult() {
+) : IStorageEngine.EngineResult {
 
     // 存储文件 Uri
     @Transient

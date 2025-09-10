@@ -16,7 +16,7 @@ open class BarCodeData private constructor(
     private val mWidth: Int,
     // 条码高度
     private val mHeight: Int
-) : IBarCodeEngine.EngineItem() {
+) : IBarCodeEngine.EngineItem {
 
     companion object {
 

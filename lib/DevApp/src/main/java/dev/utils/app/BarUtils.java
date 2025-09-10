@@ -58,7 +58,7 @@ public final class BarUtils {
      */
     public static int getStatusBarHeight() {
         try {
-            Resources resources = Resources.getSystem();
+            Resources resources = ResourceUtils.getResources();
             int id = resources.getIdentifier(
                     "status_bar_height", "dimen", "android"
             );
@@ -592,7 +592,7 @@ public final class BarUtils {
             if (ResourceUtils.getTheme(context).resolveAttribute(
                     android.R.attr.actionBarSize, tv, true)) {
                 return TypedValue.complexToDimensionPixelSize(
-                        tv.data, Resources.getSystem().getDisplayMetrics()
+                        tv.data, ResourceUtils.getDisplayMetrics(context)
                 );
             }
         } catch (Exception e) {
@@ -641,7 +641,7 @@ public final class BarUtils {
      */
     public static int getNavBarHeight() {
         try {
-            Resources resources = Resources.getSystem();
+            Resources resources = ResourceUtils.getResources();
             int id = resources.getIdentifier(
                     "navigation_bar_height", "dimen", "android"
             );

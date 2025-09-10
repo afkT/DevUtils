@@ -16,7 +16,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * detail: Image Compress Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     // =============

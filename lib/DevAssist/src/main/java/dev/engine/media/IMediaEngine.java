@@ -20,14 +20,14 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
      * detail: Media Selector Config
      * @author Ttt
      */
-    class EngineConfig {
+    interface EngineConfig {
     }
 
     /**
      * detail: Media Selector Data
      * @author Ttt
      */
-    class EngineData {
+    interface EngineData {
     }
 
     // ==========
