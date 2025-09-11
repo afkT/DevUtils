@@ -165,7 +165,7 @@ object DevEngine {
      */
     fun completeInitialize(
         context: Context,
-        cacheConfig: CacheConfig? = CacheConfig(DevCache.newCache(), null),
+        cacheConfig: CacheConfig? = CacheConfig(DevCache.newCache()),
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
         barCodeConfig: BarCodeConfig? = null

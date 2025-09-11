@@ -16,8 +16,12 @@ open class SPConfig(
     // SharedPreferences
     val preference: IPreference,
     // 通用加解密中间层
-    val cipher: Cipher? = null
-) : IKeyValueEngine.EngineConfig
+    private val cipher: Cipher? = null
+) : IKeyValueEngine.EngineConfig {
+
+    // 通用加解密中间层
+    override fun cipher(): Cipher? = cipher
+}
 
 /**
  * detail: SharedPreferences Key-Value Engine 实现
@@ -115,8 +119,9 @@ open class SPKeyValueEngineImpl(
         value: String?
     ): Boolean {
         var content = value
-        if (value != null && mConfig.cipher != null) {
-            val bytes = mConfig.cipher.encrypt(ConvertUtils.toBytes(value))
+        val cipher = mConfig.cipher()
+        if (value != null && cipher != null) {
+            val bytes = cipher.encrypt(ConvertUtils.toBytes(value))
             content = ConvertUtils.newString(bytes)
         }
         mPreference.put(key, content)
@@ -207,8 +212,9 @@ open class SPKeyValueEngineImpl(
         defaultValue: String?
     ): String? {
         var content = mPreference.getString(key, null) ?: return defaultValue
-        if (mConfig.cipher != null) {
-            val bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content))
+        val cipher = mConfig.cipher()
+        if (cipher != null) {
+            val bytes = cipher.decrypt(ConvertUtils.toBytes(content))
             content = ConvertUtils.newString(bytes)
         }
         return content
