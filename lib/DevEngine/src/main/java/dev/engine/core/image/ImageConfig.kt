@@ -1,10 +1,6 @@
 package dev.engine.core.image
 
 import android.graphics.drawable.Drawable
-import dev.engine.core.image.ImageConfig.Companion.SCALE_CENTER_CROP
-import dev.engine.core.image.ImageConfig.Companion.SCALE_FIT_CENTER
-import dev.engine.core.image.ImageConfig.Companion.TRANSFORM_CIRCLE
-import dev.engine.core.image.ImageConfig.Companion.TRANSFORM_ROUNDED_CORNERS
 import dev.engine.image.IImageEngine
 
 /**
@@ -21,8 +17,7 @@ open class ImageConfig private constructor(
     // 是否缓存到内存
     private var mCacheMemory = true
 
-    private var mScaleType = 0
-    private var mTransform = 0
+    private var mTransform = TRANSFORM_NONE
     private var mRoundedCornersRadius = 0
 
     // placeholder
@@ -49,29 +44,27 @@ open class ImageConfig private constructor(
     // 是否不显示动画
     private var mDontAnimate = false
 
-    // 是否移除所有 Transformation 效果
-    private var mDontTransform = false
-
     // 额外扩展对象
     private var mOptions: Any? = null
 
     companion object {
 
-        // scale type
-        const val SCALE_NONE = 0
-        const val SCALE_CENTER_CROP = 1
-        const val SCALE_FIT_CENTER = 2
-
         // transform
-        const val TRANSFORM_NONE = 1
-        const val TRANSFORM_CIRCLE = 2
-        const val TRANSFORM_ROUNDED_CORNERS = 3
+        const val TRANSFORM_NONE = 0
+        const val TRANSFORM_CIRCLE = 1
+        const val TRANSFORM_CENTER_INSIDE = 2
+        const val TRANSFORM_CENTER_CROP = 3
+        const val TRANSFORM_FIT_CENTER = 4
+        const val TRANSFORM_ROUNDED_CORNERS = 5
+        const val TRANSFORM_ROUNDED_CORNERS_CENTER_INSIDE = 6
+        const val TRANSFORM_ROUNDED_CORNERS_CENTER_CROP = 7
+        const val TRANSFORM_ROUNDED_CORNERS_FIT_CENTER = 8
 
         // placeholder
         const val NO_PLACE_HOLDER = -1
 
         // 默认图片保存质量值
-        const val QUALITY = 80
+        const val QUALITY = 100
 
         fun create(): ImageConfig {
             return ImageConfig(null)
@@ -89,7 +82,6 @@ open class ImageConfig private constructor(
             // 是否缓存到内存
             this.mCacheMemory = it.mCacheMemory
 
-            this.mScaleType = it.mScaleType
             this.mTransform = it.mTransform
             this.mRoundedCornersRadius = it.mRoundedCornersRadius
             // placeholder
@@ -109,8 +101,6 @@ open class ImageConfig private constructor(
             this.mOriginalPathReturn = it.mOriginalPathReturn
             // 是否不显示动画
             this.mDontAnimate = it.mDontAnimate
-            // 是否移除所有 Transformation 效果
-            this.mDontTransform = it.mDontTransform
             // 额外扩展对象
             this.mOptions = it.mOptions
         }
@@ -150,25 +140,10 @@ open class ImageConfig private constructor(
         return this
     }
 
-    fun getScaleType(): Int {
-        return mScaleType
-    }
-
-    /**
-     * @param scaleType [SCALE_CENTER_CROP]、[SCALE_FIT_CENTER]
-     */
-    fun setScaleType(scaleType: Int): ImageConfig {
-        mScaleType = scaleType
-        return this
-    }
-
     fun getTransform(): Int {
         return mTransform
     }
 
-    /**
-     * @param transform [TRANSFORM_ROUNDED_CORNERS]、[TRANSFORM_CIRCLE]
-     */
     fun setTransform(transform: Int): ImageConfig {
         mTransform = transform
         return this
@@ -271,14 +246,6 @@ open class ImageConfig private constructor(
 
     fun setDontAnimate(dontAnimate: Boolean) {
         mDontAnimate = dontAnimate
-    }
-
-    fun isDontTransform(): Boolean {
-        return mDontTransform
-    }
-
-    fun setDontTransform(dontTransform: Boolean) {
-        mDontTransform = dontTransform
     }
 
     fun getOptions(): Any? {

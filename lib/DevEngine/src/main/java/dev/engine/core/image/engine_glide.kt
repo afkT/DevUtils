@@ -12,6 +12,7 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -735,36 +736,55 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 options.skipMemoryCache(true)
             }
 
-            // scale type
-            if (config.getScaleType() == ImageConfig.SCALE_CENTER_CROP) {
-                options = options.centerCrop()
-            } else if (config.getScaleType() == ImageConfig.SCALE_FIT_CENTER) {
-                options = options.fitCenter()
-            }
-
             // transform
-            if (config.getTransform() == ImageConfig.TRANSFORM_CIRCLE) {
+            if (config.getTransform() == ImageConfig.TRANSFORM_NONE) {
+                // 移除所有 Transformation 效果
+                options = options.dontTransform()
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_CIRCLE) {
                 options = options.circleCrop()
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_CENTER_INSIDE) {
+                options = options.centerInside()
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_CENTER_CROP) {
+                options = options.centerCrop()
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_FIT_CENTER) {
+                options = options.fitCenter()
             } else if (config.getTransform() == ImageConfig.TRANSFORM_ROUNDED_CORNERS) {
-                if (config.getScaleType() == ImageConfig.SCALE_NONE) {
-                    options = options.transform(RoundedCorners(config.getRoundedCornersRadius()))
-                } else if (config.getScaleType() == ImageConfig.SCALE_CENTER_CROP) {
+                val radius = config.getRoundedCornersRadius()
+                if (radius > 0) {
                     options = options.transform(
-                        MultiTransformation(
-                            CenterCrop(),
-                            RoundedCorners(config.getRoundedCornersRadius())
-                        )
+                        RoundedCorners(radius)
                     )
-                } else if (config.getScaleType() == ImageConfig.SCALE_FIT_CENTER) {
+                }
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_ROUNDED_CORNERS_CENTER_INSIDE) {
+                val radius = config.getRoundedCornersRadius()
+                if (radius > 0) {
                     options = options.transform(
                         MultiTransformation(
-                            FitCenter(),
-                            RoundedCorners(config.getRoundedCornersRadius())
+                            CenterInside(),
+                            RoundedCorners(radius)
                         )
                     )
                 }
-            } else if (config.getTransform() == ImageConfig.TRANSFORM_NONE) {
-                options = options.dontTransform() // 不做渐入渐出转换
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_ROUNDED_CORNERS_CENTER_CROP) {
+                val radius = config.getRoundedCornersRadius()
+                if (radius > 0) {
+                    options = options.transform(
+                        MultiTransformation(
+                            CenterCrop(),
+                            RoundedCorners(radius)
+                        )
+                    )
+                }
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_ROUNDED_CORNERS_FIT_CENTER) {
+                val radius = config.getRoundedCornersRadius()
+                if (radius > 0) {
+                    options = options.transform(
+                        MultiTransformation(
+                            FitCenter(),
+                            RoundedCorners(radius)
+                        )
+                    )
+                }
             }
 
             // placeholder
@@ -791,10 +811,6 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
             if (config.isDontAnimate()) {
                 options = options.dontAnimate()
-            }
-
-            if (config.isDontTransform()) {
-                options = options.dontTransform()
             }
         }
         return options
