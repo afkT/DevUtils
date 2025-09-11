@@ -5,7 +5,6 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentOtherFunctionActivityResultApiBinding
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -15,10 +14,12 @@ import androidx.activity.result.ActivityResultCaller
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.ObservableField
+import com.hjq.permissions.permission.PermissionLists
 import dev.base.DevSource
 import dev.base.simple.extensions.asFragment
+import dev.engine.core.permission.PermissionItem
+import dev.engine.core.permission.toPermissionItem
 import dev.engine.extensions.log.log_dTag
-import dev.engine.extensions.permission.permission_againRequest
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
@@ -98,22 +99,11 @@ class ActivityResultAPIViewModel : AppViewModel() {
     val clickTakePictures = View.OnClickListener { view ->
         val activity = ActivityUtils.getActivity(view)
         activity.permission_request(
-            permissions = arrayOf(Manifest.permission.CAMERA),
-            callback = object : IPermissionEngine.Callback {
-                override fun onGranted() {
+            permission = PermissionLists.getCameraPermission().toPermissionItem(),
+            callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
+                if (deniedList.isEmpty()) {
                     mAssist?.launch(MediaStoreUtils.createImageUri())
-                }
-
-                override fun onDenied(
-                    grantedList: MutableList<String>?,
-                    deniedList: MutableList<String>?,
-                    notFoundList: MutableList<String>?
-                ) {
-                    // 拒绝了则再次请求处理
-                    activity.permission_againRequest(
-                        callback = this,
-                        deniedList = deniedList
-                    )
+                } else {
                     toast_showShort(text = "拍照需摄像头权限")
                 }
             }

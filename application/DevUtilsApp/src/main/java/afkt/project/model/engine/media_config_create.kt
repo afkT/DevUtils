@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.hjq.permissions.OnPermissionCallback
-import com.hjq.permissions.OnPermissionPageCallback
-import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import com.hjq.permissions.permission.PermissionLists
+import com.hjq.permissions.permission.base.IPermission
 import com.luck.lib.camerax.SimpleCameraX
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.SelectMimeType
@@ -195,9 +195,9 @@ class OnPermissionsInterceptListenerImpl : OnPermissionsInterceptListener {
         call: OnRequestPermissionListener?
     ) {
         if (permissionArray == null || fragment == null || fragment.context == null) return
-        if (XXPermissions.isGranted(
+        if (XXPermissions.isGrantedPermission(
                 fragment.requireContext(),
-                permissionArray.toCompatPermissions
+                PermissionLists.getCameraPermission()
             )
         ) {
             call?.onCall(permissionArray, true)
@@ -205,7 +205,7 @@ class OnPermissionsInterceptListenerImpl : OnPermissionsInterceptListener {
         }
         // 这里去申请自己的权限,可以在此处增加弹窗询问用户是否需要给权限
         XXPermissions.with(fragment)
-            .permission(permissionArray.toCompatPermissions)
+            .permission(PermissionLists.getCameraPermission())
             .request(OnPermissionCallbackImpl(fragment, permissionArray, call))
     }
 
@@ -214,9 +214,9 @@ class OnPermissionsInterceptListenerImpl : OnPermissionsInterceptListener {
         permissionArray: Array<out String>?
     ): Boolean {
         if (permissionArray == null || fragment == null) return false
-        return XXPermissions.isGranted(
+        return XXPermissions.isGrantedPermission(
             fragment.requireContext(),
-            permissionArray.toCompatPermissions
+            PermissionLists.getCameraPermission()
         )
     }
 }
@@ -235,16 +235,18 @@ class OnPermissionDeniedListenerImpl : OnPermissionDeniedListener {
         if (fragment == null || permissionArray == null || fragment.context == null) return
         // 这里即未获取到权限时, 合格的流程这里应该询问用户是否需要前往设置打开, 示例如下
         XXPermissions.startPermissionActivity(
-            fragment,
-            permissionArray.toCompatPermissions,
-            object : OnPermissionPageCallback {
-                override fun onGranted() {
-                    call?.onCall(true)
-                }
-
-                override fun onDenied() {
-                    toast_showShort(text = "权限打开失败")
-                    call?.onCall(false)
+            fragment, PermissionLists.getCameraPermission(),
+            object : OnPermissionCallback {
+                override fun onResult(
+                    grantedList: List<IPermission>,
+                    deniedList: List<IPermission>
+                ) {
+                    if (deniedList.isEmpty()) {
+                        call?.onCall(true)
+                    } else {
+                        toast_showShort(text = "权限打开失败")
+                        call?.onCall(false)
+                    }
                 }
             }
         )
@@ -263,37 +265,14 @@ class OnPermissionCallbackImpl(
     private val permissionArray: Array<out String>,
     private val call: OnRequestPermissionListener?
 ) : OnPermissionCallback {
-
-    override fun onGranted(
-        permissions: MutableList<String>,
-        all: Boolean
+    override fun onResult(
+        grantedList: List<IPermission?>,
+        deniedList: List<IPermission?>
     ) {
-        if (all) {
+        if (deniedList.isEmpty()) {
             call?.onCall(permissionArray, true)
         } else {
-            // 此时直接 return, 因为我们知道这是用户自己操作的
-            return
-        }
-    }
-
-    override fun onDenied(
-        permissions: MutableList<String>,
-        never: Boolean
-    ) {
-        if (fragment.activity == null) return
-        // 永久拒绝时让流程延续下去
-        if (never) {
             call?.onCall(permissionArray, false)
         }
     }
 }
-
-private val Array<out String>.isFilePermission: Boolean
-    get() = this.contains(Permission.WRITE_EXTERNAL_STORAGE) ||
-            this.contains(Permission.READ_EXTERNAL_STORAGE)
-
-private val Array<out String>.toCompatPermissions: Array<out String>
-    get() {
-        if (isFilePermission) return arrayOf(Permission.READ_MEDIA_IMAGES)
-        return this
-    }

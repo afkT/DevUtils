@@ -8,100 +8,103 @@
             type="afkt.project.features.other_function.FunctionViewModel" />
     </data>
 
-    <LinearLayout
-        style="@style/ViewTheme.Padding.LR"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickVibrate}"
-            android:text="震动" />
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickBEEP}"
-            android:text="铃声 - 播放一小段音频" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickVibrate}"
+                android:text="震动" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickNotification_check}"
-            android:text="是否存在通知权限" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickBEEP}"
+                android:text="铃声 - 播放一小段音频" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickNotification_open}"
-            android:text="开启通知权限" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickNotification_check}"
+                android:text="是否存在通知权限" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickNotification}"
-            android:text="通知消息" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickNotification_open}"
+                android:text="开启通知权限" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickNotification_remove}"
-            android:text="移除消息" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickNotification}"
+                android:text="通知消息" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickHOME}"
-            android:text="回到桌面" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickNotification_remove}"
+                android:text="移除消息" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickFlashLight_open}"
-            android:text="打开手电筒" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickHOME}"
+                android:text="回到桌面" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickFlashLight_close}"
-            android:text="关闭手电筒" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickFlashLight_open}"
+                android:text="打开手电筒" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickShortcut_check}"
-            android:text="是否创建桌面快捷方式" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickFlashLight_close}"
+                android:text="关闭手电筒" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickShortcut_create}"
-            android:text="创建桌面快捷方式" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShortcut_check}"
+                android:text="是否创建桌面快捷方式" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickShortcut_delete}"
-            android:text="删除桌面快捷方式" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShortcut_create}"
+                android:text="创建桌面快捷方式" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickMemory_print}"
-            android:text="打印内存信息" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShortcut_delete}"
+                android:text="删除桌面快捷方式" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickDevice_print}"
-            android:text="打印设备信息" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickMemory_print}"
+                android:text="打印内存信息" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickAppDetails_settings}"
-            android:text="跳转到 APP 设置详情页面" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickDevice_print}"
+                android:text="打印设备信息" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickGPS_settings}"
-            android:text="打开 GPS 设置界面" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickAppDetails_settings}"
+                android:text="跳转到 APP 设置详情页面" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickWireless_settings}"
-            android:text="打开网络设置界面" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGPS_settings}"
+                android:text="打开 GPS 设置界面" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickSYS_settings}"
-            android:text="跳转到系统设置页面" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickWireless_settings}"
+                android:text="打开网络设置界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickSYS_settings}"
+                android:text="跳转到系统设置页面" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -5,12 +5,14 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetScanShapeBinding
-import android.Manifest
 import android.view.SurfaceHolder
 import androidx.databinding.ObservableBoolean
+import com.hjq.permissions.permission.PermissionLists
 import dev.base.simple.extensions.asFragment
+import dev.engine.core.permission.PermissionItem
+import dev.engine.core.permission.toPermissionItem
 import dev.engine.extensions.log.log_eTag
-import dev.engine.extensions.permission.permission_isGranted
+import dev.engine.extensions.permission.permission_isGrantedPermission
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
@@ -101,12 +103,12 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
     private fun checkPermission() {
         val cameraAssist = viewModel.cameraAssist
         // 摄像头权限
-        val cameraPermission = Manifest.permission.CAMERA
+        val cameraPermission = PermissionLists.getCameraPermission().toPermissionItem()
         // 判断是否允许权限
-        val isGranted = context?.permission_isGranted(
-            permissions = arrayOf(cameraPermission)
-        )
-        if (isGranted == true) {
+        val isGranted = context?.permission_isGrantedPermission(
+            permission = cameraPermission
+        ) == true
+        if (isGranted) {
             try {
                 // 打开摄像头
                 val camera = CameraUtils.open()
@@ -130,18 +132,12 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
             }
         } else {
             activity?.permission_request(
-                permissions = arrayOf(cameraPermission),
-                callback = object : IPermissionEngine.Callback {
-                    override fun onGranted() {
+                permission = cameraPermission,
+                callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
+                    if (deniedList.isEmpty()) {
                         // 刷新处理
                         checkPermission()
-                    }
-
-                    override fun onDenied(
-                        grantedList: List<String>,
-                        deniedList: List<String>,
-                        notFoundList: List<String>
-                    ) {
+                    } else {
                         toast_showShort(text = "需要摄像头权限预览")
                     }
                 }

@@ -9,6 +9,11 @@ import afkt.project.databinding.FragmentOtherFunctionFunctionBinding
 import android.Manifest
 import android.os.Build
 import android.view.View
+import com.hjq.permissions.permission.PermissionLists
+import com.hjq.permissions.permission.dangerous.StandardDangerousPermission
+import com.hjq.permissions.tools.PermissionVersion
+import dev.engine.core.permission.PermissionItem
+import dev.engine.core.permission.toPermissionItem
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
@@ -102,22 +107,14 @@ class FunctionViewModel : AppViewModel() {
     val clickFlashLight_open = View.OnClickListener { view ->
         val activity = ActivityUtils.getActivity(view)
         activity.permission_request(
-            permissions = arrayOf(
-                Manifest.permission.CAMERA
-            ),
-            callback = object : IPermissionEngine.Callback {
-                override fun onGranted() {
+            permission = PermissionLists.getCameraPermission().toPermissionItem(),
+            callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
+                if (deniedList.isEmpty()) {
                     // 非传入 Camera 方式需要注册
                     FlashlightUtils.getInstance().register()
                     val result = FlashlightUtils.getInstance().setFlashlightOn()
                     toast_showShort(text = if (result) "操作成功" else "操作失败")
-                }
-
-                override fun onDenied(
-                    grantedList: List<String>,
-                    deniedList: List<String>,
-                    notFoundList: List<String>
-                ) {
+                } else {
                     toast_showShort(text = "打开手电筒需摄像头权限")
                 }
             }
@@ -138,26 +135,20 @@ class FunctionViewModel : AppViewModel() {
 
     // 创建桌面快捷方式
     val clickShortcut_create = View.OnClickListener { view ->
-        val activity = ActivityUtils.getActivity(view)
-        activity.permission_request(
-            permissions = arrayOf(
-                Manifest.permission.INSTALL_SHORTCUT
-            ),
-            callback = object : IPermissionEngine.Callback {
-                override fun onGranted() {
+        ActivityUtils.getActivity(view)?.permission_request(
+            permission = StandardDangerousPermission(
+                Manifest.permission.INSTALL_SHORTCUT,
+                PermissionVersion.ANDROID_4_4
+            ).toPermissionItem(),
+            callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
+                if (deniedList.isEmpty()) {
                     val result = ShortCutUtils.addShortcut(
                         MainActivity::class.java,
                         "Dev 快捷方式",
                         R.mipmap.icon_launcher_round
                     )
                     toast_showShort(text = if (result) "操作成功" else "操作失败")
-                }
-
-                override fun onDenied(
-                    grantedList: List<String>,
-                    deniedList: List<String>,
-                    notFoundList: List<String>
-                ) {
+                } else {
                     toast_showShort(text = "创建快捷方式需要该权限")
                 }
             }

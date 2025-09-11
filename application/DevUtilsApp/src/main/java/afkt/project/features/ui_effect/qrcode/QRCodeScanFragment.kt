@@ -6,7 +6,6 @@ import afkt.project.app.AppFragment
 import afkt.project.databinding.FragmentDevWidgetScanShapeBinding
 import afkt.project.features.dev_widget.scan_shape.ScanShapeUtils
 import afkt.project.features.dev_widget.scan_shape.ScanShapeViewModel
-import android.Manifest
 import android.app.Activity
 import android.graphics.Rect
 import android.graphics.RectF
@@ -16,11 +15,14 @@ import android.os.Handler
 import android.view.SurfaceView
 import androidx.lifecycle.lifecycleScope
 import com.google.zxing.Result
+import com.hjq.permissions.permission.PermissionLists
 import dev.base.simple.extensions.asFragment
 import dev.engine.core.barcode.BarCodeResult
+import dev.engine.core.permission.PermissionItem
+import dev.engine.core.permission.toPermissionItem
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.log.log_eTag
-import dev.engine.extensions.permission.permission_isGranted
+import dev.engine.extensions.permission.permission_isGrantedPermission
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showLong
 import dev.engine.extensions.toast.toast_showShort
@@ -127,27 +129,21 @@ class QRCodeScanFragment : AppFragment<FragmentDevWidgetScanShapeBinding, QRCode
      */
     private fun checkPermission() {
         // 摄像头权限
-        val cameraPermission = Manifest.permission.CAMERA
+        val cameraPermission = PermissionLists.getCameraPermission().toPermissionItem()
         // 判断是否允许权限
-        val isGranted = context?.permission_isGranted(
-            permissions = arrayOf(cameraPermission)
-        )
-        if (isGranted == true) {
+        val isGranted = context?.permission_isGrantedPermission(
+            permission = cameraPermission
+        ) == true
+        if (isGranted) {
             viewModel.scanCode?.startPreview(binding.vidSurface)
         } else {
             activity?.permission_request(
-                permissions = arrayOf(cameraPermission),
-                callback = object : IPermissionEngine.Callback {
-                    override fun onGranted() {
+                permission = cameraPermission,
+                callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
+                    if (deniedList.isEmpty()) {
                         // 刷新处理
                         checkPermission()
-                    }
-
-                    override fun onDenied(
-                        grantedList: List<String>,
-                        deniedList: List<String>,
-                        notFoundList: List<String>
-                    ) {
+                    } else {
                         toast_showShort(text = "需要摄像头权限预览")
                     }
                 }

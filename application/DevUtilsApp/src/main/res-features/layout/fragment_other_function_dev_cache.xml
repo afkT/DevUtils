@@ -8,55 +8,58 @@
             type="afkt.project.features.other_function.DevCacheViewModel" />
     </data>
 
-    <LinearLayout
-        style="@style/ViewTheme.Padding.LR"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickString}"
-            android:text="存储字符串" />
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickStringTime}"
-            android:text="存储有效期字符串" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickString}"
+                android:text="存储字符串" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickStringGet}"
-            android:text="获取字符串" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickStringTime}"
+                android:text="存储有效期字符串" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickBean}"
-            android:text="存储实体类" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickStringGet}"
+                android:text="获取字符串" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickBeanTime}"
-            android:text="存储有效期实体类" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickBean}"
+                android:text="存储实体类" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickBeanGet}"
-            android:text="获取实体类" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickBeanTime}"
+                android:text="存储有效期实体类" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickFile}"
-            android:text="存储到指定位置" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickBeanGet}"
+                android:text="获取实体类" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickFileGet}"
-            android:text="获取指定位置缓存数据" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickFile}"
+                android:text="存储到指定位置" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickClear}"
-            android:text="清除全部数据" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickFileGet}"
+                android:text="获取指定位置缓存数据" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickClear}"
+                android:text="清除全部数据" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

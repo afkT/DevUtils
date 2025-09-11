@@ -1,6 +1,5 @@
 package afkt.project.features.ui_effect.qrcode
 
-import android.Manifest
 import android.hardware.Camera
 import android.os.Handler
 import android.os.Looper
@@ -8,9 +7,11 @@ import android.os.Message
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
+import com.hjq.permissions.permission.PermissionLists
+import dev.engine.core.permission.toPermissionItem
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.log.log_eTag
-import dev.engine.extensions.permission.permission_isGranted
+import dev.engine.extensions.permission.permission_isGrantedPermission
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
 import dev.utils.app.camera.camera1.CameraUtils
@@ -289,8 +290,9 @@ class ZXingDecodeAssist(
      * 在获取 [Operate.cameraPermission] 权限成功后调用
      */
     fun startPreview(view: SurfaceView?) {
-        val isGranted: Boolean = view?.context?.permission_isGranted(
-            permissions = arrayOf(Manifest.permission.CAMERA)
+        // 判断是否允许权限
+        val isGranted = view?.context?.permission_isGrantedPermission(
+            permission = PermissionLists.getCameraPermission().toPermissionItem()
         ) == true
         if (isGranted) {
             try {

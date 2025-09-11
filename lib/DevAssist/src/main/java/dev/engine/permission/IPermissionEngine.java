@@ -3,13 +3,21 @@ package dev.engine.permission;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import java.util.List;
 
 /**
  * detail: Permission Engine 接口
  * @author Ttt
+ * <pre>
+ *     @see <a href="https://github.com/getActivity/XXPermissions"/>
+ *     以 XXPermissions 接口设计为基准, 如无特殊需求建议直接使用 XXPermissions
+ * </pre>
  */
-public interface IPermissionEngine {
+public interface IPermissionEngine<Config extends IPermissionEngine.EngineConfig,
+        Item extends IPermissionEngine.EngineItem> {
 
     /**
      * detail: Permission Config
@@ -23,6 +31,12 @@ public interface IPermissionEngine {
      * @author Ttt
      */
     interface EngineItem {
+
+        /**
+         * 获取权限的名称
+         */
+        @NonNull
+        String permissionName();
     }
 
     // =============
@@ -33,29 +47,16 @@ public interface IPermissionEngine {
      * detail: 权限请求回调
      * @author Ttt
      */
-    interface Callback {
+    interface Callback<Item extends IPermissionEngine.EngineItem> {
 
         /**
-         * 授权通过权限回调
+         * 权限请求结果回调
+         * @param grantedList 授予权限列表
+         * @param deniedList  拒绝权限列表
          */
-        void onGranted();
-
-        /**
-         * 授权未通过权限回调
-         * <pre>
-         *     判断 deniedList 申请未通过的权限中拒绝状态
-         *     可通过 {@link #getDeniedPermissionStatus(Activity, boolean, String...)} 进行获取
-         *     第二个参数 shouldShow ( boolean )
-         *     {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
-         * </pre>
-         * @param grantedList  申请通过的权限
-         * @param deniedList   申请未通过的权限
-         * @param notFoundList 查询不到的权限 ( 包含未注册 )
-         */
-        void onDenied(
-                List<String> grantedList,
-                List<String> deniedList,
-                List<String> notFoundList
+        void onResult(
+                @NonNull List<Item> grantedList,
+                @NonNull List<Item> deniedList
         );
     }
 
@@ -63,74 +64,21 @@ public interface IPermissionEngine {
     // = 对外公开方法 =
     // =============
 
-    /**
-     * 判断是否授予了权限
-     * @param context     {@link Context}
-     * @param permissions 待判断权限
-     * @return {@code true} yes, {@code false} no
-     */
-    boolean isGranted(
-            Context context,
-            String... permissions
-    );
-
-    /**
-     * 获取拒绝权限询问勾选状态
-     * <pre>
-     *     拒绝过一次, 再次申请时, 弹出选择进行拒绝, 获取询问勾选状态
-     *     true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
-     * </pre>
-     * @param activity    {@link Activity}
-     * @param permissions 待判断权限
-     * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
-     */
-    boolean shouldShowRequestPermissionRationale(
-            Activity activity,
-            String... permissions
-    );
-
-    /**
-     * 获取拒绝权限询问状态集合
-     * @param activity    {@link Activity}
-     * @param shouldShow  {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
-     * @param permissions 待判断权限
-     * @return 拒绝权限询问状态集合
-     */
-    List<String> getDeniedPermissionStatus(
-            Activity activity,
-            boolean shouldShow,
-            String... permissions
-    );
-
-    /**
-     * 再次请求处理操作
-     * <pre>
-     *     如果存在拒绝了且不再询问则跳转到应用设置页面
-     *     否则则再次请求拒绝的权限
-     * </pre>
-     * @param activity   {@link Activity}
-     * @param callback   权限请求回调
-     * @param deniedList 申请未通过的权限集合
-     * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
-     */
-    int againRequest(
-            Activity activity,
-            Callback callback,
-            List<String> deniedList
-    );
-
-    // =============
-    // = 权限请求方法 =
-    // =============
+    // ==========
+    // = 权限请求 =
+    // ==========
 
     /**
      * 请求权限
-     * @param activity    {@link Activity}
-     * @param permissions 待申请权限
+     * @param activity   {@link Activity}
+     * @param permission 待申请权限
+     * @param callback   权限请求回调
+     * @return {@code true} success, {@code false} fail
      */
-    void request(
-            Activity activity,
-            String[] permissions
+    boolean request(
+            @NonNull Activity activity,
+            @NonNull Item permission,
+            @NonNull Callback<Item> callback
     );
 
     /**
@@ -138,27 +86,238 @@ public interface IPermissionEngine {
      * @param activity    {@link Activity}
      * @param permissions 待申请权限
      * @param callback    权限请求回调
+     * @return {@code true} success, {@code false} fail
      */
-    void request(
-            Activity activity,
-            String[] permissions,
-            Callback callback
+    boolean request(
+            @NonNull Activity activity,
+            @NonNull List<Item> permissions,
+            @NonNull Callback<Item> callback
+    );
+
+    // =
+
+    /**
+     * 请求权限
+     * @param fragment   {@link Fragment}
+     * @param permission 待申请权限
+     * @param callback   权限请求回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean request(
+            @NonNull Fragment fragment,
+            @NonNull Item permission,
+            @NonNull Callback<Item> callback
     );
 
     /**
      * 请求权限
-     * <pre>
-     *     againRequest 参数为 true 则会调用 {@link #againRequest(Activity, Callback, List)}
-     * </pre>
-     * @param activity     {@link Activity}
-     * @param permissions  待申请权限
-     * @param callback     权限请求回调
-     * @param againRequest 如果失败是否再次请求
+     * @param fragment    {@link Fragment}
+     * @param permissions 待申请权限
+     * @param callback    权限请求回调
+     * @return {@code true} success, {@code false} fail
      */
-    void request(
-            Activity activity,
-            String[] permissions,
-            Callback callback,
-            boolean againRequest
+    boolean request(
+            @NonNull Fragment fragment,
+            @NonNull List<Item> permissions,
+            @NonNull Callback<Item> callback
+    );
+
+    // ===================
+    // = 权限请求 ( 配置 ) =
+    // ===================
+
+    /**
+     * 请求权限
+     * @param config     {@link Config}
+     * @param activity   {@link Activity}
+     * @param permission 待申请权限
+     * @param callback   权限请求回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean request(
+            @NonNull Config config,
+            @NonNull Activity activity,
+            @NonNull Item permission,
+            @NonNull Callback<Item> callback
+    );
+
+    /**
+     * 请求权限
+     * @param config      {@link Config}
+     * @param activity    {@link Activity}
+     * @param permissions 待申请权限
+     * @param callback    权限请求回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean request(
+            @NonNull Config config,
+            @NonNull Activity activity,
+            @NonNull List<Item> permissions,
+            @NonNull Callback<Item> callback
+    );
+
+    // =
+
+    /**
+     * 请求权限
+     * @param config     {@link Config}
+     * @param fragment   {@link Fragment}
+     * @param permission 待申请权限
+     * @param callback   权限请求回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean request(
+            @NonNull Config config,
+            @NonNull Fragment fragment,
+            @NonNull Item permission,
+            @NonNull Callback<Item> callback
+    );
+
+    /**
+     * 请求权限
+     * @param config      {@link Config}
+     * @param fragment    {@link Fragment}
+     * @param permissions 待申请权限
+     * @param callback    权限请求回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean request(
+            @NonNull Config config,
+            @NonNull Fragment fragment,
+            @NonNull List<Item> permissions,
+            @NonNull Callback<Item> callback
+    );
+
+    // ==========
+    // = 快捷方法 =
+    // ==========
+
+    /**
+     * 判断是否授予了权限
+     * @param context    {@link Context}
+     * @param permission 待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isGrantedPermission(
+            @NonNull Context context,
+            @NonNull Item permission
+    );
+
+    /**
+     * 判断是否授予了权限
+     * @param context     {@link Context}
+     * @param permissions 待判断权限列表
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isGrantedPermissions(
+            @NonNull Context context,
+            @NonNull List<Item> permissions
+    );
+
+    // =
+
+    /**
+     * 获取已经授予的权限
+     * @param context     {@link Context}
+     * @param permissions 待判断权限列表
+     * @return 已经授予的权限集合
+     */
+    List<Item> getGrantedPermissions(
+            @NonNull Context context,
+            @NonNull List<Item> permissions
+    );
+
+    /**
+     * 获取已经拒绝的权限
+     * @param context     {@link Context}
+     * @param permissions 待判断权限列表
+     * @return 已经拒绝的权限集合
+     */
+    List<Item> getDeniedPermissions(
+            @NonNull Context context,
+            @NonNull List<Item> permissions
+    );
+
+    // =
+
+    /**
+     * 获取拒绝权限询问勾选状态
+     * @param activity   {@link Activity}
+     * @param permission 待判断权限
+     * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
+     */
+    boolean isDoNotAskAgainPermission(
+            @NonNull Activity activity,
+            @NonNull Item permission
+    );
+
+    /**
+     * 获取拒绝权限询问勾选状态
+     * @param activity    {@link Activity}
+     * @param permissions 待判断权限列表
+     * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
+     */
+    boolean isDoNotAskAgainPermissions(
+            @NonNull Activity activity,
+            @NonNull List<Item> permissions
+    );
+
+    // =
+
+    /**
+     * 判断两个权限是否相等
+     * @param permission  待判断权限
+     * @param permission2 待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean equalsPermission(
+            @NonNull Item permission,
+            @NonNull Item permission2
+    );
+
+    /**
+     * 判断两个权限是否相等
+     * @param permission     待判断权限
+     * @param permissionName 待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean equalsPermission(
+            @NonNull Item permission,
+            @NonNull String permissionName
+    );
+
+    /**
+     * 判断两个权限是否相等
+     * @param permissionName1 待判断权限
+     * @param permissionName2 待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean equalsPermission(
+            @NonNull String permissionName1,
+            @NonNull String permissionName2
+    );
+
+    // =
+
+    /**
+     * 判断权限列表中是否包含某个权限
+     * @param permissions 待判断权限列表
+     * @param permission  待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean containsPermission(
+            @NonNull List<Item> permissions,
+            @NonNull Item permission
+    );
+
+    /**
+     * 判断权限列表中是否包含某个权限
+     * @param permissions    待判断权限列表
+     * @param permissionName 待判断权限
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean containsPermission(
+            @NonNull List<Item> permissions,
+            @NonNull String permissionName
     );
 }

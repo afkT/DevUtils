@@ -55,8 +55,7 @@ ext {
                     autosize          : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
                     // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-//                    xxPermissions     : "com.github.getActivity:XXPermissions:26.5",
-                    xxPermissions     : "com.github.getActivity:XXPermissions:20.0",
+                    xxPermissions     : "com.github.getActivity:XXPermissions:26.5",
                     // 设备兼容框架 https://github.com/getActivity/DeviceCompat
                     deviceCompat      : "com.github.getActivity:DeviceCompat:1.6",
             ],

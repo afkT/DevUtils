@@ -612,9 +612,9 @@ object DevEngine {
      * @param key    key
      * @param engine {@link IPermissionEngine}
      */
-    fun setPermissionEngine(
+    fun <Config : IPermissionEngine.EngineConfig, Item : IPermissionEngine.EngineItem> setPermissionEngine(
         key: String,
-        engine: IPermissionEngine
+        engine: IPermissionEngine<Config, Item>
     ) {
         DevPermissionEngine.setEngine(key, engine)
     }

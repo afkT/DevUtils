@@ -8,40 +8,43 @@
             type="afkt.project.features.other_function.DevTimerViewModel" />
     </data>
 
-    <LinearLayout
-        style="@style/ViewTheme.Padding.LR"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickStart}"
-            android:text="启动定时器" />
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickStop}"
-            android:text="停止定时器" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickStart}"
+                android:text="启动定时器" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickReStart}"
-            android:text="重启定时器" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickStop}"
+                android:text="停止定时器" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickCheck}"
-            android:text="定时器是否启动" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickReStart}"
+                android:text="重启定时器" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickGet}"
-            android:text="获取定时器" />
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickCheck}"
+                android:text="定时器是否启动" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ViewTheme.Button.Single"
-            android:onClick="@{viewModel.clickGetNumber}"
-            android:text="获取运行次数" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGet}"
+                android:text="获取定时器" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGetNumber}"
+                android:text="获取运行次数" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
