@@ -26,6 +26,7 @@ import dev.engine.core.media.PictureSelectorEngineImpl
 import dev.engine.core.permission.XXPermissionsEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
 import dev.engine.core.toast.ToasterEngineImpl
+import dev.engine.debug.DevDebugEngine
 import dev.engine.image.DevImageEngine
 import dev.engine.image.IImageEngine
 import dev.engine.json.DevJSONEngine
@@ -700,6 +701,12 @@ object DevEngine {
     fun getCompress() = DevCompressEngine.getEngine()
 
     /**
+     * 获取 Debug Engine
+     * @return Debug Engine
+     */
+    fun getDebug() = DevDebugEngine.getEngine()
+
+    /**
      * 获取 Image Engine
      * @return Image Engine
      */
@@ -788,6 +795,12 @@ object DevEngine {
     fun getCompress(key: String?) = DevCompressEngine.getEngine(key)
 
     /**
+     * 获取 Debug Engine
+     * @return Debug Engine
+     */
+    fun getDebug(key: String?) = DevDebugEngine.getEngine(key)
+
+    /**
      * 获取 Image Engine
      * @return Image Engine
      */
@@ -874,6 +887,12 @@ object DevEngine {
      * @return Compress Engine Generic Assist
      */
     fun getCompressAssist() = DevCompressEngine.getAssist()
+
+    /**
+     * 获取 Debug Engine Generic Assist
+     * @return Debug Engine Generic Assist
+     */
+    fun getDebugAssist() = DevDebugEngine.getAssist()
 
     /**
      * 获取 Image Engine Generic Assist
