@@ -35,6 +35,8 @@ def signingPassword = properties.getProperty("signing.password")
 def signingSecretKeyRingFile = properties.getProperty("signing.secretKeyRingFile")
 def ossrhUsername = properties.getProperty("ossrhUsername")
 def ossrhPassword = properties.getProperty("ossrhPassword")
+def ossrhToken = properties.getProperty("ossrhToken")
+def useToken = properties.getProperty("config.useToken").toBoolean()
 
 def javadocName = properties.getProperty("javadoc.name")
 
@@ -45,6 +47,9 @@ ext["signing.password"] = signingPassword
 ext["signing.secretKeyRingFile"] = signingSecretKeyRingFile
 ext["ossrhUsername"] = ossrhUsername
 ext["ossrhPassword"] = ossrhPassword
+if (useToken) {
+    ext["ossrhPassword"] = ossrhToken
+}
 
 // This generates sources.jar
 task sourcesJar(type: Jar) {
@@ -148,9 +153,16 @@ publishing {
             def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
 
-            credentials {
-                username ossrhUsername
-                password ossrhPassword
+            if (useToken) {
+                credentials {
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            } else {
+                credentials(HttpHeaderCredentials)
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
             }
         }
     }
