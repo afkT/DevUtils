@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.4 *(2025-09-08)*
+Version 1.0.4 *(2025-10-12)*
 ----------------------------
 
 * `[Merge]` 合并 DevMVVM、DevAgile 代码统一到 DevSimple 中并进行重构

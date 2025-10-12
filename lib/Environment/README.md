@@ -58,19 +58,19 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 dependencies {
     // Java
     // DevEnvironment - Android 环境配置切换库
-    implementation 'io.github.afkt:DevEnvironment:1.1.7'
-    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.7'
-    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.7'
+    implementation 'io.github.afkt:DevEnvironment:1.1.8'
+    debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.8'
+    releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.8'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.7'
+    // annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.8'
 
     // Kotlin
     // DevEnvironment - Android 环境配置切换库
-    implementation 'io.github.afkt:DevEnvironment:1.1.7'
-    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.1.7'
-    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.7'
+    implementation 'io.github.afkt:DevEnvironment:1.1.8'
+    kaptDebug 'io.github.afkt:DevEnvironmentCompiler:1.1.8'
+    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.8'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.1.7'
+    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.1.8'
 }
 ```
 
@@ -338,7 +338,7 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(context);
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.7-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.8-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment
 [@Module]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java

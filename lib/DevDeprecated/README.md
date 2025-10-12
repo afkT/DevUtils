@@ -3,7 +3,7 @@
 
 ```gradle
 // DevDeprecated - Dev 系列库弃用代码统一存储库
-implementation 'io.github.afkt:DevDeprecated:1.0.0'
+implementation 'io.github.afkt:DevDeprecated:1.0.1'
 ```
 
 ## 目录结构

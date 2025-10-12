@@ -3,7 +3,7 @@
 
 ```gradle
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.8'
+implementation 'io.github.afkt:DevAppX:2.4.9'
 ```
 
 ## 目录结构

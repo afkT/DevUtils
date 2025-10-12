@@ -3,7 +3,7 @@
 
 ```gradle
 // DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
-implementation 'io.github.afkt:DevBase:1.2.0'
+implementation 'io.github.afkt:DevBase:1.2.1'
 ```
 
 ## 目录结构

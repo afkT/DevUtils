@@ -3,7 +3,7 @@
 
 ```gradle
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.4.3'
+implementation 'io.github.afkt:DevAssist:1.4.4'
 ```
 
 ## 目录结构
@@ -1181,6 +1181,13 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
 | getJSONObject | 获取 JSONObject 类型的数据 |
 | getJSONArray | 获取 JSONArray 类型的数据 |
 | getEntity | 获取指定类型对象 |
+| cipher | cipher |
+| key | key |
+| type | type |
+| size | size |
+| saveTime | saveTime |
+| validTime | validTime |
+| isPermanent | isPermanent |
 
 
 ## <span id="devenginecompress">**`dev.engine.compress`**</span>
@@ -1410,6 +1417,7 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
 | getBoolean | 获取 boolean 类型的数据 |
 | getString | 获取 String 类型的数据 |
 | getEntity | 获取指定类型对象 |
+| cipher | cipher |
 
 
 ## <span id="devenginelog">**`dev.engine.log`**</span>
@@ -1505,13 +1513,17 @@ implementation 'io.github.afkt:DevAssist:1.4.3'
 
 | 方法 | 注释 |
 | :- | :- |
-| isGranted | 判断是否授予了权限 |
-| shouldShowRequestPermissionRationale | 获取拒绝权限询问勾选状态 |
-| getDeniedPermissionStatus | 获取拒绝权限询问状态集合 |
-| againRequest | 再次请求处理操作 |
 | request | 请求权限 |
-| onGranted | 授权通过权限回调 |
-| onDenied | 授权未通过权限回调 |
+| isGrantedPermission | 判断是否授予了权限 |
+| isGrantedPermissions | 判断是否授予了权限 |
+| getGrantedPermissions | 获取已经授予的权限 |
+| getDeniedPermissions | 获取已经拒绝的权限 |
+| isDoNotAskAgainPermission | 获取拒绝权限询问勾选状态 |
+| isDoNotAskAgainPermissions | 获取拒绝权限询问勾选状态 |
+| equalsPermission | 判断两个权限是否相等 |
+| containsPermission | 判断权限列表中是否包含某个权限 |
+| permissionName | 获取权限的名称 |
+| onResult | 权限请求结果回调 |
 
 
 ## <span id="devenginepush">**`dev.engine.push`**</span>

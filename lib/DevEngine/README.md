@@ -3,7 +3,7 @@
 
 ```gradle
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.1.5'
+implementation 'io.github.afkt:DevEngine:1.1.6'
 ```
 
 ## 目录结构
@@ -27,6 +27,7 @@ implementation 'io.github.afkt:DevEngine:1.1.5'
       - barcode         | BarCode Engine 条形码、二维码处理
       - cache           | Cache Engine 有效期键值对缓存
       - compress        | Image Compress Engine 图片压缩
+      - debug           | Debug 编译辅助开发 Engine
       - image           | Image Engine 图片加载、下载、转格式等
       - json            | JSON Engine 映射
       - keyvalue        | KeyValue Engine 键值对存储

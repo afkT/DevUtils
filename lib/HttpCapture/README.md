@@ -21,11 +21,11 @@
 ```groovy
 dependencies {
     // DevHttpCapture - OkHttp 抓包工具库
-    implementation 'io.github.afkt:DevHttpCapture:1.1.9'
+    implementation 'io.github.afkt:DevHttpCapture:1.2.0'
 
     // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.9'
-    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.9'
+    debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.2.0'
+    releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.2.0'
 }
 ```
 
@@ -218,6 +218,6 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.9-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.2.0-brightgreen.svg
 [maven]: https://search.maven.org/search?q=io.github.afkt
 [DevHttpCaptureUse]: https://github.com/afkT/DevUtils/blob/master/application/DevHttpCaptureUse/src/main/java/afkt/httpcapture/use

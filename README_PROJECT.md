@@ -16,7 +16,7 @@
 		<img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat" />
 	</a>
 	<a href="https://search.maven.org/search?q=io.github.afkt">
-		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.8-yellow.svg" />
+		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.9-yellow.svg" />
 	</a>
 	<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md">
 		<img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg" />
@@ -67,7 +67,7 @@
 | 7.0.2 - 7.3.0 | 2.2.9 - 2.4.2 | 14            | 30 - 32           | 1.5.20 - 1.7.10 |
 | 8.0.2 - 8.2.1 | 2.4.3 - 2.4.4 | 14            | 33 - 34           | 1.7.10 - 1.9.22 |
 | 8.4.0         | 2.4.5 - 2.4.6 | 19            | 34                | 1.9.23          |
-| 8.7.3         | 2.4.7 - 2.4.8 | 21            | 35                | 2.1.0           |
+| 8.7.3         | 2.4.7 - 2.4.9 | 21            | 35                | 2.1.0           |
 
 
 ## 项目目录结构（ 全部已迁移至 Maven Central ）
@@ -155,47 +155,47 @@
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.8'
+implementation 'io.github.afkt:DevAppX:2.4.9'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.4.3'
+implementation 'io.github.afkt:DevAssist:1.4.4'
 
 // DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
-implementation 'io.github.afkt:DevBase:1.2.0'
+implementation 'io.github.afkt:DevBase:1.2.1'
 
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.1.5'
+implementation 'io.github.afkt:DevEngine:1.1.6'
 
 // DevSimple - 简单敏捷开发库
-implementation 'io.github.afkt:DevSimple:1.0.3'
+implementation 'io.github.afkt:DevSimple:1.0.4'
 
 // DevWidget - 自定义 View UI 库
-implementation 'io.github.afkt:DevWidgetX:1.2.5'
+implementation 'io.github.afkt:DevWidgetX:1.2.6'
 
 // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-implementation 'io.github.afkt:DevRetrofit:1.0.7'
+implementation 'io.github.afkt:DevRetrofit:1.0.8'
 
 // DevHttpManager - OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
-implementation 'io.github.afkt:DevHttpManager:1.0.8'
+implementation 'io.github.afkt:DevHttpManager:1.0.9'
 
 // DevHttpCapture - OkHttp 抓包工具库
-implementation 'io.github.afkt:DevHttpCapture:1.1.9'
+implementation 'io.github.afkt:DevHttpCapture:1.2.0'
 
 // DevHttpCaptureCompiler - OkHttp 抓包工具库 ( 可视化功能 )
-debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.1.9'
-releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.1.9'
+debugImplementation 'io.github.afkt:DevHttpCaptureCompiler:1.2.0'
+releaseImplementation 'io.github.afkt:DevHttpCaptureCompilerRelease:1.2.0'
 
 // DevEnvironment - Android 环境配置切换库
-implementation 'io.github.afkt:DevEnvironment:1.1.7'
-debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.7' // kaptDebug
-releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.7' // kaptRelease
-//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.7' // kapt
+implementation 'io.github.afkt:DevEnvironment:1.1.8'
+debugAnnotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.8' // kaptDebug
+releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.1.8' // kaptRelease
+//annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.1.8' // kapt
 
 // DevDeprecated - Dev 系列库弃用代码统一存储库
-implementation 'io.github.afkt:DevDeprecated:1.0.0'
+implementation 'io.github.afkt:DevDeprecated:1.0.1'
 
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.5.3'
+implementation 'io.github.afkt:DevJava:1.5.4'
 ```
 
 

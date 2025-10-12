@@ -3,7 +3,7 @@
 
 ```gradle
 // DevWidget - 自定义 View UI 库
-implementation 'io.github.afkt:DevWidgetX:1.2.5'
+implementation 'io.github.afkt:DevWidgetX:1.2.6'
 ```
 
 ## 目录结构
