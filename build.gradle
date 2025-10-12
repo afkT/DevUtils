@@ -36,10 +36,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.11.1'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath rootProject.ext.deps.build.kotlin_gradle_plugin
-        // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-        classpath rootProject.ext.deps.build.dokka_gradle_plugin
-        // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
-        classpath rootProject.ext.deps.build.android_maven_gradle_plugin
+        // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
+        classpath rootProject.ext.deps.build.gradle_maven_publish_plugin
     }
 }
 

@@ -6,7 +6,7 @@ version versions.dev_environment_base_version
 def isPublishing = false
 
 // tasks-build-assemble
-// publishing-publishReleasePublicationToXXXXXRepository
+// publishing-publishToMavenCentral
 if (isPublishing) {
     apply from: rootProject.file(files.sonatype_upload_java)
 }

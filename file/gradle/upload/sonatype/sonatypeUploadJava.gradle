@@ -1,168 +1,56 @@
-// https://github.com/gradle/gradle/issues
-apply plugin: "maven-publish"
-apply plugin: "signing"
+apply from: rootProject.file(files.sonatype_config)
 
-// load properties
-Properties properties = new Properties()
-File localPropertiesFile = new File(rootDir, "/file/gradle/upload/sonatype/sonatype.properties")
-if (localPropertiesFile.exists()) {
-    properties.load(localPropertiesFile.newDataInputStream())
-}
-File projectPropertiesFile = project.file("project.properties")
-if (projectPropertiesFile.exists()) {
-    properties.load(projectPropertiesFile.newDataInputStream())
-}
+// https://vanniktech.github.io/gradle-maven-publish-plugin/central
+// https://vanniktech.github.io/gradle-maven-publish-plugin/what
 
-// =======
-// = 结束 =
-// =======
+mavenPublishing {
+    // 发布到 MavenCentral
+    publishToMavenCentral(true)
+    // 全部进行签名
+    signAllPublications()
 
-// read properties
-def projectName = properties.getProperty("project.name")
-def projectGroupId = properties.getProperty("project.groupId")
-def projectArtifactId = properties.getProperty("project.artifactId")
-def projectVersionName = version
-def projectPackaging = properties.getProperty("project.packaging")
-def projectSiteUrl = properties.getProperty("project.siteUrl")
-def projectGitUrl = properties.getProperty("project.gitUrl")
+    // 设置版本信息 => io.github.afkt, DevJava, 1.5.4
+    coordinates(projectGroupId, projectArtifactId, projectVersionName)
 
-def developerId = properties.getProperty("developer.id")
-def developerName = properties.getProperty("developer.name")
-def developerEmail = properties.getProperty("developer.email")
-
-def signingKeyId = properties.getProperty("signing.keyId")
-def signingPassword = properties.getProperty("signing.password")
-def signingSecretKeyRingFile = properties.getProperty("signing.secretKeyRingFile")
-def ossrhUsername = properties.getProperty("ossrhUsername")
-def ossrhPassword = properties.getProperty("ossrhPassword")
-def ossrhToken = properties.getProperty("ossrhToken")
-def useToken = properties.getProperty("config.useToken").toBoolean()
-
-def javadocName = properties.getProperty("javadoc.name")
-
-signingSecretKeyRingFile = new File(rootDir, signingSecretKeyRingFile).getAbsolutePath()
-
-ext["signing.keyId"] = signingKeyId
-ext["signing.password"] = signingPassword
-ext["signing.secretKeyRingFile"] = signingSecretKeyRingFile
-ext["ossrhUsername"] = ossrhUsername
-ext["ossrhPassword"] = ossrhPassword
-if (useToken) {
-    ext["ossrhPassword"] = ossrhToken
-}
-
-// This generates sources.jar
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier = "sources"
-    from sourceSets.main.allSource
-}
-
-// This generates javadoc.jar
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier = "javadoc"
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-// javadoc configuration
-javadoc {
-    options {
-        encoding "UTF-8"
-        charSet "UTF-8"
-        author true
-        version projectVersionName
-        links "http://docs.oracle.com/javase/7/docs/api"
-        title javadocName
-    }
-    options.addStringOption("Xdoclint:none", "-quiet")
-}
-
-// https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId projectGroupId
-            artifactId projectArtifactId
-            version projectVersionName
-
-            artifact("$buildDir/libs/${project.getName()}-${projectVersionName}.jar")
-            artifact javadocJar
-            artifact sourcesJar
-
-            // https://docs.gradle.org/6.7.1/dsl/org.gradle.api.publish.maven.MavenPom.html
-            pom {
-                name = projectName
+    pom {
+        name = projectName
+        url = projectSiteUrl
+        packaging = projectPackaging
+        version = projectVersionName
+        description = "${projectName}:${projectVersionName} publish"
+        licenses {
+            license {
+                name = "The Apache Software License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = developerId
+                name = developerName
+                email = developerEmail
                 url = projectSiteUrl
-                packaging = projectPackaging
-                groupId = projectGroupId
-                artifactId = projectArtifactId
-                version = projectVersionName
-                description = "${projectName}:${projectVersionName} publish"
-                licenses {
-                    license {
-                        name = "The Apache Software License, Version 2.0"
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                    }
-                }
-                developers {
-                    developer {
-                        id = developerId
-                        name = developerName
-                        email = developerEmail
-                    }
-                }
-                scm {
-                    connection = projectGitUrl
-                    developerConnection = projectGitUrl
-                    url = projectSiteUrl
-                }
-                withXml {
-                    def dependenciesNode = asNode().appendNode("dependencies")
-                    project.configurations.implementation.allDependencies.each {
-                        def dependencyNode = dependenciesNode.appendNode("dependency")
-                        dependencyNode.appendNode("groupId", it.group)
-                        dependencyNode.appendNode("artifactId", it.name)
-                        dependencyNode.appendNode("version", it.version)
-                    }
-                }
             }
         }
-    }
-    // https://docs.gradle.org/current/userguide/publishing_maven.html
-    repositories {
-        maven {
-            name = projectName
-            // https://s01.oss.sonatype.org/#view-repositories
-            // https://central.sonatype.org/publish/publish-guide/#deployment
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
-
-            if (useToken) {
-                credentials {
-                    username ossrhUsername
-                    password ossrhPassword
-                }
-            } else {
-                credentials(HttpHeaderCredentials)
-                authentication {
-                    header(HttpHeaderAuthentication)
-                }
-            }
+        scm {
+            connection = projectGitUrl
+            developerConnection = projectGitUrl
+            url = projectSiteUrl
         }
+//        withXml {
+//            def dependenciesNode = asNode().appendNode("dependencies")
+//            project.configurations.implementation.allDependencies.each {
+//                def dependencyNode = dependenciesNode.appendNode("dependency")
+//                dependencyNode.appendNode("groupId", it.group)
+//                dependencyNode.appendNode("artifactId", it.name)
+//                dependencyNode.appendNode("version", it.version)
+//            }
+//        }
     }
 }
 
-signing {
-    sign publishing.publications
-}
-
-//module gradle
+// module gradle
 //
-//tasks-build-assemble
+// tasks-build-assemble
 //
-//publishing-publishReleasePublicationToXXXXXRepository
+// publishing-publishToMavenCentral

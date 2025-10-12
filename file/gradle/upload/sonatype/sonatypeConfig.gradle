@@ -1,0 +1,85 @@
+apply plugin: "com.vanniktech.maven.publish"
+
+// ==============
+// = 加载配置文件 =
+// ==============
+
+// load properties
+Properties properties = new Properties()
+File localPropertiesFile = new File(rootDir, "/file/gradle/upload/sonatype/sonatype.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+}
+File projectPropertiesFile = project.file("project.properties")
+if (projectPropertiesFile.exists()) {
+    properties.load(projectPropertiesFile.newDataInputStream())
+}
+
+// ==========
+// = 读取配置 =
+// ==========
+
+def javaDocName = properties.getProperty("javadoc.name")
+
+// ==========
+// = 项目配置 =
+// ==========
+
+def projectName = properties.getProperty("project.name")
+def projectGroupId = properties.getProperty("project.groupId")
+def projectArtifactId = properties.getProperty("project.artifactId")
+def projectPackaging = properties.getProperty("project.packaging")
+def projectSiteUrl = properties.getProperty("project.siteUrl")
+def projectGitUrl = properties.getProperty("project.gitUrl")
+def projectVersionName = version
+if (version == "unspecified") {
+    projectVersionName = android.defaultConfig.versionName
+}
+
+// ============
+// = 开发者配置 =
+// ============
+
+def developerId = properties.getProperty("developer.id")
+def developerName = properties.getProperty("developer.name")
+def developerEmail = properties.getProperty("developer.email")
+
+// ==========
+// = 签名配置 =
+// ==========
+
+def signingKeyId = properties.getProperty("signing.keyId")
+def signingPassword = properties.getProperty("signing.password")
+def signingSecretKeyRingFile = properties.getProperty("signing.secretKeyRingFile")
+signingSecretKeyRingFile = new File(rootDir, signingSecretKeyRingFile).getAbsolutePath()
+
+// ====================
+// = Maven Centra 配置 =
+// ====================
+
+def mavenCentralUsername = properties.getProperty("mavenCentralUsername")
+def mavenCentralPassword = properties.getProperty("mavenCentralPassword")
+
+// ==========
+// = 存储信息 =
+// ==========
+
+ext["javaDocName"] = javaDocName
+ext["projectName"] = projectName
+ext["projectGroupId"] = projectGroupId
+ext["projectArtifactId"] = projectArtifactId
+ext["projectPackaging"] = projectPackaging
+ext["projectSiteUrl"] = projectSiteUrl
+ext["projectGitUrl"] = projectGitUrl
+ext["projectVersionName"] = projectVersionName
+
+ext["developerId"] = developerId
+ext["developerName"] = developerName
+ext["developerEmail"] = developerEmail
+
+ext["signingKeyId"] = signingKeyId
+ext["signingPassword"] = signingPassword
+ext["signingSecretKeyRingFile"] = signingSecretKeyRingFile
+
+ext["mavenCentralUsername"] = mavenCentralUsername
+ext["mavenCentralPassword"] = mavenCentralPassword

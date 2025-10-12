@@ -14,6 +14,8 @@ ext {
 
             // Java Lib 通用配置
             lib_java_gradle               : "file/gradle/build/lib_java.gradle",
+            // Sonatype Config
+            sonatype_config               : "file/gradle/upload/sonatype/sonatypeConfig.gradle",
             // Java Sonatype Upload
             sonatype_upload_java          : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
             // Android Sonatype Upload

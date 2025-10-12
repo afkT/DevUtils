@@ -12,8 +12,10 @@ ext {
 
                     // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
                     kotlin_gradle_plugin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}",
+                    // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
+                    gradle_maven_publish_plugin: "com.vanniktech:gradle-maven-publish-plugin:0.34.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
-                    dokka_gradle_plugin        : "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka_plugin_version}",
+                    dokka_gradle_plugin        : "org.jetbrains.dokka:dokka-gradle-plugin:2.0.0",
                     // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
                     android_maven_gradle_plugin: "com.github.dcendents:android-maven-gradle-plugin:2.1",
             ],
@@ -169,7 +171,7 @@ ext {
                     exifinterface        : "androidx.exifinterface:exifinterface:1.4.1",
                     // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/localbroadcastmanager
-                    localbroadcastManager        : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
+                    localbroadcastManager: "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
