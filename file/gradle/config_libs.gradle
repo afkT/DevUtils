@@ -16,19 +16,19 @@ ext {
 
                     // https://mvnrepository.com/artifact/com.google.code.gson/gson
                     // Gson https://github.com/google/gson
-                    gson              : "com.google.code.gson:gson:2.13.1",
+                    gson              : "com.google.code.gson:gson:2.13.2",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
-                    fastjson2         : "com.alibaba.fastjson2:fastjson2:2.0.58",
-                    fastjson2_android : "com.alibaba.fastjson2:fastjson2:2.0.58.android8",
+                    fastjson2         : "com.alibaba.fastjson2:fastjson2:2.0.59",
+                    fastjson2_android : "com.alibaba.fastjson2:fastjson2:2.0.59.android8",
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/compiler
                     // Glide 图片加载框架 https://github.com/bumptech/glide
-                    glide             : "com.github.bumptech.glide:glide:5.0.4",
-                    glide_compiler    : "com.github.bumptech.glide:compiler:5.0.4",
+                    glide             : "com.github.bumptech.glide:glide:5.0.5",
+                    glide_compiler    : "com.github.bumptech.glide:compiler:5.0.5",
                     // https://mvnrepository.com/artifact/com.tencent/mmkv
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv              : "com.tencent:mmkv:2.2.3",
+                    mmkv              : "com.tencent:mmkv:2.2.4",
                     // https://mvnrepository.com/artifact/org.greenrobot/eventbus
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus          : "org.greenrobot:eventbus:3.3.1",
@@ -36,11 +36,11 @@ ext {
                     live_eventbus_fork: "com.github.michaellee123:LiveEventBus:1.8.14",
                     // https://mvnrepository.com/artifact/com.squareup.okio/okio
                     // okio https://github.com/square/okio
-                    okio              : "com.squareup.okio:okio:3.16.0",
+                    okio              : "com.squareup.okio:okio:3.16.1",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3           : "com.squareup.okhttp3:okhttp:5.1.0",
+                    okhttp3           : "com.squareup.okhttp3:okhttp:5.2.1",
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
                     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars
@@ -53,11 +53,10 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.JessYanCoding/AndroidAutoSize
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize          : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
-                    // https://mvnrepository.com/artifact/com.github.getActivity/XXPermissions
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions     : "com.github.getActivity:XXPermissions:26.5",
                     // 设备兼容框架 https://github.com/getActivity/DeviceCompat
-                    deviceCompat      : "com.github.getActivity:DeviceCompat:1.6",
+                    deviceCompat      : "com.github.getActivity:DeviceCompat:2.0",
             ],
 
             "common_widget" : [
@@ -87,7 +86,7 @@ ext {
                     // 标题栏框架 https://github.com/getActivity/TitleBar
                     titleBar                               : "com.github.getActivity:TitleBar:10.6",
                     // Toaster 吐司框架 https://github.com/getActivity/Toaster
-                    toaster                                : "com.github.getActivity:Toaster:13.5",
+                    toaster                                : "com.github.getActivity:Toaster:13.6",
                     // 悬浮窗框架 https://github.com/getActivity/EasyWindow
                     easyWindow                             : "com.github.getActivity:EasyWindow:13.2",
                     // https://mvnrepository.com/artifact/com.geyifeng.immersionbar/immersionbar
@@ -165,7 +164,7 @@ ext {
                     multitype                       : "com.drakeet.multitype:multitype:4.3.0",
                     // https://mvnrepository.com/artifact/io.github.cymchad/BaseRecyclerViewAdapterHelper4
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.7",
+                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.3.2",
                     // https://mvnrepository.com/artifact/io.github.youth5201314/banner
                     // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
                     // 图表 https://github.com/PhilJay/MPAndroidChart
@@ -214,14 +213,14 @@ ext {
                     yoyo                 : "com.daimajia.androidanimations:library:2.4@aar",
                     // https://mvnrepository.com/artifact/com.airbnb.android/lottie
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie               : "com.airbnb.android:lottie:6.6.7",
+                    lottie               : "com.airbnb.android:lottie:6.6.10",
                     // https://mvnrepository.com/artifact/com.github.skydoves/transformationlayout
                     // Activity 跳转动画 https://github.com/skydoves/TransformationLayout
                     transformation_layout: "com.github.skydoves:transformationlayout:1.1.6",
                     // Gif、WebP 动画库 https://github.com/penfeizhou/APNG4Android/blob/master/README-zh_CN.md
-                    awebp                : "com.github.penfeizhou.android.animation:awebp:3.0.4",
+                    awebp                : "com.github.penfeizhou.android.animation:awebp:3.0.5",
                     // PAG 动画库 https://github.com/Tencent/libpag/blob/main/README.zh_CN.md
-                    pag                  : "com.tencent.tav:libpag:4.4.35",
+                    pag                  : "com.tencent.tav:libpag:4.5.2",
                     // Gif 预览库 https://github.com/koral--/android-gif-drawable
                     gifDrawable          : "pl.droidsonroids.gif:android-gif-drawable:1.2.29",
             ],
@@ -330,17 +329,17 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime          : "androidx.room:room-runtime:2.7.2",
-                    room_compiler         : "androidx.room:room-compiler:2.7.2",
-                    room                  : "androidx.room:room-ktx:2.7.2",
+                    room_runtime          : "androidx.room:room-runtime:2.8.2",
+                    room_compiler         : "androidx.room:room-compiler:2.8.2",
+                    room                  : "androidx.room:room-ktx:2.8.2",
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao
                     // https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
                     greenDAO              : "org.greenrobot:greendao:3.3.0",
                     greenDAO_gradle_plugin: "org.greenrobot:greendao-gradle-plugin:3.3.1",
-                    // https://mvnrepository.com/artifact/net.zetetic/android-database-sqlcipher
-                    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
-                    sqlcipher             : "net.zetetic:android-database-sqlcipher:4.5.4",
+                    // https://mvnrepository.com/artifact/net.zetetic/sqlcipher-android
+                    // SQLCipher for Android https://github.com/sqlcipher/sqlcipher-android
+                    sqlcipher             : "net.zetetic:sqlcipher-android:4.11.0",
             ],
             "aop"           : [
 

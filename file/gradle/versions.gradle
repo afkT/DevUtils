@@ -18,8 +18,8 @@ ext {
             // 构建工具版本
             buildToolsVersion                        : "36.0.0",
             // Java 版本
-            javaVersion                              : JavaVersion.VERSION_1_8,
-            javaVersion_str                          : "1.8",
+            javaVersion                              : JavaVersion.VERSION_11,
+            javaVersion_str                          : "11",
             // Kotlin 版本
             kotlin_version                           : "2.2.10",
             kotlin_stdlib_version                    : "2.2.10",

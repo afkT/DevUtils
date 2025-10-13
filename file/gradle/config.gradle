@@ -85,36 +85,36 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
                     // Lifecycles only ( without ViewModel or LiveData )
                     // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.9.3",
+                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.9.4",
                     // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3",
+                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
                     // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.9.3",
+                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.9.4",
                     // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.3",
+                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.4",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.9.3",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.9.4",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
                     // https://developer.android.com/jetpack/androidx/releases/activity
-                    activity                      : "androidx.activity:activity-ktx:1.11.0-rc01",
+                    activity                      : "androidx.activity:activity-ktx:1.11.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
                     fragment                      : "androidx.fragment:fragment-ktx:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.3",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.3",
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.5",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.5",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
                     // WorkManager Kotlin + coroutines
-                    work_runtime                  : "androidx.work:work-runtime-ktx:2.10.3",
+                    work_runtime                  : "androidx.work:work-runtime-ktx:2.10.5",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime                  : "androidx.room:room-runtime:2.7.2",
-                    room_compiler                 : "androidx.room:room-compiler:2.7.2",
-                    room                          : "androidx.room:room-ktx:2.7.2",
+                    room_runtime                  : "androidx.room:room-runtime:2.8.2",
+                    room_compiler                 : "androidx.room:room-compiler:2.8.2",
+                    room                          : "androidx.room:room-ktx:2.8.2",
                     // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette                       : "androidx.palette:palette-ktx:1.0.0",
@@ -139,20 +139,20 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
                     viewpager2           : "androidx.viewpager2:viewpager2:1.1.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity             : "androidx.activity:activity:1.11.0-rc01",
+                    activity             : "androidx.activity:activity:1.11.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
                     fragment             : "androidx.fragment:fragment:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.9.3",
-                    navigation_ui        : "androidx.navigation:navigation-ui:2.9.3",
+                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.9.5",
+                    navigation_ui        : "androidx.navigation:navigation-ui:2.9.5",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
-                    work_runtime         : "androidx.work:work-runtime:2.10.3",
+                    work_runtime         : "androidx.work:work-runtime:2.10.5",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
-                    sqlite               : "androidx.sqlite:sqlite:2.5.2", // 推荐使用 Room Jetpack 组件
+                    sqlite               : "androidx.sqlite:sqlite:2.6.1", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/androidx.palette/palette
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette              : "androidx.palette:palette:1.0.0",
@@ -175,8 +175,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.57.1",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.57.1",
+                    hilt_android         : "com.google.dagger:hilt-android:2.57.2",
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.57.2",
             ],
     ]
 }

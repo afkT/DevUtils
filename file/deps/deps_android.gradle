@@ -19,7 +19,7 @@ dependencies {
     api deps.kotlin.navigation_ui
 //    api deps.kotlin.work_runtime
 //    api deps.kotlin.palette
-    api deps.kotlin.datastore_preferences
+//    api deps.kotlin.datastore_preferences
 
     // ============
     // = androidx =

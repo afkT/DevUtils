@@ -17,31 +17,31 @@ allprojects {
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
                     // lifecycle_runtime
-                    "androidx.lifecycle:lifecycle-runtime-ktx:2.9.3",
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.9.4",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
                     // lifecycle_livedata
-                    "androidx.lifecycle:lifecycle-livedata-ktx:2.9.3",
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.9.4",
                     // lifecycle_viewmodel_savedstate
-                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.3",
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.4",
                     // lifecycle_common_java8
-                    "androidx.lifecycle:lifecycle-common-java8:2.9.3",
+                    "androidx.lifecycle:lifecycle-common-java8:2.9.4",
                     // activity
-                    "androidx.activity:activity-ktx:1.11.0-rc01",
+                    "androidx.activity:activity-ktx:1.11.0",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment-ktx:2.9.3",
+                    "androidx.navigation:navigation-fragment-ktx:2.9.5",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui-ktx:2.9.3",
+                    "androidx.navigation:navigation-ui-ktx:2.9.5",
                     // work_runtime
-                    "androidx.work:work-runtime-ktx:2.10.3",
+                    "androidx.work:work-runtime-ktx:2.10.5",
                     // room_runtime
-                    "androidx.room:room-runtime:2.7.2",
+                    "androidx.room:room-runtime:2.8.2",
                     // room_compiler
-                    "androidx.room:room-compiler:2.7.2",
+                    "androidx.room:room-compiler:2.8.2",
                     // room
-                    "androidx.room:room-ktx:2.7.2",
+                    "androidx.room:room-ktx:2.8.2",
                     // palette
                     "androidx.palette:palette-ktx:1.0.0",
                     // datastore_preferences
@@ -64,17 +64,17 @@ allprojects {
                     // viewpager2
                     "androidx.viewpager2:viewpager2:1.1.0",
                     // activity
-                    "androidx.activity:activity:1.11.0-rc01",
+                    "androidx.activity:activity:1.11.0",
                     // fragment
                     "androidx.fragment:fragment:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment:2.9.3",
+                    "androidx.navigation:navigation-fragment:2.9.5",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui:2.9.3",
+                    "androidx.navigation:navigation-ui:2.9.5",
                     // work_runtime
-                    "androidx.work:work-runtime:2.10.3",
+                    "androidx.work:work-runtime:2.10.5",
                     // sqlite
-                    "androidx.sqlite:sqlite:2.5.2",
+                    "androidx.sqlite:sqlite:2.6.1",
                     // palette
                     "androidx.palette:palette:1.0.0",
                     // design
@@ -88,9 +88,9 @@ allprojects {
                     // localbroadcastManager
                     "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.57.1",
+                    "com.google.dagger:hilt-android:2.57.2",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.57.1",
+                    "com.google.dagger:hilt-android-compiler:2.57.2",
             )
         }
     }
