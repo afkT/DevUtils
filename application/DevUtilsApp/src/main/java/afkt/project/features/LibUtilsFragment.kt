@@ -16,7 +16,7 @@ class LibUtilsFragment : AppFragment<FragmentRecyclerViewBinding, AppViewModel>(
             if (btn.name.contains("_db_", true)) {
                 toast_showShort(text = "具体查看: 【DevUtils-repo】application/AppDB")
             } else {
-                toast_showShort(text = "具体搜索: 【DevUtils-repo】lib/LocalModules/DevOther ${btn.text}")
+                toast_showShort(text = "具体搜索: 【DevUtils-repo】local_dev/DevOther ${btn.text}")
             }
         }
     }

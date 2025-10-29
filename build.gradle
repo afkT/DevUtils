@@ -64,12 +64,6 @@ allprojects {
 
         maven { url "https://repo1.maven.org/maven2/" }
     }
-
-//    gradle.projectsEvaluated {
-//        tasks.withType(JavaCompile) {
-//            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-//        }
-//    }
 }
 
 tasks.register('clean', Delete) {

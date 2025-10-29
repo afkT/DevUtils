@@ -28,11 +28,7 @@ class DevAssistEngineFragment : AppFragment<FragmentRecyclerViewBinding, AppView
             // 初始化数据并设置点击事件
             viewModel.buttonAdapterModel.convertItemsDevAssistEngineMain { btn ->
                 val builder = StringBuilder()
-                    .append("Java 实现在【DevUtils-repo】DevOther")
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("java.dev.engine 目录下")
-                    .append(DevFinal.SYMBOL.NEW_LINE)
-                    .append("Kotlin 实现已封装为 DevEngine 库")
+                    .append("实现已封装为 DevEngine 库，直接依赖使用")
                 toast_showLong(text = builder.toString())
             }
             // 追加 TextView

@@ -223,7 +223,7 @@ implementation 'io.github.afkt:DevJava:1.5.4'
 [DevSimple ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/CHANGELOG.md
 [DevWidget API]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md
 [DevWidget ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md
-[DevWidget Preview]: https://github.com/afkT/DevUtils-repo/blob/main/lib/DevWidget_Preview.md
+[DevWidget Preview]: https://github.com/afkT/DevUtils-repo/blob/main/local_dev/DevWidget_Preview.md
 [DevRetrofit API]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/README.md
 [DevRetrofit ChangeLog]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevRetrofit/CHANGELOG.md
 [DevHttpManager API]: https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/README.md
@@ -244,7 +244,7 @@ implementation 'io.github.afkt:DevJava:1.5.4'
 [JavaDoc]: https://github.com/afkT/JavaDoc
 [DevComponent]: https://github.com/afkT/DevComponent
 [DevUtils-repo]: https://github.com/afkT/DevUtils-repo
-[DevOther]: https://github.com/afkT/DevUtils-repo/blob/main/lib/LocalModules/DevOther
+[DevOther]: https://github.com/afkT/DevUtils-repo/blob/main/local_dev/DevOther
 
 <!-- ======= -->
 <!-- 零散汇总 -->
