@@ -6,9 +6,9 @@
    - DevAssist                             | 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
       - DevEngine                          | 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
          - DevSimple                       | 简单敏捷开发库
-   - DevBase                               | Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
+   - DevBase                               | DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
    - DevHttpCapture                        | OkHttp 抓包工具库
-      - DevHttpCaptureCompiler             | Debug ( 打包 / 编译 ) 实现代码
+      - DevHttpCaptureCompiler             | Debug ( 打包 / 编译 ) 实现代码 ( 可视化 UI 操作 )
       - DevHttpCaptureCompilerRelease      | Release ( 打包 / 编译 ) 实现代码
    - DevHttpManager                        | OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )
    - DevWidget                             | 自定义 View UI 库
