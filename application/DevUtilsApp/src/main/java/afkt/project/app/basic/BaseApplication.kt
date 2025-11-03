@@ -11,7 +11,6 @@ import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
-import dev.utils.app.logger.LogLevel
 import dev.utils.common.StringUtils
 
 /**
@@ -57,16 +56,13 @@ open class BaseApplication : MultiDexApplication(),
 
         // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
         DevUtils.init(this)
-        // 初始化日志配置
-        DevLogger.initialize(
-            LogConfig().logLevel(LogLevel.DEBUG)
-                .tag(AppContext.TAG)
-                .sortLog(true) // 美化日志, 边框包围
-                .methodCount(0)
-        )
         // 打开 lib 内部日志 - 线上环境, 不调用方法
         DevUtils.openLog()
         DevUtils.openDebug()
+        // 初始化 Logger 配置
+        val logConfig = LogConfig.getSortLogConfig(AppContext.TAG)
+            .displayThreadInfo(false)
+        DevLogger.initialize(logConfig)
 
         // 可进行日志拦截编码
         // DevLogger.setPrint(new DevLogger.Print())

@@ -6,7 +6,6 @@ import dev.DevUtils
 import dev.engine.DevEngine
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
-import dev.utils.app.logger.LogLevel
 
 /**
  * detail: Base Application
@@ -20,16 +19,13 @@ class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        // 初始化日志配置
-        DevLogger.initialize(
-            LogConfig().logLevel(LogLevel.DEBUG)
-                .tag(TAG)
-                .sortLog(true) // 美化日志, 边框包围
-                .methodCount(0)
-        )
         // 打开 lib 内部日志 - 线上环境, 不调用方法
         DevUtils.openLog()
         DevUtils.openDebug()
+        // 初始化 Logger 配置
+        val logConfig = LogConfig.getSortLogConfig(TAG)
+            .displayThreadInfo(false)
+        DevLogger.initialize(logConfig)
 
         // ============
         // = 初始化操作 =
