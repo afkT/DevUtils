@@ -22,6 +22,8 @@ import dev.utils.app.assist.lifecycle.ActivityLifecycleFilter;
 import dev.utils.app.assist.lifecycle.ActivityLifecycleGet;
 import dev.utils.app.assist.lifecycle.ActivityLifecycleNotify;
 import dev.utils.app.assist.record.AppRecordInsert;
+import dev.utils.app.logger.DevLogger;
+import dev.utils.app.logger.LogConfig;
 import dev.utils.common.FileUtils;
 import dev.utils.common.assist.record.FileRecordUtils;
 
@@ -300,6 +302,51 @@ public final class DevUtils {
      */
     public static boolean isDebug() {
         return sDebug;
+    }
+
+    // =========================
+    // = 开发配置 ( 通用快捷配置 ) =
+    // =========================
+
+    /**
+     * DevUtils 通用快捷开发配置
+     * @param debug 是否为调试模式
+     * @param tag   日志打印 TAG
+     */
+    public static void quickDevelop(
+            final boolean debug,
+            final String tag
+    ) {
+        if (debug) {
+            debugDevelop(tag);
+        } else {
+            releaseDevelop(tag);
+        }
+    }
+
+    /**
+     * DevUtils Release 开发配置
+     * @param tag 日志打印 TAG
+     */
+    public static void releaseDevelop(final String tag) {
+        // 初始化 Logger 配置
+        LogConfig logConfig = LogConfig.getReleaseLogConfig(tag)
+                .displayThreadInfo(false);
+        DevLogger.initialize(logConfig);
+    }
+
+    /**
+     * DevUtils Debug 开发配置
+     * @param tag 日志打印 TAG
+     */
+    public static void debugDevelop(final String tag) {
+        // 打开 lib 内部日志 - 线上环境, 不调用方法
+        DevUtils.openLog();
+        DevUtils.openDebug();
+        // 初始化 Logger 配置
+        LogConfig logConfig = LogConfig.getSortLogConfig(tag)
+                .displayThreadInfo(false);
+        DevLogger.initialize(logConfig);
     }
 
     // ============

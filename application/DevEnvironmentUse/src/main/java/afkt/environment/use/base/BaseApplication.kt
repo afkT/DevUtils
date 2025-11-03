@@ -3,8 +3,6 @@ package afkt.environment.use.base
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.engine.DevEngine
-import dev.utils.app.logger.DevLogger
-import dev.utils.app.logger.LogConfig
 
 /**
  * detail: Base Application
@@ -18,17 +16,8 @@ class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        // 打开 lib 内部日志 - 线上环境, 不调用方法
-        DevUtils.openLog()
-        DevUtils.openDebug()
-        // 初始化 Logger 配置
-        val logConfig = LogConfig.getSortLogConfig(TAG)
-            .displayThreadInfo(false)
-        DevLogger.initialize(logConfig)
-
-        // ============
-        // = 初始化操作 =
-        // ============
+        // DevUtils Debug 开发配置
+        DevUtils.debugDevelop(TAG)
 
         // DevEngine 完整初始化
         DevEngine.completeInitialize(this)
