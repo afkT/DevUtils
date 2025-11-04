@@ -9,6 +9,14 @@
 
     <style name="ViewTheme.Divider" />
 
+    <style name="ViewTheme.Divider.Vertical">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.Divider.Horizontal">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- Padding、Margin 基础样式 -->
 
     <style name="ViewTheme.Padding" />

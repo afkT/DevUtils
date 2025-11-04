@@ -20,8 +20,6 @@
 
     <!-- View 样式 -->
 
-    <style name="ViewTheme" />
-
     <!-- Button 基础样式 -->
 
     <style name="ViewTheme.Button" parent="Widget.AppCompat.Button">
@@ -71,10 +69,6 @@
     </style>
 
     <!-- Padding、Margin 样式 -->
-
-    <style name="ViewTheme.Padding" />
-
-    <style name="ViewTheme.Margin" />
 
     <style name="ViewTheme.Padding.LR">
         <item name="android:paddingLeft">10.0dp</item>

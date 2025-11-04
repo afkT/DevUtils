@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
+<resources translatable="false">
 
     <!-- Text -->
 
@@ -27,8 +27,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Opt out of edge-to-edge enforcement for API level 35+ -->
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="AppTheme.Launcher">
@@ -122,13 +120,7 @@
 
     <!-- 分割线样式 -->
 
-    <style name="ViewTheme.Divider.Vertical">
-        <item name="android:layout_width">match_parent</item>
+    <style name="ViewTheme.Divider.Vertical.DP_0_5">
         <item name="android:layout_height">0.5dp</item>
-    </style>
-
-    <style name="ViewTheme.Divider.Horizontal">
-        <item name="android:layout_width">0.5dp</item>
-        <item name="android:layout_height">match_parent</item>
     </style>
 </resources>
