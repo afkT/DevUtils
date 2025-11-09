@@ -11,7 +11,7 @@
     <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
         <LinearLayout
-            style="@style/ViewTheme.Padding.LR"
+            style="@style/ViewTheme.Padding.LR_DP_10"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">

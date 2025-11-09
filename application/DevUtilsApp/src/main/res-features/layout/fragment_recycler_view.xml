@@ -10,7 +10,7 @@
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
-        style="@style/ViewTheme.RecyclerView.Margin.LR"
+        style="@style/ViewTheme.RecyclerView.Margin.LR_DP_10"
         android:visibility="visible"
         app:itemBinding="@{viewModel.buttonAdapterModel.itemBinding}"
         app:items="@{viewModel.buttonAdapterModel.items}"

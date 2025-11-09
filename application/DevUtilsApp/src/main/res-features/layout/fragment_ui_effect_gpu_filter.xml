@@ -11,7 +11,7 @@
     </data>
 
     <LinearLayout
-        style="@style/ViewTheme.LinearLayout.Padding.LR"
+        style="@style/ViewTheme.LinearLayout.Padding.LR_DP_10"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatButton

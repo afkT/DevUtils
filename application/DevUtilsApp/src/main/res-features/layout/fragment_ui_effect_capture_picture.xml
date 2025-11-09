@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:id="@+id/vid_ll"
-            style="@style/ViewTheme.LinearLayout.Padding.LR">
+            style="@style/ViewTheme.LinearLayout.Padding.LR_DP_10">
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/ViewTheme.Button.Single"

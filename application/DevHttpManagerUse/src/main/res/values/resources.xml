@@ -70,12 +70,12 @@
 
     <!-- Padding、Margin 样式 -->
 
-    <style name="ViewTheme.Padding.LR">
+    <style name="ViewTheme.Padding.LR_DP_10">
         <item name="android:paddingLeft">10.0dp</item>
         <item name="android:paddingRight">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.Margin.LR">
+    <style name="ViewTheme.Margin.LR_DP_10">
         <item name="android:layout_marginLeft">10.0dp</item>
         <item name="android:layout_marginRight">10.0dp</item>
     </style>

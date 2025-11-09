@@ -6,7 +6,7 @@
         style="@style/ViewTheme.NestedScrollView.Match"
         android:background="@color/white">
 
-        <LinearLayout style="@style/ViewTheme.LinearLayout.Padding.LR">
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Padding.LR_DP_10">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/vid_preface_tv"

@@ -40,7 +40,7 @@
             tools:text="Android X" />
 
         <androidx.recyclerview.widget.RecyclerView
-            style="@style/ViewTheme.RecyclerView.Margin.LR"
+            style="@style/ViewTheme.RecyclerView.Margin.LR_DP_10"
             app:itemBinding="@{viewModel.buttonAdapterModel.itemBinding}"
             app:items="@{viewModel.buttonAdapterModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

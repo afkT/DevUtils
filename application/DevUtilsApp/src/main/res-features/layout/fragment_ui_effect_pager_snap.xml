@@ -13,7 +13,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vid_rv"
-            style="@style/ViewTheme.RecyclerView.Margin.LR"
+            style="@style/ViewTheme.RecyclerView.Margin.LR_DP_10"
             android:orientation="horizontal"
             app:itemBinding="@{viewModel.adapterModel.itemBinding}"
             app:items="@{viewModel.adapterModel.items}"

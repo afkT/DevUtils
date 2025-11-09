@@ -11,7 +11,7 @@
 
     <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
-        <LinearLayout style="@style/ViewTheme.LinearLayout.Padding.LR">
+        <LinearLayout style="@style/ViewTheme.LinearLayout.Padding.LR_DP_10">
 
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/ViewTheme.Button.Single"
