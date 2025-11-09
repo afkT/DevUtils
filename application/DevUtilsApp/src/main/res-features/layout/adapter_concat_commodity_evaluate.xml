@@ -192,8 +192,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/vid_pic_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/ViewTheme.RecyclerView"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_12"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

@@ -4,7 +4,7 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionDevLoggerBinding
 import android.view.View
 import dev.engine.extensions.toast.toast_showShort
 import dev.utils.app.logger.LogConfig
@@ -15,7 +15,7 @@ import utils_use.logger.LoggerUse
  * detail: DevLogger 日志工具类
  * @author Ttt
  */
-class DevLoggerFragment : AppFragment<BaseViewRecyclerviewBinding, DevLoggerViewModel>(
+class DevLoggerFragment : AppFragment<FragmentOtherFunctionDevLoggerBinding, DevLoggerViewModel>(
     R.layout.fragment_other_function_dev_logger, BR.viewModel
 )
 

@@ -4,7 +4,7 @@ import afkt.project.BR
 import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionPathUtilsBinding
 import android.view.View
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.toast.toast_showShort
@@ -16,7 +16,7 @@ import dev.utils.common.StringUtils
  * detail: 路径信息
  * @author Ttt
  */
-class PathFragment : AppFragment<BaseViewRecyclerviewBinding, PathViewModel>(
+class PathFragment : AppFragment<FragmentOtherFunctionPathUtilsBinding, PathViewModel>(
     R.layout.fragment_other_function_path_utils, BR.viewModel
 )
 

@@ -51,28 +51,14 @@
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_250"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+            style="@style/ViewTheme.NestedScrollView"
+            android:layout_height="@dimen/dp_250">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/ViewTheme.LinearLayout.Vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/vid_recy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cacheColorHint="@color/transparent"
-                    android:divider="@null"
-                    android:fadingEdge="none"
-                    android:listSelector="@null"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="vertical"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
+                    style="@style/ViewTheme.RecyclerView"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 <FrameLayout

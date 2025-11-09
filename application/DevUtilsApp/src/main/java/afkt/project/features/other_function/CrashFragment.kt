@@ -5,14 +5,14 @@ import afkt.project.R
 import afkt.project.app.AppContext
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
-import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.databinding.FragmentOtherFunctionCarchBinding
 import android.view.View
 
 /**
  * detail: 奔溃日志捕获
  * @author Ttt
  */
-class CrashFragment : AppFragment<BaseViewRecyclerviewBinding, CrashViewModel>(
+class CrashFragment : AppFragment<FragmentOtherFunctionCarchBinding, CrashViewModel>(
     R.layout.fragment_other_function_carch, BR.viewModel
 )
 

@@ -3,25 +3,7 @@
 
     <string name="tools_price">¥17.2</string>
 
-    <!-- 线条 -->
-    <dimen name="line_0_5">0.5dp</dimen>
-
-    <!-- 边框 ( 描边 ) 宽度 -->
-    <dimen name="border_width_1">1.0dp</dimen>
-
-    <!-- 圆角角度 -->
-    <dimen name="radius_3">3.0dp</dimen>
-
-    <!-- NavigationView 顶部背景高度 -->
-    <dimen name="nav_header_height">176.0dp</dimen>
-
-    <!--
-        直接通过 dp_xxx 去使用, 不区分 line、border、radius 等
-        除非某些主题、模块相关则以指定标识新增, 如: nav_header_height
-        小数点以 _ 进行分割, 如 155.52dp 为 155_52
-    -->
-
-    <!-- 通用 DP max = 750 -->
+    <!-- 通用 DP -->
     <dimen name="dp_0">0.0dp</dimen>
     <dimen name="dp_0_5">0.5dp</dimen>
     <dimen name="dp_1">1.0dp</dimen>
@@ -1524,7 +1506,7 @@
     <dimen name="dp_749_5">749.5dp</dimen>
     <dimen name="dp_750">750.0dp</dimen>
 
-    <!-- 通用 SP max = 80 -->
+    <!-- 通用 SP -->
     <dimen name="sp_0">0.0sp</dimen>
     <dimen name="sp_0_5">0.5sp</dimen>
     <dimen name="sp_1">1.0sp</dimen>

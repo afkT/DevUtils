@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <com.hjq.bar.TitleBar
@@ -24,19 +25,12 @@
             app:titleSize="18.0sp"
             app:titleStyle="bold" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:fadingEdge="none"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+        <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
 
             <LinearLayout
-                style="@style/ViewTheme.Padding.LR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                style="@style/ViewTheme.LinearLayout.Vertical"
+                android:paddingLeft="10.0dp"
+                android:paddingRight="10.0dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.TextView.Title"
