@@ -68,7 +68,6 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         savedInstanceState: Bundle?
     ) {
         viewModel.intentReader(arguments)
-        super.onViewCreated(view, savedInstanceState)
         // 添加 TitleBar 则不设置顶部状态栏边距
         if (isAddTitleBar()) {
             setStatusBarHeightPadding(binding.root)
@@ -80,6 +79,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
                 setOnApplyWindowInsetsListener(binding.root)
             }
         }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     // ==========
@@ -141,7 +141,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
     ) {
         // 设置右边切换按钮
         titleBar()?.apply {
-            setRightTitle(title)
+            rightTitle = title
             rightView.setOnClickListener(listener)
         }
     }

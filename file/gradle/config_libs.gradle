@@ -196,8 +196,6 @@ ext {
                     // https://mvnrepository.com/artifact/com.github.donkingliang/GroupedRecyclerViewAdapter
                     // 悬浮吸顶分组 RecyclerView https://github.com/donkingliang/GroupedRecyclerViewAdapter
                     grouped_adapter     : "com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.3",
-                    // 3D 按钮效果 https://github.com/AD0608/ThreeDButtonLayout
-                    threeDButtonLayout  : "com.github.AD0608:ThreeDButtonLayout:1.0.0",
                     // 加载动画效果 https://github.com/dinuscxj/LoadingDrawable
                     loading_drawable    : "com.github.elmliu:loadingdrawable:1.0",
                     // 评价等级控件 https://github.com/williamyyu/SimpleRatingBar
@@ -287,6 +285,10 @@ ext {
                     // https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
                     // 内存检测工具 https://github.com/square/leakcanary
                     leakcanary                 : "com.squareup.leakcanary:leakcanary-android:3.0-alpha-8",
+                    // 日志输出库 https://github.com/JakeWharton/timber
+                    timber                     : "com.jakewharton.timber:timber:5.0.1",
+                    // 重启应用进程库 https://github.com/JakeWharton/ProcessPhoenix
+                    process_phoenix            : "com.jakewharton:process-phoenix:3.0.0",
             ],
             "router"        : [
 

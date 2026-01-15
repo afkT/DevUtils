@@ -167,9 +167,7 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
 
     override fun selectAll(): MultiSelectAdapter {
         val maps = LinkedHashMap<String, CommodityBean>()
-        this.newForEach {
-            maps[it.multiSelectKey()] = it
-        }
+        this.forEach { maps[it.multiSelectKey()] = it }
         multiSelect.putSelects(maps)
         refresh()
         return this
@@ -186,7 +184,7 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
 
         val keys = multiSelect.getSelectKeys()
         val maps = LinkedHashMap<String, CommodityBean>()
-        this.newForEach {
+        this.forEach {
             val key = it.multiSelectKey()
             // 如果已经选中了则移除不处理
             if (keys.contains(key)) {
