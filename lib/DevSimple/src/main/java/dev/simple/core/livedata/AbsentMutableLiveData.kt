@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
  * detail: 缺少数据 ( null ) 通用 MutableLiveData
  * @author Ttt
  */
-class AbsentMutableLiveData<T> : MutableLiveData<T>() {
+open class AbsentMutableLiveData<T> : MutableLiveData<T>() {
     init {
         postValue(null)
     }
