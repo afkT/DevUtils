@@ -125,58 +125,62 @@ ext {
             ],
             "androidx": [
                     // https://mvnrepository.com/artifact/androidx.multidex/multidex
-                    multidex             : "androidx.multidex:multidex:2.0.1",
+                    multidex                 : "androidx.multidex:multidex:2.0.1",
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-                    appcompat            : "androidx.appcompat:appcompat:1.7.1",
+                    appcompat                : "androidx.appcompat:appcompat:1.7.1",
                     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat-resources
-                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.7.1",
+                    appcompat_resources      : "androidx.appcompat:appcompat-resources:1.7.1",
                     // https://mvnrepository.com/artifact/androidx.cardview/cardview
-                    cardview             : "androidx.cardview:cardview:1.0.0",
+                    cardview                 : "androidx.cardview:cardview:1.0.0",
                     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
-                    constraint_layout    : "androidx.constraintlayout:constraintlayout:2.2.1",
+                    constraint_layout        : "androidx.constraintlayout:constraintlayout:2.2.1",
                     // https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
-                    recyclerview         : "androidx.recyclerview:recyclerview:1.4.0",
+                    recyclerview             : "androidx.recyclerview:recyclerview:1.4.0",
                     // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
-                    viewpager2           : "androidx.viewpager2:viewpager2:1.1.0",
+                    viewpager2               : "androidx.viewpager2:viewpager2:1.1.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity             : "androidx.activity:activity:1.11.0",
+                    activity                 : "androidx.activity:activity:1.11.0",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
-                    fragment             : "androidx.fragment:fragment:1.8.9",
+                    fragment                 : "androidx.fragment:fragment:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment  : "androidx.navigation:navigation-fragment:2.9.5",
-                    navigation_ui        : "androidx.navigation:navigation-ui:2.9.5",
+                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.9.5",
+                    navigation_ui            : "androidx.navigation:navigation-ui:2.9.5",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
-                    work_runtime         : "androidx.work:work-runtime:2.10.5",
+                    work_runtime             : "androidx.work:work-runtime:2.10.5",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
-                    sqlite               : "androidx.sqlite:sqlite:2.6.1", // 推荐使用 Room Jetpack 组件
+                    sqlite                   : "androidx.sqlite:sqlite:2.6.1", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/androidx.palette/palette
                     // Palette 调色板 ( 从图片中获取颜色 )
-                    palette              : "androidx.palette:palette:1.0.0",
+                    palette                  : "androidx.palette:palette:1.0.0",
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件
-                    design               : "com.google.android.material:material:1.13.0",
+                    design                   : "com.google.android.material:material:1.13.0",
                     // https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
                     // https://github.com/google/flexbox-layout
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
-                    flexbox              : "com.google.android.flexbox:flexbox:3.0.0",
+                    flexbox                  : "com.google.android.flexbox:flexbox:3.0.0",
                     // https://mvnrepository.com/artifact/androidx.startup/startup-runtime
                     // https://developer.android.com/topic/libraries/app-startup
-                    startup              : "androidx.startup:startup-runtime:1.2.0",
+                    startup                  : "androidx.startup:startup-runtime:1.2.0",
                     // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/exifinterface
-                    exifinterface        : "androidx.exifinterface:exifinterface:1.4.1",
+                    exifinterface            : "androidx.exifinterface:exifinterface:1.4.1",
                     // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/localbroadcastmanager
-                    localbroadcastManager: "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
+                    localbroadcastManager    : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.57.2",
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.57.2",
+                    hilt_android             : "com.google.dagger:hilt-android:2.57.2",
+                    hilt_android_compiler    : "com.google.dagger:hilt-android-compiler:2.57.2",
+                    // https://mvnrepository.com/artifact/androidx.annotation/annotation
+                    "annotation"             : "androidx.annotation:annotation:1.9.1",
+                    // https://mvnrepository.com/artifact/androidx.annotation/annotation-experimental
+                    "annotation_experimental": "androidx.annotation:annotation-experimental:1.5.1",
             ],
     ]
 }
