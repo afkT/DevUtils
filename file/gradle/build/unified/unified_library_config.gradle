@@ -8,6 +8,9 @@ allprojects {
             // 强制统一版本 => 可通过 file/json/deps.gradle 获取, 视情况选择
             resolutionStrategy.force(
 
+                    // DevUtils 统一版本
+                    "io.github.afkt:DevAppX:2.5.0",
+
                     // = kotlin =
 
                     // stdlib
