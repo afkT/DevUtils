@@ -16,7 +16,7 @@
 		<img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat" />
 	</a>
 	<a href="https://search.maven.org/search?q=io.github.afkt">
-		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.4.9-yellow.svg" />
+		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.5.0-yellow.svg" />
 	</a>
 	<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md">
 		<img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg" />
@@ -54,7 +54,7 @@
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.4.9'
+implementation 'io.github.afkt:DevAppX:2.5.0'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.4.4'
@@ -66,7 +66,7 @@ implementation 'io.github.afkt:DevBase:1.2.1'
 implementation 'io.github.afkt:DevEngine:1.1.6'
 
 // DevSimple - 简单敏捷开发库
-implementation 'io.github.afkt:DevSimple:1.0.4'
+implementation 'io.github.afkt:DevSimple:1.0.5'
 
 // DevWidget - 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.2.6'

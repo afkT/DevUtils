@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.5 *(2026-01-19)*
+----------------------------
+
+* `[Add]` 新增 AdapterModel 通用模型
+
+* `[Add]` 新增 PayloadLiveData、StateIntLiveData
+
 Version 1.0.4 *(2025-10-12)*
 ----------------------------
 
