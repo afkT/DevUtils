@@ -5,50 +5,56 @@
 allprojects {
     repositories {
         configurations.configureEach {
+
+            // 排除 kotlin-android-extensions-runtime 以避免与 kotlin-parcelize-runtime 的冲突
+            exclude group: 'org.jetbrains.kotlin', module: 'kotlin-android-extensions-runtime'
+            
             // 强制统一版本 => 可通过 file/json/deps.gradle 获取, 视情况选择
             resolutionStrategy.force(
 
-                    // DevUtils 统一版本
+                    // = dev =
+
+                    // dev_app
                     "io.github.afkt:DevAppX:2.5.0",
 
                     // = kotlin =
 
                     // stdlib
-                    "org.jetbrains.kotlin:kotlin-stdlib:2.2.10",
+                    "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
                     // core
                     "androidx.core:core-ktx:1.17.0",
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
                     // lifecycle_runtime
-                    "androidx.lifecycle:lifecycle-runtime-ktx:2.9.4",
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.10.0",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0",
                     // lifecycle_livedata
-                    "androidx.lifecycle:lifecycle-livedata-ktx:2.9.4",
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.10.0",
                     // lifecycle_viewmodel_savedstate
-                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.4",
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.10.0",
                     // lifecycle_common_java8
-                    "androidx.lifecycle:lifecycle-common-java8:2.9.4",
+                    "androidx.lifecycle:lifecycle-common-java8:2.10.0",
                     // activity
-                    "androidx.activity:activity-ktx:1.11.0",
+                    "androidx.activity:activity-ktx:1.12.2",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment-ktx:2.9.5",
+                    "androidx.navigation:navigation-fragment-ktx:2.9.6",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui-ktx:2.9.5",
+                    "androidx.navigation:navigation-ui-ktx:2.9.6",
                     // work_runtime
-                    "androidx.work:work-runtime-ktx:2.10.5",
+                    "androidx.work:work-runtime-ktx:2.11.0",
                     // room_runtime
-                    "androidx.room:room-runtime:2.8.2",
+                    "androidx.room:room-runtime:2.8.4",
                     // room_compiler
-                    "androidx.room:room-compiler:2.8.2",
+                    "androidx.room:room-compiler:2.8.4",
                     // room
-                    "androidx.room:room-ktx:2.8.2",
+                    "androidx.room:room-ktx:2.8.4",
                     // palette
                     "androidx.palette:palette-ktx:1.0.0",
                     // datastore_preferences
-                    "androidx.datastore:datastore-preferences:1.1.7",
+                    "androidx.datastore:datastore-preferences:1.2.0",
 
                     // = androidx =
 
@@ -67,17 +73,17 @@ allprojects {
                     // viewpager2
                     "androidx.viewpager2:viewpager2:1.1.0",
                     // activity
-                    "androidx.activity:activity:1.11.0",
+                    "androidx.activity:activity:1.12.2",
                     // fragment
                     "androidx.fragment:fragment:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment:2.9.5",
+                    "androidx.navigation:navigation-fragment:2.9.6",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui:2.9.5",
+                    "androidx.navigation:navigation-ui:2.9.6",
                     // work_runtime
-                    "androidx.work:work-runtime:2.10.5",
+                    "androidx.work:work-runtime:2.11.0",
                     // sqlite
-                    "androidx.sqlite:sqlite:2.6.1",
+                    "androidx.sqlite:sqlite:2.6.2",
                     // palette
                     "androidx.palette:palette:1.0.0",
                     // design
@@ -87,13 +93,17 @@ allprojects {
                     // startup
                     "androidx.startup:startup-runtime:1.2.0",
                     // exifinterface
-                    "androidx.exifinterface:exifinterface:1.4.1",
+                    "androidx.exifinterface:exifinterface:1.4.2",
                     // localbroadcastManager
                     "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.57.2",
+                    "com.google.dagger:hilt-android:2.59",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.57.2",
+                    "com.google.dagger:hilt-android-compiler:2.59",
+                    // annotation
+                    "androidx.annotation:annotation:1.9.1",
+                    // annotation_experimental
+                    "androidx.annotation:annotation-experimental:1.5.1",
             )
         }
     }

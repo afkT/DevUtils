@@ -1,11 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-//apply from: rootProject.file("file/gradle/config.gradle")
-//apply from: rootProject.file("file/gradle/config_libs.gradle")
-//apply from: rootProject.file("file/gradle/config_files.gradle")
-
 buildscript {
 
-    // 防止无法获取 ext.deps
+    // ext.deps
     apply from: rootProject.file("file/gradle/config.gradle")
     apply from: rootProject.file("file/gradle/config_libs.gradle")
     apply from: rootProject.file("file/gradle/config_files.gradle")
@@ -34,7 +29,7 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:8.11.1'
+        classpath 'com.android.tools.build:gradle:8.13.2'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath rootProject.ext.deps.build.kotlin_gradle_plugin
         // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
