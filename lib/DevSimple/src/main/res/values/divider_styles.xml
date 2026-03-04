@@ -12,4 +12,24 @@
     <style name="ViewTheme.Divider.Horizontal">
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <!--【内置】样式 -->
+
+    <!-- 分割线样式 -->
+
+    <style name="ViewTheme.Divider.Vertical.DP_0_5">
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="ViewTheme.Divider.Horizontal.DP_0_5">
+        <item name="android:layout_width">0.5dp</item>
+    </style>
+
+    <style name="ViewTheme.Divider.Vertical.DP_1">
+        <item name="android:layout_height">1.0dp</item>
+    </style>
+
+    <style name="ViewTheme.Divider.Horizontal.DP_1">
+        <item name="android:layout_width">1.0dp</item>
+    </style>
 </resources>

@@ -36,4 +36,28 @@
     <style name="ViewTheme.RecyclerView.Margin" />
 
     <style name="ViewTheme.RecyclerView.Padding" />
+
+    <!--【内置】样式 -->
+
+    <!-- RecyclerView 边距样式 -->
+
+    <style name="ViewTheme.RecyclerView.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
 </resources>

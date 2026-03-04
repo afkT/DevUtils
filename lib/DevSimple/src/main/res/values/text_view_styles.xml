@@ -30,4 +30,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <!-- TextView Text Gravity -->
+
+    <style name="ViewTheme.TextView.TextCenter">
+        <item name="android:gravity">center</item>
+    </style>
 </resources>
