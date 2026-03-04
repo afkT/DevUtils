@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- EditText 基础样式 -->
+
+    <style name="ViewTheme.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColorHint">@color/color_99</item>
+    </style>
+
+    <!-- EditText 无边框样式 -->
+
+    <style name="ViewTheme.EditText.NoBackground">
+        <item name="android:background">@null</item>
+    </style>
+
+    <!-- EditText 单行样式 -->
+
+    <style name="ViewTheme.EditText.Single">
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- EditText 居中样式 -->
+
+    <style name="ViewTheme.EditText.Center">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- EditText 数字输入样式 -->
+
+    <style name="ViewTheme.EditText.Number">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">5</item>
+    </style>
+</resources>

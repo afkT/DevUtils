@@ -24,4 +24,19 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <!-- View 占位 -->
+
+    <style name="ViewTheme.View.Space">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <!-- View 弹性占位 -->
+
+    <style name="ViewTheme.View.Space.Weight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 </resources>
