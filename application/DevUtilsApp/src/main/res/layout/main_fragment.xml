@@ -34,7 +34,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatTextView
-            style="@style/ViewTheme.TextView.TextCenter"
+            style="@style/ViewTheme.TextView.Gravity.Center"
             android:layout_marginBottom="@dimen/dp_10"
             android:text="@{VersionUtils.convertSDKVersion()}"
             tools:text="Android X" />

@@ -7,6 +7,7 @@ import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dev.base.core.arch.databinding.DevBaseVDBActivity
+import dev.base.core.arch.databinding.DevBaseVDBFragment
 
 // ==============
 // = EdgeToEdge =
@@ -30,7 +31,7 @@ fun ComponentActivity.commonEnableEdgeToEdge(
 /**
  * 通用 Enable edge to edge【适配 API 35+】
  */
-fun DevBaseVDBActivity<*>.commonEnableEdgeToEdge(
+fun DevBaseVDBActivity<*>.actCommonEnableEdgeToEdge(
     listener: OnApplyWindowInsetsListener? = DEFAULT_WINDOW_SYSTEM_BARS
 ) {
     commonEnableEdgeToEdge(binding.root, listener)
@@ -89,4 +90,30 @@ fun View.setSystemBarsPadding(
         view.setPadding(left, top, right, bottom)
         insets
     }
+}
+
+// ======================
+// = DevBaseVDBFragment =
+// ======================
+
+/**
+ * 通用设置 View Padding, 使 view 不会被 system bars 遮挡
+ */
+fun DevBaseVDBFragment<*>.fragCommonSystemBarsPadding() {
+    fragSetSystemBarsPadding()
+}
+
+/**
+ * 给 View 设置 Padding, 使 view 不会被 system bars 遮挡
+ */
+fun DevBaseVDBFragment<*>.fragSetSystemBarsPadding(
+    paddingLeft: Boolean = true,
+    paddingTop: Boolean = true,
+    paddingRight: Boolean = true,
+    paddingBottom: Boolean = true
+) {
+    binding.root.setSystemBarsPadding(
+        paddingLeft, paddingTop,
+        paddingRight, paddingBottom
+    )
 }

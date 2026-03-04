@@ -4,7 +4,7 @@ import afkt.retrofit.use.app.autoResources
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import dev.base.core.commonEnableEdgeToEdge
+import dev.base.core.actCommonEnableEdgeToEdge
 import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.DevSimpleActivity
@@ -54,7 +54,7 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 通用 Enable edge to edge【适配 API 35+】
-        commonEnableEdgeToEdge()
+        actCommonEnableEdgeToEdge()
     }
 
     // ============

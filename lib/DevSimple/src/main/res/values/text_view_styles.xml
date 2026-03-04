@@ -33,7 +33,7 @@
 
     <!-- TextView Text Gravity -->
 
-    <style name="ViewTheme.TextView.TextCenter">
+    <style name="ViewTheme.TextView.Gravity.Center">
         <item name="android:gravity">center</item>
     </style>
 </resources>

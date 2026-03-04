@@ -12,9 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.lihang.ShadowLayout
-import dev.base.core.commonSystemBarsPadding
+import dev.base.core.fragCommonSystemBarsPadding
+import dev.base.core.fragSetSystemBarsPadding
 import dev.base.core.interfaces.IDevBase
-import dev.base.core.setSystemBarsPadding
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.utils.app.ViewUtils
@@ -70,15 +70,13 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         viewModel.intentReader(arguments)
         // 添加 TitleBar 则不设置顶部状态栏边距
         if (isAddTitleBar()) {
-            binding.root.setSystemBarsPadding(
-                paddingTop = false
-            )
+            fragSetSystemBarsPadding(paddingTop = false)
             // 创建 TitleBar 骨架 View
             createTitleBarSkeletonView(layoutInflater)
         } else {
             if (isApplyWindowInsets()) {
                 // 默认设置顶部状态栏、底部导航栏边距
-                binding.root.commonSystemBarsPadding()
+                fragCommonSystemBarsPadding()
             }
         }
         super.onViewCreated(view, savedInstanceState)
@@ -130,7 +128,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
     private fun createTitleBarSkeletonView(inflater: LayoutInflater) {
         BaseTitleBarBinding.inflate(inflater).apply {
             // 添加状态栏边距
-            this.root.setSystemBarsPadding(paddingBottom = false)
+            fragSetSystemBarsPadding(paddingBottom = false)
             // 设置标题
             vidTitle.setTitle(viewModel.intentData.getTitle())
                 .setOnTitleBarListener(object : OnTitleBarListener {
