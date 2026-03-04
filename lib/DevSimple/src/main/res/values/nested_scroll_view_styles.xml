@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- NestedScrollView 基础样式 -->
+
+    <style name="ViewTheme.NestedScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- NestedScrollView 样式 -->
+
+    <style name="ViewTheme.NestedScrollView.FillView">
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <!-- NestedScrollView 边距基础样式 -->
+
+    <style name="ViewTheme.NestedScrollView.Margin" />
+
+    <style name="ViewTheme.NestedScrollView.Padding" />
+</resources>

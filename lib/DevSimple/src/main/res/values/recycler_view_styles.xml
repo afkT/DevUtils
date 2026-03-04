@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- RecyclerView 基础样式 -->
+
+    <style name="ViewTheme.RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+
+    <!-- RecyclerView 样式 -->
+
+    <style name="ViewTheme.RecyclerView.Nested" />
+
+    <!-- RecyclerView 嵌套在 NestedScrollView 中样式 -->
+
+    <style name="ViewTheme.RecyclerView.Nested.False">
+        <item name="android:nestedScrollingEnabled">false</item>
+    </style>
+
+    <!-- RecyclerView 嵌套在 RecyclerView 中样式 -->
+
+    <style name="ViewTheme.RecyclerView.Nested.True">
+        <item name="android:nestedScrollingEnabled">true</item>
+    </style>
+
+    <!-- RecyclerView 边距基础样式 -->
+
+    <style name="ViewTheme.RecyclerView.Margin" />
+
+    <style name="ViewTheme.RecyclerView.Padding" />
+</resources>

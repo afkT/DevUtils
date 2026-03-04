@@ -6,9 +6,6 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.os.Looper
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import dev.*
 import dev.base.DevBase
 import dev.engine.DevEngine
@@ -64,26 +61,6 @@ object AppHelper {
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
         TAG.log_iTag(message = builder.toString())
-    }
-}
-
-// ================
-// = BaseActivity =
-// ================
-
-/**
- * 通用 Enable edge to edge【适配 API 35+】
- */
-fun BaseActivity<*, *>.commonEnableEdgeToEdge() {
-    enableEdgeToEdge()
-    // 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
-    ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        v.setPadding(
-            systemBars.left, systemBars.top,
-            systemBars.right, systemBars.bottom
-        )
-        insets
     }
 }
 

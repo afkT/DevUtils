@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- LinearLayout 基础样式 -->
+
+    <style name="ViewTheme.LinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- LinearLayout 样式 -->
+
+    <style name="ViewTheme.LinearLayout.Vertical" />
+
+    <style name="ViewTheme.LinearLayout.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- LinearLayout 边距基础样式 -->
+
+    <style name="ViewTheme.LinearLayout.Margin" />
+
+    <style name="ViewTheme.LinearLayout.Padding" />
+</resources>

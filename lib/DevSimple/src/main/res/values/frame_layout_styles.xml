@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FrameLayout 基础样式 -->
+
+    <style name="ViewTheme.FrameLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.FrameLayout.Match">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- FrameLayout 边距基础样式 -->
+
+    <style name="ViewTheme.FrameLayout.Margin" />
+
+    <style name="ViewTheme.FrameLayout.Padding" />
+</resources>

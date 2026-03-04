@@ -7,14 +7,14 @@ import afkt.project.model.button.ButtonAdapterModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.fragment.findNavController
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.lihang.ShadowLayout
+import dev.base.core.commonSystemBarsPadding
 import dev.base.core.interfaces.IDevBase
+import dev.base.core.setSystemBarsPadding
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.utils.app.ViewUtils
@@ -70,60 +70,18 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
         viewModel.intentReader(arguments)
         // 添加 TitleBar 则不设置顶部状态栏边距
         if (isAddTitleBar()) {
-            setStatusBarHeightPadding(binding.root)
+            binding.root.setSystemBarsPadding(
+                paddingTop = false
+            )
             // 创建 TitleBar 骨架 View
             createTitleBarSkeletonView(layoutInflater)
         } else {
             if (isApplyWindowInsets()) {
                 // 默认设置顶部状态栏、底部导航栏边距
-                setOnApplyWindowInsetsListener(binding.root)
+                binding.root.commonSystemBarsPadding()
             }
         }
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    // ==========
-    // = 内部方法 =
-    // ==========
-
-    /**
-     * 给 view 设置 insets, 使得 view 不会被 system bars 遮挡
-     * @param view [View]
-     * @param paddingBottom 是否设置 Padding Bottom
-     */
-    fun setOnApplyWindowInsetsListener(
-        view: View,
-        paddingBottom: Boolean = true
-    ) {
-        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val bottom = if (paddingBottom) systemBars.bottom else 0
-            v.setPadding(
-                systemBars.left, systemBars.top,
-                systemBars.right, bottom
-            )
-            insets
-        }
-    }
-
-    /**
-     * 设置状态栏高度边距
-     * @param view [View]
-     * @param paddingTop 是否设置 Padding Top
-     */
-    fun setStatusBarHeightPadding(
-        view: View,
-        paddingTop: Boolean = false
-    ) {
-        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val top = if (paddingTop) systemBars.top else 0
-            v.setPadding(
-                systemBars.left, top,
-                systemBars.right, systemBars.bottom
-            )
-            insets
-        }
     }
 
     // ==========
@@ -172,7 +130,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
     private fun createTitleBarSkeletonView(inflater: LayoutInflater) {
         BaseTitleBarBinding.inflate(inflater).apply {
             // 添加状态栏边距
-            setOnApplyWindowInsetsListener(this.root, false)
+            this.root.setSystemBarsPadding(paddingBottom = false)
             // 设置标题
             vidTitle.setTitle(viewModel.intentData.getTitle())
                 .setOnTitleBarListener(object : OnTitleBarListener {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Padding、Margin 基础样式 -->
+
+    <style name="ViewTheme.Padding" />
+
+    <style name="ViewTheme.Margin" />
+
+    <!-- Padding、Margin 无边距样式 -->
+
+    <style name="ViewTheme.Padding.None">
+        <item name="android:padding">0.0dp</item>
+    </style>
+
+    <style name="ViewTheme.Margin.None">
+        <item name="android:layout_margin">0.0dp</item>
+    </style>
+</resources>

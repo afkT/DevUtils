@@ -1,10 +1,10 @@
 package afkt.environment.use.base
 
 import afkt.environment.use.app.autoResources
-import afkt.environment.use.app.commonEnableEdgeToEdge
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
+import dev.base.core.commonEnableEdgeToEdge
 import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.DevSimpleActivity

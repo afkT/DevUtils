@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ImageView 基础样式 -->
+
+    <style name="ViewTheme.ImageView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- ScaleType -->
+
+    <style name="ViewTheme.ImageView.CENTER_CROP">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.FIT_XY">
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.CENTER">
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.CENTER_INSIDE">
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.FIT_CENTER">
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.FIT_END">
+        <item name="android:scaleType">fitEnd</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.FIT_START">
+        <item name="android:scaleType">fitStart</item>
+    </style>
+
+    <style name="ViewTheme.ImageView.MATRIX">
+        <item name="android:scaleType">matrix</item>
+    </style>
+</resources>

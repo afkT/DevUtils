@@ -1,10 +1,10 @@
 package afkt.httpcapture.use.base
 
 import afkt.httpcapture.use.app.autoResources
-import afkt.httpcapture.use.app.commonEnableEdgeToEdge
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
+import dev.base.core.commonEnableEdgeToEdge
 import dev.base.core.interfaces.IDevBase
 import dev.base.simple.ActivityVMType
 import dev.base.simple.DevSimpleActivity
