@@ -9,6 +9,11 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="ViewTheme.LinearLayout.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- LinearLayout 样式 -->
 
     <style name="ViewTheme.LinearLayout.Vertical" />

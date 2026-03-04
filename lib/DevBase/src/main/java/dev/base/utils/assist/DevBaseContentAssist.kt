@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
 import dev.base.databinding.BaseContentViewBinding
 import dev.utils.app.ViewUtils
 
@@ -115,6 +116,80 @@ class DevBaseContentAssist {
      */
     fun floatFrame(): FrameLayout {
         return binding.floatFrame
+    }
+
+    // ============
+    // = 设置背景色 =
+    // ============
+
+    /**
+     * 设置最外层 Layout 背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setRootLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(rootLinear(), color)
+        return this
+    }
+
+    /**
+     * 设置 StatusBar Layout 背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setStatusBarLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(statusBarLinear(), color)
+        return this
+    }
+
+    /**
+     * 设置 Title Layout 背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setTitleLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(titleLinear(), color)
+        return this
+    }
+
+    /**
+     * 设置 Body Layout 背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setBodyFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(bodyFrame(), color)
+        return this
+    }
+
+    /**
+     * 设置填充容器背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setContentLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(contentLinear(), color)
+        return this
+    }
+
+    /**
+     * 设置状态布局容器背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setStateLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(stateLinear(), color)
+        return this
+    }
+
+    /**
+     * 设置悬浮容器背景色
+     * @param color 背景颜色
+     * @return [DevBaseContentAssist]
+     */
+    fun setFloatFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
+        ViewUtils.setBackgroundColor(floatFrame(), color)
+        return this
     }
 
     // ==========
