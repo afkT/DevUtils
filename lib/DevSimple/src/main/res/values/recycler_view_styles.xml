@@ -15,6 +15,21 @@
         <item name="android:listSelector">@android:color/transparent</item>
     </style>
 
+    <style name="ViewTheme.RecyclerView.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- RecyclerView 样式 -->
 
     <style name="ViewTheme.RecyclerView.Nested" />
@@ -37,27 +52,137 @@
 
     <style name="ViewTheme.RecyclerView.Padding" />
 
-    <!--【内置】样式 -->
+    <!-- ==================== -->
+    <!-- RecyclerView Gravity -->
+    <!-- ==================== -->
 
-    <!-- RecyclerView 边距样式 -->
+    <style name="ViewTheme.RecyclerView.Gravity" />
 
-    <style name="ViewTheme.RecyclerView.Padding.TB_DP_10">
-        <item name="android:paddingTop">10.0dp</item>
-        <item name="android:paddingBottom">10.0dp</item>
+    <style name="ViewTheme.RecyclerView.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER">
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="ViewTheme.RecyclerView.Padding.LR_DP_10">
-        <item name="android:paddingLeft">10.0dp</item>
-        <item name="android:paddingRight">10.0dp</item>
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_START">
+        <item name="android:gravity">center|start</item>
     </style>
 
-    <style name="ViewTheme.RecyclerView.Margin.TB_DP_10">
-        <item name="android:layout_marginTop">10.0dp</item>
-        <item name="android:layout_marginBottom">10.0dp</item>
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
     </style>
 
-    <style name="ViewTheme.RecyclerView.Margin.LR_DP_10">
-        <item name="android:layout_marginLeft">10.0dp</item>
-        <item name="android:layout_marginRight">10.0dp</item>
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_END">
+        <item name="android:gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.START">
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.START_TOP">
+        <item name="android:gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.START_BOTTOM">
+        <item name="android:gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.END">
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.END_TOP">
+        <item name="android:gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.END_BOTTOM">
+        <item name="android:gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- RecyclerView Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_START">
+        <item name="android:layout_gravity">center|start</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_END">
+        <item name="android:layout_gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.START">
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.START_TOP">
+        <item name="android:layout_gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.START_BOTTOM">
+        <item name="android:layout_gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.END">
+        <item name="android:layout_gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.END_TOP">
+        <item name="android:layout_gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.END_BOTTOM">
+        <item name="android:layout_gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 </resources>

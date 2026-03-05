@@ -4,33 +4,164 @@
     <!-- Button 基础样式 -->
 
     <style name="ViewTheme.Button">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <!-- Button 单行样式 -->
-
     <style name="ViewTheme.Button.Single">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
     </style>
-
-    <!-- Button 匹配样式 -->
 
     <style name="ViewTheme.Button.Match">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <!-- Button 宽度匹配样式 -->
-
     <style name="ViewTheme.Button.Match.Width">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.Button.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- ============== -->
+    <!-- Button Gravity -->
+    <!-- ============== -->
+
+    <style name="ViewTheme.Button.Gravity" />
+
+    <style name="ViewTheme.Button.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.Button.Gravity.CENTER">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.CENTER_START">
+        <item name="android:gravity">center|start</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.CENTER_END">
+        <item name="android:gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.Button.Gravity.START">
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.START_TOP">
+        <item name="android:gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.START_BOTTOM">
+        <item name="android:gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.Button.Gravity.END">
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.END_TOP">
+        <item name="android:gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.END_BOTTOM">
+        <item name="android:gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.Button.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- Button Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_START">
+        <item name="android:layout_gravity">center|start</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_END">
+        <item name="android:layout_gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.Button.Gravity.Layout.START">
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.START_TOP">
+        <item name="android:layout_gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.START_BOTTOM">
+        <item name="android:layout_gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.Button.Gravity.Layout.END">
+        <item name="android:layout_gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.END_TOP">
+        <item name="android:layout_gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.END_BOTTOM">
+        <item name="android:layout_gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.Button.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 </resources>

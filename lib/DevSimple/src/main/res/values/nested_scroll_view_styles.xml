@@ -16,6 +16,16 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="ViewTheme.NestedScrollView.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- NestedScrollView 样式 -->
 
     <style name="ViewTheme.NestedScrollView.FillView">
@@ -27,4 +37,138 @@
     <style name="ViewTheme.NestedScrollView.Margin" />
 
     <style name="ViewTheme.NestedScrollView.Padding" />
+
+    <!-- ======================== -->
+    <!-- NestedScrollView Gravity -->
+    <!-- ======================== -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity" />
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_START">
+        <item name="android:gravity">center|start</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_END">
+        <item name="android:gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.START">
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.START_TOP">
+        <item name="android:gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.START_BOTTOM">
+        <item name="android:gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.END">
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.END_TOP">
+        <item name="android:gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.END_BOTTOM">
+        <item name="android:gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- NestedScrollView Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_START">
+        <item name="android:layout_gravity">center|start</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_END">
+        <item name="android:layout_gravity">center|end</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- START -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.START">
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.START_TOP">
+        <item name="android:layout_gravity">start|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.START_BOTTOM">
+        <item name="android:layout_gravity">start|bottom</item>
+    </style>
+
+    <!-- END -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.END">
+        <item name="android:layout_gravity">end</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.END_TOP">
+        <item name="android:layout_gravity">end|top</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.END_BOTTOM">
+        <item name="android:layout_gravity">end|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|start -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.NestedScrollView.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
 </resources>

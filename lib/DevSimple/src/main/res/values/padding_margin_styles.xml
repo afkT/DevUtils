@@ -26,18 +26,62 @@
         <item name="android:paddingBottom">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.Padding.LR_DP_10">
-        <item name="android:paddingLeft">10.0dp</item>
-        <item name="android:paddingRight">10.0dp</item>
-    </style>
-
     <style name="ViewTheme.Margin.TB_DP_10">
         <item name="android:layout_marginTop">10.0dp</item>
         <item name="android:layout_marginBottom">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.Margin.LR_DP_10">
-        <item name="android:layout_marginLeft">10.0dp</item>
-        <item name="android:layout_marginRight">10.0dp</item>
+    <style name="ViewTheme.Padding.SE_DP_10">
+        <item name="android:paddingStart">10.0dp</item>
+        <item name="android:paddingEnd">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.Margin.SE_DP_10">
+        <item name="android:layout_marginStart">10.0dp</item>
+        <item name="android:layout_marginEnd">10.0dp</item>
+    </style>
+
+    <!-- RecyclerView 边距样式 -->
+
+    <style name="ViewTheme.RecyclerView.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Padding.SE_DP_10">
+        <item name="android:paddingStart">10.0dp</item>
+        <item name="android:paddingEnd">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.RecyclerView.Margin.SE_DP_10">
+        <item name="android:layout_marginStart">10.0dp</item>
+        <item name="android:layout_marginEnd">10.0dp</item>
+    </style>
+
+    <!-- LinearLayout 边距样式 -->
+
+    <style name="ViewTheme.LinearLayout.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.LinearLayout.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.LinearLayout.Padding.SE_DP_10">
+        <item name="android:paddingStart">10.0dp</item>
+        <item name="android:paddingEnd">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.LinearLayout.Margin.SE_DP_10">
+        <item name="android:layout_marginStart">10.0dp</item>
+        <item name="android:layout_marginEnd">10.0dp</item>
     </style>
 </resources>
