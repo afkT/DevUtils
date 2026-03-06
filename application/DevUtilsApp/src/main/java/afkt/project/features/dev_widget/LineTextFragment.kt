@@ -9,7 +9,7 @@ import afkt.project.model.helper.RandomHelper
 import android.graphics.Color
 import android.view.View
 import dev.base.simple.extensions.asFragment
-import dev.simple.core.livedata.StateLiveData
+import dev.simple.core.livedata.ValueLiveData
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.RandomUtils
 import dev.widget.function.LineTextView
@@ -29,10 +29,10 @@ class LineTextFragment : AppFragment<FragmentDevWidgetLineTextBinding, LineTextV
 class LineTextViewModel : AppViewModel() {
 
     // 换行信息文本
-    val infoText = StateLiveData<String>("")
+    val infoText = ValueLiveData<String>("")
 
     // 随机生成文本
-    val contentText = StateLiveData<String>("")
+    val contentText = ValueLiveData<String>("")
 
     // 点击内容文本随机生成
     val clickContent = View.OnClickListener { view ->
@@ -45,7 +45,7 @@ class LineTextViewModel : AppViewModel() {
     // ==========
 
     private fun randomText() {
-        contentText.smartUpdateState(RandomHelper.randomText(300, 50))
+        contentText.smartUpdateValue(RandomHelper.randomText(300, 50))
     }
 
     /**
@@ -72,7 +72,7 @@ class LineTextViewModel : AppViewModel() {
             val builder = StringBuilder()
             builder.append("是否换行: ").append(isNewLine)
             builder.append("\n换行数量: ").append(line)
-            infoText.smartUpdateState(builder.toString())
+            infoText.smartUpdateValue(builder.toString())
         }
         // 默认随机生成文本
         randomText()

@@ -19,7 +19,7 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_eTag
 import dev.simple.core.adapter.AdapterModel
-import dev.simple.core.livedata.StateLiveData
+import dev.simple.core.livedata.ValueLiveData
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
@@ -53,10 +53,10 @@ class GPUFilterViewModel : AppViewModel() {
     val adapterModel = GPUFilterAdapter()
 
     // 滤镜名
-    val filterName = StateLiveData<String>()
+    val filterName = ValueLiveData<String>()
 
     // 滤镜后的 Bitmap
-    val filterBitmap = StateLiveData<Bitmap>()
+    val filterBitmap = ValueLiveData<Bitmap>()
 
     // 选择的图片
     var selectBitmap: Bitmap? = null
@@ -166,7 +166,7 @@ class GPUFilterViewModel : AppViewModel() {
             }
         }
         val item = adapterModel.getOrNull(position)
-        filterName.smartUpdateState(item?.filterName)
+        filterName.smartUpdateValue(item?.filterName)
         return item
     }
 
@@ -190,7 +190,7 @@ class GPUFilterViewModel : AppViewModel() {
             val bitmap = GPUFilterUtils.getFilterBitmap(
                 AppContext.context(), selectBitmap, gpuFilter
             )
-            filterBitmap.smartUpdateState(bitmap)
+            filterBitmap.smartUpdateValue(bitmap)
         } catch (e: Exception) {
             TAG.log_eTag(
                 message = "setFilter",

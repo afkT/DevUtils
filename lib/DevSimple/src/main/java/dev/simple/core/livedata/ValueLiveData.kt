@@ -9,20 +9,20 @@ import androidx.lifecycle.MutableLiveData
  * @author Ttt
  * 泛化概念：可表示 status、data、source、page 等
  */
-open class StateLiveData<T>(
+open class ValueLiveData<T>(
     _value: T? = null
 ) {
 
-    // 状态数据
-    protected val _state = MutableLiveData<T>(_value)
-    val state: LiveData<T> get() = _state
+    // 数据值
+    protected val _value = MutableLiveData<T>(_value)
+    val value: LiveData<T> get() = _value
 
     /**
-     * 获取状态数据
+     * 获取数据值
      * @return value
      */
-    open fun stateValue(): T? {
-        return _state.value
+    open fun dataValue(): T? {
+        return _value.value
     }
 
     /**
@@ -31,13 +31,13 @@ open class StateLiveData<T>(
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
      */
-    open fun setState(
+    open fun setValue(
         value: T?,
         allowNull: Boolean = false
     ): Boolean {
-        if (shouldUpdateState(value)) {
+        if (shouldUpdateValue(value)) {
             if (allowNull || value != null) {
-                _state.value = value
+                _value.value = value
                 return true
             }
         }
@@ -50,13 +50,13 @@ open class StateLiveData<T>(
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
      */
-    open fun postState(
+    open fun postValue(
         value: T?,
         allowNull: Boolean = false
     ): Boolean {
-        if (shouldUpdateState(value)) {
+        if (shouldUpdateValue(value)) {
             if (allowNull || value != null) {
-                _state.postValue(value)
+                _value.postValue(value)
                 return true
             }
         }
@@ -69,39 +69,39 @@ open class StateLiveData<T>(
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
      */
-    open fun smartUpdateState(
+    open fun smartUpdateValue(
         value: T?,
         allowNull: Boolean = false
     ): Boolean {
         return if (isMainThread()) {
-            setState(value, allowNull)
+            setValue(value, allowNull)
         } else {
-            postState(value, allowNull)
+            postValue(value, allowNull)
         }
     }
 
     /**
-     * 重置状态数据 ( 主线程直接设置 null )
+     * 重置数据值 ( 主线程直接设置 null )
      * @return `true` success, `false` fail
      */
-    open fun resetState(): Boolean {
-        return setState(null, true)
+    open fun resetValue(): Boolean {
+        return setValue(null, true)
     }
 
     /**
-     * 重置状态数据 ( 子线程安全设置 null )
+     * 重置数据值 ( 子线程安全设置 null )
      * @return `true` success, `false` fail
      */
-    open fun postResetState(): Boolean {
-        return postState(null, true)
+    open fun postResetValue(): Boolean {
+        return postValue(null, true)
     }
 
     /**
-     * 重置状态数据 ( 智能线程判断设置 null )
+     * 重置数据值 ( 智能线程判断设置 null )
      * @return `true` success, `false` fail
      */
-    open fun smartResetState(): Boolean {
-        return smartUpdateState(null, true)
+    open fun smartResetValue(): Boolean {
+        return smartUpdateValue(null, true)
     }
 
     /**
@@ -109,8 +109,8 @@ open class StateLiveData<T>(
      * @param value 待更新值
      * @return `true` yes, `false` no
      */
-    open fun shouldUpdateState(value: T?): Boolean {
-        return !isEqual(value, _state.value)
+    open fun shouldUpdateValue(value: T?): Boolean {
+        return !isEqual(value, _value.value)
     }
 
     /**
@@ -119,7 +119,7 @@ open class StateLiveData<T>(
      * @return `true` yes, `false` no
      */
     open fun isEqual(value: T?): Boolean {
-        return isEqual(value, _state.value)
+        return isEqual(value, _value.value)
     }
 
     /**

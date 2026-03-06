@@ -50,7 +50,7 @@
                 android:includeFontPadding="false"
                 android:paddingLeft="@dimen/dp_4"
                 android:paddingRight="@dimen/dp_4"
-                android:text="@{viewModel.numberText.state}"
+                android:text="@{viewModel.numberText.value}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_12"
                 app:dev_backgroundColor="@color/color_ff2e42"

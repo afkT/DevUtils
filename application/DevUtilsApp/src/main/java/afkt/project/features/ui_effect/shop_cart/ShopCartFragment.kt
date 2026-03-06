@@ -12,7 +12,7 @@ import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.base.simple.extensions.asFragment
 import dev.simple.core.adapter.AdapterModel
-import dev.simple.core.livedata.StateLiveData
+import dev.simple.core.livedata.ValueLiveData
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
@@ -49,7 +49,7 @@ class ShopCartViewModel : AppViewModel() {
     // =
 
     // 购物车数量
-    val numberText = StateLiveData("0")
+    val numberText = ValueLiveData("0")
 
     // 购物车动画
     private val animation = ShopCartAnimation()
@@ -84,7 +84,7 @@ class ShopCartViewModel : AppViewModel() {
         numberControl.addNumber().apply {
             val number = if (currentNumber > 99) "99+" else currentNumber.toString()
             // 设置购买数量
-            numberText.smartUpdateState(number)
+            numberText.smartUpdateValue(number)
         }
         try {
             // 开始动画

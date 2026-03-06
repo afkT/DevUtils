@@ -16,7 +16,7 @@
                 style="@style/ViewTheme.TextView"
                 android:layout_height="@dimen/dp_100"
                 android:lineSpacingExtra="@dimen/dp_5"
-                android:text="@{viewModel.infoText.state}" />
+                android:text="@{viewModel.infoText.value}" />
 
             <View
                 style="@style/ViewTheme.Divider.Vertical.DP_0_5"
@@ -28,7 +28,7 @@
                 android:layout_margin="@dimen/dp_15"
                 android:lineSpacingExtra="@dimen/dp_5"
                 android:onClick="@{viewModel.clickContent}"
-                android:text="@{viewModel.contentText.state}" />
+                android:text="@{viewModel.contentText.value}" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
