@@ -31,12 +31,12 @@
         <item name="android:layout_marginBottom">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.Padding.SE_DP_10">
+    <style name="ViewTheme.Padding.LR_DP_10">
         <item name="android:paddingStart">10.0dp</item>
         <item name="android:paddingEnd">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.Margin.SE_DP_10">
+    <style name="ViewTheme.Margin.LR_DP_10">
         <item name="android:layout_marginStart">10.0dp</item>
         <item name="android:layout_marginEnd">10.0dp</item>
     </style>
@@ -53,12 +53,12 @@
         <item name="android:layout_marginBottom">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.RecyclerView.Padding.SE_DP_10">
+    <style name="ViewTheme.RecyclerView.Padding.LR_DP_10">
         <item name="android:paddingStart">10.0dp</item>
         <item name="android:paddingEnd">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.RecyclerView.Margin.SE_DP_10">
+    <style name="ViewTheme.RecyclerView.Margin.LR_DP_10">
         <item name="android:layout_marginStart">10.0dp</item>
         <item name="android:layout_marginEnd">10.0dp</item>
     </style>
@@ -75,12 +75,12 @@
         <item name="android:layout_marginBottom">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.LinearLayout.Padding.SE_DP_10">
+    <style name="ViewTheme.LinearLayout.Padding.LR_DP_10">
         <item name="android:paddingStart">10.0dp</item>
         <item name="android:paddingEnd">10.0dp</item>
     </style>
 
-    <style name="ViewTheme.LinearLayout.Margin.SE_DP_10">
+    <style name="ViewTheme.LinearLayout.Margin.LR_DP_10">
         <item name="android:layout_marginStart">10.0dp</item>
         <item name="android:layout_marginEnd">10.0dp</item>
     </style>

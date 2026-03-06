@@ -13,7 +13,7 @@
         android:id="@+id/vid_toast_iv"
         android:layout_width="@dimen/dev_toast_icon_size"
         android:layout_height="@dimen/dev_toast_icon_size"
-        android:layout_marginEnd="@dimen/dev_toast_icon_margin_end"
+        android:layout_marginLeft="@dimen/dev_toast_icon_margin_left"
         android:layout_marginRight="@dimen/dev_toast_icon_margin_right" />
 
     <TextView
