@@ -1,7 +1,6 @@
 package afkt.retrofit.use
 
 import afkt.retrofit.use.base.BaseViewModel
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.DevRetrofit
@@ -9,7 +8,7 @@ import dev.DevRetrofit
 class MainViewModel : BaseViewModel() {
 
     // DevRetrofit:Version
-    val devRetrofitVersion = ObservableField(
+    val devRetrofitVersion: LiveData<String> = MutableLiveData(
         "DevRetrofit:${DevRetrofit.getDevRetrofitVersion()}"
     )
 

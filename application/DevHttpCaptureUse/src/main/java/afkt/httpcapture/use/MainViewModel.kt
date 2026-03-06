@@ -2,7 +2,8 @@ package afkt.httpcapture.use
 
 import afkt.httpcapture.use.base.BaseViewModel
 import android.view.View
-import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dev.DevHttpCapture
 import dev.DevHttpCaptureCompiler
 import dev.capture.CaptureInfo
@@ -26,7 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger
 class MainViewModel : BaseViewModel() {
 
     // DevHttpCapture:Version
-    val devHttpCaptureVersion = ObservableField(
+    val devHttpCaptureVersion: LiveData<String> = MutableLiveData(
         "DevHttpCapture:${DevHttpCapture.getDevHttpCaptureVersion()}"
     )
 

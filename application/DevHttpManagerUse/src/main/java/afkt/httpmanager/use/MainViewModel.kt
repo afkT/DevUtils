@@ -1,7 +1,6 @@
 package afkt.httpmanager.use
 
 import afkt.httpmanager.use.base.BaseViewModel
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.DevHttpManager
@@ -9,7 +8,7 @@ import dev.DevHttpManager
 class MainViewModel : BaseViewModel() {
 
     // DevHttpManager:Version
-    val devHttpManagerVersion = ObservableField(
+    val devHttpManagerVersion: LiveData<String> = MutableLiveData(
         "DevHttpManager:${DevHttpManager.getDevHttpManagerVersion()}"
     )
 

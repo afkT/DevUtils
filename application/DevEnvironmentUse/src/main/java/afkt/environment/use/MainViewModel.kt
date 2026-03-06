@@ -2,7 +2,6 @@ package afkt.environment.use
 
 import afkt.environment.use.base.BaseViewModel
 import android.view.View
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kongzue.dialogx.dialogs.InputDialog
@@ -52,7 +51,7 @@ class MainViewModel : BaseViewModel() {
     val clickCustomEvent: LiveData<Unit> get() = _clickCustomEvent
 
     // DevEnvironment:Version
-    val devEnvironmentVersion = ObservableField(
+    val devEnvironmentVersion: LiveData<String> = MutableLiveData(
         "DevEnvironment:${DevEnvironmentUtils.getDevEnvironmentVersion()}"
     )
 
@@ -220,7 +219,7 @@ class MainViewModel : BaseViewModel() {
     )
 
     // 使用示例介绍文案
-    val useExampleText = ObservableField(StringBuilder().apply {
+    val useExampleText: LiveData<String> = MutableLiveData(StringBuilder().apply {
 //        // DevEnvironment - Android 环境配置切换库
 //        implementation 'io.github.afkt:DevEnvironment:version'
 //        kaptDebug 'io.github.afkt:DevEnvironmentCompiler:version'

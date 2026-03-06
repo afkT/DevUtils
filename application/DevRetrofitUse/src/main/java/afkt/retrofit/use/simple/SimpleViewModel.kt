@@ -2,10 +2,10 @@ package afkt.retrofit.use.simple
 
 import afkt.retrofit.use.base.BaseViewModel
 import afkt.retrofit.use.helper.*
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.retrofit.Base
+import dev.simple.core.livedata.StateLiveData
 import dev.simple.extensions.hi.hiif.hiIfNotNull
 import java.util.*
 
@@ -18,12 +18,12 @@ class SimpleViewModel(
 ) : BaseViewModel() {
 
     // request_coroutines_simple.kt 文案
-    val tipsText = ObservableField(
+    val tipsText: LiveData<String> = MutableLiveData(
         "DevRetrofit 库 request_coroutines_simple.kt 封装使用示例"
     )
 
     // 电影详情信息
-    val movieDetailOB = ObservableField<MovieDetailBean>()
+    val movieDetailOB = StateLiveData<MovieDetailBean>()
 
     // 电影详情信息
     private val _movieDetail = MutableLiveData<MovieDetailBean>()
@@ -124,7 +124,7 @@ class SimpleViewModel(
      */
     private class MovieDetailCallback(
         tag: String,
-        private val movieDetail: ObservableField<MovieDetailBean>
+        private val movieDetail: StateLiveData<MovieDetailBean>
     ) : ResponseHelper.RequestStageCallback<MovieDetailBean>(tag) {
 
         override fun onSuccess(
@@ -135,7 +135,7 @@ class SimpleViewModel(
 
             data.hiIfNotNull { result ->
                 if (result.isSuccessWithData()) {
-                    movieDetail.set(result.requireData())
+                    movieDetail.smartUpdateState(result.requireData())
                 } else {
                     // 其他状态处理
                     if (result.isSuccess()) {

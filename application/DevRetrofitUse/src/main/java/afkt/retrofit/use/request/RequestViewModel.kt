@@ -3,7 +3,8 @@ package afkt.retrofit.use.request
 import afkt.retrofit.use.base.BaseViewModel
 import afkt.retrofit.use.helper.PhotoBean
 import afkt.retrofit.use.helper.ResponseHelper
-import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 /**
  * detail: request_coroutines.kt 使用方法 ViewModel
@@ -14,7 +15,7 @@ class RequestViewModel(
 ) : BaseViewModel() {
 
     // request_coroutines.kt 文案
-    val tipsText = ObservableField(
+    val tipsText: LiveData<String> = MutableLiveData(
         "DevRetrofit 库 request_coroutines.kt 封装使用示例"
     )
 

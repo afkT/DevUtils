@@ -4,13 +4,13 @@ import android.content.Context
 import android.text.TextUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
 import dev.DevUtils
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentUtils
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
+import dev.simple.core.adapter.AdapterModel
 import dev.simple.interfaces.BindingConsumer
 import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 
@@ -22,13 +22,10 @@ import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
  * detail: 自定义 UI Adapter 模型
  * @author Ttt
  */
-class CustomAdapterModel {
+class CustomAdapterModel : AdapterModel<Any>() {
 
     // 校验是否选中
     val selectedMap = ObservableArrayMap<String, EnvironmentBean>()
-
-    // 数据源
-    val items = ObservableArrayList<Any>()
 
     // Item Binding
     val itemBinding = OnItemBindClass<Any>().map(
