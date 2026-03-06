@@ -45,54 +45,54 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.CENTER_START">
-        <item name="android:gravity">center|start</item>
+    <style name="ViewTheme.TextView.Gravity.CENTER_LEFT">
+        <item name="android:gravity">center|left</item>
     </style>
 
     <style name="ViewTheme.TextView.Gravity.CENTER_TOP">
         <item name="android:gravity">center|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.CENTER_END">
-        <item name="android:gravity">center|end</item>
+    <style name="ViewTheme.TextView.Gravity.CENTER_RIGHT">
+        <item name="android:gravity">center|right</item>
     </style>
 
     <style name="ViewTheme.TextView.Gravity.CENTER_BOTTOM">
         <item name="android:gravity">center|bottom</item>
     </style>
 
-    <!-- START -->
+    <!-- LEFT -->
 
-    <style name="ViewTheme.TextView.Gravity.START">
-        <item name="android:gravity">start</item>
+    <style name="ViewTheme.TextView.Gravity.LEFT">
+        <item name="android:gravity">left</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.START_TOP">
-        <item name="android:gravity">start|top</item>
+    <style name="ViewTheme.TextView.Gravity.LEFT_TOP">
+        <item name="android:gravity">left|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.START_BOTTOM">
-        <item name="android:gravity">start|bottom</item>
+    <style name="ViewTheme.TextView.Gravity.LEFT_BOTTOM">
+        <item name="android:gravity">left|bottom</item>
     </style>
 
-    <!-- END -->
+    <!-- RIGHT -->
 
-    <style name="ViewTheme.TextView.Gravity.END">
-        <item name="android:gravity">end</item>
+    <style name="ViewTheme.TextView.Gravity.RIGHT">
+        <item name="android:gravity">right</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.END_TOP">
-        <item name="android:gravity">end|top</item>
+    <style name="ViewTheme.TextView.Gravity.RIGHT_TOP">
+        <item name="android:gravity">right|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.END_BOTTOM">
-        <item name="android:gravity">end|bottom</item>
+    <style name="ViewTheme.TextView.Gravity.RIGHT_BOTTOM">
+        <item name="android:gravity">right|bottom</item>
     </style>
 
     <!-- CENTER_XXX -->
 
     <style name="ViewTheme.TextView.Gravity.CENTER_VERTICAL">
-        <!-- 等同于 center|start -->
+        <!-- 等同于 center|left -->
         <item name="android:gravity">center_vertical</item>
     </style>
 
@@ -109,54 +109,54 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.CENTER_START">
-        <item name="android:layout_gravity">center|start</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.CENTER_LEFT">
+        <item name="android:layout_gravity">center|left</item>
     </style>
 
     <style name="ViewTheme.TextView.Gravity.Layout.CENTER_TOP">
         <item name="android:layout_gravity">center|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.CENTER_END">
-        <item name="android:layout_gravity">center|end</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.CENTER_RIGHT">
+        <item name="android:layout_gravity">center|right</item>
     </style>
 
     <style name="ViewTheme.TextView.Gravity.Layout.CENTER_BOTTOM">
         <item name="android:layout_gravity">center|bottom</item>
     </style>
 
-    <!-- START -->
+    <!-- LEFT -->
 
-    <style name="ViewTheme.TextView.Gravity.Layout.START">
-        <item name="android:layout_gravity">start</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.LEFT">
+        <item name="android:layout_gravity">left</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.START_TOP">
-        <item name="android:layout_gravity">start|top</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.LEFT_TOP">
+        <item name="android:layout_gravity">left|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.START_BOTTOM">
-        <item name="android:layout_gravity">start|bottom</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.LEFT_BOTTOM">
+        <item name="android:layout_gravity">left|bottom</item>
     </style>
 
-    <!-- END -->
+    <!-- RIGHT -->
 
-    <style name="ViewTheme.TextView.Gravity.Layout.END">
-        <item name="android:layout_gravity">end</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.RIGHT">
+        <item name="android:layout_gravity">right</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.END_TOP">
-        <item name="android:layout_gravity">end|top</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.RIGHT_TOP">
+        <item name="android:layout_gravity">right|top</item>
     </style>
 
-    <style name="ViewTheme.TextView.Gravity.Layout.END_BOTTOM">
-        <item name="android:layout_gravity">end|bottom</item>
+    <style name="ViewTheme.TextView.Gravity.Layout.RIGHT_BOTTOM">
+        <item name="android:layout_gravity">right|bottom</item>
     </style>
 
     <!-- CENTER_XXX -->
 
     <style name="ViewTheme.TextView.Gravity.Layout.CENTER_VERTICAL">
-        <!-- 等同于 center|start -->
+        <!-- 等同于 center|left -->
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 

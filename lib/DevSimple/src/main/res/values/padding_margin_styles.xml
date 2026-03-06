@@ -32,13 +32,13 @@
     </style>
 
     <style name="ViewTheme.Padding.LR_DP_10">
-        <item name="android:paddingStart">10.0dp</item>
-        <item name="android:paddingEnd">10.0dp</item>
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
     </style>
 
     <style name="ViewTheme.Margin.LR_DP_10">
-        <item name="android:layout_marginStart">10.0dp</item>
-        <item name="android:layout_marginEnd">10.0dp</item>
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
     </style>
 
     <!-- RecyclerView 边距样式 -->
@@ -54,13 +54,13 @@
     </style>
 
     <style name="ViewTheme.RecyclerView.Padding.LR_DP_10">
-        <item name="android:paddingStart">10.0dp</item>
-        <item name="android:paddingEnd">10.0dp</item>
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
     </style>
 
     <style name="ViewTheme.RecyclerView.Margin.LR_DP_10">
-        <item name="android:layout_marginStart">10.0dp</item>
-        <item name="android:layout_marginEnd">10.0dp</item>
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
     </style>
 
     <!-- LinearLayout 边距样式 -->
@@ -76,12 +76,12 @@
     </style>
 
     <style name="ViewTheme.LinearLayout.Padding.LR_DP_10">
-        <item name="android:paddingStart">10.0dp</item>
-        <item name="android:paddingEnd">10.0dp</item>
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
     </style>
 
     <style name="ViewTheme.LinearLayout.Margin.LR_DP_10">
-        <item name="android:layout_marginStart">10.0dp</item>
-        <item name="android:layout_marginEnd">10.0dp</item>
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
     </style>
 </resources>
