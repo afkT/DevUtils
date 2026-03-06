@@ -14,12 +14,12 @@ import android.widget.ImageView
 import androidx.activity.result.ActivityResultCaller
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_eTag
 import dev.simple.core.adapter.AdapterModel
+import dev.simple.core.livedata.StateLiveData
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
@@ -53,10 +53,10 @@ class GPUFilterViewModel : AppViewModel() {
     val adapterModel = GPUFilterAdapter()
 
     // 滤镜名
-    val filterName = ObservableField<String>()
+    val filterName = StateLiveData<String>()
 
     // 滤镜后的 Bitmap
-    val filterBitmap = ObservableField<Bitmap>()
+    val filterBitmap = StateLiveData<Bitmap>()
 
     // 选择的图片
     var selectBitmap: Bitmap? = null
@@ -166,7 +166,7 @@ class GPUFilterViewModel : AppViewModel() {
             }
         }
         val item = adapterModel.getOrNull(position)
-        filterName.set(item?.filterName)
+        filterName.smartUpdateState(item?.filterName)
         return item
     }
 
@@ -177,8 +177,7 @@ class GPUFilterViewModel : AppViewModel() {
         try {
             if (selectBitmap == null) return
             // 获取当前选中的 GPUFilter Item
-            val filterItem = currentItem()
-            if (filterItem == null) return
+            val filterItem = currentItem() ?: return
             // 根据类型创建滤镜
             val gpuFilter = if (filterItem.isFilterType()) {
                 filterItem.filterType.createGPUImageFilter()
@@ -191,7 +190,7 @@ class GPUFilterViewModel : AppViewModel() {
             val bitmap = GPUFilterUtils.getFilterBitmap(
                 AppContext.context(), selectBitmap, gpuFilter
             )
-            filterBitmap.set(bitmap)
+            filterBitmap.smartUpdateState(bitmap)
         } catch (e: Exception) {
             TAG.log_eTag(
                 message = "setFilter",

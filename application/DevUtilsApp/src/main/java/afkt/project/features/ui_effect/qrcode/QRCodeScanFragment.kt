@@ -85,7 +85,7 @@ class QRCodeScanFragment : AppFragment<FragmentDevWidgetScanShapeBinding, QRCode
                     }
 
                     override fun switchFlashlight(state: Boolean) {
-                        viewModel.flashlightStatus.set(state)
+                        viewModel.flashlightStatus.setState(state)
                     }
                 },
                 {

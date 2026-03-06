@@ -13,7 +13,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCaller
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
-import androidx.databinding.ObservableField
 import com.hjq.permissions.permission.PermissionLists
 import dev.base.DevSource
 import dev.base.simple.extensions.asFragment
@@ -23,6 +22,7 @@ import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
+import dev.simple.core.livedata.StateLiveData
 import dev.simple.extensions.hi.hiif.hiIfNotNull
 import dev.simple.extensions.toSource
 import dev.utils.app.ActivityUtils
@@ -47,7 +47,7 @@ class ActivityResultAPIFragment :
 class ActivityResultAPIViewModel : AppViewModel() {
 
     // 拍照图片 Uri
-    val imageUri = ObservableField(DevSource.create(""))
+    val imageUri = StateLiveData(DevSource.create(""))
 
     // 如果使用 by lazy 要确保在 Lifecycle STARTED 状态前初始化
     private var mAssist: ActivityResultAssist<Uri, Boolean>? = null
@@ -60,7 +60,7 @@ class ActivityResultAPIViewModel : AppViewModel() {
             caller, ActivityResultContracts.TakePicture()
         ) {
             if (it) {
-                imageUri.set(mAssist?.inputValue?.toSource())
+                imageUri.setState(mAssist?.inputValue?.toSource())
             } else {
                 toast_showShort(text = "非成功操作")
             }

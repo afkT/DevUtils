@@ -6,7 +6,6 @@ import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentDevWidgetScanShapeBinding
 import android.view.SurfaceHolder
-import androidx.databinding.ObservableBoolean
 import com.hjq.permissions.permission.PermissionLists
 import dev.base.simple.extensions.asFragment
 import dev.engine.core.permission.PermissionItem
@@ -16,6 +15,7 @@ import dev.engine.extensions.permission.permission_isGrantedPermission
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
+import dev.simple.core.livedata.StateLiveData
 import dev.simple.extensions.hi.hiif.hiIfNotNull
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.camera.camera1.CameraAssist
@@ -152,7 +152,7 @@ open class ScanShapeViewModel : AppViewModel() {
     val cameraAssist = CameraAssist()
 
     // 手电动开关状态
-    val flashlightStatus = ObservableBoolean(false)
+    val flashlightStatus = StateLiveData(false)
 
     // ==========
     // = 点击事件 =
@@ -198,7 +198,7 @@ open class ScanShapeViewModel : AppViewModel() {
      * 切换手电筒开关
      */
     fun toggleFlashlight() {
-        setFlashlight(!flashlightStatus.get())
+        setFlashlight(flashlightStatus.stateValue() != true)
     }
 
     /**
@@ -219,7 +219,7 @@ open class ScanShapeViewModel : AppViewModel() {
      * 刷新手电筒状态
      */
     fun refreshFlashlightOn() {
-        flashlightStatus.set(cameraAssist.isFlashlightOn)
+        flashlightStatus.setState(cameraAssist.isFlashlightOn)
     }
 
     /**
@@ -232,6 +232,6 @@ open class ScanShapeViewModel : AppViewModel() {
         } else {
             cameraAssist.setFlashlightOff()
         }
-        flashlightStatus.set(open)
+        flashlightStatus.setState(open)
     }
 }

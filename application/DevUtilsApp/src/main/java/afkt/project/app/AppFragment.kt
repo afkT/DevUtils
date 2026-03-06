@@ -15,6 +15,7 @@ import com.lihang.ShadowLayout
 import dev.base.core.fragCommonSystemBarsPadding
 import dev.base.core.fragSetSystemBarsPadding
 import dev.base.core.interfaces.IDevBase
+import dev.base.core.setSystemBarsPadding
 import dev.base.simple.FragmentVMType
 import dev.base.simple.contracts.binding.BindingFragmentView
 import dev.utils.app.ViewUtils
@@ -128,7 +129,7 @@ open class AppFragment<VDB : ViewDataBinding, VM : AppViewModel> :
     private fun createTitleBarSkeletonView(inflater: LayoutInflater) {
         BaseTitleBarBinding.inflate(inflater).apply {
             // 添加状态栏边距
-            fragSetSystemBarsPadding(paddingBottom = false)
+            root.setSystemBarsPadding(paddingBottom = false)
             // 设置标题
             vidTitle.setTitle(viewModel.intentData.getTitle())
                 .setOnTitleBarListener(object : OnTitleBarListener {

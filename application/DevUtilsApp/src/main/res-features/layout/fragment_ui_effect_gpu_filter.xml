@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
             android:gravity="center"
-            android:text="@{viewModel.filterName}"
+            android:text="@{viewModel.filterName.state}"
             android:textSize="@dimen/sp_15"
             tools:text="Filter Name" />
 
@@ -42,6 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/dp_20"
-            app:binding_filter_bitmap="@{viewModel.filterBitmap}" />
+            app:binding_filter_bitmap="@{viewModel.filterBitmap.state}" />
     </LinearLayout>
 </layout>
