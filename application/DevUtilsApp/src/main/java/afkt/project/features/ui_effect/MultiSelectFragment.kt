@@ -10,8 +10,7 @@ import afkt.project.features.ui_effect.recycler_view.adapter_concat.createCommod
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableLong
+import androidx.lifecycle.MutableLiveData
 import dev.base.multiselect.DevMultiSelectMap
 import dev.base.multiselect.IMultiSelectEdit
 import dev.base.simple.extensions.asFragment
@@ -109,10 +108,10 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
     IMultiSelectEdit<MultiSelectAdapter> {
 
     // 刷新处理
-    val refreshOP = ObservableLong()
+    val refreshOP = MutableLiveData<Long>()
 
     // 多选开关
-    val selectSwitch = ObservableBoolean(false)
+    val selectSwitch = MutableLiveData(false)
 
     // 多选辅助类
     val multiSelect = DevMultiSelectMap<String, CommodityBean>()
@@ -145,7 +144,7 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
      * 刷新操作
      */
     fun refresh() {
-        refreshOP.set(System.currentTimeMillis())
+        refreshOP.value = System.currentTimeMillis()
     }
 
     // ====================
@@ -153,11 +152,11 @@ class MultiSelectAdapter() : AdapterModel<CommodityBean>(),
     // ====================
 
     override fun isEditState(): Boolean {
-        return selectSwitch.get()
+        return selectSwitch.value ?: false
     }
 
     override fun setEditState(isEdit: Boolean): MultiSelectAdapter {
-        selectSwitch.set(isEdit)
+        selectSwitch.value = isEdit
         return this
     }
 
@@ -236,11 +235,11 @@ fun AppCompatImageView.bindingMultiSelectListener(
     itemValue: CommodityBean?,
     itemKey: String?,
     assist: DevMultiSelectMap<String, CommodityBean>?,
-    switchBool: ObservableBoolean?,
-    refreshLong: ObservableLong?
+    switchBool: MutableLiveData<Boolean>?,
+    refreshLong: MutableLiveData<Long>?
 ) {
     // 如果打开了开关才进行显示
-    if (ViewUtils.setVisibility(switchBool?.get() == true, this)) {
+    if (ViewUtils.setVisibility(switchBool?.value == true, this)) {
         if (assist != null) {
             // 判断是否选中
             val isSelected = assist.isSelectKey(itemKey)

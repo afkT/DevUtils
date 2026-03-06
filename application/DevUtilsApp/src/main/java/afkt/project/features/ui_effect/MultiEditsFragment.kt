@@ -39,9 +39,9 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
                 val builder = StringBuilder()
                 viewModel.adapterModel.forEach { item ->
                     builder.append(DevFinal.SYMBOL.NEW_LINE)
-                        .append("evaluateContent: ").append(item.inputText.get())
+                        .append("evaluateContent: ").append(item.inputText.value)
                         .append(DevFinal.SYMBOL.NEW_LINE)
-                        .append("evaluateLevel: ").append(item.ratingValue.get())
+                        .append("evaluateLevel: ").append(item.ratingValue.value)
                         .append(DevFinal.SYMBOL.NEW_LINE)
                 }
                 TAG.log_dTag(message = builder.toString())
@@ -91,12 +91,12 @@ fun EditText.bindingMultiEditsInputListener(
 ) {
     if (itemValue != null && textWatcherAssist != null) {
         textWatcherAssist.bindListener(
-            itemValue.inputText.get(), itemIndex,
+            itemValue.inputText.value, itemIndex,
             this, itemValue
         ) { inputText, _, position, item ->
             val input = inputText.toString()
             val inputNumber = StringUtils.length(input)
-            item.inputNumberText.set("${120 - inputNumber}")
+            item.inputNumberText.postValue("${120 - inputNumber}")
         }
     }
 }
@@ -107,7 +107,7 @@ fun ScaleRatingBar.bindingRatingChangeListener(
 ) {
     if (itemValue != null) {
         this.setOnRatingChangeListener { _, rating, _ ->
-            itemValue.ratingValue.set(rating)
+            itemValue.ratingValue.value = rating
         }
     }
 }
@@ -117,6 +117,7 @@ fun ScaleRatingBar.bindingRatingValue(
     itemValue: CommodityBean?
 ) {
     if (itemValue != null) {
-        this.rating = itemValue.ratingValue.get()
+        val value = itemValue.ratingValue.value ?: return
+        this.rating = value
     }
 }

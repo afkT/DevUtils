@@ -7,15 +7,13 @@
 
         <import type="dev.base.multiselect.DevMultiSelectMap" />
 
-        <import type="androidx.databinding.ObservableLong" />
-
-        <import type="androidx.databinding.ObservableBoolean" />
+        <import type="androidx.lifecycle.MutableLiveData" />
 
         <import type="afkt.project.features.ui_effect.recycler_view.adapter_concat.CommodityBean" />
 
         <variable
             name="refreshLong"
-            type="ObservableLong" />
+            type="MutableLiveData&lt;Long&gt;" />
 
         <variable
             name="itemValue"
@@ -31,7 +29,7 @@
 
         <variable
             name="switchBool"
-            type="ObservableBoolean" />
+            type="MutableLiveData&lt;Boolean&gt;" />
     </data>
 
     <LinearLayout

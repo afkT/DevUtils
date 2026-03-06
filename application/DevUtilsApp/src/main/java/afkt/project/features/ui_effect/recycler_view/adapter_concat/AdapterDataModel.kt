@@ -2,8 +2,7 @@ package afkt.project.features.ui_effect.recycler_view.adapter_concat
 
 import afkt.project.model.helper.RandomHelper
 import android.graphics.Bitmap
-import androidx.databinding.ObservableField
-import androidx.databinding.ObservableFloat
+import androidx.lifecycle.MutableLiveData
 import dev.simple.extensions.toPriceString
 import dev.simple.extensions.toRMBSubZeroAndDot
 import dev.utils.app.ResourceUtils
@@ -78,17 +77,17 @@ class CommodityBean(
     val priceText = price.toPriceString()?.toRMBSubZeroAndDot()
 
     // 输入的内容
-    val inputText = ObservableField<String>(evaluateContent)
+    val inputText = MutableLiveData<String>(evaluateContent)
 
     // 输入数量
-    val inputNumberText = ObservableField<String>()
+    val inputNumberText = MutableLiveData<String>()
 
     // 评价等级
-    val ratingValue = ObservableFloat(evaluateLevel)
+    val ratingValue = MutableLiveData(evaluateLevel)
 
     init {
         val inputNumber = StringUtils.length(evaluateContent)
-        inputNumberText.set("${120 - inputNumber}")
+        inputNumberText.value = "${120 - inputNumber}"
     }
 }
 
