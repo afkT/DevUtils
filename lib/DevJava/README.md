@@ -3,7 +3,7 @@
 
 ```gradle
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.5.4'
+implementation 'io.github.afkt:DevJava:1.5.5'
 ```
 
 ## 目录结构

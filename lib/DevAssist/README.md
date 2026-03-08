@@ -3,7 +3,7 @@
 
 ```gradle
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.4.4'
+implementation 'io.github.afkt:DevAssist:1.4.5'
 ```
 
 ## 目录结构

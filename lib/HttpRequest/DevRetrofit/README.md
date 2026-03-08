@@ -12,7 +12,7 @@
 
 ```gradle
 // DevRetrofit - Retrofit + Kotlin Coroutines 封装
-implementation 'io.github.afkt:DevRetrofit:1.0.8'
+implementation 'io.github.afkt:DevRetrofit:1.0.9'
 ```
 
 ## 框架功能介绍

@@ -3,7 +3,7 @@
 
 ```gradle
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.1.6'
+implementation 'io.github.afkt:DevEngine:1.1.7'
 ```
 
 ## 目录结构
