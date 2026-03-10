@@ -15,7 +15,7 @@ allprojects {
                     // = kotlin =
 
                     // stdlib
-                    "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+                    "org.jetbrains.kotlin:kotlin-stdlib:2.3.10",
                     // core
                     "androidx.core:core-ktx:1.17.0",
                     // coroutines
@@ -31,15 +31,15 @@ allprojects {
                     // lifecycle_common_java8
                     "androidx.lifecycle:lifecycle-common-java8:2.10.0",
                     // activity
-                    "androidx.activity:activity-ktx:1.12.2",
+                    "androidx.activity:activity-ktx:1.12.4",
                     // fragment
                     "androidx.fragment:fragment-ktx:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment-ktx:2.9.6",
+                    "androidx.navigation:navigation-fragment-ktx:2.9.7",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui-ktx:2.9.6",
+                    "androidx.navigation:navigation-ui-ktx:2.9.7",
                     // work_runtime
-                    "androidx.work:work-runtime-ktx:2.11.0",
+                    "androidx.work:work-runtime-ktx:2.11.1",
                     // room_runtime
                     "androidx.room:room-runtime:2.8.4",
                     // room_compiler
@@ -68,15 +68,15 @@ allprojects {
                     // viewpager2
                     "androidx.viewpager2:viewpager2:1.1.0",
                     // activity
-                    "androidx.activity:activity:1.12.2",
+                    "androidx.activity:activity:1.12.4",
                     // fragment
                     "androidx.fragment:fragment:1.8.9",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment:2.9.6",
+                    "androidx.navigation:navigation-fragment:2.9.7",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui:2.9.6",
+                    "androidx.navigation:navigation-ui:2.9.7",
                     // work_runtime
-                    "androidx.work:work-runtime:2.11.0",
+                    "androidx.work:work-runtime:2.11.1",
                     // sqlite
                     "androidx.sqlite:sqlite:2.6.2",
                     // palette
@@ -92,9 +92,9 @@ allprojects {
                     // localbroadcastManager
                     "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
                     // hilt_android
-                    "com.google.dagger:hilt-android:2.59",
+                    "com.google.dagger:hilt-android:2.59.2",
                     // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.59",
+                    "com.google.dagger:hilt-android-compiler:2.59.2",
                     // annotation
                     "androidx.annotation:annotation:1.9.1",
                     // annotation_experimental

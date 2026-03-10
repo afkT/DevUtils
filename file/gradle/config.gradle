@@ -96,18 +96,18 @@ ext {
                     lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.10.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
                     // https://developer.android.com/jetpack/androidx/releases/activity
-                    activity                      : "androidx.activity:activity-ktx:1.12.2",
+                    activity                      : "androidx.activity:activity-ktx:1.12.4",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
                     fragment                      : "androidx.fragment:fragment-ktx:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.6",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.6",
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.9.7",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.9.7",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
                     // WorkManager Kotlin + coroutines
-                    work_runtime                  : "androidx.work:work-runtime-ktx:2.11.0",
+                    work_runtime                  : "androidx.work:work-runtime-ktx:2.11.1",
                     // https://mvnrepository.com/artifact/androidx.room/room-runtime
                     // https://mvnrepository.com/artifact/androidx.room/room-compiler
                     // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -139,18 +139,18 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
                     viewpager2               : "androidx.viewpager2:viewpager2:1.1.0",
                     // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity                 : "androidx.activity:activity:1.12.2",
+                    activity                 : "androidx.activity:activity:1.12.4",
                     // https://mvnrepository.com/artifact/androidx.fragment/fragment
                     fragment                 : "androidx.fragment:fragment:1.8.9",
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.9.6",
-                    navigation_ui            : "androidx.navigation:navigation-ui:2.9.6",
+                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.9.7",
+                    navigation_ui            : "androidx.navigation:navigation-ui:2.9.7",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
-                    work_runtime             : "androidx.work:work-runtime:2.11.0",
+                    work_runtime             : "androidx.work:work-runtime:2.11.1",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
                     sqlite                   : "androidx.sqlite:sqlite:2.6.2", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/androidx.palette/palette
@@ -175,8 +175,8 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android             : "com.google.dagger:hilt-android:2.59",
-                    hilt_android_compiler    : "com.google.dagger:hilt-android-compiler:2.59",
+                    hilt_android             : "com.google.dagger:hilt-android:2.59.2",
+                    hilt_android_compiler    : "com.google.dagger:hilt-android-compiler:2.59.2",
                     // https://mvnrepository.com/artifact/androidx.annotation/annotation
                     "annotation"             : "androidx.annotation:annotation:1.9.1",
                     // https://mvnrepository.com/artifact/androidx.annotation/annotation-experimental
