@@ -1,7 +1,7 @@
 package afkt.httpmanager.use.base
 
 import afkt.httpmanager.use.network.HttpCore
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 import dev.DevUtils
 import dev.engine.DevEngine
 
@@ -9,7 +9,7 @@ import dev.engine.DevEngine
  * detail: Base Application
  * @author Ttt
  */
-class BaseApplication : MultiDexApplication() {
+class BaseApplication : Application() {
 
     // 日志 TAG
     val TAG = "DevHttpManagerUse_Log"

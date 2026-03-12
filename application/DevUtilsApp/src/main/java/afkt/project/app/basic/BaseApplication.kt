@@ -1,10 +1,10 @@
 package afkt.project.app.basic
 
 import afkt.project.app.AppContext
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.engine.DevEngine
 import dev.utils.DevFinal
@@ -15,7 +15,7 @@ import dev.utils.common.StringUtils
  * detail: Base Application
  * @author Ttt
  */
-open class BaseApplication : MultiDexApplication(),
+open class BaseApplication : Application(),
     ViewModelStoreOwner {
 
     // ==========

@@ -30,7 +30,6 @@ dependencies {
     api deps.androidx.appcompat_resources
     api deps.androidx.cardview
     api deps.androidx.recyclerview
-    api deps.androidx.multidex
     api deps.androidx.constraint_layout
     api deps.androidx.viewpager2
     api deps.androidx.work_runtime
@@ -39,4 +38,6 @@ dependencies {
     api deps.androidx.palette
     api deps.androidx.flexbox
     api deps.androidx.localbroadcastManager
+//    // minSdk >= 21 可不需要依赖 multidex
+//    api deps.androidx.multidex
 }
