@@ -3,7 +3,7 @@
 
 ```gradle
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.5.1'
+implementation 'io.github.afkt:DevAppX:2.5.2'
 ```
 
 ## 目录结构
@@ -5431,7 +5431,7 @@ DevUtils.openDebug();
 | doGetAsync | 异步的 Get 请求 |
 | doPostAsync | 异步的 Post 请求 |
 | request | 发送请求 |
-| getNetTime | 获取网络时间 ( 默认使用百度链接 ) |
+| getNetTime | 获取网络时间 |
 
 
 * **Map 工具类 ->** [MapUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/MapUtils.java)

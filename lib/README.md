@@ -35,7 +35,7 @@ Engine 兼容框架等
 ```gradle
 
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.5.1'
+implementation 'io.github.afkt:DevAppX:2.5.2'
 
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
 implementation 'io.github.afkt:DevAssist:1.4.5'
