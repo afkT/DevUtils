@@ -39,7 +39,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/dev_http_capture_adapter_date_item_url_text_color"
             android:textSize="@dimen/dev_http_capture_adapter_date_item_url_text_size"
-            tools:text="https://www.baidu.com" />
+            tools:text="@string/dev_http_capture_group_type_url" />
 
         <TextView
             android:id="@+id/vid_function_tv"

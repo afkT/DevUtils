@@ -32,7 +32,6 @@ abstract class HttpCaptureEventImpl : IHttpCaptureEvent {
         request: Request,
         url: HttpUrl
     ): String {
-        // https://???.xxx
         return url.toString()
     }
 

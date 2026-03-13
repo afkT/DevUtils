@@ -239,7 +239,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param url 资源地址
      * @return [WebViewAssist]
      * 加载一个网页
-     * loadUrl("http://www.baidu.com")
+     * loadUrl("url")
      * 加载应用资源文件内的网页
      * loadUrl("file:///android_asset/test.html")
      */

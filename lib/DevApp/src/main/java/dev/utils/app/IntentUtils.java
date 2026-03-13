@@ -1004,7 +1004,7 @@ public final class IntentUtils {
     /**
      * 获取打开浏览器的意图
      * <pre>
-     *     Uri uri = Uri.parse("https://www.baidu.com")
+     *     Uri uri = Uri.parse("url")
      *     如果手机本身安装了多个浏览器而又没有设置默认浏览器的话, 系统将让用户选择使用哪个浏览器来打开链接
      * </pre>
      * @param uri       链接地址

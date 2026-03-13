@@ -42,13 +42,6 @@ internal object MMKVUtils {
         // 初始化 MMKV 并设置日志级别
         val rootDir = MMKV.initialize(context, MMKVLogLevel.LevelNone)
         LogPrintUtils.dTag(TAG, "MMKV rootDir: %s", rootDir)
-
-//        // 设置打印日志级别
-//        MMKV.setLogLevel(MMKVLogLevel.LevelNone)
-
-//        https://github.com/Tencent/MMKV/wiki/android_advance_cn
-//        // 视项目需求进行注册监听、数据恢复等
-//        MMKV.registerHandler()
     }
 
     // =============

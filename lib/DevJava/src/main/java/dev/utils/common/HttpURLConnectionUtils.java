@@ -181,8 +181,6 @@ public final class HttpURLConnectionUtils {
     // = 获取网络时间处理 =
     // =================
 
-    public static final String BAIDU_URL = "https://www.baidu.com";
-
     /**
      * detail: 时间回调
      * @author Ttt
@@ -200,14 +198,6 @@ public final class HttpURLConnectionUtils {
          * @param error 失败异常
          */
         void onFail(Throwable error);
-    }
-
-    /**
-     * 获取网络时间 ( 默认使用百度链接 )
-     * @param callback 请求时间回调接口
-     */
-    public static void getNetTime(final TimeCallback callback) {
-        getNetTime(BAIDU_URL, callback);
     }
 
     /**

@@ -225,25 +225,18 @@ public final class NetWorkUtils {
 
     /**
      * 判断网络是否可用
+     * @param ip IP 地址
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-    public static boolean isAvailable() {
+    public static boolean isAvailable(final String ip) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             NetworkInfo info = getActiveNetworkInfo();
             return info != null && info.isAvailable();
         } else {
-            return isAvailableByPing();
+            return isAvailableByPing(ip);
         }
-    }
-
-    /**
-     * 使用 ping ip 方式判断网络是否可用
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isAvailableByPing() {
-        return isAvailableByPing(null);
     }
 
     /**
@@ -251,10 +244,8 @@ public final class NetWorkUtils {
      * @param ip IP 地址
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isAvailableByPing(String ip) {
-        if (ip == null || ip.length() <= 0) {
-            ip = "223.5.5.5"; // 默认阿里巴巴 DNS
-        }
+    public static boolean isAvailableByPing(final String ip) {
+        if (ip == null || ip.isEmpty()) return false;
         // cmd ping ip
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format("ping -c 1 %s", ip), false
@@ -338,11 +329,12 @@ public final class NetWorkUtils {
 
     /**
      * 判断 Wifi 数据是否可用
+     * @param ip IP 地址
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-    public static boolean isWifiAvailable() {
-        return getWifiEnabled() && isAvailable();
+    public static boolean isWifiAvailable(final String ip) {
+        return getWifiEnabled() && isAvailable(ip);
     }
 
     /**
@@ -544,7 +536,7 @@ public final class NetWorkUtils {
 
     /**
      * 获取域名 IP 地址
-     * @param domain 域名 www.baidu.com 不需要加上 http
+     * @param domain 域名，不需要加上 http
      * @return 域名 IP 地址
      */
     public static String getDomainAddress(final String domain) {
@@ -577,7 +569,6 @@ public final class NetWorkUtils {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
             while (nis.hasMoreElements()) {
                 NetworkInterface ni = nis.nextElement();
-                // 防止小米手机返回 10.0.2.15
                 if (!ni.isUp()) continue;
                 for (Enumeration<InetAddress> addresses = ni.getInetAddresses(); addresses.hasMoreElements(); ) {
                     InetAddress inetAddress = addresses.nextElement();

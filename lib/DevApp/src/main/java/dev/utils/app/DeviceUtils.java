@@ -711,7 +711,6 @@ public final class DeviceUtils {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
             while (nis.hasMoreElements()) {
                 NetworkInterface ni = nis.nextElement();
-                // To prevent phone of xiaomi return "10.0.2.15"
                 if (!ni.isUp()) continue;
                 Enumeration<InetAddress> addresses = ni.getInetAddresses();
                 while (addresses.hasMoreElements()) {
