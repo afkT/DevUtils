@@ -1,12 +1,19 @@
 Change Log
 ==========
 
+Version 1.0.6 *(2026-03-08)*
+----------------------------
+
+* `[Add]` 新增多个 styles xml 样式文件
+
+* `[Update]` 更新 PayloadLiveData 为 ValueLiveData
+
 Version 1.0.5 *(2026-01-19)*
 ----------------------------
 
 * `[Add]` 新增 AdapterModel 通用模型
 
-* `[Add]` 新增 ValueLiveData、StateIntLiveData
+* `[Add]` 新增 PayloadLiveData、StateIntLiveData
 
 Version 1.0.4 *(2025-10-12)*
 ----------------------------

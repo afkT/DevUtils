@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.2.2 *(2026-03-08)*
+----------------------------
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
+* `[Add]` 新增 EdgeToEdge 扩展类
+
+* `[Add]` 新增 DevBaseContentAssist 设置 Base View 背景色方法
+
 Version 1.2.1 *(2025-10-12)*
 ----------------------------
 
