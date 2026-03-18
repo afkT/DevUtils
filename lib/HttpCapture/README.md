@@ -218,6 +218,6 @@ DevHttpCaptureCompiler.removeUrlFunction(moduleName)
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.2.1-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.2.1-brightgreen.svg?style=for-the-badge
 [maven]: https://search.maven.org/search?q=io.github.afkt
 [DevHttpCaptureUse]: https://github.com/afkT/DevUtils/blob/master/application/DevHttpCaptureUse/src/main/java/afkt/httpcapture/use

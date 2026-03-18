@@ -2,26 +2,16 @@
 <h1 align="center">DevUtils</h1>
 
 
-<p align="center">
-	<a href="https://github.com/afkT">
-		<img alt="Profile" src="https://img.shields.io/badge/GitHub-afkT-orange.svg" />
-	</a>
-	<a href="https://github.com/afkT/DevUtils/blob/master/LICENSE">
-		<img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" />
-	</a>
-	<a href="https://search.maven.org/search?q=io.github.afkt">
-		<img alt="Version" src="https://img.shields.io/badge/Maven-Dev-5776E0.svg" />
-	</a>
-	<a href="https://android-arsenal.com/api?level=21">
-		<img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat" />
-	</a>
-	<a href="https://search.maven.org/search?q=io.github.afkt">
-		<img alt="Version" src="https://img.shields.io/badge/DevUtils-2.5.2-yellow.svg" />
-	</a>
-	<a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md">
-		<img alt="Utils" src="https://img.shields.io/badge/Utils-300+-critical.svg" />
-	</a>
-</p>
+<div align="center">
+
+[![GitHub Profile](https://img.shields.io/badge/GitHub-afkT-orange.svg?style=for-the-badge)](https://github.com/afkT)
+[![GitHub License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
+[![Maven](https://img.shields.io/badge/Maven-Dev-5776E0.svg?style=for-the-badge)](https://search.maven.org/search?q=io.github.afkt)
+[![Android API](https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=for-the-badge)](https://developer.android.com/about/versions)
+[![DevUtils Version](https://img.shields.io/badge/DevUtils-2.5.2-yellow.svg?style=for-the-badge)](https://github.com/afkT/DevUtils/releases)
+[![Utils](https://img.shields.io/badge/Utils-300+-critical.svg?style=for-the-badge)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+
+</div>
 
 
 <p align="center">

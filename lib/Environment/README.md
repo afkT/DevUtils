@@ -338,7 +338,7 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(context);
 
 
 
-[maven_svg]: https://img.shields.io/badge/Maven-1.1.9-brightgreen.svg
+[maven_svg]: https://img.shields.io/badge/Maven-1.1.9-brightgreen.svg?style=for-the-badge
 [maven]: https://search.maven.org/search?q=io.github.afkt
 [包目录]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment
 [@Module]: https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java
