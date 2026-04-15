@@ -149,7 +149,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
      * 获取 Fragment 生命周期辅助类
      * @return [FragmentLifecycleAssist]
      */
-    fun fragmentLifecycleAssist(): FragmentLifecycleAssist {
+    open fun fragmentLifecycleAssist(): FragmentLifecycleAssist {
         return _fragmentLifecycleAssist
     }
 

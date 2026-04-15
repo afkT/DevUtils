@@ -53,6 +53,7 @@ open class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 通用 Enable edge to edge【适配 API 35+】
         enableEdgeToEdge()
     }
 
