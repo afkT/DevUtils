@@ -26,11 +26,31 @@ abstract class AbstractDevBaseFragment : Fragment(),
     @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
     protected var TAG = AbstractDevBaseFragment::class.java.simpleName
 
-    @JvmField // DevBase 合并相同代码辅助类
-    protected var assist = DevBaseAssist()
+    @JvmField // DevBase 合并相同代码辅助类 ( 子类可重写 newAssist() 替换实现 )
+    @Suppress("LeakingThis")
+    protected var assist: DevBaseAssist = newAssist()
 
-    @JvmField // DevBase ContentView 填充辅助类
-    protected var contentAssist = DevBaseContentAssist()
+    @JvmField // DevBase ContentView 填充辅助类 ( 子类可重写 newContentAssist() 替换实现 )
+    @Suppress("LeakingThis")
+    protected var contentAssist: DevBaseContentAssist = newContentAssist()
+
+    // ============
+    // = 工厂方法 =
+    // ============
+
+    /**
+     * 创建 [DevBaseAssist] 实现
+     * 子类可重写以替换默认日志 / TAG 封装
+     * 注意: 该方法会在构造阶段被调用, 实现不应依赖子类自身状态
+     */
+    protected open fun newAssist(): DevBaseAssist = DevBaseAssist()
+
+    /**
+     * 创建 [DevBaseContentAssist] 实现
+     * 子类可重写以替换默认 ContentView 填充辅助类
+     * 注意: 该方法会在构造阶段被调用, 实现不应依赖子类自身状态
+     */
+    protected open fun newContentAssist(): DevBaseContentAssist = DevBaseContentAssist()
 
     // ==========
     // = 生命周期 =
@@ -165,8 +185,9 @@ abstract class AbstractDevBaseFragment : Fragment(),
     /**
      * Layout View 初始化处理
      * @param inflater  [LayoutInflater]
+     * 子类可重写以替换 View 加载逻辑 ( 例如使用带主题的 Context、AsyncLayoutInflater 等 )
      */
-    private fun layoutInit(
+    protected open fun layoutInit(
         inflater: LayoutInflater
     ) {
         if (layoutView != null) return
@@ -184,8 +205,9 @@ abstract class AbstractDevBaseFragment : Fragment(),
 
     /**
      * 插入布局【具体实际布局】
+     * 子类可重写以替换插入容器 ( 例如 bodyFrame ) 或调整插入参数
      */
-    private fun insertLayout() {
+    protected open fun insertLayout() {
         // Layout View 初始化处理
         layoutInit(layoutInflater)
         // 添加到 contentLinear

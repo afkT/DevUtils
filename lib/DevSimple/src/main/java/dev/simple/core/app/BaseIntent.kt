@@ -20,8 +20,16 @@ abstract class BaseIntent<T> {
     // = 对外公开方法 =
     // =============
 
-    // Intent 传参读写辅助类
-    private val mIntent = DevIntent.with()
+    /**
+     * 创建 [DevIntent] 实现
+     * 子类可重写以替换 Intent 传参读写辅助类构造方式
+     * 注意: 该方法会在构造阶段被调用, 实现不应依赖子类自身状态
+     */
+    protected open fun newDevIntent(): DevIntent = DevIntent.with()
+
+    // Intent 传参读写辅助类 ( 子类可重写 newDevIntent() 替换实现 )
+    @Suppress("LeakingThis")
+    private val mIntent: DevIntent = newDevIntent()
 
     /**
      * 插入数据

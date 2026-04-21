@@ -19,8 +19,16 @@ abstract class DevBaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> :
 
     lateinit var viewModel: VM
 
-    @JvmField // DevBase ViewModel 辅助类
-    protected var viewModelAssist = DevBaseViewModelAssist()
+    @JvmField // DevBase ViewModel 辅助类 ( 子类可重写 newViewModelAssist() 替换实现 )
+    @Suppress("LeakingThis")
+    protected var viewModelAssist: DevBaseViewModelAssist = newViewModelAssist()
+
+    /**
+     * 创建 [DevBaseViewModelAssist] 实现
+     * 子类可重写以替换 ViewModel 创建 / 缓存策略 ( 例如注入自定义 ViewModelProvider.Factory )
+     * 注意: 该方法会在构造阶段被调用, 实现不应依赖子类自身状态
+     */
+    protected open fun newViewModelAssist(): DevBaseViewModelAssist = DevBaseViewModelAssist()
 
     // =====================
     // = IDevBaseViewModel =

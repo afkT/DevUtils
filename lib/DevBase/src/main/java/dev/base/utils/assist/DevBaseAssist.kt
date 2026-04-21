@@ -6,17 +6,17 @@ import dev.utils.LogPrintUtils
  * detail: DevBase 合并相同代码辅助类
  * @author Ttt
  */
-class DevBaseAssist {
+open class DevBaseAssist {
 
     // 日志 TAG
-    private var mTag = DevBaseAssist::class.java.simpleName
+    protected var mTag = DevBaseAssist::class.java.simpleName
 
-    fun setTag(tag: String): DevBaseAssist {
+    open fun setTag(tag: String): DevBaseAssist {
         this.mTag = tag
         return this
     }
 
-    fun getTag(): String {
+    open fun getTag(): String {
         return this.mTag
     }
 
@@ -29,7 +29,7 @@ class DevBaseAssist {
      * @param message 打印内容
      * @return [DevBaseAssist]
      */
-    fun printLog(message: String): DevBaseAssist {
+    open fun printLog(message: String): DevBaseAssist {
         LogPrintUtils.dTag(mTag, "%s -> %s", mTag, message)
         return this
     }
@@ -40,7 +40,7 @@ class DevBaseAssist {
      * @param message   打印内容
      * @return [DevBaseAssist]
      */
-    fun printLog(
+    open fun printLog(
         throwable: Throwable,
         message: String
     ): DevBaseAssist {

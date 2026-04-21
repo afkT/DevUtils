@@ -14,11 +14,11 @@ import androidx.lifecycle.ViewModelStoreOwner
  * 使用全局 ViewModel 则通过 Application implements ViewModelStoreOwner
  * 并通过 [getAppViewModel] 获取全局 ViewModel
  */
-class DevBaseViewModelAssist {
+open class DevBaseViewModelAssist {
 
-    private var mActivityProvider: ViewModelProvider? = null
-    private var mFragmentProvider: ViewModelProvider? = null
-    private var mFactory: ViewModelProvider.Factory? = null
+    protected var mActivityProvider: ViewModelProvider? = null
+    protected var mFragmentProvider: ViewModelProvider? = null
+    protected var mFactory: ViewModelProvider.Factory? = null
 
     // =====================
     // = Activity Provider =
@@ -30,7 +30,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [androidx.lifecycle.ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel> getActivityViewModel(
+    open fun <T : ViewModel> getActivityViewModel(
         activity: FragmentActivity?,
         modelClass: Class<T>
     ): T? {
@@ -44,7 +44,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel> getActivityViewModelCache(
+    open fun <T : ViewModel> getActivityViewModelCache(
         activity: FragmentActivity?,
         modelClass: Class<T>
     ): T? {
@@ -65,7 +65,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel> getFragmentViewModel(
+    open fun <T : ViewModel> getFragmentViewModel(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -79,7 +79,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel> getFragmentViewModelCache(
+    open fun <T : ViewModel> getFragmentViewModelCache(
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
@@ -100,7 +100,7 @@ class DevBaseViewModelAssist {
      * @param modelClass [ViewModel]
      * @return [T]
      */
-    fun <T : ViewModel> getAppViewModel(
+    open fun <T : ViewModel> getAppViewModel(
         application: Application?,
         modelClass: Class<T>
     ): T? {
@@ -113,7 +113,7 @@ class DevBaseViewModelAssist {
      * @param application [Application]
      * @return [ViewModelProvider]
      */
-    fun getAppViewModelProvider(application: Application?): ViewModelProvider? {
+    open fun getAppViewModelProvider(application: Application?): ViewModelProvider? {
         if (application is ViewModelStoreOwner) {
             return ViewModelProvider(
                 application as ViewModelStoreOwner, getAppFactory(application)!!
@@ -127,7 +127,7 @@ class DevBaseViewModelAssist {
      * @param application [Application]
      * @return [ViewModelProvider.Factory]
      */
-    fun getAppFactory(application: Application?): ViewModelProvider.Factory? {
+    open fun getAppFactory(application: Application?): ViewModelProvider.Factory? {
         if (mFactory != null) return mFactory
         if (application == null) return null
         if (mFactory == null) {

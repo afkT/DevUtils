@@ -15,15 +15,15 @@ import dev.utils.app.ViewUtils
  * 并对各个 Activity Layout 动态添加到 contentLinear
  * 其他 Linear、Frame 作用相同, 也可以根据不同页面进行特殊添加
  */
-class DevBaseContentAssist {
+open class DevBaseContentAssist {
 
     // Content View Binding
-    private lateinit var binding: BaseContentViewBinding
+    protected lateinit var binding: BaseContentViewBinding
 
     // 是否安全处理 ( 建议跟随 BuildConfig.DEBUG 取反处理, 开发阶段抛出异常 )
-    private var mSafe = false
+    protected var mSafe = false
 
-    fun bind(newBinding: BaseContentViewBinding) {
+    open fun bind(newBinding: BaseContentViewBinding) {
         try {
             // 如果已经初始化了则先移除
             if (::binding.isInitialized) {
@@ -34,7 +34,7 @@ class DevBaseContentAssist {
         this.binding = newBinding
     }
 
-    fun bindingRoot(): View {
+    open fun bindingRoot(): View {
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class DevBaseContentAssist {
     /**
      * 是否安全处理
      */
-    fun isSafe(): Boolean {
+    open fun isSafe(): Boolean {
         return mSafe
     }
 
@@ -53,7 +53,7 @@ class DevBaseContentAssist {
      * 设置是否安全处理
      * @return [DevBaseContentAssist]
      */
-    fun setSafe(safe: Boolean): DevBaseContentAssist {
+    open fun setSafe(safe: Boolean): DevBaseContentAssist {
         mSafe = safe
         return this
     }
@@ -66,7 +66,7 @@ class DevBaseContentAssist {
      * 最外层 Layout
      * @return [LinearLayout]
      */
-    fun rootLinear(): LinearLayout {
+    open fun rootLinear(): LinearLayout {
         return binding.rootLinear
     }
 
@@ -74,7 +74,7 @@ class DevBaseContentAssist {
      * StatusBar Layout
      * @return [LinearLayout]
      */
-    fun statusBarLinear(): LinearLayout {
+    open fun statusBarLinear(): LinearLayout {
         return binding.statusBarLinear
     }
 
@@ -82,7 +82,7 @@ class DevBaseContentAssist {
      * Title Layout
      * @return [LinearLayout]
      */
-    fun titleLinear(): LinearLayout {
+    open fun titleLinear(): LinearLayout {
         return binding.titleLinear
     }
 
@@ -90,7 +90,7 @@ class DevBaseContentAssist {
      * Body Layout
      * @return [FrameLayout]
      */
-    fun bodyFrame(): FrameLayout {
+    open fun bodyFrame(): FrameLayout {
         return binding.bodyFrame
     }
 
@@ -98,7 +98,7 @@ class DevBaseContentAssist {
      * 填充容器
      * @return [LinearLayout]
      */
-    fun contentLinear(): LinearLayout {
+    open fun contentLinear(): LinearLayout {
         return binding.contentLinear
     }
 
@@ -106,7 +106,7 @@ class DevBaseContentAssist {
      * 状态布局容器
      * @return [LinearLayout]
      */
-    fun stateLinear(): LinearLayout {
+    open fun stateLinear(): LinearLayout {
         return binding.stateLinear
     }
 
@@ -114,7 +114,7 @@ class DevBaseContentAssist {
      * 悬浮容器
      * @return [FrameLayout]
      */
-    fun floatFrame(): FrameLayout {
+    open fun floatFrame(): FrameLayout {
         return binding.floatFrame
     }
 
@@ -127,7 +127,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setRootLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setRootLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(rootLinear(), color)
         return this
     }
@@ -137,7 +137,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setStatusBarLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setStatusBarLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(statusBarLinear(), color)
         return this
     }
@@ -147,7 +147,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setTitleLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setTitleLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(titleLinear(), color)
         return this
     }
@@ -157,7 +157,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setBodyFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setBodyFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(bodyFrame(), color)
         return this
     }
@@ -167,7 +167,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setContentLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setContentLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(contentLinear(), color)
         return this
     }
@@ -177,7 +177,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setStateLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setStateLinearBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(stateLinear(), color)
         return this
     }
@@ -187,7 +187,7 @@ class DevBaseContentAssist {
      * @param color 背景颜色
      * @return [DevBaseContentAssist]
      */
-    fun setFloatFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
+    open fun setFloatFrameBGColor(@ColorInt color: Int): DevBaseContentAssist {
         ViewUtils.setBackgroundColor(floatFrame(), color)
         return this
     }
@@ -200,7 +200,7 @@ class DevBaseContentAssist {
      * 显示 statusBarLinear
      * @return [DevBaseContentAssist]
      */
-    fun visibleStatusBarLinear(): DevBaseContentAssist {
+    open fun visibleStatusBarLinear(): DevBaseContentAssist {
         return setVisibility(true, statusBarLinear())
     }
 
@@ -208,7 +208,7 @@ class DevBaseContentAssist {
      * 显示 titleLinear
      * @return [DevBaseContentAssist]
      */
-    fun visibleTitleLinear(): DevBaseContentAssist {
+    open fun visibleTitleLinear(): DevBaseContentAssist {
         return setVisibility(true, titleLinear())
     }
 
@@ -216,7 +216,7 @@ class DevBaseContentAssist {
      * 显示 bodyFrame
      * @return [DevBaseContentAssist]
      */
-    fun visibleBodyFrame(): DevBaseContentAssist {
+    open fun visibleBodyFrame(): DevBaseContentAssist {
         return setVisibility(true, bodyFrame())
     }
 
@@ -224,7 +224,7 @@ class DevBaseContentAssist {
      * 显示 contentLinear
      * @return [DevBaseContentAssist]
      */
-    fun visibleContentLinear(): DevBaseContentAssist {
+    open fun visibleContentLinear(): DevBaseContentAssist {
         return setVisibility(true, contentLinear())
     }
 
@@ -232,7 +232,7 @@ class DevBaseContentAssist {
      * 显示 stateLinear
      * @return [DevBaseContentAssist]
      */
-    fun visibleStateLinear(): DevBaseContentAssist {
+    open fun visibleStateLinear(): DevBaseContentAssist {
         return setVisibility(true, stateLinear())
     }
 
@@ -240,7 +240,7 @@ class DevBaseContentAssist {
      * 显示 floatFrame
      * @return [DevBaseContentAssist]
      */
-    fun visibleFloatFrame(): DevBaseContentAssist {
+    open fun visibleFloatFrame(): DevBaseContentAssist {
         return setVisibility(true, floatFrame())
     }
 
@@ -252,7 +252,7 @@ class DevBaseContentAssist {
      * 隐藏 statusBarLinear
      * @return [DevBaseContentAssist]
      */
-    fun goneStatusBarLinear(): DevBaseContentAssist {
+    open fun goneStatusBarLinear(): DevBaseContentAssist {
         return setVisibility(false, statusBarLinear())
     }
 
@@ -260,7 +260,7 @@ class DevBaseContentAssist {
      * 隐藏 titleLinear
      * @return [DevBaseContentAssist]
      */
-    fun goneTitleLinear(): DevBaseContentAssist {
+    open fun goneTitleLinear(): DevBaseContentAssist {
         return setVisibility(false, titleLinear())
     }
 
@@ -268,7 +268,7 @@ class DevBaseContentAssist {
      * 隐藏 bodyFrame
      * @return [DevBaseContentAssist]
      */
-    fun goneBodyFrame(): DevBaseContentAssist {
+    open fun goneBodyFrame(): DevBaseContentAssist {
         return setVisibility(false, bodyFrame())
     }
 
@@ -276,7 +276,7 @@ class DevBaseContentAssist {
      * 隐藏 contentLinear
      * @return [DevBaseContentAssist]
      */
-    fun goneContentLinear(): DevBaseContentAssist {
+    open fun goneContentLinear(): DevBaseContentAssist {
         return setVisibility(false, contentLinear())
     }
 
@@ -284,7 +284,7 @@ class DevBaseContentAssist {
      * 隐藏 stateLinear
      * @return [DevBaseContentAssist]
      */
-    fun goneStateLinear(): DevBaseContentAssist {
+    open fun goneStateLinear(): DevBaseContentAssist {
         return setVisibility(false, stateLinear())
     }
 
@@ -292,7 +292,7 @@ class DevBaseContentAssist {
      * 隐藏 floatFrame
      * @return [DevBaseContentAssist]
      */
-    fun goneFloatFrame(): DevBaseContentAssist {
+    open fun goneFloatFrame(): DevBaseContentAssist {
         return setVisibility(false, floatFrame())
     }
 
@@ -304,7 +304,7 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(view: View?): DevBaseContentAssist {
+    open fun addRootView(view: View?): DevBaseContentAssist {
         return addView(rootLinear(), view, -1)
     }
 
@@ -312,7 +312,7 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(
+    open fun addRootView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -323,7 +323,7 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(
+    open fun addRootView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -334,7 +334,7 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(
+    open fun addRootView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -346,7 +346,7 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(view: View?): DevBaseContentAssist {
+    open fun addStatusBarView(view: View?): DevBaseContentAssist {
         return addView(statusBarLinear(), view, -1)
     }
 
@@ -354,7 +354,7 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(
+    open fun addStatusBarView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -365,7 +365,7 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(
+    open fun addStatusBarView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -376,7 +376,7 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(
+    open fun addStatusBarView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -388,7 +388,7 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(view: View?): DevBaseContentAssist {
+    open fun addTitleView(view: View?): DevBaseContentAssist {
         return addView(titleLinear(), view, -1)
     }
 
@@ -396,7 +396,7 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(
+    open fun addTitleView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -407,7 +407,7 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(
+    open fun addTitleView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -418,7 +418,7 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(
+    open fun addTitleView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -430,7 +430,7 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(view: View?): DevBaseContentAssist {
+    open fun addBodyView(view: View?): DevBaseContentAssist {
         return addView(bodyFrame(), view, -1)
     }
 
@@ -438,7 +438,7 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(
+    open fun addBodyView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -449,7 +449,7 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(
+    open fun addBodyView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -460,7 +460,7 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(
+    open fun addBodyView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -472,7 +472,7 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(view: View?): DevBaseContentAssist {
+    open fun addContentView(view: View?): DevBaseContentAssist {
         return addView(contentLinear(), view, -1)
     }
 
@@ -480,7 +480,7 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(
+    open fun addContentView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -491,7 +491,7 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(
+    open fun addContentView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -502,7 +502,7 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(
+    open fun addContentView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -514,7 +514,7 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(view: View?): DevBaseContentAssist {
+    open fun addStateView(view: View?): DevBaseContentAssist {
         return addView(stateLinear(), view, -1)
     }
 
@@ -522,7 +522,7 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(
+    open fun addStateView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -533,7 +533,7 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(
+    open fun addStateView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -544,7 +544,7 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(
+    open fun addStateView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -556,7 +556,7 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(view: View?): DevBaseContentAssist {
+    open fun addFloatView(view: View?): DevBaseContentAssist {
         return addView(floatFrame(), view, -1)
     }
 
@@ -564,7 +564,7 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(
+    open fun addFloatView(
         view: View?,
         index: Int
     ): DevBaseContentAssist {
@@ -575,7 +575,7 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(
+    open fun addFloatView(
         view: View?,
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
@@ -586,7 +586,7 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(
+    open fun addFloatView(
         view: View?,
         index: Int,
         params: ViewGroup.LayoutParams?
@@ -605,7 +605,7 @@ class DevBaseContentAssist {
      * @param index     添加索引
      * @return [DevBaseContentAssist]
      */
-    private fun addView(
+    protected open fun addView(
         viewGroup: ViewGroup?,
         view: View?,
         index: Int
@@ -631,7 +631,7 @@ class DevBaseContentAssist {
      * @param params    LayoutParams
      * @return [DevBaseContentAssist]
      */
-    private fun addView(
+    protected open fun addView(
         viewGroup: ViewGroup?,
         view: View?,
         index: Int,
@@ -656,7 +656,7 @@ class DevBaseContentAssist {
      * @param view         [View]
      * @return [DevBaseContentAssist]
      */
-    private fun setVisibility(
+    protected open fun setVisibility(
         isVisibility: Boolean,
         view: View?
     ): DevBaseContentAssist {

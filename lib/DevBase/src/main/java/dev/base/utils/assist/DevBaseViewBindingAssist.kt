@@ -10,9 +10,9 @@ import dev.base.utils.ViewBindingUtils
  * detail: DevBase ViewBinding 辅助类
  * @author Ttt
  */
-class DevBaseViewBindingAssist<VB : ViewBinding> {
+open class DevBaseViewBindingAssist<VB : ViewBinding> {
 
-    private var _binding: VB? = null
+    protected var _binding: VB? = null
     val binding: VB get() = _binding!!
 
     /**
@@ -22,7 +22,7 @@ class DevBaseViewBindingAssist<VB : ViewBinding> {
      * @param view      待绑定 View
      * @param clazz     VB Class
      */
-    fun viewBinding(
+    open fun viewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         view: View?,
@@ -37,7 +37,7 @@ class DevBaseViewBindingAssist<VB : ViewBinding> {
     /**
      * 销毁 binding
      */
-    fun destroy() {
+    open fun destroy() {
         _binding = null
     }
 }
