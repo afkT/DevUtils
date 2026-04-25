@@ -1064,7 +1064,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 应用 ( 设置 ) 配置
          * @return [Builder]
          */
-        private fun applyPri(): Builder {
+        protected open fun applyPri(): Builder {
             mWebViewAssist?.let { assist ->
                 assist.getSettings()?.let { webSettings ->
                     // 如果访问的页面中要与 JavaScript 交互, 则 WebView 必须设置支持 JavaScript

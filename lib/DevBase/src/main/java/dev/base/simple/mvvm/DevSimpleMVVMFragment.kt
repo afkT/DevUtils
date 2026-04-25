@@ -68,7 +68,7 @@ abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
     // = 内部初始化 =
     // ============
 
-    private fun innerInitialize() {
+    protected open fun innerInitialize() {
 
         // =================
         // = initViewModel =
@@ -112,7 +112,7 @@ abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
      * 内部 ViewModel 初始化
      * @param vmObject VM
      */
-    private fun innerViewModel(vmObject: VM) {
+    protected open fun innerViewModel(vmObject: VM) {
         try {
             viewModel = vmObject
             if (vmObject is LifecycleObserver) {

@@ -56,7 +56,7 @@ abstract class BaseInterceptor(
     /**
      * 统一抓包逻辑代码
      */
-    private fun innerResponse(chain: Interceptor.Chain): Response {
+    protected open fun innerResponse(chain: Interceptor.Chain): Response {
         // 抓包信息封装类
         val captureInfo = CaptureInfo()
 

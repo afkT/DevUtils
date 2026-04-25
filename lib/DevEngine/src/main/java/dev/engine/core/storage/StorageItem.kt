@@ -111,27 +111,27 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
 
     // =
 
-    private fun setOutputUri(outputUri: Uri?): StorageItem {
+    protected open fun setOutputUri(outputUri: Uri?): StorageItem {
         mOutputUri = outputUri
         return this
     }
 
-    private fun setFileName(fileName: String?): StorageItem {
+    protected open fun setFileName(fileName: String?): StorageItem {
         mFileName = fileName
         return this
     }
 
-    private fun setFilePath(filePath: String?): StorageItem {
+    protected open fun setFilePath(filePath: String?): StorageItem {
         mFilePath = filePath
         return this
     }
 
-    private fun setFolder(folder: String?): StorageItem {
+    protected open fun setFolder(folder: String?): StorageItem {
         mFolder = folder
         return this
     }
 
-    private fun setMimeType(mimeType: String?): StorageItem {
+    protected open fun setMimeType(mimeType: String?): StorageItem {
         mMimeType = mimeType
         return this
     }

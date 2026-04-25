@@ -43,7 +43,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
     // ==========
 
     @MainThread
-    private fun setValue(newValue: Resource<ResultType>) {
+    protected open fun setValue(newValue: Resource<ResultType>) {
         result.value = newValue
     }
 
@@ -66,7 +66,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
         }
     }
 
-    private fun fetchFromNetwork(dbSource: LiveData<ResultType?>) {
+    protected open fun fetchFromNetwork(dbSource: LiveData<ResultType?>) {
         val apiResponse = fetchService()
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
