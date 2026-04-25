@@ -589,7 +589,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param fragment [Fragment]
      * @return `true` yes, `false` no
      */
-    private fun canFragmentLoadImage(fragment: Fragment): Boolean {
+    protected open fun canFragmentLoadImage(fragment: Fragment): Boolean {
         return fragment.isResumed || fragment.isAdded || fragment.isVisible
     }
 
@@ -599,7 +599,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param source  [DevSource]
      * @return [RequestBuilder]
      */
-    private fun setToRequest(
+    protected open fun setToRequest(
         manager: RequestManager?,
         source: DevSource?
     ): RequestBuilder<*>? {
@@ -656,7 +656,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param <T>     泛型 ( 如 Drawable、Bitmap )
      * @return [RequestBuilder]
      */
-    private fun <T> setToRequest(
+    protected open fun <T> setToRequest(
         request: RequestBuilder<T>?,
         source: DevSource?
     ): RequestBuilder<T>? {
@@ -711,7 +711,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param config [ImageConfig]
      * @return [RequestOptions]
      */
-    private fun buildRequestOptions(config: ImageConfig?): RequestOptions {
+    protected open fun buildRequestOptions(config: ImageConfig?): RequestOptions {
         if (config?.getOptions() is RequestOptions) {
             return config.getOptions() as RequestOptions
         }
@@ -822,7 +822,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param config  [ImageConfig]
      * @return [RequestBuilder]
      */
-    private fun <T> buildRequest(
+    protected open fun <T> buildRequest(
         request: RequestBuilder<T>?,
         config: ImageConfig?
     ): RequestBuilder<*>? {
@@ -849,7 +849,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param request   [RequestBuilder]
      * @param config    [ImageConfig]
      */
-    private fun innerDisplayToRequestBuilder(
+    protected open fun innerDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?
@@ -867,7 +867,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param source    [DevSource]
      * @param listener  [LoadListener]
      */
-    private fun <T> innerDisplayToRequestBuilder(
+    protected open fun <T> innerDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?,
@@ -1020,7 +1020,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param listener 回调事件
      * @return `true` success, `false` fail
      */
-    private fun innerConvertImageFormat(
+    protected open fun innerConvertImageFormat(
         context: Context?,
         sources: List<DevSource>?,
         config: ImageConfig?,

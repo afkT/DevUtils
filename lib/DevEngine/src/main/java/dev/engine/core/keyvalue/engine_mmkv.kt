@@ -41,11 +41,11 @@ open class MMKVKeyValueEngineImpl(
     // JSON Engine
     private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
-    fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
+    open fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine
     }
 
-    private fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
+    protected open fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
         if (mJSONEngine != null) return mJSONEngine
         return DevJSONEngine.getEngine()
     }

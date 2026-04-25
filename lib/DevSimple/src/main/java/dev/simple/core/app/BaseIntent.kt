@@ -36,7 +36,7 @@ abstract class BaseIntent<T> {
      * @param intent [android.content.Intent]
      * @return [android.content.Intent]
      */
-    fun insert(intent: Intent?): Intent? {
+    open fun insert(intent: Intent?): Intent? {
         return mIntent.insert(intent)
     }
 
@@ -44,7 +44,7 @@ abstract class BaseIntent<T> {
      * 插入数据
      * @return [android.os.Bundle]
      */
-    fun insert(): Bundle? {
+    open fun insert(): Bundle? {
         return mIntent.insert()
     }
 
@@ -53,7 +53,7 @@ abstract class BaseIntent<T> {
      * @param bundle [Bundle]
      * @return [Bundle]
      */
-    fun insert(bundle: Bundle?): Bundle? {
+    open fun insert(bundle: Bundle?): Bundle? {
         return mIntent.insert(bundle)
     }
 
@@ -64,7 +64,7 @@ abstract class BaseIntent<T> {
      * @param intent [Intent]
      * @return [T]
      */
-    fun reader(intent: Intent?): T {
+    open fun reader(intent: Intent?): T {
         mIntent.reader(intent)
         return returnT()
     }
@@ -74,7 +74,7 @@ abstract class BaseIntent<T> {
      * @param bundle [Bundle]
      * @return [T]
      */
-    fun reader(bundle: Bundle?): T {
+    open fun reader(bundle: Bundle?): T {
         mIntent.reader(bundle)
         return returnT()
     }
@@ -87,7 +87,7 @@ abstract class BaseIntent<T> {
      * 获取存储数据 Map
      * @return 存储数据 Map
      */
-    fun getDataMaps(): Map<String?, String?> {
+    open fun getDataMaps(): Map<String?, String?> {
         return mIntent.dataMaps
     }
 
@@ -96,7 +96,7 @@ abstract class BaseIntent<T> {
      * @param key 保存的 key
      * @return `true` yes, `false` no
      */
-    fun containsKey(key: String?): Boolean {
+    open fun containsKey(key: String?): Boolean {
         return mIntent.containsKey(key)
     }
 
@@ -105,7 +105,7 @@ abstract class BaseIntent<T> {
      * @param value 保存的 value
      * @return `true` yes, `false` no
      */
-    fun containsValue(value: String?): Boolean {
+    open fun containsValue(value: String?): Boolean {
         return mIntent.containsValue(value)
     }
 
@@ -114,7 +114,7 @@ abstract class BaseIntent<T> {
      * @param key 保存的 key
      * @return `true` yes, `false` no
      */
-    fun isNullValue(key: String?): Boolean {
+    open fun isNullValue(key: String?): Boolean {
         return mIntent.isNullValue(key)
     }
 
@@ -124,7 +124,7 @@ abstract class BaseIntent<T> {
      * @param value 保存的 value
      * @return [T]
      */
-    fun put(
+    open fun put(
         key: String?,
         value: String?
     ): T {
@@ -137,7 +137,7 @@ abstract class BaseIntent<T> {
      * @param map [Map]
      * @return [T]
      */
-    fun putAll(map: Map<String?, String?>?): T {
+    open fun putAll(map: Map<String?, String?>?): T {
         mIntent.putAll(map)
         return returnT()
     }
@@ -147,7 +147,7 @@ abstract class BaseIntent<T> {
      * @param key 保存的 key
      * @return [T]
      */
-    fun remove(key: String?): T {
+    open fun remove(key: String?): T {
         mIntent.remove(key)
         return returnT()
     }
@@ -157,7 +157,7 @@ abstract class BaseIntent<T> {
      * @param keys 保存的 key 集合
      * @return [T]
      */
-    fun removeAll(keys: List<String?>?): T {
+    open fun removeAll(keys: List<String?>?): T {
         mIntent.removeAll(keys)
         return returnT()
     }
@@ -167,7 +167,7 @@ abstract class BaseIntent<T> {
      * @param key 保存的 key
      * @return 保存的 value
      */
-    fun get(key: String?): String? {
+    open fun get(key: String?): String? {
         return mIntent.get(key)
     }
 
@@ -175,7 +175,7 @@ abstract class BaseIntent<T> {
      * 清空数据
      * @return [T]
      */
-    fun clear(): T {
+    open fun clear(): T {
         mIntent.clear()
         return returnT()
     }
@@ -187,7 +187,7 @@ abstract class BaseIntent<T> {
      * @return [T]
      * key、value 只要其中一个为 null 就清除
      */
-    fun clearNull(): T {
+    open fun clearNull(): T {
         mIntent.clearNull()
         return returnT()
     }
@@ -196,7 +196,7 @@ abstract class BaseIntent<T> {
      * 清除 null Key 数据
      * @return [T]
      */
-    fun clearNullKey(): T {
+    open fun clearNullKey(): T {
         mIntent.clearNullKey()
         return returnT()
     }
@@ -206,7 +206,7 @@ abstract class BaseIntent<T> {
      * @return [T]
      * value 只要为 null 就清除
      */
-    fun clearNullValue(): T {
+    open fun clearNullValue(): T {
         mIntent.clearNullValue()
         return returnT()
     }
@@ -218,7 +218,7 @@ abstract class BaseIntent<T> {
      * @return [T]
      * key、value 只要其中一个为 empty ( null、"" ) 就清除
      */
-    fun clearEmpty(): T {
+    open fun clearEmpty(): T {
         mIntent.clearEmpty()
         return returnT()
     }
@@ -227,7 +227,7 @@ abstract class BaseIntent<T> {
      * 清除 empty Key 数据
      * @return [T]
      */
-    fun clearEmptyKey(): T {
+    open fun clearEmptyKey(): T {
         mIntent.clearEmptyKey()
         return returnT()
     }
@@ -237,7 +237,7 @@ abstract class BaseIntent<T> {
      * @return [T]
      * value 只要为 empty ( null、"" ) 就清除
      */
-    fun clearEmptyValue(): T {
+    open fun clearEmptyValue(): T {
         mIntent.clearEmptyValue()
         return returnT()
     }

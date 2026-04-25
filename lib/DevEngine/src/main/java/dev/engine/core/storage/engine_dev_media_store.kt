@@ -215,7 +215,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param type   存储类型
      * @return 输出 Uri
      */
-    private fun convertType(
+    protected open fun convertType(
         params: StorageItem?,
         source: DevSource?,
         type: StorageType
@@ -247,7 +247,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param type     存储类型
      * @return `true` 校验通过, `false` 校验失败
      */
-    private fun innerPreCheck(
+    protected open fun innerPreCheck(
         params: StorageItem?,
         source: DevSource?,
         listener: OnInsertListener<StorageItem, StorageResult>?,
@@ -301,7 +301,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param type     存储类型
      * @return 输出 Uri
      */
-    private fun getOutputUri(
+    protected open fun getOutputUri(
         params: StorageItem,
         source: DevSource,
         external: Boolean,
@@ -379,7 +379,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param type     存储类型
      * @return 输出文件路径
      */
-    private fun getOutputFile(
+    protected open fun getOutputFile(
         params: StorageItem,
         source: DevSource,
         external: Boolean,
@@ -441,7 +441,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param listener 回调接口
      * @param type     存储类型
      */
-    private fun innerInsertToExternal(
+    protected open fun innerInsertToExternal(
         params: StorageItem?,
         source: DevSource?,
         listener: OnInsertListener<StorageItem, StorageResult>?,
@@ -460,7 +460,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param listener 回调接口
      * @param type     存储类型
      */
-    private fun innerInsertToInternal(
+    protected open fun innerInsertToInternal(
         params: StorageItem?,
         source: DevSource?,
         listener: OnInsertListener<StorageItem, StorageResult>?,
@@ -480,7 +480,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param external 是否外部存储
      * @param type     存储类型
      */
-    private fun innerInsertThread(
+    protected open fun innerInsertThread(
         params: StorageItem,
         source: DevSource,
         listener: OnInsertListener<StorageItem, StorageResult>?,
@@ -508,7 +508,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param external 是否外部存储
      * @param type     存储类型
      */
-    private fun innerInsertFinal(
+    protected open fun innerInsertFinal(
         params: StorageItem,
         source: DevSource,
         listener: OnInsertListener<StorageItem, StorageResult>?,
@@ -602,7 +602,7 @@ open class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> 
      * @param source   原始数据
      * @param listener 回调接口
      */
-    private fun finalCallback(
+    protected open fun finalCallback(
         result: StorageResult,
         params: StorageItem?,
         source: DevSource?,

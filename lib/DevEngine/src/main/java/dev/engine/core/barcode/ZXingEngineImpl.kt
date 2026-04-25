@@ -206,7 +206,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * 获取 BarCode Config
      * @return BarCode Config
      */
-    private fun getInnerConfig(): BarCodeConfig {
+    protected open fun getInnerConfig(): BarCodeConfig {
         return mBarCodeConfig ?: DEFAULT_CONFIG
     }
 
@@ -215,7 +215,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * @param params BarCode ( Data、Params ) Item
      * @return 如果属于有效数据则返回 null
      */
-    private fun isValidData(params: BarCodeData?): Exception? {
+    protected open fun isValidData(params: BarCodeData?): Exception? {
         if (params == null) {
             return Exception("BarCode ( Data、Params ) Item is null")
         }
@@ -235,7 +235,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * @param callback 生成结果回调
      * @param bitmap   条码图片
      */
-    private fun encodeCallback(
+    protected open fun encodeCallback(
         callback: BarCodeEncodeCallback?,
         bitmap: Bitmap?
     ) {
@@ -256,7 +256,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * @param callback 生成结果回调
      * @param error    异常信息
      */
-    private fun encodeFailureCallback(
+    protected open fun encodeFailureCallback(
         callback: BarCodeEncodeCallback?,
         error: Throwable
     ) {
@@ -270,7 +270,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * @param callback 生成结果回调
      * @param result   识别结果
      */
-    private fun decodeCallback(
+    protected open fun decodeCallback(
         callback: BarCodeDecodeCallback<BarCodeResult>?,
         result: BarCodeResult?
     ) {
@@ -291,7 +291,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * @param callback 生成结果回调
      * @param error    异常信息
      */
-    private fun decodeFailureCallback(
+    protected open fun decodeFailureCallback(
         callback: BarCodeDecodeCallback<BarCodeResult>?,
         error: Throwable
     ) {

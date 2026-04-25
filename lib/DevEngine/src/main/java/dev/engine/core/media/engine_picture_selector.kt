@@ -213,7 +213,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
      * @param lists [MediaData] list
      * @return [LocalMedia] list
      */
-    private fun convertList(lists: List<MediaData>?): ArrayList<LocalMedia> {
+    protected open fun convertList(lists: List<MediaData>?): ArrayList<LocalMedia> {
         val medias = ArrayList<LocalMedia>()
         if (lists != null) {
             for (media in lists) {
@@ -238,7 +238,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
      * @param libData 第三方库选择数据实体类
      * @return MediaData
      */
-    private fun createMediaData(libData: LocalMedia): MediaData {
+    protected open fun createMediaData(libData: LocalMedia): MediaData {
         val media = MediaData()
         media.setLibOriginalData(libData)
 
@@ -293,7 +293,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
      * @param config [MediaConfig]
      * @return `true` success, `false` fail
      */
-    private fun startCameraModel(config: MediaConfig?): Boolean {
+    protected open fun startCameraModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
                 val libConfig = config.getLibCustomConfig()
@@ -316,7 +316,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
      * @param config [MediaConfig]
      * @return `true` success, `false` fail
      */
-    private fun startGalleryModel(config: MediaConfig?): Boolean {
+    protected open fun startGalleryModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
                 val libConfig = config.getLibCustomConfig()
@@ -345,7 +345,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
      * @param config [MediaConfig]
      * @return `true` success, `false` fail
      */
-    private fun startPreviewModel(config: MediaConfig?): Boolean {
+    protected open fun startPreviewModel(config: MediaConfig?): Boolean {
         if (config != null) {
             try {
                 val libConfig = config.getLibCustomConfig()
