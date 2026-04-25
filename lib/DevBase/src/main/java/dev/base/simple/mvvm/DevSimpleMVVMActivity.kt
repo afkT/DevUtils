@@ -114,6 +114,16 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
             binding.setVariable(bindViewModelId, viewModel)
         } catch (_: Exception) {
         }
+        onViewModelReady(viewModel)
+    }
+
+    /**
+     * ViewModel 在 [innerViewModel] 中完成赋值、生命周期与 DataBinding 关联后回调。
+     * 子类可覆写以做额外初始化，不应替代 [initViewModel] 或内部自动解析逻辑（避免与防漏调 super 设计冲突）
+     * @param vm 当前 [viewModel] 实例
+     */
+    @Suppress("MemberVisibilityCanBePrivate")
+    protected open fun onViewModelReady(vm: VM) {
     }
 
     // ==================
