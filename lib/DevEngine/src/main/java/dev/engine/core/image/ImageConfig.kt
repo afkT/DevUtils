@@ -114,7 +114,7 @@ open class ImageConfig private constructor(
      * 克隆配置信息
      * @return [ImageConfig]
      */
-    fun clone(): ImageConfig {
+    open fun clone(): ImageConfig {
         return ImageConfig(this)
     }
 
@@ -122,91 +122,91 @@ open class ImageConfig private constructor(
     // = get/set =
     // ===========
 
-    fun isCacheDisk(): Boolean {
+    open fun isCacheDisk(): Boolean {
         return mCacheDisk
     }
 
-    fun setCacheDisk(cacheDisk: Boolean): ImageConfig {
+    open fun setCacheDisk(cacheDisk: Boolean): ImageConfig {
         mCacheDisk = cacheDisk
         return this
     }
 
-    fun isCacheMemory(): Boolean {
+    open fun isCacheMemory(): Boolean {
         return mCacheMemory
     }
 
-    fun setCacheMemory(cacheMemory: Boolean): ImageConfig {
+    open fun setCacheMemory(cacheMemory: Boolean): ImageConfig {
         mCacheMemory = cacheMemory
         return this
     }
 
-    fun getTransform(): Int {
+    open fun getTransform(): Int {
         return mTransform
     }
 
-    fun setTransform(transform: Int): ImageConfig {
+    open fun setTransform(transform: Int): ImageConfig {
         mTransform = transform
         return this
     }
 
-    fun getRoundedCornersRadius(): Int {
+    open fun getRoundedCornersRadius(): Int {
         return mRoundedCornersRadius
     }
 
-    fun setRoundedCornersRadius(roundedCornersRadius: Int): ImageConfig {
+    open fun setRoundedCornersRadius(roundedCornersRadius: Int): ImageConfig {
         mRoundedCornersRadius = roundedCornersRadius
         return this
     }
 
-    fun getErrorPlaceholder(): Int {
+    open fun getErrorPlaceholder(): Int {
         return mErrorPlaceholder
     }
 
-    fun setErrorPlaceholder(errorPlaceholder: Int): ImageConfig {
+    open fun setErrorPlaceholder(errorPlaceholder: Int): ImageConfig {
         mErrorPlaceholder = errorPlaceholder
         mErrorDrawable = null
         return this
     }
 
-    fun getLoadingPlaceholder(): Int {
+    open fun getLoadingPlaceholder(): Int {
         return mLoadingPlaceholder
     }
 
-    fun setLoadingPlaceholder(loadingPlaceholder: Int): ImageConfig {
+    open fun setLoadingPlaceholder(loadingPlaceholder: Int): ImageConfig {
         mLoadingPlaceholder = loadingPlaceholder
         mLoadingDrawable = null
         return this
     }
 
-    fun getErrorDrawable(): Drawable? {
+    open fun getErrorDrawable(): Drawable? {
         return mErrorDrawable
     }
 
-    fun setErrorDrawable(errorDrawable: Drawable?): ImageConfig {
+    open fun setErrorDrawable(errorDrawable: Drawable?): ImageConfig {
         mErrorPlaceholder = NO_PLACE_HOLDER
         mErrorDrawable = errorDrawable
         return this
     }
 
-    fun getLoadingDrawable(): Drawable? {
+    open fun getLoadingDrawable(): Drawable? {
         return mLoadingDrawable
     }
 
-    fun setLoadingDrawable(loadingDrawable: Drawable?): ImageConfig {
+    open fun setLoadingDrawable(loadingDrawable: Drawable?): ImageConfig {
         mLoadingPlaceholder = NO_PLACE_HOLDER
         mLoadingDrawable = loadingDrawable
         return this
     }
 
-    fun getWidth(): Int {
+    open fun getWidth(): Int {
         return mWidth
     }
 
-    fun getHeight(): Int {
+    open fun getHeight(): Int {
         return mHeight
     }
 
-    fun setSize(
+    open fun setSize(
         width: Int,
         height: Int
     ): ImageConfig {
@@ -215,44 +215,44 @@ open class ImageConfig private constructor(
         return this
     }
 
-    fun getThumbnail(): Float {
+    open fun getThumbnail(): Float {
         return mThumbnail
     }
 
-    fun setThumbnail(thumbnail: Float): ImageConfig {
+    open fun setThumbnail(thumbnail: Float): ImageConfig {
         mThumbnail = thumbnail
         return this
     }
 
-    fun getQuality(): Int {
+    open fun getQuality(): Int {
         return mQuality
     }
 
-    fun setQuality(quality: Int) {
+    open fun setQuality(quality: Int) {
         mQuality = quality
     }
 
-    fun isOriginalPathReturn(): Boolean {
+    open fun isOriginalPathReturn(): Boolean {
         return mOriginalPathReturn
     }
 
-    fun setOriginalPathReturn(originalPathReturn: Boolean) {
+    open fun setOriginalPathReturn(originalPathReturn: Boolean) {
         mOriginalPathReturn = originalPathReturn
     }
 
-    fun isDontAnimate(): Boolean {
+    open fun isDontAnimate(): Boolean {
         return mDontAnimate
     }
 
-    fun setDontAnimate(dontAnimate: Boolean) {
+    open fun setDontAnimate(dontAnimate: Boolean) {
         mDontAnimate = dontAnimate
     }
 
-    fun getOptions(): Any? {
+    open fun getOptions(): Any? {
         return mOptions
     }
 
-    fun setOptions(options: Any?) {
+    open fun setOptions(options: Any?) {
         mOptions = options
     }
 }

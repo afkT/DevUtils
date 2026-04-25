@@ -58,55 +58,55 @@ open class StorageResult(
     // = 对外公开方法 =
     // =============
 
-    fun isSuccess(): Boolean {
+    open fun isSuccess(): Boolean {
         return mInsertResult
     }
 
     // =
 
-    fun getUri(): Uri? {
+    open fun getUri(): Uri? {
         return mUri
     }
 
-    fun getFile(): File? {
+    open fun getFile(): File? {
         return mFile
     }
 
-    fun getError(): Exception? {
+    open fun getError(): Exception? {
         return mError
     }
 
-    fun getType(): StorageType? {
+    open fun getType(): StorageType? {
         return mType
     }
 
-    fun isExternal(): Boolean {
+    open fun isExternal(): Boolean {
         return mExternal
     }
 
     // =
 
-    fun setUri(uri: Uri?): StorageResult {
+    open fun setUri(uri: Uri?): StorageResult {
         mUri = uri
         return this
     }
 
-    fun setFile(file: File?): StorageResult {
+    open fun setFile(file: File?): StorageResult {
         mFile = file
         return this
     }
 
-    fun setError(error: Exception?): StorageResult {
+    open fun setError(error: Exception?): StorageResult {
         mError = error
         return this
     }
 
-    fun setType(type: StorageType?): StorageResult {
+    open fun setType(type: StorageType?): StorageResult {
         mType = type
         return this
     }
 
-    fun setExternal(external: Boolean): StorageResult {
+    open fun setExternal(external: Boolean): StorageResult {
         mExternal = external
         return this
     }

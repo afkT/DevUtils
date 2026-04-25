@@ -13,7 +13,7 @@ import dev.utils.app.assist.ResourceAssist
  * @author Ttt
  * 该类主要用于内部缓存适配值, 便于第二次直接从缓存中读取
  */
-class AppAutoSize {
+open class AppAutoSize {
 
     // =============
     // = 对外公开方法 =
@@ -30,7 +30,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun dp2px(value: Float): Int {
+    open fun dp2px(value: Float): Int {
         return dp2px(null, value)
     }
 
@@ -39,7 +39,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun dp2pxf(value: Float): Float {
+    open fun dp2pxf(value: Float): Float {
         return dp2pxf(null, value)
     }
 
@@ -48,7 +48,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2dp(value: Float): Int {
+    open fun px2dp(value: Float): Int {
         return px2dp(null, value)
     }
 
@@ -57,7 +57,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2dpf(value: Float): Float {
+    open fun px2dpf(value: Float): Float {
         return px2dpf(null, value)
     }
 
@@ -66,7 +66,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun sp2px(value: Float): Int {
+    open fun sp2px(value: Float): Int {
         return sp2px(null, value)
     }
 
@@ -75,7 +75,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun sp2pxf(value: Float): Float {
+    open fun sp2pxf(value: Float): Float {
         return sp2pxf(null, value)
     }
 
@@ -84,7 +84,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2sp(value: Float): Int {
+    open fun px2sp(value: Float): Int {
         return px2sp(null, value)
     }
 
@@ -93,7 +93,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2spf(value: Float): Float {
+    open fun px2spf(value: Float): Float {
         return px2spf(null, value)
     }
 
@@ -102,7 +102,7 @@ class AppAutoSize {
      * @param id resource identifier
      * @return Dimension
      */
-    fun getDimension(@DimenRes id: Int): Float {
+    open fun getDimension(@DimenRes id: Int): Float {
         return getDimension(null, id)
     }
 
@@ -111,7 +111,7 @@ class AppAutoSize {
      * @param id resource identifier
      * @return Dimension
      */
-    fun getDimensionInt(@DimenRes id: Int): Int {
+    open fun getDimensionInt(@DimenRes id: Int): Int {
         return getDimensionInt(null, id)
     }
 
@@ -120,7 +120,7 @@ class AppAutoSize {
      * @param resName resource name
      * @return Dimension
      */
-    fun getDimension(resName: String?): Float {
+    open fun getDimension(resName: String?): Float {
         return getDimension(null, resName)
     }
 
@@ -129,7 +129,7 @@ class AppAutoSize {
      * @param resName resource name
      * @return Dimension
      */
-    fun getDimensionInt(resName: String?): Int {
+    open fun getDimensionInt(resName: String?): Int {
         return getDimensionInt(null, resName)
     }
 
@@ -143,7 +143,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun dp2px(
+    open fun dp2px(
         context: Context?,
         value: Float
     ): Int {
@@ -156,7 +156,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun dp2pxf(
+    open fun dp2pxf(
         context: Context?,
         value: Float
     ): Float {
@@ -171,7 +171,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2dp(
+    open fun px2dp(
         context: Context?,
         value: Float
     ): Int {
@@ -184,7 +184,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2dpf(
+    open fun px2dpf(
         context: Context?,
         value: Float
     ): Float {
@@ -199,7 +199,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun sp2px(
+    open fun sp2px(
         context: Context?,
         value: Float
     ): Int {
@@ -212,7 +212,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun sp2pxf(
+    open fun sp2pxf(
         context: Context?,
         value: Float
     ): Float {
@@ -227,7 +227,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2sp(
+    open fun px2sp(
         context: Context?,
         value: Float
     ): Int {
@@ -240,7 +240,7 @@ class AppAutoSize {
      * @param value 待转换值
      * @return 转换后的值
      */
-    fun px2spf(
+    open fun px2spf(
         context: Context?,
         value: Float
     ): Float {
@@ -255,7 +255,7 @@ class AppAutoSize {
      * @param id resource identifier
      * @return Dimension
      */
-    fun getDimension(
+    open fun getDimension(
         context: Context?,
         @DimenRes id: Int
     ): Float {
@@ -274,7 +274,7 @@ class AppAutoSize {
      * @param id resource identifier
      * @return Dimension
      */
-    fun getDimensionInt(
+    open fun getDimensionInt(
         context: Context?,
         @DimenRes id: Int
     ): Int {
@@ -287,7 +287,7 @@ class AppAutoSize {
      * @param resName resource name
      * @return Dimension
      */
-    fun getDimension(
+    open fun getDimension(
         context: Context?,
         resName: String?
     ): Float {
@@ -306,7 +306,7 @@ class AppAutoSize {
      * @param resName resource name
      * @return Dimension
      */
-    fun getDimensionInt(
+    open fun getDimensionInt(
         context: Context?,
         resName: String?
     ): Int {
@@ -336,7 +336,7 @@ class AppAutoSize {
      * detail: 转换适配值封装
      * @author Ttt
      */
-    class Convert {
+    open class Convert {
 
         // dp 转 px ( float )
         val DP_2_PX: DevVariableExt<Float, Float, Context?> by lazy {
@@ -435,7 +435,7 @@ class AppAutoSize {
          * 该方法主要解决出现转换失败返回 0 的情况
          * 导致后续获取缓存值为 0 直接返回使用
          */
-        internal fun innerConvert(
+        internal open fun innerConvert(
             context: Context?,
             type: Type,
             key: Float

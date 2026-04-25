@@ -18,7 +18,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 强转第三方库自定义配置
      * @return 泛型类型对象
      */
-    fun <T> convertLibCustomConfig(): T? {
+    open fun <T> convertLibCustomConfig(): T? {
         return mLibCustomConfig as? T
     }
 
@@ -26,7 +26,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 获取第三方库自定义配置
      * @return 第三方库自定义配置
      */
-    fun getLibCustomConfig(): Any? {
+    open fun getLibCustomConfig(): Any? {
         return mLibCustomConfig
     }
 
@@ -35,7 +35,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * @param libCustomConfig 第三方库自定义配置
      * @return MediaConfig
      */
-    fun setLibCustomConfig(libCustomConfig: Any?): MediaConfig {
+    open fun setLibCustomConfig(libCustomConfig: Any?): MediaConfig {
         mLibCustomConfig = libCustomConfig
         return this
     }
@@ -98,7 +98,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 获取相册选择类型
      * @return 相册选择类型
      */
-    fun getMimeType(): Int {
+    open fun getMimeType(): Int {
         return mMimeType
     }
 
@@ -111,7 +111,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 视频 ofVideo() = 2
      * 音频 ofAudio() = 3
      */
-    fun setMimeType(mimeType: Int): MediaConfig {
+    open fun setMimeType(mimeType: Int): MediaConfig {
         // 超过最大、最小值都默认为全部类型
         if (mimeType > MimeType.ofAudio() || mimeType < MimeType.ofAll()) {
             this.mMimeType = MimeType.ofAll()
@@ -125,7 +125,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 获取相册选择模式
      * @return 相册选择模式
      */
-    fun getSelectionMode(): Int {
+    open fun getSelectionMode(): Int {
         return mSelectionMode
     }
 
@@ -136,7 +136,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 多选 [MimeType.MULTIPLE]
      * 单选 [MimeType.SINGLE]
      */
-    fun setSelectionMode(selectionMode: Int): MediaConfig {
+    open fun setSelectionMode(selectionMode: Int): MediaConfig {
         if (selectionMode >= MimeType.MULTIPLE) {
             mSelectionMode = MimeType.MULTIPLE
         } else {
@@ -149,7 +149,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 获取自定义数据
      * @return 自定义数据
      */
-    fun getCustomData(): Any? {
+    open fun getCustomData(): Any? {
         return mCustomData
     }
 
@@ -158,7 +158,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * @param customData 自定义数据
      * @return MediaConfig
      */
-    fun setCustomData(customData: Any?): MediaConfig {
+    open fun setCustomData(customData: Any?): MediaConfig {
         mCustomData = customData
         return this
     }
@@ -167,7 +167,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 获取已选择的资源
      * @return 已选择的资源
      */
-    fun getMediaDatas(): List<MediaData>? {
+    open fun getMediaDatas(): List<MediaData>? {
         return mMediaDatas
     }
 
@@ -176,7 +176,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * @param mediaDatas 选择的资源
      * @return [MediaConfig]
      */
-    fun setMediaDatas(mediaDatas: MutableList<MediaData>?): MediaConfig {
+    open fun setMediaDatas(mediaDatas: MutableList<MediaData>?): MediaConfig {
         mMediaDatas = mediaDatas
         return this
     }
@@ -187,7 +187,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * 克隆新的配置信息
      * @return [MediaConfig]
      */
-    fun clone(): MediaConfig {
+    open fun clone(): MediaConfig {
         val config = MediaConfig()
         config.mLibCustomConfig = mLibCustomConfig
         config.mMimeType = mMimeType
@@ -202,7 +202,7 @@ open class MediaConfig : IMediaEngine.EngineConfig {
      * @param config 新的配置信息
      * @return [MediaConfig]
      */
-    fun set(config: MediaConfig?): MediaConfig {
+    open fun set(config: MediaConfig?): MediaConfig {
         config?.let {
             mLibCustomConfig = it.mLibCustomConfig
             mMimeType = it.mMimeType

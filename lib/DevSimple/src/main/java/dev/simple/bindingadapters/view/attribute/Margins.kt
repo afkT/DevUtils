@@ -4,7 +4,7 @@ package dev.simple.bindingadapters.view.attribute
  * detail: 通用 Margin 类
  * @author Ttt
  */
-class Margins(
+open class Margins(
     var left: Int = 0,
     var top: Int = 0,
     var right: Int = 0,
@@ -26,7 +26,7 @@ class Margins(
         val NO_MARGINS get() = Margins()
     }
 
-    fun clone(): Margins {
+    open fun clone(): Margins {
         return Margins(left, top, right, bottom)
     }
 

@@ -4,7 +4,7 @@ package dev.simple.bindingadapters.view.attribute
  * detail: 通用 Padding 类
  * @author Ttt
  */
-class Paddings(
+open class Paddings(
     var left: Int = 0,
     var top: Int = 0,
     var right: Int = 0,
@@ -26,7 +26,7 @@ class Paddings(
         val NO_PADDINGS get() = Paddings()
     }
 
-    fun clone(): Paddings {
+    open fun clone(): Paddings {
         return Paddings(left, top, right, bottom)
     }
 

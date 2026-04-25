@@ -20,7 +20,7 @@ open class BarCodeResult(
      * 是否解析成功
      * @return `true` success, `false` fail
      */
-    fun isSuccess(): Boolean {
+    open fun isSuccess(): Boolean {
         return mResult != null
     }
 
@@ -28,7 +28,7 @@ open class BarCodeResult(
      * 获取解析结果
      * @return 解析结果数据
      */
-    fun getResult(): Result? {
+    open fun getResult(): Result? {
         return mResult
     }
 
@@ -38,7 +38,7 @@ open class BarCodeResult(
      * 获取扫描结果数据
      * @return 扫描结果数据
      */
-    fun getResultData(): String? {
+    open fun getResultData(): String? {
         return mResult?.text
     }
 
@@ -46,7 +46,7 @@ open class BarCodeResult(
      * 获取条码类型
      * @return 条码类型
      */
-    fun getBarcodeFormat(): BarcodeFormat? {
+    open fun getBarcodeFormat(): BarcodeFormat? {
         return mResult?.barcodeFormat
     }
 }

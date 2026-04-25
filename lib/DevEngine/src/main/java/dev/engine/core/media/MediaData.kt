@@ -23,7 +23,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 强转第三方库原始数据
      * @return 泛型类型对象
      */
-    fun <T> convertLibOriginalData(): T? {
+    open fun <T> convertLibOriginalData(): T? {
         return mLibOriginalData as? T
     }
 
@@ -31,7 +31,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取第三方库原始数据
      * @return 第三方库原始数据
      */
-    fun getLibOriginalData(): Any? {
+    open fun getLibOriginalData(): Any? {
         return mLibOriginalData
     }
 
@@ -40,7 +40,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param libOriginalData 第三方库原始数据
      * @return MediaData
      */
-    fun setLibOriginalData(libOriginalData: Any?): MediaData {
+    open fun setLibOriginalData(libOriginalData: Any?): MediaData {
         mLibOriginalData = libOriginalData
         return this
     }
@@ -143,7 +143,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 裁剪 -> 压缩 -> 水印 -> 沙盒 -> 原始
      * 如果有差异化可自行继承该类重写该方法或直接进行 Uri 获取
      */
-    fun getAvailableUri(): Uri? {
+    open fun getAvailableUri(): Uri? {
         if (isExistCropUri()) {
             return mCropUri
         } else if (isExistCompressUri()) {
@@ -166,7 +166,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否存在原始 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistOriginalUri(): Boolean {
+    open fun isExistOriginalUri(): Boolean {
         return UriUtils.isUriExists(mOriginalUri)
     }
 
@@ -174,7 +174,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否存在沙盒转存 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistSandboxUri(): Boolean {
+    open fun isExistSandboxUri(): Boolean {
         return UriUtils.isUriExists(mSandboxUri)
     }
 
@@ -182,7 +182,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否存在缩略图 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistThumbnailUri(): Boolean {
+    open fun isExistThumbnailUri(): Boolean {
         return UriUtils.isUriExists(mThumbnailUri)
     }
 
@@ -190,7 +190,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否存在水印 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistWatermarkUri(): Boolean {
+    open fun isExistWatermarkUri(): Boolean {
         return UriUtils.isUriExists(mWatermarkUri)
     }
 
@@ -198,7 +198,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否属于压缩状态且存在压缩 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistCompressUri(): Boolean {
+    open fun isExistCompressUri(): Boolean {
         return mCompressState && UriUtils.isUriExists(mCompressUri)
     }
 
@@ -206,7 +206,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 是否属于裁剪状态且存在裁剪 Uri
      * @return `true` yes, `false` no
      */
-    fun isExistCropUri(): Boolean {
+    open fun isExistCropUri(): Boolean {
         return mCropState && UriUtils.isUriExists(mCropUri)
     }
 
@@ -218,7 +218,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 克隆对象
      * @return MediaData
      */
-    fun clone(): MediaData {
+    open fun clone(): MediaData {
         val media = MediaData(mUUID)
         media.mCustomData = mCustomData
         media.mOriginalUri = mOriginalUri
@@ -246,7 +246,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param media MediaData
      * @return MediaData
      */
-    fun set(media: MediaData?): MediaData {
+    open fun set(media: MediaData?): MediaData {
         media?.let {
             mCustomData = it.mCustomData
             mOriginalUri = it.mOriginalUri
@@ -278,7 +278,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取唯一标识 UUID
      * @return UUID.hashCode()
      */
-    fun getUUID(): Long {
+    open fun getUUID(): Long {
         return mUUID
     }
 
@@ -286,7 +286,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取自定义数据
      * @return 自定义数据
      */
-    fun getCustomData(): Any? {
+    open fun getCustomData(): Any? {
         return mCustomData
     }
 
@@ -295,7 +295,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param customData 自定义数据
      * @return MediaData
      */
-    fun setCustomData(customData: Any?): MediaData {
+    open fun setCustomData(customData: Any?): MediaData {
         mCustomData = customData
         return this
     }
@@ -304,7 +304,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取原始 Uri
      * @return 原始 Uri
      */
-    fun getOriginalUri(): Uri? {
+    open fun getOriginalUri(): Uri? {
         return mOriginalUri
     }
 
@@ -313,7 +313,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param originalUri 原始 Uri
      * @return MediaData
      */
-    fun setOriginalUri(originalUri: Uri?): MediaData {
+    open fun setOriginalUri(originalUri: Uri?): MediaData {
         mOriginalUri = originalUri
         return this
     }
@@ -322,7 +322,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取沙盒转存 Uri
      * @return 沙盒转存 Uri
      */
-    fun getSandboxUri(): Uri? {
+    open fun getSandboxUri(): Uri? {
         return mSandboxUri
     }
 
@@ -331,7 +331,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param sandboxUri 沙盒转存 Uri
      * @return MediaData
      */
-    fun setSandboxUri(sandboxUri: Uri?): MediaData {
+    open fun setSandboxUri(sandboxUri: Uri?): MediaData {
         mSandboxUri = sandboxUri
         return this
     }
@@ -340,7 +340,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取压缩 Uri
      * @return 压缩 Uri
      */
-    fun getCompressUri(): Uri? {
+    open fun getCompressUri(): Uri? {
         return mCompressUri
     }
 
@@ -349,7 +349,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param compressUri 压缩 Uri
      * @return MediaData
      */
-    fun setCompressUri(compressUri: Uri?): MediaData {
+    open fun setCompressUri(compressUri: Uri?): MediaData {
         mCompressUri = compressUri
         return this
     }
@@ -358,7 +358,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取缩略图 Uri
      * @return 缩略图 Uri
      */
-    fun getThumbnailUri(): Uri? {
+    open fun getThumbnailUri(): Uri? {
         return mThumbnailUri
     }
 
@@ -367,7 +367,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param thumbnailUri 缩略图 Uri
      * @return MediaData
      */
-    fun setThumbnailUri(thumbnailUri: Uri?): MediaData {
+    open fun setThumbnailUri(thumbnailUri: Uri?): MediaData {
         mThumbnailUri = thumbnailUri
         return this
     }
@@ -376,7 +376,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取水印 Uri
      * @return 水印 Uri
      */
-    fun getWatermarkUri(): Uri? {
+    open fun getWatermarkUri(): Uri? {
         return mWatermarkUri
     }
 
@@ -385,7 +385,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param watermarkUri 水印 Uri
      * @return MediaData
      */
-    fun setWatermarkUri(watermarkUri: Uri?): MediaData {
+    open fun setWatermarkUri(watermarkUri: Uri?): MediaData {
         mWatermarkUri = watermarkUri
         return this
     }
@@ -394,7 +394,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪 Uri
      * @return 裁剪 Uri
      */
-    fun getCropUri(): Uri? {
+    open fun getCropUri(): Uri? {
         return mCropUri
     }
 
@@ -403,7 +403,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropUri 裁剪 Uri
      * @return MediaData
      */
-    fun setCropUri(cropUri: Uri?): MediaData {
+    open fun setCropUri(cropUri: Uri?): MediaData {
         mCropUri = cropUri
         return this
     }
@@ -412,7 +412,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取类型
      * @return 类型
      */
-    fun getMimeType(): String? {
+    open fun getMimeType(): String? {
         return mMimeType
     }
 
@@ -421,7 +421,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param mimeType 类型
      * @return MediaData
      */
-    fun setMimeType(mimeType: String?): MediaData {
+    open fun setMimeType(mimeType: String?): MediaData {
         mMimeType = mimeType
         return this
     }
@@ -430,7 +430,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取时长
      * @return 时长
      */
-    fun getDuration(): Long {
+    open fun getDuration(): Long {
         return mDuration
     }
 
@@ -439,7 +439,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param duration 时长
      * @return MediaData
      */
-    fun setDuration(duration: Long): MediaData {
+    open fun setDuration(duration: Long): MediaData {
         mDuration = duration
         return this
     }
@@ -448,7 +448,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取宽度
      * @return 宽度
      */
-    fun getWidth(): Int {
+    open fun getWidth(): Int {
         return mWidth
     }
 
@@ -457,7 +457,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param width 宽度
      * @return MediaData
      */
-    fun setWidth(width: Int): MediaData {
+    open fun setWidth(width: Int): MediaData {
         mWidth = width
         return this
     }
@@ -466,7 +466,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取高度
      * @return 高度
      */
-    fun getHeight(): Int {
+    open fun getHeight(): Int {
         return mHeight
     }
 
@@ -475,7 +475,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param height 高度
      * @return MediaData
      */
-    fun setHeight(height: Int): MediaData {
+    open fun setHeight(height: Int): MediaData {
         mHeight = height
         return this
     }
@@ -484,7 +484,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪宽度
      * @return 裁剪宽度
      */
-    fun getCropImageWidth(): Int {
+    open fun getCropImageWidth(): Int {
         return mCropImageWidth
     }
 
@@ -493,7 +493,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropImageWidth 裁剪宽度
      * @return MediaData
      */
-    fun setCropImageWidth(cropImageWidth: Int): MediaData {
+    open fun setCropImageWidth(cropImageWidth: Int): MediaData {
         mCropImageWidth = cropImageWidth
         return this
     }
@@ -502,7 +502,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪高度
      * @return 裁剪高度
      */
-    fun getCropImageHeight(): Int {
+    open fun getCropImageHeight(): Int {
         return mCropImageHeight
     }
 
@@ -511,7 +511,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropImageHeight 裁剪高度
      * @return MediaData
      */
-    fun setCropImageHeight(cropImageHeight: Int): MediaData {
+    open fun setCropImageHeight(cropImageHeight: Int): MediaData {
         mCropImageHeight = cropImageHeight
         return this
     }
@@ -520,7 +520,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪 X 轴偏移值
      * @return 裁剪 X 轴偏移值
      */
-    fun getCropOffsetX(): Int {
+    open fun getCropOffsetX(): Int {
         return mCropOffsetX
     }
 
@@ -529,7 +529,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropOffsetX X 轴偏移值
      * @return MediaData
      */
-    fun setCropOffsetX(cropOffsetX: Int): MediaData {
+    open fun setCropOffsetX(cropOffsetX: Int): MediaData {
         mCropOffsetX = cropOffsetX
         return this
     }
@@ -538,7 +538,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪 Y 轴偏移值
      * @return 裁剪 Y 轴偏移值
      */
-    fun getCropOffsetY(): Int {
+    open fun getCropOffsetY(): Int {
         return mCropOffsetY
     }
 
@@ -547,7 +547,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropOffsetY Y 轴偏移值
      * @return MediaData
      */
-    fun setCropOffsetY(cropOffsetY: Int): MediaData {
+    open fun setCropOffsetY(cropOffsetY: Int): MediaData {
         mCropOffsetY = cropOffsetY
         return this
     }
@@ -556,7 +556,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪纵横比 X:Y
      * @return 裁剪纵横比 X:Y
      */
-    fun getCropAspectRatio(): Float {
+    open fun getCropAspectRatio(): Float {
         return mCropAspectRatio
     }
 
@@ -565,7 +565,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropAspectRatio 裁剪纵横比 X:Y
      * @return MediaData
      */
-    fun setCropAspectRatio(cropAspectRatio: Float): MediaData {
+    open fun setCropAspectRatio(cropAspectRatio: Float): MediaData {
         mCropAspectRatio = cropAspectRatio
         return this
     }
@@ -574,7 +574,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取裁剪状态
      * @return `true` yes, `false` no
      */
-    fun isCropState(): Boolean {
+    open fun isCropState(): Boolean {
         return mCropState
     }
 
@@ -583,7 +583,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param cropState `true` yes, `false` no
      * @return MediaData
      */
-    fun setCropState(cropState: Boolean): MediaData {
+    open fun setCropState(cropState: Boolean): MediaData {
         mCropState = cropState
         return this
     }
@@ -592,7 +592,7 @@ open class MediaData : IMediaEngine.EngineData {
      * 获取压缩状态
      * @return `true` yes, `false` no
      */
-    fun isCompressState(): Boolean {
+    open fun isCompressState(): Boolean {
         return mCompressState
     }
 
@@ -601,7 +601,7 @@ open class MediaData : IMediaEngine.EngineData {
      * @param compressState `true` yes, `false` no
      * @return MediaData
      */
-    fun setCompressState(compressState: Boolean): MediaData {
+    open fun setCompressState(compressState: Boolean): MediaData {
         mCompressState = compressState
         return this
     }

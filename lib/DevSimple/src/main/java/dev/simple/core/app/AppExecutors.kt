@@ -9,21 +9,21 @@ import java.util.concurrent.Executors
  * detail: 整个应用程序的全局线程池
  * @author Google
  */
-class AppExecutors(
+open class AppExecutors(
     private val diskIO: Executor,
     private val networkIO: Executor,
     private val mainThread: MainExecutor
 ) {
 
-    fun diskIO(): Executor {
+    open fun diskIO(): Executor {
         return diskIO
     }
 
-    fun networkIO(): Executor {
+    open fun networkIO(): Executor {
         return networkIO
     }
 
-    fun mainThread(): MainExecutor {
+    open fun mainThread(): MainExecutor {
         return mainThread
     }
 
@@ -35,7 +35,7 @@ class AppExecutors(
         )
     }
 
-    class MainThreadExecutor : MainExecutor {
+    open class MainThreadExecutor : MainExecutor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())
         override fun execute(command: Runnable) {
             mainThreadHandler.post(command)

@@ -11,7 +11,7 @@ import dev.engine.core.image.ImageConfig
  * detail: App ImageConfig 创建
  * @author Ttt
  */
-class AppAutoImageConfig(
+open class AppAutoImageConfig(
     // 变量创建器
     creator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>,
     // ImageConfig 默认值
@@ -28,7 +28,7 @@ class AppAutoImageConfig(
      * 获取变量操作基类扩展类
      * @return DevVariableExt<String, ImageConfig, String>
      */
-    fun varExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
+    open fun varExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
         return varExt
     }
 
@@ -37,7 +37,7 @@ class AppAutoImageConfig(
      * @param key 对应 ImageConfig Key
      * @return [ImageConfig]
      */
-    fun toImageConfig(key: String?): ImageConfig? {
+    open fun toImageConfig(key: String?): ImageConfig? {
         return toImageConfig(key, defaultValue)
     }
 
@@ -47,7 +47,7 @@ class AppAutoImageConfig(
      * @param defaultValue 默认 ImageConfig
      * @return [ImageConfig]
      */
-    fun toImageConfig(
+    open fun toImageConfig(
         key: String?,
         defaultValue: ImageConfig?
     ): ImageConfig? {
@@ -63,7 +63,7 @@ class AppAutoImageConfig(
      * 获取 ImageConfig 默认值
      * @return [ImageConfig]
      */
-    fun defaultValue(): ImageConfig? {
+    open fun defaultValue(): ImageConfig? {
         return defaultValue
     }
 
@@ -72,7 +72,7 @@ class AppAutoImageConfig(
      * @param value 默认 ImageConfig
      * @return AppAutoImageConfig
      */
-    fun setDefaultValue(value: ImageConfig?): AppAutoImageConfig {
+    open fun setDefaultValue(value: ImageConfig?): AppAutoImageConfig {
         this.defaultValue = value
         return this
     }

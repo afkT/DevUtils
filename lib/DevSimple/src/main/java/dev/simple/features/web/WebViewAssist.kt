@@ -16,7 +16,7 @@ import dev.utils.app.ViewUtils
  * @author Ttt
  * WebView 截图使用 [dev.utils.app.CapturePictureUtils.snapshotByWebView]
  */
-class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
+open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 
     // WebView
     private var mWebView: WebView? = null
@@ -164,7 +164,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      * 如果在 [setWebView] 前调用了 [setBuilder] 则需要手动调用 [apply]
      */
-    fun setWebView(webView: WebView?): WebViewAssist {
+    open fun setWebView(webView: WebView?): WebViewAssist {
         mWebView = webView
         return this
     }
@@ -173,7 +173,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取 WebView
      * @return [WebView]
      */
-    fun getWebView(): WebView? {
+    open fun getWebView(): WebView? {
         return mWebView
     }
 
@@ -181,7 +181,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * WebView 是否不为 null
      * @return `true` yes, `false` no
      */
-    fun isWebViewNotEmpty(): Boolean {
+    open fun isWebViewNotEmpty(): Boolean {
         return mWebView != null
     }
 
@@ -190,7 +190,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param builder [Builder]
      * @return [WebViewAssist]
      */
-    fun setBuilder(builder: Builder?): WebViewAssist {
+    open fun setBuilder(builder: Builder?): WebViewAssist {
         return setBuilder(builder, true)
     }
 
@@ -200,7 +200,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param apply   是否应用配置
      * @return [WebViewAssist]
      */
-    fun setBuilder(
+    open fun setBuilder(
         builder: Builder?,
         apply: Boolean
     ): WebViewAssist {
@@ -218,7 +218,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取 WebView 常用配置构建类
      * @return [Builder]
      */
-    fun getBuilder(): Builder? {
+    open fun getBuilder(): Builder? {
         return mBuilder
     }
 
@@ -226,7 +226,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 应用 ( 设置 ) 配置
      * @return [Builder]
      */
-    fun apply(): WebViewAssist {
+    open fun apply(): WebViewAssist {
         return setBuilder(mBuilder)
     }
 
@@ -243,7 +243,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 加载应用资源文件内的网页
      * loadUrl("file:///android_asset/test.html")
      */
-    fun loadUrl(url: String): WebViewAssist {
+    open fun loadUrl(url: String): WebViewAssist {
         mWebView?.loadUrl(url)
         return this
     }
@@ -254,7 +254,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param additionalHttpHeaders Http 请求头信息
      * @return [WebViewAssist]
      */
-    fun loadUrl(
+    open fun loadUrl(
         url: String,
         additionalHttpHeaders: Map<String?, String?>
     ): WebViewAssist {
@@ -270,7 +270,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      */
     @Deprecated("推荐使用 loadDataWithBaseURL")
-    fun loadData(
+    open fun loadData(
         data: String,
         mimeType: String?,
         encoding: String?
@@ -288,7 +288,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param historyUrl 可用历史记录
      * @return [WebViewAssist]
      */
-    fun loadDataWithBaseURL(
+    open fun loadDataWithBaseURL(
         baseUrl: String?,
         data: String,
         mimeType: String?,
@@ -306,7 +306,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      * 如果 url 不是网络 url [loadUrl] 加载
      */
-    fun postUrl(
+    open fun postUrl(
         url: String,
         postData: ByteArray
     ): WebViewAssist {
@@ -321,7 +321,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param data Html 数据
      * @return [WebViewAssist]
      */
-    fun loadDataWithBaseURL(data: String): WebViewAssist {
+    open fun loadDataWithBaseURL(data: String): WebViewAssist {
         return loadDataWithBaseURL(null, data, null)
     }
 
@@ -332,7 +332,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param historyUrl 可用历史记录
      * @return [WebViewAssist]
      */
-    fun loadDataWithBaseURL(
+    open fun loadDataWithBaseURL(
         baseUrl: String?,
         data: String,
         historyUrl: String?
@@ -348,7 +348,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取 WebView 配置
      * @return [android.webkit.WebSettings]
      */
-    fun getSettings(): WebSettings? {
+    open fun getSettings(): WebSettings? {
         return mWebView?.settings
     }
 
@@ -356,7 +356,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取浏览器标识 UA
      * @return 浏览器标识 UA
      */
-    fun getUserAgentString(): String? {
+    open fun getUserAgentString(): String? {
         val webSettings = getSettings()
         return webSettings?.userAgentString
     }
@@ -366,7 +366,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param ua 浏览器标识
      * @return [WebViewAssist]
      */
-    fun setUserAgentString(ua: String?): WebViewAssist {
+    open fun setUserAgentString(ua: String?): WebViewAssist {
         val webSettings = getSettings()
         webSettings?.userAgentString = ua
         return this
@@ -381,7 +381,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      */
     @SuppressLint("JavascriptInterface")
-    fun addJavascriptInterface(
+    open fun addJavascriptInterface(
         obj: Any,
         interfaceName: String
     ): WebViewAssist {
@@ -394,7 +394,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param interfaceName 在 JavaScript 中公开对象的名称
      * @return [WebViewAssist]
      */
-    fun removeJavascriptInterface(interfaceName: String): WebViewAssist {
+    open fun removeJavascriptInterface(interfaceName: String): WebViewAssist {
         mWebView?.removeJavascriptInterface(interfaceName)
         return this
     }
@@ -405,7 +405,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param callback 执行回调结果 ( 返回值 )
      * @return [WebViewAssist]
      */
-    fun evaluateJavascript(
+    open fun evaluateJavascript(
         script: String,
         callback: ValueCallback<String>?
     ): WebViewAssist {
@@ -440,7 +440,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * onScaleChanged() WebView 发生缩放改变时调用
      * onUnhandledKeyEvent() Key 事件未被加载时调用
      */
-    fun setWebViewClient(client: WebViewClient): WebViewAssist {
+    open fun setWebViewClient(client: WebViewClient): WebViewAssist {
         mWebView?.webViewClient = client
         return this
     }
@@ -449,7 +449,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取处理各种通知和请求事件对象
      * @return [WebViewClient]
      */
-    fun getWebViewClient(): WebViewClient? {
+    open fun getWebViewClient(): WebViewClient? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return mWebView?.webViewClient
         }
@@ -472,7 +472,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * onJsConfirm() 网页弹出确认框时触发此方法
      * onJsPrompt() 网页弹出输入框时触发此方法
      */
-    fun setWebChromeClient(client: WebChromeClient?): WebViewAssist {
+    open fun setWebChromeClient(client: WebChromeClient?): WebViewAssist {
         mWebView?.webChromeClient = client
         return this
     }
@@ -481,7 +481,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取辅助 WebView 处理 Javascript 对话框、标题等对象
      * @return [WebChromeClient]
      */
-    fun getWebChromeClient(): WebChromeClient? {
+    open fun getWebChromeClient(): WebChromeClient? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return mWebView?.webChromeClient
         }
@@ -497,7 +497,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 可通过 WebView 所在的 Activity 新启一个进程结束时 System.exit(0) 退出当前进程
      * Activity onDestroy use
      */
-    fun destroy(): WebViewAssist {
+    open fun destroy(): WebViewAssist {
         mWebView?.let {
             it.clearHistory()
             ViewUtils.removeSelfFromParent(mWebView)
@@ -515,7 +515,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * WebView 是否可以后退
      * @return `true` yes, `false` no
      */
-    fun canGoBack(): Boolean {
+    open fun canGoBack(): Boolean {
         return mWebView?.canGoBack() ?: false
     }
 
@@ -523,7 +523,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * WebView 后退
      * @return [WebViewAssist]
      */
-    fun goBack(): WebViewAssist {
+    open fun goBack(): WebViewAssist {
         mWebView?.goBack()
         return this
     }
@@ -534,7 +534,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * WebView 是否可以前进
      * @return `true` yes, `false` no
      */
-    fun canGoForward(): Boolean {
+    open fun canGoForward(): Boolean {
         return mWebView?.canGoForward() ?: false
     }
 
@@ -542,7 +542,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * WebView 前进
      * @return [WebViewAssist]
      */
-    fun goForward(): WebViewAssist {
+    open fun goForward(): WebViewAssist {
         mWebView?.goForward()
         return this
     }
@@ -554,7 +554,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param steps 相距索引
      * @return `true` yes, `false` no
      */
-    fun canGoBackOrForward(steps: Int): Boolean {
+    open fun canGoBackOrForward(steps: Int): Boolean {
         return mWebView?.canGoBackOrForward(steps) ?: false
     }
 
@@ -565,7 +565,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 以当前的 index 为起始点前进或者后退到历史记录中指定的 steps
      * 如果 steps 为负数则为后退, 正数则为前进
      */
-    fun goBackOrForward(steps: Int): WebViewAssist {
+    open fun goBackOrForward(steps: Int): WebViewAssist {
         mWebView?.goBackOrForward(steps)
         return this
     }
@@ -576,7 +576,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 刷新页面 ( 当前页面的所有资源都会重新加载 )
      * @return [WebViewAssist]
      */
-    fun reload(): WebViewAssist {
+    open fun reload(): WebViewAssist {
         mWebView?.reload()
         return this
     }
@@ -585,7 +585,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 停止加载
      * @return [WebViewAssist]
      */
-    fun stopLoading(): WebViewAssist {
+    open fun stopLoading(): WebViewAssist {
         mWebView?.stopLoading()
         return this
     }
@@ -596,7 +596,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      * 缓存是针对每个应用程序的, 因此这将清除所有使用的 WebView 的缓存
      */
-    fun clearCache(includeDiskFiles: Boolean): WebViewAssist {
+    open fun clearCache(includeDiskFiles: Boolean): WebViewAssist {
         mWebView?.clearCache(includeDiskFiles)
         return this
     }
@@ -605,7 +605,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 清除当前 WebView 访问的历史记录
      * @return [WebViewAssist]
      */
-    fun clearHistory(): WebViewAssist {
+    open fun clearHistory(): WebViewAssist {
         mWebView?.clearHistory()
         return this
     }
@@ -615,7 +615,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      * 并不会清除 WebView 存储到本地的数据
      */
-    fun clearFormData(): WebViewAssist {
+    open fun clearFormData(): WebViewAssist {
         mWebView?.clearFormData()
         return this
     }
@@ -624,7 +624,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取缩放比例
      * @return 缩放比例
      */
-    fun getScale(): Float {
+    open fun getScale(): Float {
         return mWebView?.scale ?: 1.0F
     }
 
@@ -632,7 +632,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取当前可见区域的顶端距整个页面顶端的距离 ( 当前内容滚动的距离 )
      * @return 当前内容滚动的距离
      */
-    fun getScrollY(): Int {
+    open fun getScrollY(): Int {
         return mWebView?.scrollY ?: 0
     }
 
@@ -640,7 +640,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取当前内容横向滚动距离
      * @return 当前内容横向滚动距离
      */
-    fun getScrollX(): Int {
+    open fun getScrollX(): Int {
         return mWebView?.scrollX ?: 0
     }
 
@@ -650,7 +650,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 可通过 setWebViewClient onScaleChanged(WebView view, float oldScale, float newScale) 获取缩放比例
      * 或者通过 webView.getScale() 获取 ( 该方法已抛弃 )
      */
-    fun getContentHeight(): Int {
+    open fun getContentHeight(): Int {
         return mWebView?.contentHeight ?: 0
     }
 
@@ -658,7 +658,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取缩放高度
      * @return 缩放高度
      */
-    fun getScaleHeight(): Int {
+    open fun getScaleHeight(): Int {
         return getScaleHeight(getScale())
     }
 
@@ -667,7 +667,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param scale 缩放比例
      * @return 缩放高度
      */
-    fun getScaleHeight(scale: Float): Int {
+    open fun getScaleHeight(scale: Float): Int {
         return (getContentHeight() * scale).toInt()
     }
 
@@ -675,7 +675,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取 WebView 控件高度
      * @return WebView 控件高度
      */
-    fun getHeight(): Int {
+    open fun getHeight(): Int {
         return mWebView?.height ?: 0
     }
 
@@ -684,7 +684,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param bottom 是否滑动到底部
      * @return [WebViewAssist]
      */
-    fun pageDown(bottom: Boolean): WebViewAssist {
+    open fun pageDown(bottom: Boolean): WebViewAssist {
         mWebView?.pageDown(bottom)
         return this
     }
@@ -694,7 +694,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param top 是否滑动到顶部
      * @return [WebViewAssist]
      */
-    fun pageUp(top: Boolean): WebViewAssist {
+    open fun pageUp(top: Boolean): WebViewAssist {
         mWebView?.pageUp(top)
         return this
     }
@@ -705,7 +705,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param event   按键事件
      * @return `true` 拦截事件, `false` 不拦截接着处理
      */
-    fun handlerKeyDown(
+    open fun handlerKeyDown(
         keyCode: Int,
         event: KeyEvent
     ): Boolean {
@@ -725,7 +725,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return [WebViewAssist]
      * 解决 WebView 闪烁问题
      */
-    fun setLayerTypeSoftware(): WebViewAssist {
+    open fun setLayerTypeSoftware(): WebViewAssist {
         return setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
 
@@ -735,7 +735,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @param paint     [android.graphics.Paint]
      * @return [WebViewAssist]
      */
-    fun setLayerType(
+    open fun setLayerType(
         layerType: Int,
         paint: Paint?
     ): WebViewAssist {
@@ -747,7 +747,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取当前 Url
      * @return 当前 Url
      */
-    fun getUrl(): String? {
+    open fun getUrl(): String? {
         return mWebView?.url
     }
 
@@ -755,7 +755,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 获取最初请求 Url
      * @return 最初请求 Url
      */
-    fun getOriginalUrl(): String? {
+    open fun getOriginalUrl(): String? {
         return mWebView?.originalUrl
     }
 
@@ -789,7 +789,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * HitTestResult.getType() 获取所选中目标的类型, 可以是图片、超链接、邮件、电话等等
      * HitTestResult.getExtra() 获取额外的信息
      */
-    fun getHitTestResult(): WebView.HitTestResult? {
+    open fun getHitTestResult(): WebView.HitTestResult? {
         return mWebView?.hitTestResult
     }
 
@@ -824,7 +824,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param webViewAssist WebView 辅助类
          * @return [Builder]
          */
-        internal fun setWebViewAssist(webViewAssist: WebViewAssist?): Builder {
+        internal open fun setWebViewAssist(webViewAssist: WebViewAssist?): Builder {
             mWebViewAssist = webViewAssist
             return this
         }
@@ -833,7 +833,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 应用 ( 设置 ) 配置
          * @return [Builder]
          */
-        fun apply(): Builder {
+        open fun apply(): Builder {
             return applyPri()
         }
 
@@ -846,7 +846,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param listener [OnApplyListener]
          * @return [Builder]
          */
-        fun setOnApplyListener(listener: OnApplyListener?): Builder {
+        open fun setOnApplyListener(listener: OnApplyListener?): Builder {
             mApplyListener = listener
             return this
         }
@@ -855,7 +855,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取应用配置监听事件
          * @return [OnApplyListener]
          */
-        fun getApplyListener(): OnApplyListener? {
+        open fun getApplyListener(): OnApplyListener? {
             return mApplyListener
         }
 
@@ -885,7 +885,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param listener 是否复用监听事件
          * @return [Builder]
          */
-        fun clone(listener: Boolean): Builder {
+        open fun clone(listener: Boolean): Builder {
             val builder = Builder()
             if (listener) { // 复用监听事件
                 builder.setOnApplyListener(mApplyListener)
@@ -928,7 +928,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 重置方法
          * @return [Builder]
          */
-        fun reset(): Builder {
+        open fun reset(): Builder {
             this.mJavaScriptEnabled = true
             this.mRenderPriority = null
             this.mUseWideViewPort = false
@@ -1187,7 +1187,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持 JavaScript
          * @return `true` yes, `false` no
          */
-        fun isJavaScriptEnabled(): Boolean {
+        open fun isJavaScriptEnabled(): Boolean {
             return mJavaScriptEnabled
         }
 
@@ -1196,7 +1196,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param javaScriptEnabled `true` yes, `false` no
          * @return [Builder]
          */
-        fun setJavaScriptEnabled(javaScriptEnabled: Boolean): Builder {
+        open fun setJavaScriptEnabled(javaScriptEnabled: Boolean): Builder {
             mJavaScriptEnabled = javaScriptEnabled
             return this
         }
@@ -1205,7 +1205,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取渲染优先级
          * @return 渲染优先级
          */
-        fun getRenderPriority(): WebSettings.RenderPriority? {
+        open fun getRenderPriority(): WebSettings.RenderPriority? {
             return mRenderPriority
         }
 
@@ -1214,7 +1214,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param renderPriority 渲染优先级
          * @return [Builder]
          */
-        fun setRenderPriority(renderPriority: WebSettings.RenderPriority?): Builder {
+        open fun setRenderPriority(renderPriority: WebSettings.RenderPriority?): Builder {
             mRenderPriority = renderPriority
             return this
         }
@@ -1223,7 +1223,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否使用宽视图
          * @return `true` yes, `false` no
          */
-        fun isUseWideViewPort(): Boolean {
+        open fun isUseWideViewPort(): Boolean {
             return mUseWideViewPort
         }
 
@@ -1233,7 +1233,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @return [Builder]
          * 是否支持 html viewport 设置了会导致字体变小
          */
-        fun setUseWideViewPort(useWideViewPort: Boolean): Builder {
+        open fun setUseWideViewPort(useWideViewPort: Boolean): Builder {
             mUseWideViewPort = useWideViewPort
             return this
         }
@@ -1242,7 +1242,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否按宽度缩小内容以适合屏幕
          * @return `true` yes, `false` no
          */
-        fun isLoadWithOverviewMode(): Boolean {
+        open fun isLoadWithOverviewMode(): Boolean {
             return mLoadWithOverviewMode
         }
 
@@ -1251,7 +1251,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param loadWithOverviewMode `true` yes, `false` no
          * @return [Builder]
          */
-        fun setLoadWithOverviewMode(loadWithOverviewMode: Boolean): Builder {
+        open fun setLoadWithOverviewMode(loadWithOverviewMode: Boolean): Builder {
             mLoadWithOverviewMode = loadWithOverviewMode
             return this
         }
@@ -1260,7 +1260,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取基础布局算法
          * @return 基础布局算法
          */
-        fun getLayoutAlgorithm(): WebSettings.LayoutAlgorithm? {
+        open fun getLayoutAlgorithm(): WebSettings.LayoutAlgorithm? {
             return mLayoutAlgorithm
         }
 
@@ -1269,7 +1269,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param layoutAlgorithm 基础布局算法
          * @return [Builder]
          */
-        fun setLayoutAlgorithm(layoutAlgorithm: WebSettings.LayoutAlgorithm?): Builder {
+        open fun setLayoutAlgorithm(layoutAlgorithm: WebSettings.LayoutAlgorithm?): Builder {
             mLayoutAlgorithm = layoutAlgorithm
             return this
         }
@@ -1278,7 +1278,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持缩放
          * @return `true` yes, `false` no
          */
-        fun isSupportZoom(): Boolean {
+        open fun isSupportZoom(): Boolean {
             return mSupportZoom
         }
 
@@ -1287,7 +1287,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param supportZoom `true` yes, `false` no
          * @return [Builder]
          */
-        fun setSupportZoom(supportZoom: Boolean): Builder {
+        open fun setSupportZoom(supportZoom: Boolean): Builder {
             mSupportZoom = supportZoom
             return this
         }
@@ -1296,7 +1296,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否显示内置缩放工具
          * @return `true` yes, `false` no
          */
-        fun isBuiltInZoomControls(): Boolean {
+        open fun isBuiltInZoomControls(): Boolean {
             return mBuiltInZoomControls
         }
 
@@ -1305,7 +1305,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param builtInZoomControls `true` yes, `false` no
          * @return [Builder]
          */
-        fun setBuiltInZoomControls(builtInZoomControls: Boolean): Builder {
+        open fun setBuiltInZoomControls(builtInZoomControls: Boolean): Builder {
             mBuiltInZoomControls = builtInZoomControls
             return this
         }
@@ -1314,7 +1314,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否显示缩放工具
          * @return `true` yes, `false` no
          */
-        fun isDisplayZoomControls(): Boolean {
+        open fun isDisplayZoomControls(): Boolean {
             return mDisplayZoomControls
         }
 
@@ -1323,7 +1323,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param displayZoomControls `true` yes, `false` no
          * @return [Builder]
          */
-        fun setDisplayZoomControls(displayZoomControls: Boolean): Builder {
+        open fun setDisplayZoomControls(displayZoomControls: Boolean): Builder {
             mDisplayZoomControls = displayZoomControls
             return this
         }
@@ -1332,7 +1332,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取文本缩放倍数
          * @return 文本缩放倍数
          */
-        fun getTextZoom(): Int {
+        open fun getTextZoom(): Int {
             return mTextZoom
         }
 
@@ -1341,7 +1341,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param textZoom 文本缩放倍数
          * @return [Builder]
          */
-        fun setTextZoom(textZoom: Int): Builder {
+        open fun setTextZoom(textZoom: Int): Builder {
             mTextZoom = textZoom
             return this
         }
@@ -1350,7 +1350,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 WebView 字体
          * @return WebView 字体
          */
-        fun getStandardFontFamily(): String? {
+        open fun getStandardFontFamily(): String? {
             return mStandardFontFamily
         }
 
@@ -1359,7 +1359,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param standardFontFamily WebView 字体
          * @return [Builder]
          */
-        fun setStandardFontFamily(standardFontFamily: String?): Builder {
+        open fun setStandardFontFamily(standardFontFamily: String?): Builder {
             mStandardFontFamily = standardFontFamily
             return this
         }
@@ -1368,7 +1368,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 WebView 字体大小
          * @return WebView 字体大小
          */
-        fun getDefaultFontSize(): Int {
+        open fun getDefaultFontSize(): Int {
             return mDefaultFontSize
         }
 
@@ -1377,7 +1377,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param defaultFontSize WebView 字体大小
          * @return [Builder]
          */
-        fun setDefaultFontSize(defaultFontSize: Int): Builder {
+        open fun setDefaultFontSize(defaultFontSize: Int): Builder {
             mDefaultFontSize = defaultFontSize
             return this
         }
@@ -1386,7 +1386,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 WebView 支持最小字体大小
          * @return WebView 支持最小字体大小
          */
-        fun getMinimumFontSize(): Int {
+        open fun getMinimumFontSize(): Int {
             return mMinimumFontSize
         }
 
@@ -1395,7 +1395,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param minimumFontSize WebView 支持最小字体大小
          * @return [Builder]
          */
-        fun setMinimumFontSize(minimumFontSize: Int): Builder {
+        open fun setMinimumFontSize(minimumFontSize: Int): Builder {
             mMinimumFontSize = minimumFontSize
             return this
         }
@@ -1404,7 +1404,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取混合内容模式
          * @return 混合内容模式
          */
-        fun getMixedContentMode(): Int {
+        open fun getMixedContentMode(): Int {
             return mMixedContentMode
         }
 
@@ -1413,7 +1413,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param mixedContentMode 混合内容模式
          * @return [Builder]
          */
-        fun setMixedContentMode(mixedContentMode: Int): Builder {
+        open fun setMixedContentMode(mixedContentMode: Int): Builder {
             mMixedContentMode = mixedContentMode
             return this
         }
@@ -1422,7 +1422,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持自动加载图片
          * @return `true` yes, `false` no
          */
-        fun isLoadsImagesAutomatically(): Boolean {
+        open fun isLoadsImagesAutomatically(): Boolean {
             return mLoadsImagesAutomatically
         }
 
@@ -1431,7 +1431,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param loadsImagesAutomatically `true` yes, `false` no
          * @return [Builder]
          */
-        fun setLoadsImagesAutomatically(loadsImagesAutomatically: Boolean): Builder {
+        open fun setLoadsImagesAutomatically(loadsImagesAutomatically: Boolean): Builder {
             mLoadsImagesAutomatically = loadsImagesAutomatically
             return this
         }
@@ -1440,7 +1440,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持通过 JS 打开新窗口
          * @return `true` yes, `false` no
          */
-        fun isJavaScriptCanOpenWindowsAutomatically(): Boolean {
+        open fun isJavaScriptCanOpenWindowsAutomatically(): Boolean {
             return mJavaScriptCanOpenWindowsAutomatically
         }
 
@@ -1449,7 +1449,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param javaScriptCanOpenWindowsAutomatically `true` yes, `false` no
          * @return [Builder]
          */
-        fun setJavaScriptCanOpenWindowsAutomatically(javaScriptCanOpenWindowsAutomatically: Boolean): Builder {
+        open fun setJavaScriptCanOpenWindowsAutomatically(javaScriptCanOpenWindowsAutomatically: Boolean): Builder {
             mJavaScriptCanOpenWindowsAutomatically = javaScriptCanOpenWindowsAutomatically
             return this
         }
@@ -1458,7 +1458,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取编码格式
          * @return 编码格式
          */
-        fun getDefaultTextEncodingName(): String? {
+        open fun getDefaultTextEncodingName(): String? {
             return mDefaultTextEncodingName
         }
 
@@ -1467,7 +1467,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param defaultTextEncodingName 编码格式
          * @return [Builder]
          */
-        fun setDefaultTextEncodingName(defaultTextEncodingName: String?): Builder {
+        open fun setDefaultTextEncodingName(defaultTextEncodingName: String?): Builder {
             mDefaultTextEncodingName = defaultTextEncodingName
             return this
         }
@@ -1476,7 +1476,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否允许网页执行定位操作
          * @return `true` yes, `false` no
          */
-        fun isGeolocationEnabled(): Boolean {
+        open fun isGeolocationEnabled(): Boolean {
             return mGeolocationEnabled
         }
 
@@ -1485,7 +1485,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param geolocationEnabled `true` yes, `false` no
          * @return [Builder]
          */
-        fun setGeolocationEnabled(geolocationEnabled: Boolean): Builder {
+        open fun setGeolocationEnabled(geolocationEnabled: Boolean): Builder {
             mGeolocationEnabled = geolocationEnabled
             return this
         }
@@ -1494,7 +1494,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取浏览器标识 UA
          * @return 浏览器标识 UA
          */
-        fun getUserAgentString(): String? {
+        open fun getUserAgentString(): String? {
             return mUserAgentString
         }
 
@@ -1503,7 +1503,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param userAgentString 浏览器标识 UA
          * @return [Builder]
          */
-        fun setUserAgentString(userAgentString: String?): Builder {
+        open fun setUserAgentString(userAgentString: String?): Builder {
             mUserAgentString = userAgentString
             return this
         }
@@ -1512,7 +1512,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
          * @return `true` yes, `false` no
          */
-        fun isAllowFileAccess(): Boolean {
+        open fun isAllowFileAccess(): Boolean {
             return mAllowFileAccess
         }
 
@@ -1521,7 +1521,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param allowFileAccess `true` yes, `false` no
          * @return [Builder]
          */
-        fun setAllowFileAccess(allowFileAccess: Boolean): Builder {
+        open fun setAllowFileAccess(allowFileAccess: Boolean): Builder {
             mAllowFileAccess = allowFileAccess
             return this
         }
@@ -1530,7 +1530,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
          * @return `true` yes, `false` no
          */
-        fun isAllowFileAccessFromFileURLs(): Boolean {
+        open fun isAllowFileAccessFromFileURLs(): Boolean {
             return mAllowFileAccessFromFileURLs
         }
 
@@ -1539,7 +1539,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param allowFileAccessFromFileURLs `true` yes, `false` no
          * @return [Builder]
          */
-        fun setAllowFileAccessFromFileURLs(allowFileAccessFromFileURLs: Boolean): Builder {
+        open fun setAllowFileAccessFromFileURLs(allowFileAccessFromFileURLs: Boolean): Builder {
             mAllowFileAccessFromFileURLs = allowFileAccessFromFileURLs
             return this
         }
@@ -1548,7 +1548,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
          * @return `true` yes, `false` no
          */
-        fun isAllowUniversalAccessFromFileURLs(): Boolean {
+        open fun isAllowUniversalAccessFromFileURLs(): Boolean {
             return mAllowUniversalAccessFromFileURLs
         }
 
@@ -1557,7 +1557,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param allowUniversalAccessFromFileURLs `true` yes, `false` no
          * @return [Builder]
          */
-        fun setAllowUniversalAccessFromFileURLs(allowUniversalAccessFromFileURLs: Boolean): Builder {
+        open fun setAllowUniversalAccessFromFileURLs(allowUniversalAccessFromFileURLs: Boolean): Builder {
             mAllowUniversalAccessFromFileURLs = allowUniversalAccessFromFileURLs
             return this
         }
@@ -1566,7 +1566,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否不从网络加载资源
          * @return `true` yes, `false` no
          */
-        fun isBlockNetworkLoads(): Boolean {
+        open fun isBlockNetworkLoads(): Boolean {
             return mBlockNetworkLoads
         }
 
@@ -1575,7 +1575,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param blockNetworkLoads `true` yes, `false` no
          * @return [Builder]
          */
-        fun setBlockNetworkLoads(blockNetworkLoads: Boolean): Builder {
+        open fun setBlockNetworkLoads(blockNetworkLoads: Boolean): Builder {
             mBlockNetworkLoads = blockNetworkLoads
             return this
         }
@@ -1584,7 +1584,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否不从网络加载图像资源
          * @return `true` yes, `false` no
          */
-        fun isBlockNetworkImage(): Boolean {
+        open fun isBlockNetworkImage(): Boolean {
             return mBlockNetworkImage
         }
 
@@ -1593,7 +1593,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param blockNetworkImage `true` yes, `false` no
          * @return [Builder]
          */
-        fun setBlockNetworkImage(blockNetworkImage: Boolean): Builder {
+        open fun setBlockNetworkImage(blockNetworkImage: Boolean): Builder {
             mBlockNetworkImage = blockNetworkImage
             return this
         }
@@ -1602,7 +1602,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否需要用户手势来播放媒体
          * @return `true` yes, `false` no
          */
-        fun isMediaPlaybackRequiresUserGesture(): Boolean {
+        open fun isMediaPlaybackRequiresUserGesture(): Boolean {
             return mMediaPlaybackRequiresUserGesture
         }
 
@@ -1611,7 +1611,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param mediaPlaybackRequiresUserGesture `true` yes, `false` no
          * @return [Builder]
          */
-        fun setMediaPlaybackRequiresUserGesture(mediaPlaybackRequiresUserGesture: Boolean): Builder {
+        open fun setMediaPlaybackRequiresUserGesture(mediaPlaybackRequiresUserGesture: Boolean): Builder {
             mMediaPlaybackRequiresUserGesture = mediaPlaybackRequiresUserGesture
             return this
         }
@@ -1620,7 +1620,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 WebView 缓存模式
          * @return WebView 缓存模式
          */
-        fun getCacheMode(): Int {
+        open fun getCacheMode(): Int {
             return mCacheMode
         }
 
@@ -1629,7 +1629,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param cacheMode WebView 缓存模式
          * @return [Builder]
          */
-        fun setCacheMode(cacheMode: Int): Builder {
+        open fun setCacheMode(cacheMode: Int): Builder {
             mCacheMode = cacheMode
             return this
         }
@@ -1638,7 +1638,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持 DOM Storage
          * @return `true` yes, `false` no
          */
-        fun isDomStorageEnabled(): Boolean {
+        open fun isDomStorageEnabled(): Boolean {
             return mDomStorageEnabled
         }
 
@@ -1647,7 +1647,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param domStorageEnabled `true` yes, `false` no
          * @return [Builder]
          */
-        fun setDomStorageEnabled(domStorageEnabled: Boolean): Builder {
+        open fun setDomStorageEnabled(domStorageEnabled: Boolean): Builder {
             mDomStorageEnabled = domStorageEnabled
             return this
         }
@@ -1656,7 +1656,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否开启 Application Caches 功能
          * @return `true` yes, `false` no
          */
-        fun isAppCacheEnabled(): Boolean {
+        open fun isAppCacheEnabled(): Boolean {
             return mAppCacheEnabled
         }
 
@@ -1665,7 +1665,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param appCacheEnabled `true` yes, `false` no
          * @return [Builder]
          */
-        fun setAppCacheEnabled(appCacheEnabled: Boolean): Builder {
+        open fun setAppCacheEnabled(appCacheEnabled: Boolean): Builder {
             mAppCacheEnabled = appCacheEnabled
             return this
         }
@@ -1674,7 +1674,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 Application Caches 地址
          * @return Application Caches 地址
          */
-        fun getAppCachePath(): String? {
+        open fun getAppCachePath(): String? {
             return mAppCachePath
         }
 
@@ -1683,7 +1683,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param appCachePath Application Caches 地址
          * @return [Builder]
          */
-        fun setAppCachePath(appCachePath: String?): Builder {
+        open fun setAppCachePath(appCachePath: String?): Builder {
             mAppCachePath = appCachePath
             return this
         }
@@ -1692,7 +1692,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取 Application Caches 大小
          * @return Application Caches 大小
          */
-        fun getAppCacheMaxSize(): Long {
+        open fun getAppCacheMaxSize(): Long {
             return mAppCacheMaxSize
         }
 
@@ -1701,7 +1701,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param appCacheMaxSize Application Caches 大小
          * @return [Builder]
          */
-        fun setAppCacheMaxSize(appCacheMaxSize: Long): Builder {
+        open fun setAppCacheMaxSize(appCacheMaxSize: Long): Builder {
             mAppCacheMaxSize = appCacheMaxSize
             return this
         }
@@ -1710,7 +1710,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否支持数据库缓存
          * @return `true` yes, `false` no
          */
-        fun isDatabaseEnabled(): Boolean {
+        open fun isDatabaseEnabled(): Boolean {
             return mDatabaseEnabled
         }
 
@@ -1719,7 +1719,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param databaseEnabled `true` yes, `false` no
          * @return [Builder]
          */
-        fun setDatabaseEnabled(databaseEnabled: Boolean): Builder {
+        open fun setDatabaseEnabled(databaseEnabled: Boolean): Builder {
             mDatabaseEnabled = databaseEnabled
             return this
         }
@@ -1728,7 +1728,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 获取数据库缓存路径
          * @return 数据库缓存路径
          */
-        fun getDatabasePath(): String? {
+        open fun getDatabasePath(): String? {
             return mDatabasePath
         }
 
@@ -1737,7 +1737,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param databasePath 数据库缓存路径
          * @return [Builder]
          */
-        fun setDatabasePath(databasePath: String?): Builder {
+        open fun setDatabasePath(databasePath: String?): Builder {
             mDatabasePath = databasePath
             return this
         }

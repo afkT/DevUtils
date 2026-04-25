@@ -31,7 +31,7 @@ open class BarCodeConfig : IBarCodeEngine.EngineConfig {
      * 获取编码 ( 生成 ) 配置
      * @return 编码 ( 生成 ) 配置
      */
-    fun getEncodeHints(): MutableMap<EncodeHintType, Any> {
+    open fun getEncodeHints(): MutableMap<EncodeHintType, Any> {
         return encodeHints
     }
 
@@ -39,7 +39,7 @@ open class BarCodeConfig : IBarCodeEngine.EngineConfig {
      * 获取解码 ( 解析 ) 配置
      * @return 解码 ( 解析 ) 配置
      */
-    fun getDecodeHints(): MutableMap<DecodeHintType, Any> {
+    open fun getDecodeHints(): MutableMap<DecodeHintType, Any> {
         return decodeHints
     }
 
@@ -51,7 +51,7 @@ open class BarCodeConfig : IBarCodeEngine.EngineConfig {
      * 设置默认编码 ( 生成 ) 配置
      * @return BarCode Config
      */
-    fun defaultEncode(): BarCodeConfig {
+    open fun defaultEncode(): BarCodeConfig {
         // 编码类型
         encodeHints[EncodeHintType.CHARACTER_SET] = DevFinal.ENCODE.UTF_8
         // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
@@ -65,7 +65,7 @@ open class BarCodeConfig : IBarCodeEngine.EngineConfig {
      * 设置编码 ( 生成 ) 配置
      * @return BarCode Config
      */
-    fun putEncodeHints(hints: Map<EncodeHintType, Any>?): BarCodeConfig {
+    open fun putEncodeHints(hints: Map<EncodeHintType, Any>?): BarCodeConfig {
         hints?.let { encodeHints.putAll(it) }
         return this
     }
@@ -74,7 +74,7 @@ open class BarCodeConfig : IBarCodeEngine.EngineConfig {
      * 设置解码 ( 解析 ) 配置
      * @return BarCode Config
      */
-    fun putDecodeHints(hints: Map<DecodeHintType, Any>?): BarCodeConfig {
+    open fun putDecodeHints(hints: Map<DecodeHintType, Any>?): BarCodeConfig {
         hints?.let { decodeHints.putAll(it) }
         return this
     }

@@ -69,42 +69,42 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
     // = 对外公开方法 =
     // =============
 
-    fun getOutputUri(): Uri? {
+    open fun getOutputUri(): Uri? {
         return mOutputUri
     }
 
-    fun getFileName(): String? {
+    open fun getFileName(): String? {
         return mFileName
     }
 
-    fun getFilePath(): String? {
+    open fun getFilePath(): String? {
         return mFilePath
     }
 
-    fun getFolder(): String? {
+    open fun getFolder(): String? {
         return mFolder
     }
 
-    fun getMimeType(): String? {
+    open fun getMimeType(): String? {
         return mMimeType
     }
 
     // =
 
-    fun getFormat(): CompressFormat {
+    open fun getFormat(): CompressFormat {
         return mFormat
     }
 
-    fun setFormat(format: CompressFormat): StorageItem {
+    open fun setFormat(format: CompressFormat): StorageItem {
         mFormat = format
         return this
     }
 
-    fun getQuality(): Int {
+    open fun getQuality(): Int {
         return mQuality
     }
 
-    fun setQuality(quality: Int): StorageItem {
+    open fun setQuality(quality: Int): StorageItem {
         mQuality = quality
         return this
     }
@@ -148,7 +148,7 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
      * 获取内部存储完整路径
      * @return 内部存储完整路径
      */
-    fun getInternalFile(): File? {
+    open fun getInternalFile(): File? {
         // 创建文件夹
         FileUtils.createFolder(mFilePath)
         // filePath + fileName
@@ -161,7 +161,7 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
      * 获取外部存储完整路径
      * @return 外部存储完整路径
      */
-    fun getExternalFile(): File? {
+    open fun getExternalFile(): File? {
         return getExternalFile(mFileName)
     }
 
@@ -170,7 +170,7 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
      * @param fileName 文件名
      * @return 外部存储完整路径
      */
-    fun getExternalFile(fileName: String?): File? {
+    open fun getExternalFile(fileName: String?): File? {
         val path = PathUtils.getSDCard().getSDCardPath(mFolder)
         // 创建文件夹
         FileUtils.createFolder(path)
@@ -182,7 +182,7 @@ open class StorageItem private constructor() : IStorageEngine.EngineItem {
      * 获取外部存储文件夹路径
      * @return 外部存储文件夹路径
      */
-    fun getExternalFolder(): File? {
+    open fun getExternalFolder(): File? {
         val path = PathUtils.getSDCard().getSDCardPath(mFolder)
         // 创建文件夹
         FileUtils.createFolder(path)

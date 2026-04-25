@@ -27,11 +27,11 @@ open class CompressConfig @JvmOverloads constructor(
 
     // =
 
-    fun isFailFinish(): Boolean {
+    open fun isFailFinish(): Boolean {
         return mFailFinish
     }
 
-    fun setFailFinish(failFinish: Boolean): CompressConfig {
+    open fun setFailFinish(failFinish: Boolean): CompressConfig {
         mFailFinish = failFinish
         return this
     }

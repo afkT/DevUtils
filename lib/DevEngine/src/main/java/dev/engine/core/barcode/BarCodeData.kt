@@ -72,7 +72,7 @@ open class BarCodeData private constructor(
      * 获取条码内容
      * @return 条码内容
      */
-    fun getContent(): String? {
+    open fun getContent(): String? {
         return mContent
     }
 
@@ -80,7 +80,7 @@ open class BarCodeData private constructor(
      * 获取条码宽度
      * @return 条码宽度
      */
-    fun getWidth(): Int {
+    open fun getWidth(): Int {
         return mWidth
     }
 
@@ -88,7 +88,7 @@ open class BarCodeData private constructor(
      * 获取条码高度
      * @return 条码高度
      */
-    fun getHeight(): Int {
+    open fun getHeight(): Int {
         return mHeight
     }
 
@@ -96,7 +96,7 @@ open class BarCodeData private constructor(
      * 获取条码类型
      * @return 条码类型
      */
-    fun getFormat(): BarcodeFormat {
+    open fun getFormat(): BarcodeFormat {
         return mFormat
     }
 
@@ -105,7 +105,7 @@ open class BarCodeData private constructor(
      * @param format 条码类型
      * @return BarCode Item
      */
-    fun setFormat(format: BarcodeFormat): BarCodeData {
+    open fun setFormat(format: BarcodeFormat): BarCodeData {
         mFormat = format
         return this
     }
@@ -114,7 +114,7 @@ open class BarCodeData private constructor(
      * 获取条码前景色
      * @return 条码前景色
      */
-    fun getForegroundColor(): Int {
+    open fun getForegroundColor(): Int {
         return mForegroundColor
     }
 
@@ -123,7 +123,7 @@ open class BarCodeData private constructor(
      * @param foregroundColor 条码前景色
      * @return BarCode Item
      */
-    fun setForegroundColor(foregroundColor: Int): BarCodeData {
+    open fun setForegroundColor(foregroundColor: Int): BarCodeData {
         mForegroundColor = foregroundColor
         return this
     }
@@ -132,7 +132,7 @@ open class BarCodeData private constructor(
      * 获取条码背景色
      * @return 条码背景色
      */
-    fun getBackgroundColor(): Int {
+    open fun getBackgroundColor(): Int {
         return mBackgroundColor
     }
 
@@ -141,7 +141,7 @@ open class BarCodeData private constructor(
      * @param backgroundColor 条码背景色
      * @return BarCode Item
      */
-    fun setBackgroundColor(backgroundColor: Int): BarCodeData {
+    open fun setBackgroundColor(backgroundColor: Int): BarCodeData {
         mBackgroundColor = backgroundColor
         return this
     }
@@ -152,7 +152,7 @@ open class BarCodeData private constructor(
      * @param backgroundColor 条码背景色
      * @return BarCode Item
      */
-    fun setBackgroundColor(
+    open fun setBackgroundColor(
         foregroundColor: Int,
         backgroundColor: Int
     ): BarCodeData {
@@ -165,7 +165,7 @@ open class BarCodeData private constructor(
      * 获取条码嵌入 icon、logo
      * @return 嵌入 icon、logo
      */
-    fun getIcon(): Bitmap? {
+    open fun getIcon(): Bitmap? {
         return mIcon
     }
 
@@ -174,7 +174,7 @@ open class BarCodeData private constructor(
      * @param icon icon、logov
      * @return BarCode Item
      */
-    fun setIcon(icon: Bitmap?): BarCodeData {
+    open fun setIcon(icon: Bitmap?): BarCodeData {
         mIcon = icon
         return this
     }
@@ -183,7 +183,7 @@ open class BarCodeData private constructor(
      * 获取 icon 占比
      * @return icon 占比
      */
-    fun getIconScale(): Float {
+    open fun getIconScale(): Float {
         return mIconScale
     }
 
@@ -192,7 +192,7 @@ open class BarCodeData private constructor(
      * @param iconScale icon 占比
      * @return BarCode Item
      */
-    fun setIconScale(iconScale: Float): BarCodeData {
+    open fun setIconScale(iconScale: Float): BarCodeData {
         mIconScale = iconScale
         return this
     }
