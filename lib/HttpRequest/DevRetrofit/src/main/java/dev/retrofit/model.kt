@@ -124,7 +124,7 @@ class Base private constructor() {
         // = Build =
         // =========
 
-        class Build<T, R : Response<T>>(
+        open class Build<T, R : Response<T>>(
             private var response: R?,
             private var error: Throwable?
         ) {

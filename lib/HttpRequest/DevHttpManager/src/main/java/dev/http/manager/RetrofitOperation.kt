@@ -8,7 +8,7 @@ import retrofit2.Retrofit
  * detail: Retrofit Operation
  * @author Ttt
  */
-class RetrofitOperation private constructor(
+open class RetrofitOperation protected constructor(
     private val key: String,
     private val builder: RetrofitBuilder
 ) {

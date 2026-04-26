@@ -43,7 +43,7 @@ import okhttp3.OkHttpClient
  * 1.[Progress.Callback] 提供 isAutoRecycle 方法 ( 默认销毁 ) 可自行判断是否需要销毁
  * 2.提供 [recycleListener] 方法可在 Callback onEnd 中直接调用释放资源无需实现逻辑
  */
-class ProgressOperation private constructor(
+open class ProgressOperation protected constructor(
     private val key: String,
     // 全局默认操作对象
     private val globalDefault: Boolean,

@@ -15,7 +15,7 @@ import java.util.*
  * @author Ttt
  */
 @Parcelize
-class Progress private constructor(
+open class Progress private constructor(
     // 是否上行进度 => `true` 上行, `false` 下行
     private val isRequest: Boolean,
     // 进度 id
@@ -301,7 +301,7 @@ class Progress private constructor(
      * @author Ttt
      */
     @Parcelize
-    class Speed private constructor(
+    open class Speed private constructor(
         // 网速 byte/s
         private var speedValue: Long,
         // 网速做平滑的缓存, 避免抖动过大
@@ -425,7 +425,7 @@ class Progress private constructor(
      * @author Ttt
      */
     @Parcelize
-    class Extras constructor(
+    open class Extras constructor(
         // 请求链接
         private val url: String,
         // 请求方法
