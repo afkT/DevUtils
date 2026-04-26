@@ -12,5 +12,5 @@ class MVVM private constructor() {
      * detail: 空实现 ViewModel
      * @author Ttt
      */
-    class VMImpl : ViewModel()
+    open class VMImpl : ViewModel()
 }

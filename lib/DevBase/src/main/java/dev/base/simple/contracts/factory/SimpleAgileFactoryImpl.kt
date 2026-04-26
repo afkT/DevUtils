@@ -4,7 +4,7 @@ package dev.base.simple.contracts.factory
 // = Activity =
 // ============
 
-class SimpleActivityImpl private constructor(
+open class SimpleActivityImpl(
     simple_Init: ((Any) -> Unit)?,
     simple_Start: ((Any) -> Unit)?,
     simple_PreLoad: ((Any) -> Unit)?,
@@ -32,7 +32,7 @@ class SimpleActivityImpl private constructor(
 // = Fragment =
 // ============
 
-class SimpleFragmentImpl private constructor(
+open class SimpleFragmentImpl(
     simple_Init: ((Any) -> Unit)?,
     simple_Start: ((Any) -> Unit)?,
     simple_PreLoad: ((Any) -> Unit)?,

@@ -13,7 +13,7 @@ class MVP private constructor() {
      * detail: 空实现 MVPView
      * @author Ttt
      */
-    class ViewImpl : IView
+    open class ViewImpl : IView
 
     // =======
     // = MVP =
