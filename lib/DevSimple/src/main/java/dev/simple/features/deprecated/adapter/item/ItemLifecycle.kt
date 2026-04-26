@@ -10,8 +10,9 @@ import dev.simple.interfaces.BindingGet
 /**
  * detail: Item Binding Lifecycle
  * @author Ttt
+ * 可继承并重写解析 LifecycleOwner 相关方法，自定义绑定生命周期来源
  */
-class ItemLifecycle private constructor() {
+open class ItemLifecycle protected constructor() {
 
     companion object {
 
@@ -30,20 +31,20 @@ class ItemLifecycle private constructor() {
     // = 对外公开方法 =
     // =============
 
-    fun getLifecycleOwner(): LifecycleOwner? {
+    open fun getLifecycleOwner(): LifecycleOwner? {
         return lifecycleOwner
     }
 
-    fun setLifecycleOwner(owner: LifecycleOwner?): ItemLifecycle {
+    open fun setLifecycleOwner(owner: LifecycleOwner?): ItemLifecycle {
         lifecycleOwner = owner
         return this
     }
 
-    fun getLifecycleImpl(): BindingGet<LifecycleOwner?>? {
+    open fun getLifecycleImpl(): BindingGet<LifecycleOwner?>? {
         return lifecycleGet
     }
 
-    fun setLifecycleImpl(implGET: BindingGet<LifecycleOwner?>?): ItemLifecycle {
+    open fun setLifecycleImpl(implGET: BindingGet<LifecycleOwner?>?): ItemLifecycle {
         lifecycleGet = implGET
         return this
     }
@@ -56,7 +57,7 @@ class ItemLifecycle private constructor() {
      * LifecycleOwner 是否有效
      * @return `true` yes, `false` no
      */
-    fun isValidLifecycleOwner(): Boolean {
+    open fun isValidLifecycleOwner(): Boolean {
         return !isInvalidLifecycleOwner()
     }
 
@@ -64,7 +65,7 @@ class ItemLifecycle private constructor() {
      * LifecycleOwner 是否失效
      * @return `true` yes, `false` no
      */
-    fun isInvalidLifecycleOwner(): Boolean {
+    open fun isInvalidLifecycleOwner(): Boolean {
         if (lifecycleOwner == null) return true
         return (lifecycleOwner!!.lifecycle.currentState == Lifecycle.State.DESTROYED)
     }
@@ -73,7 +74,7 @@ class ItemLifecycle private constructor() {
      * 尝试获取 LifecycleOwner
      * @param view View
      */
-    fun tryGetLifecycleOwner(view: View?) {
+    open fun tryGetLifecycleOwner(view: View?) {
         if (isValidLifecycleOwner()) return
         lifecycleOwner = lifecycleGet?.get()
         if (isValidLifecycleOwner()) return
@@ -86,7 +87,7 @@ class ItemLifecycle private constructor() {
      * @return LifecycleOwner?
      * 如果 View 没有关联 ViewDataBinding 则通过 view.context 获取
      */
-    fun findLifecycleOwner(view: View): LifecycleOwner? {
+    open fun findLifecycleOwner(view: View): LifecycleOwner? {
         val binding = DataBindingUtil.findBinding<ViewDataBinding>(view)
         var lifecycleOwner: LifecycleOwner? = binding?.lifecycleOwner
         val ctx = view.context

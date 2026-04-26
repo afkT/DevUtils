@@ -13,8 +13,8 @@ import dev.simple.features.deprecated.adapter.item.ItemLifecycle
  * @author Ttt
  */
 abstract class BaseDataAdapter<T, VDB : ViewDataBinding>(
-    val itemBinding: ItemBinding<T>,
-    var itemLifecycle: ItemLifecycle = ItemLifecycle.of()
+    open val itemBinding: ItemBinding<T>,
+    open var itemLifecycle: ItemLifecycle = ItemLifecycle.of()
 ) : DevDataAdapter<T, DevBaseViewDataBindingVH<VDB>>() {
 
     override fun onCreateViewHolder(

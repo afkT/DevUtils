@@ -16,7 +16,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
 
     private val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
 
-    fun asLiveData(): LiveData<Resource<ResultType>> {
+    open fun asLiveData(): LiveData<Resource<ResultType>> {
         return result
     }
 

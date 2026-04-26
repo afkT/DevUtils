@@ -6,12 +6,13 @@ import androidx.annotation.LayoutRes
 /**
  * detail: Item Binding 信息类
  * @author Ttt
+ * 可继承以扩展多布局 / 动态 variableId 等场景，避免复制整段适配逻辑
  */
-class ItemBinding<T>(
+open class ItemBinding<T>(
     // Item 绑定实体类
-    val variableId: Int,
+    open val variableId: Int,
     // DataBinding 绑定布局
-    @LayoutRes val layoutRes: Int
+    @LayoutRes open val layoutRes: Int
 ) {
 
     companion object {
@@ -25,5 +26,5 @@ class ItemBinding<T>(
     }
 
     // 额外绑定参数
-    private val extraBindings: SparseArray<Any>? = null
+    open var extraBindings: SparseArray<Any>? = null
 }

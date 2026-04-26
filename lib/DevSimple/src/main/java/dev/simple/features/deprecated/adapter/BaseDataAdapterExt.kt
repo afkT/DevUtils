@@ -12,7 +12,7 @@ import dev.simple.features.deprecated.adapter.item.ItemBinding
  * @author Ttt
  */
 abstract class BaseDataAdapterExt<T, VDB : ViewDataBinding>(
-    val itemBinding: ItemBinding<T>
+    open val itemBinding: ItemBinding<T>
 ) : DevDataAdapterExt<T, DevBaseViewDataBindingVH<VDB>>() {
 
     override fun onCreateViewHolder(
