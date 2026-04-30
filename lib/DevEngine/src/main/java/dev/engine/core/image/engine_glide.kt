@@ -1029,8 +1029,8 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         if (context != null && sources != null && listener != null && sources.isNotEmpty()) {
             val fileLists = mutableListOf<File>()
             val fileMaps = linkedMapOf<Int, File?>()
-            // 转换器
-            val convertStorage = InnerConvertStorage(this)
+            // 转换器 ( 可通过 override newConvertStorage() 替换成自定义实现 )
+            val convertStorage = newConvertStorage()
             // 随机创建任务 id
             val randomTask = RandomUtils.getRandom(1000000, 10000000)
             val task = randomTask.toString()
@@ -1058,7 +1058,18 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         return false
     }
 
-    private class InnerConvertStorage(
+    /**
+     * 创建 [ConvertStorage] 转换器
+     * @return [ConvertStorage]
+     * 子类可重写该方法返回自定义 [ConvertStorage] 实现,
+     * 或继承 [InnerConvertStorage] 重写 convert 方法以自定义存储策略
+     * ( 命名、格式、质量、存储目录、原图直返条件等 )
+     */
+    protected open fun newConvertStorage(): ConvertStorage<ImageConfig?> {
+        return InnerConvertStorage(this)
+    }
+
+    protected open class InnerConvertStorage(
         private val engineImpl: GlideEngineImpl
     ) : ConvertStorage<ImageConfig?> {
         override fun convert(
