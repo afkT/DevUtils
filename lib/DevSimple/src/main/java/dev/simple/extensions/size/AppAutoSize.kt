@@ -160,7 +160,7 @@ open class AppAutoSize {
         context: Context?,
         value: Float
     ): Float {
-        return CONVERT.innerConvert(
+        return CONVERT.convertDisplayMetricWithValidityRetry(
             context, Type.dp2px, value
         )
     }
@@ -188,7 +188,7 @@ open class AppAutoSize {
         context: Context?,
         value: Float
     ): Float {
-        return CONVERT.innerConvert(
+        return CONVERT.convertDisplayMetricWithValidityRetry(
             context, Type.px2dp, value
         )
     }
@@ -216,7 +216,7 @@ open class AppAutoSize {
         context: Context?,
         value: Float
     ): Float {
-        return CONVERT.innerConvert(
+        return CONVERT.convertDisplayMetricWithValidityRetry(
             context, Type.sp2px, value
         )
     }
@@ -244,7 +244,7 @@ open class AppAutoSize {
         context: Context?,
         value: Float
     ): Float {
-        return CONVERT.innerConvert(
+        return CONVERT.convertDisplayMetricWithValidityRetry(
             context, Type.px2sp, value
         )
     }
@@ -341,28 +341,28 @@ open class AppAutoSize {
         // dp 转 px ( float )
         val DP_2_PX: DevVariableExt<Float, Float, Context?> by lazy {
             DevVariableExt<Float, Float, Context?> { key, context ->
-                innerCreator(context, Type.dp2px, key)
+                computeDisplayMetricConversion(context, Type.dp2px, key)
             }
         }
 
         // px 转 dp ( float )
         val PX_2_DP: DevVariableExt<Float, Float, Context?> by lazy {
             DevVariableExt<Float, Float, Context?> { key, context ->
-                innerCreator(context, Type.px2dp, key)
+                computeDisplayMetricConversion(context, Type.px2dp, key)
             }
         }
 
         // sp 转 px ( float )
         val SP_2_PX: DevVariableExt<Float, Float, Context?> by lazy {
             DevVariableExt<Float, Float, Context?> { key, context ->
-                innerCreator(context, Type.sp2px, key)
+                computeDisplayMetricConversion(context, Type.sp2px, key)
             }
         }
 
         // px 转 sp ( float )
         val PX_2_SP: DevVariableExt<Float, Float, Context?> by lazy {
             DevVariableExt<Float, Float, Context?> { key, context ->
-                innerCreator(context, Type.px2sp, key)
+                computeDisplayMetricConversion(context, Type.px2sp, key)
             }
         }
 
@@ -401,7 +401,7 @@ open class AppAutoSize {
          * @param key Float
          * @return Float
          */
-        private fun innerCreator(
+        private fun computeDisplayMetricConversion(
             context: Context?,
             type: Type,
             key: Float
@@ -435,7 +435,7 @@ open class AppAutoSize {
          * 该方法主要解决出现转换失败返回 0 的情况
          * 导致后续获取缓存值为 0 直接返回使用
          */
-        internal open fun innerConvert(
+        internal open fun convertDisplayMetricWithValidityRetry(
             context: Context?,
             type: Type,
             key: Float

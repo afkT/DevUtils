@@ -78,8 +78,8 @@ private fun Progress.callback(
     if (notifyStatus == getStatus()) {
         callback?.let { itCallback ->
             handler?.post {
-                innerCallback(notifyStatus, itCallback)
-            } ?: innerCallback(notifyStatus, itCallback)
+                invokeProgressCallbackForStatus(notifyStatus, itCallback)
+            } ?: invokeProgressCallbackForStatus(notifyStatus, itCallback)
         }
     }
 }
@@ -91,7 +91,7 @@ private fun Progress.callback(
  * status 不通过 [Progress.getStatus] 获取, 而是通过传参判断
  * 是防止线程触发回调中进行更新状态, 导致跳过 START 回调
  */
-private fun Progress.innerCallback(
+private fun Progress.invokeProgressCallbackForStatus(
     status: Int,
     callback: Progress.Callback
 ) {

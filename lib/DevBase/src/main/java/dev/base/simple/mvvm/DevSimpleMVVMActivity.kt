@@ -40,7 +40,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
         // 内部初始化前调用
         simpleInit()
         // 内部初始化
-        innerInitialize()
+        retrieveScopeViewModelInstance()
         // 内部初始化后开始流程调用
         simpleStart()
         // 初始化 ViewModel
@@ -64,7 +64,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
     // = 内部初始化 =
     // ============
 
-    protected open fun innerInitialize() {
+    protected open fun retrieveScopeViewModelInstance() {
 
         // =================
         // = initViewModel =
@@ -79,7 +79,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
                     viewModelAssist.getActivityViewModel(
                         this, clazz
                     )?.let {
-                        innerViewModel(it)
+                        applyViewModelLifecycleAndBinding(it)
                     }
                 }
 
@@ -87,27 +87,27 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
                     viewModelAssist.getAppViewModel(
                         DevUtils.getApplication(), clazz
                     )?.let {
-                        innerViewModel(it)
+                        applyViewModelLifecycleAndBinding(it)
                     }
                 }
             }
         } catch (e: Exception) {
-            assist.printLog(e, "innerInitialize - initViewModel")
+            assist.printLog(e, "retrieveScopeViewModelInstance - initViewModel")
         }
     }
 
     /**
-     * 内部 ViewModel 初始化
+     * 内部 ViewModel 初始化（生命周期注册与 DataBinding 变量赋值）
      * @param vmObject VM
      */
-    protected open fun innerViewModel(vmObject: VM) {
+    protected open fun applyViewModelLifecycleAndBinding(vmObject: VM) {
         try {
             viewModel = vmObject
             if (vmObject is LifecycleObserver) {
                 lifecycle.addObserver(vmObject)
             }
         } catch (e: Exception) {
-            assist.printLog(e, "innerViewModel")
+            assist.printLog(e, "applyViewModelLifecycleAndBinding")
         }
         try {
             // 关联 ViewModel 对象值
@@ -118,7 +118,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
     }
 
     /**
-     * ViewModel 在 [innerViewModel] 中完成赋值、生命周期与 DataBinding 关联后回调。
+     * ViewModel 在 [applyViewModelLifecycleAndBinding] 中完成赋值、生命周期与 DataBinding 关联后回调。
      * 子类可覆写以做额外初始化，不应替代 [initViewModel] 或内部自动解析逻辑（避免与防漏调 super 设计冲突）
      * @param vm 当前 [viewModel] 实例
      */

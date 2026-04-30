@@ -52,10 +52,10 @@ internal abstract class BaseOperation constructor(
         if (mDeprecated) return builder
         mUseWrap = true
         // 防止多次添加
-        if (builder.interceptors().contains(innerProgressInterceptor)) {
+        if (builder.interceptors().contains(singletonProgressInterceptor)) {
             return builder
         }
-        builder.addInterceptor(innerProgressInterceptor)
+        builder.addInterceptor(singletonProgressInterceptor)
         return builder
     }
 
@@ -516,7 +516,7 @@ internal abstract class BaseOperation constructor(
      * @author Ttt
      * DevHttpManager 库内部包装, 拦截监听上行、下行进度
      */
-    private val innerProgressInterceptor: Interceptor by lazy {
+    private val singletonProgressInterceptor: Interceptor by lazy {
         if (isTypeRequest()) {
             // 监听上行类型
             Interceptor { chain ->

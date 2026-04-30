@@ -52,7 +52,7 @@ interface ISimpleAgile {
      * // 内部初始化前调用
      * [simpleInit]
      * // 内部初始化
-     * innerInitialize()
+     * retrieveScopeViewModelInstance()
      * // 内部初始化后开始流程调用
      * [simpleStart]
      * // 初始化 ViewModel
@@ -78,7 +78,7 @@ interface ISimpleAgile {
      * // 内部初始化前调用
      * [simpleInit]
      * // 内部初始化
-     * innerInitialize()
+     * retrieveScopeViewModelInstance()
      * // 内部初始化后开始流程调用
      * [simpleStart]
      * ==========

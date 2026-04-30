@@ -436,7 +436,7 @@ open class Progress private constructor(
 
         // Url 携带信息解析
         @IgnoredOnParcel
-        private val innerUrlExtras: UrlExtras by lazy {
+        private val lazyUrlExtrasHolder: UrlExtras by lazy {
             UrlExtras(url)
         }
 
@@ -473,7 +473,7 @@ open class Progress private constructor(
          * @return UrlExtras
          */
         fun getUrlExtras(): UrlExtras {
-            return innerUrlExtras
+            return lazyUrlExtrasHolder
         }
     }
 

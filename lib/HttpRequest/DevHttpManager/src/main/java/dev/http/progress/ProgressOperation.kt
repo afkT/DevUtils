@@ -34,7 +34,7 @@ import okhttp3.OkHttpClient
  *      则会无法触发 ( 因为在请求拦截时候就已传入 Callback List toArray )
  * =
  * 方式一 ( 默认 ): [OperationPlanA]
- * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [OperationPlanA.innerCallback] 无需每次 new Callback
+ * 在创建 [wrapRequestBody]、[wrapResponseBody] 时, 使用统一回调 [OperationPlanA.sharedProgressCallback] 无需每次 new Callback
  * 在统一回调内获取 listener map 对应 url 监听的 Callback List 并进行通知
  * 优点: 支持实时 add listener 并进行通知回调
  * 缺点: 实时通知可能因绑定顺序差异, 需自行根据 [Progress.Extras.getUrlExtras] 进行判断是否需要处理该通知

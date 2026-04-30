@@ -20,7 +20,7 @@ object AppImageConfig {
                 key: String?,
                 param: ImageConfig?
             ): ImageConfig? {
-                return innerCreator.hiIfNotNullWith({
+                return imageConfigLazyCreator.hiIfNotNullWith({
                     return@hiIfNotNullWith it.create(key, param)
                 }, {
                     return@hiIfNotNullWith param
@@ -29,7 +29,7 @@ object AppImageConfig {
         }, ImageConfig.create())
 
     // ImageConfig 内部创建器
-    private var innerCreator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>? = null
+    private var imageConfigLazyCreator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>? = null
 
     // =
 
@@ -38,7 +38,7 @@ object AppImageConfig {
      * @param creator Creator<String, ImageConfig, ImageConfig>
      */
     fun setCreator(creator: DevVariableExt.Creator<String, ImageConfig, ImageConfig>) {
-        innerCreator = creator
+        imageConfigLazyCreator = creator
     }
 
     // =============

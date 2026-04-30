@@ -46,7 +46,7 @@ abstract class BaseInterceptor(
         if (isStorageHttpCaptureType() && !isCapture()) {
             return chain.proceed(chain.request())
         }
-        return innerResponse(chain)
+        return interceptWithCaptureRecording(chain)
     }
 
     // ==========
@@ -54,9 +54,9 @@ abstract class BaseInterceptor(
     // ==========
 
     /**
-     * 统一抓包逻辑代码
+     * 统一抓包逻辑代码（记录请求 / 响应并可选持久化）
      */
-    protected open fun innerResponse(chain: Interceptor.Chain): Response {
+    protected open fun interceptWithCaptureRecording(chain: Interceptor.Chain): Response {
         // 抓包信息封装类
         val captureInfo = CaptureInfo()
 

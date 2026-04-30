@@ -63,17 +63,17 @@ open class ProgressRequestBody(
 //         */
 //        countingSink.finishCallback()
 
-        if (innerBufferedSink == null) {
-            innerBufferedSink = InnerBufferedSink(sink)
+        if (progressDelegatingBufferedSink == null) {
+            progressDelegatingBufferedSink = InnerBufferedSink(sink)
         }
-        innerBufferedSink?.writeTo(delegate)
+        progressDelegatingBufferedSink?.writeTo(delegate)
     }
 
     // ============
     // = 内部包装类 =
     // ============
 
-    private var innerBufferedSink: InnerBufferedSink? = null
+    private var progressDelegatingBufferedSink: InnerBufferedSink? = null
 
     /**
      * detail: writeTo 注释代码二次封装

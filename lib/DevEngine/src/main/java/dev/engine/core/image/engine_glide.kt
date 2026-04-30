@@ -197,7 +197,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     ) {
         if (imageView != null && imageView.context != null) {
             val requestManager = Glide.with(imageView.context)
-            innerDisplayToRequestBuilder(
+            displayIntoImageViewThroughBuilder(
                 imageView,
                 setToRequest(requestManager, source),
                 config
@@ -240,7 +240,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     ) {
         if (imageView != null && imageView.context != null) {
             val requestManager = Glide.with(imageView.context)
-            innerDisplayToRequestBuilder(
+            displayIntoImageViewThroughBuilder(
                 imageView,
                 setToRequest(requestManager, source),
                 config,
@@ -286,7 +286,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 val requestManager = Glide.with(fragment)
-                innerDisplayToRequestBuilder(
+                displayIntoImageViewThroughBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config
@@ -335,7 +335,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         if (fragment != null && imageView != null) {
             if (canFragmentLoadImage(fragment)) {
                 val requestManager = Glide.with(fragment)
-                innerDisplayToRequestBuilder(
+                displayIntoImageViewThroughBuilder(
                     imageView,
                     setToRequest(requestManager, source),
                     config,
@@ -577,7 +577,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: OnConvertListener?
     ): Boolean {
-        return innerConvertImageFormat(context, sources, config, listener)
+        return convertImageSourcesToStoredFiles(context, sources, config, listener)
     }
 
     // ==========
@@ -849,7 +849,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param request   [RequestBuilder]
      * @param config    [ImageConfig]
      */
-    protected open fun innerDisplayToRequestBuilder(
+    protected open fun displayIntoImageViewThroughBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?
@@ -867,7 +867,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param source    [DevSource]
      * @param listener  [LoadListener]
      */
-    protected open fun <T> innerDisplayToRequestBuilder(
+    protected open fun <T> displayIntoImageViewThroughBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
         config: ImageConfig?,
@@ -1020,7 +1020,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * @param listener 回调事件
      * @return `true` success, `false` fail
      */
-    protected open fun innerConvertImageFormat(
+    protected open fun convertImageSourcesToStoredFiles(
         context: Context?,
         sources: List<DevSource>?,
         config: ImageConfig?,

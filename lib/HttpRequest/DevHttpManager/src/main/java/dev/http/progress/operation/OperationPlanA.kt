@@ -37,7 +37,7 @@ internal class OperationPlanA constructor(
         isRequest: Boolean,
         extras: Progress.Extras?
     ): Progress.Callback {
-        return innerCallback
+        return sharedProgressCallback
     }
 
     /**
@@ -210,7 +210,7 @@ internal class OperationPlanA constructor(
      * detail: 内部 Progress 回调
      * @author Ttt
      */
-    private val innerCallback: Progress.Callback by lazy {
+    private val sharedProgressCallback: Progress.Callback by lazy {
         object : Progress.Callback {
             override fun onStart(progress: Progress) {
                 if (isDeprecated()) return

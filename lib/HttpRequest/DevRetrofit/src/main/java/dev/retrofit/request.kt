@@ -33,7 +33,7 @@ suspend inline fun <T> finalExecute(
     val uuid = UUID.randomUUID()
     runCatching {
         // 开始请求
-        innerOriginalStartCallback(
+        notifyRawExecuteStarted(
             uuid, callback, globalCallback
         )
 
@@ -42,7 +42,7 @@ suspend inline fun <T> finalExecute(
         block()
     }.onSuccess { itData ->
         // 请求成功、请求结束
-        innerOriginalSuccessCallback(
+        notifyRawExecuteSucceeded(
             uuid, callback, globalCallback, itData
         )
 
@@ -50,7 +50,7 @@ suspend inline fun <T> finalExecute(
         finish.invoke()
     }.onFailure { itError ->
         // 请求异常、请求结束
-        innerOriginalErrorCallback(
+        notifyRawExecuteFailed(
             uuid, callback, globalCallback, itError
         )
 
@@ -86,7 +86,7 @@ suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
     val uuid = UUID.randomUUID()
     runCatching {
         // 开始请求
-        innerBaseStartCallback(
+        notifyResponseWrappedStarted(
             uuid, callback, globalCallback
         )
 
@@ -98,7 +98,7 @@ suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
         // 设置额外携带参数 ( 扩展使用 )
         result.setParams(callback?.getParams())
         // 请求成功、请求结束
-        innerBaseSuccessCallback(
+        notifyResponseWrappedSucceeded(
             uuid, callback, globalCallback, result
         )
 
@@ -109,7 +109,7 @@ suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
         // 设置额外携带参数 ( 扩展使用 )
         result.setParams(callback?.getParams())
         // 请求异常、请求结束
-        innerBaseErrorCallback(
+        notifyResponseWrappedFailed(
             uuid, callback, globalCallback, result, itError
         )
 
@@ -129,7 +129,7 @@ suspend inline fun <T, R : Base.Response<T>> finalExecuteResponse(
 /**
  * 开始请求
  */
-fun <T> innerOriginalStartCallback(
+fun <T> notifyRawExecuteStarted(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
@@ -148,7 +148,7 @@ fun <T> innerOriginalStartCallback(
 /**
  * 请求成功、请求结束
  */
-fun <T> innerOriginalSuccessCallback(
+fun <T> notifyRawExecuteSucceeded(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
@@ -173,7 +173,7 @@ fun <T> innerOriginalSuccessCallback(
 /**
  * 请求异常、请求结束
  */
-fun <T> innerOriginalErrorCallback(
+fun <T> notifyRawExecuteFailed(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
@@ -202,7 +202,7 @@ fun <T> innerOriginalErrorCallback(
 /**
  * 开始请求
  */
-fun <T, R : Base.Response<T>> innerBaseStartCallback(
+fun <T, R : Base.Response<T>> notifyResponseWrappedStarted(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
@@ -221,7 +221,7 @@ fun <T, R : Base.Response<T>> innerBaseStartCallback(
 /**
  * 请求成功、请求结束
  */
-fun <T, R : Base.Response<T>> innerBaseSuccessCallback(
+fun <T, R : Base.Response<T>> notifyResponseWrappedSucceeded(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知
@@ -246,7 +246,7 @@ fun <T, R : Base.Response<T>> innerBaseSuccessCallback(
 /**
  * 请求异常、请求结束
  */
-fun <T, R : Base.Response<T>> innerBaseErrorCallback(
+fun <T, R : Base.Response<T>> notifyResponseWrappedFailed(
     // 每次请求唯一 id
     uuid: UUID,
     // 当前请求每个阶段进行通知

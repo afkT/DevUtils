@@ -780,7 +780,7 @@ public final class ColorUtils {
         ) {
             this.key   = key;
             this.value = value;
-            innerConvert();
+            parseColorValueIntoChannels();
         }
 
         /**
@@ -912,7 +912,7 @@ public final class ColorUtils {
         /**
          * 内部转换处理
          */
-        private void innerConvert() {
+        private void parseColorValueIntoChannels() {
             String temp = value;
             if (sParser != null) {
                 temp = sParser.handleColor(value);
