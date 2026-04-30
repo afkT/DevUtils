@@ -59,11 +59,11 @@ public final class ReceiverUtils {
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_registerReceiver(
+    public static boolean localRegisterReceiver(
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-        return local_registerReceiver(
+        return localRegisterReceiver(
                 getLocalBroadcastManager(),
                 receiver, filter
         );
@@ -76,7 +76,7 @@ public final class ReceiverUtils {
      * @param filter                {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_registerReceiver(
+    public static boolean localRegisterReceiver(
             final LocalBroadcastManager localBroadcastManager,
             final BroadcastReceiver receiver,
             final IntentFilter filter
@@ -87,7 +87,7 @@ public final class ReceiverUtils {
             localBroadcastManager.registerReceiver(receiver, filter);
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "local_registerReceiver");
+            LogPrintUtils.eTag(TAG, e, "localRegisterReceiver");
         }
         return false;
     }
@@ -97,10 +97,10 @@ public final class ReceiverUtils {
      * @param receiver {@link BroadcastReceiver}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_unregisterReceiver(
+    public static boolean localUnregisterReceiver(
             final BroadcastReceiver receiver
     ) {
-        return local_unregisterReceiver(getLocalBroadcastManager(), receiver);
+        return localUnregisterReceiver(getLocalBroadcastManager(), receiver);
     }
 
     /**
@@ -109,7 +109,7 @@ public final class ReceiverUtils {
      * @param receiver              {@link BroadcastReceiver}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_unregisterReceiver(
+    public static boolean localUnregisterReceiver(
             final LocalBroadcastManager localBroadcastManager,
             final BroadcastReceiver receiver
     ) {
@@ -119,7 +119,7 @@ public final class ReceiverUtils {
             localBroadcastManager.unregisterReceiver(receiver);
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "local_unregisterReceiver");
+            LogPrintUtils.eTag(TAG, e, "localUnregisterReceiver");
         }
         return false;
     }
@@ -129,10 +129,10 @@ public final class ReceiverUtils {
      * @param intent {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_sendBroadcast(
+    public static boolean localSendBroadcast(
             final Intent intent
     ) {
-        return local_sendBroadcast(getLocalBroadcastManager(), intent);
+        return localSendBroadcast(getLocalBroadcastManager(), intent);
     }
 
     /**
@@ -141,7 +141,7 @@ public final class ReceiverUtils {
      * @param intent                {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_sendBroadcast(
+    public static boolean localSendBroadcast(
             final LocalBroadcastManager localBroadcastManager,
             final Intent intent
     ) {
@@ -151,7 +151,7 @@ public final class ReceiverUtils {
             localBroadcastManager.sendBroadcast(intent);
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "local_sendBroadcast");
+            LogPrintUtils.eTag(TAG, e, "localSendBroadcast");
         }
         return false;
     }
@@ -161,10 +161,10 @@ public final class ReceiverUtils {
      * @param intent {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_sendBroadcastSync(
+    public static boolean localSendBroadcastSync(
             final Intent intent
     ) {
-        return local_sendBroadcastSync(getLocalBroadcastManager(), intent);
+        return localSendBroadcastSync(getLocalBroadcastManager(), intent);
     }
 
     /**
@@ -173,7 +173,7 @@ public final class ReceiverUtils {
      * @param intent                {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean local_sendBroadcastSync(
+    public static boolean localSendBroadcastSync(
             final LocalBroadcastManager localBroadcastManager,
             final Intent intent
     ) {
@@ -183,7 +183,7 @@ public final class ReceiverUtils {
             localBroadcastManager.sendBroadcastSync(intent);
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "local_sendBroadcastSync");
+            LogPrintUtils.eTag(TAG, e, "localSendBroadcastSync");
         }
         return false;
     }

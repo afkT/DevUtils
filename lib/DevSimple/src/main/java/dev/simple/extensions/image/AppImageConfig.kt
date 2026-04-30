@@ -47,10 +47,10 @@ object AppImageConfig {
 
     /**
      * 获取变量操作基类扩展类
-     * @return DevVariableExt<String, ImageConfig, String>
+     * @return DevVariableExt<String, ImageConfig, ImageConfig>
      */
-    fun varExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
-        return AUTO_CONFIG.varExt()
+    fun devVariableExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
+        return AUTO_CONFIG.devVariableExt()
     }
 
     /**

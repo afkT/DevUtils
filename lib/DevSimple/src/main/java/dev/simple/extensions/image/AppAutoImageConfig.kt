@@ -18,7 +18,7 @@ open class AppAutoImageConfig(
     private var defaultValue: ImageConfig? = null
 ) {
     // 变量操作基类扩展类
-    private val varExt = DevVariableExt(creator)
+    private val _devVariableExt = DevVariableExt(creator)
 
     // =============
     // = 对外公开方法 =
@@ -26,10 +26,10 @@ open class AppAutoImageConfig(
 
     /**
      * 获取变量操作基类扩展类
-     * @return DevVariableExt<String, ImageConfig, String>
+     * @return DevVariableExt<String, ImageConfig, ImageConfig>
      */
-    open fun varExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
-        return varExt
+    open fun devVariableExt(): DevVariableExt<String, ImageConfig, ImageConfig> {
+        return _devVariableExt
     }
 
     /**
@@ -52,7 +52,7 @@ open class AppAutoImageConfig(
         defaultValue: ImageConfig?
     ): ImageConfig? {
         if (key != null) {
-            return varExt.getVariableValue(key, null) ?: defaultValue
+            return _devVariableExt.getVariableValue(key, null) ?: defaultValue
         }
         return defaultValue
     }
