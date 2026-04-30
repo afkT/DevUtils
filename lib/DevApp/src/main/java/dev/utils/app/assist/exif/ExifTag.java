@@ -72,15 +72,15 @@ public final class ExifTag {
     public static final List<String> PEF_TAGS;
 
     static {
-        IFD_TIFF_TAGS             = asList(INNER.IFD_TIFF_TAGS);
-        IFD_EXIF_TAGS             = asList(INNER.IFD_EXIF_TAGS);
-        IFD_GPS_TAGS              = asList(INNER.IFD_GPS_TAGS);
-        IFD_INTEROPERABILITY_TAGS = asList(INNER.IFD_INTEROPERABILITY_TAGS);
-        IFD_THUMBNAIL_TAGS        = asList(INNER.IFD_THUMBNAIL_TAGS);
-        ORF_MAKER_NOTE_TAGS       = asList(INNER.ORF_MAKER_NOTE_TAGS);
-        ORF_CAMERA_SETTINGS_TAGS  = asList(INNER.ORF_CAMERA_SETTINGS_TAGS);
-        ORF_IMAGE_PROCESSING_TAGS = asList(INNER.ORF_IMAGE_PROCESSING_TAGS);
-        PEF_TAGS                  = asList(INNER.PEF_TAGS);
+        IFD_TIFF_TAGS             = asList(ExifTagTables.IFD_TIFF_TAGS);
+        IFD_EXIF_TAGS             = asList(ExifTagTables.IFD_EXIF_TAGS);
+        IFD_GPS_TAGS              = asList(ExifTagTables.IFD_GPS_TAGS);
+        IFD_INTEROPERABILITY_TAGS = asList(ExifTagTables.IFD_INTEROPERABILITY_TAGS);
+        IFD_THUMBNAIL_TAGS        = asList(ExifTagTables.IFD_THUMBNAIL_TAGS);
+        ORF_MAKER_NOTE_TAGS       = asList(ExifTagTables.ORF_MAKER_NOTE_TAGS);
+        ORF_CAMERA_SETTINGS_TAGS  = asList(ExifTagTables.ORF_CAMERA_SETTINGS_TAGS);
+        ORF_IMAGE_PROCESSING_TAGS = asList(ExifTagTables.ORF_IMAGE_PROCESSING_TAGS);
+        PEF_TAGS                  = asList(ExifTagTables.PEF_TAGS);
 
         List<List<String>> lists = new ArrayList<>();
         lists.add(IFD_TIFF_TAGS);
@@ -130,10 +130,10 @@ public final class ExifTag {
     // =================
 
     /**
-     * detail: 内部常量
+     * detail: EXIF 各 IFD 标签名字符串表（与 {@link ExifInterface} 对齐的静态集合）
      * @author Android
      */
-    private static final class INNER {
+    private static final class ExifTagTables {
 
         private static final String TAG_THUMBNAIL_ORIENTATION            = "ThumbnailOrientation";
         private static final String TAG_EXIF_IFD_POINTER                 = "ExifIFDPointer";

@@ -14,16 +14,6 @@ public final class DevFinal {
     }
 
     /**
-     * detail: 工具类内部返回值等常量定义
-     * @author Ttt
-     */
-    public static final class INNER {
-
-        // 异常错误返回值
-        public static final int ERROR_INT = -1;
-    }
-
-    /**
      * detail: 符号、标记字符串常量
      * @author Ttt
      */
