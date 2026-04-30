@@ -106,15 +106,15 @@ public final class FileBreadthFirstSearchUtils {
          * @param file 文件
          * @return {@code true} 添加, {@code false} 不添加
          */
-        boolean isAddToList(File file);
+        boolean shouldCollectFile(File file);
 
         /**
-         * 搜索结束监听
+         * 搜索完成回调
          * @param rootFileItem 根文件信息 {@link FileItem}
          * @param startTime    开始扫描时间
          * @param endTime      扫描结束时间
          */
-        void onEndListener(
+        void onSearchComplete(
                 FileItem rootFileItem,
                 long startTime,
                 long endTime
@@ -135,15 +135,15 @@ public final class FileBreadthFirstSearchUtils {
         }
 
         @Override
-        public boolean isAddToList(File file) {
+        public boolean shouldCollectFile(File file) {
             if (mSearchHandler != null) {
-                return mSearchHandler.isAddToList(file);
+                return mSearchHandler.shouldCollectFile(file);
             }
             return true;
         }
 
         @Override
-        public void onEndListener(
+        public void onSearchComplete(
                 FileItem rootFileItem,
                 long startTime,
                 long endTime
@@ -152,7 +152,7 @@ public final class FileBreadthFirstSearchUtils {
             mRunning = false;
             // 触发回调
             if (mSearchHandler != null) {
-                mSearchHandler.onEndListener(rootFileItem, startTime, endTime);
+                mSearchHandler.onSearchComplete(rootFileItem, startTime, endTime);
             }
         }
     };
@@ -275,7 +275,7 @@ public final class FileBreadthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            mTraversalSearchHandler.onEndListener(null, -1, -1);
+            mTraversalSearchHandler.onSearchComplete(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -292,7 +292,7 @@ public final class FileBreadthFirstSearchUtils {
             if (file.isFile()) {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+                mTraversalSearchHandler.onSearchComplete(mRootFileItem, mStartTime, mEndTime);
                 return;
             }
             // 获取文件夹全部子文件
@@ -308,13 +308,13 @@ public final class FileBreadthFirstSearchUtils {
             } else {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+                mTraversalSearchHandler.onSearchComplete(mRootFileItem, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             mEndTime = System.currentTimeMillis();
-            mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+            mTraversalSearchHandler.onSearchComplete(mRootFileItem, mStartTime, mEndTime);
         }
     }
 
@@ -351,14 +351,14 @@ public final class FileBreadthFirstSearchUtils {
                                 // 添加任务
                                 mTaskQueue.offer(new FileQueue(queryFile, subFileItem));
                             } else { // 属于文件
-                                if (!mStop && mTraversalSearchHandler.isAddToList(queryFile)) {
+                                if (!mStop && mTraversalSearchHandler.shouldCollectFile(queryFile)) {
                                     // 属于文件则直接保存
                                     fileItem.put(queryFile);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!mStop && mTraversalSearchHandler.isAddToList(file)) {
+                        if (!mStop && mTraversalSearchHandler.shouldCollectFile(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -409,6 +409,6 @@ public final class FileBreadthFirstSearchUtils {
         }
         // 触发结束回调
         mEndTime = System.currentTimeMillis();
-        mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+        mTraversalSearchHandler.onSearchComplete(mRootFileItem, mStartTime, mEndTime);
     }
 }

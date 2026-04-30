@@ -91,7 +91,7 @@ internal abstract class BaseOperation constructor(
      * 是否监听上下行
      * @return `true` yes, `false` no
      */
-    override fun isTypeAll(): Boolean {
+    override fun isMonitoringBidirectional(): Boolean {
         return type == ProgressOperation.TYPE_ALL
     }
 
@@ -99,7 +99,7 @@ internal abstract class BaseOperation constructor(
      * 是否监听上行
      * @return `true` yes, `false` no
      */
-    override fun isTypeRequest(): Boolean {
+    override fun isMonitoringRequestBodyOnly(): Boolean {
         return type == ProgressOperation.TYPE_REQUEST
     }
 
@@ -107,7 +107,7 @@ internal abstract class BaseOperation constructor(
      * 是否监听下行
      * @return `true` yes, `false` no
      */
-    override fun isTypeResponse(): Boolean {
+    override fun isMonitoringResponseBodyOnly(): Boolean {
         return type == ProgressOperation.TYPE_RESPONSE
     }
 
@@ -517,7 +517,7 @@ internal abstract class BaseOperation constructor(
      * DevHttpManager 库内部包装, 拦截监听上行、下行进度
      */
     private val singletonProgressInterceptor: Interceptor by lazy {
-        if (isTypeRequest()) {
+        if (isMonitoringRequestBodyOnly()) {
             // 监听上行类型
             Interceptor { chain ->
                 if (mDeprecated) {
@@ -534,7 +534,7 @@ internal abstract class BaseOperation constructor(
                     chain.proceed(wrapRequest)
                 }
             }
-        } else if (isTypeResponse()) {
+        } else if (isMonitoringResponseBodyOnly()) {
             // 监听下行类型
             Interceptor { chain ->
                 if (mDeprecated) {

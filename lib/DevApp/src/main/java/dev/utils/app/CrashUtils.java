@@ -87,7 +87,7 @@ public final class CrashUtils
         if (ex == null) return false;
         // 触发回调
         if (mCrashCatchListener != null) {
-            mCrashCatchListener.handleException(ex);
+            mCrashCatchListener.onThrowableCaptured(ex);
         }
         return true;
     }
@@ -99,10 +99,10 @@ public final class CrashUtils
     public interface CrashCatchListener {
 
         /**
-         * 处理异常
+         * 异常已被捕获（可在此收集错误信息、上报等）
          * @param ex {@link Throwable}
          */
-        void handleException(Throwable ex);
+        void onThrowableCaptured(Throwable ex);
 
         /**
          * 处理未捕获的异常

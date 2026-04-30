@@ -323,7 +323,7 @@ public class ScanShapeView
         mLinePaintToHexagon.setStyle(Paint.Style.STROKE);
 
         // 统一处理画笔拐角
-        handlerCornerPathEffect();
+        applyCornerPathEffect();
 
         // 加载正方形扫描线条
         mBitmapToSquare = ((BitmapDrawable) (getResources().getDrawable(
@@ -342,7 +342,7 @@ public class ScanShapeView
     /**
      * 处理拐角
      */
-    private void handlerCornerPathEffect() {
+    private void applyCornerPathEffect() {
         // 设置绘制边框拐角
         mBorderPaint.setPathEffect(mCornerEffect);
         // 判断是否加入拐角
@@ -448,7 +448,7 @@ public class ScanShapeView
         // 设置类型
         this.mShapeType = shapeType;
         // 刷新拐角处理
-        handlerCornerPathEffect();
+        applyCornerPathEffect();
         // 动画处理
         resetAnim(true);
         return this;
@@ -477,7 +477,7 @@ public class ScanShapeView
             this.mCornerEffect = null;
         }
         // 刷新拐角处理
-        handlerCornerPathEffect();
+        applyCornerPathEffect();
         return this;
     }
 

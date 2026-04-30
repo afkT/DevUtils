@@ -171,7 +171,7 @@ internal object ProgressManager {
      * @param key Key
      * @return Progress Operation
      */
-    fun putOperationTypeAll(key: String): ProgressOperation {
+    fun putBidirectionalProgressOperation(key: String): ProgressOperation {
         return putOperation(key, ProgressOperation.TYPE_ALL)
     }
 
@@ -180,7 +180,7 @@ internal object ProgressManager {
      * @param key Key
      * @return Progress Operation
      */
-    fun putOperationTypeRequest(key: String): ProgressOperation {
+    fun putRequestProgressOperation(key: String): ProgressOperation {
         return putOperation(key, ProgressOperation.TYPE_REQUEST)
     }
 
@@ -189,7 +189,7 @@ internal object ProgressManager {
      * @param key Key
      * @return Progress Operation
      */
-    fun putOperationTypeResponse(key: String): ProgressOperation {
+    fun putResponseProgressOperation(key: String): ProgressOperation {
         return putOperation(key, ProgressOperation.TYPE_RESPONSE)
     }
 

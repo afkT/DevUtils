@@ -1254,7 +1254,7 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
-| getMobileDataEnabled | 获取移动网络打开状态 ( 默认属于未打开 ) |
+| isMobileDataEnabled | 获取移动网络打开状态 ( 默认属于未打开 ) |
 | setMobileDataEnabled | 设置移动网络开关 ( 无判断是否已开启移动网络 ) |
 | isConnect | 判断是否连接了网络 |
 | getConnectType | 获取连接的网络类型 |
@@ -1265,7 +1265,7 @@ DevUtils.openDebug();
 | getActiveNetworkInfo | 获取活动网络信息 |
 | getActiveNetwork | 获取活动网络 |
 | is4G | 判断是否 4G 网络 |
-| getWifiEnabled | 判断 Wifi 是否打开 |
+| isWifiEnabled | 判断 Wifi 是否打开 |
 | isWifiAvailable | 判断 Wifi 数据是否可用 |
 | getNetworkOperatorName | 获取网络运营商名称 ( 中国移动、如中国联通、中国电信 ) |
 | getNetworkType | 获取当前网络类型 |

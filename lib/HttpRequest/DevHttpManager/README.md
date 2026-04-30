@@ -102,9 +102,9 @@ implementation 'io.github.afkt:DevHttpManager:1.1.0'
 | containsOperation        | 通过 Key 判断是否存在 Progress Operation 操作对象 |
 | removeOperation          | 通过 Key 解绑并返回 Operation 操作对象           |
 | clearOperation           | 清空所有 Progress Operation 操作对象          |
-| putOperationTypeAll      | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
-| putOperationTypeRequest  | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )  |
-| putOperationTypeResponse | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )  |
+| putBidirectionalProgressOperation | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
+| putRequestProgressOperation       | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )  |
+| putResponseProgressOperation      | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )  |
 
 
 
@@ -168,11 +168,11 @@ fun <T> resetAndCreate(
 
 ```kotlin
 // 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 )
-DevHttpManager.PM.putOperationTypeAll(moduleKey)
+DevHttpManager.PM.putBidirectionalProgressOperation(moduleKey)
 // 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )
-DevHttpManager.PM.putOperationTypeRequest(moduleKey)
+DevHttpManager.PM.putRequestProgressOperation(moduleKey)
 // 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
-DevHttpManager.PM.putOperationTypeResponse(moduleKey)
+DevHttpManager.PM.putResponseProgressOperation(moduleKey)
 // 或者使用全局默认 Progress Operation 操作对象
 DevHttpManager.PM.getDefault()
 ```

@@ -286,6 +286,6 @@ public final class IToast {
          * @param content Toast 显示文案
          * @return 处理后的内容
          */
-        String handlerContent(String content);
+        String normalizeToastContent(String content);
     }
 }

@@ -94,14 +94,14 @@ class DownloadAPI private constructor() {
 //        // 获取全局默认 Progress Operation 操作对象 ( 默认监听上下行操作对象 )
 //        DevHttpManager.PM.getDefault()
 //        // 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 )
-//        DevHttpManager.PM.putOperationTypeAll(NAME)
+//        DevHttpManager.PM.putBidirectionalProgressOperation(NAME)
 //        // 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )
-//        DevHttpManager.PM.putOperationTypeRequest(NAME)
+//        DevHttpManager.PM.putRequestProgressOperation(NAME)
 //        // 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
-//        DevHttpManager.PM.putOperationTypeResponse(NAME)
+//        DevHttpManager.PM.putResponseProgressOperation(NAME)
 
         // 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )
-        DevHttpManager.PM.putOperationTypeResponse(NAME).apply {
+        DevHttpManager.PM.putResponseProgressOperation(NAME).apply {
 
             // ===============
             // = 以下配置非必须 =

@@ -180,7 +180,7 @@ class AppContext : BaseApplication() {
     private fun initCrash() {
         // 捕获异常处理 => 在 BaseApplication 中调用
         CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
-            override fun handleException(ex: Throwable) {
+            override fun onThrowableCaptured(ex: Throwable) {
                 // 保存日志信息
             }
 

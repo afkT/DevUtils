@@ -191,24 +191,24 @@ open class ProgressOperation protected constructor(
      * 是否监听上下行
      * @return `true` yes, `false` no
      */
-    override fun isTypeAll(): Boolean {
-        return IMPL.isTypeAll()
+    override fun isMonitoringBidirectional(): Boolean {
+        return IMPL.isMonitoringBidirectional()
     }
 
     /**
      * 是否监听上行
      * @return `true` yes, `false` no
      */
-    override fun isTypeRequest(): Boolean {
-        return IMPL.isTypeRequest()
+    override fun isMonitoringRequestBodyOnly(): Boolean {
+        return IMPL.isMonitoringRequestBodyOnly()
     }
 
     /**
      * 是否监听下行
      * @return `true` yes, `false` no
      */
-    override fun isTypeResponse(): Boolean {
-        return IMPL.isTypeResponse()
+    override fun isMonitoringResponseBodyOnly(): Boolean {
+        return IMPL.isMonitoringResponseBodyOnly()
     }
 
     // ===========

@@ -1223,7 +1223,7 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * 是否使用宽视图
          * @return `true` yes, `false` no
          */
-        open fun isUseWideViewPort(): Boolean {
+        open fun isWideViewPortEnabled(): Boolean {
             return mUseWideViewPort
         }
 
@@ -1233,7 +1233,7 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @return [Builder]
          * 是否支持 html viewport 设置了会导致字体变小
          */
-        open fun setUseWideViewPort(useWideViewPort: Boolean): Builder {
+        open fun setWideViewPortEnabled(useWideViewPort: Boolean): Builder {
             mUseWideViewPort = useWideViewPort
             return this
         }

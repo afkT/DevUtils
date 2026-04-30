@@ -64,15 +64,15 @@ public final class FileDepthFirstSearchUtils {
          * @param file 文件
          * @return {@code true} 添加, {@code false} 不添加
          */
-        boolean isAddToList(File file);
+        boolean shouldCollectFile(File file);
 
         /**
-         * 搜索结束监听
+         * 搜索完成回调
          * @param lists     根目录的子文件目录集合
          * @param startTime 开始扫描时间
          * @param endTime   扫描结束时间
          */
-        void onEndListener(
+        void onSearchComplete(
                 List<FileItem> lists,
                 long startTime,
                 long endTime
@@ -93,15 +93,15 @@ public final class FileDepthFirstSearchUtils {
         }
 
         @Override
-        public boolean isAddToList(File file) {
+        public boolean shouldCollectFile(File file) {
             if (mSearchHandler != null) {
-                return mSearchHandler.isAddToList(file);
+                return mSearchHandler.shouldCollectFile(file);
             }
             return true;
         }
 
         @Override
-        public void onEndListener(
+        public void onSearchComplete(
                 List<FileItem> lists,
                 long startTime,
                 long endTime
@@ -110,7 +110,7 @@ public final class FileDepthFirstSearchUtils {
             mRunning = false;
             // 触发回调
             if (mSearchHandler != null) {
-                mSearchHandler.onEndListener(lists, startTime, endTime);
+                mSearchHandler.onSearchComplete(lists, startTime, endTime);
             }
         }
     };
@@ -188,7 +188,7 @@ public final class FileDepthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            mTraversalSearchHandler.onEndListener(null, -1, -1);
+            mTraversalSearchHandler.onSearchComplete(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -205,7 +205,7 @@ public final class FileDepthFirstSearchUtils {
                 lists.add(new FileItem(file));
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mTraversalSearchHandler.onEndListener(lists, mStartTime, mEndTime);
+                mTraversalSearchHandler.onSearchComplete(lists, mStartTime, mEndTime);
                 return;
             }
             // 获取文件夹全部子文件
@@ -218,18 +218,18 @@ public final class FileDepthFirstSearchUtils {
                     queryFile(file, lists, isRelation);
                     // 触发结束回调
                     mEndTime = System.currentTimeMillis();
-                    mTraversalSearchHandler.onEndListener(lists, mStartTime, mEndTime);
+                    mTraversalSearchHandler.onSearchComplete(lists, mStartTime, mEndTime);
                 }).start();
             } else {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mTraversalSearchHandler.onEndListener(null, mStartTime, mEndTime);
+                mTraversalSearchHandler.onSearchComplete(null, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             mEndTime = System.currentTimeMillis();
-            mTraversalSearchHandler.onEndListener(null, mStartTime, mEndTime);
+            mTraversalSearchHandler.onSearchComplete(null, mStartTime, mEndTime);
         }
     }
 
@@ -270,7 +270,7 @@ public final class FileDepthFirstSearchUtils {
                                     lists.add(fileItem);
                                 } else {
                                     // 属于文件
-                                    if (mTraversalSearchHandler.isAddToList(queryFile)) {
+                                    if (mTraversalSearchHandler.shouldCollectFile(queryFile)) {
                                         // 属于文件则直接保存
                                         lists.add(new FileItem(queryFile));
                                     }
@@ -281,7 +281,7 @@ public final class FileDepthFirstSearchUtils {
                             }
                         }
                     } else { // 属于文件
-                        if (mTraversalSearchHandler.isAddToList(file)) {
+                        if (mTraversalSearchHandler.shouldCollectFile(file)) {
                             // 属于文件则直接保存
                             lists.add(new FileItem(file));
                         }

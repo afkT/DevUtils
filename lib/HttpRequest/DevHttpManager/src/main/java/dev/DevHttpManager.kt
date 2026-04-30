@@ -282,8 +282,8 @@ object DevHttpManager {
          * @return Progress Operation
          */
         @JvmStatic
-        fun putOperationTypeAll(key: String): ProgressOperation {
-            return ProgressManager.putOperationTypeAll(key)
+        fun putBidirectionalProgressOperation(key: String): ProgressOperation {
+            return ProgressManager.putBidirectionalProgressOperation(key)
         }
 
         /**
@@ -292,8 +292,8 @@ object DevHttpManager {
          * @return Progress Operation
          */
         @JvmStatic
-        fun putOperationTypeRequest(key: String): ProgressOperation {
-            return ProgressManager.putOperationTypeRequest(key)
+        fun putRequestProgressOperation(key: String): ProgressOperation {
+            return ProgressManager.putRequestProgressOperation(key)
         }
 
         /**
@@ -302,8 +302,8 @@ object DevHttpManager {
          * @return Progress Operation
          */
         @JvmStatic
-        fun putOperationTypeResponse(key: String): ProgressOperation {
-            return ProgressManager.putOperationTypeResponse(key)
+        fun putResponseProgressOperation(key: String): ProgressOperation {
+            return ProgressManager.putResponseProgressOperation(key)
         }
     }
 }

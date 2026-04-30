@@ -230,7 +230,7 @@ final class IToastImpl
     ) {
         String context = StringUtils.format(text, formatArgs);
         if (filter(context)) {
-            dispatchTextToast(handlerContent(context));
+            dispatchTextToast(normalizeToastContent(context));
         }
     }
 
@@ -247,7 +247,7 @@ final class IToastImpl
         String context = ResourceUtils.getString(resId, formatArgs);
         if (filter(context)) {
             // 获取处理的内容
-            dispatchTextToast(handlerContent(context));
+            dispatchTextToast(normalizeToastContent(context));
         }
     }
 
@@ -328,9 +328,9 @@ final class IToastImpl
      * @return 处理后的内容
      */
     @Override
-    public String handlerContent(String content) {
+    public String normalizeToastContent(String content) {
         if (mToastFilter != null) {
-            return mToastFilter.handlerContent(content);
+            return mToastFilter.normalizeToastContent(content);
         }
         return content;
     }

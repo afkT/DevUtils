@@ -44,22 +44,22 @@ interface IOperation {
     fun isDefault(): Boolean
 
     /**
-     * 是否监听上下行
+     * 是否同时监听请求体与响应体进度（双向）
      * @return `true` yes, `false` no
      */
-    fun isTypeAll(): Boolean
+    fun isMonitoringBidirectional(): Boolean
 
     /**
-     * 是否监听上行
+     * 是否仅监听上行（请求体）进度
      * @return `true` yes, `false` no
      */
-    fun isTypeRequest(): Boolean
+    fun isMonitoringRequestBodyOnly(): Boolean
 
     /**
-     * 是否监听下行
+     * 是否仅监听下行（响应体）进度
      * @return `true` yes, `false` no
      */
-    fun isTypeResponse(): Boolean
+    fun isMonitoringResponseBodyOnly(): Boolean
 
     // ===========
     // = get/set =

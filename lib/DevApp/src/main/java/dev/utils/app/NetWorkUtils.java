@@ -49,7 +49,7 @@ public final class NetWorkUtils {
      * 获取移动网络打开状态 ( 默认属于未打开 )
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean getMobileDataEnabled() {
+    public static boolean isMobileDataEnabled() {
         try {
             // 移动网络开关状态
             boolean state;
@@ -70,7 +70,7 @@ public final class NetWorkUtils {
             }
             return state;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMobileDataEnabled");
+            LogPrintUtils.eTag(TAG, e, "isMobileDataEnabled");
         }
         return false;
     }
@@ -316,13 +316,13 @@ public final class NetWorkUtils {
      * 判断 Wifi 是否打开
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean getWifiEnabled() {
+    public static boolean isWifiEnabled() {
         try {
             @SuppressLint("WifiManagerLeak")
             WifiManager wifiManager = AppUtils.getWifiManager();
             return wifiManager.isWifiEnabled();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getWifiEnabled");
+            LogPrintUtils.eTag(TAG, e, "isWifiEnabled");
         }
         return false;
     }
@@ -334,7 +334,7 @@ public final class NetWorkUtils {
      */
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isWifiAvailable(final String ip) {
-        return getWifiEnabled() && isAvailable(ip);
+        return isWifiEnabled() && isAvailable(ip);
     }
 
     /**

@@ -541,7 +541,7 @@ public final class ToastUtils {
             return null;
         }
         // 处理内容
-        toastText = sPriToastFilter.handlerContent(toastText);
+        toastText = sPriToastFilter.normalizeToastContent(toastText);
         // 设置为 null, 便于提示排查
         if (TextUtils.isEmpty(toastText)) {
             toastText = sNullText;
@@ -918,7 +918,7 @@ public final class ToastUtils {
          * @param content Toast 显示文案
          * @return 处理后的内容
          */
-        String handlerContent(String content);
+        String normalizeToastContent(String content);
     }
 
     // ============================
@@ -962,9 +962,9 @@ public final class ToastUtils {
          * @return 处理后的内容
          */
         @Override
-        public String handlerContent(String content) {
+        public String normalizeToastContent(String content) {
             if (sToastFilter != null) {
-                return sToastFilter.handlerContent(content);
+                return sToastFilter.normalizeToastContent(content);
             }
             return content;
         }
