@@ -64,7 +64,7 @@ open class ProgressRequestBody(
 //        countingSink.finishCallback()
 
         if (progressDelegatingBufferedSink == null) {
-            progressDelegatingBufferedSink = InnerBufferedSink(sink)
+            progressDelegatingBufferedSink = ProgressTrackingBufferedSink(sink)
         }
         progressDelegatingBufferedSink?.writeTo(delegate)
     }
@@ -73,13 +73,13 @@ open class ProgressRequestBody(
     // = 内部包装类 =
     // ============
 
-    private var progressDelegatingBufferedSink: InnerBufferedSink? = null
+    private var progressDelegatingBufferedSink: ProgressTrackingBufferedSink? = null
 
     /**
      * detail: writeTo 注释代码二次封装
      * @author Ttt
      */
-    private inner class InnerBufferedSink(sink: BufferedSink) {
+    private inner class ProgressTrackingBufferedSink(sink: BufferedSink) {
 
         val countingSink = CountingSink(sink)
 

@@ -365,7 +365,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 )
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Drawable>).into(
-                        InnerDrawableTarget(
+                        DrawableCustomLoadTarget(
                             source, listener as LoadListener<Drawable>
                         )
                     )
@@ -376,7 +376,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 )
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Bitmap>).into(
-                        InnerBitmapTarget(
+                        BitmapCustomLoadTarget(
                             source, listener as LoadListener<Bitmap>
                         )
                     )
@@ -400,7 +400,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 )
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Drawable>).into(
-                        InnerDrawableTarget(
+                        DrawableCustomLoadTarget(
                             source, listener as LoadListener<Drawable>
                         )
                     )
@@ -411,7 +411,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 )
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Bitmap>).into(
-                        InnerBitmapTarget(
+                        BitmapCustomLoadTarget(
                             source, listener as LoadListener<Bitmap>
                         )
                     )
@@ -879,7 +879,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
             if (type == Drawable::class.java) {
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Drawable>).into(
-                        InnerDrawableViewTarget(
+                        DrawableIntoImageViewTarget(
                             imageView, source, listener as LoadListener<Drawable>
                         )
                     )
@@ -887,7 +887,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
             } else if (type == Bitmap::class.java) {
                 buildRequest(request, config)?.let {
                     (it as RequestBuilder<Drawable>).into(
-                        InnerBitmapViewTarget(
+                        BitmapIntoImageViewTarget(
                             imageView, source, listener as LoadListener<Bitmap>
                         )
                     )
@@ -900,7 +900,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = 内部加载事件 =
     // =============
 
-    private class InnerDrawableViewTarget(
+    private class DrawableIntoImageViewTarget(
         view: ImageView?,
         private val mSource: DevSource?,
         private val mListener: LoadListener<Drawable>
@@ -929,7 +929,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
-    private class InnerBitmapViewTarget(
+    private class BitmapIntoImageViewTarget(
         view: ImageView?,
         private val mSource: DevSource?,
         private val mListener: LoadListener<Bitmap>
@@ -960,7 +960,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
-    private class InnerDrawableTarget(
+    private class DrawableCustomLoadTarget(
         private val mSource: DevSource,
         private val mListener: LoadListener<Drawable>
     ) : CustomTarget<Drawable?>() {
@@ -984,7 +984,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         override fun onLoadCleared(placeholder: Drawable?) {}
     }
 
-    private class InnerBitmapTarget(
+    private class BitmapCustomLoadTarget(
         private val mSource: DevSource,
         private val mListener: LoadListener<Bitmap>
     ) : CustomTarget<Bitmap?>() {
@@ -1062,14 +1062,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
      * 创建 [ConvertStorage] 转换器
      * @return [ConvertStorage]
      * 子类可重写该方法返回自定义 [ConvertStorage] 实现,
-     * 或继承 [InnerConvertStorage] 重写 convert 方法以自定义存储策略
+     * 或继承 [GlideEngineConvertStorage] 重写 convert 方法以自定义存储策略
      * ( 命名、格式、质量、存储目录、原图直返条件等 )
      */
     protected open fun newConvertStorage(): ConvertStorage<ImageConfig?> {
-        return InnerConvertStorage(this)
+        return GlideEngineConvertStorage(this)
     }
 
-    protected open class InnerConvertStorage(
+    protected open class GlideEngineConvertStorage(
         private val engineImpl: GlideEngineImpl
     ) : ConvertStorage<ImageConfig?> {
         override fun convert(

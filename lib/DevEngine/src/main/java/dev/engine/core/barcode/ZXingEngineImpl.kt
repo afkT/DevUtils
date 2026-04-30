@@ -76,7 +76,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
     override fun encodeBarCodeSync(params: BarCodeData?): Bitmap {
         val error = isValidData(params)
         if (error == null && params != null) {
-            val config = getInnerConfig()
+            val config = resolveBarCodeEngineConfig()
             // 条码宽高
             val width = params.getWidth()
             val height = params.getHeight()
@@ -129,7 +129,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
 
     override fun decodeBarCodeSync(bitmap: Bitmap?): BarCodeResult {
         if (bitmap != null) {
-            val config = getInnerConfig()
+            val config = resolveBarCodeEngineConfig()
             // 解码处理
             val width = bitmap.width
             val height = bitmap.height
@@ -206,7 +206,7 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
      * 获取 BarCode Config
      * @return BarCode Config
      */
-    protected open fun getInnerConfig(): BarCodeConfig {
+    protected open fun resolveBarCodeEngineConfig(): BarCodeConfig {
         return mBarCodeConfig ?: DEFAULT_CONFIG
     }
 
