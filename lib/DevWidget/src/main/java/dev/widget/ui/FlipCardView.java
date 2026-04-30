@@ -178,8 +178,8 @@ public class FlipCardView
             mInAnim.setTarget(mFrontLayout);
         }
         // 设置动画结束监听
-        mInAnim.removeListener(mInnerInAnimListener);
-        mInAnim.addListener(mInnerInAnimListener);
+        mInAnim.removeListener(mFlipInAnimListener);
+        mInAnim.addListener(mFlipInAnimListener);
         // 启动动画
         mOutAnim.start();
         mInAnim.start();
@@ -238,7 +238,7 @@ public class FlipCardView
     // ==========
 
     // 内部进入动画监听
-    private final Animator.AnimatorListener mInnerInAnimListener = new Animator.AnimatorListener() {
+    private final Animator.AnimatorListener mFlipInAnimListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
 

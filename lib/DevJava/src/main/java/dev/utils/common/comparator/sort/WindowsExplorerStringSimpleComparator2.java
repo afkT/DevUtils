@@ -29,7 +29,7 @@ public class WindowsExplorerStringSimpleComparator2
         if (o1 == null || o2 == null) {
             return -1;
         }
-        return innerCompare(o1, o2);
+        return compareExplorerStyleNames(o1, o2);
     }
 
     // ==========
@@ -38,7 +38,7 @@ public class WindowsExplorerStringSimpleComparator2
 
     private final Pattern splitPattern = Pattern.compile("\\d+|\\.|\\s");
 
-    private int innerCompare(
+    private int compareExplorerStyleNames(
             String str1,
             String str2
     ) {

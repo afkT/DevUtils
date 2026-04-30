@@ -230,7 +230,7 @@ final class IToastImpl
     ) {
         String context = StringUtils.format(text, formatArgs);
         if (filter(context)) {
-            innerShowToastText(handlerContent(context));
+            dispatchTextToast(handlerContent(context));
         }
     }
 
@@ -247,7 +247,7 @@ final class IToastImpl
         String context = ResourceUtils.getString(resId, formatArgs);
         if (filter(context)) {
             // 获取处理的内容
-            innerShowToastText(handlerContent(context));
+            dispatchTextToast(handlerContent(context));
         }
     }
 
@@ -258,7 +258,7 @@ final class IToastImpl
     @Override
     public void show(final View view) {
         if (filter(view)) {
-            innerShowToastView(view, Toast.LENGTH_SHORT);
+            dispatchViewToast(view, Toast.LENGTH_SHORT);
         }
     }
 
@@ -273,7 +273,7 @@ final class IToastImpl
             final int duration
     ) {
         if (filter(view)) {
-            innerShowToastView(view, duration);
+            dispatchViewToast(view, duration);
         }
     }
 
@@ -376,7 +376,7 @@ final class IToastImpl
      * 内部私有方法, 最终显示 Toast
      * @param text Toast 提示文本
      */
-    private void innerShowToastText(final String text) {
+    private void dispatchTextToast(final String text) {
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         if (mUseHandler) {
@@ -387,7 +387,7 @@ final class IToastImpl
                         toast.show();
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "innerShowToastText - handler");
+                    LogPrintUtils.eTag(TAG, e, "dispatchTextToast - handler");
                 }
             });
         } else {
@@ -397,7 +397,7 @@ final class IToastImpl
                     toast.show();
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "innerShowToastText");
+                LogPrintUtils.eTag(TAG, e, "dispatchTextToast");
             }
         }
     }
@@ -513,7 +513,7 @@ final class IToastImpl
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    private void innerShowToastView(
+    private void dispatchViewToast(
             final View view,
             final int duration
     ) {
@@ -529,7 +529,7 @@ final class IToastImpl
                         toast.show();
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "innerShowToastView - handler");
+                    LogPrintUtils.eTag(TAG, e, "dispatchViewToast - handler");
                 }
             });
         } else {
@@ -539,7 +539,7 @@ final class IToastImpl
                     toast.show();
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "innerShowToastView");
+                LogPrintUtils.eTag(TAG, e, "dispatchViewToast");
             }
         }
     }

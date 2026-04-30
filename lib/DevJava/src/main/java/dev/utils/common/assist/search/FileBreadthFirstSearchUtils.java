@@ -125,7 +125,7 @@ public final class FileBreadthFirstSearchUtils {
     private SearchHandler mSearchHandler;
 
     // 内部实现接口
-    private final SearchHandler mInnerHandler = new SearchHandler() {
+    private final SearchHandler mTraversalSearchHandler = new SearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
             if (mSearchHandler != null) {
@@ -275,7 +275,7 @@ public final class FileBreadthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            mInnerHandler.onEndListener(null, -1, -1);
+            mTraversalSearchHandler.onEndListener(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -292,7 +292,7 @@ public final class FileBreadthFirstSearchUtils {
             if (file.isFile()) {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInnerHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+                mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
                 return;
             }
             // 获取文件夹全部子文件
@@ -308,13 +308,13 @@ public final class FileBreadthFirstSearchUtils {
             } else {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInnerHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+                mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             mEndTime = System.currentTimeMillis();
-            mInnerHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+            mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
         }
     }
 
@@ -333,7 +333,7 @@ public final class FileBreadthFirstSearchUtils {
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (mInnerHandler.isHandlerFile(file)) {
+                if (mTraversalSearchHandler.isHandlerFile(file)) {
                     // 如果属于文件夹
                     if (file.isDirectory()) {
                         // 获取文件夹全部子文件
@@ -351,14 +351,14 @@ public final class FileBreadthFirstSearchUtils {
                                 // 添加任务
                                 mTaskQueue.offer(new FileQueue(queryFile, subFileItem));
                             } else { // 属于文件
-                                if (!mStop && mInnerHandler.isAddToList(queryFile)) {
+                                if (!mStop && mTraversalSearchHandler.isAddToList(queryFile)) {
                                     // 属于文件则直接保存
                                     fileItem.put(queryFile);
                                 }
                             }
                         }
                     } else { // 属于文件
-                        if (!mStop && mInnerHandler.isAddToList(file)) {
+                        if (!mStop && mTraversalSearchHandler.isAddToList(file)) {
                             // 属于文件则直接保存
                             fileItem.put(file);
                         }
@@ -409,6 +409,6 @@ public final class FileBreadthFirstSearchUtils {
         }
         // 触发结束回调
         mEndTime = System.currentTimeMillis();
-        mInnerHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
+        mTraversalSearchHandler.onEndListener(mRootFileItem, mStartTime, mEndTime);
     }
 }

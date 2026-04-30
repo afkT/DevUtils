@@ -367,7 +367,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        innerShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_SHORT);
+        dispatchSnackbar(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -379,7 +379,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        innerShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_LONG);
+        dispatchSnackbar(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -391,7 +391,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        innerShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
+        dispatchSnackbar(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // =
@@ -405,7 +405,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_SHORT);
+        dispatchSnackbar(StringUtils.format(text, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -417,7 +417,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_LONG);
+        dispatchSnackbar(StringUtils.format(text, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -429,7 +429,7 @@ public final class SnackbarUtils {
             final String text,
             final Object... formatArgs
     ) {
-        innerShow(StringUtils.format(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
+        dispatchSnackbar(StringUtils.format(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // ==========
@@ -441,7 +441,7 @@ public final class SnackbarUtils {
      * @param text     显示文本
      * @param duration 显示时长 {@link Snackbar#LENGTH_SHORT}、{@link Snackbar#LENGTH_LONG}、{@link Snackbar#LENGTH_INDEFINITE}
      */
-    private void innerShow(
+    private void dispatchSnackbar(
             final String text,
             final int duration
     ) {
@@ -455,7 +455,7 @@ public final class SnackbarUtils {
                     // 设置坐标位置
                     setSnackbarLocation(snackbar);
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "innerShow - setSnackbarLocation");
+                    LogPrintUtils.eTag(TAG, e, "dispatchSnackbar - setSnackbarLocation");
                 }
                 // 显示 SnackBar
                 snackbar.setText(text).setDuration(duration).show();

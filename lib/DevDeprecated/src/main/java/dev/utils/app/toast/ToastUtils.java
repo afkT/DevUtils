@@ -286,7 +286,7 @@ public final class ToastUtils {
             final String text,
             final int duration
     ) {
-        innerShowToastText(true, null, text, duration);
+        dispatchTextToast(true, null, text, duration);
     }
 
     /**
@@ -300,7 +300,7 @@ public final class ToastUtils {
             final String text,
             final int duration
     ) {
-        innerShowToastText(true, context, text, duration);
+        dispatchTextToast(true, context, text, duration);
     }
 
     // ==================
@@ -462,7 +462,7 @@ public final class ToastUtils {
             final String text,
             final int duration
     ) {
-        innerShowToastText(false, null, text, duration);
+        dispatchTextToast(false, null, text, duration);
     }
 
     /**
@@ -476,7 +476,7 @@ public final class ToastUtils {
             final String text,
             final int duration
     ) {
-        innerShowToastText(false, context, text, duration);
+        dispatchTextToast(false, context, text, duration);
     }
 
     // =============
@@ -490,7 +490,7 @@ public final class ToastUtils {
      * @param text     Toast 提示文本
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    private static void innerShowToastText(
+    private static void dispatchTextToast(
             final boolean isSingle,
             final Context context,
             final String text,
@@ -504,7 +504,7 @@ public final class ToastUtils {
                         toast.show();
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "innerShowToastText - handler");
+                    LogPrintUtils.eTag(TAG, e, "dispatchTextToast - handler");
                 }
             });
         } else {
@@ -514,7 +514,7 @@ public final class ToastUtils {
                     toast.show();
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "innerShowToastText");
+                LogPrintUtils.eTag(TAG, e, "dispatchTextToast");
             }
         }
     }
@@ -792,7 +792,7 @@ public final class ToastUtils {
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "handlerToastRes");
             }
-            innerShowToastText(isSingle, context, text, duration);
+            dispatchTextToast(isSingle, context, text, duration);
         }
     }
 
@@ -818,19 +818,19 @@ public final class ToastUtils {
             if (formatArgs != null && formatArgs.length != 0) {
                 if (text != null) { // String.format() 中的 formatArgs 可以为 null, 但是 text 不能为 null
                     try {
-                        innerShowToastText(
+                        dispatchTextToast(
                                 isSingle, context,
                                 String.format(text, formatArgs), duration
                         );
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "handlerToastStr");
-                        innerShowToastText(isSingle, context, e.getMessage(), duration);
+                        dispatchTextToast(isSingle, context, e.getMessage(), duration);
                     }
                 } else {
-                    innerShowToastText(isSingle, context, null, duration);
+                    dispatchTextToast(isSingle, context, null, duration);
                 }
             } else {
-                innerShowToastText(isSingle, context, text, duration);
+                dispatchTextToast(isSingle, context, text, duration);
             }
         }
     }

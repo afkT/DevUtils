@@ -86,7 +86,7 @@ public class RadiusAttrs
     /**
      * 内部校验清空绘制圆角值
      */
-    private void innerClearRadius() {
+    private void clearCornerRadiusState() {
         if (mClearRadius) clearRadius();
     }
 
@@ -226,7 +226,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusLeftTop(final float radiusLeftTop) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusLeftTop = radiusLeftTop;
         resetRadius();
         return this;
@@ -239,7 +239,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusLeftBottom(final float radiusLeftBottom) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusLeftBottom = radiusLeftBottom;
         resetRadius();
         return this;
@@ -252,7 +252,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusRightTop(final float radiusRightTop) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusRightTop = radiusRightTop;
         resetRadius();
         return this;
@@ -265,7 +265,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusRightBottom(final float radiusRightBottom) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusRightBottom = radiusRightBottom;
         resetRadius();
         return this;
@@ -280,7 +280,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusLeft(final float radiusLeft) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusLeftTop    = radiusLeft;
         this.mRadiusLeftBottom = radiusLeft;
         resetRadius();
@@ -294,7 +294,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusRight(final float radiusRight) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusRightTop    = radiusRight;
         this.mRadiusRightBottom = radiusRight;
         resetRadius();
@@ -308,7 +308,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusTop(final float radiusTop) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusLeftTop  = radiusTop;
         this.mRadiusRightTop = radiusTop;
         resetRadius();
@@ -322,7 +322,7 @@ public class RadiusAttrs
      */
     @Override
     public RadiusAttrs setRadiusBottom(final float radiusBottom) {
-        innerClearRadius();
+        clearCornerRadiusState();
         this.mRadiusLeftBottom  = radiusBottom;
         this.mRadiusRightBottom = radiusBottom;
         resetRadius();

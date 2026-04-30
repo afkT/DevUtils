@@ -142,8 +142,8 @@ public final class KeyBoardUtils {
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i = 0, len = viewGroup.getChildCount(); i < len; i++) {
-                View innerView = viewGroup.getChildAt(i);
-                judgeView(innerView, activity);
+                View childView = viewGroup.getChildAt(i);
+                judgeView(childView, activity);
             }
         }
     }

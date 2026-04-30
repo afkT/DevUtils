@@ -399,7 +399,7 @@ public final class ColorUtils {
      * @param colorStr argb/rgb color String
      * @return argb/rgb 颜色值
      */
-    private static int innerParseColor(final String colorStr) {
+    private static int parseColorStringToArgb(final String colorStr) {
         if (colorStr.charAt(0) == '#') {
             // Use a long to avoid rollovers on #ffXXXXXX
             long color = Long.parseLong(colorStr.substring(1), 16);
@@ -433,7 +433,7 @@ public final class ColorUtils {
     public static int parseColor(final String colorStr) {
         if (colorStr != null) {
             try {
-                return innerParseColor(colorStr);
+                return parseColorStringToArgb(colorStr);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "parseColor");
             }

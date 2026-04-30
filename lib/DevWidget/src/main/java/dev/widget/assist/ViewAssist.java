@@ -110,7 +110,7 @@ public final class ViewAssist {
      * @param type Type
      */
     public void showType(final int type) {
-        innerShowType(type, true);
+        switchVisibleAdapterType(type, true);
     }
 
     /**
@@ -122,7 +122,7 @@ public final class ViewAssist {
             final int type,
             final boolean notFoundOP
     ) {
-        innerShowType(type, notFoundOP);
+        switchVisibleAdapterType(type, notFoundOP);
     }
 
     // =
@@ -252,7 +252,7 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist reset() {
-        return innerReset();
+        return resetWrapperAndAdapters();
     }
 
     /**
@@ -265,7 +265,7 @@ public final class ViewAssist {
             final int type,
             final Adapter adapter
     ) {
-        return innerRegister(type, adapter);
+        return registerTypeAdapter(type, adapter);
     }
 
     /**
@@ -274,7 +274,7 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist unregister(final int type) {
-        return innerUnregister(type, true);
+        return unregisterTypeAdapter(type, true);
     }
 
     /**
@@ -287,7 +287,7 @@ public final class ViewAssist {
             final int type,
             final boolean remove
     ) {
-        return innerUnregister(type, remove);
+        return unregisterTypeAdapter(type, remove);
     }
 
     // =
@@ -391,7 +391,7 @@ public final class ViewAssist {
     // =
 
     public View getView(final int type) {
-        return innerGetView(type);
+        return obtainViewForType(type);
     }
 
     public View getViewByIng() {
@@ -413,11 +413,11 @@ public final class ViewAssist {
     // =
 
     public ViewAssist notifyDataSetChanged() {
-        return innerNotifyDataSetChanged(mCurrentType);
+        return refreshAdapterBindingForType(mCurrentType);
     }
 
     public ViewAssist notifyDataSetChanged(final int type) {
-        return innerNotifyDataSetChanged(type);
+        return refreshAdapterBindingForType(type);
     }
 
     public ViewAssist notifyDataSetChangedByIng() {
@@ -487,7 +487,7 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist changeModelGone() {
-        return innerChangeModel(Model.GONE);
+        return applyDisplayModeChange(Model.GONE);
     }
 
     /**
@@ -495,7 +495,7 @@ public final class ViewAssist {
      * @return {@link ViewAssist}
      */
     public ViewAssist changeModelRemove() {
-        return innerChangeModel(Model.REMOVE);
+        return applyDisplayModeChange(Model.REMOVE);
     }
 
     // ============
@@ -573,7 +573,7 @@ public final class ViewAssist {
      * @param type ViewType
      * @return 对应 Type View
      */
-    private View innerGetView(final int type) {
+    private View obtainViewForType(final int type) {
         View view = mTypeViews.get(type);
         if (view != null) return view;
         Adapter adapter = mMapAdapters.get(type);
@@ -587,7 +587,7 @@ public final class ViewAssist {
      * 重置处理
      * @return {@link ViewAssist}
      */
-    private ViewAssist innerReset() {
+    private ViewAssist resetWrapperAndAdapters() {
         ViewUtils.removeAllViews(mWrapper);
         mMapDatas.clear();
         mMapAdapters.clear();
@@ -602,7 +602,7 @@ public final class ViewAssist {
      * @param model View 操作模式
      * @return {@link ViewAssist}
      */
-    private ViewAssist innerChangeModel(final Model model) {
+    private ViewAssist applyDisplayModeChange(final Model model) {
         ViewUtils.removeAllViews(mWrapper);
         mTypeViews.clear();
         mCurrentType = -1;
@@ -617,7 +617,7 @@ public final class ViewAssist {
      * @param adapter {@link Adapter}
      * @return {@link ViewAssist}
      */
-    private ViewAssist innerRegister(
+    private ViewAssist registerTypeAdapter(
             final int type,
             final Adapter adapter
     ) {
@@ -632,7 +632,7 @@ public final class ViewAssist {
      * @param remove 判断解绑的 type 正在显示是否删除
      * @return {@link ViewAssist}
      */
-    private ViewAssist innerUnregister(
+    private ViewAssist unregisterTypeAdapter(
             final int type,
             final boolean remove
     ) {
@@ -656,14 +656,14 @@ public final class ViewAssist {
      * @param type       Type
      * @param notFoundOP 是否处理未找到操作
      */
-    private void innerShowType(
+    private void switchVisibleAdapterType(
             final int type,
             final boolean notFoundOP
     ) {
         if (mWrapper == null) return;
         Adapter adapter = mMapAdapters.get(type);
         if (adapter != null) {
-            View view = innerGetView(type);
+            View view = obtainViewForType(type);
             if (view != null) {
                 // 先隐藏之前旧的 View
                 ViewUtils.setVisibility(false, mCurrentView);
@@ -728,11 +728,11 @@ public final class ViewAssist {
      * @param type Type
      * @return {@link ViewAssist}
      */
-    private ViewAssist innerNotifyDataSetChanged(final int type) {
+    private ViewAssist refreshAdapterBindingForType(final int type) {
         if (mWrapper == null) return this;
         Adapter adapter = mMapAdapters.get(type);
         if (adapter == null) return this;
-        View view = innerGetView(type);
+        View view = obtainViewForType(type);
         if (view == null) return this;
         try {
             adapter.onBindView(this, view, type);

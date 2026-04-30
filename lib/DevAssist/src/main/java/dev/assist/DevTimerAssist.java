@@ -160,7 +160,7 @@ public class DevTimerAssist {
     // ==========
 
     // 内部 Callback
-    private final DevTimer.Callback mInnerCallback = new DevTimer.Callback() {
+    private final DevTimer.Callback mTimerRelayCallback = new DevTimer.Callback() {
         @Override
         public void callback(
                 DevTimer timer,
@@ -193,7 +193,7 @@ public class DevTimerAssist {
     private DevTimer createTimer() {
         return new DevTimer.Builder(mPeriod, mPeriod)
                 .setTag(mTag).build()
-                .setCallback(mInnerCallback)
+                .setCallback(mTimerRelayCallback)
                 .setHandler(mHandler);
     }
 
