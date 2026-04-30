@@ -158,27 +158,27 @@ public final class ThisActivityLifecycleAssist {
                 @NonNull Activity activity,
                 Bundle savedInstanceState
         ) {
-            _of(activity).onActivityCreated(activity, savedInstanceState);
+            listenerOrEmpty(activity).onActivityCreated(activity, savedInstanceState);
         }
 
         @Override
         public void onActivityStarted(@NonNull Activity activity) {
-            _of(activity).onActivityStarted(activity);
+            listenerOrEmpty(activity).onActivityStarted(activity);
         }
 
         @Override
         public void onActivityResumed(@NonNull Activity activity) {
-            _of(activity).onActivityResumed(activity);
+            listenerOrEmpty(activity).onActivityResumed(activity);
         }
 
         @Override
         public void onActivityPaused(@NonNull Activity activity) {
-            _of(activity).onActivityPaused(activity);
+            listenerOrEmpty(activity).onActivityPaused(activity);
         }
 
         @Override
         public void onActivityStopped(@NonNull Activity activity) {
-            _of(activity).onActivityStopped(activity);
+            listenerOrEmpty(activity).onActivityStopped(activity);
         }
 
         @Override
@@ -186,13 +186,13 @@ public final class ThisActivityLifecycleAssist {
                 @NonNull Activity activity,
                 @NonNull Bundle outState
         ) {
-            _of(activity).onActivitySaveInstanceState(activity, outState);
+            listenerOrEmpty(activity).onActivitySaveInstanceState(activity, outState);
         }
 
         @Override
         public void onActivityDestroyed(@NonNull Activity activity) {
 
-            _of(activity).onActivityDestroyed(activity);
+            listenerOrEmpty(activity).onActivityDestroyed(activity);
 
             // 移除已消费的事件
             removeListener(activity);
@@ -208,7 +208,7 @@ public final class ThisActivityLifecycleAssist {
                 @Nullable Bundle savedInstanceState
         ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreCreated(activity, savedInstanceState);
+                listenerOrEmpty(activity).onActivityPreCreated(activity, savedInstanceState);
             }
         }
 
@@ -218,63 +218,63 @@ public final class ThisActivityLifecycleAssist {
                 @Nullable Bundle savedInstanceState
         ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostCreated(activity, savedInstanceState);
+                listenerOrEmpty(activity).onActivityPostCreated(activity, savedInstanceState);
             }
         }
 
         @Override
         public void onActivityPreStarted(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreStarted(activity);
+                listenerOrEmpty(activity).onActivityPreStarted(activity);
             }
         }
 
         @Override
         public void onActivityPostStarted(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostStarted(activity);
+                listenerOrEmpty(activity).onActivityPostStarted(activity);
             }
         }
 
         @Override
         public void onActivityPreResumed(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreResumed(activity);
+                listenerOrEmpty(activity).onActivityPreResumed(activity);
             }
         }
 
         @Override
         public void onActivityPostResumed(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostResumed(activity);
+                listenerOrEmpty(activity).onActivityPostResumed(activity);
             }
         }
 
         @Override
         public void onActivityPrePaused(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPrePaused(activity);
+                listenerOrEmpty(activity).onActivityPrePaused(activity);
             }
         }
 
         @Override
         public void onActivityPostPaused(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostPaused(activity);
+                listenerOrEmpty(activity).onActivityPostPaused(activity);
             }
         }
 
         @Override
         public void onActivityPreStopped(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreStopped(activity);
+                listenerOrEmpty(activity).onActivityPreStopped(activity);
             }
         }
 
         @Override
         public void onActivityPostStopped(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostStopped(activity);
+                listenerOrEmpty(activity).onActivityPostStopped(activity);
             }
         }
 
@@ -284,7 +284,7 @@ public final class ThisActivityLifecycleAssist {
                 @NonNull Bundle outState
         ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreSaveInstanceState(activity, outState);
+                listenerOrEmpty(activity).onActivityPreSaveInstanceState(activity, outState);
             }
         }
 
@@ -294,21 +294,21 @@ public final class ThisActivityLifecycleAssist {
                 @NonNull Bundle outState
         ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostSaveInstanceState(activity, outState);
+                listenerOrEmpty(activity).onActivityPostSaveInstanceState(activity, outState);
             }
         }
 
         @Override
         public void onActivityPreDestroyed(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPreDestroyed(activity);
+                listenerOrEmpty(activity).onActivityPreDestroyed(activity);
             }
         }
 
         @Override
         public void onActivityPostDestroyed(@NonNull Activity activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                _of(activity).onActivityPostDestroyed(activity);
+                listenerOrEmpty(activity).onActivityPostDestroyed(activity);
             }
         }
 
@@ -321,7 +321,7 @@ public final class ThisActivityLifecycleAssist {
          * @param activity {@link Activity}
          * @return Activity 生命周期通知事件
          */
-        private AbstractActivityLifecycle _of(final Activity activity) {
+        private AbstractActivityLifecycle listenerOrEmpty(final Activity activity) {
             AbstractActivityLifecycle listener = ofListener(activity);
             return (listener != null) ? listener : EMPTY_LISTENER;
         }

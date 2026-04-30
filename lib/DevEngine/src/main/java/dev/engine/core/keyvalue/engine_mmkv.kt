@@ -45,7 +45,7 @@ open class MMKVKeyValueEngineImpl(
         this.mJSONEngine = engine
     }
 
-    protected open fun _jsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
+    protected open fun resolveJsonEngine(): IJSONEngine<out IJSONEngine.EngineConfig>? {
         if (mJSONEngine != null) return mJSONEngine
         return DevJSONEngine.getEngine()
     }
@@ -130,7 +130,7 @@ open class MMKVKeyValueEngineImpl(
         key: String?,
         value: T
     ): Boolean {
-        return putString(key, _jsonEngine()?.toJson(value))
+        return putString(key, resolveJsonEngine()?.toJson(value))
     }
 
     // =======
@@ -223,7 +223,7 @@ open class MMKVKeyValueEngineImpl(
         typeOfT: Type?,
         defaultValue: T?
     ): T? {
-        return _jsonEngine()?.fromJson<T>(
+        return resolveJsonEngine()?.fromJson<T>(
             getString(key, null), typeOfT
         ) ?: return defaultValue
     }

@@ -449,7 +449,7 @@ public final class DownloadUtils {
             final OnCursorInterceptor interceptor
     ) {
         if (cursor != null && cursor.moveToFirst()) {
-            return _queryCursorSingle(cursor, interceptor, true);
+            return extractRowMapFromCursor(cursor, interceptor, true);
         }
         return null;
     }
@@ -461,7 +461,7 @@ public final class DownloadUtils {
      * @param closeCursor 是否关闭游标
      * @return 单条下载信息
      */
-    private static Map<String, Object> _queryCursorSingle(
+    private static Map<String, Object> extractRowMapFromCursor(
             final Cursor cursor,
             final OnCursorInterceptor interceptor,
             final boolean closeCursor
@@ -525,12 +525,12 @@ public final class DownloadUtils {
                     try {
                         interceptor.intercept(cursor, map);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "_queryCursorSingle - intercept");
+                        LogPrintUtils.eTag(TAG, e, "extractRowMapFromCursor - intercept");
                     }
                 }
                 return map;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "_queryCursorSingle");
+                LogPrintUtils.eTag(TAG, e, "extractRowMapFromCursor");
             } finally {
                 if (closeCursor) {
                     CursorUtils.closeIOQuietly(cursor);
@@ -593,7 +593,7 @@ public final class DownloadUtils {
                 List<Map<String, Object>> list = new ArrayList<>();
                 while (cursor.moveToNext()) {
                     // 读取当前索引游标数据
-                    Map<String, Object> map = _queryCursorSingle(
+                    Map<String, Object> map = extractRowMapFromCursor(
                             cursor, interceptor, false
                     );
                     if (map != null) list.add(map);

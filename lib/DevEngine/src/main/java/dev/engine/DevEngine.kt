@@ -178,7 +178,7 @@ object DevEngine {
             try {
                 // 如果 MMKV 不为 null 则进行初始化
                 val mmkv = MMKVUtils.defaultHolder().mmkv
-                _defaultEngine(
+                initializeDefaultEngines(
                     context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
                     logConfig, barCodeConfig
@@ -187,7 +187,7 @@ object DevEngine {
             } catch (_: Exception) {
             }
         }
-        _defaultEngine(context, cacheConfig, keyValueConfig, logConfig, barCodeConfig)
+        initializeDefaultEngines(context, cacheConfig, keyValueConfig, logConfig, barCodeConfig)
     }
 
     /**
@@ -199,7 +199,7 @@ object DevEngine {
      * @param barCodeConfig BarCode Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
-    private fun _defaultEngine(
+    private fun initializeDefaultEngines(
         context: Context,
         cacheConfig: CacheConfig?,
         keyValueConfig: IKeyValueEngine.EngineConfig?,
