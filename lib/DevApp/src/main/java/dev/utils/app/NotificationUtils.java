@@ -181,12 +181,12 @@ public final class NotificationUtils {
     }
 
     /**
-     * 进行通知
+     * 发布系统通知（封装 {@link NotificationManager#notify(int, Notification)}）
      * @param id           消息 id
      * @param notification {@link Notification}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean notify(
+    public static boolean postNotification(
             final int id,
             final Notification notification
     ) {
@@ -196,20 +196,20 @@ public final class NotificationUtils {
                 notificationManager.notify(id, notification);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "notify - id: %s", id);
+                LogPrintUtils.eTag(TAG, e, "postNotification - id: %s", id);
             }
         }
         return false;
     }
 
     /**
-     * 进行通知
+     * 发布系统通知（封装 {@link NotificationManager#notify(String, int, Notification)}）
      * @param tag          标记 TAG
      * @param id           消息 id
      * @param notification {@link Notification}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean notify(
+    public static boolean postNotification(
             final String tag,
             final int id,
             final Notification notification
@@ -220,7 +220,7 @@ public final class NotificationUtils {
                 notificationManager.notify(tag, id, notification);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "notify - id: %s, tag: %s", id, tag);
+                LogPrintUtils.eTag(TAG, e, "postNotification - id: %s, tag: %s", id, tag);
             }
         }
         return false;

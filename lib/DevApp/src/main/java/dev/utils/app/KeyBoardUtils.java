@@ -122,12 +122,12 @@ public final class KeyBoardUtils {
     // ============================
 
     /**
-     * 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件
+     * 为指定 View 树中非 EditText 的节点设置触摸监听：点击时收起软键盘（递归子 View）
      * @param view     {@link View}
      * @param activity {@link Activity}
      */
     @SuppressLint("ClickableViewAccessibility")
-    public static void judgeView(
+    public static void attachHideKeyboardOnOutsideEditTouch(
             final View view,
             final Activity activity
     ) {
@@ -143,7 +143,7 @@ public final class KeyBoardUtils {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i = 0, len = viewGroup.getChildCount(); i < len; i++) {
                 View childView = viewGroup.getChildAt(i);
-                judgeView(childView, activity);
+                attachHideKeyboardOnOutsideEditTouch(childView, activity);
             }
         }
     }
@@ -192,12 +192,12 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘显示/隐藏监听（基于 content 根布局与 {@link #getContentViewInvisibleHeight(Activity)}）
      * @param activity {@link Activity}
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListener(
+    public static boolean registerSoftInputChangedListenerViaContentView(
             final Activity activity,
             final OnSoftInputChangedListener listener
     ) {
@@ -215,18 +215,18 @@ public final class KeyBoardUtils {
             });
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener");
+            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaContentView");
         }
         return false;
     }
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘显示/隐藏监听（基于 Window decorView 与 {@link View#getWindowVisibleDisplayFrame(Rect)}）
      * @param activity {@link Activity}
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListener2(
+    public static boolean registerSoftInputChangedListenerViaDecorView(
             final Activity activity,
             final OnSoftInputChangedListener listener
     ) {
@@ -248,13 +248,13 @@ public final class KeyBoardUtils {
                         // 判断是否显示
                         listener.onSoftInputChanged(visible, keyboardHeight);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener2");
+                        LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaDecorView");
                     }
                 }
             });
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener2");
+            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaDecorView");
         }
         return false;
     }

@@ -117,7 +117,7 @@ public class DevFloatingEdgeImpl
      * @return {@link DevFloatingEdgeImpl}
      */
     public DevFloatingEdgeImpl setStatusBarHeightMargin() {
-        return setMarginTop(BarUtils.getStatusBarHeight2());
+        return setMarginTop(BarUtils.getStatusBarHeightFromInsetsOrFallback());
     }
 
     /**

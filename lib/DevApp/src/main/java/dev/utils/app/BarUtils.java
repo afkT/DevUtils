@@ -72,10 +72,10 @@ public final class BarUtils {
     }
 
     /**
-     * 获取 StatusBar 高度
+     * 获取 StatusBar 高度（优先 Android R+ WindowInsets，否则回退 {@link #getStatusBarHeight()}）
      * @return StatusBar 高度
      */
-    public static int getStatusBarHeight2() {
+    public static int getStatusBarHeightFromInsetsOrFallback() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             WindowMetrics windowMetrics = AppUtils.getCurrentWindowMetrics();
             if (windowMetrics != null) {
@@ -87,7 +87,7 @@ public final class BarUtils {
                     );
                     return insets.top;
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "getStatusBarHeight2");
+                    LogPrintUtils.eTag(TAG, e, "getStatusBarHeightFromInsetsOrFallback");
                 }
             }
         }

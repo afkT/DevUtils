@@ -180,17 +180,17 @@ public final class DevUtils {
     }
 
     /**
-     * 获取全局 Application
+     * 反射获取全局 Application 并执行 {@link #init(Context)}
      * @return {@link Application}
      */
-    public static Application getApplication2() {
+    public static Application getApplicationViaReflectionAndInit() {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
             init(application); // 初始化操作
             return application;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getApplication");
+            LogPrintUtils.eTag(TAG, e, "getApplicationViaReflectionAndInit");
         }
         return null;
     }
@@ -202,7 +202,7 @@ public final class DevUtils {
     public static Application getApplicationExt() {
         Application application = getApplication();
         if (application != null) return application;
-        return getApplication2();
+        return getApplicationViaReflectionAndInit();
     }
 
     // =

@@ -539,12 +539,12 @@ public interface IHelperByDev<T> {
     // ============================
 
     /**
-     * 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件
+     * 为非 EditText 子 View 设置触摸监听，点击时收起软键盘（递归子节点）
      * @param view     {@link View}
      * @param activity {@link Activity}
      * @return Helper
      */
-    T judgeView(
+    T attachHideKeyboardOnOutsideEditTouch(
             View view,
             Activity activity
     );
@@ -554,23 +554,23 @@ public interface IHelperByDev<T> {
     // ===============
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘改变监听（content 根布局方案）
      * @param activity {@link Activity}
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
-    T registerSoftInputChangedListener(
+    T registerSoftInputChangedListenerViaContentView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     );
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘改变监听（decorView + 可见区域方案）
      * @param activity {@link Activity}
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
-    T registerSoftInputChangedListener2(
+    T registerSoftInputChangedListenerViaDecorView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     );

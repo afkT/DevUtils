@@ -81,7 +81,7 @@ class FunctionViewModel : AppViewModel() {
 
     // 通知消息
     val clickNotification = View.OnClickListener { view ->
-        val result = NotificationUtils.notify(
+        val result = NotificationUtils.postNotification(
             12, NotificationUtils.createNotification(
                 NotificationUtils.Params(
                     R.mipmap.icon_launcher, "标题", "内容"

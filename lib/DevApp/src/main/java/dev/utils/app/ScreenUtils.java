@@ -477,8 +477,8 @@ public final class ScreenUtils {
      * 获取 StatusBar 高度
      * @return StatusBar 高度
      */
-    public static int getStatusBarHeight2() {
-        return BarUtils.getStatusBarHeight2();
+    public static int getStatusBarHeightFromInsetsOrFallback() {
+        return BarUtils.getStatusBarHeightFromInsetsOrFallback();
     }
 
     /**

@@ -966,17 +966,17 @@ public final class DevHelper
     // ============================
 
     /**
-     * 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件
+     * 为非 EditText 子 View 设置触摸监听，点击时收起软键盘（递归子节点）
      * @param view     {@link View}
      * @param activity {@link Activity}
      * @return Helper
      */
     @Override
-    public DevHelper judgeView(
+    public DevHelper attachHideKeyboardOnOutsideEditTouch(
             View view,
             Activity activity
     ) {
-        KeyBoardUtils.judgeView(
+        KeyBoardUtils.attachHideKeyboardOnOutsideEditTouch(
                 view, activity
         );
         return this;
@@ -987,34 +987,34 @@ public final class DevHelper
     // ===============
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘改变监听（content 根布局方案）
      * @param activity {@link Activity}
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
     @Override
-    public DevHelper registerSoftInputChangedListener(
+    public DevHelper registerSoftInputChangedListenerViaContentView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
-        KeyBoardUtils.registerSoftInputChangedListener(
+        KeyBoardUtils.registerSoftInputChangedListenerViaContentView(
                 activity, listener
         );
         return this;
     }
 
     /**
-     * 注册软键盘改变监听
+     * 注册软键盘改变监听（decorView + 可见区域方案）
      * @param activity {@link Activity}
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
     @Override
-    public DevHelper registerSoftInputChangedListener2(
+    public DevHelper registerSoftInputChangedListenerViaDecorView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
-        KeyBoardUtils.registerSoftInputChangedListener2(
+        KeyBoardUtils.registerSoftInputChangedListenerViaDecorView(
                 activity, listener
         );
         return this;
@@ -1441,7 +1441,7 @@ public final class DevHelper
             int id,
             Notification notification
     ) {
-        NotificationUtils.notify(id, notification);
+        NotificationUtils.postNotification(id, notification);
         return this;
     }
 
@@ -1458,7 +1458,7 @@ public final class DevHelper
             int id,
             Notification notification
     ) {
-        NotificationUtils.notify(
+        NotificationUtils.postNotification(
                 tag, id, notification
         );
         return this;

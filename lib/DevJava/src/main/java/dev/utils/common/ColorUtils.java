@@ -526,11 +526,11 @@ public final class ColorUtils {
     // =
 
     /**
-     * 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587
+     * 宽松判断：长度为 8 且首字符为十六进制字符时返回 true（非完整 ARGB 校验）
      * @param colorStr color String
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean judgeColorString(final String colorStr) {
+    public static boolean looksLikeArgbHexPrefix(final String colorStr) {
         if (colorStr != null && colorStr.length() == 8) {
             char cc = colorStr.charAt(0);
             return !(cc != '0' && cc != '1' && cc != '2' && cc != '3' && cc != '4'

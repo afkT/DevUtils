@@ -355,7 +355,7 @@ public final class ScreenshotUtils {
                 Uri contentUri,
                 boolean selfChange
         ) {
-            handleMediaContentChange(contentUri, selfChange, SORT_ORDER, this);
+            dispatchLatestMediaChangeToChecker(contentUri, selfChange, SORT_ORDER, this);
         }
 
         @Override
@@ -366,7 +366,7 @@ public final class ScreenshotUtils {
                 String dataPath,
                 long dateTaken
         ) {
-            handleMediaChecker(
+            validateScreenshotCandidate(
                     contentUri, selfChange, rowId, dataPath, dateTaken,
                     getInstance().mStartListenTime, INTERVAL_TIME,
                     getInstance().isCheckPrefix(), PREFIX_SCREEN,
@@ -376,13 +376,13 @@ public final class ScreenshotUtils {
     };
 
     /**
-     * 内容变更处理
+     * 查询媒体库最新一行并将结果交给 {@link ScreenshotChecker#onChecker}
      * @param contentUri 监听 Uri
      * @param selfChange True if this is a self-change notification
      * @param sortOrder  排序方式
      * @param checker    搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
      */
-    public static void handleMediaContentChange(
+    public static void dispatchLatestMediaChangeToChecker(
             final Uri contentUri,
             final boolean selfChange,
             final String sortOrder,
@@ -420,14 +420,14 @@ public final class ScreenshotUtils {
                 );
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "handleMediaContentChange");
+            LogPrintUtils.eTag(TAG, e, "dispatchLatestMediaChangeToChecker");
         } finally {
             CursorUtils.closeIOQuietly(cursor);
         }
     }
 
     /**
-     * 内容校验处理
+     * 按时间与路径前缀等规则校验是否为当前监听关心的截图并回调
      * @param contentUri      监听 Uri
      * @param selfChange      True if this is a self-change notification
      * @param rowId           数据 id
@@ -440,7 +440,7 @@ public final class ScreenshotUtils {
      * @param listener        校验成功则会触发 {@link OnScreenshotListener#onScreenshot} 方法
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean handleMediaChecker(
+    public static boolean validateScreenshotCandidate(
             final Uri contentUri,
             final boolean selfChange,
             final long rowId,
