@@ -196,10 +196,10 @@ public final class DevUtils {
     }
 
     /**
-     * 获取全局 Application
+     * 获取全局 Application（若尚未持有则尝试反射获取并执行 {@link #init(Context)}）
      * @return {@link Application}
      */
-    public static Application getApplicationExt() {
+    public static Application getApplicationExtended() {
         Application application = getApplication();
         if (application != null) return application;
         return getApplicationByReflectAndInit();
@@ -408,11 +408,11 @@ public final class DevUtils {
     }
 
     /**
-     * 获取 Activity 生命周期 相关信息获取接口类
+     * 获取 Activity 生命周期相关信息获取接口
      * @return {@link ActivityLifecycleGet}
      */
-    public static ActivityLifecycleGet getActivityLifecycleGet() {
-        return getLifecycleAssist().getActivityLifecycleGet();
+    public static ActivityLifecycleGet getActivityLifecycle() {
+        return getLifecycleAssist().getActivityLifecycle();
     }
 
     /**

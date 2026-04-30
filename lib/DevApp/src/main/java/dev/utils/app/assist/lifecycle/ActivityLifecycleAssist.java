@@ -58,10 +58,10 @@ public final class ActivityLifecycleAssist {
     // =============
 
     /**
-     * 获取 Activity 生命周期 相关信息获取接口类
+     * 获取 Activity 生命周期相关信息获取接口
      * @return {@link ActivityLifecycleGet}
      */
-    public ActivityLifecycleGet getActivityLifecycleGet() {
+    public ActivityLifecycleGet getActivityLifecycle() {
         return ACTIVITY_LIFECYCLE;
     }
 
