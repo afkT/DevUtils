@@ -1153,13 +1153,13 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     @SuppressWarnings("unused")
-    public static boolean isInstalledApp(final String packageName) {
+    public static boolean isInstalledAppByInfo(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return false;
         try {
             ApplicationInfo appInfo = getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return appInfo != null;
         } catch (Exception e) { // 未安装, 则会抛出异常
-            LogPrintUtils.eTag(TAG, e, "isInstalledApp");
+            LogPrintUtils.eTag(TAG, e, "isInstalledAppByInfo");
             return false;
         }
     }
@@ -1169,7 +1169,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInstalledApp2(final String packageName) {
+    public static boolean isInstalledAppByLaunchable(final String packageName) {
         return IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
@@ -1750,7 +1750,7 @@ public final class AppUtils {
      * @param className   Activity.class.getCanonicalName()
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean launchApp2(
+    public static boolean launchAppWithClassName(
             final String packageName,
             final String className
     ) {
@@ -1770,7 +1770,7 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean launchApp2(
+    public static boolean launchAppWithClassName(
             final Activity activity,
             final String packageName,
             final String className,

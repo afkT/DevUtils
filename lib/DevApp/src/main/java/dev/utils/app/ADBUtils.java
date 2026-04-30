@@ -547,7 +547,7 @@ public final class ADBUtils {
      * </pre>
      * @return package.xx.Activity.className
      */
-    public static String getWindowCurrent() {
+    public static String getCurrentWindowViaWindowWDumpsys() {
         String cmd = "dumpsys window w | grep \\/  |  grep name=";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
@@ -571,7 +571,7 @@ public final class ADBUtils {
                     }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getWindowCurrent");
+                LogPrintUtils.eTag(TAG, e, "getCurrentWindowViaWindowWDumpsys");
             }
         }
         return null;
@@ -581,7 +581,7 @@ public final class ADBUtils {
      * 获取当前显示的 Window
      * @return package/package.xx.Activity.className
      */
-    public static String getWindowCurrent2() {
+    public static String getCurrentWindowViaWindowsDumpsys() {
         String cmd = "dumpsys window windows | grep Current";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
@@ -616,7 +616,7 @@ public final class ADBUtils {
                     }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getWindowCurrent2");
+                LogPrintUtils.eTag(TAG, e, "getCurrentWindowViaWindowsDumpsys");
             }
         }
         return null;
@@ -627,7 +627,7 @@ public final class ADBUtils {
      * @param packageName 应用包名
      * @return package/package.xx.Activity.className
      */
-    public static String getWindowCurrentToPackage(final String packageName) {
+    public static String getCurrentWindowForPackageViaDumpsys(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         String cmd = "dumpsys window windows | grep %s";
         // 执行 shell
@@ -666,7 +666,7 @@ public final class ADBUtils {
                     }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getWindowCurrentToPackage");
+                LogPrintUtils.eTag(TAG, e, "getCurrentWindowForPackageViaDumpsys");
             }
         }
         return null;
