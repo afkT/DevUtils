@@ -1242,52 +1242,52 @@ public final class DevFinal {
         // ==========
 
         // 用于建立十六进制字符的输出的小写字符数组
-        public static char[] HEX_DIGITS() {
+        public static char[] getHexDigits() {
             return Arrays.copyOf(HEX_DIGITS, HEX_DIGITS.length);
         }
 
         // 用于建立十六进制字符的输出的大写字符数组
-        public static char[] HEX_DIGITS_UPPER() {
+        public static char[] getHexDigitsUpper() {
             return Arrays.copyOf(HEX_DIGITS_UPPER, HEX_DIGITS_UPPER.length);
         }
 
         // 0123456789
-        public static char[] NUMBERS() {
+        public static char[] getNumbers() {
             return Arrays.copyOf(NUMBERS, NUMBERS.length);
         }
 
         // abcdefghijklmnopqrstuvwxyz
-        public static char[] LOWER_CASE_LETTERS() {
+        public static char[] getLowerCaseLetters() {
             return Arrays.copyOf(LOWER_CASE_LETTERS, LOWER_CASE_LETTERS.length);
         }
 
         // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static char[] CAPITAL_LETTERS() {
+        public static char[] getCapitalLetters() {
             return Arrays.copyOf(CAPITAL_LETTERS, CAPITAL_LETTERS.length);
         }
 
         // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static char[] LETTERS() {
+        public static char[] getLetters() {
             return Arrays.copyOf(LETTERS, LETTERS.length);
         }
 
         // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-        public static char[] NUMBERS_AND_LETTERS() {
+        public static char[] getNumbersAndLetters() {
             return Arrays.copyOf(NUMBERS_AND_LETTERS, NUMBERS_AND_LETTERS.length);
         }
 
         // 生肖数组
-        public static String[] ZODIAC() {
+        public static String[] getZodiac() {
             return Arrays.copyOf(ZODIAC, ZODIAC.length);
         }
 
         // 星座对应日期
-        public static String[] CONSTELLATION_DATE() {
+        public static String[] getConstellationDate() {
             return Arrays.copyOf(CONSTELLATION_DATE, CONSTELLATION_DATE.length);
         }
 
         // 星座数组
-        public static String[] CONSTELLATION() {
+        public static String[] getConstellation() {
             return Arrays.copyOf(CONSTELLATION, CONSTELLATION.length);
         }
     }
