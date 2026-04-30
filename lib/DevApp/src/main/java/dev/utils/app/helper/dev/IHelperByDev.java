@@ -559,7 +559,7 @@ public interface IHelperByDev<T> {
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
-    T registerSoftInputChangedListenerViaContentView(
+    T registerSoftInputListenerViaContentView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     );
@@ -570,7 +570,7 @@ public interface IHelperByDev<T> {
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return Helper
      */
-    T registerSoftInputChangedListenerViaDecorView(
+    T registerSoftInputListenerViaDecorView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     );
@@ -1070,7 +1070,7 @@ public interface IHelperByDev<T> {
      * @param listener 回调事件
      * @return Helper
      */
-    T getWidthHeightExact(
+    T getWidthHeightExactOnPost(
             View view,
             ViewUtils.OnWHListener listener
     );
@@ -1081,7 +1081,7 @@ public interface IHelperByDev<T> {
      * @param listener 回调事件
      * @return Helper
      */
-    T getWidthHeightExact2(
+    T getWidthHeightExactOnGlobalLayout(
             View view,
             ViewUtils.OnWHListener listener
     );

@@ -183,14 +183,14 @@ public final class DevUtils {
      * 反射获取全局 Application 并执行 {@link #init(Context)}
      * @return {@link Application}
      */
-    public static Application getApplicationViaReflectionAndInit() {
+    public static Application getApplicationByReflectAndInit() {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
             init(application); // 初始化操作
             return application;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getApplicationViaReflectionAndInit");
+            LogPrintUtils.eTag(TAG, e, "getApplicationByReflectAndInit");
         }
         return null;
     }
@@ -202,7 +202,7 @@ public final class DevUtils {
     public static Application getApplicationExt() {
         Application application = getApplication();
         if (application != null) return application;
-        return getApplicationViaReflectionAndInit();
+        return getApplicationByReflectAndInit();
     }
 
     // =

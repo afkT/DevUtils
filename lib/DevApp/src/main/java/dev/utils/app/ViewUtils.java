@@ -744,7 +744,7 @@ public final class ViewUtils {
      * @param listener 回调事件
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean getWidthHeightExact(
+    public static boolean getWidthHeightExactOnPost(
             final View view,
             final OnWHListener listener
     ) {
@@ -761,7 +761,7 @@ public final class ViewUtils {
      * @param listener 回调事件
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean getWidthHeightExact2(
+    public static boolean getWidthHeightExactOnGlobalLayout(
             final View view,
             final OnWHListener listener
     ) {

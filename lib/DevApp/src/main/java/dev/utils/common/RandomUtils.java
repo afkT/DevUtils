@@ -419,7 +419,7 @@ public final class RandomUtils {
      * @param objects 随机数据源
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shuffle2(final Object[] objects) {
+    public static boolean shuffleObjectsFisherYates(final Object[] objects) {
         if (objects == null) return false;
         int len = objects.length;
         if (len > 0) {

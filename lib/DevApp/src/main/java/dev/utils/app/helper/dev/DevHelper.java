@@ -993,11 +993,11 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper registerSoftInputChangedListenerViaContentView(
+    public DevHelper registerSoftInputListenerViaContentView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
-        KeyBoardUtils.registerSoftInputChangedListenerViaContentView(
+        KeyBoardUtils.registerSoftInputListenerViaContentView(
                 activity, listener
         );
         return this;
@@ -1010,11 +1010,11 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper registerSoftInputChangedListenerViaDecorView(
+    public DevHelper registerSoftInputListenerViaDecorView(
             Activity activity,
             KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
-        KeyBoardUtils.registerSoftInputChangedListenerViaDecorView(
+        KeyBoardUtils.registerSoftInputListenerViaDecorView(
                 activity, listener
         );
         return this;
@@ -1741,11 +1741,11 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper getWidthHeightExact(
+    public DevHelper getWidthHeightExactOnPost(
             View view,
             ViewUtils.OnWHListener listener
     ) {
-        ViewUtils.getWidthHeightExact(
+        ViewUtils.getWidthHeightExactOnPost(
                 view, listener
         );
         return this;
@@ -1758,11 +1758,11 @@ public final class DevHelper
      * @return Helper
      */
     @Override
-    public DevHelper getWidthHeightExact2(
+    public DevHelper getWidthHeightExactOnGlobalLayout(
             View view,
             ViewUtils.OnWHListener listener
     ) {
-        ViewUtils.getWidthHeightExact2(
+        ViewUtils.getWidthHeightExactOnGlobalLayout(
                 view, listener
         );
         return this;

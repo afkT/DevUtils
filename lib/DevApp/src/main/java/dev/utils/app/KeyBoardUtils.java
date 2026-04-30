@@ -197,7 +197,7 @@ public final class KeyBoardUtils {
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListenerViaContentView(
+    public static boolean registerSoftInputListenerViaContentView(
             final Activity activity,
             final OnSoftInputChangedListener listener
     ) {
@@ -215,7 +215,7 @@ public final class KeyBoardUtils {
             });
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaContentView");
+            LogPrintUtils.eTag(TAG, e, "registerSoftInputListenerViaContentView");
         }
         return false;
     }
@@ -226,7 +226,7 @@ public final class KeyBoardUtils {
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListenerViaDecorView(
+    public static boolean registerSoftInputListenerViaDecorView(
             final Activity activity,
             final OnSoftInputChangedListener listener
     ) {
@@ -248,13 +248,13 @@ public final class KeyBoardUtils {
                         // 判断是否显示
                         listener.onSoftInputChanged(visible, keyboardHeight);
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaDecorView");
+                        LogPrintUtils.eTag(TAG, e, "registerSoftInputListenerViaDecorView");
                     }
                 }
             });
             return true;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListenerViaDecorView");
+            LogPrintUtils.eTag(TAG, e, "registerSoftInputListenerViaDecorView");
         }
         return false;
     }

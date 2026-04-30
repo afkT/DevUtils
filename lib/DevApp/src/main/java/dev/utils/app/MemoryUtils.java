@@ -36,7 +36,7 @@ public final class MemoryUtils {
      * 获取内存信息
      * @return 内存信息
      */
-    public static String printMemoryInfo() {
+    public static String printMemoryInfoFromProc() {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
@@ -47,7 +47,7 @@ public final class MemoryUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "printMemoryInfo");
+            LogPrintUtils.eTag(TAG, e, "printMemoryInfoFromProc");
         } finally {
             CloseUtils.closeIOQuietly(br);
         }
@@ -59,7 +59,7 @@ public final class MemoryUtils {
      * @return 内存信息
      */
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
-    public static String printMemoryInfo2() {
+    public static String printMemoryInfoFromActivityManager() {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
             if (memoryInfo == null) return null;
@@ -73,7 +73,7 @@ public final class MemoryUtils {
             builder.append("\nthreshold: ").append(memoryInfo.threshold);
             return builder.toString();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "printMemoryInfo2");
+            LogPrintUtils.eTag(TAG, e, "printMemoryInfoFromActivityManager");
         }
         return null;
     }

@@ -65,7 +65,7 @@ public final class LocationUtils {
      * 判断定位是否可用
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isLocationEnabled() {
+    public static boolean isLocationEnabledGpsOrNetwork() {
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
             return locationManager != null && (
@@ -73,7 +73,7 @@ public final class LocationUtils {
                             || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
             );
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isLocationEnabled");
+            LogPrintUtils.eTag(TAG, e, "isLocationEnabledGpsOrNetwork");
         }
         return false;
     }
@@ -82,7 +82,7 @@ public final class LocationUtils {
      * 判断定位是否可用
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isLocationEnabled2() {
+    public static boolean isLocationEnabledGpsNetworkOrPassive() {
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
             return locationManager != null && (
@@ -91,7 +91,7 @@ public final class LocationUtils {
                             || locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)
             );
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isLocationEnabled2");
+            LogPrintUtils.eTag(TAG, e, "isLocationEnabledGpsNetworkOrPassive");
         }
         return false;
     }
@@ -149,7 +149,7 @@ public final class LocationUtils {
         if (listener == null) return false;
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
-            if (!isLocationEnabled()) return false;
+            if (!isLocationEnabledGpsOrNetwork()) return false;
             sListener = listener;
             String   provider = locationManager.getBestProvider(getCriteria(), true);
             Location location = locationManager.getLastKnownLocation(provider);
@@ -213,7 +213,7 @@ public final class LocationUtils {
         Location location = null;
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
-            if (isLocationEnabled()) {
+            if (isLocationEnabledGpsOrNetwork()) {
                 locationManager.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER, millis, distance, listener
                 );
