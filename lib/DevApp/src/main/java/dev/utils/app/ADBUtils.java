@@ -67,7 +67,7 @@ public final class ADBUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isGrantedRoot() {
-        return ShellUtils.execCmd("exit", true).isSuccess2();
+        return ShellUtils.execCmd("exit", true).isSuccessWithoutErrorOutput();
     }
 
     // ==========
@@ -90,7 +90,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "pm list packages" + typeStr, false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
                 return Arrays.asList(arrays);
@@ -160,7 +160,7 @@ public final class ADBUtils {
         if (TextUtils.isEmpty(packageName)) return false;
         return ShellUtils.execCmd(
                 "pm path " + packageName, false
-        ).isSuccess3();
+        ).isSuccessWithSuccessOutput();
     }
 
     /**
@@ -174,7 +174,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "pm path " + packageName, false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -193,7 +193,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, packageName), true
         );
-        return result.isSuccess4("success");
+        return result.isSuccessOutputContaining("success");
     }
 
     // ==========
@@ -215,7 +215,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "dumpsys package " + packageName, true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -234,7 +234,7 @@ public final class ADBUtils {
                     "dumpsys package " + packageName + " | grep version",
                     true
             );
-            if (result.isSuccess3()) {
+            if (result.isSuccessWithSuccessOutput()) {
                 String[] arrays = result.successMsg.split(DevFinal.REGEX.SPACE);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
@@ -269,7 +269,7 @@ public final class ADBUtils {
                     "dumpsys package " + packageName + " | grep version",
                     true
             );
-            if (result.isSuccess3()) {
+            if (result.isSuccessWithSuccessOutput()) {
                 String[] arrays = result.successMsg.split(DevFinal.REGEX.SPACE);
                 for (String value : arrays) {
                     if (!TextUtils.isEmpty(value)) {
@@ -331,7 +331,7 @@ public final class ADBUtils {
                 String.format(cmd, params, filePath), isRoot
         );
         // 判断是否成功
-        return result.isSuccess4("success");
+        return result.isSuccessOutputContaining("success");
     }
 
     /**
@@ -397,7 +397,7 @@ public final class ADBUtils {
         String                   filePath = '"' + file.getAbsolutePath() + '"';
         String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
         ShellUtils.CommandResult result   = ShellUtils.execCmd(command, isRooted);
-        return result.isSuccess4("success");
+        return result.isSuccessOutputContaining("success");
     }
 
     // =
@@ -432,7 +432,7 @@ public final class ADBUtils {
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, isRoot);
         // 判断是否成功
-        return result.isSuccess4("success");
+        return result.isSuccessOutputContaining("success");
     }
 
     /**
@@ -472,7 +472,7 @@ public final class ADBUtils {
         if (TextUtils.isEmpty(packageName)) return false;
         String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
-        return result.isSuccess4("success");
+        return result.isSuccessOutputContaining("success");
     }
 
     // ===========
@@ -494,7 +494,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, packageName), true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             String mainStr = "android.intent.action.MAIN:";
             int    start   = result.successMsg.indexOf(mainStr);
             // 防止都为 null
@@ -551,7 +551,7 @@ public final class ADBUtils {
         String cmd = "dumpsys window w | grep \\/  |  grep name=";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 String   nameStr = "name=";
                 String[] arrays  = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
@@ -585,7 +585,7 @@ public final class ADBUtils {
         String cmd = "dumpsys window windows | grep Current";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
@@ -634,7 +634,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, packageName), true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
@@ -687,7 +687,7 @@ public final class ADBUtils {
         }
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
@@ -743,7 +743,7 @@ public final class ADBUtils {
         }
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1032,7 +1032,7 @@ public final class ADBUtils {
     public static String getServices(final String packageName) {
         String                   cmd    = "dumpsys activity services" + ((TextUtils.isEmpty(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1109,7 +1109,7 @@ public final class ADBUtils {
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivity");
         }
@@ -1147,7 +1147,7 @@ public final class ADBUtils {
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
         }
@@ -1185,7 +1185,7 @@ public final class ADBUtils {
             }
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            return result.isSuccess3();
+            return result.isSuccessWithSuccessOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopService");
         }
@@ -1210,7 +1210,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, broadcast), true
             );
-            return result.isSuccess3();
+            return result.isSuccessWithSuccessOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcastAll");
         }
@@ -1241,7 +1241,7 @@ public final class ADBUtils {
                     String.format(cmd, broadcast, packageAndBroadcast),
                     true
             );
-            return result.isSuccess3();
+            return result.isSuccessWithSuccessOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendBroadcast");
         }
@@ -1263,7 +1263,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, packageName), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "kill");
         }
@@ -1287,7 +1287,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, pid, level), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "sendTrimMemory");
         }
@@ -1315,7 +1315,7 @@ public final class ADBUtils {
 //            }
 //            // 执行 shell
 //            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, remote), true);
-//            return result.isSuccess2();
+//            return result.isSuccessWithoutErrorOutput();
 //        } catch (Exception e) {
 //            LogPrintUtils.eTag(TAG, e, "pull");
 //        }
@@ -1336,7 +1336,7 @@ public final class ADBUtils {
 //            String cmd = "adb push %s %s";
 //            // 执行 shell
 //            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, local, remote), true);
-//            return result.isSuccess2();
+//            return result.isSuccessWithoutErrorOutput();
 //        } catch (Exception e) {
 //            LogPrintUtils.eTag(TAG, e, "push");
 //        }
@@ -1369,7 +1369,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, (int) x, (int) y), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "tap");
         }
@@ -1434,7 +1434,7 @@ public final class ADBUtils {
                             (int) toX, (int) toY, millis
                     ), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "swipe");
         }
@@ -1459,7 +1459,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, txt), true
             ); // false 可以执行
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "text");
         }
@@ -1483,7 +1483,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, keyCode), true
             ); // false 可以执行
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "keyevent");
         }
@@ -1522,7 +1522,7 @@ public final class ADBUtils {
                             cmd, Math.max(displayId, 0), path
                     ), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "screencap");
         }
@@ -1598,7 +1598,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     builder.toString(), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "screenrecord");
         }
@@ -1614,7 +1614,7 @@ public final class ADBUtils {
             String cmd = "cat /data/misc/wifi/*.conf";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
-            if (result.isSuccess3()) {
+            if (result.isSuccessWithSuccessOutput()) {
                 return result.successMsg;
             }
         } catch (Exception e) {
@@ -1634,7 +1634,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, open ? "enable" : "disable"), true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -1651,7 +1651,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, time), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime");
         }
@@ -1672,7 +1672,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(cmd, time), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime2");
         }
@@ -1694,7 +1694,7 @@ public final class ADBUtils {
                             millis, DevFinal.TIME.SPECIAL_mmddHHmmyyyyss
                     )), true
             );
-            return result.isSuccess2();
+            return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime2");
         }
@@ -1765,7 +1765,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "reboot recovery", true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -1776,7 +1776,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "reboot bootloader", true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     // ==========
@@ -1875,7 +1875,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.build.version.sdk", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1889,7 +1889,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.build.version.release", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1904,7 +1904,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.product.model", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1918,7 +1918,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.product.brand", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1932,7 +1932,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.product.name", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1947,7 +1947,7 @@ public final class ADBUtils {
                 "cat /system/build.prop | grep ro.product.cpu.abi",
                 false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1961,7 +1961,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop dalvik.vm.heapsize", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -1975,7 +1975,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "dumpsys battery", true
         );
-        if (result.isSuccess3()) { // scale 代表最大电量, level 代表当前电量
+        if (result.isSuccessWithSuccessOutput()) { // scale 代表最大电量, level 代表当前电量
             return result.successMsg;
         }
         return null;
@@ -1989,7 +1989,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "getprop ro.sf.lcd_density", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2003,7 +2003,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "wm size", true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             // 正常返回 Physical size: 1080 x 1920
             // 如果使用命令修改过, 那输出可能是
             // Physical size: 1080 x 1920
@@ -2022,7 +2022,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "dumpsys window displays", true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2036,7 +2036,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "settings get secure android_id", true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2051,7 +2051,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     "service call iphonesubinfo 1", true
             );
-            if (result.isSuccess3()) {
+            if (result.isSuccessWithSuccessOutput()) {
                 try {
                     StringBuilder builder = new StringBuilder();
                     String        subStr  = result.successMsg.replaceAll("\\.", "");
@@ -2081,7 +2081,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     "dumpsys iphonesubinfo", true
             );
-            if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI
+            if (result.isSuccessWithSuccessOutput()) { // 返回值中的 Device ID 就是 IMEI
                 try {
                     String[] arrays = result.successMsg.split(DevFinal.SYMBOL.NEW_LINE);
                     for (String value : arrays) {
@@ -2109,16 +2109,16 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "ifconfig | grep Mask", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         } else { // 如果设备连着 Wifi, 可以使用如下命令来查看局域网 IP
             result = ShellUtils.execCmd("ifconfig wlan0", false);
-            if (result.isSuccess3()) {
+            if (result.isSuccessWithSuccessOutput()) {
                 return result.successMsg;
             } else {
                 // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息
                 result = ShellUtils.execCmd("netcfg", false);
-                if (result.isSuccess3()) {
+                if (result.isSuccessWithSuccessOutput()) {
                     return result.successMsg;
                 }
             }
@@ -2134,7 +2134,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "cat /sys/class/net/wlan0/address", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2148,7 +2148,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "cat /proc/cpuinfo", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2162,7 +2162,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "cat /proc/meminfo", false
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2187,7 +2187,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, width, height), true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2199,7 +2199,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "wm size reset", true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2212,7 +2212,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "wm density " + density, true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2224,7 +2224,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "wm density reset", true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2246,7 +2246,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 String.format(cmd, left, top, right, bottom), true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2258,7 +2258,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "wm overscan reset", true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2270,7 +2270,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(
                 "settings get system screen_brightness_mode", true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 return Integer.parseInt(result.successMsg);
             } catch (Exception ignored) {
@@ -2290,7 +2290,7 @@ public final class ADBUtils {
                 "settings put system screen_brightness_mode " + (isAuto ? 1 : 0),
                 true
         );
-        return result.isSuccess3();
+        return result.isSuccessWithSuccessOutput();
     }
 
     /**
@@ -2303,7 +2303,7 @@ public final class ADBUtils {
                 "settings get system screen_brightness",
                 true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             String suc = result.successMsg;
             if (suc.startsWith("\"")) {
                 suc = suc.substring(1);
@@ -2332,7 +2332,7 @@ public final class ADBUtils {
                 "settings put system screen_brightness " + brightness,
                 true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2345,7 +2345,7 @@ public final class ADBUtils {
                 "settings get system screen_off_timeout",
                 true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             return result.successMsg;
         }
         return null;
@@ -2368,7 +2368,7 @@ public final class ADBUtils {
                 "settings put system screen_off_timeout " + millis,
                 true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2381,7 +2381,7 @@ public final class ADBUtils {
                 "settings get global auto_time",
                 true
         );
-        if (result.isSuccess3()) {
+        if (result.isSuccessWithSuccessOutput()) {
             try {
                 return Integer.parseInt(result.successMsg);
             } catch (Exception ignored) {
@@ -2401,7 +2401,7 @@ public final class ADBUtils {
                 "settings put global auto_time " + (isOpen ? 1 : 0),
                 true
         );
-        return result.isSuccess3();
+        return result.isSuccessWithSuccessOutput();
     }
 
     /**
@@ -2414,7 +2414,7 @@ public final class ADBUtils {
                 "settings put global adb_enabled 0",
                 true
         );
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2467,7 +2467,7 @@ public final class ADBUtils {
         cmds[1] = "settings put secure accessibility_enabled 1";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 
     /**
@@ -2490,6 +2490,6 @@ public final class ADBUtils {
         cmdArrays[1] = "settings put secure accessibility_enabled 0";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmdArrays, true);
-        return result.isSuccess2();
+        return result.isSuccessWithoutErrorOutput();
     }
 }

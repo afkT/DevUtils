@@ -264,7 +264,7 @@ public final class NetWorkUtils {
             );
         }
         // 判断结果, 返回数据不为 null
-        return result.isSuccess3();
+        return result.isSuccessWithSuccessOutput();
     }
 
     /**

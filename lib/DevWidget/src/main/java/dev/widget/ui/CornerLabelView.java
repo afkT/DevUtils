@@ -215,10 +215,10 @@ public class CornerLabelView
     }
 
     /**
-     * 获取 Text2 Painter
+     * 获取第二行（Text2）绘制配置
      * @return {@link Painter}
      */
-    public Painter getPainter2() {
+    public Painter getSecondaryLinePainter() {
         return mText2;
     }
 
@@ -397,7 +397,7 @@ public class CornerLabelView
      * @param text 文本
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setText2(final String text) {
+    public CornerLabelView setSecondaryLineText(final String text) {
         mText2.text = text;
         mText2.initialize();
         requestLayout();
@@ -410,7 +410,7 @@ public class CornerLabelView
      * @param textColor 字体颜色
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextColor2(@ColorInt final int textColor) {
+    public CornerLabelView setSecondaryLineTextColor(@ColorInt final int textColor) {
         mText2.textColor = textColor;
         mText2.initialize();
         postInvalidate();
@@ -422,7 +422,7 @@ public class CornerLabelView
      * @param textHeight 字体高度 ( px )
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextHeight2(final float textHeight) {
+    public CornerLabelView setSecondaryLineTextHeight(final float textHeight) {
         mText2.textHeight = textHeight;
         mText2.initialize();
         requestLayout();
@@ -435,7 +435,7 @@ public class CornerLabelView
      * @param textBold {@code true} yes, {@code false} no
      * @return {@link CornerLabelView}
      */
-    public CornerLabelView setTextBold2(final boolean textBold) {
+    public CornerLabelView setSecondaryLineTextBold(final boolean textBold) {
         mText2.textBold = textBold;
         mText2.initialize();
         requestLayout();

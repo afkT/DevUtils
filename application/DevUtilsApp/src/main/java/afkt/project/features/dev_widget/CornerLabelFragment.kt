@@ -137,14 +137,14 @@ class CornerLabelViewModel : AppViewModel() {
     val clickText2Minus: (CornerLabelView?) -> Unit = {
         it?.let { labelView ->
             mText2Index = (mText2Index + 5 - 1) % 5
-            labelView.setText2("1234567890".substring(0, mText2Index))
+            labelView.setSecondaryLineText("1234567890".substring(0, mText2Index))
         }
     }
 
     val clickText2Plus: (CornerLabelView?) -> Unit = {
         it?.let { labelView ->
             mText2Index = (mText2Index + 5 + 1) % 5
-            labelView.setText2("1234567890".substring(0, mText2Index))
+            labelView.setSecondaryLineText("1234567890".substring(0, mText2Index))
         }
     }
 
@@ -153,7 +153,7 @@ class CornerLabelViewModel : AppViewModel() {
             if (mText2Height < 4) return@let
             mText2Height -= 2F
             val convertPx = AppSize.sp2pxf(mText2Height)
-            labelView.setTextHeight2(convertPx)
+            labelView.setSecondaryLineTextHeight(convertPx)
         }
     }
 
@@ -162,7 +162,7 @@ class CornerLabelViewModel : AppViewModel() {
             if (mText2Height > 20) return@let
             mText2Height += 2F
             val convertPx = AppSize.sp2pxf(mText2Height)
-            labelView.setTextHeight2(convertPx)
+            labelView.setSecondaryLineTextHeight(convertPx)
         }
     }
 }

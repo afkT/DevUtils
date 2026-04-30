@@ -218,29 +218,29 @@ public final class ShellUtils {
         }
 
         /**
-         * 判断是否执行成功 ( 判断 errorMsg )
+         * 是否成功且 errorMsg 为空
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isSuccess2() {
-            return result == SUCCESS && (errorMsg == null || errorMsg.length() == 0);
+        public boolean isSuccessWithoutErrorOutput() {
+            return result == SUCCESS && (errorMsg == null || errorMsg.isEmpty());
         }
 
         /**
-         * 判断是否执行成功 ( 判断 successMsg )
+         * 是否成功且 successMsg 非空
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isSuccess3() {
-            return result == SUCCESS && successMsg != null && successMsg.length() != 0;
+        public boolean isSuccessWithSuccessOutput() {
+            return result == SUCCESS && successMsg != null && !successMsg.isEmpty();
         }
 
         /**
-         * 判断是否执行成功 ( 判断 successMsg ) , 并且 successMsg 是否包含某个字符串
+         * 是否成功、successMsg 非空且包含指定子串（忽略大小写）
          * @param contains 待校验包含字符串
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isSuccess4(final String contains) {
-            if (result == SUCCESS && successMsg != null && successMsg.length() != 0) {
-                return contains != null && contains.length() != 0 && successMsg.toLowerCase().contains(contains);
+        public boolean isSuccessOutputContaining(final String contains) {
+            if (result == SUCCESS && successMsg != null && !successMsg.isEmpty()) {
+                return contains != null && !contains.isEmpty() && successMsg.toLowerCase().contains(contains);
             }
             return false;
         }
