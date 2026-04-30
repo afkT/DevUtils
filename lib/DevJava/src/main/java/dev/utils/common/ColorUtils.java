@@ -915,7 +915,7 @@ public final class ColorUtils {
         private void parseColorValueIntoChannels() {
             String temp = value;
             if (sParser != null) {
-                temp = sParser.handleColor(value);
+                temp = sParser.normalizeColorInput(value);
                 // 保存解析后的值
                 valueParser = temp;
             }
@@ -949,11 +949,11 @@ public final class ColorUtils {
         public interface Parser {
 
             /**
-             * 处理 color
+             * 规范化颜色字符串（如 #RGB 扩展为 #RRGGBB）
              * @param value 如: #000000
-             * @return 处理后的 value
+             * @return 规范化后的 value
              */
-            String handleColor(String value);
+            String normalizeColorInput(String value);
         }
 
         /**
@@ -963,7 +963,7 @@ public final class ColorUtils {
         public static class ColorParser
                 implements Parser {
             @Override
-            public String handleColor(String value) {
+            public String normalizeColorInput(String value) {
                 if (value == null) return null;
                 String color  = StringUtils.clearSpace(value);
                 char[] chars  = color.toCharArray();

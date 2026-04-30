@@ -46,7 +46,7 @@ public class DelayAssist {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                if (mCallback != null) mCallback.callback(msg.obj);
+                if (mCallback != null) mCallback.onDelayed(msg.obj);
             }
         };
     }
@@ -58,10 +58,10 @@ public class DelayAssist {
     public interface Callback {
 
         /**
-         * 回调方法
-         * @param object Object
+         * 延迟时间到达后的回调
+         * @param payload {@link Message#obj}
          */
-        void callback(Object object);
+        void onDelayed(Object payload);
     }
 
     // =============

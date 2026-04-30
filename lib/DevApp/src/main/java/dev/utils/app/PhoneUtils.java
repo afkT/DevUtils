@@ -613,7 +613,7 @@ public final class PhoneUtils {
     }
 
     /**
-     * 打开手机联系人界面点击联系人后便获取该号码
+     * 打开系统联系人电话选择界面（需在 {@link Activity#onActivityResult} 中解析号码）
      * <pre>
      *     protected void onActivityResult (int requestCode, int resultCode, Intent intent) {
      *          super.onActivityResult(requestCode, resultCode, intent);
@@ -632,9 +632,9 @@ public final class PhoneUtils {
      *      }
      * </pre>
      * @param activity {@link Activity}
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} 成功发起界面, {@code false} 失败
      */
-    public static boolean getContactNum(final Activity activity) {
+    public static boolean launchPickContactPhoneIntent(final Activity activity) {
         if (activity != null && !activity.isFinishing()) {
             try {
                 Intent intent = new Intent();
@@ -643,7 +643,7 @@ public final class PhoneUtils {
                 activity.startActivityForResult(intent, 0);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getContactNum");
+                LogPrintUtils.eTag(TAG, e, "launchPickContactPhoneIntent");
             }
         }
         return false;

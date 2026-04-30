@@ -69,7 +69,7 @@ internal fun changeProgress(
  * @param callback 上传、下载回调接口
  * @param handler 回调 UI 线程通知
  */
-private fun Progress.callback(
+private fun Progress.invokeCallbackIfStatusMatches(
     notifyStatus: Int,
     callback: Progress.Callback?,
     handler: Handler?
@@ -129,7 +129,7 @@ internal fun Progress.toStartAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toStart()) callback(Progress.START, callback, handler)
+    if (toStart()) invokeCallbackIfStatusMatches(Progress.START, callback, handler)
 }
 
 /**
@@ -142,7 +142,7 @@ internal fun Progress.toIngAndCallback(
     handler: Handler?
 ) {
     toIng()
-    callback(Progress.ING, callback, handler)
+    invokeCallbackIfStatusMatches(Progress.ING, callback, handler)
 }
 
 /**
@@ -156,7 +156,7 @@ internal fun Progress.toErrorAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toError(exception)) callback(Progress.ERROR, callback, handler)
+    if (toError(exception)) invokeCallbackIfStatusMatches(Progress.ERROR, callback, handler)
 }
 
 /**
@@ -168,7 +168,7 @@ internal fun Progress.toFinishAndCallback(
     callback: Progress.Callback?,
     handler: Handler?
 ) {
-    if (toFinish()) callback(Progress.FINISH, callback, handler)
+    if (toFinish()) invokeCallbackIfStatusMatches(Progress.FINISH, callback, handler)
 }
 
 // =============

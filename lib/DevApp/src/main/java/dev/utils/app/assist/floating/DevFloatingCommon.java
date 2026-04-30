@@ -281,12 +281,12 @@ public class DevFloatingCommon
         }
     }
 
-    // ========================
-    // = DelayAssist.Callback =
-    // ========================
+    // ====================================
+    // = DelayAssist.Callback (onDelayed) =
+    // ====================================
 
     @Override
-    public void callback(Object object) {
+    public void onDelayed(Object payload) {
         if (mListener != null && mView != null && mEvent != null) {
             mListener.onLongClick(mView, mEvent, mFirstPoint);
         }

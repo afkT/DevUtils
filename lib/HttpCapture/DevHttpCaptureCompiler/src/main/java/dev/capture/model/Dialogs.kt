@@ -23,7 +23,7 @@ internal class Dialogs {
             layoutInflater
         )
 
-        private fun callback(dataType: Items.DataType) {
+        private fun dispatchDataTypeChoice(dataType: Items.DataType) {
             dismiss()
             mCallback.callback(dataType)
         }
@@ -32,13 +32,13 @@ internal class Dialogs {
             setContentView(binding.root)
 
             binding.apply {
-                vidAllTv.setOnClickListener { callback(Items.DataType.T_ALL) }
-                vid09Tv.setOnClickListener { callback(Items.DataType.T_0_9) }
-                vid1019Tv.setOnClickListener { callback(Items.DataType.T_10_19) }
-                vid2029Tv.setOnClickListener { callback(Items.DataType.T_20_29) }
-                vid3039Tv.setOnClickListener { callback(Items.DataType.T_30_39) }
-                vid4049Tv.setOnClickListener { callback(Items.DataType.T_40_49) }
-                vid5059Tv.setOnClickListener { callback(Items.DataType.T_50_59) }
+                vidAllTv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_ALL) }
+                vid09Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_0_9) }
+                vid1019Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_10_19) }
+                vid2029Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_20_29) }
+                vid3039Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_30_39) }
+                vid4049Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_40_49) }
+                vid5059Tv.setOnClickListener { dispatchDataTypeChoice(Items.DataType.T_50_59) }
                 vidCancelTv.setOnClickListener { dismiss() }
             }
         }
@@ -57,17 +57,17 @@ internal class Dialogs {
             layoutInflater
         )
 
-        private fun callback(dataType: GroupType) {
+        private fun dispatchGroupTypeChoice(groupType: GroupType) {
             dismiss()
-            mCallback.callback(dataType)
+            mCallback.callback(groupType)
         }
 
         init {
             setContentView(binding.root)
 
             binding.apply {
-                vidTimeTv.setOnClickListener { callback(GroupType.T_TIME) }
-                vidUrlTv.setOnClickListener { callback(GroupType.T_URL) }
+                vidTimeTv.setOnClickListener { dispatchGroupTypeChoice(GroupType.T_TIME) }
+                vidUrlTv.setOnClickListener { dispatchGroupTypeChoice(GroupType.T_URL) }
                 vidCancelTv.setOnClickListener { dismiss() }
             }
         }
