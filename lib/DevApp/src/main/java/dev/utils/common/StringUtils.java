@@ -641,6 +641,16 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLine(final String str) {
+        String result = clearLineByNewLine(str);
+        return clearLineByNL(result);
+    }
+
+    /**
+     * 清空字符串全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLineByNewLine(final String str) {
         return replaceAll(str, DevFinal.SYMBOL.NEW_LINE, "");
     }
 
@@ -649,7 +659,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String clearLine2(final String str) {
+    public static String clearLineByNL(final String str) {
         return replaceAll(str, DevFinal.SYMBOL.NL, "");
     }
 
@@ -679,6 +689,16 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearLineTrim(final String str) {
+        String result = clearLineTrimByNewLine(str);
+        return clearLineTrimByNL(result);
+    }
+
+    /**
+     * 清空字符串前后全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLineTrimByNewLine(final String str) {
         return clearSEWiths(str, DevFinal.SYMBOL.NEW_LINE);
     }
 
@@ -687,7 +707,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String clearLineTrim2(final String str) {
+    public static String clearLineTrimByNL(final String str) {
         return clearSEWiths(str, DevFinal.SYMBOL.NL);
     }
 
@@ -701,7 +721,6 @@ public final class StringUtils {
         String value = clearSpace(str);
         value = clearTab(value);
         value = clearLine(value);
-        value = clearLine2(value);
         return value;
     }
 
@@ -721,10 +740,10 @@ public final class StringUtils {
             if (tab) value = clearTabTrim(value);
 
             boolean line = (value.startsWith(DevFinal.SYMBOL.NEW_LINE) || value.endsWith(DevFinal.SYMBOL.NEW_LINE));
-            if (line) value = clearLineTrim(value);
+            if (line) value = clearLineTrimByNewLine(value);
 
             boolean line2 = (value.startsWith(DevFinal.SYMBOL.NL) || value.endsWith(DevFinal.SYMBOL.NL));
-            if (line2) value = clearLineTrim2(value);
+            if (line2) value = clearLineTrimByNL(value);
 
             // 都不存在则返回值
             if (!space && !tab && !line && !line2) return value;
@@ -756,7 +775,7 @@ public final class StringUtils {
      * @param number 换行数量
      * @return 指定数量的换行字符串
      */
-    public static String appendLine(final int number) {
+    public static String appendNewLine(final int number) {
         return forString(number, DevFinal.SYMBOL.NEW_LINE);
     }
 
@@ -765,7 +784,7 @@ public final class StringUtils {
      * @param number 换行数量
      * @return 指定数量的换行字符串
      */
-    public static String appendLine2(final int number) {
+    public static String appendNL(final int number) {
         return forString(number, DevFinal.SYMBOL.NL);
     }
 

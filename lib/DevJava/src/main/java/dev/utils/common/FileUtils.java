@@ -645,8 +645,8 @@ public final class FileUtils {
      * @param file 文件
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isHidden2(final File file) {
-        return isHidden2(getAbsolutePath(file));
+    public static boolean isHiddenByDottedNameInPath(final File file) {
+        return isHiddenByDottedNameInPath(getAbsolutePath(file));
     }
 
     /**
@@ -654,7 +654,7 @@ public final class FileUtils {
      * @param filePath 文件路径
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isHidden2(final String filePath) {
+    public static boolean isHiddenByDottedNameInPath(final String filePath) {
         if (filePath != null) {
             String temp = filePath.replaceAll("/../..", "")
                     .replaceAll("\\...\\...", "")

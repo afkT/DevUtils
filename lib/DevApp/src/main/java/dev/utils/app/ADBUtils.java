@@ -1664,7 +1664,7 @@ public final class ADBUtils {
      *             表示将系统日期和时间更改为 2016 年 08 月 23 日 13 点 15 分 00 秒
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSystemTime2(final String time) {
+    public static boolean setSystemTimeByMMddHHmmyyyyss(final String time) {
         if (TextUtils.isEmpty(time)) return false;
         try {
             String cmd = "date %s";
@@ -1674,7 +1674,7 @@ public final class ADBUtils {
             );
             return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setSystemTime2");
+            LogPrintUtils.eTag(TAG, e, "setSystemTimeByMMddHHmmyyyyss");
         }
         return false;
     }
@@ -1684,7 +1684,7 @@ public final class ADBUtils {
      * @param millis 时间毫秒转换 MMddHHmmyyyy.ss
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSystemTime2(final long millis) {
+    public static boolean setSystemTimeByMillis(final long millis) {
         if (millis < 0) return false;
         try {
             String cmd = "date %s";
@@ -1696,7 +1696,7 @@ public final class ADBUtils {
             );
             return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setSystemTime2");
+            LogPrintUtils.eTag(TAG, e, "setSystemTimeByMillis");
         }
         return false;
     }
