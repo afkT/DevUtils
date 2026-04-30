@@ -447,10 +447,10 @@ public final class WallpaperUtils {
     public interface OnOtherCallback {
 
         /**
-         * 非适配 ROM 则触发回调
+         * 未命中已知 ROM 分支时的壁纸设置策略（例如走默认流式设置）
          * @return {@code true} success, {@code false} fail
          */
-        boolean callback();
+        boolean trySetWallpaper();
     }
 
     /**
@@ -527,7 +527,7 @@ public final class WallpaperUtils {
             }
 
             if (callback != null) {
-                return callback.callback();
+                return callback.trySetWallpaper();
             }
             return setStream(ResourceUtils.openInputStream(uri));
         } catch (Exception e) {

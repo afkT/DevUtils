@@ -63,7 +63,7 @@ class DevHttpCaptureFileActivity : BaseDevHttpActivity<DevHttpCaptureFileActivit
         binding.vidTitleInclude.vidTitleTv.setText(R.string.dev_http_capture_details_title)
         // 绑定适配器
         mAdapter.setCallback(object : DevCallback<Items.FileItem>() {
-            override fun callback(item: Items.FileItem) {
+            override fun deliver(item: Items.FileItem) {
                 ClipboardUtils.copyText(item.value)
                 UtilsCompiler.toastImpl().success(
                     R.string.dev_http_capture_copy_success

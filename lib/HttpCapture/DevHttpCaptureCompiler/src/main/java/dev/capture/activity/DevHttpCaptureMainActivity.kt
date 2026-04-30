@@ -33,7 +33,7 @@ class DevHttpCaptureMainActivity : BaseDevHttpActivity<DevHttpCaptureMainActivit
 
     // 查询回调
     private val mCallback = object : DevCallback<Boolean>() {
-        override fun callback(
+        override fun deliver(
             isQuerying: Boolean,
             size: Int
         ) {

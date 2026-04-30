@@ -135,13 +135,13 @@ public class DevTimer {
     public interface Callback {
 
         /**
-         * 触发回调方法
+         * 定时触发通知（每次计时触发一次）
          * @param timer    定时器
          * @param number   触发次数
          * @param end      是否结束
          * @param infinite 是否无限循环
          */
-        void callback(
+        void onTick(
                 DevTimer timer,
                 int number,
                 boolean end,
@@ -338,10 +338,10 @@ public class DevTimer {
                 if (mCallback != null) {
                     // 判断是否 UI 线程通知
                     if (mHandler != null) {
-                        mHandler.post(() -> mCallback.callback(
+                        mHandler.post(() -> mCallback.onTick(
                                 DevTimer.this, _number, _end, _infinite));
                     } else {
-                        mCallback.callback(DevTimer.this, _number, _end, _infinite);
+                        mCallback.onTick(DevTimer.this, _number, _end, _infinite);
                     }
                 }
             }

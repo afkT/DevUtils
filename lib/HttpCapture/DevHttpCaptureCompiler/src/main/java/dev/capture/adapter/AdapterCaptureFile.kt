@@ -35,7 +35,7 @@ internal class AdapterCaptureFile :
             .setText(item.title, holder.binding.vidTitleTv)
             .setText(item.value, holder.binding.vidValueTv)
             .setOnClick({
-                callback?.callback(item)
+                callback?.deliver(item)
             }, holder.binding.vidCopyTv)
     }
 }

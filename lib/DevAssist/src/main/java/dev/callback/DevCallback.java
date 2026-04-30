@@ -26,24 +26,24 @@ public class DevCallback<T>
     // ==========
 
     /**
-     * 回调方法
+     * 投递回调（无参）
      */
-    public void callback() {
+    public void deliver() {
     }
 
     /**
-     * 回调方法
+     * 投递回调值
      * @param value 回调值
      */
-    public void callback(T value) {
+    public void deliver(T value) {
     }
 
     /**
-     * 回调方法
+     * 投递回调值与附加参数
      * @param value 回调值
      * @param param 回调参数
      */
-    public void callback(
+    public void deliver(
             T value,
             int param
     ) {

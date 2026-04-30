@@ -56,13 +56,13 @@ public class DevTimerAssist {
     public interface Callback {
 
         /**
-         * 触发回调方法
+         * 定时触发通知（每次计时触发一次）
          * @param assist   定时器辅助类
          * @param number   触发次数
          * @param end      是否结束
          * @param duration 剩余总时长 ( 毫秒 )
          */
-        void callback(
+        void onTick(
                 DevTimerAssist assist,
                 int number,
                 boolean end,
@@ -162,7 +162,7 @@ public class DevTimerAssist {
     // 内部 Callback
     private final DevTimer.Callback mTimerRelayCallback = new DevTimer.Callback() {
         @Override
-        public void callback(
+        public void onTick(
                 DevTimer timer,
                 int number,
                 boolean end,
@@ -172,14 +172,14 @@ public class DevTimerAssist {
             if (result <= 0L) {
                 timer.stop();
                 if (mCallback != null) {
-                    mCallback.callback(
+                    mCallback.onTick(
                             DevTimerAssist.this, number, true, result
                     );
                 }
                 return;
             }
             if (mCallback != null) {
-                mCallback.callback(
+                mCallback.onTick(
                         DevTimerAssist.this, number, false, result
                 );
             }
@@ -206,7 +206,7 @@ public class DevTimerAssist {
         if (result <= 0L) {
             getTimer().stop();
             if (mCallback != null) {
-                mCallback.callback(this, 0, true, result);
+                mCallback.onTick(this, 0, true, result);
             }
             return true;
         }

@@ -48,7 +48,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
 
     // 查询回调
     private val mCallback = object : DevCallback<Boolean>() {
-        override fun callback(
+        override fun deliver(
             isQuerying: Boolean,
             size: Int
         ) {
@@ -237,7 +237,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
     private fun initDialogs() {
         mDataTypeDialog = DataTypeDialog(
             this, object : DevCallback<Items.DataType>() {
-                override fun callback(value: Items.DataType) {
+                override fun deliver(value: Items.DataType) {
                     if (value !== mDataType) {
                         mDataType = value
                         // 刷新选项 View 文本
@@ -249,7 +249,7 @@ class DevHttpCaptureListActivity : BaseDevHttpActivity<DevHttpCaptureListActivit
             })
         mGroupTypeDialog = GroupTypeDialog(
             this, object : DevCallback<GroupType>() {
-                override fun callback(value: GroupType) {
+                override fun deliver(value: GroupType) {
                     if (value !== mGroupType) {
                         mGroupType = value
                         // 刷新选项 View 文本

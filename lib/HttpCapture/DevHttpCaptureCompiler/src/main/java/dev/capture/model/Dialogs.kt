@@ -25,7 +25,7 @@ internal class Dialogs {
 
         private fun dispatchDataTypeChoice(dataType: Items.DataType) {
             dismiss()
-            mCallback.callback(dataType)
+            mCallback.deliver(dataType)
         }
 
         init {
@@ -59,7 +59,7 @@ internal class Dialogs {
 
         private fun dispatchGroupTypeChoice(groupType: GroupType) {
             dismiss()
-            mCallback.callback(groupType)
+            mCallback.deliver(groupType)
         }
 
         init {

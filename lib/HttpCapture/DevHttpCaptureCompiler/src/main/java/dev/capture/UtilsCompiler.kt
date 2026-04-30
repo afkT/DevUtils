@@ -197,7 +197,7 @@ internal object UtilsCompiler {
         for (callback in mCallbackLists) {
             HandlerUtils.postRunnable {
                 try {
-                    callback.callback(isQuerying, size)
+                    callback.deliver(isQuerying, size)
                 } catch (_: Exception) {
                 }
             }
