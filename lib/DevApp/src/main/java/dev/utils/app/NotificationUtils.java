@@ -328,7 +328,7 @@ public final class NotificationUtils {
         if (builder == null) return null;
         // 额外操作触发
         if (callback != null) {
-            callback.callback(params, builder);
+            callback.customizeNotification(params, builder);
         }
         // 初始化 Notification 对象
         Notification baseNF;
@@ -611,7 +611,10 @@ public final class NotificationUtils {
      */
     public interface Callback {
 
-        void callback(
+        /**
+         * 在构建前对 {@link Notification.Builder} 做额外定制
+         */
+        void customizeNotification(
                 Params params,
                 Notification.Builder builder
         );

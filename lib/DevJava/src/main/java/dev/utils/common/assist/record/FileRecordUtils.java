@@ -38,7 +38,7 @@ public final class FileRecordUtils {
     public interface Callback {
 
         /**
-         * 记录结果回调
+         * 日志写入文件后的结果回调
          * @param result     保存结果
          * @param config     日志记录配置信息
          * @param filePath   存储路径
@@ -46,7 +46,7 @@ public final class FileRecordUtils {
          * @param logContent 日志信息
          * @param logs       原始日志内容数组
          */
-        void callback(
+        void onRecordCompleted(
                 boolean result,
                 RecordConfig config,
                 String filePath,
@@ -177,7 +177,7 @@ public final class FileRecordUtils {
         boolean result = FileUtils.appendFile(file, StringUtils.getBytes(finalLogContent));
 
         if (sCallback != null) {
-            sCallback.callback(result, config, filePath, fileName, finalLogContent, logs);
+            sCallback.onRecordCompleted(result, config, filePath, fileName, finalLogContent, logs);
         }
         return result ? RECORD_SUCCESS : "record failed";
     }

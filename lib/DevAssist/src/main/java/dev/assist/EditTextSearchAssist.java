@@ -28,7 +28,7 @@ public class EditTextSearchAssist {
     // 延迟触发回调类
     private final DelayAssist    mDelayAssist = new DelayAssist(object -> {
         if (mCallback != null && object instanceof CharSequence) {
-            mCallback.callback((CharSequence) object);
+            mCallback.onDebouncedQuery((CharSequence) object);
         }
     });
 
@@ -63,10 +63,10 @@ public class EditTextSearchAssist {
     public interface SearchCallback {
 
         /**
-         * 搜索回调
+         * 防抖后的搜索内容回调（与 {@link TextWatcher} 高频触发解耦）
          * @param content 搜索内容
          */
-        void callback(CharSequence content);
+        void onDebouncedQuery(CharSequence content);
     }
 
     // =============
