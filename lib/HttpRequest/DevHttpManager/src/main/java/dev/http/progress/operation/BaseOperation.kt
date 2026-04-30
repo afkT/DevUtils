@@ -20,8 +20,8 @@ internal abstract class BaseOperation constructor(
     private val planType: Int,
 ) : IOperation {
 
-    // 是否已调用 wrap 方法
-    private var mUseWrap = false
+    // 是否已对 Builder 调用过 wrap（挂载进度拦截器）
+    private var mWrapApplied = false
 
     // 是否废弃不用 ( true 的情况下不会拦截网络且任何操作都不会赋值 )
     private var mDeprecated = false
@@ -50,7 +50,7 @@ internal abstract class BaseOperation constructor(
      */
     override fun wrap(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         if (mDeprecated) return builder
-        mUseWrap = true
+        mWrapApplied = true
         // 防止多次添加
         if (builder.interceptors().contains(singletonProgressInterceptor)) {
             return builder
@@ -64,11 +64,11 @@ internal abstract class BaseOperation constructor(
     // =============
 
     /**
-     * 是否已调用 wrap 方法
+     * 是否已对 OkHttpClient 调用过 [wrap]
      * @return `true` yes, `false` no
      */
-    override fun isUseWrap(): Boolean {
-        return mUseWrap
+    override fun isWrapApplied(): Boolean {
+        return mWrapApplied
     }
 
     /**

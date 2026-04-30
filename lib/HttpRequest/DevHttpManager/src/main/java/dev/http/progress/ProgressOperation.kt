@@ -167,8 +167,8 @@ open class ProgressOperation protected constructor(
      * 是否已调用 wrap 方法
      * @return `true` yes, `false` no
      */
-    override fun isUseWrap(): Boolean {
-        return IMPL.isUseWrap()
+    override fun isWrapApplied(): Boolean {
+        return IMPL.isWrapApplied()
     }
 
     /**

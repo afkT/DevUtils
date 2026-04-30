@@ -22,8 +22,8 @@ public final class RecordConfig {
     private final String       mFolderName;
     // 文件记录间隔时间 如: HH
     private final TIME         mFileIntervalTime;
-    // 是否处理记录
-    private       boolean      mHandler;
+    // 是否启用文件日志记录（为 false 时跳过写入）
+    private       boolean      mRecordingEnabled;
     // 是否插入头数据 ( time =>、logs[] )
     private       boolean      mInsertHeaderData;
     // 日志记录插入信息
@@ -61,20 +61,20 @@ public final class RecordConfig {
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
      * @param fileIntervalTime 文件记录间隔时间
-     * @param handler          是否处理记录
+     * @param recordingEnabled 是否启用文件日志记录
      * @param insertHeaderData 是否插入头数据
      */
     private RecordConfig(
             final String storagePath,
             final String folderName,
             final TIME fileIntervalTime,
-            final boolean handler,
+            final boolean recordingEnabled,
             final boolean insertHeaderData
     ) {
         this.mStoragePath      = storagePath;
         this.mFolderName       = folderName;
         this.mFileIntervalTime = fileIntervalTime;
-        this.mHandler          = handler;
+        this.mRecordingEnabled = recordingEnabled;
         this.mInsertHeaderData = insertHeaderData;
     }
 
@@ -113,16 +113,16 @@ public final class RecordConfig {
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
      * @param fileIntervalTime 文件记录间隔时间
-     * @param handler          是否处理记录
+     * @param recordingEnabled 是否启用文件日志记录
      * @return {@link RecordConfig}
      */
     public static RecordConfig get(
             final String storagePath,
             final String folderName,
             final TIME fileIntervalTime,
-            final boolean handler
+            final boolean recordingEnabled
     ) {
-        return get(storagePath, folderName, fileIntervalTime, handler, true);
+        return get(storagePath, folderName, fileIntervalTime, recordingEnabled, true);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class RecordConfig {
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
      * @param fileIntervalTime 文件记录间隔时间
-     * @param handler          是否处理记录
+     * @param recordingEnabled 是否启用文件日志记录
      * @param insertHeaderData 是否插入头数据
      * @return {@link RecordConfig}
      */
@@ -138,14 +138,14 @@ public final class RecordConfig {
             final String storagePath,
             final String folderName,
             final TIME fileIntervalTime,
-            final boolean handler,
+            final boolean recordingEnabled,
             final boolean insertHeaderData
     ) {
         if (StringUtils.isEmpty(storagePath, folderName)) return null;
         return new RecordConfig(
                 storagePath, folderName,
                 (fileIntervalTime != null ? fileIntervalTime : TIME.DEFAULT),
-                handler, insertHeaderData
+                recordingEnabled, insertHeaderData
         );
     }
 
@@ -186,20 +186,20 @@ public final class RecordConfig {
     }
 
     /**
-     * 是否处理记录
+     * 是否启用文件日志记录
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isHandler() {
-        return mHandler;
+    public boolean isRecordingEnabled() {
+        return mRecordingEnabled;
     }
 
     /**
-     * 设置是否处理记录
-     * @param handler 是否处理记录
+     * 设置是否启用文件日志记录
+     * @param recordingEnabled 是否启用
      * @return {@link RecordConfig}
      */
-    public RecordConfig setHandler(final boolean handler) {
-        this.mHandler = handler;
+    public RecordConfig setRecordingEnabled(final boolean recordingEnabled) {
+        this.mRecordingEnabled = recordingEnabled;
         return this;
     }
 

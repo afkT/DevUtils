@@ -89,11 +89,11 @@ public final class CameraUtils {
     }
 
     /**
-     * 判断使用的摄像头
-     * @param isFrontCamera 是否前置摄像头
-     * @return 摄像头标识 id
+     * 按期望前后置与设备能力，解析应使用的 {@link android.hardware.Camera.CameraInfo#facing} 常量
+     * @param isFrontCamera 是否优先使用前置
+     * @return 摄像头 facing 标识 id
      */
-    public static int isUseCameraFacing(final boolean isFrontCamera) {
+    public static int resolveCameraFacing(final boolean isFrontCamera) {
         // 默认使用后置摄像头
         int cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
         try {
@@ -112,7 +112,7 @@ public final class CameraUtils {
                 cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isUseCameraFacing");
+            LogPrintUtils.eTag(TAG, e, "resolveCameraFacing");
         }
         return cameraFacing;
     }

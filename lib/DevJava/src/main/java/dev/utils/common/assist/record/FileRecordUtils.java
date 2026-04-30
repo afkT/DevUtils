@@ -20,8 +20,8 @@ public final class FileRecordUtils {
 
     // 成功常量字符串
     private static final String       RECORD_SUCCESS = "record successful";
-    // 是否处理记录
-    private static       boolean      sHandler       = true;
+    // 全局是否启用文件日志记录
+    private static       boolean      sRecordingEnabled = true;
     // 日志记录插入信息
     private static       RecordInsert sRecordInsert  = null;
     // 文件记录回调
@@ -138,12 +138,12 @@ public final class FileRecordUtils {
             final RecordConfig config,
             final Object... logs
     ) {
-        // 判断全局是否处理
-        if (!sHandler) return "global do not handle";
+        // 判断全局是否启用记录
+        if (!sRecordingEnabled) return "global recording disabled";
         // 判断配置是否为 null
         if (config == null) return "config is null";
-        // 判断配置是否处理
-        if (!config.isHandler()) return "config do not handle";
+        // 判断配置是否启用记录
+        if (!config.isRecordingEnabled()) return "config recording disabled";
         // 判断是否存在日志内容
         if (logs == null || logs.length == 0) return "no data record";
 
@@ -200,19 +200,19 @@ public final class FileRecordUtils {
     }
 
     /**
-     * 是否处理记录
+     * 全局是否启用文件日志记录
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isHandler() {
-        return sHandler;
+    public static boolean isRecordingEnabled() {
+        return sRecordingEnabled;
     }
 
     /**
-     * 设置是否处理记录
-     * @param handler 是否处理记录
+     * 设置全局是否启用文件日志记录
+     * @param recordingEnabled 是否启用
      */
-    public static void setHandler(final boolean handler) {
-        FileRecordUtils.sHandler = handler;
+    public static void setRecordingEnabled(final boolean recordingEnabled) {
+        FileRecordUtils.sRecordingEnabled = recordingEnabled;
     }
 
     /**

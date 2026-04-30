@@ -26,10 +26,10 @@ interface IOperation {
     // =============
 
     /**
-     * 是否已调用 wrap 方法
+     * 是否已对 OkHttpClient 调用过 [wrap]（已挂载进度拦截器）
      * @return `true` yes, `false` no
      */
-    fun isUseWrap(): Boolean
+    fun isWrapApplied(): Boolean
 
     /**
      * 是否废弃不使用状态

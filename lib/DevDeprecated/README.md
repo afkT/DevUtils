@@ -128,7 +128,7 @@ implementation 'io.github.afkt:DevDeprecated:1.0.2'
 | checkCameraFacing | 检查是否有指定的摄像头 |
 | isFrontCamera | 判断是否使用前置摄像头 |
 | isBackCamera | 判断是否使用后置摄像头 |
-| isUseCameraFacing | 判断使用的摄像头 |
+| resolveCameraFacing | 按期望前后置与设备能力解析 facing 常量 |
 | freeCameraResource | 释放摄像头资源 |
 | initCamera | 初始化摄像头 |
 | open | 打开摄像头 |
