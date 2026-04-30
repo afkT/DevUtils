@@ -1124,16 +1124,16 @@ public final class AccessibilityUtils {
      * 模拟手势操作
      * @param gesture  模拟手势
      * @param callback 操作结果回调
-     * @param handler  是否通过 Handler 回调
+     * @param callbackHandler 用于投递手势结果回调的 {@link Handler}，参见 {@link AccessibilityService#dispatchGesture}
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean dispatchGesture(
             final GestureDescription gesture,
             final AccessibilityService.GestureResultCallback callback,
-            final Handler handler
+            final Handler callbackHandler
     ) {
-        return dispatchGesture(sService, gesture, callback, handler);
+        return dispatchGesture(sService, gesture, callback, callbackHandler);
     }
 
     /**
@@ -1144,7 +1144,7 @@ public final class AccessibilityUtils {
      * @param service  {@link AccessibilityService}
      * @param gesture  模拟手势
      * @param callback 操作结果回调
-     * @param handler  是否通过 Handler 回调
+     * @param callbackHandler 用于投递手势结果回调的 {@link Handler}，可传 {@code null}
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -1152,11 +1152,11 @@ public final class AccessibilityUtils {
             final AccessibilityService service,
             final GestureDescription gesture,
             final AccessibilityService.GestureResultCallback callback,
-            final Handler handler
+            final Handler callbackHandler
     ) {
         if (service != null) {
             try {
-                return service.dispatchGesture(gesture, callback, handler);
+                return service.dispatchGesture(gesture, callback, callbackHandler);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "dispatchGesture");
             }

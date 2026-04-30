@@ -95,11 +95,11 @@ public final class FileBreadthFirstSearchUtils {
     public interface SearchHandler {
 
         /**
-         * 判断是否处理该文件
-         * @param file 文件
-         * @return {@code true} 处理该文件, {@code false} 跳过该文件不处理
+         * 是否遍历该文件节点（目录会继续向下，文件则参与后续逻辑）
+         * @param file 文件或目录
+         * @return {@code true} 访问该节点, {@code false} 跳过该节点及其子树
          */
-        boolean isHandlerFile(File file);
+        boolean shouldVisitFile(File file);
 
         /**
          * 是否添加到集合
@@ -127,9 +127,9 @@ public final class FileBreadthFirstSearchUtils {
     // 内部实现接口
     private final SearchHandler mTraversalSearchHandler = new SearchHandler() {
         @Override
-        public boolean isHandlerFile(File file) {
+        public boolean shouldVisitFile(File file) {
             if (mSearchHandler != null) {
-                return mSearchHandler.isHandlerFile(file);
+                return mSearchHandler.shouldVisitFile(file);
             }
             return true;
         }
@@ -332,8 +332,8 @@ public final class FileBreadthFirstSearchUtils {
                 return;
             }
             if (file != null && file.exists()) {
-                // 判断是否处理
-                if (mTraversalSearchHandler.isHandlerFile(file)) {
+                // 是否访问该节点（目录则继续向下扩展队列）
+                if (mTraversalSearchHandler.shouldVisitFile(file)) {
                     // 如果属于文件夹
                     if (file.isDirectory()) {
                         // 获取文件夹全部子文件
