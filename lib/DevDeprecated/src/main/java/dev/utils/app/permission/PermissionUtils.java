@@ -272,11 +272,11 @@ public final class PermissionUtils {
     }
 
     /**
-     * 设置回调方法
+     * 设置权限申请结果回调
      * @param callback {@link PermissionCallback}
      * @return {@link PermissionUtils}
      */
-    public PermissionUtils callback(final PermissionCallback callback) {
+    public PermissionUtils setPermissionCallback(final PermissionCallback callback) {
         if (mRequest) return this;
         this.mCallback = callback;
         return this;
@@ -469,7 +469,7 @@ public final class PermissionUtils {
         // 获取拒绝权限询问勾选状态 true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
         if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArrays)) { // 再次请求
             PermissionUtils.permission(deniedArrays)
-                    .callback(callback).request(activity);
+                    .setPermissionCallback(callback).request(activity);
             return 1;
         } else { // 拒绝权限且不再询问, 跳转到应用设置页面
             AppUtils.startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent());

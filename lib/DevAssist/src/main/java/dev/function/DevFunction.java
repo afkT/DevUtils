@@ -32,13 +32,13 @@ public final class DevFunction {
     }
 
     /**
-     * detail: 方法体 ( 存在异常触发 )
+     * detail: 方法体（可在失败时接收 Throwable）
      * @author Ttt
      * <pre>
      *     前提属于调用 try-catch 方法
      * </pre>
      */
-    public interface Method2
+    public interface ThrowableAwareMethod
             extends Method {
 
         void error(
@@ -130,8 +130,8 @@ public final class DevFunction {
                     method.method(Operation.this);
                 } catch (Throwable e) {
                     LogPrintUtils.eTag(TAG, e, "tryCatch");
-                    if (method instanceof Method2) {
-                        ((Method2) method).error(Operation.this, e);
+                    if (method instanceof ThrowableAwareMethod) {
+                        ((ThrowableAwareMethod) method).error(Operation.this, e);
                     }
                 }
             }
@@ -273,8 +273,8 @@ public final class DevFunction {
                         method.method(Operation.this);
                     } catch (Throwable e) {
                         LogPrintUtils.eTag(TAG, e, "threadCatch");
-                        if (method instanceof Method2) {
-                            ((Method2) method).error(Operation.this, e);
+                        if (method instanceof ThrowableAwareMethod) {
+                            ((ThrowableAwareMethod) method).error(Operation.this, e);
                         }
                     }
                 }).start();
@@ -343,8 +343,8 @@ public final class DevFunction {
                         method.method(Operation.this);
                     } catch (Throwable e) {
                         LogPrintUtils.eTag(TAG, e, "threadPoolCatch");
-                        if (method instanceof Method2) {
-                            ((Method2) method).error(Operation.this, e);
+                        if (method instanceof ThrowableAwareMethod) {
+                            ((ThrowableAwareMethod) method).error(Operation.this, e);
                         }
                     }
                 });

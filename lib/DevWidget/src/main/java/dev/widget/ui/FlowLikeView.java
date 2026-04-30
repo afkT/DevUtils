@@ -183,12 +183,12 @@ public class FlowLikeView
      * detail: 动画曲线路径更新监听器, 用于动态更新动画作用对象的位置
      * @author Ttt
      */
-    private static class CurveUpdateLister
+    private static class CurveUpdateListener
             implements ValueAnimator.AnimatorUpdateListener {
 
         private final View target;
 
-        public CurveUpdateLister(final View target) {
+        public CurveUpdateListener(final View target) {
             this.target = target;
         }
 
@@ -259,7 +259,7 @@ public class FlowLikeView
                 new PointF((mViewWidth) / 2 + (mRandom.nextBoolean() ? 1 : -1) * mRandom.nextInt(100), 0)
         );
         valueAnimator.setDuration(mAnimDuration);
-        valueAnimator.addUpdateListener(new CurveUpdateLister(target));
+        valueAnimator.addUpdateListener(new CurveUpdateListener(target));
         valueAnimator.setTarget(target);
         return valueAnimator;
     }
