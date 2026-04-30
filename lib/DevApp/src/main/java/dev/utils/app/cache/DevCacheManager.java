@@ -76,7 +76,7 @@ final class DevCacheManager {
                             String fileName = file.getName();
                             if (fileName.endsWith(CONFIG_EXTENSION)) {
                                 String        key  = FileUtils.getFileNotSuffix(fileName);
-                                DevCache.Data data = _mapGetData(key);
+                                DevCache.Data data = getOrPopulateCachedData(key);
                                 if (data != null) {
                                     size += data.getSize();
                                     count += 1;
@@ -103,8 +103,8 @@ final class DevCacheManager {
 
     public void remove(String key) {
         if (TextUtils.isEmpty(key)) return;
-        File dataFile   = _getKeyDataFile(key);
-        File configFile = _getKeyConfigFile(key);
+        File dataFile   = dataFileForKey(key);
+        File configFile = configFileForKey(key);
         long size       = getDataFileSize(mCachePath, key);
         if (FileUtils.deleteFile(dataFile)
                 && FileUtils.deleteFile(configFile)) {
@@ -122,11 +122,11 @@ final class DevCacheManager {
     }
 
     public boolean contains(String key) {
-        return _isExistKeyFile(key);
+        return keyEntryFilesExist(key);
     }
 
     public boolean isDue(String key) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) return data.isDue();
         return true;
     }
@@ -153,7 +153,7 @@ final class DevCacheManager {
         new Thread(() -> {
             HashSet<String> keys = new HashSet<>(mDataMaps.keySet());
             for (String key : keys) {
-                DevCache.Data data = _mapGetData(key);
+                DevCache.Data data = getOrPopulateCachedData(key);
                 if (data != null && data.getType() == type) {
                     remove(key);
                 }
@@ -162,7 +162,7 @@ final class DevCacheManager {
     }
 
     public DevCache.Data getItemByKey(String key) {
-        return _mapGetData(key);
+        return getOrPopulateCachedData(key);
     }
 
     public List<DevCache.Data> getKeys() {
@@ -173,7 +173,7 @@ final class DevCacheManager {
         List<DevCache.Data> lists = new ArrayList<>();
         HashSet<String>     keys  = new HashSet<>(mDataMaps.keySet());
         for (String key : keys) {
-            DevCache.Data data = _mapGetData(key);
+            DevCache.Data data = getOrPopulateCachedData(key);
             if (data != null && data.isPermanent()) {
                 lists.add(data);
             }
@@ -198,7 +198,7 @@ final class DevCacheManager {
             int value,
             long validTime
     ) {
-        return _put(key, DevCache.INT, String.valueOf(value).getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.INT, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -206,7 +206,7 @@ final class DevCacheManager {
             long value,
             long validTime
     ) {
-        return _put(key, DevCache.LONG, String.valueOf(value).getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.LONG, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -214,7 +214,7 @@ final class DevCacheManager {
             float value,
             long validTime
     ) {
-        return _put(key, DevCache.FLOAT, String.valueOf(value).getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.FLOAT, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -222,7 +222,7 @@ final class DevCacheManager {
             double value,
             long validTime
     ) {
-        return _put(key, DevCache.DOUBLE, String.valueOf(value).getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.DOUBLE, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -230,7 +230,7 @@ final class DevCacheManager {
             boolean value,
             long validTime
     ) {
-        return _put(key, DevCache.BOOLEAN, String.valueOf(value).getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.BOOLEAN, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -239,7 +239,7 @@ final class DevCacheManager {
             long validTime
     ) {
         if (value == null) return false;
-        return _put(key, DevCache.STRING, value.getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.STRING, value.getBytes(), validTime);
     }
 
     public boolean put(
@@ -247,7 +247,7 @@ final class DevCacheManager {
             byte[] value,
             long validTime
     ) {
-        return _put(key, DevCache.BYTES, value, validTime);
+        return writeTypedPayload(key, DevCache.BYTES, value, validTime);
     }
 
     public boolean put(
@@ -255,7 +255,7 @@ final class DevCacheManager {
             Bitmap value,
             long validTime
     ) {
-        return _put(key, DevCache.BITMAP, ImageUtils.bitmapToByte(value), validTime);
+        return writeTypedPayload(key, DevCache.BITMAP, ImageUtils.bitmapToByte(value), validTime);
     }
 
     public boolean put(
@@ -263,7 +263,7 @@ final class DevCacheManager {
             Drawable value,
             long validTime
     ) {
-        return _put(key, DevCache.DRAWABLE, ImageUtils.bitmapToByte(
+        return writeTypedPayload(key, DevCache.DRAWABLE, ImageUtils.bitmapToByte(
                 ImageUtils.drawableToBitmap(value)
         ), validTime);
     }
@@ -279,7 +279,7 @@ final class DevCacheManager {
             oos = new ObjectOutputStream(baos);
             oos.writeObject(value);
             byte[] bytes = baos.toByteArray();
-            return _put(key, DevCache.SERIALIZABLE, bytes, validTime);
+            return writeTypedPayload(key, DevCache.SERIALIZABLE, bytes, validTime);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put - Serializable");
         } finally {
@@ -298,7 +298,7 @@ final class DevCacheManager {
             value.writeToParcel(parcel, 0);
             byte[] bytes = parcel.marshall();
             parcel.recycle();
-            return _put(key, DevCache.PARCELABLE, bytes, validTime);
+            return writeTypedPayload(key, DevCache.PARCELABLE, bytes, validTime);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put - Parcelable");
         }
@@ -311,7 +311,7 @@ final class DevCacheManager {
             long validTime
     ) {
         if (value == null) return false;
-        return _put(key, DevCache.JSON_OBJECT, value.toString().getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.JSON_OBJECT, value.toString().getBytes(), validTime);
     }
 
     public boolean put(
@@ -320,7 +320,7 @@ final class DevCacheManager {
             long validTime
     ) {
         if (value == null) return false;
-        return _put(key, DevCache.JSON_ARRAY, value.toString().getBytes(), validTime);
+        return writeTypedPayload(key, DevCache.JSON_ARRAY, value.toString().getBytes(), validTime);
     }
 
     // =======
@@ -388,13 +388,13 @@ final class DevCacheManager {
             String key,
             int defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return Integer.parseInt(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getInt");
@@ -408,13 +408,13 @@ final class DevCacheManager {
             String key,
             long defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return Long.parseLong(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getLong");
@@ -428,13 +428,13 @@ final class DevCacheManager {
             String key,
             float defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return Float.parseFloat(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getFloat");
@@ -448,13 +448,13 @@ final class DevCacheManager {
             String key,
             double defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return Double.parseDouble(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getDouble");
@@ -468,13 +468,13 @@ final class DevCacheManager {
             String key,
             boolean defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return Boolean.parseBoolean(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBoolean");
@@ -488,13 +488,13 @@ final class DevCacheManager {
             String key,
             String defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return new String(bytes);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getString");
@@ -508,13 +508,13 @@ final class DevCacheManager {
             String key,
             byte[] defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    return _get(key);
+                    return readDecryptedPayload(key);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBytes");
                 }
@@ -527,13 +527,13 @@ final class DevCacheManager {
             String key,
             Bitmap defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return ImageUtils.decodeByteArray(bytes);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBitmap");
@@ -547,13 +547,13 @@ final class DevCacheManager {
             String key,
             Drawable defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes  = _get(key);
+                    byte[] bytes  = readDecryptedPayload(key);
                     Bitmap bitmap = ImageUtils.decodeByteArray(bytes);
                     return ImageUtils.bitmapToDrawable(bitmap);
                 } catch (Exception e) {
@@ -568,14 +568,14 @@ final class DevCacheManager {
             String key,
             Object defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 ObjectInputStream ois = null;
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
                     return ois.readObject();
                 } catch (Exception e) {
@@ -593,13 +593,13 @@ final class DevCacheManager {
             Parcelable.Creator<T> creator,
             T defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes  = _get(key);
+                    byte[] bytes  = readDecryptedPayload(key);
                     Parcel parcel = Parcel.obtain();
                     parcel.unmarshall(bytes, 0, bytes.length);
                     parcel.setDataPosition(0);
@@ -616,13 +616,13 @@ final class DevCacheManager {
             String key,
             JSONObject defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return new JSONObject(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getJSONObject");
@@ -636,13 +636,13 @@ final class DevCacheManager {
             String key,
             JSONArray defaultValue
     ) {
-        DevCache.Data data = _mapGetData(key);
+        DevCache.Data data = getOrPopulateCachedData(key);
         if (data != null) {
             if (data.isDue()) {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = _get(key);
+                    byte[] bytes = readDecryptedPayload(key);
                     return new JSONArray(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getJSONArray");
@@ -661,7 +661,7 @@ final class DevCacheManager {
      * @param key 存储 key
      * @return Key 数据文件
      */
-    private File _getKeyDataFile(final String key) {
+    private File dataFileForKey(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         return FileUtils.getFile(mCachePath, key + DATA_EXTENSION);
     }
@@ -671,7 +671,7 @@ final class DevCacheManager {
      * @param key 存储 key
      * @return Key 配置文件
      */
-    private File _getKeyConfigFile(final String key) {
+    private File configFileForKey(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         return FileUtils.getFile(mCachePath, key + CONFIG_EXTENSION);
     }
@@ -697,10 +697,10 @@ final class DevCacheManager {
      * @param key 存储 key
      * @return {@code true} yes, {@code false} no
      */
-    private boolean _isExistKeyFile(final String key) {
+    private boolean keyEntryFilesExist(final String key) {
         if (TextUtils.isEmpty(key)) return false;
-        return FileUtils.isFileExists(_getKeyDataFile(key))
-                && FileUtils.isFileExists(_getKeyConfigFile(key));
+        return FileUtils.isFileExists(dataFileForKey(key))
+                && FileUtils.isFileExists(configFileForKey(key));
     }
 
     // ========
@@ -710,11 +710,11 @@ final class DevCacheManager {
     // 缓存 Data
     private final HashMap<String, DevCache.Data> mDataMaps = new HashMap<>();
 
-    private DevCache.Data _mapGetData(final String key) {
+    private DevCache.Data getOrPopulateCachedData(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         DevCache.Data data = mDataMaps.get(key);
         if (data == null) {
-            data = _getData(key);
+            data = readDataFromDisk(key);
             if (data != null) {
                 mDataMaps.put(key, data);
             }
@@ -729,7 +729,7 @@ final class DevCacheManager {
      * @param data 数据源
      * @return JSON String
      */
-    private String _toDataString(final DevCache.Data data) {
+    private String formatDataJson(final DevCache.Data data) {
         // Data JSON Format
         return String.format(
                 "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d}",
@@ -743,10 +743,10 @@ final class DevCacheManager {
      * @param key 存储 key
      * @return {@link DevCache.Data}
      */
-    private DevCache.Data _getData(final String key) {
-        if (!_isExistKeyFile(key)) return null;
+    private DevCache.Data readDataFromDisk(final String key) {
+        if (!keyEntryFilesExist(key)) return null;
         try {
-            File       configFile = _getKeyConfigFile(key);
+            File       configFile = configFileForKey(key);
             String     config     = new String(FileUtils.readFileBytes(configFile));
             JSONObject jsonObject = new JSONObject(config);
             if (jsonObject.has("key")
@@ -754,16 +754,16 @@ final class DevCacheManager {
                     && jsonObject.has("saveTime")
                     && jsonObject.has("validTime")
             ) {
-                String _key      = jsonObject.getString("key");
+                String entryKey  = jsonObject.getString("key");
                 int    type      = jsonObject.getInt("type");
                 long   saveTime  = jsonObject.getLong("saveTime");
                 long   validTime = jsonObject.getLong("validTime");
-                return new DevCache.Data(mCachePath, _key,
+                return new DevCache.Data(mCachePath, entryKey,
                         type, saveTime, validTime
                 );
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "_getData");
+            LogPrintUtils.eTag(TAG, e, "readDataFromDisk");
         }
         return null;
     }
@@ -778,7 +778,7 @@ final class DevCacheManager {
      * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
-    private boolean _put(
+    private boolean writeTypedPayload(
             String key,
             int type,
             byte[] bytes,
@@ -789,14 +789,14 @@ final class DevCacheManager {
             try {
                 bytes = mCipher.encrypt(bytes);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "_put - encrypt");
+                LogPrintUtils.eTag(TAG, e, "writeTypedPayload - encrypt");
                 bytes = null;
             }
         }
         if (bytes == null) return false;
-        DevCache.Data data   = _mapGetData(key);
+        DevCache.Data data   = getOrPopulateCachedData(key);
         long          size   = getDataFileSize(mCachePath, key);
-        boolean       result = FileUtils.saveFile(_getKeyDataFile(key), bytes);
+        boolean       result = FileUtils.saveFile(dataFileForKey(key), bytes);
         if (result) {
             if (data != null) {
                 data.setSaveTime(System.currentTimeMillis())
@@ -811,7 +811,7 @@ final class DevCacheManager {
                 mCacheCount.incrementAndGet();
                 mDataMaps.put(key, data);
             }
-            FileUtils.saveFile(_getKeyConfigFile(key), _toDataString(data).getBytes());
+            FileUtils.saveFile(configFileForKey(key), formatDataJson(data).getBytes());
         }
         return result;
     }
@@ -821,13 +821,13 @@ final class DevCacheManager {
      * @param key 保存的 key
      * @return 保存的数据
      */
-    private byte[] _get(String key) {
-        byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+    private byte[] readDecryptedPayload(String key) {
+        byte[] bytes = FileUtils.readFileBytes(dataFileForKey(key));
         if (bytes != null && mCipher != null) {
             try {
                 bytes = mCipher.decrypt(bytes);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "_get - decrypt");
+                LogPrintUtils.eTag(TAG, e, "readDecryptedPayload - decrypt");
                 bytes = null;
             }
         }

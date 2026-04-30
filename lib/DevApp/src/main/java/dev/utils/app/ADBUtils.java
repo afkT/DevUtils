@@ -1347,17 +1347,17 @@ public final class ADBUtils {
     // = Input =
     // =========
 
-    // ==============================
-    // = tap ( 模拟 touch 屏幕的事件 ) =
-    // ==============================
+    // ========================================
+    // = tapTouchScreen ( 模拟 touch 屏幕点击 ) =
+    // ========================================
 
     /**
-     * 点击某个区域
+     * 在触摸屏上点击指定坐标 ( {@code input touchscreen tap} )
      * @param x X 轴坐标
      * @param y Y 轴坐标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean tap(
+    public static boolean tapTouchScreen(
             final float x,
             final float y
     ) {
@@ -1371,9 +1371,24 @@ public final class ADBUtils {
             );
             return result.isSuccessWithoutErrorOutput();
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "tap");
+            LogPrintUtils.eTag(TAG, e, "tapTouchScreen");
         }
         return false;
+    }
+
+    /**
+     * 点击某个区域
+     * @param x X 轴坐标
+     * @param y Y 轴坐标
+     * @return {@code true} success, {@code false} fail
+     * @deprecated 请使用 {@link #tapTouchScreen(float, float)}，方法名更明确表示触摸屏点击
+     */
+    @Deprecated
+    public static boolean tap(
+            final float x,
+            final float y
+    ) {
+        return tapTouchScreen(x, y);
     }
 
     // ====================

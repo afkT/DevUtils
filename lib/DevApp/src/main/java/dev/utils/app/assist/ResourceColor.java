@@ -105,7 +105,7 @@ public final class ResourceColor {
      * @return Color
      */
     public int getColor(@ColorRes final int colorId) {
-        return _getIntColor(colorId, DF_ERROR);
+        return loadCachedIntColor(colorId, DF_ERROR);
     }
 
     /**
@@ -118,7 +118,7 @@ public final class ResourceColor {
             @ColorRes final int colorId,
             final int defaultValue
     ) {
-        return _getIntColor(colorId, defaultValue);
+        return loadCachedIntColor(colorId, defaultValue);
     }
 
     // ===================
@@ -131,7 +131,7 @@ public final class ResourceColor {
      * @return Color
      */
     public int getColorById(final String resName) {
-        return _getIntColorById(resName, DF_ERROR);
+        return loadCachedIntColorByResName(resName, DF_ERROR);
     }
 
     /**
@@ -144,7 +144,7 @@ public final class ResourceColor {
             final String resName,
             final int defaultValue
     ) {
-        return _getIntColorById(resName, defaultValue);
+        return loadCachedIntColorByResName(resName, defaultValue);
     }
 
     // ==============
@@ -157,7 +157,7 @@ public final class ResourceColor {
      * @return Color
      */
     public int getColorByARGB(final String colorStr) {
-        return _getStringColor(colorStr, DF_ERROR);
+        return loadCachedArgbStringColor(colorStr, DF_ERROR);
     }
 
     /**
@@ -170,7 +170,7 @@ public final class ResourceColor {
             final String colorStr,
             final int defaultValue
     ) {
-        return _getStringColor(colorStr, defaultValue);
+        return loadCachedArgbStringColor(colorStr, defaultValue);
     }
 
     // ==========
@@ -196,7 +196,7 @@ public final class ResourceColor {
      * @param defaultValue 默认值
      * @return Color
      */
-    private int _getIntColor(
+    private int loadCachedIntColor(
             @ColorRes final int colorId,
             final int defaultValue
     ) {
@@ -215,7 +215,7 @@ public final class ResourceColor {
      * @param defaultValue 默认值
      * @return Color
      */
-    private int _getIntColorById(
+    private int loadCachedIntColorByResName(
             final String resName,
             final int defaultValue
     ) {
@@ -237,7 +237,7 @@ public final class ResourceColor {
      * @param defaultValue 默认值
      * @return Color
      */
-    private int _getStringColor(
+    private int loadCachedArgbStringColor(
             final String colorStr,
             final int defaultValue
     ) {
