@@ -23,14 +23,14 @@ import dev.utils.common.cipher.Encrypt
  * 后续不会重构 [StorageInterceptor] 拦截器存储逻辑，如有性能要求自行实现存储逻辑、UI 可视化功能
  */
 open class StorageInterceptor(
-    // 模块名 ( 要求唯一性 )
-    private val moduleName: String,
+    // 模块名 ( 要求唯一性 )（m 前缀避免与 [getModuleName] 等 JVM 签名冲突）
+    @JvmField protected val mModuleName: String,
     // 抓包数据加密中间层
-    private val encrypt: Encrypt? = null,
+    @JvmField protected val mEncrypt: Encrypt? = null,
     // Http 拦截过滤器
-    private val httpFilter: IHttpFilter? = null,
+    @JvmField protected val mHttpFilter: IHttpFilter? = null,
     // 是否进行 Http 抓包拦截
-    private var capture: Boolean = true,
+    @JvmField protected var mCapture: Boolean = true,
     // Http 抓包事件回调
     eventImpl: IHttpCaptureEvent = object : HttpCaptureEventImpl() {
         override fun callEnd(info: CaptureInfo) {
@@ -40,44 +40,45 @@ open class StorageInterceptor(
     eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
 ) : BaseInterceptor(true, eventImpl, eventFilter) {
 
-    // 抓包信息隐藏字段
-    private val captureRedact = CaptureRedact()
+    // 抓包信息隐藏字段（m 前缀避免与 [captureRedact] 方法 JVM 签名冲突）
+    @JvmField
+    protected val mCaptureRedact = CaptureRedact()
 
     // ================
     // = IHttpCapture =
     // ================
 
     override fun getModuleName(): String {
-        return moduleName
+        return mModuleName
     }
 
     override fun getEncrypt(): Encrypt? {
-        return encrypt
+        return mEncrypt
     }
 
     override fun getHttpFilter(): IHttpFilter? {
-        return httpFilter
+        return mHttpFilter
     }
 
     override fun isCapture(): Boolean {
-        return capture
+        return mCapture
     }
 
     override fun setCapture(capture: Boolean) {
-        this.capture = capture
+        this.mCapture = capture
     }
 
     override fun captureRedact(): CaptureRedact {
-        return captureRedact
+        return mCaptureRedact
     }
 
     override fun getModulePath(): String {
-        return Utils.getModulePath(moduleName)
+        return Utils.getModulePath(mModuleName)
     }
 
     override fun getModuleHttpCaptures(): MutableList<CaptureItem> {
         return Utils.getModuleHttpCaptures(
-            moduleName, encrypt != null
+            mModuleName, mEncrypt != null
         )
     }
-}
+}

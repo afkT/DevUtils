@@ -15,16 +15,16 @@ import java.util.concurrent.TimeUnit
  * @author Ttt
  */
 abstract class BaseInterceptor(
-    // 是否属于存储抓包数据类型
-    private val storageHttpCaptureType: Boolean,
+    // 是否属于存储抓包数据类型（m 前缀避免与 [isStorageHttpCaptureType] JVM 签名冲突）
+    @JvmField protected val mStorageHttpCaptureType: Boolean,
     // Http 抓包事件回调
-    private val eventImpl: IHttpCaptureEvent,
+    @JvmField protected val eventImpl: IHttpCaptureEvent,
     // Http 抓包事件处理拦截
-    private val eventFilter: IHttpCaptureEventFilter
+    @JvmField protected val eventFilter: IHttpCaptureEventFilter
 ) : Interceptor,
     IHttpCapture {
 
-    // 抓包数据本地存储实现 Engine
+    // 抓包数据本地存储实现 Engine（实现类为 internal，属性保持 private）
     private val storageEngine = HttpCaptureStorageEngine(
         eventImpl, eventFilter
     )
@@ -34,7 +34,7 @@ abstract class BaseInterceptor(
      * @return `true` yes, `false` no
      */
     fun isStorageHttpCaptureType(): Boolean {
-        return storageHttpCaptureType
+        return mStorageHttpCaptureType
     }
 
     // ===============

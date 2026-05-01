@@ -25,8 +25,9 @@ open class CallbackInterceptor(
     eventFilter: IHttpCaptureEventFilter = object : IHttpCaptureEventFilter {}
 ) : BaseInterceptor(false, eventImpl, eventFilter) {
 
-    // 抓包信息隐藏字段
-    private val captureRedact = CaptureRedact()
+    // 抓包信息隐藏字段（m 前缀避免与 [captureRedact] 方法 JVM 签名冲突）
+    @JvmField
+    protected val mCaptureRedact = CaptureRedact()
 
     // ================
     // = IHttpCapture =
@@ -48,7 +49,7 @@ open class CallbackInterceptor(
     }
 
     final override fun captureRedact(): CaptureRedact {
-        return captureRedact
+        return mCaptureRedact
     }
 
     final override fun getModulePath(): String {
