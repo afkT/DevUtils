@@ -21,31 +21,31 @@ open class ItemLifecycle protected constructor() {
         }
     }
 
-    // 使用 LiveData 绑定使用
-    private var lifecycleOwner: LifecycleOwner? = null
+    @JvmField // 使用 LiveData 绑定使用（m 前缀避免与 [getLifecycleOwner] JVM 签名冲突）
+    protected var mLifecycleOwner: LifecycleOwner? = null
 
-    // LifecycleOwner 通用获取接口
-    private var lifecycleGet: BindingGet<LifecycleOwner?>? = null
+    @JvmField // LifecycleOwner 通用获取接口
+    protected var mLifecycleGet: BindingGet<LifecycleOwner?>? = null
 
     // =============
     // = 对外公开方法 =
     // =============
 
     open fun getLifecycleOwner(): LifecycleOwner? {
-        return lifecycleOwner
+        return mLifecycleOwner
     }
 
     open fun setLifecycleOwner(owner: LifecycleOwner?): ItemLifecycle {
-        lifecycleOwner = owner
+        mLifecycleOwner = owner
         return this
     }
 
     open fun getLifecycleImpl(): BindingGet<LifecycleOwner?>? {
-        return lifecycleGet
+        return mLifecycleGet
     }
 
     open fun setLifecycleImpl(implGET: BindingGet<LifecycleOwner?>?): ItemLifecycle {
-        lifecycleGet = implGET
+        mLifecycleGet = implGET
         return this
     }
 
@@ -66,8 +66,8 @@ open class ItemLifecycle protected constructor() {
      * @return `true` yes, `false` no
      */
     open fun isInvalidLifecycleOwner(): Boolean {
-        if (lifecycleOwner == null) return true
-        return (lifecycleOwner!!.lifecycle.currentState == Lifecycle.State.DESTROYED)
+        if (mLifecycleOwner == null) return true
+        return (mLifecycleOwner?.lifecycle?.currentState == Lifecycle.State.DESTROYED)
     }
 
     /**
@@ -76,9 +76,9 @@ open class ItemLifecycle protected constructor() {
      */
     open fun tryGetLifecycleOwner(view: View?) {
         if (isValidLifecycleOwner()) return
-        lifecycleOwner = lifecycleGet?.get()
+        mLifecycleOwner = mLifecycleGet?.get()
         if (isValidLifecycleOwner()) return
-        view?.let { lifecycleOwner = findLifecycleOwner(it) }
+        view?.let { mLifecycleOwner = findLifecycleOwner(it) }
     }
 
     /**
