@@ -24,10 +24,10 @@ import dev.utils.common.ClassUtils
  * 以及进行敏捷简化开发扩展接口
  */
 abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
-    private val bindLayoutId: Int = IDevBase.NONE,
-    private val bindLayoutView: BindingActivityView? = null,
-    private val bindViewModelId: Int = IDevBase.NONE,
-    private val vmType: ActivityVMType = ActivityVMType.ACTIVITY
+    protected val bindLayoutId: Int = IDevBase.NONE,
+    protected val bindLayoutView: BindingActivityView? = null,
+    protected val bindViewModelId: Int = IDevBase.NONE,
+    protected val vmType: ActivityVMType = ActivityVMType.ACTIVITY
 ) : DevBaseMVVMActivity<VDB, VM>(),
     ISimpleAgile,
     IActivityLifecycle,

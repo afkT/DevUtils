@@ -1896,7 +1896,7 @@ DevUtils.openDebug();
 | isAutoCalc | 判断是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 ) |
 | setAutoCalc | 设置是否自动计算边距 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 ) |
 | above | 设置 Snackbar 显示在指定 View 的上方 |
-| bellow | 设置 Snackbar 显示在指定 View 的下方 |
+| below | 设置 Snackbar 显示在指定 View 的下方 |
 
 
 * **SpannableString 工具类 ->** [SpanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/SpanUtils.java)

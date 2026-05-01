@@ -20,10 +20,10 @@ import dev.utils.common.ClassUtils
  * @author Ttt
  */
 abstract class DevSimpleMVVMFragment<VDB : ViewDataBinding, VM : ViewModel>(
-    private val bindLayoutId: Int = IDevBase.NONE,
-    private val bindLayoutView: BindingFragmentView? = null,
-    private val bindViewModelId: Int = IDevBase.NONE,
-    private val vmType: FragmentVMType = FragmentVMType.FRAGMENT
+    protected val bindLayoutId: Int = IDevBase.NONE,
+    protected val bindLayoutView: BindingFragmentView? = null,
+    protected val bindViewModelId: Int = IDevBase.NONE,
+    protected val vmType: FragmentVMType = FragmentVMType.FRAGMENT
 ) : DevBaseMVVMFragment<VDB, VM>(),
     ISimpleAgile {
 
