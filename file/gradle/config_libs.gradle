@@ -310,6 +310,24 @@ ext {
                     // SQLCipher for Android https://github.com/sqlcipher/sqlcipher-android
                     sqlcipher             : "net.zetetic:sqlcipher-android:4.13.0@aar",
             ],
+
+            "messaging"     : [
+
+                    // ===============
+                    // = 消息 / 长连接 =
+                    // ===============
+
+                    // 基于 Eclipse Paho Android 的维护版：AndroidX、Android 13+ registerReceiver 标志位、Android 14 等
+                    // https://central.sonatype.com/artifact/io.github.mayzs/paho.mqtt.android
+                    // （官方 org.eclipse.paho.android.service:1.1.1 在 API 33+ 会因 AlarmPingSender 未声明 RECEIVER_* 崩溃）
+                    paho_mqtt_android   : "io.github.mayzs:paho.mqtt.android:1.2.7",
+
+                    // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.android.service
+                    // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
+                    // Eclipse Paho MQTT（Android Service + MQTTv3 客户端，与 EMQX MQTT 3.1.1 对齐）
+                    paho_android_service: "org.eclipse.paho:org.eclipse.paho.android.service:1.1.1",
+                    paho_client_mqttv3  : "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5",
+            ],
             "aop"           : [
 
                     // ==============

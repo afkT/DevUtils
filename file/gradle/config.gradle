@@ -172,6 +172,11 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
                     // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/localbroadcastmanager
                     localbroadcastManager    : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
+                    // https://mvnrepository.com/artifact/androidx.camera/camera-camera2
+                    // https://mvnrepository.com/artifact/androidx.camera/camera-lifecycle
+                    // CameraX https://developer.android.com/training/camerax
+                    camerax                  : "androidx.camera:camera-camera2:1.5.3",
+                    camerax_lifecycle        : "androidx.camera:camera-lifecycle:1.5.3",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
