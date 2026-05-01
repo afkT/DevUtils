@@ -1139,14 +1139,13 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
                     webSettings.blockNetworkImage = mBlockNetworkImage
                     // 是否需要用户手势来播放媒体
                     webSettings.mediaPlaybackRequiresUserGesture = mMediaPlaybackRequiresUserGesture
+
+                    // LOAD_CACHE_ONLY 不使用网络, 只读取本地缓存数据
+                    // LOAD_DEFAULT ( 默认 ) 根据 cache-control 决定是否从网络上取数据
+                    // LOAD_NO_CACHE 不使用缓存, 只从网络获取数据.
+                    // LOAD_CACHE_ELSE_NETWORK 只要本地有, 无论是否过期或者 no-cache 都使用缓存中的数据
                     // 设置 WebView 缓存模式
-                    if (mCacheMode > 0) {
-                        // LOAD_CACHE_ONLY 不使用网络, 只读取本地缓存数据
-                        // LOAD_DEFAULT ( 默认 ) 根据 cache-control 决定是否从网络上取数据
-                        // LOAD_NO_CACHE 不使用缓存, 只从网络获取数据.
-                        // LOAD_CACHE_ELSE_NETWORK 只要本地有, 无论是否过期或者 no-cache 都使用缓存中的数据
-                        webSettings.cacheMode = mCacheMode
-                    }
+                    webSettings.cacheMode = mCacheMode
 
                     // 是否支持 DOM Storage
                     webSettings.domStorageEnabled = mDomStorageEnabled
