@@ -21,16 +21,20 @@ import dev.utils.common.thread.DevThreadPool
 open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult> {
 
     // 日志 TAG
-    private val TAG = ZXingEngineImpl::class.java.simpleName
+    @JvmField
+    protected val TAG = javaClass.simpleName
 
     // 线程池 ( 构建类 )
-    private val DEV_THREAD_POOL = DevThreadPool(threadNumber)
+    @JvmField
+    protected val DEV_THREAD_POOL = DevThreadPool(threadNumber)
 
     // 默认条码配置
-    private val DEFAULT_CONFIG = BarCodeConfig().defaultEncode()
+    @JvmField
+    protected val DEFAULT_CONFIG = BarCodeConfig().defaultEncode()
 
     // 当前条码配置
-    private var mBarCodeConfig: BarCodeConfig? = null
+    @JvmField
+    protected var mBarCodeConfig: BarCodeConfig? = null
 
     // =============
     // = 对外公开方法 =

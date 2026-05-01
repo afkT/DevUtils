@@ -24,7 +24,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
     // ==========
 
     // 日志 TAG：运行时为当前具体子类 simpleName ( 构造阶段 this 已是子类实例 )
-    open val TAG: String = javaClass.simpleName
+    open val TAG = javaClass.simpleName
 
     @JvmField // DevBase 合并相同代码辅助类 ( 子类可重写 newAssist() 替换实现 )
     @Suppress("LeakingThis")

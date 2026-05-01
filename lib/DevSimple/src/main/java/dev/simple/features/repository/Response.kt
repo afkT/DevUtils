@@ -30,4 +30,4 @@ data class ApiErrorResponse<T>(
     val data: T?
 ) : ApiResponse<T>()
 
-class ApiEmptyResponse<T> : ApiResponse<T>()
+open class ApiEmptyResponse<T> : ApiResponse<T>()
