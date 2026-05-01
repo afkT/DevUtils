@@ -72,7 +72,7 @@ abstract class DevSimpleFragment<VDB : ViewDataBinding, VM : ViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleFragmentImpl
+    protected val simpleFactory: SimpleFragmentImpl
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

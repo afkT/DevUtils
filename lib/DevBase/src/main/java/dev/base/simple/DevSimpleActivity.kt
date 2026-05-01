@@ -74,7 +74,7 @@ abstract class DevSimpleActivity<VDB : ViewDataBinding, VM : ViewModel> :
     // = 敏捷简化开发扩展接口 =
     // ====================
 
-    private val simpleFactory: SimpleActivityImpl
+    protected val simpleFactory: SimpleActivityImpl
 
     override fun simpleInit() {
         simpleFactory.simpleInit(this)

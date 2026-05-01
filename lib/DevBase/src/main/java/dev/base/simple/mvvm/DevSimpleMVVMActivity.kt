@@ -150,8 +150,8 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
     // = ILifecycle =
     // ==============
 
-    // Fragment 生命周期辅助类 ( 所有内部访问必须通过 fragmentLifecycleAssist() 方法, 便于子类完整 override )
-    private val _fragmentLifecycleAssist: FragmentLifecycleAssist by lazy {
+    // Fragment 生命周期辅助类默认实现；子类可在 [fragmentLifecycleAssist] 中组合或委托，无需复制 lazy 逻辑
+    protected val defaultFragmentLifecycleAssist: FragmentLifecycleAssist by lazy {
         FragmentLifecycleAssist(supportFragmentManager)
     }
 
@@ -161,7 +161,7 @@ abstract class DevSimpleMVVMActivity<VDB : ViewDataBinding, VM : ViewModel>(
      * 子类可重写以返回绑定不同 FragmentManager 的辅助类 ( 例如切换到宿主 Activity 的 supportFragmentManager )
      */
     open fun fragmentLifecycleAssist(): FragmentLifecycleAssist {
-        return _fragmentLifecycleAssist
+        return defaultFragmentLifecycleAssist
     }
 
     /**

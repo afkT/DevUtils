@@ -56,8 +56,8 @@ class MVP private constructor() {
     open class Presenter<V : IView, M : IModel> : IPresenter<V>,
         DefaultLifecycleObserver {
 
-        // 是否分离 MVP View
-        private var detach = true
+        // 是否分离 MVP View（子类可调整是否在 onDestroy 时 detachView）
+        protected var detach = true
 
         constructor(view: V) : this(view, true)
 

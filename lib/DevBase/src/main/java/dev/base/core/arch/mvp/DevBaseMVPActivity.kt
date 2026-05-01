@@ -16,11 +16,7 @@ abstract class DevBaseMVPActivity<VDB : ViewDataBinding, P : MVP.Presenter<out M
     lateinit var presenter: P
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // 创建 MVP 模式的 Presenter
-        presenter = createPresenter()
-        // lifecycle
-        lifecycle.addObserver(presenter)
-        // 初始化操作
+        setupPresenter()
         super.onCreate(savedInstanceState)
     }
 
@@ -29,4 +25,17 @@ abstract class DevBaseMVPActivity<VDB : ViewDataBinding, P : MVP.Presenter<out M
      * @return [MVP.Presenter]
      */
     abstract fun createPresenter(): P
+
+    // ============
+    // = protected =
+    // ============
+
+    /**
+     * 创建 [presenter] 并注册到 [lifecycle]；在 [super.onCreate] 之前执行以保持与原顺序一致。
+     * 子类可重写以调整注册时机或包装 Presenter，无需复制整段 [onCreate]。
+     */
+    protected open fun setupPresenter() {
+        presenter = createPresenter()
+        lifecycle.addObserver(presenter)
+    }
 }
