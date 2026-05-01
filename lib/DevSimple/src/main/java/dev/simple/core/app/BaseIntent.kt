@@ -29,7 +29,7 @@ abstract class BaseIntent<T> {
 
     // Intent 传参读写辅助类 ( 子类可重写 newDevIntent() 替换实现 )
     @Suppress("LeakingThis")
-    private val mIntent: DevIntent = newDevIntent()
+    protected val mIntent: DevIntent = newDevIntent()
 
     /**
      * 插入数据

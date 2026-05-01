@@ -401,7 +401,7 @@ open class AppAutoSize {
          * @param key Float
          * @return Float
          */
-        private fun computeDisplayMetricConversion(
+        protected open fun computeDisplayMetricConversion(
             context: Context?,
             type: Type,
             key: Float

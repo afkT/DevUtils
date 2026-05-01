@@ -11,10 +11,10 @@ import dev.simple.core.app.AppExecutors
  * NetworkBoundResource.kt
  */
 abstract class NetworkBoundResource<ResultType, RequestType>(
-    private val appExecutors: AppExecutors
+    protected val appExecutors: AppExecutors
 ) {
 
-    private val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
+    protected val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
 
     open fun asLiveData(): LiveData<Resource<ResultType>> {
         return result

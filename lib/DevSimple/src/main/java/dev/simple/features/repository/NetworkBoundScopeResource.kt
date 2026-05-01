@@ -8,9 +8,9 @@ import dev.simple.interfaces.FunctionCallback
 import kotlinx.coroutines.CoroutineScope
 
 abstract class NetworkBoundScopeResource<ResultType>(
-    private val scope: CoroutineScope,
+    protected val scope: CoroutineScope,
     appExecutors: AppExecutors = AppExecutors.instance(),
-    private val flowCall: FunctionCallback? = null
+    protected val flowCall: FunctionCallback? = null
 ) : NetworkBoundResource<ResultType, ResultType>(appExecutors) {
 
     override fun fetchService(): LiveData<ApiResponse<ResultType>> {
