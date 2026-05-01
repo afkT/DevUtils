@@ -6,6 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import dev.simple.interfaces.BindingGet
+import kotlin.jvm.JvmField
 
 /**
  * detail: Item Binding Lifecycle
@@ -21,10 +22,12 @@ open class ItemLifecycle protected constructor() {
         }
     }
 
-    @JvmField // 使用 LiveData 绑定使用（m 前缀避免与 [getLifecycleOwner] JVM 签名冲突）
+    // 使用 LiveData 绑定使用（m 前缀避免与 [getLifecycleOwner] JVM 签名冲突）
+    @JvmField
     protected var mLifecycleOwner: LifecycleOwner? = null
 
-    @JvmField // LifecycleOwner 通用获取接口
+    // LifecycleOwner 通用获取接口
+    @JvmField
     protected var mLifecycleGet: BindingGet<LifecycleOwner?>? = null
 
     // =============

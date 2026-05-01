@@ -6,11 +6,12 @@ import dev.retrofit.scopeExecuteRequest
 import dev.simple.core.app.AppExecutors
 import dev.simple.interfaces.FunctionCallback
 import kotlinx.coroutines.CoroutineScope
+import kotlin.jvm.JvmField
 
 abstract class NetworkBoundScopeResource<ResultType>(
-    protected val scope: CoroutineScope,
+    @JvmField protected val scope: CoroutineScope,
     appExecutors: AppExecutors = AppExecutors.instance(),
-    protected val flowCall: FunctionCallback? = null
+    @JvmField protected val flowCall: FunctionCallback? = null
 ) : NetworkBoundResource<ResultType, ResultType>(appExecutors) {
 
     override fun fetchService(): LiveData<ApiResponse<ResultType>> {

@@ -5,15 +5,17 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import dev.simple.core.app.AppExecutors
+import kotlin.jvm.JvmField
 
 /**
  * @see https://github.com/android/architecture-components-samples
  * NetworkBoundResource.kt
  */
 abstract class NetworkBoundResource<ResultType, RequestType>(
-    protected val appExecutors: AppExecutors
+    @JvmField protected val appExecutors: AppExecutors
 ) {
 
+    @JvmField
     protected val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
 
     open fun asLiveData(): LiveData<Resource<ResultType>> {

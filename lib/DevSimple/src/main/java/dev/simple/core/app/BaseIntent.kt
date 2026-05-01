@@ -3,6 +3,7 @@ package dev.simple.core.app
 import android.content.Intent
 import android.os.Bundle
 import dev.base.DevIntent
+import kotlin.jvm.JvmField
 
 /**
  * detail: 基础 Intent 传参读写辅助类通用方法封装
@@ -29,6 +30,7 @@ abstract class BaseIntent<T> {
 
     // Intent 传参读写辅助类 ( 子类可重写 newDevIntent() 替换实现 )
     @Suppress("LeakingThis")
+    @JvmField
     protected val mIntent: DevIntent = newDevIntent()
 
     /**
