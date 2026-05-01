@@ -15,18 +15,19 @@ import java.io.IOException
  */
 open class ProgressRequestBody(
     // 原数据请求体
-    protected val delegate: RequestBody,
+    @JvmField protected val delegate: RequestBody,
     // 上传、下载回调接口
-    protected val callback: Progress.Callback?,
+    @JvmField protected val callback: Progress.Callback?,
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
-    protected val handler: Handler? = DevUtils.getHandler(),
+    @JvmField protected val handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
-    protected val refreshTime: Long = Progress.REFRESH_TIME,
+    @JvmField protected val refreshTime: Long = Progress.REFRESH_TIME,
     // 额外携带信息 ( 可通过 Request.toExtras() 创建 )
-    protected val extras: Progress.Extras? = null
+    @JvmField protected val extras: Progress.Extras? = null
 ) : RequestBody() {
 
     // 日志 TAG
+    @JvmField
     protected val TAG = javaClass.simpleName
 
     // ===============
@@ -73,6 +74,7 @@ open class ProgressRequestBody(
     // = 内部包装类 =
     // ============
 
+    // 类型为 private inner class，不可声明为 protected
     private var progressDelegatingBufferedSink: ProgressTrackingBufferedSink? = null
 
     /**

@@ -12,15 +12,15 @@ import okio.*
  */
 open class ProgressResponseBody(
     // 原数据响应体
-    protected val delegate: ResponseBody,
+    @JvmField protected val delegate: ResponseBody,
     // 上传、下载回调接口
-    protected val callback: Progress.Callback?,
+    @JvmField protected val callback: Progress.Callback?,
     // 回调 UI 线程通知 ( 如果为 null 则会非 UI 线程通知 )
-    protected val handler: Handler? = DevUtils.getHandler(),
+    @JvmField protected val handler: Handler? = DevUtils.getHandler(),
     // 回调刷新时间 ( 毫秒 ) - 小于等于 0 则每次进度变更都进行通知
-    protected val refreshTime: Long = Progress.REFRESH_TIME,
+    @JvmField protected val refreshTime: Long = Progress.REFRESH_TIME,
     // 额外携带信息 ( 可通过 Request.toExtras() 创建 )
-    protected val extras: Progress.Extras? = null
+    @JvmField protected val extras: Progress.Extras? = null
 ) : ResponseBody() {
 
     // ===============
@@ -44,7 +44,8 @@ open class ProgressResponseBody(
     // = 内部包装类 =
     // ============
 
-    private val bufferedSource: BufferedSource by lazy {
+    // delegated：不可使用 @JvmField
+    protected val bufferedSource: BufferedSource by lazy {
         CountingSource(delegate.source()).buffer()
     }
 

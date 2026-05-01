@@ -9,8 +9,8 @@ import retrofit2.Retrofit
  * @author Ttt
  */
 open class RetrofitOperation protected constructor(
-    private val key: String,
-    private val builder: RetrofitBuilder
+    @JvmField protected val key: String,
+    @JvmField protected val builder: RetrofitBuilder
 ) {
 
     companion object {
@@ -30,13 +30,16 @@ open class RetrofitOperation protected constructor(
     }
 
     // 日志 TAG
-    private val TAG = javaClass.simpleName
+    @JvmField
+    protected val TAG = javaClass.simpleName
 
     // Retrofit
-    private var mRetrofit: Retrofit? = null
+    @JvmField
+    protected var mRetrofit: Retrofit? = null
 
     // 是否重置操作 ( 首次为初始化 )
-    private var mReset: Boolean = false
+    @JvmField
+    protected var mReset: Boolean = false
 
     // ==========
     // = 内部方法 =
@@ -56,7 +59,7 @@ open class RetrofitOperation protected constructor(
      * 使用全局监听事件、构建操作是为了提供统一管理方法, 方便统一做处理
      * 并且自身也存在回调方法, 也能够单独处理
      */
-    private fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
+    protected open fun buildRetrofit(httpUrl: HttpUrl? = null): RetrofitOperation {
         if (mReset) {
             try {
                 RetrofitManager.getRetrofitResetListener()?.onResetBefore(

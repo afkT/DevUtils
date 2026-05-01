@@ -44,11 +44,11 @@ import okhttp3.OkHttpClient
  * 2.提供 [recycleListener] 方法可在 Callback onEnd 中直接调用释放资源无需实现逻辑
  */
 open class ProgressOperation protected constructor(
-    private val key: String,
+    @JvmField protected val key: String,
     // 全局默认操作对象
-    private val globalDefault: Boolean,
+    @JvmField protected val globalDefault: Boolean,
     // 内部拦截器监听类型
-    private val type: Int,
+    @JvmField protected val type: Int,
 ) : IOperation {
 
     companion object {
@@ -97,9 +97,10 @@ open class ProgressOperation protected constructor(
     }
 
     // 实现方式类型
-    private var mPlanType: Int = PLAN_A
+    @JvmField
+    protected var mPlanType: Int = PLAN_A
 
-    // Progress Operation 方案实现
+    // Progress Operation 方案实现（实现类为 internal，保持 private）
     private val IMPL: BaseOperation by lazy {
         when (mPlanType) {
             PLAN_B -> OperationPlanB(key, globalDefault, type)
