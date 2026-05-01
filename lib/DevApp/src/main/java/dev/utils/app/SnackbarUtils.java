@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -178,6 +179,7 @@ public final class SnackbarUtils {
      * 获取 Snackbar.SnackbarLayout ( FrameLayout )
      * @return {@link Snackbar.SnackbarLayout}
      */
+    @SuppressLint("RestrictedApi")
     public Snackbar.SnackbarLayout getSnackbarLayout() {
         try {
             return (Snackbar.SnackbarLayout) getSnackbarView();
@@ -191,6 +193,7 @@ public final class SnackbarUtils {
      * 获取 SnackbarContentLayout ( LinearLayout ( messageView、actionView ) )
      * @return {@link SnackbarContentLayout}
      */
+    @SuppressLint("RestrictedApi")
     public SnackbarContentLayout getSnackbarContentLayout() {
         Snackbar.SnackbarLayout snackbarLayout = getSnackbarLayout();
         if (snackbarLayout == null) return null;
@@ -231,6 +234,7 @@ public final class SnackbarUtils {
      * @param index 添加索引
      * @return {@link SnackbarUtils}
      */
+    @SuppressLint("RestrictedApi")
     public SnackbarUtils addView(
             final View view,
             final int index
@@ -1450,7 +1454,7 @@ public final class SnackbarUtils {
      * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils bellow(
+    public SnackbarUtils below(
             final View targetView,
             final int appendTopMargin
     ) {

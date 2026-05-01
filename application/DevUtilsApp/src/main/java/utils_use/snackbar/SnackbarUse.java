@@ -175,7 +175,7 @@ public final class SnackbarUse {
         SnackbarUtils.with(view).above(targetView, 20);
 
         // 设置 Snackbar 显示在指定 View 的下方, 并且向下边距 5
-        SnackbarUtils.with(view).bellow(targetView, 5);
+        SnackbarUtils.with(view).below(targetView, 5);
 
         // 向 Snackbar 布局中添加 View (Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
         SnackbarUtils.with(view).addView(newTextView, 0);
@@ -195,7 +195,7 @@ public final class SnackbarUse {
 
                     }
                 }, "撤销")
-                .bellow(targetView, 0)
+                .below(targetView, 0)
                 .setCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(
