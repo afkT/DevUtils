@@ -9,7 +9,7 @@ import dev.utils.LogPrintUtils
 open class DevBaseAssist {
 
     // 日志 TAG
-    protected var mTag = DevBaseAssist::class.java.simpleName
+    protected var mTag = javaClass.simpleName
 
     open fun setTag(tag: String): DevBaseAssist {
         this.mTag = tag

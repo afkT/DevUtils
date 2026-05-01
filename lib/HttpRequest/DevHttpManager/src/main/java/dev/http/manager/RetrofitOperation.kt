@@ -30,7 +30,7 @@ open class RetrofitOperation protected constructor(
     }
 
     // 日志 TAG
-    private val TAG = RetrofitOperation::class.java.simpleName
+    private val TAG = javaClass.simpleName
 
     // Retrofit
     private var mRetrofit: Retrofit? = null

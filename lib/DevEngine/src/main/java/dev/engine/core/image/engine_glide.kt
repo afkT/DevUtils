@@ -47,7 +47,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // 日志 TAG
     @JvmField
-    protected val TAG = GlideEngineImpl::class.java.simpleName
+    protected val TAG = javaClass.simpleName
 
     // ====================
     // = pause and resume =

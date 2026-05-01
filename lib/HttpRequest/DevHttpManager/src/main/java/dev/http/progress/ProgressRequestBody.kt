@@ -27,7 +27,7 @@ open class ProgressRequestBody(
 ) : RequestBody() {
 
     // 日志 TAG
-    protected val TAG = ProgressRequestBody::class.java.simpleName
+    protected val TAG = javaClass.simpleName
 
     // ===============
     // = RequestBody =

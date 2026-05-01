@@ -30,7 +30,7 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // 日志 TAG
     @JvmField
-    protected val TAG = PictureSelectorEngineImpl::class.java.simpleName
+    protected val TAG = javaClass.simpleName
 
     // 全局请求跳转回传 code
     @JvmField
