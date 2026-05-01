@@ -7,6 +7,7 @@ import dev.engine.keyvalue.IKeyValueEngine
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
 import java.lang.reflect.Type
+import kotlin.jvm.JvmField
 
 /**
  * detail: MMKV Key-Value Config
@@ -27,19 +28,20 @@ open class MMKVConfig(
  * @author Ttt
  */
 open class MMKVKeyValueEngineImpl(
-    private val mConfig: MMKVConfig
+    @JvmField protected val mConfig: MMKVConfig
 ) : IKeyValueEngine<MMKVConfig> {
 
-    // MMKV
+    // MMKV（Holder 依赖 internal MMKVUtils，属性不可为 protected）
     private val mHolder: MMKVUtils.Holder
 
     init {
         // MMKV Holder
-        mHolder = MMKVUtils.putHolder(config.mmkv.mmapID(), config.mmkv)
+        mHolder = MMKVUtils.putHolder(mConfig.mmkv.mmapID(), mConfig.mmkv)
     }
 
     // JSON Engine
-    private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+    @JvmField
+    protected var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
     open fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine

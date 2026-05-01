@@ -10,17 +10,19 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Serializable
 import java.lang.reflect.Type
+import kotlin.jvm.JvmField
 
 /**
  * detail: DevCache ( DevUtils ) Cache Engine 实现
  * @author Ttt
  */
 open class DevCacheEngineImpl(
-    private val mConfig: CacheConfig
+    @JvmField protected val mConfig: CacheConfig
 ) : ICacheEngine<CacheConfig?, DataItem?> {
 
     // JSON Engine
-    private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+    @JvmField
+    protected var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
     open fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine

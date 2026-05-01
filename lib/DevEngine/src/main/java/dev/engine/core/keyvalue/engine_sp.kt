@@ -7,6 +7,7 @@ import dev.utils.app.share.IPreference
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
 import java.lang.reflect.Type
+import kotlin.jvm.JvmField
 
 /**
  * detail: SharedPreferences Key-Value Config
@@ -28,14 +29,16 @@ open class SPConfig(
  * @author Ttt
  */
 open class SPKeyValueEngineImpl(
-    private val mConfig: SPConfig
+    @JvmField protected val mConfig: SPConfig
 ) : IKeyValueEngine<SPConfig> {
 
     // SharedPreferences
-    private val mPreference = mConfig.preference
+    @JvmField
+    protected val mPreference = mConfig.preference
 
     // JSON Engine
-    private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+    @JvmField
+    protected var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
     open fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine

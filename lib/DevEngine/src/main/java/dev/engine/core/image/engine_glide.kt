@@ -33,6 +33,7 @@ import dev.utils.common.StreamUtils
 import dev.utils.common.encrypt.MD5Utils
 import java.io.File
 import java.util.*
+import kotlin.jvm.JvmField
 
 /**
  * detail: Glide Image Engine 实现
@@ -45,7 +46,8 @@ import java.util.*
 open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // 日志 TAG
-    private val TAG = GlideEngineImpl::class.java.simpleName
+    @JvmField
+    protected val TAG = GlideEngineImpl::class.java.simpleName
 
     // ====================
     // = pause and resume =

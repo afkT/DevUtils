@@ -12,6 +12,7 @@ import dev.engine.media.IMediaEngine
 import dev.utils.LogPrintUtils
 import dev.utils.app.UriUtils
 import dev.utils.common.ConvertUtils
+import kotlin.jvm.JvmField
 
 // ===================
 // = PictureSelector =
@@ -28,13 +29,16 @@ import dev.utils.common.ConvertUtils
 open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // 日志 TAG
-    private val TAG = PictureSelectorEngineImpl::class.java.simpleName
+    @JvmField
+    protected val TAG = PictureSelectorEngineImpl::class.java.simpleName
 
     // 全局请求跳转回传 code
-    private val PIC_REQUEST_CODE = 159857
+    @JvmField
+    protected val PIC_REQUEST_CODE = 159857
 
     // 全局配置信息
-    private val PIC_CONFIG = MediaConfig()
+    @JvmField
+    protected val PIC_CONFIG = MediaConfig()
 
     // ==========
     // = 配置方法 =
