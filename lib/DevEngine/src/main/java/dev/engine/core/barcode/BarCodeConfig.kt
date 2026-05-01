@@ -6,7 +6,6 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import dev.engine.barcode.IBarCodeEngine
 import dev.utils.DevFinal
 import java.util.*
-import kotlin.jvm.JvmField
 
 /**
  * detail: BarCode Config

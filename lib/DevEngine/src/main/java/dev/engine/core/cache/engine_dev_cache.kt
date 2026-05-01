@@ -10,7 +10,6 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Serializable
 import java.lang.reflect.Type
-import kotlin.jvm.JvmField
 
 /**
  * detail: DevCache ( DevUtils ) Cache Engine 实现

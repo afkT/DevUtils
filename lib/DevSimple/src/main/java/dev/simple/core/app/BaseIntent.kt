@@ -3,7 +3,6 @@ package dev.simple.core.app
 import android.content.Intent
 import android.os.Bundle
 import dev.base.DevIntent
-import kotlin.jvm.JvmField
 
 /**
  * detail: 基础 Intent 传参读写辅助类通用方法封装

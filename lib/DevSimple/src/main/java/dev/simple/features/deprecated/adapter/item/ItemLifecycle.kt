@@ -6,7 +6,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import dev.simple.interfaces.BindingGet
-import kotlin.jvm.JvmField
 
 /**
  * detail: Item Binding Lifecycle

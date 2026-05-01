@@ -6,7 +6,6 @@ import dev.retrofit.scopeExecuteRequest
 import dev.simple.core.app.AppExecutors
 import dev.simple.interfaces.FunctionCallback
 import kotlinx.coroutines.CoroutineScope
-import kotlin.jvm.JvmField
 
 abstract class NetworkBoundScopeResource<ResultType>(
     @JvmField protected val scope: CoroutineScope,

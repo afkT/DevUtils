@@ -5,7 +5,6 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import dev.simple.core.app.AppExecutors
-import kotlin.jvm.JvmField
 
 /**
  * @see https://github.com/android/architecture-components-samples
