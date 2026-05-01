@@ -23,8 +23,8 @@ abstract class AbstractDevBaseFragment : Fragment(),
     // = Object =
     // ==========
 
-    @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
-    protected var TAG = AbstractDevBaseFragment::class.java.simpleName
+    // 日志 TAG：运行时为当前具体子类 simpleName ( 构造阶段 this 已是子类实例 )
+    open val TAG: String = javaClass.simpleName
 
     @JvmField // DevBase 合并相同代码辅助类 ( 子类可重写 newAssist() 替换实现 )
     @Suppress("LeakingThis")
@@ -58,8 +58,6 @@ abstract class AbstractDevBaseFragment : Fragment(),
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // 获取当前类名
-        TAG = this.javaClass.simpleName
         // 是否安全处理 addView
         contentAssist.setSafe(isContentAssistSafe())
         // 设置 TAG

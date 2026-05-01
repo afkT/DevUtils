@@ -11,5 +11,5 @@ open class LifecycleViewModel : ViewModel(),
     DefaultLifecycleObserver {
 
     // 日志 TAG
-    val TAG = this.javaClass.simpleName
+    open val TAG = this.javaClass.simpleName
 }
