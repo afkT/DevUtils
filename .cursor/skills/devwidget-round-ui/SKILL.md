@@ -19,13 +19,13 @@ disable-model-invocation: false
    - 工程统一坐标：如 `deps.dev.dev_widget`（定义见 `file/gradle/config.gradle` 等）
    - 本地子模块：`project(':DevWidget')`、`project(":lib:DevWidget")` 等与 **DevWidget / DevWidgetX** 模块相关的 `project(...)`
 2. **未找到任何上述依赖**：**跳过**本 skill 后续全部规则；不要假设存在 `dev.widget.ui.round` 类；圆角/描边/背景按常规方式处理（如 `shape` drawable、`MaterialShapeDrawable`、`CardView` 等，以项目既有风格为准）。
-3. **已找到依赖**：需要「圆角 + 背景色 + 描边」或希望少写 drawable XML 时，**优先**选用下面 **`lib/DevWidget/src/main/java/dev/widget/ui/round`** 中的类型（布局里写完整类名，见各文件顶部 KDoc）。
+3. **已找到依赖**：需要「圆角 + 背景色 + 描边」或希望少写 drawable XML 时，**优先**选用下面 **`DevWidget/src/main/java/dev/widget/ui/round`**（从 DevWidget 模块源码根起算，父目录以工程为准）中的类型（布局里写完整类名，见各文件顶部 KDoc）。
 
-本 skill 可在 **任意仓库** 使用；**是否走 round 逻辑只以 Gradle 里是否存在 DevWidgetX / DevWidget 依赖为准**，不以「仓库里是否自带 `lib/DevWidget` 源码」为唯一依据。
+本 skill 可在 **任意仓库** 使用；**是否走 round 逻辑只以 Gradle 里是否存在 DevWidgetX / DevWidget 依赖为准**，不以「仓库里是否自带 `DevWidget/src/...` 源码树」为唯一依据。
 
 ## `dev.widget.ui.round` 清单（提高检索命中率）
 
-以下路径均相对于仓库根目录：`lib/DevWidget/src/main/java/dev/widget/ui/round/`。
+以下路径以 **DevWidget 模块源码根** 为起点：`DevWidget/src/main/java/dev/widget/ui/round/`（磁盘上模块根目录前是否还有其它父路径以工程为准，读到 `src/main/java/dev/widget/ui/round/` 即可）。
 
 | 文件 | 类型 | 典型用途 |
 |------|------|----------|
@@ -63,5 +63,5 @@ disable-model-invocation: false
 
 ## 与本仓库的关系
 
-- 开源库源码：`lib/DevWidget`；发布 Maven 一般为 **`io.github.afkt:DevWidgetX`**（与 `lib/DevWidget/project.properties` 中 artifactId 一致）。
-- 在 **本仓库** 内维护 DevWidget 源码时，修改行为以 `lib/DevWidget` 下实现与 `attrs` 为准。
+- 开源库源码根：`DevWidget/`（即 **`DevWidget/src/...`** 所在模块）；发布 Maven 一般为 **`io.github.afkt:DevWidgetX`**（与模块根目录下 `project.properties` 中 artifactId 一致）。
+- 在 **本仓库** 内维护 DevWidget 源码时，修改行为以 **`DevWidget/`** 下实现与 `attrs` 为准。

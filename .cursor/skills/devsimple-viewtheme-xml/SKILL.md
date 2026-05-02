@@ -18,12 +18,12 @@ description: >-
 2. **未找到任何 DevSimple 依赖**：**不要**为布局中的 View 添加 `style="@style/ViewTheme.…"`，也无需引用本 skill 的后续规则；可正常写布局其它内容。
 3. **已找到依赖**：再按下面章节选择样式并写入。
 
-本 skill 可在 **任意仓库** 使用；DevSimple 既可能是 **Maven 依赖**，也可能是 **本仓库内的 `lib/DevSimple` 子模块**——**是否走本逻辑只以 Gradle 里是否存在上述依赖为准**，不以「仓库里有没有 `lib/DevSimple` 源码」为准。
+本 skill 可在 **任意仓库** 使用；DevSimple 既可能是 **Maven 依赖**，也可能是 **本仓库内的 `DevSimple` 子模块**（源码根目录下常见 `DevSimple/src/...`，模块根之前的父路径以工程为准）——**是否走本逻辑只以 Gradle 里是否存在上述依赖为准**，不以「仓库里是否检出 DevSimple 源码树」为准。
 
 ## `ViewTheme.*` 从哪来、如何核对
 
 - **通过 `io.github.afkt:DevSimple:…` 依赖时**：`ViewTheme.*` 随 AAR 资源打包进应用，一般 **无法在宿主仓库里直接打开** `values` 文件；以 **DevSimple 发布版本文档或本 skill 所列基样式名为准**。若用户指定了版本且需要 100% 核对，可让用户打开依赖缓存中的 `res/values` 或对照该版本的源码仓库。
-- **本仓库含 DevSimple 源码时**（例如 `lib/DevSimple/src/main/res/values`）：可用 **Grep / Read** 在该目录下确认 `name="ViewTheme.…"` 是否存在，再写入布局。
+- **本仓库含 DevSimple 源码时**（例如 `DevSimple/src/main/res/values`，模块根目录名以工程为准）：可用 **Grep / Read** 在该目录下确认 `name="ViewTheme.…"` 是否存在，再写入布局。
 
 ## 默认写入规则（仅在有 DevSimple 依赖时）
 
@@ -64,7 +64,7 @@ AppBarLayout、Button、ConstraintLayout、CoordinatorLayout、Divider、EditTex
 1. **Gradle**：确认当前 module 是否依赖 DevSimple；**无** → **停止**，不添加 ViewTheme `style`。
 2. 确定标签类的继承链。
 3. 自子向父匹配 **「库中已有基样式」**；`ImageView` → `ViewTheme.ImageView.FIT_XY`，否则 `ViewTheme.<类名>`，否则 `ViewTheme.View`。
-4. **可选校验**：若仓库存在 `lib/DevSimple/.../res/values`，再 Grep 确认 `name="…"`；纯 Maven 依赖则跳过文件 Grep，直接按约定写入。
+4. **可选校验**：若仓库存在 `DevSimple/.../res/values`（从 DevSimple 模块源码根向下找 `src/main/res/values`），再 Grep 确认 `name="…"`；纯 Maven 依赖则跳过文件 Grep，直接按约定写入。
 5. 写入 `style`，保持项目 XML 风格。
 
 ## 示例
