@@ -4,8 +4,8 @@ description: >-
   在 Android 布局或代码中处理圆角、纯色背景、描边时，先校验模块是否依赖
   io.github.afkt:DevWidgetX（或工程 dev_widget 坐标 / DevWidget 子模块）；有依赖则优先使用
   dev.widget.ui.round 包内控件与 RoundDrawable，减少手写 shape/layer-list XML。
-  若需求命中 ShadowLayout 能力（裁剪、可配置阴影、渐变、selector/ripple/虚线等）且模块有该依赖，
-  则改按 `.cursor/skills/shadowlayout-ui/SKILL.md` 选型，勿用 round 硬扛。
+  若需求命中 ShadowLayout 能力（可配置阴影、渐变、selector/ripple/虚线等；仅「圆角内裁剪子 View」见
+  devwidget-radius-ui）且模块有该依赖，则改按 `.cursor/skills/shadowlayout-ui/SKILL.md` 选型，勿用 round 硬扛。
   用于编写或修改 layout、用户提到圆角卡片、边框描边、纯色圆角背景、替代 shape drawable 时。
 disable-model-invocation: false
 ---
@@ -56,6 +56,8 @@ disable-model-invocation: false
 | **图片背景 selector** | 容器背景不做「双态切换整张图」那套 | `hl_layoutBackground` + `hl_layoutBackground_true` 等 |
 | **绑定 TextView** | 无随状态改绑定 View 文案/颜色 | `hl_bindTextView`、`hl_text` / `hl_text_true` 等 |
 
+**关于「裁剪」一行**：若实际需求 **只是**「子内容必须画在圆角轮廓内」、**未同时**需要本表其它列能力（`hl_shadow*`、线性渐变、pressed 双态、虚线等），且模块 **已依赖 DevWidget**，应 **优先** `dev.widget.ui.radius`（见 `.cursor/skills/devwidget-radius-ui/SKILL.md`），**不要**仅为裁剪引入 ShadowLayout。
+
 **不算命中 ShadowLayout 的特例**：只要 **`elevation` / `translationZ` / Material 默认阴影** 即可、**不要** `hl_shadow*` 那套参数时，仍可用 round + 系统阴影，**不必**为此引入 ShadowLayout（与 shadowlayout-ui skill 表述一致）。
 
 **未依赖 DevWidget 但依赖了 ShadowLayout**：圆角/背景等以 shadowlayout-ui 为准，勿虚构 `dev.widget.ui.round` API。
@@ -102,7 +104,7 @@ disable-model-invocation: false
 ## 注意事项（必读）
 
 1. **`android:background` 冲突**：圆角与填充/描边通过 **View 的 background** 实现；在 XML 里写 `android:background` **会不生效或被覆盖**，应使用上述 `app:dev_*` 属性配置背景与边框（与源码「注意事项」一致）。
-2. **不裁剪子 View / 内容（针对 RoundDrawable 背景系）**：`RoundLinearLayout` / `RoundFrameLayout` / `RoundRelativeLayout` / `RoundConstraintLayout` / `RoundTextView` / `RoundButton` 等通过 **背景 Drawable** 画圆角与描边，**不会因此自动裁切子 View**；子 View 仍可能画在圆角轮廓外。需要严格裁剪时请另行处理（如 `clipToOutline`、outline、`CardView` 等，以项目规范为准）。**`RoundImageView`** 走的是图片圆角/圆形绘制逻辑，**是否裁剪位图以该类顶部注释与实现为准**，不要与上列容器的「不裁子 View」混为一谈。
+2. **不裁剪子 View / 内容（针对 RoundDrawable 背景系）**：`RoundLinearLayout` / `RoundFrameLayout` / `RoundRelativeLayout` / `RoundConstraintLayout` / `RoundTextView` / `RoundButton` 等通过 **背景 Drawable** 画圆角与描边，**不会因此自动裁切子 View**；子 View 仍可能画在圆角轮廓外。需要 **裁切子 View** 且仍走 DevWidget 选型时，用 **`dev.widget.ui.radius`**（见 `.cursor/skills/devwidget-radius-ui/SKILL.md`）；其它方案（`clipToOutline`、`CardView` 等）以项目规范为准。**`RoundImageView`** 走的是图片圆角/圆形绘制逻辑，**是否裁剪位图以该类顶部注释与实现为准**，不要与上列容器的「不裁子 View」混为一谈。
 3. **`RoundImageView`** 与「纯 RoundDrawable 铺背景」的控件 **属性集合不同**，**不要**混用属性表；以本节 **「RoundImageView 专用」** 表格与类顶注释为准。
 
 ## 与本仓库的关系
