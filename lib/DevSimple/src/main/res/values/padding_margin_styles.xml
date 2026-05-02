@@ -436,4 +436,136 @@
         <item name="android:layout_marginLeft">10.0dp</item>
         <item name="android:layout_marginRight">10.0dp</item>
     </style>
+
+    <!-- WebView 边距样式 -->
+
+    <style name="ViewTheme.WebView.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.WebView.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.WebView.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.WebView.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- SurfaceView 边距样式 -->
+
+    <style name="ViewTheme.SurfaceView.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SurfaceView.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SurfaceView.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SurfaceView.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- TextureView 边距样式 -->
+
+    <style name="ViewTheme.TextureView.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.TextureView.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.TextureView.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.TextureView.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- ViewStub 边距样式 -->
+
+    <style name="ViewTheme.ViewStub.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- ProgressBar 边距样式 -->
+
+    <style name="ViewTheme.ProgressBar.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ProgressBar.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ProgressBar.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.ProgressBar.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
+
+    <!-- SeekBar 边距样式 -->
+
+    <style name="ViewTheme.SeekBar.Padding.TB_DP_10">
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SeekBar.Margin.TB_DP_10">
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SeekBar.Padding.LR_DP_10">
+        <item name="android:paddingLeft">10.0dp</item>
+        <item name="android:paddingRight">10.0dp</item>
+    </style>
+
+    <style name="ViewTheme.SeekBar.Margin.LR_DP_10">
+        <item name="android:layout_marginLeft">10.0dp</item>
+        <item name="android:layout_marginRight">10.0dp</item>
+    </style>
 </resources>

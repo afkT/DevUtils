@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- android.view.ViewStub -->
+
+    <!-- ViewStub 基础样式 -->
+
+    <style name="ViewTheme.ViewStub">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- ViewStub 样式（inflate 前占位常用零尺寸，不占布局） -->
+
+    <style name="ViewTheme.ViewStub.Zero">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <!-- ViewStub 边距基础样式 -->
+
+    <style name="ViewTheme.ViewStub.Margin" />
+
+    <style name="ViewTheme.ViewStub.Padding" />
+
+    <!-- ================ -->
+    <!-- ViewStub Gravity -->
+    <!-- ================ -->
+
+    <style name="ViewTheme.ViewStub.Gravity" />
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_LEFT">
+        <item name="android:gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_RIGHT">
+        <item name="android:gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.ViewStub.Gravity.LEFT">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.LEFT_TOP">
+        <item name="android:gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.LEFT_BOTTOM">
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.ViewStub.Gravity.RIGHT">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.RIGHT_TOP">
+        <item name="android:gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.RIGHT_BOTTOM">
+        <item name="android:gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- ViewStub Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_LEFT">
+        <item name="android:layout_gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_RIGHT">
+        <item name="android:layout_gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.LEFT">
+        <item name="android:layout_gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.LEFT_TOP">
+        <item name="android:layout_gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.LEFT_BOTTOM">
+        <item name="android:layout_gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.RIGHT">
+        <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.RIGHT_TOP">
+        <item name="android:layout_gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.RIGHT_BOTTOM">
+        <item name="android:layout_gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.ViewStub.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+</resources>
