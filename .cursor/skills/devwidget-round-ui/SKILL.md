@@ -4,6 +4,8 @@ description: >-
   在 Android 布局或代码中处理圆角、纯色背景、描边时，先校验模块是否依赖
   io.github.afkt:DevWidgetX（或工程 dev_widget 坐标 / DevWidget 子模块）；有依赖则优先使用
   dev.widget.ui.round 包内控件与 RoundDrawable，减少手写 shape/layer-list XML。
+  若需求命中 ShadowLayout 能力（裁剪、可配置阴影、渐变、selector/ripple/虚线等）且模块有该依赖，
+  则改按 `.cursor/skills/shadowlayout-ui/SKILL.md` 选型，勿用 round 硬扛。
   用于编写或修改 layout、用户提到圆角卡片、边框描边、纯色圆角背景、替代 shape drawable 时。
 disable-model-invocation: false
 ---
@@ -19,7 +21,7 @@ disable-model-invocation: false
    - 工程统一坐标：如 `deps.dev.dev_widget`（定义见 `file/gradle/config.gradle` 等）
    - 本地子模块：`project(':DevWidget')`、`project(":lib:DevWidget")` 等与 **DevWidget / DevWidgetX** 模块相关的 `project(...)`
 2. **未找到任何上述依赖**：**跳过**本 skill 后续全部规则；不要假设存在 `dev.widget.ui.round` 类；圆角/描边/背景按常规方式处理（如 `shape` drawable、`MaterialShapeDrawable`、`CardView` 等，以项目既有风格为准）。
-3. **已找到依赖**：需要「圆角 + 背景色 + 描边」或希望少写 drawable XML 时，**优先**选用下面 **`DevWidget/src/main/java/dev/widget/ui/round`**（从 DevWidget 模块源码根起算，父目录以工程为准）中的类型（布局里写完整类名，见各文件顶部 KDoc）。
+3. **已找到依赖**：需要「圆角 + **纯色**背景 + 描边」或希望少写 drawable XML、且 **未命中** 下文「ShadowLayout 命中条件」时，**优先**选用下面 **`DevWidget/src/main/java/dev/widget/ui/round`**（从 DevWidget 模块源码根起算，父目录以工程为准）中的类型（布局里写完整类名，见各文件顶部 KDoc）。
 
 本 skill 可在 **任意仓库** 使用；**是否走 round 逻辑只以 Gradle 里是否存在 DevWidgetX / DevWidget 依赖为准**，不以「仓库里是否自带 `DevWidget/src/...` 源码树」为唯一依据。
 
@@ -39,6 +41,24 @@ disable-model-invocation: false
 | `RoundDrawable.java` | `dev.widget.ui.round.RoundDrawable` | **非 View**：圆角 `GradientDrawable` 子类，可在代码里 `setBackground` / 组合使用 |
 
 **选用建议**：容器类（Linear / Frame / Relative / Constraint）按布局结构选；纯文本用 `RoundTextView`；需 `Button` 语义用 `RoundButton`；图片用 `RoundImageView`；仅在代码里拼背景时用 `RoundDrawable`。
+
+## ShadowLayout 命中条件（round **没有**、勿用 round 替代）
+
+`dev.widget.ui.round` 的 `RoundDrawable` 背景系：**纯色填充 + 圆角 + 描边**；**无** `ShadowLayout` 那套 `app:hl_*` 能力。下列任一条为 **true** 且当前模块 **已依赖** `com.github.lihangleo2:ShadowLayout` 时，应 **改读并遵循** `.cursor/skills/shadowlayout-ui/SKILL.md`，用 `com.lihang.ShadowLayout`（或项目既定封装）实现，**不要**再用 round 容器「凑合」：
+
+| 命中项 | round 为何不够 | ShadowLayout 侧（详见 shadowlayout-ui skill） |
+|--------|----------------|-----------------------------------------------|
+| **裁剪** | 背景画圆角 **不** 裁子 View，子内容可画出圆角外 | 可把子内容裁在圆角轮廓内（如视频圆角等 README 场景） |
+| **可配置阴影** | **无** `hl_shadowColor` / `hl_shadowLimit` / 偏移、单边隐藏等 | `app:hl_shadow*` 软阴影 |
+| **渐变背景** | `RoundDrawable` 路径 **非** 线性渐变 XML 替代 | `hl_startColor` / `hl_endColor` / `hl_angle` 等 |
+| **按压 / 选中 / ripple** | 无容器级 `pressed`/`selected`/`ripple` 与 `_true` 双态背景、描边 | `hl_shapeMode`、`hl_layoutBackground` / `_true`、`hl_strokeColor` / `_true` |
+| **虚线描边** | 无 dash 模式 | `hl_shapeMode="dashLine"` + `hl_stroke_dashWidth` / `hl_stroke_dashGap` |
+| **图片背景 selector** | 容器背景不做「双态切换整张图」那套 | `hl_layoutBackground` + `hl_layoutBackground_true` 等 |
+| **绑定 TextView** | 无随状态改绑定 View 文案/颜色 | `hl_bindTextView`、`hl_text` / `hl_text_true` 等 |
+
+**不算命中 ShadowLayout 的特例**：只要 **`elevation` / `translationZ` / Material 默认阴影** 即可、**不要** `hl_shadow*` 那套参数时，仍可用 round + 系统阴影，**不必**为此引入 ShadowLayout（与 shadowlayout-ui skill 表述一致）。
+
+**未依赖 DevWidget 但依赖了 ShadowLayout**：圆角/背景等以 shadowlayout-ui 为准，勿虚构 `dev.widget.ui.round` API。
 
 ## 自定义属性（`declare-styleable`：`DevWidget`）
 
