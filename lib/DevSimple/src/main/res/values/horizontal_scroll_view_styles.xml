@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- android.widget.HorizontalScrollView -->
+
+    <!-- HorizontalScrollView 基础样式 -->
+
+    <style name="ViewTheme.HorizontalScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- HorizontalScrollView 边距基础样式 -->
+
+    <style name="ViewTheme.HorizontalScrollView.Margin" />
+
+    <style name="ViewTheme.HorizontalScrollView.Padding" />
+
+    <!-- ============================ -->
+    <!-- HorizontalScrollView Gravity -->
+    <!-- ============================ -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity" />
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_LEFT">
+        <item name="android:gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_RIGHT">
+        <item name="android:gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.LEFT">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.LEFT_TOP">
+        <item name="android:gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.LEFT_BOTTOM">
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.RIGHT">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.RIGHT_TOP">
+        <item name="android:gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.RIGHT_BOTTOM">
+        <item name="android:gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- HorizontalScrollView Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_LEFT">
+        <item name="android:layout_gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_RIGHT">
+        <item name="android:layout_gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.LEFT">
+        <item name="android:layout_gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.LEFT_TOP">
+        <item name="android:layout_gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.LEFT_BOTTOM">
+        <item name="android:layout_gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.RIGHT">
+        <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.RIGHT_TOP">
+        <item name="android:layout_gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.RIGHT_BOTTOM">
+        <item name="android:layout_gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.HorizontalScrollView.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+</resources>
