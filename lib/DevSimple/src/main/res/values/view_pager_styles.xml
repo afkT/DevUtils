@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        ViewPager 与 ViewPager2 共用样式族（命名统一为 ViewTheme.ViewPager*）
+        适用于 androidx.viewpager.widget.ViewPager、androidx.viewpager2.widget.ViewPager2。
+        尺寸、边距、Gravity 等与常见 ViewGroup 用法一致。
+        方向子样式：android:orientation 仅 ViewPager2 生效；旧版 ViewPager 会忽略该属性。
+    -->
+
+    <!-- ViewPager / ViewPager2 基础样式 -->
+
+    <style name="ViewTheme.ViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Match.Width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Match.Height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- ViewPager / ViewPager2 翻页方向（默认横向，与系统 ViewPager2 默认一致） -->
+
+    <style name="ViewTheme.ViewPager.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Vertical">
+        <!-- 仅 ViewPager2 支持垂直翻页 -->
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- ViewPager / ViewPager2 边距基础样式 -->
+
+    <style name="ViewTheme.ViewPager.Margin" />
+
+    <style name="ViewTheme.ViewPager.Padding" />
+
+    <!-- ============================== -->
+    <!-- ViewPager / ViewPager2 Gravity -->
+    <!-- ============================== -->
+
+    <style name="ViewTheme.ViewPager.Gravity" />
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout" />
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_LEFT">
+        <item name="android:gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_TOP">
+        <item name="android:gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_RIGHT">
+        <item name="android:gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_BOTTOM">
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.ViewPager.Gravity.LEFT">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.LEFT_TOP">
+        <item name="android:gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.LEFT_BOTTOM">
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.ViewPager.Gravity.RIGHT">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.RIGHT_TOP">
+        <item name="android:gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.RIGHT_BOTTOM">
+        <item name="android:gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- ViewPager / ViewPager2 Layout Gravity -->
+
+    <!-- CENTER -->
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_LEFT">
+        <item name="android:layout_gravity">center|left</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_TOP">
+        <item name="android:layout_gravity">center|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_RIGHT">
+        <item name="android:layout_gravity">center|right</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_BOTTOM">
+        <item name="android:layout_gravity">center|bottom</item>
+    </style>
+
+    <!-- LEFT -->
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.LEFT">
+        <item name="android:layout_gravity">left</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.LEFT_TOP">
+        <item name="android:layout_gravity">left|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.LEFT_BOTTOM">
+        <item name="android:layout_gravity">left|bottom</item>
+    </style>
+
+    <!-- RIGHT -->
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.RIGHT">
+        <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.RIGHT_TOP">
+        <item name="android:layout_gravity">right|top</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.RIGHT_BOTTOM">
+        <item name="android:layout_gravity">right|bottom</item>
+    </style>
+
+    <!-- CENTER_XXX -->
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_VERTICAL">
+        <!-- 等同于 center|left -->
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ViewTheme.ViewPager.Gravity.Layout.CENTER_HORIZONTAL">
+        <!-- 等同于 center|top -->
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+</resources>

@@ -10,9 +10,9 @@ import java.util.concurrent.Executors
  * @author Google
  */
 open class AppExecutors(
-    private val diskIO: Executor,
-    private val networkIO: Executor,
-    private val mainThread: MainExecutor
+    @JvmField protected val diskIO: Executor,
+    @JvmField protected val networkIO: Executor,
+    @JvmField protected val mainThread: MainExecutor
 ) {
 
     open fun diskIO(): Executor {
