@@ -14,6 +14,63 @@ disable-model-invocation: false
 
 `ShadowLayout` 继承 **`FrameLayout`**（包名一般为 **`com.lihang.ShadowLayout`**），可在 XML 或代码中作为容器，通过库自定义属性配置阴影、圆角、描边、纯色/渐变背景、按压态等，从而减少手写 `shape` / `layer-list` drawable。子 View 的摆放规则与 `FrameLayout` 一致。
 
+## 自定义属性（`declare-styleable`：`ShadowLayout`）
+
+以下说明摘自上游仓库 **`shadowLibrary/src/main/res/values/attrs.xml`** 中 XML 注释（与 [README 属性表](https://github.com/lihangleo2/ShadowLayout) 一致；README 中边框宽度行写作 `hl_strokeWith`，与 attrs 实际命名相同，**不是** `hl_strokeWidth`）。布局里前缀一般为 **`app:hl_*`**（`xmlns:app` 指向应用包名）。**本 skill 只列容器 `com.lihang.ShadowLayout` 用到的属性**；同库还有 `SmartLoadingView`、`ScrollViewIndicator`、`SwitchButton` 等独立 `declare-styleable`，需要时再查该文件。
+
+### 阴影
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:hl_shadowHidden` | 为 **true** 时**隐藏**阴影；只要 shape/selector、不要阴影时用。 |
+| `app:hl_shadowColor` | 阴影颜色。 |
+| `app:hl_shadowLimit` | 阴影扩散范围（程度）。 |
+| `app:hl_shadowSymmetry` | 控件区域是否相对阴影对称；默认对称；不对称时控件区域随阴影区域变化。 |
+| `app:hl_shadowOffsetX` / `app:hl_shadowOffsetY` | 阴影 X/Y 偏移。 |
+| `app:hl_shadowHiddenLeft` / `Right` / `Top` / `Bottom` | 隐藏对应边的阴影。 |
+
+### 圆角（含阴影、shape、背景图、stroke 的圆角）
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:hl_cornerRadius` | 统一圆角尺寸。 |
+| `app:hl_cornerRadius_leftTop` / `rightTop` / `leftBottom` / `rightBottom` | 单角圆角；**设置某角后会忽略** `hl_cornerRadius` 对该角逻辑（以库实现为准）。 |
+
+### shape / selector / 边框 / 虚线
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:hl_shapeMode` | `pressed` / `selected` / `ripple` / `dashLine`：按压态、选中态、水波纹、**虚线模式**（可配合下方 stroke 与 dash 属性画虚线）。 |
+| `app:hl_layoutBackground` | 「false / 默认」态背景：颜色、图片或 drawable。 |
+| `app:hl_layoutBackground_true` | 「true」态背景；**须与** `hl_layoutBackground` **同用**，否则库会报错。 |
+| `app:hl_strokeWith` | 描边宽度（attrs 内拼写即 `With`，勿改成 `Width`）。 |
+| `app:hl_strokeColor` / `app:hl_strokeColor_true` | false/true 态描边色；`_true` 须与 `hl_strokeColor` 搭配。 |
+| `app:hl_stroke_dashWidth` / `app:hl_stroke_dashGap` | 虚线实段长度、间隔。 |
+
+### 渐变填充
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:hl_startColor` / `app:hl_centerColor` / `app:hl_endColor` | 渐变起、中、止色；中间色可选。 |
+| `app:hl_angle` | 渐变角度，默认 0。**设渐变后**以渐变为主，`hl_layoutBackground` **无效**（attrs 注释）。 |
+
+### 绑定 TextView（随状态改文案/颜色）
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:hl_bindTextView` | 要绑定的 TextView 的 id（reference）。 |
+| `app:hl_text` / `app:hl_text_true` | false/true 态文案。 |
+| `app:hl_textColor` / `app:hl_textColor_true` | false/true 态文字颜色。 |
+
+### 可点击与不可点时的背景
+
+| 属性 | 作用（attrs 注释摘要） |
+|------|------------------------|
+| `app:clickable` | 库自定义布尔：**非**系统 `android:clickable` 语义混用；避免 `setOnClickListener` 与系统 clickable 行为不一致问题。 |
+| `app:hl_layoutBackground_clickFalse` | `clickable` 为 false 时展示的颜色或图片。 |
+
+**版本提示**：本仓库 `config_libs.gradle` 中示例版本为 **3.4.x**；大版本升级请以依赖模块内 `attrs.xml` 与 [官方 README](https://github.com/lihangleo2/ShadowLayout) 为准。
+
 ## 前置条件（必做）
 
 **仅当当前正在处理的 Android 模块已依赖 ShadowLayout 时**，才执行本 skill 中「使用 `com.lihang.ShadowLayout`」及后续选型逻辑。
@@ -38,7 +95,7 @@ disable-model-invocation: false
 - **渐变色**：背景为线性/角度渐变等，希望少写或不用渐变 drawable XML。
 - **点击按压变色**：需要按下/抬起等状态切换背景或描边，希望由控件属性统一处理而非手写 selector drawable。
 
-具体属性名以库内 `attrs` 与 [ShadowLayout README](https://github.com/lihangleo2/ShadowLayout) 为准；本仓库示例中可见 `app:hl_startColor`、`app:hl_endColor`、`app:hl_angle` 等 **`hl_*`** 前缀属性（与版本一致即可）。
+具体属性名与含义以本文档 **「自定义属性」** 小节及库内 `attrs` 为准；常用渐变示例：`app:hl_startColor`、`app:hl_endColor`、`app:hl_angle`。
 
 ### 2. 何时优先用 DevWidget round
 

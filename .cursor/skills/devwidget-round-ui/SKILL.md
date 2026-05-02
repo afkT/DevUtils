@@ -14,7 +14,7 @@ disable-model-invocation: false
 
 **仅当当前正在处理的 Android 模块已依赖 DevWidgetX（DevWidget 库）时**，才执行本 skill 的「优先使用 `dev.widget.ui.round`」逻辑。
 
-1. 在该模块的 **`build.gradle` / `build.gradle.kts`** 以及工程里 **`apply from` 的 deps 脚本**（如 `file/deps/*.gradle`）中检索是否出现任一形式：
+1. 在该模块的 **`build.gradle` / `build.gradle.kts`** 以及工程里 **`apply from` 的 deps 脚本**（如 `file/deps/*.gradle`、`file/gradle/config_libs.gradle`）中检索是否出现任一形式：
    - Maven：`io.github.afkt:DevWidgetX`（版本号可变）
    - 工程统一坐标：如 `deps.dev.dev_widget`（定义见 `file/gradle/config.gradle` 等）
    - 本地子模块：`project(':DevWidget')`、`project(":lib:DevWidget")` 等与 **DevWidget / DevWidgetX** 模块相关的 `project(...)`
@@ -40,26 +40,50 @@ disable-model-invocation: false
 
 **选用建议**：容器类（Linear / Frame / Relative / Constraint）按布局结构选；纯文本用 `RoundTextView`；需 `Button` 语义用 `RoundButton`；图片用 `RoundImageView`；仅在代码里拼背景时用 `RoundDrawable`。
 
-## XML 常用属性（与源码注释一致）
+## 自定义属性（`declare-styleable`：`DevWidget`）
 
-多数基于 `RoundDrawable` 的 **View** 在文件顶部注释中列出了 `app:` 属性，常见包括：
+属性定义集中在 DevWidget 模块 **`src/main/res/values/attrs.xml`** 的 `<declare-styleable name="DevWidget">`。下面按 **本 skill 涉及的 round 包** 分类摘录 **format + attrs 内注释/实现语义**，便于检索而无需先打开源码。
 
-- `app:dev_backgroundColor`
-- `app:dev_borderColor`
-- `app:dev_borderWidth`
-- `app:dev_isRadiusAdjustBounds`
-- `app:dev_radius`
-- `app:dev_radiusLeftTop` / `app:dev_radiusRightTop` / `app:dev_radiusLeftBottom` / `app:dev_radiusRightBottom`
+### 与 `RoundDrawable` 背景系共用（`RoundLinearLayout` / `RoundFrameLayout` / `RoundRelativeLayout` / `RoundConstraintLayout` / `RoundTextView` / `RoundButton`）
 
-`RoundImageView` 使用另一组属性（如 `app:dev_borderWidth`、`app:dev_borderColor`、`app:dev_borderOverlay`、`app:dev_circleBackgroundColor` 等），**以该文件顶部注释为准**。
+这些 View 通过 `RoundDrawable.fromAttributeSet(...)` 读取下列属性并设为 **View 的 background**（纯色圆角矩形 + 可选描边；**非**渐变）。
 
-**使用方式与边界条件**：编写或排查属性时，**直接打开对应类的文件最顶部注释**（`/** ... <pre> ...`），以库内说明为最高优先级。
+| 属性 | format | 作用说明 |
+|------|--------|----------|
+| `app:dev_backgroundColor` | color | 填充色（背景）；支持 `ColorStateList` 资源时在代码路径中会按状态着色（见 `RoundDrawable`）。 |
+| `app:dev_borderColor` | color | 描边颜色。 |
+| `app:dev_borderWidth` | dimension | 描边粗细。 |
+| `app:dev_radius` | dimension | 统一圆角半径；与四角属性互斥逻辑见下。 |
+| `app:dev_radiusLeftTop` | dimension | 左上圆角；任一角 **> 0** 时走四角数组，`dev_radius` 不再单独作为统一圆角（见 `fromAttributeSet`）。 |
+| `app:dev_radiusRightTop` | dimension | 右上圆角。 |
+| `app:dev_radiusLeftBottom` | dimension | 左下圆角。 |
+| `app:dev_radiusRightBottom` | dimension | 右下圆角。 |
+| `app:dev_isRadiusAdjustBounds` | boolean | 为 **true** 时，在 `onBoundsChange` 中把圆角设为 **min(宽, 高)/2**（「胶囊」形）；与显式 `dev_radius` / 四角半径组合时，实现里在设置了正半径后会关闭自动调整（见 `RoundDrawable`）。 |
+
+**与 `attrs.xml` 同文件、但不属于 round 背景系的项**：`dev_clearRadius` 等标注给 **`RadiusLayout` / `Radius*`**（`dev.widget.ui.radius` 包），**round 包布局不会读取**；不要用 round 文档去套 radius 控件。
+
+### `RoundImageView` 专用（圆角/圆形位图 + 边框）
+
+与上表 **不共用**「背景填充圆角」那套 `dev_backgroundColor` / `dev_radius*`；该类从 `DevWidget` styleable 只读取：
+
+| 属性 | format | 作用说明 |
+|------|--------|----------|
+| `app:dev_borderWidth` | dimension | 外圈描边宽度。 |
+| `app:dev_borderColor` | color | 描边颜色。 |
+| `app:dev_borderOverlay` | boolean | 边框是否叠在图片外侧（CircleImageView 语义）。 |
+| `app:dev_circleBackgroundColor` | color | 圆形/圆角区域外的底色（透明位图区域等）。 |
+
+### 代码里使用 `RoundDrawable`
+
+`RoundDrawable` 支持与 XML 相同语义的一组属性（见类顶 KDoc）：`dev_backgroundColor`、`dev_borderColor`、`dev_borderWidth`、`dev_isRadiusAdjustBounds`、`dev_radius` 与四角 `dev_radius*`，通过 **`RoundDrawable.fromAttributeSet`** 或各类 setter 配置。
+
+**与源码的关系**：若文档与某版本实现不一致，以 **`lib/DevWidget/.../attrs.xml`** 与 **`RoundDrawable.fromAttributeSet` / `RoundImageView.initAttrs`** 为准；类顶 `/** ... <pre> ...` 为第二参考。
 
 ## 注意事项（必读）
 
 1. **`android:background` 冲突**：圆角与填充/描边通过 **View 的 background** 实现；在 XML 里写 `android:background` **会不生效或被覆盖**，应使用上述 `app:dev_*` 属性配置背景与边框（与源码「注意事项」一致）。
 2. **不裁剪子 View / 内容（针对 RoundDrawable 背景系）**：`RoundLinearLayout` / `RoundFrameLayout` / `RoundRelativeLayout` / `RoundConstraintLayout` / `RoundTextView` / `RoundButton` 等通过 **背景 Drawable** 画圆角与描边，**不会因此自动裁切子 View**；子 View 仍可能画在圆角轮廓外。需要严格裁剪时请另行处理（如 `clipToOutline`、outline、`CardView` 等，以项目规范为准）。**`RoundImageView`** 走的是图片圆角/圆形绘制逻辑，**是否裁剪位图以该类顶部注释与实现为准**，不要与上列容器的「不裁子 View」混为一谈。
-3. **`RoundImageView`** 与「纯 RoundDrawable 铺背景」的控件 **属性集合不同**，**不要**混用属性表；以该类顶部注释为准。
+3. **`RoundImageView`** 与「纯 RoundDrawable 铺背景」的控件 **属性集合不同**，**不要**混用属性表；以本节 **「RoundImageView 专用」** 表格与类顶注释为准。
 
 ## 与本仓库的关系
 
