@@ -4,8 +4,8 @@ description: >-
   在 Android 布局或代码中处理圆角、纯色背景、描边时，先校验模块是否依赖
   io.github.afkt:DevWidgetX（或工程 dev_widget 坐标 / DevWidget 子模块）；有依赖则优先使用
   dev.widget.ui.round 包内控件与 RoundDrawable，减少手写 shape/layer-list XML。
-  若需求命中 ShadowLayout 能力（可配置阴影、渐变、selector/ripple/虚线等；仅「圆角内裁剪子 View」见
-  devwidget-radius-ui）且模块有该依赖，则改按 `.cursor/skills/shadowlayout-ui/SKILL.md` 选型，勿用 round 硬扛。
+  三层顺序：仅圆角+纯色+描边用 round；在此基础上还须裁子 View 且无 hl_* 类能力时用 radius（见
+  devwidget-radius-ui）；再之外且命中 ShadowLayout 能力表、模块有该依赖时按 shadowlayout-ui，勿用 round 硬扛。
   用于编写或修改 layout、用户提到圆角卡片、边框描边、纯色圆角背景、替代 shape drawable 时。
 disable-model-invocation: false
 ---
@@ -21,9 +21,21 @@ disable-model-invocation: false
    - 工程统一坐标：如 `deps.dev.dev_widget`（定义见 `file/gradle/config.gradle` 等）
    - 本地子模块：`project(':DevWidget')`、`project(":lib:DevWidget")` 等与 **DevWidget / DevWidgetX** 模块相关的 `project(...)`
 2. **未找到任何上述依赖**：**跳过**本 skill 后续全部规则；不要假设存在 `dev.widget.ui.round` 类；圆角/描边/背景按常规方式处理（如 `shape` drawable、`MaterialShapeDrawable`、`CardView` 等，以项目既有风格为准）。
-3. **已找到依赖**：需要「圆角 + **纯色**背景 + 描边」或希望少写 drawable XML、且 **未命中** 下文「ShadowLayout 命中条件」时，**优先**选用下面 **`DevWidget/src/main/java/dev/widget/ui/round`**（从 DevWidget 模块源码根起算，父目录以工程为准）中的类型（布局里写完整类名，见各文件顶部 KDoc）。
+3. **已找到依赖**：需要「圆角 + **纯色**背景 + 描边」或希望少写 drawable XML，且 **应先按下方「三层决策」** 判断是 **round** 还是应改读 **radius** / **ShadowLayout**；本 skill 的「优先 round」仅对应 **第一层**。
 
 本 skill 可在 **任意仓库** 使用；**是否走 round 逻辑只以 Gradle 里是否存在 DevWidgetX / DevWidget 依赖为准**，不以「仓库里是否自带 `DevWidget/src/...` 源码树」为唯一依据。
+
+## 与 devwidget-radius-ui、shadowlayout-ui 的三层决策顺序（防误判）
+
+按 **固定顺序** 判断，**不要**因模块同时依赖 ShadowLayout 就把「裁剪」误判为必须用 ShadowLayout。
+
+| 顺序 | 需求摘要 | 选型 | 技能文件 |
+|------|----------|------|----------|
+| **1** | 圆角 + 纯色背景 + 描边；子内容 **可以** 画出圆角外 | **`dev.widget.ui.round`**（本 skill） | 本文 |
+| **2** | 在 **1** 的基础上 **必须** 把子 View / 视频等 **裁在圆角内**；**不要** `hl_shadow*`、线性渐变、pressed 双态、虚线、`hl_bindTextView` 等 | **`dev.widget.ui.radius`** | `.cursor/skills/devwidget-radius-ui/SKILL.md` |
+| **3** | **2** 仍不够，或需要 ShadowLayout **`app:hl_*`** 能力（可配置软阴影、渐变、双态 selector/ripple、虚线、绑定 TextView 等），且模块 **已依赖** ShadowLayout | **`com.lihang.ShadowLayout`** | `.cursor/skills/shadowlayout-ui/SKILL.md` |
+
+**仅「圆角内裁剪」不是 ShadowLayout 的充分理由**：有 DevWidget 时走 **第 2 层 radius**，勿仅为裁剪引入或选用 ShadowLayout。第 3 层须 **同时** 满足「命中 `hl_*` 能力」与「Gradle 有 ShadowLayout 依赖」。
 
 ## `dev.widget.ui.round` 清单（提高检索命中率）
 
@@ -44,19 +56,23 @@ disable-model-invocation: false
 
 ## ShadowLayout 命中条件（round **没有**、勿用 round 替代）
 
-`dev.widget.ui.round` 的 `RoundDrawable` 背景系：**纯色填充 + 圆角 + 描边**；**无** `ShadowLayout` 那套 `app:hl_*` 能力。下列任一条为 **true** 且当前模块 **已依赖** `com.github.lihangleo2:ShadowLayout` 时，应 **改读并遵循** `.cursor/skills/shadowlayout-ui/SKILL.md`，用 `com.lihang.ShadowLayout`（或项目既定封装）实现，**不要**再用 round 容器「凑合」：
+`dev.widget.ui.round` 的 `RoundDrawable` 背景系：**纯色填充 + 圆角 + 描边**；**无** `ShadowLayout` 那套 `app:hl_*` 能力。
 
-| 命中项 | round 为何不够 | ShadowLayout 侧（详见 shadowlayout-ui skill） |
-|--------|----------------|-----------------------------------------------|
-| **裁剪** | 背景画圆角 **不** 裁子 View，子内容可画出圆角外 | 可把子内容裁在圆角轮廓内（如视频圆角等 README 场景） |
-| **可配置阴影** | **无** `hl_shadowColor` / `hl_shadowLimit` / 偏移、单边隐藏等 | `app:hl_shadow*` 软阴影 |
+**先排除 radius**：若需求 **只是**「在圆角 + 纯色 + 描边前提下裁子内容」，见上文 **三层决策第 2 层** 与 `.cursor/skills/devwidget-radius-ui/SKILL.md`，**不要**把「裁剪」直接记为下表 ShadowLayout 命中。
+
+下列 **在已排除「仅用 radius 即可」之后**，任一条为 **true** 且当前模块 **已依赖** `com.github.lihangleo2:ShadowLayout` 时，应 **改读并遵循** `.cursor/skills/shadowlayout-ui/SKILL.md`，用 `com.lihang.ShadowLayout`（或项目既定封装）实现，**不要**再用 round（或 radius）硬扛 ShadowLayout 独占能力：
+
+| 命中项 | round / radius 为何不够 | ShadowLayout 侧（详见 shadowlayout-ui skill） |
+|--------|-------------------------|-----------------------------------------------|
+| **裁剪 + ShadowLayout 独占能力** | **仅** 裁剪 → **radius**（见 devwidget-radius-ui）。**若** 还需与本表后列组合（如裁视频 **且** 要 `hl_shadow*`），则 ShadowLayout | 圆角轮廓内裁剪与 `hl_*` 背景/阴影等可同容器配置 |
+| **可配置阴影** | **无** `hl_shadowColor` / `hl_shadowLimit` / 偏移、单边隐藏等（系统 `elevation` 不算本列） | `app:hl_shadow*` 软阴影 |
 | **渐变背景** | `RoundDrawable` 路径 **非** 线性渐变 XML 替代 | `hl_startColor` / `hl_endColor` / `hl_angle` 等 |
 | **按压 / 选中 / ripple** | 无容器级 `pressed`/`selected`/`ripple` 与 `_true` 双态背景、描边 | `hl_shapeMode`、`hl_layoutBackground` / `_true`、`hl_strokeColor` / `_true` |
 | **虚线描边** | 无 dash 模式 | `hl_shapeMode="dashLine"` + `hl_stroke_dashWidth` / `hl_stroke_dashGap` |
 | **图片背景 selector** | 容器背景不做「双态切换整张图」那套 | `hl_layoutBackground` + `hl_layoutBackground_true` 等 |
 | **绑定 TextView** | 无随状态改绑定 View 文案/颜色 | `hl_bindTextView`、`hl_text` / `hl_text_true` 等 |
 
-**关于「裁剪」一行**：若实际需求 **只是**「子内容必须画在圆角轮廓内」、**未同时**需要本表其它列能力（`hl_shadow*`、线性渐变、pressed 双态、虚线等），且模块 **已依赖 DevWidget**，应 **优先** `dev.widget.ui.radius`（见 `.cursor/skills/devwidget-radius-ui/SKILL.md`），**不要**仅为裁剪引入 ShadowLayout。
+**再次强调（与上文「先排除 radius」一致）**：仅「子内容裁在圆角内」、无本表其它列能力 → **`dev.widget.ui.radius`**（`.cursor/skills/devwidget-radius-ui/SKILL.md`），**不要**因工程已依赖 ShadowLayout 就改用 ShadowLayout。
 
 **不算命中 ShadowLayout 的特例**：只要 **`elevation` / `translationZ` / Material 默认阴影** 即可、**不要** `hl_shadow*` 那套参数时，仍可用 round + 系统阴影，**不必**为此引入 ShadowLayout（与 shadowlayout-ui skill 表述一致）。
 

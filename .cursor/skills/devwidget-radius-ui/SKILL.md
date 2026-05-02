@@ -13,7 +13,7 @@ disable-model-invocation: false
 
 ## 与 `devwidget-round-ui` 的关系
 
-先读 **`.cursor/skills/devwidget-round-ui/SKILL.md`**：其中的 **DevWidget 依赖校验**、**ShadowLayout 命中条件**、**`RoundImageView` 与背景系属性不可混用** 等规则 **仍然成立**。
+先读 **`.cursor/skills/devwidget-round-ui/SKILL.md`**：其中的 **DevWidget 依赖校验**、**三层决策顺序（round → radius → ShadowLayout）**、**ShadowLayout 命中条件**、**`RoundImageView` 与背景系属性不可混用** 等规则 **仍然成立**。需要 **`app:hl_*`** 独占能力时改读 **`.cursor/skills/shadowlayout-ui/SKILL.md`**，勿用 radius 替代 ShadowLayout。
 
 本 skill 只解决一件事：在 **已满足**「该用 DevWidget、且不是 ShadowLayout 那套复杂背景/阴影需求」的前提下，若相对 `dev.widget.ui.round` **仅多出**「**裁剪**子内容到圆角区域内」（源码在 `draw()` 里对 `Canvas` `clipPath`），则 **改用 `dev.widget.ui.radius` 包内对应 View**，**不要**仅为裁剪去依赖 `com.github.lihangleo2:ShadowLayout`。
 
