@@ -1,0 +1,9 @@
+---
+description: >-
+  在本仓库对 .cursor/ 做会影响工作区可发现性或行为的变更后（含 rules、skills 及后续其它纳入
+  CURSOR_WORKSPACE_CATALOG.md 的路径），同步更新 .cursor/CURSOR_WORKSPACE_CATALOG.md
+  中的子树一览、表格与摘要，避免说明与仓库脱节。
+alwaysApply: true
+---
+
+在本仓库中若你 **新增、删除或重命名** `.cursor/` 下已纳入或应纳入 **[`.cursor/CURSOR_WORKSPACE_CATALOG.md`](../CURSOR_WORKSPACE_CATALOG.md)** 编目的内容（例如 `rules/*.mdc`、`skills/**/SKILL.md`，以及将来出现的 `hooks`、其它约定目录或顶层说明文件），必须在同一轮或后续提交前 **更新该 Catalog 文件**：同步「当前子树一览」、各章节表格与说明，并视情况更新文末维护清单。不限于仅维护 `rules` 与 `skills` 两节——任何新的 `.cursor` 结构若需团队可见，应在 Catalog 中增删对应小节。
