@@ -1,102 +1,108 @@
 ---
 name: devwidget-round-ui
 description: >-
-  Android 布局或代码：圆角、纯色底、描边、少写 shape/layer-list。先查模块是否已依赖 Maven 坐标
-  **io.github.afkt:DevWidgetX**（或工程 deps 中映射到该坐标的别名，如 deps.dev.dev_widget）。有依赖则 **先 round 后
-  radius**：子内容可画出圆角外 → `dev.widget.ui.round` + `RoundDrawable`；必须把子 View/视频/位图裁在圆角内
-  → `dev.widget.ui.radius`（`draw` 内 `clipPath`）。`Radius*` 不会在 init 里自动注入 RoundDrawable 背景，既要裁剪又要同色底+描边时在代码里
-  `RoundDrawable.fromAttributeSet` + `setBackgroundKeepingPadding`。`RoundImageView` 与容器背景系属性表分离。无依赖则整份跳过。实现以依赖库内
-  `declare-styleable` 与对应类为准。选型与 ShadowLayout 的衔接见 **.cursor/skills/shadowlayout-ui/SKILL.md**（其中 round/radius 以本文为准）。
-disable-model-invocation: false
+  在需要圆角矩形纯色背景、描边边框时，优先用 DevWidget（io.github.afkt:DevWidgetX）的
+  dev.widget.ui.round 包替代 shape / layer-list drawable。列出 Round 系列 View、
+  R.styleable.DevWidget 中相关 app:dev_* 属性及行为。用于布局 XML、圆角卡片、背景、
+  头像圆圈、减少 drawable 文件。
 ---
 
-# DevWidgetX 圆角 UI（`round` / `radius`）
+# DevWidget `round` 包：圆角 + 纯色 + 描边
 
-发布坐标：**`io.github.afkt:DevWidgetX`**。与 **ShadowLayout** 同层约定：**是否使用本文 API 只以 Gradle 里是否存在该 Maven 依赖（或等价别名）为准**，不根据本仓库是否含源码树判断。
+## 何时用本 Skill
 
-## 前置条件（必做）
+- 需求是：**圆角**、**纯色背景**、**可选描边**，打算写 `shape.xml` / `layer-list` / selector drawable。
+- **默认前提**：工程已依赖 **DevWidget**（及 README 要求的 **DevApp**）。坐标与说明见仓库 [lib/DevWidget/README.md](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md)。
+- **范围**：仅使用包路径 `dev.widget.ui.round` 下的实现；不引导使用 `dev.widget.ui.radius` 等其他目录。
 
-**仅当当前正在处理的 Android 模块已依赖 DevWidgetX 时**，才执行本 skill 中「使用 `dev.widget.ui.round` / `dev.widget.ui.radius`」及后续规则。
+## 核心原则
 
-1. 在该模块的 **`build.gradle` / `build.gradle.kts`** 以及工程里 **`apply from` 的 deps 脚本**（如 `file/deps/*.gradle`、`file/gradle/config.gradle`、`file/gradle/config_libs.gradle`）中检索是否出现任一形式：
-   - Maven：**`io.github.afkt:DevWidgetX`**（版本号可变）
-   - 工程别名：如 **`deps.dev.dev_widget`** 等映射到上述坐标（以本仓库及目标工程的 deps 配置为准）
-2. **未找到任何上述依赖**：**跳过**本 skill 后续全部规则；不要引用 `dev.widget.ui.round` / `radius`；圆角与背景按项目常规（`shape`、`MaterialShapeDrawable`、`CardView`、`clipToOutline` 等）。
-3. **已找到依赖**：按下文 **`round` → `radius`** 选型；属性与行为以**已解析到 classpath 的 DevWidgetX 版本**内资源与类实现为准。
+1. **用 Round 系列控件 + `app:dev_*`**，少建 drawable 文件。
+2. **禁止与 `android:background` 混用（RoundDrawable 方案）**：圆角背景占用了 View 的 `background`。在 XML 里写 `android:background` **不会按预期生效**；背景色、边框请用下文 `app:dev_backgroundColor`、`app:dev_borderWidth`、`app:dev_borderColor`。
+3. **RoundDrawable 只支持纯色填充**（`ColorStateList`），不支持 Bitmap/复杂 Drawable 作背景。
+4. 命名空间：`xmlns:app="http://schemas.android.com/apk/res-auto"`（以工程为准）。
 
-本 skill 可在 **任意仓库** 使用；**是否走 DevWidgetX 逻辑只以 Gradle 里是否存在该依赖为准**。
+## Round 包类型一览（命中速查）
 
-## `round` 与 `radius`（固定顺序）
+| 类型 | 类名 | 典型用途 |
+| :--- | :--- | :--- |
+| 布局容器 | `RoundFrameLayout` | 卡片、蒙层、任意子 View 容器 |
+| 布局容器 | `RoundLinearLayout` | 横向/纵向圆角条 |
+| 布局容器 | `RoundConstraintLayout` | Constraint 圆角容器 |
+| 文本 | `RoundTextView` | 标签、角标、带圆角纯色底的文字 |
+| 图片 | `RoundImageView` | **正圆**裁剪图片 + 可选圆圈描边/底色（实现基于 CircleImageView，**不是**圆角矩形图） |
+| 非 View | `RoundDrawable` | 代码里给任意 View 设置同款背景：`fromAttributeSet` + `setBackgroundKeepingPadding` |
 
-| 顺序 | 需求 | 包 / 类 |
-|------|------|---------|
-| **1** | 圆角 + **纯色**填充 + 可选描边；子内容 **允许** 画在圆角轮廓 **外** | **`dev.widget.ui.round`** |
-| **2** | 在 **1** 的前提下 **必须** 把子 View / Surface / 视频等 **裁进圆角**；且仍只要 DevWidgetX 这套「纯色底 + 圆角 + 描边」能力范围 | **`dev.widget.ui.radius`** |
+**选控件**：与原生同名布局一致即可（要 Constraint 用 `RoundConstraintLayout`，要文字用 `RoundTextView`…）。
 
-**不要**把「需要裁剪」误判成必须换别的容器库：有 DevWidgetX 时 **2** 用 **`Radius*`**。仅需系统 **`elevation` / `translationZ`** 时，`Round*` 或 `Radius*` 均可叠加，不必为此换方案。
+**RoundImageView 与其它 Round* 的差异**：仅负责**圆形**头像式展示（`CENTER_CROP`）；若要圆角矩形图片请不在本 Skill 范围内另选方案。
 
-## `dev.widget.ui.round`（包 `dev.widget.ui.round`）
+## XML 属性（`declare-styleable` 名：`DevWidget`）
 
-| 文件 | 类型 | 用途 |
-|------|------|------|
-| `RoundLinearLayout` | `dev.widget.ui.round.RoundLinearLayout` | 圆角线性容器 |
-| `RoundConstraintLayout` | `dev.widget.ui.round.RoundConstraintLayout` | 圆角约束容器 |
-| `RoundFrameLayout` | `dev.widget.ui.round.RoundFrameLayout` | 圆角帧布局 |
-| `RoundRelativeLayout` | `dev.widget.ui.round.RoundRelativeLayout` | 圆角相对布局 |
-| `RoundTextView` | `dev.widget.ui.round.RoundTextView` | 圆角文本 |
-| `RoundButton` | `dev.widget.ui.round.RoundButton` | 圆角按钮 |
-| `RoundImageView` | `dev.widget.ui.round.RoundImageView` | 圆角位图（**属性表与下述容器不同**，见下节） |
-| `RoundDrawable` | `dev.widget.ui.round.RoundDrawable` | 非 View；代码里 `setBackground` / 组合 |
+所有属性在资源中声明为 **`DevWidget`** 分组，XML 前缀一般为 **`app:`**。
 
-容器按布局结构选；纯代码拼背景用 **`RoundDrawable`**。
+### A. RoundDrawable 系（`RoundFrameLayout` / `RoundLinearLayout` / `RoundConstraintLayout` / `RoundTextView`）
 
-### `declare-styleable name="DevWidget"` — 与 RoundDrawable 背景系共用
+| 属性 | 类型 | 作用                                                                                           |
+| :--- | :--- |:---------------------------------------------------------------------------------------------|
+| `app:dev_backgroundColor` | color | 填充色（纯色；可为状态色列表由 Drawable 处理）                                                                 |
+| `app:dev_borderWidth` | dimension | 描边宽度；0 表示无边框                                                                                 |
+| `app:dev_borderColor` | color | 描边颜色                                                                                         |
+| `app:dev_radius` | dimension | 统一圆角半径；与四角属性互斥逻辑见下                                                                           |
+| `app:dev_radiusLeftTop` | dimension | 左上圆角                                                                                         |
+| `app:dev_radiusRightTop` | dimension | 右上圆角                                                                                         |
+| `app:dev_radiusLeftBottom` | dimension | 左下圆角                                                                                         |
+| `app:dev_radiusRightBottom` | dimension | 右下圆角                                                                                         |
+| `app:dev_isRadiusAdjustBounds` | boolean | 为 true 时，在 `onBoundsChange` 中把圆角设为 **短边的一半**（胶囊/全圆角 View）；与显式 `dev_radius` 或任一角大于 0 的组合以源码为准 |
 
-`RoundLinearLayout` / `RoundFrameLayout` / `RoundRelativeLayout` / `RoundConstraintLayout` / `RoundTextView` / `RoundButton` 通过 **`RoundDrawable.fromAttributeSet`** 读下列属性并设为 **View 的 background**（纯色圆角矩形 + 可选描边，**非** XML 线性渐变那类）。
+**圆角逻辑摘要**（`RoundDrawable.fromAttributeSet`）：
 
-| 属性 | 说明 |
-|------|------|
-| `app:dev_backgroundColor` | 填充色 |
-| `app:dev_borderColor` / `app:dev_borderWidth` | 描边 |
-| `app:dev_radius` | 统一圆角；与四角互斥逻辑见 `fromAttributeSet` |
-| `app:dev_radiusLeftTop` / `RightTop` / `LeftBottom` / `RightBottom` | 分角半径 |
-| `app:dev_isRadiusAdjustBounds` | `true` 时趋向胶囊形（`min(w,h)/2`）；与显式半径组合时以实现为准 |
+- 若 **任一角** `dev_radiusLeftTop` / `RightTop` / `LeftBottom` / `RightBottom` **> 0**：使用 `setCornerRadii` 四角独立圆角，并 **关闭** radius adjust bounds 的自动行为。
+- 否则使用 **`dev_radius`** 作为 `setCornerRadius`；若 **`dev_radius` > 0** 同样会关闭与「仅 adjust」相关的自动圆角逻辑。
+- 描边：`setStrokeData(borderWidth, borderColor)`。
 
-**`RoundImageView` 专用**（不要与上表混用）：`dev_borderWidth`、`dev_borderColor`、`dev_borderOverlay`、`dev_circleBackgroundColor` 等 — 以 **`RoundImageView.initAttrs`** 与类顶注释为准。
+### B. 仅 `RoundImageView`（圆形图 + 边框）
 
-### 行为要点（round）
+| 属性 | 类型 | 作用 |
+| :--- | :--- | :--- |
+| `app:dev_borderWidth` | dimension | 圆圈描边宽度 |
+| `app:dev_borderColor` | color | 描边颜色 |
+| `app:dev_borderOverlay` | boolean | 边框是否与内容叠加（内缩 vs 覆盖） |
+| `app:dev_circleBackgroundColor` | color | 图片背后**圆形**纯色填充（透明则可不画） |
 
-1. **`android:background`**：圆角底与描边走 **background**；XML 里写 `android:background` 易与 `dev_*` **冲突或不生效**，优先用 **`app:dev_*`**。
-2. **子 View 不自动裁剪**：上述带 RoundDrawable 背景的容器 **只画背景**，**不** `clip` 子 View；要裁子内容 → 用 **`dev.widget.ui.radius`**（见下节）。**`RoundImageView`** 的位图圆角/裁剪语义 **以该类源码为准**，不要与容器混谈。
-3. **`dev_clearRadius` 等**：在库 **`declare-styleable`** 中可能标给 **`Radius*`**；**round 容器不读** — 勿把 round 文档套到 `Radius*` 上。
+**注意**：`RoundImageView` **不使用** `dev_radius` / `dev_backgroundColor` 等矩形圆角背景属性做圆角矩形；固定为圆形裁剪，`ScaleType` 仅支持 `CENTER_CROP`，不支持 `adjustViewBounds`。
 
-## `dev.widget.ui.radius`（包 `dev.widget.ui.radius`）
+## 代码侧（可选）
 
-在 **已确认依赖 DevWidgetX** 且需求相对 round **仅多出「按圆角路径裁剪子绘制」**（典型为 `draw` 里对 `Canvas` **`clipPath`**）时使用。
+- `RoundDrawable.fromAttributeSet(context, attrs, defStyleAttr, defStyleRes)`：与 XML 相同属性集构造背景。
+- `RoundDrawable.setBackgroundKeepingPadding(view, drawable)`：设置 background 并尽量保留 padding。
+- 链式 API：`setBgData`、`setStrokeData` / `setStrokeColors`、`setRadiusAdjustBounds`、`getStrokeWidth` 等（见 `RoundDrawable` 源码）。
 
-| 文件 | 类型 | 与 round 对应 |
-|------|------|----------------|
-| `RadiusLinearLayout` | `dev.widget.ui.radius.RadiusLinearLayout` | `RoundLinearLayout` |
-| `RadiusConstraintLayout` | `dev.widget.ui.radius.RadiusConstraintLayout` | `RoundConstraintLayout` |
-| `RadiusRelativeLayout` | `dev.widget.ui.radius.RadiusRelativeLayout` | `RoundRelativeLayout` |
-| `RadiusLayout` | `dev.widget.ui.radius.RadiusLayout`（`FrameLayout`） | `RoundFrameLayout` |
-| `RadiusTextView` | `dev.widget.ui.radius.RadiusTextView` | `RoundTextView` |
-| `RadiusButton` | `dev.widget.ui.radius.RadiusButton` | `RoundButton` |
-| `RadiusImageView` | `dev.widget.ui.radius.RadiusImageView` | 与 `RoundImageView` **API 不同**；裁剪以 radius 实现为准 |
-| `IRadiusMethod` | 接口 | 改圆角、`dev_clearRadius` 等 |
+## XML 最小示例（矩形圆角 + 纯色 + 描边）
 
-需要 **FrameLayout** 语义时用 **`RadiusLayout`**。
+```xml
+<dev.widget.ui.round.RoundTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="6dp"
+    android:text="标签"
+    app:dev_backgroundColor="#33FF5722"
+    app:dev_borderColor="#FFFF5722"
+    app:dev_borderWidth="1dp"
+    app:dev_radius="8dp" />
+```
 
-### `Radius*` 与 round 的实现差异（易错）
+**胶囊 View**：将 `app:dev_isRadiusAdjustBounds` 设为 `true`，并通常配合高度与 `dev_backgroundColor` / 描边使用（具体圆角值由短边一半决定）。
 
-`RadiusAttrs` 读 **圆角** 与 **`app:dev_clearRadius`**，容器 **会**按路径裁剪。
+## 与 README 的对应关系
 
-**`Radius*` 的 `initAttrs` 不会调用 `RoundDrawable.fromAttributeSet`**，因此 **`app:dev_backgroundColor`、`dev_borderColor`、`dev_borderWidth`、`dev_isRadiusAdjustBounds` 不会**像 `RoundLinearLayout` 那样 **自动**变成圆角背景。
+- 官方目录说明：`dev.widget.ui.round` 为圆角相关 View（见 [DevWidget README - 目录结构](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md)）。
+- API 列表锚点：`devwidgetuiround` 小节中的 `RoundDrawable`、`RoundImageView` 等（README 中 **未单独列出** 各 `Round*Layout`，以模块源码 `lib/DevWidget/src/main/java/dev/widget/ui/round/` 为准）。
 
-既要 **裁剪** 又要 **与 RoundDrawable 相同的纯色圆角底 + 描边**时：在代码中对 `Radius*` 使用 **`RoundDrawable.fromAttributeSet`** + **`RoundDrawable.setBackgroundKeepingPadding`**（与 `RoundLinearLayout` 同源 API），或项目内已有封装。以**依赖库内** `declare-styleable`、**`RoundDrawable`** 与 **`Radius*`** 实现为准。
+## 自检清单（生成布局前）
 
-若在 `Radius*` 上手动设 **`RoundDrawable` 作 background**，须遵守 **`RoundLinearLayout` 类顶注释**里关于 background 与 padding 的约定。
-
-## 与 ShadowLayout skill 的关系
-
-三层 **round → radius → ShadowLayout** 的完整顺序与 **`hl_*` 独占能力**说明在 **`.cursor/skills/shadowlayout-ui/SKILL.md`**。本文只覆盖 **round / radius**；是否再用 ShadowLayout 以该 skill 为准，且 **DevWidgetX 是否生效**始终回到本文 **「前置条件」** 的 Gradle 校验。
+- [ ] 是否应用了 **DevWidget** 依赖且未用 `android:background` 覆盖圆角背景？
+- [ ] 若是 **矩形**圆角容器：是否选了 `Round*Layout` / `RoundTextView` 之一？
+- [ ] 若是 **圆形头像**：是否使用 `RoundImageView` 且接受 `CENTER_CROP`？
+- [ ] 描边是否为 `app:dev_borderWidth` + `app:dev_borderColor` 组合？
