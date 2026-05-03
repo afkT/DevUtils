@@ -1,78 +1,156 @@
 ---
 name: devsimple-viewtheme-xml
 description: >-
-  在布局 XML 中按 DevSimple 的 ViewTheme 约定补全 style。先检查模块是否依赖 DevSimple
-  （如 io.github.afkt:DevSimple 或 project 引入）；无依赖则不添加任何 ViewTheme style。
-  用于编写或修改 layout、用户要求 DevSimple / ViewTheme 默认样式、或统一基础尺寸时。
+  为布局 XML 中的控件默认补全 DevSimple（lib/DevSimple）的 ViewTheme 样式引用：
+  按控件继承链匹配 ViewTheme.&lt;类名&gt;，ImageView/AppCompatImageView 使用
+  ViewTheme.ImageView.FIT_XY，无匹配则用 ViewTheme.View。在编写或批量整理
+  layout XML、引入 ViewTheme、迁移旧布局、或用户提到 DevSimple/ViewTheme
+  时使用。默认工程已依赖 DevSimple。
+disable-model-invocation: true
 ---
 
-# DevSimple 布局默认 ViewTheme 样式
+# DevSimple 布局 XML 默认 ViewTheme 样式
 
-## 前置条件（必做）
+源码参考：[DevUtils/lib/DevSimple](https://github.com/afkT/DevUtils/tree/master/lib/DevSimple)（本地优先查 `lib/DevSimple/src/main/res/values/`）。
 
-**仅当当前正在编辑的 Android 模块已依赖 DevSimple 时**，才执行本 skill 的「补 `style="@style/ViewTheme.…"`」逻辑。
+## 何时应用
 
-1. 在该模块所属的 **`build.gradle` / `build.gradle.kts`**（及工程里通过 `apply from` 引入的 deps 脚本）中检索是否出现 DevSimple，例如：
-   - Maven：`io.github.afkt:DevSimple`（版本可变，如 `1.0.6`）
-   - 本地工程：`project(':DevSimple')`、`project(":lib:DevSimple")` 等与 DevSimple 模块相关的 `project(...)`
-2. **未找到任何 DevSimple 依赖**：**不要**为布局中的 View 添加 `style="@style/ViewTheme.…"`，也无需引用本 skill 的后续规则；可正常写布局其它内容。
-3. **已找到依赖**：再按下面章节选择样式并写入。
+- 新建或编辑 `res/layout/**/*.xml` 中的控件，需要统一默认宽高与主题习惯时。
+- 用户要求为 View 补上 DevSimple / `ViewTheme` 的 `style` 时。
 
-本 skill 可在 **任意仓库** 使用；DevSimple 既可能是 **Maven 依赖**，也可能是 **本仓库内的 `DevSimple` 子模块**（源码根目录下常见 `DevSimple/src/...`，模块根之前的父路径以工程为准）——**是否走本逻辑只以 Gradle 里是否存在上述依赖为准**，不以「仓库里是否检出 DevSimple 源码树」为准。
+## 前置假设
 
-## `ViewTheme.*` 从哪来、如何核对
+- 模块已依赖 DevSimple，R 中可解析 `@style/ViewTheme.*`。
+- 若仓库内存在 `lib/DevSimple`，**以仓库内 XML 为准**核对样式名；上游变更时只同步该目录下的定义。
 
-- **通过 `io.github.afkt:DevSimple:…` 依赖时**：`ViewTheme.*` 随 AAR 资源打包进应用，一般 **无法在宿主仓库里直接打开** `values` 文件；以 **DevSimple 发布版本文档或本 skill 所列基样式名为准**。若用户指定了版本且需要 100% 核对，可让用户打开依赖缓存中的 `res/values` 或对照该版本的源码仓库。
-- **本仓库含 DevSimple 源码时**（例如 `DevSimple/src/main/res/values`，模块根目录名以工程为准）：可用 **Grep / Read** 在该目录下确认 `name="ViewTheme.…"` 是否存在，再写入布局。
+## 核心规则（按顺序执行）
 
-## 默认写入规则（仅在有 DevSimple 依赖时）
+1. **已有 `style`/`android:theme`**：不要覆盖用户显式配置；除非用户明确要求替换。
+2. **解析控件“语义类名”**（用于匹配 `ViewTheme` 名称）：
+   - XML 标签为完整类名（如 `androidx.recyclerview.widget.RecyclerView`）时，取**简单类名**（`RecyclerView`）。
+   - 对 **AppCompat / Material 控件**：沿 Java/Kotlin 继承向**平台 Widget 类**回退，取**第一个在下方「根样式表」中出现的简单类名**作为基准。  
+     例：`AppCompatEditText` → `EditText`（不用 `TextView`）；`AppCompatTextView` → `TextView`；`MaterialButton` → `Button`；`androidx.appcompat.widget.Toolbar` → `Toolbar`。
+3. **ImageView 特例**（用户约定）：`ImageView` 与 `androidx.appcompat.widget.AppCompatImageView` 一律使用  
+   `style="@style/ViewTheme.ImageView.FIT_XY"`  
+   （不使用 `ViewTheme.ImageView` 作为默认。）
+4. **匹配样式**：若存在 `ViewTheme.<语义类名>` 根样式（与下方清单一致），则  
+   `style="@style/ViewTheme.<语义类名>"`  
+   （**特例 ImageView 已在上一步处理**。）
+5. **ViewPager2**：未单独提供 `ViewTheme.ViewPager2`；库内约定与 `ViewPager` 共用族名，使用  
+   `style="@style/ViewTheme.ViewPager"`。
+6. **无匹配**：使用 `style="@style/ViewTheme.View"`。
+7. **写法**：`style` 放在标签属性前列（与项目现有 XML 风格一致即可）。
 
-1. **不要覆盖** 已有 `style`（除非用户明确要求替换）。
-2. 在主题/AppCompat 已按项目要求配置的前提下，为需要统一尺寸的 View 增加 `style="@style/ViewTheme.…"`。
-3. **解析用「类名」**：以布局标签对应类的 **继承链** 为准，从当前类向父类走到 `android.view.View`，取链上 **第一个** 能与下面「库中已有基样式」列表对齐的简单类名（最近、最具体）。
-   - 例：`AppCompatEditText` → … → `EditText`：用 **`@style/ViewTheme.EditText`**，不用 `ViewTheme.TextView`。
-   - 例：`AppCompatImageView` → … → `ImageView`：见下节。
+## 继承链速查（写 XML 时脑内回退顺序）
 
-## ImageView 特例
+从当前类沿父类向 `View` 方向查找，**命中下表「根样式表」中的类名即停止**（取命中项，再套用 ImageView 特例）。
 
-继承链上语义基类为 **`ImageView`**（含 `AppCompatImageView` 等）时，默认：
+| 常见 XML / 类 | 回退到（语义类名） |
+|---------------|-------------------|
+| AppCompatTextView | TextView |
+| AppCompatEditText | EditText |
+| AppCompatButton / MaterialButton | Button |
+| AppCompatImageView | ImageView → 使用 **ViewTheme.ImageView.FIT_XY** |
+| AppCompatCheckBox / CheckBox | 无对应根样式 → **ViewTheme.View** |
+| AppCompatRadioButton / RadioButton | 无 → **ViewTheme.View** |
+| Switch / SwitchCompat / MaterialSwitch | 无 → **ViewTheme.View** |
+| ViewPager2 | ViewPager |
+| com.google.android.material.card.MaterialCardView | MaterialCardView |
+| com.google.android.material.tabs.TabLayout | TabLayout |
+| com.lihang.ShadowLayout | ShadowLayout |
+| androidx.coordinatorlayout.widget.CoordinatorLayout | CoordinatorLayout |
+| androidx.swiperefreshlayout.widget.SwipeRefreshLayout | SwipeRefreshLayout |
+| androidx.recyclerview.widget.RecyclerView | RecyclerView |
+| androidx.core.widget.NestedScrollView | NestedScrollView |
 
-`style="@style/ViewTheme.ImageView.FIT_XY"`
+## 根样式表（DevSimple `values` 扫描结果）
 
-**只有** ImageView 系使用 **`FIT_XY`**；其它控件不要用 `FIT_XY`。
+以下均为 `lib/DevSimple/src/main/res/values/` 中定义的 **`ViewTheme.<Name>` 控件向根样式**（可直接 `@style/ViewTheme.<Name>`，ImageView 默认除外见上）。
 
-## 非 ImageView
+| 样式名 | 典型 XML 标签 / 说明 |
+|--------|---------------------|
+| ViewTheme.View | `View`、无专门主题的控件兜底 |
+| ViewTheme.TextView | `TextView`、`AppCompatTextView` |
+| ViewTheme.EditText | `EditText`、`AppCompatEditText` |
+| ViewTheme.Button | `Button`、`AppCompatButton`、`MaterialButton` |
+| ViewTheme.ImageView | 仅作父样式；**默认不用**，默认用 **ViewTheme.ImageView.FIT_XY** |
+| ViewTheme.ImageView.FIT_XY | `ImageView`、`AppCompatImageView` 默认 |
+| ViewTheme.RecyclerView | `RecyclerView` |
+| ViewTheme.NestedScrollView | `NestedScrollView` |
+| ViewTheme.ScrollView | `ScrollView` |
+| ViewTheme.HorizontalScrollView | `HorizontalScrollView` |
+| ViewTheme.ViewPager | `ViewPager`、`ViewPager2` |
+| ViewTheme.WebView | `WebView` |
+| ViewTheme.Toolbar | `Toolbar`、`androidx.appcompat.widget.Toolbar` |
+| ViewTheme.TabLayout | `TabLayout` |
+| ViewTheme.ProgressBar | `ProgressBar` |
+| ViewTheme.SeekBar | `SeekBar` |
+| ViewTheme.MaterialCardView | `MaterialCardView` |
+| ViewTheme.ConstraintLayout | `ConstraintLayout` |
+| ViewTheme.LinearLayout | `LinearLayout` |
+| ViewTheme.FrameLayout | `FrameLayout` |
+| ViewTheme.RelativeLayout | `RelativeLayout` |
+| ViewTheme.GridLayout | `GridLayout` |
+| ViewTheme.CoordinatorLayout | `CoordinatorLayout` |
+| ViewTheme.AppBarLayout | `AppBarLayout` |
+| ViewTheme.SwipeRefreshLayout | `SwipeRefreshLayout` |
+| ViewTheme.ViewSwitcher | `ViewSwitcher` |
+| ViewTheme.ViewFlipper | `ViewFlipper` |
+| ViewTheme.ViewStub | `ViewStub` |
+| ViewTheme.SurfaceView | `SurfaceView` |
+| ViewTheme.TextureView | `TextureView` |
+| ViewTheme.ShadowLayout | `com.lihang.ShadowLayout` |
 
-若命中基类为 `RecyclerView`、`FrameLayout` 等，使用：
+## 非控件「工具向」根样式（一般不当作控件默认 style）
 
-`style="@style/ViewTheme.<简单类名>"`
+下列存在，但通常用于 **theme 组合或分割线/间距**，不要当作普通 Widget 的默认 `style` 替代 `ViewTheme.View`：
 
-（与 DevSimple 里根级 `ViewTheme.XXX` 命名一致。）
+- `ViewTheme`：`wrap_content` / `wrap_content` 基类。
+- `ViewTheme.Divider` 及 `ViewTheme.Divider.Vertical` / `Horizontal` / `*.DP_*`（`divider_styles.xml`）。
+- `ViewTheme.Padding`、`ViewTheme.Margin` 及大量 `*.TB_DP_*`、`*.LR_DP_*` 等（`padding_margin_styles.xml`）。
 
-## 未找到 `ViewTheme.<类名>` 时
+分割线 `View` 若需库内语义，按方向选用 `ViewTheme.Divider.Vertical` 或 `ViewTheme.Divider.Horizontal` 及子样式，**不属于**「未匹配则用 ViewTheme.View」的替代项，由布局语义决定。
 
-`style="@style/ViewTheme.View"`
+## 子样式命名规律（需要 Match / Gravity / 尺寸时）
 
-## 库中已有基样式（`ViewTheme.<简单类名>`）
+在根样式之上，各控件文件普遍提供（不必背全表，按需拼接）：
 
-AppBarLayout、Button、ConstraintLayout、CoordinatorLayout、Divider、EditText、FrameLayout、GridLayout、HorizontalScrollView、ImageView、LinearLayout、MaterialCardView、NestedScrollView、ProgressBar、RecyclerView、RelativeLayout、ScrollView、SeekBar、SurfaceView、SwipeRefreshLayout、TabLayout、TextView、TextureView、Toolbar、ViewFlipper、ViewPager、ViewStub、ViewSwitcher、WebView。
-
-**回退**：其它 `View` 子类 → `@style/ViewTheme.View`。（ImageView 系仍用 **`ViewTheme.ImageView.FIT_XY`**。）
-
-## 执行步骤（给 Agent）
-
-1. **Gradle**：确认当前 module 是否依赖 DevSimple；**无** → **停止**，不添加 ViewTheme `style`。
-2. 确定标签类的继承链。
-3. 自子向父匹配 **「库中已有基样式」**；`ImageView` → `ViewTheme.ImageView.FIT_XY`，否则 `ViewTheme.<类名>`，否则 `ViewTheme.View`。
-4. **可选校验**：若仓库存在 `DevSimple/.../res/values`（从 DevSimple 模块源码根向下找 `src/main/res/values`），再 Grep 确认 `name="…"`；纯 Maven 依赖则跳过文件 Grep，直接按约定写入。
-5. 写入 `style`，保持项目 XML 风格。
+- `ViewTheme.<Widget>.Match` | `.Match.Width` | `.Match.Height`
+- `ViewTheme.<Widget>.Margin` / `Padding`（空父样式，用于再嵌套子 style）
+- `ViewTheme.<Widget>.Gravity.<CENTER|LEFT|…>` 与 `ViewTheme.<Widget>.Gravity.Layout.<…>`
+- **ImageView**：`ViewTheme.ImageView.CENTER_CROP`、`FIT_CENTER`、`CENTER_INSIDE`、`FIT_START`、`FIT_END`、`MATRIX` 等（见 `image_view_styles.xml`）
+- **EditText**：`Single`、`Match`、`Match.Width`、`Match.Height` 及整套 `Gravity` / `Gravity.Layout`（见 `edit_text_styles.xml`）
+- **ViewStub**：另有 `ViewTheme.ViewStub.Zero` 等（见 `view_stub_styles.xml`）
+- **View**（`styles.xml`）：`ViewTheme.View.Space`、`ViewTheme.View.Space.Weight` 等
 
 ## 示例
 
-- `AppCompatImageView` → `@style/ViewTheme.ImageView.FIT_XY`
-- `RecyclerView` → `@style/ViewTheme.RecyclerView`
-- `FrameLayout` → `@style/ViewTheme.FrameLayout`
-- `AppCompatEditText` → `@style/ViewTheme.EditText`
-- 自定义 `MyView` 无对应样式 → `@style/ViewTheme.View`
+```xml
+<androidx.core.widget.NestedScrollView
+    style="@style/ViewTheme.NestedScrollView">
 
-子样式（如 `ViewTheme.TextView.Gravity.CENTER`）仅在用户明确要求时使用；**本 skill 的默认**仅指上述基样式、ImageView 的 `FIT_XY`、或回退 `ViewTheme.View`。
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/ViewTheme.RecyclerView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        style="@style/ViewTheme.ImageView.FIT_XY"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        style="@style/ViewTheme.EditText" />
+</androidx.core.widget.NestedScrollView>
+```
+
+无库内主题的控件：
+
+```xml
+<androidx.appcompat.widget.SwitchCompat
+    style="@style/ViewTheme.View"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
+
+## 维护说明
+
+新增控件主题时，DevSimple 通常在 `lib/DevSimple/src/main/res/values/` 增加 `*_styles.xml`；Agent 应 **grep** `name="ViewTheme.` 更新本 skill 的「根样式表」与速查表，避免幻觉引用。
