@@ -2,9 +2,9 @@
 name: shadowlayout-ui
 description: >-
   在 Android 布局或代码中，当模块已依赖 com.github.lihangleo2:ShadowLayout（万能阴影布局）时，
-  与 DevWidget 协同按 **round → radius → ShadowLayout** 三层判断：仅圆角+纯色+描边用 round；仅再多「裁子
+  与 DevWidgetX（`io.github.afkt:DevWidgetX`）协同按 **round → radius → ShadowLayout** 三层判断：仅圆角+纯色+描边用 round；仅再多「裁子
   View」且无 hl_* 独占能力用 radius（见 devwidget-round-ui）；其余命中 hl_* 能力再用 ShadowLayout。
-  勿把「仅裁剪」在有 DevWidget 时误判为 ShadowLayout。未依赖 ShadowLayout 则跳过本 skill。
+  勿把「仅裁剪」在有 DevWidgetX 依赖时误判为 ShadowLayout。未依赖 ShadowLayout 则跳过本 skill。
 disable-model-invocation: false
 ---
 
@@ -79,21 +79,21 @@ disable-model-invocation: false
    - Maven：`com.github.lihangleo2:ShadowLayout`（版本号可变）
    - 工程别名：如 `deps.lib.shadowLayout`、`shadowLayout` 等映射到上述坐标（以本仓库 `config_libs.gradle` 为准）
 2. **未找到任何上述依赖**：**跳过**本 skill 后续全部规则；不要假设存在 `com.lihang.ShadowLayout` 或 `app:hl_*` 等属性；圆角/描边/渐变/阴影按项目其它约定处理（如手写 drawable、`MaterialShapeDrawable`、`elevation` / `translationZ` / `Outline` 等）。
-3. **已找到依赖**：再进入下方「与 DevWidget round / radius 的选型」。
+3. **已找到依赖**：再进入下方「与 DevWidgetX round / radius 的选型」。
 
 本 skill 可在 **任意仓库** 使用；**是否走 ShadowLayout 逻辑只以 Gradle 里是否存在该依赖为准**。
 
-## 与 DevWidget round / radius 的选型（必读顺序）
+## 与 DevWidgetX round / radius 的选型（必读顺序）
 
-在已确认 **存在 ShadowLayout 依赖** 的前提下，仍须 **先** 按 DevWidget 文档的 **`round` → `radius`** 两层判断，再决定是否需要 ShadowLayout，**避免**「工程里已有 ShadowLayout」就把 **仅裁剪** 误判为必须用 ShadowLayout。涉及 DevWidget 时须阅读 **`.cursor/skills/devwidget-round-ui/SKILL.md`**（**`round` ↔ `radius` 两层决策**、类清单、`Radius*` + `RoundDrawable` 组合方式）。其中 **不包含** ShadowLayout；何时必须 `hl_*` 以本文 §3 为准。
+在已确认 **存在 ShadowLayout 依赖** 的前提下，仍须 **先** 按 DevWidgetX 文档的 **`round` → `radius`** 两层判断，再决定是否需要 ShadowLayout，**避免**「工程里已有 ShadowLayout」就把 **仅裁剪** 误判为必须用 ShadowLayout。涉及 DevWidgetX 时须阅读 **`.cursor/skills/devwidget-round-ui/SKILL.md`**（**`round` ↔ `radius` 两层决策**、类清单、`Radius*` + `RoundDrawable` 组合方式）。其中 **不包含** ShadowLayout；何时必须 `hl_*` 以本文 §3 为准。
 
-### 1. 何时优先用 DevWidget round
+### 1. 何时优先用 DevWidgetX `round`
 
-若 **仅** 需要圆角 + 纯色背景 + 描边（子内容 **可以** 画出圆角外也无妨），且模块 **已依赖 DevWidgetX / DevWidget**，则 **不要** 套 ShadowLayout；按 **devwidget-round-ui** 使用 `dev.widget.ui.round` 与 `RoundDrawable`。若只要 **系统** `elevation` / `translationZ`、**不要** `app:hl_shadow*`，仍属本层 + 系统阴影即可。
+若 **仅** 需要圆角 + 纯色背景 + 描边（子内容 **可以** 画出圆角外也无妨），且模块 **已依赖 DevWidgetX**（`io.github.afkt:DevWidgetX`），则 **不要** 套 ShadowLayout；按 **devwidget-round-ui** 使用 `dev.widget.ui.round` 与 `RoundDrawable`。若只要 **系统** `elevation` / `translationZ`、**不要** `app:hl_shadow*`，仍属本层 + 系统阴影即可。
 
-### 2. 何时优先用 DevWidget radius（夹在 round 与 ShadowLayout 之间）
+### 2. 何时优先用 DevWidgetX `radius`（夹在 round 与 ShadowLayout 之间）
 
-若在第 **1** 条风格下 **还必须** 把子 View / 视频等 **裁在圆角轮廓内**，且 **不需要** 下文第 3 条中任一 **ShadowLayout 独占** 能力（`hl_shadow*` 软阴影、渐变、`hl_shapeMode` 按压/ripple/虚线、双态背景图、`hl_bindTextView` 等），且模块 **已依赖 DevWidget**，则 **优先** **`dev.widget.ui.radius`**（见 **devwidget-round-ui**），**不要**仅为裁剪选用 `com.lihang.ShadowLayout`。
+若在第 **1** 条风格下 **还必须** 把子 View / 视频等 **裁在圆角轮廓内**，且 **不需要** 下文第 3 条中任一 **ShadowLayout 独占** 能力（`hl_shadow*` 软阴影、渐变、`hl_shapeMode` 按压/ripple/虚线、双态背景图、`hl_bindTextView` 等），且模块 **已依赖 DevWidgetX**，则 **优先** **`dev.widget.ui.radius`**（见 **devwidget-round-ui**），**不要**仅为裁剪选用 `com.lihang.ShadowLayout`。
 
 **实现提示**：`Radius*` 与 round 的 XML 背景自动注入行为不同；既要裁剪又要与 `RoundDrawable` 相同的纯色底 + 描边时，见 **devwidget-round-ui** 中 **`Radius*` + `RoundDrawable`** 小节。
 
@@ -105,26 +105,26 @@ disable-model-invocation: false
 - **渐变背景**（`hl_startColor` / `hl_endColor` / `hl_angle` 等）。
 - **按压 / 选中 / ripple / 虚线描边**（`hl_shapeMode` 等）及双态 `hl_layoutBackground` / `hl_strokeColor` 等。
 - **图片背景 selector**、`hl_bindTextView` 等 round/radius **不具备** 的能力。
-- **裁剪且与上列组合**（例如既要圆角裁切 **又要** `hl_shadow*`），或 **无 DevWidget**、无法使用 radius 时，须裁子内容则只能走 ShadowLayout（或项目其它方案）。
+- **裁剪且与上列组合**（例如既要圆角裁切 **又要** `hl_shadow*`），或 **无 DevWidgetX 依赖**、无法使用 radius 时，须裁子内容则只能走 ShadowLayout（或项目其它方案）。
 
-**「仅裁剪」不算本条**：仅裁在圆角内、无上述 `hl_*` 独占项、且有 DevWidget → **第 2 条 radius**，**不是**本条。
+**「仅裁剪」不算本条**：仅裁在圆角内、无上述 `hl_*` 独占项、且有 DevWidgetX 依赖 → **第 2 条 radius**，**不是**本条。
 
 具体属性名与含义以本文档 **「自定义属性」** 小节及库内 `attrs` 为准。
 
-### 4. 想用 DevWidget round / radius 但模块没有 DevWidget 依赖时
+### 4. 想用 DevWidgetX round / radius 但模块没有 DevWidgetX 依赖时
 
-若按第 **1** 或 **2** 条本应走 **round / radius**，但 **当前模块未依赖 DevWidget**，则在 **已依赖 ShadowLayout** 的前提下 **改用 ShadowLayout**（或项目既定手写 drawable 等），不要虚构 `dev.widget.ui.round` / `radius` API。
+若按第 **1** 或 **2** 条本应走 **round / radius**，但 **当前模块未依赖 DevWidgetX**，则在 **已依赖 ShadowLayout** 的前提下 **改用 ShadowLayout**（或项目既定手写 drawable 等），不要虚构 `dev.widget.ui.round` / `radius` API。
 
 ## 决策小结（给 Agent 的快速表）
 
-**判断顺序**：先能否用 **round** → 若要裁子内容且无 `hl_*` 独占、有 DevWidget 则用 **radius** → 否则再判断是否本条 ShadowLayout。
+**判断顺序**：先能否用 **round** → 若要裁子内容且无 `hl_*` 独占、有 DevWidgetX 依赖则用 **radius** → 否则再判断是否本条 ShadowLayout。
 
-| 有 ShadowLayout 依赖？ | 需求（在已校验 DevWidget 的前提下） | 有 DevWidget 依赖？ | 行动 |
+| 有 ShadowLayout 依赖？ | 需求（在已校验 DevWidgetX 的前提下） | 有 DevWidgetX 依赖？ | 行动 |
 |------------------------|-------------------------------------|---------------------|------|
 | 否 | — | — | 跳过本 skill；不用 ShadowLayout |
 | 是 | **仅** 圆角 + 纯色 + 描边；子内容可不裁 | 是 | **devwidget-round-ui**（`round`）；不用 ShadowLayout |
 | 是 | 同上 **且必须** 裁子内容；**无** `hl_shadow*` / 渐变 / 按压双态 / 虚线 / 绑定 TextView 等 | 是 | **devwidget-round-ui**（`radius`）；**不要**因有 ShadowLayout 依赖就选 ShadowLayout |
-| 是 | 需要 **`hl_*` 独占能力**（含「裁剪 + 任一项独占」），或无 DevWidget 但必须裁内容 | — / 否 | **`com.lihang.ShadowLayout`**（见上文 §3） |
+| 是 | 需要 **`hl_*` 独占能力**（含「裁剪 + 任一项独占」），或无 DevWidgetX 依赖但必须裁内容 | — / 否 | **`com.lihang.ShadowLayout`**（见上文 §3） |
 | 是 | 无裁剪、无渐变、无按压变色、**无** `hl_shadow*`；子内容可不裁 | 否 | ShadowLayout 兜底圆角/背景/描边 |
 
 ## 注意事项
