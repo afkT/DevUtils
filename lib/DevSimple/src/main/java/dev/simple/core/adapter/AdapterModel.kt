@@ -2,6 +2,9 @@ package dev.simple.core.adapter
 
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import dev.simple.core.livedata.smartUpdateValue
 import dev.utils.common.RandomUtils
 
 /**
@@ -16,7 +19,12 @@ open class AdapterModel<T> {
 
     // 是否存在数据
     @JvmField
+    @Deprecated("请使用 existData")
     val existItems = ObservableBoolean(false)
+
+    // 是否存在数据
+    protected val _existData = MutableLiveData<Boolean>(false)
+    val existData: LiveData<Boolean> get() = _existData
 
     // ==========
     // = 通用方法 =
@@ -26,7 +34,12 @@ open class AdapterModel<T> {
      *【刷新】是否存在数据状态
      */
     open fun refreshExist() {
-        existItems.set(isNotEmpty())
+        // 是否存在数据
+        val exist = isNotEmpty()
+        // 更新数据状态
+        existItems.set(exist)
+        // 智能线程判断 ( 自动选择 setValue、postValue )
+        _existData.smartUpdateValue(exist)
     }
 
     /**

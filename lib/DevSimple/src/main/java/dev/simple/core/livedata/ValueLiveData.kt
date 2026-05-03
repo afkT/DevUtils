@@ -3,6 +3,34 @@ package dev.simple.core.livedata
 import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dev.utils.app.HandlerUtils
+
+/**
+ * 智能线程判断 ( 自动选择 setValue、postValue )
+ * @param value 待更新值
+ * @param allowNull 是否允许设置为 null
+ * @return `true` success, `false` fail
+ */
+fun <T> MutableLiveData<T>.smartUpdateValue(
+    value: T?,
+    allowNull: Boolean = false
+): Boolean {
+    if (allowNull || value != null) {
+        if (HandlerUtils.isMainThread()) {
+            try {
+                this.value = value
+            } catch (_: Exception) {
+                this.postValue(value)
+            }
+        } else {
+            this.postValue(value)
+        }
+        return true
+    }
+    return false
+}
+
+// =
 
 /**
  * detail: 一个用于封装可观测单一状态、值的 LiveData 类
