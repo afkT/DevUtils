@@ -27,6 +27,8 @@
 
     <!-- SeekBar 样式（部分 ROM 上 splitTrack 影响滑块与进度条视觉衔接） -->
 
+    <style name="ViewTheme.SeekBar.SplitTrack" />
+
     <style name="ViewTheme.SeekBar.SplitTrack.False">
         <item name="android:splitTrack">false</item>
     </style>
