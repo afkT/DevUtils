@@ -1,8 +1,8 @@
 # DevUtils：Cursor 工作区目录说明（`.cursor`）
 
-本文档路径：**`.cursor/CURSOR_WORKSPACE_CATALOG.md`**。用于汇总本仓库 **`.cursor/`** 下与 Cursor 相关的配置与约定，便于与 Agent 快速查阅；**不限于** `rules`、`skills`，后续若增加 `hooks`、`agents`、其它约定目录或单文件说明，应在本目录中 **增删对应章节与表格**。
+本文档路径：**`.cursor/README.md`**（GitHub 浏览 `.cursor` 目录时默认展示）。用于汇总本仓库 **`.cursor/`** 下与 Cursor 相关的配置与约定，便于与 Agent 快速查阅；**不限于** `rules`、`skills`，后续若增加 `hooks`、`agents`、其它约定目录或单文件说明，应在本目录中 **增删对应章节与表格**。
 
-**维护约定**：凡在本仓库对 `.cursor/` 做 **新增、删除、重命名** 等会影响「工作区行为或可发现性」的变更（含规则 `.mdc`、各 Skill 的 `SKILL.md`、以及未来其它纳入编目的路径），请同步更新 **本文件**（目录表、相对路径、摘要与文末清单）。同步义务由规则 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) 提醒 Agent 执行。
+**维护约定**：凡在本仓库对 `.cursor/` 做 **新增、删除、重命名** 等会影响「工作区行为或可发现性」的变更（含规则 `.mdc`、各 Skill 的 `SKILL.md`、以及未来其它纳入编目的路径），请同步更新 **本 README**（目录表、相对路径、摘要与文末清单）。同步义务由规则 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) 提醒 Agent 执行。
 
 ---
 
@@ -25,7 +25,7 @@
 |------|:-------------:|---------------------|
 | [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | Assistant replies in Simplified Chinese for this workspace. |
 | [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | 是 | Behavioral guidelines to reduce common LLM coding mistakes… |
-| [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目内容后同步更新 `CURSOR_WORKSPACE_CATALOG.md`（含未来 hooks 等）。 |
+| [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目内容后同步更新 `README.md`（含未来 hooks 等）。 |
 
 ### 1.1 `chinese-simplified.mdc`
 
@@ -42,7 +42,7 @@
 
 ### 1.3 `cursor-catalog-sync.mdc`
 
-- **作用**：在改动 `.cursor/` 编目范围内文件或结构后，**更新本文件 `CURSOR_WORKSPACE_CATALOG.md`**，避免说明与仓库脱节。
+- **作用**：在改动 `.cursor/` 编目范围内文件或结构后，**更新本文件 `README.md`**，避免说明与仓库脱节。
 
 ---
 
