@@ -57,6 +57,7 @@
 | [shadowlayout-ui/SKILL.md](skills/shadowlayout-ui/SKILL.md) | `shadowlayout-ui` | 阴影、圆角、渐变、描边、pressed/selected/ripple、虚线、子 View 圆角裁剪；少写 shape/layer-list；使用 `com.lihang.ShadowLayout`。 |
 | [devwidget-round-ui/SKILL.md](skills/devwidget-round-ui/SKILL.md) | `devwidget-round-ui` | 圆角矩形纯色背景、描边；优先 DevWidget `dev.widget.ui.round`；替代多余 drawable。 |
 | [devsimple-viewtheme-xml/SKILL.md](skills/devsimple-viewtheme-xml/SKILL.md) | `devsimple-viewtheme-xml` | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
+| [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -78,6 +79,11 @@
 
 - **YAML 备注**：含 `disable-model-invocation: true`（由 Cursor 按产品行为处理是否自动唤起）。
 - **核心**：按控件语义类名匹配 `ViewTheme.<Name>`；AppCompat/Material 回退到平台 Widget 名；`ViewPager2` → `ViewTheme.ViewPager`；无匹配 → `ViewTheme.View`；维护时应用 grep 更新 Skill 内「根样式表」。
+
+### 2.6 `gradle-third-party-version-upgrade`
+
+- **YAML 备注**：含 `disable-model-invocation: true`。
+- **核心**：多源查证最新可解析版本；写回 `config.gradle` / `config_libs.gradle` 等含 GAV 的 `config_*.gradle` 与 `versions.gradle`；JitPack/GitHub 补证；缺失则补开源/文档链接；纯路径类 `config_files.gradle` 默认跳过。详细 API 与 URL 模板见同目录 [reference.md](skills/gradle-third-party-version-upgrade/reference.md)。
 
 ---
 
