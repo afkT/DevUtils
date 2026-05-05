@@ -7,7 +7,6 @@ dependencies {
 
 //    // Bugly https://bugly.qq.com/docs
 //    api deps_lib.profiler.bugly
-//    api deps_lib.profiler.bugly_ndk
 //
 //    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
 //    debugImplementation deps_lib.profiler.uetool

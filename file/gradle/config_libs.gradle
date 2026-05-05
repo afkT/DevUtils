@@ -16,24 +16,24 @@ ext {
 
                     // https://mvnrepository.com/artifact/com.google.code.gson/gson
                     // Gson https://github.com/google/gson
-                    gson              : "com.google.code.gson:gson:2.13.2",
+                    gson              : "com.google.code.gson:gson:2.14.0",
                     // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
                     // Fastjson2 https://github.com/alibaba/fastjson2
                     fastjson2         : "com.alibaba.fastjson2:fastjson2:2.0.61",
                     fastjson2_android : "com.alibaba.fastjson2:fastjson2:2.0.61.android8",
                     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
                     // Glide 图片加载框架 https://github.com/bumptech/glide
-                    glide             : "com.github.bumptech.glide:glide:5.0.5",
-                    glide_compiler    : "com.github.bumptech.glide:compiler:5.0.5",
+                    glide             : "com.github.bumptech.glide:glide:5.0.7",
+                    glide_compiler    : "com.github.bumptech.glide:compiler:5.0.7",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv              : "com.tencent:mmkv:2.3.0",
+                    mmkv              : "com.tencent:mmkv:2.4.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus          : "org.greenrobot:eventbus:3.3.1",
                     // LiveEventBus 消息总线 https://github.com/michaellee123/LiveEventBus
                     live_eventbus_fork: "com.github.michaellee123:LiveEventBus:1.8.14",
                     // https://mvnrepository.com/artifact/com.squareup.okio/okio
                     // okio https://github.com/square/okio
-                    okio              : "com.squareup.okio:okio:3.16.4",
+                    okio              : "com.squareup.okio:okio:3.17.0",
                     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
                     okhttp3           : "com.squareup.okhttp3:okhttp:5.3.2",
@@ -48,7 +48,7 @@ ext {
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize          : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions     : "com.github.getActivity:XXPermissions:28.0",
+                    xxPermissions     : "com.github.getActivity:XXPermissions:28.2",
                     // 设备兼容框架 https://github.com/getActivity/DeviceCompat
                     deviceCompat      : "com.github.getActivity:DeviceCompat:2.6",
             ],
@@ -72,13 +72,13 @@ ext {
                     // 万能阴影布局 https://github.com/lihangleo2/ShadowLayout
                     shadowLayout                           : "com.github.lihangleo2:ShadowLayout:3.4.6",
                     // Dialog 弹窗框架 https://github.com/kongzue/DialogX
-                    dialogX                                : "com.github.kongzue.DialogX:DialogX:0.0.50",
+                    dialogX                                : "com.github.kongzue.DialogX:DialogX:0.0.51.beta3",
                     // 标题栏框架 https://github.com/getActivity/TitleBar
                     titleBar                               : "com.github.getActivity:TitleBar:10.8",
                     // Toaster 吐司框架 https://github.com/getActivity/Toaster
-                    toaster                                : "com.github.getActivity:Toaster:13.8",
+                    toaster                                : "com.github.getActivity:Toaster:15.0",
                     // 悬浮窗框架 https://github.com/getActivity/EasyWindow
-                    easyWindow                             : "com.github.getActivity:EasyWindow:13.2",
+                    easyWindow                             : "com.github.getActivity:EasyWindow:15.3",
                     // https://mvnrepository.com/artifact/com.geyifeng.immersionbar/immersionbar
                     // 状态栏框架 https://github.com/gyf-dev/ImmersionBar
                     immersionBar                           : "com.geyifeng.immersionbar:immersionbar:3.2.2",
@@ -123,7 +123,7 @@ ext {
                     zxing_code         : "com.google.zxing:core:3.5.4",
                     zxing_android_code : "com.google.zxing:android-core:3.3.0",
                     // GSY 视频播放器 https://github.com/CarGuo/GSYVideoPlayer
-                    gsyVideoPlayer     : "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer:v11.3.0",
+                    gsyVideoPlayer     : "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer:v12.1.0",
             ],
             "feature_widget": [
 
@@ -187,17 +187,19 @@ ext {
                     // ===============
 
                     // Android View 动画 https://github.com/daimajia/AndroidViewAnimations
-                    yoyo                 : "com.daimajia.androidanimations:library:2.4@aar",
+                    yoyo                  : "com.daimajia.androidanimations:library:2.4@aar",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie               : "com.airbnb.android:lottie:6.7.1",
+                    lottie                : "com.airbnb.android:lottie:6.7.1",
                     // Activity 跳转动画 https://github.com/skydoves/TransformationLayout
-                    transformation_layout: "com.github.skydoves:transformationlayout:1.1.6",
+                    transformation_layout : "com.github.skydoves:transformationlayout:1.1.6",
                     // Gif、WebP 动画库 https://github.com/penfeizhou/APNG4Android/blob/master/README-zh_CN.md
-                    awebp                : "com.github.penfeizhou.android.animation:awebp:3.0.5",
+                    awebp                 : "com.github.penfeizhou.android.animation:awebp:3.0.5",
                     // PAG 动画库 https://github.com/Tencent/libpag/blob/main/README.zh_CN.md
-                    pag                  : "com.tencent.tav:libpag:4.5.36",
+                    pag                   : "com.tencent.tav:libpag:4.5.52",
                     // Gif 预览库 https://github.com/koral--/android-gif-drawable
-                    gifDrawable          : "pl.droidsonroids.gif:android-gif-drawable:1.2.31",
+                    gifDrawable           : "pl.droidsonroids.gif:android-gif-drawable:1.2.31",
+                    // https://github.com/wasabeef/recyclerview-animators
+                    recyclerview_animators: "jp.wasabeef:recyclerview-animators:4.0.2",
             ],
             "image_widget"  : [
 
@@ -250,7 +252,6 @@ ext {
                     // https://mvnrepository.com/artifact/com.tencent.bugly/nativecrashreport
                     // Bugly https://bugly.qq.com
                     bugly                      : "com.tencent.bugly:crashreport:4.1.9.3",
-                    bugly_ndk                  : "com.tencent.bugly:nativecrashreport:3.9.2",
                     // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
                     uetool                     : "com.github.eleme.UETool:uetool:1.3.4",
                     uetool_base                : "com.github.eleme.UETool:uetool-base:1.3.4",
@@ -283,10 +284,10 @@ ext {
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/releases
                     // https://github.com/HuolalaTech/hll-wp-therouter-android/blob/main/README_CN.md
                     // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
-                    therouter_apt        : "cn.therouter:apt:1.3.1",
-                    therouter_router     : "cn.therouter:router:1.3.1",
-                    therouter_plugin     : "cn.therouter:plugin:1.3.1",
-                    therouter_plugin_agp8: "cn.therouter:plugin-agp8:1.3.1",
+                    therouter_apt        : "cn.therouter:apt:1.4.0-rc1",
+                    therouter_router     : "cn.therouter:router:1.4.0-rc1",
+                    therouter_plugin     : "cn.therouter:plugin:1.4.0-rc1",
+                    therouter_plugin_agp8: "cn.therouter:plugin-agp8:1.4.0-rc1",
             ],
             "database"      : [
 
@@ -308,7 +309,7 @@ ext {
                     greenDAO_gradle_plugin: "org.greenrobot:greendao-gradle-plugin:3.3.1",
                     // https://mvnrepository.com/artifact/net.zetetic/sqlcipher-android
                     // SQLCipher for Android https://github.com/sqlcipher/sqlcipher-android
-                    sqlcipher             : "net.zetetic:sqlcipher-android:4.13.0@aar",
+                    sqlcipher             : "net.zetetic:sqlcipher-android:4.15.0@aar",
             ],
 
             "messaging"     : [
@@ -320,11 +321,13 @@ ext {
                     // 基于 Eclipse Paho Android 的维护版：AndroidX、Android 13+ registerReceiver 标志位、Android 14 等
                     // https://central.sonatype.com/artifact/io.github.mayzs/paho.mqtt.android
                     // （官方 org.eclipse.paho.android.service:1.1.1 在 API 33+ 会因 AlarmPingSender 未声明 RECEIVER_* 崩溃）
+                    // MQTT 通讯库 https://github.com/mayzs/paho.mqtt.android
                     paho_mqtt_android   : "io.github.mayzs:paho.mqtt.android:1.2.7",
 
                     // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.android.service
                     // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
                     // Eclipse Paho MQTT（Android Service + MQTTv3 客户端，与 EMQX MQTT 3.1.1 对齐）
+                    // MQTT 通讯库 https://github.com/eclipse-paho/paho.mqtt.android
                     paho_android_service: "org.eclipse.paho:org.eclipse.paho.android.service:1.1.1",
                     paho_client_mqttv3  : "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5",
             ],
