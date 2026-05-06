@@ -13,6 +13,7 @@ import dev.capture.base.BaseDevHttpViewHolder
 import dev.capture.compiler.databinding.DevHttpCaptureDateModuleListItemAdapterBinding
 import dev.capture.model.Items.GroupItem
 import dev.utils.DevFinal
+import dev.utils.app.IntentUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.helper.view.ViewHelper
@@ -86,7 +87,9 @@ internal class AdapterDateModuleListItem(
         captureFile: CaptureFile
     ) {
         try {
-            val intent = Intent(context, DevHttpCaptureFileActivity::class.java)
+            val intent = IntentUtils.getIntent(
+                Intent(context, DevHttpCaptureFileActivity::class.java), true
+            )
             intent.putExtra(DevFinal.STR.JSON, captureFile.toJson())
             context.startActivity(intent)
         } catch (_: Exception) {

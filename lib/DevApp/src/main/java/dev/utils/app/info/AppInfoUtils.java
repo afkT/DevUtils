@@ -95,8 +95,11 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
-            // 获取对应的 PackageInfo ( 原始的 PackageInfo 获取 signatures 等于 null, 需要这样获取 )
-            return AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            // API 28+ 使用 GET_SIGNING_CERTIFICATES，与 {@link dev.utils.app.SignaturesUtils#getSignaturesFromPackageInfo} 一致
+            final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+                    ? PackageManager.GET_SIGNING_CERTIFICATES
+                    : PackageManager.GET_SIGNATURES;
+            return AppUtils.getPackageInfo(packageName, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo");
         }

@@ -2,6 +2,7 @@ package dev.utils.app.info;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.content.pm.Signature;
 import android.text.format.Formatter;
 
 import androidx.annotation.Keep;
@@ -97,12 +98,14 @@ public final class AppInfoItem {
         // =
         // 获取 APP 信息
         appInfoBean = new AppInfoBean(packageInfo);
+        // 获取签名信息
+        Signature[] signatures = SignaturesUtils.getSignaturesFromPackageInfo(packageInfo);
         // APP MD5 签名
-        appMD5 = SignaturesUtils.signatureMD5(packageInfo.signatures);
+        appMD5 = SignaturesUtils.signatureMD5(signatures);
         // APP SHA1
-        appSHA1 = SignaturesUtils.signatureSHA1(packageInfo.signatures);
+        appSHA1 = SignaturesUtils.signatureSHA1(signatures);
         // APP SHA256
-        appSHA256 = SignaturesUtils.signatureSHA256(packageInfo.signatures);
+        appSHA256 = SignaturesUtils.signatureSHA256(signatures);
         // 属于 7.0 以上才有的方法
         if (VersionUtils.isN()) {
             // APP 最低支持 Android SDK 版本
@@ -116,7 +119,7 @@ public final class AppInfoItem {
                 FileUtils.getFileLength(appInfoBean.getSourceDir())
         );
         // 证书对象
-        cert = SignaturesUtils.getX509Certificate(packageInfo.signatures);
+        cert = SignaturesUtils.getX509Certificate(signatures);
         // 证书生成日期
         notBefore = cert.getNotBefore();
         // 证书有效期

@@ -1,6 +1,8 @@
 package dev.utils.app;
 
+import android.content.pm.PackageInfo;
 import android.content.pm.Signature;
+import android.os.Build;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -40,6 +42,24 @@ public final class SignaturesUtils {
 
     // 日志 TAG
     private static final String TAG = SignaturesUtils.class.getSimpleName();
+
+    /**
+     * 从 {@link PackageInfo} 读取签名数组（API 28+ 优先 {@link PackageInfo#signingInfo}，避免仅用已废弃的 {@link PackageInfo#signatures}）
+     * @param packageInfo {@link PackageInfo}
+     * @return {@link Signature} 数组
+     */
+    public static Signature[] getSignaturesFromPackageInfo(final PackageInfo packageInfo) {
+        if (packageInfo == null) return null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (packageInfo.signingInfo != null) {
+                if (packageInfo.signingInfo.hasMultipleSigners()) {
+                    return packageInfo.signingInfo.getApkContentsSigners();
+                }
+                return packageInfo.signingInfo.getSigningCertificateHistory();
+            }
+        }
+        return packageInfo.signatures;
+    }
 
     /**
      * 判断签名是 debug 签名还是 release 签名
