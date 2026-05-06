@@ -44,7 +44,12 @@ public final class SignaturesUtils {
     private static final String TAG = SignaturesUtils.class.getSimpleName();
 
     /**
-     * 从 {@link PackageInfo} 读取签名数组（API 28+ 优先 {@link PackageInfo#signingInfo}，避免仅用已废弃的 {@link PackageInfo#signatures}）
+     * 从 PackageInfo 读取签名数组
+     * <pre>
+     *     从 {@link PackageInfo} 读取签名数组
+     *     API 28+ 优先 {@link PackageInfo#signingInfo}
+     *     避免仅用已废弃的 {@link PackageInfo#signatures}
+     * </pre>
      * @param packageInfo {@link PackageInfo}
      * @return {@link Signature} 数组
      */

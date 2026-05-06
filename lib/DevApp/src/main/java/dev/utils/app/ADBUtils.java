@@ -1352,7 +1352,7 @@ public final class ADBUtils {
     // ========================================
 
     /**
-     * 在触摸屏上点击指定坐标 ( {@code input touchscreen tap} )
+     * 在触摸屏上点击指定坐标
      * @param x X 轴坐标
      * @param y Y 轴坐标
      * @return {@code true} success, {@code false} fail

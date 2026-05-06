@@ -181,7 +181,10 @@ public final class NotificationUtils {
     }
 
     /**
-     * 发布系统通知（封装 {@link NotificationManager#notify(int, Notification)}）
+     * 发布系统通知
+     * <pre>
+     *     封装 {@link NotificationManager#notify(int, Notification)}
+     * </pre>
      * @param id           消息 id
      * @param notification {@link Notification}
      * @return {@code true} success, {@code false} fail
@@ -203,7 +206,10 @@ public final class NotificationUtils {
     }
 
     /**
-     * 发布系统通知（封装 {@link NotificationManager#notify(String, int, Notification)}）
+     * 发布系统通知
+     * <pre>
+     *     封装 {@link NotificationManager#notify(String, int, Notification)}
+     * </pre>
      * @param tag          标记 TAG
      * @param id           消息 id
      * @param notification {@link Notification}

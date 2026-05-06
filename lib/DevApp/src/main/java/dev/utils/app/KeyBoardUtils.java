@@ -192,7 +192,10 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 注册软键盘显示/隐藏监听（基于 content 根布局与 {@link #getContentViewInvisibleHeight(Activity)}）
+     * 注册软键盘显示、隐藏监听 ( 基于 content 根布局 )
+     * <pre>
+     *     基于 content 根布局与 {@link #getContentViewInvisibleHeight(Activity)}
+     * </pre>
      * @param activity {@link Activity}
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
@@ -221,7 +224,10 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 注册软键盘显示/隐藏监听（基于 Window decorView 与 {@link View#getWindowVisibleDisplayFrame(Rect)}）
+     * 注册软键盘显示、隐藏监听 ( 基于 Window decorView )
+     * <pre>
+     *     基于 Window decorView 与 {@link View#getWindowVisibleDisplayFrame(Rect)}
+     * </pre>
      * @param activity {@link Activity}
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail

@@ -72,7 +72,10 @@ public final class BarUtils {
     }
 
     /**
-     * 获取 StatusBar 高度（优先 Android R+ WindowInsets，否则回退 {@link #getStatusBarHeight()}）
+     * 获取 StatusBar 高度
+     * <pre>
+     *     优先 Android R+ WindowInsets，否则回退 {@link #getStatusBarHeight()}
+     * </pre>
      * @return StatusBar 高度
      */
     public static int getStatusBarHeightFromInsetsOrFallback() {
