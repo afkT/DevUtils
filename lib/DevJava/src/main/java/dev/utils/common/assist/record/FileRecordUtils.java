@@ -19,13 +19,13 @@ public final class FileRecordUtils {
     }
 
     // 成功常量字符串
-    private static final String       RECORD_SUCCESS = "record successful";
+    private static final String       RECORD_SUCCESS    = "record successful";
     // 全局是否启用文件日志记录
     private static       boolean      sRecordingEnabled = true;
     // 日志记录插入信息
-    private static       RecordInsert sRecordInsert  = null;
+    private static       RecordInsert sRecordInsert     = null;
     // 文件记录回调
-    private static       Callback     sCallback      = null;
+    private static       Callback     sCallback         = null;
 
     // ==========
     // = 接口回调 =
