@@ -256,6 +256,14 @@ public final class VersionUtils {
     }
 
     /**
+     * 是否在 17.0 版本及以上
+     * @return 是否在 17.0 版本及以上
+     */
+    public static boolean isCinnamonBun() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
      * @return SDK 版本
      */
