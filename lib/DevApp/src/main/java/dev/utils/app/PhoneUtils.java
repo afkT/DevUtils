@@ -577,19 +577,11 @@ public final class PhoneUtils {
     ) {
         if (TextUtils.isEmpty(content)) return false;
         try {
-            PendingIntent sentIntent;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                sentIntent = PendingIntent.getBroadcast(
-                        DevUtils.getContext(), 0,
-                        new Intent("send"),
-                        PendingIntent.FLAG_MUTABLE
-                );
-            } else {
-                sentIntent = PendingIntent.getBroadcast(
-                        DevUtils.getContext(), 0,
-                        new Intent("send"), 0
-                );
-            }
+            PendingIntent sentIntent = PendingIntent.getBroadcast(
+                    DevUtils.getContext(), 0,
+                    new Intent("send"),
+                    PendingIntentUtils.flagsDefaultMutable()
+            );
             SmsManager smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
                 List<String> lists = smsManager.divideMessage(content);

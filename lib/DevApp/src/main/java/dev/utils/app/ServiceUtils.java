@@ -5,6 +5,7 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -108,6 +109,39 @@ public final class ServiceUtils {
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startService");
+        }
+        return false;
+    }
+
+    /**
+     * 启动前台服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startForegroundService(final Intent intent) {
+        return startForegroundService(DevUtils.getContext(), intent);
+    }
+
+    /**
+     * 启动前台服务
+     * @param context {@link Context}
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startForegroundService(
+            final Context context,
+            final Intent intent
+    ) {
+        if (context == null || intent == null) return false;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent);
+            } else {
+                context.startService(intent);
+            }
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startForegroundService");
         }
         return false;
     }

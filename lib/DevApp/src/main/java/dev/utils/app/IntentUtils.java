@@ -63,6 +63,8 @@ public final class IntentUtils {
 
     /**
      * 判断 Intent 是否可用
+     * <p>Android 11+ 查询其他应用 Activity 时，宿主需在 Manifest 配置 {@code &lt;queries&gt;} 或持有相应的包可见性，
+     * 否则可能误判为不可用（返回列表为空）。</p>
      * @param intent {@link Intent}
      * @return {@code true} yes, {@code false} no
      */

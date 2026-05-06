@@ -295,7 +295,7 @@ public final class NotificationUtils {
         try {
             return PendingIntent.getActivity(
                     DevUtils.getContext(), requestCode,
-                    intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
+                    intent, PendingIntentUtils.flagsDefaultMutable()
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");

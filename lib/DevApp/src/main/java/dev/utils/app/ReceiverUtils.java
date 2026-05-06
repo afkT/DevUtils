@@ -194,6 +194,9 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听
+     * <p>Android 13+ 默认使用 {@link Context#RECEIVER_NOT_EXPORTED}（更安全）。
+     * 若需接收其他应用发出的隐式广播，请使用 {@link #registerReceiverBool(BroadcastReceiver, IntentFilter, boolean)}
+     * 并传入 {@code receiverExported == true}，或使用带 flags 的重载自行传入 {@link Context#RECEIVER_EXPORTED}。</p>
      * @param receiver {@link BroadcastReceiver}
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
@@ -203,6 +206,21 @@ public final class ReceiverUtils {
             final IntentFilter filter
     ) {
         return registerReceiverBool(DevUtils.getContext(), receiver, filter);
+    }
+
+    /**
+     * 注册广播监听（可指定是否对其他应用导出）
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   {@code true} 等价 {@link Context#RECEIVER_EXPORTED}（API 33+）
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiverBool(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return registerReceiverBool(DevUtils.getContext(), receiver, filter, receiverExported);
     }
 
     /**
@@ -217,9 +235,29 @@ public final class ReceiverUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
+        return registerReceiverBool(context, receiver, filter, true);
+    }
+
+    /**
+     * 注册广播监听（可指定是否对其他应用导出）
+     * @param context            {@link Context}
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   API 33+：{@code true} 为 {@link Context#RECEIVER_EXPORTED}，否则 {@link Context#RECEIVER_NOT_EXPORTED}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiverBool(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+                int vf = receiverExported
+                        ? Context.RECEIVER_EXPORTED
+                        : Context.RECEIVER_NOT_EXPORTED;
+                context.registerReceiver(receiver, filter, vf);
             } else {
                 context.registerReceiver(receiver, filter);
             }
@@ -274,6 +312,8 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听
+     * <p>Android 13+ 默认 {@link Context#RECEIVER_NOT_EXPORTED}；跨应用隐式广播请用
+     * {@link #registerReceiver(BroadcastReceiver, IntentFilter, boolean)} 并传入 {@code true}。</p>
      * @param receiver {@link BroadcastReceiver}
      * @param filter   {@link IntentFilter}
      * @return 粘性 Intent
@@ -283,6 +323,21 @@ public final class ReceiverUtils {
             final IntentFilter filter
     ) {
         return registerReceiver(DevUtils.getContext(), receiver, filter);
+    }
+
+    /**
+     * 注册广播监听（可指定是否对其他应用导出）
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   API 33+：是否 {@link Context#RECEIVER_EXPORTED}
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return registerReceiver(DevUtils.getContext(), receiver, filter, receiverExported);
     }
 
     /**
@@ -297,9 +352,29 @@ public final class ReceiverUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
+        return registerReceiver(context, receiver, filter, true);
+    }
+
+    /**
+     * 注册广播监听（可指定是否对其他应用导出）
+     * @param context            {@link Context}
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   API 33+：是否 {@link Context#RECEIVER_EXPORTED}
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                return context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+                int vf = receiverExported
+                        ? Context.RECEIVER_EXPORTED
+                        : Context.RECEIVER_NOT_EXPORTED;
+                return context.registerReceiver(receiver, filter, vf);
             } else {
                 return context.registerReceiver(receiver, filter);
             }
