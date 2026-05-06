@@ -38,14 +38,16 @@ dependencies {
     api deps_lib.common.fastjson2_android
     // Toaster 吐司框架 https://github.com/getActivity/Toaster
     api deps_lib.common_widget.toaster
+    // 设备兼容框架 https://github.com/getActivity/DeviceCompat
+    api deps_lib.common.deviceCompat
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     api deps_lib.image_widget.luban
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps_lib.image_widget.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
     api deps_lib.feature_lib.zxing_code
-    // 设备兼容框架 https://github.com/getActivity/DeviceCompat
-    api deps_lib.common.deviceCompat
+    // 日志输出库 https://github.com/JakeWharton/timber
+    api deps_lib.profiler.timber
 
     // =============
     // = DevEngine =

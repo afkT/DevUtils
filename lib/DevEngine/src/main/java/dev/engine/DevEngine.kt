@@ -22,6 +22,7 @@ import dev.engine.core.json.FastjsonEngineImpl
 import dev.engine.core.json.GsonEngineImpl
 import dev.engine.core.keyvalue.*
 import dev.engine.core.log.DevLoggerEngineImpl
+import dev.engine.core.log.TimberEngineImpl
 import dev.engine.core.media.PictureSelectorEngineImpl
 import dev.engine.core.permission.XXPermissionsEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
@@ -436,6 +437,27 @@ object DevEngine {
         printLog: () -> Boolean
     ): DevLoggerEngineImpl {
         return newDevLoggerEngineImpl(logConfig, printLog).apply {
+            DevLogEngine.setEngine(this)
+        }
+    }
+
+    /**
+     * 默认初始化 Timber Log Engine 实现并设为全局默认 Engine
+     * @return Timber Log Engine 实现
+     */
+    fun defaultTimberEngineImpl(): TimberEngineImpl {
+        return newTimberEngineImpl().apply {
+            DevLogEngine.setEngine(this)
+        }
+    }
+
+    /**
+     * 默认初始化 Timber Log Engine 实现并设为全局默认 Engine
+     * @param printLog 是否打印日志
+     * @return Timber Log Engine 实现
+     */
+    fun defaultTimberEngineImpl(printLog: () -> Boolean): TimberEngineImpl {
+        return newTimberEngineImpl(printLog).apply {
             DevLogEngine.setEngine(this)
         }
     }
@@ -1053,6 +1075,10 @@ object DevEngine {
     // = Log Engine 日志打印 =
     // =====================
 
+    // =============
+    // = DevLogger =
+    // =============
+
     /**
      * 创建 DevLogger Log Engine 实现
      * @param logConfig Log Config
@@ -1076,6 +1102,35 @@ object DevEngine {
         printLog: () -> Boolean
     ): DevLoggerEngineImpl {
         return object : DevLoggerEngineImpl(logConfig) {
+            override fun isPrintLog(): Boolean {
+                return printLog()
+            }
+        }
+    }
+
+    // ==========
+    // = Timber =
+    // ==========
+
+    /**
+     * 创建 Timber Log Engine 实现
+     * @return Timber Log Engine 实现
+     * @see dev.engine.core.log.TimberEngineImpl
+     */
+    fun newTimberEngineImpl(): TimberEngineImpl {
+        return newTimberEngineImpl {
+            DevUtils.isDebug()
+        }
+    }
+
+    /**
+     * 创建 Timber Log Engine 实现
+     * @param printLog 是否打印日志
+     * @return Timber Log Engine 实现
+     * @see dev.engine.core.log.TimberEngineImpl
+     */
+    fun newTimberEngineImpl(printLog: () -> Boolean): TimberEngineImpl {
+        return object : TimberEngineImpl() {
             override fun isPrintLog(): Boolean {
                 return printLog()
             }

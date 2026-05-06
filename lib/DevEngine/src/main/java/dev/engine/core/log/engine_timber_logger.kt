@@ -1,18 +1,26 @@
 package dev.engine.core.log
 
 import dev.engine.log.ILogEngine
-import dev.utils.app.logger.DevLogger
-import dev.utils.app.logger.LogConfig
+import timber.log.Timber
 
 /**
- * detail: DevLogger Log Engine 实现
+ * detail: [Timber](https://github.com/JakeWharton/timber) Log Engine 实现
+ *
+ * 与 [DevLoggerEngineImpl] 相同，均实现 [ILogEngine]，便于在 [dev.engine.log.DevLogEngine] 中切换底层输出。
+ *
+ * **初始化说明**：Timber 为进程级单例，需至少 [Timber.plant] 一棵 [Timber.Tree] 后日志才会输出。
+ * 常见做法在 `Application.onCreate` 中：`if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())`。
+ * 本类仅在 [isPrintLog] 为 true 时转发调用，不会自动 plant，避免覆盖业务自定义 Tree。
+ *
+ * **与 DevLogger 的差异**：`json` / `xml` 无内置美化，以 DEBUG 级整段输出；若需与 DevLogger 一致的可视化格式，可继续用 [DevLoggerEngineImpl] 或在此类中自行接入格式化工具。
+ *
  * @author Ttt
  */
-abstract class DevLoggerEngineImpl(
-    open val logConfig: LogConfig? = null
-) : ILogEngine {
+abstract class TimberEngineImpl : ILogEngine {
 
     private fun pass(): Boolean = isPrintLog()
+
+    private fun line(message: String?): String = message ?: ""
 
     // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =
@@ -23,7 +31,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).d(message, *args)
+        Timber.d(line(message), *args)
     }
 
     override fun e(
@@ -31,12 +39,13 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).e(message, *args)
+        Timber.e(line(message), *args)
     }
 
     override fun e(throwable: Throwable?) {
         if (!pass()) return
-        DevLogger.other(logConfig).e(throwable)
+        val t = throwable ?: return
+        Timber.e(t)
     }
 
     override fun e(
@@ -45,7 +54,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).e(throwable, message, *args)
+        Timber.e(throwable, line(message), *args)
     }
 
     override fun w(
@@ -53,7 +62,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).w(message, *args)
+        Timber.w(line(message), *args)
     }
 
     override fun i(
@@ -61,7 +70,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).i(message, *args)
+        Timber.i(line(message), *args)
     }
 
     override fun v(
@@ -69,7 +78,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).v(message, *args)
+        Timber.v(line(message), *args)
     }
 
     override fun wtf(
@@ -77,22 +86,22 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).wtf(message, *args)
+        Timber.wtf(line(message), *args)
     }
 
     override fun json(json: String?) {
         if (!pass()) return
-        DevLogger.other(logConfig).json(json)
+        Timber.d(line(json))
     }
 
     override fun xml(xml: String?) {
         if (!pass()) return
-        DevLogger.other(logConfig).xml(xml)
+        Timber.d(line(xml))
     }
 
-    // ==============================
+    // ===============================
     // = 使用自定义 TAG ( 日志打印方法 ) =
-    // ==============================
+    // ===============================
 
     override fun dTag(
         tag: String?,
@@ -100,7 +109,13 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).dTag(tag, message, *args)
+        if (tag.isNullOrEmpty()) {
+            d(message, args)
+        } else {
+            Timber.tag(tag).d(
+                line(message), *args
+            )
+        }
     }
 
     override fun eTag(
@@ -109,7 +124,13 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).eTag(tag, message, *args)
+        if (tag.isNullOrEmpty()) {
+            e(message, args)
+        } else {
+            Timber.tag(tag).e(
+                line(message), *args
+            )
+        }
     }
 
     override fun eTag(
@@ -117,7 +138,12 @@ abstract class DevLoggerEngineImpl(
         throwable: Throwable?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).eTag(tag, throwable)
+        val t = throwable ?: return
+        if (tag.isNullOrEmpty()) {
+            e(t)
+        } else {
+            Timber.tag(tag).e(t)
+        }
     }
 
     override fun eTag(
@@ -127,7 +153,13 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).eTag(tag, throwable, message, *args)
+        if (tag.isNullOrEmpty()) {
+            e(throwable, message, args)
+        } else {
+            Timber.tag(tag).e(
+                line(message), *args
+            )
+        }
     }
 
     override fun wTag(
@@ -136,7 +168,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).wTag(tag, message, *args)
+        Timber.tag(line(tag)).w(line(message), *args)
     }
 
     override fun iTag(
@@ -145,7 +177,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).iTag(tag, message, *args)
+        Timber.tag(line(tag)).i(line(message), *args)
     }
 
     override fun vTag(
@@ -154,7 +186,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).vTag(tag, message, *args)
+        Timber.tag(line(tag)).v(line(message), *args)
     }
 
     override fun wtfTag(
@@ -163,7 +195,7 @@ abstract class DevLoggerEngineImpl(
         vararg args: Any?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).wtfTag(tag, message, *args)
+        Timber.tag(line(tag)).wtf(line(message), *args)
     }
 
     override fun jsonTag(
@@ -171,7 +203,7 @@ abstract class DevLoggerEngineImpl(
         json: String?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).jsonTag(tag, json)
+        Timber.tag(line(tag)).d("%s", json ?: "")
     }
 
     override fun xmlTag(
@@ -179,6 +211,6 @@ abstract class DevLoggerEngineImpl(
         xml: String?
     ) {
         if (!pass()) return
-        DevLogger.other(logConfig).xmlTag(tag, xml)
+        Timber.tag(line(tag)).d("%s", xml ?: "")
     }
 }
