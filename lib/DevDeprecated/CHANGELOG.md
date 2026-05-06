@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.3 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` CameraUtils、PermissionUtils、ToastUtils、ToastTintUtils、IToast 等与权限、相机、吐司相关方法命名规范化
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
 Version 1.0.2 *(2026-03-08)*
 ----------------------------
 

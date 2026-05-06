@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.0.7 *(2026-05-07)*
+----------------------------
+
+* `[Add]` 新增多种布局与控件 styles 资源（含 ShadowLayout、SeekBar、WebView、ViewPager 等）及 padding/margin 维度样式
+
+* `[Add]` RecyclerView 绑定适配器；Adapter 链路增加 LiveData 支持并实现智能线程更新
+
+* `[Fix]` 修复并优化 WebView 配置与缓存相关逻辑（WebViewAssist）
+
+* `[Refactor]` ValueLiveData、BaseIntent、AppExecutors、NetworkBoundResource、弃用适配器与 ItemLifecycle 等可见性、命名与可扩展性调整
+
+* `[Chore]` 依赖 DevAssist、DevBase 等库同步升级
+
 Version 1.0.6 *(2026-03-08)*
 ----------------------------
 

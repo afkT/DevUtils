@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.2.2 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` BaseInterceptor、CallbackInterceptor、StorageInterceptor 属性可见性、存储与回调逻辑及命名冲突处理优化
+
+* `[Refactor]` 抓包主界面、列表、文件与日期模块 Activity、适配器及 Dialogs 等相关调整
+
+* `[Refactor]` 应用签名信息获取逻辑优化
+
+* `[Chore]` 依赖 DevApp、DevAssist 库同步升级
+
 Version 1.2.1 *(2026-03-08)*
 ----------------------------
 

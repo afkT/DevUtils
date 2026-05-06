@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.1.1 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` 精简 ProgressRequestBody、ProgressResponseBody 与进度监听实现，移除历史进度监听代码路径
+
+* `[Refactor]` DevHttpManager、RetrofitOperation、Progress 与 Operation 体系访问修饰符、命名及日志标签等调整，提升 Java 互操作与子类扩展能力
+
+* `[Update]` README 文档
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
 Version 1.1.0 *(2026-03-08)*
 ----------------------------
 

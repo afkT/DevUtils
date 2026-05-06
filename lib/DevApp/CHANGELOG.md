@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 2.5.3 *(2026-05-07)*
+----------------------------
+
+* `[Feature]` 适配 Android 16 ( Baklava )，VersionUtils、VersionHelper 补充版本信息与 API 映射及检测方法
+
+* `[Add]` 新增 PendingIntentUtils，统一 PendingIntent 创建与 Android 12+ 默认 Flag 处理；AlarmUtils、NotificationUtils、PhoneUtils 等改为使用该工具类
+
+* `[Add]` ReceiverUtils 扩展 Android 13+ 导出与非导出广播注册配置；AppUtils 增加带 receiverExported 的广播注册重载与启动前台服务便捷方法
+
+* `[Update]` AppUtils、AppInfoItem、AppInfoUtils、ManifestUtils 等应用签名与包信息获取逻辑调整（兼容 Android P 及以上）；PackageManager 查询减少不必要 flags 以优化性能
+
+* `[Update]` 非 Activity 上下文调用 AppUtils#startActivity 时自动补充 FLAG_ACTIVITY_NEW_TASK
+
+* `[Fix]` 修复部分 Android 版本判断与导出广播接收器注册逻辑问题
+
+* `[Fix]` SnackbarUtils 方法名拼写修正（ bellow 改为 below ）及相关引用与文档
+
+* `[Refactor]` 多工具类方法、回调接口、DevFinal 常量访问方式、EXIF ExifTagTables 与内部辅助命名等可读性重构（含 ReceiverUtils 驼峰化、ShellUtils 命令结果判断方法重命名等）
+
+* `[Style]` 工具类文档与参数注释格式整理；README 拼写修正
+
 Version 2.5.1-2 *(2026-03-14)*
 ----------------------------
 

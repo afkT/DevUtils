@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.5.6 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` DevFinal、ColorUtils、FileUtils、RandomUtils、StringUtils 及 FileRecordUtils、RecordConfig 等方法命名与语义调整
+
+* `[Refactor]` 文件广度/深度搜索、EXIF 标签表引用等相关实现优化
+
+* `[Style]` FileRecordUtils 字段声明对齐格式化
+
+* `[Upgrade]` 统一同步更新
+
 Version 1.5.5 *(2026-03-08)*
 ----------------------------
 

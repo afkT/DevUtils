@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.1.8 *(2026-05-07)*
+----------------------------
+
+* `[Add]` 集成 Timber 日志库，新增 Timber 日志引擎实现并扩展 DevEngine 日志能力
+
+* `[Refactor]` 缓存、图片、键值对、媒体、存储等引擎及 BarCode、Glide、MMKV、SharedPreferences 等实现中成员可见性与方法开放度调整，便于继承扩展
+
+* `[Upgrade]` 整理 DeviceCompat、Timber 等依赖声明顺序
+
+* `[Chore]` 依赖 DevApp、DevAssist 库同步升级
+
 Version 1.1.7 *(2026-03-08)*
 ----------------------------
 

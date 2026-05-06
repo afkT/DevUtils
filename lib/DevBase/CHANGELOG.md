@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.2.3 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` AbstractDevBaseActivity、AbstractDevBaseFragment 及 MVP、MVVM、ViewDataBinding 基类开放可继承，访问修饰与基类架构调整以支持更灵活自定义
+
+* `[Add]` ViewModel 准备就绪回调接口；扩展 BaseViewModel 数据读取能力
+
+* `[Refactor]` DevBaseAssist、DevBaseContentAssist、DevBaseViewModelAssist、DevBaseViewBindingAssist 及 DevSimple MVVM 基类、SimpleAgile 合约等相关实现优化
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
 Version 1.2.2 *(2026-03-08)*
 ----------------------------
 

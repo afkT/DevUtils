@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.2.8 *(2026-05-07)*
+----------------------------
+
+* `[Refactor]` ViewAssist、RadiusAttrs、SignView、FlipCardView、FlowLikeView、ScanShapeView、CornerLabelView 等方法命名与可读性调整
+
+* `[Chore]` 依赖 DevApp 库同步升级
+
 Version 1.2.7 *(2026-03-08)*
 ----------------------------
 
