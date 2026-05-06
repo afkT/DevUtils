@@ -58,6 +58,7 @@
 | [devwidget-round-ui/SKILL.md](skills/devwidget-round-ui/SKILL.md) | `devwidget-round-ui` | 圆角矩形纯色背景、描边；优先 DevWidget `dev.widget.ui.round`；替代多余 drawable。 |
 | [devsimple-viewtheme-xml/SKILL.md](skills/devsimple-viewtheme-xml/SKILL.md) | `devsimple-viewtheme-xml` | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
+| [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -84,6 +85,11 @@
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
 - **核心**：多源查证最新可解析版本；写回 `config.gradle` / `config_libs.gradle` 等含 GAV 的 `config_*.gradle` 与 `versions.gradle`；JitPack/GitHub 补证；缺失则补开源/文档链接；纯路径类 `config_files.gradle` 默认跳过。详细 API 与 URL 模板见同目录 [reference.md](skills/gradle-third-party-version-upgrade/reference.md)。
+
+### 2.7 `lib-changelog-update`
+
+- **YAML 备注**：含 `disable-model-invocation: true`。
+- **核心**：以 CHANGELOG 顶栏上一版日期为时间窗，对对应 `lib/...` 路径 `git log` 且使用 **`%B` 完整提交说明**（勿只看 subject）；合并重复主题、按历史标签与语气写条目；版本名以 `versions.gradle` 为准；几乎无代码变更时参照同文件历史（如依赖同步的 `[Chore]`），不虚构功能。
 
 ---
 
