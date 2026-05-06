@@ -210,9 +210,9 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听（可指定是否对其他应用导出）
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   {@code true} 等价 {@link Context#RECEIVER_EXPORTED}（API 33+）
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported {@code true} 等价 {@link Context#RECEIVER_EXPORTED}（API 33+）
      * @return {@code true} success, {@code false} fail
      */
     public static boolean registerReceiverBool(
@@ -240,10 +240,10 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听（可指定是否对其他应用导出）
-     * @param context            {@link Context}
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   API 33+：{@code true} 为 {@link Context#RECEIVER_EXPORTED}，否则 {@link Context#RECEIVER_NOT_EXPORTED}
+     * @param context          {@link Context}
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported API 33+：{@code true} 为 {@link Context#RECEIVER_EXPORTED}，否则 {@link Context#RECEIVER_NOT_EXPORTED}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean registerReceiverBool(
@@ -327,9 +327,9 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听（可指定是否对其他应用导出）
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   API 33+：是否 {@link Context#RECEIVER_EXPORTED}
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported API 33+：是否 {@link Context#RECEIVER_EXPORTED}
      * @return 粘性 Intent
      */
     public static Intent registerReceiver(
@@ -357,10 +357,10 @@ public final class ReceiverUtils {
 
     /**
      * 注册广播监听（可指定是否对其他应用导出）
-     * @param context            {@link Context}
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   API 33+：是否 {@link Context#RECEIVER_EXPORTED}
+     * @param context          {@link Context}
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported API 33+：是否 {@link Context#RECEIVER_EXPORTED}
      * @return 粘性 Intent
      */
     public static Intent registerReceiver(

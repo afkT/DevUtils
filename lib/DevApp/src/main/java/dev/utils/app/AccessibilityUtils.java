@@ -1122,8 +1122,8 @@ public final class AccessibilityUtils {
 
     /**
      * 模拟手势操作
-     * @param gesture  模拟手势
-     * @param callback 操作结果回调
+     * @param gesture         模拟手势
+     * @param callback        操作结果回调
      * @param callbackHandler 用于投递手势结果回调的 {@link Handler}，参见 {@link AccessibilityService#dispatchGesture}
      * @return {@code true} success, {@code false} fail
      */
@@ -1141,9 +1141,9 @@ public final class AccessibilityUtils {
      * <pre>
      *     需要设置 android:canPerformGestures="true"
      * </pre>
-     * @param service  {@link AccessibilityService}
-     * @param gesture  模拟手势
-     * @param callback 操作结果回调
+     * @param service         {@link AccessibilityService}
+     * @param gesture         模拟手势
+     * @param callback        操作结果回调
      * @param callbackHandler 用于投递手势结果回调的 {@link Handler}，可传 {@code null}
      * @return {@code true} success, {@code false} fail
      */

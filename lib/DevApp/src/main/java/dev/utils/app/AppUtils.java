@@ -1304,9 +1304,9 @@ public final class AppUtils {
 
     /**
      * 注册广播监听
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   是否对其他应用导出接收器
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported 是否对其他应用导出接收器
      * @return {@code true} success, {@code false} fail
      */
     public static boolean registerReceiverBool(
@@ -1319,10 +1319,10 @@ public final class AppUtils {
 
     /**
      * 注册广播监听
-     * @param context            {@link Context}
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   是否对其他应用导出接收器
+     * @param context          {@link Context}
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported 是否对其他应用导出接收器
      * @return {@code true} success, {@code false} fail
      */
     public static boolean registerReceiverBool(
@@ -1400,9 +1400,9 @@ public final class AppUtils {
 
     /**
      * 注册广播监听
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   是否对其他应用导出接收器
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported 是否对其他应用导出接收器
      * @return 粘性 Intent
      */
     public static Intent registerReceiver(
@@ -1415,10 +1415,10 @@ public final class AppUtils {
 
     /**
      * 注册广播监听
-     * @param context            {@link Context}
-     * @param receiver           {@link BroadcastReceiver}
-     * @param filter             {@link IntentFilter}
-     * @param receiverExported   是否对其他应用导出接收器
+     * @param context          {@link Context}
+     * @param receiver         {@link BroadcastReceiver}
+     * @param filter           {@link IntentFilter}
+     * @param receiverExported 是否对其他应用导出接收器
      * @return 粘性 Intent
      */
     public static Intent registerReceiver(
