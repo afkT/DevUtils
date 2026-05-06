@@ -136,9 +136,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getService(
+                    context, requestCode, intent
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -186,9 +185,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getService(
+                    context, requestCode, intent
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -246,9 +244,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getForegroundService(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getForegroundService(
+                    context, requestCode, intent
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -298,9 +295,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getForegroundService(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getForegroundService(
+                    context, requestCode, intent
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -328,9 +324,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getBroadcast(
+                    context, requestCode, intent
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -354,9 +349,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getBroadcast(
+                    context, requestCode, intent
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -384,9 +378,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getActivity(
+                    context, requestCode, intent
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -408,9 +401,8 @@ public final class AlarmUtils {
             final int requestCode
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, requestCode, intent,
-                    PendingIntentUtils.flagsDefaultMutable()
+            PendingIntent pendingIntent = PendingIntentUtils.getActivity(
+                    context, requestCode, intent
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {

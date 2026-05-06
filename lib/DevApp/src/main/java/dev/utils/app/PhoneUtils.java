@@ -577,10 +577,9 @@ public final class PhoneUtils {
     ) {
         if (TextUtils.isEmpty(content)) return false;
         try {
-            PendingIntent sentIntent = PendingIntent.getBroadcast(
+            PendingIntent sentIntent = PendingIntentUtils.getBroadcastMutable(
                     DevUtils.getContext(), 0,
-                    new Intent("send"),
-                    PendingIntentUtils.flagsDefaultMutable()
+                    new Intent("send")
             );
             SmsManager smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
@@ -605,8 +604,9 @@ public final class PhoneUtils {
     }
 
     /**
-     * 打开系统联系人电话选择界面（需在 {@link Activity#onActivityResult} 中解析号码）
+     * 打开系统联系人电话选择界面
      * <pre>
+     *     （需在 Activity.onActivityResult(int, int, Intent) 中解析号码）
      *     protected void onActivityResult (int requestCode, int resultCode, Intent intent) {
      *          super.onActivityResult(requestCode, resultCode, intent);
      *          if (intent != null) {

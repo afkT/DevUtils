@@ -293,9 +293,8 @@ public final class NotificationUtils {
             final int requestCode
     ) {
         try {
-            return PendingIntent.getActivity(
-                    DevUtils.getContext(), requestCode,
-                    intent, PendingIntentUtils.flagsDefaultMutable()
+            return PendingIntentUtils.getActivity(
+                    DevUtils.getContext(), requestCode, intent
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "createPendingIntent");
