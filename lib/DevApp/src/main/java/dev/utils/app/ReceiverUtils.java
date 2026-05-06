@@ -218,7 +218,7 @@ public final class ReceiverUtils {
             final IntentFilter filter
     ) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
             } else {
                 context.registerReceiver(receiver, filter);
@@ -298,7 +298,7 @@ public final class ReceiverUtils {
             final IntentFilter filter
     ) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 return context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
             } else {
                 return context.registerReceiver(receiver, filter);
