@@ -824,7 +824,7 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
          * @param webViewAssist WebView 辅助类
          * @return [Builder]
          */
-        internal open fun setWebViewAssist(webViewAssist: WebViewAssist?): Builder {
+        open fun setWebViewAssist(webViewAssist: WebViewAssist?): Builder {
             mWebViewAssist = webViewAssist
             return this
         }
@@ -1040,7 +1040,7 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         private var mMediaPlaybackRequiresUserGesture = true
 
         // WebView 缓存模式
-        private var mCacheMode = WebSettings.LOAD_NO_CACHE
+        private var mCacheMode = WebSettings.LOAD_DEFAULT
 
         // 是否支持 DOM Storage
         private var mDomStorageEnabled = true
@@ -1052,7 +1052,7 @@ open class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         private var mAppCachePath: String? = null
 
         // Application Caches 大小
-        private var mAppCacheMaxSize = (5 * 1024 * 1024).toLong()
+        private var mAppCacheMaxSize = (10 * 1024 * 1024).toLong()
 
         // 是否支持数据库缓存
         private var mDatabaseEnabled = true
