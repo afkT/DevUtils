@@ -342,6 +342,8 @@ public final class VersionUtils {
                 return "Android 15.0";
             case 36:
                 return "Android 16.0";
+            case 37:
+                return "Android 17.0";
         }
         return "unknown";
     }
@@ -433,6 +435,8 @@ public final class VersionUtils {
                 return "Android VanillaIceCream";
             case 36:
                 return "Android Baklava";
+            case 37:
+                return "Android CinnamonBun";
         }
         return "unknown";
     }

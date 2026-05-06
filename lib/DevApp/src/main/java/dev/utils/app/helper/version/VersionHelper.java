@@ -48,6 +48,10 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.com/about/versions/14"/>
  *     Android 15 ( VanillaIceCream ) 更新内容
  *     @see <a href="https://developer.android.com/about/versions/15"/>
+ *     Android 16 ( BAKLAVA ) 更新内容
+ *     @see <a href="https://developer.android.com/about/versions/16"/>
+ *     Android 17 ( CinnamonBun ) 更新内容
+ *     @see <a href="https://developer.android.com/about/versions/17"/>
  *     <p></p>
  *     Android 版本适配全套指南
  *     @see <a href="https://juejin.cn/column/7409928343742103592"/>
