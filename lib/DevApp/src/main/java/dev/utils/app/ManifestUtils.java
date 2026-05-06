@@ -295,9 +295,8 @@ public final class ManifestUtils {
      */
     public static String[] getAppVersion(final String packageName) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(
-                    packageName, PackageManager.GET_SIGNATURES
-            );
+            // 只读版本号：flags=0 即可；无需 PackageManager.GET_SIGNATURES
+            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, 0);
             if (packageInfo != null) {
                 String versionName = String.valueOf(packageInfo.versionName);
                 String versionCode;

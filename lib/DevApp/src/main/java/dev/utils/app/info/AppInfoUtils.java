@@ -89,13 +89,16 @@ public final class AppInfoUtils {
     }
 
     /**
-     * 通过包名 获取 PackageInfo
+     * 通过包名获取 PackageInfo（含签名数据，供 {@link AppInfoBean} / 证书信息等使用）
+     * <pre>
+     *     若只读 versionName 等，请用 {@link AppUtils#getPackageInfo(String, int)} 且 {@code flags=0}，勿滥用签名 flags。
+     * </pre>
      * @param packageName 应用包名
      * @return {@link PackageInfo}
      */
     public static PackageInfo getPackageInfo(final String packageName) {
         try {
-            // API 28+ 使用 GET_SIGNING_CERTIFICATES，与 {@link dev.utils.app.SignaturesUtils#getSignaturesFromPackageInfo} 一致
+            // API 28+：GET_SIGNING_CERTIFICATES；再低：GET_SIGNATURES。解析统一走 SignaturesUtils#getSignaturesFromPackageInfo
             final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
                     ? PackageManager.GET_SIGNING_CERTIFICATES
                     : PackageManager.GET_SIGNATURES;

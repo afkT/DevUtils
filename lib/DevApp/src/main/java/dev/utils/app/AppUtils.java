@@ -808,6 +808,7 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
+            // 仅需 ApplicationInfo 展示图标；flags=0
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             if (packageInfo == null) return null;
             return packageInfo.applicationInfo.loadIcon(packageManager);
@@ -835,6 +836,7 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
+            // 仅需 ApplicationInfo 展示名称；flags=0
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             if (packageInfo == null) return null;
             return packageInfo.applicationInfo.loadLabel(packageManager).toString();
@@ -860,7 +862,8 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            // 仅查询版本：versionName 等在 flags=0 时已返回；勿用 GET_SIGNATURES（多解析签名且无收益）
+            PackageInfo packageInfo = getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -883,7 +886,8 @@ public final class AppUtils {
      */
     public static long getAppVersionCode(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return -1L;
-        PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+        // 仅查询版本：versionCode / longVersionCode 在 flags=0 时已可用
+        PackageInfo packageInfo = getPackageInfo(packageName, 0);
         if (packageInfo == null) return -1L;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             return packageInfo.getLongVersionCode();
@@ -908,6 +912,7 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         try {
+            // 仅需 applicationInfo.sourceDir；flags=0 足够
             PackageInfo packageInfo = getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.sourceDir;
         } catch (Exception e) {
@@ -936,6 +941,7 @@ public final class AppUtils {
         try {
             PackageManager packageManager = getPackageManager();
             if (packageManager == null) return null;
+            // API 28+ 用 GET_SIGNING_CERTIFICATES；更低版本只能 GET_SIGNATURES（由 SignaturesUtils 统一解析）
             final int pkgFlags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
                     ? PackageManager.GET_SIGNING_CERTIFICATES
                     : PackageManager.GET_SIGNATURES;
