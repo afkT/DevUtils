@@ -30,22 +30,18 @@ abstract class TimberEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.d(line(message), *args)
+        dTag(null, message, *args)
     }
 
     override fun e(
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.e(line(message), *args)
+        eTag(null, message, *args)
     }
 
     override fun e(throwable: Throwable?) {
-        if (!pass()) return
-        val t = throwable ?: return
-        Timber.e(t)
+        eTag(null, throwable)
     }
 
     override fun e(
@@ -53,50 +49,43 @@ abstract class TimberEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.e(throwable, line(message), *args)
+        eTag(null, throwable, message, *args)
     }
 
     override fun w(
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.w(line(message), *args)
+        wTag(null, message, *args)
     }
 
     override fun i(
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.i(line(message), *args)
+        iTag(null, message, *args)
     }
 
     override fun v(
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.v(line(message), *args)
+        vTag(null, message, *args)
     }
 
     override fun wtf(
         message: String?,
         vararg args: Any?
     ) {
-        if (!pass()) return
-        Timber.wtf(line(message), *args)
+        wtfTag(null, message, *args)
     }
 
     override fun json(json: String?) {
-        if (!pass()) return
-        Timber.d(line(json))
+        jsonTag(null, json)
     }
 
     override fun xml(xml: String?) {
-        if (!pass()) return
-        Timber.d(line(xml))
+        xmlTag(null, xml)
     }
 
     // ===============================
@@ -110,11 +99,9 @@ abstract class TimberEngineImpl : ILogEngine {
     ) {
         if (!pass()) return
         if (tag.isNullOrEmpty()) {
-            d(message, args)
+            Timber.d(line(message), *args)
         } else {
-            Timber.tag(tag).d(
-                line(message), *args
-            )
+            Timber.tag(tag).d(line(message), *args)
         }
     }
 
@@ -125,11 +112,9 @@ abstract class TimberEngineImpl : ILogEngine {
     ) {
         if (!pass()) return
         if (tag.isNullOrEmpty()) {
-            e(message, args)
+            Timber.e(line(message), *args)
         } else {
-            Timber.tag(tag).e(
-                line(message), *args
-            )
+            Timber.tag(tag).e(line(message), *args)
         }
     }
 
@@ -140,7 +125,7 @@ abstract class TimberEngineImpl : ILogEngine {
         if (!pass()) return
         val t = throwable ?: return
         if (tag.isNullOrEmpty()) {
-            e(t)
+            Timber.e(t)
         } else {
             Timber.tag(tag).e(t)
         }
@@ -154,11 +139,9 @@ abstract class TimberEngineImpl : ILogEngine {
     ) {
         if (!pass()) return
         if (tag.isNullOrEmpty()) {
-            e(throwable, message, args)
+            Timber.e(throwable, line(message), *args)
         } else {
-            Timber.tag(tag).e(
-                line(message), *args
-            )
+            Timber.tag(tag).e(throwable, line(message), *args)
         }
     }
 
@@ -168,7 +151,11 @@ abstract class TimberEngineImpl : ILogEngine {
         vararg args: Any?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).w(line(message), *args)
+        if (tag.isNullOrEmpty()) {
+            Timber.w(line(message), *args)
+        } else {
+            Timber.tag(tag).w(line(message), *args)
+        }
     }
 
     override fun iTag(
@@ -177,7 +164,11 @@ abstract class TimberEngineImpl : ILogEngine {
         vararg args: Any?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).i(line(message), *args)
+        if (tag.isNullOrEmpty()) {
+            Timber.i(line(message), *args)
+        } else {
+            Timber.tag(tag).i(line(message), *args)
+        }
     }
 
     override fun vTag(
@@ -186,7 +177,11 @@ abstract class TimberEngineImpl : ILogEngine {
         vararg args: Any?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).v(line(message), *args)
+        if (tag.isNullOrEmpty()) {
+            Timber.v(line(message), *args)
+        } else {
+            Timber.tag(tag).v(line(message), *args)
+        }
     }
 
     override fun wtfTag(
@@ -195,7 +190,11 @@ abstract class TimberEngineImpl : ILogEngine {
         vararg args: Any?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).wtf(line(message), *args)
+        if (tag.isNullOrEmpty()) {
+            Timber.wtf(line(message), *args)
+        } else {
+            Timber.tag(tag).wtf(line(message), *args)
+        }
     }
 
     override fun jsonTag(
@@ -203,7 +202,11 @@ abstract class TimberEngineImpl : ILogEngine {
         json: String?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).d("%s", json ?: "")
+        if (tag.isNullOrEmpty()) {
+            Timber.d(line(json))
+        } else {
+            Timber.tag(tag).d(line(json))
+        }
     }
 
     override fun xmlTag(
@@ -211,6 +214,10 @@ abstract class TimberEngineImpl : ILogEngine {
         xml: String?
     ) {
         if (!pass()) return
-        Timber.tag(line(tag)).d("%s", xml ?: "")
+        if (tag.isNullOrEmpty()) {
+            Timber.d(line(xml))
+        } else {
+            Timber.tag(tag).d(line(xml))
+        }
     }
 }
