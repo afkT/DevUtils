@@ -934,8 +934,13 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (TextUtils.isEmpty(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return packageInfo == null ? null : packageInfo.signatures;
+            PackageManager packageManager = getPackageManager();
+            if (packageManager == null) return null;
+            final int pkgFlags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+                    ? PackageManager.GET_SIGNING_CERTIFICATES
+                    : PackageManager.GET_SIGNATURES;
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, pkgFlags);
+            return SignaturesUtils.getSignaturesFromPackageInfo(packageInfo);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");
             return null;
@@ -1198,7 +1203,11 @@ public final class AppUtils {
     ) {
         if (context == null || intent == null) return false;
         try {
-            context.startActivity(intent);
+            Intent launchIntent = intent;
+            if (!(context instanceof Activity)) {
+                launchIntent = IntentUtils.getIntent(intent, true);
+            }
+            context.startActivity(launchIntent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivity");
@@ -1284,8 +1293,39 @@ public final class AppUtils {
             final BroadcastReceiver receiver,
             final IntentFilter filter
     ) {
-
         return ReceiverUtils.registerReceiverBool(context, receiver, filter);
+    }
+
+    /**
+     * 注册广播监听
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   是否对其他应用导出接收器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiverBool(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return ReceiverUtils.registerReceiverBool(receiver, filter, receiverExported);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context            {@link Context}
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   是否对其他应用导出接收器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean registerReceiverBool(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return ReceiverUtils.registerReceiverBool(context, receiver, filter, receiverExported);
     }
 
     /**
@@ -1350,6 +1390,38 @@ public final class AppUtils {
             final IntentFilter filter
     ) {
         return ReceiverUtils.registerReceiver(context, receiver, filter);
+    }
+
+    /**
+     * 注册广播监听
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   是否对其他应用导出接收器
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return ReceiverUtils.registerReceiver(receiver, filter, receiverExported);
+    }
+
+    /**
+     * 注册广播监听
+     * @param context            {@link Context}
+     * @param receiver           {@link BroadcastReceiver}
+     * @param filter             {@link IntentFilter}
+     * @param receiverExported   是否对其他应用导出接收器
+     * @return 粘性 Intent
+     */
+    public static Intent registerReceiver(
+            final Context context,
+            final BroadcastReceiver receiver,
+            final IntentFilter filter,
+            final boolean receiverExported
+    ) {
+        return ReceiverUtils.registerReceiver(context, receiver, filter, receiverExported);
     }
 
     /**
@@ -1514,6 +1586,28 @@ public final class AppUtils {
             final Intent intent
     ) {
         return ServiceUtils.startService(context, intent);
+    }
+
+    /**
+     * 启动前台服务
+     * @param intent {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startForegroundService(final Intent intent) {
+        return ServiceUtils.startForegroundService(intent);
+    }
+
+    /**
+     * 启动前台服务
+     * @param context {@link Context}
+     * @param intent  {@link Intent}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startForegroundService(
+            final Context context,
+            final Intent intent
+    ) {
+        return ServiceUtils.startForegroundService(context, intent);
     }
 
     /**
