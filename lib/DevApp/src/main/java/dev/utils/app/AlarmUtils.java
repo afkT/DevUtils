@@ -13,6 +13,11 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: AlarmManager ( 全局定时器、闹钟 ) 工具类
  * @author Ttt
+ * <pre>
+ *     API 31+ 精确闹钟受 {@link android.app.AlarmManager#canScheduleExactAlarms()} 约束，
+ *     请使用 {@link #canScheduleExactAlarms()}、{@link #startScheduleExactAlarmSettings()} 引导用户授权；
+ *     {@link PendingIntent} 请统一经 {@link PendingIntentUtils} 创建。
+ * </pre>
  */
 public final class AlarmUtils {
 
@@ -58,6 +63,13 @@ public final class AlarmUtils {
     ) {
         try {
             AlarmManager alarmManager = AppUtils.getAlarmManager();
+            if (alarmManager == null) return false;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                    && !alarmManager.canScheduleExactAlarms()) {
+                LogPrintUtils.wTag(
+                        TAG, "canScheduleExactAlarms() == false; exact alarm may throw SecurityException, use startScheduleExactAlarmSettings()"
+                );
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setExactAndAllowWhileIdle(type, triggerAtMillis, pendingIntent);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -70,6 +82,40 @@ public final class AlarmUtils {
             LogPrintUtils.eTag(TAG, e, "startAlarmIntent");
         }
         return false;
+    }
+
+    // =========================
+    // = 精确闹钟 (API 31+) 适配 =
+    // =========================
+
+    /**
+     * 当前应用是否允许使用精确闹钟（API 31 以下恒为 true）
+     * @return {@code true} 可安排精确闹钟；{@code false} 可能被系统拒绝或需用户授权
+     */
+    public static boolean canScheduleExactAlarms() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return true;
+        }
+        try {
+            AlarmManager alarmManager = AppUtils.getAlarmManager();
+            return alarmManager != null && alarmManager.canScheduleExactAlarms();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "canScheduleExactAlarms");
+            return false;
+        }
+    }
+
+    /**
+     * 跳转系统「闹钟和提醒」精确闹钟授权页（API 31+）；低版本直接返回 true
+     * @return 是否已发起跳转或无需跳转
+     */
+    public static boolean startScheduleExactAlarmSettings() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return true;
+        }
+        Intent intent = IntentUtils.getRequestScheduleExactAlarmSettingsIntent(true);
+        if (intent == null) return false;
+        return AppUtils.startActivity(intent);
     }
 
     // ==========
