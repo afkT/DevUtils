@@ -103,6 +103,7 @@ public final class JobSchedulerUtils {
      * 解析用于调度的 JobScheduler ( 默认或命名空间 )
      * @param context   {@link Context}
      * @param namespace {@code null} 或空串表示默认命名空间；非空且 API 34+ 时使用 {@link #getJobSchedulerForNamespace(Context, String)}
+     * @return 默认或命名空间对应的 {@link JobScheduler}；{@code context == null} 或无法获取时返回 {@code null}
      */
     @Nullable
     private static JobScheduler resolveScheduler(
@@ -369,6 +370,11 @@ public final class JobSchedulerUtils {
 
     /**
      * Android 8.0+：enqueue ( 可选命名空间，API 34+ )
+     * @param context   {@link Context}
+     * @param job       {@link JobInfo}
+     * @param work      {@link JobWorkItem}
+     * @param namespace {@code null} 或空串为默认命名空间；非空且 API 34+ 时使用对应命名空间实例
+     * @return {@link JobScheduler#RESULT_SUCCESS} 或 {@link JobScheduler#RESULT_FAILURE}
      */
     public static int enqueue(
             final Context context,
@@ -424,6 +430,9 @@ public final class JobSchedulerUtils {
 
     /**
      * 取消指定 Job ( 默认命名空间 )
+     * @param context {@link Context}
+     * @param jobId   与 {@link JobInfo.Builder#Builder(int, android.content.ComponentName)} 中 id 一致
+     * @return {@code true} 已调用取消且无异常；{@code false} 服务不可用或发生异常
      */
     public static boolean cancel(
             final Context context,
@@ -434,6 +443,10 @@ public final class JobSchedulerUtils {
 
     /**
      * 取消指定 Job ( 可选命名空间，API 34+ )
+     * @param context   {@link Context}
+     * @param jobId     Job id
+     * @param namespace {@code null} 或空串为默认命名空间；非空且 API 34+ 时在对应命名空间上取消
+     * @return {@code true} 已调用取消且无异常；{@code false} 服务不可用或发生异常
      */
     public static boolean cancel(
             final Context context,
@@ -455,6 +468,8 @@ public final class JobSchedulerUtils {
 
     /**
      * 取消当前命名空间下本应用已调度的全部 Job ( API 34+ 仅当前 namespace；更早版本为应用全部任务 )
+     * @param context {@link Context}
+     * @return {@code true} 已调用 {@link JobScheduler#cancelAll()} 且无异常；{@code false} 失败
      */
     public static boolean cancelAll(final Context context) {
         return cancelAll(context, null);
@@ -462,6 +477,9 @@ public final class JobSchedulerUtils {
 
     /**
      * 取消全部 Job ( 可选从命名空间实例上调用，API 34+ )
+     * @param context   {@link Context}
+     * @param namespace {@code null} 或空串为默认命名空间；非空且 API 34+ 时仅取消该命名空间下任务
+     * @return {@code true} 已调用 {@link JobScheduler#cancelAll()} 且无异常；{@code false} 失败
      */
     public static boolean cancelAll(
             final Context context,
@@ -481,7 +499,9 @@ public final class JobSchedulerUtils {
     }
 
     /**
-     * Android 14+：取消<strong>所有命名空间</strong>下本应用已调度的 Job
+     * Android 14+：取消 所有命名空间 下本应用已调度的 Job
+     * @param context {@link Context}
+     * @return {@code true} 已调用 {@link JobScheduler#cancelInAllNamespaces()} 且无异常；{@code false} 失败或 API 低于 34
      */
     public static boolean cancelInAllNamespaces(final Context context) {
         JobScheduler js = getJobScheduler(context);
@@ -507,6 +527,8 @@ public final class JobSchedulerUtils {
 
     /**
      * 当前命名空间下所有待处理 ( 含已启动 ) 的 Job 列表
+     * @param context {@link Context}
+     * @return 任务列表；无服务或异常时返回不可变空列表
      */
     @NonNull
     public static List<JobInfo> getAllPendingJobs(final Context context) {
@@ -515,6 +537,9 @@ public final class JobSchedulerUtils {
 
     /**
      * 待处理 Job 列表 ( 可选命名空间，API 34+ )
+     * @param context   {@link Context}
+     * @param namespace {@code null} 或空串为默认命名空间；非空且 API 34+ 时查询该命名空间
+     * @return 任务列表；无服务或异常时返回不可变空列表
      */
     @NonNull
     public static List<JobInfo> getAllPendingJobs(
@@ -536,6 +561,8 @@ public final class JobSchedulerUtils {
 
     /**
      * Android 14+：按命名空间返回待处理 Job ( 多 namespace 一张图 )
+     * @param context {@link Context}
+     * @return 命名空间到任务列表的映射；API 低于 34、无服务或异常时返回不可变空 Map
      */
     @NonNull
     public static Map<String, List<JobInfo>> getPendingJobsInAllNamespaces(final Context context) {
@@ -557,6 +584,9 @@ public final class JobSchedulerUtils {
 
     /**
      * 查询指定 id 的 Job 描述；未找到返回 null
+     * @param context {@link Context}
+     * @param jobId   Job id
+     * @return {@link JobInfo}；不存在、API 低于 24、无服务或异常时返回 {@code null}
      */
     @Nullable
     public static JobInfo getPendingJob(
@@ -568,6 +598,10 @@ public final class JobSchedulerUtils {
 
     /**
      * 查询指定 id 的 Job ( 可选命名空间，API 34+ )
+     * @param context   {@link Context}
+     * @param jobId     Job id
+     * @param namespace {@code null} 或空串为默认命名空间；非空且 API 34+ 时从对应命名空间查询
+     * @return {@link JobInfo}；不存在、API 低于 24、无服务或异常时返回 {@code null}
      */
     @Nullable
     public static JobInfo getPendingJob(
@@ -591,6 +625,9 @@ public final class JobSchedulerUtils {
 
     /**
      * 是否已存在指定 id 的待调度 / 运行中 Job
+     * @param context {@link Context}
+     * @param jobId   Job id
+     * @return {@code true} 存在对应 {@link JobInfo}；否则 {@code false}
      */
     public static boolean hasPendingJob(
             final Context context,
@@ -626,6 +663,8 @@ public final class JobSchedulerUtils {
 
     /**
      * Android 14+：当前应用是否持有运行 user-initiated jobs 所需权限
+     * @param context {@link Context}
+     * @return {@code true} 持有权限；API 低于 34、无服务、无权限或异常时返回 {@code false}
      */
     public static boolean canRunUserInitiatedJobs(final Context context) {
         JobScheduler js = getJobScheduler(context);

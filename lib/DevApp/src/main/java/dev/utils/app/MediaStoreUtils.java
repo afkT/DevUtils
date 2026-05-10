@@ -129,7 +129,7 @@ public final class MediaStoreUtils {
     /**
      * 获取 MediaStore 版本字符串（主外部卷）
      * <pre>
-     *     Android 16 起宿主 targetSdk 36+ 时，版本为<strong>按应用隔离</strong>，且格式不可假设；
+     *     Android 16 起宿主 targetSdk 36+ 时，版本为 按应用隔离，且格式不可假设；
      *     仅应用于判断「是否发生变化」以触发重新同步，禁止解析内容或用于指纹识别。
      * </pre>
      * @param context {@link Context}
