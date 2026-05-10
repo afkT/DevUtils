@@ -22,6 +22,7 @@ import java.util.Set;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.PackageManagerUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.ForUtils;
 
@@ -379,8 +380,9 @@ public final class AppInfoUtils {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             // set match_all to prevent any filtering of the results
-            return AppUtils.getPackageManager()
-                    .queryIntentActivities(intent, PackageManager.MATCH_ALL);
+            return PackageManagerUtils.queryIntentActivitiesCompat(
+                    intent, PackageManager.MATCH_ALL
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllLauncherIconPackages");
         }

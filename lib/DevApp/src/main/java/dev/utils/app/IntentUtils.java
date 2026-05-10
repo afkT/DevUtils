@@ -70,12 +70,10 @@ public final class IntentUtils {
      */
     public static boolean isIntentAvailable(final Intent intent) {
         if (intent != null) {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            if (packageManager == null) return false;
             try {
-                return packageManager.queryIntentActivities(
+                return !PackageManagerUtils.queryIntentActivitiesCompat(
                         intent, PackageManager.MATCH_DEFAULT_ONLY
-                ).size() > 0;
+                ).isEmpty();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
             }
@@ -384,6 +382,40 @@ public final class IntentUtils {
             intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
         }
         return getIntent(intent, isNewTask);
+    }
+
+    /**
+     * 获取「闹钟和提醒 / 精确闹钟」系统授权页意图（API 31+）
+     * @param isNewTask 是否开启新的任务栈
+     * @return 低于 API 31 时返回 null
+     */
+    public static Intent getRequestScheduleExactAlarmSettingsIntent(final boolean isNewTask) {
+        return getRequestScheduleExactAlarmSettingsIntent(
+                AppUtils.getPackageName(), isNewTask
+        );
+    }
+
+    /**
+     * 获取「闹钟和提醒 / 精确闹钟」系统授权页意图（API 31+）
+     * @param packageName 应用包名
+     * @param isNewTask   是否开启新的任务栈
+     * @return 低于 API 31 或包名为空时返回 null
+     */
+    public static Intent getRequestScheduleExactAlarmSettingsIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || TextUtils.isEmpty(packageName)) {
+            return null;
+        }
+        try {
+            Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+            intent.setData(Uri.parse("package:" + packageName));
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getRequestScheduleExactAlarmSettingsIntent");
+        }
+        return null;
     }
 
     /**
