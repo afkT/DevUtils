@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,12 +9,14 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -26,6 +29,11 @@ import dev.utils.app.assist.ResourceAssist;
 /**
  * detail: 通知栏管理工具类
  * @author Ttt
+ * <pre>
+ *     Android 13+ 发送通知前请结合 {@link #canPostNotifications()}、
+ *     {@link #isPostNotificationsPermissionGranted()} 与运行时权限申请；
+ *     需安全封装发布可使用 {@link #postNotificationIfAllowed(int, Notification)}。
+ * </pre>
  */
 public final class NotificationUtils {
 
@@ -70,6 +78,81 @@ public final class NotificationUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * Android 13+ 是否已授予权限
+     * <pre>
+     *      {@link Manifest.permission#POST_NOTIFICATIONS}
+     * </pre>
+     * @param context {@link Context}
+     * @return API 33 以下恒为 true
+     */
+    public static boolean isPostNotificationsPermissionGranted(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
+        try {
+            return ContextCompat.checkSelfPermission(
+                    DevUtils.getContext(context), Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isPostNotificationsPermissionGranted");
+            return false;
+        }
+    }
+
+    /**
+     * Android 13+ 是否已授予权限
+     * <pre>
+     *      {@link Manifest.permission#POST_NOTIFICATIONS}
+     * </pre>
+     * @return API 33 以下恒为 true
+     */
+    public static boolean isPostNotificationsPermissionGranted() {
+        return isPostNotificationsPermissionGranted(DevUtils.getContext());
+    }
+
+    /**
+     * 是否允许弹出通知（Android 13+ 需运行时权限且系统通知总开关为开）
+     * @param context {@link Context}
+     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等
+     */
+    public static boolean canPostNotifications(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && !isPostNotificationsPermissionGranted(context)) {
+            return false;
+        }
+        return isNotificationEnabled();
+    }
+
+    /**
+     * 是否允许弹出通知（Android 13+ 需运行时权限且系统通知总开关为开）
+     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等
+     */
+    public static boolean canPostNotifications() {
+        return canPostNotifications(DevUtils.getContext());
+    }
+
+    /**
+     * 跳转当前应用的通知设置（API 26+）
+     * @return 是否已发起跳转
+     */
+    public static boolean startAppNotificationSettings() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return false;
+        }
+        Intent intent = IntentUtils.getLaunchAppNotificationSettingsIntent(
+                AppUtils.getPackageName(), true
+        );
+        if (intent == null) return false;
+        return AppUtils.startActivity(intent);
     }
 
     /**
@@ -178,6 +261,46 @@ public final class NotificationUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 发布系统通知
+     * <pre>
+     *     在 {@link #canPostNotifications()} 为 true 时发布通知，否则直接返回 false
+     * </pre>
+     * @param id           消息 id
+     * @param notification {@link Notification}
+     * @return {@code true} success, {@code false} fail 或当前不可通知
+     */
+    public static boolean postNotificationIfAllowed(
+            final int id,
+            final Notification notification
+    ) {
+        if (!canPostNotifications()) {
+            return false;
+        }
+        return postNotification(id, notification);
+    }
+
+    /**
+     * 发布系统通知
+     * <pre>
+     *     在 {@link #canPostNotifications()} 为 true 时发布通知，否则直接返回 false
+     * </pre>
+     * @param tag          标记 TAG
+     * @param id           消息 id
+     * @param notification {@link Notification}
+     * @return {@code true} success, {@code false} fail 或当前不可通知
+     */
+    public static boolean postNotificationIfAllowed(
+            final String tag,
+            final int id,
+            final Notification notification
+    ) {
+        if (!canPostNotifications()) {
+            return false;
+        }
+        return postNotification(tag, id, notification);
     }
 
     /**
