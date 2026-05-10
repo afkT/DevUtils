@@ -115,6 +115,9 @@ public final class ServiceUtils {
 
     /**
      * 启动前台服务
+     * <p>在 {@link android.app.Service#onStartCommand} 内请尽快调用
+     * {@link ForegroundServiceUtils#startForeground(android.app.Service, int, android.app.Notification, int)}，
+     * 以便 API 29+ 传入与 Manifest {@code android:foregroundServiceType} 一致的类型位掩码。</p>
      * @param intent {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
@@ -124,6 +127,9 @@ public final class ServiceUtils {
 
     /**
      * 启动前台服务
+     * <p>在 {@link android.app.Service#onStartCommand} 内请尽快调用
+     * {@link ForegroundServiceUtils#startForeground(android.app.Service, int, android.app.Notification, int)}，
+     * 以便 API 29+ 传入与 Manifest {@code android:foregroundServiceType} 一致的类型位掩码。</p>
      * @param context {@link Context}
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail

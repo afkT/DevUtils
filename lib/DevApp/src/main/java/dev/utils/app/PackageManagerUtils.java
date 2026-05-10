@@ -20,6 +20,7 @@ public final class PackageManagerUtils {
     private PackageManagerUtils() {
     }
 
+    // 日志 TAG
     private static final String TAG = PackageManagerUtils.class.getSimpleName();
 
     /**
