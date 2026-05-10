@@ -684,8 +684,17 @@ public final class AppUtils {
      * @return {@link ApplicationInfo}
      */
     public static ApplicationInfo getApplicationInfo() {
+        return getApplicationInfo(DevUtils.getContext());
+    }
+
+    /**
+     * 获取 ApplicationInfo
+     * @param context Context
+     * @return {@link ApplicationInfo}
+     */
+    public static ApplicationInfo getApplicationInfo(final Context context) {
         try {
-            return DevUtils.getContext().getApplicationInfo();
+            return DevUtils.getContext(context).getApplicationInfo();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplicationInfo");
         }

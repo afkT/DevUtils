@@ -38,6 +38,34 @@ public final class ScreenUtils {
     private static final String TAG = ScreenUtils.class.getSimpleName();
 
     /**
+     * 是否对大屏场景下忽略屏幕方向、尺寸可调整性和宽高比限制
+     * <pre>
+     *     是否在 Android 16 (API 36) 及以上 且当前显示为 smallestWidth ≥ 600dp 的大屏场景下，
+     *     对竖屏/横屏等常用 {@link Activity#setRequestedOrientation(int)} 请求会被系统忽略（见官方「自适应布局」行为变更）
+     * </pre>
+     * @param activity {@link Activity}
+     * @return {@code true} 表示此时设置常见竖/横屏方向通常无效，应使用自适应布局
+     */
+    public static boolean isActivityPortraitLandscapeIgnoredOnLargeScreen(final Activity activity) {
+        if (activity == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.BAKLAVA) {
+            return false;
+        }
+        int target = VersionUtils.getTargetSdkVersion(activity);
+        if (target < Build.VERSION_CODES.BAKLAVA) {
+            return false;
+        }
+        try {
+            return activity.getResources().getConfiguration().smallestScreenWidthDp >= 600;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isActivityPortraitLandscapeIgnoredOnLargeScreen");
+            return false;
+        }
+    }
+
+    /**
      * 获取 DisplayMetrics
      * @return {@link DisplayMetrics}
      */
@@ -328,6 +356,12 @@ public final class ScreenUtils {
      */
     public static boolean setLandscape(final Activity activity) {
         try {
+            if (isActivityPortraitLandscapeIgnoredOnLargeScreen(activity)) {
+                LogPrintUtils.wTag(
+                        TAG, "setLandscape skipped: ignored on API 36+ with targetSdk>=36 and sw600dp+; use adaptive layouts"
+                );
+                return false;
+            }
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             return true;
         } catch (Exception e) {
@@ -343,6 +377,13 @@ public final class ScreenUtils {
      */
     public static boolean setPortrait(final Activity activity) {
         try {
+            if (isActivityPortraitLandscapeIgnoredOnLargeScreen(activity)) {
+                LogPrintUtils.wTag(
+                        TAG,
+                        "setPortrait skipped: ignored on API 36+ with targetSdk>=36 and sw600dp+; use adaptive layouts"
+                );
+                return false;
+            }
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             return true;
         } catch (Exception e) {
@@ -402,6 +443,13 @@ public final class ScreenUtils {
      */
     public static boolean toggleScreenOrientation(final Activity activity) {
         try {
+            if (isActivityPortraitLandscapeIgnoredOnLargeScreen(activity)) {
+                LogPrintUtils.wTag(
+                        TAG,
+                        "toggleScreenOrientation skipped: ignored on API 36+ with targetSdk>=36 and sw600dp+; use adaptive layouts"
+                );
+                return false;
+            }
             // 判断是否竖屏
             if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

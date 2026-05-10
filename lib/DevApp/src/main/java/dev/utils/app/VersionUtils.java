@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.content.Context;
 import android.os.Build;
 
 /**
@@ -447,5 +448,60 @@ public final class VersionUtils {
                 return "Android CinnamonBun";
         }
         return "unknown";
+    }
+
+    // ==========
+    // = 版本适配 =
+    // ==========
+
+    /**
+     * 判断 Android 16 大屏方向、定时任务等平台行为是否对当前进程生效
+     * 宿主应用 {@link android.content.pm.ApplicationInfo#targetSdkVersion}
+     * <p>用于结合 {@link #isBaklava()} 。</p>
+     * @param context {@link Context}
+     * @return targetSdkVersion，{@code context == null} 或异常时返回 -1
+     */
+    public static int getTargetSdkVersion(final Context context) {
+        try {
+            return AppUtils.getApplicationInfo(context).targetSdkVersion;
+        } catch (Throwable ignored) {
+            return -1;
+        }
+    }
+
+    /**
+     * Android 16+ 主/次版本合并值
+     * <pre>
+     *     {@link Build.VERSION#SDK_INT_FULL}；低版本或异常时退回 {@link Build.VERSION#SDK_INT}
+     * </pre>
+     * @see <a href="https://developer.android.com/about/versions/16/features">Android 16 Features</a>
+     */
+    public static int getSdkIntFullOrSdkInt() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.BAKLAVA) {
+            return Build.VERSION.SDK_INT;
+        }
+        try {
+            return Build.VERSION.SDK_INT_FULL;
+        } catch (Exception ignored) {
+            return Build.VERSION.SDK_INT;
+        }
+    }
+
+    /**
+     * Android 16+：次版本号
+     * <pre>
+     *     解析 {@link Build.VERSION#SDK_INT_FULL} 的次版本号；低版本或异常时返回 0
+     * </pre>
+     * @return 次版本号
+     */
+    public static int getMinorSdkVersionFromSdkIntFullSafe() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.BAKLAVA) {
+            return 0;
+        }
+        try {
+            return Build.getMinorSdkVersion(Build.VERSION.SDK_INT_FULL);
+        } catch (Exception ignored) {
+            return 0;
+        }
     }
 }
