@@ -15,6 +15,12 @@ import dev.utils.LogPrintUtils;
 /**
  * detail: 广播相关工具类
  * @author Ttt
+ * <pre>
+ *     Android 16 起，跨应用进程的广播 {@code priority} 不再保证有序投递，且
+ *     {@link IntentFilter#setPriority(int)} / manifest {@code android:priority} 会被限制在
+ *     ({@link IntentFilter#SYSTEM_LOW_PRIORITY} + 1, {@link IntentFilter#SYSTEM_HIGH_PRIORITY} - 1) 内；
+ *     可调用 {@link #clampBroadcastIntentFilterPriorityCompat(IntentFilter)} 与系统行为对齐。
+ * </pre>
  */
 public final class ReceiverUtils {
 
@@ -186,6 +192,22 @@ public final class ReceiverUtils {
             LogPrintUtils.eTag(TAG, e, "localSendBroadcastSync");
         }
         return false;
+    }
+
+    /**
+     * Android 16+：将 {@link IntentFilter} 的优先级限制在
+     * ({@link IntentFilter#SYSTEM_LOW_PRIORITY} + 1, {@link IntentFilter#SYSTEM_HIGH_PRIORITY} - 1) 内，
+     * 与系统对 manifest / 运行时注册广播优先级的约束一致。
+     * @param filter {@link IntentFilter}
+     */
+    public static void clampBroadcastIntentFilterPriorityCompat(final IntentFilter filter) {
+        if (filter == null) {
+            return;
+        }
+        int p  = filter.getPriority();
+        int lo = IntentFilter.SYSTEM_LOW_PRIORITY + 1;
+        int hi = IntentFilter.SYSTEM_HIGH_PRIORITY - 1;
+        filter.setPriority(Math.max(lo, Math.min(hi, p)));
     }
 
     // =======

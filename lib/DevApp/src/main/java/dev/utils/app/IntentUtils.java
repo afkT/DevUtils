@@ -1120,4 +1120,21 @@ public final class IntentUtils {
         }
         return null;
     }
+
+    /**
+     * Android 16+：关闭系统对 Intent 重定向的启动侧加固
+     * <pre>
+     *     极少数合法嵌套 {@code startActivity} 场景
+     *     滥用会增大安全风险，仅当确有需要且已评估后再调用；详见官方「Intent 重定向」说明。
+     * </pre>
+     * @param intent {@link Intent}
+     * @return {@link Intent}
+     */
+    @RequiresApi(Build.VERSION_CODES.BAKLAVA)
+    public static Intent removeLaunchSecurityProtection(final Intent intent) {
+        if (intent != null) {
+            intent.removeLaunchSecurityProtection();
+        }
+        return intent;
+    }
 }

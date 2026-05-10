@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -123,6 +124,46 @@ public final class MediaStoreUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 获取 MediaStore 版本字符串（主外部卷）
+     * <pre>
+     *     Android 16 起宿主 targetSdk 36+ 时，版本为<strong>按应用隔离</strong>，且格式不可假设；
+     *     仅应用于判断「是否发生变化」以触发重新同步，禁止解析内容或用于指纹识别。
+     * </pre>
+     * @param context {@link Context}
+     * @return 版本字符串；{@code context == null}、API 过低或异常时返回 {@code null}
+     */
+    public static String getMediaStoreVersion(final Context context) {
+        return getMediaStoreVersion(context, null);
+    }
+
+    /**
+     * 获取指定卷的 MediaStore 版本字符串
+     * @param context    {@link Context}
+     * @param volumeName {@link MediaStore} 卷名；{@code null} 或空串表示默认主外部卷
+     * @return 版本字符串；失败时返回 {@code null}
+     */
+    public static String getMediaStoreVersion(
+            final Context context,
+            final String volumeName
+    ) {
+        if (context == null) {
+            return null;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            return null;
+        }
+        try {
+            if (TextUtils.isEmpty(volumeName)) {
+                return MediaStore.getVersion(context);
+            }
+            return MediaStore.getVersion(context, volumeName);
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "getMediaStoreVersion");
+            return null;
+        }
     }
 
     // ===========
