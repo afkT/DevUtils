@@ -177,18 +177,25 @@ public final class CPUUtils {
      * @return CPU 当前频率 ( 单位 KHZ )
      */
     public static String getCurCpuFreq() {
+        FileReader     fr = null;
+        BufferedReader br = null;
         try {
-            FileReader fr = new FileReader(
+            fr = new FileReader(
                     "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq"
             );
-            BufferedReader br   = new BufferedReader(fr);
-            String         text = br.readLine();
+            br = new BufferedReader(fr);
+            String text = br.readLine();
+            if (text == null) {
+                return "unknown";
+            }
             return Formatter.formatFileSize(
                     DevUtils.getContext(),
                     Long.parseLong(text.trim()) * 1024
             ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCurCpuFreq");
+        } finally {
+            CloseUtils.closeIOQuietly(br, fr);
         }
         return "unknown";
     }
@@ -215,7 +222,9 @@ public final class CPUUtils {
             // Filter to only list the devices we care about
             File[] files = dir.listFiles(new CpuFilter());
             // Return the number of cores ( virtual CPU devices )
-            CPU_CORES = files.length;
+            if (files != null) {
+                CPU_CORES = files.length;
+            }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCoresNumbers");
         }
@@ -236,7 +245,10 @@ public final class CPUUtils {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("/proc/cpuinfo"), 8192);
-            String   line  = br.readLine();
+            String line = br.readLine();
+            if (line == null) {
+                return null;
+            }
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
                 return array[1];

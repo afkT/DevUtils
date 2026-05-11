@@ -47,6 +47,9 @@ public final class AudioManagerUtils {
 
     /**
      * 获取指定声音流最大音量大小
+     * <pre>
+     *     {@code streamType} 使用 {@link AudioManager} 中 {@code STREAM_*} 常量。
+     * </pre>
      * @param streamType 流类型
      * @return 最大音量大小
      */
@@ -64,6 +67,9 @@ public final class AudioManagerUtils {
 
     /**
      * 获取指定声音流音量大小
+     * <pre>
+     *     {@code streamType} 使用 {@link AudioManager} 中 {@code STREAM_*} 常量。
+     * </pre>
      * @param streamType 流类型
      * @return 音量大小
      */
@@ -81,6 +87,9 @@ public final class AudioManagerUtils {
 
     /**
      * 设置指定声音流音量大小
+     * <pre>
+     *     {@code streamType} 使用 {@link AudioManager} 中 {@code STREAM_*} 常量。
+     * </pre>
      * @param streamType 流类型
      * @param index      音量大小
      * @return {@code true} success, {@code false} fail

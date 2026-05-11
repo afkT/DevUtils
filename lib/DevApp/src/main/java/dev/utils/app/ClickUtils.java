@@ -65,6 +65,9 @@ public final class ClickUtils {
         if (view != null) {
             try {
                 final View parent = (View) view.getParent();
+                if (parent == null) {
+                    return false;
+                }
                 parent.post(() -> {
                     try {
                         Rect bounds = new Rect();
@@ -575,17 +578,17 @@ public final class ClickUtils {
             this(ClickUtils.sGlobalClickAssist, ClickUtils.sCheckViewId);
         }
 
-        public OnDebouncingClickListener(boolean checkViewId) {
+        public OnDebouncingClickListener(final boolean checkViewId) {
             this(ClickUtils.sGlobalClickAssist, checkViewId);
         }
 
-        public OnDebouncingClickListener(ClickAssist clickAssist) {
+        public OnDebouncingClickListener(final ClickAssist clickAssist) {
             this(clickAssist, ClickUtils.sCheckViewId);
         }
 
         public OnDebouncingClickListener(
-                ClickAssist clickAssist,
-                boolean checkViewId
+                final ClickAssist clickAssist,
+                final boolean checkViewId
         ) {
             this.mClickAssist = clickAssist;
             this.mCheckViewId = checkViewId;
@@ -646,7 +649,7 @@ public final class ClickUtils {
             this(ClickUtils.sGlobalClickAssist);
         }
 
-        public OnCountClickListener(ClickAssist clickAssist) {
+        public OnCountClickListener(final ClickAssist clickAssist) {
             this.mClickAssist = clickAssist;
         }
 

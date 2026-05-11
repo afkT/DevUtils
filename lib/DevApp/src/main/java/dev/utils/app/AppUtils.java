@@ -82,7 +82,7 @@ public final class AppUtils {
      * 获取 SystemService
      * @param name 服务名
      * @param <T>  泛型
-     * @return SystemService Object
+     * @return 系统服务实例，失败时为 {@code null}
      */
     public static <T> T getSystemService(final String name) {
         return getSystemService(DevUtils.getContext(), name);
@@ -90,10 +90,10 @@ public final class AppUtils {
 
     /**
      * 获取 SystemService
-     * @param context Context
+     * @param context {@link Context}
      * @param name    服务名
      * @param <T>     泛型
-     * @return SystemService Object
+     * @return 系统服务实例，失败时为 {@code null}
      */
     public static <T> T getSystemService(
             final Context context,
@@ -111,9 +111,9 @@ public final class AppUtils {
 
     /**
      * 获取 SystemService
-     * @param clazz 服务类名
+     * @param clazz {@link Class} 服务类名
      * @param <T>   泛型
-     * @return SystemService Object
+     * @return 系统服务实例，失败时为 {@code null}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static <T> T getSystemService(final Class<T> clazz) {
@@ -122,10 +122,10 @@ public final class AppUtils {
 
     /**
      * 获取 SystemService
-     * @param context Context
-     * @param clazz   服务类名
+     * @param context {@link Context}
+     * @param clazz   {@link Class} 服务类名
      * @param <T>     泛型
-     * @return SystemService Object
+     * @return 系统服务实例，失败时为 {@code null}
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static <T> T getSystemService(
@@ -154,7 +154,7 @@ public final class AppUtils {
 
     /**
      * 获取 LocalBroadcastManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link LocalBroadcastManager}
      */
     public static LocalBroadcastManager getLocalBroadcastManager(final Context context) {
@@ -171,7 +171,7 @@ public final class AppUtils {
 
     /**
      * 获取 WindowManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link WindowManager}
      */
     public static WindowManager getWindowManager(final Context context) {
@@ -188,7 +188,7 @@ public final class AppUtils {
 
     /**
      * 获取 AudioManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link AudioManager}
      */
     public static AudioManager getAudioManager(final Context context) {
@@ -205,7 +205,7 @@ public final class AppUtils {
 
     /**
      * 获取 StatusBarManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link StatusBarManager}
      */
     public static StatusBarManager getStatusBarManager(final Context context) {
@@ -222,7 +222,7 @@ public final class AppUtils {
 
     /**
      * 获取 SensorManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link SensorManager}
      */
     public static SensorManager getSensorManager(final Context context) {
@@ -239,7 +239,7 @@ public final class AppUtils {
 
     /**
      * 获取 StorageManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link StorageManager}
      */
     public static StorageManager getStorageManager(final Context context) {
@@ -257,7 +257,7 @@ public final class AppUtils {
 
     /**
      * 获取 WifiManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link WifiManager}
      */
     @SuppressLint("WifiManagerLeak")
@@ -275,7 +275,7 @@ public final class AppUtils {
 
     /**
      * 获取 ConnectivityManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link ConnectivityManager}
      */
     public static ConnectivityManager getConnectivityManager(final Context context) {
@@ -292,7 +292,7 @@ public final class AppUtils {
 
     /**
      * 获取 TelephonyManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link TelephonyManager}
      */
     public static TelephonyManager getTelephonyManager(final Context context) {
@@ -310,7 +310,7 @@ public final class AppUtils {
 
     /**
      * 获取 AppOpsManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link AppOpsManager}
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -328,7 +328,7 @@ public final class AppUtils {
 
     /**
      * 获取 NotificationManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link NotificationManager}
      */
     public static NotificationManager getNotificationManager(final Context context) {
@@ -346,7 +346,7 @@ public final class AppUtils {
 
     /**
      * 获取 ShortcutManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link ShortcutManager}
      */
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
@@ -364,7 +364,7 @@ public final class AppUtils {
 
     /**
      * 获取 ActivityManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link ActivityManager}
      */
     public static ActivityManager getActivityManager(final Context context) {
@@ -381,7 +381,7 @@ public final class AppUtils {
 
     /**
      * 获取 PowerManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link PowerManager}
      */
     public static PowerManager getPowerManager(final Context context) {
@@ -398,7 +398,7 @@ public final class AppUtils {
 
     /**
      * 获取 BatteryManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link BatteryManager}
      */
     public static BatteryManager getBatteryManager(final Context context) {
@@ -415,7 +415,7 @@ public final class AppUtils {
 
     /**
      * 获取 KeyguardManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link KeyguardManager}
      */
     public static KeyguardManager getKeyguardManager(final Context context) {
@@ -432,7 +432,7 @@ public final class AppUtils {
 
     /**
      * 获取 InputMethodManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link InputMethodManager}
      */
     public static InputMethodManager getInputMethodManager(final Context context) {
@@ -449,7 +449,7 @@ public final class AppUtils {
 
     /**
      * 获取 ClipboardManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link ClipboardManager}
      */
     public static ClipboardManager getClipboardManager(final Context context) {
@@ -467,7 +467,7 @@ public final class AppUtils {
 
     /**
      * 获取 UsageStatsManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link UsageStatsManager}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -485,7 +485,7 @@ public final class AppUtils {
 
     /**
      * 获取 AlarmManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link AlarmManager}
      */
     public static AlarmManager getAlarmManager(final Context context) {
@@ -502,7 +502,7 @@ public final class AppUtils {
 
     /**
      * 获取 LocationManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link LocationManager}
      */
     public static LocationManager getLocationManager(final Context context) {
@@ -519,7 +519,7 @@ public final class AppUtils {
 
     /**
      * 获取 Vibrator
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link Vibrator}
      */
     public static Vibrator getVibrator(final Context context) {
@@ -536,7 +536,7 @@ public final class AppUtils {
 
     /**
      * 获取 DevicePolicyManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link DevicePolicyManager}
      */
     public static DevicePolicyManager getDevicePolicyManager(final Context context) {
@@ -553,7 +553,7 @@ public final class AppUtils {
 
     /**
      * 获取 DownloadManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link DownloadManager}
      */
     public static DownloadManager getDownloadManager(final Context context) {
@@ -571,7 +571,7 @@ public final class AppUtils {
 
     /**
      * 获取 SensorPrivacyManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link SensorPrivacyManager}
      */
     @RequiresApi(api = Build.VERSION_CODES.S)
@@ -589,7 +589,7 @@ public final class AppUtils {
 
     /**
      * 获取 WallpaperManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link WallpaperManager}
      */
     public static WallpaperManager getWallpaperManager(final Context context) {
@@ -612,7 +612,7 @@ public final class AppUtils {
 
     /**
      * 获取 PackageManager
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link PackageManager}
      */
     public static PackageManager getPackageManager(final Context context) {
@@ -635,7 +635,7 @@ public final class AppUtils {
 
     /**
      * 获取 Current WindowMetrics
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link WindowMetrics}
      */
     public static WindowMetrics getCurrentWindowMetrics(final Context context) {
@@ -662,7 +662,7 @@ public final class AppUtils {
 
     /**
      * 获取 Maximum WindowMetrics
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link WindowMetrics}
      */
     public static WindowMetrics getMaximumWindowMetrics(final Context context) {
@@ -689,7 +689,7 @@ public final class AppUtils {
 
     /**
      * 获取 ApplicationInfo
-     * @param context Context
+     * @param context {@link Context}
      * @return {@link ApplicationInfo}
      */
     public static ApplicationInfo getApplicationInfo(final Context context) {
@@ -1208,7 +1208,7 @@ public final class AppUtils {
 
     /**
      * Activity 跳转
-     * @param context Context
+     * @param context {@link Context}
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
@@ -1592,7 +1592,7 @@ public final class AppUtils {
 
     /**
      * 启动服务
-     * @param context Context
+     * @param context {@link Context}
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
@@ -1636,7 +1636,7 @@ public final class AppUtils {
 
     /**
      * 停止服务
-     * @param context Context
+     * @param context {@link Context}
      * @param intent  {@link Intent}
      * @return {@code true} success, {@code false} fail
      */

@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -51,8 +52,12 @@ public final class BrightnessUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {
+        final Context context = DevUtils.getContext();
+        if (context == null) {
+            return false;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                !Settings.System.canWrite(DevUtils.getContext())) {
+                !Settings.System.canWrite(context)) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
@@ -97,8 +102,12 @@ public final class BrightnessUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {
+        final Context context = DevUtils.getContext();
+        if (context == null) {
+            return false;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                !Settings.System.canWrite(DevUtils.getContext())) {
+                !Settings.System.canWrite(context)) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));

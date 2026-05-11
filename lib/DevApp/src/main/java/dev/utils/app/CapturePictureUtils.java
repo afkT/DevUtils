@@ -99,6 +99,9 @@ public final class CapturePictureUtils {
      * @return 当前屏幕截图, 包含状态栏
      */
     public static Bitmap snapshotWithStatusBar(final Activity activity) {
+        if (activity == null) {
+            return null;
+        }
         try {
             View view = activity.getWindow().getDecorView();
             view.setDrawingCacheEnabled(true);
@@ -109,6 +112,9 @@ public final class CapturePictureUtils {
             if (cacheBitmap == null) return null;
             // 获取屏幕宽度
             int[] widthHeight = ScreenUtils.getScreenWidthHeight();
+            if (widthHeight == null || widthHeight.length < 2) {
+                return null;
+            }
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
@@ -132,6 +138,9 @@ public final class CapturePictureUtils {
      * @return 当前屏幕截图, 不包含状态栏
      */
     public static Bitmap snapshotWithoutStatusBar(final Activity activity) {
+        if (activity == null) {
+            return null;
+        }
         try {
             View view = activity.getWindow().getDecorView();
             view.setDrawingCacheEnabled(true);
@@ -142,6 +151,9 @@ public final class CapturePictureUtils {
             if (cacheBitmap == null) return null;
             // 获取屏幕宽度
             int[] widthHeight = ScreenUtils.getScreenWidthHeight();
+            if (widthHeight == null || widthHeight.length < 2) {
+                return null;
+            }
             // 获取状态栏高度
             int statusBarHeight = BarUtils.getStatusBarHeight();
 
@@ -644,6 +656,9 @@ public final class CapturePictureUtils {
         try {
             // Adapter
             ListAdapter listAdapter = listView.getAdapter();
+            if (listAdapter == null) {
+                return null;
+            }
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
@@ -727,6 +742,9 @@ public final class CapturePictureUtils {
         try {
             // Adapter
             ListAdapter listAdapter = gridView.getAdapter();
+            if (listAdapter == null) {
+                return null;
+            }
             // Item 总条数
             int itemCount = listAdapter.getCount();
             // 没数据则直接跳过
@@ -940,14 +958,15 @@ public final class CapturePictureUtils {
                             recyclerView, config, verticalSpacing, horizontalSpacing
                     );
                 }
-                throw new Exception(
-                        String.format(
-                                "Not Supported %s LayoutManager",
-                                layoutManager.getClass().getSimpleName()
-                        )
+                LogPrintUtils.eTag(
+                        TAG,
+                        "snapshotByRecyclerView: unsupported LayoutManager %s",
+                        layoutManager.getClass().getSimpleName()
                 );
+                return null;
             } else {
-                throw new Exception("Adapter or LayoutManager is null");
+                LogPrintUtils.eTag(TAG, "snapshotByRecyclerView: adapter or layoutManager is null");
+                return null;
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "snapshotByRecyclerView");
@@ -983,6 +1002,9 @@ public final class CapturePictureUtils {
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            if (adapter == null) {
+                return null;
+            }
             // Item 总条数
             int itemCount = adapter.getItemCount();
             // 没数据则直接跳过
@@ -993,7 +1015,10 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-            boolean           vertical          = RecyclerViewUtils.canScrollVertically(gridLayoutManager);
+            if (gridLayoutManager == null) {
+                return null;
+            }
+            boolean vertical = RecyclerViewUtils.canScrollVertically(gridLayoutManager);
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -1192,6 +1217,9 @@ public final class CapturePictureUtils {
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            if (adapter == null) {
+                return null;
+            }
             // Item 总条数
             int itemCount = adapter.getItemCount();
             // 没数据则直接跳过
@@ -1202,7 +1230,10 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            boolean             vertical            = RecyclerViewUtils.canScrollVertically(linearLayoutManager);
+            if (linearLayoutManager == null) {
+                return null;
+            }
+            boolean vertical = RecyclerViewUtils.canScrollVertically(linearLayoutManager);
             if (vertical) {
 
                 // ==========
@@ -1308,6 +1339,9 @@ public final class CapturePictureUtils {
         try {
             // 获取适配器
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            if (adapter == null) {
+                return null;
+            }
             // Item 总条数
             int itemCount = adapter.getItemCount();
             // 没数据则直接跳过
@@ -1317,8 +1351,12 @@ public final class CapturePictureUtils {
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
-            StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
-            boolean                    vertical                   = RecyclerViewUtils.canScrollVertically(staggeredGridLayoutManager);
+            StaggeredGridLayoutManager staggeredGridLayoutManager =
+                    (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+            if (staggeredGridLayoutManager == null) {
+                return null;
+            }
+            boolean vertical = RecyclerViewUtils.canScrollVertically(staggeredGridLayoutManager);
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -1500,6 +1538,9 @@ public final class CapturePictureUtils {
             final View childView,
             final Bitmap.Config config
     ) {
+        if (childView == null || config == null) {
+            return null;
+        }
         Bitmap bitmap = Bitmap.createBitmap(
                 childView.getMeasuredWidth(),
                 childView.getMeasuredHeight(),

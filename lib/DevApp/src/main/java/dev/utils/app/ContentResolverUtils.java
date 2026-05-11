@@ -429,8 +429,8 @@ public final class ContentResolverUtils {
          * @return 排序方式
          */
         public String getSortOrder(
-                Uri uri,
-                String filePath
+                final Uri uri,
+                final String filePath
         ) {
             return null;
         }

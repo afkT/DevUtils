@@ -59,6 +59,9 @@ public final class BarUtils {
     public static int getStatusBarHeight() {
         try {
             Resources resources = ResourceUtils.getResources();
+            if (resources == null) {
+                return 0;
+            }
             int id = resources.getIdentifier(
                     "status_bar_height", "dimen", "android"
             );
