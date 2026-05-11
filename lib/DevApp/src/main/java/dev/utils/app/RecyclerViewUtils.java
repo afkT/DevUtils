@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -1733,6 +1734,98 @@ public final class RecyclerViewUtils {
                 boolean focusedChildVisible
         ) {
             return false;
+        }
+    }
+
+    // ========================
+    // = LinearSmoothScroller =
+    // ========================
+
+    /**
+     * detail: 垂直列表平滑滚动时目标项对齐顶部
+     * @author Ttt
+     * <pre>
+     *     继承 {@link LinearSmoothScroller}，用于 {@link RecyclerView} 平滑滚动流程；垂直方向吸附为 {@link LinearSmoothScroller#SNAP_TO_START}。
+     * </pre>
+     */
+    public static class TopSnappedSmoothScroller
+            extends LinearSmoothScroller {
+
+        public TopSnappedSmoothScroller(final Context context) {
+            super(context);
+        }
+
+        /**
+         * 垂直方向与父 RecyclerView 对齐时优先贴合子项顶部。
+         * @return {@link LinearSmoothScroller#SNAP_TO_START}
+         */
+        @Override
+        protected int getVerticalSnapPreference() {
+            return LinearSmoothScroller.SNAP_TO_START;
+        }
+
+        /**
+         * 计算使目标子项完全可见所需的垂直滚动量，并按顶部对齐。
+         * <pre>
+         *     向父类传入 {@link LinearSmoothScroller#SNAP_TO_START}，不采用调用方传入的 snapPreference。
+         * </pre>
+         * @param view           目标子项
+         * @param snapPreference 调用方传入的吸附偏好
+         * @return 垂直方向滚动增量（像素）
+         */
+        @Override
+        public int calculateDyToMakeVisible(
+                View view,
+                int snapPreference
+        ) {
+            if (view == null) {
+                return 0;
+            }
+            return super.calculateDyToMakeVisible(view, LinearSmoothScroller.SNAP_TO_START);
+        }
+    }
+
+    /**
+     * detail: 垂直列表平滑滚动时目标项对齐底部
+     * @author Ttt
+     * <pre>
+     *     继承 {@link LinearSmoothScroller}，用于 {@link RecyclerView} 平滑滚动流程；垂直方向吸附为 {@link LinearSmoothScroller#SNAP_TO_END}。
+     * </pre>
+     */
+    public static class EndSnappedSmoothScroller
+            extends LinearSmoothScroller {
+
+        public EndSnappedSmoothScroller(final Context context) {
+            super(context);
+        }
+
+        /**
+         * 垂直方向与父 RecyclerView 对齐时优先贴合子项底部。
+         * @return {@link LinearSmoothScroller#SNAP_TO_END}
+         */
+        @Override
+        protected int getVerticalSnapPreference() {
+            return LinearSmoothScroller.SNAP_TO_END;
+        }
+
+        /**
+         * 计算使目标子项完全可见所需的垂直滚动量，并按底部对齐。
+         * <pre>
+         *     向父类传入 {@link LinearSmoothScroller#SNAP_TO_END}，不采用调用方传入的 snapPreference。
+         * </pre>
+         * @param view           目标子项
+         * @param snapPreference 调用方传入的吸附偏好
+         * @return 垂直方向滚动增量（像素）
+         */
+        @Override
+        public int calculateDyToMakeVisible(
+                View view,
+                int snapPreference
+        ) {
+            if (view == null) {
+                return 0;
+            }
+            return super.calculateDyToMakeVisible(view, LinearSmoothScroller.SNAP_TO_END);
         }
     }
 }
