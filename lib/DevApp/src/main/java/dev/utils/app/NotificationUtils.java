@@ -86,7 +86,7 @@ public final class NotificationUtils {
      *      {@link Manifest.permission#POST_NOTIFICATIONS}
      * </pre>
      * @param context {@link Context}
-     * @return API 33 以下恒为 true
+     * @return {@code true} 已授予或 API 33 以下, {@code false} 未授予或异常
      */
     public static boolean isPostNotificationsPermissionGranted(final Context context) {
         if (context == null) {
@@ -110,7 +110,7 @@ public final class NotificationUtils {
      * <pre>
      *      {@link Manifest.permission#POST_NOTIFICATIONS}
      * </pre>
-     * @return API 33 以下恒为 true
+     * @return {@code true} 已授予或 API 33 以下, {@code false} 未授予或异常
      */
     public static boolean isPostNotificationsPermissionGranted() {
         return isPostNotificationsPermissionGranted(DevUtils.getContext());
@@ -119,7 +119,7 @@ public final class NotificationUtils {
     /**
      * 是否允许弹出通知（Android 13+ 需运行时权限且系统通知总开关为开）
      * @param context {@link Context}
-     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等
+     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等, {@code false} 无权限或被关闭
      */
     public static boolean canPostNotifications(final Context context) {
         if (context == null) {
@@ -134,7 +134,7 @@ public final class NotificationUtils {
 
     /**
      * 是否允许弹出通知（Android 13+ 需运行时权限且系统通知总开关为开）
-     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等
+     * @return {@code true} 可尝试 {@link #postNotification(int, Notification)} 等, {@code false} 无权限或被关闭
      */
     public static boolean canPostNotifications() {
         return canPostNotifications(DevUtils.getContext());
@@ -142,7 +142,7 @@ public final class NotificationUtils {
 
     /**
      * 跳转当前应用的通知设置（API 26+）
-     * @return 是否已发起跳转
+     * @return {@code true} 已发起跳转, {@code false} 系统版本过低、Intent 不可用或异常
      */
     public static boolean startAppNotificationSettings() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {

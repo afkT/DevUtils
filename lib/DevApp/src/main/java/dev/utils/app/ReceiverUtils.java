@@ -195,19 +195,27 @@ public final class ReceiverUtils {
     }
 
     /**
-     * Android 16+：将 {@link IntentFilter} 的优先级限制在
-     * ({@link IntentFilter#SYSTEM_LOW_PRIORITY} + 1, {@link IntentFilter#SYSTEM_HIGH_PRIORITY} - 1) 内，
-     * 与系统对 manifest / 运行时注册广播优先级的约束一致。
+     * Android 16+：将 IntentFilter 的优先级裁剪到系统允许的范围
+     * <pre>
+     *     与系统对 manifest / 运行时注册广播优先级的约束一致：
+     *     ({@link IntentFilter#SYSTEM_LOW_PRIORITY} + 1, {@link IntentFilter#SYSTEM_HIGH_PRIORITY} - 1)
+     * </pre>
      * @param filter {@link IntentFilter}
+     * @return {@link IntentFilter}
      */
-    public static void clampBroadcastIntentFilterPriorityCompat(final IntentFilter filter) {
+    public static IntentFilter clampBroadcastIntentFilterPriorityCompat(final IntentFilter filter) {
         if (filter == null) {
-            return;
+            return null;
         }
-        int p  = filter.getPriority();
-        int lo = IntentFilter.SYSTEM_LOW_PRIORITY + 1;
-        int hi = IntentFilter.SYSTEM_HIGH_PRIORITY - 1;
-        filter.setPriority(Math.max(lo, Math.min(hi, p)));
+        try {
+            int p  = filter.getPriority();
+            int lo = IntentFilter.SYSTEM_LOW_PRIORITY + 1;
+            int hi = IntentFilter.SYSTEM_HIGH_PRIORITY - 1;
+            filter.setPriority(Math.max(lo, Math.min(hi, p)));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "clampBroadcastIntentFilterPriorityCompat");
+        }
+        return filter;
     }
 
     // =======

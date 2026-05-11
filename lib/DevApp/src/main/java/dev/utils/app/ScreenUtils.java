@@ -44,7 +44,7 @@ public final class ScreenUtils {
      *     对竖屏/横屏等常用 {@link Activity#setRequestedOrientation(int)} 请求会被系统忽略（见官方「自适应布局」行为变更）
      * </pre>
      * @param activity {@link Activity}
-     * @return {@code true} 表示此时设置常见竖/横屏方向通常无效，应使用自适应布局
+     * @return {@code true} 设置常见竖/横屏方向通常无效, 应使用自适应布局, {@code false} 仍可设置方向
      */
     public static boolean isActivityPortraitLandscapeIgnoredOnLargeScreen(final Activity activity) {
         if (activity == null) {

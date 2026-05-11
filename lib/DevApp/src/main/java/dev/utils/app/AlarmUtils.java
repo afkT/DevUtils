@@ -106,8 +106,11 @@ public final class AlarmUtils {
     }
 
     /**
-     * 跳转系统「闹钟和提醒」精确闹钟授权页（API 31+）；低版本直接返回 true
-     * @return 是否已发起跳转或无需跳转
+     * 跳转系统「闹钟和提醒」精确闹钟授权页（API 31+）
+     * <pre>
+     *     低版本无需授权，直接返回 {@code true}
+     * </pre>
+     * @return {@code true} 已发起跳转或无需跳转, {@code false} 跳转 Intent 不可用或异常
      */
     public static boolean startScheduleExactAlarmSettings() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {

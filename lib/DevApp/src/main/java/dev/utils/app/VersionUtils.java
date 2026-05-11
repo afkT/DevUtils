@@ -455,9 +455,12 @@ public final class VersionUtils {
     // ==========
 
     /**
-     * 判断 Android 16 大屏方向、定时任务等平台行为是否对当前进程生效
-     * 宿主应用 {@link android.content.pm.ApplicationInfo#targetSdkVersion}
-     * <p>用于结合 {@link #isBaklava()} 。</p>
+     * 获取宿主应用的 targetSdkVersion
+     * <pre>
+     *     用于判断 Android 16 大屏方向、定时任务等平台行为是否对当前进程生效，
+     *     可结合 {@link #isBaklava()} 使用；返回值为
+     *     {@link android.content.pm.ApplicationInfo#targetSdkVersion}
+     * </pre>
      * @param context {@link Context}
      * @return targetSdkVersion，{@code context == null} 或异常时返回 -1
      */

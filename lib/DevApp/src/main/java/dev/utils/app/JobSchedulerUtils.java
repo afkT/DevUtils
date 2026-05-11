@@ -68,7 +68,9 @@ public final class JobSchedulerUtils {
 
     /**
      * Android 14 (API 34)+：获取指定命名空间下的 JobScheduler 实例
-     * <p>前后空白会被系统 trim；trim 后为空串非法，本方法会返回 null 并打日志。</p>
+     * <pre>
+     *     前后空白会被系统 trim；trim 后为空串非法，本方法会返回 {@code null} 并打日志。
+     * </pre>
      * @param context   {@link Context}
      * @param namespace 命名空间
      * @return 实例；低版本、非法参数或异常时返回 {@code null}
@@ -128,9 +130,12 @@ public final class JobSchedulerUtils {
     // ==========
 
     /**
-     * 是否为 {@link JobScheduler#schedule(JobInfo)} / {@link JobScheduler#enqueue(JobInfo, JobWorkItem)} 成功
+     * 判断调度结果是否成功
+     * <pre>
+     *     用于 {@link JobScheduler#schedule(JobInfo)} / {@link JobScheduler#enqueue(JobInfo, JobWorkItem)} 的返回值判断
+     * </pre>
      * @param result {@link JobScheduler#RESULT_SUCCESS} 等
-     * @return {@code true} 成功
+     * @return {@code true} 调度成功, {@code false} 调度失败
      */
     public static boolean isScheduleSuccess(final int result) {
         return result == JobScheduler.RESULT_SUCCESS;
@@ -627,7 +632,7 @@ public final class JobSchedulerUtils {
      * 是否已存在指定 id 的待调度 / 运行中 Job
      * @param context {@link Context}
      * @param jobId   Job id
-     * @return {@code true} 存在对应 {@link JobInfo}；否则 {@code false}
+     * @return {@code true} 存在对应 {@link JobInfo}, {@code false} 不存在
      */
     public static boolean hasPendingJob(
             final Context context,
