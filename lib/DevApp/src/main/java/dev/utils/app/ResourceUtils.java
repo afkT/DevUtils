@@ -680,7 +680,7 @@ public final class ResourceUtils {
     /**
      * 获取 Boolean
      * @param resName resource name
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public static boolean getBoolean(final String resName) {
         return ResourceAssist.get().getBoolean(resName);
@@ -689,7 +689,7 @@ public final class ResourceUtils {
     /**
      * 获取 Boolean
      * @param id resource identifier
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public static boolean getBoolean(@BoolRes final int id) {
         return ResourceAssist.get().getBoolean(id);
@@ -1831,7 +1831,7 @@ public final class ResourceUtils {
      * 获取 Boolean
      * @param assist  {@link ResourceAssist}
      * @param resName resource name
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public static boolean getBoolean(
             final ResourceAssist assist,
@@ -1845,7 +1845,7 @@ public final class ResourceUtils {
      * 获取 Boolean
      * @param assist {@link ResourceAssist}
      * @param id     resource identifier
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public static boolean getBoolean(
             final ResourceAssist assist,

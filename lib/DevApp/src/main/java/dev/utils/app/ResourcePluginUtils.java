@@ -662,7 +662,7 @@ public final class ResourcePluginUtils {
     /**
      * 获取 Boolean
      * @param resName resource name
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public boolean getBoolean(final String resName) {
         return mResourceAssist.getBoolean(resName);
@@ -671,7 +671,7 @@ public final class ResourcePluginUtils {
     /**
      * 获取 Boolean
      * @param id resource identifier
-     * @return Boolean
+     * @return {@code true} 资源对应布尔值为 true, {@code false} 否则
      */
     public boolean getBoolean(@BoolRes final int id) {
         return mResourceAssist.getBoolean(id);

@@ -376,11 +376,14 @@ public final class ScreenshotUtils {
     };
 
     /**
-     * 查询媒体库最新一行并将结果交给 {@link ScreenshotChecker#onChecker}
+     * 查询媒体库最新一行并将结果分发给检查器
+     * <pre>
+     *     搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
+     * </pre>
      * @param contentUri 监听 Uri
      * @param selfChange True if this is a self-change notification
      * @param sortOrder  排序方式
-     * @param checker    搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
+     * @param checker    {@link ScreenshotChecker}
      */
     public static void dispatchLatestMediaChangeToChecker(
             final Uri contentUri,

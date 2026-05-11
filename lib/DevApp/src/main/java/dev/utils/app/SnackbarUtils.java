@@ -625,7 +625,7 @@ public final class SnackbarUtils {
          * @param rootGravity RootView 的重心
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootGravity(int rootGravity) {
+        public StyleBuilder setRootGravity(final int rootGravity) {
             this.rootGravity = rootGravity;
             return this;
         }
@@ -644,7 +644,7 @@ public final class SnackbarUtils {
          * @param rootCornerRadius RootView 背景圆角大小
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootCornerRadius(float rootCornerRadius) {
+        public StyleBuilder setRootCornerRadius(final float rootCornerRadius) {
             this.rootCornerRadius = rootCornerRadius;
             return this;
         }
@@ -664,7 +664,7 @@ public final class SnackbarUtils {
          * @param rootBackgroundTintColor RootView 背景着色颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootBackgroundTintColor(@ColorInt int rootBackgroundTintColor) {
+        public StyleBuilder setRootBackgroundTintColor(@ColorInt final int rootBackgroundTintColor) {
             this.rootBackgroundTintColor = rootBackgroundTintColor;
             return this;
         }
@@ -683,7 +683,7 @@ public final class SnackbarUtils {
          * @param rootBackground {@link Drawable}
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootBackground(Drawable rootBackground) {
+        public StyleBuilder setRootBackground(final Drawable rootBackground) {
             this.rootBackground = rootBackground;
             return this;
         }
@@ -702,7 +702,7 @@ public final class SnackbarUtils {
          * @param rootMargin margin[]
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootMargin(int[] rootMargin) {
+        public StyleBuilder setRootMargin(final int[] rootMargin) {
             this.rootMargin = rootMargin;
             return this;
         }
@@ -721,7 +721,7 @@ public final class SnackbarUtils {
          * @param rootAlpha RootView 透明度
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setRootAlpha(float rootAlpha) {
+        public StyleBuilder setRootAlpha(final float rootAlpha) {
             this.rootAlpha = rootAlpha;
             return this;
         }
@@ -744,7 +744,7 @@ public final class SnackbarUtils {
          * @param textGravity TextView 的重心
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextGravity(int textGravity) {
+        public StyleBuilder setTextGravity(final int textGravity) {
             this.textGravity = textGravity;
             return this;
         }
@@ -764,7 +764,7 @@ public final class SnackbarUtils {
          * @param textColor TextView 文本颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextColor(@ColorInt int textColor) {
+        public StyleBuilder setTextColor(@ColorInt final int textColor) {
             this.textColor = textColor;
             return this;
         }
@@ -783,7 +783,7 @@ public final class SnackbarUtils {
          * @param textSize TextView 字体大小
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextSize(float textSize) {
+        public StyleBuilder setTextSize(final float textSize) {
             this.textSize = textSize;
             return this;
         }
@@ -802,7 +802,7 @@ public final class SnackbarUtils {
          * @param textMaxLines TextView 最大行数
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextMaxLines(int textMaxLines) {
+        public StyleBuilder setTextMaxLines(final int textMaxLines) {
             this.textMaxLines = textMaxLines;
             return this;
         }
@@ -821,7 +821,7 @@ public final class SnackbarUtils {
          * @param textEllipsize {@link TextUtils.TruncateAt} Ellipsize
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextEllipsize(TextUtils.TruncateAt textEllipsize) {
+        public StyleBuilder setTextEllipsize(final TextUtils.TruncateAt textEllipsize) {
             this.textEllipsize = textEllipsize;
             return this;
         }
@@ -840,7 +840,7 @@ public final class SnackbarUtils {
          * @param textTypeface {@link Typeface}
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextTypeface(Typeface textTypeface) {
+        public StyleBuilder setTextTypeface(final Typeface textTypeface) {
             this.textTypeface = textTypeface;
             return this;
         }
@@ -859,7 +859,7 @@ public final class SnackbarUtils {
          * @param textPadding TextView padding[]
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setTextPadding(int[] textPadding) {
+        public StyleBuilder setTextPadding(final int[] textPadding) {
             this.textPadding = textPadding;
             return this;
         }
@@ -882,7 +882,7 @@ public final class SnackbarUtils {
          * @param actionGravity Action Button 的重心
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionGravity(int actionGravity) {
+        public StyleBuilder setActionGravity(final int actionGravity) {
             this.actionGravity = actionGravity;
             return this;
         }
@@ -902,7 +902,7 @@ public final class SnackbarUtils {
          * @param actionColor Action Button 文本颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionColor(@ColorInt int actionColor) {
+        public StyleBuilder setActionColor(@ColorInt final int actionColor) {
             this.actionColor = actionColor;
             return this;
         }
@@ -921,7 +921,7 @@ public final class SnackbarUtils {
          * @param actionSize Action Button 字体大小
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionSize(float actionSize) {
+        public StyleBuilder setActionSize(final float actionSize) {
             this.actionSize = actionSize;
             return this;
         }
@@ -940,7 +940,7 @@ public final class SnackbarUtils {
          * @param actionPadding Action Button padding[]
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionPadding(int[] actionPadding) {
+        public StyleBuilder setActionPadding(final int[] actionPadding) {
             this.actionPadding = actionPadding;
             return this;
         }
@@ -959,7 +959,7 @@ public final class SnackbarUtils {
          * @param actionCornerRadius Action Button 背景圆角大小
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionCornerRadius(float actionCornerRadius) {
+        public StyleBuilder setActionCornerRadius(final float actionCornerRadius) {
             this.actionCornerRadius = actionCornerRadius;
             return this;
         }
@@ -979,7 +979,7 @@ public final class SnackbarUtils {
          * @param actionBackgroundTintColor Action Button 背景着色颜色
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionBackgroundTintColor(@ColorInt int actionBackgroundTintColor) {
+        public StyleBuilder setActionBackgroundTintColor(@ColorInt final int actionBackgroundTintColor) {
             this.actionBackgroundTintColor = actionBackgroundTintColor;
             return this;
         }
@@ -998,7 +998,7 @@ public final class SnackbarUtils {
          * @param actionBackground {@link Drawable}
          * @return {@link StyleBuilder}
          */
-        public StyleBuilder setActionBackground(Drawable actionBackground) {
+        public StyleBuilder setActionBackground(final Drawable actionBackground) {
             this.actionBackground = actionBackground;
             return this;
         }

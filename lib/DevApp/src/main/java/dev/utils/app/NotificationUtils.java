@@ -740,7 +740,12 @@ public final class NotificationUtils {
     public interface Callback {
 
         /**
-         * 在构建前对 {@link Notification.Builder} 做额外定制
+         * 在构建前对通知 Builder 做额外定制
+         * <pre>
+         *     传入 {@link Notification.Builder} 用于追加 channel 之外的配置
+         * </pre>
+         * @param params  {@link Params}
+         * @param builder {@link Notification.Builder}
          */
         void customizeNotification(
                 Params params,

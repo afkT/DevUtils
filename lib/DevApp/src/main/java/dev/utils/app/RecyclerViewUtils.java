@@ -1632,7 +1632,7 @@ public final class RecyclerViewUtils {
     /**
      * 获取 RecyclerView 嵌套滚动开关
      * @param view {@link View}
-     * @return RecyclerView 嵌套滚动开关
+     * @return {@code true} 嵌套滚动已开启, {@code false} 未开启
      */
     public static boolean isNestedScrollingEnabled(final View view) {
         return isNestedScrollingEnabled(getRecyclerView(view));
@@ -1641,7 +1641,7 @@ public final class RecyclerViewUtils {
     /**
      * 获取 RecyclerView 嵌套滚动开关
      * @param recyclerView {@link RecyclerView}
-     * @return RecyclerView 嵌套滚动开关
+     * @return {@code true} 嵌套滚动已开启, {@code false} 未开启
      */
     public static boolean isNestedScrollingEnabled(final RecyclerView recyclerView) {
         if (recyclerView != null) {

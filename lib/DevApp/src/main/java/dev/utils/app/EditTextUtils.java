@@ -782,7 +782,7 @@ public final class EditTextUtils {
          * @param operate {@code true} yes, {@code false} no
          * @return {@link DevTextWatcher}
          */
-        public final DevTextWatcher setOperate(boolean operate) {
+        public final DevTextWatcher setOperate(final boolean operate) {
             this.operate = operate;
             return this;
         }
@@ -800,7 +800,7 @@ public final class EditTextUtils {
          * @param operateState 操作状态
          * @return {@link DevTextWatcher}
          */
-        public final DevTextWatcher setOperateState(int operateState) {
+        public final DevTextWatcher setOperateState(final int operateState) {
             this.operateState = operateState;
             return this;
         }
@@ -818,7 +818,7 @@ public final class EditTextUtils {
          * @param type 类型
          * @return {@link DevTextWatcher}
          */
-        public DevTextWatcher setType(int type) {
+        public DevTextWatcher setType(final int type) {
             this.type = type;
             return this;
         }
