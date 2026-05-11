@@ -11,7 +11,7 @@ import dev.utils.common.StringUtils
 // = TextView BindingAdapter =
 // ===========================
 
-private const val TAG = "TextView_BindingAdapter"
+private const val TAG = "Dev_TextView_BindingAdapter"
 
 // =============
 // = textStyle =
