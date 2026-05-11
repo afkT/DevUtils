@@ -59,7 +59,7 @@
 | [devsimple-viewtheme-xml/SKILL.md](skills/devsimple-viewtheme-xml/SKILL.md) | `devsimple-viewtheme-xml` | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
 | [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
-| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：Java 入参 `final`、Javadoc 首段无 `{@}` 与 `<pre>` 备注、`@param`/`@return`、boolean 模板、优先非 void 安全返回、异常内捕获不导致主应用崩溃。 |
+| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：Java 入参 `final`（抽象/`interface default`/`@Override` 不加）、Javadoc 首段无 `{@}` 与 `<pre>` 备注、`@param`/`@return`、boolean 模板、优先非 void 安全返回、异常内捕获不导致主应用崩溃。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -95,7 +95,7 @@
 ### 2.8 `java-kotlin-method-normalize`
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
-- **核心**：Java 形参一律 `final`（Kotlin 暂不强制）；有非 void 返回值且有参时写全 `@param`/`@return`；`boolean` 的 `@return` 优先 `{@code true}` / `{@code false}` 双分支说明；Javadoc **首段**仅短句功能描述且不含 `{@}`，引用与细节进 **`<pre>`**；在合理时返回入参或语义化结果替代空洞 `void`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
+- **核心**：Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）；有非 void 返回值且有参时写全 `@param`/`@return`；`boolean` 的 `@return` 优先 `{@code true}` / `{@code false}` 双分支说明；Javadoc **首段**仅短句功能描述且不含 `{@}`，引用与细节进 **`<pre>`**；在合理时返回入参或语义化结果替代空洞 `void`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
 
 ---
 

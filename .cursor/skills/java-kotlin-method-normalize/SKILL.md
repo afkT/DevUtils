@@ -1,9 +1,10 @@
 ---
 name: java-kotlin-method-normalize
 description: >-
-  规范化新生成或改写的 Java/Kotlin 方法：Java 入参 final；Javadoc 首段无 {@}、补充说明用 pre 块包裹；
-  有返回值且带参时补全 @param/@return；boolean 的 @return 用 {@code true}/{@code false} 分支说明模板；
-  优先返回入参或有语义的对象替代无意义 void；异常在方法内捕获并安全返回、避免未处理崩溃。
+  规范化新生成或改写的 Java/Kotlin 方法：Java 入参 final（抽象方法、接口默认方法、@Override 实现除外一律不加）；
+  Javadoc 首段无 {@}、补充说明用 pre 块包裹；有返回值且带参时补全 @param/@return；
+  boolean 的 @return 用 {@code true}/{@code false} 分支说明模板；优先返回入参或有语义的对象替代无意义 void；
+  异常在方法内捕获并安全返回、避免未处理崩溃。
   在用户要求规范化方法、统一工具类写法、整理 Javadoc、或按 DevUtils 方法风格处理时使用。
 disable-model-invocation: true
 ---
@@ -14,7 +15,11 @@ disable-model-invocation: true
 
 ## 1. 语言差异：入参 `final`（仅 Java）
 
-- **Java**：所有方法形参必须加 **`final`**。
+- **Java**：**普通**（非下列例外）方法形参必须加 **`final`**。
+- **例外（一律不加 `final`）**：
+  - **`abstract`** 抽象方法（含抽象类或接口中 **无方法体** 的抽象声明）的形参；
+  - **`interface` 中的默认方法**（`default`）的形参；
+  - 标注 **`@Override`** 的实现方法（覆盖父类 / 实现接口）的形参。
 - **Kotlin**：**暂不**要求为参数加等价约束（按语言惯例即可）。
 
 ## 2. Javadoc：`@param` / `@return`
@@ -81,7 +86,7 @@ public static Intent removeLaunchSecurityProtection(final Intent intent) {
 
 ## 7. 执行清单（改写方法时自测）
 
-- [ ] Java 形参均已 `final`。
+- [ ] Java 形参均已 `final`（抽象方法、`interface default`、`@Override` 方法除外不加）。
 - [ ] 有非 `void` 返回值且带参：`@param` / `@return` 齐全。
 - [ ] `boolean`：`@return` 含 `{@code true}` / `{@code false}` 分支说明。
 - [ ] Javadoc 首段单行、无 `{@}`；补充说明在 `<pre>` 内。
