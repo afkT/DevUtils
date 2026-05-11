@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -97,6 +98,9 @@ public final class DevicePolicyUtils {
      * @return {@code true} success, {@code false} fail
      */
     public boolean removeActiveAdmin(final ComponentName admin) {
+        if (admin == null) {
+            return false;
+        }
         try {
             AppUtils.getDevicePolicyManager().removeActiveAdmin(admin);
             return true;
@@ -294,8 +298,16 @@ public final class DevicePolicyUtils {
      * @return {@link DevicePolicyUtils}
      */
     public DevicePolicyUtils setComponentName(final Class<?> clazz) {
+        if (clazz == null) {
+            return this;
+        }
         try {
-            setComponentName(new ComponentName(DevUtils.getContext(), clazz));
+            final Context context = DevUtils.getContext();
+            if (context == null) {
+                LogPrintUtils.eTag(TAG, "setComponentName: context is null");
+                return this;
+            }
+            setComponentName(new ComponentName(context, clazz));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setComponentName");
         }

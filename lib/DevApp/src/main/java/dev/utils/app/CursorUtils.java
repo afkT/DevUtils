@@ -12,8 +12,8 @@ import dev.utils.common.CloseUtils;
  * detail: Cursor 游标工具类
  * @author Ttt
  * <pre>
- *     部分方法为组合快捷使用, 内部并不进行 Cursor 判空, 在使用前自行 Cursor 校验
- *     前提需要自行调用 {@link Cursor#moveToFirst()} 类似移动游标操作
+ *     取值类方法对 {@code null} Cursor 返回约定默认值或空列名数组, 避免 NPE
+ *     游标位置仍须由调用方保证 ( 如 {@link Cursor#moveToFirst()} 等 ), 本类不代为移动
  * </pre>
  */
 public final class CursorUtils {
@@ -67,7 +67,7 @@ public final class CursorUtils {
             final Cursor cursor,
             final String columnName
     ) {
-        if (columnName == null) return -1;
+        if (cursor == null || columnName == null) return -1;
         return cursor.getColumnIndex(columnName);
     }
 
@@ -81,6 +81,9 @@ public final class CursorUtils {
             final Cursor cursor,
             final int columnIndex
     ) {
+        if (cursor == null) {
+            return DevFinal.DEFAULT.ERROR_STRING;
+        }
         if (columnIndex >= 0) {
             try {
                 return cursor.getColumnName(columnIndex);
@@ -97,6 +100,9 @@ public final class CursorUtils {
      * @return 返回所有列名
      */
     public static String[] getColumnNames(final Cursor cursor) {
+        if (cursor == null) {
+            return new String[0];
+        }
         return cursor.getColumnNames();
     }
 
@@ -106,6 +112,9 @@ public final class CursorUtils {
      * @return 返回所有列数量
      */
     public static int getColumnCount(final Cursor cursor) {
+        if (cursor == null) {
+            return 0;
+        }
         return cursor.getColumnCount();
     }
 
@@ -119,6 +128,9 @@ public final class CursorUtils {
             final Cursor cursor,
             final int columnIndex
     ) {
+        if (cursor == null) {
+            return true;
+        }
         try {
             if (columnIndex >= 0) return cursor.isNull(columnIndex);
         } catch (Exception e) {
@@ -151,6 +163,9 @@ public final class CursorUtils {
             final Cursor cursor,
             final int columnIndex
     ) {
+        if (cursor == null) {
+            return Cursor.FIELD_TYPE_NULL;
+        }
         try {
             if (columnIndex >= 0) return cursor.getType(columnIndex);
         } catch (Exception e) {
@@ -286,6 +301,9 @@ public final class CursorUtils {
             final int columnIndex,
             final int defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getInt(columnIndex);
         } catch (Exception e) {
@@ -306,6 +324,9 @@ public final class CursorUtils {
             final int columnIndex,
             final long defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getLong(columnIndex);
         } catch (Exception e) {
@@ -326,6 +347,9 @@ public final class CursorUtils {
             final int columnIndex,
             final float defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getFloat(columnIndex);
         } catch (Exception e) {
@@ -346,6 +370,9 @@ public final class CursorUtils {
             final int columnIndex,
             final double defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getDouble(columnIndex);
         } catch (Exception e) {
@@ -366,6 +393,9 @@ public final class CursorUtils {
             final int columnIndex,
             final String defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getString(columnIndex);
         } catch (Exception e) {
@@ -386,6 +416,9 @@ public final class CursorUtils {
             final int columnIndex,
             final short defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getShort(columnIndex);
         } catch (Exception e) {
@@ -406,6 +439,9 @@ public final class CursorUtils {
             final int columnIndex,
             final byte[] defaultValue
     ) {
+        if (cursor == null) {
+            return defaultValue;
+        }
         try {
             if (columnIndex >= 0) return cursor.getBlob(columnIndex);
         } catch (Exception e) {
@@ -736,8 +772,15 @@ public final class CursorUtils {
             final int columnIndex,
             final int defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getInt(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getInt(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIntThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -752,8 +795,15 @@ public final class CursorUtils {
             final int columnIndex,
             final long defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getLong(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getLong(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getLongThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -768,8 +818,15 @@ public final class CursorUtils {
             final int columnIndex,
             final float defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getFloat(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getFloat(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getFloatThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -784,8 +841,15 @@ public final class CursorUtils {
             final int columnIndex,
             final double defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getDouble(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getDouble(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDoubleThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -800,8 +864,15 @@ public final class CursorUtils {
             final int columnIndex,
             final String defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getString(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getString(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getStringThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -816,8 +887,15 @@ public final class CursorUtils {
             final int columnIndex,
             final short defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getShort(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getShort(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getShortThrows");
+            return defaultValue;
+        }
     }
 
     /**
@@ -832,8 +910,15 @@ public final class CursorUtils {
             final int columnIndex,
             final byte[] defaultValue
     ) {
-        if (columnIndex >= 0) return cursor.getBlob(columnIndex);
-        return defaultValue;
+        if (cursor == null || columnIndex < 0) {
+            return defaultValue;
+        }
+        try {
+            return cursor.getBlob(columnIndex);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBlobThrows");
+            return defaultValue;
+        }
     }
 
     // ==============

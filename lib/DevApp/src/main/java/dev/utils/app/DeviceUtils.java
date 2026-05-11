@@ -2,6 +2,7 @@ package dev.utils.app;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -99,9 +100,12 @@ public final class DeviceUtils {
         try {
             StringBuilder builder = new StringBuilder();
             // 获取 APP 版本信息
-            String[] versions    = ManifestUtils.getAppVersion();
-            String   versionName = versions[0];
-            String   versionCode = versions[1];
+            String[] versions = ManifestUtils.getAppVersion();
+            if (versions == null || versions.length < 2) {
+                return APP_DEVICE_INFO;
+            }
+            String versionName = versions[0];
+            String versionCode = versions[1];
             String   packageName = AppUtils.getPackageName();
             String deviceInfo = DeviceUtils.handlerDeviceInfo(
                     DeviceUtils.getDeviceInfo(), null
@@ -179,6 +183,9 @@ public final class DeviceUtils {
      * @return 设备信息
      */
     public static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
+        if (deviceInfoMap == null) {
+            return null;
+        }
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 protected, 但是不包括父类的申明字段
         Field[] fields = Build.class.getDeclaredFields();
         // 遍历字段
@@ -221,6 +228,9 @@ public final class DeviceUtils {
             final Map<String, String> deviceInfoMap,
             final String errorInfo
     ) {
+        if (deviceInfoMap == null) {
+            return errorInfo;
+        }
         try {
             // 初始化 Builder, 拼接字符串
             StringBuilder builder = new StringBuilder();
@@ -484,9 +494,11 @@ public final class DeviceUtils {
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
-            return Settings.Secure.getString(
-                    ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID
-            );
+            final ContentResolver resolver = ResourceUtils.getContentResolver();
+            if (resolver == null) {
+                return null;
+            }
+            return Settings.Secure.getString(resolver, Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -533,9 +545,13 @@ public final class DeviceUtils {
             if (!"".equals(result)) {
                 String keyword = "version ";
                 int    index   = result.indexOf(keyword);
-                line          = result.substring(index + keyword.length());
-                index         = line.indexOf(' ');
-                kernelVersion = line.substring(0, index);
+                if (index >= 0) {
+                    line = result.substring(index + keyword.length());
+                    index = line.indexOf(' ');
+                    if (index > 0) {
+                        kernelVersion = line.substring(0, index);
+                    }
+                }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLinuxCore_Ver");
@@ -571,8 +587,12 @@ public final class DeviceUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isAdbEnabled() {
         try {
+            final ContentResolver resolver = ResourceUtils.getContentResolver();
+            if (resolver == null) {
+                return false;
+            }
             return Settings.Secure.getInt(
-                    ResourceUtils.getContentResolver(),
+                    resolver,
                     Settings.Global.ADB_ENABLED, 0
             ) > 0;
         } catch (Exception e) {
@@ -588,8 +608,12 @@ public final class DeviceUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isDevelopmentSettingsEnabled() {
         try {
+            final ContentResolver resolver = ResourceUtils.getContentResolver();
+            if (resolver == null) {
+                return false;
+            }
             return Settings.Global.getInt(
-                    ResourceUtils.getContentResolver(),
+                    resolver,
                     Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
             ) > 0;
         } catch (Exception e) {
@@ -717,7 +741,9 @@ public final class DeviceUtils {
                     InetAddress inetAddress = addresses.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
                         String hostAddress = inetAddress.getHostAddress();
-                        if (hostAddress.indexOf(':') < 0) return inetAddress;
+                        if (hostAddress != null && hostAddress.indexOf(':') < 0) {
+                            return inetAddress;
+                        }
                     }
                 }
             }
@@ -805,7 +831,11 @@ public final class DeviceUtils {
      */
     public static boolean isTablet() {
         try {
-            return (ResourceUtils.getConfiguration().screenLayout
+            final Configuration configuration = ResourceUtils.getConfiguration();
+            if (configuration == null) {
+                return false;
+            }
+            return (configuration.screenLayout
                     & Configuration.SCREENLAYOUT_SIZE_MASK
             ) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
         } catch (Exception e) {
