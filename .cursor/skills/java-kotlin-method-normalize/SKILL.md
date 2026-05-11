@@ -3,7 +3,7 @@ name: java-kotlin-method-normalize
 description: >-
   规范化新生成或改写的 Java/Kotlin 方法：Java 入参 final（抽象方法、接口默认方法、@Override 实现除外一律不加）；
   Javadoc 首段无 {@}、补充说明用 pre 块包裹；有返回值且带参时补全 @param/@return；
-  boolean 的 @return 用 {@code true}/{@code false} 分支说明模板；优先返回入参或有语义的对象替代无意义 void；
+  boolean 的 @return 用 {@code true}/{@code false} 分支说明（默认中文；success/fail、yes/no 等已对举表意时可保留英文）；优先返回入参或有语义的对象替代无意义 void；
   异常在方法内捕获并安全返回、避免未处理崩溃。
   在用户要求规范化方法、统一工具类写法、整理 Javadoc、或按 DevUtils 方法风格处理时使用。
 disable-model-invocation: true
@@ -35,7 +35,8 @@ disable-model-invocation: true
 @return {@code true} XXXX, {@code false} XXX
 ```
 
-`XXXX`、`XXX` 为简短中文说明，与业务语义一致。
+- **默认**：`XXXX`、`XXX` 为简短中文说明，与业务语义一致。
+- **不必强制改成中文**：若已符合上述形式，且两侧说明本身即可读、能区分语义（例如 `@return {@code true} success, {@code false} fail`、`@return {@code true} yes, {@code false} no` 等常见英文对举），**保留即可**，无需仅为「统一中文」而改写。
 
 ## 4. 方法注释 vs 方法备注（核心）
 
@@ -88,7 +89,7 @@ public static Intent removeLaunchSecurityProtection(final Intent intent) {
 
 - [ ] Java 形参均已 `final`（抽象方法、`interface default`、`@Override` 方法除外不加）。
 - [ ] 有非 `void` 返回值且带参：`@param` / `@return` 齐全。
-- [ ] `boolean`：`@return` 含 `{@code true}` / `{@code false}` 分支说明。
+- [ ] `boolean`：`@return` 含 `{@code true}` / `{@code false}` 分支说明（新写默认中文；已有 success/fail、yes/no 等对举且表意充分时可保留）。
 - [ ] Javadoc 首段单行、无 `{@}`；补充说明在 `<pre>` 内。
 - [ ] 能用返回入参/有意义值替代的，避免无意义 `void`。
 - [ ] 危险调用已 try/catch，不依赖未捕获异常传播。
