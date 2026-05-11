@@ -71,12 +71,16 @@ public final class CPUUtils {
      * @return CPU 信息
      */
     public static String getCpuInfo() {
+        FileReader     fr = null;
+        BufferedReader br = null;
         try {
-            FileReader     fr = new FileReader("/proc/cpuinfo");
-            BufferedReader br = new BufferedReader(fr);
+            fr = new FileReader("/proc/cpuinfo");
+            br = new BufferedReader(fr);
             return br.readLine();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCpuInfo");
+        } finally {
+            CloseUtils.closeIOQuietly(br, fr);
         }
         return "";
     }
@@ -86,13 +90,20 @@ public final class CPUUtils {
      * @return CPU 型号
      */
     public static String getCpuModel() {
+        FileReader     fr = null;
+        BufferedReader br = null;
         try {
-            FileReader     fr   = new FileReader("/proc/cpuinfo");
-            BufferedReader br   = new BufferedReader(fr);
-            String         text = br.readLine();
+            fr = new FileReader("/proc/cpuinfo");
+            br = new BufferedReader(fr);
+            String text = br.readLine();
+            if (text == null) {
+                return "";
+            }
             return text.split(":\\s+", 2)[1];
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCpuModel");
+        } finally {
+            CloseUtils.closeIOQuietly(br, fr);
         }
         return "";
     }
