@@ -132,7 +132,11 @@ public final class AlarmUtils {
      */
     public static boolean stopAlarmIntent(final PendingIntent pendingIntent) {
         try {
-            AppUtils.getAlarmManager().cancel(pendingIntent);
+            final AlarmManager alarmManager = AppUtils.getAlarmManager();
+            if (alarmManager == null) {
+                return false;
+            }
+            alarmManager.cancel(pendingIntent);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmIntent");
@@ -174,7 +178,7 @@ public final class AlarmUtils {
      * 开启 Service 闹钟
      * @param context         {@link Context}
      * @param triggerAtMillis 执行时间
-     * @param intent          {@link Intent
+     * @param intent          {@link Intent}
      * @param requestCode     请求 code
      * @return {@code true} success, {@code false} fail
      */

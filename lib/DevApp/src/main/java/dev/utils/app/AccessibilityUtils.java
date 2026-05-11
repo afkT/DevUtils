@@ -166,7 +166,7 @@ public final class AccessibilityUtils {
 
     /**
      * 获取无障碍服务信息
-     * @return AccessibilityServiceInfo
+     * @return {@link AccessibilityServiceInfo}
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static AccessibilityServiceInfo getServiceInfo() {
@@ -176,7 +176,7 @@ public final class AccessibilityUtils {
     /**
      * 获取无障碍服务信息
      * @param service {@link AccessibilityService}
-     * @return AccessibilityServiceInfo
+     * @return {@link AccessibilityServiceInfo}
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static AccessibilityServiceInfo getServiceInfo(final AccessibilityService service) {

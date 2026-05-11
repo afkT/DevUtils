@@ -107,6 +107,7 @@ public final class DevUtils {
             switch (logType) {
                 case JCLogUtils.INFO:
                     LogPrintUtils.iTag(tag, message);
+                    break;
                 case JCLogUtils.ERROR:
                     LogPrintUtils.eTag(tag, message);
                     break;
@@ -473,7 +474,11 @@ public final class DevUtils {
      */
     public static String getAuthority() {
         try {
-            return DevUtils.getContext().getPackageName() + "." + LIB_FILE_PROVIDER;
+            final Context context = DevUtils.getContext();
+            if (context == null) {
+                return null;
+            }
+            return context.getPackageName() + "." + LIB_FILE_PROVIDER;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAuthority");
         }

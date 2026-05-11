@@ -47,7 +47,7 @@ public final class ActivityResultUtils {
 
     /**
      * 执行 ActivityResultContract createIntent 并进行跳转
-     * @param launcher ActivityResultLauncher
+     * @param launcher {@link ActivityResultLauncher}
      * @param input    输入参数
      * @param <I>      启动所需输入参数类型
      * @return {@code true} success, {@code false} fail
@@ -70,9 +70,9 @@ public final class ActivityResultUtils {
 
     /**
      * 执行 ActivityResultContract createIntent 并进行跳转
-     * @param launcher ActivityResultLauncher
+     * @param launcher {@link ActivityResultLauncher}
      * @param input    输入参数
-     * @param options  Activity 启动选项
+     * @param options  {@link ActivityOptionsCompat}
      * @param <I>      启动所需输入参数类型
      * @return {@code true} success, {@code false} fail
      */
@@ -94,7 +94,7 @@ public final class ActivityResultUtils {
 
     /**
      * 取消启动器注册, 并释放回调监听
-     * @param launcher ActivityResultLauncher
+     * @param launcher {@link ActivityResultLauncher}
      * @param <I>      启动所需输入参数类型
      * @return {@code true} success, {@code false} fail
      */
@@ -112,9 +112,9 @@ public final class ActivityResultUtils {
 
     /**
      * 获取创建启动器对应 ActivityResultContract
-     * @param launcher ActivityResultLauncher
+     * @param launcher {@link ActivityResultLauncher}
      * @param <I>      启动所需输入参数类型
-     * @return ActivityResultContract
+     * @return {@link ActivityResultContract}
      */
     public static <I> ActivityResultContract<I, ?> getContract(final ActivityResultLauncher<I> launcher) {
         if (launcher != null) {
@@ -133,12 +133,12 @@ public final class ActivityResultUtils {
 
     /**
      * 注册创建跳转回传值启动器并返回
-     * @param caller   ActivityResultCaller ( 只要属于继承 Fragment、FragmentActivity 传入 this 即可 )
-     * @param contract ActivityResultContract
-     * @param callback ActivityResultCallback 回传回调
+     * @param caller   {@link ActivityResultCaller}（Fragment、FragmentActivity 等传入 this 即可）
+     * @param contract {@link ActivityResultContract}
+     * @param callback {@link ActivityResultCallback} 回传回调
      * @param <I>      启动所需输入参数类型
      * @param <O>      回传结果解析值类型
-     * @return ActivityResultLauncher
+     * @return {@link ActivityResultLauncher}
      */
     public static <I, O> ActivityResultLauncher<I> registerForActivityResult(
             final ActivityResultCaller caller,
@@ -159,13 +159,13 @@ public final class ActivityResultUtils {
 
     /**
      * 注册创建跳转回传值启动器并返回
-     * @param caller   ActivityResultCaller ( 只要属于继承 Fragment、FragmentActivity 传入 this 即可 )
-     * @param contract ActivityResultContract
-     * @param registry ActivityResultRegistry
-     * @param callback ActivityResultCallback 回传回调
+     * @param caller   {@link ActivityResultCaller}（Fragment、FragmentActivity 等传入 this 即可）
+     * @param contract {@link ActivityResultContract}
+     * @param registry {@link ActivityResultRegistry}
+     * @param callback {@link ActivityResultCallback} 回传回调
      * @param <I>      启动所需输入参数类型
      * @param <O>      回传结果解析值类型
-     * @return ActivityResultLauncher
+     * @return {@link ActivityResultLauncher}
      */
     public static <I, O> ActivityResultLauncher<I> registerForActivityResult(
             final ActivityResultCaller caller,
@@ -194,14 +194,14 @@ public final class ActivityResultUtils {
      * <pre>
      *     ActivityResultRegistry ( 可通过 ComponentActivity、Fragment getActivityResultRegistry() 获取 )
      * </pre>
-     * @param registry       ActivityResultRegistry
+     * @param registry       {@link ActivityResultRegistry}
      * @param key            唯一值字符串
-     * @param lifecycleOwner 生命周期监听
-     * @param contract       ActivityResultContract
-     * @param callback       ActivityResultCallback 回传回调
+     * @param lifecycleOwner {@link LifecycleOwner}
+     * @param contract       {@link ActivityResultContract}
+     * @param callback       {@link ActivityResultCallback} 回传回调
      * @param <I>            启动所需输入参数类型
      * @param <O>            回传结果解析值类型
-     * @return ActivityResultLauncher
+     * @return {@link ActivityResultLauncher}
      */
     public static <I, O> ActivityResultLauncher<I> register(
             final ActivityResultRegistry registry,
@@ -228,13 +228,13 @@ public final class ActivityResultUtils {
      * <pre>
      *     ActivityResultRegistry ( 可通过 ComponentActivity、Fragment getActivityResultRegistry() 获取 )
      * </pre>
-     * @param registry ActivityResultRegistry
+     * @param registry {@link ActivityResultRegistry}
      * @param key      唯一值字符串
-     * @param contract ActivityResultContract
-     * @param callback ActivityResultCallback 回传回调
+     * @param contract {@link ActivityResultContract}
+     * @param callback {@link ActivityResultCallback} 回传回调
      * @param <I>      启动所需输入参数类型
      * @param <O>      回传结果解析值类型
-     * @return ActivityResultLauncher
+     * @return {@link ActivityResultLauncher}
      */
     public static <I, O> ActivityResultLauncher<I> register(
             final ActivityResultRegistry registry,
