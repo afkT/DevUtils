@@ -835,7 +835,7 @@ public final class RecyclerViewUtils {
      * 获取 RecyclerView Adapter
      * @param view {@link View}
      * @param <T>  泛型
-     * @return LayoutManager
+     * @return {@link RecyclerView.Adapter}
      */
     public static <T extends RecyclerView.Adapter<?>> T getAdapter(final View view) {
         return getAdapter(getRecyclerView(view));
@@ -845,7 +845,7 @@ public final class RecyclerViewUtils {
      * 获取 RecyclerView Adapter
      * @param recyclerView {@link RecyclerView}
      * @param <T>          泛型
-     * @return LayoutManager
+     * @return {@link RecyclerView.Adapter}
      */
     public static <T extends RecyclerView.Adapter<?>> T getAdapter(final RecyclerView recyclerView) {
         if (recyclerView != null) {
@@ -1463,7 +1463,8 @@ public final class RecyclerViewUtils {
             for (int i = 0, len = recyclerView.getItemDecorationCount(); i < len; i++) {
                 try {
                     recyclerView.removeItemDecorationAt(0);
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "removeAllItemDecoration");
                 }
             }
             return true;
@@ -1637,7 +1638,10 @@ public final class RecyclerViewUtils {
     // =====================
 
     /**
-     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐（{@link LinearSmoothScroller#SNAP_TO_START}）
+     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐
+     * <pre>
+     *     吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_START}
+     * </pre>
      * @param view     {@link View}
      * @param position 目标 adapter 索引
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
@@ -1650,7 +1654,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐（{@link LinearSmoothScroller#SNAP_TO_START}）
+     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐
+     * <pre>
+     *     吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_START}
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @param position     目标 adapter 索引
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
@@ -1680,7 +1687,10 @@ public final class RecyclerViewUtils {
     // =
 
     /**
-     * 平滑滑动到底部附近：目标 position 为 {@link #getItemCount(View)} + 30，项与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * 平滑滑动到底部附近，以末项与列表底部对齐方式滚动
+     * <pre>
+     *     目标 position 为 {@link #getItemCount(View)} + 30；吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_END}
+     * </pre>
      * @param view {@link View}
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
      */
@@ -1689,7 +1699,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 平滑滑动到底部附近：目标 position 为 {@link #getItemCount(RecyclerView)} + 30，项与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * 平滑滑动到底部附近，以末项与列表底部对齐方式滚动
+     * <pre>
+     *     目标 position 为 {@link #getItemCount(RecyclerView)} + 30；吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_END}
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
      */
@@ -1702,7 +1715,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐
+     * <pre>
+     *     吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_END}
+     * </pre>
      * @param view     {@link View}
      * @param position 目标 adapter 索引
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
@@ -1715,7 +1731,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐
+     * <pre>
+     *     吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_END}
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @param position     目标 adapter 索引
      * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
@@ -1745,7 +1764,10 @@ public final class RecyclerViewUtils {
     // =
 
     /**
-     * 将指定索引滚动到可见区域，并附加像素偏移（需 {@link LinearLayoutManager}）
+     * 将指定索引滚动到可见区域，并附加像素偏移
+     * <pre>
+     *     需 {@link LinearLayoutManager}
+     * </pre>
      * @param view     {@link View}
      * @param position 目标 adapter 索引
      * @param offset   偏移像素（与 LayoutManager 约定一致）
@@ -1760,7 +1782,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 将指定索引滚动到可见区域，并附加像素偏移（需 {@link LinearLayoutManager}）
+     * 将指定索引滚动到可见区域，并附加像素偏移
+     * <pre>
+     *     需 {@link LinearLayoutManager}
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @param position     目标 adapter 索引
      * @param offset       偏移像素（与 LayoutManager 约定一致）
@@ -1790,7 +1815,10 @@ public final class RecyclerViewUtils {
     // =
 
     /**
-     * 停止当前滚动（含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动与用户拖动/惯性）
+     * 停止当前平滑滚动与用户拖动、惯性滚动
+     * <pre>
+     *     含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动
+     * </pre>
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
@@ -1799,7 +1827,10 @@ public final class RecyclerViewUtils {
     }
 
     /**
-     * 停止当前滚动（含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动与用户拖动/惯性）
+     * 停止当前平滑滚动与用户拖动、惯性滚动
+     * <pre>
+     *     含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动
+     * </pre>
      * @param recyclerView {@link RecyclerView}
      * @return {@code true} success, {@code false} fail
      */
@@ -1882,23 +1913,23 @@ public final class RecyclerViewUtils {
     public static class FixChildScrollBugLinearLayoutManager
             extends LinearLayoutManager {
 
-        public FixChildScrollBugLinearLayoutManager(Context context) {
+        public FixChildScrollBugLinearLayoutManager(final Context context) {
             super(context);
         }
 
         public FixChildScrollBugLinearLayoutManager(
-                Context context,
-                int orientation,
-                boolean reverseLayout
+                final Context context,
+                final int orientation,
+                final boolean reverseLayout
         ) {
             super(context, orientation, reverseLayout);
         }
 
         public FixChildScrollBugLinearLayoutManager(
-                Context context,
-                AttributeSet attrs,
-                int defStyleAttr,
-                int defStyleRes
+                final Context context,
+                final AttributeSet attrs,
+                final int defStyleAttr,
+                final int defStyleRes
         ) {
             super(context, attrs, defStyleAttr, defStyleRes);
         }
