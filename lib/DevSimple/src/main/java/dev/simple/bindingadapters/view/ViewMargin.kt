@@ -29,9 +29,9 @@ fun View.bindingMargin(margin: Int) {
 )
 fun View.bindingMarginLeft(
     margin: Int,
-    reset: Boolean
+    reset: Boolean?
 ) {
-    ViewUtils.setMarginLeft(this, margin, reset)
+    ViewUtils.setMarginLeft(this, margin, reset == true)
 }
 
 @BindingAdapter(
@@ -40,9 +40,9 @@ fun View.bindingMarginLeft(
 )
 fun View.bindingMarginTop(
     margin: Int,
-    reset: Boolean
+    reset: Boolean?
 ) {
-    ViewUtils.setMarginTop(this, margin, reset)
+    ViewUtils.setMarginTop(this, margin, reset == true)
 }
 
 @BindingAdapter(
@@ -51,9 +51,9 @@ fun View.bindingMarginTop(
 )
 fun View.bindingMarginRight(
     margin: Int,
-    reset: Boolean
+    reset: Boolean?
 ) {
-    ViewUtils.setMarginRight(this, margin, reset)
+    ViewUtils.setMarginRight(this, margin, reset == true)
 }
 
 @BindingAdapter(
@@ -62,7 +62,7 @@ fun View.bindingMarginRight(
 )
 fun View.bindingMarginBottom(
     margin: Int,
-    reset: Boolean
+    reset: Boolean?
 ) {
-    ViewUtils.setMarginBottom(this, margin, reset)
+    ViewUtils.setMarginBottom(this, margin, reset == true)
 }

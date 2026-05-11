@@ -13,6 +13,13 @@ import dev.utils.app.ClickUtils
 // = Click =
 // =========
 
+@BindingAdapter("binding_click_empty")
+fun View.bindingViewClickEmpty(
+    unused: Boolean?
+) {
+    this.setOnClickListener(ClickUtils.EMPTY_CLICK)
+}
+
 @BindingAdapter(
     value = ["binding_click", "binding_click_interval"],
     requireAll = false
