@@ -20,13 +20,13 @@ private const val TAG = "Dev_TextView_BindingAdapter"
 /**
  * 通过数据绑定将 HTML 字符串解析为图文并设置到 TextView
  * <pre>
- *     对应布局属性 binding_html_text；解析失败时回退为空串并打错误日志，避免绑定阶段崩溃。
+ *     对应布局属性 binding_tv_html_text；解析失败时回退为空串并打错误日志，避免绑定阶段崩溃。
  * </pre>
  *
  * @param text HTML 片段，空或空串时显示空串
  */
-@BindingAdapter("binding_html_text")
-fun TextView.bindingHtmlText(text: String?) {
+@BindingAdapter("binding_tv_html_text")
+fun TextView.bindingTVHtmlText(text: String?) {
     if (StringUtils.isNotEmpty(text)) {
         try {
             setText(Html.fromHtml(text))
@@ -42,12 +42,12 @@ fun TextView.bindingHtmlText(text: String?) {
 /**
  * 通过数据绑定设置 TextView 粗体样式
  * <pre>
- *     对应布局属性 binding_textBold；内部委托 TextViewUtils.setBold。
+ *     对应布局属性 binding_tv_text_bold；内部委托 TextViewUtils.setBold。
  * </pre>
  *
  * @param bold 是否粗体
  */
-@BindingAdapter("binding_textBold")
-fun TextView.bindingTextBold(bold: Boolean) {
+@BindingAdapter("binding_tv_text_bold")
+fun TextView.bindingTVTextBold(bold: Boolean) {
     TextViewUtils.setBold(this, bold)
 }
