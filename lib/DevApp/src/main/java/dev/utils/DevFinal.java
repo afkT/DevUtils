@@ -1241,52 +1241,82 @@ public final class DevFinal {
         // = 对外公开 =
         // ==========
 
-        // 用于建立十六进制字符的输出的小写字符数组
+        /**
+         * 获取十六进制小写字符数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getHexDigits() {
             return Arrays.copyOf(HEX_DIGITS, HEX_DIGITS.length);
         }
 
-        // 用于建立十六进制字符的输出的大写字符数组
+        /**
+         * 获取十六进制大写字符数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getHexDigitsUpper() {
             return Arrays.copyOf(HEX_DIGITS_UPPER, HEX_DIGITS_UPPER.length);
         }
 
-        // 0123456789
+        /**
+         * 获取数字字符 0-9 数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getNumbers() {
             return Arrays.copyOf(NUMBERS, NUMBERS.length);
         }
 
-        // abcdefghijklmnopqrstuvwxyz
+        /**
+         * 获取小写英文字母数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getLowerCaseLetters() {
             return Arrays.copyOf(LOWER_CASE_LETTERS, LOWER_CASE_LETTERS.length);
         }
 
-        // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        /**
+         * 获取大写英文字母数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getCapitalLetters() {
             return Arrays.copyOf(CAPITAL_LETTERS, CAPITAL_LETTERS.length);
         }
 
-        // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        /**
+         * 获取大小写字母合并数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getLetters() {
             return Arrays.copyOf(LETTERS, LETTERS.length);
         }
 
-        // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        /**
+         * 获取数字与大小写字母合并数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static char[] getNumbersAndLetters() {
             return Arrays.copyOf(NUMBERS_AND_LETTERS, NUMBERS_AND_LETTERS.length);
         }
 
-        // 生肖数组
+        /**
+         * 获取生肖名称数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static String[] getZodiac() {
             return Arrays.copyOf(ZODIAC, ZODIAC.length);
         }
 
-        // 星座对应日期
+        /**
+         * 获取星座日期区间字符串数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static String[] getConstellationDate() {
             return Arrays.copyOf(CONSTELLATION_DATE, CONSTELLATION_DATE.length);
         }
 
-        // 星座数组
+        /**
+         * 获取星座名称数组的防御性拷贝
+         * @return 拷贝后的数组
+         */
         public static String[] getConstellation() {
             return Arrays.copyOf(CONSTELLATION, CONSTELLATION.length);
         }

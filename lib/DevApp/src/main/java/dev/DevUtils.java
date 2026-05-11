@@ -75,7 +75,10 @@ public final class DevUtils {
     private static boolean     sDebug = false;
 
     /**
-     * 初始化方法 ( 必须调用 )
+     * 初始化开发工具库与全局上下文
+     * <pre>
+     *     应用启动时必须调用，传入 Activity、Application 等 Context 均可。
+     * </pre>
      * @param context {@link Context}
      */
     public static void init(final Context context) {
@@ -214,7 +217,10 @@ public final class DevUtils {
     // =
 
     /**
-     * 反射获取 Application
+     * 通过 ActivityThread 反射获取 Application
+     * <pre>
+     *     失败或未就绪时返回 {@code null}，不在方法边界抛出未捕获异常。
+     * </pre>
      * @return {@link Application}
      */
     private static Application getApplicationByReflect() {
@@ -224,13 +230,14 @@ public final class DevUtils {
             Object thread = activityThread.getMethod("currentActivityThread").invoke(null);
             Object app    = activityThread.getMethod("getApplication").invoke(thread);
             if (app == null) {
-                throw new NullPointerException("u should init first");
+                LogPrintUtils.eTag(TAG, "getApplicationByReflect: application is null");
+                return null;
             }
             return (Application) app;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplicationByReflect");
         }
-        throw new NullPointerException("u should init first");
+        return null;
     }
 
     // =

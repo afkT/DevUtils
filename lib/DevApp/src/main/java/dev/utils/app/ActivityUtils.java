@@ -25,6 +25,9 @@ import dev.utils.app.assist.ActivityManagerAssist;
 /**
  * detail: Activity 工具类 ( 包含 Activity 控制管理 )
  * @author Ttt
+ * <pre>
+ *     部分 API 需调用方已持有对应权限或处于合法生命周期内。
+ * </pre>
  */
 public final class ActivityUtils {
 

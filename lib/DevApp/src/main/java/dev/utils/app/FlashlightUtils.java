@@ -103,7 +103,7 @@ public final class FlashlightUtils {
 
     /**
      * 打开闪光灯
-     * @param camera {@link android.graphics.Camera}
+     * @param camera {@link android.hardware.Camera}
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOn(final Camera camera) {
@@ -139,7 +139,7 @@ public final class FlashlightUtils {
 
     /**
      * 关闭闪光灯
-     * @param camera {@link android.graphics.Camera}
+     * @param camera {@link android.hardware.Camera}
      * @return {@code true} success, {@code false} fail
      */
     public boolean setFlashlightOff(final Camera camera) {
@@ -175,7 +175,7 @@ public final class FlashlightUtils {
 
     /**
      * 是否打开闪光灯
-     * @param camera {@link android.graphics.Camera}
+     * @param camera {@link android.hardware.Camera}
      * @return {@code true} yes, {@code false} no
      */
     public boolean isFlashlightOn(final Camera camera) {

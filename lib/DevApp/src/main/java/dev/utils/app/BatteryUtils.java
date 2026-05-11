@@ -99,7 +99,7 @@ public final class BatteryUtils {
     }
 
     /**
-     * 是否低电量
+     * 当前电量是否不高于约 20% 阈值（自定义百分比判断）
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBatteryLow20() {

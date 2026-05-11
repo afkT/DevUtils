@@ -1,5 +1,7 @@
 package dev.utils.app;
 
+import android.content.Context;
+
 import java.io.InputStream;
 
 import dev.DevUtils;
@@ -45,8 +47,15 @@ public final class DBUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteDatabase(final String dbName) {
+        if (dbName == null) {
+            return false;
+        }
         try {
-            return DevUtils.getContext().deleteDatabase(dbName);
+            Context context = DevUtils.getContext();
+            if (context == null) {
+                return false;
+            }
+            return context.deleteDatabase(dbName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteDatabase");
         }

@@ -80,7 +80,7 @@ public final class ADBUtils {
 
     /**
      * 获取 APP 列表 ( 包名 )
-     * @param type options
+     * @param type {@code pm list packages} 命令后的附加选项片段，可为空；例如 {@code -3}、{@code -s}
      * @return 对应选项的应用包名列表
      */
     public static List<String> getAppList(final String type) {

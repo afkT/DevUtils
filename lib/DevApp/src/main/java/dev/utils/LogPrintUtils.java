@@ -141,6 +141,11 @@ public final class LogPrintUtils {
     // = 对外公开方法 ( 使用默认 TAG ) =
     // =============================
 
+    /**
+     * 使用默认 TAG 打印 DEBUG 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void d(
             final String message,
             final Object... args
@@ -148,10 +153,19 @@ public final class LogPrintUtils {
         dTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印异常信息
+     * @param throwable 异常
+     */
     public static void e(final Throwable throwable) {
         eTag(DEFAULT_TAG, throwable, null);
     }
 
+    /**
+     * 使用默认 TAG 打印 ERROR 日志（无 Throwable）
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void e(
             final String message,
             final Object... args
@@ -159,6 +173,12 @@ public final class LogPrintUtils {
         e(null, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 ERROR 日志（含异常与格式化消息）
+     * @param throwable 异常
+     * @param message   日志内容
+     * @param args      格式化参数
+     */
     public static void e(
             final Throwable throwable,
             final String message,
@@ -167,6 +187,11 @@ public final class LogPrintUtils {
         eTag(DEFAULT_TAG, throwable, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 WARN 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void w(
             final String message,
             final Object... args
@@ -174,6 +199,11 @@ public final class LogPrintUtils {
         wTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 INFO 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void i(
             final String message,
             final Object... args
@@ -181,6 +211,11 @@ public final class LogPrintUtils {
         iTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 VERBOSE 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void v(
             final String message,
             final Object... args
@@ -188,6 +223,11 @@ public final class LogPrintUtils {
         vTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 WTF 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void wtf(
             final String message,
             final Object... args
@@ -195,10 +235,18 @@ public final class LogPrintUtils {
         wtfTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 格式化并打印 JSON
+     * @param json JSON 字符串
+     */
     public static void json(final String json) {
         jsonTag(DEFAULT_TAG, json);
     }
 
+    /**
+     * 使用默认 TAG 格式化并打印 XML
+     * @param xml XML 字符串
+     */
     public static void xml(final String xml) {
         xmlTag(DEFAULT_TAG, xml);
     }
@@ -207,6 +255,12 @@ public final class LogPrintUtils {
     // = 对外公开方法 ( 日志打印方法 ) =
     // ============================
 
+    /**
+     * 打印 DEBUG 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void dTag(
             final String tag,
             final String message,
@@ -217,6 +271,12 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（仅消息）
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void eTag(
             final String tag,
             final String message,
@@ -227,6 +287,11 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（仅 Throwable）
+     * @param tag       日志 TAG
+     * @param throwable 异常
+     */
     public static void eTag(
             final String tag,
             final Throwable throwable
@@ -236,6 +301,13 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（异常与格式化消息）
+     * @param tag       日志 TAG
+     * @param throwable 异常
+     * @param message   日志内容
+     * @param args      格式化参数
+     */
     public static void eTag(
             final String tag,
             final Throwable throwable,
@@ -247,6 +319,12 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 WARN 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void wTag(
             final String tag,
             final String message,
@@ -257,6 +335,12 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 INFO 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void iTag(
             final String tag,
             final String message,
@@ -267,6 +351,12 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 VERBOSE 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void vTag(
             final String tag,
             final String message,
@@ -277,6 +367,12 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 打印 WTF 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void wtfTag(
             final String tag,
             final String message,
@@ -287,6 +383,14 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 将 JSON 缩进格式化后打印为 DEBUG 日志
+     * <pre>
+     *     内容为空时打印 ERROR 提示；解析失败时打印异常与原始 JSON。
+     * </pre>
+     * @param tag  日志 TAG
+     * @param json JSON 字符串
+     */
     public static void jsonTag(
             final String tag,
             final String json
@@ -333,6 +437,14 @@ public final class LogPrintUtils {
         }
     }
 
+    /**
+     * 将 XML 格式化缩进后打印为 DEBUG 日志
+     * <pre>
+     *     内容为空时打印 ERROR 提示；解析失败时打印异常与原始 XML。
+     * </pre>
+     * @param tag 日志 TAG
+     * @param xml XML 字符串
+     */
     public static void xmlTag(
             final String tag,
             final String xml

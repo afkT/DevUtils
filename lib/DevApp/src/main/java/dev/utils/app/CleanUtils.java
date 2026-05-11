@@ -122,8 +122,10 @@ public final class CleanUtils {
             result = false;
         }
         try {
-            for (String path : filePaths) {
-                cleanCustomDir(path);
+            if (filePaths != null) {
+                for (String path : filePaths) {
+                    cleanCustomDir(path);
+                }
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");

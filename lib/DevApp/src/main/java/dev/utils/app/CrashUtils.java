@@ -42,7 +42,10 @@ public final class CrashUtils
     }
 
     /**
-     * 初始化方法
+     * 注册全局未捕获异常处理器并绑定回调
+     * <pre>
+     *     应用启动后尽早调用；会替换 Thread 的默认 UncaughtExceptionHandler。
+     * </pre>
      * @param context            {@link Context}
      * @param crashCatchListener {@link CrashCatchListener}
      */
