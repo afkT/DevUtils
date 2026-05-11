@@ -4,6 +4,8 @@ Change Log
 Version 1.0.7 *(2026-05-07)*
 ----------------------------
 
+* `[Add]` TextView DataBinding：扩展 `@BindingAdapter`（下划线/删除线、行距、字号 sp、行数/ems、密码显示、Html 委托 `TextViewUtils` 等），见 `bindingadapters/view/TextView.kt`
+
 * `[Add]` 新增多种布局与控件 styles 资源（含 ShadowLayout、SeekBar、WebView、ViewPager 等）及 padding/margin 维度样式
 
 * `[Add]` RecyclerView 绑定适配器；Adapter 链路增加 LiveData 支持并实现智能线程更新
