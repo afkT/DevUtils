@@ -106,7 +106,7 @@ public final class DeviceUtils {
             }
             String versionName = versions[0];
             String versionCode = versions[1];
-            String   packageName = AppUtils.getPackageName();
+            String packageName = AppUtils.getPackageName();
             String deviceInfo = DeviceUtils.handlerDeviceInfo(
                     DeviceUtils.getDeviceInfo(), null
             );
@@ -546,7 +546,7 @@ public final class DeviceUtils {
                 String keyword = "version ";
                 int    index   = result.indexOf(keyword);
                 if (index >= 0) {
-                    line = result.substring(index + keyword.length());
+                    line  = result.substring(index + keyword.length());
                     index = line.indexOf(' ');
                     if (index > 0) {
                         kernelVersion = line.substring(0, index);
