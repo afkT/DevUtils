@@ -164,6 +164,11 @@ public final class JCLogUtils {
     // = 对外公开方法 ( 使用默认 TAG ) =
     // =============================
 
+    /**
+     * 使用默认 TAG 打印 DEBUG 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void d(
             final String message,
             final Object... args
@@ -171,10 +176,19 @@ public final class JCLogUtils {
         dTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印异常信息
+     * @param throwable 异常
+     */
     public static void e(final Throwable throwable) {
         eTag(DEFAULT_TAG, throwable);
     }
 
+    /**
+     * 使用默认 TAG 打印 ERROR 日志（无 Throwable）
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void e(
             final String message,
             final Object... args
@@ -182,6 +196,12 @@ public final class JCLogUtils {
         e(null, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 ERROR 日志（含异常与格式化消息）
+     * @param throwable 异常
+     * @param message   日志内容
+     * @param args      格式化参数
+     */
     public static void e(
             final Throwable throwable,
             final String message,
@@ -190,6 +210,11 @@ public final class JCLogUtils {
         eTag(DEFAULT_TAG, throwable, message, args);
     }
 
+    /**
+     * 使用默认 TAG 打印 INFO 日志
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void i(
             final String message,
             final Object... args
@@ -197,6 +222,10 @@ public final class JCLogUtils {
         iTag(DEFAULT_TAG, message, args);
     }
 
+    /**
+     * 使用默认 TAG 格式化并打印 XML
+     * @param xml XML 字符串
+     */
     public static void xml(final String xml) {
         xmlTag(DEFAULT_TAG, xml);
     }
@@ -205,6 +234,12 @@ public final class JCLogUtils {
     // = 对外公开方法 ( 日志打印方法 ) =
     // ============================
 
+    /**
+     * 打印 DEBUG 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void dTag(
             final String tag,
             final String message,
@@ -215,6 +250,12 @@ public final class JCLogUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（仅消息）
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void eTag(
             final String tag,
             final String message,
@@ -225,6 +266,11 @@ public final class JCLogUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（仅 Throwable）
+     * @param tag       日志 TAG
+     * @param throwable 异常
+     */
     public static void eTag(
             final String tag,
             final Throwable throwable
@@ -234,6 +280,13 @@ public final class JCLogUtils {
         }
     }
 
+    /**
+     * 打印 ERROR 日志（异常与格式化消息）
+     * @param tag       日志 TAG
+     * @param throwable 异常
+     * @param message   日志内容
+     * @param args      格式化参数
+     */
     public static void eTag(
             final String tag,
             final Throwable throwable,
@@ -245,6 +298,12 @@ public final class JCLogUtils {
         }
     }
 
+    /**
+     * 打印 INFO 日志
+     * @param tag     日志 TAG
+     * @param message 日志内容
+     * @param args    格式化参数
+     */
     public static void iTag(
             final String tag,
             final String message,
@@ -255,6 +314,14 @@ public final class JCLogUtils {
         }
     }
 
+    /**
+     * 将 XML 格式化缩进后打印为 DEBUG 日志
+     * <pre>
+     *     内容为空时打印 ERROR 提示；解析失败时打印异常与原始 XML。
+     * </pre>
+     * @param tag 日志 TAG
+     * @param xml XML 字符串
+     */
     public static void xmlTag(
             final String tag,
             final String xml
