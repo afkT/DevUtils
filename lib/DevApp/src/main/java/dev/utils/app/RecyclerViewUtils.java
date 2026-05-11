@@ -24,6 +24,10 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     RecyclerView 截图使用 {@link CapturePictureUtils}
  *     RecyclerView 滑动使用 {@link ListViewUtils}
+ *     平滑滚动与吸附对齐见
+ *     {@link #startSmoothScrollSnapStart(RecyclerView, int)}
+ *     {@link #startSmoothScrollSnapEnd(RecyclerView, int)}
+ *     {@link #stopSmoothScroller(RecyclerView)}
  *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
  *     int findFirstCompletelyVisibleItemPosition = linearManager.findFirstCompletelyVisibleItemPosition();
  *     // 最后一个完整的可见的 item 位置
@@ -1626,6 +1630,190 @@ public final class RecyclerViewUtils {
             return recyclerView.getScrollState();
         }
         return -1;
+    }
+
+    // =====================
+    // = Smooth scroll 平滑 =
+    // =====================
+
+    /**
+     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐（{@link LinearSmoothScroller#SNAP_TO_START}）
+     * @param view     {@link View}
+     * @param position 目标 adapter 索引
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapStart(
+            final View view,
+            final int position
+    ) {
+        return startSmoothScrollSnapStart(getRecyclerView(view), position);
+    }
+
+    /**
+     * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐（{@link LinearSmoothScroller#SNAP_TO_START}）
+     * @param recyclerView {@link RecyclerView}
+     * @param position     目标 adapter 索引
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapStart(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        if (recyclerView == null) {
+            return false;
+        }
+        try {
+            LinearLayoutManager manager = getLinearLayoutManager(recyclerView);
+            if (manager == null) {
+                return false;
+            }
+            TopSnappedSmoothScroller smoothScroller = new TopSnappedSmoothScroller(recyclerView.getContext());
+            smoothScroller.setTargetPosition(position);
+            manager.startSmoothScroll(smoothScroller);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startSmoothScrollSnapStart");
+            return false;
+        }
+    }
+
+    // =
+
+    /**
+     * 平滑滑动到底部附近：目标 position 为 {@link #getItemCount(View)} + 30，项与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * @param view {@link View}
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapEnd(final View view) {
+        return startSmoothScrollSnapEnd(getRecyclerView(view));
+    }
+
+    /**
+     * 平滑滑动到底部附近：目标 position 为 {@link #getItemCount(RecyclerView)} + 30，项与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapEnd(final RecyclerView recyclerView) {
+        if (recyclerView == null) {
+            return false;
+        }
+        int position = getItemCount(recyclerView) + 30;
+        return startSmoothScrollSnapEnd(recyclerView, position);
+    }
+
+    /**
+     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * @param view     {@link View}
+     * @param position 目标 adapter 索引
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapEnd(
+            final View view,
+            final int position
+    ) {
+        return startSmoothScrollSnapEnd(getRecyclerView(view), position);
+    }
+
+    /**
+     * 平滑滑动到指定索引，目标项垂直方向与列表底部对齐（{@link LinearSmoothScroller#SNAP_TO_END}）
+     * @param recyclerView {@link RecyclerView}
+     * @param position     目标 adapter 索引
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapEnd(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        if (recyclerView == null) {
+            return false;
+        }
+        try {
+            LinearLayoutManager manager = getLinearLayoutManager(recyclerView);
+            if (manager == null) {
+                return false;
+            }
+            EndSnappedSmoothScroller smoothScroller = new EndSnappedSmoothScroller(recyclerView.getContext());
+            smoothScroller.setTargetPosition(position);
+            manager.startSmoothScroll(smoothScroller);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startSmoothScrollSnapEnd");
+            return false;
+        }
+    }
+
+    // =
+
+    /**
+     * 将指定索引滚动到可见区域，并附加像素偏移（需 {@link LinearLayoutManager}）
+     * @param view     {@link View}
+     * @param position 目标 adapter 索引
+     * @param offset   偏移像素（与 LayoutManager 约定一致）
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean scrollToPositionWithOffset(
+            final View view,
+            final int position,
+            final int offset
+    ) {
+        return scrollToPositionWithOffset(getRecyclerView(view), position, offset);
+    }
+
+    /**
+     * 将指定索引滚动到可见区域，并附加像素偏移（需 {@link LinearLayoutManager}）
+     * @param recyclerView {@link RecyclerView}
+     * @param position     目标 adapter 索引
+     * @param offset       偏移像素（与 LayoutManager 约定一致）
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean scrollToPositionWithOffset(
+            final RecyclerView recyclerView,
+            final int position,
+            final int offset
+    ) {
+        if (recyclerView == null) {
+            return false;
+        }
+        try {
+            LinearLayoutManager manager = getLinearLayoutManager(recyclerView);
+            if (manager == null) {
+                return false;
+            }
+            manager.scrollToPositionWithOffset(position, offset);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "scrollToPositionWithOffset");
+            return false;
+        }
+    }
+
+    // =
+
+    /**
+     * 停止当前滚动（含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动与用户拖动/惯性）
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopSmoothScroller(final View view) {
+        return stopSmoothScroller(getRecyclerView(view));
+    }
+
+    /**
+     * 停止当前滚动（含 {@link LinearLayoutManager#startSmoothScroll(RecyclerView.SmoothScroller)} 触发的平滑滚动与用户拖动/惯性）
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean stopSmoothScroller(final RecyclerView recyclerView) {
+        if (recyclerView == null) {
+            return false;
+        }
+        try {
+            recyclerView.stopScroll();
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "stopSmoothScroller");
+            return false;
+        }
     }
 
     // =
