@@ -180,7 +180,10 @@ public final class DevUtils {
     }
 
     /**
-     * 反射获取全局 Application 并执行 {@link #init(Context)}
+     * 反射获取全局 Application 并在获取成功后执行初始化
+     * <pre>
+     *     成功获取后调用 {@link #init(Context)}。
+     * </pre>
      * @return {@link Application}
      */
     public static Application getApplicationByReflectAndInit() {
@@ -196,7 +199,10 @@ public final class DevUtils {
     }
 
     /**
-     * 获取全局 Application（若尚未持有则尝试反射获取并执行 {@link #init(Context)}）
+     * 获取全局 Application；若尚未持有则尝试反射获取并初始化
+     * <pre>
+     *     必要时通过反射获取并调用 {@link #init(Context)}。
+     * </pre>
      * @return {@link Application}
      */
     public static Application getApplicationExtended() {

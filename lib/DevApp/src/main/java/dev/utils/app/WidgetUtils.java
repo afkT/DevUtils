@@ -253,7 +253,7 @@ public final class WidgetUtils {
      * 测量 View
      * @param view           {@link View}
      * @param specifiedWidth 指定宽度
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} 测量并布局成功, {@code false} 失败
      */
     public static boolean measureView(
             final View view,
@@ -267,7 +267,7 @@ public final class WidgetUtils {
      * @param view            {@link View}
      * @param specifiedWidth  指定宽度
      * @param specifiedHeight 指定高度
-     * @return {@code true} success, {@code false} fail
+     * @return {@code true} 测量并布局成功, {@code false} 失败
      */
     public static boolean measureView(
             final View view,
