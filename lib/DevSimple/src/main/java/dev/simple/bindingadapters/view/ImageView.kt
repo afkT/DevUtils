@@ -42,12 +42,13 @@ private val NOCACHE_CONFIG = ImageConfig.create()
 /**
  * 通过数据绑定按 URL 加载图片到当前 ImageView
  * <pre>
- *     布局属性：binding_image_url、binding_image_engine、binding_image_listener，requireAll 为 false。
+ *     布局属性：binding_image_url、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
  *     仅在 url 非空时发起加载；listener 为空时仍加载但不回调监听。
  * </pre>
  *
  * @param url 图片地址，为空或空串时不加载
  * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
  * @param listener 加载过程监听，可为空
  */
 @BindingAdapter(
@@ -67,6 +68,17 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageUrl(
     }
 }
 
+/**
+ * 通过数据绑定按 File 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_file、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param file 图片文件，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_file", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -82,6 +94,18 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageFile(
     }
 }
 
+/**
+ * 通过数据绑定按文件路径加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_file_path、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ *     仅在 filePath 非空时发起加载。
+ * </pre>
+ *
+ * @param filePath 图片文件路径，为空或空串时不加载
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_file_path", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -92,11 +116,24 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageFilePath(
     config: Config?,
     listener: LoadListener<Bitmap>?
 ) {
-    filePath?.toSourceByPath().hiIfNotNull { source ->
-        bindingImageSource(source, engine, config, listener)
+    if (StringUtils.isNotEmpty(filePath)) {
+        filePath?.toSourceByPath().hiIfNotNull { source ->
+            bindingImageSource(source, engine, config, listener)
+        }
     }
 }
 
+/**
+ * 通过数据绑定按 Bitmap 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_bitmap、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param bitmap 图片位图，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_bitmap", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -112,6 +149,17 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageBitmap(
     }
 }
 
+/**
+ * 通过数据绑定按 Drawable 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_drawable、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param drawable 图片 Drawable，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_drawable", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -127,6 +175,17 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageDrawable(
     }
 }
 
+/**
+ * 通过数据绑定按 Uri 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_uri、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param uri 图片 Uri，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_uri", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -142,6 +201,17 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageUri(
     }
 }
 
+/**
+ * 通过数据绑定按 InputStream 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_input_stream、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param inputStream 图片输入流，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_input_stream", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -157,21 +227,43 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageInputStream(
     }
 }
 
+/**
+ * 通过数据绑定按 ByteArray 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_byte_array、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param byteArray 图片字节数组，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_byte_array", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
 )
 fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageByteArray(
-    array: ByteArray?,
+    byteArray: ByteArray?,
     engine: String?,
     config: Config?,
     listener: LoadListener<Bitmap>?
 ) {
-    array?.toSource().hiIfNotNull { source ->
+    byteArray?.toSource().hiIfNotNull { source ->
         bindingImageSource(source, engine, config, listener)
     }
 }
 
+/**
+ * 通过数据绑定按资源 ID 加载图片到当前 ImageView
+ * <pre>
+ *     布局属性：binding_image_res、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
+ * </pre>
+ *
+ * @param res 图片资源 ID，可为空
+ * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
+ * @param listener 加载过程监听，可为空
+ */
 @BindingAdapter(
     value = ["binding_image_res", "binding_image_engine", "binding_image_config", "binding_image_listener"],
     requireAll = false
@@ -190,11 +282,12 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageRes(
 /**
  * 通过数据绑定按 DevSource 加载图片到当前 ImageView
  * <pre>
- *     布局属性：binding_image_source、binding_image_engine、binding_image_listener，requireAll 为 false。
+ *     布局属性：binding_image_source、binding_image_engine、binding_image_config、binding_image_listener，requireAll 为 false。
  * </pre>
  *
  * @param source 图片数据源
  * @param engine 图片引擎标识，可为空以走默认引擎
+ * @param config 图片加载配置，可为空以走引擎默认配置
  * @param listener 加载过程监听，可为空
  */
 @BindingAdapter(
@@ -202,11 +295,12 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageRes(
     requireAll = false
 )
 fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageSource(
-    source: DevSource,
+    source: DevSource?,
     engine: String?,
     config: Config?,
     listener: LoadListener<Bitmap>?
 ) {
+    if (source == null) return
     try {
         listener.hiIfNotNullWith({
             this.display(
