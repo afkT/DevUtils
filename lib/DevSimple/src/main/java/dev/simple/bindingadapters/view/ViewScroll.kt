@@ -3,7 +3,6 @@ package dev.simple.bindingadapters.view
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dev.utils.LogPrintUtils
 import dev.utils.app.ListViewUtils
 import dev.utils.app.RecyclerViewUtils
 
@@ -12,26 +11,6 @@ import dev.utils.app.RecyclerViewUtils
 // ==============================
 
 private const val TAG = "Dev_Scroll_BindingAdapter"
-
-// ==========
-// = 内部工具 =
-// ==========
-
-/**
- * 在方法边界内执行滚动相关逻辑，避免未捕获异常导致进程崩溃。
- * <pre>
- *     使用 try-catch 包裹 block，异常时通过 {@code LogPrintUtils.eTag} 记录，不向调用方抛出。
- * </pre>
- *
- * @param block 实际滚动调用
- */
-private inline fun runScroll(block: () -> Unit) {
-    try {
-        block()
-    } catch (e: Throwable) {
-        LogPrintUtils.eTag(TAG, e, "runScroll")
-    }
-}
 
 // =====================
 // = RecyclerViewUtils =
@@ -50,7 +29,7 @@ private inline fun runScroll(block: () -> Unit) {
 fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?) {
     val p = position ?: return
     if (p < 0) return
-    runScroll { RecyclerViewUtils.startSmoothScrollSnapStart(this, p) }
+    RecyclerViewUtils.startSmoothScrollSnapStart(this, p)
 }
 
 /**
@@ -66,7 +45,7 @@ fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?) {
 fun RecyclerView.bindingScrollRvSnapEndIndex(position: Int?) {
     val p = position ?: return
     if (p < 0) return
-    runScroll { RecyclerViewUtils.startSmoothScrollSnapEnd(this, p) }
+    RecyclerViewUtils.startSmoothScrollSnapEnd(this, p)
 }
 
 /**
@@ -81,7 +60,7 @@ fun RecyclerView.bindingScrollRvSnapEndIndex(position: Int?) {
 @BindingAdapter("binding_scroll_rv_snap_end_auto")
 fun RecyclerView.bindingScrollRvSnapEndAuto(toBottomAuto: Boolean?) {
     if (toBottomAuto != true) return
-    runScroll { RecyclerViewUtils.startSmoothScrollSnapEnd(this) }
+    RecyclerViewUtils.startSmoothScrollSnapEnd(this)
 }
 
 /**
@@ -105,7 +84,7 @@ fun RecyclerView.bindingScrollRvLinearIndexOffset(
     val p = position ?: return
     if (p < 0) return
     val off = offsetPx ?: 0
-    runScroll { RecyclerViewUtils.scrollToPositionWithOffset(this, p, off) }
+    RecyclerViewUtils.scrollToPositionWithOffset(this, p, off)
 }
 
 /**
@@ -120,7 +99,7 @@ fun RecyclerView.bindingScrollRvLinearIndexOffset(
 @BindingAdapter("binding_scroll_rv_stop")
 fun RecyclerView.bindingScrollRvStop(stop: Boolean?) {
     if (stop != true) return
-    runScroll { RecyclerViewUtils.stopSmoothScroller(this) }
+    RecyclerViewUtils.stopSmoothScroller(this)
 }
 
 // =================
@@ -144,7 +123,7 @@ fun RecyclerView.bindingScrollRvStop(stop: Boolean?) {
 fun View.bindingScrollSmoothAdapterIndex(index: Int?) {
     val i = index ?: return
     if (i < 0) return
-    runScroll { ListViewUtils.smoothScrollToPosition(this, i) }
+    ListViewUtils.smoothScrollToPosition(this, i)
 }
 
 /**
@@ -160,7 +139,7 @@ fun View.bindingScrollSmoothAdapterIndex(index: Int?) {
 fun View.bindingScrollInstantAdapterIndex(index: Int?) {
     val i = index ?: return
     if (i < 0) return
-    runScroll { ListViewUtils.scrollToPosition(this, i) }
+    ListViewUtils.scrollToPosition(this, i)
 }
 
 /**
@@ -175,7 +154,7 @@ fun View.bindingScrollInstantAdapterIndex(index: Int?) {
 @BindingAdapter("binding_scroll_event_smooth_top")
 fun View.bindingScrollEventSmoothTop(event: Int?) {
     if (event == null) return
-    runScroll { ListViewUtils.smoothScrollToTop(this) }
+    ListViewUtils.smoothScrollToTop(this)
 }
 
 /**
@@ -190,7 +169,7 @@ fun View.bindingScrollEventSmoothTop(event: Int?) {
 @BindingAdapter("binding_scroll_event_instant_top")
 fun View.bindingScrollEventInstantTop(event: Int?) {
     if (event == null) return
-    runScroll { ListViewUtils.scrollToTop(this) }
+    ListViewUtils.scrollToTop(this)
 }
 
 /**
@@ -205,7 +184,7 @@ fun View.bindingScrollEventInstantTop(event: Int?) {
 @BindingAdapter("binding_scroll_event_smooth_bottom")
 fun View.bindingScrollEventSmoothBottom(event: Int?) {
     if (event == null) return
-    runScroll { ListViewUtils.smoothScrollToBottom(this) }
+    ListViewUtils.smoothScrollToBottom(this)
 }
 
 /**
@@ -220,7 +199,7 @@ fun View.bindingScrollEventSmoothBottom(event: Int?) {
 @BindingAdapter("binding_scroll_event_instant_bottom")
 fun View.bindingScrollEventInstantBottom(event: Int?) {
     if (event == null) return
-    runScroll { ListViewUtils.scrollToBottom(this) }
+    ListViewUtils.scrollToBottom(this)
 }
 
 /**
@@ -244,7 +223,7 @@ fun View.bindingScrollSmoothAbsXY(
     if (x == null && y == null) return
     val tx = x ?: scrollX
     val ty = y ?: scrollY
-    runScroll { ListViewUtils.smoothScrollTo(this, tx, ty) }
+    ListViewUtils.smoothScrollTo(this, tx, ty)
 }
 
 /**
@@ -268,7 +247,7 @@ fun View.bindingScrollSmoothRelDxDy(
     if (dx == null && dy == null) return
     val rdx = dx ?: 0
     val rdy = dy ?: 0
-    runScroll { ListViewUtils.smoothScrollBy(this, rdx, rdy) }
+    ListViewUtils.smoothScrollBy(this, rdx, rdy)
 }
 
 /**
@@ -283,7 +262,7 @@ fun View.bindingScrollSmoothRelDxDy(
 @BindingAdapter("binding_scroll_full_direction")
 fun View.bindingScrollFullDirection(direction: Int?) {
     val d = direction ?: return
-    runScroll { ListViewUtils.fullScroll(this, d) }
+    ListViewUtils.fullScroll(this, d)
 }
 
 /**
@@ -307,7 +286,7 @@ fun View.bindingScrollInstantAbsXY(
     if (x == null && y == null) return
     val tx = x ?: scrollX
     val ty = y ?: scrollY
-    runScroll { ListViewUtils.scrollTo(this, tx, ty) }
+    ListViewUtils.scrollTo(this, tx, ty)
 }
 
 /**
@@ -331,7 +310,7 @@ fun View.bindingScrollInstantRelDxDy(
     if (dx == null && dy == null) return
     val rdx = dx ?: 0
     val rdy = dy ?: 0
-    runScroll { ListViewUtils.scrollBy(this, rdx, rdy) }
+    ListViewUtils.scrollBy(this, rdx, rdy)
 }
 
 /**
@@ -346,7 +325,7 @@ fun View.bindingScrollInstantRelDxDy(
 @BindingAdapter("binding_scroll_set_scroll_x")
 fun View.bindingScrollSetScrollX(value: Int?) {
     val v = value ?: return
-    runScroll { ListViewUtils.setScrollX(this, v) }
+    ListViewUtils.setScrollX(this, v)
 }
 
 /**
@@ -361,5 +340,5 @@ fun View.bindingScrollSetScrollX(value: Int?) {
 @BindingAdapter("binding_scroll_set_scroll_y")
 fun View.bindingScrollSetScrollY(value: Int?) {
     val v = value ?: return
-    runScroll { ListViewUtils.setScrollY(this, v) }
+    ListViewUtils.setScrollY(this, v)
 }
