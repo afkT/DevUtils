@@ -33,7 +33,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_220"
                     android:layout_height="@dimen/dp_391"
-                    app:binding_url="@{itemValue.imageUrl}" />
+                    app:binding_image_url="@{itemValue.imageUrl}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ViewTheme.TextView"
