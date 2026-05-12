@@ -1,6 +1,6 @@
 package dev.simple.bindingadapters.view
 
-import androidx.core.widget.NestedScrollView
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.utils.LogPrintUtils
@@ -32,10 +32,6 @@ private inline fun runScroll(block: () -> Unit) {
         LogPrintUtils.eTag(TAG, e, "runScroll")
     }
 }
-
-// ====================
-// = RecyclerView 专用 =
-// ====================
 
 // =====================
 // = RecyclerViewUtils =
@@ -127,280 +123,110 @@ fun RecyclerView.bindingScrollRvStop(stop: Boolean?) {
     runScroll { RecyclerViewUtils.stopSmoothScroller(this) }
 }
 
-// =======================
-// = RecyclerView 列表滑动 =
-// =======================
+// =================
+// = ListViewUtils =
+// =================
 
-// ================================
-// = ListViewUtils 中适配 RV 的分支 =
-// ================================
+// ========================================
+// = 入参为 View，适用于 RV、NSV、ListView 等 =
+// ========================================
 
 /**
- * 数据绑定平滑滑动 RecyclerView 到指定 adapter 索引。
+ * 数据绑定平滑滑动到指定 adapter 或列表项索引。
  * <pre>
- *     布局属性：binding_scroll_rv_smooth_index
- *     对应 {@link ListViewUtils#smoothScrollToPosition}；index 为 null 或小于 0 时跳过。
+ *     布局属性：binding_scroll_smooth_adapter_index
+ *     接收者为任意 {@link View}，内部由 {@link ListViewUtils#smoothScrollToPosition} 按类型分支处理；index 为 null 或小于 0 时跳过。
  * </pre>
  *
  * @param index 目标索引
  */
-@BindingAdapter("binding_scroll_rv_smooth_index")
-fun RecyclerView.bindingScrollRvSmoothIndex(index: Int?) {
+@BindingAdapter("binding_scroll_smooth_adapter_index")
+fun View.bindingScrollSmoothAdapterIndex(index: Int?) {
     val i = index ?: return
     if (i < 0) return
     runScroll { ListViewUtils.smoothScrollToPosition(this, i) }
 }
 
 /**
- * 数据绑定无动画滚动 RecyclerView 到指定 adapter 索引。
+ * 数据绑定无动画滚动到指定 adapter 或列表项索引。
  * <pre>
- *     布局属性：binding_scroll_rv_instant_index
+ *     布局属性：binding_scroll_instant_adapter_index
  *     对应 {@link ListViewUtils#scrollToPosition}；index 为 null 或小于 0 时跳过。
  * </pre>
  *
  * @param index 目标索引
  */
-@BindingAdapter("binding_scroll_rv_instant_index")
-fun RecyclerView.bindingScrollRvInstantIndex(index: Int?) {
+@BindingAdapter("binding_scroll_instant_adapter_index")
+fun View.bindingScrollInstantAdapterIndex(index: Int?) {
     val i = index ?: return
     if (i < 0) return
     runScroll { ListViewUtils.scrollToPosition(this, i) }
 }
 
 /**
- * 数据绑定触发 RecyclerView 平滑滚动到列表顶部。
+ * 数据绑定触发平滑滚动到内容或列表顶部。
  * <pre>
- *     布局属性：binding_scroll_rv_event_smooth_top
- *     对应 {@link ListViewUtils#smoothScrollToTop}；event 为 null 时跳过；建议在 ViewModel 中递增计数以支持重复触发。
+ *     布局属性：binding_scroll_event_smooth_top
+ *     对应 {@link ListViewUtils#smoothScrollToTop}；event 为 null 时跳过；建议在 ViewModel 中递增计数以重复触发。
  * </pre>
  *
  * @param event 非 null 时执行一次
  */
-@BindingAdapter("binding_scroll_rv_event_smooth_top")
-fun RecyclerView.bindingScrollRvEventSmoothTop(event: Int?) {
+@BindingAdapter("binding_scroll_event_smooth_top")
+fun View.bindingScrollEventSmoothTop(event: Int?) {
     if (event == null) return
     runScroll { ListViewUtils.smoothScrollToTop(this) }
 }
 
 /**
- * 数据绑定触发 RecyclerView 瞬时滚动到列表顶部。
+ * 数据绑定触发瞬时滚动到内容或列表顶部。
  * <pre>
- *     布局属性：binding_scroll_rv_event_instant_top
+ *     布局属性：binding_scroll_event_instant_top
  *     对应 {@link ListViewUtils#scrollToTop}；event 为 null 时跳过。
  * </pre>
  *
  * @param event 非 null 时执行一次
  */
-@BindingAdapter("binding_scroll_rv_event_instant_top")
-fun RecyclerView.bindingScrollRvEventInstantTop(event: Int?) {
+@BindingAdapter("binding_scroll_event_instant_top")
+fun View.bindingScrollEventInstantTop(event: Int?) {
     if (event == null) return
     runScroll { ListViewUtils.scrollToTop(this) }
 }
 
 /**
- * 数据绑定触发 RecyclerView 平滑滚动到列表底部。
+ * 数据绑定触发平滑滚动到内容或列表底部。
  * <pre>
- *     布局属性：binding_scroll_rv_event_smooth_bottom
+ *     布局属性：binding_scroll_event_smooth_bottom
  *     对应 {@link ListViewUtils#smoothScrollToBottom}；event 为 null 时跳过。
  * </pre>
  *
  * @param event 非 null 时执行一次
  */
-@BindingAdapter("binding_scroll_rv_event_smooth_bottom")
-fun RecyclerView.bindingScrollRvEventSmoothBottom(event: Int?) {
+@BindingAdapter("binding_scroll_event_smooth_bottom")
+fun View.bindingScrollEventSmoothBottom(event: Int?) {
     if (event == null) return
     runScroll { ListViewUtils.smoothScrollToBottom(this) }
 }
 
 /**
- * 数据绑定触发 RecyclerView 瞬时滚动到列表底部。
+ * 数据绑定触发瞬时滚动到内容或列表底部。
  * <pre>
- *     布局属性：binding_scroll_rv_event_instant_bottom
+ *     布局属性：binding_scroll_event_instant_bottom
  *     对应 {@link ListViewUtils#scrollToBottom}；event 为 null 时跳过。
  * </pre>
  *
  * @param event 非 null 时执行一次
  */
-@BindingAdapter("binding_scroll_rv_event_instant_bottom")
-fun RecyclerView.bindingScrollRvEventInstantBottom(event: Int?) {
+@BindingAdapter("binding_scroll_event_instant_bottom")
+fun View.bindingScrollEventInstantBottom(event: Int?) {
     if (event == null) return
     runScroll { ListViewUtils.scrollToBottom(this) }
 }
 
 /**
- * 数据绑定对 RecyclerView 执行平滑相对滚动。
+ * 数据绑定执行平滑绝对滚动。
  * <pre>
- *     布局属性：binding_scroll_rv_smooth_dx、binding_scroll_rv_smooth_dy，requireAll 为 false
- *     对应 {@link ListViewUtils#smoothScrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
- * </pre>
- *
- * @param dx X 方向增量
- * @param dy Y 方向增量
- */
-@BindingAdapter(
-    value = ["binding_scroll_rv_smooth_dx", "binding_scroll_rv_smooth_dy"],
-    requireAll = false
-)
-fun RecyclerView.bindingScrollRvSmoothDxDy(
-    dx: Int?,
-    dy: Int?
-) {
-    if (dx == null && dy == null) return
-    val rdx = dx ?: 0
-    val rdy = dy ?: 0
-    runScroll { ListViewUtils.smoothScrollBy(this, rdx, rdy) }
-}
-
-/**
- * 数据绑定对 RecyclerView 执行无动画绝对滚动。
- * <pre>
- *     布局属性：binding_scroll_rv_instant_abs_x、binding_scroll_rv_instant_abs_y，requireAll 为 false
- *     对应 {@link ListViewUtils#scrollTo}；x、y 均为 null 时跳过；缺省保留当前 scrollX、scrollY。
- * </pre>
- *
- * @param x 目标 X
- * @param y 目标 Y
- */
-@BindingAdapter(
-    value = ["binding_scroll_rv_instant_abs_x", "binding_scroll_rv_instant_abs_y"],
-    requireAll = false
-)
-fun RecyclerView.bindingScrollRvInstantAbsXY(
-    x: Int?,
-    y: Int?
-) {
-    if (x == null && y == null) return
-    val tx = x ?: scrollX
-    val ty = y ?: scrollY
-    runScroll { ListViewUtils.scrollTo(this, tx, ty) }
-}
-
-/**
- * 数据绑定对 RecyclerView 执行无动画相对滚动。
- * <pre>
- *     布局属性：binding_scroll_rv_instant_rel_dx、binding_scroll_rv_instant_rel_dy，requireAll 为 false
- *     对应 {@link ListViewUtils#scrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
- * </pre>
- *
- * @param dx X 增量
- * @param dy Y 增量
- */
-@BindingAdapter(
-    value = ["binding_scroll_rv_instant_rel_dx", "binding_scroll_rv_instant_rel_dy"],
-    requireAll = false
-)
-fun RecyclerView.bindingScrollRvInstantRelDxDy(
-    dx: Int?,
-    dy: Int?
-) {
-    if (dx == null && dy == null) return
-    val rdx = dx ?: 0
-    val rdy = dy ?: 0
-    runScroll { ListViewUtils.scrollBy(this, rdx, rdy) }
-}
-
-/**
- * 数据绑定设置 RecyclerView 内容水平滚动位置。
- * <pre>
- *     布局属性：binding_scroll_rv_set_scroll_x
- *     对应 {@link ListViewUtils#setScrollX}；value 为 null 时跳过。
- * </pre>
- *
- * @param value 目标 scrollX
- */
-@BindingAdapter("binding_scroll_rv_set_scroll_x")
-fun RecyclerView.bindingScrollRvSetScrollX(value: Int?) {
-    val v = value ?: return
-    runScroll { ListViewUtils.setScrollX(this, v) }
-}
-
-/**
- * 数据绑定设置 RecyclerView 内容垂直滚动位置。
- * <pre>
- *     布局属性：binding_scroll_rv_set_scroll_y
- *     对应 {@link ListViewUtils#setScrollY}；value 为 null 时跳过。
- * </pre>
- *
- * @param value 目标 scrollY
- */
-@BindingAdapter("binding_scroll_rv_set_scroll_y")
-fun RecyclerView.bindingScrollRvSetScrollY(value: Int?) {
-    val v = value ?: return
-    runScroll { ListViewUtils.setScrollY(this, v) }
-}
-
-// ===============================
-// = NestedScrollView 与可滚动内容 =
-// ===============================
-
-// ================================
-// = ListViewUtils 中 Scroll 类分支 =
-// ================================
-
-/**
- * 数据绑定触发 NestedScrollView 平滑滚动到内容顶部。
- * <pre>
- *     布局属性：binding_scroll_nsv_event_smooth_top
- *     对应 {@link ListViewUtils#smoothScrollToTop} 在非列表 View 上的分支；event 为 null 时跳过。
- * </pre>
- *
- * @param event 非 null 时执行一次
- */
-@BindingAdapter("binding_scroll_nsv_event_smooth_top")
-fun NestedScrollView.bindingScrollNsvEventSmoothTop(event: Int?) {
-    if (event == null) return
-    runScroll { ListViewUtils.smoothScrollToTop(this) }
-}
-
-/**
- * 数据绑定触发 NestedScrollView 瞬时滚动到内容顶部。
- * <pre>
- *     布局属性：binding_scroll_nsv_event_instant_top
- *     对应 {@link ListViewUtils#scrollToTop}；event 为 null 时跳过。
- * </pre>
- *
- * @param event 非 null 时执行一次
- */
-@BindingAdapter("binding_scroll_nsv_event_instant_top")
-fun NestedScrollView.bindingScrollNsvEventInstantTop(event: Int?) {
-    if (event == null) return
-    runScroll { ListViewUtils.scrollToTop(this) }
-}
-
-/**
- * 数据绑定触发 NestedScrollView 平滑滚动到内容底部。
- * <pre>
- *     布局属性：binding_scroll_nsv_event_smooth_bottom
- *     对应 {@link ListViewUtils#smoothScrollToBottom} 在非列表 View 上的分支；event 为 null 时跳过。
- * </pre>
- *
- * @param event 非 null 时执行一次
- */
-@BindingAdapter("binding_scroll_nsv_event_smooth_bottom")
-fun NestedScrollView.bindingScrollNsvEventSmoothBottom(event: Int?) {
-    if (event == null) return
-    runScroll { ListViewUtils.smoothScrollToBottom(this) }
-}
-
-/**
- * 数据绑定触发 NestedScrollView 瞬时滚动到内容底部。
- * <pre>
- *     布局属性：binding_scroll_nsv_event_instant_bottom
- *     对应 {@link ListViewUtils#scrollToBottom}；event 为 null 时跳过。
- * </pre>
- *
- * @param event 非 null 时执行一次
- */
-@BindingAdapter("binding_scroll_nsv_event_instant_bottom")
-fun NestedScrollView.bindingScrollNsvEventInstantBottom(event: Int?) {
-    if (event == null) return
-    runScroll { ListViewUtils.scrollToBottom(this) }
-}
-
-/**
- * 数据绑定对 NestedScrollView 执行平滑绝对滚动。
- * <pre>
- *     布局属性：binding_scroll_nsv_smooth_abs_x、binding_scroll_nsv_smooth_abs_y，requireAll 为 false
+ *     布局属性：binding_scroll_smooth_abs_x、binding_scroll_smooth_abs_y，requireAll 为 false
  *     对应 {@link ListViewUtils#smoothScrollTo}；x、y 均为 null 时跳过；缺省保留当前 scrollX、scrollY。
  * </pre>
  *
@@ -408,10 +234,10 @@ fun NestedScrollView.bindingScrollNsvEventInstantBottom(event: Int?) {
  * @param y 目标 Y
  */
 @BindingAdapter(
-    value = ["binding_scroll_nsv_smooth_abs_x", "binding_scroll_nsv_smooth_abs_y"],
+    value = ["binding_scroll_smooth_abs_x", "binding_scroll_smooth_abs_y"],
     requireAll = false
 )
-fun NestedScrollView.bindingScrollNsvSmoothAbsXY(
+fun View.bindingScrollSmoothAbsXY(
     x: Int?,
     y: Int?
 ) {
@@ -422,9 +248,9 @@ fun NestedScrollView.bindingScrollNsvSmoothAbsXY(
 }
 
 /**
- * 数据绑定对 NestedScrollView 执行平滑相对滚动。
+ * 数据绑定执行平滑相对滚动。
  * <pre>
- *     布局属性：binding_scroll_nsv_smooth_rel_dx、binding_scroll_nsv_smooth_rel_dy，requireAll 为 false
+ *     布局属性：binding_scroll_smooth_rel_dx、binding_scroll_smooth_rel_dy，requireAll 为 false
  *     对应 {@link ListViewUtils#smoothScrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
  * </pre>
  *
@@ -432,10 +258,10 @@ fun NestedScrollView.bindingScrollNsvSmoothAbsXY(
  * @param dy Y 增量
  */
 @BindingAdapter(
-    value = ["binding_scroll_nsv_smooth_rel_dx", "binding_scroll_nsv_smooth_rel_dy"],
+    value = ["binding_scroll_smooth_rel_dx", "binding_scroll_smooth_rel_dy"],
     requireAll = false
 )
-fun NestedScrollView.bindingScrollNsvSmoothRelDxDy(
+fun View.bindingScrollSmoothRelDxDy(
     dx: Int?,
     dy: Int?
 ) {
@@ -446,24 +272,24 @@ fun NestedScrollView.bindingScrollNsvSmoothRelDxDy(
 }
 
 /**
- * 数据绑定对 NestedScrollView 按焦点方向整段滚动。
+ * 数据绑定按焦点方向整段滚动。
  * <pre>
- *     布局属性：binding_scroll_nsv_full_direction
- *     对应 {@link ListViewUtils#fullScroll}；direction 为 null 时跳过；取值与 {@link android.view.View#FOCUS_UP}、{@link android.view.View#FOCUS_DOWN} 等一致。
+ *     布局属性：binding_scroll_full_direction
+ *     对应 {@link ListViewUtils#fullScroll}；direction 为 null 时跳过；取值与 {@link View#FOCUS_UP}、{@link View#FOCUS_DOWN} 等一致。
  * </pre>
  *
  * @param direction 滚动方向常量
  */
-@BindingAdapter("binding_scroll_nsv_full_direction")
-fun NestedScrollView.bindingScrollNsvFullDirection(direction: Int?) {
+@BindingAdapter("binding_scroll_full_direction")
+fun View.bindingScrollFullDirection(direction: Int?) {
     val d = direction ?: return
     runScroll { ListViewUtils.fullScroll(this, d) }
 }
 
 /**
- * 数据绑定对 NestedScrollView 执行无动画绝对滚动。
+ * 数据绑定执行无动画绝对滚动。
  * <pre>
- *     布局属性：binding_scroll_nsv_instant_abs_x、binding_scroll_nsv_instant_abs_y，requireAll 为 false
+ *     布局属性：binding_scroll_instant_abs_x、binding_scroll_instant_abs_y，requireAll 为 false
  *     对应 {@link ListViewUtils#scrollTo}；x、y 均为 null 时跳过；缺省保留当前 scrollX、scrollY。
  * </pre>
  *
@@ -471,10 +297,10 @@ fun NestedScrollView.bindingScrollNsvFullDirection(direction: Int?) {
  * @param y 目标 Y
  */
 @BindingAdapter(
-    value = ["binding_scroll_nsv_instant_abs_x", "binding_scroll_nsv_instant_abs_y"],
+    value = ["binding_scroll_instant_abs_x", "binding_scroll_instant_abs_y"],
     requireAll = false
 )
-fun NestedScrollView.bindingScrollNsvInstantAbsXY(
+fun View.bindingScrollInstantAbsXY(
     x: Int?,
     y: Int?
 ) {
@@ -485,9 +311,9 @@ fun NestedScrollView.bindingScrollNsvInstantAbsXY(
 }
 
 /**
- * 数据绑定对 NestedScrollView 执行无动画相对滚动。
+ * 数据绑定执行无动画相对滚动。
  * <pre>
- *     布局属性：binding_scroll_nsv_instant_rel_dx、binding_scroll_nsv_instant_rel_dy，requireAll 为 false
+ *     布局属性：binding_scroll_instant_rel_dx、binding_scroll_instant_rel_dy，requireAll 为 false
  *     对应 {@link ListViewUtils#scrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
  * </pre>
  *
@@ -495,10 +321,10 @@ fun NestedScrollView.bindingScrollNsvInstantAbsXY(
  * @param dy Y 增量
  */
 @BindingAdapter(
-    value = ["binding_scroll_nsv_instant_rel_dx", "binding_scroll_nsv_instant_rel_dy"],
+    value = ["binding_scroll_instant_rel_dx", "binding_scroll_instant_rel_dy"],
     requireAll = false
 )
-fun NestedScrollView.bindingScrollNsvInstantRelDxDy(
+fun View.bindingScrollInstantRelDxDy(
     dx: Int?,
     dy: Int?
 ) {
@@ -509,31 +335,31 @@ fun NestedScrollView.bindingScrollNsvInstantRelDxDy(
 }
 
 /**
- * 数据绑定设置 NestedScrollView 内容水平滚动位置。
+ * 数据绑定设置内容水平滚动位置。
  * <pre>
- *     布局属性：binding_scroll_nsv_set_scroll_x
+ *     布局属性：binding_scroll_set_scroll_x
  *     对应 {@link ListViewUtils#setScrollX}；value 为 null 时跳过。
  * </pre>
  *
  * @param value 目标 scrollX
  */
-@BindingAdapter("binding_scroll_nsv_set_scroll_x")
-fun NestedScrollView.bindingScrollNsvSetScrollX(value: Int?) {
+@BindingAdapter("binding_scroll_set_scroll_x")
+fun View.bindingScrollSetScrollX(value: Int?) {
     val v = value ?: return
     runScroll { ListViewUtils.setScrollX(this, v) }
 }
 
 /**
- * 数据绑定设置 NestedScrollView 内容垂直滚动位置。
+ * 数据绑定设置内容垂直滚动位置。
  * <pre>
- *     布局属性：binding_scroll_nsv_set_scroll_y
+ *     布局属性：binding_scroll_set_scroll_y
  *     对应 {@link ListViewUtils#setScrollY}；value 为 null 时跳过。
  * </pre>
  *
  * @param value 目标 scrollY
  */
-@BindingAdapter("binding_scroll_nsv_set_scroll_y")
-fun NestedScrollView.bindingScrollNsvSetScrollY(value: Int?) {
+@BindingAdapter("binding_scroll_set_scroll_y")
+fun View.bindingScrollSetScrollY(value: Int?) {
     val v = value ?: return
     runScroll { ListViewUtils.setScrollY(this, v) }
 }
