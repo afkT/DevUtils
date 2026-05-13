@@ -35,10 +35,10 @@
 
 - **作用**：编码与协作行为准则（与项目说明合并使用）。
 - **要点摘要**：
-  1. **先想后写**：明确假设；多解时列出；不清楚则提问。
-  2. **极简**：只实现需求内功能；避免过度抽象与无效防御代码。
-  3. **手术式修改**：只改必要处；风格与仓库一致；自己引入的无用引用要删，不擅自删历史死代码。
-  4. **目标可验证**：把任务拆成可检查步骤（测试、通过标准等）。
+    1. **先想后写**：明确假设；多解时列出；不清楚则提问。
+    2. **极简**：只实现需求内功能；避免过度抽象与无效防御代码。
+    3. **手术式修改**：只改必要处；风格与仓库一致；自己引入的无用引用要删，不擅自删历史死代码。
+    4. **目标可验证**：把任务拆成可检查步骤（测试、通过标准等）。
 
 ### 1.3 `cursor-catalog-sync.mdc`
 
@@ -59,7 +59,7 @@
 | [devsimple-viewtheme-xml/SKILL.md](skills/devsimple-viewtheme-xml/SKILL.md) | `devsimple-viewtheme-xml` | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
 | [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
-| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；Javadoc/KDoc 首段与补充块按语言区分；`@param`/`@return` 齐全；`boolean`/`Boolean` 的 `@return`：Java `{@code true/false}`，Kotlin `` `true`/`false` ``；交叉引用 Java `{@link Type#m(…)}`、Kotlin `[Type.m]`；优先非 void 安全返回、异常内捕获不导致主应用崩溃。 |
+| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：Java 入参 `final`（抽象/`interface default`/`@Override` 不加）、Javadoc 首段无 `{@}` 与 `<pre>` 备注、`@param`/`@return`、boolean 模板（已对举表意时中英均可）、优先非 void 安全返回、异常内捕获不导致主应用崩溃。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -95,7 +95,7 @@
 ### 2.8 `java-kotlin-method-normalize`
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
-- **核心**：Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）；有非 `void`/非 `Unit` 返回值且有参时写全 `@param`/`@return`；**`boolean`/`Boolean` 的 `@return`**：Javadoc 用 `{@code true}`/`{@code false}` 对举，KDoc 用反引号 `` `true` ``/`` `false` `` 对举（新写默认中文；已对举英文可保留）；**交叉引用**：Java `{@link Type#member(参数类型)}`，Kotlin **`[Type.member]`**，Kotlin 中勿用 `{@link}`；Javadoc 首段无 `{@}`、细节进 `<pre>`；KDoc 首段用 Markdown，细节用段落/代码块与 `[…]`；合理时返回入参或语义化结果替代空洞 `void`；可能抛错处 `try/catch` 后安全返回，避免未捕获崩溃。
+- **核心**：Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）；有非 void 返回值且有参时写全 `@param`/`@return`；`boolean` 的 `@return` 优先 `{@code true}` / `{@code false}` 双分支说明（新写默认中文；success/fail、yes/no 等已对举表意时可保留英文）；Javadoc **首段**仅短句功能描述且不含 `{@}`，引用与细节进 **`<pre>`**；在合理时返回入参或语义化结果替代空洞 `void`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
 
 ---
 
