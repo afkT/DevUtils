@@ -59,7 +59,7 @@
 | [devsimple-viewtheme-xml/SKILL.md](skills/devsimple-viewtheme-xml/SKILL.md) | `devsimple-viewtheme-xml` | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
 | [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
-| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：Java 入参 `final`（抽象/`interface default`/`@Override` 不加）、Javadoc 首段无 `{@}` 与 `<pre>` 备注、`@param`/`@return`、boolean 模板（已对举表意时中英均可）、优先非 void 安全返回、异常内捕获不导致主应用崩溃。 |
+| [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：**Java 用 JavaDoc、Kotlin 用 KDoc**（不混用）；Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；**方法注释与备注同一规则**：首段/首行无内联代码与类型引用，备注 **`<pre>`**；`@param`/`@return` 齐全；**boolean**：Java `@return {@code true} …, {@code false} …`，Kotlin `` @return `true` …, `false` … ``；类型引用 Java `{@link …}`、Kotlin `[…]`；优先非 void/Unit 安全返回、异常内捕获。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -95,7 +95,7 @@
 ### 2.8 `java-kotlin-method-normalize`
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
-- **核心**：Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）；有非 void 返回值且有参时写全 `@param`/`@return`；`boolean` 的 `@return` 优先 `{@code true}` / `{@code false}` 双分支说明（新写默认中文；success/fail、yes/no 等已对举表意时可保留英文）；Javadoc **首段**仅短句功能描述且不含 `{@}`，引用与细节进 **`<pre>`**；在合理时返回入参或语义化结果替代空洞 `void`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
+- **核心**：**Java 写 JavaDoc、Kotlin 写 KDoc**，两套内联规则不混用。Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）。**方法注释（首段）与方法备注** 同一结构：首段/首行不写代码形态引用（Java 首段无 `{@}`；Kotlin 首段无反引号代码、无 `[…]` 符号链接），补充说明一律用 **`<pre>`**（两种语言均如此）。有非 `void` / 非 `Unit` 返回值且有参时写全 `@param`/`@return`；**`Boolean`/`boolean` 的 `@return`**：Java 用 `@return {@code true} …, {@code false} …`，Kotlin 用 `` @return `true` …, `false` … ``。**类型引用**：Java `{@link …}`，Kotlin `[…]`（含 `@param`/`@return` 行与 `<pre>` 内）。在合理时返回入参或语义化结果替代空洞 `void`/`Unit`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
 
 ---
 
