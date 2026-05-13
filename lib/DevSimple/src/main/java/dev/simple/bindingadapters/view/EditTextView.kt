@@ -15,13 +15,13 @@ import dev.utils.app.EditTextUtils
 
 private const val TAG = "Dev_EditText_BindingAdapter"
 
-/** [binding_et_key_listener_preset]：仅字母 */
+/** 键入预设取值：仅字母；与布局属性 binding_et_key_listener_preset 搭配。 */
 const val BINDING_ET_KEY_LISTENER_PRESET_LETTERS = 1
 
-/** [binding_et_key_listener_preset]：仅数字 */
+/** 键入预设取值：仅数字；与布局属性 binding_et_key_listener_preset 搭配。 */
 const val BINDING_ET_KEY_LISTENER_PRESET_NUMBERS = 2
 
-/** [binding_et_key_listener_preset]：字母与数字 */
+/** 键入预设取值：字母与数字；与布局属性 binding_et_key_listener_preset 搭配。 */
 const val BINDING_ET_KEY_LISTENER_PRESET_NUMBERS_AND_LETTERS = 3
 
 // =============
@@ -92,7 +92,7 @@ fun EditText.bindingETDisplayPassword(
  * 通过数据绑定设置自定义键入监听器。
  * <pre>
  *     布局属性 binding_et_key_listener；null 时不修改；内部委托 EditTextUtils.setKeyListener。
- *     入参类型见 {@link android.text.method.KeyListener}。
+ *     入参类型见 [KeyListener]。
  * </pre>
  *
  * @param listener 监听器实例（通常在代码中构造后传入绑定）
@@ -109,7 +109,7 @@ fun EditText.bindingETKeyListener(listener: KeyListener?) {
  * <pre>
  *     布局属性 binding_et_key_listener_preset；取值为 BINDING_ET_KEY_LISTENER_PRESET_LETTERS（1）、
  *     BINDING_ET_KEY_LISTENER_PRESET_NUMBERS（2）、BINDING_ET_KEY_LISTENER_PRESET_NUMBERS_AND_LETTERS（3），其它值忽略；
- *     类型见 {@link android.text.method.DigitsKeyListener}；内部委托 EditTextUtils.getLettersKeyListener、
+ *     类型见 [android.text.method.DigitsKeyListener]；内部委托 EditTextUtils.getLettersKeyListener、
  *     getNumberKeyListener、getNumberAndLettersKeyListener 与 setKeyListener。
  * </pre>
  *
@@ -188,7 +188,7 @@ fun EditText.bindingETInsert(
 /**
  * 通过数据绑定限制长度并设置内容。
  * <pre>
- *     布局属性 binding_et_max_length_bind、binding_et_max_length_bind_text；均需绑定且 max &gt; 0，内部委托 EditTextUtils.setMaxLengthAndText。
+ *     布局属性 binding_et_max_length_bind、binding_et_max_length_bind_text；均需绑定且 max 大于 0，内部委托 EditTextUtils.setMaxLengthAndText。
  * </pre>
  *
  * @param maxLength 最大长度
@@ -247,7 +247,7 @@ fun EditText.bindingETTextCursorDrawableRes(@DrawableRes resId: Int) {
  * 通过数据绑定设置文本光标图形。
  * <pre>
  *     布局属性 binding_et_text_cursor_drawable；API 29 以下忽略；null 时不调用。
- *     类型见 {@link android.graphics.Drawable}；内部委托 EditTextUtils.setTextCursorDrawable（Drawable 重载）。
+ *     类型见 [Drawable]；内部委托 EditTextUtils.setTextCursorDrawable（Drawable 重载）。
  * </pre>
  *
  * @param drawable 光标图形
@@ -305,7 +305,7 @@ fun EditText.bindingETSelectionIndex(index: Int) {
 /**
  * 通过数据绑定按允许字符集设置数字键入监听器。
  * <pre>
- *     布局属性 binding_et_key_listener_accepted；如 "0123456789"；类型见 {@link android.text.method.DigitsKeyListener}；
+ *     布局属性 binding_et_key_listener_accepted；如 "0123456789"；类型见 [android.text.method.DigitsKeyListener]；
  *     内部委托 EditTextUtils.setKeyListener（String 重载）。
  * </pre>
  *
@@ -321,7 +321,7 @@ fun EditText.bindingETKeyListenerAccepted(accepted: String?) {
 /**
  * 通过数据绑定按字符数组设置数字键入监听器。
  * <pre>
- *     布局属性 binding_et_key_listener_accepted_chars；类型见 {@link android.text.method.DigitsKeyListener}；
+ *     布局属性 binding_et_key_listener_accepted_chars；类型见 [android.text.method.DigitsKeyListener]；
  *     内部委托 EditTextUtils.setKeyListener（char[] 重载）。
  * </pre>
  *
