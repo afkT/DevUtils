@@ -22,6 +22,10 @@ import java.io.InputStream
 // ========================
 // = Image BindingAdapter =
 // ========================
+//
+// 本文件为经图片引擎的加载适配（binding_image_url / binding_image_engine 等）。
+// 若仅需单参数调用 ImageView#setImageBitmap、#setImageResource 等原生 API，请使用
+// ImageViewNative.kt 中的 binding_image_native_* 属性（与本文件属性名互不重复）。
 
 private const val TAG = "Dev_Image_BindingAdapter"
 
