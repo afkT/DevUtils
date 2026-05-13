@@ -33,6 +33,21 @@ fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?) {
 }
 
 /**
+ * 数据绑定触发 RecyclerView 平滑滚向顶部吸附区域。
+ * <pre>
+ *     布局属性：binding_scroll_rv_snap_start_auto
+ *     对应无 position 重载的 {@link RecyclerViewUtils#startSmoothScrollSnapStart(RecyclerView)}；仅在为 true 时执行；需 LinearLayoutManager。
+ * </pre>
+ *
+ * @param toTopAuto 为 true 时执行
+ */
+@BindingAdapter("binding_scroll_rv_snap_start_auto")
+fun RecyclerView.bindingScrollRvSnapStartAuto(toTopAuto: Boolean?) {
+    if (toTopAuto != true) return
+    RecyclerViewUtils.startSmoothScrollSnapStart(this)
+}
+
+/**
  * 数据绑定触发 RecyclerView 平滑滚动并使目标项与列表底部对齐。
  * <pre>
  *     布局属性：binding_scroll_rv_snap_end_index

@@ -1638,6 +1638,30 @@ public final class RecyclerViewUtils {
     // =====================
 
     /**
+     * 平滑滑动到首项，目标项垂直方向与列表顶部对齐
+     * <pre>
+     *     position 固定为 0；吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_START}
+     * </pre>
+     * @param view {@link View}
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapStart(final View view) {
+        return startSmoothScrollSnapStart(getRecyclerView(view));
+    }
+
+    /**
+     * 平滑滑动到首项，目标项垂直方向与列表顶部对齐
+     * <pre>
+     *     position 固定为 0；吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_START}
+     * </pre>
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} 已发起平滑滚动或已走降级逻辑，{@code false} 无法处理
+     */
+    public static boolean startSmoothScrollSnapStart(final RecyclerView recyclerView) {
+        return startSmoothScrollSnapStart(recyclerView, 0);
+    }
+
+    /**
      * 平滑滑动到指定索引，目标项垂直方向与列表顶部对齐
      * <pre>
      *     吸附偏好参见 {@link LinearSmoothScroller#SNAP_TO_START}
