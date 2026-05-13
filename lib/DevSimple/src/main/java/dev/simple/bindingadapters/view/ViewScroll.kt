@@ -13,7 +13,7 @@ import dev.utils.app.RecyclerViewUtils
 /**
  * 供需重复触发的绑定使用：传入时间戳等 Long，仅在大于 0 时执行，避免 LiveData 同值不刷新。
  */
-private fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
+fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
 
 // =====================
 // = RecyclerViewUtils =
