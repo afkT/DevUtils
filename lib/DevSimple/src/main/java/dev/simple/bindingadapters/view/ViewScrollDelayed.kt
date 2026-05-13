@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
  */
 private inline fun View.runScrollWithOptionalDelay(
     delayMs: Long?,
-    crossinline action: () -> Unit
+    crossinline action: () -> Boolean
 ) {
-    action()
+    val result = action()
+    if (!result) return
     val d = delayMs ?: return
     if (d <= 0L) return
     postDelayed({ action() }, d)
