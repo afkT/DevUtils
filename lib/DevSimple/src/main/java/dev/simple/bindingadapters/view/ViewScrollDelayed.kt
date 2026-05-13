@@ -3,6 +3,7 @@ package dev.simple.bindingadapters.view
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.simple.bindingadapters.view.attribute.XYI
 
 // ======================================
 // = View Scroll Delayed BindingAdapter =
@@ -18,7 +19,7 @@ private inline fun View.runScrollWithOptionalDelay(
 ) {
     val result = action()
     if (!result) return
-    val d = delayMs ?: return
+    val d = delayMs ?: 2000
     if (d <= 0L) return
     postDelayed({ action() }, d)
 }
@@ -261,46 +262,40 @@ fun View.bindingScrollDelayedEventInstantBottom(
 
 /**
  * 数据绑定执行平滑绝对滚动。
- * @param x 目标 X
- * @param y 目标 Y
+ * @param xy 目标坐标，语义同 [bindingScrollSmoothAbsXY]
  * @param delayMs 延迟多少毫秒后再次执行
  */
 @BindingAdapter(
     value = [
-        "binding_scroll_delayed_smooth_abs_x",
-        "binding_scroll_delayed_smooth_abs_y",
+        "binding_scroll_delayed_smooth_abs_xy",
         "binding_scroll_delayed_smooth_abs_delay_ms"
     ],
     requireAll = false
 )
 fun View.bindingScrollDelayedSmoothAbsXY(
-    x: Int?,
-    y: Int?,
+    xy: XYI?,
     delayMs: Long?
 ) {
-    runScrollWithOptionalDelay(delayMs) { bindingScrollSmoothAbsXY(x, y) }
+    runScrollWithOptionalDelay(delayMs) { bindingScrollSmoothAbsXY(xy) }
 }
 
 /**
  * 数据绑定执行平滑相对滚动。
- * @param dx X 增量
- * @param dy Y 增量
+ * @param xy 相对位移，语义同 [bindingScrollSmoothRelDxDy]
  * @param delayMs 延迟多少毫秒后再次执行
  */
 @BindingAdapter(
     value = [
-        "binding_scroll_delayed_smooth_rel_dx",
-        "binding_scroll_delayed_smooth_rel_dy",
+        "binding_scroll_delayed_smooth_rel_xy",
         "binding_scroll_delayed_smooth_rel_delay_ms"
     ],
     requireAll = false
 )
 fun View.bindingScrollDelayedSmoothRelDxDy(
-    dx: Int?,
-    dy: Int?,
+    xy: XYI?,
     delayMs: Long?
 ) {
-    runScrollWithOptionalDelay(delayMs) { bindingScrollSmoothRelDxDy(dx, dy) }
+    runScrollWithOptionalDelay(delayMs) { bindingScrollSmoothRelDxDy(xy) }
 }
 
 /**
@@ -324,46 +319,40 @@ fun View.bindingScrollDelayedFullDirection(
 
 /**
  * 数据绑定执行无动画绝对滚动。
- * @param x 目标 X
- * @param y 目标 Y
+ * @param xy 目标坐标，语义同 [bindingScrollInstantAbsXY]
  * @param delayMs 延迟多少毫秒后再次执行
  */
 @BindingAdapter(
     value = [
-        "binding_scroll_delayed_instant_abs_x",
-        "binding_scroll_delayed_instant_abs_y",
+        "binding_scroll_delayed_instant_abs_xy",
         "binding_scroll_delayed_instant_abs_delay_ms"
     ],
     requireAll = false
 )
 fun View.bindingScrollDelayedInstantAbsXY(
-    x: Int?,
-    y: Int?,
+    xy: XYI?,
     delayMs: Long?
 ) {
-    runScrollWithOptionalDelay(delayMs) { bindingScrollInstantAbsXY(x, y) }
+    runScrollWithOptionalDelay(delayMs) { bindingScrollInstantAbsXY(xy) }
 }
 
 /**
  * 数据绑定执行无动画相对滚动。
- * @param dx X 增量
- * @param dy Y 增量
+ * @param xy 相对位移，语义同 [bindingScrollInstantRelDxDy]
  * @param delayMs 延迟多少毫秒后再次执行
  */
 @BindingAdapter(
     value = [
-        "binding_scroll_delayed_instant_rel_dx",
-        "binding_scroll_delayed_instant_rel_dy",
+        "binding_scroll_delayed_instant_rel_xy",
         "binding_scroll_delayed_instant_rel_delay_ms"
     ],
     requireAll = false
 )
 fun View.bindingScrollDelayedInstantRelDxDy(
-    dx: Int?,
-    dy: Int?,
+    xy: XYI?,
     delayMs: Long?
 ) {
-    runScrollWithOptionalDelay(delayMs) { bindingScrollInstantRelDxDy(dx, dy) }
+    runScrollWithOptionalDelay(delayMs) { bindingScrollInstantRelDxDy(xy) }
 }
 
 /**

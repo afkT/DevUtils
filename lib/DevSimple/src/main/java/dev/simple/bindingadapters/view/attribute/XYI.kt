@@ -11,6 +11,12 @@ open class XYI(
 ) {
 
     companion object {
+        /**
+         * 与 View 绝对滚动 BindingAdapter 配合：表示该轴保持当前 [android.view.View.getScrollX] /
+         * [android.view.View.getScrollY]，等价于原先分别传入 `null`。
+         */
+        const val KEEP_SCROLL = Int.MIN_VALUE
+
         val ZERO get() = XYI()
 
         fun ofXY(

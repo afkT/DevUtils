@@ -3,6 +3,7 @@ package dev.simple.bindingadapters.view
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.simple.bindingadapters.view.attribute.XYI
 import dev.utils.app.ListViewUtils
 import dev.utils.app.RecyclerViewUtils
 
@@ -242,51 +243,37 @@ fun View.bindingScrollEventInstantBottom(timestamp: Long?): Boolean {
 /**
  * 数据绑定执行平滑绝对滚动。
  * <pre>
- *     布局属性：binding_scroll_smooth_abs_x、binding_scroll_smooth_abs_y，requireAll 为 false
- *     对应 {@link ListViewUtils#smoothScrollTo}；x、y 均为 null 时跳过；缺省保留当前 scrollX、scrollY。
+ *     布局属性：binding_scroll_smooth_abs_xy
+ *     对应 {@link ListViewUtils#smoothScrollTo}；`xy` 为 null 时跳过；某轴为 {@link XYI#KEEP_SCROLL} 时保留当前
+ *     scrollX / scrollY；两轴均为 KEEP_SCROLL 时跳过。
  * </pre>
  *
- * @param x 目标 X
- * @param y 目标 Y
+ * @param xy 目标坐标，`x`/`y` 为像素；`index` 无意义
  * @return `true` success, `false` fail
  */
-@BindingAdapter(
-    value = ["binding_scroll_smooth_abs_x", "binding_scroll_smooth_abs_y"],
-    requireAll = false
-)
-fun View.bindingScrollSmoothAbsXY(
-    x: Int?,
-    y: Int?
-): Boolean {
-    if (x == null && y == null) return false
-    val tx = x ?: scrollX
-    val ty = y ?: scrollY
+@BindingAdapter("binding_scroll_smooth_abs_xy")
+fun View.bindingScrollSmoothAbsXY(xy: XYI?): Boolean {
+    if (xy == null) return false
+    if (xy.x == XYI.KEEP_SCROLL && xy.y == XYI.KEEP_SCROLL) return false
+    val tx = if (xy.x == XYI.KEEP_SCROLL) scrollX else xy.x
+    val ty = if (xy.y == XYI.KEEP_SCROLL) scrollY else xy.y
     return ListViewUtils.smoothScrollTo(this, tx, ty)
 }
 
 /**
  * 数据绑定执行平滑相对滚动。
  * <pre>
- *     布局属性：binding_scroll_smooth_rel_dx、binding_scroll_smooth_rel_dy，requireAll 为 false
- *     对应 {@link ListViewUtils#smoothScrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
+ *     布局属性：binding_scroll_smooth_rel_xy
+ *     对应 {@link ListViewUtils#smoothScrollBy}；`xy` 为 null 时跳过；`x`/`y` 分别为 dx、dy；`index` 无意义。
  * </pre>
  *
- * @param dx X 增量
- * @param dy Y 增量
+ * @param xy 相对位移
  * @return `true` success, `false` fail
  */
-@BindingAdapter(
-    value = ["binding_scroll_smooth_rel_dx", "binding_scroll_smooth_rel_dy"],
-    requireAll = false
-)
-fun View.bindingScrollSmoothRelDxDy(
-    dx: Int?,
-    dy: Int?
-): Boolean {
-    if (dx == null && dy == null) return false
-    val rdx = dx ?: 0
-    val rdy = dy ?: 0
-    return ListViewUtils.smoothScrollBy(this, rdx, rdy)
+@BindingAdapter("binding_scroll_smooth_rel_xy")
+fun View.bindingScrollSmoothRelDxDy(xy: XYI?): Boolean {
+    if (xy == null) return false
+    return ListViewUtils.smoothScrollBy(this, xy.x, xy.y)
 }
 
 /**
@@ -308,51 +295,36 @@ fun View.bindingScrollFullDirection(direction: Int?): Boolean {
 /**
  * 数据绑定执行无动画绝对滚动。
  * <pre>
- *     布局属性：binding_scroll_instant_abs_x、binding_scroll_instant_abs_y，requireAll 为 false
- *     对应 {@link ListViewUtils#scrollTo}；x、y 均为 null 时跳过；缺省保留当前 scrollX、scrollY。
+ *     布局属性：binding_scroll_instant_abs_xy
+ *     对应 {@link ListViewUtils#scrollTo}；语义同平滑绝对滚动的 `bindingScrollSmoothAbsXY`。
  * </pre>
  *
- * @param x 目标 X
- * @param y 目标 Y
+ * @param xy 目标坐标
  * @return `true` success, `false` fail
  */
-@BindingAdapter(
-    value = ["binding_scroll_instant_abs_x", "binding_scroll_instant_abs_y"],
-    requireAll = false
-)
-fun View.bindingScrollInstantAbsXY(
-    x: Int?,
-    y: Int?
-): Boolean {
-    if (x == null && y == null) return false
-    val tx = x ?: scrollX
-    val ty = y ?: scrollY
+@BindingAdapter("binding_scroll_instant_abs_xy")
+fun View.bindingScrollInstantAbsXY(xy: XYI?): Boolean {
+    if (xy == null) return false
+    if (xy.x == XYI.KEEP_SCROLL && xy.y == XYI.KEEP_SCROLL) return false
+    val tx = if (xy.x == XYI.KEEP_SCROLL) scrollX else xy.x
+    val ty = if (xy.y == XYI.KEEP_SCROLL) scrollY else xy.y
     return ListViewUtils.scrollTo(this, tx, ty)
 }
 
 /**
  * 数据绑定执行无动画相对滚动。
  * <pre>
- *     布局属性：binding_scroll_instant_rel_dx、binding_scroll_instant_rel_dy，requireAll 为 false
- *     对应 {@link ListViewUtils#scrollBy}；dx、dy 均为 null 时跳过；缺省为 0。
+ *     布局属性：binding_scroll_instant_rel_xy
+ *     对应 {@link ListViewUtils#scrollBy}；语义同平滑相对滚动的 `bindingScrollSmoothRelDxDy`。
  * </pre>
  *
- * @param dx X 增量
- * @param dy Y 增量
+ * @param xy 相对位移
  * @return `true` success, `false` fail
  */
-@BindingAdapter(
-    value = ["binding_scroll_instant_rel_dx", "binding_scroll_instant_rel_dy"],
-    requireAll = false
-)
-fun View.bindingScrollInstantRelDxDy(
-    dx: Int?,
-    dy: Int?
-): Boolean {
-    if (dx == null && dy == null) return false
-    val rdx = dx ?: 0
-    val rdy = dy ?: 0
-    return ListViewUtils.scrollBy(this, rdx, rdy)
+@BindingAdapter("binding_scroll_instant_rel_xy")
+fun View.bindingScrollInstantRelDxDy(xy: XYI?): Boolean {
+    if (xy == null) return false
+    return ListViewUtils.scrollBy(this, xy.x, xy.y)
 }
 
 /**
