@@ -10,7 +10,10 @@ import dev.utils.app.RecyclerViewUtils
 // = View Scroll BindingAdapter =
 // ==============================
 
-private const val TAG = "Dev_Scroll_BindingAdapter"
+/**
+ * 供需重复触发的绑定使用：传入时间戳等 Long，仅在大于 0 时执行，避免 LiveData 同值不刷新。
+ */
+private fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
 
 // =====================
 // = RecyclerViewUtils =
@@ -36,14 +39,15 @@ fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?) {
  * 数据绑定触发 RecyclerView 平滑滚向顶部吸附区域。
  * <pre>
  *     布局属性：binding_scroll_rv_snap_start_auto
- *     对应无 position 重载的 {@link RecyclerViewUtils#startSmoothScrollSnapStart(RecyclerView)}；仅在为 true 时执行；需 LinearLayoutManager。
+ *     对应无 position 重载的 {@link RecyclerViewUtils#startSmoothScrollSnapStart(RecyclerView)}；timestamp 为 null 或不大于 0 时跳过；需 LinearLayoutManager。
+ *     建议绑定 {@code System.currentTimeMillis()} 或递增时间戳，便于同操作多次触发（优于 LiveData Boolean 同 true 不刷新）。
  * </pre>
  *
- * @param toTopAuto 为 true 时执行
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_rv_snap_start_auto")
-fun RecyclerView.bindingScrollRvSnapStartAuto(toTopAuto: Boolean?) {
-    if (toTopAuto != true) return
+fun RecyclerView.bindingScrollRvSnapStartAuto(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     RecyclerViewUtils.startSmoothScrollSnapStart(this)
 }
 
@@ -67,14 +71,15 @@ fun RecyclerView.bindingScrollRvSnapEndIndex(position: Int?) {
  * 数据绑定触发 RecyclerView 平滑滚向底部吸附区域。
  * <pre>
  *     布局属性：binding_scroll_rv_snap_end_auto
- *     对应无 position 重载的 {@link RecyclerViewUtils#startSmoothScrollSnapEnd(RecyclerView)}；仅在为 true 时执行；需 LinearLayoutManager。
+ *     对应无 position 重载的 {@link RecyclerViewUtils#startSmoothScrollSnapEnd(RecyclerView)}；timestamp 为 null 或不大于 0 时跳过；需 LinearLayoutManager。
+ *     建议绑定时间戳以便重复触发到底部。
  * </pre>
  *
- * @param toBottomAuto 为 true 时执行
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_rv_snap_end_auto")
-fun RecyclerView.bindingScrollRvSnapEndAuto(toBottomAuto: Boolean?) {
-    if (toBottomAuto != true) return
+fun RecyclerView.bindingScrollRvSnapEndAuto(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     RecyclerViewUtils.startSmoothScrollSnapEnd(this)
 }
 
@@ -106,14 +111,15 @@ fun RecyclerView.bindingScrollRvLinearIndexOffset(
  * 数据绑定停止 RecyclerView 当前平滑滚动与拖动及惯性滚动。
  * <pre>
  *     布局属性：binding_scroll_rv_stop
- *     对应 {@link RecyclerViewUtils#stopSmoothScroller(RecyclerView)}；仅在为 true 时执行。
+ *     对应 {@link RecyclerViewUtils#stopSmoothScroller(RecyclerView)}；timestamp 为 null 或不大于 0 时跳过。
+ *     建议绑定时间戳以便重复触发停止（含打断平滑动画）。
  * </pre>
  *
- * @param stop 为 true 时执行
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_rv_stop")
-fun RecyclerView.bindingScrollRvStop(stop: Boolean?) {
-    if (stop != true) return
+fun RecyclerView.bindingScrollRvStop(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     RecyclerViewUtils.stopSmoothScroller(this)
 }
 
@@ -161,14 +167,15 @@ fun View.bindingScrollInstantAdapterIndex(index: Int?) {
  * 数据绑定触发平滑滚动到内容或列表顶部。
  * <pre>
  *     布局属性：binding_scroll_event_smooth_top
- *     对应 {@link ListViewUtils#smoothScrollToTop}；event 为 null 时跳过；建议在 ViewModel 中递增计数以重复触发。
+ *     对应 {@link ListViewUtils#smoothScrollToTop}；timestamp 为 null 或不大于 0 时跳过。
+ *     建议绑定时间戳，便于每次新值都触发（优于 LiveData Boolean 同 true 不刷新）。
  * </pre>
  *
- * @param event 非 null 时执行一次
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_event_smooth_top")
-fun View.bindingScrollEventSmoothTop(event: Int?) {
-    if (event == null) return
+fun View.bindingScrollEventSmoothTop(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     ListViewUtils.smoothScrollToTop(this)
 }
 
@@ -176,14 +183,15 @@ fun View.bindingScrollEventSmoothTop(event: Int?) {
  * 数据绑定触发瞬时滚动到内容或列表顶部。
  * <pre>
  *     布局属性：binding_scroll_event_instant_top
- *     对应 {@link ListViewUtils#scrollToTop}；event 为 null 时跳过。
+ *     对应 {@link ListViewUtils#scrollToTop}；timestamp 为 null 或不大于 0 时跳过。
+ *     建议绑定时间戳以便重复触发。
  * </pre>
  *
- * @param event 非 null 时执行一次
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_event_instant_top")
-fun View.bindingScrollEventInstantTop(event: Int?) {
-    if (event == null) return
+fun View.bindingScrollEventInstantTop(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     ListViewUtils.scrollToTop(this)
 }
 
@@ -191,14 +199,15 @@ fun View.bindingScrollEventInstantTop(event: Int?) {
  * 数据绑定触发平滑滚动到内容或列表底部。
  * <pre>
  *     布局属性：binding_scroll_event_smooth_bottom
- *     对应 {@link ListViewUtils#smoothScrollToBottom}；event 为 null 时跳过。
+ *     对应 {@link ListViewUtils#smoothScrollToBottom}；timestamp 为 null 或不大于 0 时跳过。
+ *     建议绑定时间戳以便重复滑到底部。
  * </pre>
  *
- * @param event 非 null 时执行一次
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_event_smooth_bottom")
-fun View.bindingScrollEventSmoothBottom(event: Int?) {
-    if (event == null) return
+fun View.bindingScrollEventSmoothBottom(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     ListViewUtils.smoothScrollToBottom(this)
 }
 
@@ -206,14 +215,15 @@ fun View.bindingScrollEventSmoothBottom(event: Int?) {
  * 数据绑定触发瞬时滚动到内容或列表底部。
  * <pre>
  *     布局属性：binding_scroll_event_instant_bottom
- *     对应 {@link ListViewUtils#scrollToBottom}；event 为 null 时跳过。
+ *     对应 {@link ListViewUtils#scrollToBottom}；timestamp 为 null 或不大于 0 时跳过。
+ *     建议绑定时间戳以便重复触发。
  * </pre>
  *
- * @param event 非 null 时执行一次
+ * @param timestamp 大于 0 时执行一次
  */
 @BindingAdapter("binding_scroll_event_instant_bottom")
-fun View.bindingScrollEventInstantBottom(event: Int?) {
-    if (event == null) return
+fun View.bindingScrollEventInstantBottom(timestamp: Long?) {
+    if (!timestamp.shouldTriggerScroll()) return
     ListViewUtils.scrollToBottom(this)
 }
 
