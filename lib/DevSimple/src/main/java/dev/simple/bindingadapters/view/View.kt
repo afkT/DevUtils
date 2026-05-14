@@ -2,6 +2,7 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import dev.simple.bindingadapters.equalsIgnoreCase
 
 // =======================
 // = View BindingAdapter =

@@ -1,13 +1,13 @@
-package dev.simple.bindingadapters.listener
+package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
 import dev.simple.interfaces.BindingConsumer
 import dev.utils.app.ClickUtils
 
-// =======================
-// = View BindingAdapter =
-// =======================
+// ================================
+// = View Listener BindingAdapter =
+// ================================
 
 // =========
 // = Click =
