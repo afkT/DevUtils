@@ -24,26 +24,13 @@ import dev.utils.app.ViewUtils
 /**
  * View 属性相关的 Data Binding 适配集合（源文件命名 ViewProperty）。
  *
- * 布局自定义属性统一为 `binding_view_*`（View Property），Kotlin 扩展统一为 `bindingVp*`；
+ * 布局自定义属性统一为 `binding_view_*`（View Property），Kotlin 扩展统一为 `bindingView*`；
  * 实现上与 `dev.utils.app.ViewUtils` 的 `set*` 系列方法一一对应（见各方法 KDoc）。
  */
 
 // =============
-// = id 与裁剪 =
+// = ViewUtils =
 // =============
-
-/**
- * 通过数据绑定设置 View id。
- * <pre>
- *     布局属性 binding_view_id；对应 ViewUtils.setId。
- * </pre>
- *
- * @param id `R.id.*` 或 `@android:id/...`
- */
-@BindingAdapter("binding_view_id")
-fun View.bindingVpId(@IdRes id: Int) {
-    ViewUtils.setId(this, id)
-}
 
 /**
  * 通过数据绑定设置 ViewGroup 是否裁剪子 View 绘制区域。
@@ -54,13 +41,13 @@ fun View.bindingVpId(@IdRes id: Int) {
  * @param clipChildren 是否裁剪子 View
  */
 @BindingAdapter("binding_view_clip_children")
-fun ViewGroup.bindingVpClipChildren(clipChildren: Boolean) {
+fun ViewGroup.bindingViewClipChildren(clipChildren: Boolean) {
     ViewUtils.setClipChildren(this, clipChildren)
 }
 
-// ==================
+// ================
 // = LayoutParams =
-// ==================
+// ================
 
 /**
  * 通过数据绑定替换 LayoutParams。
@@ -71,7 +58,7 @@ fun ViewGroup.bindingVpClipChildren(clipChildren: Boolean) {
  * @param params 新的 LayoutParams
  */
 @BindingAdapter("binding_view_layout_params")
-fun View.bindingVpLayoutParams(params: ViewGroup.LayoutParams?) {
+fun View.bindingViewLayoutParams(params: ViewGroup.LayoutParams?) {
     if (params == null) return
     ViewUtils.setLayoutParams(this, params)
 }
@@ -87,7 +74,7 @@ fun View.bindingVpLayoutParams(params: ViewGroup.LayoutParams?) {
     value = ["binding_view_width_height_w", "binding_view_width_height_h", "binding_view_width_height_null_new_lp"],
     requireAll = false
 )
-fun View.bindingVpWidthHeight(
+fun View.bindingViewWidthHeight(
     width: Int?,
     height: Int?,
     nullNewLp: Boolean?
@@ -103,7 +90,7 @@ fun View.bindingVpWidthHeight(
  * </pre>
  */
 @BindingAdapter("binding_view_weight")
-fun View.bindingVpWeight(weight: Float) {
+fun View.bindingViewWeight(weight: Float) {
     ViewUtils.setWeight(this, weight)
 }
 
@@ -117,7 +104,7 @@ fun View.bindingVpWeight(weight: Float) {
     value = ["binding_view_width_px", "binding_view_width_null_new_lp"],
     requireAll = false
 )
-fun View.bindingVpWidth(
+fun View.bindingViewWidth(
     width: Int?,
     nullNewLp: Boolean?
 ) {
@@ -135,7 +122,7 @@ fun View.bindingVpWidth(
     value = ["binding_view_height_px", "binding_view_height_null_new_lp"],
     requireAll = false
 )
-fun View.bindingVpHeight(
+fun View.bindingViewHeight(
     height: Int?,
     nullNewLp: Boolean?
 ) {
@@ -150,7 +137,7 @@ fun View.bindingVpHeight(
  * </pre>
  */
 @BindingAdapter("binding_view_minimum_height")
-fun View.bindingVpMinimumHeight(minHeight: Int) {
+fun View.bindingViewMinimumHeight(minHeight: Int) {
     ViewUtils.setMinimumHeight(this, minHeight)
 }
 
@@ -161,7 +148,7 @@ fun View.bindingVpMinimumHeight(minHeight: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_minimum_width")
-fun View.bindingVpMinimumWidth(minWidth: Int) {
+fun View.bindingViewMinimumWidth(minWidth: Int) {
     ViewUtils.setMinimumWidth(this, minWidth)
 }
 
@@ -176,7 +163,7 @@ fun View.bindingVpMinimumWidth(minWidth: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_alpha")
-fun View.bindingVpAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) {
+fun View.bindingViewAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) {
     ViewUtils.setAlpha(this, alpha)
 }
 
@@ -187,7 +174,7 @@ fun View.bindingVpAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_tag")
-fun View.bindingVpTag(tag: Any?) {
+fun View.bindingViewTag(tag: Any?) {
     ViewUtils.setTag(this, tag)
 }
 
@@ -198,7 +185,7 @@ fun View.bindingVpTag(tag: Any?) {
  * </pre>
  */
 @BindingAdapter("binding_view_scroll_x")
-fun View.bindingVpScrollX(value: Int) {
+fun View.bindingViewScrollX(value: Int) {
     ViewUtils.setScrollX(this, value)
 }
 
@@ -209,7 +196,7 @@ fun View.bindingVpScrollX(value: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_scroll_y")
-fun View.bindingVpScrollY(value: Int) {
+fun View.bindingViewScrollY(value: Int) {
     ViewUtils.setScrollY(this, value)
 }
 
@@ -220,7 +207,7 @@ fun View.bindingVpScrollY(value: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_descendant_focusability")
-fun ViewGroup.bindingVpDescendantFocusability(focusability: Int) {
+fun ViewGroup.bindingViewDescendantFocusability(focusability: Int) {
     ViewUtils.setDescendantFocusability(this, focusability)
 }
 
@@ -231,7 +218,7 @@ fun ViewGroup.bindingVpDescendantFocusability(focusability: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_over_scroll_mode")
-fun View.bindingVpOverScrollMode(mode: Int) {
+fun View.bindingViewOverScrollMode(mode: Int) {
     ViewUtils.setOverScrollMode(this, mode)
 }
 
@@ -242,7 +229,7 @@ fun View.bindingVpOverScrollMode(mode: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_horizontal_scroll_bar_enabled")
-fun View.bindingVpHorizontalScrollBarEnabled(enabled: Boolean) {
+fun View.bindingViewHorizontalScrollBarEnabled(enabled: Boolean) {
     ViewUtils.setHorizontalScrollBarEnabled(this, enabled)
 }
 
@@ -253,7 +240,7 @@ fun View.bindingVpHorizontalScrollBarEnabled(enabled: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_vertical_scroll_bar_enabled")
-fun View.bindingVpVerticalScrollBarEnabled(enabled: Boolean) {
+fun View.bindingViewVerticalScrollBarEnabled(enabled: Boolean) {
     ViewUtils.setVerticalScrollBarEnabled(this, enabled)
 }
 
@@ -264,7 +251,7 @@ fun View.bindingVpVerticalScrollBarEnabled(enabled: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_scroll_container")
-fun View.bindingVpScrollContainer(isScrollContainer: Boolean) {
+fun View.bindingViewScrollContainer(isScrollContainer: Boolean) {
     ViewUtils.setScrollContainer(this, isScrollContainer)
 }
 
@@ -275,7 +262,7 @@ fun View.bindingVpScrollContainer(isScrollContainer: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_clip_to_outline")
-fun View.bindingVpClipToOutline(clipToOutline: Boolean) {
+fun View.bindingViewClipToOutline(clipToOutline: Boolean) {
     ViewUtils.setClipToOutline(this, clipToOutline)
 }
 
@@ -286,7 +273,7 @@ fun View.bindingVpClipToOutline(clipToOutline: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_outline_provider")
-fun View.bindingVpOutlineProvider(provider: ViewOutlineProvider?) {
+fun View.bindingViewOutlineProvider(provider: ViewOutlineProvider?) {
     ViewUtils.setOutlineProvider(this, provider)
 }
 
@@ -297,7 +284,7 @@ fun View.bindingVpOutlineProvider(provider: ViewOutlineProvider?) {
  * </pre>
  */
 @BindingAdapter("binding_view_outline_provider_clip")
-fun View.bindingVpOutlineProviderClip(provider: ViewOutlineProvider?) {
+fun View.bindingViewOutlineProviderClip(provider: ViewOutlineProvider?) {
     ViewUtils.setOutlineProviderClip(this, provider)
 }
 
@@ -312,7 +299,7 @@ fun View.bindingVpOutlineProviderClip(provider: ViewOutlineProvider?) {
  * </pre>
  */
 @BindingAdapter("binding_view_next_focus_forward_id")
-fun View.bindingVpNextFocusForwardId(@IdRes nextFocusForwardId: Int) {
+fun View.bindingViewNextFocusForwardId(@IdRes nextFocusForwardId: Int) {
     ViewUtils.setNextFocusForwardId(this, nextFocusForwardId)
 }
 
@@ -323,7 +310,7 @@ fun View.bindingVpNextFocusForwardId(@IdRes nextFocusForwardId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_next_focus_down_id")
-fun View.bindingVpNextFocusDownId(@IdRes nextFocusDownId: Int) {
+fun View.bindingViewNextFocusDownId(@IdRes nextFocusDownId: Int) {
     ViewUtils.setNextFocusDownId(this, nextFocusDownId)
 }
 
@@ -334,7 +321,7 @@ fun View.bindingVpNextFocusDownId(@IdRes nextFocusDownId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_next_focus_left_id")
-fun View.bindingVpNextFocusLeftId(@IdRes nextFocusLeftId: Int) {
+fun View.bindingViewNextFocusLeftId(@IdRes nextFocusLeftId: Int) {
     ViewUtils.setNextFocusLeftId(this, nextFocusLeftId)
 }
 
@@ -345,7 +332,7 @@ fun View.bindingVpNextFocusLeftId(@IdRes nextFocusLeftId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_next_focus_right_id")
-fun View.bindingVpNextFocusRightId(@IdRes nextFocusRightId: Int) {
+fun View.bindingViewNextFocusRightId(@IdRes nextFocusRightId: Int) {
     ViewUtils.setNextFocusRightId(this, nextFocusRightId)
 }
 
@@ -356,7 +343,7 @@ fun View.bindingVpNextFocusRightId(@IdRes nextFocusRightId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_next_focus_up_id")
-fun View.bindingVpNextFocusUpId(@IdRes nextFocusUpId: Int) {
+fun View.bindingViewNextFocusUpId(@IdRes nextFocusUpId: Int) {
     ViewUtils.setNextFocusUpId(this, nextFocusUpId)
 }
 
@@ -371,7 +358,7 @@ fun View.bindingVpNextFocusUpId(@IdRes nextFocusUpId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_rotation")
-fun View.bindingVpRotation(rotation: Float) {
+fun View.bindingViewRotation(rotation: Float) {
     ViewUtils.setRotation(this, rotation)
 }
 
@@ -382,7 +369,7 @@ fun View.bindingVpRotation(rotation: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_rotation_x")
-fun View.bindingVpRotationX(rotationX: Float) {
+fun View.bindingViewRotationX(rotationX: Float) {
     ViewUtils.setRotationX(this, rotationX)
 }
 
@@ -393,7 +380,7 @@ fun View.bindingVpRotationX(rotationX: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_rotation_y")
-fun View.bindingVpRotationY(rotationY: Float) {
+fun View.bindingViewRotationY(rotationY: Float) {
     ViewUtils.setRotationY(this, rotationY)
 }
 
@@ -404,7 +391,7 @@ fun View.bindingVpRotationY(rotationY: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_scale_x")
-fun View.bindingVpScaleX(scaleX: Float) {
+fun View.bindingViewScaleX(scaleX: Float) {
     ViewUtils.setScaleX(this, scaleX)
 }
 
@@ -415,7 +402,7 @@ fun View.bindingVpScaleX(scaleX: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_scale_y")
-fun View.bindingVpScaleY(scaleY: Float) {
+fun View.bindingViewScaleY(scaleY: Float) {
     ViewUtils.setScaleY(this, scaleY)
 }
 
@@ -426,7 +413,7 @@ fun View.bindingVpScaleY(scaleY: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_text_alignment")
-fun View.bindingVpTextAlignment(textAlignment: Int) {
+fun View.bindingViewTextAlignment(textAlignment: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
         ViewUtils.setTextAlignment(this, textAlignment)
     }
@@ -439,7 +426,7 @@ fun View.bindingVpTextAlignment(textAlignment: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_text_direction")
-fun View.bindingVpTextDirection(textDirection: Int) {
+fun View.bindingViewTextDirection(textDirection: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
         ViewUtils.setTextDirection(this, textDirection)
     }
@@ -452,7 +439,7 @@ fun View.bindingVpTextDirection(textDirection: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_pivot_x")
-fun View.bindingVpPivotX(pivotX: Float) {
+fun View.bindingViewPivotX(pivotX: Float) {
     ViewUtils.setPivotX(this, pivotX)
 }
 
@@ -463,7 +450,7 @@ fun View.bindingVpPivotX(pivotX: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_pivot_y")
-fun View.bindingVpPivotY(pivotY: Float) {
+fun View.bindingViewPivotY(pivotY: Float) {
     ViewUtils.setPivotY(this, pivotY)
 }
 
@@ -474,7 +461,7 @@ fun View.bindingVpPivotY(pivotY: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_translation_x")
-fun View.bindingVpTranslationX(translationX: Float) {
+fun View.bindingViewTranslationX(translationX: Float) {
     ViewUtils.setTranslationX(this, translationX)
 }
 
@@ -485,7 +472,7 @@ fun View.bindingVpTranslationX(translationX: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_translation_y")
-fun View.bindingVpTranslationY(translationY: Float) {
+fun View.bindingViewTranslationY(translationY: Float) {
     ViewUtils.setTranslationY(this, translationY)
 }
 
@@ -496,7 +483,7 @@ fun View.bindingVpTranslationY(translationY: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_x")
-fun View.bindingVpX(x: Float) {
+fun View.bindingViewX(x: Float) {
     ViewUtils.setX(this, x)
 }
 
@@ -507,7 +494,7 @@ fun View.bindingVpX(x: Float) {
  * </pre>
  */
 @BindingAdapter("binding_view_y")
-fun View.bindingVpY(y: Float) {
+fun View.bindingViewY(y: Float) {
     ViewUtils.setY(this, y)
 }
 
@@ -521,7 +508,7 @@ fun View.bindingVpY(y: Float) {
     value = ["binding_view_layer_type", "binding_view_layer_paint"],
     requireAll = false
 )
-fun View.bindingVpLayerType(
+fun View.bindingViewLayerType(
     layerType: Int?,
     paint: Paint?
 ) {
@@ -540,7 +527,7 @@ fun View.bindingVpLayerType(
  * </pre>
  */
 @BindingAdapter("binding_view_focusable_in_touch_mode")
-fun View.bindingVpFocusableInTouchMode(focusableInTouchMode: Boolean) {
+fun View.bindingViewFocusableInTouchMode(focusableInTouchMode: Boolean) {
     ViewUtils.setFocusableInTouchMode(focusableInTouchMode, this)
 }
 
@@ -551,7 +538,7 @@ fun View.bindingVpFocusableInTouchMode(focusableInTouchMode: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_focusable")
-fun View.bindingVpFocusable(focusable: Boolean) {
+fun View.bindingViewFocusable(focusable: Boolean) {
     ViewUtils.setFocusable(focusable, this)
 }
 
@@ -562,7 +549,7 @@ fun View.bindingVpFocusable(focusable: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_selected")
-fun View.bindingVpSelected(selected: Boolean) {
+fun View.bindingViewSelected(selected: Boolean) {
     ViewUtils.setSelected(selected, this)
 }
 
@@ -573,7 +560,7 @@ fun View.bindingVpSelected(selected: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_enabled")
-fun View.bindingVpEnabled(enabled: Boolean) {
+fun View.bindingViewEnabled(enabled: Boolean) {
     ViewUtils.setEnabled(enabled, this)
 }
 
@@ -584,7 +571,7 @@ fun View.bindingVpEnabled(enabled: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_clickable")
-fun View.bindingVpClickable(clickable: Boolean) {
+fun View.bindingViewClickable(clickable: Boolean) {
     ViewUtils.setClickable(clickable, this)
 }
 
@@ -595,7 +582,7 @@ fun View.bindingVpClickable(clickable: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_long_clickable")
-fun View.bindingVpLongClickable(longClickable: Boolean) {
+fun View.bindingViewLongClickable(longClickable: Boolean) {
     ViewUtils.setLongClickable(longClickable, this)
 }
 
@@ -606,7 +593,7 @@ fun View.bindingVpLongClickable(longClickable: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_visibility_bool")
-fun View.bindingVpVisibilityBool(isVisibility: Boolean) {
+fun View.bindingViewVisibilityBool(isVisibility: Boolean) {
     ViewUtils.setVisibility(isVisibility, this)
 }
 
@@ -617,7 +604,7 @@ fun View.bindingVpVisibilityBool(isVisibility: Boolean) {
  * </pre>
  */
 @BindingAdapter("binding_view_visibility_int")
-fun View.bindingVpVisibilityInt(visibility: Int) {
+fun View.bindingViewVisibilityInt(visibility: Int) {
     ViewUtils.setVisibility(visibility, this)
 }
 
@@ -628,7 +615,7 @@ fun View.bindingVpVisibilityInt(visibility: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_visibility_in_bool")
-fun View.bindingVpVisibilityInBool(isVisibility: Boolean) {
+fun View.bindingViewVisibilityInBool(isVisibility: Boolean) {
     ViewUtils.setVisibilityIN(isVisibility, this)
 }
 
@@ -646,258 +633,12 @@ fun View.bindingVpVisibilityInBool(isVisibility: Boolean) {
     value = ["binding_view_layout_gravity", "binding_view_layout_gravity_reflection"],
     requireAll = false
 )
-fun View.bindingVpLayoutGravity(
+fun View.bindingViewLayoutGravity(
     gravity: Int?,
     isReflection: Boolean?
 ) {
     if (gravity == null) return
     ViewUtils.setLayoutGravity(this, gravity, isReflection != false)
-}
-
-// =========
-// = Margin =
-// =========
-
-/**
- * 通过数据绑定设置四边相同 margin。
- * <pre>
- *     布局属性 binding_view_margin_all；对应 ViewUtils.setMargin(view, margin)。
- * </pre>
- */
-@BindingAdapter("binding_view_margin_all")
-fun View.bindingVpMarginAll(margin: Int) {
-    ViewUtils.setMargin(this, margin)
-}
-
-/**
- * 通过数据绑定设置左右与上下 margin。
- * <pre>
- *     布局属性 binding_view_margin_left_right、binding_view_margin_top_bottom；对应 ViewUtils.setMargin(view, lr, tb)。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_left_right", "binding_view_margin_top_bottom"],
-    requireAll = true
-)
-fun View.bindingVpMarginLrTb(
-    leftRight: Int,
-    topBottom: Int
-) {
-    ViewUtils.setMargin(this, leftRight, topBottom)
-}
-
-/**
- * 通过数据绑定分别设置左、上、右、下 margin。
- * <pre>
- *     布局属性 binding_view_margin_l、binding_view_margin_t、binding_view_margin_r、binding_view_margin_b；对应 ViewUtils.setMargin。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_l", "binding_view_margin_t", "binding_view_margin_r", "binding_view_margin_b"],
-    requireAll = true
-)
-fun View.bindingVpMarginLtrb(
-    left: Int,
-    top: Int,
-    right: Int,
-    bottom: Int
-) {
-    ViewUtils.setMargin(this, left, top, right, bottom)
-}
-
-/**
- * 通过数据绑定设置左边 margin，可选是否重置其余边为 0。
- * <pre>
- *     布局属性 binding_view_margin_left、binding_view_margin_left_reset（可选，默认 true）；对应 ViewUtils.setMarginLeft。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_left", "binding_view_margin_left_reset"],
-    requireAll = false
-)
-fun View.bindingVpMarginLeft(
-    leftMargin: Int?,
-    reset: Boolean?
-) {
-    if (leftMargin == null) return
-    ViewUtils.setMarginLeft(this, leftMargin, reset != false)
-}
-
-/**
- * 通过数据绑定设置上边 margin，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_margin_top、binding_view_margin_top_reset（可选，默认 true）；对应 ViewUtils.setMarginTop。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_top", "binding_view_margin_top_reset"],
-    requireAll = false
-)
-fun View.bindingVpMarginTop(
-    topMargin: Int?,
-    reset: Boolean?
-) {
-    if (topMargin == null) return
-    ViewUtils.setMarginTop(this, topMargin, reset != false)
-}
-
-/**
- * 通过数据绑定设置右边 margin，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_margin_right、binding_view_margin_right_reset（可选，默认 true）；对应 ViewUtils.setMarginRight。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_right", "binding_view_margin_right_reset"],
-    requireAll = false
-)
-fun View.bindingVpMarginRight(
-    rightMargin: Int?,
-    reset: Boolean?
-) {
-    if (rightMargin == null) return
-    ViewUtils.setMarginRight(this, rightMargin, reset != false)
-}
-
-/**
- * 通过数据绑定设置下边 margin，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_margin_bottom、binding_view_margin_bottom_reset（可选，默认 true）；对应 ViewUtils.setMarginBottom。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_margin_bottom", "binding_view_margin_bottom_reset"],
-    requireAll = false
-)
-fun View.bindingVpMarginBottom(
-    bottomMargin: Int?,
-    reset: Boolean?
-) {
-    if (bottomMargin == null) return
-    ViewUtils.setMarginBottom(this, bottomMargin, reset != false)
-}
-
-// ===========
-// = Padding =
-// ===========
-
-/**
- * 通过数据绑定设置四边相同 padding。
- * <pre>
- *     布局属性 binding_view_padding_all；对应 ViewUtils.setPadding(view, padding)。
- * </pre>
- */
-@BindingAdapter("binding_view_padding_all")
-fun View.bindingVpPaddingAll(padding: Int) {
-    ViewUtils.setPadding(this, padding)
-}
-
-/**
- * 通过数据绑定设置左右与上下 padding。
- * <pre>
- *     布局属性 binding_view_padding_left_right、binding_view_padding_top_bottom；对应 ViewUtils.setPadding(view, lr, tb)。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_left_right", "binding_view_padding_top_bottom"],
-    requireAll = true
-)
-fun View.bindingVpPaddingLrTb(
-    leftRight: Int,
-    topBottom: Int
-) {
-    ViewUtils.setPadding(this, leftRight, topBottom)
-}
-
-/**
- * 通过数据绑定分别设置左、上、右、下 padding。
- * <pre>
- *     布局属性 binding_view_padding_l、binding_view_padding_t、binding_view_padding_r、binding_view_padding_b；对应 ViewUtils.setPadding。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_l", "binding_view_padding_t", "binding_view_padding_r", "binding_view_padding_b"],
-    requireAll = true
-)
-fun View.bindingVpPaddingLtrb(
-    left: Int,
-    top: Int,
-    right: Int,
-    bottom: Int
-) {
-    ViewUtils.setPadding(this, left, top, right, bottom)
-}
-
-/**
- * 通过数据绑定设置左侧 padding，可选是否重置其余边为 0。
- * <pre>
- *     布局属性 binding_view_padding_left、binding_view_padding_left_reset（可选，默认 true）；对应 ViewUtils.setPaddingLeft。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_left", "binding_view_padding_left_reset"],
-    requireAll = false
-)
-fun View.bindingVpPaddingLeft(
-    leftPadding: Int?,
-    reset: Boolean?
-) {
-    if (leftPadding == null) return
-    ViewUtils.setPaddingLeft(this, leftPadding, reset != false)
-}
-
-/**
- * 通过数据绑定设置顶部 padding，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_padding_top、binding_view_padding_top_reset（可选，默认 true）；对应 ViewUtils.setPaddingTop。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_top", "binding_view_padding_top_reset"],
-    requireAll = false
-)
-fun View.bindingVpPaddingTop(
-    topPadding: Int?,
-    reset: Boolean?
-) {
-    if (topPadding == null) return
-    ViewUtils.setPaddingTop(this, topPadding, reset != false)
-}
-
-/**
- * 通过数据绑定设置右侧 padding，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_padding_right、binding_view_padding_right_reset（可选，默认 true）；对应 ViewUtils.setPaddingRight。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_right", "binding_view_padding_right_reset"],
-    requireAll = false
-)
-fun View.bindingVpPaddingRight(
-    rightPadding: Int?,
-    reset: Boolean?
-) {
-    if (rightPadding == null) return
-    ViewUtils.setPaddingRight(this, rightPadding, reset != false)
-}
-
-/**
- * 通过数据绑定设置底部 padding，可选是否重置其余边。
- * <pre>
- *     布局属性 binding_view_padding_bottom、binding_view_padding_bottom_reset（可选，默认 true）；对应 ViewUtils.setPaddingBottom。
- * </pre>
- */
-@BindingAdapter(
-    value = ["binding_view_padding_bottom", "binding_view_padding_bottom_reset"],
-    requireAll = false
-)
-fun View.bindingVpPaddingBottom(
-    bottomPadding: Int?,
-    reset: Boolean?
-) {
-    if (bottomPadding == null) return
-    ViewUtils.setPaddingBottom(this, bottomPadding, reset != false)
 }
 
 // =============
@@ -911,7 +652,7 @@ fun View.bindingVpPaddingBottom(
  * </pre>
  */
 @BindingAdapter("binding_view_animation")
-fun View.bindingVpAnimation(animation: Animation?) {
+fun View.bindingViewAnimation(animation: Animation?) {
     if (animation == null) {
         ViewUtils.clearAnimation(this)
     } else {
@@ -926,7 +667,7 @@ fun View.bindingVpAnimation(animation: Animation?) {
  * </pre>
  */
 @BindingAdapter("binding_view_background")
-fun View.bindingVpBackground(background: Drawable?) {
+fun View.bindingViewBackground(background: Drawable?) {
     if (background == null) {
         ViewUtils.removeBackground(this)
     } else {
@@ -941,7 +682,7 @@ fun View.bindingVpBackground(background: Drawable?) {
  * </pre>
  */
 @BindingAdapter("binding_view_background_color")
-fun View.bindingVpBackgroundColor(@ColorInt color: Int) {
+fun View.bindingViewBackgroundColor(@ColorInt color: Int) {
     ViewUtils.setBackgroundColor(this, color)
 }
 
@@ -952,7 +693,7 @@ fun View.bindingVpBackgroundColor(@ColorInt color: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_background_resource")
-fun View.bindingVpBackgroundResource(@DrawableRes resId: Int) {
+fun View.bindingViewBackgroundResource(@DrawableRes resId: Int) {
     ViewUtils.setBackgroundResource(this, resId)
 }
 
@@ -963,7 +704,7 @@ fun View.bindingVpBackgroundResource(@DrawableRes resId: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_background_tint_list")
-fun View.bindingVpBackgroundTintList(tint: ColorStateList?) {
+fun View.bindingViewBackgroundTintList(tint: ColorStateList?) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         ViewUtils.setBackgroundTintList(this, tint)
     }
@@ -976,7 +717,7 @@ fun View.bindingVpBackgroundTintList(tint: ColorStateList?) {
  * </pre>
  */
 @BindingAdapter("binding_view_background_tint_mode")
-fun View.bindingVpBackgroundTintMode(tintMode: PorterDuff.Mode?) {
+fun View.bindingViewBackgroundTintMode(tintMode: PorterDuff.Mode?) {
     if (tintMode == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
     ViewUtils.setBackgroundTintMode(this, tintMode)
 }
@@ -992,7 +733,7 @@ fun View.bindingVpBackgroundTintMode(tintMode: PorterDuff.Mode?) {
  * </pre>
  */
 @BindingAdapter("binding_view_foreground")
-fun View.bindingVpForeground(foreground: Drawable?) {
+fun View.bindingViewForeground(foreground: Drawable?) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
     if (foreground == null) {
         ViewUtils.removeForeground(this)
@@ -1008,7 +749,7 @@ fun View.bindingVpForeground(foreground: Drawable?) {
  * </pre>
  */
 @BindingAdapter("binding_view_foreground_gravity")
-fun View.bindingVpForegroundGravity(gravity: Int) {
+fun View.bindingViewForegroundGravity(gravity: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         ViewUtils.setForegroundGravity(this, gravity)
     }
@@ -1021,7 +762,7 @@ fun View.bindingVpForegroundGravity(gravity: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_foreground_tint_list")
-fun View.bindingVpForegroundTintList(tint: ColorStateList?) {
+fun View.bindingViewForegroundTintList(tint: ColorStateList?) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         ViewUtils.setForegroundTintList(this, tint)
     }
@@ -1034,7 +775,7 @@ fun View.bindingVpForegroundTintList(tint: ColorStateList?) {
  * </pre>
  */
 @BindingAdapter("binding_view_foreground_tint_mode")
-fun View.bindingVpForegroundTintMode(tintMode: PorterDuff.Mode?) {
+fun View.bindingViewForegroundTintMode(tintMode: PorterDuff.Mode?) {
     if (tintMode == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
     ViewUtils.setForegroundTintMode(this, tintMode)
 }
@@ -1050,7 +791,7 @@ fun View.bindingVpForegroundTintMode(tintMode: PorterDuff.Mode?) {
  * </pre>
  */
 @BindingAdapter("binding_view_color_filter")
-fun View.bindingVpColorFilter(@ColorInt color: Int) {
+fun View.bindingViewColorFilter(@ColorInt color: Int) {
     ViewUtils.setColorFilter(this, color)
 }
 
@@ -1064,7 +805,7 @@ fun View.bindingVpColorFilter(@ColorInt color: Int) {
     value = ["binding_view_color_filter_drawable", "binding_view_color_filter_drawable_color"],
     requireAll = true
 )
-fun View.bindingVpColorFilterDrawable(
+fun View.bindingViewColorFilterDrawable(
     drawable: Drawable,
     @ColorInt color: Int
 ) {
@@ -1078,7 +819,7 @@ fun View.bindingVpColorFilterDrawable(
  * </pre>
  */
 @BindingAdapter("binding_view_color_filter_object")
-fun View.bindingVpColorFilterObject(colorFilter: ColorFilter?) {
+fun View.bindingViewColorFilterObject(colorFilter: ColorFilter?) {
     if (colorFilter == null) return
     ViewUtils.setColorFilter(this, colorFilter)
 }
@@ -1093,7 +834,7 @@ fun View.bindingVpColorFilterObject(colorFilter: ColorFilter?) {
     value = ["binding_view_color_filter_drawable_object", "binding_view_color_filter_drawable_filter"],
     requireAll = true
 )
-fun View.bindingVpColorFilterDrawableObject(
+fun View.bindingViewColorFilterDrawableObject(
     drawable: Drawable,
     colorFilter: ColorFilter
 ) {
@@ -1107,7 +848,7 @@ fun View.bindingVpColorFilterDrawableObject(
  * </pre>
  */
 @BindingAdapter("binding_view_progress_drawable")
-fun View.bindingVpProgressDrawable(drawable: Drawable?) {
+fun View.bindingViewProgressDrawable(drawable: Drawable?) {
     if (drawable == null) return
     ViewUtils.setProgressDrawable(this, drawable)
 }
@@ -1119,7 +860,7 @@ fun View.bindingVpProgressDrawable(drawable: Drawable?) {
  * </pre>
  */
 @BindingAdapter("binding_view_bar_progress")
-fun View.bindingVpBarProgress(progress: Int) {
+fun View.bindingViewBarProgress(progress: Int) {
     ViewUtils.setBarProgress(this, progress)
 }
 
@@ -1130,7 +871,7 @@ fun View.bindingVpBarProgress(progress: Int) {
  * </pre>
  */
 @BindingAdapter("binding_view_bar_max")
-fun View.bindingVpBarMax(max: Int) {
+fun View.bindingViewBarMax(max: Int) {
     ViewUtils.setBarMax(this, max)
 }
 
@@ -1144,7 +885,7 @@ fun View.bindingVpBarMax(max: Int) {
     value = ["binding_view_bar_progress_value", "binding_view_bar_max_value"],
     requireAll = true
 )
-fun View.bindingVpBarValue(
+fun View.bindingViewBarValue(
     progress: Int,
     max: Int
 ) {
