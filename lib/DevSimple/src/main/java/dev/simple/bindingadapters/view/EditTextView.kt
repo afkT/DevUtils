@@ -6,6 +6,7 @@ import android.text.method.KeyListener
 import android.widget.EditText
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
+import dev.simple.bindingadapters.BindingTrigger.shouldTriggerBindingAction
 import dev.utils.LogPrintUtils
 import dev.utils.app.EditTextUtils
 
@@ -154,6 +155,21 @@ fun EditText.bindingETText(
     selectToEnd: Boolean?
 ) {
     EditTextUtils.setText(this, content ?: "", selectToEnd ?: true)
+}
+
+/**
+ * 通过数据绑定以时间戳清空输入框文本
+ * <pre>
+ *     布局属性 binding_et_clear_text_ts；判定同 [shouldTriggerBindingAction]。
+ *     与 binding_et_text 等可并存；每次正时间戳写入空串并将光标置于文末，便于在 ViewModel 中多次触发清空。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_et_clear_text_ts")
+fun EditText.bindingETClearTextTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    EditTextUtils.setText(this, "", true)
 }
 
 /**

@@ -1,3 +1,10 @@
+/**
+ * 滚动相关数据绑定的延迟二次执行变体
+ * <pre>
+ *     与 ViewScroll.kt 中非 delayed 适配器语义对应；成功执行一次后，可按可选的 delayMs 毫秒再执行一次，便于布局或数据晚到时的二次对齐。
+ *     布局属性在对应 binding_scroll_* 名称上加 delayed 前缀与 _delay_ms 后缀，详见各方法说明。
+ * </pre>
+ */
 package dev.simple.bindingadapters.view
 
 import android.view.View
@@ -10,8 +17,10 @@ import dev.simple.bindingadapters.view.attribute.XYI
 // ======================================
 
 /**
- * 与 `ViewScroll.kt` 配套：先执行即时绑定逻辑，若 `delayMs` 大于 0 则在间隔后再次执行一次（用于布局/数据晚到时的二次对齐）。
- * `delayMs` 为 null 或不大于 0 时仅执行一次。
+ * 先执行即时绑定逻辑，再在可选间隔后重复执行一次
+ * <pre>
+ *     与 ViewScroll.kt 中同名非 delayed 扩展配合；delayMs 大于 0 时在间隔后再次执行；为 null 或不大于 0 时仅执行一次。
+ * </pre>
  */
 private inline fun View.runScrollWithOptionalDelay(
     delayMs: Long?,

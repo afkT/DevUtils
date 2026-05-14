@@ -1,3 +1,9 @@
+/**
+ * 滚动相关数据绑定的 DelayAssist 二次执行变体
+ * <pre>
+ *     与 ViewScroll.kt 语义对应；首次成功后若传入非 null 的 DelayAssist，则在其配置的间隔后再执行一次，与 ViewScrollDelayed 的 postDelayed 路径不同。
+ * </pre>
+ */
 package dev.simple.bindingadapters.view
 
 import android.view.View
@@ -11,9 +17,11 @@ import dev.utils.app.assist.DelayAssist
 // ============================================
 
 /**
- * 与 `ViewScroll.kt` 配套：先执行即时绑定逻辑；若首次成功且传入非 null 的 [DelayAssist]，
- * 则通过 [DelayAssist.post] 在配置的间隔后再次执行一次（与 `ViewScrollDelayed` 的 `postDelayed` 实现方式不同）。
- * `assist` 为 null 时仅执行一次。
+ * 先执行即时绑定逻辑，再在 DelayAssist 间隔后可选地再执行一次
+ * <pre>
+ *     与 ViewScroll.kt 中扩展配合；首次成功且 assist 非 null 时通过 DelayAssist.post 在配置间隔后再次执行，与 ViewScrollDelayed 的 postDelayed 实现不同。
+ *     assist 为 null 时仅执行一次。
+ * </pre>
  */
 private inline fun View.runScrollWithDelayAssist(
     assist: DelayAssist?,
