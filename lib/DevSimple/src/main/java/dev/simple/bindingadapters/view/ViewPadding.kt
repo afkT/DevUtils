@@ -56,7 +56,7 @@ fun View.bindingPaddingLeft(
     padding: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setPaddingLeft(this, padding, reset == true)
+    ViewUtils.setPaddingLeft(this, padding, reset ?: true)
 }
 
 /**
@@ -76,7 +76,7 @@ fun View.bindingPaddingTop(
     padding: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setPaddingTop(this, padding, reset == true)
+    ViewUtils.setPaddingTop(this, padding, reset ?: true)
 }
 
 /**
@@ -96,7 +96,7 @@ fun View.bindingPaddingRight(
     padding: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setPaddingRight(this, padding, reset == true)
+    ViewUtils.setPaddingRight(this, padding, reset ?: true)
 }
 
 /**
@@ -116,5 +116,5 @@ fun View.bindingPaddingBottom(
     padding: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setPaddingBottom(this, padding, reset == true)
+    ViewUtils.setPaddingBottom(this, padding, reset ?: true)
 }

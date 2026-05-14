@@ -56,7 +56,7 @@ fun View.bindingMarginLeft(
     margin: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setMarginLeft(this, margin, reset == true)
+    ViewUtils.setMarginLeft(this, margin, reset ?: true)
 }
 
 /**
@@ -76,7 +76,7 @@ fun View.bindingMarginTop(
     margin: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setMarginTop(this, margin, reset == true)
+    ViewUtils.setMarginTop(this, margin, reset ?: true)
 }
 
 /**
@@ -96,7 +96,7 @@ fun View.bindingMarginRight(
     margin: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setMarginRight(this, margin, reset == true)
+    ViewUtils.setMarginRight(this, margin, reset ?: true)
 }
 
 /**
@@ -116,5 +116,5 @@ fun View.bindingMarginBottom(
     margin: Int,
     reset: Boolean?
 ) {
-    ViewUtils.setMarginBottom(this, margin, reset == true)
+    ViewUtils.setMarginBottom(this, margin, reset ?: true)
 }
