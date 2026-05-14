@@ -25,6 +25,19 @@ fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
 fun Long?.shouldTriggerBindingAction(): Boolean = shouldTriggerScroll()
 
 /**
+ * 判断接收者与另一字符串是否相等（区分大小写）。
+ * <pre>
+ *     委托 [StringUtils.equals]；双方均为 null 时返回 `true`；仅一方为 null 时返回 `false`；否则按工具类语义比较。
+ * </pre>
+ *
+ * @param value 参与比较的对方字符串，可为 null
+ * @return `true` 满足上述相等规则，`false` 不满足
+ */
+fun String?.stringEquals(value: String?): Boolean {
+    return StringUtils.equals(this, value)
+}
+
+/**
  * 判断接收者与另一字符串在忽略大小写时是否相等。
  * <pre>
  *     委托 [StringUtils.equalsIgnoreCase]；双方均为 null 时返回 `true`；仅接收者为 null 时仅当对方也为 null 时返回 `true`。
@@ -33,7 +46,7 @@ fun Long?.shouldTriggerBindingAction(): Boolean = shouldTriggerScroll()
  * @param value 参与比较的对方字符串，可为 null
  * @return `true` 满足上述相等规则，`false` 不满足
  */
-fun String?.equalsIgnoreCase(value: String?): Boolean {
+fun String?.stringEqualsIgnoreCase(value: String?): Boolean {
     return StringUtils.equalsIgnoreCase(this, value)
 }
 

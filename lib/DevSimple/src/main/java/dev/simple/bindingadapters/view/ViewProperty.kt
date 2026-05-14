@@ -15,9 +15,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
+import dev.simple.bindingadapters.attribute.BarProgressState
+import dev.simple.bindingadapters.attribute.WidthHeightDims
 import dev.simple.bindingadapters.shouldTriggerBindingAction
-import dev.simple.bindingadapters.view.attribute.BarProgressState
-import dev.simple.bindingadapters.view.attribute.WidthHeightDims
 import dev.utils.app.ViewUtils
 
 // ===============================
@@ -33,8 +33,8 @@ import dev.utils.app.ViewUtils
  * <pre>
  *     未封装 `inflate`、`getActivity`、`getChildAt`、`convertViewGroup` 等在 XML 中无意义或无法表达的接口。
  *     需对同一命令多次触发时，可使用 `binding_view_*_ts` 与 [shouldTriggerBindingAction] 同判定的正时间戳绑定。
- *     强关联多参可合并单属性：`binding_view_width_height_dims`、[dev.simple.bindingadapters.view.attribute.WidthHeightDims]、
- *     `binding_view_bar_progress_state`、[dev.simple.bindingadapters.view.attribute.BarProgressState]。
+ *     强关联多参可合并单属性：`binding_view_width_height_dims`、[WidthHeightDims]、
+ *     `binding_view_bar_progress_state`、[BarProgressState]。
  * </pre>
  */
 

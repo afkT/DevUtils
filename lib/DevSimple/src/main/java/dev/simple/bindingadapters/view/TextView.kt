@@ -2,12 +2,10 @@ package dev.simple.bindingadapters.view
 
 import android.graphics.Paint
 import android.os.Build
-import android.text.Html
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import dev.utils.LogPrintUtils
 import dev.utils.app.TextViewUtils
-import dev.utils.common.StringUtils
 
 // ===========================
 // = TextView BindingAdapter =

@@ -1,4 +1,4 @@
-package dev.simple.bindingadapters.view.attribute
+package dev.simple.bindingadapters.attribute
 
 /**
  * detail: 通用 Margin 类

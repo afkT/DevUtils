@@ -1,4 +1,4 @@
-package dev.simple.bindingadapters.view.attribute
+package dev.simple.bindingadapters.attribute
 
 /**
  * 合并 ProgressBar 当前进度与最大值，用于 DataBinding 单属性绑定。

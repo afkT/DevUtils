@@ -2,10 +2,10 @@ package dev.simple.bindingadapters.view
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.simple.bindingadapters.attribute.RvAdapterNotifyItemAt
+import dev.simple.bindingadapters.attribute.RvAdapterNotifyItemMovedAt
+import dev.simple.bindingadapters.attribute.RvItemDecorationAddOp
 import dev.simple.bindingadapters.shouldTriggerBindingAction
-import dev.simple.bindingadapters.view.attribute.RvAdapterNotifyItemAt
-import dev.simple.bindingadapters.view.attribute.RvAdapterNotifyItemMovedAt
-import dev.simple.bindingadapters.view.attribute.RvItemDecorationAddOp
 import dev.utils.app.RecyclerViewUtils
 
 // ==============================

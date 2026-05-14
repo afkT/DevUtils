@@ -1,4 +1,4 @@
-package dev.simple.bindingadapters.view.attribute
+package dev.simple.bindingadapters.attribute
 
 import androidx.recyclerview.widget.RecyclerView
 

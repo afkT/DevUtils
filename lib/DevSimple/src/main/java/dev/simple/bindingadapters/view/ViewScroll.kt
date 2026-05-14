@@ -3,8 +3,8 @@ package dev.simple.bindingadapters.view
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.simple.bindingadapters.attribute.XYI
 import dev.simple.bindingadapters.shouldTriggerScroll
-import dev.simple.bindingadapters.view.attribute.XYI
 import dev.utils.app.ListViewUtils
 import dev.utils.app.RecyclerViewUtils
 

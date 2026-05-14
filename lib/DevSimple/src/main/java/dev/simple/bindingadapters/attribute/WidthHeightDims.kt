@@ -1,4 +1,4 @@
-package dev.simple.bindingadapters.view.attribute
+package dev.simple.bindingadapters.attribute
 
 /**
  * 合并宽高与 LayoutParams 为 null 时是否新建，用于 DataBinding 单属性绑定。

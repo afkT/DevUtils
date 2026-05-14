@@ -89,7 +89,7 @@ fun Long?.shouldTriggerBindingAction(): Boolean = this != null && this > 0L
 
 做法：
 
-1. 在 `dev.simple.bindingadapters.view.attribute`（或用户指定包的 `attribute` 子包）新增 **Kotlin data class / open class**，字段覆盖原工具方法参数（含可选默认值）。
+1. 在 `dev.simple.bindingadapters.attribute`（或用户指定包的 `attribute` 子包）新增 **Kotlin data class / open class**，字段覆盖原工具方法参数（含可选默认值）。
 2. **单个** `@BindingAdapter("binding_…_single_snake_name")`，入参为该类型可空；`null` 时跳过。
 3. 命名与 **XYI** 对齐习惯：简短后缀表意（如位移用 `XYI`）；补充 `equals`/`hashCode`（data class 自带）、`toString`、伴生工厂方法视需要。
 4. 迁移示例：由 `binding_scroll_instant_rel_dx` + `binding_scroll_instant_rel_dy`（`requireAll = false`）改为 **`binding_scroll_instant_rel_xy`** + `XYI?`（见用户提供的旧/新对照）。
