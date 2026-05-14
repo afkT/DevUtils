@@ -12,7 +12,10 @@ import dev.utils.app.RecyclerViewUtils
 // ==============================
 
 /**
- * 供需重复触发的数据绑定使用：仅当时间戳等数值非空且大于零时视为应执行滚动，避免同值不刷新。
+ * 判断数值型绑定是否应执行一次滚动类逻辑。
+ * <pre>
+ *     用于需重复触发的场景：时间戳等须非空且大于零；同值不刷新时可据此跳过。
+ * </pre>
  *
  * @return `true` 应执行滚动，`false` 跳过
  */
@@ -250,7 +253,7 @@ fun View.bindingScrollEventInstantBottom(timestamp: Long?): Boolean {
  *     scrollX / scrollY；两轴均为 KEEP_SCROLL 时跳过。
  * </pre>
  *
- * @param xy [XYI] 目标坐标，x、y 为像素，可为 null；index 无意义
+ * @param xy [XYI] 目标坐标，x、y 为像素，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_smooth_abs_xy")
@@ -266,7 +269,7 @@ fun View.bindingScrollSmoothAbsXY(xy: XYI?): Boolean {
  * 数据绑定执行平滑相对滚动。
  * <pre>
  *     布局属性：binding_scroll_smooth_rel_xy
- *     对应 [ListViewUtils.smoothScrollBy]；xy 为 null 时跳过；x、y 分别为 dx、dy；index 无意义。
+ *     对应 [ListViewUtils.smoothScrollBy]；xy 为 null 时跳过；x、y 分别为 dx、dy。
  * </pre>
  *
  * @param xy [XYI] 相对位移，可为 null
