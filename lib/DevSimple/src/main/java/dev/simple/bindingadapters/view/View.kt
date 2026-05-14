@@ -4,6 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import dev.simple.extensions.equality.stringEquals
 import dev.simple.extensions.equality.stringEqualsIgnoreCase
+import dev.simple.extensions.equality.valueEquals
 
 // =======================
 // = View BindingAdapter =
@@ -202,4 +203,50 @@ fun View.bindingVisibleOrGoneIfNotNull(value: Any?) {
 @BindingAdapter("binding_visibleOrInVisible_IfNotNull")
 fun View.bindingVisibleOrInVisibleIfNotNull(value: Any?) {
     bindingVisibleOrInVisible(value != null)
+}
+
+// =================
+// = IfValueEquals =
+// =================
+
+/**
+ * 根据两对象在工具类语义下是否相等控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGone_IfValueEquals 与 binding_visibleOrGone_IfValueEquals_value2；
+ *     相等为 VISIBLE，否则 GONE；内部委托 [valueEquals] 与同文件 `binding_visibleOrGone`。
+ * </pre>
+ *
+ * @param value1 参与比较的对象，可为 null
+ * @param value2 参与比较的对象，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrGone_IfValueEquals",
+    "binding_visibleOrGone_IfValueEquals_value2",
+)
+fun View.bindingVisibleOrGoneIfValueEquals(
+    value1: Any?,
+    value2: Any?
+) {
+    bindingVisibleOrGone(value1.valueEquals(value2))
+}
+
+/**
+ * 根据两对象在工具类语义下是否相等控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisible_IfValueEquals 与 binding_visibleOrInVisible_IfValueEquals_value2；
+ *     相等为 VISIBLE，否则 INVISIBLE；内部委托 [valueEquals] 与同文件 `binding_visibleOrInVisible`。
+ * </pre>
+ *
+ * @param value1 参与比较的对象，可为 null
+ * @param value2 参与比较的对象，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrInVisible_IfValueEquals",
+    "binding_visibleOrInVisible_IfValueEquals_value2",
+)
+fun View.bindingVisibleOrInVisibleIfValueEquals(
+    value1: Any?,
+    value2: Any?
+) {
+    bindingVisibleOrInVisible(value1.valueEquals(value2))
 }
