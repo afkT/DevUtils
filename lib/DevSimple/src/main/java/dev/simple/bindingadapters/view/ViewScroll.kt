@@ -32,7 +32,7 @@ fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
  *     对应 [RecyclerViewUtils.startSmoothScrollSnapStart]；position 为 null 或小于 0 时跳过；需 [androidx.recyclerview.widget.LinearLayoutManager]。
  * </pre>
  *
- * @param position [Int] 目标 adapter 索引，可为 null
+ * @param position 目标 adapter 索引，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_rv_snap_start_index")
@@ -50,7 +50,7 @@ fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?): Boolean {
  *     建议绑定 `System.currentTimeMillis()` 或递增时间戳，便于同操作多次触发（优于 LiveData Boolean 同 true 不刷新）。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_rv_snap_start_auto")
@@ -66,7 +66,7 @@ fun RecyclerView.bindingScrollRvSnapStartAuto(timestamp: Long?): Boolean {
  *     对应 [RecyclerViewUtils.startSmoothScrollSnapEnd]；position 为 null 或小于 0 时跳过；需 [androidx.recyclerview.widget.LinearLayoutManager]。
  * </pre>
  *
- * @param position [Int] 目标 adapter 索引，可为 null
+ * @param position 目标 adapter 索引，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_rv_snap_end_index")
@@ -84,7 +84,7 @@ fun RecyclerView.bindingScrollRvSnapEndIndex(position: Int?): Boolean {
  *     建议绑定时间戳以便重复触发到底部。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_rv_snap_end_auto")
@@ -100,8 +100,8 @@ fun RecyclerView.bindingScrollRvSnapEndAuto(timestamp: Long?): Boolean {
  *     对应 [RecyclerViewUtils.scrollToPositionWithOffset]；position 无效则跳过；offset 缺省为 0；需 [androidx.recyclerview.widget.LinearLayoutManager]。
  * </pre>
  *
- * @param position [Int] 目标 adapter 索引，可为 null
- * @param offsetPx [Int] 偏移像素，可为 null，缺省为 0
+ * @param position 目标 adapter 索引，可为 null
+ * @param offsetPx 偏移像素，可为 null，缺省为 0
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter(
@@ -126,7 +126,7 @@ fun RecyclerView.bindingScrollRvLinearIndexOffset(
  *     建议绑定时间戳以便重复触发停止（含打断平滑动画）。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 已尝试停止或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_rv_stop")
@@ -150,7 +150,7 @@ fun RecyclerView.bindingScrollRvStop(timestamp: Long?): Boolean {
  *     接收者为任意 [View]，内部由 [ListViewUtils.smoothScrollToPosition] 按类型分支处理；index 为 null 或小于 0 时跳过。
  * </pre>
  *
- * @param index [Int] 目标索引，可为 null
+ * @param index 目标索引，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_smooth_adapter_index")
@@ -167,7 +167,7 @@ fun View.bindingScrollSmoothAdapterIndex(index: Int?): Boolean {
  *     对应 [ListViewUtils.scrollToPosition]；index 为 null 或小于 0 时跳过。
  * </pre>
  *
- * @param index [Int] 目标索引，可为 null
+ * @param index 目标索引，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_instant_adapter_index")
@@ -185,7 +185,7 @@ fun View.bindingScrollInstantAdapterIndex(index: Int?): Boolean {
  *     建议绑定时间戳，便于每次新值都触发（优于 LiveData Boolean 同 true 不刷新）。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_event_smooth_top")
@@ -202,7 +202,7 @@ fun View.bindingScrollEventSmoothTop(timestamp: Long?): Boolean {
  *     建议绑定时间戳以便重复触发。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_event_instant_top")
@@ -219,7 +219,7 @@ fun View.bindingScrollEventInstantTop(timestamp: Long?): Boolean {
  *     建议绑定时间戳以便重复滑到底部。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_event_smooth_bottom")
@@ -236,7 +236,7 @@ fun View.bindingScrollEventSmoothBottom(timestamp: Long?): Boolean {
  *     建议绑定时间戳以便重复触发。
  * </pre>
  *
- * @param timestamp [Long] 触发用时间戳，可为 null，大于 0 时执行一次
+ * @param timestamp 触发用时间戳，可为 null，大于 0 时执行一次
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_event_instant_bottom")
@@ -253,7 +253,7 @@ fun View.bindingScrollEventInstantBottom(timestamp: Long?): Boolean {
  *     scrollX / scrollY；两轴均为 KEEP_SCROLL 时跳过。
  * </pre>
  *
- * @param xy [XYI] 目标坐标，x、y 为像素，可为 null
+ * @param xy 目标坐标，x、y 为像素，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_smooth_abs_xy")
@@ -272,7 +272,7 @@ fun View.bindingScrollSmoothAbsXY(xy: XYI?): Boolean {
  *     对应 [ListViewUtils.smoothScrollBy]；xy 为 null 时跳过；x、y 分别为 dx、dy。
  * </pre>
  *
- * @param xy [XYI] 相对位移，可为 null
+ * @param xy 相对位移，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_smooth_rel_xy")
@@ -288,7 +288,7 @@ fun View.bindingScrollSmoothRelDxDy(xy: XYI?): Boolean {
  *     对应 [ListViewUtils.fullScroll]；direction 为 null 时跳过；取值与 [View.FOCUS_UP]、[View.FOCUS_DOWN] 等一致。
  * </pre>
  *
- * @param direction [Int] 滚动方向常量，可为 null，语义同 [View] 的焦点方向常量
+ * @param direction 滚动方向常量，可为 null，详见备注
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_full_direction")
@@ -304,7 +304,7 @@ fun View.bindingScrollFullDirection(direction: Int?): Boolean {
  *     对应 [ListViewUtils.scrollTo]；语义同平滑绝对滚动的 bindingScrollSmoothAbsXY。
  * </pre>
  *
- * @param xy [XYI] 目标坐标，可为 null
+ * @param xy 目标坐标，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_instant_abs_xy")
@@ -323,7 +323,7 @@ fun View.bindingScrollInstantAbsXY(xy: XYI?): Boolean {
  *     对应 [ListViewUtils.scrollBy]；语义同平滑相对滚动的 bindingScrollSmoothRelDxDy。
  * </pre>
  *
- * @param xy [XYI] 相对位移，可为 null
+ * @param xy 相对位移，可为 null
  * @return `true` 滚动已发起或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_instant_rel_xy")
@@ -339,7 +339,7 @@ fun View.bindingScrollInstantRelDxDy(xy: XYI?): Boolean {
  *     对应 [ListViewUtils.setScrollX]；value 为 null 时跳过。
  * </pre>
  *
- * @param value [Int] 目标 scrollX，可为 null
+ * @param value 目标 scrollX，可为 null
  * @return `true` 已设置或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_set_scroll_x")
@@ -355,7 +355,7 @@ fun View.bindingScrollSetScrollX(value: Int?): Boolean {
  *     对应 [ListViewUtils.setScrollY]；value 为 null 时跳过。
  * </pre>
  *
- * @param value [Int] 目标 scrollY，可为 null
+ * @param value 目标 scrollY，可为 null
  * @return `true` 已设置或视为成功，`false` 跳过或失败
  */
 @BindingAdapter("binding_scroll_set_scroll_y")

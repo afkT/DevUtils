@@ -4,8 +4,8 @@ description: >-
     规范化新生成或改写的 Java/Kotlin 方法：Java 用 JavaDoc、Kotlin 用 KDoc，两套规则不混用；
     Java 入参 final（抽象方法、接口默认方法、@Override 实现除外一律不加）；
     方法注释与备注同一套结构：首段/首行无内联代码与类型引用，补充说明用 <pre> 包裹；
-    有返回值且带参时补全 @param/@return；boolean 的 @return：Java 用 {@code true}/{@code false}，Kotlin 用 `true`/`false`；
-    类型引用：Java {@link …}，Kotlin […]；优先返回入参或有语义的对象替代无意义 void；异常在方法内捕获并安全返回。
+    有返回值且带参时补全 @param/@return；Kotlin 的 @param 行不写 [类型]（签名已标明）；boolean 的 @return：Java 用 {@code true}/{@code false}，Kotlin 用 `true`/`false`；
+    类型引用：Java {@link …}，Kotlin @return/<pre> 等用 […]；优先返回入参或有语义的对象替代无意义 void；异常在方法内捕获并安全返回。
     在用户要求规范化方法、统一工具类写法、整理 Javadoc/KDoc、或按 DevUtils 方法风格处理时使用。
 disable-model-invocation: true
 ---
@@ -37,10 +37,14 @@ disable-model-invocation: true
 - 当方法 **既有非 `void` / 非 `Unit` 的返回类型**，又 **至少有一个入参** 时，必须写 **`@param`**（每个入参一条）与 **`@return`**。
 - **`void` / `Unit`**：若无返回语义，见下文第 6 节；若保留且无返回值可描述，可不写 `@return`（以项目既有风格为准时跟随项目）。
 
-### 2.1 入参行里的「类型引用」写法（按语言）
+### 2.1 `@param` / `@return` 行里的类型标注（按语言）
 
 - **Java（JavaDoc）**：`@param intent {@link Intent}`、`@return {@link Intent}` 等，用 **`{@link 完全限定或简单名}`**（与项目导入/可读性一致即可）。
-- **Kotlin（KDoc）**：`@param intent [Intent]`、`@return [Intent]` 等，用 **`[类型或符号名]`**，**不用** `{@link …}`。
+- **Kotlin（KDoc）**：
+    - **`@param`**：**不要**在参数名后再写 **`[类型]`**；形参类型已在方法签名中，重复标注冗余且易与「正文里对类型的语义说明」混淆。直接写参数语义说明即可。
+        - **错误**：`@param timestamp [Long] 触发用时间戳，大于 0 时执行一次`
+        - **正确**：`@param timestamp 触发用时间戳，大于 0 时执行一次`
+    - **`@return`**（以及 `<pre>` 等允许符号链接处）：仍可用 **`[类型或符号名]`** 指向返回类型或相关 API，**不用** `{@link …}`。
 
 ## 3. 返回类型为 `Boolean` / `boolean` 时的 `@return`
 
@@ -71,7 +75,7 @@ disable-model-invocation: true
 | 指向类、成员、常量等 | **`{@link 包.类#成员}`** 等标准 JavaDoc | **`[ClassName]`** 或 **`[package.ClassName]`** 等 KDoc 符号链接语法 |
 | 行内代码片段 | **`{@code foo()}`** | **`` `foo()` ``**（反引号） |
 
-**注意**：首段摘要中仍遵守第 5 节「禁止直接引用」；`{@link …}` / `` `[Type]` `` / `` `code` `` 等应放在 **`<pre>` 块** 或 **`@param` / `@return` 行** 等允许引用的位置，见下。
+**注意**：首段摘要中仍遵守第 5 节「禁止直接引用」；`{@link …}` / `` `[Type]` `` / `` `code` `` 等应放在 **`<pre>` 块** 或 **`@return` 行**（Kotlin 的 **`@param` 行不写 `[类型]`**，见第 2.1 节）等允许引用的位置，见下。
 
 ## 5. 方法注释 vs 方法备注（Java / Kotlin 同一套结构）
 
@@ -126,7 +130,7 @@ public static Intent removeLaunchSecurityProtection(final Intent intent) {
  *     极少数合法嵌套 `startActivity` 场景
  *     滥用会增大安全风险，仅当确有需要且已评估后再调用；详见官方「Intent 重定向」说明。
  * </pre>
- * @param intent [Intent]
+ * @param intent 待处理的 Intent
  * @return [Intent]
  */
 @RequiresApi(Build.VERSION_CODES.BAKLAVA)
@@ -136,7 +140,7 @@ fun removeLaunchSecurityProtection(intent: Intent?): Intent? {
 }
 ```
 
-要点：**首行无 `{@}`（Java）或无 `` `…` `` / `[…]`（Kotlin）**；**`<pre>` 内** 再放具体 API/类型引用；**`@param` / `@return`** 行按第 2、3 节区分 JavaDoc / KDoc。
+要点：**首行无 `{@}`（Java）或无 `` `…` `` / `[…]`（Kotlin）**；**`<pre>` 内** 再放具体 API/类型引用；**`@param` / `@return`** 行按第 2、3 节区分 JavaDoc / KDoc（Kotlin 的 **`@param` 不写 `[类型]`**）。
 
 ## 6. 返回值与 `void` / `Unit`
 
@@ -156,6 +160,6 @@ fun removeLaunchSecurityProtection(intent: Intent?): Intent? {
 - [ ] 有非 `void` / 非 `Unit` 返回值且有参：`@param` / `@return` 齐全。
 - [ ] **`boolean` / `Boolean`**：`@return` 分支说明齐全——**Java** `{@code true}` / `{@code false}`；**Kotlin** `` `true` `` / `` `false` ``。
 - [ ] **首段**无禁止引用（Java 无 `{@}`；Kotlin 无首段 `` `…` `` / `[…]`）；补充说明在 **`<pre>`** 内。
-- [ ] **类型引用**：Java 用 `{@link …}`；Kotlin 用 `[…]`（含 `@param`/`@return` 行与 `<pre>` 内）。
+- [ ] **类型引用**：Java 用 `{@link …}`；Kotlin 在 **`@return` 行与 `<pre>` 内** 等可用 `[…]`；**`@param` 行不写 `[类型]`**（见第 2.1 节）。
 - [ ] 能用返回入参/有意义值替代的，避免无意义 `void` / 无返回语义的 `Unit`。
 - [ ] 危险调用已 try/catch，不依赖未捕获异常传播。
