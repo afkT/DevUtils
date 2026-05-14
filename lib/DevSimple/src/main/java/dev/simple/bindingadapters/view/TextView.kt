@@ -20,28 +20,6 @@ private const val TAG = "Dev_TextView_BindingAdapter"
 // =============
 
 /**
- * 通过数据绑定将 HTML 字符串解析为图文并设置到 TextView。
- * <pre>
- *     布局属性 binding_tv_html_text；解析失败时回退为空串并打错误日志，避免绑定阶段崩溃。
- * </pre>
- *
- * @param text HTML 片段，空或空串时显示空串
- */
-@BindingAdapter("binding_tv_html_text")
-fun TextView.bindingTVHtmlText(text: String?) {
-    if (StringUtils.isNotEmpty(text)) {
-        try {
-            setText(Html.fromHtml(text))
-        } catch (e: Throwable) {
-            LogPrintUtils.eTag(TAG, e, "bindingHtmlText")
-            setText("")
-        }
-    } else {
-        setText("")
-    }
-}
-
-/**
  * 通过数据绑定设置 TextView 粗体样式。
  * <pre>
  *     布局属性 binding_tv_text_bold；内部委托 TextViewUtils.setBold。
@@ -295,14 +273,14 @@ fun TextView.bindingTVEms(ems: Int) {
 /**
  * 通过数据绑定按工具类规则设置 Html 文本。
  * <pre>
- *     布局属性 binding_tv_html_text_utils；委托 TextViewUtils.setHtmlText（与系统 N 以上 FROM_HTML_MODE_LEGACY 行为一致）。
+ *     布局属性 binding_tv_html_text；委托 TextViewUtils.setHtmlText（与系统 N 以上 FROM_HTML_MODE_LEGACY 行为一致）。
  *     content 为 null 时清空文本。
  * </pre>
  *
  * @param content Html 字符串
  */
-@BindingAdapter("binding_tv_html_text_utils")
-fun TextView.bindingTVHtmlTextUtils(content: String?) {
+@BindingAdapter("binding_tv_html_text")
+fun TextView.bindingTVHtmlText(content: String?) {
     if (content == null) {
         text = ""
         return
@@ -310,7 +288,7 @@ fun TextView.bindingTVHtmlTextUtils(content: String?) {
     try {
         TextViewUtils.setHtmlText(this, content)
     } catch (e: Throwable) {
-        LogPrintUtils.eTag(TAG, e, "bindingTVHtmlTextUtils")
+        LogPrintUtils.eTag(TAG, e, "bindingTVHtmlText")
         text = ""
     }
 }

@@ -49,3 +49,29 @@ fun View.bindingVisibleOrGone(visible: Boolean) {
 fun View.bindingVisibleOrInVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
+
+/**
+ * 根据文本是否非空控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGoneIfNotEmpty；null 或空串为 GONE，否则 VISIBLE。
+ * </pre>
+ *
+ * @param value 文本，非 null 且非空时显示
+ */
+@BindingAdapter("binding_visibleOrGoneIfNotEmpty")
+fun View.bindingVisibleOrGoneIfNotEmpty(value: String?) {
+    bindingVisibleOrGone(!value.isNullOrEmpty())
+}
+
+/**
+ * 根据文本是否非空控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisibleIfNotEmpty；null 或空串为 INVISIBLE，否则 VISIBLE。
+ * </pre>
+ *
+ * @param value 文本，非 null 且非空时显示
+ */
+@BindingAdapter("binding_visibleOrInVisibleIfNotEmpty")
+fun View.bindingVisibleOrInVisibleIfNotEmpty(value: String?) {
+    bindingVisibleOrInVisible(!value.isNullOrEmpty())
+}
