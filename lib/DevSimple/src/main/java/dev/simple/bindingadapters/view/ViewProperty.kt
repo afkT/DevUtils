@@ -15,6 +15,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
+import dev.simple.bindingadapters.BindingTrigger.shouldTriggerBindingAction
+import dev.simple.bindingadapters.view.attribute.BarProgressState
+import dev.simple.bindingadapters.view.attribute.WidthHeightDims
 import dev.utils.app.ViewUtils
 
 // ===============================
@@ -27,7 +30,12 @@ import dev.utils.app.ViewUtils
  * 布局自定义属性统一为 `binding_view_*`（View Property），Kotlin 扩展统一为 `bindingView*`；
  * 实现上主要对应 `dev.utils.app.ViewUtils` 的 `set*` 与若干 `clear*` / `remove*` / `request*` 等
  * 适合在单 View 上通过绑定触发的 API（见各方法 KDoc）。
- * 未封装 `inflate`、`getActivity`、`getChildAt`、`convertViewGroup` 等在 XML 中无意义或无法表达的接口。
+ * <pre>
+ *     未封装 `inflate`、`getActivity`、`getChildAt`、`convertViewGroup` 等在 XML 中无意义或无法表达的接口。
+ *     需对同一命令多次触发时，可使用 `binding_view_*_ts` 与 [shouldTriggerBindingAction] 同判定的正时间戳绑定。
+ *     强关联多参可合并单属性：`binding_view_width_height_dims`、[dev.simple.bindingadapters.view.attribute.WidthHeightDims]、
+ *     `binding_view_bar_progress_state`、[dev.simple.bindingadapters.view.attribute.BarProgressState]。
+ * </pre>
  */
 
 // =============
@@ -69,6 +77,7 @@ fun ViewGroup.bindingViewClipChildren(clipChildren: Boolean) {
  * 通过数据绑定移除 ViewGroup 的全部子 View。
  * <pre>
  *     布局属性 binding_view_remove_all_views；为 true 时调用 ViewUtils.removeAllViews；false 或 null 时不调用。
+ *     若需同值多次触发，改用 binding_view_remove_all_views_ts 并绑定正时间戳（与 [shouldTriggerBindingAction] 判定一致）。
  * </pre>
  */
 @BindingAdapter("binding_view_remove_all_views")
@@ -81,6 +90,7 @@ fun ViewGroup.bindingViewRemoveAllViews(removeAll: Boolean?) {
  * 通过数据绑定将自身从父容器中移除。
  * <pre>
  *     布局属性 binding_view_remove_self_from_parent；为 true 时调用 ViewUtils.removeSelfFromParent。
+ *     若需同值多次触发，改用 binding_view_remove_self_from_parent_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_remove_self_from_parent")
@@ -93,6 +103,7 @@ fun View.bindingViewRemoveSelfFromParent(remove: Boolean?) {
  * 通过数据绑定请求对该 View 重新布局。
  * <pre>
  *     布局属性 binding_view_request_layout；为 true 时调用 ViewUtils.requestLayout。
+ *     若需同值多次触发，改用 binding_view_request_layout_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_request_layout")
@@ -105,6 +116,7 @@ fun View.bindingViewRequestLayout(request: Boolean?) {
  * 通过数据绑定请求该 View 获取焦点。
  * <pre>
  *     布局属性 binding_view_request_focus；为 true 时调用 ViewUtils.requestFocus。
+ *     若需同值多次触发，改用 binding_view_request_focus_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_request_focus")
@@ -117,6 +129,7 @@ fun View.bindingViewRequestFocus(request: Boolean?) {
  * 通过数据绑定清除该 View 的焦点。
  * <pre>
  *     布局属性 binding_view_clear_focus；为 true 时调用 ViewUtils.clearFocus。
+ *     若需同值多次触发，改用 binding_view_clear_focus_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_clear_focus")
@@ -130,6 +143,7 @@ fun View.bindingViewClearFocus(clear: Boolean?) {
  * <pre>
  *     布局属性 binding_view_request_layout_parent、binding_view_request_layout_parent_all（可选，默认 false）；
  *     对应 ViewUtils.requestLayoutParent。
+ *     若需同值多次触发，改用 binding_view_request_layout_parent_ts 与可选 binding_view_request_layout_parent_ts_all（勿与布尔版混用同一 optional 名）。
  * </pre>
  */
 @BindingAdapter(
@@ -148,6 +162,7 @@ fun View.bindingViewRequestLayoutParent(
  * 通过数据绑定对已设置的 Animation 调用 start（不替换 animation 对象）。
  * <pre>
  *     布局属性 binding_view_start_attached_animation；为 true 时调用 ViewUtils.startAnimation(view)。
+ *     若需同值多次触发，改用 binding_view_start_attached_animation_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_start_attached_animation")
@@ -172,6 +187,7 @@ fun View.bindingViewStartAnimation(animation: Animation?) {
  * 通过数据绑定取消 View 上正在播放的动画。
  * <pre>
  *     布局属性 binding_view_cancel_animation；为 true 时调用 ViewUtils.cancelAnimation(view)。
+ *     若需同值多次触发，改用 binding_view_cancel_animation_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_cancel_animation")
@@ -184,6 +200,7 @@ fun View.bindingViewCancelAnimation(cancel: Boolean?) {
  * 通过数据绑定移除背景并清除 ImageView 的 src（与仅 removeBackground 区分）。
  * <pre>
  *     布局属性 binding_view_remove_all_background；为 true 时调用 ViewUtils.removeAllBackground。
+ *     若需同值多次触发，改用 binding_view_remove_all_background_ts 并绑定正时间戳。
  * </pre>
  */
 @BindingAdapter("binding_view_remove_all_background")
@@ -227,6 +244,187 @@ fun View.bindingViewRelativeRemoveRule(verb: Int?) {
     ViewUtils.removeRule(this, verb)
 }
 
+// ======================================
+// = 时间戳触发变体（命令式多次执行） =
+// ======================================
+
+/**
+ * 通过数据绑定以时间戳触发移除 ViewGroup 的全部子 View。
+ * <pre>
+ *     布局属性 binding_view_remove_all_views_ts；与 [shouldTriggerBindingAction] 判定一致时调用 ViewUtils.removeAllViews。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_remove_all_views_ts")
+fun ViewGroup.bindingViewRemoveAllViewsTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.removeAllViews(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发将自身从父容器中移除。
+ * <pre>
+ *     布局属性 binding_view_remove_self_from_parent_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_remove_self_from_parent_ts")
+fun View.bindingViewRemoveSelfFromParentTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.removeSelfFromParent(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 requestLayout。
+ * <pre>
+ *     布局属性 binding_view_request_layout_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_request_layout_ts")
+fun View.bindingViewRequestLayoutTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.requestLayout(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 requestFocus。
+ * <pre>
+ *     布局属性 binding_view_request_focus_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_request_focus_ts")
+fun View.bindingViewRequestFocusTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.requestFocus(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 clearFocus。
+ * <pre>
+ *     布局属性 binding_view_clear_focus_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_clear_focus_ts")
+fun View.bindingViewClearFocusTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.clearFocus(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发沿父链 requestLayout。
+ * <pre>
+ *     布局属性 binding_view_request_layout_parent_ts、binding_view_request_layout_parent_ts_all（可选，默认 false）；
+ *     判定同 [shouldTriggerBindingAction]；与布尔版分用属性名，避免与 binding_view_request_layout_parent_all 混绑冲突。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ * @param allParent 是否沿父链全部请求
+ */
+@BindingAdapter(
+    value = ["binding_view_request_layout_parent_ts", "binding_view_request_layout_parent_ts_all"],
+    requireAll = false
+)
+fun View.bindingViewRequestLayoutParentTs(
+    timestamp: Long?,
+    allParent: Boolean?
+) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.requestLayoutParent(this, allParent == true)
+}
+
+/**
+ * 通过数据绑定以时间戳触发已附着 Animation 的 start。
+ * <pre>
+ *     布局属性 binding_view_start_attached_animation_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_start_attached_animation_ts")
+fun View.bindingViewStartAttachedAnimationTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.startAnimation(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 cancelAnimation。
+ * <pre>
+ *     布局属性 binding_view_cancel_animation_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_cancel_animation_ts")
+fun View.bindingViewCancelAnimationTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.cancelAnimation(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 removeAllBackground。
+ * <pre>
+ *     布局属性 binding_view_remove_all_background_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_remove_all_background_ts")
+fun View.bindingViewRemoveAllBackgroundTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.removeAllBackground(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 clearAnimation。
+ * <pre>
+ *     布局属性 binding_view_clear_animation_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_clear_animation_ts")
+fun View.bindingViewClearAnimationTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.clearAnimation(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 removeBackground。
+ * <pre>
+ *     布局属性 binding_view_remove_background_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_remove_background_ts")
+fun View.bindingViewRemoveBackgroundTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    ViewUtils.removeBackground(this)
+}
+
+/**
+ * 通过数据绑定以时间戳触发 removeForeground（API 23 以下忽略）。
+ * <pre>
+ *     布局属性 binding_view_remove_foreground_ts；判定同 [shouldTriggerBindingAction]。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_remove_foreground_ts")
+fun View.bindingViewRemoveForegroundTs(timestamp: Long?) {
+    if (!timestamp.shouldTriggerBindingAction()) return
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
+    ViewUtils.removeForeground(this)
+}
+
 // ================
 // = LayoutParams =
 // ================
@@ -250,6 +448,7 @@ fun View.bindingViewLayoutParams(params: ViewGroup.LayoutParams?) {
  * <pre>
  *     布局属性 binding_view_width_height_w、binding_view_width_height_h、binding_view_width_height_null_new_lp（后者可选，默认 true）。
  *     宽高均为 null 时不修改；仅一侧有时不调用；对应 ViewUtils.setWidthHeight。
+ *     亦可改用单属性 binding_view_width_height_dims 与 [WidthHeightDims]。
  * </pre>
  */
 @BindingAdapter(
@@ -263,6 +462,20 @@ fun View.bindingViewWidthHeight(
 ) {
     if (width == null || height == null) return
     ViewUtils.setWidthHeight(this, width, height, nullNewLp != false)
+}
+
+/**
+ * 通过数据绑定以单属性设置宽高（像素）及 LayoutParams 空时是否新建。
+ * <pre>
+ *     布局属性 binding_view_width_height_dims；为 null 时不调用；与三属性宽高绑定等价；对应 ViewUtils.setWidthHeight。
+ * </pre>
+ *
+ * @param dims 宽高及 nullNewLp 合并参数
+ */
+@BindingAdapter("binding_view_width_height_dims")
+fun View.bindingViewWidthHeightDims(dims: WidthHeightDims?) {
+    if (dims == null) return
+    ViewUtils.setWidthHeight(this, dims.widthPx, dims.heightPx, dims.nullNewLp)
 }
 
 /**
@@ -824,6 +1037,7 @@ fun View.bindingViewAnimation(animation: Animation?) {
  * 通过数据绑定显式清空 View 动画。
  * <pre>
  *     布局属性 binding_view_clear_animation；为 true 时调用 ViewUtils.clearAnimation；false 或 null 时不调用。
+ *     若需同值多次触发，改用 binding_view_clear_animation_ts 并绑定正时间戳。
  * </pre>
  *
  * @param clear 是否执行清空（便于与 `binding_view_animation` 分路控制）
@@ -853,6 +1067,7 @@ fun View.bindingViewBackground(background: Drawable?) {
  * 通过数据绑定显式移除背景 Drawable。
  * <pre>
  *     布局属性 binding_view_remove_background；为 true 时调用 ViewUtils.removeBackground；false 或 null 时不调用。
+ *     若需同值多次触发，改用 binding_view_remove_background_ts 并绑定正时间戳。
  * </pre>
  *
  * @param remove 是否移除背景
@@ -935,6 +1150,7 @@ fun View.bindingViewForeground(foreground: Drawable?) {
  * <pre>
  *     布局属性 binding_view_remove_foreground；为 true 时调用 ViewUtils.removeForeground；false 或 null 时不调用。
  *     API 23 以下忽略。
+ *     若需同值多次触发，改用 binding_view_remove_foreground_ts 并绑定正时间戳。
  * </pre>
  *
  * @param remove 是否移除前景
@@ -1083,6 +1299,7 @@ fun View.bindingViewBarMax(max: Int) {
  * 通过数据绑定同时设置 ProgressBar 的最大值与当前进度。
  * <pre>
  *     布局属性 binding_view_bar_progress_value、binding_view_bar_max_value；对应 ViewUtils.setBarValue。
+ *     亦可改用单属性 binding_view_bar_progress_state 与 [BarProgressState]。
  * </pre>
  */
 @BindingAdapter(
@@ -1094,4 +1311,18 @@ fun View.bindingViewBarValue(
     max: Int
 ) {
     ViewUtils.setBarValue(this, progress, max)
+}
+
+/**
+ * 通过数据绑定以单属性同时设置 ProgressBar 的最大值与当前进度。
+ * <pre>
+ *     布局属性 binding_view_bar_progress_state；为 null 时不调用；与双属性绑定等价；对应 ViewUtils.setBarValue。
+ * </pre>
+ *
+ * @param state 当前进度与最大值
+ */
+@BindingAdapter("binding_view_bar_progress_state")
+fun View.bindingViewBarProgressState(state: BarProgressState?) {
+    if (state == null) return
+    ViewUtils.setBarValue(this, state.progress, state.max)
 }
