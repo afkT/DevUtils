@@ -60,6 +60,7 @@
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
 | [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
 | [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：**Java 用 JavaDoc、Kotlin 用 KDoc**（不混用）；Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；**方法注释与备注同一规则**：首段/首行无内联代码与类型引用，备注 **`<pre>`**；`@param`/`@return` 齐全；Kotlin **`@param` 行不写 `[类型]`**（签名已标明）；**boolean**：Java `@return {@code true} …, {@code false} …`，Kotlin `` @return `true` …, `false` … ``；类型引用 Java `{@link …}`；Kotlin **`@return`/`<pre>`** 等可用 `[…]`；优先非 void/Unit 安全返回、异常内捕获。 |
+| [databinding-bindingadapter-from-source/SKILL.md](skills/databinding-bindingadapter-from-source/SKILL.md) | `databinding-bindingadapter-from-source` | 从 Java/Kotlin 源码设计 **BindingAdapter** 与 `app:binding_*`；过滤不适合 XML 的 API；**仅 View 入参** 的重复触发用 **`Long?` 时间戳**（`>0` 且非 null）；多参数 **合并为 `attribute/` 实体**（参照 `XYI`）；生成文档时搭配 **java-kotlin-method-normalize**。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -96,6 +97,11 @@
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
 - **核心**：**Java 写 JavaDoc、Kotlin 写 KDoc**，两套内联规则不混用。Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）。**方法注释（首段）与方法备注** 同一结构：首段/首行不写代码形态引用（Java 首段无 `{@}`；Kotlin 首段无反引号代码、无 `[…]` 符号链接），补充说明一律用 **`<pre>`**（两种语言均如此）。有非 `void` / 非 `Unit` 返回值且有参时写全 `@param`/`@return`；Kotlin **`@param` 行不写 `[类型]`**（避免与签名重复）。**`Boolean`/`boolean` 的 `@return`**：Java 用 `@return {@code true} …, {@code false} …`，Kotlin 用 `` @return `true` …, `false` … ``。**类型引用**：Java `{@link …}`；Kotlin 在 **`@return` 行与 `<pre>` 内** 等可用 `[…]`。在合理时返回入参或语义化结果替代空洞 `void`/`Unit`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
+
+### 2.9 `databinding-bindingadapter-from-source`
+
+- **YAML 备注**：含 `disable-model-invocation: true`。
+- **核心**：面向 **DataBinding**，从工具类/View 相关源码推导 **BindingAdapter**；排除 `inflate`、`getActivity` 等在布局单节点无意义 API；**命令式重复触发** 用 **`Long?` 正时间戳**（与 `ViewScroll.kt` 中 `shouldTriggerScroll` 同逻辑，可抽通用扩展名）；相关多参合并为 **`bindingadapters/view/attribute`** 下类型（对齐 `XYI.kt`）；详细判定与 XML 示例见同目录 [reference.md](skills/databinding-bindingadapter-from-source/reference.md)。**成稿前 Read** `java-kotlin-method-normalize`。
 
 ---
 
