@@ -33,6 +33,19 @@ import dev.utils.app.ViewUtils
 // =============
 
 /**
+ * 通过数据绑定设置 View id。
+ * <pre>
+ *     布局属性 binding_view_id；对应 ViewUtils.setId。
+ * </pre>
+ *
+ * @param id `R.id.*` 或 `@android:id/...`
+ */
+@BindingAdapter("binding_view_id")
+fun View.bindingViewId(@IdRes id: Int) {
+    ViewUtils.setId(this, id)
+}
+
+/**
  * 通过数据绑定设置 ViewGroup 是否裁剪子 View 绘制区域。
  * <pre>
  *     布局属性 binding_view_clip_children；仅用于 ViewGroup；对应 ViewUtils.setClipChildren。
@@ -176,28 +189,6 @@ fun View.bindingViewAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) {
 @BindingAdapter("binding_view_tag")
 fun View.bindingViewTag(tag: Any?) {
     ViewUtils.setTag(this, tag)
-}
-
-/**
- * 通过数据绑定设置内容滚动 X。
- * <pre>
- *     布局属性 binding_view_scroll_x；对应 ViewUtils.setScrollX。
- * </pre>
- */
-@BindingAdapter("binding_view_scroll_x")
-fun View.bindingViewScrollX(value: Int) {
-    ViewUtils.setScrollX(this, value)
-}
-
-/**
- * 通过数据绑定设置内容滚动 Y。
- * <pre>
- *     布局属性 binding_view_scroll_y；对应 ViewUtils.setScrollY。
- * </pre>
- */
-@BindingAdapter("binding_view_scroll_y")
-fun View.bindingViewScrollY(value: Int) {
-    ViewUtils.setScrollY(this, value)
 }
 
 /**
