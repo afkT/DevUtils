@@ -2,6 +2,8 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import dev.simple.extensions.equality.stringEquals
+import dev.simple.extensions.equality.stringEqualsIgnoreCase
 
 // =======================
 // = View BindingAdapter =
@@ -78,6 +80,98 @@ fun View.bindingVisibleOrGoneIfNotEmpty(value: String?) {
 @BindingAdapter("binding_visibleOrInVisible_IfNotEmpty")
 fun View.bindingVisibleOrInVisibleIfNotEmpty(value: String?) {
     bindingVisibleOrInVisible(!value.isNullOrEmpty())
+}
+
+// ======================
+// = IfStringEquals (CS) =
+// ======================
+
+/**
+ * 根据两字符串是否相等（区分大小写）控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGone_IfStringEquals 与 binding_visibleOrGone_IfStringEquals_value2；
+ *     相等为 VISIBLE，否则 GONE；内部委托 [stringEquals] 与同文件 `binding_visibleOrGone`。
+ * </pre>
+ *
+ * @param value1 参与比较的字符串，可为 null
+ * @param value2 参与比较的字符串，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrGone_IfStringEquals",
+    "binding_visibleOrGone_IfStringEquals_value2",
+)
+fun View.bindingVisibleOrGoneIfStringEquals(
+    value1: String?,
+    value2: String?
+) {
+    bindingVisibleOrGone(value1.stringEquals(value2))
+}
+
+/**
+ * 根据两字符串是否相等（区分大小写）控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisible_IfStringEquals 与 binding_visibleOrInVisible_IfStringEquals_value2；
+ *     相等为 VISIBLE，否则 INVISIBLE；内部委托 [stringEquals] 与同文件 `binding_visibleOrInVisible`。
+ * </pre>
+ *
+ * @param value1 参与比较的字符串，可为 null
+ * @param value2 参与比较的字符串，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrInVisible_IfStringEquals",
+    "binding_visibleOrInVisible_IfStringEquals_value2",
+)
+fun View.bindingVisibleOrInVisibleIfStringEquals(
+    value1: String?,
+    value2: String?
+) {
+    bindingVisibleOrInVisible(value1.stringEquals(value2))
+}
+
+// ==============================
+// = IfStringEquals (IgnoreCase) =
+// ==============================
+
+/**
+ * 根据两字符串是否相等（忽略大小写）控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGone_IfStringEqualsIgnoreCase 与 binding_visibleOrGone_IfStringEqualsIgnoreCase_value2；
+ *     相等为 VISIBLE，否则 GONE；内部委托 [stringEqualsIgnoreCase] 与同文件 `binding_visibleOrGone`。
+ * </pre>
+ *
+ * @param value1 参与比较的字符串，可为 null
+ * @param value2 参与比较的字符串，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrGone_IfStringEqualsIgnoreCase",
+    "binding_visibleOrGone_IfStringEqualsIgnoreCase_value2",
+)
+fun View.bindingVisibleOrGoneIfStringEqualsIgnoreCase(
+    value1: String?,
+    value2: String?
+) {
+    bindingVisibleOrGone(value1.stringEqualsIgnoreCase(value2))
+}
+
+/**
+ * 根据两字符串是否相等（忽略大小写）控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisible_IfStringEqualsIgnoreCase 与 binding_visibleOrInVisible_IfStringEqualsIgnoreCase_value2；
+ *     相等为 VISIBLE，否则 INVISIBLE；内部委托 [stringEqualsIgnoreCase] 与同文件 `binding_visibleOrInVisible`。
+ * </pre>
+ *
+ * @param value1 参与比较的字符串，可为 null
+ * @param value2 参与比较的字符串，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrInVisible_IfStringEqualsIgnoreCase",
+    "binding_visibleOrInVisible_IfStringEqualsIgnoreCase_value2",
+)
+fun View.bindingVisibleOrInVisibleIfStringEqualsIgnoreCase(
+    value1: String?,
+    value2: String?
+) {
+    bindingVisibleOrInVisible(value1.stringEqualsIgnoreCase(value2))
 }
 
 // =============
