@@ -2,7 +2,7 @@ package dev.simple.bindingadapters.view
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dev.simple.bindingadapters.BindingTrigger.shouldTriggerBindingAction
+import dev.simple.bindingadapters.shouldTriggerBindingAction
 
 // ==============================
 // = RecyclerView BindingAdapter =

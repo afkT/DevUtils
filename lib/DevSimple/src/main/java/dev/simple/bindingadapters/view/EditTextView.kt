@@ -6,7 +6,7 @@ import android.text.method.KeyListener
 import android.widget.EditText
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
-import dev.simple.bindingadapters.BindingTrigger.shouldTriggerBindingAction
+import dev.simple.bindingadapters.shouldTriggerBindingAction
 import dev.utils.LogPrintUtils
 import dev.utils.app.EditTextUtils
 

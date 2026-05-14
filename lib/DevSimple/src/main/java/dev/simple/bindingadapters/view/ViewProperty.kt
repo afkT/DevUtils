@@ -15,7 +15,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
-import dev.simple.bindingadapters.BindingTrigger.shouldTriggerBindingAction
+import dev.simple.bindingadapters.shouldTriggerBindingAction
 import dev.simple.bindingadapters.view.attribute.BarProgressState
 import dev.simple.bindingadapters.view.attribute.WidthHeightDims
 import dev.utils.app.ViewUtils
