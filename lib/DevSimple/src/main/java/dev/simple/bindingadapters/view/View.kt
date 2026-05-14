@@ -50,15 +50,19 @@ fun View.bindingVisibleOrInVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
 
+// ==============
+// = IfNotEmpty =
+// ==============
+
 /**
  * 根据文本是否非空控制视图在显示与隐藏 gone 之间切换
  * <pre>
- *     对应布局属性 binding_visibleOrGoneIfNotEmpty；null 或空串为 GONE，否则 VISIBLE。
+ *     对应布局属性 binding_visibleOrGone_IfNotEmpty；null 或空串为 GONE，否则 VISIBLE。
  * </pre>
  *
  * @param value 文本，非 null 且非空时显示
  */
-@BindingAdapter("binding_visibleOrGoneIfNotEmpty")
+@BindingAdapter("binding_visibleOrGone_IfNotEmpty")
 fun View.bindingVisibleOrGoneIfNotEmpty(value: String?) {
     bindingVisibleOrGone(!value.isNullOrEmpty())
 }
@@ -66,12 +70,42 @@ fun View.bindingVisibleOrGoneIfNotEmpty(value: String?) {
 /**
  * 根据文本是否非空控制视图在显示与不可见占位之间切换
  * <pre>
- *     对应布局属性 binding_visibleOrInVisibleIfNotEmpty；null 或空串为 INVISIBLE，否则 VISIBLE。
+ *     对应布局属性 binding_visibleOrInVisible_IfNotEmpty；null 或空串为 INVISIBLE，否则 VISIBLE。
  * </pre>
  *
  * @param value 文本，非 null 且非空时显示
  */
-@BindingAdapter("binding_visibleOrInVisibleIfNotEmpty")
+@BindingAdapter("binding_visibleOrInVisible_IfNotEmpty")
 fun View.bindingVisibleOrInVisibleIfNotEmpty(value: String?) {
     bindingVisibleOrInVisible(!value.isNullOrEmpty())
+}
+
+// =============
+// = IfNotNull =
+// =============
+
+/**
+ * 根据引用是否非 null 控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGone_IfNotNull；null 为 GONE，否则 VISIBLE；内部委托同文件 `binding_visibleOrGone`。
+ * </pre>
+ *
+ * @param value 任意对象，非 null 时显示
+ */
+@BindingAdapter("binding_visibleOrGone_IfNotNull")
+fun View.bindingVisibleOrGoneIfNotNull(value: Any?) {
+    bindingVisibleOrGone(value != null)
+}
+
+/**
+ * 根据引用是否非 null 控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisible_IfNotNull；null 为 INVISIBLE，否则 VISIBLE；内部委托同文件 `binding_visibleOrInVisible`。
+ * </pre>
+ *
+ * @param value 任意对象，非 null 时显示
+ */
+@BindingAdapter("binding_visibleOrInVisible_IfNotNull")
+fun View.bindingVisibleOrInVisibleIfNotNull(value: Any?) {
+    bindingVisibleOrInVisible(value != null)
 }
