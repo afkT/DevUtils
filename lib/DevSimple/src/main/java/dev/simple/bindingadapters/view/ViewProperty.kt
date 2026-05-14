@@ -25,7 +25,9 @@ import dev.utils.app.ViewUtils
  * View 属性相关的 Data Binding 适配集合（源文件命名 ViewProperty）。
  *
  * 布局自定义属性统一为 `binding_view_*`（View Property），Kotlin 扩展统一为 `bindingView*`；
- * 实现上与 `dev.utils.app.ViewUtils` 的 `set*` 系列方法一一对应（见各方法 KDoc）。
+ * 实现上主要对应 `dev.utils.app.ViewUtils` 的 `set*` 与若干 `clear*` / `remove*` / `request*` 等
+ * 适合在单 View 上通过绑定触发的 API（见各方法 KDoc）。
+ * 未封装 `inflate`、`getActivity`、`getChildAt`、`convertViewGroup` 等在 XML 中无意义或无法表达的接口。
  */
 
 // =============
@@ -56,6 +58,173 @@ fun View.bindingViewId(@IdRes id: Int) {
 @BindingAdapter("binding_view_clip_children")
 fun ViewGroup.bindingViewClipChildren(clipChildren: Boolean) {
     ViewUtils.setClipChildren(this, clipChildren)
+}
+
+// ======================================
+// = ViewUtils：适合 XML 的非 set/get API =
+// ======================================
+// 不含 inflate、getActivity、getChildAt、convertViewGroup 等不适合绑定到布局单节点的用法。
+
+/**
+ * 通过数据绑定移除 ViewGroup 的全部子 View。
+ * <pre>
+ *     布局属性 binding_view_remove_all_views；为 true 时调用 ViewUtils.removeAllViews；false 或 null 时不调用。
+ * </pre>
+ */
+@BindingAdapter("binding_view_remove_all_views")
+fun ViewGroup.bindingViewRemoveAllViews(removeAll: Boolean?) {
+    if (removeAll != true) return
+    ViewUtils.removeAllViews(this)
+}
+
+/**
+ * 通过数据绑定将自身从父容器中移除。
+ * <pre>
+ *     布局属性 binding_view_remove_self_from_parent；为 true 时调用 ViewUtils.removeSelfFromParent。
+ * </pre>
+ */
+@BindingAdapter("binding_view_remove_self_from_parent")
+fun View.bindingViewRemoveSelfFromParent(remove: Boolean?) {
+    if (remove != true) return
+    ViewUtils.removeSelfFromParent(this)
+}
+
+/**
+ * 通过数据绑定请求对该 View 重新布局。
+ * <pre>
+ *     布局属性 binding_view_request_layout；为 true 时调用 ViewUtils.requestLayout。
+ * </pre>
+ */
+@BindingAdapter("binding_view_request_layout")
+fun View.bindingViewRequestLayout(request: Boolean?) {
+    if (request != true) return
+    ViewUtils.requestLayout(this)
+}
+
+/**
+ * 通过数据绑定请求该 View 获取焦点。
+ * <pre>
+ *     布局属性 binding_view_request_focus；为 true 时调用 ViewUtils.requestFocus。
+ * </pre>
+ */
+@BindingAdapter("binding_view_request_focus")
+fun View.bindingViewRequestFocus(request: Boolean?) {
+    if (request != true) return
+    ViewUtils.requestFocus(this)
+}
+
+/**
+ * 通过数据绑定清除该 View 的焦点。
+ * <pre>
+ *     布局属性 binding_view_clear_focus；为 true 时调用 ViewUtils.clearFocus。
+ * </pre>
+ */
+@BindingAdapter("binding_view_clear_focus")
+fun View.bindingViewClearFocus(clear: Boolean?) {
+    if (clear != true) return
+    ViewUtils.clearFocus(this)
+}
+
+/**
+ * 通过数据绑定沿父链请求 layout。
+ * <pre>
+ *     布局属性 binding_view_request_layout_parent、binding_view_request_layout_parent_all（可选，默认 false）；
+ *     对应 ViewUtils.requestLayoutParent。
+ * </pre>
+ */
+@BindingAdapter(
+    value = ["binding_view_request_layout_parent", "binding_view_request_layout_parent_all"],
+    requireAll = false
+)
+fun View.bindingViewRequestLayoutParent(
+    request: Boolean?,
+    allParent: Boolean?
+) {
+    if (request != true) return
+    ViewUtils.requestLayoutParent(this, allParent == true)
+}
+
+/**
+ * 通过数据绑定对已设置的 Animation 调用 start（不替换 animation 对象）。
+ * <pre>
+ *     布局属性 binding_view_start_attached_animation；为 true 时调用 ViewUtils.startAnimation(view)。
+ * </pre>
+ */
+@BindingAdapter("binding_view_start_attached_animation")
+fun View.bindingViewStartAttachedAnimation(start: Boolean?) {
+    if (start != true) return
+    ViewUtils.startAnimation(this)
+}
+
+/**
+ * 通过数据绑定启动指定 Animation（内部会 startAnimation）。
+ * <pre>
+ *     布局属性 binding_view_start_animation；非 null 时调用 ViewUtils.startAnimation(view, animation)。
+ * </pre>
+ */
+@BindingAdapter("binding_view_start_animation")
+fun View.bindingViewStartAnimation(animation: Animation?) {
+    if (animation == null) return
+    ViewUtils.startAnimation(this, animation)
+}
+
+/**
+ * 通过数据绑定取消 View 上正在播放的动画。
+ * <pre>
+ *     布局属性 binding_view_cancel_animation；为 true 时调用 ViewUtils.cancelAnimation(view)。
+ * </pre>
+ */
+@BindingAdapter("binding_view_cancel_animation")
+fun View.bindingViewCancelAnimation(cancel: Boolean?) {
+    if (cancel != true) return
+    ViewUtils.cancelAnimation(this)
+}
+
+/**
+ * 通过数据绑定移除背景并清除 ImageView 的 src（与仅 removeBackground 区分）。
+ * <pre>
+ *     布局属性 binding_view_remove_all_background；为 true 时调用 ViewUtils.removeAllBackground。
+ * </pre>
+ */
+@BindingAdapter("binding_view_remove_all_background")
+fun View.bindingViewRemoveAllBackground(remove: Boolean?) {
+    if (remove != true) return
+    ViewUtils.removeAllBackground(this)
+}
+
+/**
+ * 通过数据绑定为 RelativeLayout 子 View 添加布局规则。
+ * <pre>
+ *     布局属性 binding_view_relative_add_rule_verb、binding_view_relative_add_rule_subject（可选，缺省等价 subject = -1）；
+ *     对应 ViewUtils.addRule。
+ * </pre>
+ */
+@BindingAdapter(
+    value = ["binding_view_relative_add_rule_verb", "binding_view_relative_add_rule_subject"],
+    requireAll = false
+)
+fun View.bindingViewRelativeAddRule(
+    verb: Int?,
+    subject: Int?
+) {
+    if (verb == null) return
+    if (subject != null) {
+        ViewUtils.addRule(this, verb, subject)
+    } else {
+        ViewUtils.addRule(this, verb)
+    }
+}
+
+/**
+ * 通过数据绑定为 RelativeLayout 子 View 移除布局规则。
+ * <pre>
+ *     布局属性 binding_view_relative_remove_rule_verb；对应 ViewUtils.removeRule。
+ * </pre>
+ */
+@BindingAdapter("binding_view_relative_remove_rule_verb")
+fun View.bindingViewRelativeRemoveRule(verb: Int?) {
+    if (verb == null) return
+    ViewUtils.removeRule(this, verb)
 }
 
 // ================
@@ -652,6 +821,20 @@ fun View.bindingViewAnimation(animation: Animation?) {
 }
 
 /**
+ * 通过数据绑定显式清空 View 动画。
+ * <pre>
+ *     布局属性 binding_view_clear_animation；为 true 时调用 ViewUtils.clearAnimation；false 或 null 时不调用。
+ * </pre>
+ *
+ * @param clear 是否执行清空（便于与 `binding_view_animation` 分路控制）
+ */
+@BindingAdapter("binding_view_clear_animation")
+fun View.bindingViewClearAnimation(clear: Boolean?) {
+    if (clear != true) return
+    ViewUtils.clearAnimation(this)
+}
+
+/**
  * 通过数据绑定设置背景 Drawable。
  * <pre>
  *     布局属性 binding_view_background；null 时对应 ViewUtils.removeBackground；非 null 时对应 ViewUtils.setBackground。
@@ -664,6 +847,20 @@ fun View.bindingViewBackground(background: Drawable?) {
     } else {
         ViewUtils.setBackground(this, background)
     }
+}
+
+/**
+ * 通过数据绑定显式移除背景 Drawable。
+ * <pre>
+ *     布局属性 binding_view_remove_background；为 true 时调用 ViewUtils.removeBackground；false 或 null 时不调用。
+ * </pre>
+ *
+ * @param remove 是否移除背景
+ */
+@BindingAdapter("binding_view_remove_background")
+fun View.bindingViewRemoveBackground(remove: Boolean?) {
+    if (remove != true) return
+    ViewUtils.removeBackground(this)
 }
 
 /**
@@ -734,6 +931,22 @@ fun View.bindingViewForeground(foreground: Drawable?) {
 }
 
 /**
+ * 通过数据绑定显式移除前景 Drawable（API 23+）。
+ * <pre>
+ *     布局属性 binding_view_remove_foreground；为 true 时调用 ViewUtils.removeForeground；false 或 null 时不调用。
+ *     API 23 以下忽略。
+ * </pre>
+ *
+ * @param remove 是否移除前景
+ */
+@BindingAdapter("binding_view_remove_foreground")
+fun View.bindingViewRemoveForeground(remove: Boolean?) {
+    if (remove != true) return
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
+    ViewUtils.removeForeground(this)
+}
+
+/**
  * 通过数据绑定设置前景重心（API 23+）。
  * <pre>
  *     布局属性 binding_view_foreground_gravity；对应 ViewUtils.setForegroundGravity。
@@ -771,9 +984,9 @@ fun View.bindingViewForegroundTintMode(tintMode: PorterDuff.Mode?) {
     ViewUtils.setForegroundTintMode(this, tintMode)
 }
 
-// ===========
+// ==============
 // = 着色与进度条 =
-// ===========
+// ==============
 
 /**
  * 通过数据绑定按颜色过滤背景 Drawable 并设回背景。
