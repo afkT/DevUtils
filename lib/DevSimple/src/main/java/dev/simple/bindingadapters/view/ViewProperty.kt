@@ -244,9 +244,9 @@ fun View.bindingViewRelativeRemoveRule(verb: Int?) {
     ViewUtils.removeRule(this, verb)
 }
 
-// ======================================
+// ==============================
 // = 时间戳触发变体（命令式多次执行） =
-// ======================================
+// ==============================
 
 /**
  * 通过数据绑定以时间戳触发移除 ViewGroup 的全部子 View。
@@ -547,9 +547,9 @@ fun View.bindingViewMinimumWidth(minWidth: Int) {
     ViewUtils.setMinimumWidth(this, minWidth)
 }
 
-// ===========
+// ==========
 // = 外观变换 =
-// ===========
+// ==========
 
 /**
  * 通过数据绑定设置透明度。
@@ -661,9 +661,9 @@ fun View.bindingViewOutlineProviderClip(provider: ViewOutlineProvider?) {
     ViewUtils.setOutlineProviderClip(this, provider)
 }
 
-// ===========
+// ==========
 // = 焦点导航 =
-// ===========
+// ==========
 
 /**
  * 通过数据绑定设置下一个前向焦点 id。
@@ -720,9 +720,9 @@ fun View.bindingViewNextFocusUpId(@IdRes nextFocusUpId: Int) {
     ViewUtils.setNextFocusUpId(this, nextFocusUpId)
 }
 
-// ===========
+// ==========
 // = 变换矩阵 =
-// ===========
+// ==========
 
 /**
  * 通过数据绑定设置 Z 轴旋转角。
@@ -889,9 +889,9 @@ fun View.bindingViewLayerType(
     ViewUtils.setLayerType(this, layerType, paint)
 }
 
-// ==================
+// ==============
 // = 交互与可见性 =
-// ==================
+// ==============
 
 /**
  * 通过数据绑定设置触摸模式下是否可聚焦。
@@ -1014,9 +1014,9 @@ fun View.bindingViewLayoutGravity(
     ViewUtils.setLayoutGravity(this, gravity, isReflection != false)
 }
 
-// =============
+// ============
 // = 动画与背景 =
-// =============
+// ============
 
 /**
  * 通过数据绑定设置或清除 View 动画。
@@ -1125,9 +1125,9 @@ fun View.bindingViewBackgroundTintMode(tintMode: PorterDuff.Mode?) {
     ViewUtils.setBackgroundTintMode(this, tintMode)
 }
 
-// ===========
+// =======
 // = 前景 =
-// ===========
+// =======
 
 /**
  * 通过数据绑定设置前景 Drawable（API 23+）。
