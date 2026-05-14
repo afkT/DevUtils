@@ -26,8 +26,8 @@ private const val TAG = "Dev_ImageView_Native_BindingAdapter"
  *     `uri` 为空时清空前景图。
  * </pre>
  *
- * @param uri [Uri] 图片 Uri，可为空
- * @return [ImageView] 当前视图实例
+ * @param uri 图片 Uri，可为空
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_uri")
 fun ImageView.bindingImageNativeUri(uri: Uri?): ImageView {
@@ -49,8 +49,8 @@ fun ImageView.bindingImageNativeUri(uri: Uri?): ImageView {
  *     布局属性 `binding_image_native_bitmap`；语义对齐 [ImageView.setImageBitmap]。
  * </pre>
  *
- * @param bitmap [Bitmap] 位图，可为空
- * @return [ImageView] 当前视图实例
+ * @param bitmap 位图，可为空
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_bitmap")
 fun ImageView.bindingImageNativeBitmap(bitmap: Bitmap?): ImageView {
@@ -68,8 +68,8 @@ fun ImageView.bindingImageNativeBitmap(bitmap: Bitmap?): ImageView {
  *     布局属性 `binding_image_native_drawable`；语义对齐 [ImageView.setImageDrawable]。
  * </pre>
  *
- * @param drawable [Drawable] 前景 Drawable，可为空
- * @return [ImageView] 当前视图实例
+ * @param drawable 前景 Drawable，可为空
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_drawable")
 fun ImageView.bindingImageNativeDrawable(drawable: Drawable?): ImageView {
@@ -88,8 +88,8 @@ fun ImageView.bindingImageNativeDrawable(drawable: Drawable?): ImageView {
  *     `resId` 为空或 0 时清空前景图。
  * </pre>
  *
- * @param resId [Int] 图片资源 ID，可为空；非空时应为有效 drawable 资源
- * @return [ImageView] 当前视图实例
+ * @param resId 图片资源 ID，可为空；非空时应为有效 drawable 资源
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_resource")
 fun ImageView.bindingImageNativeResource(@DrawableRes resId: Int?): ImageView {
@@ -111,8 +111,8 @@ fun ImageView.bindingImageNativeResource(@DrawableRes resId: Int?): ImageView {
  *     `color` 为空时使用透明色。
  * </pre>
  *
- * @param color [Int] 背景色整型（含 alpha），可为空
- * @return [ImageView] 当前视图实例
+ * @param color 背景色整型（含 alpha），可为空
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_bg_color")
 fun ImageView.bindingImageNativeBgColor(@ColorInt color: Int?): ImageView {
@@ -131,8 +131,8 @@ fun ImageView.bindingImageNativeBgColor(@ColorInt color: Int?): ImageView {
  *     `resId` 为空或 0 时移除背景。
  * </pre>
  *
- * @param resId [Int] 背景资源 ID，可为空；非空时应为有效 drawable 资源
- * @return [ImageView] 当前视图实例
+ * @param resId 背景资源 ID，可为空；非空时应为有效 drawable 资源
+ * @return [ImageView]
  */
 @BindingAdapter("binding_image_native_bg_resource")
 fun ImageView.bindingImageNativeBgResource(@DrawableRes resId: Int?): ImageView {
