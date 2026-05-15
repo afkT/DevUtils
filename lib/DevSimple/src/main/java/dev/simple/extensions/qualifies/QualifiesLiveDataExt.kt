@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package dev.simple.extensions
+package dev.simple.extensions.qualifies
 
 import android.os.Build
 import android.util.LongSparseArray
@@ -128,7 +128,7 @@ fun <T> LiveData<Iterator<T>>?.shouldTriggerEffect(): Boolean =
 fun <T> LiveData<Enumeration<T>>?.shouldTriggerEffect(): Boolean =
     this != null && this.value.shouldTriggerEffect()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（API 24+ 与 `TriggerEffectExt` 一致）。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（API 24+ 与 `QualifiesExt` 一致）。 */
 @RequiresApi(Build.VERSION_CODES.N)
 @JvmName("shouldTriggerEffectOfLiveDataOptional")
 fun <T> LiveData<Optional<T>>?.shouldTriggerEffect(): Boolean =

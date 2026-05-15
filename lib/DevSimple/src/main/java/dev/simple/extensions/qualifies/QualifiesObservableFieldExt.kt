@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package dev.simple.extensions
+package dev.simple.extensions.qualifies
 
 import android.os.Build
 import android.util.LongSparseArray
@@ -128,7 +128,7 @@ fun <T> ObservableField<Iterator<T>>?.shouldTriggerEffect(): Boolean =
 fun <T> ObservableField<Enumeration<T>>?.shouldTriggerEffect(): Boolean =
     this != null && this.get().shouldTriggerEffect()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（API 24+ 与 `TriggerEffectExt` 一致）。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（API 24+ 与 `QualifiesExt` 一致）。 */
 @RequiresApi(Build.VERSION_CODES.N)
 @JvmName("shouldTriggerEffectOfObservableFieldOptional")
 fun <T> ObservableField<Optional<T>>?.shouldTriggerEffect(): Boolean =

@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package dev.simple.extensions
+package dev.simple.extensions.qualifies
 
 import androidx.databinding.*
 

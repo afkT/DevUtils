@@ -1,4 +1,4 @@
-package dev.simple.extensions
+package dev.simple.extensions.qualifies
 
 import android.os.Build
 import android.util.LongSparseArray
