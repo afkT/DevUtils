@@ -21,7 +21,7 @@ disable-model-invocation: true
 
 生成前应 **Read** 下列文件之一或多份，保持命名、注释结构、时间戳与实体类用法一致：
 
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewProperty.kt`（适合 XML 的 API 边界说明）
+- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`（适合 XML 的 API 边界说明）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.qualifiesScroll()`、`XYI` 合并位移）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScrollDelayed.kt`、`ViewScrollDelayAssist.kt`（延迟二次执行）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditTextView.kt`、`ImageView.kt`、`ImageViewNative.kt`
@@ -37,7 +37,7 @@ disable-model-invocation: true
 
 BindingAdapter 绑定在 **布局里的单个 View 节点**；只封装 **对该接收者 View（及合理子类型）有意义、且能在 XML 表达参数** 的操作。
 
-**应跳过或不要求用户封装**（与 `ViewProperty.kt` 文件头说明一致）的典型类别：
+**应跳过或不要求用户封装**（与 `View.kt` 文件头说明一致）的典型类别：
 
 - 需要 **LayoutInflater / 非当前节点上下文** 的：`inflate` 等
 - 返回 **Activity / Fragment / 任意非 View** 且无法在绑定中作为稳定入参的：`getActivity` 等

@@ -20,12 +20,12 @@ import dev.simple.bindingadapters.attribute.WidthHeightDims
 import dev.simple.bindingadapters.qualifiesBindingAction
 import dev.utils.app.ViewUtils
 
-// ===============================
-// = ViewProperty BindingAdapter =
-// ===============================
+// =======================
+// = View BindingAdapter =
+// =======================
 
 /**
- * View 属性相关的 Data Binding 适配集合（源文件命名 ViewProperty）。
+ * View 属性相关的 Data Binding 适配集合（源文件命名 View）。
  *
  * 布局自定义属性统一为 `binding_view_*`（View Property），Kotlin 扩展统一为 `bindingView*`；
  * 实现上主要对应 `dev.utils.app.ViewUtils` 的 `set*` 与若干 `clear*` / `remove*` / `request*` 等
