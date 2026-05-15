@@ -2,9 +2,11 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import dev.simple.extensions.equality.compareValueEquals
 import dev.simple.extensions.equality.stringEquals
 import dev.simple.extensions.equality.stringEqualsIgnoreCase
 import dev.simple.extensions.equality.valueEquals
+import dev.simple.interfaces.CompareValue
 
 // =======================
 // = View BindingAdapter =
@@ -249,4 +251,52 @@ fun View.bindingVisibleOrInVisibleIfValueEquals(
     value2: Any?
 ) {
     bindingVisibleOrInVisible(value1.valueEquals(value2))
+}
+
+// ================
+// = CompareValue =
+// ================
+
+/**
+ * 根据双方比对值接口实现是否在接口语义下相等控制视图在显示与隐藏 gone 之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrGone_IfCompareValueEquals 与 binding_visibleOrGone_IfCompareValueEquals_value2；
+ *     相等为 VISIBLE，否则 GONE；内部委托扩展 `compareValueEquals` 与同文件 `binding_visibleOrGone`；
+ *     任一侧为 null 时扩展语义为不相等，故为 GONE。
+ * </pre>
+ *
+ * @param value1 参与比对的一侧实例，可为 null
+ * @param value2 参与比对的另一侧实例，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrGone_IfCompareValueEquals",
+    "binding_visibleOrGone_IfCompareValueEquals_value2",
+)
+fun View.bindingVisibleOrGoneIfCompareValueEquals(
+    value1: CompareValue?,
+    value2: CompareValue?
+) {
+    bindingVisibleOrGone(value1.compareValueEquals(value2))
+}
+
+/**
+ * 根据双方比对值接口实现是否在接口语义下相等控制视图在显示与不可见占位之间切换
+ * <pre>
+ *     对应布局属性 binding_visibleOrInVisible_IfCompareValueEquals 与 binding_visibleOrInVisible_IfCompareValueEquals_value2；
+ *     相等为 VISIBLE，否则 INVISIBLE；内部委托扩展 `compareValueEquals` 与同文件 `binding_visibleOrInVisible`；
+ *     任一侧为 null 时扩展语义为不相等，故为 INVISIBLE。
+ * </pre>
+ *
+ * @param value1 参与比对的一侧实例，可为 null
+ * @param value2 参与比对的另一侧实例，可为 null
+ */
+@BindingAdapter(
+    "binding_visibleOrInVisible_IfCompareValueEquals",
+    "binding_visibleOrInVisible_IfCompareValueEquals_value2",
+)
+fun View.bindingVisibleOrInVisibleIfCompareValueEquals(
+    value1: CompareValue?,
+    value2: CompareValue?
+) {
+    bindingVisibleOrInVisible(value1.compareValueEquals(value2))
 }

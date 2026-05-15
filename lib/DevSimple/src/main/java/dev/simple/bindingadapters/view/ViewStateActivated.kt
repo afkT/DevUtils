@@ -2,9 +2,11 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import dev.simple.extensions.equality.compareValueEquals
 import dev.simple.extensions.equality.stringEquals
 import dev.simple.extensions.equality.stringEqualsIgnoreCase
 import dev.simple.extensions.equality.valueEquals
+import dev.simple.interfaces.CompareValue
 import dev.utils.app.ViewUtils
 
 // ==================================
@@ -129,4 +131,30 @@ fun View.bindingActivatedIfValueEquals(
     value2: Any?
 ) {
     bindingActivated(value1.valueEquals(value2))
+}
+
+// ================
+// = CompareValue =
+// ================
+
+/**
+ * 根据双方比对值接口实现是否在接口语义下相等控制 Activated 状态。
+ * <pre>
+ *     对应布局属性 binding_activated_IfCompareValueEquals 与 binding_activated_IfCompareValueEquals_value2；
+ *     相等为激活，否则非激活；内部委托扩展 `compareValueEquals` 与同文件 [bindingActivated]；
+ *     任一侧为 null 时扩展语义为不相等，故为非激活。
+ * </pre>
+ *
+ * @param value1 参与比对的一侧实例，可为 null
+ * @param value2 参与比对的另一侧实例，可为 null
+ */
+@BindingAdapter(
+    "binding_activated_IfCompareValueEquals",
+    "binding_activated_IfCompareValueEquals_value2",
+)
+fun View.bindingActivatedIfCompareValueEquals(
+    value1: CompareValue?,
+    value2: CompareValue?
+) {
+    bindingActivated(value1.compareValueEquals(value2))
 }
