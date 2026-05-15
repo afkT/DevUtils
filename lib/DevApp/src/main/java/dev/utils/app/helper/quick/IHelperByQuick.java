@@ -569,6 +569,19 @@ public interface IHelperByQuick<T> {
     T toggleLongClickable();
 
     /**
+     * 设置 View 是否选中 checked
+     * @param checked {@code true} 选中, {@code false} 非选中
+     * @return Helper
+     */
+    T setChecked(boolean checked);
+
+    /**
+     * 切换 View 是否选中 checked 状态
+     * @return Helper
+     */
+    T toggleChecked();
+
+    /**
      * 设置 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @return Helper

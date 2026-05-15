@@ -1070,6 +1070,27 @@ public final class QuickHelper
     }
 
     /**
+     * 设置 View 是否选中 checked
+     * @param checked {@code true} 选中, {@code false} 非选中
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setChecked(boolean checked) {
+        ViewHelper.get().setChecked(checked, targetView());
+        return this;
+    }
+
+    /**
+     * 切换 View 是否选中 checked 状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper toggleChecked() {
+        ViewHelper.get().toggleChecked(targetView());
+        return this;
+    }
+
+    /**
      * 设置 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @return Helper
