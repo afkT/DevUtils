@@ -20,6 +20,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -2382,6 +2383,110 @@ public final class ViewUtils {
             for (View view : views) {
                 if (view != null) {
                     view.setLongClickable(!view.isLongClickable());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 获取 View 是否选中 checked
+     * @param view {@link View}
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public static boolean isChecked(final View view) {
+        if (view instanceof Checkable) {
+            return ((Checkable) view).isChecked();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View 是否选中 checked
+     * @param checked {@code true} 选中, {@code false} 非选中
+     * @param views   View[]
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public static boolean setChecked(
+            final boolean checked,
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                if (view instanceof Checkable) {
+                    Checkable checkable = (Checkable) view;
+                    checkable.setChecked(checked);
+                }
+            }
+        }
+        return checked;
+    }
+
+    /**
+     * 切换 View 是否选中 checked 状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleChecked(final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                if (view instanceof Checkable) {
+                    Checkable checkable = (Checkable) view;
+                    checkable.toggle();
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 获取 Checkable 是否选中 checked
+     * @param checkable {@link Checkable}
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public static boolean isChecked(final Checkable checkable) {
+        if (checkable != null) {
+            return checkable.isChecked();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 Checkable 是否选中 checked
+     * @param checked    {@code true} 选中, {@code false} 非选中
+     * @param checkables Checkable[]
+     * @return {@code true} 选中, {@code false} 非选中
+     */
+    public static boolean setChecked(
+            final boolean checked,
+            final Checkable... checkables
+    ) {
+        if (checkables != null) {
+            for (Checkable checkable : checkables) {
+                if (checkable != null) {
+                    checkable.setChecked(checked);
+                }
+            }
+        }
+        return checked;
+    }
+
+    /**
+     * 切换 Checkable 是否选中 checked 状态
+     * @param checkables Checkable[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleChecked(final Checkable... checkables) {
+        if (checkables != null) {
+            for (Checkable checkable : checkables) {
+                if (checkable != null) {
+                    checkable.toggle();
                 }
             }
             return true;
