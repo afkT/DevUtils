@@ -6,7 +6,7 @@
 |------|------|
 | 方法需要 Context 且非 View 自带 `getContext()` 够用 | 一般仍可做，避免要求 Activity 子类 |
 | 需要 inflater / 新建整棵子树 | 不做 BindingAdapter，改在代码里 |
-| 仅 `(View)` 或仅接收者，且为「事件」类（滚到底、清空、请求焦点一次） | `timestamp: Long?` + `shouldTrigger*` |
+| 仅 `(View)` 或仅接收者，且为「事件」类（滚到底、清空、请求焦点一次） | `timestamp: Long?` + `qualifies*` |
 | 仅 `(View, boolean)` 且 bool 表「是否执行」 | 可用 `Boolean?`，`true` 执行；注意 LiveData 同值不刷新 → 重要多次触发改用时间戳 |
 | 两个 Int（dx, dy）、xy、宽高对 | 合并为 `attribute` 下实体，单属性绑定 |
 | 与滚动、延迟二次对齐相关 | 对照 `ViewScroll.kt` + `ViewScrollDelayed.kt` / `ViewScrollDelayAssist.kt` 是否需套一层 |

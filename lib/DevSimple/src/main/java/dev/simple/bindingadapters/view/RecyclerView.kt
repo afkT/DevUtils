@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.simple.bindingadapters.attribute.RvAdapterNotifyItemAt
 import dev.simple.bindingadapters.attribute.RvAdapterNotifyItemMovedAt
 import dev.simple.bindingadapters.attribute.RvItemDecorationAddOp
-import dev.simple.bindingadapters.shouldTriggerBindingAction
+import dev.simple.bindingadapters.qualifiesBindingAction
 import dev.utils.app.RecyclerViewUtils
 
 // ==============================
@@ -57,7 +57,7 @@ fun RecyclerView.bindingRVItemAnimatorRemove(
 /**
  * 通过数据绑定以时间戳移除 RecyclerView 的 item 动画器。
  * <pre>
- *     布局属性 binding_rv_item_animator_remove_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_rv_item_animator_remove_ts；判定同 [qualifiesBindingAction]。
  *     与 binding_rv_item_animator_remove 相比，便于在 ViewModel 中多次触发同一移除命令。
  * </pre>
  *
@@ -65,7 +65,7 @@ fun RecyclerView.bindingRVItemAnimatorRemove(
  */
 @BindingAdapter("binding_rv_item_animator_remove_ts")
 fun RecyclerView.bindingRVItemAnimatorRemoveTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     itemAnimator = null
 }
 
@@ -157,7 +157,7 @@ fun RecyclerView.bindingRVNestedScrollingEnabled(enabled: Boolean?): Boolean {
 @BindingAdapter("binding_rv_notify_item_removed")
 fun RecyclerView.bindingRVNotifyItemRemoved(payload: RvAdapterNotifyItemAt?): Boolean {
     val p = payload ?: return false
-    if (!p.timestamp.shouldTriggerBindingAction()) return false
+    if (!p.timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.notifyItemRemoved(this, p.position)
 }
 
@@ -173,7 +173,7 @@ fun RecyclerView.bindingRVNotifyItemRemoved(payload: RvAdapterNotifyItemAt?): Bo
 @BindingAdapter("binding_rv_notify_item_inserted")
 fun RecyclerView.bindingRVNotifyItemInserted(payload: RvAdapterNotifyItemAt?): Boolean {
     val p = payload ?: return false
-    if (!p.timestamp.shouldTriggerBindingAction()) return false
+    if (!p.timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.notifyItemInserted(this, p.position)
 }
 
@@ -189,14 +189,14 @@ fun RecyclerView.bindingRVNotifyItemInserted(payload: RvAdapterNotifyItemAt?): B
 @BindingAdapter("binding_rv_notify_item_moved")
 fun RecyclerView.bindingRVNotifyItemMoved(payload: RvAdapterNotifyItemMovedAt?): Boolean {
     val p = payload ?: return false
-    if (!p.timestamp.shouldTriggerBindingAction()) return false
+    if (!p.timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.notifyItemMoved(this, p.fromPosition, p.toPosition)
 }
 
 /**
  * 通过数据绑定触发 notifyDataSetChanged。
  * <pre>
- *     布局属性 binding_rv_notify_data_set_changed_ts；判定同 [shouldTriggerBindingAction]；委托 [RecyclerViewUtils.notifyDataSetChanged]。
+ *     布局属性 binding_rv_notify_data_set_changed_ts；判定同 [qualifiesBindingAction]；委托 [RecyclerViewUtils.notifyDataSetChanged]。
  *     建议用细粒度 notify 替代；此处与工具类行为对齐。
  * </pre>
  *
@@ -205,14 +205,14 @@ fun RecyclerView.bindingRVNotifyItemMoved(payload: RvAdapterNotifyItemMovedAt?):
  */
 @BindingAdapter("binding_rv_notify_data_set_changed_ts")
 fun RecyclerView.bindingRVNotifyDataSetChangedTs(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerBindingAction()) return false
+    if (!timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.notifyDataSetChanged(this)
 }
 
 /**
  * 通过数据绑定附加 LinearSnapHelper。
  * <pre>
- *     布局属性 binding_rv_attach_linear_snap_helper_ts；判定同 [shouldTriggerBindingAction]；委托 [RecyclerViewUtils.attachLinearSnapHelper]。
+ *     布局属性 binding_rv_attach_linear_snap_helper_ts；判定同 [qualifiesBindingAction]；委托 [RecyclerViewUtils.attachLinearSnapHelper]。
  * </pre>
  *
  * @param timestamp 触发用时间戳，可为 null
@@ -220,14 +220,14 @@ fun RecyclerView.bindingRVNotifyDataSetChangedTs(timestamp: Long?): Boolean {
  */
 @BindingAdapter("binding_rv_attach_linear_snap_helper_ts")
 fun RecyclerView.bindingRVAttachLinearSnapHelperTs(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerBindingAction()) return false
+    if (!timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.attachLinearSnapHelper(this) != null
 }
 
 /**
  * 通过数据绑定附加 PagerSnapHelper。
  * <pre>
- *     布局属性 binding_rv_attach_pager_snap_helper_ts；判定同 [shouldTriggerBindingAction]；委托 [RecyclerViewUtils.attachPagerSnapHelper]。
+ *     布局属性 binding_rv_attach_pager_snap_helper_ts；判定同 [qualifiesBindingAction]；委托 [RecyclerViewUtils.attachPagerSnapHelper]。
  * </pre>
  *
  * @param timestamp 触发用时间戳，可为 null
@@ -235,7 +235,7 @@ fun RecyclerView.bindingRVAttachLinearSnapHelperTs(timestamp: Long?): Boolean {
  */
 @BindingAdapter("binding_rv_attach_pager_snap_helper_ts")
 fun RecyclerView.bindingRVAttachPagerSnapHelperTs(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerBindingAction()) return false
+    if (!timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.attachPagerSnapHelper(this) != null
 }
 
@@ -291,7 +291,7 @@ fun RecyclerView.bindingRVItemDecorationRemoveAt(index: Int?): Boolean {
 /**
  * 通过数据绑定移除全部 ItemDecoration。
  * <pre>
- *     布局属性 binding_rv_remove_all_item_decoration_ts；判定同 [shouldTriggerBindingAction]；委托 [RecyclerViewUtils.removeAllItemDecoration]。
+ *     布局属性 binding_rv_remove_all_item_decoration_ts；判定同 [qualifiesBindingAction]；委托 [RecyclerViewUtils.removeAllItemDecoration]。
  * </pre>
  *
  * @param timestamp 触发用时间戳，可为 null
@@ -299,7 +299,7 @@ fun RecyclerView.bindingRVItemDecorationRemoveAt(index: Int?): Boolean {
  */
 @BindingAdapter("binding_rv_remove_all_item_decoration_ts")
 fun RecyclerView.bindingRVRemoveAllItemDecorationTs(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerBindingAction()) return false
+    if (!timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.removeAllItemDecoration(this)
 }
 
@@ -336,7 +336,7 @@ fun RecyclerView.bindingRVRemoveOnScrollListener(listener: RecyclerView.OnScroll
 /**
  * 通过数据绑定清空全部滚动监听。
  * <pre>
- *     布局属性 binding_rv_clear_on_scroll_listeners_ts；判定同 [shouldTriggerBindingAction]；委托 [RecyclerViewUtils.clearOnScrollListeners]。
+ *     布局属性 binding_rv_clear_on_scroll_listeners_ts；判定同 [qualifiesBindingAction]；委托 [RecyclerViewUtils.clearOnScrollListeners]。
  * </pre>
  *
  * @param timestamp 触发用时间戳，可为 null
@@ -344,6 +344,6 @@ fun RecyclerView.bindingRVRemoveOnScrollListener(listener: RecyclerView.OnScroll
  */
 @BindingAdapter("binding_rv_clear_on_scroll_listeners_ts")
 fun RecyclerView.bindingRVClearOnScrollListenersTs(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerBindingAction()) return false
+    if (!timestamp.qualifiesBindingAction()) return false
     return RecyclerViewUtils.clearOnScrollListeners(this)
 }

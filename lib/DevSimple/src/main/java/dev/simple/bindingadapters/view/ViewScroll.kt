@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.simple.bindingadapters.attribute.XYI
-import dev.simple.bindingadapters.shouldTriggerScroll
+import dev.simple.bindingadapters.qualifiesScroll
 import dev.utils.app.ListViewUtils
 import dev.utils.app.RecyclerViewUtils
 
@@ -46,7 +46,7 @@ fun RecyclerView.bindingScrollRvSnapStartIndex(position: Int?): Boolean {
  */
 @BindingAdapter("binding_scroll_rv_snap_start_auto")
 fun RecyclerView.bindingScrollRvSnapStartAuto(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return RecyclerViewUtils.startSmoothScrollSnapStart(this)
 }
 
@@ -80,7 +80,7 @@ fun RecyclerView.bindingScrollRvSnapEndIndex(position: Int?): Boolean {
  */
 @BindingAdapter("binding_scroll_rv_snap_end_auto")
 fun RecyclerView.bindingScrollRvSnapEndAuto(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return RecyclerViewUtils.startSmoothScrollSnapEnd(this)
 }
 
@@ -122,7 +122,7 @@ fun RecyclerView.bindingScrollRvLinearIndexOffset(
  */
 @BindingAdapter("binding_scroll_rv_stop")
 fun RecyclerView.bindingScrollRvStop(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return RecyclerViewUtils.stopSmoothScroller(this)
 }
 
@@ -181,7 +181,7 @@ fun View.bindingScrollInstantAdapterIndex(index: Int?): Boolean {
  */
 @BindingAdapter("binding_scroll_event_smooth_top")
 fun View.bindingScrollEventSmoothTop(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return ListViewUtils.smoothScrollToTop(this)
 }
 
@@ -198,7 +198,7 @@ fun View.bindingScrollEventSmoothTop(timestamp: Long?): Boolean {
  */
 @BindingAdapter("binding_scroll_event_instant_top")
 fun View.bindingScrollEventInstantTop(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return ListViewUtils.scrollToTop(this)
 }
 
@@ -215,7 +215,7 @@ fun View.bindingScrollEventInstantTop(timestamp: Long?): Boolean {
  */
 @BindingAdapter("binding_scroll_event_smooth_bottom")
 fun View.bindingScrollEventSmoothBottom(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return ListViewUtils.smoothScrollToBottom(this)
 }
 
@@ -232,7 +232,7 @@ fun View.bindingScrollEventSmoothBottom(timestamp: Long?): Boolean {
  */
 @BindingAdapter("binding_scroll_event_instant_bottom")
 fun View.bindingScrollEventInstantBottom(timestamp: Long?): Boolean {
-    if (!timestamp.shouldTriggerScroll()) return false
+    if (!timestamp.qualifiesScroll()) return false
     return ListViewUtils.scrollToBottom(this)
 }
 

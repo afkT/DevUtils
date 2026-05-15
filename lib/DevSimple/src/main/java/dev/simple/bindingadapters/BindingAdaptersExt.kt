@@ -8,15 +8,16 @@ package dev.simple.bindingadapters
  *
  * @return `true` 应执行滚动，`false` 跳过
  */
-fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
+fun Long?.qualifiesScroll(): Boolean = this != null && this > 0L
+//fun Long?.qualifiesScroll(): Boolean = this.qualifies()
 
 /**
  * 数据绑定侧判断时间戳是否应触发一次通用副作用。
  * <pre>
- *     与 [shouldTriggerScroll] 判定相同，供非滚动类适配器命名使用，避免语义误导。
+ *     与 [qualifiesScroll] 判定相同，供非滚动类适配器命名使用，避免语义误导。
  *     需多次触发同一命令时，建议绑定递增时间戳或 [System.currentTimeMillis]，优于仅用 [Boolean] 且同值无法二次刷新。
  * </pre>
  *
  * @return `true` 应执行一次，`false` 跳过
  */
-fun Long?.shouldTriggerBindingAction(): Boolean = shouldTriggerScroll()
+fun Long?.qualifiesBindingAction(): Boolean = qualifiesScroll()

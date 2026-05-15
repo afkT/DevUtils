@@ -17,7 +17,7 @@ import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
 import dev.simple.bindingadapters.attribute.BarProgressState
 import dev.simple.bindingadapters.attribute.WidthHeightDims
-import dev.simple.bindingadapters.shouldTriggerBindingAction
+import dev.simple.bindingadapters.qualifiesBindingAction
 import dev.utils.app.ViewUtils
 
 // ===============================
@@ -32,7 +32,7 @@ import dev.utils.app.ViewUtils
  * 适合在单 View 上通过绑定触发的 API（见各方法 KDoc）。
  * <pre>
  *     未封装 `inflate`、`getActivity`、`getChildAt`、`convertViewGroup` 等在 XML 中无意义或无法表达的接口。
- *     需对同一命令多次触发时，可使用 `binding_view_*_ts` 与 [shouldTriggerBindingAction] 同判定的正时间戳绑定。
+ *     需对同一命令多次触发时，可使用 `binding_view_*_ts` 与 [qualifiesBindingAction] 同判定的正时间戳绑定。
  *     强关联多参可合并单属性：`binding_view_width_height_dims`、[WidthHeightDims]、
  *     `binding_view_bar_progress_state`、[BarProgressState]。
  * </pre>
@@ -77,7 +77,7 @@ fun ViewGroup.bindingViewClipChildren(clipChildren: Boolean) {
  * 通过数据绑定移除 ViewGroup 的全部子 View。
  * <pre>
  *     布局属性 binding_view_remove_all_views；为 true 时调用 ViewUtils.removeAllViews；false 或 null 时不调用。
- *     若需同值多次触发，改用 binding_view_remove_all_views_ts 并绑定正时间戳（与 [shouldTriggerBindingAction] 判定一致）。
+ *     若需同值多次触发，改用 binding_view_remove_all_views_ts 并绑定正时间戳（与 [qualifiesBindingAction] 判定一致）。
  * </pre>
  */
 @BindingAdapter("binding_view_remove_all_views")
@@ -251,70 +251,70 @@ fun View.bindingViewRelativeRemoveRule(verb: Int?) {
 /**
  * 通过数据绑定以时间戳触发移除 ViewGroup 的全部子 View。
  * <pre>
- *     布局属性 binding_view_remove_all_views_ts；与 [shouldTriggerBindingAction] 判定一致时调用 ViewUtils.removeAllViews。
+ *     布局属性 binding_view_remove_all_views_ts；与 [qualifiesBindingAction] 判定一致时调用 ViewUtils.removeAllViews。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_remove_all_views_ts")
 fun ViewGroup.bindingViewRemoveAllViewsTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.removeAllViews(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发将自身从父容器中移除。
  * <pre>
- *     布局属性 binding_view_remove_self_from_parent_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_remove_self_from_parent_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_remove_self_from_parent_ts")
 fun View.bindingViewRemoveSelfFromParentTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.removeSelfFromParent(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 requestLayout。
  * <pre>
- *     布局属性 binding_view_request_layout_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_request_layout_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_request_layout_ts")
 fun View.bindingViewRequestLayoutTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.requestLayout(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 requestFocus。
  * <pre>
- *     布局属性 binding_view_request_focus_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_request_focus_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_request_focus_ts")
 fun View.bindingViewRequestFocusTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.requestFocus(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 clearFocus。
  * <pre>
- *     布局属性 binding_view_clear_focus_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_clear_focus_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_clear_focus_ts")
 fun View.bindingViewClearFocusTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.clearFocus(this)
 }
 
@@ -322,7 +322,7 @@ fun View.bindingViewClearFocusTs(timestamp: Long?) {
  * 通过数据绑定以时间戳触发沿父链 requestLayout。
  * <pre>
  *     布局属性 binding_view_request_layout_parent_ts、binding_view_request_layout_parent_ts_all（可选，默认 false）；
- *     判定同 [shouldTriggerBindingAction]；与布尔版分用属性名，避免与 binding_view_request_layout_parent_all 混绑冲突。
+ *     判定同 [qualifiesBindingAction]；与布尔版分用属性名，避免与 binding_view_request_layout_parent_all 混绑冲突。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
@@ -336,91 +336,91 @@ fun View.bindingViewRequestLayoutParentTs(
     timestamp: Long?,
     allParent: Boolean?
 ) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.requestLayoutParent(this, allParent == true)
 }
 
 /**
  * 通过数据绑定以时间戳触发已附着 Animation 的 start。
  * <pre>
- *     布局属性 binding_view_start_attached_animation_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_start_attached_animation_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_start_attached_animation_ts")
 fun View.bindingViewStartAttachedAnimationTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.startAnimation(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 cancelAnimation。
  * <pre>
- *     布局属性 binding_view_cancel_animation_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_cancel_animation_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_cancel_animation_ts")
 fun View.bindingViewCancelAnimationTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.cancelAnimation(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 removeAllBackground。
  * <pre>
- *     布局属性 binding_view_remove_all_background_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_remove_all_background_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_remove_all_background_ts")
 fun View.bindingViewRemoveAllBackgroundTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.removeAllBackground(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 clearAnimation。
  * <pre>
- *     布局属性 binding_view_clear_animation_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_clear_animation_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_clear_animation_ts")
 fun View.bindingViewClearAnimationTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.clearAnimation(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 removeBackground。
  * <pre>
- *     布局属性 binding_view_remove_background_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_remove_background_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_remove_background_ts")
 fun View.bindingViewRemoveBackgroundTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     ViewUtils.removeBackground(this)
 }
 
 /**
  * 通过数据绑定以时间戳触发 removeForeground（API 23 以下忽略）。
  * <pre>
- *     布局属性 binding_view_remove_foreground_ts；判定同 [shouldTriggerBindingAction]。
+ *     布局属性 binding_view_remove_foreground_ts；判定同 [qualifiesBindingAction]。
  * </pre>
  *
  * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
  */
 @BindingAdapter("binding_view_remove_foreground_ts")
 fun View.bindingViewRemoveForegroundTs(timestamp: Long?) {
-    if (!timestamp.shouldTriggerBindingAction()) return
+    if (!timestamp.qualifiesBindingAction()) return
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
     ViewUtils.removeForeground(this)
 }

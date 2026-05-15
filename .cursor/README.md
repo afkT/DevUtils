@@ -101,7 +101,7 @@
 ### 2.9 `databinding-bindingadapter-from-source`
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
-- **核心**：面向 **DataBinding**，从工具类/View 相关源码推导 **BindingAdapter**；排除 `inflate`、`getActivity` 等在布局单节点无意义 API；**命令式重复触发** 用 **`Long?` 正时间戳**（与 `ViewScroll.kt` 中 `shouldTriggerScroll` 同逻辑，可抽通用扩展名）；相关多参合并为 **`bindingadapters/view/attribute`** 下类型（对齐 `XYI.kt`）；详细判定与 XML 示例见同目录 [reference.md](skills/databinding-bindingadapter-from-source/reference.md)。**成稿前 Read** `java-kotlin-method-normalize`。
+- **核心**：面向 **DataBinding**，从工具类/View 相关源码推导 **BindingAdapter**；排除 `inflate`、`getActivity` 等在布局单节点无意义 API；**命令式重复触发** 用 **`Long?` 正时间戳**（与 `ViewScroll.kt` 中 `qualifiesScroll` 同逻辑，可抽通用扩展名）；相关多参合并为 **`bindingadapters/view/attribute`** 下类型（对齐 `XYI.kt`）；详细判定与 XML 示例见同目录 [reference.md](skills/databinding-bindingadapter-from-source/reference.md)。**成稿前 Read** `java-kotlin-method-normalize`。
 
 ---
 

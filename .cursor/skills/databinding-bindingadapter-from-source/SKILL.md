@@ -22,7 +22,7 @@ disable-model-invocation: true
 生成前应 **Read** 下列文件之一或多份，保持命名、注释结构、时间戳与实体类用法一致：
 
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewProperty.kt`（适合 XML 的 API 边界说明）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.shouldTriggerScroll()`、`XYI` 合并位移）
+- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.qualifiesScroll()`、`XYI` 合并位移）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScrollDelayed.kt`、`ViewScrollDelayAssist.kt`（延迟二次执行）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditTextView.kt`、`ImageView.kt`、`ImageViewNative.kt`
 
@@ -69,14 +69,14 @@ BindingAdapter 绑定在 **布局里的单个 View 节点**；只封装 **对该
 本仓库已有：
 
 ```kotlin
-fun Long?.shouldTriggerScroll(): Boolean = this != null && this > 0L
+fun Long?.qualifiesScroll(): Boolean = this != null && this > 0L
 ```
 
 **新代码**若语义不是滚动（避免命名误导），可在同一模块抽取例如：
 
 ```kotlin
 /** 数据绑定用：时间戳非空且大于 0 时执行一次副作用。 */
-fun Long?.shouldTriggerBindingAction(): Boolean = this != null && this > 0L
+fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 ```
 
 具体命名与存放文件随模块惯例；**禁止**用 `<=0` 或 `null` 仍执行（除非项目已有特例并在备注中写明）。

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
  * 单次绑定中同时携带触发时间戳与 adapter 索引，用于 item 级通知类操作。
  * <pre>
  *     配合 `binding_rv_notify_item_removed`、`binding_rv_notify_item_inserted` 等 RecyclerView 绑定扩展；
- *     时间戳判定与 `shouldTriggerBindingAction` 一致，便于在 ViewModel 中多次触发同索引命令。
+ *     时间戳判定与 `qualifiesBindingAction` 一致，便于在 ViewModel 中多次触发同索引命令。
  * </pre>
  *
  * @property timestamp 触发用时间戳，须大于 0 才会执行底层通知
