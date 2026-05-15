@@ -582,6 +582,32 @@ public interface IHelperByQuick<T> {
     T toggleChecked();
 
     /**
+     * 设置 View Activated 激活状态
+     * @param activated {@code true} 激活, {@code false} 非激活
+     * @return Helper
+     */
+    T setActivated(boolean activated);
+
+    /**
+     * 切换 View Activated 激活状态
+     * @return Helper
+     */
+    T toggleActivated();
+
+    /**
+     * 设置 View Pressed 按下状态
+     * @param pressed {@code true} 按下, {@code false} 未按下
+     * @return Helper
+     */
+    T setPressed(boolean pressed);
+
+    /**
+     * 切换 View Pressed 按下状态
+     * @return Helper
+     */
+    T togglePressed();
+
+    /**
      * 设置 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @return Helper

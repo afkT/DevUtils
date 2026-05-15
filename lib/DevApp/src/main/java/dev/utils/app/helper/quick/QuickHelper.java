@@ -1091,6 +1091,48 @@ public final class QuickHelper
     }
 
     /**
+     * 设置 View Activated 激活状态
+     * @param activated {@code true} 激活, {@code false} 非激活
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setActivated(boolean activated) {
+        ViewHelper.get().setActivated(activated, targetView());
+        return this;
+    }
+
+    /**
+     * 切换 View Activated 激活状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper toggleActivated() {
+        ViewHelper.get().toggleActivated(targetView());
+        return this;
+    }
+
+    /**
+     * 设置 View Pressed 按下状态
+     * @param pressed {@code true} 按下, {@code false} 未按下
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setPressed(boolean pressed) {
+        ViewHelper.get().setPressed(pressed, targetView());
+        return this;
+    }
+
+    /**
+     * 切换 View Pressed 按下状态
+     * @return Helper
+     */
+    @Override
+    public QuickHelper togglePressed() {
+        ViewHelper.get().togglePressed(targetView());
+        return this;
+    }
+
+    /**
      * 设置 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
      * @return Helper
