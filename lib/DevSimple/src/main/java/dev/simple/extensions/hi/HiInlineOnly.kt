@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("HiInlineOnlyKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions.hi
 
 /**

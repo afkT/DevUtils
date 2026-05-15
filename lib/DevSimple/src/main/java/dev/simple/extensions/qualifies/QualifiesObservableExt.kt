@@ -1,4 +1,6 @@
 @file:Suppress("unused")
+@file:JvmName("QualifiesObservableExtKt")
+@file:JvmMultifileClass
 
 package dev.simple.extensions.qualifies
 

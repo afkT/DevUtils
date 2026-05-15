@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("AppSizeKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions.size
 
 import android.content.Context

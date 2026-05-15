@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("DevSourceKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions
 
 import android.graphics.Bitmap

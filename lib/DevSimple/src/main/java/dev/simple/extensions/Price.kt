@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("PriceKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions
 
 import dev.utils.common.BigDecimalUtils

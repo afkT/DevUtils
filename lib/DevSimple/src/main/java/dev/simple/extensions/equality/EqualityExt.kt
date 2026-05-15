@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("EqualityExtKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions.equality
 
 import dev.simple.interfaces.CompareValue

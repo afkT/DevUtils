@@ -1,4 +1,7 @@
 @file:Suppress("unused")
+@file:JvmName("QualifiesLiveDataExtKt")
+@file:JvmMultifileClass
+@file:OptIn(ExperimentalUnsignedTypes::class)
 
 package dev.simple.extensions.qualifies
 
@@ -235,25 +238,21 @@ fun LiveData<BooleanArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfLiveDataUByteArray")
 fun LiveData<UByteArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfLiveDataUShortArray")
 fun LiveData<UShortArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfLiveDataUIntArray")
 fun LiveData<UIntArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfLiveDataULongArray")
 fun LiveData<ULongArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()

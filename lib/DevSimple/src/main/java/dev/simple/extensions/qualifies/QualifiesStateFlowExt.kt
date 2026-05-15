@@ -1,4 +1,7 @@
 @file:Suppress("unused")
+@file:JvmName("QualifiesStateFlowExtKt")
+@file:JvmMultifileClass
+@file:OptIn(ExperimentalUnsignedTypes::class)
 
 package dev.simple.extensions.qualifies
 
@@ -8,13 +11,10 @@ import android.util.SparseArray
 import android.util.SparseBooleanArray
 import android.util.SparseIntArray
 import androidx.annotation.RequiresApi
+import kotlinx.coroutines.flow.StateFlow
 import java.math.BigDecimal
 import java.math.BigInteger
-import java.util.BitSet
-import java.util.Enumeration
-import java.util.Optional
-import kotlin.jvm.JvmName
-import kotlinx.coroutines.flow.StateFlow
+import java.util.*
 
 // =============
 // = StateFlow =
@@ -241,25 +241,21 @@ fun StateFlow<BooleanArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [StateFlow] 非 null 时对 [StateFlow.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfStateFlowUByteArray")
 fun StateFlow<UByteArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [StateFlow] 非 null 时对 [StateFlow.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfStateFlowUShortArray")
 fun StateFlow<UShortArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [StateFlow] 非 null 时对 [StateFlow.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfStateFlowUIntArray")
 fun StateFlow<UIntArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()
 
 /** [StateFlow] 非 null 时对 [StateFlow.value] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfStateFlowULongArray")
 fun StateFlow<ULongArray>?.qualifies(): Boolean =
     this != null && this.value.qualifies()

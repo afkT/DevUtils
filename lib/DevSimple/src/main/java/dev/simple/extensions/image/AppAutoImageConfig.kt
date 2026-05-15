@@ -1,3 +1,7 @@
+@file:Suppress("unused")
+@file:JvmName("AppAutoImageConfigKt")
+@file:JvmMultifileClass
+
 package dev.simple.extensions.image
 
 import dev.base.DevVariableExt

@@ -1,3 +1,8 @@
+@file:Suppress("unused")
+@file:JvmName("QualifiesExtKt")
+@file:JvmMultifileClass
+@file:OptIn(ExperimentalUnsignedTypes::class)
+
 package dev.simple.extensions.qualifies
 
 import android.os.Build
@@ -415,7 +420,6 @@ fun BooleanArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
  * @receiver 可空无符号字节数组
  * @return `true` 非空且长度大于零
  */
-@OptIn(ExperimentalUnsignedTypes::class)
 fun UByteArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -423,7 +427,6 @@ fun UByteArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
  * @receiver 可空无符号短整型数组
  * @return `true` 非空且长度大于零
  */
-@OptIn(ExperimentalUnsignedTypes::class)
 fun UShortArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -431,7 +434,6 @@ fun UShortArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
  * @receiver 可空无符号整型数组
  * @return `true` 非空且长度大于零
  */
-@OptIn(ExperimentalUnsignedTypes::class)
 fun UIntArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -439,5 +441,4 @@ fun UIntArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
  * @receiver 可空无符号长整型数组
  * @return `true` 非空且长度大于零
  */
-@OptIn(ExperimentalUnsignedTypes::class)
 fun ULongArray?.qualifies(): Boolean = this != null && this.isNotEmpty()

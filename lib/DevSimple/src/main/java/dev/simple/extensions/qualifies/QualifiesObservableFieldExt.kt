@@ -1,4 +1,7 @@
 @file:Suppress("unused")
+@file:JvmName("QualifiesObservableFieldExtKt")
+@file:JvmMultifileClass
+@file:OptIn(ExperimentalUnsignedTypes::class)
 
 package dev.simple.extensions.qualifies
 
@@ -235,25 +238,21 @@ fun ObservableField<BooleanArray>?.qualifies(): Boolean =
     this != null && this.get().qualifies()
 
 /** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfObservableFieldUByteArray")
 fun ObservableField<UByteArray>?.qualifies(): Boolean =
     this != null && this.get().qualifies()
 
 /** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfObservableFieldUShortArray")
 fun ObservableField<UShortArray>?.qualifies(): Boolean =
     this != null && this.get().qualifies()
 
 /** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfObservableFieldUIntArray")
 fun ObservableField<UIntArray>?.qualifies(): Boolean =
     this != null && this.get().qualifies()
 
 /** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
-@OptIn(ExperimentalUnsignedTypes::class)
 @JvmName("qualifiesOfObservableFieldULongArray")
 fun ObservableField<ULongArray>?.qualifies(): Boolean =
     this != null && this.get().qualifies()
