@@ -11,10 +11,10 @@ import dev.utils.app.ViewUtils
 /**
  * 通过数据绑定设置是否启用。
  * <pre>
- *     布局属性 binding_view_enabled；对应 ViewUtils.setEnabled。
+ *     布局属性 binding_enabled；对应 ViewUtils.setEnabled。
  * </pre>
  */
-@BindingAdapter("binding_view_enabled")
-fun View.bindingViewEnabled(enabled: Boolean) {
+@BindingAdapter("binding_enabled")
+fun View.bindingEnabled(enabled: Boolean) {
     ViewUtils.setEnabled(enabled, this)
 }

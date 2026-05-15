@@ -11,10 +11,10 @@ import dev.utils.app.ViewUtils
 /**
  * 通过数据绑定设置选中状态。
  * <pre>
- *     布局属性 binding_view_selected；对应 ViewUtils.setSelected。
+ *     布局属性 binding_selected；对应 ViewUtils.setSelected。
  * </pre>
  */
-@BindingAdapter("binding_view_selected")
-fun View.bindingViewSelected(selected: Boolean) {
+@BindingAdapter("binding_selected")
+fun View.bindingSelected(selected: Boolean) {
     ViewUtils.setSelected(selected, this)
 }
