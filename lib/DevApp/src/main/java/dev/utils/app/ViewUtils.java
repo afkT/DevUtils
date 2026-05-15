@@ -2393,6 +2393,108 @@ public final class ViewUtils {
     // =
 
     /**
+     * 获取 View 是否处于 Activated 激活状态
+     * @param view {@link View}
+     * @return {@code true} 已激活, {@code false} 未激活
+     */
+    public static boolean isActivated(final View view) {
+        if (view != null) {
+            return view.isActivated();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Activated 激活状态（配合 selector / StateListDrawable 等）
+     * @param activated {@code true} 激活, {@code false} 非激活
+     * @param views     View[]
+     * @return {@code true} 激活, {@code false} 非激活
+     */
+    public static boolean setActivated(
+            final boolean activated,
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setActivated(activated);
+                }
+            }
+        }
+        return activated;
+    }
+
+    /**
+     * 切换 View Activated 激活状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean toggleActivated(final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setActivated(!view.isActivated());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 获取 View 是否处于 Pressed 按下状态
+     * @param view {@link View}
+     * @return {@code true} 按下, {@code false} 未按下
+     */
+    public static boolean isPressed(final View view) {
+        if (view != null) {
+            return view.isPressed();
+        }
+        return false;
+    }
+
+    /**
+     * 设置 View Pressed 按下状态（一般用于代码层模拟按下视觉，触摸时系统也会维护该状态）
+     * @param pressed {@code true} 按下, {@code false} 未按下
+     * @param views   View[]
+     * @return {@code true} 按下, {@code false} 未按下
+     */
+    public static boolean setPressed(
+            final boolean pressed,
+            final View... views
+    ) {
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setPressed(pressed);
+                }
+            }
+        }
+        return pressed;
+    }
+
+    /**
+     * 切换 View Pressed 按下状态
+     * @param views View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean togglePressed(final View... views) {
+        if (views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setPressed(!view.isPressed());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
      * 获取 View 是否选中 checked
      * @param view {@link View}
      * @return {@code true} 选中, {@code false} 非选中
