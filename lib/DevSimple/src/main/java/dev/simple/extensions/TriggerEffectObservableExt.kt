@@ -2,14 +2,7 @@
 
 package dev.simple.extensions
 
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableByte
-import androidx.databinding.ObservableChar
-import androidx.databinding.ObservableDouble
-import androidx.databinding.ObservableFloat
-import androidx.databinding.ObservableInt
-import androidx.databinding.ObservableLong
-import androidx.databinding.ObservableShort
+import androidx.databinding.*
 
 // ==============
 // = Observable =
