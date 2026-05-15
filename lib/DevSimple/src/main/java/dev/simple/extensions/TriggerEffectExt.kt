@@ -6,6 +6,7 @@ import android.util.SparseArray
 import android.util.SparseBooleanArray
 import android.util.SparseIntArray
 import androidx.annotation.RequiresApi
+import androidx.core.util.isNotEmpty
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.*
@@ -172,6 +173,28 @@ fun Char?.shouldTriggerEffect(): Boolean = this != null && this.code > 0
 fun Boolean?.shouldTriggerEffect(): Boolean = this != null
 
 /**
+ * 判断可空布尔是否显式为 `true`。
+ * <pre>
+ *     `null` 与 `false` 均不触发；仅当接收方非 null 且为 `true` 时返回 `true`。
+ *     与 [shouldTriggerEffect]（非 null 即触发）区分，用于仅需正向脉冲的场景。
+ * </pre>
+ * @receiver 可空布尔
+ * @return `true` 非空且为 `true`，`false` 为 null 或为 `false`
+ */
+fun Boolean?.shouldTriggerEffectTrue(): Boolean = this != null && this
+
+/**
+ * 判断可空布尔是否显式为 `false`。
+ * <pre>
+ *     `null` 与 `true` 均不触发；仅当接收方非 null 且为 `false` 时返回 `true`。
+ *     适用于需单独响应「否定」或关闭类命令绑定的场景。
+ * </pre>
+ * @receiver 可空布尔
+ * @return `true` 非空且为 `false`，`false` 为 null 或为 `true`
+ */
+fun Boolean?.shouldTriggerEffectFalse(): Boolean = this != null && !this
+
+/**
  * 判断可空 [Result] 是否表示成功。
  * <pre>
  *     容器为 null 不触发；非 null 时取 [Result.isSuccess]（与集合「有内容」不同，按操作结果语义单独约定）。
@@ -293,7 +316,7 @@ fun <K, V> Map<K, V>?.shouldTriggerEffect(): Boolean = !isNullOrEmpty()
  * @return `true` 非空且条目数大于零
  */
 fun <T> SparseArray<T>?.shouldTriggerEffect(): Boolean =
-    this != null && this.size() > 0
+    this != null && this.isNotEmpty()
 
 /**
  * 判断可空 [SparseBooleanArray] 是否至少含有一项。
@@ -301,7 +324,7 @@ fun <T> SparseArray<T>?.shouldTriggerEffect(): Boolean =
  * @return `true` 非空且条目数大于零
  */
 fun SparseBooleanArray?.shouldTriggerEffect(): Boolean =
-    this != null && this.size() > 0
+    this != null && this.isNotEmpty()
 
 /**
  * 判断可空 [SparseIntArray] 是否至少含有一项。
@@ -309,7 +332,7 @@ fun SparseBooleanArray?.shouldTriggerEffect(): Boolean =
  * @return `true` 非空且条目数大于零
  */
 fun SparseIntArray?.shouldTriggerEffect(): Boolean =
-    this != null && this.size() > 0
+    this != null && this.isNotEmpty()
 
 /**
  * 判断可空 [LongSparseArray] 是否至少映射一项。
@@ -317,7 +340,7 @@ fun SparseIntArray?.shouldTriggerEffect(): Boolean =
  * @return `true` 非空且条目数大于零
  */
 fun <T> LongSparseArray<T>?.shouldTriggerEffect(): Boolean =
-    this != null && this.size() > 0
+    this != null && this.isNotEmpty()
 
 /**
  * 判断可空泛型数组是否至少含有一个元素。
@@ -391,6 +414,7 @@ fun BooleanArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmp
  * @receiver 可空无符号字节数组
  * @return `true` 非空且长度大于零
  */
+@OptIn(ExperimentalUnsignedTypes::class)
 fun UByteArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -398,6 +422,7 @@ fun UByteArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty
  * @receiver 可空无符号短整型数组
  * @return `true` 非空且长度大于零
  */
+@OptIn(ExperimentalUnsignedTypes::class)
 fun UShortArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -405,6 +430,7 @@ fun UShortArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpt
  * @receiver 可空无符号整型数组
  * @return `true` 非空且长度大于零
  */
+@OptIn(ExperimentalUnsignedTypes::class)
 fun UIntArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
 
 /**
@@ -412,4 +438,5 @@ fun UIntArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty(
  * @receiver 可空无符号长整型数组
  * @return `true` 非空且长度大于零
  */
+@OptIn(ExperimentalUnsignedTypes::class)
 fun ULongArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
