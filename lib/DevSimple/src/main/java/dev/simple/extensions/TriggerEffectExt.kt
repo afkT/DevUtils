@@ -1,7 +1,14 @@
 package dev.simple.extensions
 
+import android.os.Build
+import android.util.LongSparseArray
+import android.util.SparseArray
+import android.util.SparseBooleanArray
+import android.util.SparseIntArray
+import androidx.annotation.RequiresApi
 import java.math.BigDecimal
 import java.math.BigInteger
+import java.util.*
 
 // ======
 // = Any =
@@ -143,6 +150,38 @@ fun BigInteger?.shouldTriggerEffect(): Boolean =
 fun BigDecimal?.shouldTriggerEffect(): Boolean =
     this != null && this > BigDecimal.ZERO
 
+/**
+ * 判断可空字符的 Unicode 码元是否视为「正数」意义上的有效。
+ * <pre>
+ *     非 null 且 [Char.code] 严格大于零，与其它数值型 [shouldTriggerEffect] 的「大于零」字面一致；
+ *     注意 `Char` 为 UTF-16 码元，与整码点（grapheme）语义不同。
+ * </pre>
+ * @receiver 可空字符
+ * @return `true` 非空且 [Char.code] 严格大于零，`false` 为 null 或 code 不大于零
+ */
+fun Char?.shouldTriggerEffect(): Boolean = this != null && this.code > 0
+
+/**
+ * 判断可空布尔是否「已给出取值」（非 null 即视为可触发一侧）。
+ * <pre>
+ *     仅 `null` 不触发；`true` 与 `false` 均触发（与「显式为 true」的语义区分，按你的约定：非空即真）。
+ * </pre>
+ * @receiver 可空布尔
+ * @return `true` 接收方非 null，`false` 接收方为 null
+ */
+fun Boolean?.shouldTriggerEffect(): Boolean = this != null
+
+/**
+ * 判断可空 [Result] 是否表示成功。
+ * <pre>
+ *     容器为 null 不触发；非 null 时取 [Result.isSuccess]（与集合「有内容」不同，按操作结果语义单独约定）。
+ * </pre>
+ * @receiver 可空操作结果
+ * @return `true` 非空且为成功，`false` 为 null 或为失败
+ */
+fun <T> Result<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.isSuccess
+
 // ===========================================
 // = 文本、可迭代、集合、映射与数组：非空且至少含一项 =
 // ===========================================
@@ -181,6 +220,51 @@ fun <T> Sequence<T>?.shouldTriggerEffect(): Boolean =
     this != null && this.iterator().hasNext()
 
 /**
+ * 判断可空迭代器是否仍有下一项。
+ * <pre>
+ *     与 [Iterable] 判定类似，适用于直接持有 [Iterator] 引用的场景（含 Java 集合返回的迭代器）。
+ * </pre>
+ * @receiver 可空迭代器
+ * @return `true` 非空且 [Iterator.hasNext] 为 `true`
+ */
+fun <T> Iterator<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.hasNext()
+
+/**
+ * 判断可空 `Enumeration` 是否仍有更多元素。
+ * <pre>
+ *     典型于 Java 遗留 API；语义为「非 null 且 [Enumeration.hasMoreElements]」。
+ * </pre>
+ * @receiver 可空枚举迭代
+ * @return `true` 非空且仍有元素
+ */
+fun <T> Enumeration<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.hasMoreElements()
+
+/**
+ * 判断可空 `Optional` 是否呈现值。
+ * <pre>
+ *     与 Kotlin 可空类型不同，`Optional.empty()` 仍为非 null 容器；本方法要求 **容器非 null 且 [Optional.isPresent]**。
+ * </pre>
+ * @receiver 可空 `Optional` 容器
+ * @return `true` 容器非空且内含值
+ */
+@RequiresApi(Build.VERSION_CODES.N)
+fun <T> Optional<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.isPresent
+
+/**
+ * 判断可空位集是否至少含有一个被置位的比特。
+ * <pre>
+ *     使用 [BitSet.cardinality] 与零比较，兼容较低 Android/Java API（不依赖 [BitSet.isEmpty]）。
+ * </pre>
+ * @receiver 可空位集
+ * @return `true` 非空且基数大于零
+ */
+fun BitSet?.shouldTriggerEffect(): Boolean =
+    this != null && this.cardinality() > 0
+
+/**
  * 判断可空集合是否至少含有一个元素。
  * <pre>
  *     使用 `isNullOrEmpty` 取反，覆盖 [List]、[Set] 等 [Collection] 实现。
@@ -199,6 +283,41 @@ fun <T> Collection<T>?.shouldTriggerEffect(): Boolean = !isNullOrEmpty()
  * @return `true` 非空且条目数大于零，`false` 为 null 或为空映射
  */
 fun <K, V> Map<K, V>?.shouldTriggerEffect(): Boolean = !isNullOrEmpty()
+
+/**
+ * 判断可空 [SparseArray] 是否至少映射一项。
+ * <pre>
+ *     非 null 且 [SparseArray.size] 大于零（不根据 `keyAt` 是否有效逐项校验）。
+ * </pre>
+ * @receiver 可空稀疏数组
+ * @return `true` 非空且条目数大于零
+ */
+fun <T> SparseArray<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.size() > 0
+
+/**
+ * 判断可空 [SparseBooleanArray] 是否至少含有一项。
+ * @receiver 可空稀疏布尔数组
+ * @return `true` 非空且条目数大于零
+ */
+fun SparseBooleanArray?.shouldTriggerEffect(): Boolean =
+    this != null && this.size() > 0
+
+/**
+ * 判断可空 [SparseIntArray] 是否至少含有一项。
+ * @receiver 可空稀疏整型数组
+ * @return `true` 非空且条目数大于零
+ */
+fun SparseIntArray?.shouldTriggerEffect(): Boolean =
+    this != null && this.size() > 0
+
+/**
+ * 判断可空 [LongSparseArray] 是否至少映射一项。
+ * @receiver 可空长整型键稀疏数组
+ * @return `true` 非空且条目数大于零
+ */
+fun <T> LongSparseArray<T>?.shouldTriggerEffect(): Boolean =
+    this != null && this.size() > 0
 
 /**
  * 判断可空泛型数组是否至少含有一个元素。
@@ -266,3 +385,31 @@ fun CharArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty(
  * @return `true` 非空且长度大于零，`false` 为 null 或长度为零
  */
 fun BooleanArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
+
+/**
+ * 判断可空无符号字节数组是否至少含有一个元素。
+ * @receiver 可空无符号字节数组
+ * @return `true` 非空且长度大于零
+ */
+fun UByteArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
+
+/**
+ * 判断可空无符号短整型数组是否至少含有一个元素。
+ * @receiver 可空无符号短整型数组
+ * @return `true` 非空且长度大于零
+ */
+fun UShortArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
+
+/**
+ * 判断可空无符号整型数组是否至少含有一个元素。
+ * @receiver 可空无符号整型数组
+ * @return `true` 非空且长度大于零
+ */
+fun UIntArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
+
+/**
+ * 判断可空无符号长整型数组是否至少含有一个元素。
+ * @receiver 可空无符号长整型数组
+ * @return `true` 非空且长度大于零
+ */
+fun ULongArray?.shouldTriggerEffect(): Boolean = this != null && this.isNotEmpty()
