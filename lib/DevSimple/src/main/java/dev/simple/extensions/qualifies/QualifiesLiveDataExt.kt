@@ -18,242 +18,242 @@ import java.util.*
 // ============
 //
 // 因 JVM 擦除，[LiveData] 的多个泛型实参在字节码上均为原始 [LiveData]，
-// 故每个 [shouldTriggerEffect] 重载需使用唯一 [@JvmName]（Kotlin 调用处仍写 `shouldTriggerEffect()`）。
+// 故每个 [qualifies] 重载需使用唯一 [@JvmName]（Kotlin 调用处仍写 `qualifies()`）。
 
-/** [LiveData] 非 null 时对 [LiveData.getValue]（Kotlin [LiveData.value]）委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataByte")
-fun LiveData<Byte>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.getValue]（Kotlin [LiveData.value]）委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataByte")
+fun LiveData<Byte>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataShort")
-fun LiveData<Short>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataShort")
+fun LiveData<Short>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataInt")
-fun LiveData<Int>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataInt")
+fun LiveData<Int>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataLong")
-fun LiveData<Long>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataLong")
+fun LiveData<Long>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataFloat")
-fun LiveData<Float>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataFloat")
+fun LiveData<Float>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataDouble")
-fun LiveData<Double>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataDouble")
+fun LiveData<Double>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataUByte")
-fun LiveData<UByte>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataUByte")
+fun LiveData<UByte>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataUShort")
-fun LiveData<UShort>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataUShort")
+fun LiveData<UShort>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataUInt")
-fun LiveData<UInt>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataUInt")
+fun LiveData<UInt>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataULong")
-fun LiveData<ULong>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataULong")
+fun LiveData<ULong>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataBigInteger")
-fun LiveData<BigInteger>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataBigInteger")
+fun LiveData<BigInteger>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataBigDecimal")
-fun LiveData<BigDecimal>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataBigDecimal")
+fun LiveData<BigDecimal>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataChar")
-fun LiveData<Char>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataChar")
+fun LiveData<Char>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataBoolean")
-fun LiveData<Boolean>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataBoolean")
+fun LiveData<Boolean>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffectTrue]。 */
-fun LiveData<Boolean>?.shouldTriggerEffectTrue(): Boolean =
-    this != null && this.value.shouldTriggerEffectTrue()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifiesTrue]。 */
+fun LiveData<Boolean>?.qualifiesTrue(): Boolean =
+    this != null && this.value.qualifiesTrue()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffectFalse]。 */
-fun LiveData<Boolean>?.shouldTriggerEffectFalse(): Boolean =
-    this != null && this.value.shouldTriggerEffectFalse()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifiesFalse]。 */
+fun LiveData<Boolean>?.qualifiesFalse(): Boolean =
+    this != null && this.value.qualifiesFalse()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataResult")
-fun <T> LiveData<Result<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataResult")
+fun <T> LiveData<Result<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataCharSequence")
-fun LiveData<CharSequence>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataCharSequence")
+fun LiveData<CharSequence>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataIterable")
-fun <T> LiveData<Iterable<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataIterable")
+fun <T> LiveData<Iterable<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataSequence")
-fun <T> LiveData<Sequence<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataSequence")
+fun <T> LiveData<Sequence<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataIterator")
-fun <T> LiveData<Iterator<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataIterator")
+fun <T> LiveData<Iterator<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataEnumeration")
-fun <T> LiveData<Enumeration<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataEnumeration")
+fun <T> LiveData<Enumeration<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（API 24+ 与 `QualifiesExt` 一致）。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]（API 24+ 与 `QualifiesExt` 一致）。 */
 @RequiresApi(Build.VERSION_CODES.N)
-@JvmName("shouldTriggerEffectOfLiveDataOptional")
-fun <T> LiveData<Optional<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+@JvmName("qualifiesOfLiveDataOptional")
+fun <T> LiveData<Optional<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataBitSet")
-fun LiveData<BitSet>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataBitSet")
+fun LiveData<BitSet>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataCollection")
-fun <T> LiveData<Collection<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataCollection")
+fun <T> LiveData<Collection<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（[LiveData] 对 `T` 不变，[List] 需单独重载）。 */
-@JvmName("shouldTriggerEffectOfLiveDataList")
-fun <T> LiveData<List<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]（[LiveData] 对 `T` 不变，[List] 需单独重载）。 */
+@JvmName("qualifiesOfLiveDataList")
+fun <T> LiveData<List<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（[MutableList] 专用）。 */
-@JvmName("shouldTriggerEffectOfLiveDataMutableList")
-fun <T> LiveData<MutableList<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]（[MutableList] 专用）。 */
+@JvmName("qualifiesOfLiveDataMutableList")
+fun <T> LiveData<MutableList<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（[Set] 专用）。 */
-@JvmName("shouldTriggerEffectOfLiveDataSet")
-fun <T> LiveData<Set<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]（[Set] 专用）。 */
+@JvmName("qualifiesOfLiveDataSet")
+fun <T> LiveData<Set<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]（[MutableSet] 专用）。 */
-@JvmName("shouldTriggerEffectOfLiveDataMutableSet")
-fun <T> LiveData<MutableSet<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]（[MutableSet] 专用）。 */
+@JvmName("qualifiesOfLiveDataMutableSet")
+fun <T> LiveData<MutableSet<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataMap")
-fun <K, V> LiveData<Map<K, V>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataMap")
+fun <K, V> LiveData<Map<K, V>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataSparseArray")
-fun <T> LiveData<SparseArray<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataSparseArray")
+fun <T> LiveData<SparseArray<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataSparseBooleanArray")
-fun LiveData<SparseBooleanArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataSparseBooleanArray")
+fun LiveData<SparseBooleanArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataSparseIntArray")
-fun LiveData<SparseIntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataSparseIntArray")
+fun LiveData<SparseIntArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataLongSparseArray")
-fun <T> LiveData<LongSparseArray<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataLongSparseArray")
+fun <T> LiveData<LongSparseArray<T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataArray")
-fun <T> LiveData<Array<out T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataArray")
+fun <T> LiveData<Array<out T>>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataByteArray")
-fun LiveData<ByteArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataByteArray")
+fun LiveData<ByteArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataShortArray")
-fun LiveData<ShortArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataShortArray")
+fun LiveData<ShortArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataIntArray")
-fun LiveData<IntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataIntArray")
+fun LiveData<IntArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataLongArray")
-fun LiveData<LongArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataLongArray")
+fun LiveData<LongArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataFloatArray")
-fun LiveData<FloatArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataFloatArray")
+fun LiveData<FloatArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataDoubleArray")
-fun LiveData<DoubleArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataDoubleArray")
+fun LiveData<DoubleArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataCharArray")
-fun LiveData<CharArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataCharArray")
+fun LiveData<CharArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfLiveDataBooleanArray")
-fun LiveData<BooleanArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
+@JvmName("qualifiesOfLiveDataBooleanArray")
+fun LiveData<BooleanArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfLiveDataUByteArray")
-fun LiveData<UByteArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+@JvmName("qualifiesOfLiveDataUByteArray")
+fun LiveData<UByteArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfLiveDataUShortArray")
-fun LiveData<UShortArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+@JvmName("qualifiesOfLiveDataUShortArray")
+fun LiveData<UShortArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfLiveDataUIntArray")
-fun LiveData<UIntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+@JvmName("qualifiesOfLiveDataUIntArray")
+fun LiveData<UIntArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()
 
-/** [LiveData] 非 null 时对 [LiveData.value] 委托 [shouldTriggerEffect]。 */
+/** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfLiveDataULongArray")
-fun LiveData<ULongArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.value.shouldTriggerEffect()
+@JvmName("qualifiesOfLiveDataULongArray")
+fun LiveData<ULongArray>?.qualifies(): Boolean =
+    this != null && this.value.qualifies()

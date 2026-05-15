@@ -18,242 +18,242 @@ import java.util.*
 // ===================
 //
 // 因 JVM 擦除，[ObservableField] 的多个泛型实参在字节码上均为原始 [ObservableField]，
-// 故每个 [shouldTriggerEffect] 重载需使用唯一 [@JvmName]（Kotlin 调用处仍写 `shouldTriggerEffect()`）。
+// 故每个 [qualifies] 重载需使用唯一 [@JvmName]（Kotlin 调用处仍写 `qualifies()`）。
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldByte")
-fun ObservableField<Byte>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldByte")
+fun ObservableField<Byte>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldShort")
-fun ObservableField<Short>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldShort")
+fun ObservableField<Short>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldInt")
-fun ObservableField<Int>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldInt")
+fun ObservableField<Int>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldLong")
-fun ObservableField<Long>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldLong")
+fun ObservableField<Long>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldFloat")
-fun ObservableField<Float>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldFloat")
+fun ObservableField<Float>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldDouble")
-fun ObservableField<Double>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldDouble")
+fun ObservableField<Double>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldUByte")
-fun ObservableField<UByte>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldUByte")
+fun ObservableField<UByte>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldUShort")
-fun ObservableField<UShort>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldUShort")
+fun ObservableField<UShort>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldUInt")
-fun ObservableField<UInt>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldUInt")
+fun ObservableField<UInt>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldULong")
-fun ObservableField<ULong>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldULong")
+fun ObservableField<ULong>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldBigInteger")
-fun ObservableField<BigInteger>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldBigInteger")
+fun ObservableField<BigInteger>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldBigDecimal")
-fun ObservableField<BigDecimal>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldBigDecimal")
+fun ObservableField<BigDecimal>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldChar")
-fun ObservableField<Char>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldChar")
+fun ObservableField<Char>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldBoolean")
-fun ObservableField<Boolean>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldBoolean")
+fun ObservableField<Boolean>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffectTrue]。 */
-fun ObservableField<Boolean>?.shouldTriggerEffectTrue(): Boolean =
-    this != null && this.get().shouldTriggerEffectTrue()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifiesTrue]。 */
+fun ObservableField<Boolean>?.qualifiesTrue(): Boolean =
+    this != null && this.get().qualifiesTrue()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffectFalse]。 */
-fun ObservableField<Boolean>?.shouldTriggerEffectFalse(): Boolean =
-    this != null && this.get().shouldTriggerEffectFalse()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifiesFalse]。 */
+fun ObservableField<Boolean>?.qualifiesFalse(): Boolean =
+    this != null && this.get().qualifiesFalse()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldResult")
-fun <T> ObservableField<Result<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldResult")
+fun <T> ObservableField<Result<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldCharSequence")
-fun ObservableField<CharSequence>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldCharSequence")
+fun ObservableField<CharSequence>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldIterable")
-fun <T> ObservableField<Iterable<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldIterable")
+fun <T> ObservableField<Iterable<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldSequence")
-fun <T> ObservableField<Sequence<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldSequence")
+fun <T> ObservableField<Sequence<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldIterator")
-fun <T> ObservableField<Iterator<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldIterator")
+fun <T> ObservableField<Iterator<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldEnumeration")
-fun <T> ObservableField<Enumeration<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldEnumeration")
+fun <T> ObservableField<Enumeration<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（API 24+ 与 `QualifiesExt` 一致）。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]（API 24+ 与 `QualifiesExt` 一致）。 */
 @RequiresApi(Build.VERSION_CODES.N)
-@JvmName("shouldTriggerEffectOfObservableFieldOptional")
-fun <T> ObservableField<Optional<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+@JvmName("qualifiesOfObservableFieldOptional")
+fun <T> ObservableField<Optional<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldBitSet")
-fun ObservableField<BitSet>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldBitSet")
+fun ObservableField<BitSet>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldCollection")
-fun <T> ObservableField<Collection<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldCollection")
+fun <T> ObservableField<Collection<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（[ObservableField] 对 `T` 不变，[List] 需单独重载）。 */
-@JvmName("shouldTriggerEffectOfObservableFieldList")
-fun <T> ObservableField<List<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]（[ObservableField] 对 `T` 不变，[List] 需单独重载）。 */
+@JvmName("qualifiesOfObservableFieldList")
+fun <T> ObservableField<List<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（[MutableList] 专用）。 */
-@JvmName("shouldTriggerEffectOfObservableFieldMutableList")
-fun <T> ObservableField<MutableList<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]（[MutableList] 专用）。 */
+@JvmName("qualifiesOfObservableFieldMutableList")
+fun <T> ObservableField<MutableList<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（[Set] 专用）。 */
-@JvmName("shouldTriggerEffectOfObservableFieldSet")
-fun <T> ObservableField<Set<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]（[Set] 专用）。 */
+@JvmName("qualifiesOfObservableFieldSet")
+fun <T> ObservableField<Set<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]（[MutableSet] 专用）。 */
-@JvmName("shouldTriggerEffectOfObservableFieldMutableSet")
-fun <T> ObservableField<MutableSet<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]（[MutableSet] 专用）。 */
+@JvmName("qualifiesOfObservableFieldMutableSet")
+fun <T> ObservableField<MutableSet<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldMap")
-fun <K, V> ObservableField<Map<K, V>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldMap")
+fun <K, V> ObservableField<Map<K, V>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldSparseArray")
-fun <T> ObservableField<SparseArray<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldSparseArray")
+fun <T> ObservableField<SparseArray<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldSparseBooleanArray")
-fun ObservableField<SparseBooleanArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldSparseBooleanArray")
+fun ObservableField<SparseBooleanArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldSparseIntArray")
-fun ObservableField<SparseIntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldSparseIntArray")
+fun ObservableField<SparseIntArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldLongSparseArray")
-fun <T> ObservableField<LongSparseArray<T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldLongSparseArray")
+fun <T> ObservableField<LongSparseArray<T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldArray")
-fun <T> ObservableField<Array<out T>>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldArray")
+fun <T> ObservableField<Array<out T>>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldByteArray")
-fun ObservableField<ByteArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldByteArray")
+fun ObservableField<ByteArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldShortArray")
-fun ObservableField<ShortArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldShortArray")
+fun ObservableField<ShortArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldIntArray")
-fun ObservableField<IntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldIntArray")
+fun ObservableField<IntArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldLongArray")
-fun ObservableField<LongArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldLongArray")
+fun ObservableField<LongArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldFloatArray")
-fun ObservableField<FloatArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldFloatArray")
+fun ObservableField<FloatArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldDoubleArray")
-fun ObservableField<DoubleArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldDoubleArray")
+fun ObservableField<DoubleArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldCharArray")
-fun ObservableField<CharArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldCharArray")
+fun ObservableField<CharArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
-@JvmName("shouldTriggerEffectOfObservableFieldBooleanArray")
-fun ObservableField<BooleanArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
+@JvmName("qualifiesOfObservableFieldBooleanArray")
+fun ObservableField<BooleanArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfObservableFieldUByteArray")
-fun ObservableField<UByteArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+@JvmName("qualifiesOfObservableFieldUByteArray")
+fun ObservableField<UByteArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfObservableFieldUShortArray")
-fun ObservableField<UShortArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+@JvmName("qualifiesOfObservableFieldUShortArray")
+fun ObservableField<UShortArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfObservableFieldUIntArray")
-fun ObservableField<UIntArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+@JvmName("qualifiesOfObservableFieldUIntArray")
+fun ObservableField<UIntArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
 
-/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [shouldTriggerEffect]。 */
+/** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
 @OptIn(ExperimentalUnsignedTypes::class)
-@JvmName("shouldTriggerEffectOfObservableFieldULongArray")
-fun ObservableField<ULongArray>?.shouldTriggerEffect(): Boolean =
-    this != null && this.get().shouldTriggerEffect()
+@JvmName("qualifiesOfObservableFieldULongArray")
+fun ObservableField<ULongArray>?.qualifies(): Boolean =
+    this != null && this.get().qualifies()
