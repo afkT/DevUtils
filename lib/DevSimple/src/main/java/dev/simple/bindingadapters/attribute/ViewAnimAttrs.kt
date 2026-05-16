@@ -89,3 +89,104 @@ data class ViewAnimShakePresetAt(
     val durationMillis: Long,
     val isBanClick: Boolean = false,
 )
+
+/**
+ * 仅含时间戳与可选时长的动画命令。
+ * <pre>
+ *     配合 `binding_view_anim_rotate_center`、`binding_view_anim_hidden_alpha`、`binding_view_anim_show_alpha`、
+ *     `binding_view_anim_lessen_scale`、`binding_view_anim_amplify_scale` 等；
+ *     委托 [AnimationUtils] 对应时长的工厂方法后 [AnimationUtils.startAnimation]。
+ * </pre>
+ *
+ * @property timestamp 触发用时间戳，须大于 0 才会执行
+ * @property durationMillis 动画时长，默认 [AnimationUtils.DEFAULT_ANIMATION_DURATION]
+ */
+data class ViewAnimDurationAt(
+    val timestamp: Long,
+    val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
+)
+
+/**
+ * 自定义角度旋转命令（相对 pivot 坐标）。
+ * <pre>
+ *     配合 `binding_view_anim_rotate`；委托 [AnimationUtils.getRotateAnimation] 含 pivot 重载。
+ * </pre>
+ *
+ * @property timestamp 触发用时间戳，须大于 0 才会执行
+ * @property fromDegrees 起始角度
+ * @property toDegrees 结束角度
+ * @property pivotX 旋转中心 X
+ * @property pivotY 旋转中心 Y
+ * @property durationMillis 动画时长
+ */
+data class ViewAnimRotateAt(
+    val timestamp: Long,
+    val fromDegrees: Float,
+    val toDegrees: Float,
+    val pivotX: Float = 0.5f,
+    val pivotY: Float = 0.5f,
+    val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
+)
+
+/**
+ * 透明度渐变命令（不修改 [android.view.View.setVisibility]）。
+ * <pre>
+ *     配合 `binding_view_anim_alpha_fade`；委托 [AnimationUtils.getAlphaAnimation]。
+ *     与 `binding_view_anim_*_alpha`（[dev.utils.app.anim.ViewAnimationUtils] 显隐）区分。
+ * </pre>
+ *
+ * @property timestamp 触发用时间戳，须大于 0 才会执行
+ * @property fromAlpha 起始透明度
+ * @property toAlpha 结束透明度
+ * @property durationMillis 动画时长
+ */
+data class ViewAnimAlphaFadeAt(
+    val timestamp: Long,
+    val fromAlpha: Float,
+    val toAlpha: Float,
+    val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
+)
+
+/**
+ * 缩放动画命令（默认以 View 中心为缩放中心）。
+ * <pre>
+ *     配合 `binding_view_anim_scale_center`；委托 [AnimationUtils.getScaleAnimationCenter] 四参缩放重载。
+ * </pre>
+ *
+ * @property timestamp 触发用时间戳，须大于 0 才会执行
+ * @property fromX 起始 X 缩放比
+ * @property toX 结束 X 缩放比
+ * @property fromY 起始 Y 缩放比
+ * @property toY 结束 Y 缩放比
+ * @property durationMillis 动画时长
+ */
+data class ViewAnimScaleCenterAt(
+    val timestamp: Long,
+    val fromX: Float,
+    val toX: Float,
+    val fromY: Float,
+    val toY: Float,
+    val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
+)
+
+/**
+ * 缩放动画命令（左上角为缩放原点）。
+ * <pre>
+ *     配合 `binding_view_anim_scale`；委托 [AnimationUtils.getScaleAnimation] 四参缩放重载。
+ * </pre>
+ *
+ * @property timestamp 触发用时间戳，须大于 0 才会执行
+ * @property fromX 起始 X 缩放比
+ * @property toX 结束 X 缩放比
+ * @property fromY 起始 Y 缩放比
+ * @property toY 结束 Y 缩放比
+ * @property durationMillis 动画时长
+ */
+data class ViewAnimScaleAt(
+    val timestamp: Long,
+    val fromX: Float,
+    val toX: Float,
+    val fromY: Float,
+    val toY: Float,
+    val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
+)

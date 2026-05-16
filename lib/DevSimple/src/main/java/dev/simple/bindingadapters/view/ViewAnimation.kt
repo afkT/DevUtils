@@ -2,11 +2,9 @@ package dev.simple.bindingadapters.view
 
 import android.view.View
 import androidx.databinding.BindingAdapter
-import dev.simple.bindingadapters.attribute.ViewAnimAlphaAt
-import dev.simple.bindingadapters.attribute.ViewAnimShakeAt
-import dev.simple.bindingadapters.attribute.ViewAnimShakePresetAt
-import dev.simple.bindingadapters.attribute.ViewAnimTranslateAt
+import dev.simple.bindingadapters.attribute.*
 import dev.simple.bindingadapters.qualifiesBindingAction
+import dev.utils.app.anim.AnimationUtils
 import dev.utils.app.anim.ViewAnimationUtils
 
 // ================================
@@ -14,13 +12,16 @@ import dev.utils.app.anim.ViewAnimationUtils
 // ================================
 
 /**
- * [View] 透明度与平移类 View 动画的 Data Binding 适配集合。
+ * [View] 透明度、平移、旋转与缩放类动画的 Data Binding 适配集合。
  *
- * 布局属性前缀为 `binding_view_anim_*`；实现对应 [dev.utils.app.anim.ViewAnimationUtils]。
+ * 布局属性前缀为 `binding_view_anim_*`：显隐/平移/摇晃委托 [dev.utils.app.anim.ViewAnimationUtils]；
+ * 旋转/缩放/纯 Alpha 渐变工厂委托 [dev.utils.app.anim.AnimationUtils] 并 [AnimationUtils.startAnimation]。
  * <pre>
  *     未封装带 [android.view.animation.Animation.AnimationListener] 的重载（监听器宜在代码中注册）。
  *     动画为一次性副作用，须通过正时间戳或含 timestamp 的 attribute 实体触发（判定同 [qualifiesBindingAction]）。
  *     与 [View] 中 `binding_view_animation` / `binding_view_start_animation` 等通用 Animation 控制属性并存、互不替代。
+ *     `binding_view_anim_*_alpha`（ViewAnimationUtils）会同步 visibility；`binding_view_anim_hidden_alpha` /
+ *     `binding_view_anim_show_alpha` / `binding_view_anim_alpha_fade` 仅播放 Alpha 动画，不改 visibility。
  * </pre>
  */
 
@@ -213,4 +214,278 @@ fun View.bindingViewAnimShakePreset(payload: ViewAnimShakePresetAt?): Boolean {
     val p = payload ?: return false
     if (!p.timestamp.qualifiesBindingAction()) return false
     return ViewAnimationUtils.shake(this, p.cycles, p.durationMillis, p.isBanClick)
+}
+
+// ================================
+// = AnimationUtils 工厂 + 启动 =
+// ================================
+
+// ==========
+// = 旋转动画 =
+// ==========
+
+/**
+ * 通过数据绑定以默认时长绕视图中心旋转一周（0°→359°）。
+ * <pre>
+ *     布局属性 `binding_view_anim_rotate_center_ts`；委托 [AnimationUtils.getRotateAnimationByCenter] 无参时长重载。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_anim_rotate_center_ts")
+fun View.bindingViewAnimRotateCenterTs(timestamp: Long?) {
+    if (!timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(this, AnimationUtils.getRotateAnimationByCenter())
+}
+
+/**
+ * 通过数据绑定绕视图中心旋转（可指定时长）。
+ * <pre>
+ *     布局属性 `binding_view_anim_rotate_center`；payload 为 null 或时间戳无效时跳过。
+ * </pre>
+ *
+ * @param payload 动画命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_rotate_center")
+fun View.bindingViewAnimRotateCenter(payload: ViewAnimDurationAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getRotateAnimationByCenter(p.durationMillis),
+    )
+}
+
+/**
+ * 通过数据绑定按自定义角度与 pivot 旋转。
+ * <pre>
+ *     布局属性 `binding_view_anim_rotate`；委托 [AnimationUtils.getRotateAnimation] 含 pivot 重载。
+ * </pre>
+ *
+ * @param payload 旋转命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_rotate")
+fun View.bindingViewAnimRotate(payload: ViewAnimRotateAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getRotateAnimation(
+            p.fromDegrees,
+            p.toDegrees,
+            p.pivotX,
+            p.pivotY,
+            p.durationMillis,
+            null,
+        ),
+    )
+}
+
+// ==================
+// = 纯 Alpha 渐变 =
+// ==================
+
+/**
+ * 通过数据绑定播放 1.0→0.0 透明度渐变（不改 visibility）。
+ * <pre>
+ *     布局属性 `binding_view_anim_hidden_alpha_ts`；委托 [AnimationUtils.getHiddenAlphaAnimation] 无参时长重载。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_anim_hidden_alpha_ts")
+fun View.bindingViewAnimHiddenAlphaTs(timestamp: Long?) {
+    if (!timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(this, AnimationUtils.getHiddenAlphaAnimation())
+}
+
+/**
+ * 通过数据绑定播放 1.0→0.0 透明度渐变（可指定时长，不改 visibility）。
+ * <pre>
+ *     布局属性 `binding_view_anim_hidden_alpha`；语义区别于 `binding_view_anim_invisible_alpha` / `gone_alpha`。
+ * </pre>
+ *
+ * @param payload 动画命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_hidden_alpha")
+fun View.bindingViewAnimHiddenAlpha(payload: ViewAnimDurationAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getHiddenAlphaAnimation(p.durationMillis),
+    )
+}
+
+/**
+ * 通过数据绑定播放 0.0→1.0 透明度渐变（不改 visibility）。
+ * <pre>
+ *     布局属性 `binding_view_anim_show_alpha_ts`；委托 [AnimationUtils.getShowAlphaAnimation] 无参时长重载。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_anim_show_alpha_ts")
+fun View.bindingViewAnimShowAlphaTs(timestamp: Long?) {
+    if (!timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(this, AnimationUtils.getShowAlphaAnimation())
+}
+
+/**
+ * 通过数据绑定播放 0.0→1.0 透明度渐变（可指定时长，不改 visibility）。
+ * <pre>
+ *     布局属性 `binding_view_anim_show_alpha`；语义区别于 `binding_view_anim_visible_alpha`。
+ * </pre>
+ *
+ * @param payload 动画命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_show_alpha")
+fun View.bindingViewAnimShowAlpha(payload: ViewAnimDurationAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getShowAlphaAnimation(p.durationMillis),
+    )
+}
+
+/**
+ * 通过数据绑定播放任意起止透明度的 Alpha 渐变（不改 visibility）。
+ * <pre>
+ *     布局属性 `binding_view_anim_alpha_fade`；委托 [AnimationUtils.getAlphaAnimation]。
+ * </pre>
+ *
+ * @param payload 渐变命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_alpha_fade")
+fun View.bindingViewAnimAlphaFade(payload: ViewAnimAlphaFadeAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getAlphaAnimation(p.fromAlpha, p.toAlpha, p.durationMillis),
+    )
+}
+
+// ==========
+// = 缩放动画 =
+// ==========
+
+/**
+ * 通过数据绑定以默认时长播放中心缩小至 0 的缩放动画。
+ * <pre>
+ *     布局属性 `binding_view_anim_lessen_scale_ts`；委托 [AnimationUtils.getLessenScaleAnimation] 无参时长重载。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_anim_lessen_scale_ts")
+fun View.bindingViewAnimLessenScaleTs(timestamp: Long?) {
+    if (!timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getLessenScaleAnimation(AnimationUtils.DEFAULT_ANIMATION_DURATION),
+    )
+}
+
+/**
+ * 通过数据绑定播放中心缩小至 0 的缩放动画（可指定时长）。
+ * <pre>
+ *     布局属性 `binding_view_anim_lessen_scale`；委托 [AnimationUtils.getLessenScaleAnimation]。
+ * </pre>
+ *
+ * @param payload 动画命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_lessen_scale")
+fun View.bindingViewAnimLessenScale(payload: ViewAnimDurationAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getLessenScaleAnimation(p.durationMillis),
+    )
+}
+
+/**
+ * 通过数据绑定以默认时长播放中心放大至 1 的缩放动画。
+ * <pre>
+ *     布局属性 `binding_view_anim_amplify_scale_ts`；委托 [AnimationUtils.getAmplificationAnimation] 无参时长重载。
+ * </pre>
+ *
+ * @param timestamp 建议绑定 [System.currentTimeMillis] 或 ViewModel 内递增值
+ */
+@BindingAdapter("binding_view_anim_amplify_scale_ts")
+fun View.bindingViewAnimAmplifyScaleTs(timestamp: Long?) {
+    if (!timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getAmplificationAnimation(AnimationUtils.DEFAULT_ANIMATION_DURATION),
+    )
+}
+
+/**
+ * 通过数据绑定播放中心放大至 1 的缩放动画（可指定时长）。
+ * <pre>
+ *     布局属性 `binding_view_anim_amplify_scale`；委托 [AnimationUtils.getAmplificationAnimation]。
+ * </pre>
+ *
+ * @param payload 动画命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_amplify_scale")
+fun View.bindingViewAnimAmplifyScale(payload: ViewAnimDurationAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getAmplificationAnimation(p.durationMillis),
+    )
+}
+
+/**
+ * 通过数据绑定以视图中心为原点播放缩放动画。
+ * <pre>
+ *     布局属性 `binding_view_anim_scale_center`；委托 [AnimationUtils.getScaleAnimationCenter] 四参缩放重载。
+ * </pre>
+ *
+ * @param payload 缩放命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_scale_center")
+fun View.bindingViewAnimScaleCenter(payload: ViewAnimScaleCenterAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getScaleAnimationCenter(
+            p.fromX,
+            p.toX,
+            p.fromY,
+            p.toY,
+            p.durationMillis,
+        ),
+    )
+}
+
+/**
+ * 通过数据绑定以左上角为原点播放缩放动画。
+ * <pre>
+ *     布局属性 `binding_view_anim_scale`；委托 [AnimationUtils.getScaleAnimation] 四参缩放重载。
+ * </pre>
+ *
+ * @param payload 缩放命令封装，可为 null
+ */
+@BindingAdapter("binding_view_anim_scale")
+fun View.bindingViewAnimScale(payload: ViewAnimScaleAt?) {
+    val p = payload ?: return
+    if (!p.timestamp.qualifiesBindingAction()) return
+    AnimationUtils.startAnimation(
+        this,
+        AnimationUtils.getScaleAnimation(
+            p.fromX,
+            p.toX,
+            p.fromY,
+            p.toY,
+            p.durationMillis,
+            null,
+        ),
+    )
 }
