@@ -10,9 +10,9 @@ import dev.simple.bindingadapters.qualifiesBindingAction
 import dev.utils.LogPrintUtils
 import dev.utils.app.ShapeUtils
 
-// ==============================
+// ============================
 // = View Shape BindingAdapter =
-// ==============================
+// ============================
 
 /**
  * [View] 背景 Shape（[dev.utils.app.ShapeUtils]）的 Data Binding 适配集合。
@@ -75,9 +75,9 @@ fun View.bindingViewShapeUtilsTs(
     applyShapeUtils(utils)
 }
 
-// =============
+// ==========
 // = 常用工厂 =
-// =============
+// ==========
 
 /**
  * 通过数据绑定创建圆角纯色 Shape 并设为背景。
@@ -305,9 +305,9 @@ fun View.bindingViewShapePadding(paddings: Paddings?) {
     )
 }
 
-// =============
+// ============
 // = 声明式合并 =
-// =============
+// ============
 
 /**
  * 通过数据绑定按 [ViewShapeSpec] 声明式构建 Shape 并设为背景。
