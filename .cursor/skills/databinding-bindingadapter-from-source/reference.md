@@ -7,7 +7,8 @@
 | 方法需要 Context 且非 View 自带 `getContext()` 够用 | 一般仍可做，避免要求 Activity 子类 |
 | 需要 inflater / 新建整棵子树 | 不做 BindingAdapter，改在代码里 |
 | 仅 `(View)` 或仅接收者，且为「事件」类（滚到底、清空、请求焦点一次） | `timestamp: Long?` + `qualifies*` |
-| 仅 `(View, boolean)` 且 bool 表「是否执行」 | 可用 `Boolean?`，`true` 执行；注意 LiveData 同值不刷新 → 重要多次触发改用时间戳 |
+| 有成对 **set / remove**，bool 表 **效果开/关状态**（下划线、删除线等） | **`Boolean?` 三态**：`null` 不改，`true` → `set*`，`false` → `remove*`；参照 `bindingTVUnderline` |
+| 仅 `(View, boolean)` 且 bool 表「是否执行一次」、无 remove | `Boolean?` 仅 `true` 执行；同值不刷新 → 多次触发改时间戳 |
 | 两个 Int（dx, dy）、xy、宽高对 | 合并为 `attribute` 下实体，单属性绑定 |
 | 与滚动、延迟二次对齐相关 | 对照 `ViewScroll.kt` + `ViewScrollDelayed.kt` / `ViewScrollDelayAssist.kt` 是否需套一层 |
 
@@ -26,6 +27,26 @@ app:binding_scroll_instant_rel_xy="@{viewModel.relScroll}"
 ```
 
 `relScroll` 为 `MutableLiveData<XYI>` 或单次命令 `XYI`；为 `null` 时不滚动。
+
+## XML 侧示例（Boolean 三态开关）
+
+```xml
+app:binding_tv_underline="@{viewModel.showUnderline}"
+app:binding_tv_strike_thru="@{viewModel.showStrikeThru}"
+```
+
+ViewModel 中 `showUnderline` / `showStrikeThru` 为 `Boolean` 或 `LiveData<Boolean>`：`true` 显示装饰线，`false` 移除；未绑定或表达式为 `null` 时不改当前 `paintFlags`。可选 `app:binding_tv_underline_anti_alias` 仅在开启下划线时生效。
+
+适配器骨架（与 `TextView.kt` 一致）：
+
+```kotlin
+if (underline == null) return
+if (underline) {
+    TextViewUtils.setUnderlineText(this, antiAlias ?: true)
+} else {
+    TextViewUtils.removeUnderlineText(this)
+}
+```
 
 ## 与 java-kotlin-method-normalize 的分工
 
