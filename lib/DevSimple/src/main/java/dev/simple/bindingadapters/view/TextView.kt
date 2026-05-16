@@ -314,14 +314,15 @@ fun TextView.bindingTVPaintFlags(flags: Int?) {
 }
 
 /**
- * 通过数据绑定追加下划线相关标志。
+ * 通过数据绑定设置或移除下划线相关标志。
  * <pre>
  *     布局属性 `binding_tv_underline`、`binding_tv_underline_anti_alias`（可选，默认 `true`）；
- *     仅在 `underline` 为 `true` 时委托 [TextViewUtils.setUnderlineText]。
+ *     `underline` 为 `true` 时委托 [TextViewUtils.setUnderlineText]，
+ *     为 `false` 时委托 [TextViewUtils.removeUnderlineText]，`null` 时不修改。
  * </pre>
  *
- * @param underline 是否追加下划线效果
- * @param antiAlias 是否同时合并抗锯齿标志
+ * @param underline 是否显示下划线效果
+ * @param antiAlias 设置下划线时是否同时合并抗锯齿标志
  */
 @BindingAdapter(
     value = ["binding_tv_underline", "binding_tv_underline_anti_alias"],
@@ -331,19 +332,24 @@ fun TextView.bindingTVUnderline(
     underline: Boolean?,
     antiAlias: Boolean?,
 ) {
-    if (underline != true) return
-    TextViewUtils.setUnderlineText(this, antiAlias ?: true)
+    if (underline == null) return
+    if (underline) {
+        TextViewUtils.setUnderlineText(this, antiAlias ?: true)
+    } else {
+        TextViewUtils.removeUnderlineText(this)
+    }
 }
 
 /**
- * 通过数据绑定追加删除线相关标志。
+ * 通过数据绑定设置或移除删除线相关标志。
  * <pre>
  *     布局属性 `binding_tv_strike_thru`、`binding_tv_strike_thru_anti_alias`（可选，默认 `true`）；
- *     仅在 `strikeThru` 为 `true` 时委托 [TextViewUtils.setStrikeThruText]。
+ *     `strikeThru` 为 `true` 时委托 [TextViewUtils.setStrikeThruText]，
+ *     为 `false` 时委托 [TextViewUtils.removeStrikeThruText]，`null` 时不修改。
  * </pre>
  *
- * @param strikeThru 是否追加中划线效果
- * @param antiAlias 是否同时合并抗锯齿标志
+ * @param strikeThru 是否显示中划线效果
+ * @param antiAlias 设置中划线时是否同时合并抗锯齿标志
  */
 @BindingAdapter(
     value = ["binding_tv_strike_thru", "binding_tv_strike_thru_anti_alias"],
@@ -353,8 +359,12 @@ fun TextView.bindingTVStrikeThru(
     strikeThru: Boolean?,
     antiAlias: Boolean?,
 ) {
-    if (strikeThru != true) return
-    TextViewUtils.setStrikeThruText(this, antiAlias ?: true)
+    if (strikeThru == null) return
+    if (strikeThru) {
+        TextViewUtils.setStrikeThruText(this, antiAlias ?: true)
+    } else {
+        TextViewUtils.removeStrikeThruText(this)
+    }
 }
 
 // ============
