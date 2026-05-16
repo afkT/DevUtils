@@ -31,21 +31,30 @@ import dev.utils.app.ClickUtils
 // ==========
 
 /**
- * 通过数据绑定设置单击监听。
+ * 通过数据绑定设置带防抖的点击回调
  * <pre>
- *     布局属性 binding_click；`null` 时不修改；委托 [ClickUtils.setOnClick]。
- *     无防抖，每次点击均回调；需防抖见 [bindingClickDebounce]。
+ *     对应布局属性 binding_click、binding_click_interval，requireAll 为 false。
+ *     intervalTime 大于 0 时通过 ClickUtils.isFastDoubleClick 防抖；listener 为空时不设置监听。
  * </pre>
  *
  * @param consumer 有效点击时回调当前 [View]
+ * @param intervalTime 防抖间隔毫秒，小于等于 0 时不防抖
  */
-@BindingAdapter("binding_click")
-fun View.bindingClick(consumer: BindingConsumer<View>?) {
+@BindingAdapter(
+    value = ["binding_click", "binding_click_interval"],
+    requireAll = false
+)
+fun View.bindingClick(
+    consumer: BindingConsumer<View>?,
+    intervalTime: Long
+) {
     if (consumer == null) return
-    ClickUtils.setOnClick(
-        this,
-        View.OnClickListener { consumer.accept(it) },
-    )
+    ClickUtils.setOnClick(this) {
+        if (intervalTime > 0L && ClickUtils.isFastDoubleClick(this, intervalTime)) {
+            return@setOnClick
+        }
+        consumer.accept(it)
+    }
 }
 
 /**
@@ -73,12 +82,11 @@ fun View.bindingClickDebounce(
     if (consumer == null) return
     val checkId = checkViewId ?: true
     ClickUtils.setOnClick(
-        this,
-        object : ClickUtils.OnDebouncingClickListener(checkId) {
+        this, object : ClickUtils.OnDebouncingClickListener(checkId) {
             override fun doClick(view: View) {
                 consumer.accept(view)
             }
-        },
+        }
     )
 }
 
