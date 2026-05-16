@@ -297,7 +297,6 @@ public final class ReflectUtils {
                 Field modifiersField = Field.class.getDeclaredField("modifiers");
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-            } catch (NoSuchFieldException ignored) {
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getField");
                 throw new ReflectException(e);
