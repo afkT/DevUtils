@@ -1,8 +1,8 @@
 package dev.simple.bindingadapters.view
 
 import android.content.res.ColorStateList
-import android.graphics.drawable.Drawable
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.TextUtils
 import android.text.method.TransformationMethod
