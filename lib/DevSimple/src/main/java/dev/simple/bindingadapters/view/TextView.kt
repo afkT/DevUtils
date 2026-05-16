@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.text.method.TransformationMethod
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import dev.simple.bindingadapters.attribute.*
 import dev.simple.bindingadapters.qualifiesBindingAction
@@ -786,6 +787,87 @@ fun TextView.bindingTVCompoundRight(right: Drawable?) {
 fun TextView.bindingTVCompoundBottom(bottom: Drawable?) {
     if (bottom == null) return
     TextViewUtils.setCompoundDrawablesByBottom(this, bottom)
+}
+
+/**
+ * 通过数据绑定按资源 ID 仅设置左侧 compound drawable（固有尺寸）。
+ * <pre>
+ *     布局属性 `binding_tv_compound_left_res`；`null` 不修改；
+ *     语义对齐 [TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByLeft]。
+ *     与 `binding_tv_compound_left`（[Drawable]）二选一，避免同轮覆盖。
+ * </pre>
+ *
+ * @param resId 左侧 drawable 资源 ID
+ */
+@BindingAdapter("binding_tv_compound_left_res")
+fun TextView.bindingTVCompoundLeftRes(@DrawableRes resId: Int?) {
+    if (resId == null) return
+    setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0)
+}
+
+/**
+ * 通过数据绑定按资源 ID 仅设置顶部 compound drawable（固有尺寸）。
+ * <pre>
+ *     布局属性 `binding_tv_compound_top_res`；`null` 不修改；
+ *     语义对齐 [TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByTop]。
+ * </pre>
+ *
+ * @param resId 顶部 drawable 资源 ID
+ */
+@BindingAdapter("binding_tv_compound_top_res")
+fun TextView.bindingTVCompoundTopRes(@DrawableRes resId: Int?) {
+    if (resId == null) return
+    setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0)
+}
+
+/**
+ * 通过数据绑定按资源 ID 仅设置右侧 compound drawable（固有尺寸）。
+ * <pre>
+ *     布局属性 `binding_tv_compound_right_res`；`null` 不修改；
+ *     语义对齐 [TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByRight]。
+ * </pre>
+ *
+ * @param resId 右侧 drawable 资源 ID
+ */
+@BindingAdapter("binding_tv_compound_right_res")
+fun TextView.bindingTVCompoundRightRes(@DrawableRes resId: Int?) {
+    if (resId == null) return
+    setCompoundDrawablesWithIntrinsicBounds(0, 0, resId, 0)
+}
+
+/**
+ * 通过数据绑定按资源 ID 仅设置底部 compound drawable（固有尺寸）。
+ * <pre>
+ *     布局属性 `binding_tv_compound_bottom_res`；`null` 不修改；
+ *     语义对齐 [TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByBottom]。
+ * </pre>
+ *
+ * @param resId 底部 drawable 资源 ID
+ */
+@BindingAdapter("binding_tv_compound_bottom_res")
+fun TextView.bindingTVCompoundBottomRes(@DrawableRes resId: Int?) {
+    if (resId == null) return
+    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, resId)
+}
+
+/**
+ * 通过数据绑定按资源 ID 设置四周 compound drawable（固有尺寸）。
+ * <pre>
+ *     布局属性 `binding_tv_compound_drawables_intrinsic_res`；`null` 跳过；
+ *     语义对齐 [TextViewUtils.setCompoundDrawablesWithIntrinsicBounds]。
+ * </pre>
+ *
+ * @param four 左上下右资源 ID，未指定边为 0
+ */
+@BindingAdapter("binding_tv_compound_drawables_intrinsic_res")
+fun TextView.bindingTVCompoundDrawablesIntrinsicRes(four: TvCompoundDrawablesFourRes?) {
+    if (four == null) return
+    setCompoundDrawablesWithIntrinsicBounds(
+        four.left,
+        four.top,
+        four.right,
+        four.bottom,
+    )
 }
 
 // =============

@@ -2,6 +2,7 @@ package dev.simple.bindingadapters.attribute
 
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
 
 /**
  * 行间距额外值与倍数，用于单次绑定调用 [dev.utils.app.TextViewUtils.setLineSpacingAndMultiplier]。
@@ -59,6 +60,20 @@ data class TvCompoundDrawablesFour(
     val top: Drawable? = null,
     val right: Drawable? = null,
     val bottom: Drawable? = null,
+)
+
+/**
+ * 四周 `@DrawableRes` 复合图标，用于 [android.widget.TextView.setCompoundDrawablesWithIntrinsicBounds]。
+ * <pre>
+ *     与 `binding_tv_compound_drawables_intrinsic_res` 搭配；
+ *     未指定的边使用 0（无 drawable）；语义对齐 [dev.utils.app.TextViewUtils.setCompoundDrawablesWithIntrinsicBounds]。
+ * </pre>
+ */
+data class TvCompoundDrawablesFourRes(
+    @DrawableRes val left: Int = 0,
+    @DrawableRes val top: Int = 0,
+    @DrawableRes val right: Int = 0,
+    @DrawableRes val bottom: Int = 0,
 )
 
 /**
