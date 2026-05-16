@@ -72,7 +72,7 @@ fun EditText.bindingETImeOptions(imeOptions: Int) {
  * 通过数据绑定切换密码明文与密文显示。
  * <pre>
  *     布局属性 binding_et_display_password、binding_et_display_password_cursor_bottom（后者可选，未指定为 true）；
- *     内部委托 EditTextUtils.setTransformationMethod。
+ *     displayPassword 为 null 时不修改；true / false 委托 EditTextUtils.setTransformationMethod。
  * </pre>
  *
  * @param displayPassword 是否显示密码明文
@@ -83,9 +83,10 @@ fun EditText.bindingETImeOptions(imeOptions: Int) {
     requireAll = false
 )
 fun EditText.bindingETDisplayPassword(
-    displayPassword: Boolean,
+    displayPassword: Boolean?,
     cursorBottom: Boolean?
 ) {
+    if (displayPassword == null) return
     EditTextUtils.setTransformationMethod(this, displayPassword, cursorBottom ?: true)
 }
 
@@ -233,13 +234,15 @@ fun EditText.bindingETMaxLengthAndText(
 /**
  * 通过数据绑定控制光标是否可见。
  * <pre>
- *     布局属性 binding_et_cursor_visible；内部委托 EditTextUtils.setCursorVisible。
+ *     布局属性 binding_et_cursor_visible；null 时不修改；
+ *     true / false 委托 EditTextUtils.setCursorVisible。
  * </pre>
  *
  * @param visible 是否显示光标
  */
 @BindingAdapter("binding_et_cursor_visible")
-fun EditText.bindingETCursorVisible(visible: Boolean) {
+fun EditText.bindingETCursorVisible(visible: Boolean?) {
+    if (visible == null) return
     EditTextUtils.setCursorVisible(this, visible)
 }
 

@@ -187,13 +187,15 @@ fun TextView.bindingTVTypefaceBold(value: TvTypefaceBold?) {
 /**
  * 通过数据绑定设置是否粗体（默认字体样式）。
  * <pre>
- *     布局属性 `binding_tv_bold`；委托 [TextViewUtils.setBold]。
+ *     布局属性 `binding_tv_bold`；`null` 时不修改；
+ *     `true` / `false` 委托 [TextViewUtils.setBold] 开启或关闭粗体。
  * </pre>
  *
  * @param bold 是否粗体
  */
 @BindingAdapter("binding_tv_bold")
-fun TextView.bindingTVBold(bold: Boolean) {
+fun TextView.bindingTVBold(bold: Boolean?) {
+    if (bold == null) return
     TextViewUtils.setBold(this, bold)
 }
 
