@@ -3,9 +3,11 @@ package dev.simple.bindingadapters.view
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
+import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import dev.simple.bindingadapters.attribute.*
 import dev.utils.LogPrintUtils
@@ -27,10 +29,53 @@ import dev.utils.app.ViewUtils
  *     本文件封装工具类工厂方法，便于在布局中绑定 [ViewStateListColor2Str] 等实体。
  *     未封装自定义 state 数组、enabled/disabled 等扩展组合；须在 VM 侧构造 [ColorStateList] / [StateListDrawable] 后使用上述产物属性。
  *     同节点文字色：工厂属性与 `binding_tv_text_color_state` 宜二选一；背景同理与 `binding_view_background`。
+ *     VM 产物：`binding_tv_state_list`（正文 [ColorStateList] 应用/恢复主题色）、
+ *     `binding_view_state_list`（背景 [Drawable] 应用/移除）。
  * </pre>
  */
 
 private const val TAG = "Dev_ViewStateList_BindingAdapter"
+
+// ========================
+// = 通用 VM 产物（应用/结束）=
+// ========================
+
+/**
+ * 通过数据绑定设置正文 [ColorStateList] 或恢复主题默认正文色。
+ * <pre>
+ *     布局属性 `binding_tv_state_list`；非 null 时 [TextViewUtils.setTextColor]；
+ *     null 时恢复 `android.R.attr.textColorPrimary`。
+ *     与 `binding_tv_state_list_text_color`（null 跳过）并存。
+ * </pre>
+ *
+ * @param colors 颜色状态列表，null 表示恢复主题默认色
+ */
+@BindingAdapter("binding_tv_state_list")
+fun TextView.bindingTVStateList(colors: ColorStateList?) {
+    if (colors == null) {
+        TextViewUtils.setTextColor(this, resolveThemeColor(android.R.attr.textColorPrimary))
+    } else {
+        applyTextColorStateList(colors)
+    }
+}
+
+/**
+ * 通过数据绑定设置背景 [Drawable] 或移除背景。
+ * <pre>
+ *     布局属性 `binding_view_state_list`；非 null 时 [ViewUtils.setBackground]；null 时 [ViewUtils.removeBackground]。
+ *     与 `binding_view_state_list_background`（null 跳过）并存。
+ * </pre>
+ *
+ * @param selector 状态列表或普通背景 Drawable，null 表示移除背景
+ */
+@BindingAdapter("binding_view_state_list")
+fun View.bindingViewStateList(selector: Drawable?) {
+    if (selector == null) {
+        ViewUtils.removeBackground(this)
+    } else {
+        applyStateListBackground(selector)
+    }
+}
 
 // ===================
 // = 产物直接写入（可选）=
@@ -475,4 +520,10 @@ private fun View.applyStateListBackground(selector: Drawable?) {
     } catch (e: Throwable) {
         LogPrintUtils.eTag(TAG, e, "applyStateListBackground")
     }
+}
+
+private fun TextView.resolveThemeColor(attr: Int): Int {
+    val typedValue = TypedValue()
+    context.theme.resolveAttribute(attr, typedValue, true)
+    return ContextCompat.getColor(context, typedValue.resourceId)
 }

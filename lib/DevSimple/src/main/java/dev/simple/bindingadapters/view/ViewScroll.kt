@@ -12,6 +12,39 @@ import dev.utils.app.RecyclerViewUtils
 // = View Scroll BindingAdapter =
 // ==============================
 
+/**
+ * [View] / [RecyclerView] 滚动相关的 Data Binding 适配集合。
+ *
+ * <pre>
+ *     VM 滚动命令：`binding_scroll_rv`；非 null 且 index ≥ 0 时平滑滚至项并顶部对齐；
+ *     `null` 时 [RecyclerViewUtils.stopSmoothScroller] 停止滚动。
+ * </pre>
+ */
+
+// ========================
+// = 通用 VM 滚动（滚动/停止）=
+// ========================
+
+/**
+ * 数据绑定触发 RecyclerView 平滑滚动至指定项，或停止当前滚动。
+ * <pre>
+ *     布局属性 `binding_scroll_rv`；`position` 为 null 时停止滚动；
+ *     非 null 且 ≥ 0 时 [RecyclerViewUtils.startSmoothScrollSnapStart]。
+ * </pre>
+ *
+ * @param position 目标 adapter 索引，null 表示停止
+ */
+@BindingAdapter("binding_scroll_rv")
+fun RecyclerView.bindingScrollRv(position: Int?) {
+    if (position == null) {
+        RecyclerViewUtils.stopSmoothScroller(this)
+        return
+    }
+    if (position >= 0) {
+        RecyclerViewUtils.startSmoothScrollSnapStart(this, position)
+    }
+}
+
 // =====================
 // = RecyclerViewUtils =
 // =====================

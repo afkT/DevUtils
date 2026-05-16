@@ -9,6 +9,7 @@ import dev.simple.bindingadapters.attribute.*
 import dev.simple.bindingadapters.qualifiesBindingAction
 import dev.utils.LogPrintUtils
 import dev.utils.app.ShapeUtils
+import dev.utils.app.ViewUtils
 
 // ============================
 // = View Shape BindingAdapter =
@@ -24,11 +25,34 @@ import dev.utils.app.ShapeUtils
  *     未封装 [android.content.res.ColorStateList] 填充/描边、环形 innerRadius/thickness、
  *     仅 [GradientDrawable] 入参的 `newShape(GradientDrawable)` 等；复杂场景在 VM 构建实例后绑 utils。
  *     同一 [ShapeUtils] 引用需再次刷 UI 时使用 `binding_view_shape_utils_ts` 与正时间戳。
+ *     VM 持有 [ShapeUtils] 产物时可用 `binding_view_shape`：非 null 应用、null 移除背景（[ViewUtils.removeBackground]）。
  *     与 `binding_view_background` 可并存但同轮后者可能覆盖；同节点 shape 相关属性宜二选一。
  * </pre>
  */
 
 private const val TAG = "Dev_ViewShape_BindingAdapter"
+
+// =================
+// = 通用 ShapeUtils =
+// =================
+
+/**
+ * 通过数据绑定应用或移除 [ShapeUtils] 背景。
+ * <pre>
+ *     布局属性 `binding_view_shape`；非 null 时 [ShapeUtils.setDrawable]；null 时 [ViewUtils.removeBackground]。
+ *     与 `binding_view_shape_utils`（null 跳过）并存；需显式清除背景时绑本属性。
+ * </pre>
+ *
+ * @param utils 已在 ViewModel 中配置完成的构建器，null 表示移除背景
+ */
+@BindingAdapter("binding_view_shape")
+fun View.bindingViewShape(utils: ShapeUtils?) {
+    if (utils == null) {
+        ViewUtils.removeBackground(this)
+    } else {
+        applyShapeUtils(utils)
+    }
+}
 
 // =================
 // = ShapeUtils 应用 =

@@ -20,8 +20,32 @@ import dev.utils.app.KeyBoardUtils
  *     `setSoftInputMode`、`registerSoftInputListener*`、`toggleKeyboard` 等 Window 级或全局操作。
  *     与 [EditTextView] 的 `binding_et_text`、`binding_et_clear_text_ts` 等可并存；打开键盘前可在 VM 侧先设焦点或文案。
  *     需多次打开/关闭时使用 `_ts` 或 [EtKeyboardOpenDelayAt]（判定同 [qualifiesBindingAction]）。
+ *     VM 开关：`binding_et_keyboard`；`true` 打开、`false` 或 `null` 关闭。
  * </pre>
  */
+
+// ========================
+// = 通用 VM 开关（打开/关闭）=
+// ========================
+
+/**
+ * 通过数据绑定打开或关闭软键盘。
+ * <pre>
+ *     布局属性 `binding_et_keyboard`；`true` 时 [KeyBoardUtils.openKeyboard]；
+ *     `false` 或 `null` 时 [KeyBoardUtils.closeKeyboard]。
+ * </pre>
+ *
+ * @param open 是否打开键盘，null 视为关闭
+ */
+@BindingAdapter("binding_et_keyboard")
+fun EditText.bindingETKeyboard(open: Boolean?) {
+    if (open == null) return
+    if (open) {
+        KeyBoardUtils.openKeyboard(this)
+    } else {
+        KeyBoardUtils.closeKeyboard(this)
+    }
+}
 
 // ==========
 // = 打开键盘 =

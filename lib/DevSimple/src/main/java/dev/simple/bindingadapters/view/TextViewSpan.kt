@@ -27,10 +27,47 @@ import dev.utils.app.TextViewUtils
  *     多段样式列表可用 `binding_tv_span_segments` 与 [TvSpanSegment]；
  *     含链接片段时配合 `binding_tv_span_link_movement`。
  *     同一 [SpanUtils] 引用需再次刷 UI 时使用 `binding_tv_span_utils_ts` 与正时间戳。
+ *     VM 产物：`binding_tv_span_char`（[CharSequence] 写入/清空）、`binding_tv_span_utils_run`（[SpanUtils] 应用/清空正文）。
  * </pre>
  */
 
 private const val TAG = "Dev_TextViewSpan_BindingAdapter"
+
+// ========================
+// = 通用 VM 产物（应用/结束）=
+// ========================
+
+/**
+ * 通过数据绑定设置或清空富文本 [CharSequence]。
+ * <pre>
+ *     布局属性 `binding_tv_span_char`；非 null 时 [TextViewUtils.setText]；null 时写入空串清空。
+ *     与 `binding_tv_span`（null 跳过）并存。
+ * </pre>
+ *
+ * @param span 富文本内容，null 表示清空
+ */
+@BindingAdapter("binding_tv_span_char")
+fun TextView.bindingTVSpanChar(span: CharSequence?) {
+    TextViewUtils.setText(this, span ?: "")
+}
+
+/**
+ * 通过数据绑定应用 [SpanUtils] 或清空正文。
+ * <pre>
+ *     布局属性 `binding_tv_span_utils_run`；非 null 时 [SpanUtils.create] 写入；null 时清空正文。
+ *     与 `binding_tv_span_utils`（null 跳过）并存。
+ * </pre>
+ *
+ * @param utils 已配置完成的构建器，null 表示清空
+ */
+@BindingAdapter("binding_tv_span_utils_run")
+fun TextView.bindingTVSpanUtilsRun(utils: SpanUtils?) {
+    if (utils == null) {
+        TextViewUtils.setText(this, "")
+    } else {
+        applySpanUtils(utils)
+    }
+}
 
 // =============
 // = 结果直接绑定 =
