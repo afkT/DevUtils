@@ -13,8 +13,11 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import java.time.Duration;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +38,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://developer.android.com/develop/background-work/background-tasks/optimize-battery">任务与电量</a>
  *     Android 16 Job 配额与诊断:
  *     @see <a href="https://developer.android.com/about/versions/16/behavior-changes-all">所有应用在 Android 16 上的行为变更</a>
+ *     Android 17 {@link #getPendingJobReasonStats(Context, int)}:
+ *     @see <a href="https://developer.android.com/about/versions/17/features">Android 17 Features</a>
  * </pre>
  */
 public final class JobSchedulerUtils {
@@ -329,7 +334,9 @@ public final class JobSchedulerUtils {
 
     /**
      * Android 12 (API 31)+：在已配置的 JobInfo.Builder 上设置是否加急并提交调度
-     * <p>请先通过 {@link #newJobBuilder(Context, int, Class)} 或其它方式配置网络、充电等约束，再调用本方法。</p>
+     * <pre>
+     *     请先通过 {@link #newJobBuilder(Context, int, Class)} 或其它方式配置网络、充电等约束，再调用本方法。
+     * </pre>
      * @param context   {@link Context}
      * @param builder   非空的 {@link JobInfo.Builder}
      * @param expedited {@link JobInfo.Builder#setExpedited(boolean)}
@@ -741,6 +748,49 @@ public final class JobSchedulerUtils {
         } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "getPendingJobReasonsHistory");
             return Collections.emptyList();
+        }
+    }
+
+    /**
+     * Android 17+：返回某 Job 各 pending 原因及其累计 pending 时长 ( 毫秒 )
+     * <pre>
+     *     等价 {@link JobScheduler#getPendingJobReasonStats(int)}，
+     *     便于一次性获取原因与时长，无需再调 {@link #getPendingJobReasonsHistory(Context, int)} 累加。
+     * </pre>
+     * @param context {@link Context}
+     * @param jobId   Job id
+     * @return key 为 pending 原因常量、value 为累计 pending 毫秒；低版本或失败时返回空 {@link Map}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    @NonNull
+    public static Map<Integer, Long> getPendingJobReasonStats(
+            final Context context,
+            final int jobId
+    ) {
+        JobScheduler js = getJobScheduler(context);
+        if (js == null) {
+            return Collections.emptyMap();
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return Collections.emptyMap();
+        }
+        try {
+            Map<Integer, Duration> stats = js.getPendingJobReasonStats(jobId);
+            if (stats == null || stats.isEmpty()) {
+                return Collections.emptyMap();
+            }
+            Map<Integer, Long> millisMap = new HashMap<>(stats.size());
+            for (Map.Entry<Integer, Duration> entry : stats.entrySet()) {
+                Duration duration = entry.getValue();
+                millisMap.put(
+                        entry.getKey(),
+                        duration != null ? duration.toMillis() : 0L
+                );
+            }
+            return millisMap;
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "getPendingJobReasonStats");
+            return Collections.emptyMap();
         }
     }
 }

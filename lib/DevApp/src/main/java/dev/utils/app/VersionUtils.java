@@ -3,6 +3,8 @@ package dev.utils.app;
 import android.content.Context;
 import android.os.Build;
 
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: 版本工具类
  * @author Ttt
@@ -12,13 +14,16 @@ public final class VersionUtils {
     private VersionUtils() {
     }
 
+    // 日志 TAG
+    private static final String TAG = VersionUtils.class.getSimpleName();
+
     // ===============
     // = Android SDK =
     // ===============
 
     /**
      * 获取 SDK 版本
-     * @return SDK 版本
+     * @return 当前设备 API 级别，即 {@link Build.VERSION#SDK_INT}
      */
     public static int getSDKVersion() {
         return Build.VERSION.SDK_INT;
@@ -26,7 +31,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 2.1 版本及以上
-     * @return 是否在 2.1 版本及以上
+     * @return {@code true} SDK 版本不低于 2.1, {@code false} 低于 2.1
      */
     public static boolean isEclair() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR;
@@ -34,7 +39,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 2.2 版本及以上
-     * @return 是否在 2.2 版本及以上
+     * @return {@code true} SDK 版本不低于 2.2, {@code false} 低于 2.2
      */
     public static boolean isFroyo() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
@@ -42,7 +47,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 2.3 版本及以上
-     * @return 是否在 2.3 版本及以上
+     * @return {@code true} SDK 版本不低于 2.3, {@code false} 低于 2.3
      */
     public static boolean isGingerbread() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
@@ -50,7 +55,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 2.3.3 版本及以上
-     * @return 是否在 2.3.3 版本及以上
+     * @return {@code true} SDK 版本不低于 2.3.3, {@code false} 低于 2.3.3
      */
     public static boolean isGingerbreadMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD_MR1;
@@ -58,7 +63,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 3.0 版本及以上
-     * @return 是否在 3.0 版本及以上
+     * @return {@code true} SDK 版本不低于 3.0, {@code false} 低于 3.0
      */
     public static boolean isHoneycomb() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
@@ -66,7 +71,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 3.1 版本及以上
-     * @return 是否在 3.1 版本及以上
+     * @return {@code true} SDK 版本不低于 3.1, {@code false} 低于 3.1
      */
     public static boolean isHoneycombMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1;
@@ -74,7 +79,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.0 版本及以上
-     * @return 是否在 4.0 版本及以上
+     * @return {@code true} SDK 版本不低于 4.0, {@code false} 低于 4.0
      */
     public static boolean isIceCreamSandwich() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
@@ -82,7 +87,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.0.3 版本及以上
-     * @return 是否在 4.0.3 版本及以上
+     * @return {@code true} SDK 版本不低于 4.0.3, {@code false} 低于 4.0.3
      */
     public static boolean isIceCreamSandwichMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1;
@@ -90,7 +95,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.1 版本及以上
-     * @return 是否在 4.1 版本及以上
+     * @return {@code true} SDK 版本不低于 4.1, {@code false} 低于 4.1
      */
     public static boolean isJellyBean() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
@@ -98,7 +103,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.2 版本及以上
-     * @return 是否在 4.2 版本及以上
+     * @return {@code true} SDK 版本不低于 4.2, {@code false} 低于 4.2
      */
     public static boolean isJellyBeanMR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
@@ -106,7 +111,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.3 版本及以上
-     * @return 是否在 4.3 版本及以上
+     * @return {@code true} SDK 版本不低于 4.3, {@code false} 低于 4.3
      */
     public static boolean isJellyBeanMR2() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
@@ -114,7 +119,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.4.2 版本及以上
-     * @return 是否在 4.4.2 版本及以上
+     * @return {@code true} SDK 版本不低于 4.4.2, {@code false} 低于 4.4.2
      */
     public static boolean isKitkat() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
@@ -122,7 +127,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 4.4W 版本及以上
-     * @return 是否在 4.4W 版本及以上
+     * @return {@code true} SDK 版本不低于 4.4W, {@code false} 低于 4.4W
      */
     public static boolean isKitkat_Watch() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH;
@@ -130,7 +135,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 5.0 版本及以上
-     * @return 是否在 5.0 版本及以上
+     * @return {@code true} SDK 版本不低于 5.0, {@code false} 低于 5.0
      */
     public static boolean isLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
@@ -138,7 +143,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 5.1 版本及以上
-     * @return 是否在 5.1 版本及以上
+     * @return {@code true} SDK 版本不低于 5.1, {@code false} 低于 5.1
      */
     public static boolean isLollipop_MR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1;
@@ -146,7 +151,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 6.0 版本及以上
-     * @return 是否在 6.0 版本及以上
+     * @return {@code true} SDK 版本不低于 6.0, {@code false} 低于 6.0
      */
     public static boolean isM() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
@@ -154,7 +159,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 7.0 版本及以上
-     * @return 是否在 7.0 版本及以上
+     * @return {@code true} SDK 版本不低于 7.0, {@code false} 低于 7.0
      */
     public static boolean isN() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
@@ -162,7 +167,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 7.1.1 版本及以上
-     * @return 是否在 7.1.1 版本及以上
+     * @return {@code true} SDK 版本不低于 7.1.1, {@code false} 低于 7.1.1
      */
     public static boolean isN_MR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1;
@@ -170,7 +175,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 8.0 版本及以上
-     * @return 是否在 8.0 版本及以上
+     * @return {@code true} SDK 版本不低于 8.0, {@code false} 低于 8.0
      */
     public static boolean isO() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
@@ -178,7 +183,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 8.1 版本及以上
-     * @return 是否在 8.1 版本及以上
+     * @return {@code true} SDK 版本不低于 8.1, {@code false} 低于 8.1
      */
     public static boolean isO_MR1() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1;
@@ -186,7 +191,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 9.0 版本及以上
-     * @return 是否在 9.0 版本及以上
+     * @return {@code true} SDK 版本不低于 9.0, {@code false} 低于 9.0
      */
     public static boolean isP() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.P;
@@ -194,7 +199,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 10.0 版本及以上
-     * @return 是否在 10.0 版本及以上
+     * @return {@code true} SDK 版本不低于 10.0, {@code false} 低于 10.0
      */
     public static boolean isQ() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
@@ -202,7 +207,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 11.0 版本及以上
-     * @return 是否在 11.0 版本及以上
+     * @return {@code true} SDK 版本不低于 11.0, {@code false} 低于 11.0
      */
     public static boolean isR() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R;
@@ -210,7 +215,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 12.0 版本及以上
-     * @return 是否在 12.0 版本及以上
+     * @return {@code true} SDK 版本不低于 12.0, {@code false} 低于 12.0
      */
     public static boolean isS() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
@@ -218,7 +223,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 12.0 L 版本及以上
-     * @return 是否在 12.0 L 版本及以上
+     * @return {@code true} SDK 版本不低于 12.0 L, {@code false} 低于 12.0 L
      */
     public static boolean isSV2() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2;
@@ -226,7 +231,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 13.0 版本及以上
-     * @return 是否在 13.0 版本及以上
+     * @return {@code true} SDK 版本不低于 13.0, {@code false} 低于 13.0
      */
     public static boolean isTiramisu() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
@@ -234,7 +239,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 14.0 版本及以上
-     * @return 是否在 14.0 版本及以上
+     * @return {@code true} SDK 版本不低于 14.0, {@code false} 低于 14.0
      */
     public static boolean isUpsideDownCake() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE;
@@ -242,7 +247,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 15.0 版本及以上
-     * @return 是否在 15.0 版本及以上
+     * @return {@code true} SDK 版本不低于 15.0, {@code false} 低于 15.0
      */
     public static boolean isVanillaIceCream() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM;
@@ -250,7 +255,7 @@ public final class VersionUtils {
 
     /**
      * 是否在 16.0 版本及以上
-     * @return 是否在 16.0 版本及以上
+     * @return {@code true} SDK 版本不低于 16.0, {@code false} 低于 16.0
      */
     public static boolean isBaklava() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA;
@@ -258,24 +263,27 @@ public final class VersionUtils {
 
     /**
      * 是否在 17.0 版本及以上
-     * @return 是否在 17.0 版本及以上
+     * @return {@code true} SDK 版本不低于 17.0, {@code false} 低于 17.0
      */
     public static boolean isCinnamonBun() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN;
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
-     * @return SDK 版本
+     * 将当前设备 SDK 整型版本号转换为可读版本名
+     * @return 可读版本名，如 {@code Android 12.0}；未知版本为 {@code unknown}
      */
     public static String convertSDKVersion() {
         return convertSDKVersion(Build.VERSION.SDK_INT);
     }
 
     /**
-     * 转换 SDK 版本 convertSDKVersion(31) = Android 12.0
+     * 将 SDK 整型版本号转换为可读版本名
+     * <pre>
+     *     例如 {@code convertSDKVersion(31)} 为 {@code Android 12.0}
+     * </pre>
      * @param sdkVersion SDK 版本
-     * @return SDK 版本
+     * @return 可读版本名；未知版本返回 {@code unknown}
      */
     public static String convertSDKVersion(final int sdkVersion) {
         switch (sdkVersion) {
@@ -358,17 +366,20 @@ public final class VersionUtils {
     }
 
     /**
-     * 转换 SDK 版本名字 convertSDKVersionName(31) = Android S
-     * @return SDK 版本名字
+     * 将当前设备 SDK 整型版本号转换为代号名
+     * @return SDK 代号名，如 {@code Android S}；未知版本为 {@code unknown}
      */
     public static String convertSDKVersionName() {
         return convertSDKVersionName(Build.VERSION.SDK_INT);
     }
 
     /**
-     * 转换 SDK 版本名字 convertSDKVersionName(31) = Android S
+     * 将 SDK 整型版本号转换为代号名
+     * <pre>
+     *     例如 {@code convertSDKVersionName(31)} 为 {@code Android S}
+     * </pre>
      * @param sdkVersion SDK 版本
-     * @return SDK 版本名字
+     * @return SDK 代号名；未知版本返回 {@code unknown}
      */
     public static String convertSDKVersionName(final int sdkVersion) {
         switch (sdkVersion) {
@@ -467,9 +478,23 @@ public final class VersionUtils {
     public static int getTargetSdkVersion(final Context context) {
         try {
             return AppUtils.getApplicationInfo(context).targetSdkVersion;
-        } catch (Throwable ignored) {
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "getTargetSdkVersion");
             return -1;
         }
+    }
+
+    /**
+     * 宿主 targetSdk 是否 &gt;= Android 17 ( API 37 )
+     * <pre>
+     *     用于判断是否受 Android 17 目标平台行为约束（如本地网络权限、CT 默认开启等）。
+     * </pre>
+     * @param context {@link Context}
+     * @return {@code true} targetSdk &gt;= 37；context 异常时返回 {@code false}
+     */
+    public static boolean isTargetSdkCinnamonBunOrHigher(final Context context) {
+        int target = getTargetSdkVersion(context);
+        return target >= Build.VERSION_CODES.CINNAMON_BUN;
     }
 
     /**
@@ -477,6 +502,7 @@ public final class VersionUtils {
      * <pre>
      *     {@link Build.VERSION#SDK_INT_FULL}；低版本或异常时退回 {@link Build.VERSION#SDK_INT}
      * </pre>
+     * @return Android 16+ 为 {@link Build.VERSION#SDK_INT_FULL}，否则为 {@link Build.VERSION#SDK_INT}
      * @see <a href="https://developer.android.com/about/versions/16/features">Android 16 Features</a>
      */
     public static int getSdkIntFullOrSdkInt() {
@@ -485,7 +511,8 @@ public final class VersionUtils {
         }
         try {
             return Build.VERSION.SDK_INT_FULL;
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSdkIntFullOrSdkInt");
             return Build.VERSION.SDK_INT;
         }
     }
@@ -503,7 +530,8 @@ public final class VersionUtils {
         }
         try {
             return Build.getMinorSdkVersion(Build.VERSION.SDK_INT_FULL);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getMinorSdkVersionFromSdkIntFullSafe");
             return 0;
         }
     }

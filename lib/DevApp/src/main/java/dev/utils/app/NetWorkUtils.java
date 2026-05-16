@@ -2,6 +2,8 @@ package dev.utils.app;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -13,6 +15,7 @@ import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 
 import androidx.annotation.RequiresPermission;
+import androidx.core.content.ContextCompat;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;
@@ -24,6 +27,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -35,6 +39,9 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
  *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+ *     Android 17 ( targetSdk 37+ ) 访问局域网设备需 {@link #PERMISSION_ACCESS_LOCAL_NETWORK}，
+ *     见 {@link #isLocalNetworkPermissionRequired(Context)}、{@link #isLocalNetworkPermissionGranted(Context)}。
+ *     @see <a href="https://developer.android.com/privacy-and-security/local-network-permission">本地网络权限</a>
  * </pre>
  */
 public final class NetWorkUtils {
@@ -44,6 +51,15 @@ public final class NetWorkUtils {
 
     // 日志 TAG
     private static final String TAG = NetWorkUtils.class.getSimpleName();
+
+    /**
+     * Android 17+ 访问本地网络权限常量
+     * <pre>
+     *     与 {@link Manifest.permission#ACCESS_LOCAL_NETWORK} 一致。
+     * </pre>
+     */
+    public static final String PERMISSION_ACCESS_LOCAL_NETWORK =
+            "android.permission.ACCESS_LOCAL_NETWORK";
 
     /**
      * 获取移动网络打开状态 ( 默认属于未打开 )
@@ -57,12 +73,18 @@ public final class NetWorkUtils {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
                 ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
+                if (connectivityManager == null) {
+                    return false;
+                }
                 // 反射获取方法
                 Method method = connectivityManager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
                 state = (Boolean) method.invoke(connectivityManager);
             } else {
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
+                if (telephonyManager == null) {
+                    return false;
+                }
                 // 反射获取方法
                 Method method = telephonyManager.getClass().getDeclaredMethod("getDataEnabled");
                 // 调用方法, 获取状态
@@ -89,6 +111,9 @@ public final class NetWorkUtils {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
                 ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
+                if (connectivityManager == null) {
+                    return false;
+                }
                 // 通过反射设置移动网络
                 Method method = connectivityManager.getClass().getDeclaredMethod(
                         "setMobileDataEnabled", Boolean.TYPE
@@ -97,6 +122,9 @@ public final class NetWorkUtils {
                 method.invoke(connectivityManager, isOpen);
             } else { // 需要 Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
+                if (telephonyManager == null) {
+                    return false;
+                }
                 // 通过反射设置移动网络
                 Method method = telephonyManager.getClass().getDeclaredMethod(
                         "setDataEnabled", boolean.class
@@ -120,6 +148,9 @@ public final class NetWorkUtils {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
             ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
+            if (connectivityManager == null) {
+                return false;
+            }
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 获取网络连接管理的对象
@@ -154,6 +185,9 @@ public final class NetWorkUtils {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
             ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
+            if (connectivityManager == null) {
+                return -1;
+            }
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 Wifi
@@ -433,6 +467,9 @@ public final class NetWorkUtils {
             try {
                 // 获取网络连接状态
                 ConnectivityManager connectivityManager = AppUtils.getConnectivityManager();
+                if (connectivityManager == null) {
+                    return netType;
+                }
                 // 获取当前活跃的网络 ( 连接的网络信息 )
                 Network network = connectivityManager.getActiveNetwork();
                 // 防止为 null
@@ -655,5 +692,64 @@ public final class NetWorkUtils {
             LogPrintUtils.eTag(TAG, e, "getServerAddressByWifi");
         }
         return null;
+    }
+
+    // ============================
+    // = Android 17 本地网络权限适配 =
+    // ============================
+
+    /**
+     * 当前环境下访问局域网是否需声明并申请本地网络权限
+     * <pre>
+     *     权限常量为 {@link #PERMISSION_ACCESS_LOCAL_NETWORK}。
+     *     条件：设备 API &gt;= 37 且宿主 {@code targetSdkVersion} &gt;= 37。
+     *     库内 {@link #getBroadcastIpAddress()}、{@link DeviceUtils} 等取局域网信息的方法，
+     *     在宿主升 target 37 后可能因无权限而失败，业务侧需自行在 Manifest 声明并运行时申请。
+     * </pre>
+     * @param context {@link Context}
+     * @return {@code true} 需要本地网络权限；低 target / 低系统版本返回 {@code false}
+     */
+    public static boolean isLocalNetworkPermissionRequired(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN
+                && VersionUtils.isTargetSdkCinnamonBunOrHigher(context);
+    }
+
+    /**
+     * 是否已授予本地网络权限
+     * <pre>
+     *     不需要该权限时恒为 {@code true}。
+     * </pre>
+     * @param context {@link Context}
+     * @return {@code true} 已授予或不需要；{@code false} 需要但未授予
+     */
+    public static boolean isLocalNetworkPermissionGranted(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (!isLocalNetworkPermissionRequired(context)) {
+            return true;
+        }
+        try {
+            return ContextCompat.checkSelfPermission(
+                    DevUtils.getContext(context), PERMISSION_ACCESS_LOCAL_NETWORK
+            ) == PackageManager.PERMISSION_GRANTED;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isLocalNetworkPermissionGranted");
+            return false;
+        }
+    }
+
+    /**
+     * 是否已授予本地网络权限
+     * <pre>
+     *     使用 {@link DevUtils#getContext()} 作为 {@link Context}。
+     * </pre>
+     * @return {@code true} 已授予或不需要；{@code false} 需要但未授予
+     */
+    public static boolean isLocalNetworkPermissionGranted() {
+        return isLocalNetworkPermissionGranted(DevUtils.getContext());
     }
 }

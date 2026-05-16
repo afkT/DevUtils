@@ -2,8 +2,10 @@ package dev.utils.app;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.ApplicationExitInfo;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -11,6 +13,9 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
@@ -31,6 +36,9 @@ import dev.utils.common.CloseUtils;
  *     所需权限
  *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
  *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+ *     Android 11+ 进程退出原因见 {@link #getHistoricalProcessExitReasons(Context, String, int, int)}；
+ *     Android 17 内存上限杀进程时 {@link ApplicationExitInfo#getDescription()} 可能含 {@code MemoryLimiter}。
+ *     @see <a href="https://developer.android.com/about/versions/17/behavior-changes-all">Android 17 行为变更</a>
  * </pre>
  */
 public final class ProcessUtils {
@@ -40,6 +48,11 @@ public final class ProcessUtils {
 
     // 日志 TAG
     private static final String TAG = ProcessUtils.class.getSimpleName();
+
+    /**
+     * Android 17 应用内存上限杀进程时 {@link ApplicationExitInfo#getDescription()} 中的标识
+     */
+    public static final String EXIT_DESCRIPTION_MEMORY_LIMITER = "MemoryLimiter";
 
     /**
      * 销毁自身进程
@@ -88,8 +101,14 @@ public final class ProcessUtils {
             // 获取自身进程 id
             int pid = android.os.Process.myPid();
             // 判断全部运行中的进程
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return null;
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return null;
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
                     return appProcess.processName;
@@ -131,8 +150,14 @@ public final class ProcessUtils {
     public static int getPid(final String packageName) {
         if (packageName == null) return 0;
         try {
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return 0;
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return 0;
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (packageName.equals(appProcess.processName)) {
                     return appProcess.pid;
@@ -151,8 +176,14 @@ public final class ProcessUtils {
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final int pid) {
         try {
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return null;
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return null;
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
                     return appProcess;
@@ -172,8 +203,14 @@ public final class ProcessUtils {
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
         if (packageName == null) return null;
         try {
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return null;
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return null;
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (packageName.equals(appProcess.processName)) {
                     return appProcess;
@@ -193,8 +230,14 @@ public final class ProcessUtils {
      */
     public static String getForegroundProcessName() {
         try {
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return null;
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return null;
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                     return appProcess.processName;
@@ -245,9 +288,15 @@ public final class ProcessUtils {
      */
     public static Set<String> getAllBackgroundProcesses() {
         try {
-            Set<String>                                 set             = new HashSet<>();
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            Set<String>     set             = new HashSet<>();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return Collections.emptySet();
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return Collections.emptySet();
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 Collections.addAll(set, appProcess.pkgList);
             }
@@ -265,9 +314,15 @@ public final class ProcessUtils {
     @RequiresPermission(Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         try {
-            Set<String>                                 set             = new HashSet<>();
-            ActivityManager                             activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
+            Set<String>     set             = new HashSet<>();
+            ActivityManager activityManager = AppUtils.getActivityManager();
+            if (activityManager == null) {
+                return Collections.emptySet();
+            }
+            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            if (lists == null) {
+                return Collections.emptySet();
+            }
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 for (String packageName : appProcess.pkgList) {
                     activityManager.killBackgroundProcesses(packageName);
@@ -275,9 +330,11 @@ public final class ProcessUtils {
                 }
             }
             lists = activityManager.getRunningAppProcesses();
-            for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
-                for (String packageName : appProcess.pkgList) {
-                    set.remove(packageName);
+            if (lists != null) {
+                for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
+                    for (String packageName : appProcess.pkgList) {
+                        set.remove(packageName);
+                    }
                 }
             }
             return set;
@@ -316,5 +373,96 @@ public final class ProcessUtils {
             LogPrintUtils.eTag(TAG, e, "killBackgroundProcesses");
         }
         return false;
+    }
+
+    // ===========================
+    // = ApplicationExitInfo 诊断 =
+    // ===========================
+
+    /**
+     * Android 11+：查询历史进程退出原因
+     * @param context     {@link Context}
+     * @param packageName 包名；null 表示当前应用
+     * @param pid         进程 id，0 表示不限
+     * @param maxNum      最大条数
+     * @return 退出信息列表；低版本或失败时返回空列表
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @NonNull
+    public static List<ApplicationExitInfo> getHistoricalProcessExitReasons(
+            final Context context,
+            @Nullable final String packageName,
+            final int pid,
+            final int maxNum
+    ) {
+        if (context == null || maxNum <= 0) {
+            return Collections.emptyList();
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            return Collections.emptyList();
+        }
+        try {
+            ActivityManager am = AppUtils.getActivityManager(context);
+            if (am == null) {
+                return Collections.emptyList();
+            }
+            String pkg = packageName != null ? packageName : context.getPackageName();
+            if (pkg == null) {
+                return Collections.emptyList();
+            }
+            List<ApplicationExitInfo> list = am.getHistoricalProcessExitReasons(pkg, pid, maxNum);
+            return list != null ? list : Collections.emptyList();
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "getHistoricalProcessExitReasons");
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * Android 11+：查询当前应用最近一条历史退出原因
+     * @param context {@link Context}
+     * @return 最近一条 {@link ApplicationExitInfo}，无记录时返回 null
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @Nullable
+    public static ApplicationExitInfo getLatestHistoricalProcessExitReason(final Context context) {
+        List<ApplicationExitInfo> list = getHistoricalProcessExitReasons(
+                context, null, 0, 1
+        );
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    /**
+     * 是否为 Android 17 内存上限导致的退出
+     * <pre>
+     *     {@link ApplicationExitInfo#getDescription()} 含 {@link #EXIT_DESCRIPTION_MEMORY_LIMITER}
+     *     时视为 MemoryLimiter 退出。
+     * </pre>
+     * @param exitInfo {@link ApplicationExitInfo}
+     * @return {@code true} description 含 MemoryLimiter 标识, {@code false} 否则
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public static boolean isMemoryLimiterExit(@Nullable final ApplicationExitInfo exitInfo) {
+        if (exitInfo == null) {
+            return false;
+        }
+        try {
+            String description = exitInfo.getDescription();
+            return description != null
+                    && description.contains(EXIT_DESCRIPTION_MEMORY_LIMITER);
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "isMemoryLimiterExit");
+            return false;
+        }
+    }
+
+    /**
+     * 当前应用最近一次退出是否因 MemoryLimiter（Android 17 内存上限）
+     * @param context {@link Context}
+     * @return {@code true} 最近一条历史退出为 MemoryLimiter；无记录或低版本返回 {@code false}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public static boolean wasLatestExitMemoryLimiter(final Context context) {
+        return isMemoryLimiterExit(getLatestHistoricalProcessExitReason(context));
     }
 }

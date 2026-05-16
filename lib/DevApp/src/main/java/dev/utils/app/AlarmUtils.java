@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import java.util.concurrent.Executor;
 
 import dev.utils.LogPrintUtils;
 
@@ -17,6 +21,9 @@ import dev.utils.LogPrintUtils;
  *     API 31+ 精确闹钟受 {@link android.app.AlarmManager#canScheduleExactAlarms()} 约束，
  *     请使用 {@link #canScheduleExactAlarms()}、{@link #startScheduleExactAlarmSettings()} 引导用户授权；
  *     {@link PendingIntent} 请统一经 {@link PendingIntentUtils} 创建。
+ *     Android 17+ 周期性精确回调可使用 {@link #startExactAlarmListener(int, long, String, Executor, AlarmManager.OnAlarmListener)}，
+ *     相对 PendingIntent 方案可减少 partial wakelock。
+ *     @see <a href="https://developer.android.com/about/versions/17/features">Android 17 Features</a>
  * </pre>
  */
 public final class AlarmUtils {
@@ -61,6 +68,9 @@ public final class AlarmUtils {
             final long triggerAtMillis,
             final PendingIntent pendingIntent
     ) {
+        if (pendingIntent == null) {
+            return false;
+        }
         try {
             AlarmManager alarmManager = AppUtils.getAlarmManager();
             if (alarmManager == null) return false;
@@ -80,6 +90,117 @@ public final class AlarmUtils {
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmIntent");
+        }
+        return false;
+    }
+
+    // ====================================
+    // = 精确闹钟 OnAlarmListener (API 37+) =
+    // ====================================
+
+    /**
+     * 安排一次性精确闹钟（Doze / 低电下仍尽量触发），回调 OnAlarmListener
+     * <pre>
+     *     需 API 37+；回调类型为 {@link AlarmManager.OnAlarmListener}。
+     *     {@code executor} 为 null 时使用主线程 {@link HandlerUtils#getMainHandler()}。
+     *     {@code tag} 用于系统区分闹钟，取消时需使用同一 {@link AlarmManager.OnAlarmListener} 实例。
+     * </pre>
+     * @param type            {@link AlarmManager#RTC_WAKEUP} 等
+     * @param triggerAtMillis 触发时间 ( 毫秒 )
+     * @param tag             闹钟标识，可为 null（系统可能替换为默认）
+     * @param executor        回调线程；null 表示主线程
+     * @param listener        {@link AlarmManager.OnAlarmListener}
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean startExactAlarmListener(
+            final int type,
+            final long triggerAtMillis,
+            @Nullable final String tag,
+            @Nullable final Executor executor,
+            @NonNull final AlarmManager.OnAlarmListener listener
+    ) {
+        if (listener == null) {
+            return false;
+        }
+        try {
+            AlarmManager alarmManager = AppUtils.getAlarmManager();
+            if (alarmManager == null) {
+                return false;
+            }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+                LogPrintUtils.wTag(TAG, "startExactAlarmListener requires API 37+");
+                return false;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                    && !alarmManager.canScheduleExactAlarms()) {
+                LogPrintUtils.wTag(
+                        TAG, "canScheduleExactAlarms() == false; use startScheduleExactAlarmSettings()"
+                );
+            }
+            Executor callbackExecutor = executor != null
+                    ? executor
+                    : HandlerUtils.getMainHandler()::post;
+            alarmManager.setExactAndAllowWhileIdle(
+                    type, triggerAtMillis, tag, callbackExecutor, listener
+            );
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "startExactAlarmListener");
+        }
+        return false;
+    }
+
+    /**
+     * 安排一次性精确闹钟（主线程回调）
+     * <pre>
+     *     闹钟类型为 {@link AlarmManager#RTC_WAKEUP}。
+     * </pre>
+     * @param triggerAtMillis 触发时间
+     * @param tag             闹钟标识
+     * @param listener        {@link AlarmManager.OnAlarmListener}
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean startExactAlarmListener(
+            final long triggerAtMillis,
+            @Nullable final String tag,
+            @NonNull final AlarmManager.OnAlarmListener listener
+    ) {
+        return startExactAlarmListener(
+                AlarmManager.RTC_WAKEUP, triggerAtMillis, tag, null, listener
+        );
+    }
+
+    /**
+     * 取消 OnAlarmListener 精确闹钟
+     * <pre>
+     *     需 API 37+；{@link AlarmManager.OnAlarmListener} 须与
+     *     {@link #startExactAlarmListener(int, long, String, Executor, AlarmManager.OnAlarmListener)}
+     *     传入的同一实例。
+     * </pre>
+     * @param listener 与注册时传入的同一 {@link AlarmManager.OnAlarmListener} 实例
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean cancelExactAlarmListener(
+            @NonNull final AlarmManager.OnAlarmListener listener
+    ) {
+        if (listener == null) {
+            return false;
+        }
+        try {
+            AlarmManager alarmManager = AppUtils.getAlarmManager();
+            if (alarmManager == null) {
+                return false;
+            }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+                return false;
+            }
+            alarmManager.cancel(listener);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "cancelExactAlarmListener");
         }
         return false;
     }
@@ -131,6 +252,9 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean stopAlarmIntent(final PendingIntent pendingIntent) {
+        if (pendingIntent == null) {
+            return false;
+        }
         try {
             final AlarmManager alarmManager = AppUtils.getAlarmManager();
             if (alarmManager == null) {
