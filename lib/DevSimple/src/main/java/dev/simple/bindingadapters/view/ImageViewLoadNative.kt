@@ -10,14 +10,25 @@ import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import dev.utils.LogPrintUtils
 
-// =====================================
-// = ImageView 原生 API BindingAdapter =
-// =====================================
-//
-// 每个适配器仅一个布局属性，内部直接调用 ImageView 与 View 对应方法，不走图片引擎。
-// 属性名使用 binding_image_native_* 前缀，与 ImageView.kt 中引擎加载用的 binding_image_* 不重复。
+// =======================================
+// = ImageView Load Native BindingAdapter =
+// =======================================
 
-private const val TAG = "Dev_ImageView_Native_BindingAdapter"
+/**
+ * [ImageView] 不经图片引擎、直接调用原生 API 的 Data Binding 适配集合。
+ *
+ * 布局属性前缀为 `binding_image_native_*`；每个适配器仅一个布局属性，语义对齐对应 `set*` 方法。
+ * <pre>
+ *     不走 [dev.engine.extensions.image.display] 与 [dev.engine.image.IImageEngine]；无 engine / config / listener 参数。
+ *     经引擎加载（url、缓存、监听等）请使用 `ImageViewLoadEngine.kt` 中 `binding_image_*`（与本文件属性名互不重复）。
+ * </pre>
+ */
+
+private const val TAG = "Dev_ImageView_Load_Native_BindingAdapter"
+
+// ========
+// = 前景图 =
+// ========
 
 /**
  * 通过数据绑定按 Uri 设置当前 ImageView 的前景图。
@@ -103,6 +114,10 @@ fun ImageView.bindingImageNativeResource(@DrawableRes resId: Int?): ImageView {
     }
     return this
 }
+
+// =======
+// = 背景 =
+// =======
 
 /**
  * 通过数据绑定设置当前 ImageView 的背景色。

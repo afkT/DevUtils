@@ -24,7 +24,7 @@ disable-model-invocation: true
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`（适合 XML 的 API 边界说明）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.qualifiesScroll()`、`XYI` 合并位移）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScrollDelayed.kt`、`ViewScrollDelayAssist.kt`（延迟二次执行）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditTextView.kt`、`ImageView.kt`、`ImageViewNative.kt`
+- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditTextView.kt`、`ImageViewLoadEngine.kt`、`ImageViewLoadNative.kt`
 
 实体类目录与范例：
 
@@ -153,6 +153,6 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 3. 对每个保留方法：**映射接收者类型**（`View` / `TextView` / `ImageView` / `ViewGroup` / `RecyclerView` 等）、**参数拆分或合并**（第 4 节）、**是否需要时间戳**（第 2 节）或 **Boolean 三态开关**（第 2.5 节）。
 4. 落文件：与现有 `bindingadapters/view` 分包一致；新增 attribute 类放 `attribute/`。
 5. **Read** `java-kotlin-method-normalize` 并整理文档与返回类型。
-6. 自检：`@BindingAdapter` 不与同模块已有属性名冲突；危险调用 `try/catch` 与项目日志工具一致（参照 `TextView.kt`、`ImageViewNative.kt`）。
+6. 自检：`@BindingAdapter` 不与同模块已有属性名冲突；危险调用 `try/catch` 与项目日志工具一致（参照 `TextView.kt`、`ImageViewLoadNative.kt`）。
 
 更细的判定表与 XML 示例见 [reference.md](reference.md)。

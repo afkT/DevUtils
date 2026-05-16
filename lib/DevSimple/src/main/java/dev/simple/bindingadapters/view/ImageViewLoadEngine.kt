@@ -19,18 +19,26 @@ import dev.utils.common.StringUtils
 import java.io.File
 import java.io.InputStream
 
-// ========================
-// = Image BindingAdapter =
-// ========================
-//
-// 本文件为经图片引擎的加载适配（binding_image_url / binding_image_engine 等）。
-// 若仅需单参数调用 ImageView#setImageBitmap、#setImageResource 等原生 API，请使用
-// ImageViewNative.kt 中的 binding_image_native_* 属性（与本文件属性名互不重复）。
+// ========================================
+// = ImageView Load Engine BindingAdapter =
+// ========================================
 
-private const val TAG = "Dev_Image_BindingAdapter"
+/**
+ * [ImageView] 经图片引擎（[IImageEngine]）加载的 Data Binding 适配集合。
+ *
+ * 布局属性前缀为 `binding_image_*`（如 `binding_image_url`、`binding_image_engine`、
+ * `binding_image_config`、`binding_image_no_cache`、`binding_image_listener`），内部经 [display] 走引擎加载。
+ * <pre>
+ *     各数据源入口（url / file / bitmap / uri 等）最终汇聚至 [bindingImageSource]。
+ *     若仅需单参调用 [ImageView.setImageBitmap]、[ImageView.setImageResource] 等原生 API，
+ *     请使用 `ImageViewLoadNative.kt` 中 `binding_image_native_*`（与本文件属性名互不重复）。
+ * </pre>
+ */
+
+private const val TAG = "Dev_ImageView_Load_Engine_BindingAdapter"
 
 // ==========
-// = 默认配置 =
+// = 加载配置 =
 // ==========
 
 // 不缓存图片加载配置
@@ -49,9 +57,9 @@ private fun <Config : IImageEngine.EngineConfig> resolveBindingImageConfig(
     config
 }
 
-// ==========
-// = 具体方法 =
-// ==========
+// =============
+// = URL 与文件 =
+// =============
 
 /**
  * 通过数据绑定按 URL 加载图片到当前 ImageView
@@ -146,6 +154,10 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageFilePath(
     }
 }
 
+// =====================
+// = Bitmap 与 Drawable =
+// =====================
+
 /**
  * 通过数据绑定按 Bitmap 加载图片到当前 ImageView
  * <pre>
@@ -203,6 +215,10 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageDrawable(
         bindingImageSource(source, engine, config, noCache, listener)
     }
 }
+
+// ==============
+// = Uri 与二进制 =
+// ==============
 
 /**
  * 通过数据绑定按 Uri 加载图片到当前 ImageView
@@ -290,6 +306,10 @@ fun <Config : IImageEngine.EngineConfig> ImageView.bindingImageByteArray(
         bindingImageSource(source, engine, config, noCache, listener)
     }
 }
+
+// ===================
+// = 资源与 DevSource =
+// ===================
 
 /**
  * 通过数据绑定按资源 ID 加载图片到当前 ImageView
