@@ -18,7 +18,7 @@ import dev.utils.app.KeyBoardUtils
  * <pre>
  *     未封装 `openKeyboard()` / `closeKeyboard()` 无参、`Activity` / `Dialog` 作用域、
  *     `setSoftInputMode`、`registerSoftInputListener*`、`toggleKeyboard` 等 Window 级或全局操作。
- *     与 [EditTextView] 的 `binding_et_text`、`binding_et_clear_text_ts` 等可并存；打开键盘前可在 VM 侧先设焦点或文案。
+ *     与 [EditText.kt] 的 `binding_et_text`、`binding_et_clear_text_ts` 等可并存；打开键盘前可在 VM 侧先设焦点或文案。
  *     需多次打开/关闭时使用 `_ts` 或 [EtKeyboardOpenDelayAt]（判定同 [qualifiesBindingAction]）。
  *     VM 开关：`binding_et_keyboard`；`true` 打开、`false` 或 `null` 关闭。
  * </pre>

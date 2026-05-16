@@ -24,7 +24,7 @@ disable-model-invocation: true
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`（适合 XML 的 API 边界说明）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.qualifiesScroll()`、`XYI` 合并位移）
 - `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScrollDelayed.kt`、`ViewScrollDelayAssist.kt`（延迟二次执行）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditTextView.kt`、`ImageViewLoadEngine.kt`、`ImageViewLoadNative.kt`
+- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditText.kt`、`ImageViewLoadEngine.kt`、`ImageViewLoadNative.kt`
 
 实体类目录与范例：
 
