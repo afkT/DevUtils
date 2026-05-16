@@ -1,5 +1,7 @@
 package dev.simple.bindingadapters
 
+import dev.simple.extensions.qualifies.qualifies
+
 /**
  * 判断数值型绑定是否应执行一次滚动类逻辑。
  * <pre>
@@ -8,8 +10,7 @@ package dev.simple.bindingadapters
  *
  * @return `true` 应执行滚动，`false` 跳过
  */
-fun Long?.qualifiesScroll(): Boolean = this != null && this > 0L
-//fun Long?.qualifiesScroll(): Boolean = this.qualifies()
+fun Long?.qualifiesScroll(): Boolean = this.qualifies()
 
 /**
  * 数据绑定侧判断时间戳是否应触发一次通用副作用。
@@ -20,4 +21,4 @@ fun Long?.qualifiesScroll(): Boolean = this != null && this > 0L
  *
  * @return `true` 应执行一次，`false` 跳过
  */
-fun Long?.qualifiesBindingAction(): Boolean = qualifiesScroll()
+fun Long?.qualifiesBindingAction(): Boolean = this.qualifies()
