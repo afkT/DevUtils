@@ -24,11 +24,34 @@ import dev.utils.app.anim.ViewAnimationUtils
  *     监听器：各 `ViewAnim*At` 实体含可选 `animationListener`；`*_ts` 属性可另绑
  *     `binding_view_anim_*_ts_listener`（`requireAll = false`）传入 [Animation.AnimationListener]。
  *     动画为一次性副作用，须通过正时间戳或含 timestamp 的 attribute 实体触发（判定同 [qualifiesBindingAction]）。
+ *     VM 持有 [Animation] 产物时可用 `binding_view_anim`：非 null 启动、null 结束（[AnimationUtils.cancelAnimation]）。
  *     与 [View] 中 `binding_view_animation` / `binding_view_start_animation` 等通用 Animation 控制属性并存、互不替代。
  *     `binding_view_anim_*_alpha`（ViewAnimationUtils）会同步 visibility；`binding_view_anim_hidden_alpha` /
  *     `binding_view_anim_show_alpha` / `binding_view_anim_alpha_fade` 仅播放 Alpha 动画，不改 visibility。
  * </pre>
  */
+
+// =================
+// = 通用 Animation =
+// =================
+
+/**
+ * 通过数据绑定启动或结束 [Animation]。
+ * <pre>
+ *     布局属性 `binding_view_anim`；非 null 时 [AnimationUtils.startAnimation] 播放；
+ *     null 时 [AnimationUtils.cancelAnimation] 结束当前动画。
+ * </pre>
+ *
+ * @param animation 待播放动画，null 表示结束
+ */
+@BindingAdapter("binding_view_anim")
+fun View.bindingViewAnim(animation: Animation?) {
+    if (animation == null) {
+        AnimationUtils.cancelAnimation(this)
+    } else {
+        startFactoryAnimation(animation)
+    }
+}
 
 // ===============
 // = 透明度渐变动画 =
