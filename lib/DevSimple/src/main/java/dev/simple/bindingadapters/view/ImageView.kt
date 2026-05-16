@@ -142,6 +142,21 @@ fun ImageView.bindingIVResource(@DrawableRes resId: Int?) {
 }
 
 /**
+ * 通过数据绑定按资源 ID 设置 View 背景（非前景 `src`）。
+ * <pre>
+ *     布局属性 `binding_iv_background_resource`；`null` 不修改；委托 [ImageViewUtils.setBackgroundResources]。
+ *     与 `binding_iv_resource`（前景图）区分；通用 View 背景亦可使用 `binding_view_background_resource`。
+ * </pre>
+ *
+ * @param resId 背景 drawable 资源 ID
+ */
+@BindingAdapter("binding_iv_background_resource")
+fun ImageView.bindingIVBackgroundResource(@DrawableRes resId: Int?) {
+    if (resId == null) return
+    ImageViewUtils.setBackgroundResources(resId, this)
+}
+
+/**
  * 通过数据绑定设置前景 [Matrix]。
  * <pre>
  *     布局属性 `binding_iv_image_matrix`；`null` 时不修改；委托 [ImageViewUtils.setImageMatrix]。

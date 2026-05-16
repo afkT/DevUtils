@@ -1,6 +1,7 @@
 package dev.simple.bindingadapters.view
 
 import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import android.graphics.Typeface
 import android.os.Build
 import android.text.TextUtils
@@ -407,6 +408,21 @@ fun TextView.bindingTVLineSpacingExtraMultiplier(value: TvLineSpacingExtraMultip
 }
 
 /**
+ * 通过数据绑定仅设置行间距额外值（倍数固定为 1）。
+ * <pre>
+ *     布局属性 `binding_tv_line_spacing_extra`；`null` 不修改；委托 [TextViewUtils.setLineSpacing]。
+ *     需同时指定倍数时请用 `binding_tv_line_spacing_extra_multiplier` 与 [TvLineSpacingExtraMultiplier]。
+ * </pre>
+ *
+ * @param lineSpacingExtra 行间距额外值，对应 `android:lineSpacingExtra` 语义
+ */
+@BindingAdapter("binding_tv_line_spacing_extra")
+fun TextView.bindingTVLineSpacingExtra(lineSpacingExtra: Float?) {
+    if (lineSpacingExtra == null) return
+    TextViewUtils.setLineSpacing(this, lineSpacingExtra)
+}
+
+/**
  * 通过数据绑定设置横向字宽缩放。
  * <pre>
  *     布局属性 `binding_tv_text_scale_x`；`null` 不修改；委托 [TextViewUtils.setTextScaleX]。
@@ -713,6 +729,63 @@ fun TextView.bindingTVCompoundDrawablesIntrinsic(four: TvCompoundDrawablesFour?)
         four.right,
         four.bottom
     )
+}
+
+/**
+ * 通过数据绑定仅设置左侧 compound drawable。
+ * <pre>
+ *     布局属性 `binding_tv_compound_left`；`null` 不修改；委托 [TextViewUtils.setCompoundDrawablesByLeft]。
+ *     其余三边置空；与 `binding_tv_compound_drawables` 四边同绑二选一，避免同轮覆盖。
+ * </pre>
+ *
+ * @param left 左侧 drawable
+ */
+@BindingAdapter("binding_tv_compound_left")
+fun TextView.bindingTVCompoundLeft(left: Drawable?) {
+    if (left == null) return
+    TextViewUtils.setCompoundDrawablesByLeft(this, left)
+}
+
+/**
+ * 通过数据绑定仅设置顶部 compound drawable。
+ * <pre>
+ *     布局属性 `binding_tv_compound_top`；`null` 不修改；委托 [TextViewUtils.setCompoundDrawablesByTop]。
+ * </pre>
+ *
+ * @param top 顶部 drawable
+ */
+@BindingAdapter("binding_tv_compound_top")
+fun TextView.bindingTVCompoundTop(top: Drawable?) {
+    if (top == null) return
+    TextViewUtils.setCompoundDrawablesByTop(this, top)
+}
+
+/**
+ * 通过数据绑定仅设置右侧 compound drawable。
+ * <pre>
+ *     布局属性 `binding_tv_compound_right`；`null` 不修改；委托 [TextViewUtils.setCompoundDrawablesByRight]。
+ * </pre>
+ *
+ * @param right 右侧 drawable
+ */
+@BindingAdapter("binding_tv_compound_right")
+fun TextView.bindingTVCompoundRight(right: Drawable?) {
+    if (right == null) return
+    TextViewUtils.setCompoundDrawablesByRight(this, right)
+}
+
+/**
+ * 通过数据绑定仅设置底部 compound drawable。
+ * <pre>
+ *     布局属性 `binding_tv_compound_bottom`；`null` 不修改；委托 [TextViewUtils.setCompoundDrawablesByBottom]。
+ * </pre>
+ *
+ * @param bottom 底部 drawable
+ */
+@BindingAdapter("binding_tv_compound_bottom")
+fun TextView.bindingTVCompoundBottom(bottom: Drawable?) {
+    if (bottom == null) return
+    TextViewUtils.setCompoundDrawablesByBottom(this, bottom)
 }
 
 // =============

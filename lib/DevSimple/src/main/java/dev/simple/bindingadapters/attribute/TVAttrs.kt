@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
  * 行间距额外值与倍数，用于单次绑定调用 [dev.utils.app.TextViewUtils.setLineSpacingAndMultiplier]。
  * <pre>
  *     与布局属性 `binding_tv_line_spacing_extra_multiplier` 搭配；`multiplier` 默认 1。
+ *     仅需 extra、倍数固定为 1 时请用 `binding_tv_line_spacing_extra`（[Float] 单参）。
  * </pre>
  *
  * @property lineSpacingExtra 行间距额外值，对应 `android:lineSpacingExtra` 语义
