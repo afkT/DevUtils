@@ -108,7 +108,6 @@ fun ImageView.bindingIVImageLevel(level: Int?) {
  */
 @BindingAdapter("binding_iv_bitmap")
 fun ImageView.bindingIVBitmap(bitmap: Bitmap?) {
-    if (bitmap == null) return
     ImageViewUtils.setImageBitmap(this, bitmap)
 }
 
@@ -123,7 +122,6 @@ fun ImageView.bindingIVBitmap(bitmap: Bitmap?) {
  */
 @BindingAdapter("binding_iv_drawable")
 fun ImageView.bindingIVDrawable(drawable: Drawable?) {
-    if (drawable == null) return
     ImageViewUtils.setImageDrawable(this, drawable)
 }
 

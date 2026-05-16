@@ -514,7 +514,6 @@ private fun TextView.applyHintColorStateList(colors: ColorStateList?) {
 }
 
 private fun View.applyStateListBackground(selector: Drawable?) {
-    if (selector == null) return
     try {
         ViewUtils.setBackground(this, selector)
     } catch (e: Throwable) {
