@@ -128,11 +128,15 @@ fun TextView.bindingTVTextColorState(colors: ColorStateList?) {
  */
 @BindingAdapter("binding_tv_html")
 fun TextView.bindingTVHtml(html: String?) {
-    if (html == null) return
+    if (html == null) {
+        text = ""
+        return
+    }
     try {
         TextViewUtils.setHtmlText(this, html)
     } catch (e: Throwable) {
         LogPrintUtils.eTag(TAG, e, "bindingTVHtml")
+        text = ""
     }
 }
 

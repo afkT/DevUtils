@@ -1212,6 +1212,19 @@ public final class TextViewUtils {
         return textView;
     }
 
+    /**
+     * 移除下划线
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T removeUnderlineText(final T textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
+        }
+        return textView;
+    }
+
     // =
 
     /**
@@ -1235,6 +1248,16 @@ public final class TextViewUtils {
             final boolean isAntiAlias
     ) {
         setUnderlineText(getTextView(view), isAntiAlias);
+        return view;
+    }
+
+    /**
+     * 移除下划线
+     * @param view {@link TextView}
+     * @return {@link View}
+     */
+    public static View removeUnderlineText(final View view) {
+        removeUnderlineText(getTextView(view));
         return view;
     }
 
@@ -1270,6 +1293,19 @@ public final class TextViewUtils {
         return textView;
     }
 
+    /**
+     * 移除中划线
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T removeStrikeThruText(final T textView) {
+        if (textView != null) {
+            textView.setPaintFlags(textView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        return textView;
+    }
+
     // =
 
     /**
@@ -1293,6 +1329,16 @@ public final class TextViewUtils {
             final boolean isAntiAlias
     ) {
         setStrikeThruText(getTextView(view), isAntiAlias);
+        return view;
+    }
+
+    /**
+     * 移除中划线
+     * @param view {@link TextView}
+     * @return {@link View}
+     */
+    public static View removeStrikeThruText(final View view) {
+        removeStrikeThruText(getTextView(view));
         return view;
     }
 
