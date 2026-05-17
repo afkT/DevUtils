@@ -3,6 +3,8 @@ package dev.utils.app.text;
 import android.text.InputFilter;
 import android.text.Spanned;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 手机号输入：仅数字，可限制最大位数
  * @author Ttt

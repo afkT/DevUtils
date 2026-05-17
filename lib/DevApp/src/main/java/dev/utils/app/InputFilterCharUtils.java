@@ -1,4 +1,4 @@
-package dev.utils.app.text;
+package dev.utils.app;
 
 import java.util.regex.Pattern;
 
@@ -129,7 +129,7 @@ public final class InputFilterCharUtils {
         return builder == null ? null : builder;
     }
 
-    interface CharPredicate {
+    public interface CharPredicate {
         boolean test(char c);
     }
 }

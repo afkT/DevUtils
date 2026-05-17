@@ -3,6 +3,8 @@ package dev.utils.app.text;
 import android.text.InputFilter;
 import android.text.Spanned;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 用户名输入：英文字母、数字、下划线
  * @author Ttt

@@ -4,6 +4,8 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 禁止输入指定字符 ( 黑名单 )
  * @author Ttt

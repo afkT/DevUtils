@@ -3,6 +3,8 @@ package dev.utils.app.text;
 import android.text.InputFilter;
 import android.text.Spanned;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 禁止输入中文 ( 含 CJK 字符 )
  * @author Ttt

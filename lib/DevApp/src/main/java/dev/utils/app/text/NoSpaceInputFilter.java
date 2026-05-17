@@ -3,6 +3,8 @@ package dev.utils.app.text;
 import android.text.InputFilter;
 import android.text.Spanned;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 禁止输入任何空白字符 ( 空格、制表符等 )
  * @author Ttt

@@ -4,6 +4,8 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 小数输入：数字加一个小数点，可限制整数位与小数位长度
  * @author Ttt

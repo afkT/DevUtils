@@ -5,6 +5,8 @@ import android.text.Spanned;
 
 import java.util.regex.Pattern;
 
+import dev.utils.app.InputFilterCharUtils;
+
 /**
  * detail: 正则匹配输入，仅保留匹配规则的字符
  * @author Ttt
