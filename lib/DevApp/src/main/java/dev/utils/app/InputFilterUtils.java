@@ -284,6 +284,7 @@ public final class InputFilterUtils {
             final List<InputFilter> list,
             final InputFilter... filters
     ) {
+        if (filters == null) return;
         for (InputFilter filter : filters) {
             if (filter != null && !list.contains(filter)) {
                 list.add(filter);

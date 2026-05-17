@@ -1,5 +1,7 @@
 package dev.utils.app;
 
+import android.text.Spanned;
+
 import java.util.regex.Pattern;
 
 /**
@@ -63,6 +65,73 @@ public final class InputFilterCharUtils {
         return isDigit(c)
                 || (c >= 'a' && c <= 'f')
                 || (c >= 'A' && c <= 'F');
+    }
+
+    /**
+     * 判断字符是否为邮箱常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为字母、数字或 {@code @._+-}
+     */
+    public static boolean isEmailChar(final char c) {
+        return isEnglish(c)
+                || isDigit(c)
+                || c == '@'
+                || c == '.'
+                || c == '_'
+                || c == '-'
+                || c == '+';
+    }
+
+    /**
+     * 判断字符是否为可打印 ASCII
+     * @param c 待判断字符
+     * @return {@code true} 为 ASCII 32-126
+     */
+    public static boolean isPrintableAscii(final char c) {
+        return c >= 32 && c <= 126;
+    }
+
+    /**
+     * 判断字符是否为日期输入常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为数字或 {@code - / .}
+     */
+    public static boolean isDateChar(final char c) {
+        return isDigit(c) || c == '-' || c == '/' || c == '.';
+    }
+
+    /**
+     * 判断字符是否为 MAC 地址输入常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为十六进制或 {@code : -}
+     */
+    public static boolean isMacAddressChar(final char c) {
+        return isHex(c) || c == ':' || c == '-';
+    }
+
+    /**
+     * 合并本次输入与已有文本
+     * @param source 新输入内容
+     * @param start  新输入起始下标
+     * @param end    新输入结束下标，不含
+     * @param dest   已有文本
+     * @param dstart 替换区间起始
+     * @param dend   替换区间结束，不含
+     * @return 合并后的完整字符串
+     */
+    public static String mergeInput(
+            final CharSequence source,
+            final int start,
+            final int end,
+            final Spanned dest,
+            final int dstart,
+            final int dend
+    ) {
+        String destStr = dest == null ? "" : dest.toString();
+        if (source == null) return destStr;
+        return destStr.substring(0, dstart)
+                + source.subSequence(start, end)
+                + destStr.substring(dend);
     }
 
     /**
