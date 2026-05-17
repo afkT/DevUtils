@@ -3,13 +3,13 @@ package dev.utils.app.text;
 import java.util.regex.Pattern;
 
 /**
- * detail: InputFilter 字符判断辅助类 ( 包内使用 )
+ * detail: InputFilter 字符判断辅助类
  * @author Ttt
  * <pre>
  *     仅供 {@code dev.utils.app.text} 包内 {@link android.text.InputFilter} 实现复用。
  * </pre>
  */
-final class InputFilterCharUtils {
+public final class InputFilterCharUtils {
 
     private InputFilterCharUtils() {
     }
@@ -24,7 +24,7 @@ final class InputFilterCharUtils {
      * @param c 待判断字符
      * @return {@code true} 为 a-z 或 A-Z，{@code false} 非英文字母
      */
-    static boolean isEnglish(final char c) {
+    public static boolean isEnglish(final char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
     }
 
@@ -33,7 +33,7 @@ final class InputFilterCharUtils {
      * @param c 待判断字符
      * @return {@code true} 为 0-9，{@code false} 非数字
      */
-    static boolean isDigit(final char c) {
+    public static boolean isDigit(final char c) {
         return c >= '0' && c <= '9';
     }
 
@@ -42,7 +42,7 @@ final class InputFilterCharUtils {
      * @param c 待判断字符
      * @return {@code true} 属于 CJK 区块，{@code false} 不属于
      */
-    static boolean isChinese(final char c) {
+    public static boolean isChinese(final char c) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(c);
         return block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
                 || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
@@ -59,7 +59,7 @@ final class InputFilterCharUtils {
      * @param c 待判断字符
      * @return {@code true} 为 0-9 或 a-f、A-F，{@code false} 非十六进制字符
      */
-    static boolean isHex(final char c) {
+    public static boolean isHex(final char c) {
         return isDigit(c)
                 || (c >= 'a' && c <= 'f')
                 || (c >= 'A' && c <= 'F');
@@ -70,7 +70,7 @@ final class InputFilterCharUtils {
      * @param source 待检测文本
      * @return {@code true} 包含 Emoji，{@code false} 不包含或为空
      */
-    static boolean containsEmoji(final CharSequence source) {
+    public static boolean containsEmoji(final CharSequence source) {
         if (source == null || source.length() == 0) return false;
         return EMOJI_PATTERN.matcher(source).find();
     }
@@ -83,7 +83,7 @@ final class InputFilterCharUtils {
      * @param text 待计算文本
      * @return 显示字节长度，null 入参返回 0
      */
-    static int getByteLength(final CharSequence text) {
+    public static int getByteLength(final CharSequence text) {
         if (text == null) return 0;
         int length = 0;
         for (int i = 0; i < text.length(); i++) {
@@ -104,7 +104,7 @@ final class InputFilterCharUtils {
      * @param predicate 字符谓词
      * @return 过滤结果，全部通过或无效入参为 null
      */
-    static CharSequence filterByPredicate(
+    public static CharSequence filterByPredicate(
             final CharSequence source,
             final int start,
             final int end,
