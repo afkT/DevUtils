@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.app.Activity;
+import android.app.HandoffActivityParams;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -576,6 +577,78 @@ public final class ActivityUtils {
             LogPrintUtils.eTag(TAG, e, "getOptionsBundle");
         }
         return null;
+    }
+
+    // ===============
+    // = Handoff API =
+    // ===============
+
+    /**
+     * 是否支持跨设备 Handoff（API 37+）
+     * @return {@code true} 支持
+     */
+    public static boolean isHandoffSupported() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN;
+    }
+
+    /**
+     * 为 Activity 启用或关闭 Handoff（API 37+）
+     * @param activity {@link Activity}
+     * @param enabled  是否启用
+     * @return {@code true} 调用成功
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean setHandoffEnabled(
+            final Activity activity,
+            final boolean enabled
+    ) {
+        return setHandoffEnabled(activity, enabled, false);
+    }
+
+    /**
+     * 为 Activity 启用或关闭 Handoff（API 37+）
+     * @param activity                            {@link Activity}
+     * @param enabled                             是否启用
+     * @param allowHandoffWithoutPackageInstalled 接收端未安装应用时是否仍允许 Handoff（如 Web 回退）
+     * @return {@code true} 调用成功
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean setHandoffEnabled(
+            final Activity activity,
+            final boolean enabled,
+            final boolean allowHandoffWithoutPackageInstalled
+    ) {
+        if (activity == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return false;
+        }
+        try {
+            HandoffActivityParams params = new HandoffActivityParams.Builder()
+                    .setAllowHandoffWithoutPackageInstalled(allowHandoffWithoutPackageInstalled)
+                    .build();
+            activity.setHandoffEnabled(enabled, params);
+            return true;
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "setHandoffEnabled");
+            return false;
+        }
+    }
+
+    /**
+     * Activity 是否已启用 Handoff（API 37+）
+     * @param activity {@link Activity}
+     * @return {@code true} 已启用；低版本或异常返回 {@code false}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static boolean isHandoffEnabled(final Activity activity) {
+        if (activity == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return false;
+        }
+        try {
+            return activity.isHandoffEnabled();
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "isHandoffEnabled");
+            return false;
+        }
     }
 
     // ===================
