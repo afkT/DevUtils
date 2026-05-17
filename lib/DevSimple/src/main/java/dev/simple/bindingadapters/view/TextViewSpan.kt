@@ -272,4 +272,4 @@ private fun appendSpanImage(
         image.drawable != null -> utils.appendImage(image.drawable, image.align)
         image.resourceId != null -> utils.appendImage(image.resourceId!!, image.align)
     }
-}
+}

@@ -258,4 +258,4 @@ fun StateFlow<UIntArray>?.qualifies(): Boolean =
 /** [StateFlow] 非 null 时对 [StateFlow.value] 委托 [qualifies]。 */
 @JvmName("qualifiesOfStateFlowULongArray")
 fun StateFlow<ULongArray>?.qualifies(): Boolean =
-    this != null && this.value.qualifies()
+    this != null && this.value.qualifies()

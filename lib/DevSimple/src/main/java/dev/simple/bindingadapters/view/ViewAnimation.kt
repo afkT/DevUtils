@@ -745,4 +745,4 @@ fun View.bindingViewAnimScale(payload: ViewAnimScaleAt?) {
             p.animationListener,
         ),
     )
-}
+}

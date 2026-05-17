@@ -255,4 +255,4 @@ fun ObservableField<UIntArray>?.qualifies(): Boolean =
 /** [ObservableField] 非 null 时对 [ObservableField.get] 委托 [qualifies]。 */
 @JvmName("qualifiesOfObservableFieldULongArray")
 fun ObservableField<ULongArray>?.qualifies(): Boolean =
-    this != null && this.get().qualifies()
+    this != null && this.get().qualifies()

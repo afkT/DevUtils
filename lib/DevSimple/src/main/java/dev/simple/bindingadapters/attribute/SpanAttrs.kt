@@ -123,4 +123,4 @@ data class TvSpanSegment(
     val shadow: TvSpanShadow? = null,
     val space: TvSpanSpace? = null,
     val image: TvSpanImage? = null,
-)
+)

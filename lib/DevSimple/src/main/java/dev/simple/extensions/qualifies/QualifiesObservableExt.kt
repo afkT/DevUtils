@@ -48,4 +48,4 @@ fun ObservableDouble?.qualifies(): Boolean =
 
 /** [ObservableChar] 非 null 时对 [ObservableChar.get] 委托 [qualifies]。 */
 fun ObservableChar?.qualifies(): Boolean =
-    this != null && this.get().qualifies()
+    this != null && this.get().qualifies()

@@ -255,4 +255,4 @@ fun LiveData<UIntArray>?.qualifies(): Boolean =
 /** [LiveData] 非 null 时对 [LiveData.value] 委托 [qualifies]。 */
 @JvmName("qualifiesOfLiveDataULongArray")
 fun LiveData<ULongArray>?.qualifies(): Boolean =
-    this != null && this.value.qualifies()
+    this != null && this.value.qualifies()

@@ -162,4 +162,4 @@
         <!-- 等同于 center|top -->
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
-</resources>
+</resources>

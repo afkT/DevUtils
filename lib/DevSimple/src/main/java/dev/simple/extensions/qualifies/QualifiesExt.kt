@@ -441,4 +441,4 @@ fun UIntArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
  * @receiver 可空无符号长整型数组
  * @return `true` 非空且长度大于零
  */
-fun ULongArray?.qualifies(): Boolean = this != null && this.isNotEmpty()
+fun ULongArray?.qualifies(): Boolean = this != null && this.isNotEmpty()

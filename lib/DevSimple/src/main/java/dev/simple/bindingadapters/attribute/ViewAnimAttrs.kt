@@ -204,4 +204,4 @@ data class ViewAnimScaleAt(
     val toY: Float,
     val durationMillis: Long = AnimationUtils.DEFAULT_ANIMATION_DURATION,
     val animationListener: Animation.AnimationListener? = null,
-)
+)
