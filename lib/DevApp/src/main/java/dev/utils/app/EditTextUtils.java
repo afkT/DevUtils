@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -243,6 +244,141 @@ public final class EditTextUtils {
             final int maxLength
     ) {
         return setText(setMaxLength(editText, maxLength), content);
+    }
+
+    // =======================
+    // = EditText 设置 Filter =
+    // =======================
+
+    // ==============
+    // = setFilters =
+    // ==============
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param editText {@link EditText}
+     * @param filters  过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends EditText> boolean setFilters(
+            final T editText,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.setFilters(editText, filters);
+    }
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param view    {@link View}
+     * @param filters 过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.setFilters(view, filters);
+    }
+
+    // =================
+    // = appendFilters =
+    // =================
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * <pre>
+     *     追加段中的 null 元素会被忽略。
+     * </pre>
+     * @param editText {@link EditText}
+     * @param filters  待追加的过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends EditText> boolean appendFilters(
+            final T editText,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.appendFilters(editText, filters);
+    }
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * <pre>
+     *     非 {@link EditText} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view    {@link View}
+     * @param filters 待追加的过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean appendFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.appendFilters(view, filters);
+    }
+
+    // ================
+    // = clearFilters =
+    // ================
+
+    /**
+     * 清空 InputFilter
+     * @param editText {@link EditText}
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends EditText> boolean clearFilters(final T editText) {
+        return InputFilterUtils.clearFilters(editText);
+    }
+
+    /**
+     * 清空 InputFilter
+     * <pre>
+     *     非 {@link EditText} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean clearFilters(final View view) {
+        return InputFilterUtils.clearFilters(view);
+    }
+
+    // ================
+    // = mergeFilters =
+    // ================
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * <pre>
+     *     入参会先经 {@link InputFilterUtils#merge(InputFilter...)} 去 null，再与已有 filters 合并后设置。
+     * </pre>
+     * @param editText {@link EditText}
+     * @param filters  待合并的过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends EditText> boolean mergeFilters(
+            final T editText,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.mergeFilters(editText, filters);
+    }
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * <pre>
+     *     非 {@link EditText} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view    {@link View}
+     * @param filters 待合并的过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean mergeFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.mergeFilters(view, filters);
     }
 
     // =======

@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
+import android.text.InputFilter;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -2002,6 +2003,141 @@ public final class TextViewUtils {
             final int maxLength
     ) {
         return setText(setMaxLength(view, maxLength), content);
+    }
+
+    // =======================
+    // = TextView 设置 Filter =
+    // =======================
+
+    // ==============
+    // = setFilters =
+    // ==============
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param textView {@link TextView}
+     * @param filters  过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean setFilters(
+            final T textView,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.setFilters(textView, filters);
+    }
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param view    {@link View}
+     * @param filters 过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.setFilters(view, filters);
+    }
+
+    // =================
+    // = appendFilters =
+    // =================
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * <pre>
+     *     追加段中的 null 元素会被忽略。
+     * </pre>
+     * @param textView {@link TextView}
+     * @param filters  待追加的过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean appendFilters(
+            final T textView,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.appendFilters(textView, filters);
+    }
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * <pre>
+     *     非 {@link TextView} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view    {@link View}
+     * @param filters 待追加的过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean appendFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.appendFilters(view, filters);
+    }
+
+    // ================
+    // = clearFilters =
+    // ================
+
+    /**
+     * 清空 InputFilter
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean clearFilters(final T textView) {
+        return InputFilterUtils.clearFilters(textView);
+    }
+
+    /**
+     * 清空 InputFilter
+     * <pre>
+     *     非 {@link TextView} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean clearFilters(final View view) {
+        return InputFilterUtils.clearFilters(view);
+    }
+
+    // ================
+    // = mergeFilters =
+    // ================
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * <pre>
+     *     入参会先经 {@link InputFilterUtils#merge(InputFilter...)} 去 null，再与已有 filters 合并后设置。
+     * </pre>
+     * @param textView {@link TextView}
+     * @param filters  待合并的过滤器
+     * @param <T>      泛型
+     * @return {@code true} success, {@code false} fail
+     */
+    public static <T extends TextView> boolean mergeFilters(
+            final T textView,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.mergeFilters(textView, filters);
+    }
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * <pre>
+     *     非 {@link TextView} 的 {@link View} 将设置失败。
+     * </pre>
+     * @param view    {@link View}
+     * @param filters 待合并的过滤器
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean mergeFilters(
+            final View view,
+            final InputFilter... filters
+    ) {
+        return InputFilterUtils.mergeFilters(view, filters);
     }
 
     // =
