@@ -725,6 +725,75 @@ public final class AudioManagerUtils {
      * @param listener 焦点监听事件
      * @return {@code true} success, {@code false} fail
      */
+    // ==============================
+    // = Assistant 音量流 ( API 37 ) =
+    // ==============================
+
+    /**
+     * Assistant 专用音量流类型 {@link android.media.AudioAttributes#USAGE_ASSISTANT}
+     * @return {@link android.media.AudioManager#STREAM_ASSISTANT}；低版本返回 {@link android.media.AudioManager#STREAM_MUSIC}
+     */
+    public static int getStreamAssistant() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
+            return AudioManager.STREAM_ASSISTANT;
+        }
+        return AudioManager.STREAM_MUSIC;
+    }
+
+    /**
+     * 设置音频模式为 Assistant 会话（API 37+）
+     * @return {@code true} success
+     */
+    public static boolean setModeAssistantConversation() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return false;
+        }
+        AudioManager audioManager = AppUtils.getAudioManager();
+        if (audioManager == null) {
+            return false;
+        }
+        try {
+            audioManager.setMode(AudioManager.MODE_ASSISTANT_CONVERSATION);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setModeAssistantConversation");
+            return false;
+        }
+    }
+
+    /**
+     * 当前是否为 Assistant 会话模式（API 37+）
+     * @return {@code true} {@link AudioManager#MODE_ASSISTANT_CONVERSATION}
+     */
+    public static boolean isModeAssistantConversation() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return false;
+        }
+        AudioManager audioManager = AppUtils.getAudioManager();
+        if (audioManager == null) {
+            return false;
+        }
+        try {
+            return audioManager.getMode() == AudioManager.MODE_ASSISTANT_CONVERSATION;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isModeAssistantConversation");
+            return false;
+        }
+    }
+
+    /**
+     * 获取 Assistant 音量流当前音量
+     * @return 音量；失败或低版本返回 0
+     */
+    public static int getAssistantStreamVolume() {
+        return getStreamVolume(getStreamAssistant());
+    }
+
+    /**
+     * 放弃音频焦点, 使上一个焦点所有者 ( 如果有 ) 接收焦点
+     * @param listener 焦点监听事件
+     * @return {@code true} success, {@code false} fail
+     */
     public static boolean abandonAudioFocus(final AudioManager.OnAudioFocusChangeListener listener) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {

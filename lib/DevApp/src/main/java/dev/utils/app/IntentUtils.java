@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.widget.photopicker.PhotoPickerUiCustomizationParams;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.io.File;
@@ -1136,5 +1138,54 @@ public final class IntentUtils {
             intent.removeLaunchSecurityProtection();
         }
         return intent;
+    }
+
+    // ====================
+    // = Photo Picker 选择 =
+    // ====================
+
+    /**
+     * 获取系统 Photo Picker 选择图片 Intent（API 33+）
+     * @param maxPick 最多可选数量，&lt;= 0 时使用 {@link MediaStore#getPickImagesMaxLimit()}
+     * @return {@link Intent}；不可用时返回 null
+     */
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    @Nullable
+    public static Intent getPickImagesIntent(final int maxPick) {
+        return getPickImagesIntent(maxPick, null);
+    }
+
+    /**
+     * 获取系统 Photo Picker 选择图片 Intent，可附带 Android 17 UI 定制（API 33+，UI 参数需 API 37+）
+     * @param maxPick               最多可选数量
+     * @param uiCustomizationParams {@link PhotoPickerUiCustomizationParams}，可为 null
+     * @return {@link Intent}；不可用时返回 null
+     */
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    @Nullable
+    public static Intent getPickImagesIntent(
+            final int maxPick,
+            @Nullable final PhotoPickerUiCustomizationParams uiCustomizationParams
+    ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            LogPrintUtils.wTag(TAG, "getPickImagesIntent requires API 33+");
+            return null;
+        }
+        try {
+            Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+            int    limit  = maxPick > 0 ? maxPick : MediaStore.getPickImagesMaxLimit();
+            intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX, limit);
+            if (uiCustomizationParams != null
+                    && Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
+                intent.putExtra(
+                        MediaStore.EXTRA_PICK_IMAGES_UI_CUSTOMIZATION_PARAMS,
+                        uiCustomizationParams
+                );
+            }
+            return intent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getPickImagesIntent");
+            return null;
+        }
     }
 }

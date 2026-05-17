@@ -15,8 +15,10 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
+import android.widget.photopicker.PhotoPickerUiCustomizationParams;
 
 import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.io.File;
@@ -1334,5 +1336,33 @@ public final class MediaStoreUtils {
     public static boolean hasExtension(final String extension) {
         if (TextUtils.isEmpty(extension)) return false;
         return MimeTypeMap.getSingleton().hasExtension(extension);
+    }
+
+    // ============================
+    // = Photo Picker UI (API 37) =
+    // ============================
+
+    /**
+     * 创建 Photo Picker 默认 1:1 网格 UI 参数
+     * @return {@link PhotoPickerUiCustomizationParams}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    @NonNull
+    public static PhotoPickerUiCustomizationParams createPhotoPickerUiSquare() {
+        return new PhotoPickerUiCustomizationParams.Builder()
+                .setAspectRatio(PhotoPickerUiCustomizationParams.ASPECT_RATIO_SQUARE_1_1)
+                .build();
+    }
+
+    /**
+     * 创建 Photo Picker 9:16 竖屏网格 UI 参数
+     * @return {@link PhotoPickerUiCustomizationParams}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    @NonNull
+    public static PhotoPickerUiCustomizationParams createPhotoPickerUiPortrait916() {
+        return new PhotoPickerUiCustomizationParams.Builder()
+                .setAspectRatio(PhotoPickerUiCustomizationParams.ASPECT_RATIO_PORTRAIT_9_16)
+                .build();
     }
 }

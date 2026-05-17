@@ -12,9 +12,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.text.Annotation;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
@@ -33,6 +36,7 @@ import dev.utils.app.assist.ResourceAssist;
  *     Android 13+ 发送通知前请结合 {@link #canPostNotifications()}、
  *     {@link #isPostNotificationsPermissionGranted()} 与运行时权限申请；
  *     需安全封装发布可使用 {@link #postNotificationIfAllowed(int, Notification)}。
+ *     Android 17 Live Update 语义色见 {@link #createSemanticStyleAnnotation(int)} 等。
  * </pre>
  */
 public final class NotificationUtils {
@@ -42,6 +46,97 @@ public final class NotificationUtils {
 
     // 日志 TAG
     private static final String TAG = NotificationUtils.class.getSimpleName();
+
+    // ====================
+    // = 语义色 ( API 37 ) =
+    // ====================
+
+    /**
+     * {@link Notification#SEMANTIC_STYLE_UNSPECIFIED}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static int getSemanticStyleUnspecified() {
+        return Notification.SEMANTIC_STYLE_UNSPECIFIED;
+    }
+
+    /**
+     * {@link Notification#SEMANTIC_STYLE_INFO}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static int getSemanticStyleInfo() {
+        return Notification.SEMANTIC_STYLE_INFO;
+    }
+
+    /**
+     * {@link Notification#SEMANTIC_STYLE_SAFE}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static int getSemanticStyleSafe() {
+        return Notification.SEMANTIC_STYLE_SAFE;
+    }
+
+    /**
+     * {@link Notification#SEMANTIC_STYLE_CAUTION}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static int getSemanticStyleCaution() {
+        return Notification.SEMANTIC_STYLE_CAUTION;
+    }
+
+    /**
+     * {@link Notification#SEMANTIC_STYLE_DANGER}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static int getSemanticStyleDanger() {
+        return Notification.SEMANTIC_STYLE_DANGER;
+    }
+
+    /**
+     * 创建 Live Update 语义样式 {@link Annotation}（API 37+）
+     * @param semanticStyle {@link Notification#SEMANTIC_STYLE_SAFE} 等
+     * @return {@link Annotation}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static Annotation createSemanticStyleAnnotation(final int semanticStyle) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            return null;
+        }
+        try {
+            return Notification.createSemanticStyleAnnotation(semanticStyle);
+        } catch (Throwable e) {
+            LogPrintUtils.eTag(TAG, e, "createSemanticStyleAnnotation");
+            return null;
+        }
+    }
+
+    /**
+     * 向 {@link SpannableStringBuilder} 追加带语义色的文本（API 37+）
+     * @param builder       目标
+     * @param text          文本
+     * @param semanticStyle 语义样式常量
+     */
+    @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
+    public static void appendSemanticText(
+            final SpannableStringBuilder builder,
+            final CharSequence text,
+            final int semanticStyle
+    ) {
+        if (builder == null || TextUtils.isEmpty(text)) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
+            builder.append(text);
+            return;
+        }
+        Annotation annotation = createSemanticStyleAnnotation(semanticStyle);
+        if (annotation == null) {
+            builder.append(text);
+            return;
+        }
+        int start = builder.length();
+        builder.append(text);
+        builder.setSpan(annotation, start, builder.length(), 0);
+    }
 
     /**
      * 检查通知栏权限是否开启
