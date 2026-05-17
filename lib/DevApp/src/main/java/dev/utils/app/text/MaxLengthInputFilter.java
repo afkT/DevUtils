@@ -3,8 +3,11 @@ package dev.utils.app.text;
 import android.text.InputFilter;
 
 /**
- * detail: 最大长度限制 ( 继承 {@link InputFilter.LengthFilter} )
+ * detail: 最大长度限制
  * @author Ttt
+ * <pre>
+ *     继承 {@link InputFilter.LengthFilter}。
+ * </pre>
  */
 public class MaxLengthInputFilter
         extends InputFilter.LengthFilter {

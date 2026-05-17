@@ -5,10 +5,14 @@ import android.text.Spanned;
 import android.text.TextUtils;
 
 /**
- * detail: 数值上限：输入内容按数字解析后不得超过指定最大值 ( 仅数字与小数点 )
+ * detail: 数值上限：解析后不得超过指定最大值
  * @author Ttt
+ * <pre>
+ *     仅适用于数字与小数点组成的输入。
+ * </pre>
  */
-public class MaxValueInputFilter implements InputFilter {
+public class MaxValueInputFilter
+        implements InputFilter {
 
     private final double mMaxValue;
 
@@ -20,14 +24,24 @@ public class MaxValueInputFilter implements InputFilter {
         mMaxValue = maxValue;
     }
 
+    /**
+     * 过滤本次输入片段
+     * @param source 新输入内容
+     * @param start  新输入起始下标
+     * @param end    新输入结束下标，不含
+     * @param dest   已有文本
+     * @param dstart 替换区间起始
+     * @param dend   替换区间结束，不含
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
     @Override
     public CharSequence filter(
-            final CharSequence source,
-            final int start,
-            final int end,
-            final Spanned dest,
-            final int dstart,
-            final int dend
+            CharSequence source,
+            int start,
+            int end,
+            Spanned dest,
+            int dstart,
+            int dend
     ) {
         if (source == null) return null;
         String destStr = dest == null ? "" : dest.toString();

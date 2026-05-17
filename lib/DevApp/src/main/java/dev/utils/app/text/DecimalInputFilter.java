@@ -5,16 +5,17 @@ import android.text.Spanned;
 import android.text.TextUtils;
 
 /**
- * detail: 小数输入：数字 + 一个小数点，可限制整数位与小数位长度
+ * detail: 小数输入：数字加一个小数点，可限制整数位与小数位长度
  * @author Ttt
  */
-public class DecimalInputFilter implements InputFilter {
+public class DecimalInputFilter
+        implements InputFilter {
 
     private final int mIntegerDigits;
     private final int mDecimalDigits;
 
     /**
-     * 构造函数 ( 不限制整数位、小数位长度，仅保证一个小数点 )
+     * 不限制整数位、小数位长度，仅保证一个小数点
      */
     public DecimalInputFilter() {
         this(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -33,14 +34,24 @@ public class DecimalInputFilter implements InputFilter {
         mDecimalDigits = Math.max(0, decimalDigits);
     }
 
+    /**
+     * 过滤本次输入片段
+     * @param source 新输入内容
+     * @param start  新输入起始下标
+     * @param end    新输入结束下标，不含
+     * @param dest   已有文本
+     * @param dstart 替换区间起始
+     * @param dend   替换区间结束，不含
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
     @Override
     public CharSequence filter(
-            final CharSequence source,
-            final int start,
-            final int end,
-            final Spanned dest,
-            final int dstart,
-            final int dend
+            CharSequence source,
+            int start,
+            int end,
+            Spanned dest,
+            int dstart,
+            int dend
     ) {
         if (source == null) return null;
         String destStr = dest == null ? "" : dest.toString();
@@ -54,6 +65,11 @@ public class DecimalInputFilter implements InputFilter {
         return null;
     }
 
+    /**
+     * 校验完整输入是否合法小数且在位数限制内
+     * @param value 合并后的完整输入
+     * @return {@code true} 合法，{@code false} 不合法
+     */
     private boolean isValidDecimal(final String value) {
         int dotIndex = value.indexOf('.');
         int dotCount = 0;

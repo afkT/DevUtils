@@ -12,7 +12,7 @@ import dev.utils.app.text.MaxLengthInputFilter;
 import dev.utils.app.text.NoEnterInputFilter;
 
 /**
- * detail: {@link InputFilter} 组合与快捷设置工具类
+ * detail: InputFilter 组合与快捷设置工具类
  * @author Ttt
  */
 public final class InputFilterUtils {
@@ -36,9 +36,12 @@ public final class InputFilterUtils {
     // =
 
     /**
-     * 合并多个 {@link InputFilter}
-     * @param filters 过滤器数组
-     * @return 合并后的数组
+     * 合并多个 InputFilter
+     * <pre>
+     *     入参中的 null 元素会被忽略。
+     * </pre>
+     * @param filters 待合并的过滤器
+     * @return 合并后的 {@link InputFilter} 数组，无有效元素时返回空数组
      */
     public static InputFilter[] merge(final InputFilter... filters) {
         if (filters == null || filters.length == 0) return new InputFilter[0];
@@ -53,7 +56,7 @@ public final class InputFilterUtils {
      * 在已有 filters 后追加
      * @param original 原有 filters
      * @param append   追加的 filters
-     * @return 合并后的数组
+     * @return 合并后的 {@link InputFilter} 数组
      */
     public static InputFilter[] append(
             final InputFilter[] original,
@@ -72,10 +75,10 @@ public final class InputFilterUtils {
     }
 
     /**
-     * 设置 {@link EditText} 的 filters
+     * 设置 EditText 的 filters
      * @param editText {@link EditText}
      * @param filters  过滤器
-     * @return {@link EditText}
+     * @return {@link EditText} 入参本身，便于链式调用
      */
     public static EditText setFilters(
             final EditText editText,
@@ -94,7 +97,7 @@ public final class InputFilterUtils {
     /**
      * 单行输入常用组合：禁止回车、禁止首空格、最大长度
      * @param maxLength 最大字符长度
-     * @return filters
+     * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] singleLineWithMaxLength(final int maxLength) {
         return merge(
@@ -107,7 +110,7 @@ public final class InputFilterUtils {
     /**
      * 多行输入常用组合：禁止首空格、最大长度 ( 允许换行 )
      * @param maxLength 最大字符长度
-     * @return filters
+     * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] multiLineWithMaxLength(final int maxLength) {
         return merge(
@@ -118,7 +121,7 @@ public final class InputFilterUtils {
 
     /**
      * 单行输入：禁止回车、禁止首空格 ( 无长度限制 )
-     * @return filters
+     * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] singleLineDefault() {
         return merge(NO_ENTER, FRONT_SPACE);
