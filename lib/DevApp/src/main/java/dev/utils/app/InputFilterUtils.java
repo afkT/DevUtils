@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
@@ -57,7 +56,7 @@ public final class InputFilterUtils {
     /**
      * 设置 InputFilter ( 覆盖原有 )
      * <pre>
-     *     内部会先对入参执行 {@link InputFilterUtils#merge(InputFilter...)}，忽略 null 元素。
+     *     内部会先对入参执行 {@link InputFilterUtils#distinctFilters(InputFilter...)}，忽略 null 并去除重复引用。
      * </pre>
      * @param textView {@link TextView}
      * @param filters  过滤器
@@ -70,7 +69,7 @@ public final class InputFilterUtils {
     ) {
         if (textView == null) return false;
         try {
-            textView.setFilters(merge(filters));
+            textView.setFilters(distinctFilters(filters));
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFilters");
@@ -98,7 +97,7 @@ public final class InputFilterUtils {
     /**
      * 追加 InputFilter ( 保留原有并在末尾追加 )
      * <pre>
-     *     追加段中的 null 元素会被忽略。
+     *     追加段中的 null 会被忽略；与已有列表同一引用的 filter 不会重复追加。
      * </pre>
      * @param textView {@link TextView}
      * @param filters  待追加的过滤器
@@ -169,7 +168,7 @@ public final class InputFilterUtils {
     /**
      * 合并并设置 InputFilter ( 保留原有并合并入参 )
      * <pre>
-     *     入参会先经 {@link InputFilterUtils#merge(InputFilter...)} 去 null，再与已有 filters 合并后设置。
+     *     入参会先经 {@link InputFilterUtils#distinctFilters(InputFilter...)} 处理，再与已有 filters 合并后设置（合并时同样去重）。
      * </pre>
      * @param textView {@link TextView}
      * @param filters  待合并的过滤器
@@ -182,7 +181,7 @@ public final class InputFilterUtils {
     ) {
         if (textView == null) return false;
         try {
-            textView.setFilters(append(textView.getFilters(), merge(filters)));
+            textView.setFilters(append(textView.getFilters(), distinctFilters(filters)));
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "mergeFilters");
@@ -208,24 +207,23 @@ public final class InputFilterUtils {
     // ==========
 
     /**
-     * 合并多个 InputFilter
+     * 合并多个 InputFilter 并去重
      * <pre>
-     *     入参中的 null 元素会被忽略。
+     *     入参中的 null 会被忽略；与列表中已存在的 filter 为同一引用（{@code ==}）时只保留一份，顺序以首次出现为准。
+     *     与 {@link #mergeFilters(TextView, InputFilter...)} 不同：本方法只处理入参数组，不读写 {@link TextView}。
      * </pre>
      * @param filters 待合并的过滤器
-     * @return 合并后的 {@link InputFilter} 数组，无有效元素时返回空数组
+     * @return 合并去重后的 {@link InputFilter} 数组，无有效元素时返回空数组
      */
-    public static InputFilter[] merge(final InputFilter... filters) {
+    public static InputFilter[] distinctFilters(final InputFilter... filters) {
         if (filters == null || filters.length == 0) return new InputFilter[0];
         List<InputFilter> list = new ArrayList<>();
-        for (InputFilter filter : filters) {
-            if (filter != null) list.add(filter);
-        }
+        addDistinct(list, filters);
         return list.toArray(new InputFilter[0]);
     }
 
     /**
-     * 在已有 filters 后追加
+     * 在已有 filters 后追加（忽略 null，同一引用不重复追加）
      * @param original 原有 filters
      * @param append   追加的 filters
      * @return 合并后的 {@link InputFilter} 数组
@@ -236,14 +234,26 @@ public final class InputFilterUtils {
     ) {
         List<InputFilter> list = new ArrayList<>();
         if (original != null) {
-            list.addAll(Arrays.asList(original));
+            addDistinct(list, original);
         }
         if (append != null) {
-            for (InputFilter filter : append) {
-                if (filter != null) list.add(filter);
-            }
+            addDistinct(list, append);
         }
         return list.toArray(new InputFilter[0]);
+    }
+
+    /**
+     * 将 filters 中非 null 且未在 list 中出现过的元素按顺序加入 list
+     */
+    private static void addDistinct(
+            final List<InputFilter> list,
+            final InputFilter... filters
+    ) {
+        for (InputFilter filter : filters) {
+            if (filter != null && !list.contains(filter)) {
+                list.add(filter);
+            }
+        }
     }
 
     // ==================
@@ -266,7 +276,7 @@ public final class InputFilterUtils {
      * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] singleLineWithMaxLength(final int maxLength) {
-        return merge(
+        return distinctFilters(
                 NO_ENTER, FRONT_SPACE,
                 new MaxLengthInputFilter(maxLength)
         );
@@ -278,7 +288,7 @@ public final class InputFilterUtils {
      * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] multiLineWithMaxLength(final int maxLength) {
-        return merge(
+        return distinctFilters(
                 FRONT_SPACE,
                 new MaxLengthInputFilter(maxLength)
         );
@@ -289,6 +299,6 @@ public final class InputFilterUtils {
      * @return {@link InputFilter} 预设数组
      */
     public static InputFilter[] singleLineDefault() {
-        return merge(NO_ENTER, FRONT_SPACE);
+        return distinctFilters(NO_ENTER, FRONT_SPACE);
     }
 }
