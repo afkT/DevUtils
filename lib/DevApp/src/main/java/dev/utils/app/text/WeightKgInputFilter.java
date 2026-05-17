@@ -34,8 +34,8 @@ public class WeightKgInputFilter
             final double minValue,
             final double maxValue
     ) {
-        mMinValue = Math.min(minValue, maxValue);
-        mMaxValue = Math.max(minValue, maxValue);
+        mMinValue           = Math.min(minValue, maxValue);
+        mMaxValue           = Math.max(minValue, maxValue);
         mDecimalInputFilter = new DecimalInputFilter(3, 1);
     }
 

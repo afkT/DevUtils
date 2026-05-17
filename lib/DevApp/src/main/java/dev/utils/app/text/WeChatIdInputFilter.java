@@ -61,7 +61,7 @@ public class WeChatIdInputFilter
      * 判断字符在指定下标是否允许
      * @param c     字符
      * @param index 在完整微信号中的下标
-     * @return {@code true} 允许
+     * @return {@code true} 允许，{@code false} 不允许
      */
     private static boolean isAllowedAt(
             final char c,

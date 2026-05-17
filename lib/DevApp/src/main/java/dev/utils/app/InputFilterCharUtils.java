@@ -70,7 +70,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为邮箱常用字符
      * @param c 待判断字符
-     * @return {@code true} 为字母、数字或 {@code @._+-}
+     * @return {@code true} 为字母、数字或 {@code @._+-}，{@code false} 否则
      */
     public static boolean isEmailChar(final char c) {
         return isEnglish(c)
@@ -85,7 +85,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为可打印 ASCII
      * @param c 待判断字符
-     * @return {@code true} 为 ASCII 32-126
+     * @return {@code true} 为 ASCII 32-126，{@code false} 超出该范围
      */
     public static boolean isPrintableAscii(final char c) {
         return c >= 32 && c <= 126;
@@ -94,7 +94,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为日期输入常用字符
      * @param c 待判断字符
-     * @return {@code true} 为数字或 {@code - / .}
+     * @return {@code true} 为数字或 {@code -}、{@code /}、{@code .}，{@code false} 否则
      */
     public static boolean isDateChar(final char c) {
         return isDigit(c) || c == '-' || c == '/' || c == '.';
@@ -103,7 +103,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为 MAC 地址输入常用字符
      * @param c 待判断字符
-     * @return {@code true} 为十六进制或 {@code : -}
+     * @return {@code true} 为十六进制或 {@code :}、{@code -}，{@code false} 否则
      */
     public static boolean isMacAddressChar(final char c) {
         return isHex(c) || c == ':' || c == '-';
@@ -112,7 +112,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为车牌字母 ( 不含 I、O )
      * @param c 待判断字符
-     * @return {@code true} 为 A-HJ-NP-Z
+     * @return {@code true} 为 A-HJ-NP-Z，{@code false} 否则
      */
     public static boolean isPlateLetter(final char c) {
         char upper = Character.toUpperCase(c);
@@ -122,7 +122,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为车牌序号字符 ( 数字或车牌字母 )
      * @param c 待判断字符
-     * @return {@code true} 允许
+     * @return {@code true} 允许，{@code false} 不允许
      */
     public static boolean isPlateSerialChar(final char c) {
         return isDigit(c) || isPlateLetter(c);
@@ -131,7 +131,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为中文姓名常用字符
      * @param c 待判断字符
-     * @return {@code true} 为中文或间隔号 {@code ·}
+     * @return {@code true} 为中文或间隔号 {@code ·}，{@code false} 否则
      */
     public static boolean isChineseNameChar(final char c) {
         return isChinese(c) || c == '·' || c == '•';
@@ -140,7 +140,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为国内地址常用字符
      * @param c 待判断字符
-     * @return {@code true} 为中文、数字或常见地址符号
+     * @return {@code true} 为中文、数字或常见地址符号，{@code false} 否则
      */
     public static boolean isChineseAddressChar(final char c) {
         return isChinese(c)
@@ -156,7 +156,7 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为 VIN 字符 ( 不含 I、O、Q )
      * @param c 待判断字符
-     * @return {@code true} 允许
+     * @return {@code true} 允许，{@code false} 不允许
      */
     public static boolean isVinChar(final char c) {
         char upper = Character.toUpperCase(c);
@@ -169,14 +169,14 @@ public final class InputFilterCharUtils {
 
     /**
      * 按位规则过滤输入 ( 常用于证件号、车牌等固定位数场景 )
-     * @param source         新输入内容
-     * @param start          新输入起始下标
-     * @param end            新输入结束下标，不含
-     * @param dest           已有文本
-     * @param dstart         替换区间起始
-     * @param dend           替换区间结束，不含
-     * @param maxLength      最大长度
-     * @param positionRule   按位字符规则
+     * @param source       新输入内容
+     * @param start        新输入起始下标
+     * @param end          新输入结束下标，不含
+     * @param dest         已有文本
+     * @param dstart       替换区间起始
+     * @param dend         替换区间结束，不含
+     * @param maxLength    最大长度
+     * @param positionRule 按位字符规则
      * @return 过滤后的替换内容，null 表示接受原输入
      */
     public static CharSequence filterByPosition(
@@ -194,15 +194,15 @@ public final class InputFilterCharUtils {
 
     /**
      * 按位规则过滤输入，可先按字符集剔除非法字符
-     * @param source         新输入内容
-     * @param start          新输入起始下标
-     * @param end            新输入结束下标，不含
-     * @param dest           已有文本
-     * @param dstart         替换区间起始
-     * @param dend           替换区间结束，不含
-     * @param maxLength      最大长度
-     * @param preCharFilter  字符集预过滤，null 表示不预过滤
-     * @param positionRule   按位字符规则
+     * @param source        新输入内容
+     * @param start         新输入起始下标
+     * @param end           新输入结束下标，不含
+     * @param dest          已有文本
+     * @param dstart        替换区间起始
+     * @param dend          替换区间结束，不含
+     * @param maxLength     最大长度
+     * @param preCharFilter 字符集预过滤，null 表示不预过滤
+     * @param positionRule  按位字符规则
      * @return 过滤后的替换内容，null 表示接受原输入
      */
     public static CharSequence filterByPosition(
@@ -251,8 +251,21 @@ public final class InputFilterCharUtils {
         return insert;
     }
 
+    /**
+     * 按位字符是否允许
+     */
     public interface PositionCharPredicate {
-        boolean isAllowedAt(char c, int index);
+
+        /**
+         * 判断字符在指定下标是否允许
+         * @param c     字符
+         * @param index 在完整文本中的下标
+         * @return {@code true} 允许，{@code false} 不允许
+         */
+        boolean isAllowedAt(
+                char c,
+                int index
+        );
     }
 
     /**
@@ -344,7 +357,16 @@ public final class InputFilterCharUtils {
         return builder == null ? null : builder;
     }
 
+    /**
+     * 单字符谓词
+     */
     public interface CharPredicate {
+
+        /**
+         * 测试字符是否满足条件
+         * @param c 字符
+         * @return {@code true} 通过，{@code false} 不通过
+         */
         boolean test(char c);
     }
 }

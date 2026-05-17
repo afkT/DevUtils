@@ -49,7 +49,7 @@ public class LicensePlateInputFilter
      * 判断字符在指定下标是否允许
      * @param c     字符
      * @param index 在完整车牌中的下标
-     * @return {@code true} 允许
+     * @return {@code true} 允许，{@code false} 不允许
      */
     private static boolean isAllowedAt(
             final char c,
@@ -81,10 +81,10 @@ public class LicensePlateInputFilter
             final int start,
             final int end
     ) {
-        CharSequence working = filtered != null ? filtered : source;
-        int          wStart  = filtered != null ? 0 : start;
-        int          wEnd    = filtered != null ? filtered.length() : end;
-        boolean      changed = false;
+        CharSequence  working = filtered != null ? filtered : source;
+        int           wStart  = filtered != null ? 0 : start;
+        int           wEnd    = filtered != null ? filtered.length() : end;
+        boolean       changed = false;
         StringBuilder builder = new StringBuilder(wEnd - wStart);
         for (int i = wStart; i < wEnd; i++) {
             char c = working.charAt(i);

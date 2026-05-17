@@ -34,8 +34,8 @@ public class HeightCmInputFilter
             final double minValue,
             final double maxValue
     ) {
-        mMinValue = Math.min(minValue, maxValue);
-        mMaxValue = Math.max(minValue, maxValue);
+        mMinValue           = Math.min(minValue, maxValue);
+        mMaxValue           = Math.max(minValue, maxValue);
         mIntegerInputFilter = new IntegerInputFilter(3);
     }
 

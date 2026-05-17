@@ -58,10 +58,10 @@ public class VinInputFilter
             final int start,
             final int end
     ) {
-        CharSequence working = filtered != null ? filtered : source;
-        int          wStart  = filtered != null ? 0 : start;
-        int          wEnd    = filtered != null ? filtered.length() : end;
-        boolean      changed = false;
+        CharSequence  working = filtered != null ? filtered : source;
+        int           wStart  = filtered != null ? 0 : start;
+        int           wEnd    = filtered != null ? filtered.length() : end;
+        boolean       changed = false;
         StringBuilder builder = new StringBuilder(wEnd - wStart);
         for (int i = wStart; i < wEnd; i++) {
             char c = working.charAt(i);

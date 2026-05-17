@@ -4,7 +4,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 
 /**
- * detail: 身份证末位 {@code x} 自动转 {@code X}
+ * detail: 身份证末位小写 x 自动转大写 X
  * @author Ttt
  * <pre>
  *     建议与 {@link IdCardInputFilter} 组合使用。
@@ -33,10 +33,10 @@ public class IdCardUpperCaseXInputFilter
             int dend
     ) {
         if (source == null) return null;
-        boolean changed = false;
+        boolean       changed = false;
         StringBuilder builder = new StringBuilder(end - start);
         for (int i = start; i < end; i++) {
-            char c = source.charAt(i);
+            char c     = source.charAt(i);
             int  index = dstart + (i - start);
             if (c == 'x' && index == 17) {
                 builder.append('X');

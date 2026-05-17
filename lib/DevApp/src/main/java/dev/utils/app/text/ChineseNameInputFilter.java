@@ -6,9 +6,10 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 中文姓名输入：汉字与间隔号 {@code ·}
+ * detail: 中文姓名输入：汉字与间隔号
  * @author Ttt
  * <pre>
+ *     间隔号可为 {@code ·}；
  *     适用于实名认证、收货人姓名等，不含空格与拉丁字母。
  * </pre>
  */

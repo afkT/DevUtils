@@ -6,9 +6,10 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 固定电话输入：数字与分隔符 {@code -}
+ * detail: 固定电话输入：数字与分隔符
  * @author Ttt
  * <pre>
+ *     分隔符可为 {@code -}；
  *     如 {@code 010-12345678}、{@code 0755-87654321}，默认最大 16 字符。
  * </pre>
  */

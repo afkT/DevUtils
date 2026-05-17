@@ -77,7 +77,7 @@ public class RoomNoInputFilter
     /**
      * 判断是否为房号常用字符
      * @param c 字符
-     * @return {@code true} 允许
+     * @return {@code true} 允许，{@code false} 不允许
      */
     private static boolean isRoomNoChar(final char c) {
         if (InputFilterCharUtils.isChineseAddressChar(c)) return true;

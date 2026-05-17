@@ -64,8 +64,8 @@ public class EngineNoInputFilter
             workEnd   = allowed.length();
         }
         if (dest == null) return normalizeLetters(allowed, source, start, end);
-        int destLen   = dest.length() - (dend - dstart);
-        int insertLen = workEnd - workStart;
+        int          destLen   = dest.length() - (dend - dstart);
+        int          insertLen = workEnd - workStart;
         CharSequence lengthResult;
         if (destLen + insertLen <= mMaxLength) {
             lengthResult = allowed;
@@ -91,10 +91,10 @@ public class EngineNoInputFilter
             final int start,
             final int end
     ) {
-        CharSequence working = filtered != null ? filtered : source;
-        int          wStart  = filtered != null ? 0 : start;
-        int          wEnd    = filtered != null ? filtered.length() : end;
-        boolean      changed = false;
+        CharSequence  working = filtered != null ? filtered : source;
+        int           wStart  = filtered != null ? 0 : start;
+        int           wEnd    = filtered != null ? filtered.length() : end;
+        boolean       changed = false;
         StringBuilder builder = new StringBuilder(wEnd - wStart);
         for (int i = wStart; i < wEnd; i++) {
             char c = working.charAt(i);
