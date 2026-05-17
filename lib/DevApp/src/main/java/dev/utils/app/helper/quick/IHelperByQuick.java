@@ -1552,7 +1552,7 @@ public interface IHelperByQuick<T> {
     T clearFilters();
 
     /**
-     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 )
      * @param filters 待合并的过滤器
      * @return Helper
      */

@@ -2099,7 +2099,7 @@ public final class TextViewUtils {
     // ================
 
     /**
-     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 )
      * @param textView {@link TextView}
      * @param filters  待合并的过滤器
      * @param <T>      泛型
@@ -2113,7 +2113,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 )
      * @param view    {@link View}
      * @param filters 待合并的过滤器
      * @return {@code true} success, {@code false} fail

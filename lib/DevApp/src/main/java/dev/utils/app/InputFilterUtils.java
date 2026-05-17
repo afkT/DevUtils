@@ -166,9 +166,12 @@ public final class InputFilterUtils {
     // ================
 
     /**
-     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 )
      * <pre>
-     *     入参会先经 {@link InputFilterUtils#distinctFilters(InputFilter...)} 处理，再与已有 filters 合并后设置（合并时同样去重）。
+     *     经 {@link #mergeByClass(InputFilter[], InputFilter...)} 合并：入参 null 忽略；
+     *     与已有 filter 的运行时 {@link Class} 相同时，用新实例原位替换（如更新 {@link MaxLengthInputFilter} 最大长度）。
+     *     仅精确匹配 {@code filter.getClass()}，子类与父类视为不同类型。
+     *     与 {@link #appendFilters(TextView, InputFilter...)} 不同：后者按引用去重追加，本方法按 Class 替换。
      * </pre>
      * @param textView {@link TextView}
      * @param filters  待合并的过滤器
@@ -181,7 +184,7 @@ public final class InputFilterUtils {
     ) {
         if (textView == null) return false;
         try {
-            textView.setFilters(append(textView.getFilters(), distinctFilters(filters)));
+            textView.setFilters(mergeByClass(textView.getFilters(), filters));
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "mergeFilters");
@@ -190,7 +193,7 @@ public final class InputFilterUtils {
     }
 
     /**
-     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 )
      * @param view    {@link View}
      * @param filters 待合并的过滤器
      * @return {@code true} success, {@code false} fail
@@ -210,6 +213,7 @@ public final class InputFilterUtils {
      * 合并多个 InputFilter 并去重
      * <pre>
      *     入参中的 null 会被忽略；与列表中已存在的 filter 为同一引用（{@code ==}）时只保留一份，顺序以首次出现为准。
+     *     与 {@link #mergeByClass(InputFilter[], InputFilter...)} 不同：本方法按引用去重，不按 Class 替换。
      *     与 {@link #mergeFilters(TextView, InputFilter...)} 不同：本方法只处理入参数组，不读写 {@link TextView}。
      * </pre>
      * @param filters 待合并的过滤器
@@ -224,6 +228,10 @@ public final class InputFilterUtils {
 
     /**
      * 在已有 filters 后追加（忽略 null，同一引用不重复追加）
+     * <pre>
+     *     {@code original} 为 null 时视为无原有项；{@code append} 为 null 或空时不追加。
+     *     追加段中的 null 忽略；与列表中同一引用（{@code ==}）的 filter 不会重复追加。
+     * </pre>
      * @param original 原有 filters
      * @param append   追加的 filters
      * @return 合并后的 {@link InputFilter} 数组
@@ -243,7 +251,34 @@ public final class InputFilterUtils {
     }
 
     /**
+     * 按运行时 Class 合并 InputFilter
+     * <pre>
+     *     null 忽略。列表中已存在相同 {@code filter.getClass()} 时，用新 filter 原位替换；否则追加到末尾。
+     *     先处理 {@code original}，再按入参顺序处理 {@code incoming}；同批入参里重复 Class 时以后者为准。
+     *     仅精确匹配 {@code getClass()}，子类不会替换父类实例，反之亦然。
+     * </pre>
+     * @param original 原有 filters
+     * @param incoming 待合并的 filters
+     * @return 合并后的 {@link InputFilter} 数组
+     */
+    public static InputFilter[] mergeByClass(
+            final InputFilter[] original,
+            final InputFilter... incoming
+    ) {
+        List<InputFilter> list = new ArrayList<>();
+        if (original != null) {
+            putByClass(list, original);
+        }
+        if (incoming != null) {
+            putByClass(list, incoming);
+        }
+        return list.toArray(new InputFilter[0]);
+    }
+
+    /**
      * 将 filters 中非 null 且未在 list 中出现过的元素按顺序加入 list
+     * @param list    目标列表
+     * @param filters 待加入的过滤器
      */
     private static void addDistinct(
             final List<InputFilter> list,
@@ -251,6 +286,37 @@ public final class InputFilterUtils {
     ) {
         for (InputFilter filter : filters) {
             if (filter != null && !list.contains(filter)) {
+                list.add(filter);
+            }
+        }
+    }
+
+    /**
+     * 按 Class 写入 list：同 Class 原位替换，否则追加
+     * <pre>
+     *     {@code filters} 为 null 时直接返回；元素为 null 时跳过。
+     *     仅精确匹配 {@code filter.getClass()}，子类与父类视为不同类型。
+     * </pre>
+     * @param list    目标列表
+     * @param filters 待写入的过滤器
+     */
+    private static void putByClass(
+            final List<InputFilter> list,
+            final InputFilter... filters
+    ) {
+        if (filters == null) return;
+        for (InputFilter filter : filters) {
+            if (filter == null) continue;
+            Class<?> clazz    = filter.getClass();
+            boolean  replaced = false;
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getClass() == clazz) {
+                    list.set(i, filter);
+                    replaced = true;
+                    break;
+                }
+            }
+            if (!replaced) {
                 list.add(filter);
             }
         }
