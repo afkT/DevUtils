@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -1529,6 +1530,33 @@ public interface IHelperByQuick<T> {
             CharSequence content,
             int maxLength
     );
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param filters 过滤器
+     * @return Helper
+     */
+    T setFilters(InputFilter... filters);
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * @param filters 待追加的过滤器
+     * @return Helper
+     */
+    T appendFilters(InputFilter... filters);
+
+    /**
+     * 清空 InputFilter
+     * @return Helper
+     */
+    T clearFilters();
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * @param filters 待合并的过滤器
+     * @return Helper
+     */
+    T mergeFilters(InputFilter... filters);
 
     /**
      * 设置输入类型

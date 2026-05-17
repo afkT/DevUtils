@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -2496,6 +2497,49 @@ public final class QuickHelper
             int maxLength
     ) {
         ViewHelper.get().setMaxLengthAndText(content, maxLength, targetView());
+        return this;
+    }
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param filters 过滤器
+     * @return Helper
+     */
+    @Override
+    public QuickHelper setFilters(InputFilter... filters) {
+        ViewHelper.get().setFilters(filters, targetView());
+        return this;
+    }
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * @param filters 待追加的过滤器
+     * @return Helper
+     */
+    @Override
+    public QuickHelper appendFilters(InputFilter... filters) {
+        ViewHelper.get().appendFilters(filters, targetView());
+        return this;
+    }
+
+    /**
+     * 清空 InputFilter
+     * @return Helper
+     */
+    @Override
+    public QuickHelper clearFilters() {
+        ViewHelper.get().clearFilters(targetView());
+        return this;
+    }
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * @param filters 待合并的过滤器
+     * @return Helper
+     */
+    @Override
+    public QuickHelper mergeFilters(InputFilter... filters) {
+        ViewHelper.get().mergeFilters(filters, targetView());
         return this;
     }
 

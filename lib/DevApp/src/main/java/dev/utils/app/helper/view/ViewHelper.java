@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
@@ -3300,6 +3301,74 @@ public final class ViewHelper
                         TextViewUtils.setMaxLengthAndText(value, content, maxLength);
                     }
                 }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 InputFilter ( 覆盖原有 )
+     * @param filters 过滤器
+     * @param views   View[]
+     * @return Helper
+     */
+    @Override
+    public ViewHelper setFilters(
+            InputFilter[] filters,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> TextViewUtils.setFilters(value, filters),
+                views
+        );
+        return this;
+    }
+
+    /**
+     * 追加 InputFilter ( 保留原有并在末尾追加 )
+     * @param filters 待追加的过滤器
+     * @param views   View[]
+     * @return Helper
+     */
+    @Override
+    public ViewHelper appendFilters(
+            InputFilter[] filters,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> TextViewUtils.appendFilters(value, filters),
+                views
+        );
+        return this;
+    }
+
+    /**
+     * 清空 InputFilter
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public ViewHelper clearFilters(View... views) {
+        ForUtils.forSimpleArgs(
+                TextViewUtils::clearFilters,
+                views
+        );
+        return this;
+    }
+
+    /**
+     * 合并并设置 InputFilter ( 保留原有并合并入参 )
+     * @param filters 待合并的过滤器
+     * @param views   View[]
+     * @return Helper
+     */
+    @Override
+    public ViewHelper mergeFilters(
+            InputFilter[] filters,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> TextViewUtils.mergeFilters(value, filters),
+                views
         );
         return this;
     }
