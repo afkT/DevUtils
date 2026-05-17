@@ -720,18 +720,16 @@ public final class AudioManagerUtils {
 
     // =
 
-    /**
-     * 放弃音频焦点, 使上一个焦点所有者 ( 如果有 ) 接收焦点
-     * @param listener 焦点监听事件
-     * @return {@code true} success, {@code false} fail
-     */
     // ==============================
     // = Assistant 音量流 ( API 37 ) =
     // ==============================
 
     /**
-     * Assistant 专用音量流类型 {@link android.media.AudioAttributes#USAGE_ASSISTANT}
-     * @return {@link android.media.AudioManager#STREAM_ASSISTANT}；低版本返回 {@link android.media.AudioManager#STREAM_MUSIC}
+     * 获取 Assistant 专用音量流类型
+     * <pre>
+     *     对应 {@link android.media.AudioAttributes#USAGE_ASSISTANT}。
+     * </pre>
+     * @return {@link AudioManager#STREAM_ASSISTANT}；低版本返回 {@link AudioManager#STREAM_MUSIC}
      */
     public static int getStreamAssistant() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
@@ -741,8 +739,11 @@ public final class AudioManagerUtils {
     }
 
     /**
-     * 设置音频模式为 Assistant 会话（API 37+）
-     * @return {@code true} success
+     * 设置音频模式为 Assistant 会话
+     * <pre>
+     *     使用 {@link AudioManager#MODE_ASSISTANT_CONVERSATION}，需 API 37+。
+     * </pre>
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean setModeAssistantConversation() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
@@ -755,15 +756,18 @@ public final class AudioManagerUtils {
         try {
             audioManager.setMode(AudioManager.MODE_ASSISTANT_CONVERSATION);
             return true;
-        } catch (Exception e) {
+        } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "setModeAssistantConversation");
             return false;
         }
     }
 
     /**
-     * 当前是否为 Assistant 会话模式（API 37+）
-     * @return {@code true} {@link AudioManager#MODE_ASSISTANT_CONVERSATION}
+     * 当前是否为 Assistant 会话模式
+     * <pre>
+     *     判断 {@link AudioManager#getMode()} 是否为 {@link AudioManager#MODE_ASSISTANT_CONVERSATION}。
+     * </pre>
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isModeAssistantConversation() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
@@ -775,7 +779,7 @@ public final class AudioManagerUtils {
         }
         try {
             return audioManager.getMode() == AudioManager.MODE_ASSISTANT_CONVERSATION;
-        } catch (Exception e) {
+        } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "isModeAssistantConversation");
             return false;
         }
@@ -783,6 +787,9 @@ public final class AudioManagerUtils {
 
     /**
      * 获取 Assistant 音量流当前音量
+     * <pre>
+     *     基于 {@link #getStreamAssistant()} 调用 {@link #getStreamVolume(int)}。
+     * </pre>
      * @return 音量；失败或低版本返回 0
      */
     public static int getAssistantStreamVolume() {

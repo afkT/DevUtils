@@ -1145,9 +1145,12 @@ public final class IntentUtils {
     // ====================
 
     /**
-     * 获取系统 Photo Picker 选择图片 Intent（API 33+）
+     * 获取系统 Photo Picker 选择图片 Intent
+     * <pre>
+     *     使用 {@link MediaStore#ACTION_PICK_IMAGES}，需 API 33+。
+     * </pre>
      * @param maxPick 最多可选数量，&lt;= 0 时使用 {@link MediaStore#getPickImagesMaxLimit()}
-     * @return {@link Intent}；不可用时返回 null
+     * @return {@link Intent}；低版本或异常时返回 null
      */
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Nullable
@@ -1156,10 +1159,14 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取系统 Photo Picker 选择图片 Intent，可附带 Android 17 UI 定制（API 33+，UI 参数需 API 37+）
-     * @param maxPick               最多可选数量
+     * 获取系统 Photo Picker 选择图片 Intent
+     * <pre>
+     *     {@link PhotoPickerUiCustomizationParams} 仅在 API 37+ 时写入
+     *     {@link MediaStore#EXTRA_PICK_IMAGES_UI_CUSTOMIZATION_PARAMS}。
+     * </pre>
+     * @param maxPick               最多可选数量，&lt;= 0 时使用 {@link MediaStore#getPickImagesMaxLimit()}
      * @param uiCustomizationParams {@link PhotoPickerUiCustomizationParams}，可为 null
-     * @return {@link Intent}；不可用时返回 null
+     * @return {@link Intent}；低版本或异常时返回 null
      */
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Nullable
@@ -1183,7 +1190,7 @@ public final class IntentUtils {
                 );
             }
             return intent;
-        } catch (Exception e) {
+        } catch (Throwable e) {
             LogPrintUtils.eTag(TAG, e, "getPickImagesIntent");
             return null;
         }

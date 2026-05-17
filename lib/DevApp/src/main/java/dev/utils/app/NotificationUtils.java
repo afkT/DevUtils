@@ -52,7 +52,11 @@ public final class NotificationUtils {
     // ====================
 
     /**
-     * {@link Notification#SEMANTIC_STYLE_UNSPECIFIED}
+     * 获取未指定语义样式常量
+     * <pre>
+     *     同 {@link Notification#SEMANTIC_STYLE_UNSPECIFIED}。
+     * </pre>
+     * @return {@link Notification#SEMANTIC_STYLE_UNSPECIFIED}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static int getSemanticStyleUnspecified() {
@@ -60,7 +64,11 @@ public final class NotificationUtils {
     }
 
     /**
-     * {@link Notification#SEMANTIC_STYLE_INFO}
+     * 获取信息语义样式常量
+     * <pre>
+     *     同 {@link Notification#SEMANTIC_STYLE_INFO}。
+     * </pre>
+     * @return {@link Notification#SEMANTIC_STYLE_INFO}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static int getSemanticStyleInfo() {
@@ -68,7 +76,11 @@ public final class NotificationUtils {
     }
 
     /**
-     * {@link Notification#SEMANTIC_STYLE_SAFE}
+     * 获取安全语义样式常量
+     * <pre>
+     *     同 {@link Notification#SEMANTIC_STYLE_SAFE}。
+     * </pre>
+     * @return {@link Notification#SEMANTIC_STYLE_SAFE}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static int getSemanticStyleSafe() {
@@ -76,7 +88,11 @@ public final class NotificationUtils {
     }
 
     /**
-     * {@link Notification#SEMANTIC_STYLE_CAUTION}
+     * 获取谨慎语义样式常量
+     * <pre>
+     *     同 {@link Notification#SEMANTIC_STYLE_CAUTION}。
+     * </pre>
+     * @return {@link Notification#SEMANTIC_STYLE_CAUTION}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static int getSemanticStyleCaution() {
@@ -84,7 +100,11 @@ public final class NotificationUtils {
     }
 
     /**
-     * {@link Notification#SEMANTIC_STYLE_DANGER}
+     * 获取危险语义样式常量
+     * <pre>
+     *     同 {@link Notification#SEMANTIC_STYLE_DANGER}。
+     * </pre>
+     * @return {@link Notification#SEMANTIC_STYLE_DANGER}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static int getSemanticStyleDanger() {
@@ -92,9 +112,12 @@ public final class NotificationUtils {
     }
 
     /**
-     * 创建 Live Update 语义样式 {@link Annotation}（API 37+）
+     * 创建 Live Update 语义样式 Annotation
+     * <pre>
+     *     封装 {@link Notification#createSemanticStyleAnnotation(int)}，需 API 37+。
+     * </pre>
      * @param semanticStyle {@link Notification#SEMANTIC_STYLE_SAFE} 等
-     * @return {@link Annotation}
+     * @return {@link Annotation}；低版本或异常时返回 null
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static Annotation createSemanticStyleAnnotation(final int semanticStyle) {
@@ -110,32 +133,37 @@ public final class NotificationUtils {
     }
 
     /**
-     * 向 {@link SpannableStringBuilder} 追加带语义色的文本（API 37+）
-     * @param builder       目标
+     * 向 SpannableStringBuilder 追加带语义色的文本
+     * <pre>
+     *     低版本或创建 Annotation 失败时退化为普通 {@link SpannableStringBuilder#append(CharSequence)}。
+     * </pre>
+     * @param builder       目标 {@link SpannableStringBuilder}
      * @param text          文本
      * @param semanticStyle 语义样式常量
+     * @return {@link SpannableStringBuilder} 入参 builder，便于链式调用
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
-    public static void appendSemanticText(
+    public static SpannableStringBuilder appendSemanticText(
             final SpannableStringBuilder builder,
             final CharSequence text,
             final int semanticStyle
     ) {
         if (builder == null || TextUtils.isEmpty(text)) {
-            return;
+            return builder;
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN) {
             builder.append(text);
-            return;
+            return builder;
         }
         Annotation annotation = createSemanticStyleAnnotation(semanticStyle);
         if (annotation == null) {
             builder.append(text);
-            return;
+            return builder;
         }
         int start = builder.length();
         builder.append(text);
         builder.setSpan(annotation, start, builder.length(), 0);
+        return builder;
     }
 
     /**

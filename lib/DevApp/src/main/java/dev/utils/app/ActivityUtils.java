@@ -584,18 +584,24 @@ public final class ActivityUtils {
     // ===============
 
     /**
-     * 是否支持跨设备 Handoff（API 37+）
-     * @return {@code true} 支持
+     * 是否支持跨设备 Handoff
+     * <pre>
+     *     {@link HandoffActivityParams} 需 API 37+。
+     * </pre>
+     * @return {@code true} API 37+, {@code false} 低版本
      */
     public static boolean isHandoffSupported() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN;
     }
 
     /**
-     * 为 Activity 启用或关闭 Handoff（API 37+）
+     * 为 Activity 启用或关闭 Handoff
+     * <pre>
+     *     {@code allowHandoffWithoutPackageInstalled} 默认为 false。
+     * </pre>
      * @param activity {@link Activity}
      * @param enabled  是否启用
-     * @return {@code true} 调用成功
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static boolean setHandoffEnabled(
@@ -606,11 +612,14 @@ public final class ActivityUtils {
     }
 
     /**
-     * 为 Activity 启用或关闭 Handoff（API 37+）
+     * 为 Activity 启用或关闭 Handoff
+     * <pre>
+     *     {@code allowHandoffWithoutPackageInstalled} 为 true 时，接收端未安装应用仍允许 Handoff（如 Web 回退）。
+     * </pre>
      * @param activity                            {@link Activity}
      * @param enabled                             是否启用
-     * @param allowHandoffWithoutPackageInstalled 接收端未安装应用时是否仍允许 Handoff（如 Web 回退）
-     * @return {@code true} 调用成功
+     * @param allowHandoffWithoutPackageInstalled 接收端未安装应用时是否仍允许 Handoff
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static boolean setHandoffEnabled(
@@ -634,9 +643,9 @@ public final class ActivityUtils {
     }
 
     /**
-     * Activity 是否已启用 Handoff（API 37+）
+     * Activity 是否已启用 Handoff
      * @param activity {@link Activity}
-     * @return {@code true} 已启用；低版本或异常返回 {@code false}
+     * @return {@code true} 已启用, {@code false} 未启用、低版本、无 Activity 或异常
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
     public static boolean isHandoffEnabled(final Activity activity) {

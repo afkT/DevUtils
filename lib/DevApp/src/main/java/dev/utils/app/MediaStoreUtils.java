@@ -1344,6 +1344,9 @@ public final class MediaStoreUtils {
 
     /**
      * 创建 Photo Picker 默认 1:1 网格 UI 参数
+     * <pre>
+     *     宽高比为 {@link PhotoPickerUiCustomizationParams#ASPECT_RATIO_SQUARE_1_1}。
+     * </pre>
      * @return {@link PhotoPickerUiCustomizationParams}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
@@ -1356,6 +1359,9 @@ public final class MediaStoreUtils {
 
     /**
      * 创建 Photo Picker 9:16 竖屏网格 UI 参数
+     * <pre>
+     *     宽高比为 {@link PhotoPickerUiCustomizationParams#ASPECT_RATIO_PORTRAIT_9_16}。
+     * </pre>
      * @return {@link PhotoPickerUiCustomizationParams}
      */
     @RequiresApi(api = Build.VERSION_CODES.CINNAMON_BUN)
