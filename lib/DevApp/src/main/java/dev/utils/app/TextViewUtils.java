@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
-import android.text.InputFilter;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.text.MaxLengthInputFilter;
 
 /**
  * detail: TextView 工具类
@@ -1949,8 +1949,9 @@ public final class TextViewUtils {
     ) {
         if (textView != null && maxLength > 0) {
             // 设置最大长度限制
-            InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
-            textView.setFilters(filters);
+            InputFilterUtils.setFilters(
+                    textView, new MaxLengthInputFilter(maxLength)
+            );
         }
         return textView;
     }

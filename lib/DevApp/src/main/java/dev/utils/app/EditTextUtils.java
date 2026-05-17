@@ -3,7 +3,6 @@ package dev.utils.app;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import java.util.UUID;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.text.MaxLengthInputFilter;
 
 /**
  * detail: EditText 工具类
@@ -222,8 +222,9 @@ public final class EditTextUtils {
     ) {
         if (editText != null && maxLength > 0) {
             // 设置最大长度限制
-            InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
-            editText.setFilters(filters);
+            InputFilterUtils.setFilters(
+                    editText, new MaxLengthInputFilter(maxLength)
+            );
         }
         return editText;
     }
