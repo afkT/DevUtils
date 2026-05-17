@@ -61,7 +61,7 @@ public class SignedIntegerInputFilter
     /**
      * 校验是否为合法有符号整数
      * @param value 合并后的完整输入
-     * @return {@code true} 合法
+     * @return {@code true} 合法，{@code false} 不合法
      */
     private boolean isValidSignedInteger(final String value) {
         int index = 0;

@@ -61,7 +61,7 @@ public class IntegerInputFilter
     /**
      * 校验是否为合法正整数且在位数限制内
      * @param value 合并后的完整输入
-     * @return {@code true} 合法
+     * @return {@code true} 合法，{@code false} 不合法
      */
     private boolean isValidInteger(final String value) {
         for (int i = 0; i < value.length(); i++) {

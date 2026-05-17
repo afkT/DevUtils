@@ -6,9 +6,10 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: MAC 地址输入：十六进制与分隔符 {@code : -}，默认最大 17 字符
+ * detail: MAC 地址输入：十六进制与分隔符，默认最大 17 字符
  * @author Ttt
  * <pre>
+ *     分隔符可为 {@code :}、{@code -}；
  *     如 {@code AA:BB:CC:DD:EE:FF}，不强制分隔符位置，仅限制字符集与长度。
  * </pre>
  */

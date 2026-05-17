@@ -6,8 +6,11 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 日期输入：数字与 {@code - / .}，常用于 yyyy-MM-dd 等格式
+ * detail: 日期输入：数字与常见分隔符，常用于 yyyy-MM-dd 等格式
  * @author Ttt
+ * <pre>
+ *     允许字符包含 {@code -}、{@code /}、{@code .}。
+ * </pre>
  */
 public class DateInputFilter
         implements InputFilter {

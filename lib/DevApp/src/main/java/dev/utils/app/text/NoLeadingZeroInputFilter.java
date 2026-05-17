@@ -7,9 +7,10 @@ import android.text.TextUtils;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 禁止正整数前导零 ( 单独 {@code 0} 允许 )
+ * detail: 禁止正整数前导零
  * @author Ttt
  * <pre>
+ *     单独 {@code 0} 允许；
  *     仅适用于纯数字输入，常与 {@link DigitsOnlyInputFilter} 组合使用。
  * </pre>
  */

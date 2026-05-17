@@ -69,7 +69,7 @@ public class SignedDecimalInputFilter
     /**
      * 校验完整输入是否合法有符号小数
      * @param value 合并后的完整输入
-     * @return {@code true} 合法
+     * @return {@code true} 合法，{@code false} 不合法
      */
     private boolean isValidSignedDecimal(final String value) {
         int index = 0;
@@ -83,7 +83,7 @@ public class SignedDecimalInputFilter
     /**
      * 校验无符号小数部分
      * @param value 小数文本
-     * @return {@code true} 合法
+     * @return {@code true} 合法，{@code false} 不合法
      */
     private boolean isValidDecimalPart(final String value) {
         int dotIndex = value.indexOf('.');

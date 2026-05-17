@@ -29,7 +29,7 @@ public class PercentInputFilter
      * @param decimalDigits 小数部分最大位数
      */
     public PercentInputFilter(final int decimalDigits) {
-        mDecimalDigits = Math.max(0, decimalDigits);
+        mDecimalDigits      = Math.max(0, decimalDigits);
         mDecimalInputFilter = new DecimalInputFilter(3, mDecimalDigits);
     }
 
