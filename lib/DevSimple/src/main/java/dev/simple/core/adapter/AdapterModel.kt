@@ -94,8 +94,8 @@ open class AdapterModel<T> {
         return count() >= length
     }
 
-
     // =
+
     /**
      * 判断数据长度长度是否小于指定长度
      * @param length     指定长度
