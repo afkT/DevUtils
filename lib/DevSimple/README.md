@@ -3,8 +3,6 @@
 
 DevSimple 是 DevUtils 系列中的 **简单敏捷开发库**，面向 **Data Binding + MVVM** 场景，在聚合多库能力之上提供 BindingAdapter、列表状态模型、仓库模式骨架、Kotlin 扩展与统一布局样式（`ViewTheme`），减少样板代码。
 
-自 **1.0.4** 起，原 **DevMVVM**、**DevAgile** 代码已合并进 DevSimple 并重构包结构，详见 [CHANGELOG.md](CHANGELOG.md)。
-
 
 ## 摘要
 
