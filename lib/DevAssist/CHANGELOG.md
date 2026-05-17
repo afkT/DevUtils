@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.4.6 *(2026-05-07)*
+Version 1.4.6 *(2026-05-17)*
 ----------------------------
 
 * `[Refactor]` DevCallback、DevFunction、DevTimerAssist、EditTextSearchAssist 等回调与辅助类方法命名规范化

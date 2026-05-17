@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.1.1 *(2026-05-07)*
+Version 1.1.1 *(2026-05-17)*
 ----------------------------
 
 * `[Refactor]` 精简 ProgressRequestBody、ProgressResponseBody 与进度监听实现，移除历史进度监听代码路径

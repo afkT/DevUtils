@@ -1,26 +1,36 @@
 Change Log
 ==========
 
-Version 2.5.3 *(2026-05-07)*
+Version 2.5.3 *(2026-05-17)*
 ----------------------------
 
-* `[Feature]` 适配 Android 16 ( Baklava )，VersionUtils、VersionHelper 补充版本信息与 API 映射及检测方法
+* `[Feature]` 适配 Android 17 ( API 37 )：VersionUtils 完善版本判断与转换；新增 ContactPickerUtils、ProfilingUtils、SecurityUtils；ActivityUtils 支持跨设备 Handoff；AlarmUtils 支持 OnAlarmListener 精确闹钟；ProcessUtils 支持进程退出原因查询；NetworkUtils、JobSchedulerUtils 等补充本地网络权限与 pending 统计等 API 37 能力
 
-* `[Add]` 新增 PendingIntentUtils，统一 PendingIntent 创建与 Android 12+ 默认 Flag 处理；AlarmUtils、NotificationUtils、PhoneUtils 等改为使用该工具类
+* `[Feature]` 适配 Android 16 ( Baklava )：VersionUtils、VersionHelper 补充版本信息与 API 映射及检测方法；新增 JobSchedulerUtils（含任务诊断 API、命名空间调度）；ScreenUtils 大屏方向与自适应布局；IntentUtils#removeLaunchSecurityProtection、MediaStoreUtils#getMediaStoreVersion、ReceiverUtils#clampBroadcastIntentFilterPriorityCompat；AppUtils#getApplicationInfo( Context )、VersionUtils#getTargetSdkVersion 等
 
-* `[Add]` ReceiverUtils 扩展 Android 13+ 导出与非导出广播注册配置；AppUtils 增加带 receiverExported 的广播注册重载与启动前台服务便捷方法
+* `[Add]` 新增 PendingIntentUtils，统一 PendingIntent 创建与 Android 12+ 默认 Flag 处理；AlarmUtils 适配精确闹钟权限（ canScheduleExactAlarms、startScheduleExactAlarmSettings ）并与 NotificationUtils、PhoneUtils 等统一使用该工具类
 
-* `[Update]` AppUtils、AppInfoItem、AppInfoUtils、ManifestUtils 等应用签名与包信息获取逻辑调整（兼容 Android P 及以上）；PackageManager 查询减少不必要 flags 以优化性能
+* `[Add]` 新增 PackageManagerUtils，封装 API 33+ ResolveInfoFlags 等包管理器查询；AppInfoUtils、IntentUtils 等查询逻辑迁移至该工具类
 
-* `[Update]` 非 Activity 上下文调用 AppUtils#startActivity 时自动补充 FLAG_ACTIVITY_NEW_TASK
+* `[Add]` 新增 ForegroundServiceUtils，封装 API 29+ 前台服务类型与 startForeground 启动适配；AppUtils 保留启动前台服务便捷方法
 
-* `[Fix]` 修复部分 Android 版本判断与导出广播接收器注册逻辑问题
+* `[Add]` ReceiverUtils 扩展 Android 13+ 导出与非导出广播注册配置；AppUtils 增加带 receiverExported 的广播注册重载；NotificationUtils 增加 POST_NOTIFICATIONS 权限检查与 postNotificationIfAllowed 安全发布
+
+* `[Add]` ViewUtils、ViewHelper、QuickHelper 补充 Checkable 选中及 activated、pressed 状态读写与批量设置；TextViewUtils 新增 removeUnderlineText、removeStrikeThruText
+
+* `[Add]` RecyclerViewUtils 新增平滑滚动与顶部/底部吸附对齐（ startSmoothScrollSnapStart/End、scrollToPositionWithOffset、stopSmoothScroller 等）；ListViewUtils 滚动相关方法改为返回 boolean 并统一异常处理
+
+* `[Add]` Android 17+ 扩展：AudioManagerUtils Assistant 音频流、IntentUtils 系统 Photo Picker、MediaStoreUtils Photo Picker UI 定制、NotificationUtils Live Update 语义色
+
+* `[Update]` AppUtils、AppInfoItem、AppInfoUtils、ManifestUtils 等应用签名与包信息获取逻辑调整（兼容 Android P 及以上）；非 Activity 上下文调用 AppUtils#startActivity 时自动补充 FLAG_ACTIVITY_NEW_TASK
+
+* `[Fix]` 修复部分 Android 版本判断与导出广播接收器注册逻辑问题；修复 CursorUtils、DevicePolicyUtils、DeviceUtils、NetworkUtils 等空指针与 ListViewUtils 滚动返回值问题
 
 * `[Fix]` SnackbarUtils 方法名拼写修正（ bellow 改为 below ）及相关引用与文档
 
-* `[Refactor]` 多工具类方法、回调接口、DevFinal 常量访问方式、EXIF ExifTagTables 与内部辅助命名等可读性重构（含 ReceiverUtils 驼峰化、ShellUtils 命令结果判断方法重命名等）
+* `[Refactor]` 多工具类方法、回调接口、DevFinal 常量访问方式、EXIF ExifTagTables 与内部辅助命名等可读性重构（含 ReceiverUtils 驼峰化、ShellUtils 命令结果判断方法重命名、Reflect2Utils 异常处理、CPUUtils 资源管理等）
 
-* `[Style]` 工具类文档与参数注释格式整理；README 拼写修正
+* `[Style]` 工具类文档、JavaDoc {@link} 与返回值描述整理，部分方法参数 final 化；README 拼写修正
 
 Version 2.5.1-2 *(2026-03-14)*
 ----------------------------

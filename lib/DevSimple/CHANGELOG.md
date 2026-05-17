@@ -1,16 +1,22 @@
 Change Log
 ==========
 
-Version 1.0.7 *(2026-05-07)*
+Version 1.0.7 *(2026-05-17)*
 ----------------------------
 
-* `[Add]` TextView DataBinding：扩展 `@BindingAdapter`（下划线/删除线、行距、字号 sp、行数/ems、密码显示、Html 委托 `TextViewUtils` 等），见 `bindingadapters/view/TextView.kt`
+* `[Add]` Data Binding 适配器体系大幅扩展：`bindingadapters` 下 View 布局参数（margin / padding、宽高、变换、可见性等，`binding_*` 命名）；TextView / EditText（样式、Html、Span、compound drawable、键盘开闭与延迟、光标与 TextWatcher 等）；ImageView 引擎加载（`ImageViewLoadEngine`）与原生 API（`ImageViewLoadNative`）；RecyclerView（LayoutManager、Adapter 通知、ItemDecoration、滚动监听）；View / RecyclerView / ListView 滚动与延迟滚动（含 `_ts` 时间戳同值二次触发、`XYI` 坐标）；单击 / 防抖 / 计数 / 长按 / 触摸及扩大点击区域；动画（透明度、平移、旋转、缩放、摇晃）与 `binding_view_shape`、状态列表 Selector；统一委托 DevApp `*Utils`
 
-* `[Add]` 新增多种布局与控件 styles 资源（含 ShadowLayout、SeekBar、WebView、ViewPager 等）及 padding/margin 维度样式
+* `[Add]` 扩展 `qualifies` 与相等性：`QualifiesExt`、`QualifiesLiveDataExt`、`QualifiesObservableExt`、`QualifiesObservableFieldExt`、`QualifiesStateFlowExt`；`CompareValue` 与 `compareValueEquals`，供绑定侧 IfValueEquals、IfCompareValueEquals 等条件控制
+
+* `[Add]` 新增多种布局与控件 styles 资源（含 ShadowLayout、SeekBar、WebView、ViewPager 等）及 padding / margin 维度样式
 
 * `[Add]` RecyclerView 绑定适配器；Adapter 链路增加 LiveData 支持并实现智能线程更新
 
 * `[Fix]` 修复并优化 WebView 配置与缓存相关逻辑（WebViewAssist）
+
+* `[Fix]` 修复 EditText / TextView 等绑定适配器可空参数 NPE；margin / padding 绑定 `reset` 默认可清空
+
+* `[Refactor]` 绑定适配器按职责拆分文件并重命名（`ViewProperty` → `View`、`EditTextView` → `EditText` 等）；`shouldTrigger*` 统一为 `qualifies*`；TriggerEffect 扩展迁至 `extensions.qualifies`
 
 * `[Refactor]` ValueLiveData、BaseIntent、AppExecutors、NetworkBoundResource、弃用适配器与 ItemLifecycle 等可见性、命名与可扩展性调整
 

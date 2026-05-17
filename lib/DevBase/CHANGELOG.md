@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.2.3 *(2026-05-07)*
+Version 1.2.3 *(2026-05-17)*
 ----------------------------
 
 * `[Refactor]` AbstractDevBaseActivity、AbstractDevBaseFragment 及 MVP、MVVM、ViewDataBinding 基类开放可继承，访问修饰与基类架构调整以支持更灵活自定义
