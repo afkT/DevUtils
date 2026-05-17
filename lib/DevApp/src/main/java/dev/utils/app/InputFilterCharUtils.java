@@ -110,6 +110,152 @@ public final class InputFilterCharUtils {
     }
 
     /**
+     * 判断字符是否为车牌字母 ( 不含 I、O )
+     * @param c 待判断字符
+     * @return {@code true} 为 A-HJ-NP-Z
+     */
+    public static boolean isPlateLetter(final char c) {
+        char upper = Character.toUpperCase(c);
+        return upper >= 'A' && upper <= 'Z' && upper != 'I' && upper != 'O';
+    }
+
+    /**
+     * 判断字符是否为车牌序号字符 ( 数字或车牌字母 )
+     * @param c 待判断字符
+     * @return {@code true} 允许
+     */
+    public static boolean isPlateSerialChar(final char c) {
+        return isDigit(c) || isPlateLetter(c);
+    }
+
+    /**
+     * 判断字符是否为中文姓名常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为中文或间隔号 {@code ·}
+     */
+    public static boolean isChineseNameChar(final char c) {
+        return isChinese(c) || c == '·' || c == '•';
+    }
+
+    /**
+     * 判断字符是否为国内地址常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为中文、数字或常见地址符号
+     */
+    public static boolean isChineseAddressChar(final char c) {
+        return isChinese(c)
+                || isDigit(c)
+                || c == '-'
+                || c == '#'
+                || c == '('
+                || c == ')'
+                || c == '（'
+                || c == '）';
+    }
+
+    /**
+     * 判断字符是否为 VIN 字符 ( 不含 I、O、Q )
+     * @param c 待判断字符
+     * @return {@code true} 允许
+     */
+    public static boolean isVinChar(final char c) {
+        char upper = Character.toUpperCase(c);
+        if (isDigit(c)) return true;
+        if (upper >= 'A' && upper <= 'Z') {
+            return upper != 'I' && upper != 'O' && upper != 'Q';
+        }
+        return false;
+    }
+
+    /**
+     * 按位规则过滤输入 ( 常用于证件号、车牌等固定位数场景 )
+     * @param source         新输入内容
+     * @param start          新输入起始下标
+     * @param end            新输入结束下标，不含
+     * @param dest           已有文本
+     * @param dstart         替换区间起始
+     * @param dend           替换区间结束，不含
+     * @param maxLength      最大长度
+     * @param positionRule   按位字符规则
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
+    public static CharSequence filterByPosition(
+            final CharSequence source,
+            final int start,
+            final int end,
+            final Spanned dest,
+            final int dstart,
+            final int dend,
+            final int maxLength,
+            final PositionCharPredicate positionRule
+    ) {
+        return filterByPosition(source, start, end, dest, dstart, dend, maxLength, null, positionRule);
+    }
+
+    /**
+     * 按位规则过滤输入，可先按字符集剔除非法字符
+     * @param source         新输入内容
+     * @param start          新输入起始下标
+     * @param end            新输入结束下标，不含
+     * @param dest           已有文本
+     * @param dstart         替换区间起始
+     * @param dend           替换区间结束，不含
+     * @param maxLength      最大长度
+     * @param preCharFilter  字符集预过滤，null 表示不预过滤
+     * @param positionRule   按位字符规则
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
+    public static CharSequence filterByPosition(
+            final CharSequence source,
+            final int start,
+            final int end,
+            final Spanned dest,
+            final int dstart,
+            final int dend,
+            final int maxLength,
+            final CharPredicate preCharFilter,
+            final PositionCharPredicate positionRule
+    ) {
+        if (source == null || positionRule == null) return null;
+        String destStr = dest == null ? "" : dest.toString();
+        String before  = destStr.substring(0, dstart);
+        String after   = destStr.substring(dend);
+        if (before.length() + after.length() >= maxLength) {
+            return "";
+        }
+        CharSequence allowedChars = preCharFilter == null
+                ? null
+                : filterByPredicate(source, start, end, preCharFilter);
+        CharSequence working   = source;
+        int          workStart = start;
+        int          workEnd   = end;
+        if (allowedChars != null) {
+            working   = allowedChars;
+            workStart = 0;
+            workEnd   = allowedChars.length();
+        }
+        StringBuilder insert = new StringBuilder(workEnd - workStart);
+        for (int i = workStart; i < workEnd; i++) {
+            int index = before.length() + insert.length();
+            if (index >= maxLength) break;
+            char c = working.charAt(i);
+            if (positionRule.isAllowedAt(c, index)) {
+                insert.append(c);
+            }
+        }
+        if (insert.length() == workEnd - workStart
+                && before.length() + insert.length() + after.length() <= maxLength) {
+            return allowedChars;
+        }
+        if (insert.length() == 0) return "";
+        return insert;
+    }
+
+    public interface PositionCharPredicate {
+        boolean isAllowedAt(char c, int index);
+    }
+
+    /**
      * 合并本次输入与已有文本
      * @param source 新输入内容
      * @param start  新输入起始下标
