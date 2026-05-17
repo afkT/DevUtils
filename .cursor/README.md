@@ -61,6 +61,7 @@
 | [lib-changelog-update/SKILL.md](skills/lib-changelog-update/SKILL.md) | `lib-changelog-update` | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
 | [java-kotlin-method-normalize/SKILL.md](skills/java-kotlin-method-normalize/SKILL.md) | `java-kotlin-method-normalize` | 规范化 Java/Kotlin 方法：**Java 用 JavaDoc、Kotlin 用 KDoc**（不混用）；Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；**方法注释与备注同一规则**：首段/首行无内联代码与类型引用，备注 **`<pre>`**；`@param`/`@return` 齐全；Kotlin **`@param` 行不写 `[类型]`**（签名已标明）；**boolean**：Java `@return {@code true} …, {@code false} …`，Kotlin `` @return `true` …, `false` … ``；类型引用 Java `{@link …}`；Kotlin **`@return`/`<pre>`** 等可用 `[…]`；优先非 void/Unit 安全返回、异常内捕获。 |
 | [databinding-bindingadapter-from-source/SKILL.md](skills/databinding-bindingadapter-from-source/SKILL.md) | `databinding-bindingadapter-from-source` | 从 Java/Kotlin 源码设计 **BindingAdapter** 与 `app:binding_*`；过滤不适合 XML 的 API；**仅 View 入参** 的重复触发用 **`Long?` 时间戳**；**效果开关** 用 **`Boolean?` 三态**（`null` 不改、`true` set、`false` remove，例 `bindingTVUnderline`）；多参数 **合并为 `attribute/` 实体**（参照 `XYI`）；生成文档时搭配 **java-kotlin-method-normalize**。 |
+| [android-version-platform-adapt/SKILL.md](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | 按 `developer.android.com/about/versions/{N}` 官方文档做 **行为变更**（`behavior-changes-all`、`behavior-changes-{N}`、`changes/*`）与 **新功能/API**（`features`、`features/*`）；扫描子页；targetSdk 升级与工具类封装；成稿前 **Read** `java-kotlin-method-normalize`。 |
 
 ### 2.1 `gradle-central-deps`
 
@@ -102,6 +103,11 @@
 
 - **YAML 备注**：含 `disable-model-invocation: true`。
 - **核心**：面向 **DataBinding**，从工具类/View 相关源码推导 **BindingAdapter**；排除 `inflate`、`getActivity` 等在布局单节点无意义 API；**命令式重复触发** 用 **`Long?` 正时间戳**（与 `ViewScroll.kt` 中 `qualifiesScroll` 同逻辑，可抽通用扩展名）；**效果类开/关** 用 **`Boolean?` 三态**（`null` 不改、`true`/`false` 分别调 set/remove，参照 `TextView.bindingTVUnderline`）；相关多参合并为 **`bindingadapters/view/attribute`** 下类型（对齐 `XYI.kt`）；详细判定与 XML 示例见同目录 [reference.md](skills/databinding-bindingadapter-from-source/reference.md)。**成稿前 Read** `java-kotlin-method-normalize`。
+
+### 2.10 `android-version-platform-adapt`
+
+- **YAML 备注**：含 `disable-model-invocation: true`。
+- **核心**：**必须以官方文档为准**（`WebFetch` / 扫描链接）；工作流：**1** `behavior-changes-all` → **1.2** `behavior-changes-{N}` → **1.3** `changes/*` → **1.4** `non-sdk-{N}` / `compat-framework-changes`；**2** `features` → **2.2** `features/*`；**4** 对枢纽/migration 等补扫遗漏子页；输出适配摘要表并落地 Manifest/Gradle/`lib/DevApp` 工具类。**Android 17** 固定 URL 与已扫描子页见 [reference.md](skills/android-version-platform-adapt/reference.md)。生成或改写方法时 **Read** `java-kotlin-method-normalize`。
 
 ---
 
