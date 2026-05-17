@@ -80,9 +80,6 @@ public final class InputFilterUtils {
 
     /**
      * 设置 InputFilter ( 覆盖原有 )
-     * <pre>
-     *     非 {@link TextView} 的 {@link View} 将设置失败。
-     * </pre>
      * @param view    {@link View}
      * @param filters 过滤器
      * @return {@code true} success, {@code false} fail
@@ -124,9 +121,6 @@ public final class InputFilterUtils {
 
     /**
      * 追加 InputFilter ( 保留原有并在末尾追加 )
-     * <pre>
-     *     非 {@link TextView} 的 {@link View} 将设置失败。
-     * </pre>
      * @param view    {@link View}
      * @param filters 待追加的过滤器
      * @return {@code true} success, {@code false} fail
@@ -161,9 +155,6 @@ public final class InputFilterUtils {
 
     /**
      * 清空 InputFilter
-     * <pre>
-     *     非 {@link TextView} 的 {@link View} 将设置失败。
-     * </pre>
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
@@ -201,9 +192,6 @@ public final class InputFilterUtils {
 
     /**
      * 合并并设置 InputFilter ( 保留原有并合并入参 )
-     * <pre>
-     *     非 {@link TextView} 的 {@link View} 将设置失败。
-     * </pre>
      * @param view    {@link View}
      * @param filters 待合并的过滤器
      * @return {@code true} success, {@code false} fail
