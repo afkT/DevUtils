@@ -8,9 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.text.DelegateInputFilter;
+import dev.utils.app.text.input_filter.AlphanumericInputFilter;
+import dev.utils.app.text.input_filter.ByteLengthInputFilter;
+import dev.utils.app.text.input_filter.ChineseAddressInputFilter;
+import dev.utils.app.text.input_filter.ChineseOnlyInputFilter;
+import dev.utils.app.text.input_filter.DecimalInputFilter;
+import dev.utils.app.text.input_filter.EmailInputFilter;
+import dev.utils.app.text.input_filter.EmojiInputFilter;
 import dev.utils.app.text.input_filter.FrontSpaceInputFilter;
+import dev.utils.app.text.input_filter.HexInputFilter;
+import dev.utils.app.text.input_filter.IntegerInputFilter;
 import dev.utils.app.text.input_filter.MaxLengthInputFilter;
+import dev.utils.app.text.input_filter.MaxLinesInputFilter;
+import dev.utils.app.text.input_filter.NoConsecutiveSpaceInputFilter;
 import dev.utils.app.text.input_filter.NoEnterInputFilter;
+import dev.utils.app.text.input_filter.NoSpaceInputFilter;
+import dev.utils.app.text.input_filter.RangeValueInputFilter;
+import dev.utils.app.text.input_filter.UrlInputFilter;
+import dev.utils.app.text.input_filter.UsernameInputFilter;
 
 /**
  * detail: InputFilter 组合与快捷设置工具类
@@ -323,49 +339,414 @@ public final class InputFilterUtils {
         }
     }
 
-    // ==================
-    // = 常用 Filter 单例 =
-    // ==================
+    // =================
+    // = Filter 组合预设 =
+    // =================
+
+    // ----------
+    // = 单行 / 多行 =
+    // ----------
 
     /**
-     * 禁止回车换行
-     */
-    public static final InputFilter NO_ENTER = new NoEnterInputFilter();
-
-    /**
-     * 禁止首字符为空格
-     */
-    public static final InputFilter FRONT_SPACE = new FrontSpaceInputFilter();
-
-    /**
-     * 单行输入常用组合：禁止回车、禁止首空格、最大长度
-     * @param maxLength 最大字符长度
-     * @return {@link InputFilter} 预设数组
-     */
-    public static InputFilter[] singleLineWithMaxLength(final int maxLength) {
-        return distinctFilters(
-                NO_ENTER, FRONT_SPACE,
-                new MaxLengthInputFilter(maxLength)
-        );
-    }
-
-    /**
-     * 多行输入常用组合：禁止首空格、最大长度 ( 允许换行 )
-     * @param maxLength 最大字符长度
-     * @return {@link InputFilter} 预设数组
-     */
-    public static InputFilter[] multiLineWithMaxLength(final int maxLength) {
-        return distinctFilters(
-                FRONT_SPACE,
-                new MaxLengthInputFilter(maxLength)
-        );
-    }
-
-    /**
-     * 单行输入：禁止回车、禁止首空格 ( 无长度限制 )
-     * @return {@link InputFilter} 预设数组
+     * 单行输入基础组合
+     * <pre>
+     *     禁止回车换行、禁止首字符为空格，不限长度。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
      */
     public static InputFilter[] singleLineDefault() {
-        return distinctFilters(NO_ENTER, FRONT_SPACE);
+        return singleLineBaseFilters();
+    }
+
+    /**
+     * 单行输入并限制最大字符长度
+     * <pre>
+     *     在 {@link #singleLineDefault()} 基础上追加 {@link MaxLengthInputFilter}。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] singleLineWithMaxLength(final int maxLength) {
+        return append(singleLineBaseFilters(), new MaxLengthInputFilter(maxLength));
+    }
+
+    /**
+     * 多行输入基础组合
+     * <pre>
+     *     禁止首字符为空格，允许换行，不限长度。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] multiLineDefault() {
+        return multiLineBaseFilters();
+    }
+
+    /**
+     * 多行输入并限制最大字符长度
+     * <pre>
+     *     在 {@link #multiLineDefault()} 基础上追加 {@link MaxLengthInputFilter}。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] multiLineWithMaxLength(final int maxLength) {
+        return append(multiLineBaseFilters(), new MaxLengthInputFilter(maxLength));
+    }
+
+    /**
+     * 多行输入并限制最大字符长度与最大行数
+     * <pre>
+     *     在 {@link #multiLineWithMaxLength(int)} 基础上追加 {@link MaxLinesInputFilter}。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @param maxLines  最大行数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] multiLineWithMaxLines(
+            final int maxLength,
+            final int maxLines
+    ) {
+        return append(
+                multiLineWithMaxLength(maxLength),
+                new MaxLinesInputFilter(maxLines)
+        );
+    }
+
+    // ----------
+    // = 文本 / 社交 =
+    // ----------
+
+    /**
+     * 昵称类单行输入组合
+     * <pre>
+     *     单行基础规则，并禁止 Emoji、限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] nickname(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new EmojiInputFilter()
+        );
+    }
+
+    /**
+     * 评论类多行输入组合
+     * <pre>
+     *     多行长度与行数限制，允许 Emoji 与换行。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @param maxLines  最大行数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] comment(
+            final int maxLength,
+            final int maxLines
+    ) {
+        return multiLineWithMaxLines(maxLength, maxLines);
+    }
+
+    /**
+     * 搜索关键词单行输入组合
+     * <pre>
+     *     单行基础规则，仅保留搜索常用字符，禁止连续空格，并限制最大字符长度。
+     *     字符规则委托 {@link DelegateInputFilter} 与 {@link InputFilterCharUtils#isSearchKeywordChar(char)}。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] searchKeyword(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new DelegateInputFilter(InputFilterCharUtils::isSearchKeywordChar),
+                new NoConsecutiveSpaceInputFilter()
+        );
+    }
+
+    /**
+     * 禁止空格的单行输入组合
+     * <pre>
+     *     适用于密码、验证码等不允许任何空白的单行场景。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] noSpaceSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new NoSpaceInputFilter()
+        );
+    }
+
+    // ----------
+    // = 账号 / 链接 =
+    // ----------
+
+    /**
+     * 用户名输入组合
+     * <pre>
+     *     单行基础规则，仅允许字母、数字与下划线，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] username(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new UsernameInputFilter()
+        );
+    }
+
+    /**
+     * 字母数字密码输入组合
+     * <pre>
+     *     禁止空格的单行输入，且仅允许英文字母与数字。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] passwordAlphanumeric(final int maxLength) {
+        return append(
+                noSpaceSingleLine(maxLength),
+                new AlphanumericInputFilter()
+        );
+    }
+
+    /**
+     * 邮箱输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅保留邮箱常用字符。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] email(final int maxLength) {
+        return append(
+                noSpaceSingleLine(maxLength),
+                new EmailInputFilter()
+        );
+    }
+
+    /**
+     * URL 输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅保留 URL 常用字符。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] url(final int maxLength) {
+        return append(
+                noSpaceSingleLine(maxLength),
+                new UrlInputFilter()
+        );
+    }
+
+    // ----------
+    // = 数值 =
+    // ----------
+
+    /**
+     * 非负整数输入组合
+     * <pre>
+     *     仅数字，可限制最大位数；不含符号与小数点。
+     * </pre>
+     * @param maxDigits 最大位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] integer(final int maxDigits) {
+        return distinctFilters(new IntegerInputFilter(maxDigits));
+    }
+
+    /**
+     * 非负小数输入组合
+     * <pre>
+     *     数字与一个小数点，可分别限制整数位与小数位长度。
+     * </pre>
+     * @param integerDigits 整数部分最大位数
+     * @param decimalDigits 小数部分最大位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] decimal(
+            final int integerDigits,
+            final int decimalDigits
+    ) {
+        return distinctFilters(new DecimalInputFilter(integerDigits, decimalDigits));
+    }
+
+    /**
+     * 金额类小数输入组合
+     * <pre>
+     *     在 {@link #decimal(int, int)} 基础上追加闭区间数值限制。
+     *     建议失焦或提交时再做格式化与最终校验。
+     * </pre>
+     * @param integerDigits 整数部分最大位数
+     * @param decimalDigits 小数部分最大位数
+     * @param minValue      允许的最小值
+     * @param maxValue      允许的最大值
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] amount(
+            final int integerDigits,
+            final int decimalDigits,
+            final double minValue,
+            final double maxValue
+    ) {
+        return append(
+                decimal(integerDigits, decimalDigits),
+                new RangeValueInputFilter(minValue, maxValue)
+        );
+    }
+
+    /**
+     * 短信验证码数字输入组合
+     * <pre>
+     *     禁止空格的单行输入，且仅允许数字并限制固定位数。
+     * </pre>
+     * @param length 验证码位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] verifyCode(final int length) {
+        return append(
+                noSpaceSingleLine(length),
+                new IntegerInputFilter(length)
+        );
+    }
+
+    /**
+     * 手机号数字输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅数字，默认最多 11 位。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] phoneNumber() {
+        return phoneNumber(11);
+    }
+
+    /**
+     * 手机号数字输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅数字，并限制最大位数。
+     * </pre>
+     * @param maxDigits 最大位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] phoneNumber(final int maxDigits) {
+        return append(
+                noSpaceSingleLine(maxDigits),
+                new IntegerInputFilter(maxDigits)
+        );
+    }
+
+    // ----------
+    // = 中文 / 地址 =
+    // ----------
+
+    /**
+     * 仅中文输入组合
+     * <pre>
+     *     单行基础规则，仅允许 CJK 相关字符，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chineseOnly(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new ChineseOnlyInputFilter()
+        );
+    }
+
+    /**
+     * 国内地址单行输入组合
+     * <pre>
+     *     单行基础规则，允许中文、数字与常见地址符号，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chineseAddress(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new ChineseAddressInputFilter()
+        );
+    }
+
+    /**
+     * 国内地址多行输入组合
+     * <pre>
+     *     多行长度与行数限制，允许中文、数字与常见地址符号。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @param maxLines  最大行数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chineseAddressMultiline(
+            final int maxLength,
+            final int maxLines
+    ) {
+        return append(
+                multiLineWithMaxLines(maxLength, maxLines),
+                new ChineseAddressInputFilter()
+        );
+    }
+
+    // ----------
+    // = 其它 =
+    // ----------
+
+    /**
+     * 十六进制输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅允许 0-9 与 a-f、A-F，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] hex(final int maxLength) {
+        return append(
+                noSpaceSingleLine(maxLength),
+                new HexInputFilter()
+        );
+    }
+
+    /**
+     * 按显示字节长度限制的单行输入组合
+     * <pre>
+     *     单行基础规则，中文等 CJK 计 2、其余计 1，常用于短信字数统计场景。
+     * </pre>
+     * @param maxByteLength 最大显示字节长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] byteLengthSingleLine(final int maxByteLength) {
+        return append(
+                singleLineBaseFilters(),
+                new ByteLengthInputFilter(maxByteLength)
+        );
+    }
+
+    // ----------
+    // = 内部组合 =
+    // ----------
+
+    /**
+     * 单行基础过滤器组合
+     * @return 禁止回车与首字符空格的 {@link InputFilter} 数组
+     */
+    private static InputFilter[] singleLineBaseFilters() {
+        return distinctFilters(
+                new NoEnterInputFilter(),
+                new FrontSpaceInputFilter()
+        );
+    }
+
+    /**
+     * 多行基础过滤器组合
+     * @return 禁止首字符空格的 {@link InputFilter} 数组
+     */
+    private static InputFilter[] multiLineBaseFilters() {
+        return distinctFilters(new FrontSpaceInputFilter());
     }
 }
