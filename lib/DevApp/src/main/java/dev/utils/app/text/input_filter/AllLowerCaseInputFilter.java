@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi;
 import java.util.Locale;
 
 /**
- * detail: 输入自动转小写 
+ * detail: 输入自动转小写
  * @author Ttt
  * <pre>
  *     与 {@link AllCapsInputFilter} 对应；系统无 {@code InputFilter.AllLower}，故自行实现。
@@ -31,7 +31,7 @@ public class AllLowerCaseInputFilter
     }
 
     /**
-     * 使用指定 Locale 转小写 
+     * 使用指定 Locale 转小写
      * @param locale 小写转换使用的 {@link Locale}
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -40,7 +40,7 @@ public class AllLowerCaseInputFilter
     }
 
     /**
-     * 过滤本次输入片段 
+     * 过滤本次输入片段
      * @param source 新输入内容
      * @param start  新输入起始下标
      * @param end    新输入结束下标，不含
