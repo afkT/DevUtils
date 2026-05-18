@@ -122,7 +122,10 @@ public final class InputFilterCharUtils {
     }
 
     /**
-     * 判断字符是否为半角 ( 非 {@link #isFullWidthChar(char)} )
+     * 判断字符是否为半角
+     * <pre>
+     *     等价于对 {@link #isFullWidthChar(char)} 取反。
+     * </pre>
      * @param c 待判断字符
      * @return {@code true} 允许半角输入，{@code false} 为全角形式字符
      */
