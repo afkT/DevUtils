@@ -21,7 +21,7 @@ import androidx.annotation.RequiresApi;
 import java.util.UUID;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.text.MaxLengthInputFilter;
+import dev.utils.app.text.input_filter.MaxLengthInputFilter;
 
 /**
  * detail: EditText 工具类

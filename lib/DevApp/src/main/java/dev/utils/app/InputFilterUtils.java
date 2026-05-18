@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.text.FrontSpaceInputFilter;
-import dev.utils.app.text.MaxLengthInputFilter;
-import dev.utils.app.text.NoEnterInputFilter;
+import dev.utils.app.text.input_filter.FrontSpaceInputFilter;
+import dev.utils.app.text.input_filter.MaxLengthInputFilter;
+import dev.utils.app.text.input_filter.NoEnterInputFilter;
 
 /**
  * detail: InputFilter 组合与快捷设置工具类

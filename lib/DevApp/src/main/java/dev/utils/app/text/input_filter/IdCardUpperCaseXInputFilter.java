@@ -1,0 +1,51 @@
+package dev.utils.app.text.input_filter;
+
+import android.text.InputFilter;
+import android.text.Spanned;
+
+/**
+ * detail: 身份证末位小写 x 自动转大写 X
+ * @author Ttt
+ * <pre>
+ *     建议与 {@link IdCardInputFilter} 组合使用。
+ * </pre>
+ */
+public class IdCardUpperCaseXInputFilter
+        implements InputFilter {
+
+    /**
+     * 过滤本次输入片段
+     * @param source 新输入内容
+     * @param start  新输入起始下标
+     * @param end    新输入结束下标，不含
+     * @param dest   已有文本
+     * @param dstart 替换区间起始
+     * @param dend   替换区间结束，不含
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
+    @Override
+    public CharSequence filter(
+            CharSequence source,
+            int start,
+            int end,
+            Spanned dest,
+            int dstart,
+            int dend
+    ) {
+        if (source == null) return null;
+        boolean       changed = false;
+        StringBuilder builder = new StringBuilder(end - start);
+        for (int i = start; i < end; i++) {
+            char c     = source.charAt(i);
+            int  index = dstart + (i - start);
+            if (c == 'x' && index == 17) {
+                builder.append('X');
+                changed = true;
+            } else {
+                builder.append(c);
+            }
+        }
+        if (!changed) return null;
+        return builder;
+    }
+}

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.text.MaxLengthInputFilter;
+import dev.utils.app.text.input_filter.MaxLengthInputFilter;
 
 /**
  * detail: TextView 工具类

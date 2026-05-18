@@ -1,0 +1,62 @@
+package dev.utils.app.text.input_filter;
+
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextUtils;
+
+/**
+ * detail: 数值上限：解析后不得超过指定最大值
+ * @author Ttt
+ * <pre>
+ *     仅适用于数字与小数点组成的输入。
+ * </pre>
+ */
+public class MaxValueInputFilter
+        implements InputFilter {
+
+    private final double mMaxValue;
+
+    /**
+     * 构造函数
+     * @param maxValue 允许的最大值
+     */
+    public MaxValueInputFilter(final double maxValue) {
+        mMaxValue = maxValue;
+    }
+
+    /**
+     * 过滤本次输入片段
+     * @param source 新输入内容
+     * @param start  新输入起始下标
+     * @param end    新输入结束下标，不含
+     * @param dest   已有文本
+     * @param dstart 替换区间起始
+     * @param dend   替换区间结束，不含
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
+    @Override
+    public CharSequence filter(
+            CharSequence source,
+            int start,
+            int end,
+            Spanned dest,
+            int dstart,
+            int dend
+    ) {
+        if (source == null) return null;
+        String destStr = dest == null ? "" : dest.toString();
+        String result = destStr.substring(0, dstart)
+                + source.subSequence(start, end)
+                + destStr.substring(dend);
+        if (TextUtils.isEmpty(result) || ".".equals(result)) return null;
+        try {
+            double value = Double.parseDouble(result);
+            if (value > mMaxValue) {
+                return "";
+            }
+        } catch (NumberFormatException ignored) {
+            return "";
+        }
+        return null;
+    }
+}
