@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * detail: InputFilter 字符判断辅助类
  * @author Ttt
  * <pre>
- *     仅供 {@code dev.utils.app.text} 包内 {@link android.text.InputFilter} 实现复用。
+ *     供 {@code dev.utils.app.text.input_filter} 包内 {@link android.text.InputFilter} 实现复用。
  * </pre>
  */
 public final class InputFilterCharUtils {
@@ -98,6 +98,91 @@ public final class InputFilterCharUtils {
      */
     public static boolean isDateChar(final char c) {
         return isDigit(c) || c == '-' || c == '/' || c == '.';
+    }
+
+    /**
+     * 判断字符是否为时间输入常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为数字或 {@code :}，{@code false} 否则
+     */
+    public static boolean isTimeChar(final char c) {
+        return isDigit(c) || c == ':';
+    }
+
+    /**
+     * 判断字符是否为全角形式 ( 不含普通 CJK 汉字 )
+     * @param c 待判断字符
+     * @return {@code true} 为全角空格、全角 ASCII 变体等，{@code false} 否则
+     */
+    public static boolean isFullWidthChar(final char c) {
+        if (c == '\u3000') return true;
+        if (c >= '\uFF01' && c <= '\uFF5E') return true;
+        if (c >= '\uFFE0' && c <= '\uFFE6') return true;
+        return false;
+    }
+
+    /**
+     * 判断字符是否为半角 ( 非 {@link #isFullWidthChar(char)} )
+     * @param c 待判断字符
+     * @return {@code true} 允许半角输入，{@code false} 为全角形式字符
+     */
+    public static boolean isHalfWidth(final char c) {
+        return !isFullWidthChar(c);
+    }
+
+    /**
+     * 判断字符是否为文件名常用字符
+     * @param c 待判断字符
+     * @return {@code true} 非控制字符且非 {@code \ / : * ? " < > |}，{@code false} 否则
+     */
+    public static boolean isFileNameChar(final char c) {
+        if (c < 32) return false;
+        switch (c) {
+            case '\\':
+            case '/':
+            case ':':
+            case '*':
+            case '?':
+            case '"':
+            case '<':
+            case '>':
+            case '|':
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    /**
+     * 判断字符是否为标签输入常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为中文、英文、数字或常见分隔符，{@code false} 否则
+     */
+    public static boolean isTagChar(final char c) {
+        return isChinese(c)
+                || isEnglish(c)
+                || isDigit(c)
+                || c == ' '
+                || c == ','
+                || c == '，'
+                || c == '-'
+                || c == '_'
+                || c == '·';
+    }
+
+    /**
+     * 判断字符是否为搜索关键词常用字符
+     * @param c 待判断字符
+     * @return {@code true} 为中文、英文、数字或 {@code - _ ·} 与空格，{@code false} 否则
+     */
+    public static boolean isSearchKeywordChar(final char c) {
+        return isChinese(c)
+                || isEnglish(c)
+                || isDigit(c)
+                || c == ' '
+                || c == '-'
+                || c == '_'
+                || c == '·';
     }
 
     /**
@@ -358,6 +443,52 @@ public final class InputFilterCharUtils {
     }
 
     /**
+     * 按单字符谓词与全文校验过滤输入
+     * @param source            新输入内容
+     * @param start             新输入起始下标
+     * @param end               新输入结束下标，不含
+     * @param dest              已有文本
+     * @param dstart            替换区间起始
+     * @param dend              替换区间结束，不含
+     * @param charPredicate     单字符谓词，null 表示不校验字符集
+     * @param fullTextValidator 全文校验，null 表示不校验合并结果
+     * @return 过滤后的替换内容，null 表示接受原输入
+     */
+    public static CharSequence applyCharAndFullTextFilters(
+            final CharSequence source,
+            final int start,
+            final int end,
+            final Spanned dest,
+            final int dstart,
+            final int dend,
+            final CharPredicate charPredicate,
+            final FullTextValidator fullTextValidator
+    ) {
+        if (source == null) return null;
+        CharSequence charResult = null;
+        CharSequence working    = source;
+        int          workStart  = start;
+        int          workEnd    = end;
+        if (charPredicate != null) {
+            charResult = filterByPredicate(source, start, end, charPredicate);
+            if (charResult != null) {
+                if (charResult.length() == 0) return "";
+                working   = charResult;
+                workStart = 0;
+                workEnd   = charResult.length();
+            }
+        }
+        if (fullTextValidator == null) {
+            return charResult;
+        }
+        String merged = mergeInput(working, workStart, workEnd, dest, dstart, dend);
+        if (fullTextValidator.test(merged)) {
+            return charResult;
+        }
+        return "";
+    }
+
+    /**
      * 单字符谓词
      */
     public interface CharPredicate {
@@ -368,5 +499,18 @@ public final class InputFilterCharUtils {
          * @return {@code true} 通过，{@code false} 不通过
          */
         boolean test(char c);
+    }
+
+    /**
+     * 合并后全文是否合法
+     */
+    public interface FullTextValidator {
+
+        /**
+         * 测试合并后的完整输入是否满足条件
+         * @param merged 合并后的完整字符串
+         * @return {@code true} 合法，{@code false} 不合法
+         */
+        boolean test(String merged);
     }
 }
