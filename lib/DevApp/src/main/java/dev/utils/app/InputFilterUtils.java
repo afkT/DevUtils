@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.text.input_filter.AllCapsInputFilter;
+import dev.utils.app.text.input_filter.AllLowerCaseInputFilter;
 import dev.utils.app.text.input_filter.AlphanumericInputFilter;
+import dev.utils.app.text.input_filter.AsciiPrintableInputFilter;
 import dev.utils.app.text.input_filter.ByteLengthInputFilter;
 import dev.utils.app.text.input_filter.ChineseAddressInputFilter;
+import dev.utils.app.text.input_filter.ChineseIdCardInputFilter;
 import dev.utils.app.text.input_filter.ChineseMobilePhoneInputFilter;
 import dev.utils.app.text.input_filter.ChineseNameInputFilter;
 import dev.utils.app.text.input_filter.ChineseOnlyInputFilter;
@@ -19,15 +23,26 @@ import dev.utils.app.text.input_filter.DecimalInputFilter;
 import dev.utils.app.text.input_filter.EmailInputFilter;
 import dev.utils.app.text.input_filter.EmojiInputFilter;
 import dev.utils.app.text.input_filter.FrontSpaceInputFilter;
+import dev.utils.app.text.input_filter.HalfWidthInputFilter;
 import dev.utils.app.text.input_filter.HexInputFilter;
 import dev.utils.app.text.input_filter.IntegerInputFilter;
+import dev.utils.app.text.input_filter.LettersOnlyInputFilter;
 import dev.utils.app.text.input_filter.MaxLengthInputFilter;
 import dev.utils.app.text.input_filter.MaxLinesInputFilter;
+import dev.utils.app.text.input_filter.NoChineseInputFilter;
 import dev.utils.app.text.input_filter.NoConsecutiveSpaceInputFilter;
 import dev.utils.app.text.input_filter.NoEnterInputFilter;
+import dev.utils.app.text.input_filter.NoLeadingZeroIntegerInputFilter;
 import dev.utils.app.text.input_filter.NoSpaceInputFilter;
+import dev.utils.app.text.input_filter.PercentageInputFilter;
+import dev.utils.app.text.input_filter.PortInputFilter;
+import dev.utils.app.text.input_filter.PrintablePasswordInputFilter;
 import dev.utils.app.text.input_filter.RangeValueInputFilter;
 import dev.utils.app.text.input_filter.SearchKeywordInputFilter;
+import dev.utils.app.text.input_filter.SignedDecimalInputFilter;
+import dev.utils.app.text.input_filter.SignedIntegerInputFilter;
+import dev.utils.app.text.input_filter.TagInputFilter;
+import dev.utils.app.text.input_filter.TrimTrailingSpaceInputFilter;
 import dev.utils.app.text.input_filter.UrlInputFilter;
 import dev.utils.app.text.input_filter.UsernameInputFilter;
 
@@ -42,6 +57,9 @@ public final class InputFilterUtils {
 
     // 日志 TAG
     private static final String TAG = InputFilterUtils.class.getSimpleName();
+
+    // 中国大陆居民身份证号长度
+    private static final int CHINESE_ID_CARD_LENGTH = 18;
 
     // ================
     // = 获取 TextView =
@@ -467,6 +485,73 @@ public final class InputFilterUtils {
     }
 
     /**
+     * 标签 / 话题类单行输入组合
+     * <pre>
+     *     单行基础规则，允许中文、英文、数字及常见分隔符，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] tag(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new TagInputFilter()
+        );
+    }
+
+    /**
+     * 仅英文字母的单行输入组合（不允许空格）
+     * <pre>
+     *     禁止空格的单行输入，且仅允许英文字母。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] lettersOnly(final int maxLength) {
+        return lettersOnly(maxLength, false);
+    }
+
+    /**
+     * 仅英文字母的单行输入组合
+     * <pre>
+     *     {@code allowSpace == false} 时禁止任何空白；为 {@code true} 时沿用单行基础规则并允许空格。
+     * </pre>
+     * @param maxLength   最大字符长度
+     * @param allowSpace  是否允许空格
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] lettersOnly(
+            final int maxLength,
+            final boolean allowSpace
+    ) {
+        if (allowSpace) {
+            return append(
+                    singleLineWithMaxLength(maxLength),
+                    new LettersOnlyInputFilter(true)
+            );
+        }
+        return append(
+                noSpaceSingleLine(maxLength),
+                new LettersOnlyInputFilter(false)
+        );
+    }
+
+    /**
+     * 禁止尾部空格的单行输入组合
+     * <pre>
+     *     单行基础规则与最大字符长度限制，并实时禁止文本以空白字符结尾。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] trimTrailingSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new TrimTrailingSpaceInputFilter()
+        );
+    }
+
+    /**
      * 禁止空格的单行输入组合
      * <pre>
      *     适用于密码、验证码等不允许任何空白的单行场景。
@@ -512,6 +597,21 @@ public final class InputFilterUtils {
         return append(
                 noSpaceSingleLine(maxLength),
                 new AlphanumericInputFilter()
+        );
+    }
+
+    /**
+     * 可打印 ASCII 密码输入组合
+     * <pre>
+     *     禁止空格的单行输入，允许 ASCII 32-126 可打印字符（不含空格）。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] passwordPrintable(final int maxLength) {
+        return append(
+                noSpaceSingleLine(maxLength),
+                new PrintablePasswordInputFilter()
         );
     }
 
@@ -642,6 +742,113 @@ public final class InputFilterUtils {
         );
     }
 
+    /**
+     * 有符号整数输入组合
+     * <pre>
+     *     可选首位负号，其余为数字，可限制数字部分最大位数。
+     * </pre>
+     * @param maxDigits 数字部分最大位数（不含负号）
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] signedInteger(final int maxDigits) {
+        return distinctFilters(new SignedIntegerInputFilter(maxDigits));
+    }
+
+    /**
+     * 有符号小数输入组合
+     * <pre>
+     *     可选首位负号，数字与一个小数点，可分别限制整数位与小数位长度。
+     * </pre>
+     * @param integerDigits 整数部分最大位数
+     * @param decimalDigits 小数部分最大位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] signedDecimal(
+            final int integerDigits,
+            final int decimalDigits
+    ) {
+        return distinctFilters(new SignedDecimalInputFilter(integerDigits, decimalDigits));
+    }
+
+    /**
+     * 非负整数输入组合（禁止前导零）
+     * <pre>
+     *     仅数字，禁止前导零，允许单独 {@code 0}，可限制最大位数。
+     * </pre>
+     * @param maxDigits 最大位数
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] integerNoLeadingZero(final int maxDigits) {
+        return integerNoLeadingZero(maxDigits, true);
+    }
+
+    /**
+     * 非负整数输入组合（禁止前导零）
+     * <pre>
+     *     仅数字，禁止前导零，可限制最大位数，并可配置是否允许单独 {@code 0}。
+     * </pre>
+     * @param maxDigits       最大位数
+     * @param allowSingleZero 是否允许单独字符 0
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] integerNoLeadingZero(
+            final int maxDigits,
+            final boolean allowSingleZero
+    ) {
+        return distinctFilters(new NoLeadingZeroIntegerInputFilter(maxDigits, allowSingleZero));
+    }
+
+    /**
+     * 百分比输入组合（0-100 刻度）
+     * <pre>
+     *     非负小数，默认闭区间 [0, 100]，整数最多 3 位、小数最多 2 位，不允许 {@code %}。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] percentage() {
+        return distinctFilters(new PercentageInputFilter());
+    }
+
+    /**
+     * 百分比输入组合
+     * <pre>
+     *     非负小数；{@code scale} 为 {@link PercentageInputFilter#SCALE_HUNDRED} 时上限 100，
+     *     为 {@link PercentageInputFilter#SCALE_FRACTION} 时上限 1。
+     * </pre>
+     * @param scale              {@link PercentageInputFilter#SCALE_HUNDRED} 或 {@link PercentageInputFilter#SCALE_FRACTION}
+     * @param integerDigits        整数部分最大位数
+     * @param decimalDigits        小数部分最大位数
+     * @param allowPercentSymbol   是否允许末尾单个 % 符号
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] percentage(
+            final int scale,
+            final int integerDigits,
+            final int decimalDigits,
+            final boolean allowPercentSymbol
+    ) {
+        return distinctFilters(new PercentageInputFilter(
+                scale,
+                integerDigits,
+                decimalDigits,
+                allowPercentSymbol
+        ));
+    }
+
+    /**
+     * 端口号输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅数字且范围 1-65535，禁止前导零（最多 5 位）。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] port() {
+        return append(
+                noSpaceSingleLine(5),
+                new PortInputFilter()
+        );
+    }
+
     // =============
     // = 中文 / 地址 =
     // =============
@@ -687,6 +894,21 @@ public final class InputFilterUtils {
         return append(
                 noSpaceSingleLine(ChinesePostalCodeInputFilter.CHINESE_POSTAL_CODE_LENGTH),
                 new ChinesePostalCodeInputFilter()
+        );
+    }
+
+    /**
+     * 中国大陆居民身份证单行输入组合
+     * <pre>
+     *     禁止空格的单行输入，固定 18 位：前 17 位数字，末位数字或 X/x。
+     *     提交合法性请使用 {@link dev.utils.common.validator.IDCardUtils#validateCard(String)}。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chineseIdCard() {
+        return append(
+                noSpaceSingleLine(CHINESE_ID_CARD_LENGTH),
+                new ChineseIdCardInputFilter()
         );
     }
 
@@ -755,6 +977,81 @@ public final class InputFilterUtils {
         return append(
                 singleLineBaseFilters(),
                 new ByteLengthInputFilter(maxByteLength)
+        );
+    }
+
+    /**
+     * 禁止中文的单行输入组合
+     * <pre>
+     *     单行基础规则，过滤 CJK 相关字符，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] noChineseSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new NoChineseInputFilter()
+        );
+    }
+
+    /**
+     * ASCII 可打印字符单行输入组合
+     * <pre>
+     *     单行基础规则，仅允许 ASCII 32-126 可打印字符，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] asciiPrintable(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new AsciiPrintableInputFilter()
+        );
+    }
+
+    /**
+     * 半角字符单行输入组合
+     * <pre>
+     *     单行基础规则，仅允许半角字符，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] halfWidthSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new HalfWidthInputFilter()
+        );
+    }
+
+    /**
+     * 输入自动转大写的单行组合
+     * <pre>
+     *     单行基础规则与最大字符长度限制，输入片段自动转为大写。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] allCapsSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new AllCapsInputFilter()
+        );
+    }
+
+    /**
+     * 输入自动转小写的单行组合
+     * <pre>
+     *     单行基础规则与最大字符长度限制，输入片段自动转为小写。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] allLowerCaseSingleLine(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new AllLowerCaseInputFilter()
         );
     }
 
