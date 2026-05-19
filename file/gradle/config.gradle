@@ -77,7 +77,7 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
                     core                          : "androidx.core:core-ktx:1.18.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0-rc02",
+                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
                     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
@@ -103,8 +103,8 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha03",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-alpha03",
+                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha04",
+                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-alpha04",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
                     // WorkManager Kotlin + coroutines
                     work_runtime                  : "androidx.work:work-runtime-ktx:2.11.2",
@@ -146,19 +146,19 @@ ext {
                     // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
                     // https://developer.android.com/guide/navigation
                     // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.10.0-alpha03",
-                    navigation_ui            : "androidx.navigation:navigation-ui:2.10.0-alpha03",
+                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.10.0-alpha04",
+                    navigation_ui            : "androidx.navigation:navigation-ui:2.10.0-alpha04",
                     // https://mvnrepository.com/artifact/androidx.work/work-runtime
                     // WorkManager Java only
                     work_runtime             : "androidx.work:work-runtime:2.11.2",
                     // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
-                    sqlite                   : "androidx.sqlite:sqlite:2.7.0-alpha03", // 推荐使用 Room Jetpack 组件
+                    sqlite                   : "androidx.sqlite:sqlite:2.7.0-alpha04", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/androidx.palette/palette
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette                  : "androidx.palette:palette:1.0.0",
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件
-                    design                   : "com.google.android.material:material:1.14.0-rc01",
+                    design                   : "com.google.android.material:material:1.14.0",
                     // https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
                     // https://github.com/google/flexbox-layout
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )

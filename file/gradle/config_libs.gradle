@@ -123,7 +123,7 @@ ext {
                     zxing_code         : "com.google.zxing:core:3.5.4",
                     zxing_android_code : "com.google.zxing:android-core:3.3.0",
                     // GSY 视频播放器 https://github.com/CarGuo/GSYVideoPlayer
-                    gsyVideoPlayer     : "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer:v12.1.0",
+                    gsyVideoPlayer     : "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer:v13.0.0",
             ],
             "feature_widget": [
 
@@ -147,7 +147,7 @@ ext {
                     multitype                       : "com.drakeet.multitype:multitype:4.3.0",
                     // https://mvnrepository.com/artifact/io.github.cymchad/BaseRecyclerViewAdapterHelper4
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.3.4",
+                    base_recyclerview_adapter_helper: "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.4.0",
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
@@ -309,7 +309,7 @@ ext {
                     greenDAO_gradle_plugin: "org.greenrobot:greendao-gradle-plugin:3.3.1",
                     // https://mvnrepository.com/artifact/net.zetetic/sqlcipher-android
                     // SQLCipher for Android https://github.com/sqlcipher/sqlcipher-android
-                    sqlcipher             : "net.zetetic:sqlcipher-android:4.15.0@aar",
+                    sqlcipher             : "net.zetetic:sqlcipher-android:4.16.0",
             ],
 
             "messaging"     : [
