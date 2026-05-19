@@ -92,7 +92,7 @@ fun EditText.bindingETInputFiltersClearTs(timestamp: Long?) {
  * 通过数据绑定按预设类型套用 InputFilter 组合（覆盖原有）。
  * <pre>
  *     布局属性 `binding_et_input_filter_preset` 及可选参数属性（`requireAll = false`）；
- *     预设常量见本文件 `BINDING_ET_INPUT_FILTER_PRESET_*`；解析后委托 [InputFilterUtils.setFilters]。
+ *     预设常量见 [ETIFSpec] 的 `BINDING_ET_INPUT_FILTER_PRESET_*`；解析后委托 [InputFilterUtils.setFilters]。
  *     亦可使用 `binding_et_input_filter_preset_spec` 单次传入 [EtInputFilterPresetSpec]。
  * </pre>
  *
@@ -105,6 +105,10 @@ fun EditText.bindingETInputFiltersClearTs(timestamp: Long?) {
  * @param minValue 数值下限
  * @param maxValue 数值上限
  * @param maxByteLength 最大显示字节长度
+ * @param allowSpace 仅英文字母预设是否允许空格
+ * @param allowSingleZero 禁止前导零整数预设是否允许单独 0
+ * @param scale 百分比刻度
+ * @param allowPercentSymbol 百分比预设是否允许末尾 % 符号
  */
 @BindingAdapter(
     value = [
@@ -117,6 +121,10 @@ fun EditText.bindingETInputFiltersClearTs(timestamp: Long?) {
         "binding_et_input_filter_preset_min_value",
         "binding_et_input_filter_preset_max_value",
         "binding_et_input_filter_preset_max_byte_length",
+        "binding_et_input_filter_preset_allow_space",
+        "binding_et_input_filter_preset_allow_single_zero",
+        "binding_et_input_filter_preset_scale",
+        "binding_et_input_filter_preset_allow_percent_symbol",
     ],
     requireAll = false,
 )
@@ -130,6 +138,10 @@ fun EditText.bindingETInputFilterPreset(
     minValue: Double?,
     maxValue: Double?,
     maxByteLength: Int?,
+    allowSpace: Boolean?,
+    allowSingleZero: Boolean?,
+    scale: Int?,
+    allowPercentSymbol: Boolean?,
 ) {
     if (preset == null) return
     val spec = EtInputFilterPresetSpec(
@@ -142,6 +154,10 @@ fun EditText.bindingETInputFilterPreset(
         minValue = minValue,
         maxValue = maxValue,
         maxByteLength = maxByteLength,
+        allowSpace = allowSpace,
+        allowSingleZero = allowSingleZero,
+        scale = scale,
+        allowPercentSymbol = allowPercentSymbol,
     )
     applyInputFilterPresetSpec(spec)
 }
@@ -301,6 +317,107 @@ private fun resolveInputFilterPreset(spec: EtInputFilterPresetSpec): Array<Input
             ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_BYTE_LENGTH_SINGLE_LINE -> {
                 val bytes = spec.maxByteLength.positiveOrNull() ?: return null
                 InputFilterUtils.byteLengthSingleLine(bytes)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_TAG -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.tag(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_LETTERS_ONLY -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                val allowSpace = spec.allowSpace
+                if (allowSpace == null) {
+                    InputFilterUtils.lettersOnly(len)
+                } else {
+                    InputFilterUtils.lettersOnly(len, allowSpace)
+                }
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_TRIM_TRAILING_SINGLE_LINE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.trimTrailingSingleLine(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_PASSWORD_PRINTABLE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.passwordPrintable(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_SIGNED_INTEGER -> {
+                val digits = spec.maxDigits.positiveOrNull() ?: return null
+                InputFilterUtils.signedInteger(digits)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_SIGNED_DECIMAL -> {
+                val intDigits = spec.integerDigits.positiveOrNull() ?: return null
+                val decDigits = spec.decimalDigits.positiveOrNull() ?: return null
+                InputFilterUtils.signedDecimal(intDigits, decDigits)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_INTEGER_NO_LEADING_ZERO -> {
+                val digits = spec.maxDigits.positiveOrNull() ?: return null
+                val allowZero = spec.allowSingleZero
+                if (allowZero == null) {
+                    InputFilterUtils.integerNoLeadingZero(digits)
+                } else {
+                    InputFilterUtils.integerNoLeadingZero(digits, allowZero)
+                }
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_PERCENTAGE ->
+                InputFilterUtils.percentage()
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_PERCENTAGE_CUSTOM -> {
+                val scale = spec.scale ?: return null
+                if (scale != ETIFSpec.BINDING_ET_INPUT_FILTER_PERCENTAGE_SCALE_HUNDRED &&
+                    scale != ETIFSpec.BINDING_ET_INPUT_FILTER_PERCENTAGE_SCALE_FRACTION
+                ) {
+                    return null
+                }
+                val intDigits = spec.integerDigits.positiveOrNull() ?: return null
+                val decDigits = spec.decimalDigits.positiveOrNull() ?: return null
+                val allowSymbol = spec.allowPercentSymbol ?: return null
+                InputFilterUtils.percentage(scale, intDigits, decDigits, allowSymbol)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_PORT ->
+                InputFilterUtils.port()
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_CHINESE_NAME -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.chineseName(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_CHINESE_POSTAL_CODE ->
+                InputFilterUtils.chinesePostalCode()
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_CHINESE_ID_CARD ->
+                InputFilterUtils.chineseIdCard()
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_NO_CHINESE_SINGLE_LINE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.noChineseSingleLine(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_ASCII_PRINTABLE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.asciiPrintable(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_HALF_WIDTH_SINGLE_LINE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.halfWidthSingleLine(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_ALL_CAPS_SINGLE_LINE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.allCapsSingleLine(len)
+            }
+
+            ETIFSpec.BINDING_ET_INPUT_FILTER_PRESET_ALL_LOWER_CASE_SINGLE_LINE -> {
+                val len = spec.maxLength.positiveOrNull() ?: return null
+                InputFilterUtils.allLowerCaseSingleLine(len)
             }
 
             else -> null
