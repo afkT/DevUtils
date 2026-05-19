@@ -95,13 +95,13 @@ implementation 'io.github.afkt:DevHttpManager:1.1.1'
 
 * **ProgressManager 方法 ->** [DevHttpManager.PM.kt](https://github.com/afkT/DevUtils/blob/master/lib/HttpRequest/DevHttpManager/src/main/java/dev/DevHttpManager.kt#L219)
 
-| 方法                       | 注释                                    |
-|:-------------------------|:--------------------------------------|
-| getDefault               | 获取全局默认 Progress Operation 操作对象        |
-| getOperation             | 获取 Progress Operation 操作对象            |
-| containsOperation        | 通过 Key 判断是否存在 Progress Operation 操作对象 |
-| removeOperation          | 通过 Key 解绑并返回 Operation 操作对象           |
-| clearOperation           | 清空所有 Progress Operation 操作对象          |
+| 方法                                | 注释                                    |
+|:----------------------------------|:--------------------------------------|
+| getDefault                        | 获取全局默认 Progress Operation 操作对象        |
+| getOperation                      | 获取 Progress Operation 操作对象            |
+| containsOperation                 | 通过 Key 判断是否存在 Progress Operation 操作对象 |
+| removeOperation                   | 通过 Key 解绑并返回 Operation 操作对象           |
+| clearOperation                    | 清空所有 Progress Operation 操作对象          |
 | putBidirectionalProgressOperation | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上下行 ) |
 | putRequestProgressOperation       | 通过 Key 绑定并返回 Operation 操作对象 ( 监听上行 )  |
 | putResponseProgressOperation      | 通过 Key 绑定并返回 Operation 操作对象 ( 监听下行 )  |

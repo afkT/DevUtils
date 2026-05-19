@@ -25,7 +25,7 @@ DevSimple 是 DevUtils 体系中面向 **Data Binding / MVVM** 的简单敏捷�
 
 ```gradle
 // DevSimple - 简单敏捷开发库 ( Data Binding、ViewTheme、MVVM 配套 )
-implementation 'io.github.afkt:DevSimple:1.0.6'
+implementation 'io.github.afkt:DevSimple:1.0.7'
 ```
 
 ## 目录结构
@@ -56,25 +56,25 @@ implementation 'io.github.afkt:DevSimple:1.0.6'
 ## API
 
 - dev.simple                                                     | 根目录
-   - [bindingadapters](#devsimplebindingadapters)                | Data Binding 适配器
-      - [attribute](#devsimplebindingadaptersattribute)          | 多参数合并实体
-      - [view](#devsimplebindingadaptersview)                    | View 绑定实现
-   - [core](#devsimplecore)                                      | 核心能力
-      - [adapter](#devsimplecoreadapter)                          | AdapterModel
-      - [app](#devsimplecoreapp)                                  | AppExecutors、BaseIntent
-      - [channel](#devsimplecorechannel)                          | AppChannel
-      - [livedata](#devsimplecorelivedata)                        | LiveData 工具
-   - [extensions](#devsimpleextensions)                          | 扩展函数
-      - [equality](#devsimpleextensionsequality)                  | 相等性
-      - [hi](#devsimpleextensionshi)                              | Hi 内联
-      - [image](#devsimpleextensionsimage)                        | 图片配置
-      - [qualifies](#devsimpleextensionsqualifies)                | qualifies 扩展
-      - [size](#devsimpleextensionssize)                          | 尺寸换算
-   - [features](#devsimplefeatures)                              | 功能模块
-      - [repository](#devsimplefeaturesrepository)                | Repository
-      - [web](#devsimplefeaturesweb)                              | WebViewAssist
-      - [deprecated/adapter](#devsimplefeaturesdeprecatedadapter)   | 旧版 Adapter（兼容）
-   - [interfaces](#devsimpleinterfaces)                          | 接口
+    - [bindingadapters](#devsimplebindingadapters)                | Data Binding 适配器
+        - [attribute](#devsimplebindingadaptersattribute)          | 多参数合并实体
+        - [view](#devsimplebindingadaptersview)                    | View 绑定实现
+    - [core](#devsimplecore)                                      | 核心能力
+        - [adapter](#devsimplecoreadapter)                          | AdapterModel
+        - [app](#devsimplecoreapp)                                  | AppExecutors、BaseIntent
+        - [channel](#devsimplecorechannel)                          | AppChannel
+        - [livedata](#devsimplecorelivedata)                        | LiveData 工具
+    - [extensions](#devsimpleextensions)                          | 扩展函数
+        - [equality](#devsimpleextensionsequality)                  | 相等性
+        - [hi](#devsimpleextensionshi)                              | Hi 内联
+        - [image](#devsimpleextensionsimage)                        | 图片配置
+        - [qualifies](#devsimpleextensionsqualifies)                | qualifies 扩展
+        - [size](#devsimpleextensionssize)                          | 尺寸换算
+    - [features](#devsimplefeatures)                              | 功能模块
+        - [repository](#devsimplefeaturesrepository)                | Repository
+        - [web](#devsimplefeaturesweb)                              | WebViewAssist
+        - [deprecated/adapter](#devsimplefeaturesdeprecatedadapter)   | 旧版 Adapter（兼容）
+    - [interfaces](#devsimpleinterfaces)                          | 接口
 
 
 ## <span id="devsimple">**`dev.simple`**</span>
