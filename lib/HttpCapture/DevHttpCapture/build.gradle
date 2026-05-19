@@ -34,7 +34,7 @@ dependencies {
 }
 
 // tasks-build-assemble
-// publishing-publishToMavenCentral
+// publishing-publishMavenPublicationToMavenCentralRepository
 if (isPublishing) {
     apply from: rootProject.file(files.sonatype_upload_android)
 }

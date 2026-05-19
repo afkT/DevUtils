@@ -53,4 +53,4 @@ mavenPublishing {
 //
 // tasks-build-assemble
 //
-// publishing-publishToMavenCentral
+// publishing-publishMavenPublicationToMavenCentralRepository
