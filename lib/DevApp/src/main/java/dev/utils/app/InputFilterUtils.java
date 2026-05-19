@@ -9,11 +9,12 @@ import java.util.List;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.text.input_filter.AlphanumericInputFilter;
-import dev.utils.app.text.input_filter.ChineseMobilePhoneInputFilter;
-import dev.utils.app.text.input_filter.SearchKeywordInputFilter;
 import dev.utils.app.text.input_filter.ByteLengthInputFilter;
 import dev.utils.app.text.input_filter.ChineseAddressInputFilter;
+import dev.utils.app.text.input_filter.ChineseMobilePhoneInputFilter;
+import dev.utils.app.text.input_filter.ChineseNameInputFilter;
 import dev.utils.app.text.input_filter.ChineseOnlyInputFilter;
+import dev.utils.app.text.input_filter.ChinesePostalCodeInputFilter;
 import dev.utils.app.text.input_filter.DecimalInputFilter;
 import dev.utils.app.text.input_filter.EmailInputFilter;
 import dev.utils.app.text.input_filter.EmojiInputFilter;
@@ -26,6 +27,7 @@ import dev.utils.app.text.input_filter.NoConsecutiveSpaceInputFilter;
 import dev.utils.app.text.input_filter.NoEnterInputFilter;
 import dev.utils.app.text.input_filter.NoSpaceInputFilter;
 import dev.utils.app.text.input_filter.RangeValueInputFilter;
+import dev.utils.app.text.input_filter.SearchKeywordInputFilter;
 import dev.utils.app.text.input_filter.UrlInputFilter;
 import dev.utils.app.text.input_filter.UsernameInputFilter;
 
@@ -656,6 +658,35 @@ public final class InputFilterUtils {
         return append(
                 singleLineWithMaxLength(maxLength),
                 new ChineseOnlyInputFilter()
+        );
+    }
+
+    /**
+     * 中文姓名单行输入组合
+     * <pre>
+     *     单行基础规则，允许中文及间隔号 {@code ·}，并限制最大字符长度。
+     * </pre>
+     * @param maxLength 最大字符长度
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chineseName(final int maxLength) {
+        return append(
+                singleLineWithMaxLength(maxLength),
+                new ChineseNameInputFilter()
+        );
+    }
+
+    /**
+     * 中国邮政编码单行输入组合
+     * <pre>
+     *     禁止空格的单行输入，仅数字且固定 6 位（中国大陆邮政编码）。
+     * </pre>
+     * @return 预设 {@link InputFilter} 数组
+     */
+    public static InputFilter[] chinesePostalCode() {
+        return append(
+                noSpaceSingleLine(ChinesePostalCodeInputFilter.CHINESE_POSTAL_CODE_LENGTH),
+                new ChinesePostalCodeInputFilter()
         );
     }
 
