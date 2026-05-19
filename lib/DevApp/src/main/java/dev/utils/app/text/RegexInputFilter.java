@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 正则匹配输入，仅保留匹配规则的字符 
+ * detail: 正则匹配输入，仅保留匹配规则的字符
  * @author Ttt
  * <pre>
  *     字符串构造时按单字符 {@link String#valueOf(char)} 与 {@link Pattern} 匹配；
@@ -21,7 +21,7 @@ public class RegexInputFilter
     private final Pattern mPattern;
 
     /**
-     * 构造函数 
+     * 构造函数
      * @param regex 正则表达式
      */
     public RegexInputFilter(final String regex) {
@@ -34,7 +34,7 @@ public class RegexInputFilter
     }
 
     /**
-     * 构造函数 
+     * 构造函数
      * @param pattern 正则表达式
      */
     public RegexInputFilter(final Pattern pattern) {
@@ -42,7 +42,7 @@ public class RegexInputFilter
     }
 
     /**
-     * 过滤本次输入片段 
+     * 过滤本次输入片段
      * @param source 新输入内容
      * @param start  新输入起始下标
      * @param end    新输入结束下标，不含

@@ -1,4 +1,4 @@
-package dev.utils.app.text.input_filter;
+package dev.utils.app.text;
 
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -7,20 +7,20 @@ import android.text.TextUtils;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 仅允许输入指定字符 ( 白名单 )
+ * detail: 禁止输入指定字符 ( 黑名单 )
  * @author Ttt
  */
-public class AllowCharsInputFilter
+public class ProhibitCharsInputFilter
         implements InputFilter {
 
-    private final String mAllowChars;
+    private final String mProhibitChars;
 
     /**
      * 构造函数
-     * @param allowChars 允许出现的字符集合
+     * @param prohibitChars 禁止出现的字符集合
      */
-    public AllowCharsInputFilter(final String allowChars) {
-        mAllowChars = allowChars;
+    public ProhibitCharsInputFilter(final String prohibitChars) {
+        mProhibitChars = prohibitChars;
     }
 
     /**
@@ -42,9 +42,9 @@ public class AllowCharsInputFilter
             int dstart,
             int dend
     ) {
-        if (TextUtils.isEmpty(mAllowChars) || source == null) return null;
+        if (TextUtils.isEmpty(mProhibitChars) || source == null) return null;
         return InputFilterCharUtils.filterByPredicate(source, start, end, c ->
-                mAllowChars.indexOf(c) >= 0
+                mProhibitChars.indexOf(c) < 0
         );
     }
 }
