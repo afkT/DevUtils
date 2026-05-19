@@ -3,7 +3,7 @@
 
 ```gradle
 // DevApp - Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.5.2'
+implementation 'io.github.afkt:DevAppX:2.5.3'
 ```
 
 ## 目录结构
@@ -33,6 +33,8 @@ implementation 'io.github.afkt:DevAppX:2.5.2'
       - logger                  | 日志库 DevLogger
       - player                  | 多媒体 ( 视频、音频 ) 播放封装
       - share                   | SharedPreferences 封装
+      - text                    | Text 相关处理汇总
+         - input_filter         | InputFilter 实现汇总
       - timer                   | 定时器
    - common                     | Java 工具类, 不依赖 android api
       - assist                  | 各种快捷辅助类
@@ -121,6 +123,8 @@ DevUtils.openDebug();
       - [logger](#devutilsapplogger)                                       | 日志库 DevLogger
       - [player](#devutilsappplayer)                                       | 多媒体 ( 视频、音频 ) 播放封装
       - [share](#devutilsappshare)                                         | SharedPreferences 封装
+      - [text](#devutilsapptext)                                           | Text 相关处理汇总
+         - [input_filter](#devutilsapptextinput_filter)                    | InputFilter 实现汇总
       - [timer](#devutilsapptimer)                                         | 定时器
    - [common](#devutilscommon)                                             | Java 工具类, 不依赖 android api
       - [assist](#devutilscommonassist)                                    | 各种快捷辅助类
@@ -218,6 +222,9 @@ DevUtils.openDebug();
 | getLauncherCategoryHomeToActivityName | 获取系统桌面信息 ( activityName ) |
 | getLauncherCategoryHomeToPackageAndName | 获取系统桌面信息 ( package/activityName ) |
 | getOptionsBundle | 设置跳转动画 |
+| isHandoffSupported | 是否支持跨设备 Handoff |
+| setHandoffEnabled | 为 Activity 启用或关闭 Handoff |
+| isHandoffEnabled | Activity 是否已启用 Handoff |
 | getManager | 获取 ActivityManagerAssist 管理实例 |
 
 
@@ -246,9 +253,9 @@ DevUtils.openDebug();
 | uninstallApp | 卸载应用 |
 | uninstallAppSilent | 静默卸载应用 |
 | getActivityToLauncher | 获取对应包名应用启动的 Activity |
-| getWindowCurrent | 获取当前显示的 Window |
-| getWindowCurrent2 | 获取当前显示的 Window |
-| getWindowCurrentToPackage | 获取对应包名显示的 Window |
+| getCurrentWindowViaWindowWDumpsys | 获取当前显示的 Window |
+| getCurrentWindowViaWindowsDumpsys | 获取当前显示的 Window |
+| getCurrentWindowForPackageViaDumpsys | 获取对应包名显示的 Window |
 | getActivityCurrent | 获取当前显示的 Activity |
 | getActivitys | 获取 Activity 栈 |
 | getActivitysToPackage | 获取对应包名的 Activity 栈 |
@@ -264,6 +271,7 @@ DevUtils.openDebug();
 | sendBroadcast | 发送广播 |
 | kill | 销毁进程 |
 | sendTrimMemory | 收紧内存 |
+| tapTouchScreen | 在触摸屏上点击指定坐标 |
 | tap | 点击某个区域 |
 | swipeClick | 按压某个区域 ( 点击 ) |
 | swipe | 滑动到某个区域 |
@@ -274,7 +282,8 @@ DevUtils.openDebug();
 | wifiConf | 查看连接过的 Wifi 密码 |
 | wifiSwitch | 开启 / 关闭 Wifi |
 | setSystemTime | 设置系统时间 |
-| setSystemTime2 | 设置系统时间 |
+| setSystemTimeByMMddHHmmyyyyss | 设置系统时间 |
+| setSystemTimeByMillis | 设置系统时间 |
 | shutdown | 关机 ( 需要 root 权限 ) |
 | reboot | 重启设备 ( 需要 root 权限 ) |
 | rebootToRecovery | 重启引导到 recovery ( 需要 root 权限 ) |
@@ -323,6 +332,10 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | startAlarmIntent | 开启一次性闹钟 |
+| startExactAlarmListener | 安排一次性精确闹钟（Doze / 低电下仍尽量触发），回调 OnAlarmListener |
+| cancelExactAlarmListener | 取消 OnAlarmListener 精确闹钟 |
+| canScheduleExactAlarms | 当前应用是否允许使用精确闹钟（API 31 以下恒为 true） |
+| startScheduleExactAlarmSettings | 跳转系统「闹钟和提醒」精确闹钟授权页（API 31+） |
 | stopAlarmIntent | 关闭闹钟 |
 | startAlarmService | 开启 Service 闹钟 |
 | stopAlarmService | 关闭 Service 闹钟 |
@@ -388,7 +401,8 @@ DevUtils.openDebug();
 | isAppSystem | 判断 APP 是否系统 app |
 | isAppForeground | 判断 APP 是否在前台 |
 | isInstalledApp | 判断是否安装了 APP |
-| isInstalledApp2 | 判断是否安装了 APP |
+| isInstalledAppByInfo | 判断是否安装了 APP |
+| isInstalledAppByLaunchable | 判断是否安装了 APP |
 | startActivity | Activity 跳转 |
 | startActivityForResult | Activity 跳转回传 |
 | startIntentSenderForResult | Activity 请求权限跳转回传 |
@@ -398,13 +412,14 @@ DevUtils.openDebug();
 | sendBroadcast | 发送广播 ( 无序 ) |
 | sendOrderedBroadcast | 发送广播 ( 有序 ) |
 | startService | 启动服务 |
+| startForegroundService | 启动前台服务 |
 | stopService | 停止服务 |
 | installApp | 安装 APP ( 支持 8.0 ) 的意图 |
 | installAppSilent | 静默安装应用 |
 | uninstallApp | 卸载应用 |
 | uninstallAppSilent | 静默卸载应用 |
 | launchApp | 打开 APP |
-| launchApp2 | 打开 APP |
+| launchAppWithClassName | 打开 APP |
 | launchAppDetailsSettings | 跳转到 APP 设置详情页面 |
 | launchAppDetails | 跳转到 APP 应用商城详情页面 |
 | launchAppInstallPermissionSettings | 跳转设置页面, 开启安装未知应用权限 |
@@ -462,6 +477,10 @@ DevUtils.openDebug();
 | loadSoundEffects | 加载音效 |
 | unloadSoundEffects | 卸载音效 |
 | playSoundEffect | 播放音效 |
+| getStreamAssistant | 获取 Assistant 专用音量流类型 |
+| setModeAssistantConversation | 设置音频模式为 Assistant 会话 |
+| isModeAssistantConversation | 当前是否为 Assistant 会话模式 |
+| getAssistantStreamVolume | 获取 Assistant 音量流当前音量 |
 | abandonAudioFocus | 放弃音频焦点, 使上一个焦点所有者 ( 如果有 ) 接收焦点 |
 | adjustSuggestedStreamVolume | 调整最相关的流的音量, 或者给定的回退流 |
 | getParameters | 获取音频硬件指定 key 的参数值 |
@@ -473,7 +492,7 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | getStatusBarHeight | 获取 StatusBar 高度 |
-| getStatusBarHeight2 | 获取 StatusBar 高度 |
+| getStatusBarHeightFromInsetsOrFallback | 获取 StatusBar 高度 |
 | isStatusBarVisible | 判断 StatusBar 是否显示 |
 | setStatusBarVisibility | 设置 StatusBar 是否显示 |
 | setStatusBarLightMode | 设置 StatusBar 是否高亮模式 |
@@ -505,7 +524,7 @@ DevUtils.openDebug();
 | refreshBatteryStatus | 刷新电池信息粘性 Intent |
 | isPresent | 是否存在电池 |
 | isBatteryLow | 是否低电量 |
-| isBatteryLow20 | 是否低电量 |
+| isBatteryLow20 | 当前电量是否不高于约 20% 阈值（自定义百分比判断） |
 | isBatteryHigh | 是否高电量 |
 | getLevelPercent | 获取当前电量百分比 |
 | getLevel | 获取当前电量 |
@@ -627,6 +646,15 @@ DevUtils.openDebug();
 | getIntent | 获取剪贴板意图 |
 
 
+* **Android 17 系统联系人选择器工具类 ->** [ContactPickerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ContactPickerUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isContactPickerSupported | 是否支持系统联系人选择器 |
+| getPickContactsIntent | 获取选择联系人 Intent（默认请求电话 + 邮箱，单选） |
+| getSessionContentUri | 获取联系人选择器会话 Content Uri |
+
+
 * **ContentResolver 工具类 ->** [ContentResolverUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ContentResolverUtils.java)
 
 | 方法 | 注释 |
@@ -667,9 +695,9 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | getInstance | 获取 CrashUtils 实例 |
-| initialize | 初始化方法 |
+| initialize | 注册全局未捕获异常处理器并绑定回调 |
 | uncaughtException | 当 UncaughtException 发生时会转入该函数来处理 |
-| handleException | 处理异常 |
+| onThrowableCaptured | 异常已被捕获（可在此收集错误信息、上报等） |
 
 
 * **Cursor 游标工具类 ->** [CursorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/CursorUtils.java)
@@ -890,6 +918,10 @@ DevUtils.openDebug();
 | insert | 追加内容 ( 当前光标位置追加 ) |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | isCursorVisible | 是否显示光标 |
 | setCursorVisible | 设置是否显示光标 |
 | setTextCursorDrawable | 设置光标 |
@@ -923,6 +955,13 @@ DevUtils.openDebug();
 | setFlashlightOn | 打开闪光灯 |
 | setFlashlightOff | 关闭闪光灯 |
 | isFlashlightOn | 是否打开闪光灯 |
+
+
+* **前台 Service 工具类 ->** [ForegroundServiceUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ForegroundServiceUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| startForeground | 将当前 Service 提升为前台 |
 
 
 * **Fragment 工具类 ->** [FragmentUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/FragmentUtils.java)
@@ -1011,6 +1050,93 @@ DevUtils.openDebug();
 | getImageViewSize | 根据 ImageView 获适当的宽高 |
 
 
+* **InputFilter 字符判断辅助类 ->** [InputFilterCharUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/InputFilterCharUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isEnglish | 判断字符是否为英文字母 |
+| isDigit | 判断字符是否为数字 |
+| isChinese | 判断字符是否为中文或 CJK 相关字符 |
+| isHex | 判断字符是否为十六进制字符 |
+| isEmailChar | 判断字符是否为邮箱常用字符 |
+| isPrintableAscii | 判断字符是否为可打印 ASCII |
+| isDateChar | 判断字符是否为日期输入常用字符 |
+| isTimeChar | 判断字符是否为时间输入常用字符 |
+| isFullWidthChar | 判断字符是否为全角形式 ( 不含普通 CJK 汉字 ) |
+| isHalfWidth | 判断字符是否为半角 |
+| isFileNameChar | 判断字符是否为文件名常用字符 |
+| isTagChar | 判断字符是否为标签输入常用字符 |
+| isSearchKeywordChar | 判断字符是否为搜索关键词常用字符 |
+| isMacAddressChar | 判断字符是否为 MAC 地址输入常用字符 |
+| isPlateLetter | 判断字符是否为车牌字母 ( 不含 I、O ) |
+| isPlateSerialChar | 判断字符是否为车牌序号字符 ( 数字或车牌字母 ) |
+| isChineseNameChar | 判断字符是否为中文姓名常用字符 |
+| isChineseAddressChar | 判断字符是否为国内地址常用字符 |
+| isVinChar | 判断字符是否为 VIN 字符 ( 不含 I、O、Q ) |
+| filterByPosition | 按位规则过滤输入 ( 常用于证件号、车牌等固定位数场景 ) |
+| mergeInput | 合并本次输入与已有文本 |
+| containsEmoji | 判断文本是否包含 Emoji |
+| getByteLength | 计算字符串显示字节长度 |
+| filterByPredicate | 按谓词过滤指定区间字符 |
+| applyCharAndFullTextFilters | 按单字符谓词与全文校验过滤输入 |
+| isAllowedAt | 判断字符在指定下标是否允许 |
+| test | 测试字符是否满足条件 |
+
+
+* **InputFilter 组合与快捷设置工具类 ->** [InputFilterUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/InputFilterUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getTextView | 获取 TextView |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
+| distinctFilters | 合并多个 InputFilter 并去重 |
+| append | 在已有 filters 后追加（忽略 null，同一引用不重复追加） |
+| mergeByClass | 按运行时 Class 合并 InputFilter |
+| singleLineDefault | 单行输入基础组合 |
+| singleLineWithMaxLength | 单行输入并限制最大字符长度 |
+| multiLineDefault | 多行输入基础组合 |
+| multiLineWithMaxLength | 多行输入并限制最大字符长度 |
+| multiLineWithMaxLines | 多行输入并限制最大字符长度与最大行数 |
+| nickname | 昵称类单行输入组合 |
+| comment | 评论类多行输入组合 |
+| searchKeyword | 搜索关键词单行输入组合 |
+| tag | 标签 / 话题类单行输入组合 |
+| lettersOnly | 仅英文字母的单行输入组合（不允许空格） |
+| trimTrailingSingleLine | 禁止尾部空格的单行输入组合 |
+| noSpaceSingleLine | 禁止空格的单行输入组合 |
+| username | 用户名输入组合 |
+| passwordAlphanumeric | 字母数字密码输入组合 |
+| passwordPrintable | 可打印 ASCII 密码输入组合 |
+| email | 邮箱输入组合 |
+| url | URL 输入组合 |
+| integer | 非负整数输入组合 |
+| decimal | 非负小数输入组合 |
+| amount | 金额类小数输入组合 |
+| verifyCode | 短信验证码数字输入组合 |
+| phoneNumber | 手机号数字输入组合 |
+| signedInteger | 有符号整数输入组合 |
+| signedDecimal | 有符号小数输入组合 |
+| integerNoLeadingZero | 非负整数输入组合（禁止前导零） |
+| percentage | 百分比输入组合（0-100 刻度） |
+| port | 端口号输入组合 |
+| chineseOnly | 仅中文输入组合 |
+| chineseName | 中文姓名单行输入组合 |
+| chinesePostalCode | 中国邮政编码单行输入组合 |
+| chineseIdCard | 中国大陆居民身份证单行输入组合 |
+| chineseAddress | 国内地址单行输入组合 |
+| chineseAddressMultiline | 国内地址多行输入组合 |
+| hex | 十六进制输入组合 |
+| byteLengthSingleLine | 按显示字节长度限制的单行输入组合 |
+| noChineseSingleLine | 禁止中文的单行输入组合 |
+| asciiPrintable | ASCII 可打印字符单行输入组合 |
+| halfWidthSingleLine | 半角字符单行输入组合 |
+| allCapsSingleLine | 输入自动转大写的单行组合 |
+| allLowerCaseSingleLine | 输入自动转小写的单行组合 |
+
+
 * **Intent 相关工具类 ->** [IntentUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/IntentUtils.java)
 
 | 方法 | 注释 |
@@ -1025,6 +1151,7 @@ DevUtils.openDebug();
 | getLaunchAppInstallPermissionSettingsIntent | 获取 APP 安装权限设置的意图 |
 | getLaunchAppNotificationSettingsIntent | 获取 APP 通知权限设置的意图 |
 | getLaunchAppNotificationListenSettingsIntent | 获取 APP 通知使用权页面 |
+| getRequestScheduleExactAlarmSettingsIntent | 获取「闹钟和提醒 / 精确闹钟」系统授权页意图（API 31+） |
 | getManageOverlayPermissionIntent | 获取悬浮窗口权限列表的意图 |
 | getManageAppAllFilesAccessPermissionIntent | 获取 APP 授予所有文件管理权限的意图 |
 | getManageAllFilesAccessPermissionIntent | 获取授予所有文件管理权限列表的意图 |
@@ -1043,6 +1170,37 @@ DevUtils.openDebug();
 | getCreateDocumentIntent | 获取创建文件的意图 |
 | getOpenBrowserIntent | 获取打开浏览器的意图 |
 | getOpenAndroidBrowserIntent | 获取打开 Android 浏览器的意图 |
+| removeLaunchSecurityProtection | Android 16+：关闭系统对 Intent 重定向的启动侧加固 |
+| getPickImagesIntent | 获取系统 Photo Picker 选择图片 Intent |
+
+
+* **JobScheduler 工具类 ->** [JobSchedulerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/JobSchedulerUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getJobScheduler | 获取系统 JobScheduler |
+| getJobSchedulerForNamespace | Android 14 (API 34)+：获取指定命名空间下的 JobScheduler 实例 |
+| isScheduleSuccess | 判断调度结果是否成功 |
+| newJobBuilder | 创建 JobInfo.Builder ( 仅绑定 jobId 与 JobService 组件，其余约束请自行链式设置 ) |
+| schedule | 提交或更新 Job ( 默认命名空间 ) |
+| scheduleOnceWithDeadline | 一次性 Job：仅设置最晚执行时间 ( 系统在此时间前择机执行 ) |
+| scheduleOnceWithLatencyAndDeadline | 一次性 Job：最小延迟 + 最晚执行时间 |
+| schedulePeriodic | 周期 Job ( 固定间隔 ) |
+| scheduleWithExpeditedFlag | Android 12 (API 31)+：在已配置的 JobInfo.Builder 上设置是否加急并提交调度 |
+| enqueue | Android 8.0 (API 26)+：向已调度或运行中的 Job 投递 JobWorkItem |
+| enqueueWithIntent | Android 8.0+：用 Intent 快速构造 JobWorkItem 并入队 |
+| cancel | 取消指定 Job ( 默认命名空间 ) |
+| cancelAll | 取消当前命名空间下本应用已调度的全部 Job ( API 34+ 仅当前 namespace；更早版本为应用全部任务 ) |
+| cancelInAllNamespaces | Android 14+：取消 所有命名空间 下本应用已调度的 Job |
+| getAllPendingJobs | 当前命名空间下所有待处理 ( 含已启动 ) 的 Job 列表 |
+| getPendingJobsInAllNamespaces | Android 14+：按命名空间返回待处理 Job ( 多 namespace 一张图 ) |
+| getPendingJob | 查询指定 id 的 Job 描述；未找到返回 null |
+| hasPendingJob | 是否已存在指定 id 的待调度 / 运行中 Job |
+| getPendingJobReason | Android 14+：返回某 Job 当前未执行的一个 pending 原因 ( 多原因时仅其一 ) |
+| canRunUserInitiatedJobs | Android 14+：当前应用是否持有运行 user-initiated jobs 所需权限 |
+| getPendingJobReasons | Android 16+：返回某 Job 当前处于 pending 的多个原因 |
+| getPendingJobReasonsHistory | Android 16+：返回某 Job 最近约束变化导致 pending 的历史记录，便于排查 Job 未执行问题 |
+| getPendingJobReasonStats | Android 17+：返回某 Job 各 pending 原因及其累计 pending 时长 ( 毫秒 ) |
 
 
 * **Android 原生 JSONObject 工具类 ->** [JSONObjectUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/JSONObjectUtils.java)
@@ -1070,10 +1228,10 @@ DevUtils.openDebug();
 | :- | :- |
 | setDelayMillis | 设置延迟时间 |
 | setSoftInputMode | 设置 Window 软键盘是否显示 |
-| judgeView | 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件 |
+| attachHideKeyboardOnOutsideEditTouch | 为指定 View 树中非 EditText 的节点设置触摸监听：点击时收起软键盘（递归子 View） |
 | isSoftInputVisible | 判断软键盘是否可见 |
-| registerSoftInputChangedListener | 注册软键盘改变监听 |
-| registerSoftInputChangedListener2 | 注册软键盘改变监听 |
+| registerSoftInputListenerViaContentView | 注册软键盘显示、隐藏监听 ( 基于 content 根布局 ) |
+| registerSoftInputListenerViaDecorView | 注册软键盘显示、隐藏监听 ( 基于 Window decorView ) |
 | fixSoftInputLeaks | 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用 |
 | toggleKeyboard | 自动切换键盘状态, 如果键盘显示则隐藏反之显示 |
 | openKeyboard | 打开软键盘 |
@@ -1166,8 +1324,8 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | isGpsEnabled | 判断 GPS 是否可用 |
-| isLocationEnabled | 判断定位是否可用 |
-| isLocationEnabled2 | 判断定位是否可用 |
+| isLocationEnabledGpsOrNetwork | 判断定位是否可用 |
+| isLocationEnabledGpsNetworkOrPassive | 判断定位是否可用 |
 | isPassiveEnable | 判断定位是否可用 |
 | openGpsSettings | 打开 GPS 设置界面 |
 | register | 注册 |
@@ -1203,6 +1361,7 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | notifyMediaStore | 通知刷新本地资源 |
+| getMediaStoreVersion | 获取 MediaStore 版本字符串（主外部卷） |
 | getDisplayName | 获取待显示名 |
 | getImageDisplayName | 获取 Image 显示名 |
 | getVideoDisplayName | 获取 Video 显示名 |
@@ -1232,14 +1391,16 @@ DevUtils.openDebug();
 | getFileExtensionFromUrl | 通过 Url 获取文件后缀 |
 | hasMimeType | 判断 MimeMap 是否存在指定的 MimeType |
 | hasExtension | 判断是否支持的 MimeType 后缀 |
+| createPhotoPickerUiSquare | 创建 Photo Picker 默认 1:1 网格 UI 参数 |
+| createPhotoPickerUiPortrait916 | 创建 Photo Picker 9:16 竖屏网格 UI 参数 |
 
 
 * **内存信息工具类 ->** [MemoryUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/MemoryUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| printMemoryInfo | 获取内存信息 |
-| printMemoryInfo2 | 获取内存信息 |
+| printMemoryInfoFromProc | 获取内存信息 |
+| printMemoryInfoFromActivityManager | 获取内存信息 |
 | getMemoryInfo | 获取内存信息 |
 | getAvailMemory | 获取可用内存信息 |
 | getAvailMemoryFormat | 获取可用内存信息 ( 格式化 ) |
@@ -1277,19 +1438,32 @@ DevUtils.openDebug();
 | getGatewayByWifi | 根据 Wifi 获取网关 IP 地址 |
 | getNetMaskByWifi | 根据 Wifi 获取子网掩码 IP 地址 |
 | getServerAddressByWifi | 根据 Wifi 获取服务端 IP 地址 |
+| isLocalNetworkPermissionRequired | 当前环境下访问局域网是否需声明并申请本地网络权限 |
+| isLocalNetworkPermissionGranted | 是否已授予本地网络权限 |
 
 
 * **通知栏管理工具类 ->** [NotificationUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/NotificationUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| getSemanticStyleUnspecified | 获取未指定语义样式常量 |
+| getSemanticStyleInfo | 获取信息语义样式常量 |
+| getSemanticStyleSafe | 获取安全语义样式常量 |
+| getSemanticStyleCaution | 获取谨慎语义样式常量 |
+| getSemanticStyleDanger | 获取危险语义样式常量 |
+| createSemanticStyleAnnotation | 创建 Live Update 语义样式 Annotation |
+| appendSemanticText | 向 SpannableStringBuilder 追加带语义色的文本 |
 | isNotificationEnabled | 检查通知栏权限是否开启 |
+| isPostNotificationsPermissionGranted | Android 13+ 是否已授予权限 |
+| canPostNotifications | 是否允许弹出通知（Android 13+ 需运行时权限且系统通知总开关为开） |
+| startAppNotificationSettings | 跳转当前应用的通知设置（API 26+） |
 | checkAndIntentSetting | 检查是否有获取通知栏信息权限并跳转设置页面 |
 | isNotificationListenerEnabled | 判断是否有获取通知栏信息权限 |
 | startNotificationListenSettings | 跳转到设置页面, 开启获取通知栏信息权限 |
 | cancelAll | 移除通知 ( 移除所有通知 ) |
 | cancel | 移除通知 ( 移除标记为 id 的通知 ) |
-| notify | 进行通知 |
+| postNotificationIfAllowed | 发布系统通知 |
+| postNotification | 发布系统通知 |
 | getNotificationChannel | 获取 NotificationChannel |
 | createNotificationChannel | 创建 NotificationChannel |
 | createPendingIntent | 获取 PendingIntent |
@@ -1297,6 +1471,18 @@ DevUtils.openDebug();
 | createNotificationBuilder | 创建通知栏 Builder 对象 |
 | get | 获取 Led 配置参数 |
 | isEmpty | 判断是否为 null |
+| customizeNotification | 在构建前对通知 Builder 做额外定制 |
+
+
+* **PackageManager 查询相关工具类 ->** [PackageManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PackageManagerUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| flagsMatchDefaultOnly | 解析 Activity 的常用 flags：默认匹配 |
+| flagsMatchAll | 解析 Activity 的常用 flags：完整枚举 |
+| getPackageManager | 获取 PackageManager |
+| queryIntentActivitiesCompat | 查询匹配 Intent 的 Activity 列表（兼容封装） |
+| resolveActivityCompat | 解析匹配 Intent 的 Activity（兼容封装） |
 
 
 * **路径相关工具类 ->** [PathUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PathUtils.java)
@@ -1386,6 +1572,22 @@ DevUtils.openDebug();
 | getAppNoBackupFilesDir | 获取应用内部存储未备份文件路径 ( path /data/data/package/no_backup ) |
 
 
+* **PendingIntent 工具类 ->** [PendingIntentUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PendingIntentUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| flagsDefaultImmutable | 默认用于闹钟、通知点击等「模板不变」场景的 PendingIntent flags |
+| flagsDefaultMutable | 用于短信发送结果等框架可能回填 extras 场景的 PendingIntent flags |
+| getActivity | 获取指向 Activity 的 PendingIntent |
+| getActivityMutable | 获取指向 Activity 的 PendingIntent（默认可变 flags） |
+| getBroadcast | 获取 BroadcastReceiver 用的 PendingIntent |
+| getBroadcastMutable | 获取 BroadcastReceiver 用的 PendingIntent（默认可变 flags） |
+| getService | 获取指向 Service 的 PendingIntent |
+| getServiceMutable | 获取指向 Service 的 PendingIntent（默认可变 flags） |
+| getForegroundService | 获取指向前台 Service 的 PendingIntent |
+| getForegroundServiceMutable | 获取指向前台 Service 的 PendingIntent（默认可变 flags） |
+
+
 * **手机相关工具类 ->** [PhoneUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PhoneUtils.java)
 
 | 方法 | 注释 |
@@ -1415,7 +1617,7 @@ DevUtils.openDebug();
 | call | 拨打电话 |
 | sendSms | 跳至发送短信界面 |
 | sendSmsSilent | 发送短信 |
-| getContactNum | 打开手机联系人界面点击联系人后便获取该号码 |
+| launchPickContactPhoneIntent | 打开系统联系人电话选择界面 |
 
 
 * **电源管理工具类 ->** [PowerManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/PowerManagerUtils.java)
@@ -1449,6 +1651,22 @@ DevUtils.openDebug();
 | getAllBackgroundProcesses | 获取后台服务进程 |
 | killAllBackgroundProcesses | 杀死所有的后台服务进程 |
 | killBackgroundProcesses | 杀死后台服务进程 |
+| getHistoricalProcessExitReasons | Android 11+：查询历史进程退出原因 |
+| getLatestHistoricalProcessExitReason | Android 11+：查询当前应用最近一条历史退出原因 |
+| isMemoryLimiterExit | 是否为 Android 17 内存上限导致的退出 |
+| wasLatestExitMemoryLimiter | 当前应用最近一次退出是否因 MemoryLimiter（Android 17 内存上限） |
+
+
+* **触发式性能采集工具类 ->** [ProfilingUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ProfilingUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isProfilingManagerSupported | 是否支持 Profiling 管理器 |
+| getProfilingManager | 获取 Profiling 管理器 |
+| registerAnomalyProfiling | 注册 Profiling 结果回调并添加异常检测触发器 |
+| registerProfiling | 注册 Profiling 结果回调并添加指定类型触发器 |
+| unregisterProfilingCallback | 注销 Profiling 结果回调 |
+| clearProfilingTriggers | 清除已注册的全部 Profiling 触发器 |
 
 
 * **广播相关工具类 ->** [ReceiverUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ReceiverUtils.java)
@@ -1456,10 +1674,11 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | getLocalBroadcastManager | 获取 LocalBroadcastManager |
-| local_registerReceiver | 注册广播监听 ( 应用内广播 ) |
-| local_unregisterReceiver | 注销广播监听 ( 应用内广播 ) |
-| local_sendBroadcast | 发送广播 ( 应用内广播 ) |
-| local_sendBroadcastSync | 发送广播 ( 同步 ) ( 应用内广播 ) |
+| localRegisterReceiver | 注册广播监听 ( 应用内广播 ) |
+| localUnregisterReceiver | 注销广播监听 ( 应用内广播 ) |
+| localSendBroadcast | 发送广播 ( 应用内广播 ) |
+| localSendBroadcastSync | 发送广播 ( 同步 ) ( 应用内广播 ) |
+| clampBroadcastIntentFilterPriorityCompat | Android 16+：将 IntentFilter 的优先级裁剪到系统允许的范围 |
 | registerReceiverBool | 注册广播监听 |
 | registerReceiver | 注册广播监听 |
 | unregisterReceiver | 注销广播监听 |
@@ -1516,9 +1735,15 @@ DevUtils.openDebug();
 | removeOnScrollListener | 移除 RecyclerView ScrollListener |
 | clearOnScrollListeners | 清空 RecyclerView ScrollListener |
 | getScrollState | 获取 RecyclerView 滑动状态 |
+| startSmoothScrollSnapStart | 平滑滑动到首项，目标项垂直方向与列表顶部对齐 |
+| startSmoothScrollSnapEnd | 平滑滑动到底部附近，以末项与列表底部对齐方式滚动 |
+| scrollToPositionWithOffset | 将指定索引滚动到可见区域，并附加像素偏移 |
+| stopSmoothScroller | 停止当前平滑滚动与用户拖动、惯性滚动 |
 | isNestedScrollingEnabled | 获取 RecyclerView 嵌套滚动开关 |
 | setNestedScrollingEnabled | 设置 RecyclerView 嵌套滚动开关 |
 | requestChildRectangleOnScreen | requestChildRectangleOnScreen |
+| getVerticalSnapPreference | 垂直方向与父 RecyclerView 对齐时优先贴合子项顶部。 |
+| calculateDyToMakeVisible | 计算使目标子项完全可见所需的垂直滚动量，并按顶部对齐。 |
 
 
 * **APK Resource 工具类 ->** [ResourcePluginUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ResourcePluginUtils.java)
@@ -1711,14 +1936,15 @@ DevUtils.openDebug();
 | setListener | 设置截图校验成功回调接口 |
 | startListener | 启动截图监听 |
 | stopListener | 停止截图监听 |
-| handleMediaContentChange | 内容变更处理 |
-| handleMediaChecker | 内容校验处理 |
+| dispatchLatestMediaChangeToChecker | 查询媒体库最新一行并将结果分发给检查器 |
+| validateScreenshotCandidate | 按时间与路径前缀等规则校验是否为当前监听关心的截图并回调 |
 
 
 * **屏幕相关工具类 ->** [ScreenUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ScreenUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
+| isActivityPortraitLandscapeIgnoredOnLargeScreen | 是否对大屏场景下忽略屏幕方向、尺寸可调整性和宽高比限制 |
 | getDisplayMetrics | 获取 DisplayMetrics |
 | getScreenWidth | 获取屏幕宽度 |
 | getScreenHeight | 获取屏幕高度 |
@@ -1747,7 +1973,7 @@ DevUtils.openDebug();
 | isScreenLock | 判断是否锁屏 |
 | isTablet | 判断是否是平板 |
 | getStatusBarHeight | 获取 StatusBar 高度 |
-| getStatusBarHeight2 | 获取 StatusBar 高度 |
+| getStatusBarHeightFromInsetsOrFallback | 获取 StatusBar 高度 |
 | setSleepDuration | 设置进入休眠时长 |
 | getSleepDuration | 获取进入休眠时长 |
 | getNavigationBarHeight | 获取底部导航栏高度 |
@@ -1772,6 +1998,17 @@ DevUtils.openDebug();
 | getBlockSizeInfos | 返回内置 SDCard 空间大小信息 |
 
 
+* **安全相关工具类（高级保护模式等） ->** [SecurityUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/SecurityUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isAdvancedProtectionSupported | 是否支持高级保护模式管理器 |
+| getAdvancedProtectionManager | 获取高级保护模式管理器 |
+| isAdvancedProtectionEnabled | 用户是否已开启高级保护模式 |
+| registerAdvancedProtectionCallback | 注册高级保护模式状态回调 |
+| unregisterAdvancedProtectionCallback | 注销高级保护模式状态回调 |
+
+
 * **服务相关工具类 ->** [ServiceUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ServiceUtils.java)
 
 | 方法 | 注释 |
@@ -1779,6 +2016,7 @@ DevUtils.openDebug();
 | isServiceRunning | 判断服务是否运行 |
 | getAllRunningService | 获取所有运行的服务 |
 | startService | 启动服务 |
+| startForegroundService | 启动前台服务 |
 | stopService | 停止服务 |
 | bindService | 绑定服务 |
 | unbindService | 解绑服务 |
@@ -1821,9 +2059,9 @@ DevUtils.openDebug();
 | :- | :- |
 | execCmd | 执行 shell 命令 |
 | isSuccess | 判断是否执行成功 |
-| isSuccess2 | 判断是否执行成功 ( 判断 errorMsg ) |
-| isSuccess3 | 判断是否执行成功 ( 判断 successMsg ) |
-| isSuccess4 | 判断是否执行成功 ( 判断 successMsg ) , 并且 successMsg 是否包含某个字符串 |
+| isSuccessWithoutErrorOutput | 是否成功且 errorMsg 为空 |
+| isSuccessWithSuccessOutput | 是否成功且 successMsg 非空 |
+| isSuccessOutputContaining | 是否成功、successMsg 非空且包含指定子串（忽略大小写） |
 
 
 * **快捷方式工具类 ->** [ShortCutUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/ShortCutUtils.java)
@@ -1840,6 +2078,7 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
+| getSignaturesFromPackageInfo | 从 PackageInfo 读取签名数组 |
 | getAppSignature | 获取 APP Signature |
 | signatureMD5 | 获取 MD5 签名 |
 | signatureSHA1 | 获取签名 SHA1 加密字符串 |
@@ -1982,7 +2221,9 @@ DevUtils.openDebug();
 | setAntiAliasFlag | 设置 TextView 抗锯齿 flags |
 | setBold | 设置 TextView 是否加粗 |
 | setUnderlineText | 设置下划线 |
+| removeUnderlineText | 移除下划线 |
 | setStrikeThruText | 设置中划线 |
+| removeStrikeThruText | 移除中划线 |
 | getLetterSpacing | 获取文字水平间距 |
 | setLetterSpacing | 设置文字水平间距 |
 | getLineSpacingExtra | 获取文字行间距 ( 行高 ) |
@@ -2009,6 +2250,10 @@ DevUtils.openDebug();
 | setEms | 设置指定字符宽度 |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | getEllipsize | 获取 Ellipsize 效果 |
 | setEllipsize | 设置 Ellipsize 效果 |
 | getAutoLinkMask | 获取自动识别文本类型 |
@@ -2110,8 +2355,13 @@ DevUtils.openDebug();
 | isUpsideDownCake | 是否在 14.0 版本及以上 |
 | isVanillaIceCream | 是否在 15.0 版本及以上 |
 | isBaklava | 是否在 16.0 版本及以上 |
-| convertSDKVersion | 转换 SDK 版本 convertSDKVersion(31) = Android 12.0 |
-| convertSDKVersionName | 转换 SDK 版本名字 convertSDKVersionName(31) = Android S |
+| isCinnamonBun | 是否在 17.0 版本及以上 |
+| convertSDKVersion | 将当前设备 SDK 整型版本号转换为可读版本名 |
+| convertSDKVersionName | 将当前设备 SDK 整型版本号转换为代号名 |
+| getTargetSdkVersion | 获取宿主应用的 targetSdkVersion |
+| isTargetSdkCinnamonBunOrHigher | 宿主 targetSdk 是否 &gt;= Android 17 ( API 37 ) |
+| getSdkIntFullOrSdkInt | Android 16+ 主/次版本合并值 |
+| getMinorSdkVersionFromSdkIntFullSafe | Android 16+：次版本号 |
 
 
 * **震动相关工具类 ->** [VibrationUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/VibrationUtils.java)
@@ -2152,8 +2402,8 @@ DevUtils.openDebug();
 | getWidthHeight | 获取 View 宽高 |
 | setWidthHeight | 设置 View 宽度、高度 |
 | setWeight | 设置 View weight 权重 |
-| getWidthHeightExact | 获取 View 宽高 ( 准确 ) |
-| getWidthHeightExact2 | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnPost | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnGlobalLayout | 获取 View 宽高 ( 准确 ) |
 | getLocationOnScreen | 获取 View 在屏幕中坐标区域 |
 | getLocationInWindow | 获取 View 在父窗口中坐标区域 |
 | getGlobalVisibleRect | 获取 View 在屏幕中可见的坐标区域 |
@@ -2252,6 +2502,15 @@ DevUtils.openDebug();
 | isLongClickable | 获取 View 是否可以长按 |
 | setLongClickable | 设置 View 是否可以长按 |
 | toggleLongClickable | 切换 View 是否可以长按状态 |
+| isActivated | 获取 View 是否处于 Activated 激活状态 |
+| setActivated | 设置 View Activated 激活状态（配合 selector / StateListDrawable 等） |
+| toggleActivated | 切换 View Activated 激活状态 |
+| isPressed | 获取 View 是否处于 Pressed 按下状态 |
+| setPressed | 设置 View Pressed 按下状态（一般用于代码层模拟按下视觉，触摸时系统也会维护该状态） |
+| togglePressed | 切换 View Pressed 按下状态 |
+| isChecked | 获取 View 是否选中 checked |
+| setChecked | 设置 View 是否选中 checked |
+| toggleChecked | 切换 View 是否选中 checked 状态 |
 | isShown | 判断 View 是否显示 ( 如果存在父级则判断父级 ) |
 | isShowns | 判断 View 是否都显示 ( 如果存在父级则判断父级 ) |
 | isVisibility | 判断 View 是否显示 |
@@ -2365,7 +2624,7 @@ DevUtils.openDebug();
 | setResource | 通过 res 设置壁纸 |
 | setStream | 通过 InputStream 设置壁纸 |
 | setUri | 通过 Uri 设置壁纸 ( 跳转到设置页 ) |
-| callback | 非适配 ROM 则触发回调 |
+| trySetWallpaper | 未命中已知 ROM 分支时的壁纸设置策略（例如走默认流式设置） |
 
 
 * **控件工具类 ->** [WidgetUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/WidgetUtils.java)
@@ -2487,7 +2746,7 @@ DevUtils.openDebug();
 | post | 发送消息 ( 功能由该方法实现 ) |
 | setDelayMillis | 设置搜索延迟时间 |
 | setCallback | 设置搜索回调接口 |
-| callback | 回调方法 |
+| onDelayed | 延迟时间到达后的回调 |
 
 
 * **Activity 无操作定时辅助类 ->** [InactivityTimerAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/InactivityTimerAssist.java)
@@ -2753,7 +3012,7 @@ DevUtils.openDebug();
 | isValidEvent | 是否有效事件 ( 是否在小范围内移动 ) |
 | isTouchInView | 判断触点是否落在该 View 上 |
 | postLongClick | 开始校验长按 |
-| callback | callback |
+| onDelayed | onDelayed |
 
 
 * **DevApp 悬浮窗边缘检测辅助类实现 ->** [DevFloatingEdgeImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/assist/floating/DevFloatingEdgeImpl.java)
@@ -2906,7 +3165,7 @@ DevUtils.openDebug();
 
 | 方法 | 注释 |
 | :- | :- |
-| getActivityLifecycleGet | 获取 Activity 生命周期 相关信息获取接口类 |
+| getActivityLifecycle | 获取 Activity 生命周期相关信息获取接口 |
 | getActivityLifecycleNotify | 获取 Activity 生命周期 事件监听接口类 |
 | getTopActivity | 获取 Top Activity |
 | setActivityLifecycleFilter | 设置 Activity 生命周期 过滤判断接口 |
@@ -3150,9 +3409,9 @@ DevUtils.openDebug();
 | autoCloseDialog | 自动关闭 dialog |
 | autoClosePopupWindow | 自动关闭 PopupWindow |
 | setSoftInputMode | 设置 Window 软键盘是否显示 |
-| judgeView | 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件 |
-| registerSoftInputChangedListener | 注册软键盘改变监听 |
-| registerSoftInputChangedListener2 | 注册软键盘改变监听 |
+| attachHideKeyboardOnOutsideEditTouch | 为非 EditText 子 View 设置触摸监听，点击时收起软键盘（递归子节点） |
+| registerSoftInputListenerViaContentView | 注册软键盘改变监听（content 根布局方案） |
+| registerSoftInputListenerViaDecorView | 注册软键盘改变监听（decorView + 可见区域方案） |
 | fixSoftInputLeaks | 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用 |
 | toggleKeyboard | 自动切换键盘状态, 如果键盘显示则隐藏反之显示 |
 | openKeyboard | 打开软键盘 |
@@ -3182,8 +3441,8 @@ DevUtils.openDebug();
 | forceGetViewSize | 在 onCreate 中获取视图的尺寸 ( 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 ) |
 | vibrate | 震动 |
 | cancelVibrate | 取消震动 |
-| getWidthHeightExact | 获取 View 宽高 ( 准确 ) |
-| getWidthHeightExact2 | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnPost | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnGlobalLayout | 获取 View 宽高 ( 准确 ) |
 | measureView | 测量 View |
 | closeIO | 关闭 IO |
 | closeIOQuietly | 安静关闭 IO |
@@ -3274,9 +3533,9 @@ DevUtils.openDebug();
 | autoCloseDialog | 自动关闭 dialog |
 | autoClosePopupWindow | 自动关闭 PopupWindow |
 | setSoftInputMode | 设置 Window 软键盘是否显示 |
-| judgeView | 设置某个 View 内所有非 EditText 的子 View OnTouchListener 事件 |
-| registerSoftInputChangedListener | 注册软键盘改变监听 |
-| registerSoftInputChangedListener2 | 注册软键盘改变监听 |
+| attachHideKeyboardOnOutsideEditTouch | 为非 EditText 子 View 设置触摸监听，点击时收起软键盘（递归子节点） |
+| registerSoftInputListenerViaContentView | 注册软键盘改变监听（content 根布局方案） |
+| registerSoftInputListenerViaDecorView | 注册软键盘改变监听（decorView + 可见区域方案） |
 | fixSoftInputLeaks | 修复软键盘内存泄漏 在 Activity.onDestroy() 中使用 |
 | toggleKeyboard | 自动切换键盘状态, 如果键盘显示则隐藏反之显示 |
 | openKeyboard | 打开软键盘 |
@@ -3306,8 +3565,8 @@ DevUtils.openDebug();
 | forceGetViewSize | 在 onCreate 中获取视图的尺寸 ( 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 ) |
 | vibrate | 震动 |
 | cancelVibrate | 取消震动 |
-| getWidthHeightExact | 获取 View 宽高 ( 准确 ) |
-| getWidthHeightExact2 | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnPost | 获取 View 宽高 ( 准确 ) |
+| getWidthHeightExactOnGlobalLayout | 获取 View 宽高 ( 准确 ) |
 | measureView | 测量 View |
 | closeIO | 关闭 IO |
 | closeIOQuietly | 安静关闭 IO |
@@ -3434,6 +3693,12 @@ DevUtils.openDebug();
 | toggleClickable | 切换 View 是否可以点击状态 |
 | setLongClickable | 设置 View 是否可以长按 |
 | toggleLongClickable | 切换 View 是否可以长按状态 |
+| setChecked | 设置 View 是否选中 checked |
+| toggleChecked | 切换 View 是否选中 checked 状态 |
+| setActivated | 设置 View Activated 激活状态 |
+| toggleActivated | 切换 View Activated 激活状态 |
+| setPressed | 设置 View Pressed 按下状态 |
+| togglePressed | 切换 View Pressed 按下状态 |
 | setVisibilitys | 设置 View 显示的状态 |
 | setVisibilityINs | 设置 View 显示的状态 |
 | toggleVisibilitys | 切换 View 显示的状态 |
@@ -3516,6 +3781,10 @@ DevUtils.openDebug();
 | setText | 设置文本 |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | setInputType | 设置输入类型 |
 | setImeOptions | 设置软键盘右下角按钮类型 |
 | setTransformationMethod | 设置文本视图显示转换 |
@@ -3670,6 +3939,12 @@ DevUtils.openDebug();
 | toggleClickable | 切换 View 是否可以点击状态 |
 | setLongClickable | 设置 View 是否可以长按 |
 | toggleLongClickable | 切换 View 是否可以长按状态 |
+| setChecked | 设置 View 是否选中 checked |
+| toggleChecked | 切换 View 是否选中 checked 状态 |
+| setActivated | 设置 View Activated 激活状态 |
+| toggleActivated | 切换 View Activated 激活状态 |
+| setPressed | 设置 View Pressed 按下状态 |
+| togglePressed | 切换 View Pressed 按下状态 |
 | setVisibilitys | 设置 View 显示的状态 |
 | setVisibilityINs | 设置 View 显示的状态 |
 | toggleVisibilitys | 切换 View 显示的状态 |
@@ -3752,6 +4027,10 @@ DevUtils.openDebug();
 | setText | 设置文本 |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | setInputType | 设置输入类型 |
 | setImeOptions | 设置软键盘右下角按钮类型 |
 | setTransformationMethod | 设置文本视图显示转换 |
@@ -3976,6 +4255,12 @@ DevUtils.openDebug();
 | toggleClickable | 切换 View 是否可以点击状态 |
 | setLongClickable | 设置 View 是否可以长按 |
 | toggleLongClickable | 切换 View 是否可以长按状态 |
+| setChecked | 设置 View 是否选中 checked |
+| toggleChecked | 切换 View 是否选中 checked 状态 |
+| setActivated | 设置 View Activated 激活状态 |
+| toggleActivated | 切换 View Activated 激活状态 |
+| setPressed | 设置 View Pressed 按下状态 |
+| togglePressed | 切换 View Pressed 按下状态 |
 | setVisibilitys | 设置 View 显示的状态 |
 | setVisibilityINs | 设置 View 显示的状态 |
 | toggleVisibilitys | 切换 View 显示的状态 |
@@ -4058,6 +4343,10 @@ DevUtils.openDebug();
 | setText | 设置文本 |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | setInputType | 设置输入类型 |
 | setImeOptions | 设置软键盘右下角按钮类型 |
 | setTransformationMethod | 设置文本视图显示转换 |
@@ -4205,6 +4494,12 @@ DevUtils.openDebug();
 | toggleClickable | 切换 View 是否可以点击状态 |
 | setLongClickable | 设置 View 是否可以长按 |
 | toggleLongClickable | 切换 View 是否可以长按状态 |
+| setChecked | 设置 View 是否选中 checked |
+| toggleChecked | 切换 View 是否选中 checked 状态 |
+| setActivated | 设置 View Activated 激活状态 |
+| toggleActivated | 切换 View Activated 激活状态 |
+| setPressed | 设置 View Pressed 按下状态 |
+| togglePressed | 切换 View Pressed 按下状态 |
 | setVisibilitys | 设置 View 显示的状态 |
 | setVisibilityINs | 设置 View 显示的状态 |
 | toggleVisibilitys | 切换 View 显示的状态 |
@@ -4287,6 +4582,10 @@ DevUtils.openDebug();
 | setText | 设置文本 |
 | setMaxLength | 设置长度限制 |
 | setMaxLengthAndText | 设置长度限制, 并且设置内容 |
+| setFilters | 设置 InputFilter ( 覆盖原有 ) |
+| appendFilters | 追加 InputFilter ( 保留原有并在末尾追加 ) |
+| clearFilters | 清空 InputFilter |
+| mergeFilters | 按 Class 合并并设置 InputFilter ( 保留原有，同类型替换 ) |
 | setInputType | 设置输入类型 |
 | setImeOptions | 设置软键盘右下角按钮类型 |
 | setTransformationMethod | 设置文本视图显示转换 |
@@ -4718,6 +5017,299 @@ DevUtils.openDebug();
 | getSet | 获取 Set 类型的数据 |
 
 
+## <span id="devutilsapptext">**`dev.utils.app.text`**</span>
+
+
+* **仅允许输入指定字符 ( 白名单 ) ->** [AllowCharsInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/AllowCharsInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **委托型输入过滤，构造时传入单字符谓词与/或全文校验 ->** [DelegateInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/DelegateInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止输入指定字符 ( 黑名单 ) ->** [ProhibitCharsInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/ProhibitCharsInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **正则匹配输入，仅保留匹配规则的字符 ->** [RegexInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/RegexInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+## <span id="devutilsapptextinput_filter">**`dev.utils.app.text.input_filter`**</span>
+
+
+* **输入自动转小写 ->** [AllLowerCaseInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/AllLowerCaseInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许输入英文字母与数字 ->** [AlphanumericInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/AlphanumericInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许可打印 ASCII 字符 ( 32-126 ) ->** [AsciiPrintableInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/AsciiPrintableInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **按字节长度限制，常用于短信、昵称等场景 ->** [ByteLengthInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ByteLengthInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **国内地址输入：中文、英文、数字及常见地址符号 ->** [ChineseAddressInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChineseAddressInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **中国大陆居民身份证 18 位输入：前 17 位数字，末位数字或 X/x ->** [ChineseIdCardInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChineseIdCardInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **中国大陆手机号输入：仅数字，首位 1、第二位 3-9，默认最多 11 位 ->** [ChineseMobilePhoneInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChineseMobilePhoneInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **中文姓名输入 ->** [ChineseNameInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChineseNameInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许输入中文 ( 含中文标点等 CJK 字符 ) ->** [ChineseOnlyInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChineseOnlyInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **中国邮政编码输入：仅数字，固定 6 位 ->** [ChinesePostalCodeInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/ChinesePostalCodeInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **小数输入：数字加一个小数点，可限制整数位与小数位长度 ->** [DecimalInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/DecimalInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **邮箱输入：仅保留邮箱常用字符 ->** [EmailInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/EmailInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止输入 Emoji 表情 ->** [EmojiInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/EmojiInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止首个字符为空格 ( 首部空白 ) ->** [FrontSpaceInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/FrontSpaceInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许半角字符，拒绝全角空格、全角英数等 ->** [HalfWidthInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/HalfWidthInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许输入十六进制字符 0-9、a-f、A-F ->** [HexInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/HexInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **正整数输入：仅数字，可限制最大位数 ->** [IntegerInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/IntegerInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **仅允许英文字母，可选允许空格 ->** [LettersOnlyInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/LettersOnlyInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **限制最大行数 ( 换行符个数不超过 maxLines - 1 ) ->** [MaxLinesInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/MaxLinesInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **数值上限：解析后不得超过指定最大值 ->** [MaxValueInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/MaxValueInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **数值下限：解析后不得低于指定最小值 ->** [MinValueInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/MinValueInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止输入中文 ( 含 CJK 字符 ) ->** [NoChineseInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/NoChineseInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止连续空格 ( 不允许在已有空格后再输入空格 ) ->** [NoConsecutiveSpaceInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/NoConsecutiveSpaceInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止回车、换行输入 ->** [NoEnterInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/NoEnterInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **非负整数输入，禁止前导零 ( 可配置是否允许单独 0 ) ->** [NoLeadingZeroIntegerInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/NoLeadingZeroIntegerInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止输入任何空白字符 ( 空格、制表符等 ) ->** [NoSpaceInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/NoSpaceInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **百分比输入：非负小数，默认闭区间 [0, 100]，可选 0-1 刻度与末尾 % 符号 ->** [PercentageInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/PercentageInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **端口号输入：1-65535，仅数字，禁止前导零 ->** [PortInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/PortInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **可打印密码字符集：ASCII 32-126，不含空格 ->** [PrintablePasswordInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/PrintablePasswordInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **数值区间：解析后须在 [minValue, maxValue] 内 ->** [RangeValueInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/RangeValueInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **搜索关键词输入：中文、英文、数字及常见分隔符 ->** [SearchKeywordInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/SearchKeywordInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **有符号小数输入：可选首位负号，数字与一个小数点，可限制整数位与小数位 ->** [SignedDecimalInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/SignedDecimalInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **有符号整数输入：可选首位负号，其余为数字，可限制最大位数 ->** [SignedIntegerInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/SignedIntegerInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **标签 / 话题输入：中文、英文、数字及常见分隔符 ->** [TagInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/TagInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **禁止文本以空白字符结尾 ( 实时 ) ->** [TrimTrailingSpaceInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/TrimTrailingSpaceInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **URL 输入：字母、数字及常见 URL 符号 ->** [UrlInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/UrlInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
+* **用户名输入：英文字母、数字、下划线 ->** [UsernameInputFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/text/input_filter/UsernameInputFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| filter | 过滤本次输入片段 |
+
+
 ## <span id="devutilsapptimer">**`dev.utils.app.timer`**</span>
 
 
@@ -4745,7 +5337,7 @@ DevUtils.openDebug();
 | getLimit | getLimit |
 | setLimit | setLimit |
 | build | build |
-| callback | 触发回调方法 |
+| onTick | 定时触发通知（每次计时触发一次） |
 
 
 * **定时器管理类 ->** [TimerManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/timer/TimerManager.java)
@@ -5026,7 +5618,7 @@ DevUtils.openDebug();
 | intToArgbString | 颜色值 转换 ARGB 颜色字符串 |
 | getRandomColor | 获取随机颜色值 |
 | getRandomColorString | 获取随机颜色值字符串 |
-| judgeColorString | 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587 |
+| looksLikeArgbHexPrefix | 宽松判断：长度为 8 且首字符为十六进制字符时返回 true（非完整 ARGB 校验） |
 | setDark | 颜色加深 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setLight | 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setAlphaDark | 设置透明度加深 |
@@ -5051,7 +5643,7 @@ DevUtils.openDebug();
 | getHue | 获取颜色色调 |
 | getSaturation | 获取颜色饱和度 |
 | getBrightness | 获取颜色亮度 |
-| handleColor | 处理 color |
+| normalizeColorInput | 规范化颜色字符串（如 #RGB 扩展为 #RRGGBB） |
 
 
 * **转换工具类 ( Byte、Hex 等 ) ->** [ConvertUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/ConvertUtils.java)
@@ -5300,7 +5892,7 @@ DevUtils.openDebug();
 | isFile | 判断是否文件 |
 | isDirectory | 判断是否文件夹 |
 | isHidden | 判断是否隐藏文件 |
-| isHidden2 | 判断是否隐藏文件 |
+| isHiddenByDottedNameInPath | 判断是否隐藏文件 |
 | isBuild | 是否 Build 文件、文件夹判断 |
 | canRead | 文件是否可读 |
 | canWrite | 文件是否可写 |
@@ -5542,7 +6134,7 @@ DevUtils.openDebug();
 | getRandomNumbersAndLetters | 获取数字、大小写字母自定义长度的随机数 |
 | getRandom | 获取自定义数据自定义长度的随机数 |
 | shuffle | 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 ) |
-| shuffle2 | 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性 |
+| shuffleObjectsFisherYates | 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性 |
 | nextIntRange | 获取指定范围 int 值 |
 | nextLongRange | 获取指定范围 long 值 |
 | nextDoubleRange | 获取指定范围 double 值 |
@@ -5661,17 +6253,19 @@ DevUtils.openDebug();
 | clearSpace | 清空字符串全部空格 |
 | clearTab | 清空字符串全部 Tab |
 | clearLine | 清空字符串全部换行符 |
-| clearLine2 | 清空字符串全部换行符 |
+| clearLineByNewLine | 清空字符串全部换行符 |
+| clearLineByNL | 清空字符串全部换行符 |
 | clearSpaceTrim | 清空字符串前后全部空格 |
 | clearTabTrim | 清空字符串前后全部 Tab |
 | clearLineTrim | 清空字符串前后全部换行符 |
-| clearLineTrim2 | 清空字符串前后全部换行符 |
+| clearLineTrimByNewLine | 清空字符串前后全部换行符 |
+| clearLineTrimByNL | 清空字符串前后全部换行符 |
 | clearSpaceTabLine | 清空字符串全部空格、Tab、换行符 |
 | clearSpaceTabLineTrim | 清空字符串前后全部空格、Tab、换行符 |
 | appendSpace | 追加空格 |
 | appendTab | 追加 Tab |
-| appendLine | 追加换行 |
-| appendLine2 | 追加换行 |
+| appendNewLine | 追加换行 |
+| appendNL | 追加换行 |
 | forString | 循环指定数量字符串 |
 | joinArgs | 循环拼接 |
 | join | 循环拼接 |
@@ -5848,13 +6442,14 @@ DevUtils.openDebug();
 | 方法 | 注释 |
 | :- | :- |
 | isSuccessful | 校验记录方法返回字符串是否成功 |
-| isHandler | 是否处理记录 |
-| setHandler | 设置是否处理记录 |
+| isRecordingEnabled | 全局是否启用文件日志记录 |
+| setRecordingEnabled | 设置全局是否启用文件日志记录 |
 | getRecordInsert | 获取日志记录插入信息 |
 | setRecordInsert | 设置日志记录插入信息 |
 | setCallback | 设置文件记录回调 |
 | getLogContent | 获取日志内容 |
 | record | 记录方法 |
+| onRecordCompleted | 日志写入文件后的结果回调 |
 
 
 * **日志记录配置信息 ->** [RecordConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/RecordConfig.java)
@@ -5866,8 +6461,8 @@ DevUtils.openDebug();
 | getFileName | 获取文件名 ( 固定 ) |
 | getFolderName | 获取文件夹名 ( 模块名 ) |
 | getFileIntervalTime | 获取文件记录间隔时间 |
-| isHandler | 是否处理记录 |
-| setHandler | 设置是否处理记录 |
+| isRecordingEnabled | 是否启用文件日志记录 |
+| setRecordingEnabled | 设置是否启用文件日志记录 |
 | isInsertHeaderData | 是否插入头数据 |
 | setInsertHeaderData | 设置是否插入头数据 |
 | getRecordInsert | 获取日志记录插入信息 |
@@ -5905,6 +6500,9 @@ DevUtils.openDebug();
 | getDelayTime | 获取延迟校验时间 ( 毫秒 ) |
 | setDelayTime | 设置延迟校验时间 ( 毫秒 ) |
 | query | 搜索目录 |
+| shouldVisitFile | 是否遍历该文件节点（目录会继续向下，文件则参与后续逻辑） |
+| shouldCollectFile | 是否添加到集合 |
+| onSearchComplete | 搜索完成回调 |
 
 
 * **文件深度优先搜索算法 ( 递归搜索某个目录下的全部文件 ) ->** [FileDepthFirstSearchUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/search/FileDepthFirstSearchUtils.java)
@@ -5918,6 +6516,9 @@ DevUtils.openDebug();
 | getStartTime | 获取开始搜索时间 ( 毫秒 ) |
 | getEndTime | 获取结束搜索时间 ( 毫秒 ) |
 | query | 搜索目录 |
+| shouldVisitFile | 是否遍历该文件节点（目录会继续向下，文件则参与后续逻辑） |
+| shouldCollectFile | 是否添加到集合 |
+| onSearchComplete | 搜索完成回调 |
 
 
 ## <span id="devutilscommonassisturl">**`dev.utils.common.assist.url`**</span>

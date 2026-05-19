@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.7 *(2026-05-17)*
+Version 1.0.7 *(2026-05-20)*
 ----------------------------
 
 * `[Add]` Data Binding 适配器体系大幅扩展：`bindingadapters` 下 View 布局参数（margin / padding、宽高、变换、可见性等，`binding_*` 命名）；TextView / EditText（样式、Html、Span、compound drawable、键盘开闭与延迟、光标与 TextWatcher 等）；EditText InputFilter（`EditTextInputFilter`、`EtInputFilterAttrs`：`ETIFSpec` / `EtInputFilterPresetSpec` 预设，`binding_et_input_filter_preset`、过滤器数组 set / append / merge / clear、按字节长度；单行 / 数值 / 邮箱 / 金额 / 手机号 / 验证码等，及标签、字母限定、百分比、端口等扩展预设与 `allowSpace`、`scale` 等配置）；ImageView 引擎加载（`ImageViewLoadEngine`）与原生 API（`ImageViewLoadNative`）；RecyclerView（LayoutManager、Adapter 通知、ItemDecoration、滚动监听）；View / RecyclerView / ListView 滚动与延迟滚动（含 `_ts` 时间戳同值二次触发、`XYI` 坐标）；单击 / 防抖 / 计数 / 长按 / 触摸及扩大点击区域；动画（透明度、平移、旋转、缩放、摇晃）与 `binding_view_shape`、状态列表 Selector；统一委托 DevApp `*Utils`

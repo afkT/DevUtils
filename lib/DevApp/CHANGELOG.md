@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.5.3 *(2026-05-17)*
+Version 2.5.3 *(2026-05-20)*
 ----------------------------
 
 * `[Feature]` 适配 Android 17 ( API 37 )：VersionUtils 完善版本判断与转换；新增 ContactPickerUtils、ProfilingUtils、SecurityUtils；ActivityUtils 支持跨设备 Handoff；AlarmUtils 支持 OnAlarmListener 精确闹钟；ProcessUtils 支持进程退出原因查询；NetworkUtils、JobSchedulerUtils 等补充本地网络权限与 pending 统计等 API 37 能力

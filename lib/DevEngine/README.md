@@ -3,7 +3,7 @@
 
 ```gradle
 // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-implementation 'io.github.afkt:DevEngine:1.1.7'
+implementation 'io.github.afkt:DevEngine:1.1.8'
 ```
 
 ## 目录结构
@@ -132,6 +132,9 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * 依赖 [DevApp DevLogger](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger)
   实现 [DevLoggerEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/log/engine_dev_logger.kt)
 
+* 依赖 [Timber](https://github.com/JakeWharton/timber)
+  实现 [TimberEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/log/engine_timber_logger.kt)
+
 
 ### Media Selector 多媒体资源选择 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/media)
 
@@ -197,6 +200,8 @@ private fun initEngine(appContext: Application) {
     DevEngine.defaultFastjsonEngineImpl()
     // 初始化 DevLogger Log Engine 实现
     DevEngine.defaultDevLoggerEngineImpl(logConfig)
+    // 初始化 Timber Log Engine 实现
+    DevEngine.defaultTimberEngineImpl()
     
     // 初始化 Xxx Engine 实现
     DevEngine.defaultXxxEngineImpl()

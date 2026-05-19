@@ -3,7 +3,7 @@
 
 ```gradle
 // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-implementation 'io.github.afkt:DevAssist:1.4.5'
+implementation 'io.github.afkt:DevAssist:1.4.6'
 ```
 
 ## 目录结构
@@ -339,7 +339,7 @@ implementation 'io.github.afkt:DevAssist:1.4.5'
 | getDuration | 获取剩余总时长 ( 毫秒 ) |
 | start | 运行定时器 |
 | stop | 关闭定时器 |
-| callback | 触发回调方法 |
+| onTick | 定时触发通知（每次计时触发一次） |
 
 
 * **EditText 搜索辅助类 ->** [EditTextSearchAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/EditTextSearchAssist.java)
@@ -351,7 +351,7 @@ implementation 'io.github.afkt:DevAssist:1.4.5'
 | setDelayMillis | 设置搜索延迟时间 |
 | setCallback | 设置搜索回调接口 |
 | bindEditText | 绑定 EditText 输入事件 |
-| callback | 搜索回调 |
+| onDebouncedQuery | 防抖后的搜索内容回调（与 {@link TextWatcher} 高频触发解耦） |
 
 
 * **解决 Adapter 多个 Item 存在 EditText 监听输入问题 ->** [EditTextWatcherAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/EditTextWatcherAssist.java)
@@ -1001,7 +1001,7 @@ implementation 'io.github.afkt:DevAssist:1.4.5'
 
 | 方法 | 注释 |
 | :- | :- |
-| callback | 回调方法 |
+| deliver | 投递回调（无参） |
 | filter | 过滤处理 |
 | isFilter | 判断是否过滤 |
 | compare | 对比判断 |

@@ -3,7 +3,7 @@
 
 ```gradle
 // DevDeprecated - Dev 系列库弃用代码统一存储库
-implementation 'io.github.afkt:DevDeprecated:1.0.2'
+implementation 'io.github.afkt:DevDeprecated:1.0.3'
 ```
 
 ## 目录结构
@@ -128,7 +128,7 @@ implementation 'io.github.afkt:DevDeprecated:1.0.2'
 | checkCameraFacing | 检查是否有指定的摄像头 |
 | isFrontCamera | 判断是否使用前置摄像头 |
 | isBackCamera | 判断是否使用后置摄像头 |
-| resolveCameraFacing | 按期望前后置与设备能力解析 facing 常量 |
+| resolveCameraFacing | 按期望前后置与设备能力，解析应使用的 {@link android.hardware.Camera.CameraInfo#facing} 常量 |
 | freeCameraResource | 释放摄像头资源 |
 | initCamera | 初始化摄像头 |
 | open | 打开摄像头 |
@@ -161,7 +161,7 @@ implementation 'io.github.afkt:DevDeprecated:1.0.2'
 | getAppPermissionToSet | 获取 APP 注册的权限 |
 | getAppPermission | 获取 APP 注册的权限 |
 | permission | 申请权限初始化 |
-| callback | 设置回调方法 |
+| setPermissionCallback | 设置权限申请结果回调 |
 | setRequestPermissionsResult | 设置是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); |
 | request | 请求权限 |
 | onRequestPermissionsResult | 请求权限回调 ( 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); ) |
@@ -204,6 +204,7 @@ implementation 'io.github.afkt:DevDeprecated:1.0.2'
 | error | error 样式 Toast |
 | success | success 样式 Toast |
 | custom | custom Toast |
+| normalizeToastContent | 获取 Toast 显示的文案 |
 
 
 * **Simple Toast 工具类 ( 简单的 Toast 工具类, 支持子线程弹出 Toast ) ->** [ToastUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevDeprecated/src/main/java/dev/utils/app/toast/ToastUtils.java)
@@ -226,6 +227,7 @@ implementation 'io.github.afkt:DevDeprecated:1.0.2'
 | newToastText | 获取一个新的 Text Toast |
 | showToastView | 显示 View Toast 方法 |
 | newToastView | 获取一个新的 View Toast |
+| normalizeToastContent | 获取 Toast 显示的文案 |
 
 
 ## <span id="devutilsapptoasttoaster">**`dev.utils.app.toast.toaster`**</span>

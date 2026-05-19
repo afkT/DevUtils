@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.5.6 *(2026-05-17)*
+Version 1.5.6 *(2026-05-20)*
 ----------------------------
 
 * `[Refactor]` DevFinal、ColorUtils、FileUtils、RandomUtils、StringUtils 及 FileRecordUtils、RecordConfig 等方法命名与语义调整

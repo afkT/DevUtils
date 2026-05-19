@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.2.2 *(2026-05-17)*
+Version 1.2.2 *(2026-05-20)*
 ----------------------------
 
 * `[Refactor]` BaseInterceptor、CallbackInterceptor、StorageInterceptor 属性可见性、存储与回调逻辑及命名冲突处理优化

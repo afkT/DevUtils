@@ -3,7 +3,7 @@
 
 ```gradle
 // DevJava - Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.5.5'
+implementation 'io.github.afkt:DevJava:1.5.6'
 ```
 
 ## 目录结构
@@ -327,7 +327,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | intToArgbString | 颜色值 转换 ARGB 颜色字符串 |
 | getRandomColor | 获取随机颜色值 |
 | getRandomColorString | 获取随机颜色值字符串 |
-| judgeColorString | 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587 |
+| looksLikeArgbHexPrefix | 宽松判断：长度为 8 且首字符为十六进制字符时返回 true（非完整 ARGB 校验） |
 | setDark | 颜色加深 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setLight | 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setAlphaDark | 设置透明度加深 |
@@ -352,7 +352,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getHue | 获取颜色色调 |
 | getSaturation | 获取颜色饱和度 |
 | getBrightness | 获取颜色亮度 |
-| handleColor | 处理 color |
+| normalizeColorInput | 规范化颜色字符串（如 #RGB 扩展为 #RRGGBB） |
 
 
 * **转换工具类 ( Byte、Hex 等 ) ->** [ConvertUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ConvertUtils.java)
@@ -601,7 +601,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isFile | 判断是否文件 |
 | isDirectory | 判断是否文件夹 |
 | isHidden | 判断是否隐藏文件 |
-| isHidden2 | 判断是否隐藏文件 |
+| isHiddenByDottedNameInPath | 判断是否隐藏文件 |
 | isBuild | 是否 Build 文件、文件夹判断 |
 | canRead | 文件是否可读 |
 | canWrite | 文件是否可写 |
@@ -843,7 +843,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getRandomNumbersAndLetters | 获取数字、大小写字母自定义长度的随机数 |
 | getRandom | 获取自定义数据自定义长度的随机数 |
 | shuffle | 洗牌算法 ( 第一种 ) 随机置换指定的数组使用的默认源的随机性 ( 随机数据源小于三个, 则无效 ) |
-| shuffle2 | 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性 |
+| shuffleObjectsFisherYates | 洗牌算法 ( 第二种 ) 随机置换指定的数组使用的默认源的随机性 |
 | nextIntRange | 获取指定范围 int 值 |
 | nextLongRange | 获取指定范围 long 值 |
 | nextDoubleRange | 获取指定范围 double 值 |
@@ -962,17 +962,19 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | clearSpace | 清空字符串全部空格 |
 | clearTab | 清空字符串全部 Tab |
 | clearLine | 清空字符串全部换行符 |
-| clearLine2 | 清空字符串全部换行符 |
+| clearLineByNewLine | 清空字符串全部换行符 |
+| clearLineByNL | 清空字符串全部换行符 |
 | clearSpaceTrim | 清空字符串前后全部空格 |
 | clearTabTrim | 清空字符串前后全部 Tab |
 | clearLineTrim | 清空字符串前后全部换行符 |
-| clearLineTrim2 | 清空字符串前后全部换行符 |
+| clearLineTrimByNewLine | 清空字符串前后全部换行符 |
+| clearLineTrimByNL | 清空字符串前后全部换行符 |
 | clearSpaceTabLine | 清空字符串全部空格、Tab、换行符 |
 | clearSpaceTabLineTrim | 清空字符串前后全部空格、Tab、换行符 |
 | appendSpace | 追加空格 |
 | appendTab | 追加 Tab |
-| appendLine | 追加换行 |
-| appendLine2 | 追加换行 |
+| appendNewLine | 追加换行 |
+| appendNL | 追加换行 |
 | forString | 循环指定数量字符串 |
 | joinArgs | 循环拼接 |
 | join | 循环拼接 |
@@ -1149,13 +1151,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | isSuccessful | 校验记录方法返回字符串是否成功 |
-| isHandler | 是否处理记录 |
-| setHandler | 设置是否处理记录 |
+| isRecordingEnabled | 全局是否启用文件日志记录 |
+| setRecordingEnabled | 设置全局是否启用文件日志记录 |
 | getRecordInsert | 获取日志记录插入信息 |
 | setRecordInsert | 设置日志记录插入信息 |
 | setCallback | 设置文件记录回调 |
 | getLogContent | 获取日志内容 |
 | record | 记录方法 |
+| onRecordCompleted | 日志写入文件后的结果回调 |
 
 
 * **日志记录配置信息 ->** [RecordConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/record/RecordConfig.java)
@@ -1167,8 +1170,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getFileName | 获取文件名 ( 固定 ) |
 | getFolderName | 获取文件夹名 ( 模块名 ) |
 | getFileIntervalTime | 获取文件记录间隔时间 |
-| isHandler | 是否处理记录 |
-| setHandler | 设置是否处理记录 |
+| isRecordingEnabled | 是否启用文件日志记录 |
+| setRecordingEnabled | 设置是否启用文件日志记录 |
 | isInsertHeaderData | 是否插入头数据 |
 | setInsertHeaderData | 设置是否插入头数据 |
 | getRecordInsert | 获取日志记录插入信息 |
@@ -1206,6 +1209,9 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getDelayTime | 获取延迟校验时间 ( 毫秒 ) |
 | setDelayTime | 设置延迟校验时间 ( 毫秒 ) |
 | query | 搜索目录 |
+| shouldVisitFile | 是否遍历该文件节点（目录会继续向下，文件则参与后续逻辑） |
+| shouldCollectFile | 是否添加到集合 |
+| onSearchComplete | 搜索完成回调 |
 
 
 * **文件深度优先搜索算法 ( 递归搜索某个目录下的全部文件 ) ->** [FileDepthFirstSearchUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/search/FileDepthFirstSearchUtils.java)
@@ -1219,6 +1225,9 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getStartTime | 获取开始搜索时间 ( 毫秒 ) |
 | getEndTime | 获取结束搜索时间 ( 毫秒 ) |
 | query | 搜索目录 |
+| shouldVisitFile | 是否遍历该文件节点（目录会继续向下，文件则参与后续逻辑） |
+| shouldCollectFile | 是否添加到集合 |
+| onSearchComplete | 搜索完成回调 |
 
 
 ## <span id="devutilscommonassisturl">**`dev.utils.common.assist.url`**</span>
