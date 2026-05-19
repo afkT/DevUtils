@@ -72,6 +72,9 @@ ext {
             // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
 
             "kotlin"  : [
+                    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-metadata-jvm
+                    // Kotlin 编译器同版（versions.kotlin_version）；Kotlin 2.4+ 用于约束解析，覆盖 Room 等传递的旧版 kotlin-metadata-jvm
+                    metadata                      : "org.jetbrains.kotlin:kotlin-metadata-jvm:${versions.kotlin_version}",
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_stdlib_version}",
                     // https://mvnrepository.com/artifact/androidx.core/core-ktx
