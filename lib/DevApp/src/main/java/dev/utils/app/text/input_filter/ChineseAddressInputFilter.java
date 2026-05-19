@@ -6,7 +6,7 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 国内地址输入：中文、数字及常见地址符号
+ * detail: 国内地址输入：中文、英文、数字及常见地址符号
  * @author Ttt
  */
 public class ChineseAddressInputFilter

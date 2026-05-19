@@ -228,10 +228,11 @@ public final class InputFilterCharUtils {
     /**
      * 判断字符是否为国内地址常用字符
      * @param c 待判断字符
-     * @return {@code true} 为中文、数字或常见地址符号，{@code false} 否则
+     * @return {@code true} 为中文、英文、数字或常见地址符号，{@code false} 否则
      */
     public static boolean isChineseAddressChar(final char c) {
         return isChinese(c)
+                || isEnglish(c)
                 || isDigit(c)
                 || c == '-'
                 || c == '#'
