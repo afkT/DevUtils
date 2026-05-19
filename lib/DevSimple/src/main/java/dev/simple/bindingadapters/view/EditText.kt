@@ -24,6 +24,7 @@ import dev.utils.app.EditTextUtils
  *     未封装 `get*` 系列、`getEditText`、多 `View…` / `EditText…` 变参批量 `setTexts`、
  *     `createDigitsKeyListener` 工厂与 [EditTextUtils.DevTextWatcher] 抽象类等。
  *     与 [TextView.kt] 的 `binding_tv_*` 并存时按控件语义择一，避免同一语义重复绑定。
+ *     InputFilter 组合与预设见 [EditTextInputFilter.kt] 的 `binding_et_input_filter_*`。
  *     需对光标置顶/置底等仅接收者副作用多次触发时，使用 `_ts` 属性（判定同 [qualifiesBindingAction]）。
  * </pre>
  */
