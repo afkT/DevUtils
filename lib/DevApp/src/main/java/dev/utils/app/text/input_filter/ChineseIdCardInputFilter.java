@@ -6,14 +6,14 @@ import android.text.Spanned;
 import dev.utils.app.InputFilterCharUtils;
 
 /**
- * detail: 居民身份证 18 位输入：前 17 位数字，末位数字或 X/x
+ * detail: 中国大陆居民身份证 18 位输入：前 17 位数字，末位数字或 X/x
  * @author Ttt
  * <pre>
  *     提交合法性请使用 {@link dev.utils.common.validator.IDCardUtils#validateCard(String)}。
  *     15 位老证请使用 {@link IntegerInputFilter} 等单独限制位数。
  * </pre>
  */
-public class IdCardInputFilter
+public class ChineseIdCardInputFilter
         implements InputFilter {
 
     // 18 位身份证长度
@@ -24,7 +24,7 @@ public class IdCardInputFilter
     /**
      * 末位允许 X/x
      */
-    public IdCardInputFilter() {
+    public ChineseIdCardInputFilter() {
         this(true);
     }
 
@@ -32,7 +32,7 @@ public class IdCardInputFilter
      * 构造函数
      * @param allowXOnlyOnLastPosition 末位是否允许 X/x
      */
-    public IdCardInputFilter(final boolean allowXOnlyOnLastPosition) {
+    public ChineseIdCardInputFilter(final boolean allowXOnlyOnLastPosition) {
         mAllowXOnlyOnLastPosition = allowXOnlyOnLastPosition;
     }
 

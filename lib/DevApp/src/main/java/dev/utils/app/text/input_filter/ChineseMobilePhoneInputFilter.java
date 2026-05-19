@@ -13,7 +13,7 @@ import dev.utils.app.InputFilterCharUtils;
  *     完整号段校验请在失焦或提交时调用 {@link dev.utils.common.validator.ValiToPhoneUtils#isPhone(String)}。
  * </pre>
  */
-public class MobilePhoneInputFilter
+public class ChineseMobilePhoneInputFilter
         implements InputFilter {
 
     // 默认最大位数
@@ -24,7 +24,7 @@ public class MobilePhoneInputFilter
     /**
      * 默认最多 11 位
      */
-    public MobilePhoneInputFilter() {
+    public ChineseMobilePhoneInputFilter() {
         this(DEFAULT_MAX_LENGTH);
     }
 
@@ -32,7 +32,7 @@ public class MobilePhoneInputFilter
      * 构造函数
      * @param maxLength 最大位数
      */
-    public MobilePhoneInputFilter(final int maxLength) {
+    public ChineseMobilePhoneInputFilter(final int maxLength) {
         mMaxLength = Math.max(1, maxLength);
     }
 
@@ -59,7 +59,7 @@ public class MobilePhoneInputFilter
                 source, start, end, dest, dstart, dend,
                 mMaxLength,
                 InputFilterCharUtils::isDigit,
-                MobilePhoneInputFilter::isAllowedAt
+                ChineseMobilePhoneInputFilter::isAllowedAt
         );
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.text.input_filter.AlphanumericInputFilter;
-import dev.utils.app.text.input_filter.MobilePhoneInputFilter;
+import dev.utils.app.text.input_filter.ChineseMobilePhoneInputFilter;
 import dev.utils.app.text.input_filter.SearchKeywordInputFilter;
 import dev.utils.app.text.input_filter.ByteLengthInputFilter;
 import dev.utils.app.text.input_filter.ChineseAddressInputFilter;
@@ -617,7 +617,7 @@ public final class InputFilterUtils {
     /**
      * 手机号数字输入组合
      * <pre>
-     *     禁止空格的单行输入，{@link MobilePhoneInputFilter} 默认最多 11 位。
+     *     禁止空格的单行输入，{@link ChineseMobilePhoneInputFilter} 默认最多 11 位。
      * </pre>
      * @return 预设 {@link InputFilter} 数组
      */
@@ -628,7 +628,7 @@ public final class InputFilterUtils {
     /**
      * 手机号数字输入组合
      * <pre>
-     *     禁止空格的单行输入，{@link MobilePhoneInputFilter} 限制位数与号段。
+     *     禁止空格的单行输入，{@link ChineseMobilePhoneInputFilter} 限制位数与号段。
      * </pre>
      * @param maxDigits 最大位数
      * @return 预设 {@link InputFilter} 数组
@@ -636,7 +636,7 @@ public final class InputFilterUtils {
     public static InputFilter[] phoneNumber(final int maxDigits) {
         return append(
                 noSpaceSingleLine(maxDigits),
-                new MobilePhoneInputFilter(maxDigits)
+                new ChineseMobilePhoneInputFilter(maxDigits)
         );
     }
 
