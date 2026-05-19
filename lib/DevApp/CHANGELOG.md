@@ -18,11 +18,17 @@ Version 2.5.3 *(2026-05-17)*
 
 * `[Add]` ViewUtils、ViewHelper、QuickHelper 补充 Checkable 选中及 activated、pressed 状态读写与批量设置；TextViewUtils 新增 removeUnderlineText、removeStrikeThruText
 
+* `[Add]` 新增 InputFilter 输入过滤体系：`InputFilterUtils` 统一设置、追加、按 Class 合并与去重，并提供单行/多行、昵称、评论、搜索关键词、标签、账号密码、邮箱、URL、整数/小数/金额、验证码、手机号、身份证、中文姓名/邮编/地址、百分比、端口等预设组合；`InputFilterCharUtils` 字符校验辅助；`dev.utils.app.text.input_filter` 包下多种场景过滤器（含 Emoji、半角、全大写/全小写、中文专属等）；`text` 包保留 `AllowCharsInputFilter`、`ProhibitCharsInputFilter`、`RegexInputFilter`、`DelegateInputFilter` 等通用与委托型实现
+
+* `[Add]` EditTextUtils、TextViewUtils 补充 InputFilter 设置/追加/清空/按类型合并及最大长度相关能力；ViewHelper、QuickHelper 及对应接口支持链式 InputFilter 操作
+
 * `[Add]` RecyclerViewUtils 新增平滑滚动与顶部/底部吸附对齐（ startSmoothScrollSnapStart/End、scrollToPositionWithOffset、stopSmoothScroller 等）；ListViewUtils 滚动相关方法改为返回 boolean 并统一异常处理
 
 * `[Add]` Android 17+ 扩展：AudioManagerUtils Assistant 音频流、IntentUtils 系统 Photo Picker、MediaStoreUtils Photo Picker UI 定制、NotificationUtils Live Update 语义色
 
 * `[Update]` AppUtils、AppInfoItem、AppInfoUtils、ManifestUtils 等应用签名与包信息获取逻辑调整（兼容 Android P 及以上）；非 Activity 上下文调用 AppUtils#startActivity 时自动补充 FLAG_ACTIVITY_NEW_TASK
+
+* `[Update]` 优化 EditText/TextView 最大长度限制实现；`ChineseAddressInputFilter` 支持地址中的英文字符
 
 * `[Fix]` 修复部分 Android 版本判断与导出广播接收器注册逻辑问题；修复 CursorUtils、DevicePolicyUtils、DeviceUtils、NetworkUtils 等空指针与 ListViewUtils 滚动返回值问题
 
@@ -30,7 +36,9 @@ Version 2.5.3 *(2026-05-17)*
 
 * `[Refactor]` 多工具类方法、回调接口、DevFinal 常量访问方式、EXIF ExifTagTables 与内部辅助命名等可读性重构（含 ReceiverUtils 驼峰化、ShellUtils 命令结果判断方法重命名、Reflect2Utils 异常处理、CPUUtils 资源管理等）
 
-* `[Style]` 工具类文档、JavaDoc {@link} 与返回值描述整理，部分方法参数 final 化；README 拼写修正
+* `[Refactor]` 输入过滤器重构：实现类迁移至 `text.input_filter` 包，`InputFilterCharUtils` 迁至 `dev.utils.app` 包；优化过滤器去重与按 Class 合并逻辑；身份证/手机号等类重命名为 `ChineseIdCardInputFilter`、`ChineseMobilePhoneInputFilter`；精简移除重复或过场景化的过滤器类
+
+* `[Style]` 工具类文档、JavaDoc {@link} 与返回值描述整理，部分方法参数 final 化；README 拼写修正；输入过滤器相关类文档与代码格式整理
 
 Version 2.5.1-2 *(2026-03-14)*
 ----------------------------
