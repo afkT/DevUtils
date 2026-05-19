@@ -177,6 +177,9 @@ ext {
                     // CameraX https://developer.android.com/training/camerax
                     camerax                  : "androidx.camera:camera-camera2:1.7.0-alpha01",
                     camerax_lifecycle        : "androidx.camera:camera-lifecycle:1.7.0-alpha01",
+                    // https://mvnrepository.com/artifact/androidx.webkit/webkit
+                    // WebView Jetpack 组件 https://developer.android.com/jetpack/androidx/releases/webkit
+                    webkit                   : "androidx.webkit:webkit:1.16.0",
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                     // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
                     // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
