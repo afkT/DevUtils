@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.text.DelegateInputFilter;
 import dev.utils.app.text.input_filter.AlphanumericInputFilter;
+import dev.utils.app.text.input_filter.MobilePhoneInputFilter;
+import dev.utils.app.text.input_filter.SearchKeywordInputFilter;
 import dev.utils.app.text.input_filter.ByteLengthInputFilter;
 import dev.utils.app.text.input_filter.ChineseAddressInputFilter;
 import dev.utils.app.text.input_filter.ChineseOnlyInputFilter;
@@ -451,7 +452,6 @@ public final class InputFilterUtils {
      * 搜索关键词单行输入组合
      * <pre>
      *     单行基础规则，仅保留搜索常用字符，禁止连续空格，并限制最大字符长度。
-     *     字符规则委托 {@link DelegateInputFilter} 与 {@link InputFilterCharUtils#isSearchKeywordChar(char)}。
      * </pre>
      * @param maxLength 最大字符长度
      * @return 预设 {@link InputFilter} 数组
@@ -459,7 +459,7 @@ public final class InputFilterUtils {
     public static InputFilter[] searchKeyword(final int maxLength) {
         return append(
                 singleLineWithMaxLength(maxLength),
-                new DelegateInputFilter(InputFilterCharUtils::isSearchKeywordChar),
+                new SearchKeywordInputFilter(),
                 new NoConsecutiveSpaceInputFilter()
         );
     }
@@ -617,7 +617,7 @@ public final class InputFilterUtils {
     /**
      * 手机号数字输入组合
      * <pre>
-     *     禁止空格的单行输入，仅数字，默认最多 11 位。
+     *     禁止空格的单行输入，{@link MobilePhoneInputFilter} 默认最多 11 位。
      * </pre>
      * @return 预设 {@link InputFilter} 数组
      */
@@ -628,7 +628,7 @@ public final class InputFilterUtils {
     /**
      * 手机号数字输入组合
      * <pre>
-     *     禁止空格的单行输入，仅数字，并限制最大位数。
+     *     禁止空格的单行输入，{@link MobilePhoneInputFilter} 限制位数与号段。
      * </pre>
      * @param maxDigits 最大位数
      * @return 预设 {@link InputFilter} 数组
@@ -636,7 +636,7 @@ public final class InputFilterUtils {
     public static InputFilter[] phoneNumber(final int maxDigits) {
         return append(
                 noSpaceSingleLine(maxDigits),
-                new IntegerInputFilter(maxDigits)
+                new MobilePhoneInputFilter(maxDigits)
         );
     }
 
