@@ -11,6 +11,22 @@ description: >-
 
 根工程 `build.gradle` 已依次 `apply`：`file/gradle/config.gradle`（`ext.deps`）、`file/gradle/config_libs.gradle`（`ext.deps_lib`）。**任何新依赖必须先查是否已存在，禁止重复定义同一坐标。**
 
+## 0. 官方 Android 库检索（新增依赖前建议查阅）
+
+写入 `config.gradle` 的 **`androidx` / `kotlin` 官方坐标** 前，优先在下列站点核对 **artifact 名、稳定版号、分组语义**：
+
+| 用途 | 链接 |
+|------|------|
+| **AndroidX 版本总览（中文，推荐）** | [https://developer.android.com/jetpack/androidx/versions?hl=zh-cn](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn) |
+| AndroidX 库浏览 | [https://developer.android.com/jetpack/androidx/explorer](https://developer.android.com/jetpack/androidx/explorer) |
+| 各库 Release Notes | [https://developer.android.com/jetpack/androidx/releases](https://developer.android.com/jetpack/androidx/releases) |
+| 稳定渠道说明 | [https://developer.android.com/jetpack/androidx/versions/stable-channel](https://developer.android.com/jetpack/androidx/versions/stable-channel) |
+| 旧 Support → AndroidX 映射 | [https://developer.android.com/jetpack/androidx/migrate/artifact-mappings](https://developer.android.com/jetpack/androidx/migrate/artifact-mappings) |
+
+`file/gradle/config.gradle` 内 **「Android 官方库」** 区块注释已收录上表部分链接；**查版本号以中文版总览页为准**，与 `config.gradle` 中各条目旁的 `mvnrepository.com` 链接交叉核对。
+
+第三方 / 非官方库不在此页检索 → 使用 [mvnrepository.com](https://mvnrepository.com/) 或库方 GitHub，并写入 `config_libs.gradle`。
+
 ## 1. 查找是否已存在
 
 按优先级全文检索（建议对 **artifact 名**、**group**、**已有 key** 各搜一次）：
@@ -62,6 +78,7 @@ description: >-
 
 ## 5. 自检清单
 
+- [ ] 官方 AndroidX/Kotlin 坐标已在 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn) 核对稳定版号与 artifact 名。
 - [ ] 已在 `config.gradle` 与 `config_libs.gradle` 中确认无重复坐标。
 - [ ] 官方/非官方归属与分组、注释风格与邻居一致。
 - [ ] 若在 `deps` / `deps_lib` 新增 key，已在对应的 `file/deps/*.gradle` 或目标模块 `build.gradle` 中增加引用行。

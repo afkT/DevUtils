@@ -66,6 +66,7 @@
 ### 2.1 `gradle-central-deps`
 
 - **核心**：依赖坐标集中在 `config.gradle`（`deps`）与 `config_libs.gradle`（`deps_lib`）；**禁止重复 GAV**；官方 AndroidX/Kotlin 等进 `deps`，第三方进 `deps_lib`；业务侧在 `file/deps/*.gradle` 按现有风格引用。
+- **官方检索**：新增 AndroidX 坐标前查 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn)（Skill 内 §0 含 explorer / releases 等链接表）。
 
 ### 2.2 `android-dimen-dp-sp`
 
