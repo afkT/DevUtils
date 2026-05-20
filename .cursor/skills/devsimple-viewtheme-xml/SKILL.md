@@ -6,7 +6,6 @@ description: >-
   ViewTheme.ImageView.FIT_XY，无匹配则用 ViewTheme.View。在编写或批量整理
   layout XML、引入 ViewTheme、迁移旧布局、或用户提到 DevSimple/ViewTheme
   时使用。默认工程已依赖 DevSimple。
-disable-model-invocation: true
 ---
 
 # DevSimple 布局 XML 默认 ViewTheme 样式

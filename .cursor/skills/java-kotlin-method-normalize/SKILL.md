@@ -7,7 +7,6 @@ description: >-
     有返回值且带参时补全 @param/@return；Kotlin 的 @param 行不写 [类型]（签名已标明）；boolean 的 @return：Java 用 {@code true}/{@code false}，Kotlin 用 `true`/`false`；
     类型引用：Java {@link …}，Kotlin @return/<pre> 等用 […]；优先返回入参或有语义的对象替代无意义 void；异常在方法内捕获并安全返回。
     在用户要求规范化方法、统一工具类写法、整理 Javadoc/KDoc、或按 DevUtils 方法风格处理时使用。
-disable-model-invocation: true
 ---
 
 # Java / Kotlin：生成方法的规范化
