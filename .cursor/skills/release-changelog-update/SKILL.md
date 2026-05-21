@@ -1,10 +1,10 @@
 ---
 name: release-changelog-update
 description: >-
-  依据 lib 各库既有 CHANGELOG.md 版式，从上一版日期到当前用 git 收集该库路径下
-  提交（含完整 commit message 正文），去重合并后撰写专业变更条目；与
-  file/gradle/versions.gradle 发版版本对齐。在用户要求更新 CHANGELOG、
-  发版说明、lib 变更记录或同步 DevApp/DevAssist 等库的 Change Log 时使用。
+  依据目标库/模块既有 CHANGELOG.md 版式，从上一版日期到当前用 git 收集该库根路径下
+  提交（含完整 commit message 正文），去重合并后撰写专业变更条目；与项目发版版本
+  配置对齐。在用户要求更新 CHANGELOG、发版说明、模块变更记录或同步某子库
+  Change Log 时使用。
 disable-model-invocation: true
 ---
 
@@ -12,7 +12,7 @@ disable-model-invocation: true
 
 ## 适用范围
 
-- 路径：`lib/<模块>/CHANGELOG.md`，以及 `lib/HttpRequest/DevHttpManager/`、`lib/HttpRequest/DevRetrofit/` 等与 CHANGELOG **同库根**的目录。
+- 目标为**库根目录**（或子模块根目录）下的 `CHANGELOG.md`；若源码分布在多个子目录但共用同一份 CHANGELOG，则以**该 CHANGELOG 所在目录为库根**，git 范围覆盖所有属于该库的源码路径。
 - **不得臆造版式**：先 Read 目标文件顶部若干版本块，**严格沿用**该文件既有「Change Log」标题、下划线、`Version` 行、分隔线长度、条目前缀与历史语气。
 
 ## 文件版式（与现有一致）
@@ -28,14 +28,14 @@ Version <版本字符串> *(yyyy-MM-dd)*
 
 ```
 
-- **标签**：只使用**该文件或同仓库其它 lib CHANGELOG 中已出现过的**标签，例如 `` `[Add]` ``、`` `[Delete]` ``、`` `[Update]` ``、`` `[Refactor]` ``、`` `[Move]` ``、`` `[Feature]` ``、`` `[Build]` ``、`` `[Chore]` ``、`` `[Upgrade]` ``、`` `[Fix]` ``、`` `[Merge]` ``、`` `[Remove]` ``、`` `[Perf]` ``、`` `[Style]` ``、`` `[sync]` `` 等；**禁止**自造未在仓库中出现过的标签缩写。
+- **标签**：只使用**该文件或同仓库其它 CHANGELOG 中已出现过的**标签，例如 `` `[Add]` ``、`` `[Delete]` ``、`` `[Update]` ``、`` `[Refactor]` ``、`` `[Move]` ``、`` `[Feature]` ``、`` `[Build]` ``、`` `[Chore]` ``、`` `[Upgrade]` ``、`` `[Fix]` ``、`` `[Merge]` ``、`` `[Remove]` ``、`` `[Perf]` ``、`` `[Style]` ``、`` `[sync]` `` 等；**禁止**自造未在仓库中出现过的标签缩写。
 - **一条一事**：同类改动合并为一条；**禁止**把每个 commit 机械抄成一条；语义重复的条目合并后只保留一条表述。
 
 ## 新版本号
 
-1. **默认以发版为准**：新版本字符串以 **`file/gradle/versions.gradle`** 中对应模块的版本字段为准（与 Maven `versionName` 一致）。用户或发版流程**另有指定**时以指定为准。
-2. **CHANGELOG 与 Gradle 不同步**（例如 CHANGELOG 仍为 `2.5.1-2` 而 `versions.gradle` 已为 `2.5.2`）：写入 CHANGELOG 的 `Version` 必须与**本次对外发布版本**一致；若仅文档滞后，应**对齐 `versions.gradle` 当前值**并在同次提交中避免长期分叉。
-3. **带连字符后缀的版本**（如 `2.5.1-2`）：下一版以维护者与 `versions.gradle` 为准，**不臆造** semver；常见情况是下一正式补丁版为 `2.5.2`、`2.5.3` 等，以 `versions.gradle` 为准。
+1. **默认以发版为准**：新版本字符串以**项目约定的发版版本源**为准（如 Gradle/Maven/npm 等模块版本字段，与对外发布号一致）。用户或发版流程**另有指定**时以指定为准。
+2. **CHANGELOG 与发版配置不同步**（例如 CHANGELOG 仍为 `2.5.1-2` 而版本配置已为 `2.5.2`）：写入 CHANGELOG 的 `Version` 必须与**本次对外发布版本**一致；若仅文档滞后，应**对齐当前发版配置中的值**并在同次提交中避免长期分叉。
+3. **带连字符后缀的版本**（如 `2.5.1-2`）：下一版以维护者与发版版本源为准，**不臆造** semver；常见情况是下一正式补丁版为 `2.5.2`、`2.5.3` 等，以发版配置为准。
 4. **日期**：`*(yyyy-MM-dd)*` 使用**写入当天**（对话中 authoritative date）或用户指定的**发版日**。
 
 ## 变更时间窗与 git 范围
@@ -48,7 +48,7 @@ Version <版本字符串> *(yyyy-MM-dd)*
 
 **禁止**仅用 `git log` 的 subject（`%s`）作为唯一依据；正文（body）、多段落说明、列表同样参与归纳。
 
-推荐在库根路径下执行（将日期、路径替换为实际值；`PATH` 为库目录，如 `lib/DevApp/`）：
+推荐在库根路径下执行（将日期、路径替换为实际值；`PATH` 为库目录，如 `<库根>/`）：
 
 ```bash
 # 完整提交说明：%B = subject + body（含空行与多段）
@@ -72,30 +72,19 @@ git log --since="yyyy-MM-dd" --pretty=format:"%h %ad%n%B%n----COMMIT----" --date
 ## 变更很少或几乎无实质改动时
 
 - **不得编造**未发生的 API/功能说明。
-- **参照该库 CHANGELOG 历史**：许多子库在仅依赖升级或同步发版时会写 `` `[Chore]` 依赖 DevApp 库同步升级 ``（或对应依赖库名），句式与同文件历史**保持一致**。
-- 若区间内**确无**落在该路径的提交：向用户说明「无新 commit 可记」；若发版流程仍需新版本号与日期，可仅更新 `Version` 行与一条与历史一致的 `[Chore]`（须与 `versions.gradle`/实际依赖变更一致，**不得**虚构依赖升级）。
+- **参照该库 CHANGELOG 历史**：许多子库在仅依赖升级或同步发版时会写 `` `[Chore]` 依赖 xxx 库同步升级 ``（或对应依赖库名），句式与同文件历史**保持一致**。
+- 若区间内**确无**落在该路径的提交：向用户说明「无新 commit 可记」；若发版流程仍需新版本号与日期，可仅更新 `Version` 行与一条与历史一致的 `[Chore]`（须与发版配置/实际依赖变更一致，**不得**虚构依赖升级）。
 
-## `versions.gradle` 与 lib 根目录对照
+## 版本号来源（与库根对应）
 
-| lib 根（CHANGELOG 所在） | versions.gradle 中常用版本键 |
-|---------------------------|-------------------------------|
-| `lib/DevApp/` | `dev_app_versionName` |
-| `lib/DevAssist/` | `dev_assist_versionName` |
-| `lib/DevBase/` | `dev_base_versionName` |
-| `lib/DevEngine/` | `dev_engine_versionName` |
-| `lib/DevSimple/` | `dev_simple_versionName` |
-| `lib/DevWidget/` | `dev_widget_versionName` |
-| `lib/DevDeprecated/` | `dev_deprecated_versionName` |
-| `lib/DevJava/` | `dev_java_version` |
-| `lib/HttpCapture/` | `dev_http_capture_versionName` 等 |
-| `lib/Environment/` | `dev_environment_version` 等 |
-| `lib/HttpRequest/DevRetrofit/` | `dev_retrofit_versionName` |
-| `lib/HttpRequest/DevHttpManager/` | `dev_http_manager_versionName` |
+1. 优先使用用户指定的版本字符串或**发版版本配置文件**中的对应模块字段（Gradle `versionName`/`version`、Maven `version`、npm `version` 等）。
+2. 若用户未指明路径，在工作区内检索与目标模块/库名相关的版本声明（模块构建脚本、根版本清单、CI 发版变量等），**不得臆造**版本键名或版本号。
+3. 写入 CHANGELOG 的 `Version` 必须与**本次对外发布版本**一致；多子模块各自 CHANGELOG 时，每条记录对**其库根**的版本源，勿混用其它模块版本。
 
 ## 执行清单
 
 - [ ] Read 目标 `CHANGELOG.md` 顶部 **2～3 个版本块**，确认标题、标签、句式。
-- [ ] 解析上一版 `Version … *(yyyy-MM-dd)*` 与即将写入的新版本（对照 `versions.gradle`）。
+- [ ] 解析上一版 `Version … *(yyyy-MM-dd)*` 与即将写入的新版本（对照发版版本源或用户指定）。
 - [ ] 对该库路径执行 `git log`，**格式含完整 `%B`**，必要时配合 `git diff`/`git show` 核对事实。
 - [ ] 合并去重后撰写条目；少变更时对齐历史 `[Chore]` 等写法。
 - [ ] 在文件顶部插入新版本块，不破坏下方历史结构。

@@ -88,7 +88,7 @@
 | [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 圆角矩形纯色背景、描边；优先 DevWidget `dev.widget.ui.round`；替代多余 drawable。 |
 | [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
-| [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按 `lib/**/CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与 `versions.gradle` 对齐；少变更时参照历史 `[Chore]` 等写法。 |
+| [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按目标库根 `CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与项目发版版本配置对齐；少变更时参照历史 `[Chore]` 等写法。 |
 | [code-method-normalize/SKILL.md](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 规范化 Java/Kotlin 方法：**Java 用 JavaDoc、Kotlin 用 KDoc**（不混用）；Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；**方法注释与备注同一规则**：首段/首行无内联代码与类型引用，备注 **`<pre>`**；`@param`/`@return` 齐全；Kotlin **`@param` 行不写 `[类型]`**；**boolean** 的 `@return` 对举；优先非 void/Unit 安全返回、异常内捕获。 |
 | [binding-adapter-from-source/SKILL.md](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [reference.md](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 **BindingAdapter** 与 `app:binding_*`；过滤不适合 XML 的 API；**仅 View 入参** 的重复触发用 **`Long?` 时间戳**；**效果开关** 用 **`Boolean?` 三态**；多参数 **合并为 `attribute/` 实体**（参照 `XYI`）；生成文档时搭配 **code-method-normalize**。 |
 | [android-version-platform-adapt/SKILL.md](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | **关** | [reference.md](skills/android-version-platform-adapt/reference.md) | 按 `developer.android.com/about/versions/{N}` 官方文档做 **行为变更** 与 **新功能/API**；扫描子页；targetSdk 升级与工具类封装；成稿前 **Read** `code-method-normalize`。 |
@@ -128,7 +128,7 @@
 
 - **YAML**：`disable-model-invocation: true`。
 - **前缀**：`release-`（发版 CHANGELOG；运行时打 Log 规划为 `infra-logging`，见 `docs/skill-naming-convention.md` §3.4.1）。
-- **核心**：以 CHANGELOG 顶栏上一版日期为时间窗，对对应 `lib/...` 路径 `git log` 且使用 **`%B` 完整提交说明**（勿只看 subject）；合并重复主题、按历史标签与语气写条目；版本名以 `versions.gradle` 为准；几乎无代码变更时参照同文件历史（如依赖同步的 `[Chore]`），不虚构功能。含 `lib/HttpRequest/DevHttpManager/`、`DevRetrofit/` 等与 CHANGELOG 同库根路径。
+- **核心**：以 CHANGELOG 顶栏上一版日期为时间窗，对该库根及关联源码路径 `git log` 且使用 **`%B` 完整提交说明**（勿只看 subject）；合并重复主题、按历史标签与语气写条目；版本名以项目发版版本源或用户指定为准；几乎无代码变更时参照同文件历史（如依赖同步的 `[Chore]`），不虚构功能。多目录共用一份 CHANGELOG 时以 CHANGELOG 所在目录为库根。
 
 ### 2.8 `code-method-normalize`
 
