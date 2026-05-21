@@ -97,15 +97,23 @@ QPR 子路径（如 `qpr1/`）仅在用户明确做 QPR 适配时读取。
 
 ## API level 与 `VERSION_CODES`（Android 17）
 
+**扫描日期**：2026-05。执行 Skill 时仍须重新读取 `setup-sdk` 与 API Reference；下表仅作仓库对照参考。
+
 | 字段 | 值 |
 |------|-----|
 | API level | 37 |
 | 文档用语 | Android 17 (API level 37) |
-| 项目内对照 | `VersionUtils` 中 Android 16+ 常用 `BAKLAVA`（36）；17 以 SDK 引入的常量为准 |
+| 仓库对照方式 | 优先检索 `{DEVAPP_ROOT}=lib/DevApp` 下既有版本判断封装；Android 17 以 SDK 引入的常量为准 |
 
 升级 `compileSdk` / `targetSdk` 时同步查 **setup-sdk** 与 AGP 兼容说明，不单改数字。
 
-## 本仓库已有适配示例
+## 仓库落点发现（非固定类名锚点）
+
+| 符号 | 当前值（DevUtils） | 用途 |
+|------|-------------------|------|
+| `DEVAPP_ROOT` | `lib/DevApp` | Android 平台工具类与版本判断封装优先落点 |
+
+**扫描日期**：2026-05。以下类名只是当时的**扫描示例**，用于提示可检索的领域方向；重构或迁移后以工作区检索结果为准，**不要**在 SKILL 正文固定依赖这些类名。
 
 | 区域 | 说明 |
 |------|------|
@@ -114,7 +122,15 @@ QPR 子路径（如 `qpr1/`）仅在用户明确做 QPR 适配时读取。
 | `ProcessUtils` | 类文档链 17 `behavior-changes-all` |
 | `ScreenUtils` | `BAKLAVA` 大屏相关逻辑 |
 
-新增封装时优先扩展现有 `*Utils`，避免重复版本判断工具。
+新增封装时优先扩展现有 `*Utils`，避免重复版本判断工具。建议先用 **Glob / 内容检索** 定位相近落点：
+
+| 查找目标 | 建议模式 |
+|----------|----------|
+| 版本判断封装与平台常量 | Glob `{DEVAPP_ROOT}/**/*Version*.*`、`{DEVAPP_ROOT}/**/*Utils.*` |
+| 按领域关键词缩小范围 | Glob `{DEVAPP_ROOT}/**/*Job*.*`、`{DEVAPP_ROOT}/**/*Intent*.*` 等 |
+| 确认 API / 常量是否已有封装 | 内容检索具体 API 名、权限名、行为变更关键词 |
+
+Agent 在实现前应把 `Job`、`Process`、`Screen`、`Intent` 替换为当前适配项的领域词；若无相近文件，再按仓库包结构新增同领域工具类。
 
 ## 扫描命令模板
 

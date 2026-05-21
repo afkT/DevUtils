@@ -18,6 +18,14 @@ disable-model-invocation: true
 
 与仓库方法风格：生成或改写 **方法体与文档** 前，**Read** 并按 [code-method-normalize/SKILL.md](../code-method-normalize/SKILL.md) 执行。
 
+## 仓库落点（弱化类名锚点）
+
+| 符号 | 当前值（DevUtils） | 说明 |
+|------|-------------------|------|
+| `DEVAPP_ROOT` | `lib/DevApp` | Android 平台工具类与版本判断封装的优先落点 |
+
+新增平台 API 封装或行为变更缓解时，先在 `{DEVAPP_ROOT}` 按领域关键词检索同类 `*Utils` / `*Version*`，再决定扩展现有类或新增文件；**不要**在 SKILL 正文固定依赖某个历史类名。扫描示例、关键词与历史对照入口见 [reference.md §仓库落点发现](reference.md#仓库落点发现非固定类名锚点)。
+
 ## 版本参数
 
 | 用户表述 | URL 段 `versions/{N}` | 行为变更（target）页 | 典型 API level |
@@ -27,7 +35,7 @@ disable-model-invocation: true
 | Android 15 | `15` | `behavior-changes-15` | 35 |
 
 - **N** 与官网路径一致（Android 17 → `17`）。
-- **API level**、**`VERSION_CODES` 常量名**以该版 [setup-sdk](https://developer.android.com/about/versions/17/setup-sdk) 与 [API 参考](https://developer.android.com/reference/android/os/Build.VERSION_CODES) 为准；写 `@RequiresApi` 时与仓库既有版本判断封装或同领域工具类对齐，必要时先在 `lib/DevApp` 下检索 `*Version*`、`*Utils`。
+- **API level**、**`VERSION_CODES` 常量名**以该版 [setup-sdk](https://developer.android.com/about/versions/17/setup-sdk) 与 [API 参考](https://developer.android.com/reference/android/os/Build.VERSION_CODES) 为准；写 `@RequiresApi` 时与 `{DEVAPP_ROOT}` 下既有版本判断封装或同领域工具类对齐。
 
 ### URL 模板（将 `{N}` 换为版本号）
 
@@ -55,7 +63,7 @@ disable-model-invocation: true
 3. **区分受众**：
    - **所有应用**：设备跑在 N 上即可能受影响（与 `targetSdkVersion` 无关）。
    - **target N**：仅 `targetSdkVersion >= N` 时强制或默认生效。
-4. **落地范围**：只改任务相关模块；工具类优先扩展 `lib/DevApp` 下同领域 `*Utils`，落点不明确时先用 Glob / 内容检索找相近封装；类级或方法级 `<pre>` 可链官方页（已有示例见 [reference.md](reference.md)）。
+4. **落地范围**：只改任务相关模块；工具类优先扩展 `{DEVAPP_ROOT}` 下同领域 `*Utils`，落点不明确时先用 Glob / 内容检索找相近封装；类级或方法级 `<pre>` 可链官方页（历史扫描示例见 [reference.md](reference.md)）。
 5. **API 引用**：新 API 以 [Android API reference](https://developer.android.com/reference) 为准；features 页仅作索引，实现前核对方法签名与 `@RequiresApi`。
 
 ## 工作流
@@ -136,7 +144,7 @@ disable-model-invocation: true
 #### 3.2 代码与文档
 
 - 新增/修改 Java 或 Kotlin 方法前：**Read** `code-method-normalize`。
-- `@RequiresApi` / 既有版本判断封装与 **API level** 一致；官方链接放在类或方法 `<pre>` 的 `@see <a href="...">`。
+- `@RequiresApi` / `{DEVAPP_ROOT}` 下既有版本判断封装与 **API level** 一致；官方链接放在类或方法 `<pre>` 的 `@see <a href="...">`。
 - 行为变更 **缓解**（如后台音频、MessageQueue 反射、SMS OTP）优先 **安全默认 + 可选 API**，与 DevUtils 工具类风格一致。
 
 ### 4. 扫描子目录（必做）
