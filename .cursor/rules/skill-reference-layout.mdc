@@ -1,0 +1,36 @@
+---
+description: >-
+  编写或拆分 .cursor/skills 下 SKILL.md 与 reference.md 时：流程与最少锚点在 SKILL，
+  路径清单/属性全表/扫描结果放 reference；禁止在 SKILL 内堆大表。
+globs: .cursor/skills/**
+alwaysApply: false
+---
+
+# Skill 文档结构（SKILL.md 与 reference.md）
+
+在 **创建、大幅改写或拆分** `.cursor/skills/<name>/` 下文档时遵守本规则；日常业务任务（写布局、加依赖等）不必强行套用。
+
+## 分工约定
+
+| 文件 | 放什么 | 不放什么 |
+|------|--------|----------|
+| **SKILL.md** | YAML `name`/`description`；何时用；**执行顺序**与核心规则；最少路径锚点（如 `DEPS_ROOT=`、`DEVSIMPLE_ROOT=`）；短示例；执行清单；链到 `reference.md` 的章节 | 长表格（全量属性表、根样式表、URL 扫描清单）；易漂移的快照数据 |
+| **reference.md** | 路径/模块契约展开表；属性或样式**全表**；继承链/对照速查；扫描结果与 **grep 维护步骤**；与 SKILL 配套的索引 | 重复 SKILL 中的完整流程；替代 SKILL 成为唯一入口 |
+
+SKILL 正文应能单独完成常见任务；reference 供 **核对事实、查全表、维护同步** 时 Read。
+
+## 何时应建 `reference.md`
+
+满足 **任一** 即建议（或必须）增加 `reference.md`，并在 SKILL 开头说明「详情见 reference」：
+
+- 单表超过约 **15 行** 且会随仓库漂移（如 `ViewTheme.*` 全表、`hl_*` 全表）。
+- 需记录 **扫描结果**、官方子页清单、多文件路径索引。
+- 同一 Skill 内 **路径清单 + 大表** 并存，拆出后 SKILL 可明显变短。
+
+仅流程说明、少量锚点、短列表 → **不必** 建 reference；勿为形式空建文件。
+
+## 禁止与维护
+
+- **禁止**在 SKILL.md 内复制 reference 中的大表「图省事」；可保留 3～5 行速查 + 链接到 reference 章节。
+- 新增或重命名 `reference.md` 后，由 [cursor-catalog-sync.mdc](cursor-catalog-sync.mdc) 同步 `.cursor/README.md` 的「伴随 reference」列与目录树。
+- Skill 间互链使用 `../<skill-name>/SKILL.md` 或同目录 `reference.md`；重命名 Skill 目录时一并修正（见 catalog-sync）。
