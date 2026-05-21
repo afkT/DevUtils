@@ -1,0 +1,79 @@
+---
+description: 创建或重命名技能前，规范化 Cursor Agent Skill 名称。
+alwaysApply: true
+---
+
+# Skill 命名规范化
+
+创建、重命名或评审 Cursor Agent Skills 时，必须在写入文件前先规范化 Skill 名称。
+
+## 标识符规则
+
+- Skill 目录名必须与 YAML `name` 完全一致。
+- 只能使用小写 kebab-case：`a-z`、`0-9` 与 `-`。
+- 不要使用下划线、空格、非英文目录名，或与内置 Skill 冲突的名称。
+- `name` 长度必须不超过 64 个字符。
+- 使用 `<scope-or-domain>-<specific-topic>`；topic 通常应为 2-4 个具体的英文单词。
+- 避免使用含义模糊的裸 topic，例如 `utils`、`helper`、`common`、`base` 或 `manager`。
+
+## 前缀选择
+
+只使用一个主前缀。优先选择最能具体描述产物的前缀：
+
+```text
+gradle-   release-   android-
+ui-       binding-   screen-
+arch-     data-      nav-      di-
+platform- quality-   infra-    code-    workflow-
+project-  feature-
+```
+
+- 可复用 Skill 使用领域前缀：`gradle-*`、`release-*`、`android-*`、`ui-*`、`binding-*`、`screen-*`、`arch-*`、`data-*`、`nav-*`、`di-*`、`platform-*`、`quality-*`、`infra-*`、`code-*`、`workflow-*`。
+- 与特定项目的私有约定、基类、目录结构、封装组件、依赖配置、团队流程或生成代码契约绑定的 Skill，使用 `project-`。
+- 对项目专用 Skill，如果领域清晰，写作 `project-<domain>-<topic>`，例如 `project-ui-card`、`project-android-dimen`、`project-data-repository` 或 `project-feature-api`。
+- 当规则既是项目专用，又专门针对 feature module 时，使用 `project-feature-<topic>`。
+- 只有当 feature module 约定可在单个项目之外复用时，才使用裸 `feature-<topic>`。
+- 除非用户明确需要在同一套共享 Skill 中区分多个项目族，否则不要把仓库、文件夹、产品、团队或组织名称用作前缀。
+
+## 领域指引
+
+- `gradle-`：构建文件、依赖坐标、版本升级。
+- `release-`：变更日志、发布说明、已发布版本记录。
+- `android-`：Android SDK 行为、平台资源、资源命名。
+- `ui-`：布局、控件、视觉组件、动画、UI 库。
+- `binding-`：DataBinding、BindingAdapter、XML 绑定属性。
+- `screen-`：端到端的页面创建流程。
+- `arch-`：架构、模块化、用例、分层。
+- `data-`：存储、数据库、网络 API、分页，以及可复用的 repository。
+- `nav-`：导航、intent、bundle、saved state、deep link。
+- `di-`：依赖注入模块与配置。
+- `platform-`：权限、通知、相机/媒体、WebView、后台任务。
+- `quality-`：测试、安全、性能、混淆、崩溃处理、错误处理。
+- `infra-`：启动、生命周期、运行时日志、应用基础设施。
+- `code-`：代码风格、注释、命名、生成约定。
+- `workflow-`：AI 协作、文档流程、规划或评审流程。
+
+## 常见消歧
+
+- 发布历史使用 `release-*`；运行时日志使用 `infra-logging`。不要使用裸 `log-*`。
+- 项目本地的变更日志辅助 Skill 使用 `project-release-*`，不要使用由文件夹名派生的前缀。
+- 项目本地的 UI 封装使用 `project-ui-*`，即使它封装的是可复用 UI 库。
+- 项目专用的 Android 资源规则使用 `project-android-*`；可复用的 Android 资源规则使用 `android-*`。
+- 项目专用的 feature API/repository 模式使用 `project-feature-*`；可复用的 feature 分层规则使用 `feature-*` 或 `arch-*`。
+
+## 描述与配套规则
+
+- Skill YAML `description` 必须同时说明该 Skill 做什么，以及何时使用。
+- 包含用户可能会说出的触发词，同时保持 description 不超过 1024 个字符。
+- 如有配套的 Project Rule，除非是在记录旧别名，否则应与 Skill 使用相同词干。
+- 如果从现有 prompt 名称转换而来，应将 snake_case 转为 kebab-case，并添加正确前缀；不要保留下划线。
+
+## 预检清单
+
+- [ ] 目录名等于 YAML `name`。
+- [ ] 名称为小写 kebab-case，且不超过 64 个字符。
+- [ ] 名称包含一个主领域前缀或主 scope 前缀。
+- [ ] 项目专用行为使用 `project-...`。
+- [ ] Topic 具体明确，不是模糊的 helper/common/utils 类名称。
+- [ ] Description 同时包含 WHAT 与 WHEN。
+- [ ] 如有配套 Rule，其名称与 Skill 词干一致。

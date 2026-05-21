@@ -10,7 +10,7 @@
 
 | 相对路径 | 用途 | 编目文件数（约） |
 |----------|------|------------------|
-| `rules/` | Cursor Project Rules（`.mdc`） | 3 |
+| `rules/` | Cursor Project Rules（`.mdc`） | 4 |
 | `skills/` | 本仓库工程向 Agent Skills（各子目录 `SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 3 份 reference |
 
 > 若仓库新增 `.cursor` 下其它目录或顶层说明文件且希望团队可见，请在本表与后文增加小节。`.DS_Store` 等本地杂项不入编目。
@@ -23,7 +23,8 @@
 ├── rules/
 │   ├── chinese-simplified.mdc
 │   ├── cursor-catalog-sync.mdc
-│   └── karpathy-guidelines.mdc
+│   ├── karpathy-guidelines.mdc
+│   └── skill-naming-normalization.mdc
 └── skills/
     ├── android-dimen-dp-sp/SKILL.md
     ├── android-version-platform-adapt/
@@ -54,6 +55,7 @@
 | [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | 本工作区助手默认使用简体中文回复。 |
 | [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目内容后同步 README；条目顺序对齐文件系统；表格与列表描述凝练准确。 |
 | [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | **否** | 减少常见 LLM 编码失误的行为准则；写码/评审/重构时按需 Read 合并。 |
+| [skill-naming-normalization.mdc](rules/skill-naming-normalization.mdc) | 是 | 创建或重命名 Skill 前规范目录名、YAML `name`、领域前缀与项目级 `project-` 前缀。 |
 
 ### 1.1 `chinese-simplified.mdc`
 
@@ -71,6 +73,10 @@
     2. **极简**：只实现需求内功能；避免过度抽象与无效防御代码。
     3. **手术式修改**：只改必要处；风格与仓库一致；自己引入的无用引用要删，不擅自删历史死代码。
     4. **目标可验证**：把任务拆成可检查步骤（测试、通过标准等）。
+
+### 1.4 `skill-naming-normalization.mdc`
+
+- **作用**：创建、重命名或评审 Skill 前规范命名；通用能力用领域前缀，项目专有能力统一用 `project-<领域>-<主题>`。
 
 ---
 
