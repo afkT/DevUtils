@@ -27,7 +27,7 @@ disable-model-invocation: true
 | Android 15 | `15` | `behavior-changes-15` | 35 |
 
 - **N** 与官网路径一致（Android 17 → `17`）。
-- **API level**、**`VERSION_CODES` 常量名**以该版 [setup-sdk](https://developer.android.com/about/versions/17/setup-sdk) 与 [API 参考](https://developer.android.com/reference/android/os/Build.VERSION_CODES) 为准；写 `@RequiresApi` 时与项目 `VersionUtils` / 既有工具类对齐。
+- **API level**、**`VERSION_CODES` 常量名**以该版 [setup-sdk](https://developer.android.com/about/versions/17/setup-sdk) 与 [API 参考](https://developer.android.com/reference/android/os/Build.VERSION_CODES) 为准；写 `@RequiresApi` 时与仓库既有版本判断封装或同领域工具类对齐，必要时先在 `lib/DevApp` 下检索 `*Version*`、`*Utils`。
 
 ### URL 模板（将 `{N}` 换为版本号）
 
@@ -55,7 +55,7 @@ disable-model-invocation: true
 3. **区分受众**：
    - **所有应用**：设备跑在 N 上即可能受影响（与 `targetSdkVersion` 无关）。
    - **target N**：仅 `targetSdkVersion >= N` 时强制或默认生效。
-4. **落地范围**：只改任务相关模块；工具类放 `lib/DevApp` 等既有包时，类级 `<pre>` 可链官方页（参照 `JobSchedulerUtils`）。
+4. **落地范围**：只改任务相关模块；工具类优先扩展 `lib/DevApp` 下同领域 `*Utils`，落点不明确时先用 Glob / 内容检索找相近封装；类级或方法级 `<pre>` 可链官方页（已有示例见 [reference.md](reference.md)）。
 5. **API 引用**：新 API 以 [Android API reference](https://developer.android.com/reference) 为准；features 页仅作索引，实现前核对方法签名与 `@RequiresApi`。
 
 ## 工作流
@@ -136,7 +136,7 @@ disable-model-invocation: true
 #### 3.2 代码与文档
 
 - 新增/修改 Java 或 Kotlin 方法前：**Read** `code-method-normalize`。
-- `@RequiresApi` / `VersionUtils.is*()` 与 **API level** 一致；官方链接放在类或方法 `<pre>` 的 `@see <a href="...">`。
+- `@RequiresApi` / 既有版本判断封装与 **API level** 一致；官方链接放在类或方法 `<pre>` 的 `@see <a href="...">`。
 - 行为变更 **缓解**（如后台音频、MessageQueue 反射、SMS OTP）优先 **安全默认 + 可选 API**，与 DevUtils 工具类风格一致。
 
 ### 4. 扫描子目录（必做）
