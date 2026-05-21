@@ -92,7 +92,7 @@
 | [android-version-platform-adapt/SKILL.md](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | **关** | [reference.md](skills/android-version-platform-adapt/reference.md) | 按 Android 官方版本文档做行为变更与新 API 适配；targetSdk 升级与工具封装。 |
 | [binding-adapter-from-source/SKILL.md](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [reference.md](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局 `app:binding_*` 属性。 |
 | [code-method-normalize/SKILL.md](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 规范化 Java/Kotlin 方法注释与写法（JavaDoc/KDoc、final、安全返回等）。 |
-| [gradle-central-deps/SKILL.md](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 新增或引用 Gradle 依赖时走集中坐标与 `deps_*.gradle` 流程。 |
+| [gradle-central-deps/SKILL.md](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 按 `DEPS_ROOT`/`DEPS_MANIFEST` 契约新增或引用集中坐标与 deps 清单。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `config*.gradle` 中第三方 GAV；多源校验版本与坐标迁移。 |
 | [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按库根 `CHANGELOG.md` 版式，用 git 完整提交说明更新发版记录。 |
 | [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 按控件继承链补全 DevSimple `ViewTheme.*` 样式。 |
@@ -127,7 +127,7 @@
 
 ### 2.5 `gradle-central-deps`
 
-- **核心**：坐标集中在 `config.gradle` / `config_libs.gradle`；禁止重复 GAV；业务在 `file/deps/*.gradle` 按现有风格引用。
+- **核心**：布局契约 `DEPS_ROOT=file/gradle`、`DEPS_MANIFEST=file/deps`；坐标在 `{DEPS_ROOT}/config*.gradle`，业务引用 `{DEPS_MANIFEST}/deps_*.gradle`；禁止重复 GAV。
 - **官方检索**：新增 AndroidX 前查 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn)。
 
 ### 2.6 `gradle-third-party-version-upgrade`

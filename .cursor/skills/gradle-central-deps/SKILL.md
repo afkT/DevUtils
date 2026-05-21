@@ -1,19 +1,41 @@
 ---
 name: gradle-central-deps
 description: >-
-  在 Project 仓库中新增或引用 Gradle 依赖时，先查 `file/gradle/config.gradle` 与
-  `file/gradle/config_libs.gradle` 是否已有坐标；按官方/非官方规则写入对应分组，并在
-  `file/deps/deps_android.gradle` 或 `file/deps/deps_project.gradle` 中按现有风格引用。
-  在用户要求添加 AndroidX、CameraX、Kotlin、Jetpack、第三方 Maven 依赖或修改 deps 清单时使用。
+  在 DevUtils 工程（仓库布局契约 DEPS_ROOT=file/gradle、DEPS_MANIFEST=file/deps）中
+  新增或引用 Gradle 依赖时，先查 {DEPS_ROOT}/config.gradle 与 {DEPS_ROOT}/config_libs.gradle
+  是否已有坐标；按官方/非官方规则写入对应分组，并在 {DEPS_MANIFEST}/deps_android.gradle
+  或 deps_project.gradle 中按现有风格引用。在用户要求添加 AndroidX、CameraX、Kotlin、
+  Jetpack、第三方 Maven 依赖或修改 deps 清单时使用。
 ---
 
 # Project 中心化依赖（Gradle）
 
-根工程 `build.gradle` 已依次 `apply`：`file/gradle/config.gradle`（`ext.deps`）、`file/gradle/config_libs.gradle`（`ext.deps_lib`）。**任何新依赖必须先查是否已存在，禁止重复定义同一坐标。**
+## 仓库布局契约（路径唯一来源）
+
+本 Skill 内凡出现依赖配置路径，均以下列符号展开；**将来若抽成 `project-gradle-*` 或 fork 改目录，只改本表一行即可**。
+
+| 符号 | 当前值（DevUtils） | 说明 |
+|------|-------------------|------|
+| `DEPS_ROOT` | `file/gradle` | 坐标定义：`ext.deps`、`ext.deps_lib`、`versions.gradle` 等 |
+| `DEPS_MANIFEST` | `file/deps` | 业务侧聚合引用：`deps_*.gradle` |
+
+**常用文件（由契约展开）**
+
+| 符号路径 | 变量 | 用途 |
+|----------|------|------|
+| `{DEPS_ROOT}/config.gradle` | `deps` | 构建插件、`dev`、官方 `kotlin` / `androidx` |
+| `{DEPS_ROOT}/config_libs.gradle` | `deps_lib` | 非 Android 官方第三方库 |
+| `{DEPS_ROOT}/versions.gradle` | `versions` | `${versions.xxx}` 集中版本号 |
+| `{DEPS_MANIFEST}/deps_android.gradle` | — | 引用 `deps.*`（Android 库 / 示例） |
+| `{DEPS_MANIFEST}/deps_project.gradle` | — | 引用 `deps_lib.*`（示例 / 第三方 lib 聚合） |
+
+根工程 `build.gradle` 已依次 `apply`：`{DEPS_ROOT}/config.gradle`（`ext.deps`）、`{DEPS_ROOT}/config_libs.gradle`（`ext.deps_lib`）。**任何新依赖必须先查是否已存在，禁止重复定义同一坐标。**
+
+> 升级已有 GAV 版本、多源校验写回 → Read [gradle-third-party-version-upgrade/SKILL.md](../gradle-third-party-version-upgrade/SKILL.md)（沿用同一 `DEPS_ROOT` / `DEPS_MANIFEST`）。
 
 ## 0. 官方 Android 库检索（新增依赖前建议查阅）
 
-写入 `config.gradle` 的 **`androidx` / `kotlin` 官方坐标** 前，优先在下列站点核对 **artifact 名、稳定版号、分组语义**：
+写入 `{DEPS_ROOT}/config.gradle` 的 **`androidx` / `kotlin` 官方坐标** 前，优先在下列站点核对 **artifact 名、稳定版号、分组语义**：
 
 | 用途 | 链接 |
 |------|------|
@@ -23,24 +45,24 @@ description: >-
 | 稳定渠道说明 | [https://developer.android.com/jetpack/androidx/versions/stable-channel](https://developer.android.com/jetpack/androidx/versions/stable-channel) |
 | 旧 Support → AndroidX 映射 | [https://developer.android.com/jetpack/androidx/migrate/artifact-mappings](https://developer.android.com/jetpack/androidx/migrate/artifact-mappings) |
 
-`file/gradle/config.gradle` 内 **「Android 官方库」** 区块注释已收录上表部分链接；**查版本号以中文版总览页为准**，与 `config.gradle` 中各条目旁的 `mvnrepository.com` 链接交叉核对。
+`{DEPS_ROOT}/config.gradle` 内 **「Android 官方库」** 区块注释已收录上表部分链接；**查版本号以中文版总览页为准**，与 `config.gradle` 中各条目旁的 `mvnrepository.com` 链接交叉核对。
 
-第三方 / 非官方库不在此页检索 → 使用 [mvnrepository.com](https://mvnrepository.com/) 或库方 GitHub，并写入 `config_libs.gradle`。
+第三方 / 非官方库不在此页检索 → 使用 [mvnrepository.com](https://mvnrepository.com/) 或库方 GitHub，并写入 `{DEPS_ROOT}/config_libs.gradle`。
 
 ## 1. 查找是否已存在
 
-按优先级全文检索（建议对 **artifact 名**、**group**、**已有 key** 各搜一次）：
+按优先级在 `{DEPS_ROOT}/config.gradle` 与 `{DEPS_ROOT}/config_libs.gradle` 全文检索（建议对 **artifact 名**、**group**、**已有 key** 各搜一次）：
 
 | 文件 | 变量 | 用途 |
 |------|------|------|
-| `file/gradle/config.gradle` | `deps` | 构建插件、`dev`、**官方** `kotlin` / `androidx` 分组 |
-| `file/gradle/config_libs.gradle` | `deps_lib` | **非 Android 官方**第三方库，按子分组组织 |
+| `{DEPS_ROOT}/config.gradle` | `deps` | 构建插件、`dev`、**官方** `kotlin` / `androidx` 分组 |
+| `{DEPS_ROOT}/config_libs.gradle` | `deps_lib` | **非 Android 官方**第三方库，按子分组组织 |
 
-若已存在：跳到 **第 4 步**，只在本模块或 `file/deps/*.gradle` 中增加 `api` / `implementation` / `kapt` 引用，**不要**再写一条相同 GAV 的配置。
+若已存在：跳到 **第 4 步**，只在本模块或 `{DEPS_MANIFEST}/*.gradle` 中增加 `api` / `implementation` / `kapt` 引用，**不要**再写一条相同 GAV 的配置。
 
 ## 2. 不存在时：决定写入哪个文件、哪个分组
 
-### 2.1 写入 `file/gradle/config.gradle`（`deps`）
+### 2.1 写入 `{DEPS_ROOT}/config.gradle`（`deps`）
 
 在同时满足「官方」且语义属于下列范围时使用：
 
@@ -51,35 +73,35 @@ description: >-
 
 **CameraX**（`androidx.camera:*`）属于 AndroidX 官方 → 新增键应放在 `config.gradle` 的 **`androidx`** 分组（除非仓库后续另有约定；以文件内同类 `androidx.*` 为准）。
 
-### 2.2 写入 `file/gradle/config_libs.gradle`（`deps_lib`）
+### 2.2 写入 `{DEPS_ROOT}/config_libs.gradle`（`deps_lib`）
 
 - 非 Google/JetBrains/AndroidX 官方发布、或 group 为第三方域名（如 `com.squareup`、`com.github.*`、`io.github.*` 等）→ 放入 **`deps_lib`**。
 - 在现有子分组中选语义最接近的一个（如网络 `common`、图片 `image_widget`、路由 `router`）。**不要**把明显不属于该分组的库硬塞进去。
 - 若确实没有合适分组：**在 `deps_lib` 顶层新增一个子 map 键**（命名风格与现有一致：小写 + 下划线，如 `camera_kit`），并在该块顶部用与全文件一致的 **区块注释**（`// ===...===` + 简短中文说明）。
 
-### 2.3 与 `versions.gradle` 的关系
+### 2.3 与 `{DEPS_ROOT}/versions.gradle` 的关系
 
-`config.gradle` / `config_libs.gradle` 首行均 `apply from: versions.gradle`。若版本需多处复用或与 Kotlin 版本对齐，可像 `kotlin-gradle-plugin` 那样使用 `${versions.xxx}`；否则可直接写死版本号（与现有条目风格一致）。
+`config.gradle` / `config_libs.gradle` 首行均 `apply from: versions.gradle`（相对 `{DEPS_ROOT}`）。若版本需多处复用或与 Kotlin 版本对齐，可像 `kotlin-gradle-plugin` 那样使用 `${versions.xxx}`；否则可直接写死版本号（与现有条目风格一致）。
 
 ## 3. 新增条目时的注释与 key 命名
 
-参考两文件中已有行：
+参考 `{DEPS_ROOT}` 下两文件中已有行：
 
 - 可选：`// https://mvnrepository.com/artifact/...`
 - 一行中文说明 + 官方文档或 GitHub 链接（与邻近条目同级）。
 - **key**：全小写 + 下划线，语义清晰（如 `camerax_camera2`、`camerax_lifecycle`）；同一库多模块多个 key 时保持前缀一致。
 
-## 4. 在业务侧引用（`file/deps`）
+## 4. 在业务侧引用（`DEPS_MANIFEST`）
 
-- **Android 库 / 示例里与 `deps` 相关的清单**：照 `file/deps/deps_android.gradle` —— `api deps.kotlin.<key>`、`api deps.androidx.<key>`，需要处理器时用 `kapt`（与模块现有写法一致）。
-- **示例工程、第三方 lib 聚合清单**：照 `file/deps/deps_project.gradle` —— `api deps_lib.<子分组>.<key>`，并保留分组标题注释与简短中文/GitHub 说明。
+- **Android 库 / 示例里与 `deps` 相关的清单**：照 `{DEPS_MANIFEST}/deps_android.gradle` —— `api deps.kotlin.<key>`、`api deps.androidx.<key>`，需要处理器时用 `kapt`（与模块现有写法一致）。
+- **示例工程、第三方 lib 聚合清单**：照 `{DEPS_MANIFEST}/deps_project.gradle` —— `api deps_lib.<子分组>.<key>`，并保留分组标题注释与简短中文/GitHub 说明。
 
 具体模块若直接写依赖而不走 `deps`/`deps_lib`，仍应使用**同一字符串**（如 `api deps.androidx.camerax_core`），避免复制一份硬编码 GAV。
 
 ## 5. 自检清单
 
 - [ ] 官方 AndroidX/Kotlin 坐标已在 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn) 核对稳定版号与 artifact 名。
-- [ ] 已在 `config.gradle` 与 `config_libs.gradle` 中确认无重复坐标。
+- [ ] 已在 `{DEPS_ROOT}/config.gradle` 与 `{DEPS_ROOT}/config_libs.gradle` 中确认无重复坐标。
 - [ ] 官方/非官方归属与分组、注释风格与邻居一致。
-- [ ] 若在 `deps` / `deps_lib` 新增 key，已在对应的 `file/deps/*.gradle` 或目标模块 `build.gradle` 中增加引用行。
+- [ ] 若在 `deps` / `deps_lib` 新增 key，已在 `{DEPS_MANIFEST}/deps_*.gradle` 或目标模块 `build.gradle` 中增加引用行。
 - [ ] 需要注解处理器时同时声明 `kapt` 行（若该模块已使用 kapt）。
