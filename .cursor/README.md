@@ -96,7 +96,7 @@
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `config*.gradle` 中第三方 GAV；多源校验版本与坐标迁移。 |
 | [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按库根 `CHANGELOG.md` 版式，用 git 完整提交说明更新发版记录。 |
 | [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 按控件继承链补全 DevSimple `ViewTheme.*` 样式。 |
-| [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 圆角纯色背景与描边优先 DevWidget Round 系列，减少 drawable。 |
+| [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | DevWidget Round 与 `dev_*`；优先 Read `lib/DevWidget`，GitHub 仅 fallback。 |
 | [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | ShadowLayout 的 `hl_*` 与 API；以上游 GitHub/Maven 为准，不读工作区 shadowLibrary。 |
 
 表中「自动唤起」**关** = YAML 含 `disable-model-invocation: true`；**默认** = 未设置该字段（由 Cursor 产品行为决定是否自动匹配）。
@@ -147,7 +147,7 @@
 
 ### 2.9 `ui-devwidget-round`
 
-- **核心**：`Round*Layout` / `RoundTextView` / `RoundImageView` 与 `app:dev_*`；勿与 `android:background` 混用 RoundDrawable。
+- **核心**：契约 `DEVWIDGET_ROOT=lib/DevWidget`；本地优先 Read README、`round/` 源码与 `attrs.xml`；`Round*` 与 `app:dev_*`；勿与 `android:background` 混用 RoundDrawable。
 
 ### 2.10 `ui-shadowlayout`
 
