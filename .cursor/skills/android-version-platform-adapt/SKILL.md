@@ -16,7 +16,7 @@ disable-model-invocation: true
 - **唯一事实来源**：`https://developer.android.com/about/versions/` 下该版本页面及子页（优先 `?hl=zh-cn`）。
 - **禁止**仅凭记忆或第三方转载编写适配结论；未读官方页面前不得断言某变更是否存在。
 
-与仓库方法风格：生成或改写 **方法体与文档** 前，**Read** 并按 [java-kotlin-method-normalize/SKILL.md](../java-kotlin-method-normalize/SKILL.md) 执行。
+与仓库方法风格：生成或改写 **方法体与文档** 前，**Read** 并按 [code-method-normalize/SKILL.md](../code-method-normalize/SKILL.md) 执行。
 
 ## 版本参数
 
@@ -135,7 +135,7 @@ disable-model-invocation: true
 
 #### 3.2 代码与文档
 
-- 新增/修改 Java 或 Kotlin 方法前：**Read** `java-kotlin-method-normalize`。
+- 新增/修改 Java 或 Kotlin 方法前：**Read** `code-method-normalize`。
 - `@RequiresApi` / `VersionUtils.is*()` 与 **API level** 一致；官方链接放在类或方法 `<pre>` 的 `@see <a href="...">`。
 - 行为变更 **缓解**（如后台音频、MessageQueue 反射、SMS OTP）优先 **安全默认 + 可选 API**，与 DevUtils 工具类风格一致。
 
@@ -171,7 +171,7 @@ done | sort -u
 - [ ] 2.3 WebFetch release-notes、migration、setup-sdk（按需）
 - [ ] 4. 扫描链接并补读遗漏子页
 - [ ] 3.1 输出适配摘要表
-- [ ] 3.2 代码：Read java-kotlin-method-normalize → 实现/修复 → 链官方 URL
+- [ ] 3.2 代码：Read code-method-normalize → 实现/修复 → 链官方 URL
 ```
 
 ## 与其它 Skill 的分工
@@ -179,9 +179,9 @@ done | sort -u
 | 场景 | Skill |
 |------|--------|
 | 平台行为变更、新 API、targetSdk 适配 | 本 Skill |
-| 方法 JavaDoc/KDoc、`final`、安全返回 | `java-kotlin-method-normalize` |
+| 方法 JavaDoc/KDoc、`final`、安全返回 | `code-method-normalize` |
 | 新增 Maven 依赖、AndroidX 版本 | `gradle-central-deps` / `gradle-third-party-version-upgrade` |
-| DataBinding `app:binding_*` | `databinding-bindingadapter-from-source` |
+| DataBinding `app:binding_*` | `binding-adapter-from-source` |
 
 ## 附加说明
 

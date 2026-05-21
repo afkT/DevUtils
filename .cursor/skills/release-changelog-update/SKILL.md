@@ -1,5 +1,5 @@
 ---
-name: lib-changelog-update
+name: release-changelog-update
 description: >-
   依据 lib 各库既有 CHANGELOG.md 版式，从上一版日期到当前用 git 收集该库路径下
   提交（含完整 commit message 正文），去重合并后撰写专业变更条目；与
@@ -8,7 +8,7 @@ description: >-
 disable-model-invocation: true
 ---
 
-# lib CHANGELOG 更新
+# 发版 CHANGELOG 更新
 
 ## 适用范围
 

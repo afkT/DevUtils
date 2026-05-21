@@ -1,8 +1,8 @@
 ---
-name: databinding-bindingadapter-from-source
+name: binding-adapter-from-source
 description: >-
   根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter（含布局属性名、扩展函数签名、与 XML 的对应关系）。
-  过滤不适合在布局单节点上表达的 API；对「仅 View 入参」的副作用用 Long? 时间戳触发；效果类开关用 Boolean? 三态（null 不改、true 开启、false 关闭，成对 set/remove）；多参数合并为 attribute 包下数据类（参照 XYI）；生成后按 java-kotlin-method-normalize 整理 KDoc/JavaDoc。
+  过滤不适合在布局单节点上表达的 API；对「仅 View 入参」的副作用用 Long? 时间戳触发；效果类开关用 Boolean? 三态（null 不改、true 开启、false 关闭，成对 set/remove）；多参数合并为 attribute 包下数据类（参照 XYI）；生成后按 code-method-normalize 整理 KDoc/JavaDoc。
   在用户要求从某类生成 BindingAdapter、补全 DataBinding 自定义属性、把工具方法暴露到 XML、或评审/改写 DevSimple bindingadapters 时使用。
 disable-model-invocation: true
 ---
@@ -13,9 +13,9 @@ disable-model-invocation: true
 
 生成或改写 **方法体与文档** 时，**同时 Read 并遵守**：
 
-- [java-kotlin-method-normalize/SKILL.md](../java-kotlin-method-normalize/SKILL.md)（JavaDoc/KDoc、`<pre>`、首段规则、`@param`/`@return`、`boolean` 对举、异常内消化等）
+- [code-method-normalize/SKILL.md](../code-method-normalize/SKILL.md)（JavaDoc/KDoc、`<pre>`、首段规则、`@param`/`@return`、`boolean` 对举、异常内消化等）
 
-本 Skill 负责 **「是否该做 BindingAdapter、属性如何设计、时间戳与合并参数」**；文档句式交给 **java-kotlin-method-normalize**。
+本 Skill 负责 **「是否该做 BindingAdapter、属性如何设计、时间戳与合并参数」**；文档句式交给 **code-method-normalize**。
 
 ## 仓库内参考实现（风格对齐）
 
@@ -142,7 +142,7 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 - XML：`app:binding_snake_case`；`@BindingAdapter` 的 `value` 与之一致。
 - Kotlin 扩展：`fun View.bindingCamelCase(...)`，与文件内现有风格一致。
 - `requireAll = false` 仅当 **确有独立缺省语义** 时使用；能合并为实体类则优先合并。
-- 有返回值时：优先 `Boolean` 表示是否执行/成功，并满足 **java-kotlin-method-normalize** 中 `boolean`/`Boolean` 的 `@return` 写法。
+- 有返回值时：优先 `Boolean` 表示是否执行/成功，并满足 **code-method-normalize** 中 `boolean`/`Boolean` 的 `@return` 写法。
 
 ---
 
@@ -152,7 +152,7 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 2. **过滤** 第 1 节不适配 XML 的 API。
 3. 对每个保留方法：**映射接收者类型**（`View` / `TextView` / `ImageView` / `ViewGroup` / `RecyclerView` 等）、**参数拆分或合并**（第 4 节）、**是否需要时间戳**（第 2 节）或 **Boolean 三态开关**（第 2.5 节）。
 4. 落文件：与现有 `bindingadapters/view` 分包一致；新增 attribute 类放 `attribute/`。
-5. **Read** `java-kotlin-method-normalize` 并整理文档与返回类型。
+5. **Read** `code-method-normalize` 并整理文档与返回类型。
 6. 自检：`@BindingAdapter` 不与同模块已有属性名冲突；危险调用 `try/catch` 与项目日志工具一致（参照 `TextView.kt`、`ImageViewLoadNative.kt`）。
 
 更细的判定表与 XML 示例见 [reference.md](reference.md)。

@@ -48,7 +48,7 @@ if (underline) {
 }
 ```
 
-## 与 java-kotlin-method-normalize 的分工
+## 与 code-method-normalize 的分工
 
 - **本 Skill**：要不要 adapter、几个属性、是否 `XYI`、是否 `Long?`、是否拆文件。
 - **normalize Skill**：首段无反引号/`[Type]`（Kotlin）、`<pre>` 里写布局属性名与对应工具方法、`@param` 不写 Kotlin 类型重复、`@return` `` `true` ``/`` `false` ``。

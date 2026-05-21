@@ -1,5 +1,5 @@
 ---
-name: devsimple-viewtheme-xml
+name: ui-devsimple-viewtheme
 description: >-
   为布局 XML 中的控件默认补全 DevSimple（lib/DevSimple）的 ViewTheme 样式引用：
   按控件继承链匹配 ViewTheme.&lt;类名&gt;，ImageView/AppCompatImageView 使用

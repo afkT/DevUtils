@@ -1,5 +1,5 @@
 ---
-name: devwidget-round-ui
+name: ui-devwidget-round
 description: >-
   在需要圆角矩形纯色背景、描边边框时，优先用 DevWidget（io.github.afkt:DevWidgetX）的
   dev.widget.ui.round 包替代 shape / layer-list drawable。列出 Round 系列 View、

@@ -1,5 +1,5 @@
 ---
-name: shadowlayout-ui
+name: ui-shadowlayout
 description: >-
   在布局中需要阴影、圆角、纯色/渐变背景、描边、pressed/selected/ripple、虚线、子 View 按圆角裁剪，
   或想少写 shape/layer-list/selector drawable 时，优先使用 com.lihang.ShadowLayout（
@@ -25,7 +25,7 @@ description: >-
 
 **不适用 / 慎用**：`hl_shapeMode="dashLine"` 时控件退化为**虚线线段**模式，初始化路径与阴影/shape 主流程不同，不能混用渐变等能力（见下文「虚线模式」）。
 
-**与 DevWidget `round` 包**：若需求仅为无阴影的圆角矩形纯色+描边且工程已用 DevWidget，可按项目 [devwidget-round-ui](../devwidget-round-ui/SKILL.md) 取舍；本 Skill 覆盖**阴影、渐变、ripple、selector 态、裁剪**等更重场景。
+**与 DevWidget `round` 包**：若需求仅为无阴影的圆角矩形纯色+描边且工程已用 DevWidget，可按项目 [ui-devwidget-round](../ui-devwidget-round/SKILL.md) 取舍；本 Skill 覆盖**阴影、渐变、ripple、selector 态、裁剪**等更重场景。
 
 ## 核心事实（减少踩坑）
 

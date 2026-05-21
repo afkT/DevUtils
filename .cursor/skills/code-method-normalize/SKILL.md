@@ -1,5 +1,5 @@
 ---
-name: java-kotlin-method-normalize
+name: code-method-normalize
 description: >-
     规范化新生成或改写的 Java/Kotlin 方法：Java 用 JavaDoc、Kotlin 用 KDoc，两套规则不混用；
     Java 入参 final（抽象方法、接口默认方法、@Override 实现除外一律不加）；
