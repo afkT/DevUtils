@@ -1,4 +1,43 @@
-# BindingAdapter 生成：补充参考
+# BindingAdapter 生成 — 参考
+
+与 [SKILL.md](SKILL.md) 配套：模块路径、**优先范例文件表**、判定速查、XML 示例与 `binding_*` 前缀。流程与规则见 SKILL。
+
+## 模块路径
+
+| 符号 | 当前值 |
+|------|--------|
+| `DEVSIMPLE_ROOT` | `lib/DevSimple` |
+| `BINDING_VIEW_DIR` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/view` |
+| `BINDING_ATTR_DIR` | `{BINDING_VIEW_DIR}/attribute` |
+| `BINDING_EXT` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/BindingAdaptersExt.kt` |
+
+新增范例文件后，更新下表「主题」列即可，**勿**在 SKILL.md 中再堆完整路径列表。
+
+## 优先范例文件（按主题选读）
+
+生成前应 **Read** `{BINDING_VIEW_DIR}` 下与任务相关的文件；下表为常用对照入口（文件名相对于 `BINDING_VIEW_DIR`）。
+
+| 文件 | 对照主题 |
+|------|----------|
+| `View.kt` | 不适合 BindingAdapter 的 API 边界说明；通用 View 适配器 |
+| `ViewScroll.kt` | `Long?.qualifiesScroll()`；`XYI` 合并位移、`binding_scroll_*` |
+| `ViewScrollDelayed.kt` | 延迟滚动触发 |
+| `ViewScrollDelayAssist.kt` | 延迟二次执行辅助 |
+| `TextView.kt` | `binding_tv_*`；**Boolean 三态** `bindingTVUnderline` / `bindingTVStrikeThru` |
+| `EditText.kt` | `binding_et_*` |
+| `ImageViewLoadEngine.kt` | `binding_image_*`（引擎加载） |
+| `ImageViewLoadNative.kt` | `binding_image_native_*`；`try/catch` 与日志风格 |
+| `ViewVisibility.kt` | 可见性相关属性 |
+| `RecyclerView.kt` | `RecyclerView` 绑定 |
+
+**attribute 目录**（`{BINDING_ATTR_DIR}`）：
+
+| 文件 | 对照主题 |
+|------|----------|
+| `XYI.kt` | 开放类 / 伴生常量、`KEEP_SCROLL`、`equals`/`hashCode`、工厂方法 |
+| `EtAttrs.kt`、`TVAttrs.kt`、`ShapeAttrs.kt` 等 | 各控件合并参数实体命名习惯 |
+
+目录内另有 `ViewState*`、`ViewPadding.kt` 等，按控件语义选读，不必全表背入 SKILL。
 
 ## 判定速查
 
@@ -66,3 +105,15 @@ if (underline) {
 | 滚动 | `binding_scroll_*` |
 
 新文件若属同一模块，应用 **最接近语义** 的前缀，避免与上表冲突。
+新增前在 `{BINDING_VIEW_DIR}` 内检索 `binding_` 避免冲突。
+
+## 维护本 reference
+
+DevSimple 新增 `bindingadapters/view/*.kt` 时：
+
+```bash
+ls lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/*.kt
+ls lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/attribute/*.kt
+```
+
+将新文件按上表格式补入 **§优先范例**；SKILL 正文保持流程，不恢复完整路径列表。

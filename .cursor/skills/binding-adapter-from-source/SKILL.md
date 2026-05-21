@@ -1,12 +1,25 @@
 ---
 name: binding-adapter-from-source
 description: >-
-  根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter（含布局属性名、扩展函数签名、与 XML 的对应关系）。
-  过滤不适合在布局单节点上表达的 API；对「仅 View 入参」的副作用用 Long? 时间戳触发；效果类开关用 Boolean? 三态（null 不改、true 开启、false 关闭，成对 set/remove）；多参数合并为 attribute 包下数据类（参照 XYI）；生成后按 code-method-normalize 整理 KDoc/JavaDoc。
-  在用户要求从某类生成 BindingAdapter、补全 DataBinding 自定义属性、把工具方法暴露到 XML、或评审/改写 DevSimple bindingadapters 时使用。
+  根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter。
+  工作区内优先 Read lib/DevSimple 下 bindingadapters；范例文件表见 reference.md。
+  过滤不适合 XML 的 API；Long? 时间戳、Boolean? 三态、attribute 合并（参照 XYI）；成稿按 code-method-normalize。
+  在用户要求生成 BindingAdapter、补全 DataBinding 属性、或评审 DevSimple bindingadapters 时使用。
 ---
 
 # 从源码生成 DataBinding BindingAdapter
+
+## 模块路径（本地优先，与 viewtheme 共用锚点）
+
+| 符号 | 当前值（DevUtils） |
+|------|-------------------|
+| `DEVSIMPLE_ROOT` | `lib/DevSimple` |
+| `BINDING_VIEW_DIR` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/view` |
+| `BINDING_ATTR_DIR` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/view/attribute` |
+
+存在 `{DEVSIMPLE_ROOT}` 时 **Read 本地 `*.kt`**，勿用 WebFetch 代替。生成前在 `{BINDING_VIEW_DIR}` 下列出并对照现有实现；**优先范例文件名、前缀惯例、判定表** → [reference.md](reference.md)。
+
+**上游 fallback**（仅工作区无模块时）：https://github.com/afkT/DevUtils/tree/master/lib/DevSimple
 
 ## 必读搭配
 
@@ -16,19 +29,11 @@ description: >-
 
 本 Skill 负责 **「是否该做 BindingAdapter、属性如何设计、时间戳与合并参数」**；文档句式交给 **code-method-normalize**。
 
-## 仓库内参考实现（风格对齐）
+## 风格对齐（执行要点）
 
-生成前应 **Read** 下列文件之一或多份，保持命名、注释结构、时间戳与实体类用法一致：
-
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`（适合 XML 的 API 边界说明）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScroll.kt`（`Long?.qualifiesScroll()`、`XYI` 合并位移）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/ViewScrollDelayed.kt`、`ViewScrollDelayAssist.kt`（延迟二次执行）
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/View.kt`、`TextView.kt`、`EditText.kt`、`ImageViewLoadEngine.kt`、`ImageViewLoadNative.kt`
-
-实体类目录与范例：
-
-- `lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/attribute/`（合并参数的数据类放此处）
-- `attribute/XYI.kt`（开放类、伴生常量如 `KEEP_SCROLL`、`equals`/`hashCode`、工厂方法等写法）
+1. **Read** `{BINDING_VIEW_DIR}` 下与目标控件相关的 `*.kt`（至少一份同族文件 + [reference.md §优先范例](reference.md#优先范例文件按主题选读) 中对应行）。
+2. 合并参数实体放在 `{BINDING_ATTR_DIR}`；`XYI` 等写法对照同目录 `XYI.kt`。
+3. 文件头「不适合 BindingAdapter」的说明以 **`View.kt`** 为准（路径见 reference）。
 
 ---
 
@@ -81,7 +86,7 @@ BindingAdapter 绑定在 **布局里的单个 View 节点**；只封装 **对该
 
 **禁止**：底层已有 `removeXxx` 时仍写 `if (flag != true) return`，导致布局绑 `false` 无法撤销效果。
 
-**仓库参考实现**：`TextView.bindingTVUnderline`、`TextView.bindingTVStrikeThru`（`lib/DevSimple/src/main/java/dev/simple/bindingadapters/view/TextView.kt`）。
+**仓库参考实现**：`TextView.bindingTVUnderline`、`TextView.bindingTVStrikeThru`（见 `{BINDING_VIEW_DIR}/TextView.kt`，reference §优先范例）。
 
 ```kotlin
 fun TextView.bindingTVUnderline(
@@ -129,7 +134,7 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 
 做法：
 
-1. 在 `dev.simple.bindingadapters.attribute`（或用户指定包的 `attribute` 子包）新增 **Kotlin data class / open class**，字段覆盖原工具方法参数（含可选默认值）。
+1. 在 `dev.simple.bindingadapters.view.attribute`（即 `{BINDING_ATTR_DIR}`，或用户指定包的 `attribute` 子包）新增 **Kotlin data class / open class**，字段覆盖原工具方法参数（含可选默认值）。
 2. **单个** `@BindingAdapter("binding_…_single_snake_name")`，入参为该类型可空；`null` 时跳过。
 3. 命名与 **XYI** 对齐习惯：简短后缀表意（如位移用 `XYI`）；补充 `equals`/`hashCode`（data class 自带）、`toString`、伴生工厂方法视需要。
 4. 迁移示例：由 `binding_scroll_instant_rel_dx` + `binding_scroll_instant_rel_dy`（`requireAll = false`）改为 **`binding_scroll_instant_rel_xy`** + `XYI?`（见用户提供的旧/新对照）。
@@ -150,8 +155,14 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 1. **Read** 用户给出的源文件，列出候选 `public`/`internal` 方法。
 2. **过滤** 第 1 节不适配 XML 的 API。
 3. 对每个保留方法：**映射接收者类型**（`View` / `TextView` / `ImageView` / `ViewGroup` / `RecyclerView` 等）、**参数拆分或合并**（第 4 节）、**是否需要时间戳**（第 2 节）或 **Boolean 三态开关**（第 2.5 节）。
-4. 落文件：与现有 `bindingadapters/view` 分包一致；新增 attribute 类放 `attribute/`。
+4. 落文件：新适配器写入 `{BINDING_VIEW_DIR}/`（按控件分文件，与现有 `TextView.kt`、`ViewScroll.kt` 等并列）；attribute 类写入 `{BINDING_ATTR_DIR}/`。
 5. **Read** `code-method-normalize` 并整理文档与返回类型。
-6. 自检：`@BindingAdapter` 不与同模块已有属性名冲突；危险调用 `try/catch` 与项目日志工具一致（参照 `TextView.kt`、`ImageViewLoadNative.kt`）。
+6. 自检：`@BindingAdapter` 不与 `{BINDING_VIEW_DIR}` 内已有属性名冲突；`try/catch` 与日志风格参照 reference 中 **TextView** / **ImageViewLoadNative** 范例。
 
-更细的判定表与 XML 示例见 [reference.md](reference.md)。
+判定表、XML 示例、`binding_*` 前缀表见 [reference.md](reference.md)。
+
+## 执行清单
+
+- [ ] 已 Read 本地 `{BINDING_VIEW_DIR}` 或 reference §优先范例，而非仅凭记忆写适配器。
+- [ ] 已对照 reference §DevSimple 前缀惯例，避免 `binding_*` 冲突。
+- [ ] 新 attribute 类落在 `{BINDING_ATTR_DIR}`；成稿前已 Read `code-method-normalize`。
