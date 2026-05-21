@@ -10,6 +10,7 @@
 
 | 相对路径 | 用途 | 编目文件数（约） |
 |----------|------|------------------|
+| `audits/` | `.cursor` 维护审计报告 | 1 |
 | `rules/` | Project Rules（`.mdc`） | 5 |
 | `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 6 份 reference |
 
@@ -18,6 +19,8 @@
 ```
 .cursor/
 ├── README.md
+├── audits/
+│   └── skill-local-path-audit.md
 ├── rules/
 │   ├── chinese-simplified.mdc
 │   ├── cursor-catalog-sync.mdc
@@ -51,7 +54,15 @@
 
 ---
 
-## 一、`rules/`（Project Rules）
+## 一、`audits/`（维护审计）
+
+| 文件 | 说明 |
+|------|------|
+| [skill-local-path-audit.md](audits/skill-local-path-audit.md) | 扫描 `skills/` 的本地路径、目录契约、互链与 reference 分工，并给出维护建议。 |
+
+---
+
+## 二、`rules/`（Project Rules）
 
 | 文件 | alwaysApply | 说明 |
 |------|:-------------:|------|
@@ -63,7 +74,7 @@
 
 ---
 
-## 二、`skills/`（工程向 Skills）
+## 三、`skills/`（工程向 Skills）
 
 任务匹配时 Agent 应 **Read** 对应 [SKILL.md](skills/)；含 `reference.md` 的 Skill 在需要全表或扫描清单时再读 reference。
 
@@ -84,13 +95,13 @@
 
 ---
 
-## 三、与本机「用户级」Skills 的区别
+## 四、与本机「用户级」Skills 的区别
 
 本仓库 `skills/` 仅覆盖 **DevUtils 工程**相关能力（Gradle、尺寸、UI 库、DataBinding、平台适配等）。本机 `~/.cursor/skills-cursor/` 下的通用 Skills（如 create-rule、create-skill 等）不在此说明。
 
 ---
 
-## 四、维护检查清单
+## 五、维护检查清单
 
 - [ ] 子树一览、目录树、上表与仓库 `.cursor/` 实际内容一致。
 - [ ] 表格行、目录树子项顺序与同目录文件系统顺序一致（默认字典序）。
