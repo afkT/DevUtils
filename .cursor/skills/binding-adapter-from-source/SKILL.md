@@ -4,7 +4,6 @@ description: >-
   根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter（含布局属性名、扩展函数签名、与 XML 的对应关系）。
   过滤不适合在布局单节点上表达的 API；对「仅 View 入参」的副作用用 Long? 时间戳触发；效果类开关用 Boolean? 三态（null 不改、true 开启、false 关闭，成对 set/remove）；多参数合并为 attribute 包下数据类（参照 XYI）；生成后按 code-method-normalize 整理 KDoc/JavaDoc。
   在用户要求从某类生成 BindingAdapter、补全 DataBinding 自定义属性、把工具方法暴露到 XML、或评审/改写 DevSimple bindingadapters 时使用。
-disable-model-invocation: true
 ---
 
 # 从源码生成 DataBinding BindingAdapter
