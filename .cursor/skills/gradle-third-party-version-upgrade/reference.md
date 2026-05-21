@@ -42,7 +42,7 @@ https://developer.android.com/jetpack/androidx/releases/room
 
 ## 本仓库注释风格示例
 
-与 `config_libs.gradle` 邻居一致即可，例如：
+与 `{DEPS_ROOT}/config_libs.gradle` 邻居一致即可，例如：
 
 ```groovy
 // https://mvnrepository.com/artifact/com.google.code.gson/gson
