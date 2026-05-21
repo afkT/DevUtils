@@ -2,7 +2,7 @@
 
 本文档路径：**`.cursor/README.md`**（GitHub 浏览 `.cursor` 目录时默认展示）。用于汇总本仓库 **`.cursor/`** 下与 Cursor 相关的配置与约定，便于与 Agent 快速查阅；**不限于** `rules`、`skills`，后续若增加 `hooks`、`agents`、其它约定目录或单文件说明，应在本目录中 **增删对应章节与表格**。
 
-**维护约定**：凡在本仓库对 `.cursor/` 做 **新增、删除、重命名** 等会影响「工作区行为或可发现性」的变更（含规则 `.mdc`、各 Skill 的 `SKILL.md`、伴随 `reference.md`、以及未来其它纳入编目的路径），请同步更新 **本 README**（目录表、相对路径、摘要与文末清单）。同步义务由规则 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) 提醒 Agent 执行。
+**维护约定**：凡在本仓库对 `.cursor/` 做 **新增、删除、重命名** 等会影响「工作区行为或可发现性」的变更（含规则 `.mdc`、各 Skill 的 `SKILL.md`、伴随 `reference.md`、以及未来其它纳入编目的路径），请同步更新 **本 README**（目录表、相对路径、摘要与文末清单）。同步义务由规则 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) 提醒 Agent 执行；**条目顺序**与 **描述风格** 亦见该规则。
 
 ---
 
@@ -13,7 +13,7 @@
 | `rules/` | Cursor Project Rules（`.mdc`） | 3 |
 | `skills/` | 本仓库工程向 Agent Skills（各子目录 `SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 3 份 reference |
 
-> 若仓库新增 `.cursor` 下其它目录或顶层文件且希望团队可见，请在本表与后文增加小节。`.DS_Store` 等本地杂项不入编目。
+> 若仓库新增 `.cursor` 下其它目录或顶层说明文件且希望团队可见，请在本表与后文增加小节。`.DS_Store` 等本地杂项不入编目。
 
 ### 目录树（与仓库对齐）
 
@@ -51,15 +51,19 @@
 
 | 文件 | alwaysApply | description（YAML） |
 |------|:-------------:|---------------------|
-| [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | Assistant replies in Simplified Chinese for this workspace. |
-| [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目内容后同步更新 `README.md`（含后续 hooks 等纳入编目的路径）。 |
-| [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | **否** | Behavioral guidelines to reduce common LLM coding mistakes…（写码/评审/重构时按需合并） |
+| [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | 本工作区助手默认使用简体中文回复。 |
+| [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目内容后同步 README；条目顺序对齐文件系统；表格与列表描述凝练准确。 |
+| [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | **否** | 减少常见 LLM 编码失误的行为准则；写码/评审/重构时按需 Read 合并。 |
 
 ### 1.1 `chinese-simplified.mdc`
 
 - **作用**：本工作区助手默认使用**简体中文**回复。
 
-### 1.2 `karpathy-guidelines.mdc`
+### 1.2 `cursor-catalog-sync.mdc`
+
+- **作用**：改动 `.cursor/` 编目范围后更新本 README；表格行、§ 编号与目录树子项顺序须与同目录文件系统顺序一致；说明列与分条列表保持简短准确。
+
+### 1.3 `karpathy-guidelines.mdc`
 
 - **作用**：编码与协作行为准则；**非**默认全量注入（`alwaysApply: false`），在编写、评审或重构代码时由 Agent **Read 后**与项目说明合并使用。
 - **要点摘要**：
@@ -67,10 +71,6 @@
     2. **极简**：只实现需求内功能；避免过度抽象与无效防御代码。
     3. **手术式修改**：只改必要处；风格与仓库一致；自己引入的无用引用要删，不擅自删历史死代码。
     4. **目标可验证**：把任务拆成可检查步骤（测试、通过标准等）。
-
-### 1.3 `cursor-catalog-sync.mdc`
-
-- **作用**：在改动 `.cursor/` 编目范围内文件或结构后，**更新本文件 `README.md`**，避免说明与仓库脱节。
 
 ---
 
@@ -82,71 +82,70 @@
 
 | 目录 / 文件 | `name` | 自动唤起 | 伴随 reference | 触发场景（来自 description） |
 |-------------|--------|:--------:|:--------------:|------------------------------|
-| [gradle-central-deps/SKILL.md](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 在本仓库新增/引用 Gradle 依赖；查 `file/gradle/config.gradle`、`config_libs.gradle`；改 `file/deps/deps_*.gradle`；AndroidX/CameraX/Kotlin/Jetpack/第三方 Maven。 |
-| [android-dimen-dp-sp/SKILL.md](skills/android-dimen-dp-sp/SKILL.md) | `android-dimen-dp-sp` | 默认 | — | 去掉魔法数、统一 dimen、把硬编码 dp/sp 改为 `@dimen/dp_*`、`@dimen/sp_*` / `R.dimen.*`。 |
-| [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | 阴影、圆角、渐变、描边、pressed/selected/ripple、虚线、子 View 圆角裁剪；少写 shape/layer-list；使用 `com.lihang.ShadowLayout`。 |
-| [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 圆角矩形纯色背景、描边；优先 DevWidget `dev.widget.ui.round`；替代多余 drawable。 |
-| [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 默认补全 DevSimple `ViewTheme.*`；继承链匹配；ImageView 用 `ViewTheme.ImageView.FIT_XY`。 |
-| [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `file/gradle/config.gradle`、`config_*.gradle` 中第三方 GAV；Central/JitPack/GitHub/插件门户交叉校验；同步 `versions.gradle`、坐标迁移与注释开源链接。 |
-| [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按目标库根 `CHANGELOG.md` 既有版式更新发版记录；从上一版日期至今用 git（**完整** commit message）归纳去重；与项目发版版本配置对齐；少变更时参照历史 `[Chore]` 等写法。 |
-| [code-method-normalize/SKILL.md](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 规范化 Java/Kotlin 方法：**Java 用 JavaDoc、Kotlin 用 KDoc**（不混用）；Java 入参 `final`（抽象/`interface default`/`@Override` 不加）；**方法注释与备注同一规则**：首段/首行无内联代码与类型引用，备注 **`<pre>`**；`@param`/`@return` 齐全；Kotlin **`@param` 行不写 `[类型]`**；**boolean** 的 `@return` 对举；优先非 void/Unit 安全返回、异常内捕获。 |
-| [binding-adapter-from-source/SKILL.md](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [reference.md](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 **BindingAdapter** 与 `app:binding_*`；过滤不适合 XML 的 API；**仅 View 入参** 的重复触发用 **`Long?` 时间戳**；**效果开关** 用 **`Boolean?` 三态**；多参数 **合并为 `attribute/` 实体**（参照 `XYI`）；生成文档时搭配 **code-method-normalize**。 |
-| [android-version-platform-adapt/SKILL.md](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | **关** | [reference.md](skills/android-version-platform-adapt/reference.md) | 按 `developer.android.com/about/versions/{N}` 官方文档做 **行为变更** 与 **新功能/API**；扫描子页；targetSdk 升级与工具类封装；成稿前 **Read** `code-method-normalize`。 |
+| [android-dimen-dp-sp/SKILL.md](skills/android-dimen-dp-sp/SKILL.md) | `android-dimen-dp-sp` | 默认 | — | 将硬编码 dp/sp 改为 `@dimen/dp_*`、`@dimen/sp_*` 与 `R.dimen.*` 引用。 |
+| [android-version-platform-adapt/SKILL.md](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | **关** | [reference.md](skills/android-version-platform-adapt/reference.md) | 按 Android 官方版本文档做行为变更与新 API 适配；targetSdk 升级与工具封装。 |
+| [binding-adapter-from-source/SKILL.md](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [reference.md](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局 `app:binding_*` 属性。 |
+| [code-method-normalize/SKILL.md](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 规范化 Java/Kotlin 方法注释与写法（JavaDoc/KDoc、final、安全返回等）。 |
+| [gradle-central-deps/SKILL.md](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 新增或引用 Gradle 依赖时走集中坐标与 `deps_*.gradle` 流程。 |
+| [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `config*.gradle` 中第三方 GAV；多源校验版本与坐标迁移。 |
+| [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按库根 `CHANGELOG.md` 版式，用 git 完整提交说明更新发版记录。 |
+| [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 按控件继承链补全 DevSimple `ViewTheme.*` 样式。 |
+| [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 圆角纯色背景与描边优先 DevWidget Round 系列，减少 drawable。 |
+| [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | 阴影、圆角、渐变与状态背景优先 ShadowLayout，少写 shape drawable。 |
 
 表中「自动唤起」**关** = YAML 含 `disable-model-invocation: true`；**默认** = 未设置该字段（由 Cursor 产品行为决定是否自动匹配）。
 
 **曾用名（已废弃，勿再引用路径）**：`shadowlayout-ui` → `ui-shadowlayout`；`devwidget-round-ui` → `ui-devwidget-round`；`devsimple-viewtheme-xml` → `ui-devsimple-viewtheme`；`lib-changelog-update` → `release-changelog-update`；`java-kotlin-method-normalize` → `code-method-normalize`；`databinding-bindingadapter-from-source` → `binding-adapter-from-source`。
 
-### 2.1 `gradle-central-deps`
+### 2.1 `android-dimen-dp-sp`
 
-- **核心**：依赖坐标集中在 `config.gradle`（`deps`）与 `config_libs.gradle`（`deps_lib`）；**禁止重复 GAV**；官方 AndroidX/Kotlin 等进 `deps`，第三方进 `deps_lib`；业务侧在 `file/deps/*.gradle` 按现有风格引用。
-- **官方检索**：新增 AndroidX 坐标前查 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn)（Skill 内 §0 含 explorer / releases 等链接表）。
+- **核心**：`dp_`/`sp_` 资源命名规则；默认假定 dimen 已存在；不擅自新建 `dimens.xml`（除非用户要求）。
 
-### 2.2 `android-dimen-dp-sp`
+### 2.2 `android-version-platform-adapt`
 
-- **核心**：资源名 `dp_`/`sp_` + 整数或 `整数_一位小数数字`（截断非四舍五入）；默认假定 dimen 已存在；不擅自新建 `dimens.xml`（除非用户要求）。
+- **YAML**：`disable-model-invocation: true`。
+- **核心**：以 `developer.android.com/about/versions/{N}` 为准扫描行为变更与新特性；输出适配摘要并落地 Manifest/Gradle/`lib/DevApp`。
+- **reference**：[reference.md](skills/android-version-platform-adapt/reference.md) — 路径规律与已扫子页清单（执行时须重跑扫描）。
+- **成稿前 Read** `code-method-normalize`。
 
-### 2.3 `ui-shadowlayout`
+### 2.3 `binding-adapter-from-source`
 
-- **核心**：`R.styleable.ShadowLayout` 下 `app:hl_*` 全表与 API；注意 **`hl_strokeWith` 拼写**；`dashLine` 模式单独使用；与 DevWidget round 的取舍说明（见 `ui-devwidget-round`）。
+- **核心**：从工具类/View 源码推导 BindingAdapter；过滤不适合 XML 的 API；重复触发用 `Long?` 时间戳；效果开关用 `Boolean?` 三态；多参合并为 `attribute/` 类型。
+- **reference**：[reference.md](skills/binding-adapter-from-source/reference.md) — 判定表与 XML 示例。
+- **成稿前 Read** `code-method-normalize`。
 
-### 2.4 `ui-devwidget-round`
+### 2.4 `code-method-normalize`
 
-- **核心**：`Round*Layout` / `RoundTextView` / `RoundImageView`（圆形图）与 `app:dev_*`；**勿与 `android:background` 混用** RoundDrawable 方案。
+- **核心**：Java 用 JavaDoc、Kotlin 用 KDoc；Java 形参默认 `final`（抽象/`@Override` 等例外）；注释结构、 `@param`/`@return` 与 boolean 对举规则；优先安全非 void 返回。
+- **搭配**：`binding-adapter-from-source`、`android-version-platform-adapt` 成稿前须 Read 本 Skill。
 
-### 2.5 `ui-devsimple-viewtheme`
+### 2.5 `gradle-central-deps`
 
-- **核心**：按控件语义类名匹配 `ViewTheme.<Name>`；AppCompat/Material 回退到平台 Widget 名；`ViewPager2` → `ViewTheme.ViewPager`；无匹配 → `ViewTheme.View`；维护时应用 grep 更新 Skill 内「根样式表」。源码参考 `lib/DevSimple/src/main/res/values/`。
+- **核心**：坐标集中在 `config.gradle` / `config_libs.gradle`；禁止重复 GAV；业务在 `file/deps/*.gradle` 按现有风格引用。
+- **官方检索**：新增 AndroidX 前查 [AndroidX 版本总览（中文）](https://developer.android.com/jetpack/androidx/versions?hl=zh-cn)。
 
 ### 2.6 `gradle-third-party-version-upgrade`
 
 - **YAML**：`disable-model-invocation: true`。
-- **核心**：多源查证最新可解析版本；写回 `config.gradle` / `config_libs.gradle` 等含 GAV 的 `config_*.gradle` 与 `versions.gradle`；JitPack/GitHub 补证；缺失则补开源/文档链接；纯路径类 `config_files.gradle` 默认跳过。
-- **reference**：[reference.md](skills/gradle-third-party-version-upgrade/reference.md) — Maven Central Solr、`maven-metadata.xml`、JitPack API 等 URL 模板与示例。
+- **核心**：多源查证最新可解析版本；写回 `config*.gradle` 与 `versions.gradle`；补开源/文档链接。
+- **reference**：[reference.md](skills/gradle-third-party-version-upgrade/reference.md) — Central/JitPack 等 URL 模板。
 
 ### 2.7 `release-changelog-update`
 
 - **YAML**：`disable-model-invocation: true`。
-- **前缀**：`release-`（发版 CHANGELOG；运行时打 Log 规划为 `infra-logging`，见 `docs/skill-naming-convention.md` §3.4.1）。
-- **核心**：以 CHANGELOG 顶栏上一版日期为时间窗，对该库根及关联源码路径 `git log` 且使用 **`%B` 完整提交说明**（勿只看 subject）；合并重复主题、按历史标签与语气写条目；版本名以项目发版版本源或用户指定为准；几乎无代码变更时参照同文件历史（如依赖同步的 `[Chore]`），不虚构功能。多目录共用一份 CHANGELOG 时以 CHANGELOG 所在目录为库根。
+- **核心**：以 CHANGELOG 顶栏上一版日期为窗，`git log` 用 `%B` 完整说明；合并重复主题；版本以发版配置或用户指定为准。
 
-### 2.8 `code-method-normalize`
+### 2.8 `ui-devsimple-viewtheme`
 
-- **核心**：**Java 写 JavaDoc、Kotlin 写 KDoc**，两套内联规则不混用。Java 形参默认 `final`，**抽象方法、`interface default`、`@Override` 实现** 的形参不加 `final`（Kotlin 暂不强制）。**方法注释（首段）与方法备注** 同一结构：首段/首行不写代码形态引用（Java 首段无 `{@}`；Kotlin 首段无反引号代码、无 `[…]` 符号链接），补充说明一律用 **`<pre>`**（两种语言均如此）。有非 `void` / 非 `Unit` 返回值且有参时写全 `@param`/`@return`；Kotlin **`@param` 行不写 `[类型]`**（避免与签名重复）。**`Boolean`/`boolean` 的 `@return`**：Java 用 `@return {@code true} …, {@code false} …`，Kotlin 用 `` @return `true` …, `false` … ``。**类型引用**：Java `{@link …}`；Kotlin 在 **`@return` 行与 `<pre>` 内** 等可用 `[…]`。在合理时返回入参或语义化结果替代空洞 `void`/`Unit`；可能抛错处 `try/catch` 后安全返回，避免将崩溃风险留给未捕获的 `throws`。
-- **搭配**：`binding-adapter-from-source`、`android-version-platform-adapt` 成稿前须 Read 本 Skill。
+- **核心**：按控件语义类名匹配 `ViewTheme.<Name>`；`ViewPager2` → `ViewTheme.ViewPager`；无匹配 → `ViewTheme.View`。源码见 `lib/DevSimple/src/main/res/values/`。
 
-### 2.9 `binding-adapter-from-source`
+### 2.9 `ui-devwidget-round`
 
-- **核心**：面向 **DataBinding**，从工具类/View 相关源码推导 **BindingAdapter**；排除 `inflate`、`getActivity` 等在布局单节点无意义 API；**命令式重复触发** 用 **`Long?` 正时间戳**（与 `ViewScroll.kt` 中 `qualifiesScroll` 同逻辑，可抽通用扩展名）；**效果类开/关** 用 **`Boolean?` 三态**（`null` 不改、`true`/`false` 分别调 set/remove，参照 `TextView.bindingTVUnderline`）；相关多参合并为 **`bindingadapters/view/attribute`** 下类型（对齐 `XYI.kt`）。
-- **reference**：[reference.md](skills/binding-adapter-from-source/reference.md) — 判定速查表、XML 时间戳示例、与 `ViewScroll*` 对照。
-- **成稿前 Read** `code-method-normalize`。
+- **核心**：`Round*Layout` / `RoundTextView` / `RoundImageView` 与 `app:dev_*`；勿与 `android:background` 混用 RoundDrawable。
 
-### 2.10 `android-version-platform-adapt`
+### 2.10 `ui-shadowlayout`
 
-- **YAML**：`disable-model-invocation: true`。
-- **核心**：**必须以官方文档为准**（`WebFetch` / 扫描链接）；工作流：**1** `behavior-changes-all` → **1.2** `behavior-changes-{N}` → **1.3** `changes/*` → **1.4** `non-sdk-{N}` / `compat-framework-changes`；**2** `features` → **2.2** `features/*`；**4** 对枢纽/migration 等补扫遗漏子页；输出适配摘要表并落地 Manifest/Gradle/`lib/DevApp` 工具类。
-- **reference**：[reference.md](skills/android-version-platform-adapt/reference.md) — 路径规律表、Android 17 已扫描子页清单（执行时须重新跑扫描）；`hl=zh-cn` 建议。
-- **成稿前 Read** `code-method-normalize`。
+- **核心**：`R.styleable.ShadowLayout` 下 `app:hl_*` 全表与 API；注意 `hl_strokeWith` 拼写；与 `ui-devwidget-round` 的取舍见该 Skill。
 
 ---
 
@@ -159,6 +158,8 @@
 ## 四、变更检查清单（维护者用）
 
 - [ ] `.cursor/` 编目范围内有增删改后，已更新上文 **「当前子树一览」**、**目录树**、各 **表格** 与 **小节摘要**。
+- [ ] 表格行、§2.x 编号、目录树子项顺序与同目录 **文件系统顺序** 一致（默认字典序）。
+- [ ] 表格说明列与 § 分条列表 **简短准确**，未整段照搬 YAML `description`。
 - [ ] 新增 Skill 已写清 `name`、`description`；若含 `disable-model-invocation` 或 `reference.md`，表格与对应 §2.x 已同步。
 - [ ] Skill 重命名后，目录树、链接路径、`name` 列与 §2.x 标题一致；曾用名仅保留在「曾用名」一行或 `docs/` legacy 表。
 - [ ] 规则 `.mdc` 的 `alwaysApply` 与 YAML `description` 与表格一致。
