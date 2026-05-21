@@ -4,14 +4,28 @@ description: >-
   在布局中需要阴影、圆角、纯色/渐变背景、描边、pressed/selected/ripple、虚线、子 View 按圆角裁剪，
   或想少写 shape/layer-list/selector drawable 时，优先使用 com.lihang.ShadowLayout（
   https://github.com/lihangleo2/ShadowLayout ）。列出 R.styleable.ShadowLayout 下全部 app:hl_* 与行为、
-  常见坑与代码 API。默认工程已依赖该库（如 JitPack com.github.lihangleo2:ShadowLayout）。
+  常见坑与代码 API。以 Maven/JitPack 坐标与上游 GitHub README、raw 源码为准，不依赖工作区
+  shadowLibrary 模块路径。工程缺依赖时配合 gradle-central-deps 添加 com.github.lihangleo2:ShadowLayout。
 ---
 
 # ShadowLayout：阴影 + Shape/Selector + 裁剪
 
+## 权威来源（仅 Maven + 上游 GitHub）
+
+**禁止**在工作区内查找或假设存在 `shadowLibrary/` 等上游子模块路径；属性表、行为与 API 以本 Skill 正文为速查，有争议或版本升级时再拉上游。
+
+| 用途 | 链接 |
+|------|------|
+| 能力说明、示例、依赖写法 | [README.md](https://github.com/lihangleo2/ShadowLayout/blob/master/README.md)（Agent 可用 [raw](https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/README.md)） |
+| `declare-styleable` / `hl_*` 定义 | [attrs.xml raw](https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/shadowLibrary/src/main/res/values/attrs.xml) |
+| 运行时行为、setter、边界逻辑 | [ShadowLayout.java raw](https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/shadowLibrary/src/main/java/com/lihang/ShadowLayout.java) |
+
+- **版本对齐**：模块已声明的 `com.github.lihangleo2:ShadowLayout:x.y.z` 与上游 **Git tag `x.y.z`** 应对齐；核对 attrs/API 时用 `https://raw.githubusercontent.com/lihangleo2/ShadowLayout/{tag}/shadowLibrary/...` 替换上表中的 `master`。
+- **新增依赖**：JitPack `implementation 'com.github.lihangleo2:ShadowLayout:<version>'`（版本以 README / JitPack 为准）；本仓库集中坐标时 Read [gradle-central-deps/SKILL.md](../gradle-central-deps/SKILL.md)，勿重复 GAV。
+
 ## 何时用本 Skill（对齐 README 能力）
 
-参考上游 [README.md](https://github.com/lihangleo2/ShadowLayout/blob/master/README.md) 与本地对照过的 `shadowLibrary/.../attrs.xml`、`ShadowLayout.java`。
+对照上游 [README](https://github.com/lihangleo2/ShadowLayout/blob/master/README.md)；属性枚举与实现细节以 [attrs.xml](https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/shadowLibrary/src/main/res/values/attrs.xml)、[ShadowLayout.java](https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/shadowLibrary/src/main/java/com/lihang/ShadowLayout.java) 为准（**仅通过上述 URL**，不读本地模块）。
 
 在以下场景**优先用 `ShadowLayout` 包裹子 View**，减少 `drawable` 里的 shape / selector / layer-list：
 
@@ -37,7 +51,7 @@ description: >-
 6. **子 View 裁剪**：`dispatchDraw` 内对子级做 `clipPath`（`@RequiresApi(LOLLIPOP)`）；逻辑在存在 **`getChildAt(0) != null`** 时按圆角裁剪，需 API 21+ 行为与设备 GPU 路径支持。
 7. **RecyclerView 内点透**：README 建议裁剪容器上 `app:clickable="false"` 避免与 item 点击冲突（见属性表 `clickable`）。
 
-## `hl_shapeMode` 枚举（attrs.xml）
+## `hl_shapeMode` 枚举（上游 attrs.xml）
 
 | 枚举值 | 含义 |
 | :--- | :--- |
@@ -116,7 +130,7 @@ description: >-
 
 - 仅保留：`hl_shapeMode="dashLine"`、`hl_strokeColor`、`hl_stroke_dashWidth`、`hl_stroke_dashGap`（缺一会抛 `UnsupportedOperationException`）。
 - **横向虚线**：View **宽 > 高**；**纵向虚线**：高 ≥ 宽（README：以长边为宽度、短边为线粗语义）。
-- 此模式下勿再依赖阴影、渐变、圆角卡片等主流程 API（源码 `isExceptionByDashLine()` 会拦部分调用）。
+- 此模式下勿再依赖阴影、渐变、圆角卡片等主流程 API（上游 `ShadowLayout.java` 中 `isExceptionByDashLine()` 会拦部分调用）。
 
 ## 常用代码 API（与 README 方法表一致处已核对）
 
@@ -129,7 +143,7 @@ description: >-
 - 点击：`setClickable(boolean)`（覆盖内会维护库内 `isClickable` 与背景切换）
 - 选中：`setSelected(boolean)`（`selected` 模式下切换 true/false 背景）
 
-**注意**：`setLayoutBackground` 在 **`isClickable == false`** 时直接 return，不更新背景（源码行为）；动态改色前确认可点性设计。
+**注意**：`setLayoutBackground` 在 **`isClickable == false`** 时直接 return，不更新背景（见上游 `ShadowLayout.java`）；动态改色前确认可点性设计。
 
 ## XML 最小片段（速查）
 
@@ -163,11 +177,12 @@ description: >-
 </com.lihang.ShadowLayout>
 ```
 
-## 依赖（README）
+## 依赖（Maven / JitPack）
 
-- 仓库：`https://github.com/lihangleo2/ShadowLayout`
-- 典型坐标：`implementation 'com.github.lihangleo2:ShadowLayout:3.4.5'`（AndroidX）；老非 AndroidX 见 README 3.3.3 说明。
-- 仓库 `shadowLibrary` 模块 attrs 路径：`shadowLibrary/src/main/res/values/attrs.xml`。
+- **仓库首页**：https://github.com/lihangleo2/ShadowLayout
+- **坐标**：`com.github.lihangleo2:ShadowLayout`（JitPack）；`implementation` 版本号以 [README 依赖段](https://github.com/lihangleo2/ShadowLayout/blob/master/README.md) 或 JitPack 页为准。
+- **AndroidX 示例**（README 常见写法，版本请自行核对）：`implementation 'com.github.lihangleo2:ShadowLayout:3.4.x'`；非 AndroidX 历史版本见 README **3.3.3**。
+- **工程内**：若已集中声明该库，以模块 `build.gradle` / 既有 deps 引用为准，**不要**重复添加；缺坐标时走 `gradle-central-deps` Skill。
 
 ## 自检清单（写布局前）
 
@@ -177,3 +192,4 @@ description: >-
 - [ ] 渐变是否误配了仍期望生效的 `hl_layoutBackground`？
 - [ ] 裁剪/列表场景是否处理 **`clickable`** 与 **透明背景**？
 - [ ] `dashLine` 是否单独使用且 dash 参数成对？
+- [ ] 版本/属性有疑义时是否已对照 **与依赖版本同 tag** 的上游 raw（README / attrs / `ShadowLayout.java`），而非工作区路径？

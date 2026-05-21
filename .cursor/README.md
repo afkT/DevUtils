@@ -97,7 +97,7 @@
 | [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按库根 `CHANGELOG.md` 版式，用 git 完整提交说明更新发版记录。 |
 | [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 按控件继承链补全 DevSimple `ViewTheme.*` 样式。 |
 | [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 圆角纯色背景与描边优先 DevWidget Round 系列，减少 drawable。 |
-| [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | 阴影、圆角、渐变与状态背景优先 ShadowLayout，少写 shape drawable。 |
+| [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | ShadowLayout 的 `hl_*` 与 API；以上游 GitHub/Maven 为准，不读工作区 shadowLibrary。 |
 
 表中「自动唤起」**关** = YAML 含 `disable-model-invocation: true`；**默认** = 未设置该字段（由 Cursor 产品行为决定是否自动匹配）。
 
@@ -151,7 +151,7 @@
 
 ### 2.10 `ui-shadowlayout`
 
-- **核心**：`R.styleable.ShadowLayout` 下 `app:hl_*` 全表与 API；注意 `hl_strokeWith` 拼写；与 `ui-devwidget-round` 的取舍见该 Skill。
+- **核心**：`app:hl_*` 全表与 API（正文速查）；权威来源为 JitPack 坐标与上游 README/raw，**禁止**假设工作区存在 `shadowLibrary/`；注意 `hl_strokeWith` 拼写；与 `ui-devwidget-round` 取舍见该 Skill。
 
 ---
 
