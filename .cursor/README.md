@@ -11,7 +11,7 @@
 | 相对路径 | 用途 | 编目文件数（约） |
 |----------|------|------------------|
 | `rules/` | Project Rules（`.mdc`） | 5 |
-| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 4 份 reference |
+| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 6 份 reference |
 
 ### 目录树
 
@@ -41,8 +41,12 @@
     ├── ui-devsimple-viewtheme/
     │   ├── SKILL.md
     │   └── reference.md
-    ├── ui-devwidget-round/SKILL.md
-    └── ui-shadowlayout/SKILL.md
+    ├── ui-devwidget-round/
+    │   ├── SKILL.md
+    │   └── reference.md
+    └── ui-shadowlayout/
+        ├── SKILL.md
+        └── reference.md
 ```
 
 ---
@@ -75,8 +79,8 @@
 | [gradle-third-party-version-upgrade](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 关 | [有](skills/gradle-third-party-version-upgrade/reference.md) | 查证并升级第三方库版本，对齐仓库与官方发布。 |
 | [release-changelog-update](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | 关 | — | 按既有版式用 git 提交说明更新 CHANGELOG / 发版记录。 |
 | [ui-devsimple-viewtheme](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [有](skills/ui-devsimple-viewtheme/reference.md) | 为布局控件补全 DevSimple `ViewTheme` 样式引用。 |
-| [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |
-| [ui-shadowlayout](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | 用 ShadowLayout 做阴影、圆角、背景与状态效果，少写 selector/shape。 |
+| [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | [有](skills/ui-devwidget-round/reference.md) | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |
+| [ui-shadowlayout](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | [有](skills/ui-shadowlayout/reference.md) | 用 ShadowLayout 做阴影、圆角、背景与状态效果，少写 selector/shape。 |
 
 ---
 
