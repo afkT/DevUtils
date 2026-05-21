@@ -11,7 +11,7 @@
 | 相对路径 | 用途 | 编目文件数（约） |
 |----------|------|------------------|
 | `rules/` | Cursor Project Rules（`.mdc`） | 4 |
-| `skills/` | 本仓库工程向 Agent Skills（各子目录 `SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 3 份 reference |
+| `skills/` | 本仓库工程向 Agent Skills（各子目录 `SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 4 份 reference |
 
 > 若仓库新增 `.cursor` 下其它目录或顶层说明文件且希望团队可见，请在本表与后文增加小节。`.DS_Store` 等本地杂项不入编目。
 
@@ -39,7 +39,9 @@
     │   ├── SKILL.md
     │   └── reference.md
     ├── release-changelog-update/SKILL.md
-    ├── ui-devsimple-viewtheme/SKILL.md
+    ├── ui-devsimple-viewtheme/
+    │   ├── SKILL.md
+    │   └── reference.md
     ├── ui-devwidget-round/SKILL.md
     └── ui-shadowlayout/SKILL.md
 ```
@@ -95,7 +97,7 @@
 | [gradle-central-deps/SKILL.md](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 按 `DEPS_ROOT`/`DEPS_MANIFEST` 契约新增或引用集中坐标与 deps 清单。 |
 | [gradle-third-party-version-upgrade/SKILL.md](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | **关** | [reference.md](skills/gradle-third-party-version-upgrade/reference.md) | 升级 `config*.gradle` 中第三方 GAV；多源校验版本与坐标迁移。 |
 | [release-changelog-update/SKILL.md](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | **关** | — | 按库根 `CHANGELOG.md` 版式，用 git 完整提交说明更新发版记录。 |
-| [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | — | 布局 XML 按控件继承链补全 DevSimple `ViewTheme.*` 样式。 |
+| [ui-devsimple-viewtheme/SKILL.md](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [reference.md](skills/ui-devsimple-viewtheme/reference.md) | 布局补全 `ViewTheme.*`；流程在 SKILL，根样式表在 reference。 |
 | [ui-devwidget-round/SKILL.md](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | — | DevWidget Round 与 `dev_*`；优先 Read `lib/DevWidget`，GitHub 仅 fallback。 |
 | [ui-shadowlayout/SKILL.md](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | — | ShadowLayout 的 `hl_*` 与 API；以上游 GitHub/Maven 为准，不读工作区 shadowLibrary。 |
 
@@ -143,7 +145,7 @@
 
 ### 2.8 `ui-devsimple-viewtheme`
 
-- **核心**：按控件语义类名匹配 `ViewTheme.<Name>`；`ViewPager2` → `ViewTheme.ViewPager`；无匹配 → `ViewTheme.View`。源码见 `lib/DevSimple/src/main/res/values/`。
+- **核心**：匹配算法与 ImageView/ViewPager2 特例在 SKILL；根样式表、继承链、grep 维护在 [reference.md](skills/ui-devsimple-viewtheme/reference.md)；本地优先 `{DEVSIMPLE_ROOT}=lib/DevSimple`。
 
 ### 2.9 `ui-devwidget-round`
 
