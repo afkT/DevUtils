@@ -12,7 +12,7 @@
 |----------|------|------------------|
 | `audits/` | `.cursor` 维护审计报告 | 1 |
 | `rules/` | Project Rules（`.mdc`） | 5 |
-| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 6 份 reference |
+| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 11 个 Skill + 7 份 reference |
 
 ### 目录树
 
@@ -28,6 +28,9 @@
 │   ├── skill-naming-normalization.mdc
 │   └── skill-reference-layout.mdc
 └── skills/
+    ├── afkt-project-devengine-implementation/
+    │   ├── SKILL.md
+    │   └── reference.md
     ├── android-dimen-dp-sp/SKILL.md
     ├── android-version-platform-adapt/
     │   ├── SKILL.md
@@ -82,6 +85,7 @@
 
 | 目录 | `name` | 自动唤起 | reference | 能做什么 |
 |------|--------|:--------:|:---------:|----------|
+| [afkt-project-devengine-implementation](skills/afkt-project-devengine-implementation/SKILL.md) | `afkt-project-devengine-implementation` | 默认 | [有](skills/afkt-project-devengine-implementation/reference.md) | 新增或维护 DevAssist + DevEngine 的功能 Engine 实现、默认初始化、extensions 与 README。 |
 | [android-dimen-dp-sp](skills/android-dimen-dp-sp/SKILL.md) | `android-dimen-dp-sp` | 默认 | — | 将硬编码 dp/sp 改为 `@dimen/dp_*`、`@dimen/sp_*` 与 `R.dimen.*`。 |
 | [android-version-platform-adapt](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | 关 | [有](skills/android-version-platform-adapt/reference.md) | 按官方版本文档做行为变更与新 API 适配、targetSdk 升级与工具封装。 |
 | [binding-adapter-from-source](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [有](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局自定义属性。 |
