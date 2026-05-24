@@ -20,6 +20,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - log             | Log Engine 日志打印
       - media           | Media Selector Engine 多媒体资源选择
       - permission      | Permission Engine 权限申请
+      - refresh         | Refresh Engine 下拉刷新、上拉加载 View
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
    - extensions         | Kotlin 扩展代码、函数实现
@@ -35,6 +36,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - media           | Media Selector Engine 多媒体资源选择
       - permission      | Permission Engine 权限申请
       - push            | Push Engine 推送平台处理
+      - refresh         | Refresh Engine 下拉刷新、上拉加载 View
       - share           | Share Engine 分享平台处理
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
@@ -64,6 +66,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **Log 日志打印**
 * **Media Selector 多媒体资源选择**
 * **Permission 权限申请**
+* **Refresh Engine 下拉刷新、上拉加载 View**
 * **Storage Engine 外部、内部文件存储**
 * **Toast Engine 吐司提示**
 
@@ -150,6 +153,14 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 * 依赖 [XXPermissions 权限请求框架](https://github.com/getActivity/XXPermissions)
   实现 [XXPermissionsEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/permission/engine_xxpermissions.kt)
+
+
+### Refresh Engine 下拉刷新、上拉加载 View - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/refresh)
+
+可选实现方案：
+
+* 依赖 [SmartRefreshLayout 下拉刷新框架](https://github.com/scwang90/SmartRefreshLayout)
+  实现 [SmartRefreshLayoutEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/refresh/engine_smart_refresh_layout.kt)
 
 
 ### Storage Engine 外部、内部文件存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/storage)

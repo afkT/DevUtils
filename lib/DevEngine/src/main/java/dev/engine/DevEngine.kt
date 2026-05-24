@@ -1,6 +1,9 @@
 package dev.engine
 
 import android.content.Context
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.DevEngine.defaultMMKVInitialize
@@ -25,6 +28,8 @@ import dev.engine.core.log.DevLoggerEngineImpl
 import dev.engine.core.log.TimberEngineImpl
 import dev.engine.core.media.PictureSelectorEngineImpl
 import dev.engine.core.permission.XXPermissionsEngineImpl
+import dev.engine.core.refresh.RefreshConfig
+import dev.engine.core.refresh.SmartRefreshLayoutEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
 import dev.engine.core.toast.ToasterEngineImpl
 import dev.engine.debug.DevDebugEngine
@@ -42,6 +47,8 @@ import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
 import dev.engine.push.DevPushEngine
 import dev.engine.push.IPushEngine
+import dev.engine.refresh.DevRefreshEngine
+import dev.engine.refresh.IRefreshEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.share.IShareEngine
 import dev.engine.storage.DevStorageEngine
@@ -163,6 +170,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
+     * @param applySmartRefreshLayout 是否应用 SmartRefreshLayout
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
     fun completeInitialize(
@@ -170,7 +178,8 @@ object DevEngine {
         cacheConfig: CacheConfig? = CacheConfig(DevCache.newCache()),
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
-        barCodeConfig: BarCodeConfig? = null
+        barCodeConfig: BarCodeConfig? = null,
+        applySmartRefreshLayout: Boolean = true
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
         defaultMMKVInitialize(context)
@@ -182,13 +191,16 @@ object DevEngine {
                 initializeDefaultEngines(
                     context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig, barCodeConfig
+                    logConfig, barCodeConfig, applySmartRefreshLayout
                 )
                 return
             } catch (_: Exception) {
             }
         }
-        initializeDefaultEngines(context, cacheConfig, keyValueConfig, logConfig, barCodeConfig)
+        initializeDefaultEngines(
+            context, cacheConfig, keyValueConfig, logConfig,
+            barCodeConfig, applySmartRefreshLayout
+        )
     }
 
     /**
@@ -198,6 +210,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
+     * @param applySmartRefreshLayout 是否应用 SmartRefreshLayout
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
     private fun initializeDefaultEngines(
@@ -205,7 +218,8 @@ object DevEngine {
         cacheConfig: CacheConfig?,
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig?,
-        barCodeConfig: BarCodeConfig?
+        barCodeConfig: BarCodeConfig?,
+        applySmartRefreshLayout: Boolean = true
     ) {
         // ========================
         // = BarCode Engine 条形码 =
@@ -282,6 +296,17 @@ object DevEngine {
 
         // 初始化 XXPermissions Engine 实现
         defaultXXPermissionsEngineImpl()
+
+        // ======================================
+        // = Refresh Engine 下拉刷新、上拉加载 View =
+        // ======================================
+
+        if (applySmartRefreshLayout) {
+            // 初始化下拉刷新框架
+            initializeSmartRefreshLayout()
+            // 初始化 SmartRefreshLayout Refresh Engine 实现
+            defaultSmartRefreshLayoutEngineImpl()
+        }
 
         // =================================
         // = Storage Engine 外部、内部文件存储 =
@@ -490,6 +515,22 @@ object DevEngine {
         }
     }
 
+    // ======================================
+    // = Refresh Engine 下拉刷新、上拉加载 View =
+    // ======================================
+
+    /**
+     * 默认初始化 SmartRefreshLayout Refresh Engine 实现
+     * @return SmartRefreshLayoutEngineImpl
+     */
+    fun defaultSmartRefreshLayoutEngineImpl(
+        config: RefreshConfig = RefreshConfig.create()
+    ): SmartRefreshLayoutEngineImpl {
+        return newSmartRefreshLayoutEngineImpl(config).apply {
+            DevRefreshEngine.setEngine(this)
+        }
+    }
+
     // =================================
     // = Storage Engine 外部、内部文件存储 =
     // =================================
@@ -655,6 +696,18 @@ object DevEngine {
     }
 
     /**
+     * 设置 Refresh Engine
+     * @param key    key
+     * @param engine {@link IRefreshEngine}
+     */
+    fun <Config : IRefreshEngine.EngineConfig, Item : IRefreshEngine.EngineItem> setRefreshEngine(
+        key: String,
+        engine: IRefreshEngine<Config, Item>
+    ) {
+        DevRefreshEngine.setEngine(key, engine)
+    }
+
+    /**
      * 设置 Share Engine
      * @param key    key
      * @param engine {@link IShareEngine}
@@ -771,6 +824,12 @@ object DevEngine {
     fun getPush() = DevPushEngine.getEngine()
 
     /**
+     * 获取 Refresh Engine
+     * @return Refresh Engine
+     */
+    fun getRefresh() = DevRefreshEngine.getEngine()
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -865,6 +924,12 @@ object DevEngine {
     fun getPush(key: String?) = DevPushEngine.getEngine(key)
 
     /**
+     * 获取 Refresh Engine
+     * @return Refresh Engine
+     */
+    fun getRefresh(key: String?) = DevRefreshEngine.getEngine(key)
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -957,6 +1022,12 @@ object DevEngine {
      * @return Push Engine Generic Assist
      */
     fun getPushAssist() = DevPushEngine.getAssist()
+
+    /**
+     * 获取 Refresh Engine Generic Assist
+     * @return Refresh Engine Generic Assist
+     */
+    fun getRefreshAssist() = DevRefreshEngine.getAssist()
 
     /**
      * 获取 Share Engine Generic Assist
@@ -1161,6 +1232,21 @@ object DevEngine {
         return XXPermissionsEngineImpl()
     }
 
+    // ======================================
+    // = Refresh Engine 下拉刷新、上拉加载 View =
+    // ======================================
+
+    /**
+     * 创建 SmartRefreshLayout Refresh Engine 实现
+     * @param config Refresh Config
+     * @return SmartRefreshLayout Refresh Engine 实现
+     */
+    fun newSmartRefreshLayoutEngineImpl(
+        config: RefreshConfig = RefreshConfig.create()
+    ): SmartRefreshLayoutEngineImpl {
+        return SmartRefreshLayoutEngineImpl(config)
+    }
+
     // =================================
     // = Storage Engine 外部、内部文件存储 =
     // =================================
@@ -1182,5 +1268,23 @@ object DevEngine {
      */
     fun newToasterEngineImpl(): ToasterEngineImpl {
         return ToasterEngineImpl()
+    }
+
+    // ===============
+    // = 其他初始化方法 =
+    // ===============
+
+    /**
+     * 初始化下拉刷新框架
+     */
+    private fun initializeSmartRefreshLayout() {
+        // 设置全局的 Header 构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
+            return@setDefaultRefreshHeaderCreator ClassicsHeader(context)
+        }
+        // 设置全局的 Footer 构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
+            return@setDefaultRefreshFooterCreator ClassicsFooter(context)
+        }
     }
 }
