@@ -37,6 +37,14 @@ fun View.refresh_initialize(
     return engine.getRefreshEngine()?.initialize(item) ?: false
 }
 
+fun <Config : IRefreshEngine.EngineConfig> View.refresh_applyConfig(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    config: Config?
+): Boolean {
+    return engine.getRefreshEngine()?.applyConfig(item, config) ?: false
+}
+
 // ==========
 // = 开关配置 =
 // ==========
@@ -57,36 +65,74 @@ fun View.refresh_setEnableLoadMore(
     return engine.getRefreshEngine()?.setEnableLoadMore(item, enabled) ?: false
 }
 
-fun View.refresh_setNoMoreData(
+fun View.refresh_setEnableAutoLoadMore(
     engine: String? = null,
     item: RefreshItem = RefreshItem.create(this),
-    noMoreData: Boolean
+    enabled: Boolean
 ): Boolean {
-    return engine.getRefreshEngine()?.setNoMoreData(item, noMoreData) ?: false
+    return engine.getRefreshEngine()?.setEnableAutoLoadMore(item, enabled) ?: false
 }
 
-fun View.refresh_resetMoreData(
+fun View.refresh_setEnablePureScrollMode(
     engine: String? = null,
     item: RefreshItem = RefreshItem.create(this),
-    count: Int,
-    perPage: Int
+    enabled: Boolean
 ): Boolean {
-    return engine.getRefreshEngine()?.resetMoreData(item, count, perPage) ?: false
+    return engine.getRefreshEngine()?.setEnablePureScrollMode(item, enabled) ?: false
 }
 
-fun View.refresh_closeLoader(
+fun View.refresh_setDisableContentWhenRefresh(
     engine: String? = null,
     item: RefreshItem = RefreshItem.create(this),
-    pureScrollMode: Boolean = false
+    disable: Boolean
 ): Boolean {
-    return engine.getRefreshEngine()?.closeLoader(item, pureScrollMode) ?: false
+    return engine.getRefreshEngine()?.setDisableContentWhenRefresh(item, disable) ?: false
 }
 
-fun View.refresh_openLoader(
+fun View.refresh_setDisableContentWhenLoading(
     engine: String? = null,
-    item: RefreshItem = RefreshItem.create(this)
+    item: RefreshItem = RefreshItem.create(this),
+    disable: Boolean
 ): Boolean {
-    return engine.getRefreshEngine()?.openLoader(item) ?: false
+    return engine.getRefreshEngine()?.setDisableContentWhenLoading(item, disable) ?: false
+}
+
+// ==========
+// = 组件设置 =
+// ==========
+
+fun View.refresh_setRefreshContent(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    content: View?
+): Boolean {
+    return engine.getRefreshEngine()?.setRefreshContent(item, content) ?: false
+}
+
+fun View.refresh_setRefreshContent(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    content: View?,
+    width: Int,
+    height: Int
+): Boolean {
+    return engine.getRefreshEngine()?.setRefreshContent(item, content, width, height) ?: false
+}
+
+fun View.refresh_setRefreshHeader(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    header: Any?
+): Boolean {
+    return engine.getRefreshEngine()?.setRefreshHeader(item, header) ?: false
+}
+
+fun View.refresh_setRefreshFooter(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    footer: Any?
+): Boolean {
+    return engine.getRefreshEngine()?.setRefreshFooter(item, footer) ?: false
 }
 
 // ==========
@@ -117,6 +163,22 @@ fun View.refresh_setOnRefreshLoadMoreListener(
     return engine.getRefreshEngine()?.setOnRefreshLoadMoreListener(item, listener) ?: false
 }
 
+fun View.refresh_setOnMultiListener(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    listener: Any?
+): Boolean {
+    return engine.getRefreshEngine()?.setOnMultiListener(item, listener) ?: false
+}
+
+fun View.refresh_setScrollBoundaryDecider(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    boundary: Any?
+): Boolean {
+    return engine.getRefreshEngine()?.setScrollBoundaryDecider(item, boundary) ?: false
+}
+
 // ==========
 // = 状态操作 =
 // ==========
@@ -128,6 +190,29 @@ fun View.refresh_autoRefresh(
     return engine.getRefreshEngine()?.autoRefresh(item) ?: false
 }
 
+fun View.refresh_autoRefresh(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    delayed: Int
+): Boolean {
+    return engine.getRefreshEngine()?.autoRefresh(item, delayed) ?: false
+}
+
+fun View.refresh_autoLoadMore(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.autoLoadMore(item) ?: false
+}
+
+fun View.refresh_autoLoadMore(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    delayed: Int
+): Boolean {
+    return engine.getRefreshEngine()?.autoLoadMore(item, delayed) ?: false
+}
+
 fun View.refresh_finishRefresh(
     engine: String? = null,
     item: RefreshItem = RefreshItem.create(this),
@@ -136,12 +221,64 @@ fun View.refresh_finishRefresh(
     return engine.getRefreshEngine()?.finishRefresh(item, success) ?: false
 }
 
+fun View.refresh_finishRefresh(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    delayed: Int
+): Boolean {
+    return engine.getRefreshEngine()?.finishRefresh(item, delayed) ?: false
+}
+
+fun View.refresh_finishRefreshWithNoMoreData(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.finishRefreshWithNoMoreData(item) ?: false
+}
+
 fun View.refresh_finishLoadMore(
     engine: String? = null,
     item: RefreshItem = RefreshItem.create(this),
     success: Boolean = true
 ): Boolean {
     return engine.getRefreshEngine()?.finishLoadMore(item, success) ?: false
+}
+
+fun View.refresh_finishLoadMore(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    delayed: Int
+): Boolean {
+    return engine.getRefreshEngine()?.finishLoadMore(item, delayed) ?: false
+}
+
+fun View.refresh_finishLoadMoreWithNoMoreData(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.finishLoadMoreWithNoMoreData(item) ?: false
+}
+
+fun View.refresh_closeHeaderOrFooter(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.closeHeaderOrFooter(item) ?: false
+}
+
+fun View.refresh_setNoMoreData(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this),
+    noMoreData: Boolean
+): Boolean {
+    return engine.getRefreshEngine()?.setNoMoreData(item, noMoreData) ?: false
+}
+
+fun View.refresh_resetNoMoreData(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.resetNoMoreData(item) ?: false
 }
 
 fun View.refresh_finishRefreshAndLoad(
@@ -159,4 +296,29 @@ fun View.refresh_finishRefreshOrLoad(
     success: Boolean = true
 ): Boolean {
     return engine.getRefreshEngine()?.finishRefreshOrLoad(item, refresh, success) ?: false
+}
+
+// ==========
+// = 状态查询 =
+// ==========
+
+fun View.refresh_isRefreshing(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.isRefreshing(item) ?: false
+}
+
+fun View.refresh_isLoading(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Boolean {
+    return engine.getRefreshEngine()?.isLoading(item) ?: false
+}
+
+fun View.refresh_getState(
+    engine: String? = null,
+    item: RefreshItem = RefreshItem.create(this)
+): Any? {
+    return engine.getRefreshEngine()?.getState(item)
 }
