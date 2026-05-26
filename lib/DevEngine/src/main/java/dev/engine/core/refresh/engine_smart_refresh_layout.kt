@@ -148,56 +148,72 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         dp: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderHeight(dp); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderHeight(dp); true
+        } ?: false
     }
 
     override fun setHeaderHeightPx(
         item: RefreshItem?,
         px: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderHeightPx(px); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderHeightPx(px); true
+        } ?: false
     }
 
     override fun setFooterHeight(
         item: RefreshItem?,
         dp: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterHeight(dp); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterHeight(dp); true
+        } ?: false
     }
 
     override fun setFooterHeightPx(
         item: RefreshItem?,
         px: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterHeightPx(px); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterHeightPx(px); true
+        } ?: false
     }
 
     override fun setHeaderInsetStart(
         item: RefreshItem?,
         dp: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderInsetStart(dp); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderInsetStart(dp); true
+        } ?: false
     }
 
     override fun setHeaderInsetStartPx(
         item: RefreshItem?,
         px: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderInsetStartPx(px); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderInsetStartPx(px); true
+        } ?: false
     }
 
     override fun setFooterInsetStart(
         item: RefreshItem?,
         dp: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterInsetStart(dp); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterInsetStart(dp); true
+        } ?: false
     }
 
     override fun setFooterInsetStartPx(
         item: RefreshItem?,
         px: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterInsetStartPx(px); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterInsetStartPx(px); true
+        } ?: false
     }
 
     // ==========
@@ -208,35 +224,45 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         rate: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setDragRate(rate); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setDragRate(rate); true
+        } ?: false
     }
 
     override fun setHeaderMaxDragRate(
         item: RefreshItem?,
         rate: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderMaxDragRate(rate); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderMaxDragRate(rate); true
+        } ?: false
     }
 
     override fun setFooterMaxDragRate(
         item: RefreshItem?,
         rate: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterMaxDragRate(rate); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterMaxDragRate(rate); true
+        } ?: false
     }
 
     override fun setHeaderTriggerRate(
         item: RefreshItem?,
         rate: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderTriggerRate(rate); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderTriggerRate(rate); true
+        } ?: false
     }
 
     override fun setFooterTriggerRate(
         item: RefreshItem?,
         rate: Float
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterTriggerRate(rate); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterTriggerRate(rate); true
+        } ?: false
     }
 
     override fun setReboundInterpolator(
@@ -244,14 +270,18 @@ open class SmartRefreshLayoutEngineImpl(
         interpolator: Interpolator?
     ): Boolean {
         interpolator ?: return false
-        return getRefreshLayout(item)?.run { setReboundInterpolator(interpolator); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setReboundInterpolator(interpolator); true
+        } ?: false
     }
 
     override fun setReboundDuration(
         item: RefreshItem?,
         duration: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setReboundDuration(duration); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setReboundDuration(duration); true
+        } ?: false
     }
 
     // ==========
@@ -262,7 +292,7 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         header: Any?
     ): Boolean {
-        return (header as? RefreshHeader)?.let {
+        return getRefreshHeader(header)?.let {
             getRefreshLayout(item)?.run { setRefreshHeader(it); true }
         } ?: false
     }
@@ -273,7 +303,7 @@ open class SmartRefreshLayoutEngineImpl(
         width: Int,
         height: Int
     ): Boolean {
-        return (header as? RefreshHeader)?.let {
+        return getRefreshHeader(header)?.let {
             getRefreshLayout(item)?.run { setRefreshHeader(it, width, height); true }
         } ?: false
     }
@@ -282,7 +312,7 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         footer: Any?
     ): Boolean {
-        return (footer as? RefreshFooter)?.let {
+        return getRefreshFooter(footer)?.let {
             getRefreshLayout(item)?.run { setRefreshFooter(it); true }
         } ?: false
     }
@@ -293,7 +323,7 @@ open class SmartRefreshLayoutEngineImpl(
         width: Int,
         height: Int
     ): Boolean {
-        return (footer as? RefreshFooter)?.let {
+        return getRefreshFooter(footer)?.let {
             getRefreshLayout(item)?.run { setRefreshFooter(it, width, height); true }
         } ?: false
     }
@@ -303,7 +333,9 @@ open class SmartRefreshLayoutEngineImpl(
         content: View?
     ): Boolean {
         content ?: return false
-        return getRefreshLayout(item)?.run { setRefreshContent(content); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setRefreshContent(content); true
+        } ?: false
     }
 
     override fun setRefreshContent(
@@ -313,8 +345,9 @@ open class SmartRefreshLayoutEngineImpl(
         height: Int
     ): Boolean {
         content ?: return false
-        return getRefreshLayout(item)?.run { setRefreshContent(content, width, height); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setRefreshContent(content, width, height); true
+        } ?: false
     }
 
     // ==========
@@ -355,134 +388,162 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableHeaderTranslationContent(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableHeaderTranslationContent(enabled); true
+        } ?: false
     }
 
     override fun setEnableFooterTranslationContent(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableFooterTranslationContent(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableFooterTranslationContent(enabled); true
+        } ?: false
     }
 
     override fun setEnableOverScrollBounce(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableOverScrollBounce(enabled); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableOverScrollBounce(enabled); true
+        } ?: false
     }
 
     override fun setEnablePureScrollMode(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnablePureScrollMode(enabled); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setEnablePureScrollMode(enabled); true
+        } ?: false
     }
 
     override fun setEnableScrollContentWhenLoaded(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableScrollContentWhenLoaded(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableScrollContentWhenLoaded(enabled); true
+        } ?: false
     }
 
     override fun setEnableScrollContentWhenRefreshed(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableScrollContentWhenRefreshed(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableScrollContentWhenRefreshed(enabled); true
+        } ?: false
     }
 
     override fun setEnableLoadMoreWhenContentNotFull(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableLoadMoreWhenContentNotFull(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableLoadMoreWhenContentNotFull(enabled); true
+        } ?: false
     }
 
     override fun setEnableOverScrollDrag(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableOverScrollDrag(enabled); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableOverScrollDrag(enabled); true
+        } ?: false
     }
 
     override fun setEnableFooterFollowWhenNoMoreData(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableFooterFollowWhenNoMoreData(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableFooterFollowWhenNoMoreData(enabled); true
+        } ?: false
     }
 
     override fun setEnableClipHeaderWhenFixedBehind(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableClipHeaderWhenFixedBehind(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableClipHeaderWhenFixedBehind(enabled); true
+        } ?: false
     }
 
     override fun setEnableClipFooterWhenFixedBehind(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableClipFooterWhenFixedBehind(enabled); true }
-            ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableClipFooterWhenFixedBehind(enabled); true
+        } ?: false
     }
 
     override fun setEnableNestedScroll(
         item: RefreshItem?,
         enabled: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setEnableNestedScroll(enabled); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setEnableNestedScroll(enabled); true
+        } ?: false
     }
 
     override fun setFixedHeaderViewId(
         item: RefreshItem?,
         id: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFixedHeaderViewId(id); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFixedHeaderViewId(id); true
+        } ?: false
     }
 
     override fun setFixedFooterViewId(
         item: RefreshItem?,
         id: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFixedFooterViewId(id); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFixedFooterViewId(id); true
+        } ?: false
     }
 
     override fun setHeaderTranslationViewId(
         item: RefreshItem?,
         id: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setHeaderTranslationViewId(id); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setHeaderTranslationViewId(id); true
+        } ?: false
     }
 
     override fun setFooterTranslationViewId(
         item: RefreshItem?,
         id: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { setFooterTranslationViewId(id); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setFooterTranslationViewId(id); true
+        } ?: false
     }
 
     override fun setDisableContentWhenRefresh(
         item: RefreshItem?,
         disable: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setDisableContentWhenRefresh(disable); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setDisableContentWhenRefresh(disable); true
+        } ?: false
     }
 
     override fun setDisableContentWhenLoading(
         item: RefreshItem?,
         disable: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setDisableContentWhenLoading(disable); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setDisableContentWhenLoading(disable); true
+        } ?: false
     }
 
     // ==========
@@ -534,7 +595,7 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         listener: Any?
     ): Boolean {
-        return (listener as? OnMultiListener)?.let {
+        return getOnMultiListener(listener)?.let {
             getRefreshLayout(item)?.run { setOnMultiListener(it); true }
         } ?: false
     }
@@ -543,7 +604,7 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         boundary: Any?
     ): Boolean {
-        return (boundary as? ScrollBoundaryDecider)?.let {
+        return getScrollBoundaryDecider(boundary)?.let {
             getRefreshLayout(item)?.run { setScrollBoundaryDecider(it); true }
         } ?: false
     }
@@ -553,7 +614,9 @@ open class SmartRefreshLayoutEngineImpl(
         primaryColors: IntArray?
     ): Boolean {
         primaryColors ?: return false
-        return getRefreshLayout(item)?.run { setPrimaryColors(*primaryColors); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setPrimaryColors(*primaryColors); true
+        } ?: false
     }
 
     override fun setPrimaryColorsId(
@@ -561,7 +624,9 @@ open class SmartRefreshLayoutEngineImpl(
         primaryColorIds: IntArray?
     ): Boolean {
         primaryColorIds ?: return false
-        return getRefreshLayout(item)?.run { setPrimaryColorsId(*primaryColorIds); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setPrimaryColorsId(*primaryColorIds); true
+        } ?: false
     }
 
     // ==========
@@ -636,7 +701,9 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         delayed: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { finishRefresh(delayed); true } ?: false
+        return getRefreshLayout(item)?.run {
+            finishRefresh(delayed); true
+        } ?: false
     }
 
     override fun finishRefresh(
@@ -652,7 +719,9 @@ open class SmartRefreshLayoutEngineImpl(
     }
 
     override fun finishRefreshWithNoMoreData(item: RefreshItem?): Boolean {
-        return getRefreshLayout(item)?.run { finishRefreshWithNoMoreData(); true } ?: false
+        return getRefreshLayout(item)?.run {
+            finishRefreshWithNoMoreData(); true
+        } ?: false
     }
 
     override fun finishLoadMore(
@@ -669,7 +738,9 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?,
         delayed: Int
     ): Boolean {
-        return getRefreshLayout(item)?.run { finishLoadMore(delayed); true } ?: false
+        return getRefreshLayout(item)?.run {
+            finishLoadMore(delayed); true
+        } ?: false
     }
 
     override fun finishLoadMore(
@@ -685,22 +756,30 @@ open class SmartRefreshLayoutEngineImpl(
     }
 
     override fun finishLoadMoreWithNoMoreData(item: RefreshItem?): Boolean {
-        return getRefreshLayout(item)?.run { finishLoadMoreWithNoMoreData(); true } ?: false
+        return getRefreshLayout(item)?.run {
+            finishLoadMoreWithNoMoreData(); true
+        } ?: false
     }
 
     override fun closeHeaderOrFooter(item: RefreshItem?): Boolean {
-        return getRefreshLayout(item)?.run { closeHeaderOrFooter(); true } ?: false
+        return getRefreshLayout(item)?.run {
+            closeHeaderOrFooter(); true
+        } ?: false
     }
 
     override fun setNoMoreData(
         item: RefreshItem?,
         noMoreData: Boolean
     ): Boolean {
-        return getRefreshLayout(item)?.run { setNoMoreData(noMoreData); true } ?: false
+        return getRefreshLayout(item)?.run {
+            setNoMoreData(noMoreData); true
+        } ?: false
     }
 
     override fun resetNoMoreData(item: RefreshItem?): Boolean {
-        return getRefreshLayout(item)?.run { resetNoMoreData(); true } ?: false
+        return getRefreshLayout(item)?.run {
+            resetNoMoreData(); true
+        } ?: false
     }
 
     override fun finishRefreshAndLoad(
@@ -772,6 +851,42 @@ open class SmartRefreshLayoutEngineImpl(
      */
     protected open fun getRefreshLayout(item: RefreshItem?): SmartRefreshLayout? {
         return item?.view() as? SmartRefreshLayout
+    }
+
+    /**
+     * 获取 RefreshHeader
+     * @param header Header Item
+     * @return [RefreshHeader]
+     */
+    protected open fun getRefreshHeader(header: Any?): RefreshHeader? {
+        return header as? RefreshHeader
+    }
+
+    /**
+     * 获取 RefreshFooter
+     * @param footer Footer Item
+     * @return [RefreshFooter]
+     */
+    protected open fun getRefreshFooter(footer: Any?): RefreshFooter? {
+        return footer as? RefreshFooter
+    }
+
+    /**
+     * 获取多功能监听
+     * @param listener Listener Item
+     * @return [OnMultiListener]
+     */
+    protected open fun getOnMultiListener(listener: Any?): OnMultiListener? {
+        return listener as? OnMultiListener
+    }
+
+    /**
+     * 获取滚动边界判断
+     * @param boundary Boundary Item
+     * @return [ScrollBoundaryDecider]
+     */
+    protected open fun getScrollBoundaryDecider(boundary: Any?): ScrollBoundaryDecider? {
+        return boundary as? ScrollBoundaryDecider
     }
 
     /**
