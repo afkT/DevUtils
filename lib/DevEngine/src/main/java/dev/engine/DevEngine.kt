@@ -170,7 +170,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
-     * @param applySmartRefreshLayout 是否应用 SmartRefreshLayout
+     * @param refreshConfig Refresh Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
     fun completeInitialize(
@@ -179,7 +179,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
         barCodeConfig: BarCodeConfig? = null,
-        applySmartRefreshLayout: Boolean = true
+        refreshConfig: RefreshConfig? = RefreshConfig.create(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
         defaultMMKVInitialize(context)
@@ -191,7 +191,7 @@ object DevEngine {
                 initializeDefaultEngines(
                     context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig, barCodeConfig, applySmartRefreshLayout
+                    logConfig, barCodeConfig, refreshConfig
                 )
                 return
             } catch (_: Exception) {
@@ -199,7 +199,7 @@ object DevEngine {
         }
         initializeDefaultEngines(
             context, cacheConfig, keyValueConfig, logConfig,
-            barCodeConfig, applySmartRefreshLayout
+            barCodeConfig, refreshConfig
         )
     }
 
@@ -210,7 +210,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
-     * @param applySmartRefreshLayout 是否应用 SmartRefreshLayout
+     * @param refreshConfig Refresh Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
     private fun initializeDefaultEngines(
@@ -219,7 +219,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig?,
         barCodeConfig: BarCodeConfig?,
-        applySmartRefreshLayout: Boolean = true
+        refreshConfig: RefreshConfig?,
     ) {
         // ========================
         // = BarCode Engine 条形码 =
@@ -301,11 +301,11 @@ object DevEngine {
         // = Refresh Engine 下拉刷新、上拉加载 View =
         // ======================================
 
-        if (applySmartRefreshLayout) {
+        refreshConfig?.let { config ->
             // 初始化下拉刷新框架
             initializeSmartRefreshLayout()
             // 初始化 SmartRefreshLayout Refresh Engine 实现
-            defaultSmartRefreshLayoutEngineImpl()
+            defaultSmartRefreshLayoutEngineImpl(config)
         }
 
         // =================================
@@ -524,7 +524,7 @@ object DevEngine {
      * @return SmartRefreshLayoutEngineImpl
      */
     fun defaultSmartRefreshLayoutEngineImpl(
-        config: RefreshConfig = RefreshConfig.create()
+        config: RefreshConfig
     ): SmartRefreshLayoutEngineImpl {
         return newSmartRefreshLayoutEngineImpl(config).apply {
             DevRefreshEngine.setEngine(this)
@@ -1242,7 +1242,7 @@ object DevEngine {
      * @return SmartRefreshLayout Refresh Engine 实现
      */
     fun newSmartRefreshLayoutEngineImpl(
-        config: RefreshConfig = RefreshConfig.create()
+        config: RefreshConfig
     ): SmartRefreshLayoutEngineImpl {
         return SmartRefreshLayoutEngineImpl(config)
     }

@@ -17,7 +17,7 @@ import dev.engine.refresh.IRefreshEngine
  * @see https://github.com/scwang90/SmartRefreshLayout
  */
 open class SmartRefreshLayoutEngineImpl(
-    @JvmField protected val mConfig: RefreshConfig = RefreshConfig.create()
+    @JvmField protected val mConfig: RefreshConfig
 ) : IRefreshEngine<RefreshConfig?, RefreshItem?> {
 
     // =============
