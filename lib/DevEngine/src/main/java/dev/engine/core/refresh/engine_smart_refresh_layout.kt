@@ -31,45 +31,66 @@ open class SmartRefreshLayoutEngineImpl(
     override fun initialize(item: RefreshItem?): Boolean {
         val refreshLayout = getRefreshLayout(item) ?: return false
         applyConfig(item, getRefreshConfig(item))
-        item?.content()?.let { content ->
-            if (item.contentWidth() >= 0 && item.contentHeight() >= 0) {
-                refreshLayout.setRefreshContent(content, item.contentWidth(), item.contentHeight())
-            } else {
-                refreshLayout.setRefreshContent(content)
+        item?.let { itemIt ->
+            itemIt.content()?.let { content ->
+                if (itemIt.contentWidth() >= 0 && itemIt.contentHeight() >= 0) {
+                    refreshLayout.setRefreshContent(
+                        content, itemIt.contentWidth(),
+                        itemIt.contentHeight()
+                    )
+                } else {
+                    refreshLayout.setRefreshContent(content)
+                }
             }
-        }
-        item?.header()?.let { header ->
-            if (item.headerWidth() >= 0 && item.headerHeight() >= 0) {
-                setRefreshHeader(item, header, item.headerWidth(), item.headerHeight())
-            } else {
-                setRefreshHeader(item, header)
+            itemIt.header()?.let { header ->
+                if (itemIt.headerWidth() >= 0 && itemIt.headerHeight() >= 0) {
+                    setRefreshHeader(
+                        itemIt, header, itemIt.headerWidth(),
+                        itemIt.headerHeight()
+                    )
+                } else {
+                    setRefreshHeader(itemIt, header)
+                }
             }
-        }
-        item?.footer()?.let { footer ->
-            if (item.footerWidth() >= 0 && item.footerHeight() >= 0) {
-                setRefreshFooter(item, footer, item.footerWidth(), item.footerHeight())
-            } else {
-                setRefreshFooter(item, footer)
+            itemIt.footer()?.let { footer ->
+                if (itemIt.footerWidth() >= 0 && itemIt.footerHeight() >= 0) {
+                    setRefreshFooter(
+                        itemIt, footer, itemIt.footerWidth(),
+                        itemIt.footerHeight()
+                    )
+                } else {
+                    setRefreshFooter(itemIt, footer)
+                }
             }
-        }
-        if (item != null) {
-            if (item.fixedHeaderViewId() >= 0) refreshLayout.setFixedHeaderViewId(item.fixedHeaderViewId())
-            if (item.fixedFooterViewId() >= 0) refreshLayout.setFixedFooterViewId(item.fixedFooterViewId())
-            if (item.headerTranslationViewId() >= 0) {
-                refreshLayout.setHeaderTranslationViewId(item.headerTranslationViewId())
+            if (itemIt.fixedHeaderViewId() >= 0) {
+                refreshLayout.setFixedHeaderViewId(itemIt.fixedHeaderViewId())
             }
-            if (item.footerTranslationViewId() >= 0) {
-                refreshLayout.setFooterTranslationViewId(item.footerTranslationViewId())
+            if (itemIt.fixedFooterViewId() >= 0) {
+                refreshLayout.setFixedFooterViewId(itemIt.fixedFooterViewId())
             }
-        }
-        item?.scrollBoundaryDecider()?.let { setScrollBoundaryDecider(item, it) }
-        item?.multiListener()?.let { setOnMultiListener(item, it) }
-        item?.onRefreshLoadMoreListener()?.let {
-            setOnRefreshLoadMoreListener(item, it)
-        } ?: run {
-            item?.onRefreshListener()?.let { setOnRefreshListener(item, it) }
-            item?.onLoadMoreListener()?.let { setOnLoadMoreListener(item, it) }
-        }
+            if (itemIt.headerTranslationViewId() >= 0) {
+                refreshLayout.setHeaderTranslationViewId(itemIt.headerTranslationViewId())
+            }
+            if (itemIt.footerTranslationViewId() >= 0) {
+                refreshLayout.setFooterTranslationViewId(itemIt.footerTranslationViewId())
+            }
+            itemIt.scrollBoundaryDecider()?.let {
+                setScrollBoundaryDecider(itemIt, it)
+            }
+            itemIt.multiListener()?.let {
+                setOnMultiListener(itemIt, it)
+            }
+            itemIt.onRefreshLoadMoreListener()?.let {
+                setOnRefreshLoadMoreListener(itemIt, it)
+            } ?: run {
+                itemIt.onRefreshListener()?.let {
+                    setOnRefreshListener(itemIt, it)
+                }
+                itemIt.onLoadMoreListener()?.let {
+                    setOnLoadMoreListener(itemIt, it)
+                }
+            }
+        } ?: return false
         return true
     }
 
@@ -78,65 +99,110 @@ open class SmartRefreshLayoutEngineImpl(
         config: RefreshConfig?
     ): Boolean {
         val refreshLayout = getRefreshLayout(item) ?: return false
-        config ?: return false
-        if (config.headerHeight() >= 0) refreshLayout.setHeaderHeight(config.headerHeight())
-        if (config.headerHeightPx() >= 0) refreshLayout.setHeaderHeightPx(config.headerHeightPx())
-        if (config.footerHeight() >= 0) refreshLayout.setFooterHeight(config.footerHeight())
-        if (config.footerHeightPx() >= 0) refreshLayout.setFooterHeightPx(config.footerHeightPx())
-        if (config.headerInsetStart() >= 0) refreshLayout.setHeaderInsetStart(config.headerInsetStart())
-        if (config.headerInsetStartPx() >= 0) refreshLayout.setHeaderInsetStartPx(config.headerInsetStartPx())
-        if (config.footerInsetStart() >= 0) refreshLayout.setFooterInsetStart(config.footerInsetStart())
-        if (config.footerInsetStartPx() >= 0) refreshLayout.setFooterInsetStartPx(config.footerInsetStartPx())
-        if (config.dragRate() >= 0) refreshLayout.setDragRate(config.dragRate())
-        if (config.headerMaxDragRate() >= 0) {
-            refreshLayout.setHeaderMaxDragRate(config.headerMaxDragRate())
-        }
-        if (config.footerMaxDragRate() >= 0) {
-            refreshLayout.setFooterMaxDragRate(config.footerMaxDragRate())
-        }
-        if (config.headerTriggerRate() >= 0) {
-            refreshLayout.setHeaderTriggerRate(config.headerTriggerRate())
-        }
-        if (config.footerTriggerRate() >= 0) {
-            refreshLayout.setFooterTriggerRate(config.footerTriggerRate())
-        }
-        config.reboundInterpolator()?.let { refreshLayout.setReboundInterpolator(it) }
-        if (config.reboundDuration() >= 0) refreshLayout.setReboundDuration(config.reboundDuration())
-        config.enableRefresh()?.let { refreshLayout.setEnableRefresh(it) }
-        config.enableLoadMore()?.let { refreshLayout.setEnableLoadMore(it) }
-        config.enableAutoLoadMore()?.let { refreshLayout.setEnableAutoLoadMore(it) }
-        config.enableHeaderTranslationContent()?.let {
-            refreshLayout.setEnableHeaderTranslationContent(it)
-        }
-        config.enableFooterTranslationContent()?.let {
-            refreshLayout.setEnableFooterTranslationContent(it)
-        }
-        config.enableOverScrollBounce()?.let { refreshLayout.setEnableOverScrollBounce(it) }
-        config.enablePureScrollMode()?.let { refreshLayout.setEnablePureScrollMode(it) }
-        config.enableScrollContentWhenLoaded()?.let {
-            refreshLayout.setEnableScrollContentWhenLoaded(it)
-        }
-        config.enableScrollContentWhenRefreshed()?.let {
-            refreshLayout.setEnableScrollContentWhenRefreshed(it)
-        }
-        config.enableLoadMoreWhenContentNotFull()?.let {
-            refreshLayout.setEnableLoadMoreWhenContentNotFull(it)
-        }
-        config.enableOverScrollDrag()?.let { refreshLayout.setEnableOverScrollDrag(it) }
-        config.enableFooterFollowWhenNoMoreData()?.let {
-            refreshLayout.setEnableFooterFollowWhenNoMoreData(it)
-        }
-        config.enableClipHeaderWhenFixedBehind()?.let {
-            refreshLayout.setEnableClipHeaderWhenFixedBehind(it)
-        }
-        config.enableClipFooterWhenFixedBehind()?.let {
-            refreshLayout.setEnableClipFooterWhenFixedBehind(it)
-        }
-        config.enableNestedScroll()?.let { refreshLayout.setEnableNestedScroll(it) }
-        config.disableContentWhenRefresh()?.let { refreshLayout.setDisableContentWhenRefresh(it) }
-        config.disableContentWhenLoading()?.let { refreshLayout.setDisableContentWhenLoading(it) }
-        config.primaryColors()?.let { refreshLayout.setPrimaryColors(*it) }
-        config.primaryColorIds()?.let { refreshLayout.setPrimaryColorsId(*it) }
+        config?.let { configIt ->
+            if (configIt.headerHeight() >= 0) {
+                refreshLayout.setHeaderHeight(configIt.headerHeight())
+            }
+            if (configIt.headerHeightPx() >= 0) {
+                refreshLayout.setHeaderHeightPx(configIt.headerHeightPx())
+            }
+            if (configIt.footerHeight() >= 0) {
+                refreshLayout.setFooterHeight(configIt.footerHeight())
+            }
+            if (configIt.footerHeightPx() >= 0) {
+                refreshLayout.setFooterHeightPx(configIt.footerHeightPx())
+            }
+            if (configIt.headerInsetStart() >= 0) {
+                refreshLayout.setHeaderInsetStart(configIt.headerInsetStart())
+            }
+            if (configIt.headerInsetStartPx() >= 0) {
+                refreshLayout.setHeaderInsetStartPx(configIt.headerInsetStartPx())
+            }
+            if (configIt.footerInsetStart() >= 0) {
+                refreshLayout.setFooterInsetStart(configIt.footerInsetStart())
+            }
+            if (configIt.footerInsetStartPx() >= 0) {
+                refreshLayout.setFooterInsetStartPx(configIt.footerInsetStartPx())
+            }
+            if (configIt.dragRate() >= 0) {
+                refreshLayout.setDragRate(configIt.dragRate())
+            }
+            if (configIt.headerMaxDragRate() >= 0) {
+                refreshLayout.setHeaderMaxDragRate(configIt.headerMaxDragRate())
+            }
+            if (configIt.footerMaxDragRate() >= 0) {
+                refreshLayout.setFooterMaxDragRate(configIt.footerMaxDragRate())
+            }
+            if (configIt.headerTriggerRate() >= 0) {
+                refreshLayout.setHeaderTriggerRate(configIt.headerTriggerRate())
+            }
+            if (configIt.footerTriggerRate() >= 0) {
+                refreshLayout.setFooterTriggerRate(configIt.footerTriggerRate())
+            }
+            configIt.reboundInterpolator()?.let {
+                refreshLayout.setReboundInterpolator(it)
+            }
+            if (configIt.reboundDuration() >= 0) {
+                refreshLayout.setReboundDuration(configIt.reboundDuration())
+            }
+            configIt.enableRefresh()?.let {
+                refreshLayout.setEnableRefresh(it)
+            }
+            configIt.enableLoadMore()?.let {
+                refreshLayout.setEnableLoadMore(it)
+            }
+            configIt.enableAutoLoadMore()?.let {
+                refreshLayout.setEnableAutoLoadMore(it)
+            }
+            configIt.enableHeaderTranslationContent()?.let {
+                refreshLayout.setEnableHeaderTranslationContent(it)
+            }
+            configIt.enableFooterTranslationContent()?.let {
+                refreshLayout.setEnableFooterTranslationContent(it)
+            }
+            configIt.enableOverScrollBounce()?.let {
+                refreshLayout.setEnableOverScrollBounce(it)
+            }
+            configIt.enablePureScrollMode()?.let {
+                refreshLayout.setEnablePureScrollMode(it)
+            }
+            configIt.enableScrollContentWhenLoaded()?.let {
+                refreshLayout.setEnableScrollContentWhenLoaded(it)
+            }
+            configIt.enableScrollContentWhenRefreshed()?.let {
+                refreshLayout.setEnableScrollContentWhenRefreshed(it)
+            }
+            configIt.enableLoadMoreWhenContentNotFull()?.let {
+                refreshLayout.setEnableLoadMoreWhenContentNotFull(it)
+            }
+            configIt.enableOverScrollDrag()?.let {
+                refreshLayout.setEnableOverScrollDrag(it)
+            }
+            configIt.enableFooterFollowWhenNoMoreData()?.let {
+                refreshLayout.setEnableFooterFollowWhenNoMoreData(it)
+            }
+            configIt.enableClipHeaderWhenFixedBehind()?.let {
+                refreshLayout.setEnableClipHeaderWhenFixedBehind(it)
+            }
+            configIt.enableClipFooterWhenFixedBehind()?.let {
+                refreshLayout.setEnableClipFooterWhenFixedBehind(it)
+            }
+            configIt.enableNestedScroll()?.let {
+                refreshLayout.setEnableNestedScroll(it)
+            }
+            configIt.disableContentWhenRefresh()?.let {
+                refreshLayout.setDisableContentWhenRefresh(it)
+            }
+            configIt.disableContentWhenLoading()?.let {
+                refreshLayout.setDisableContentWhenLoading(it)
+            }
+            configIt.primaryColors()?.let {
+                refreshLayout.setPrimaryColors(*it)
+            }
+            configIt.primaryColorIds()?.let {
+                refreshLayout.setPrimaryColorsId(*it)
+            }
+        } ?: return false
         return true
     }
 
