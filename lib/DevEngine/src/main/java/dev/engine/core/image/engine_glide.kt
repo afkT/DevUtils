@@ -1055,6 +1055,7 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
                 fileMaps[i] = result
             }
             listener.onComplete(fileLists, fileMaps, len)
+            return true
         }
         return false
     }

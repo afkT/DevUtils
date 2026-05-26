@@ -228,31 +228,35 @@ open class ImageConfig private constructor(
         return mQuality
     }
 
-    open fun setQuality(quality: Int) {
+    open fun setQuality(quality: Int): ImageConfig {
         mQuality = quality
+        return this
     }
 
     open fun isOriginalPathReturn(): Boolean {
         return mOriginalPathReturn
     }
 
-    open fun setOriginalPathReturn(originalPathReturn: Boolean) {
+    open fun setOriginalPathReturn(originalPathReturn: Boolean): ImageConfig {
         mOriginalPathReturn = originalPathReturn
+        return this
     }
 
     open fun isDontAnimate(): Boolean {
         return mDontAnimate
     }
 
-    open fun setDontAnimate(dontAnimate: Boolean) {
+    open fun setDontAnimate(dontAnimate: Boolean): ImageConfig {
         mDontAnimate = dontAnimate
+        return this
     }
 
     open fun getOptions(): Any? {
         return mOptions
     }
 
-    open fun setOptions(options: Any?) {
+    open fun setOptions(options: Any?): ImageConfig {
         mOptions = options
+        return this
     }
 }

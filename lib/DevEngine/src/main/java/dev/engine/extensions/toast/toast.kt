@@ -36,7 +36,7 @@ fun toast_initialize(engine: String? = null, application: Application) {
 }
 
 fun toast_isInit(engine: String? = null): Boolean {
-    return engine.getToastEngine()?.isInit ?: true
+    return engine.getToastEngine()?.isInit ?: false
 }
 
 fun toast_setDebugMode(engine: String? = null, debug: Boolean) {
