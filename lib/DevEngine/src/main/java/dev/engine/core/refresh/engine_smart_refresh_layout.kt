@@ -33,46 +33,56 @@ open class SmartRefreshLayoutEngineImpl(
         applyConfig(item, getRefreshConfig(item))
         item?.let { itemIt ->
             itemIt.content()?.let { content ->
-                if (itemIt.contentWidth() >= 0 && itemIt.contentHeight() >= 0) {
+                val contentWidth = itemIt.contentWidth()
+                val contentHeight = itemIt.contentHeight()
+                if (contentWidth >= 0 && contentHeight >= 0) {
                     refreshLayout.setRefreshContent(
-                        content, itemIt.contentWidth(),
-                        itemIt.contentHeight()
+                        content, contentWidth,
+                        contentHeight
                     )
                 } else {
                     refreshLayout.setRefreshContent(content)
                 }
             }
             itemIt.header()?.let { header ->
-                if (itemIt.headerWidth() >= 0 && itemIt.headerHeight() >= 0) {
+                val headerWidth = itemIt.headerWidth()
+                val headerHeight = itemIt.headerHeight()
+                if (headerWidth >= 0 && headerHeight >= 0) {
                     setRefreshHeader(
-                        itemIt, header, itemIt.headerWidth(),
-                        itemIt.headerHeight()
+                        itemIt, header, headerWidth,
+                        headerHeight
                     )
                 } else {
                     setRefreshHeader(itemIt, header)
                 }
             }
             itemIt.footer()?.let { footer ->
-                if (itemIt.footerWidth() >= 0 && itemIt.footerHeight() >= 0) {
+                val footerWidth = itemIt.footerWidth()
+                val footerHeight = itemIt.footerHeight()
+                if (footerWidth >= 0 && footerHeight >= 0) {
                     setRefreshFooter(
-                        itemIt, footer, itemIt.footerWidth(),
-                        itemIt.footerHeight()
+                        itemIt, footer, footerWidth,
+                        footerHeight
                     )
                 } else {
                     setRefreshFooter(itemIt, footer)
                 }
             }
-            if (itemIt.fixedHeaderViewId() >= 0) {
-                refreshLayout.setFixedHeaderViewId(itemIt.fixedHeaderViewId())
+            val fixedHeaderViewId = itemIt.fixedHeaderViewId()
+            if (fixedHeaderViewId >= 0) {
+                refreshLayout.setFixedHeaderViewId(fixedHeaderViewId)
             }
-            if (itemIt.fixedFooterViewId() >= 0) {
-                refreshLayout.setFixedFooterViewId(itemIt.fixedFooterViewId())
+            val fixedFooterViewId = itemIt.fixedFooterViewId()
+            if (fixedFooterViewId >= 0) {
+                refreshLayout.setFixedFooterViewId(fixedFooterViewId)
             }
-            if (itemIt.headerTranslationViewId() >= 0) {
-                refreshLayout.setHeaderTranslationViewId(itemIt.headerTranslationViewId())
+            val headerTranslationViewId = itemIt.headerTranslationViewId()
+            if (headerTranslationViewId >= 0) {
+                refreshLayout.setHeaderTranslationViewId(headerTranslationViewId)
             }
-            if (itemIt.footerTranslationViewId() >= 0) {
-                refreshLayout.setFooterTranslationViewId(itemIt.footerTranslationViewId())
+            val footerTranslationViewId = itemIt.footerTranslationViewId()
+            if (footerTranslationViewId >= 0) {
+                refreshLayout.setFooterTranslationViewId(footerTranslationViewId)
             }
             itemIt.scrollBoundaryDecider()?.let {
                 setScrollBoundaryDecider(itemIt, it)
@@ -100,50 +110,64 @@ open class SmartRefreshLayoutEngineImpl(
     ): Boolean {
         val refreshLayout = getRefreshLayout(item) ?: return false
         config?.let { configIt ->
-            if (configIt.headerHeight() >= 0) {
-                refreshLayout.setHeaderHeight(configIt.headerHeight())
+            val headerHeight = configIt.headerHeight()
+            if (headerHeight >= 0) {
+                refreshLayout.setHeaderHeight(headerHeight)
             }
-            if (configIt.headerHeightPx() >= 0) {
-                refreshLayout.setHeaderHeightPx(configIt.headerHeightPx())
+            val headerHeightPx = configIt.headerHeightPx()
+            if (headerHeightPx >= 0) {
+                refreshLayout.setHeaderHeightPx(headerHeightPx)
             }
-            if (configIt.footerHeight() >= 0) {
-                refreshLayout.setFooterHeight(configIt.footerHeight())
+            val footerHeight = configIt.footerHeight()
+            if (footerHeight >= 0) {
+                refreshLayout.setFooterHeight(footerHeight)
             }
-            if (configIt.footerHeightPx() >= 0) {
-                refreshLayout.setFooterHeightPx(configIt.footerHeightPx())
+            val footerHeightPx = configIt.footerHeightPx()
+            if (footerHeightPx >= 0) {
+                refreshLayout.setFooterHeightPx(footerHeightPx)
             }
-            if (configIt.headerInsetStart() >= 0) {
-                refreshLayout.setHeaderInsetStart(configIt.headerInsetStart())
+            val headerInsetStart = configIt.headerInsetStart()
+            if (headerInsetStart >= 0) {
+                refreshLayout.setHeaderInsetStart(headerInsetStart)
             }
-            if (configIt.headerInsetStartPx() >= 0) {
-                refreshLayout.setHeaderInsetStartPx(configIt.headerInsetStartPx())
+            val headerInsetStartPx = configIt.headerInsetStartPx()
+            if (headerInsetStartPx >= 0) {
+                refreshLayout.setHeaderInsetStartPx(headerInsetStartPx)
             }
-            if (configIt.footerInsetStart() >= 0) {
-                refreshLayout.setFooterInsetStart(configIt.footerInsetStart())
+            val footerInsetStart = configIt.footerInsetStart()
+            if (footerInsetStart >= 0) {
+                refreshLayout.setFooterInsetStart(footerInsetStart)
             }
-            if (configIt.footerInsetStartPx() >= 0) {
-                refreshLayout.setFooterInsetStartPx(configIt.footerInsetStartPx())
+            val footerInsetStartPx = configIt.footerInsetStartPx()
+            if (footerInsetStartPx >= 0) {
+                refreshLayout.setFooterInsetStartPx(footerInsetStartPx)
             }
-            if (configIt.dragRate() >= 0) {
-                refreshLayout.setDragRate(configIt.dragRate())
+            val dragRate = configIt.dragRate()
+            if (dragRate >= 0) {
+                refreshLayout.setDragRate(dragRate)
             }
-            if (configIt.headerMaxDragRate() >= 0) {
-                refreshLayout.setHeaderMaxDragRate(configIt.headerMaxDragRate())
+            val headerMaxDragRate = configIt.headerMaxDragRate()
+            if (headerMaxDragRate >= 0) {
+                refreshLayout.setHeaderMaxDragRate(headerMaxDragRate)
             }
-            if (configIt.footerMaxDragRate() >= 0) {
-                refreshLayout.setFooterMaxDragRate(configIt.footerMaxDragRate())
+            val footerMaxDragRate = configIt.footerMaxDragRate()
+            if (footerMaxDragRate >= 0) {
+                refreshLayout.setFooterMaxDragRate(footerMaxDragRate)
             }
-            if (configIt.headerTriggerRate() >= 0) {
-                refreshLayout.setHeaderTriggerRate(configIt.headerTriggerRate())
+            val headerTriggerRate = configIt.headerTriggerRate()
+            if (headerTriggerRate >= 0) {
+                refreshLayout.setHeaderTriggerRate(headerTriggerRate)
             }
-            if (configIt.footerTriggerRate() >= 0) {
-                refreshLayout.setFooterTriggerRate(configIt.footerTriggerRate())
+            val footerTriggerRate = configIt.footerTriggerRate()
+            if (footerTriggerRate >= 0) {
+                refreshLayout.setFooterTriggerRate(footerTriggerRate)
             }
             configIt.reboundInterpolator()?.let {
                 refreshLayout.setReboundInterpolator(it)
             }
-            if (configIt.reboundDuration() >= 0) {
-                refreshLayout.setReboundDuration(configIt.reboundDuration())
+            val reboundDuration = configIt.reboundDuration()
+            if (reboundDuration >= 0) {
+                refreshLayout.setReboundDuration(reboundDuration)
             }
             configIt.enableRefresh()?.let {
                 refreshLayout.setEnableRefresh(it)
