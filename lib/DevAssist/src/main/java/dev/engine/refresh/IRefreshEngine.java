@@ -4,6 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
+import java.lang.ref.WeakReference;
+
 /**
  * detail: Refresh View Engine 接口
  * @author Ttt
@@ -127,7 +129,7 @@ public interface IRefreshEngine<Config extends IRefreshEngine.EngineConfig,
     interface EngineItem {
 
         // Refresh View
-        View view();
+        WeakReference<View> view();
 
         // Refresh Config
         EngineConfig config();

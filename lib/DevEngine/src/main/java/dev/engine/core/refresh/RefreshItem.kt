@@ -2,14 +2,18 @@ package dev.engine.core.refresh
 
 import android.view.View
 import dev.engine.refresh.IRefreshEngine
+import java.lang.ref.WeakReference
 
 /**
  * detail: Refresh View Item Params
  * @author Ttt
  */
 open class RefreshItem private constructor(
-    private var mView: View?
+    view: View?
 ) : IRefreshEngine.EngineItem {
+
+    // Refresh View
+    private var mView: WeakReference<View>? = view?.let { WeakReference(it) }
 
     // 未设置值
     private val unsetValue = -1
@@ -87,12 +91,27 @@ open class RefreshItem private constructor(
     // = get/set =
     // ===========
 
-    override fun view(): View? {
+    override fun view(): WeakReference<View>? {
         return mView
     }
 
     open fun setView(view: View?): RefreshItem {
-        mView = view
+        mView = view?.let { WeakReference(it) }
+        return this
+    }
+
+    open fun release(): RefreshItem {
+        mView?.clear()
+        mView = null
+        mConfig = null
+        mContent = null
+        mHeader = null
+        mFooter = null
+        mScrollBoundaryDecider = null
+        mOnRefreshListener = null
+        mOnLoadMoreListener = null
+        mOnRefreshLoadMoreListener = null
+        mMultiListener = null
         return this
     }
 

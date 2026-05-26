@@ -940,7 +940,7 @@ open class SmartRefreshLayoutEngineImpl(
      * @return [SmartRefreshLayout]
      */
     protected open fun getRefreshLayout(item: RefreshItem?): SmartRefreshLayout? {
-        return item?.view() as? SmartRefreshLayout
+        return item?.view()?.get() as? SmartRefreshLayout
     }
 
     /**
@@ -990,6 +990,6 @@ open class SmartRefreshLayoutEngineImpl(
         item: RefreshItem?
     ): View? {
         if (refreshLayout is View) return refreshLayout
-        return item?.view()
+        return item?.view()?.get()
     }
 }
