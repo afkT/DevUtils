@@ -40,16 +40,16 @@ open class SmartRefreshLayoutEngineImpl(
         }
         item?.header()?.let { header ->
             if (item.headerWidth() >= 0 && item.headerHeight() >= 0) {
-                refreshLayout.setRefreshHeader(header, item.headerWidth(), item.headerHeight())
+                setRefreshHeader(item, header, item.headerWidth(), item.headerHeight())
             } else {
-                refreshLayout.setRefreshHeader(header)
+                setRefreshHeader(item, header)
             }
         }
         item?.footer()?.let { footer ->
             if (item.footerWidth() >= 0 && item.footerHeight() >= 0) {
-                refreshLayout.setRefreshFooter(footer, item.footerWidth(), item.footerHeight())
+                setRefreshFooter(item, footer, item.footerWidth(), item.footerHeight())
             } else {
-                refreshLayout.setRefreshFooter(footer)
+                setRefreshFooter(item, footer)
             }
         }
         if (item != null) {

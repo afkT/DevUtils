@@ -1,9 +1,6 @@
 package dev.engine.core.refresh
 
 import android.view.View
-import com.scwang.smart.refresh.layout.api.RefreshFooter
-import com.scwang.smart.refresh.layout.api.RefreshHeader
-import com.scwang.smart.refresh.layout.listener.ScrollBoundaryDecider
 import dev.engine.refresh.IRefreshEngine
 
 /**
@@ -30,7 +27,7 @@ open class RefreshItem private constructor(
     private var mContentHeight = unsetValue
 
     // 刷新头
-    private var mHeader: RefreshHeader? = null
+    private var mHeader: Any? = null
 
     // Header 宽度
     private var mHeaderWidth = unsetValue
@@ -39,7 +36,7 @@ open class RefreshItem private constructor(
     private var mHeaderHeight = unsetValue
 
     // 加载尾
-    private var mFooter: RefreshFooter? = null
+    private var mFooter: Any? = null
 
     // Footer 宽度
     private var mFooterWidth = unsetValue
@@ -60,7 +57,7 @@ open class RefreshItem private constructor(
     private var mFooterTranslationViewId = unsetValue
 
     // 滚动边界判断
-    private var mScrollBoundaryDecider: ScrollBoundaryDecider? = null
+    private var mScrollBoundaryDecider: Any? = null
 
     // 刷新监听
     private var mOnRefreshListener: IRefreshEngine.OnRefreshListener? = null
@@ -134,11 +131,11 @@ open class RefreshItem private constructor(
         return this
     }
 
-    override fun header(): RefreshHeader? {
+    override fun header(): Any? {
         return mHeader
     }
 
-    open fun setHeader(header: RefreshHeader?): RefreshItem {
+    open fun setHeader(header: Any?): RefreshItem {
         mHeader = header
         return this
     }
@@ -160,11 +157,11 @@ open class RefreshItem private constructor(
         return this
     }
 
-    override fun footer(): RefreshFooter? {
+    override fun footer(): Any? {
         return mFooter
     }
 
-    open fun setFooter(footer: RefreshFooter?): RefreshItem {
+    open fun setFooter(footer: Any?): RefreshItem {
         mFooter = footer
         return this
     }
@@ -222,12 +219,12 @@ open class RefreshItem private constructor(
         return this
     }
 
-    override fun scrollBoundaryDecider(): ScrollBoundaryDecider? {
+    override fun scrollBoundaryDecider(): Any? {
         return mScrollBoundaryDecider
     }
 
     open fun setScrollBoundaryDecider(
-        scrollBoundaryDecider: ScrollBoundaryDecider?
+        scrollBoundaryDecider: Any?
     ): RefreshItem {
         mScrollBoundaryDecider = scrollBoundaryDecider
         return this
