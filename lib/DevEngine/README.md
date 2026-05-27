@@ -14,6 +14,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - barcode         | BarCode Engine 条形码、二维码处理
       - cache           | Cache Engine 有效期键值对缓存
       - compress        | Image Compress Engine 图片压缩
+      - eventbus        | EventBus Engine 事件总线
       - image           | Image Engine 图片加载、下载、转格式等
       - json            | JSON Engine 映射
       - keyvalue        | KeyValue Engine 键值对存储
@@ -29,6 +30,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - cache           | Cache Engine 有效期键值对缓存
       - compress        | Image Compress Engine 图片压缩
       - debug           | Debug 编译辅助开发 Engine
+      - eventbus        | EventBus Engine 事件总线
       - image           | Image Engine 图片加载、下载、转格式等
       - json            | JSON Engine 映射
       - keyvalue        | KeyValue Engine 键值对存储
@@ -60,6 +62,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **BarCode 条形码**
 * **Cache 有效期键值对缓存**
 * **Image Compress 图片压缩**
+* **EventBus Engine 事件总线**
 * **Image 图片加载、下载、转格式**
 * **JSON 映射**
 * **KeyValue 键值对存储**
@@ -96,6 +99,14 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 * 依赖 [Luban 鲁班图片压缩](https://github.com/Curzibn/Luban)
   实现 [LubanEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/compress/engine_luban.kt)
+
+
+### EventBus Engine 事件总线 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/eventbus)
+
+可选实现方案：
+
+* 依赖 [LiveEventBus 消息总线](https://github.com/michaellee123/LiveEventBus)
+  实现 [LiveEventBusEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/eventbus/engine_liveeventbus.kt)
 
 
 ### Image 图片加载、下载、转格式 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/image)

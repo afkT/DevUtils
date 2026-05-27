@@ -1,4 +1,4 @@
-apply from: rootProject.file(files.lib_app_java_gradle)
+apply from: rootProject.file(files.lib_app_gradle)
 
 android {
     namespace "dev.assist"
@@ -19,6 +19,9 @@ android {
 def isPublishing = false
 
 dependencies {
+    // AndroidX Lifecycle LiveData
+    api deps.kotlin.lifecycle_livedata
+
     if (isPublishing) {
         // 打包时使用
         api deps.dev.dev_app

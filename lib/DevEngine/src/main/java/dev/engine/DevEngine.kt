@@ -20,6 +20,8 @@ import dev.engine.core.barcode.ZXingEngineImpl
 import dev.engine.core.cache.CacheConfig
 import dev.engine.core.cache.DevCacheEngineImpl
 import dev.engine.core.compress.LubanEngineImpl
+import dev.engine.core.eventbus.LiveEventBusConfig
+import dev.engine.core.eventbus.LiveEventBusEngineImpl
 import dev.engine.core.image.GlideEngineImpl
 import dev.engine.core.json.FastjsonEngineImpl
 import dev.engine.core.json.GsonEngineImpl
@@ -33,6 +35,8 @@ import dev.engine.core.refresh.SmartRefreshLayoutEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
 import dev.engine.core.toast.ToasterEngineImpl
 import dev.engine.debug.DevDebugEngine
+import dev.engine.eventbus.DevEventBusEngine
+import dev.engine.eventbus.IEventBusEngine
 import dev.engine.image.DevImageEngine
 import dev.engine.image.IImageEngine
 import dev.engine.json.DevJSONEngine
@@ -179,6 +183,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
         barCodeConfig: BarCodeConfig? = null,
+        eventBusConfig: LiveEventBusConfig? = LiveEventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
@@ -191,7 +196,7 @@ object DevEngine {
                 initializeDefaultEngines(
                     context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig, barCodeConfig, refreshConfig
+                    logConfig, barCodeConfig, eventBusConfig, refreshConfig
                 )
                 return
             } catch (_: Exception) {
@@ -199,7 +204,7 @@ object DevEngine {
         }
         initializeDefaultEngines(
             context, cacheConfig, keyValueConfig, logConfig,
-            barCodeConfig, refreshConfig
+            barCodeConfig, eventBusConfig, refreshConfig
         )
     }
 
@@ -210,6 +215,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
+     * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
@@ -219,6 +225,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig?,
         barCodeConfig: BarCodeConfig?,
+        eventBusConfig: LiveEventBusConfig?,
         refreshConfig: RefreshConfig?,
     ) {
         // ========================
@@ -245,6 +252,13 @@ object DevEngine {
 
         // 初始化 Luban Image Compress Engine 实现
         defaultLubanEngineImpl()
+
+        // ============================
+        // = EventBus Engine 事件总线 =
+        // ============================
+
+        // 初始化 LiveEventBus EventBus Engine 实现
+        defaultLiveEventBusEngineImpl(eventBusConfig)
 
         // ====================================
         // = Image Engine 图片加载、下载、转格式等 =
@@ -369,6 +383,24 @@ object DevEngine {
     fun defaultLubanEngineImpl(): LubanEngineImpl {
         return newLubanEngineImpl().apply {
             DevCompressEngine.setEngine(this)
+        }
+    }
+
+    // ============================
+    // = EventBus Engine 事件总线 =
+    // ============================
+
+    /**
+     * 默认初始化 LiveEventBus EventBus Engine 实现
+     * @param config LiveEventBus Config
+     * @return LiveEventBusEngineImpl
+     */
+    fun defaultLiveEventBusEngineImpl(
+        config: LiveEventBusConfig? = null
+    ): LiveEventBusEngineImpl {
+        return newLiveEventBusEngineImpl().apply {
+            config?.let { initialize(it) }
+            DevEventBusEngine.setEngine(this)
         }
     }
 
@@ -612,6 +644,18 @@ object DevEngine {
     }
 
     /**
+     * 设置 EventBus Engine
+     * @param key    key
+     * @param engine {@link IEventBusEngine}
+     */
+    fun <Config : IEventBusEngine.EngineConfig> setEventBusEngine(
+        key: String,
+        engine: IEventBusEngine<Config>
+    ) {
+        DevEventBusEngine.setEngine(key, engine)
+    }
+
+    /**
      * 设置 Image Engine
      * @param key    key
      * @param engine {@link IImageEngine}
@@ -782,6 +826,12 @@ object DevEngine {
     fun getDebug() = DevDebugEngine.getEngine()
 
     /**
+     * 获取 EventBus Engine
+     * @return EventBus Engine
+     */
+    fun getEventBus() = DevEventBusEngine.getEngine()
+
+    /**
      * 获取 Image Engine
      * @return Image Engine
      */
@@ -882,6 +932,12 @@ object DevEngine {
     fun getDebug(key: String?) = DevDebugEngine.getEngine(key)
 
     /**
+     * 获取 EventBus Engine
+     * @return EventBus Engine
+     */
+    fun getEventBus(key: String?) = DevEventBusEngine.getEngine(key)
+
+    /**
      * 获取 Image Engine
      * @return Image Engine
      */
@@ -980,6 +1036,12 @@ object DevEngine {
      * @return Debug Engine Generic Assist
      */
     fun getDebugAssist() = DevDebugEngine.getAssist()
+
+    /**
+     * 获取 EventBus Engine Generic Assist
+     * @return EventBus Engine Generic Assist
+     */
+    fun getEventBusAssist() = DevEventBusEngine.getAssist()
 
     /**
      * 获取 Image Engine Generic Assist
@@ -1086,6 +1148,18 @@ object DevEngine {
      */
     fun newLubanEngineImpl(): LubanEngineImpl {
         return LubanEngineImpl()
+    }
+
+    // ============================
+    // = EventBus Engine 事件总线 =
+    // ============================
+
+    /**
+     * 创建 LiveEventBus EventBus Engine 实现
+     * @return LiveEventBus EventBus Engine 实现
+     */
+    fun newLiveEventBusEngineImpl(): LiveEventBusEngineImpl {
+        return LiveEventBusEngineImpl()
     }
 
     // ====================================
