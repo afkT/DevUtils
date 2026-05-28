@@ -1,5 +1,6 @@
 package dev.engine.eventbus;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
@@ -25,7 +26,7 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @param config EventBus Config
      * @return {@code true} success, {@code false} fail
      */
-    boolean initialize(Config config);
+    boolean initialize(@NonNull Config config);
 
     /**
      * 应用事件配置
@@ -34,8 +35,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     boolean config(
-            String key,
-            Config config
+            @NonNull String key,
+            @NonNull Config config
     );
 
     // ==========
@@ -49,8 +50,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean post(
-            String key,
-            T value
+            @NonNull String key,
+            @NonNull T value
     );
 
     /**
@@ -61,8 +62,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean postDelay(
-            String key,
-            T value,
+            @NonNull String key,
+            @NonNull T value,
             long delay
     );
 
@@ -75,9 +76,9 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean postDelay(
-            String key,
-            LifecycleOwner lifecycle,
-            T value,
+            @NonNull String key,
+            @NonNull LifecycleOwner lifecycle,
+            @NonNull T value,
             long delay
     );
 
@@ -88,8 +89,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean postOrderly(
-            String key,
-            T value
+            @NonNull String key,
+            @NonNull T value
     );
 
     /**
@@ -99,8 +100,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean postAcrossProcess(
-            String key,
-            T value
+            @NonNull String key,
+            @NonNull T value
     );
 
     /**
@@ -110,8 +111,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean postAcrossApp(
-            String key,
-            T value
+            @NonNull String key,
+            @NonNull T value
     );
 
     /**
@@ -122,8 +123,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @deprecated 建议使用 {@link #postAcrossProcess(String, Object)} 或 {@link #postAcrossApp(String, Object)}
      */
     <T> boolean broadcast(
-            String key,
-            T value
+            @NonNull String key,
+            @NonNull T value
     );
 
     /**
@@ -135,8 +136,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean broadcast(
-            String key,
-            T value,
+            @NonNull String key,
+            @NonNull T value,
             boolean foreground,
             boolean onlyInApp
     );
@@ -154,10 +155,10 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean observe(
-            String key,
-            Class<T> type,
-            LifecycleOwner lifecycle,
-            Observer<T> observer
+            @NonNull String key,
+            @NonNull Class<T> type,
+            @NonNull LifecycleOwner lifecycle,
+            @NonNull Observer<T> observer
     );
 
     /**
@@ -169,10 +170,10 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean observeSticky(
-            String key,
-            Class<T> type,
-            LifecycleOwner lifecycle,
-            Observer<T> observer
+            @NonNull String key,
+            @NonNull Class<T> type,
+            @NonNull LifecycleOwner lifecycle,
+            @NonNull Observer<T> observer
     );
 
     /**
@@ -183,9 +184,9 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean observeForever(
-            String key,
-            Class<T> type,
-            Observer<T> observer
+            @NonNull String key,
+            @NonNull Class<T> type,
+            @NonNull Observer<T> observer
     );
 
     /**
@@ -196,9 +197,9 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean observeStickyForever(
-            String key,
-            Class<T> type,
-            Observer<T> observer
+            @NonNull String key,
+            @NonNull Class<T> type,
+            @NonNull Observer<T> observer
     );
 
     /**
@@ -209,8 +210,8 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     <T> boolean removeObserver(
-            String key,
-            Class<T> type,
-            Observer<T> observer
+            @NonNull String key,
+            @NonNull Class<T> type,
+            @NonNull Observer<T> observer
     );
 }

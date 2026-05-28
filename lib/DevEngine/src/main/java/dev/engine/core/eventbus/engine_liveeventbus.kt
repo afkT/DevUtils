@@ -214,10 +214,10 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
      * @return [com.jeremyliao.liveeventbus.core.Observable]
      */
     protected open fun <T> getObservable(
-        key: String?,
+        key: String,
         value: T
     ): com.jeremyliao.liveeventbus.core.Observable<T>? {
-        if (key.isNullOrEmpty()) return null
+        if (key.isEmpty()) return null
         @Suppress("UNCHECKED_CAST")
         val type = value?.javaClass as? Class<T> ?: Any::class.java as Class<T>
         return LiveEventBus.get(key, type)
@@ -230,10 +230,10 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
      * @return [com.jeremyliao.liveeventbus.core.Observable]
      */
     protected open fun <T> getObservable(
-        key: String?,
+        key: String,
         type: Class<T>?
     ): com.jeremyliao.liveeventbus.core.Observable<T>? {
-        if (key.isNullOrEmpty()) return null
+        if (key.isEmpty()) return null
         type ?: return null
         return LiveEventBus.get(key, type)
     }
