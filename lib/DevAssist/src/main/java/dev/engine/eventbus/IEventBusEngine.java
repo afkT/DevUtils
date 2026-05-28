@@ -125,6 +125,33 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
             T value
     );
 
+    /**
+     * 广播形式发送事件
+     * @param key   key
+     * @param value 事件数据
+     * @return {@code true} success, {@code false} fail
+     * @deprecated 建议使用 {@link #postAcrossProcess(String, Object)} 或 {@link #postAcrossApp(String, Object)}
+     */
+    <T> boolean broadcast(
+            String key,
+            T value
+    );
+
+    /**
+     * 广播形式发送事件
+     * @param key        key
+     * @param value      事件数据
+     * @param foreground {@code true} 前台广播, {@code false} 后台广播
+     * @param onlyInApp  {@code true} 只在 App 内有效, {@code false} 全局有效
+     * @return {@code true} success, {@code false} fail
+     */
+    <T> boolean broadcast(
+            String key,
+            T value,
+            boolean foreground,
+            boolean onlyInApp
+    );
+
     // ==========
     // = 观察事件 =
     // ==========
