@@ -10,6 +10,7 @@ import dev.engine.eventbus.IEventBusEngine
  * detail: LiveEventBus EventBus Engine 实现
  * @author Ttt
  * @see https://github.com/JeremyLiao/LiveEventBus
+ * @see https://github.com/michaellee123/LiveEventBus
  */
 open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
 
@@ -25,7 +26,7 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         key: String,
         config: EventBusConfig
     ): Boolean {
-        if (key.isNullOrEmpty()) return false
+        if (key.isEmpty()) return false
         config.lifecycleObserverAlwaysActive()?.let {
             LiveEventBus.config(key).lifecycleObserverAlwaysActive(it)
         }
@@ -46,13 +47,6 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         return getObservable(key, value)?.run {
             post(value); true
         } ?: false
-    }
-
-    override fun <T : Any> postSticky(
-        key: String,
-        value: T
-    ): Boolean {
-        return post(key, value)
     }
 
     override fun <T : Any> postDelay(
@@ -194,20 +188,21 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
      * @return `true` success, `false` fail
      */
     protected open fun applyConfig(config: EventBusConfig): Boolean {
+        val liveEventConfig = LiveEventBus.config()
         config.context()?.let {
-            LiveEventBus.config().setContext(it.applicationContext)
+            liveEventConfig.setContext(it.applicationContext)
         }
         config.lifecycleObserverAlwaysActive()?.let {
-            LiveEventBus.config().lifecycleObserverAlwaysActive(it)
+            liveEventConfig.lifecycleObserverAlwaysActive(it)
         }
         config.autoClear()?.let {
-            LiveEventBus.config().autoClear(it)
+            liveEventConfig.autoClear(it)
         }
         getLogger(config.logger())?.let {
-            LiveEventBus.config().setLogger(it)
+            liveEventConfig.setLogger(it)
         }
         config.enableLogger()?.let {
-            LiveEventBus.config().enableLogger(it)
+            liveEventConfig.enableLogger(it)
         }
         return true
     }
@@ -251,5 +246,4 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
     protected open fun getLogger(logger: Any?): Logger? {
         return logger as? Logger
     }
-
 }

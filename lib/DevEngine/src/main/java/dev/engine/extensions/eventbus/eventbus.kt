@@ -22,9 +22,9 @@ fun String?.getEventBusEngine(): IEventBusEngine<in IEventBusEngine.EngineConfig
     return DevEngine.getEventBus()
 }
 
-// =====================
+// ======================
 // = Key EventBus Engine =
-// =====================
+// ======================
 
 // =============
 // = 对外公开方法 =
@@ -60,16 +60,6 @@ fun <T> eventbus_post(
     key ?: return false
     value ?: return false
     return engine.getEventBusEngine()?.post(key, value) ?: false
-}
-
-fun <T> eventbus_postSticky(
-    engine: String? = null,
-    key: String?,
-    value: T
-): Boolean {
-    key ?: return false
-    value ?: return false
-    return engine.getEventBusEngine()?.postSticky(key, value) ?: false
 }
 
 fun <T> eventbus_postDelay(

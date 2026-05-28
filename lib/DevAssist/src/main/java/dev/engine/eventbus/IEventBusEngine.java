@@ -54,17 +54,6 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
     );
 
     /**
-     * 发送 Sticky 事件
-     * @param key   key
-     * @param value 事件数据
-     * @return {@code true} success, {@code false} fail
-     */
-    <T> boolean postSticky(
-            String key,
-            T value
-    );
-
-    /**
      * 发送延迟事件
      * @param key   key
      * @param value 事件数据
