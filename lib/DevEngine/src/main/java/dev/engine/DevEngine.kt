@@ -20,7 +20,7 @@ import dev.engine.core.barcode.ZXingEngineImpl
 import dev.engine.core.cache.CacheConfig
 import dev.engine.core.cache.DevCacheEngineImpl
 import dev.engine.core.compress.LubanEngineImpl
-import dev.engine.core.eventbus.LiveEventBusConfig
+import dev.engine.core.eventbus.EventBusConfig
 import dev.engine.core.eventbus.LiveEventBusEngineImpl
 import dev.engine.core.image.GlideEngineImpl
 import dev.engine.core.json.FastjsonEngineImpl
@@ -174,6 +174,7 @@ object DevEngine {
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      * @param barCodeConfig BarCode Config
+     * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
@@ -183,7 +184,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig? = null,
         logConfig: LogConfig? = null,
         barCodeConfig: BarCodeConfig? = null,
-        eventBusConfig: LiveEventBusConfig? = LiveEventBusConfig.create(),
+        eventBusConfig: EventBusConfig? = EventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
@@ -225,7 +226,7 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig?,
         barCodeConfig: BarCodeConfig?,
-        eventBusConfig: LiveEventBusConfig?,
+        eventBusConfig: EventBusConfig?,
         refreshConfig: RefreshConfig?,
     ) {
         // ========================
@@ -246,19 +247,21 @@ object DevEngine {
             defaultDevCacheEngineImpl(config)
         }
 
+        // ==========================
+        // = EventBus Engine 事件总线 =
+        // ==========================
+
+        eventBusConfig?.let { config ->
+            // 初始化 LiveEventBus EventBus Engine 实现
+            defaultLiveEventBusEngineImpl().initialize(config)
+        }
+
         // ================================
         // = Image Compress Engine 图片压缩 =
         // ================================
 
         // 初始化 Luban Image Compress Engine 实现
         defaultLubanEngineImpl()
-
-        // ============================
-        // = EventBus Engine 事件总线 =
-        // ============================
-
-        // 初始化 LiveEventBus EventBus Engine 实现
-        defaultLiveEventBusEngineImpl(eventBusConfig)
 
         // ====================================
         // = Image Engine 图片加载、下载、转格式等 =
@@ -372,6 +375,20 @@ object DevEngine {
         }
     }
 
+    // ==========================
+    // = EventBus Engine 事件总线 =
+    // ==========================
+
+    /**
+     * 默认初始化 LiveEventBus EventBus Engine 实现
+     * @return LiveEventBusEngineImpl
+     */
+    fun defaultLiveEventBusEngineImpl(): LiveEventBusEngineImpl {
+        return newLiveEventBusEngineImpl().apply {
+            DevEventBusEngine.setEngine(this)
+        }
+    }
+
     // ================================
     // = Image Compress Engine 图片压缩 =
     // ================================
@@ -383,24 +400,6 @@ object DevEngine {
     fun defaultLubanEngineImpl(): LubanEngineImpl {
         return newLubanEngineImpl().apply {
             DevCompressEngine.setEngine(this)
-        }
-    }
-
-    // ============================
-    // = EventBus Engine 事件总线 =
-    // ============================
-
-    /**
-     * 默认初始化 LiveEventBus EventBus Engine 实现
-     * @param config LiveEventBus Config
-     * @return LiveEventBusEngineImpl
-     */
-    fun defaultLiveEventBusEngineImpl(
-        config: LiveEventBusConfig? = null
-    ): LiveEventBusEngineImpl {
-        return newLiveEventBusEngineImpl().apply {
-            config?.let { initialize(it) }
-            DevEventBusEngine.setEngine(this)
         }
     }
 
@@ -1138,6 +1137,18 @@ object DevEngine {
         return DevCacheEngineImpl(config)
     }
 
+    // ==========================
+    // = EventBus Engine 事件总线 =
+    // ==========================
+
+    /**
+     * 创建 LiveEventBus EventBus Engine 实现
+     * @return LiveEventBus EventBus Engine 实现
+     */
+    fun newLiveEventBusEngineImpl(): LiveEventBusEngineImpl {
+        return LiveEventBusEngineImpl()
+    }
+
     // ================================
     // = Image Compress Engine 图片压缩 =
     // ================================
@@ -1148,18 +1159,6 @@ object DevEngine {
      */
     fun newLubanEngineImpl(): LubanEngineImpl {
         return LubanEngineImpl()
-    }
-
-    // ============================
-    // = EventBus Engine 事件总线 =
-    // ============================
-
-    /**
-     * 创建 LiveEventBus EventBus Engine 实现
-     * @return LiveEventBus EventBus Engine 实现
-     */
-    fun newLiveEventBusEngineImpl(): LiveEventBusEngineImpl {
-        return LiveEventBusEngineImpl()
     }
 
     // ====================================

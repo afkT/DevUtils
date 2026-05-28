@@ -1,15 +1,14 @@
 package dev.engine.core.eventbus
 
 import android.content.Context
-import com.jeremyliao.liveeventbus.logger.Logger
 import dev.engine.eventbus.IEventBusEngine
 
 /**
- * detail: LiveEventBus Config
+ * detail: EventBus Config
  * @author Ttt
  */
-open class LiveEventBusConfig private constructor(
-    config: LiveEventBusConfig?
+open class EventBusConfig private constructor(
+    config: EventBusConfig?
 ) : IEventBusEngine.EngineConfig {
 
     // Context
@@ -22,19 +21,19 @@ open class LiveEventBusConfig private constructor(
     private var mAutoClear: Boolean? = null
 
     // Logger
-    private var mLogger: Logger? = null
+    private var mLogger: Any? = null
 
     // 是否启用 Logger
     private var mEnableLogger: Boolean? = null
 
     companion object {
 
-        fun create(): LiveEventBusConfig {
-            return LiveEventBusConfig(null)
+        fun create(): EventBusConfig {
+            return EventBusConfig(null)
         }
 
-        fun create(config: LiveEventBusConfig?): LiveEventBusConfig {
-            return LiveEventBusConfig(config)
+        fun create(config: EventBusConfig?): EventBusConfig {
+            return EventBusConfig(config)
         }
     }
 
@@ -54,10 +53,10 @@ open class LiveEventBusConfig private constructor(
 
     /**
      * 克隆配置信息
-     * @return [LiveEventBusConfig]
+     * @return [EventBusConfig]
      */
-    open fun clone(): LiveEventBusConfig {
-        return LiveEventBusConfig(this)
+    open fun clone(): EventBusConfig {
+        return EventBusConfig(this)
     }
 
     // ===========
@@ -68,7 +67,7 @@ open class LiveEventBusConfig private constructor(
         return mContext
     }
 
-    open fun setContext(context: Context?): LiveEventBusConfig {
+    open fun setContext(context: Context?): EventBusConfig {
         mContext = context
         return this
     }
@@ -79,7 +78,7 @@ open class LiveEventBusConfig private constructor(
 
     open fun setLifecycleObserverAlwaysActive(
         lifecycleObserverAlwaysActive: Boolean?
-    ): LiveEventBusConfig {
+    ): EventBusConfig {
         mLifecycleObserverAlwaysActive = lifecycleObserverAlwaysActive
         return this
     }
@@ -88,16 +87,16 @@ open class LiveEventBusConfig private constructor(
         return mAutoClear
     }
 
-    open fun setAutoClear(autoClear: Boolean?): LiveEventBusConfig {
+    open fun setAutoClear(autoClear: Boolean?): EventBusConfig {
         mAutoClear = autoClear
         return this
     }
 
-    open fun logger(): Logger? {
+    open fun logger(): Any? {
         return mLogger
     }
 
-    open fun setLogger(logger: Logger?): LiveEventBusConfig {
+    open fun setLogger(logger: Any?): EventBusConfig {
         mLogger = logger
         return this
     }
@@ -106,7 +105,7 @@ open class LiveEventBusConfig private constructor(
         return mEnableLogger
     }
 
-    open fun setEnableLogger(enableLogger: Boolean?): LiveEventBusConfig {
+    open fun setEnableLogger(enableLogger: Boolean?): EventBusConfig {
         mEnableLogger = enableLogger
         return this
     }

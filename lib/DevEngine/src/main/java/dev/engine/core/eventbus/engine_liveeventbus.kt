@@ -3,6 +3,7 @@ package dev.engine.core.eventbus
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.jeremyliao.liveeventbus.logger.Logger
 import dev.engine.eventbus.IEventBusEngine
 
 /**
@@ -10,23 +11,21 @@ import dev.engine.eventbus.IEventBusEngine
  * @author Ttt
  * @see https://github.com/JeremyLiao/LiveEventBus
  */
-open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
+open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
 
     // =============
     // = 对外公开方法 =
     // =============
 
-    override fun initialize(config: LiveEventBusConfig?): Boolean {
-        config ?: return false
+    override fun initialize(config: EventBusConfig): Boolean {
         return applyConfig(config)
     }
 
     override fun config(
-        key: String?,
-        config: LiveEventBusConfig?
+        key: String,
+        config: EventBusConfig
     ): Boolean {
         if (key.isNullOrEmpty()) return false
-        config ?: return false
         config.lifecycleObserverAlwaysActive()?.let {
             LiveEventBus.config(key).lifecycleObserverAlwaysActive(it)
         }
@@ -40,8 +39,8 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
     // = 发送事件 =
     // ==========
 
-    override fun <T : Any?> post(
-        key: String?,
+    override fun <T : Any> post(
+        key: String,
         value: T
     ): Boolean {
         return getObservable(key, value)?.run {
@@ -49,15 +48,15 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         } ?: false
     }
 
-    override fun <T : Any?> postSticky(
-        key: String?,
+    override fun <T : Any> postSticky(
+        key: String,
         value: T
     ): Boolean {
         return post(key, value)
     }
 
-    override fun <T : Any?> postDelay(
-        key: String?,
+    override fun <T : Any> postDelay(
+        key: String,
         value: T,
         delay: Long
     ): Boolean {
@@ -66,20 +65,19 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         } ?: false
     }
 
-    override fun <T : Any?> postDelay(
-        key: String?,
-        lifecycle: LifecycleOwner?,
+    override fun <T : Any> postDelay(
+        key: String,
+        lifecycle: LifecycleOwner,
         value: T,
         delay: Long
     ): Boolean {
-        lifecycle ?: return false
         return getObservable(key, value)?.run {
             postDelay(lifecycle, value, delay); true
         } ?: false
     }
 
-    override fun <T : Any?> postOrderly(
-        key: String?,
+    override fun <T : Any> postOrderly(
+        key: String,
         value: T
     ): Boolean {
         return getObservable(key, value)?.run {
@@ -87,8 +85,8 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         } ?: false
     }
 
-    override fun <T : Any?> postAcrossProcess(
-        key: String?,
+    override fun <T : Any> postAcrossProcess(
+        key: String,
         value: T
     ): Boolean {
         return getObservable(key, value)?.run {
@@ -96,8 +94,8 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         } ?: false
     }
 
-    override fun <T : Any?> postAcrossApp(
-        key: String?,
+    override fun <T : Any> postAcrossApp(
+        key: String,
         value: T
     ): Boolean {
         return getObservable(key, value)?.run {
@@ -105,64 +103,82 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         } ?: false
     }
 
+    @Deprecated(
+        message = "建议使用 postAcrossProcess 或 postAcrossApp",
+        replaceWith = ReplaceWith("postAcrossApp(key, value)")
+    )
+    override fun <T : Any> broadcast(
+        key: String,
+        value: T
+    ): Boolean {
+        return getObservable(key, value)?.run {
+            @Suppress("DEPRECATION")
+            broadcast(value); true
+        } ?: false
+    }
+
+    override fun <T : Any> broadcast(
+        key: String,
+        value: T,
+        foreground: Boolean,
+        onlyInApp: Boolean
+    ): Boolean {
+        return getObservable(key, value)?.run {
+            broadcast(value, foreground, onlyInApp); true
+        } ?: false
+    }
+
     // ==========
     // = 观察事件 =
     // ==========
 
-    override fun <T : Any?> observe(
-        key: String?,
-        type: Class<T>?,
-        lifecycle: LifecycleOwner?,
-        observer: Observer<T>?
+    override fun <T : Any> observe(
+        key: String,
+        type: Class<T>,
+        lifecycle: LifecycleOwner,
+        observer: Observer<T>
     ): Boolean {
-        lifecycle ?: return false
-        observer ?: return false
         return getObservable(key, type)?.run {
             observe(lifecycle, observer); true
         } ?: false
     }
 
-    override fun <T : Any?> observeSticky(
-        key: String?,
-        type: Class<T>?,
-        lifecycle: LifecycleOwner?,
-        observer: Observer<T>?
+    override fun <T : Any> observeSticky(
+        key: String,
+        type: Class<T>,
+        lifecycle: LifecycleOwner,
+        observer: Observer<T>
     ): Boolean {
-        lifecycle ?: return false
-        observer ?: return false
         return getObservable(key, type)?.run {
             observeSticky(lifecycle, observer); true
         } ?: false
     }
 
-    override fun <T : Any?> observeForever(
-        key: String?,
-        type: Class<T>?,
-        observer: Observer<T>?
+    override fun <T : Any> observeForever(
+        key: String,
+        type: Class<T>,
+        observer: Observer<T>
     ): Boolean {
-        observer ?: return false
         return getObservable(key, type)?.run {
             observeForever(observer); true
         } ?: false
     }
 
-    override fun <T : Any?> observeStickyForever(
-        key: String?,
-        type: Class<T>?,
-        observer: Observer<T>?
+    override fun <T : Any> observeStickyForever(
+        key: String,
+        type: Class<T>,
+        observer: Observer<T>
     ): Boolean {
-        observer ?: return false
         return getObservable(key, type)?.run {
             observeStickyForever(observer); true
         } ?: false
     }
 
-    override fun <T : Any?> removeObserver(
-        key: String?,
-        type: Class<T>?,
-        observer: Observer<T>?
+    override fun <T : Any> removeObserver(
+        key: String,
+        type: Class<T>,
+        observer: Observer<T>
     ): Boolean {
-        observer ?: return false
         return getObservable(key, type)?.run {
             removeObserver(observer); true
         } ?: false
@@ -177,7 +193,7 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
      * @param config EventBus Config
      * @return `true` success, `false` fail
      */
-    protected open fun applyConfig(config: LiveEventBusConfig): Boolean {
+    protected open fun applyConfig(config: EventBusConfig): Boolean {
         config.context()?.let {
             LiveEventBus.config().setContext(it.applicationContext)
         }
@@ -187,7 +203,7 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         config.autoClear()?.let {
             LiveEventBus.config().autoClear(it)
         }
-        config.logger()?.let {
+        getLogger(config.logger())?.let {
             LiveEventBus.config().setLogger(it)
         }
         config.enableLogger()?.let {
@@ -225,6 +241,15 @@ open class LiveEventBusEngineImpl : IEventBusEngine<LiveEventBusConfig?> {
         if (key.isNullOrEmpty()) return null
         type ?: return null
         return LiveEventBus.get(key, type)
+    }
+
+    /**
+     * 获取 Logger
+     * @param logger Logger Item
+     * @return [Logger]
+     */
+    protected open fun getLogger(logger: Any?): Logger? {
+        return logger as? Logger
     }
 
 }

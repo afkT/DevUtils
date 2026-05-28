@@ -34,6 +34,7 @@ fun <Config : IEventBusEngine.EngineConfig> eventbus_initialize(
     engine: String? = null,
     config: Config?
 ): Boolean {
+    config ?: return false
     return engine.getEventBusEngine()?.initialize(config) ?: false
 }
 
@@ -42,6 +43,8 @@ fun <Config : IEventBusEngine.EngineConfig> eventbus_config(
     key: String?,
     config: Config?
 ): Boolean {
+    key ?: return false
+    config ?: return false
     return engine.getEventBusEngine()?.config(key, config) ?: false
 }
 
@@ -54,6 +57,8 @@ fun <T> eventbus_post(
     key: String?,
     value: T
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.post(key, value) ?: false
 }
 
@@ -62,6 +67,8 @@ fun <T> eventbus_postSticky(
     key: String?,
     value: T
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postSticky(key, value) ?: false
 }
 
@@ -71,6 +78,8 @@ fun <T> eventbus_postDelay(
     value: T,
     delay: Long
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postDelay(key, value, delay) ?: false
 }
 
@@ -81,6 +90,9 @@ fun <T> eventbus_postDelay(
     value: T,
     delay: Long
 ): Boolean {
+    key ?: return false
+    lifecycle ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postDelay(key, lifecycle, value, delay) ?: false
 }
 
@@ -89,6 +101,8 @@ fun <T> eventbus_postOrderly(
     key: String?,
     value: T
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postOrderly(key, value) ?: false
 }
 
@@ -97,6 +111,8 @@ fun <T> eventbus_postAcrossProcess(
     key: String?,
     value: T
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postAcrossProcess(key, value) ?: false
 }
 
@@ -105,7 +121,35 @@ fun <T> eventbus_postAcrossApp(
     key: String?,
     value: T
 ): Boolean {
+    key ?: return false
+    value ?: return false
     return engine.getEventBusEngine()?.postAcrossApp(key, value) ?: false
+}
+
+@Deprecated(
+    message = "建议使用 eventbus_postAcrossProcess 或 eventbus_postAcrossApp",
+    replaceWith = ReplaceWith("eventbus_postAcrossApp(engine, key, value)")
+)
+fun <T> eventbus_broadcast(
+    engine: String? = null,
+    key: String?,
+    value: T
+): Boolean {
+    key ?: return false
+    value ?: return false
+    return engine.getEventBusEngine()?.broadcast(key, value) ?: false
+}
+
+fun <T> eventbus_broadcast(
+    engine: String? = null,
+    key: String?,
+    value: T,
+    foreground: Boolean,
+    onlyInApp: Boolean
+): Boolean {
+    key ?: return false
+    value ?: return false
+    return engine.getEventBusEngine()?.broadcast(key, value, foreground, onlyInApp) ?: false
 }
 
 // ==========
@@ -119,6 +163,10 @@ fun <T> eventbus_observe(
     lifecycle: LifecycleOwner?,
     observer: Observer<T>?
 ): Boolean {
+    key ?: return false
+    type ?: return false
+    lifecycle ?: return false
+    observer ?: return false
     return engine.getEventBusEngine()?.observe(key, type, lifecycle, observer) ?: false
 }
 
@@ -129,6 +177,10 @@ fun <T> eventbus_observeSticky(
     lifecycle: LifecycleOwner?,
     observer: Observer<T>?
 ): Boolean {
+    key ?: return false
+    type ?: return false
+    lifecycle ?: return false
+    observer ?: return false
     return engine.getEventBusEngine()?.observeSticky(key, type, lifecycle, observer) ?: false
 }
 
@@ -138,6 +190,9 @@ fun <T> eventbus_observeForever(
     type: Class<T>?,
     observer: Observer<T>?
 ): Boolean {
+    key ?: return false
+    type ?: return false
+    observer ?: return false
     return engine.getEventBusEngine()?.observeForever(key, type, observer) ?: false
 }
 
@@ -147,6 +202,9 @@ fun <T> eventbus_observeStickyForever(
     type: Class<T>?,
     observer: Observer<T>?
 ): Boolean {
+    key ?: return false
+    type ?: return false
+    observer ?: return false
     return engine.getEventBusEngine()?.observeStickyForever(key, type, observer) ?: false
 }
 
@@ -156,5 +214,8 @@ fun <T> eventbus_removeObserver(
     type: Class<T>?,
     observer: Observer<T>?
 ): Boolean {
+    key ?: return false
+    type ?: return false
+    observer ?: return false
     return engine.getEventBusEngine()?.removeObserver(key, type, observer) ?: false
 }
