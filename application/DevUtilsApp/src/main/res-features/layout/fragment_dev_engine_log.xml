@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.LogViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR_DP_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogDebug}"
+                android:text="dTag debug 日志" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogError}"
+                android:text="eTag error 日志" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogWarn}"
+                android:text="wTag warn 日志" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogInfo}"
+                android:text="iTag info 日志" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogJson}"
+                android:text="jsonTag 格式化 JSON" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickLogXml}"
+                android:text="xmlTag 格式化 XML" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

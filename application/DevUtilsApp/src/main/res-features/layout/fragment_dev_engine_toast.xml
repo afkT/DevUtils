@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.ToastViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR_DP_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShowShort}"
+                android:text="showShort 短吐司" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShowLong}"
+                android:text="showLong 长吐司" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickShow}"
+                android:text="show 默认吐司" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickDelayedShow}"
+                android:text="delayedShow 延时显示" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGravityCenter}"
+                android:text="setGravity 居中显示" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickCancel}"
+                android:text="cancel 取消吐司" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

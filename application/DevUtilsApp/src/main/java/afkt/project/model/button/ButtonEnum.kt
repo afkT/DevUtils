@@ -127,39 +127,39 @@ enum class ButtonEnum(
     // = DevAssist Engine =
     // ===================
 
-    BTN_DEV_ASSIST_ENGINE_ANALYTICS("Analytics Engine 数据统计 ( 埋点 )"),
+    BTN_DEV_ASSIST_ENGINE_ANALYTICS("Analytics Engine 数据统计 ( 埋点 )", R.id.AnalyticsFragment),
 
-    BTN_DEV_ASSIST_ENGINE_BAR_CODE("BarCode Engine 条形码、二维码处理"),
+    BTN_DEV_ASSIST_ENGINE_BAR_CODE("BarCode Engine 条形码、二维码处理", R.id.BarCodeFragment),
 
-    BTN_DEV_ASSIST_ENGINE_CACHE("Cache Engine 有效期键值对缓存"),
+    BTN_DEV_ASSIST_ENGINE_CACHE("Cache Engine 有效期键值对缓存", R.id.CacheFragment),
 
-    BTN_DEV_ASSIST_ENGINE_DEBUG("Debug Engine 编译辅助开发"),
+    BTN_DEV_ASSIST_ENGINE_DEBUG("Debug Engine 编译辅助开发", R.id.DebugFragment),
 
     BTN_DEV_ASSIST_ENGINE_EVENT_BUS("EventBus Engine 事件总线", R.id.EventBusFragment),
 
-    BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩"),
+    BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩", R.id.ImageCompressFragment),
 
-    BTN_DEV_ASSIST_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等"),
+    BTN_DEV_ASSIST_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等", R.id.ImageFragment),
 
-    BTN_DEV_ASSIST_ENGINE_JSON("JSON Engine 映射"),
+    BTN_DEV_ASSIST_ENGINE_JSON("JSON Engine 映射", R.id.JSONFragment),
 
-    BTN_DEV_ASSIST_ENGINE_KEYVALUE("KeyValue Engine 键值对存储"),
+    BTN_DEV_ASSIST_ENGINE_KEYVALUE("KeyValue Engine 键值对存储", R.id.KeyValueFragment),
 
-    BTN_DEV_ASSIST_ENGINE_LOG("Log Engine 日志打印"),
+    BTN_DEV_ASSIST_ENGINE_LOG("Log Engine 日志打印", R.id.LogFragment),
 
-    BTN_DEV_ASSIST_ENGINE_MEDIA_SELECTOR("Media Selector Engine 多媒体资源选择"),
+    BTN_DEV_ASSIST_ENGINE_MEDIA_SELECTOR("Media Selector Engine 多媒体资源选择", R.id.MediaSelectorFragment),
 
-    BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请"),
+    BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请", R.id.PermissionFragment),
 
-    BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理"),
+    BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理", R.id.PushFragment),
 
     BTN_DEV_ASSIST_ENGINE_REFRESH("Refresh Engine 下拉刷新", R.id.RefreshFragment),
 
-    BTN_DEV_ASSIST_ENGINE_SHARE("Share Engine 分享平台处理"),
+    BTN_DEV_ASSIST_ENGINE_SHARE("Share Engine 分享平台处理", R.id.ShareFragment),
 
-    BTN_DEV_ASSIST_ENGINE_STORAGE("Storage Engine 外部、内部文件存储"),
+    BTN_DEV_ASSIST_ENGINE_STORAGE("Storage Engine 外部、内部文件存储", R.id.StorageFragment),
 
-    BTN_DEV_ASSIST_ENGINE_TOAST("Toast Engine 吐司提示"),
+    BTN_DEV_ASSIST_ENGINE_TOAST("Toast Engine 吐司提示", R.id.ToastFragment),
 
     // =============
     // = UI Effect =

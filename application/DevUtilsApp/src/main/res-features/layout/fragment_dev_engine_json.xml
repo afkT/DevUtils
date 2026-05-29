@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.JSONViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR_DP_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickToJson}"
+                android:text="toJson 对象转 JSON" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickToJsonIndent}"
+                android:text="toJsonIndent 格式化 JSON" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickFromJson}"
+                android:text="fromJson JSON 转对象" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickIsJSON}"
+                android:text="isJSON 校验 JSON" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

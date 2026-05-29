@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.KeyValueViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR_DP_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickPutString}"
+                android:text="putString 存储字符串" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGetString}"
+                android:text="getString 获取字符串" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickPutInt}"
+                android:text="putInt 存储整数" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickGetInt}"
+                android:text="getInt 获取整数" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickContains}"
+                android:text="contains 是否存在 Key" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickRemove}"
+                android:text="remove 移除 Key" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickClear}"
+                android:text="clear 清空全部" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

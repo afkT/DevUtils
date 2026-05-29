@@ -258,38 +258,38 @@ open class DevCacheEngineImpl(
         return mConfig.mDevCache.getBoolean(key)
     }
 
-    override fun getString(key: String?): String {
+    override fun getString(key: String?): String? {
         return mConfig.mDevCache.getString(key)
     }
 
-    override fun getBytes(key: String?): ByteArray {
+    override fun getBytes(key: String?): ByteArray? {
         return mConfig.mDevCache.getBytes(key)
     }
 
-    override fun getBitmap(key: String?): Bitmap {
+    override fun getBitmap(key: String?): Bitmap? {
         return mConfig.mDevCache.getBitmap(key)
     }
 
-    override fun getDrawable(key: String?): Drawable {
+    override fun getDrawable(key: String?): Drawable? {
         return mConfig.mDevCache.getDrawable(key)
     }
 
-    override fun getSerializable(key: String?): Any {
+    override fun getSerializable(key: String?): Any? {
         return mConfig.mDevCache.getSerializable(key)
     }
 
     override fun <T : Any> getParcelable(
         key: String?,
         creator: Parcelable.Creator<T>?
-    ): T {
+    ): T? {
         return mConfig.mDevCache.getParcelable(key, creator)
     }
 
-    override fun getJSONObject(key: String?): JSONObject {
+    override fun getJSONObject(key: String?): JSONObject? {
         return mConfig.mDevCache.getJSONObject(key)
     }
 
-    override fun getJSONArray(key: String?): JSONArray {
+    override fun getJSONArray(key: String?): JSONArray? {
         return mConfig.mDevCache.getJSONArray(key)
     }
 
@@ -340,35 +340,35 @@ open class DevCacheEngineImpl(
     override fun getString(
         key: String?,
         defaultValue: String?
-    ): String {
+    ): String? {
         return mConfig.mDevCache.getString(key, defaultValue)
     }
 
     override fun getBytes(
         key: String?,
         defaultValue: ByteArray?
-    ): ByteArray {
+    ): ByteArray? {
         return mConfig.mDevCache.getBytes(key, defaultValue)
     }
 
     override fun getBitmap(
         key: String?,
         defaultValue: Bitmap?
-    ): Bitmap {
+    ): Bitmap? {
         return mConfig.mDevCache.getBitmap(key, defaultValue)
     }
 
     override fun getDrawable(
         key: String?,
         defaultValue: Drawable?
-    ): Drawable {
+    ): Drawable? {
         return mConfig.mDevCache.getDrawable(key, defaultValue)
     }
 
     override fun getSerializable(
         key: String?,
         defaultValue: Any?
-    ): Any {
+    ): Any? {
         return mConfig.mDevCache.getSerializable(key, defaultValue)
     }
 
@@ -376,21 +376,21 @@ open class DevCacheEngineImpl(
         key: String?,
         creator: Parcelable.Creator<T>?,
         defaultValue: T
-    ): T {
+    ): T? {
         return mConfig.mDevCache.getParcelable(key, creator, defaultValue)
     }
 
     override fun getJSONObject(
         key: String?,
         defaultValue: JSONObject?
-    ): JSONObject {
+    ): JSONObject? {
         return mConfig.mDevCache.getJSONObject(key, defaultValue)
     }
 
     override fun getJSONArray(
         key: String?,
         defaultValue: JSONArray?
-    ): JSONArray {
+    ): JSONArray? {
         return mConfig.mDevCache.getJSONArray(key, defaultValue)
     }
 

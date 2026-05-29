@@ -32,6 +32,81 @@
         android:name="afkt.project.features.dev_engine.RefreshFragment"
         android:label="RefreshFragment" />
 
+    <fragment
+        android:id="@+id/AnalyticsFragment"
+        android:name="afkt.project.features.dev_engine.AnalyticsFragment"
+        android:label="AnalyticsFragment" />
+
+    <fragment
+        android:id="@+id/BarCodeFragment"
+        android:name="afkt.project.features.dev_engine.BarCodeFragment"
+        android:label="BarCodeFragment" />
+
+    <fragment
+        android:id="@+id/CacheFragment"
+        android:name="afkt.project.features.dev_engine.CacheFragment"
+        android:label="CacheFragment" />
+
+    <fragment
+        android:id="@+id/DebugFragment"
+        android:name="afkt.project.features.dev_engine.DebugFragment"
+        android:label="DebugFragment" />
+
+    <fragment
+        android:id="@+id/ImageCompressFragment"
+        android:name="afkt.project.features.dev_engine.ImageCompressFragment"
+        android:label="ImageCompressFragment" />
+
+    <fragment
+        android:id="@+id/ImageFragment"
+        android:name="afkt.project.features.dev_engine.ImageFragment"
+        android:label="ImageFragment" />
+
+    <fragment
+        android:id="@+id/JSONFragment"
+        android:name="afkt.project.features.dev_engine.JSONFragment"
+        android:label="JSONFragment" />
+
+    <fragment
+        android:id="@+id/KeyValueFragment"
+        android:name="afkt.project.features.dev_engine.KeyValueFragment"
+        android:label="KeyValueFragment" />
+
+    <fragment
+        android:id="@+id/LogFragment"
+        android:name="afkt.project.features.dev_engine.LogFragment"
+        android:label="LogFragment" />
+
+    <fragment
+        android:id="@+id/MediaSelectorFragment"
+        android:name="afkt.project.features.dev_engine.MediaSelectorFragment"
+        android:label="MediaSelectorFragment" />
+
+    <fragment
+        android:id="@+id/PermissionFragment"
+        android:name="afkt.project.features.dev_engine.PermissionFragment"
+        android:label="PermissionFragment" />
+
+    <fragment
+        android:id="@+id/PushFragment"
+        android:name="afkt.project.features.dev_engine.PushFragment"
+        android:label="PushFragment" />
+
+    <fragment
+        android:id="@+id/ShareFragment"
+        android:name="afkt.project.features.dev_engine.ShareFragment"
+        android:label="ShareFragment" />
+
+    <fragment
+        android:id="@+id/StorageFragment"
+        android:name="afkt.project.features.dev_engine.StorageFragment"
+        android:label="StorageFragment" />
+
+    <fragment
+        android:id="@+id/ToastFragment"
+        android:name="afkt.project.features.dev_engine.ToastFragment"
+        android:label="ToastFragment" />
+
     <!-- DevWidget -->
 
     <fragment
