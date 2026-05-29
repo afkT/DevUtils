@@ -1,5 +1,10 @@
 apply from: rootProject.file("file/gradle/versions.gradle")
 
+// ext.deps、ext.deps_*
+apply from: rootProject.file("file/gradle/config_kotlin.gradle")
+apply from: rootProject.file("file/gradle/config_androidx.gradle")
+apply from: rootProject.file("file/gradle/config_libs.gradle")
+
 ext {
 
     deps = [
@@ -8,7 +13,7 @@ ext {
             // = Build 信息 =
             // =============
 
-            "build"   : [
+            "build": [
 
                     // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
                     kotlin_gradle_plugin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}",
@@ -24,7 +29,7 @@ ext {
             // = Dev 系列开发库 =
             // ================
 
-            "dev"     : [
+            "dev"  : [
                     // https://github.com/afkT/DevUtils
                     // https://search.maven.org/search?q=io.github.afkt
                     // https://repo1.maven.org/maven2/io/github/afkt
@@ -59,139 +64,6 @@ ext {
                     dev_deprecated                   : "io.github.afkt:DevDeprecated:${versions.dev_deprecated_versionName}",
                     // DevJava - Java 工具类库 ( 不依赖 android api )
                     dev_java                         : "io.github.afkt:DevJava:${versions.dev_java_version}",
-            ],
-
-            // =================
-            // = Android 官方库 =
-            // =================
-
-            // https://developer.android.com/jetpack/androidx/explorer
-            // https://developer.android.com/jetpack/androidx/releases
-            // https://developer.android.com/jetpack/androidx/versions
-            // https://developer.android.com/jetpack/androidx/versions/stable-channel
-            // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
-
-            "kotlin"  : [
-                    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-metadata-jvm
-                    // Kotlin 编译器同版（versions.kotlin_version）；Kotlin 2.4+ 用于约束解析，覆盖 Room 等传递的旧版 kotlin-metadata-jvm
-                    metadata                      : "org.jetbrains.kotlin:kotlin-metadata-jvm:${versions.kotlin_version}",
-                    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
-                    stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_stdlib_version}",
-                    // https://mvnrepository.com/artifact/androidx.core/core-ktx
-                    core                          : "androidx.core:core-ktx:1.18.0",
-                    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-                    coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
-                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
-                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
-                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-savedstate
-                    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common-java8
-                    // Lifecycles only ( without ViewModel or LiveData )
-                    // https://developer.android.com/jetpack/androidx/releases/lifecycle
-                    lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.11.0-beta01",
-                    // ViewModel
-                    lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0-beta01",
-                    // LiveData
-                    lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.11.0-beta01",
-                    // Saved state module for ViewModel
-                    lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.11.0-beta01",
-                    // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.11.0-beta01",
-                    // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
-                    // https://developer.android.com/jetpack/androidx/releases/activity
-                    activity                      : "androidx.activity:activity-ktx:1.13.0",
-                    // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-                    fragment                      : "androidx.fragment:fragment-ktx:1.8.9",
-                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
-                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
-                    // https://developer.android.com/guide/navigation
-                    // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha04",
-                    navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-alpha04",
-                    // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
-                    // WorkManager Kotlin + coroutines
-                    work_runtime                  : "androidx.work:work-runtime-ktx:2.11.2",
-                    // https://mvnrepository.com/artifact/androidx.room/room-runtime
-                    // https://mvnrepository.com/artifact/androidx.room/room-compiler
-                    // https://mvnrepository.com/artifact/androidx.room/room-ktx
-                    // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime                  : "androidx.room:room-runtime:2.8.4",
-                    room_compiler                 : "androidx.room:room-compiler:2.8.4",
-                    room                          : "androidx.room:room-ktx:2.8.4",
-                    // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
-                    // Palette 调色板 ( 从图片中获取颜色 )
-                    palette                       : "androidx.palette:palette-ktx:1.0.0",
-                    // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
-                    // https://developer.android.com/jetpack/androidx/releases/datastore
-                    // DataStore https://developer.android.com/topic/libraries/architecture/datastore
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.2.1",
-            ],
-            "androidx": [
-                    // https://mvnrepository.com/artifact/androidx.multidex/multidex
-                    multidex                 : "androidx.multidex:multidex:2.0.1",
-                    // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-                    appcompat                : "androidx.appcompat:appcompat:1.8.0-alpha01",
-                    // https://mvnrepository.com/artifact/androidx.appcompat/appcompat-resources
-                    appcompat_resources      : "androidx.appcompat:appcompat-resources:1.8.0-alpha01",
-                    // https://mvnrepository.com/artifact/androidx.cardview/cardview
-                    cardview                 : "androidx.cardview:cardview:1.0.0",
-                    // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
-                    constraint_layout        : "androidx.constraintlayout:constraintlayout:2.2.1",
-                    // https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
-                    recyclerview             : "androidx.recyclerview:recyclerview:1.4.0",
-                    // https://mvnrepository.com/artifact/androidx.viewpager2/viewpager2
-                    viewpager2               : "androidx.viewpager2:viewpager2:1.1.0",
-                    // https://mvnrepository.com/artifact/androidx.activity/activity
-                    activity                 : "androidx.activity:activity:1.13.0",
-                    // https://mvnrepository.com/artifact/androidx.fragment/fragment
-                    fragment                 : "androidx.fragment:fragment:1.8.9",
-                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment
-                    // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui
-                    // https://developer.android.com/guide/navigation
-                    // https://developer.android.com/jetpack/androidx/releases/navigation
-                    navigation_fragment      : "androidx.navigation:navigation-fragment:2.10.0-alpha04",
-                    navigation_ui            : "androidx.navigation:navigation-ui:2.10.0-alpha04",
-                    // https://mvnrepository.com/artifact/androidx.work/work-runtime
-                    // WorkManager Java only
-                    work_runtime             : "androidx.work:work-runtime:2.11.2",
-                    // https://mvnrepository.com/artifact/androidx.sqlite/sqlite
-                    sqlite                   : "androidx.sqlite:sqlite:2.7.0-alpha04", // 推荐使用 Room Jetpack 组件
-                    // https://mvnrepository.com/artifact/androidx.palette/palette
-                    // Palette 调色板 ( 从图片中获取颜色 )
-                    palette                  : "androidx.palette:palette:1.0.0",
-                    // https://mvnrepository.com/artifact/com.google.android.material/material
-                    // Android Material 组件
-                    design                   : "com.google.android.material:material:1.14.0",
-                    // https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
-                    // https://github.com/google/flexbox-layout
-                    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
-                    flexbox                  : "com.google.android.flexbox:flexbox:3.0.0",
-                    // https://mvnrepository.com/artifact/androidx.startup/startup-runtime
-                    // https://developer.android.com/topic/libraries/app-startup
-                    startup                  : "androidx.startup:startup-runtime:1.2.0",
-                    // https://mvnrepository.com/artifact/androidx.exifinterface/exifinterface
-                    // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/exifinterface
-                    exifinterface            : "androidx.exifinterface:exifinterface:1.4.2",
-                    // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
-                    // 读取和写入图片文件 EXIF 标记 https://developer.android.com/jetpack/androidx/releases/localbroadcastmanager
-                    localbroadcastManager    : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
-                    // https://mvnrepository.com/artifact/androidx.camera/camera-camera2
-                    // https://mvnrepository.com/artifact/androidx.camera/camera-lifecycle
-                    // CameraX https://developer.android.com/training/camerax
-                    camerax                  : "androidx.camera:camera-camera2:1.7.0-alpha01",
-                    camerax_lifecycle        : "androidx.camera:camera-lifecycle:1.7.0-alpha01",
-                    // https://mvnrepository.com/artifact/androidx.webkit/webkit
-                    // WebView Jetpack 组件 https://developer.android.com/jetpack/androidx/releases/webkit
-                    webkit                   : "androidx.webkit:webkit:1.16.0",
-                    // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
-                    // https://mvnrepository.com/artifact/com.google.dagger/hilt-android-compiler
-                    // Hilt 依赖注入 https://developer.android.com/training/dependency-injection/hilt-android
-                    hilt_android             : "com.google.dagger:hilt-android:2.59.2",
-                    hilt_android_compiler    : "com.google.dagger:hilt-android-compiler:2.59.2",
-                    // https://mvnrepository.com/artifact/androidx.annotation/annotation
-                    "annotation"             : "androidx.annotation:annotation:1.10.0",
-                    // https://mvnrepository.com/artifact/androidx.annotation/annotation-experimental
-                    "annotation_experimental": "androidx.annotation:annotation-experimental:1.6.0",
             ],
     ]
 }

@@ -20,7 +20,7 @@ def isPublishing = false
 
 dependencies {
     // AndroidX Lifecycle LiveData
-    api deps.kotlin.lifecycle_livedata
+    api deps_kotlin.lifecycle_livedata
 
     if (isPublishing) {
         // 打包时使用

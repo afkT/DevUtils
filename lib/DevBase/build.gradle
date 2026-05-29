@@ -26,18 +26,18 @@ android {
 def isPublishing = false
 
 dependencies {
-    api deps.androidx.design
-    api deps.androidx.appcompat
-    api deps.kotlin.activity
-    api deps.kotlin.fragment
-    api deps.kotlin.stdlib
-    api deps.kotlin.core
-    api deps.kotlin.coroutines
-    api deps.kotlin.lifecycle_runtime
-    api deps.kotlin.lifecycle_common_java8
-    api deps.kotlin.lifecycle_viewmodel
-    api deps.kotlin.lifecycle_livedata
-    api deps.kotlin.lifecycle_viewmodel_savedstate
+    api deps_androidx.design
+    api deps_androidx.appcompat
+    api deps_kotlin.activity
+    api deps_kotlin.fragment
+    api deps_kotlin.stdlib
+    api deps_kotlin.core
+    api deps_kotlin.coroutines
+    api deps_kotlin.lifecycle_runtime
+    api deps_kotlin.lifecycle_common_java8
+    api deps_kotlin.lifecycle_viewmodel
+    api deps_kotlin.lifecycle_livedata
+    api deps_kotlin.lifecycle_viewmodel_savedstate
 
     if (isPublishing) {
         // 打包时使用

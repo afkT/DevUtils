@@ -19,9 +19,9 @@ android {
 def isPublishing = false
 
 dependencies {
-    api deps.androidx.design
-    api deps.androidx.appcompat
-    api deps.androidx.constraint_layout
+    api deps_androidx.design
+    api deps_androidx.appcompat
+    api deps_androidx.constraint_layout
 
     if (isPublishing) {
         // 打包时使用

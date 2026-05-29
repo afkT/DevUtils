@@ -1,8 +1,7 @@
 buildscript {
 
-    // ext.deps
+    // ext.deps、ext.deps_*
     apply from: rootProject.file("file/gradle/config.gradle")
-    apply from: rootProject.file("file/gradle/config_libs.gradle")
     apply from: rootProject.file("file/gradle/config_files.gradle")
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载

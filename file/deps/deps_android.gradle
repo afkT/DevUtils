@@ -5,39 +5,39 @@ dependencies {
     // = kotlin =
     // ==========
 
-    api deps.kotlin.stdlib
-    api deps.kotlin.core
-    api deps.kotlin.coroutines
-    api deps.kotlin.lifecycle_runtime
-    api deps.kotlin.lifecycle_viewmodel
-    api deps.kotlin.lifecycle_livedata
-    api deps.kotlin.lifecycle_viewmodel_savedstate
-    api deps.kotlin.lifecycle_common_java8
-    api deps.kotlin.fragment
-    api deps.kotlin.activity
-    api deps.kotlin.navigation_fragment
-    api deps.kotlin.navigation_ui
-//    api deps.kotlin.work_runtime
-//    api deps.kotlin.palette
-//    api deps.kotlin.datastore_preferences
+    api deps_kotlin.stdlib
+    api deps_kotlin.core
+    api deps_kotlin.coroutines
+    api deps_kotlin.lifecycle_runtime
+    api deps_kotlin.lifecycle_viewmodel
+    api deps_kotlin.lifecycle_livedata
+    api deps_kotlin.lifecycle_viewmodel_savedstate
+    api deps_kotlin.lifecycle_common_java8
+    api deps_kotlin.fragment
+    api deps_kotlin.activity
+    api deps_kotlin.navigation_fragment
+    api deps_kotlin.navigation_ui
+//    api deps_kotlin.work_runtime
+//    api deps_kotlin.palette
+//    api deps_kotlin.datastore_preferences
 
     // ============
     // = androidx =
     // ============
 
-    api deps.androidx.design
-    api deps.androidx.appcompat
-    api deps.androidx.appcompat_resources
-    api deps.androidx.cardview
-    api deps.androidx.recyclerview
-    api deps.androidx.constraint_layout
-    api deps.androidx.viewpager2
-    api deps.androidx.work_runtime
-    api deps.androidx.fragment
-    api deps.androidx.activity
-    api deps.androidx.palette
-    api deps.androidx.flexbox
-    api deps.androidx.localbroadcastManager
+    api deps_androidx.design
+    api deps_androidx.appcompat
+    api deps_androidx.appcompat_resources
+    api deps_androidx.cardview
+    api deps_androidx.recyclerview
+    api deps_androidx.constraint_layout
+    api deps_androidx.viewpager2
+    api deps_androidx.work_runtime
+    api deps_androidx.fragment
+    api deps_androidx.activity
+    api deps_androidx.palette
+    api deps_androidx.flexbox
+    api deps_androidx.localbroadcastManager
 //    // minSdk >= 21 可不需要依赖 multidex
-//    api deps.androidx.multidex
+//    api deps_androidx.multidex
 }
