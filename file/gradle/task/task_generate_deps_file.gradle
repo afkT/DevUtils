@@ -6,9 +6,14 @@ import groovy.json.JsonOutput
 
 // 存储 config.gradle json 数据
 tasks.register('saveConfigGradleJSON') {
-//    println deps.toString()
+    // 累加 config.gradle、config_*.gradle 数据
+    def allDeps = new LinkedHashMap<String, Object>()
+    allDeps.putAll(deps)
+    allDeps.putAll(deps_lib)
+    allDeps.put("kotlin", deps_kotlin)
+    allDeps.put("androidx", deps_androidx)
     // 获取 ext.deps json 数据
-    def depsJSON = JsonOutput.toJson(deps)
+    def depsJSON = JsonOutput.toJson(allDeps)
     // 格式化 JSON
     def formatJSON = JsonOutput.prettyPrint(depsJSON)
     // 写入 ext.deps 配置信息
