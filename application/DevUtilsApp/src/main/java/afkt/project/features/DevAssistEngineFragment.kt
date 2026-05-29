@@ -31,7 +31,6 @@ class DevAssistEngineFragment : AppFragment<FragmentRecyclerViewBinding, AppView
                 // 存在对应演示 Fragment 则跳转，否则提示已封装为 DevEngine 库
                 if (btn.fragmentId != DevFinal.DEFAULT.ERROR_INT) {
                     btn.click()
-//                    return@convertItemsDevAssistEngineMain
                 }
                 val builder = StringBuilder()
                     .append("实现已封装为 DevEngine 库，直接依赖使用")

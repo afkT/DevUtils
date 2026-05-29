@@ -68,7 +68,9 @@ class BarCodeViewModel : AppViewModel() {
             callback = BarCodeEncodeCallback { success, bitmap, error ->
                 if (success && bitmap != null) {
                     lastBitmap = bitmap
-                    imageViewRef?.get()?.setImageBitmap(bitmap)
+                    imageViewRef?.get()?.apply {
+                        post { setImageBitmap(bitmap) }
+                    }
                     toast_showShort(text = "二维码生成成功")
                 } else {
                     toast_showShort(text = "二维码生成失败: ${error?.message}")
