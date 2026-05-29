@@ -8,12 +8,14 @@ allprojects {
 
             // 排除 kotlin-android-extensions-runtime 以避免与 kotlin-parcelize-runtime 的冲突
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-android-extensions-runtime'
-            
+
             // 强制统一版本 => 可通过 file/json/deps.gradle 获取, 视情况选择
             resolutionStrategy.force(
 
                     // = kotlin =
 
+                    // metadata
+                    "org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.0-RC",
                     // stdlib
                     "org.jetbrains.kotlin:kotlin-stdlib:2.4.0-RC",
                     // core

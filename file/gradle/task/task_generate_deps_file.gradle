@@ -24,16 +24,23 @@ tasks.register('saveConfigGradleJSON') {
 
 // 生成 deps dependencies gradle
 tasks.register('generateDepsDependencies') {
+    // 累加 config.gradle、config_*.gradle 数据
+    def allDeps = new LinkedHashMap<String, Object>()
+    allDeps.putAll(deps)
+    allDeps.putAll(deps_lib)
+    allDeps.put("kotlin", deps_kotlin)
+    allDeps.put("androidx", deps_androidx)
+
     def newline = System.getProperty("line.separator")
     def newline2 = newline + newline
     def importSymbol = "implementation"
     // 拼接 string
     def builder = new StringBuilder()
     builder.append("dependencies {")
-    for (String module : deps.keySet()) {
+    for (String module : allDeps.keySet()) {
         builder.append("${newline2}\t// = ${module} =${newline}")
         // 循环拼接处理
-        def valueMaps = deps.get(module) as LinkedHashMap<String, String>
+        def valueMaps = allDeps.get(module) as LinkedHashMap<String, String>
         for (String name : valueMaps.keySet()) {
             def value = valueMaps.get(name)
             builder.append("${newline}\t// ${name}")
