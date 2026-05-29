@@ -133,6 +133,10 @@ enum class ButtonEnum(
 
     BTN_DEV_ASSIST_ENGINE_CACHE("Cache Engine 有效期键值对缓存"),
 
+    BTN_DEV_ASSIST_ENGINE_DEBUG("Debug Engine 编译辅助开发"),
+
+    BTN_DEV_ASSIST_ENGINE_EVENT_BUS("EventBus Engine 事件总线", R.id.EventBusFragment),
+
     BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩"),
 
     BTN_DEV_ASSIST_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等"),
@@ -148,6 +152,8 @@ enum class ButtonEnum(
     BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请"),
 
     BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理"),
+
+    BTN_DEV_ASSIST_ENGINE_REFRESH("Refresh Engine 下拉刷新", R.id.RefreshFragment),
 
     BTN_DEV_ASSIST_ENGINE_SHARE("Share Engine 分享平台处理"),
 

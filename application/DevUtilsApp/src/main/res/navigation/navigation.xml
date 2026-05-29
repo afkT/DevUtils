@@ -22,6 +22,16 @@
         android:name="afkt.project.features.DevAssistEngineFragment"
         android:label="DevAssistEngineFragment" />
 
+    <fragment
+        android:id="@+id/EventBusFragment"
+        android:name="afkt.project.features.dev_engine.EventBusFragment"
+        android:label="EventBusFragment" />
+
+    <fragment
+        android:id="@+id/RefreshFragment"
+        android:name="afkt.project.features.dev_engine.RefreshFragment"
+        android:label="RefreshFragment" />
+
     <!-- DevWidget -->
 
     <fragment

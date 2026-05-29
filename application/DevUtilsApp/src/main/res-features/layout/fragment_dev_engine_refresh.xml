@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.RefreshViewModel" />
+    </data>
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/vid_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView.Match">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ViewTheme.TextView.Match.Width"
+                android:gravity="center"
+                android:minHeight="@dimen/dp_500"
+                android:text="下拉刷新、上拉加载"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15" />
+        </androidx.core.widget.NestedScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</layout>

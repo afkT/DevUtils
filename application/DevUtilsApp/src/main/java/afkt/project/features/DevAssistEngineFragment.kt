@@ -5,6 +5,7 @@ import afkt.project.R
 import afkt.project.app.AppFragment
 import afkt.project.app.AppViewModel
 import afkt.project.databinding.FragmentRecyclerViewBinding
+import afkt.project.model.button.click
 import afkt.project.model.button.convertItemsDevAssistEngineMain
 import android.graphics.Color
 import android.view.View
@@ -16,6 +17,7 @@ import dev.engine.core.log.DevLoggerEngineImpl
 import dev.engine.extensions.log.log_dTag
 import dev.engine.extensions.toast.toast_showLong
 import dev.engine.log.DevLogEngine
+import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SpanUtils
 import dev.utils.app.helper.quick.QuickHelper
@@ -26,6 +28,11 @@ class DevAssistEngineFragment : AppFragment<FragmentRecyclerViewBinding, AppView
         frg.asFragment<DevAssistEngineFragment> {
             // 初始化数据并设置点击事件
             viewModel.buttonAdapterModel.convertItemsDevAssistEngineMain { btn ->
+                // 存在对应演示 Fragment 则跳转，否则提示已封装为 DevEngine 库
+                if (btn.fragmentId != DevFinal.DEFAULT.ERROR_INT) {
+                    btn.click()
+                    return@convertItemsDevAssistEngineMain
+                }
                 val builder = StringBuilder()
                     .append("实现已封装为 DevEngine 库，直接依赖使用")
                 toast_showLong(text = builder.toString())

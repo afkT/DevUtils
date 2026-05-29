@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.EventBusViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/ViewTheme.NestedScrollView">
+
+        <LinearLayout
+            style="@style/ViewTheme.Padding.LR_DP_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPost}"
+                android:text="EventBus post" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPostDelay}"
+                android:text="EventBus postDelay" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPostDelayLifecycle}"
+                android:text="EventBus postDelay lifecycle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPostOrderly}"
+                android:text="EventBus postOrderly" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPostAcrossProcess}"
+                android:text="EventBus postAcrossProcess" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusPostAcrossApp}"
+                android:text="EventBus postAcrossApp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusBroadcast}"
+                android:text="EventBus broadcast" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/ViewTheme.Button.Single"
+                android:onClick="@{viewModel.clickEventBusBroadcastOptions}"
+                android:text="EventBus broadcast options" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
