@@ -17,9 +17,8 @@ dependencies {
     api deps_kotlin.activity
     api deps_kotlin.navigation_fragment
     api deps_kotlin.navigation_ui
-//    api deps_kotlin.work_runtime
-//    api deps_kotlin.palette
-//    api deps_kotlin.datastore_preferences
+    api deps_kotlin.work_runtime
+    api deps_kotlin.palette
 
     // ============
     // = androidx =
@@ -32,10 +31,6 @@ dependencies {
     api deps_androidx.recyclerview
     api deps_androidx.constraint_layout
     api deps_androidx.viewpager2
-    api deps_androidx.work_runtime
-    api deps_androidx.fragment
-    api deps_androidx.activity
-    api deps_androidx.palette
     api deps_androidx.flexbox
     api deps_androidx.localbroadcastManager
 //    // minSdk >= 21 可不需要依赖 multidex
