@@ -153,7 +153,7 @@ ext {
             // https://mvnrepository.com/artifact/androidx.localbroadcastmanager/localbroadcastmanager
             // 【废弃】官方建议改用 LiveData / 协程 Flow 等响应式方案
             localbroadcastManager    : "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
-            // https://mvnrepository.com/artifact/androidx.multidex/multidex
+            // minSdk >= 21 可不需要依赖 multidex https://mvnrepository.com/artifact/androidx.multidex/multidex
             multidex                 : "androidx.multidex:multidex:2.0.1",
     ]
 }

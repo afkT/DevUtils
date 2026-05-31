@@ -31,6 +31,4 @@ dependencies {
     api deps_androidx.constraint_layout
     api deps_androidx.viewpager2
     api deps_androidx.flexbox
-//    // minSdk >= 21 可不需要依赖 multidex
-//    api deps_androidx.multidex
 }

@@ -2,10 +2,92 @@ apply from: rootProject.file("file/gradle/versions.gradle")
 
 ext {
 
+    // ==============================
+    // = Jetpack Compose ( 官方 UI ) =
+    // ==============================
+
+    // https://developer.android.com/develop/ui/compose/bom
+    // https://developer.android.com/develop/ui/compose/bom/bom-mapping
+    // 用法: 先 implementation platform(deps_compose.bom) 引入 BOM, 再引用下方【无版本】的 androidx.compose.* 坐标 ( 版本由 BOM 统一 );
+    //       带版本号的为非 BOM 管理构件 ( activity / lifecycle / navigation / hilt / paging / constraintlayout / navigation3 )
+
     deps_compose = [
 
             // ==========
             // = compose =
             // ==========
+
+            // https://mvnrepository.com/artifact/androidx.compose/compose-bom
+            // Compose BOM: 统一管理 androidx.compose.* 版本 ( 需用 platform(...) 引入 )
+            bom                            : "androidx.compose:compose-bom:2026.05.00",
+
+            // - 以下 androidx.compose.* 由 BOM 统一版本, 不写版本号 -
+
+            // 核心 UI / 图形
+            ui                             : "androidx.compose.ui:ui",
+            ui_graphics                    : "androidx.compose.ui:ui-graphics",
+            // 基础布局 / 手势 / 滚动 / LazyList
+            foundation                     : "androidx.compose.foundation:foundation",
+            // 动画
+            animation                      : "androidx.compose.animation:animation",
+            // 运行时 ( State / remember / CompositionLocal )
+            runtime                        : "androidx.compose.runtime:runtime",
+            // 在 Compose 中观察 LiveData ( observeAsState )
+            runtime_livedata               : "androidx.compose.runtime:runtime-livedata",
+            // Material Design 2 组件
+            material                       : "androidx.compose.material:material",
+            // Material 图标扩展 ( 体积较大, 按需引入 )
+            material_icons_extended        : "androidx.compose.material:material-icons-extended",
+            // Material Design 3 组件 ( 推荐 )
+            material3                      : "androidx.compose.material3:material3",
+            // M3 窗口尺寸分类 ( 响应式布局 )
+            material3_window_size          : "androidx.compose.material3:material3-window-size-class",
+            // M3 自适应布局 ( 折叠屏 / 大屏分栏 )
+            material3_adaptive             : "androidx.compose.material3.adaptive:adaptive",
+            // 预览 / 工具 ( 通常 debugImplementation )
+            ui_tooling                     : "androidx.compose.ui:ui-tooling",
+            ui_tooling_preview             : "androidx.compose.ui:ui-tooling-preview",
+            // 测试 ( ui-test-junit4 用 androidTestImplementation, ui-test-manifest 用 debugImplementation )
+            ui_test_junit4                 : "androidx.compose.ui:ui-test-junit4",
+            ui_test_manifest               : "androidx.compose.ui:ui-test-manifest",
+
+            // ==============================
+            // = 集成库 ( 非 BOM 管理, 带版本 ) =
+            // ==============================
+
+            // https://mvnrepository.com/artifact/androidx.activity/activity-compose
+            // Activity 集成 ( setContent / BackHandler / rememberLauncherForActivityResult )
+            activity_compose               : "androidx.activity:activity-compose:1.13.0",
+            // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
+            // 在 Composable 中获取 ViewModel ( viewModel() )
+            lifecycle_viewmodel_compose    : "androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0-beta01",
+            // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-compose
+            // 生命周期感知收集 collectAsStateWithLifecycle
+            lifecycle_runtime_compose      : "androidx.lifecycle:lifecycle-runtime-compose:2.11.0-beta01",
+            // https://mvnrepository.com/artifact/androidx.navigation/navigation-compose
+            // Compose 导航 ( NavHost / composable 路由 )
+            navigation_compose             : "androidx.navigation:navigation-compose:2.9.8",
+            // https://mvnrepository.com/artifact/androidx.hilt/hilt-navigation-compose
+            // Hilt + Compose 导航注入 hiltViewModel()
+            hilt_navigation_compose        : "androidx.hilt:hilt-navigation-compose:1.3.0",
+            // https://mvnrepository.com/artifact/androidx.paging/paging-compose
+            // Paging 3 的 Compose 支持 collectAsLazyPagingItems()
+            paging_compose                 : "androidx.paging:paging-compose:3.5.0",
+            // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose
+            // ConstraintLayout 的 Compose 版本
+            constraintlayout_compose       : "androidx.constraintlayout:constraintlayout-compose:1.1.1",
+
+            // =====================================
+            // = Navigation 3 ( Compose 新一代导航 ) =
+            // =====================================
+
+            // https://mvnrepository.com/artifact/androidx.navigation3/navigation3-runtime
+            // https://mvnrepository.com/artifact/androidx.navigation3/navigation3-ui
+            // Navigation 3 ( Compose 专用, 需 compileSdk 36 ) https://developer.android.com/guide/navigation/navigation-3
+            navigation3_runtime            : "androidx.navigation3:navigation3-runtime:1.1.2",
+            navigation3_ui                 : "androidx.navigation3:navigation3-ui:1.1.2",
+            // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-navigation3
+            // Navigation 3 的 ViewModel 作用域集成
+            lifecycle_viewmodel_navigation3: "androidx.lifecycle:lifecycle-viewmodel-navigation3:2.11.0-beta02",
     ]
 }
