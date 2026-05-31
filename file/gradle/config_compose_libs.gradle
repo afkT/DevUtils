@@ -2,10 +2,54 @@ apply from: rootProject.file("file/gradle/versions.gradle")
 
 ext {
 
-    // ===================
-    // = Compose 第三方库 =
-    // ===================
+    // ======================================
+    // = 第三方 Compose 库 ( 非 Android 官方 ) =
+    // ======================================
 
     deps_compose_lib = [
+
+            "common"      : [
+
+                    // ==================
+                    // = Compose 常用工具 =
+                    // ==================
+
+                    // Accompanist ( Google 维护, 现为维护模式; 部分能力已并入官方 Compose, 但权限请求仍无官方替代 )
+                    // https://github.com/google/accompanist
+                    // 运行时权限请求 ( rememberPermissionState )
+                    accompanist_permissions    : "com.google.accompanist:accompanist-permissions:0.37.3",
+                    // 将 Drawable 作为 Compose Painter 使用 ( rememberDrawablePainter )
+                    accompanist_drawablepainter: "com.google.accompanist:accompanist-drawablepainter:0.37.3",
+            ],
+
+            "image_widget": [
+
+                    // ======================
+                    // = 图片加载 ( Compose ) =
+                    // ======================
+
+                    // https://github.com/coil-kt/coil
+                    // Coil 3 图片加载 ( Compose AsyncImage / rememberAsyncImagePainter )
+                    coil_compose       : "io.coil-kt.coil3:coil-compose:3.4.0",
+                    // Coil 网络层 ( OkHttp, 加载网络图片必需 )
+                    coil_network_okhttp: "io.coil-kt.coil3:coil-network-okhttp:3.4.0",
+                    // Coil GIF 解码 ( 按需 )
+                    coil_gif           : "io.coil-kt.coil3:coil-gif:3.4.0",
+                    // Coil SVG 解码 ( 按需 )
+                    coil_svg           : "io.coil-kt.coil3:coil-svg:3.4.0",
+                    // Glide 的 Compose 集成 GlideImage ( 配合 deps_lib.common.glide, 官方仍为 beta )
+                    // https://github.com/bumptech/glide
+                    glide_compose      : "com.github.bumptech.glide:compose:1.0.0-beta09",
+            ],
+
+            "anim_widget" : [
+
+                    // ===================
+                    // = 动画 ( Compose ) =
+                    // ===================
+
+                    // Lottie 的 Compose 版本 ( 配合 deps_lib.anim_widget.lottie ) https://github.com/airbnb/lottie-android
+                    lottie_compose: "com.airbnb.android:lottie-compose:6.7.1",
+            ],
     ]
 }

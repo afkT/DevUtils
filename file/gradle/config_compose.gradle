@@ -6,6 +6,9 @@ ext {
     // = Jetpack Compose ( 官方 UI ) =
     // ==============================
 
+    // Jetpack Compose 路线图
+    // https://developer.android.com/jetpack/androidx/compose-roadmap?hl=zh-cn
+
     // https://developer.android.com/develop/ui/compose/bom
     // https://developer.android.com/develop/ui/compose/bom/bom-mapping
     // 用法: 先 implementation platform(deps_compose.bom) 引入 BOM, 再引用下方【无版本】的 androidx.compose.* 坐标 ( 版本由 BOM 统一 );
