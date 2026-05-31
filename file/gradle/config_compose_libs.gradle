@@ -8,7 +8,7 @@ ext {
 
     deps_compose_lib = [
 
-            "common"      : [
+            "common"        : [
 
                     // ==================
                     // = Compose 常用工具 =
@@ -22,11 +22,61 @@ ext {
                     accompanist_drawablepainter: "com.google.accompanist:accompanist-drawablepainter:0.37.3",
             ],
 
-            "image_widget": [
+            "feature_lib"   : [
 
-                    // ======================
-                    // = 图片加载 ( Compose ) =
-                    // ======================
+                    // =================
+                    // = 第三方快捷开发库 =
+                    // =================
+
+                    // https://github.com/mikepenz/multiplatform-markdown-renderer
+                    // Markdown 渲染 ( -android 为核心, 另需 -m3 提供 Material3 默认样式 )
+                    markdown_core  : "com.mikepenz:multiplatform-markdown-renderer-android:0.41.0",
+                    markdown_m3    : "com.mikepenz:multiplatform-markdown-renderer-m3:0.41.0",
+                    // Compose WebView ( 已废弃的 Accompanist WebView 的延续 fork ) https://github.com/KevinnZou/compose-webview
+                    compose_webview: "io.github.KevinnZou:compose-webview:0.33.3",
+            ],
+
+            "feature_widget": [
+
+                    // ===============
+                    // = UI 功能性组件 =
+                    // ===============
+
+                    // 图表库 ( compose-m3 为 Material3 主题; 另有 compose / compose-m2 ) https://github.com/patrykandpatrick/vico
+                    vico_compose_m3 : "com.patrykandpatrick.vico:compose-m3:3.1.0",
+                    // 高度可定制日历 ( 月 / 周 / 年, View 版 CalendarView 的 Compose 替代 ) https://github.com/kizitonwose/Calendar
+                    calendar_compose: "com.kizitonwose.calendar:compose:2.10.1",
+            ],
+
+            "ui_widget"     : [
+
+                    // =============
+                    // = UI 效果组件 =
+                    // =============
+
+                    // Shimmer 流光占位效果 https://github.com/valentinilk/compose-shimmer
+                    compose_shimmer: "com.valentinilk.shimmer:compose-shimmer:1.4.0",
+                    // 取色器 ( 从图片 / 色盘取色 ) https://github.com/skydoves/colorpicker-compose
+                    colorpicker    : "com.github.skydoves:colorpicker-compose:1.1.4",
+                    // LazyList / Grid 拖拽排序 https://github.com/Calvin-LL/Reorderable
+                    reorderable    : "sh.calvin.reorderable:reorderable:3.1.0",
+            ],
+
+            "anim_widget"   : [
+
+                    // =======
+                    // = 动画 =
+                    // =======
+
+                    // Lottie 的 Compose 版本 ( 配合 deps_lib.anim_widget.lottie ) https://github.com/airbnb/lottie-android
+                    lottie_compose: "com.airbnb.android:lottie-compose:6.7.1",
+            ],
+
+            "image_widget"  : [
+
+                    // ===============
+                    // = 图片加载、展示 =
+                    // ===============
 
                     // https://github.com/coil-kt/coil
                     // Coil 3 图片加载 ( Compose AsyncImage / rememberAsyncImagePainter )
@@ -40,16 +90,21 @@ ext {
                     // Glide 的 Compose 集成 GlideImage ( 配合 deps_lib.common.glide, 官方仍为 beta )
                     // https://github.com/bumptech/glide
                     glide_compose      : "com.github.bumptech.glide:compose:1.0.0-beta09",
+                    // 大图缩放 / 平移 ( 适配 Coil3, View 版 PhotoView 的 Compose 替代 ) https://github.com/saket/telephoto
+                    telephoto          : "me.saket.telephoto:zoomable-image-coil3:0.19.0",
             ],
 
-            "anim_widget" : [
+            "router"        : [
 
-                    // ===================
-                    // = 动画 ( Compose ) =
-                    // ===================
+                    // ============
+                    // = 路由、导航 =
+                    // ============
 
-                    // Lottie 的 Compose 版本 ( 配合 deps_lib.anim_widget.lottie ) https://github.com/airbnb/lottie-android
-                    lottie_compose: "com.airbnb.android:lottie-compose:6.7.1",
+                    // https://github.com/raamcosta/compose-destinations
+                    // 注解式类型安全 Compose 导航 ( 基于 KSP, 封装 navigation-compose ); ksp 为处理器, bottom-sheet 为底部弹窗目的地 ( 可选 )
+                    destinations_core        : "io.github.raamcosta.compose-destinations:core:2.3.0",
+                    destinations_bottom_sheet: "io.github.raamcosta.compose-destinations:bottom-sheet:2.3.0",
+                    destinations_ksp         : "io.github.raamcosta.compose-destinations:ksp:2.3.0",
             ],
     ]
 }
