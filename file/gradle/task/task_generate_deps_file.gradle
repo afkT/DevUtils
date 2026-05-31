@@ -12,6 +12,7 @@ tasks.register('saveConfigGradleJSON') {
     allDeps.putAll(deps_lib)
     allDeps.put("kotlin", deps_kotlin)
     allDeps.put("androidx", deps_androidx)
+    allDeps.put("compose", deps_compose)
     // 获取 ext.deps json 数据
     def depsJSON = JsonOutput.toJson(allDeps)
     // 格式化 JSON
@@ -30,6 +31,7 @@ tasks.register('generateDepsDependencies') {
     allDeps.putAll(deps_lib)
     allDeps.put("kotlin", deps_kotlin)
     allDeps.put("androidx", deps_androidx)
+    allDeps.put("compose", deps_compose)
 
     def newline = System.getProperty("line.separator")
     def newline2 = newline + newline

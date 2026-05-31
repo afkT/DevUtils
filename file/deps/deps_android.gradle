@@ -12,7 +12,6 @@ dependencies {
     api deps_kotlin.lifecycle_viewmodel
     api deps_kotlin.lifecycle_livedata
     api deps_kotlin.lifecycle_viewmodel_savedstate
-    api deps_kotlin.lifecycle_common_java8
     api deps_kotlin.fragment
     api deps_kotlin.activity
     api deps_kotlin.navigation_fragment
@@ -32,7 +31,6 @@ dependencies {
     api deps_androidx.constraint_layout
     api deps_androidx.viewpager2
     api deps_androidx.flexbox
-    api deps_androidx.localbroadcastManager
 //    // minSdk >= 21 可不需要依赖 multidex
 //    api deps_androidx.multidex
 }

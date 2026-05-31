@@ -1,0 +1,11 @@
+apply from: rootProject.file("file/gradle/versions.gradle")
+
+ext {
+
+    deps_compose = [
+
+            // ==========
+            // = compose =
+            // ==========
+    ]
+}
