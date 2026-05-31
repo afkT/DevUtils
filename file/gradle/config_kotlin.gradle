@@ -49,6 +49,10 @@ ext {
             // https://developer.android.com/jetpack/androidx/releases/navigation
             navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha04",
             navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-alpha04",
+            // https://mvnrepository.com/artifact/androidx.paging/paging-runtime
+            // Paging 3 分页加载 ( Kotlin 优先, Flow / PagingData; -ktx 已并入 runtime )
+            // https://developer.android.com/topic/libraries/architecture/paging/v3-overview
+            paging                        : "androidx.paging:paging-runtime:3.5.0",
             // https://mvnrepository.com/artifact/androidx.room/room-runtime
             // https://mvnrepository.com/artifact/androidx.room/room-compiler
             // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -56,13 +60,30 @@ ext {
             room_runtime                  : "androidx.room:room-runtime:2.8.4",
             room_compiler                 : "androidx.room:room-compiler:2.8.4",
             room                          : "androidx.room:room-ktx:2.8.4",
+            // https://mvnrepository.com/artifact/androidx.room3/room3-runtime
+            // https://mvnrepository.com/artifact/androidx.room3/room3-compiler
+            // Room 3.0 ( KMP, Kotlin only, 强制 KSP, DAO 全 suspend/Flow, 无 SupportSQLite )
+            room3_runtime                 : "androidx.room3:room3-runtime:3.0.0-alpha01",
+            room3_compiler                : "androidx.room3:room3-compiler:3.0.0-alpha01",
             // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
             // WorkManager Kotlin + coroutines
             work_runtime                  : "androidx.work:work-runtime-ktx:2.11.2",
+            // https://mvnrepository.com/artifact/androidx.concurrent/concurrent-futures-ktx
+            // ListenableFuture 协程 await 扩展 ( 常配合 CameraX / WorkManager )
+            concurrent_futures            : "androidx.concurrent:concurrent-futures-ktx:1.3.0",
             // https://mvnrepository.com/artifact/androidx.datastore/datastore-preferences
             // https://developer.android.com/jetpack/androidx/releases/datastore
             // DataStore https://developer.android.com/topic/libraries/architecture/datastore
             datastore_preferences         : "androidx.datastore:datastore-preferences:1.2.1",
+            // https://mvnrepository.com/artifact/androidx.security/security-crypto-ktx
+            // 加密文件 / 密钥管理 EncryptedFile ( EncryptedSharedPreferences 已废弃, 新场景建议 DataStore + Tink )
+            security_crypto               : "androidx.security:security-crypto-ktx:1.1.0",
+            // https://mvnrepository.com/artifact/androidx.transition/transition-ktx
+            // Transition 过渡动画 ( 场景 / 共享元素; transition 与 -ktx 并存, 取 ktx )
+            transition                    : "androidx.transition:transition-ktx:1.7.0",
+            // https://mvnrepository.com/artifact/androidx.dynamicanimation/dynamicanimation-ktx
+            // 物理动画 ( Spring / Fling; dynamicanimation 与 -ktx 并存, 取 ktx ) https://developer.android.com/jetpack/androidx/releases/dynamicanimation
+            dynamicanimation              : "androidx.dynamicanimation:dynamicanimation-ktx:1.1.0",
             // https://mvnrepository.com/artifact/androidx.palette/palette-ktx
             // Palette 调色板 ( 从图片中获取颜色 )
             palette                       : "androidx.palette:palette-ktx:1.0.0",
