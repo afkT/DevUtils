@@ -1,0 +1,11 @@
+apply from: rootProject.file("file/gradle/versions.gradle")
+
+ext {
+
+    // ===================
+    // = Compose 第三方库 =
+    // ===================
+
+    deps_compose_lib = [
+    ]
+}

@@ -4,6 +4,7 @@ apply from: rootProject.file("file/gradle/versions.gradle")
 apply from: rootProject.file("file/gradle/config_kotlin.gradle")
 apply from: rootProject.file("file/gradle/config_androidx.gradle")
 apply from: rootProject.file("file/gradle/config_compose.gradle")
+apply from: rootProject.file("file/gradle/config_compose_libs.gradle")
 apply from: rootProject.file("file/gradle/config_libs.gradle")
 
 ext {
