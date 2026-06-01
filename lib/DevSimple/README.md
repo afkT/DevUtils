@@ -1110,6 +1110,106 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
 | setCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
 | postCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
 | smartUpdateCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
+| isLOADINGState | 是否 LOADING ( 加载中 ) 状态 |
+| setLOADING | 设置为 LOADING ( 加载中 ) 状态 ( 主线程 ) |
+| postLOADING | 设置为 LOADING ( 加载中 ) 状态 ( 子线程 ) |
+| smartUpdateLOADING | 设置为 LOADING ( 加载中 ) 状态 ( 智能线程判断 ) |
+| isEMPTYState | 是否 EMPTY ( 空数据 ) 状态 |
+| setEMPTY | 设置为 EMPTY ( 空数据 ) 状态 ( 主线程 ) |
+| postEMPTY | 设置为 EMPTY ( 空数据 ) 状态 ( 子线程 ) |
+| smartUpdateEMPTY | 设置为 EMPTY ( 空数据 ) 状态 ( 智能线程判断 ) |
+| isTIMEOUTState | 是否 TIMEOUT ( 超时 ) 状态 |
+| setTIMEOUT | 设置为 TIMEOUT ( 超时 ) 状态 ( 主线程 ) |
+| postTIMEOUT | 设置为 TIMEOUT ( 超时 ) 状态 ( 子线程 ) |
+| smartUpdateTIMEOUT | 设置为 TIMEOUT ( 超时 ) 状态 ( 智能线程判断 ) |
+| isDISCONNECTINGState | 是否 DISCONNECTING ( 断开中 ) 状态 |
+| setDISCONNECTING | 设置为 DISCONNECTING ( 断开中 ) 状态 ( 主线程 ) |
+| postDISCONNECTING | 设置为 DISCONNECTING ( 断开中 ) 状态 ( 子线程 ) |
+| smartUpdateDISCONNECTING | 设置为 DISCONNECTING ( 断开中 ) 状态 ( 智能线程判断 ) |
+| isREFRESHINGState | 是否 REFRESHING ( 刷新中 ) 状态 |
+| setREFRESHING | 设置为 REFRESHING ( 刷新中 ) 状态 ( 主线程 ) |
+| postREFRESHING | 设置为 REFRESHING ( 刷新中 ) 状态 ( 子线程 ) |
+| smartUpdateREFRESHING | 设置为 REFRESHING ( 刷新中 ) 状态 ( 智能线程判断 ) |
+| isLOAD_MOREState | 是否 LOAD_MORE ( 加载更多中 ) 状态 |
+| setLOAD_MORE | 设置为 LOAD_MORE ( 加载更多中 ) 状态 ( 主线程 ) |
+| postLOAD_MORE | 设置为 LOAD_MORE ( 加载更多中 ) 状态 ( 子线程 ) |
+| smartUpdateLOAD_MORE | 设置为 LOAD_MORE ( 加载更多中 ) 状态 ( 智能线程判断 ) |
+| isNO_MOREState | 是否 NO_MORE ( 没有更多 ) 状态 |
+| setNO_MORE | 设置为 NO_MORE ( 没有更多 ) 状态 ( 主线程 ) |
+| postNO_MORE | 设置为 NO_MORE ( 没有更多 ) 状态 ( 子线程 ) |
+| smartUpdateNO_MORE | 设置为 NO_MORE ( 没有更多 ) 状态 ( 智能线程判断 ) |
+| isVALIDState | 是否 VALID ( 有效 ) 状态 |
+| setVALID | 设置为 VALID ( 有效 ) 状态 ( 主线程 ) |
+| postVALID | 设置为 VALID ( 有效 ) 状态 ( 子线程 ) |
+| smartUpdateVALID | 设置为 VALID ( 有效 ) 状态 ( 智能线程判断 ) |
+| isINVALIDState | 是否 INVALID ( 无效 ) 状态 |
+| setINVALID | 设置为 INVALID ( 无效 ) 状态 ( 主线程 ) |
+| postINVALID | 设置为 INVALID ( 无效 ) 状态 ( 子线程 ) |
+| smartUpdateINVALID | 设置为 INVALID ( 无效 ) 状态 ( 智能线程判断 ) |
+| isFOUNDState | 是否 FOUND ( 找到 ) 状态 |
+| setFOUND | 设置为 FOUND ( 找到 ) 状态 ( 主线程 ) |
+| postFOUND | 设置为 FOUND ( 找到 ) 状态 ( 子线程 ) |
+| smartUpdateFOUND | 设置为 FOUND ( 找到 ) 状态 ( 智能线程判断 ) |
+| isNOT_FOUNDState | 是否 NOT_FOUND ( 未找到 ) 状态 |
+| setNOT_FOUND | 设置为 NOT_FOUND ( 未找到 ) 状态 ( 主线程 ) |
+| postNOT_FOUND | 设置为 NOT_FOUND ( 未找到 ) 状态 ( 子线程 ) |
+| smartUpdateNOT_FOUND | 设置为 NOT_FOUND ( 未找到 ) 状态 ( 智能线程判断 ) |
+| isGRANTEDState | 是否 GRANTED ( 权限已授予 ) 状态 |
+| setGRANTED | 设置为 GRANTED ( 权限已授予 ) 状态 ( 主线程 ) |
+| postGRANTED | 设置为 GRANTED ( 权限已授予 ) 状态 ( 子线程 ) |
+| smartUpdateGRANTED | 设置为 GRANTED ( 权限已授予 ) 状态 ( 智能线程判断 ) |
+| isDENIEDState | 是否 DENIED ( 权限已拒绝 ) 状态 |
+| setDENIED | 设置为 DENIED ( 权限已拒绝 ) 状态 ( 主线程 ) |
+| postDENIED | 设置为 DENIED ( 权限已拒绝 ) 状态 ( 子线程 ) |
+| smartUpdateDENIED | 设置为 DENIED ( 权限已拒绝 ) 状态 ( 智能线程判断 ) |
+| isPREPARINGState | 是否 PREPARING ( 准备中 ) 状态 |
+| setPREPARING | 设置为 PREPARING ( 准备中 ) 状态 ( 主线程 ) |
+| postPREPARING | 设置为 PREPARING ( 准备中 ) 状态 ( 子线程 ) |
+| smartUpdatePREPARING | 设置为 PREPARING ( 准备中 ) 状态 ( 智能线程判断 ) |
+| isPREPAREDState | 是否 PREPARED ( 已准备 ) 状态 |
+| setPREPARED | 设置为 PREPARED ( 已准备 ) 状态 ( 主线程 ) |
+| postPREPARED | 设置为 PREPARED ( 已准备 ) 状态 ( 子线程 ) |
+| smartUpdatePREPARED | 设置为 PREPARED ( 已准备 ) 状态 ( 智能线程判断 ) |
+| isPLAYINGState | 是否 PLAYING ( 播放中 ) 状态 |
+| setPLAYING | 设置为 PLAYING ( 播放中 ) 状态 ( 主线程 ) |
+| postPLAYING | 设置为 PLAYING ( 播放中 ) 状态 ( 子线程 ) |
+| smartUpdatePLAYING | 设置为 PLAYING ( 播放中 ) 状态 ( 智能线程判断 ) |
+| isBUFFERINGState | 是否 BUFFERING ( 缓冲中 ) 状态 |
+| setBUFFERING | 设置为 BUFFERING ( 缓冲中 ) 状态 ( 主线程 ) |
+| postBUFFERING | 设置为 BUFFERING ( 缓冲中 ) 状态 ( 子线程 ) |
+| smartUpdateBUFFERING | 设置为 BUFFERING ( 缓冲中 ) 状态 ( 智能线程判断 ) |
+| isSEEKINGState | 是否 SEEKING ( 拖动进度中 ) 状态 |
+| setSEEKING | 设置为 SEEKING ( 拖动进度中 ) 状态 ( 主线程 ) |
+| postSEEKING | 设置为 SEEKING ( 拖动进度中 ) 状态 ( 子线程 ) |
+| smartUpdateSEEKING | 设置为 SEEKING ( 拖动进度中 ) 状态 ( 智能线程判断 ) |
+| isRECORDINGState | 是否 RECORDING ( 录制中 ) 状态 |
+| setRECORDING | 设置为 RECORDING ( 录制中 ) 状态 ( 主线程 ) |
+| postRECORDING | 设置为 RECORDING ( 录制中 ) 状态 ( 子线程 ) |
+| smartUpdateRECORDING | 设置为 RECORDING ( 录制中 ) 状态 ( 智能线程判断 ) |
+| isDOWNLOADINGState | 是否 DOWNLOADING ( 下载中 ) 状态 |
+| setDOWNLOADING | 设置为 DOWNLOADING ( 下载中 ) 状态 ( 主线程 ) |
+| postDOWNLOADING | 设置为 DOWNLOADING ( 下载中 ) 状态 ( 子线程 ) |
+| smartUpdateDOWNLOADING | 设置为 DOWNLOADING ( 下载中 ) 状态 ( 智能线程判断 ) |
+| isUPLOADINGState | 是否 UPLOADING ( 上传中 ) 状态 |
+| setUPLOADING | 设置为 UPLOADING ( 上传中 ) 状态 ( 主线程 ) |
+| postUPLOADING | 设置为 UPLOADING ( 上传中 ) 状态 ( 子线程 ) |
+| smartUpdateUPLOADING | 设置为 UPLOADING ( 上传中 ) 状态 ( 智能线程判断 ) |
+| isDOWNLOADEDState | 是否 DOWNLOADED ( 下载完成 ) 状态 |
+| setDOWNLOADED | 设置为 DOWNLOADED ( 下载完成 ) 状态 ( 主线程 ) |
+| postDOWNLOADED | 设置为 DOWNLOADED ( 下载完成 ) 状态 ( 子线程 ) |
+| smartUpdateDOWNLOADED | 设置为 DOWNLOADED ( 下载完成 ) 状态 ( 智能线程判断 ) |
+| isUPLOADEDState | 是否 UPLOADED ( 上传完成 ) 状态 |
+| setUPLOADED | 设置为 UPLOADED ( 上传完成 ) 状态 ( 主线程 ) |
+| postUPLOADED | 设置为 UPLOADED ( 上传完成 ) 状态 ( 子线程 ) |
+| smartUpdateUPLOADED | 设置为 UPLOADED ( 上传完成 ) 状态 ( 智能线程判断 ) |
+| isANIMATINGState | 是否 ANIMATING ( 动画进行中 ) 状态 |
+| setANIMATING | 设置为 ANIMATING ( 动画进行中 ) 状态 ( 主线程 ) |
+| postANIMATING | 设置为 ANIMATING ( 动画进行中 ) 状态 ( 子线程 ) |
+| smartUpdateANIMATING | 设置为 ANIMATING ( 动画进行中 ) 状态 ( 智能线程判断 ) |
+| isREPEATState | 是否 REPEAT ( 重复 ) 状态 |
+| setREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 主线程 ) |
+| postREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 子线程 ) |
+| smartUpdateREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 智能线程判断 ) |
 
 
 ## <span id="devsimplecorelivedatabinding">**`dev.simple.core.livedata.binding`**</span>

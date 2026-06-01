@@ -191,4 +191,104 @@ object StateIntBinding {
     // COMPLETE
     @JvmStatic
     fun isComplete(state: Int?): Boolean = isState(state, StateInt.COMPLETE)
+
+    // LOADING
+    @JvmStatic
+    fun isLoading(state: Int?): Boolean = isState(state, StateInt.LOADING)
+
+    // EMPTY
+    @JvmStatic
+    fun isEmpty(state: Int?): Boolean = isState(state, StateInt.EMPTY)
+
+    // TIMEOUT
+    @JvmStatic
+    fun isTimeout(state: Int?): Boolean = isState(state, StateInt.TIMEOUT)
+
+    // DISCONNECTING
+    @JvmStatic
+    fun isDisconnecting(state: Int?): Boolean = isState(state, StateInt.DISCONNECTING)
+
+    // REFRESHING
+    @JvmStatic
+    fun isRefreshing(state: Int?): Boolean = isState(state, StateInt.REFRESHING)
+
+    // LOAD_MORE
+    @JvmStatic
+    fun isLoadMore(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE)
+
+    // NO_MORE
+    @JvmStatic
+    fun isNoMore(state: Int?): Boolean = isState(state, StateInt.NO_MORE)
+
+    // VALID
+    @JvmStatic
+    fun isValid(state: Int?): Boolean = isState(state, StateInt.VALID)
+
+    // INVALID
+    @JvmStatic
+    fun isInvalid(state: Int?): Boolean = isState(state, StateInt.INVALID)
+
+    // FOUND
+    @JvmStatic
+    fun isFound(state: Int?): Boolean = isState(state, StateInt.FOUND)
+
+    // NOT_FOUND
+    @JvmStatic
+    fun isNotFound(state: Int?): Boolean = isState(state, StateInt.NOT_FOUND)
+
+    // GRANTED
+    @JvmStatic
+    fun isGranted(state: Int?): Boolean = isState(state, StateInt.GRANTED)
+
+    // DENIED
+    @JvmStatic
+    fun isDenied(state: Int?): Boolean = isState(state, StateInt.DENIED)
+
+    // PREPARING
+    @JvmStatic
+    fun isPreparing(state: Int?): Boolean = isState(state, StateInt.PREPARING)
+
+    // PREPARED
+    @JvmStatic
+    fun isPrepared(state: Int?): Boolean = isState(state, StateInt.PREPARED)
+
+    // PLAYING
+    @JvmStatic
+    fun isPlaying(state: Int?): Boolean = isState(state, StateInt.PLAYING)
+
+    // BUFFERING
+    @JvmStatic
+    fun isBuffering(state: Int?): Boolean = isState(state, StateInt.BUFFERING)
+
+    // SEEKING
+    @JvmStatic
+    fun isSeeking(state: Int?): Boolean = isState(state, StateInt.SEEKING)
+
+    // RECORDING
+    @JvmStatic
+    fun isRecording(state: Int?): Boolean = isState(state, StateInt.RECORDING)
+
+    // DOWNLOADING
+    @JvmStatic
+    fun isDownloading(state: Int?): Boolean = isState(state, StateInt.DOWNLOADING)
+
+    // UPLOADING
+    @JvmStatic
+    fun isUploading(state: Int?): Boolean = isState(state, StateInt.UPLOADING)
+
+    // DOWNLOADED
+    @JvmStatic
+    fun isDownloaded(state: Int?): Boolean = isState(state, StateInt.DOWNLOADED)
+
+    // UPLOADED
+    @JvmStatic
+    fun isUploaded(state: Int?): Boolean = isState(state, StateInt.UPLOADED)
+
+    // ANIMATING
+    @JvmStatic
+    fun isAnimating(state: Int?): Boolean = isState(state, StateInt.ANIMATING)
+
+    // REPEAT
+    @JvmStatic
+    fun isRepeat(state: Int?): Boolean = isState(state, StateInt.REPEAT)
 }

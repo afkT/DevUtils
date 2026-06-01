@@ -125,6 +125,81 @@ object StateInt {
 
     // 完成
     const val COMPLETE = 1020340
+
+    // 加载中
+    const val LOADING = 1020341
+
+    // 空数据 ( 空态 )
+    const val EMPTY = 1020342
+
+    // 超时
+    const val TIMEOUT = 1020343
+
+    // 断开中
+    const val DISCONNECTING = 1020344
+
+    // 刷新中
+    const val REFRESHING = 1020345
+
+    // 加载更多中
+    const val LOAD_MORE = 1020346
+
+    // 没有更多
+    const val NO_MORE = 1020347
+
+    // 有效
+    const val VALID = 1020348
+
+    // 无效
+    const val INVALID = 1020349
+
+    // 找到
+    const val FOUND = 1020350
+
+    // 未找到
+    const val NOT_FOUND = 1020351
+
+    // 权限已授予
+    const val GRANTED = 1020352
+
+    // 权限已拒绝
+    const val DENIED = 1020353
+
+    // 准备中 ( 媒体 )
+    const val PREPARING = 1020354
+
+    // 已准备 ( 媒体 )
+    const val PREPARED = 1020355
+
+    // 播放中
+    const val PLAYING = 1020356
+
+    // 缓冲中
+    const val BUFFERING = 1020357
+
+    // 拖动进度中 ( seek )
+    const val SEEKING = 1020358
+
+    // 录制中
+    const val RECORDING = 1020359
+
+    // 下载中
+    const val DOWNLOADING = 1020360
+
+    // 上传中
+    const val UPLOADING = 1020361
+
+    // 下载完成
+    const val DOWNLOADED = 1020362
+
+    // 上传完成
+    const val UPLOADED = 1020363
+
+    // 动画进行中
+    const val ANIMATING = 1020364
+
+    // 重复 ( 动画 )
+    const val REPEAT = 1020365
 }
 
 /**
@@ -408,4 +483,154 @@ open class StateIntMutableLiveData(
     open fun setCOMPLETE(): Boolean = updateValue(StateInt.COMPLETE)
     open fun postCOMPLETE(): Boolean = postUpdateValue(StateInt.COMPLETE)
     open fun smartUpdateCOMPLETE(): Boolean = smartUpdateValue(StateInt.COMPLETE)
+
+    // LOADING
+    open fun isLOADINGState(): Boolean = isEqual(StateInt.LOADING)
+    open fun setLOADING(): Boolean = updateValue(StateInt.LOADING)
+    open fun postLOADING(): Boolean = postUpdateValue(StateInt.LOADING)
+    open fun smartUpdateLOADING(): Boolean = smartUpdateValue(StateInt.LOADING)
+
+    // EMPTY
+    open fun isEMPTYState(): Boolean = isEqual(StateInt.EMPTY)
+    open fun setEMPTY(): Boolean = updateValue(StateInt.EMPTY)
+    open fun postEMPTY(): Boolean = postUpdateValue(StateInt.EMPTY)
+    open fun smartUpdateEMPTY(): Boolean = smartUpdateValue(StateInt.EMPTY)
+
+    // TIMEOUT
+    open fun isTIMEOUTState(): Boolean = isEqual(StateInt.TIMEOUT)
+    open fun setTIMEOUT(): Boolean = updateValue(StateInt.TIMEOUT)
+    open fun postTIMEOUT(): Boolean = postUpdateValue(StateInt.TIMEOUT)
+    open fun smartUpdateTIMEOUT(): Boolean = smartUpdateValue(StateInt.TIMEOUT)
+
+    // DISCONNECTING
+    open fun isDISCONNECTINGState(): Boolean = isEqual(StateInt.DISCONNECTING)
+    open fun setDISCONNECTING(): Boolean = updateValue(StateInt.DISCONNECTING)
+    open fun postDISCONNECTING(): Boolean = postUpdateValue(StateInt.DISCONNECTING)
+    open fun smartUpdateDISCONNECTING(): Boolean = smartUpdateValue(StateInt.DISCONNECTING)
+
+    // REFRESHING
+    open fun isREFRESHINGState(): Boolean = isEqual(StateInt.REFRESHING)
+    open fun setREFRESHING(): Boolean = updateValue(StateInt.REFRESHING)
+    open fun postREFRESHING(): Boolean = postUpdateValue(StateInt.REFRESHING)
+    open fun smartUpdateREFRESHING(): Boolean = smartUpdateValue(StateInt.REFRESHING)
+
+    // LOAD_MORE
+    open fun isLOAD_MOREState(): Boolean = isEqual(StateInt.LOAD_MORE)
+    open fun setLOAD_MORE(): Boolean = updateValue(StateInt.LOAD_MORE)
+    open fun postLOAD_MORE(): Boolean = postUpdateValue(StateInt.LOAD_MORE)
+    open fun smartUpdateLOAD_MORE(): Boolean = smartUpdateValue(StateInt.LOAD_MORE)
+
+    // NO_MORE
+    open fun isNO_MOREState(): Boolean = isEqual(StateInt.NO_MORE)
+    open fun setNO_MORE(): Boolean = updateValue(StateInt.NO_MORE)
+    open fun postNO_MORE(): Boolean = postUpdateValue(StateInt.NO_MORE)
+    open fun smartUpdateNO_MORE(): Boolean = smartUpdateValue(StateInt.NO_MORE)
+
+    // VALID
+    open fun isVALIDState(): Boolean = isEqual(StateInt.VALID)
+    open fun setVALID(): Boolean = updateValue(StateInt.VALID)
+    open fun postVALID(): Boolean = postUpdateValue(StateInt.VALID)
+    open fun smartUpdateVALID(): Boolean = smartUpdateValue(StateInt.VALID)
+
+    // INVALID
+    open fun isINVALIDState(): Boolean = isEqual(StateInt.INVALID)
+    open fun setINVALID(): Boolean = updateValue(StateInt.INVALID)
+    open fun postINVALID(): Boolean = postUpdateValue(StateInt.INVALID)
+    open fun smartUpdateINVALID(): Boolean = smartUpdateValue(StateInt.INVALID)
+
+    // FOUND
+    open fun isFOUNDState(): Boolean = isEqual(StateInt.FOUND)
+    open fun setFOUND(): Boolean = updateValue(StateInt.FOUND)
+    open fun postFOUND(): Boolean = postUpdateValue(StateInt.FOUND)
+    open fun smartUpdateFOUND(): Boolean = smartUpdateValue(StateInt.FOUND)
+
+    // NOT_FOUND
+    open fun isNOT_FOUNDState(): Boolean = isEqual(StateInt.NOT_FOUND)
+    open fun setNOT_FOUND(): Boolean = updateValue(StateInt.NOT_FOUND)
+    open fun postNOT_FOUND(): Boolean = postUpdateValue(StateInt.NOT_FOUND)
+    open fun smartUpdateNOT_FOUND(): Boolean = smartUpdateValue(StateInt.NOT_FOUND)
+
+    // GRANTED
+    open fun isGRANTEDState(): Boolean = isEqual(StateInt.GRANTED)
+    open fun setGRANTED(): Boolean = updateValue(StateInt.GRANTED)
+    open fun postGRANTED(): Boolean = postUpdateValue(StateInt.GRANTED)
+    open fun smartUpdateGRANTED(): Boolean = smartUpdateValue(StateInt.GRANTED)
+
+    // DENIED
+    open fun isDENIEDState(): Boolean = isEqual(StateInt.DENIED)
+    open fun setDENIED(): Boolean = updateValue(StateInt.DENIED)
+    open fun postDENIED(): Boolean = postUpdateValue(StateInt.DENIED)
+    open fun smartUpdateDENIED(): Boolean = smartUpdateValue(StateInt.DENIED)
+
+    // PREPARING
+    open fun isPREPARINGState(): Boolean = isEqual(StateInt.PREPARING)
+    open fun setPREPARING(): Boolean = updateValue(StateInt.PREPARING)
+    open fun postPREPARING(): Boolean = postUpdateValue(StateInt.PREPARING)
+    open fun smartUpdatePREPARING(): Boolean = smartUpdateValue(StateInt.PREPARING)
+
+    // PREPARED
+    open fun isPREPAREDState(): Boolean = isEqual(StateInt.PREPARED)
+    open fun setPREPARED(): Boolean = updateValue(StateInt.PREPARED)
+    open fun postPREPARED(): Boolean = postUpdateValue(StateInt.PREPARED)
+    open fun smartUpdatePREPARED(): Boolean = smartUpdateValue(StateInt.PREPARED)
+
+    // PLAYING
+    open fun isPLAYINGState(): Boolean = isEqual(StateInt.PLAYING)
+    open fun setPLAYING(): Boolean = updateValue(StateInt.PLAYING)
+    open fun postPLAYING(): Boolean = postUpdateValue(StateInt.PLAYING)
+    open fun smartUpdatePLAYING(): Boolean = smartUpdateValue(StateInt.PLAYING)
+
+    // BUFFERING
+    open fun isBUFFERINGState(): Boolean = isEqual(StateInt.BUFFERING)
+    open fun setBUFFERING(): Boolean = updateValue(StateInt.BUFFERING)
+    open fun postBUFFERING(): Boolean = postUpdateValue(StateInt.BUFFERING)
+    open fun smartUpdateBUFFERING(): Boolean = smartUpdateValue(StateInt.BUFFERING)
+
+    // SEEKING
+    open fun isSEEKINGState(): Boolean = isEqual(StateInt.SEEKING)
+    open fun setSEEKING(): Boolean = updateValue(StateInt.SEEKING)
+    open fun postSEEKING(): Boolean = postUpdateValue(StateInt.SEEKING)
+    open fun smartUpdateSEEKING(): Boolean = smartUpdateValue(StateInt.SEEKING)
+
+    // RECORDING
+    open fun isRECORDINGState(): Boolean = isEqual(StateInt.RECORDING)
+    open fun setRECORDING(): Boolean = updateValue(StateInt.RECORDING)
+    open fun postRECORDING(): Boolean = postUpdateValue(StateInt.RECORDING)
+    open fun smartUpdateRECORDING(): Boolean = smartUpdateValue(StateInt.RECORDING)
+
+    // DOWNLOADING
+    open fun isDOWNLOADINGState(): Boolean = isEqual(StateInt.DOWNLOADING)
+    open fun setDOWNLOADING(): Boolean = updateValue(StateInt.DOWNLOADING)
+    open fun postDOWNLOADING(): Boolean = postUpdateValue(StateInt.DOWNLOADING)
+    open fun smartUpdateDOWNLOADING(): Boolean = smartUpdateValue(StateInt.DOWNLOADING)
+
+    // UPLOADING
+    open fun isUPLOADINGState(): Boolean = isEqual(StateInt.UPLOADING)
+    open fun setUPLOADING(): Boolean = updateValue(StateInt.UPLOADING)
+    open fun postUPLOADING(): Boolean = postUpdateValue(StateInt.UPLOADING)
+    open fun smartUpdateUPLOADING(): Boolean = smartUpdateValue(StateInt.UPLOADING)
+
+    // DOWNLOADED
+    open fun isDOWNLOADEDState(): Boolean = isEqual(StateInt.DOWNLOADED)
+    open fun setDOWNLOADED(): Boolean = updateValue(StateInt.DOWNLOADED)
+    open fun postDOWNLOADED(): Boolean = postUpdateValue(StateInt.DOWNLOADED)
+    open fun smartUpdateDOWNLOADED(): Boolean = smartUpdateValue(StateInt.DOWNLOADED)
+
+    // UPLOADED
+    open fun isUPLOADEDState(): Boolean = isEqual(StateInt.UPLOADED)
+    open fun setUPLOADED(): Boolean = updateValue(StateInt.UPLOADED)
+    open fun postUPLOADED(): Boolean = postUpdateValue(StateInt.UPLOADED)
+    open fun smartUpdateUPLOADED(): Boolean = smartUpdateValue(StateInt.UPLOADED)
+
+    // ANIMATING
+    open fun isANIMATINGState(): Boolean = isEqual(StateInt.ANIMATING)
+    open fun setANIMATING(): Boolean = updateValue(StateInt.ANIMATING)
+    open fun postANIMATING(): Boolean = postUpdateValue(StateInt.ANIMATING)
+    open fun smartUpdateANIMATING(): Boolean = smartUpdateValue(StateInt.ANIMATING)
+
+    // REPEAT
+    open fun isREPEATState(): Boolean = isEqual(StateInt.REPEAT)
+    open fun setREPEAT(): Boolean = updateValue(StateInt.REPEAT)
+    open fun postREPEAT(): Boolean = postUpdateValue(StateInt.REPEAT)
+    open fun smartUpdateREPEAT(): Boolean = smartUpdateValue(StateInt.REPEAT)
 }
