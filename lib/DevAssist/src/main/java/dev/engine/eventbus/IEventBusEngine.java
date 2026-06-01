@@ -120,7 +120,6 @@ public interface IEventBusEngine<Config extends IEventBusEngine.EngineConfig> {
      * @param key   key
      * @param value 事件数据
      * @return {@code true} success, {@code false} fail
-     * @deprecated 建议使用 {@link #postAcrossProcess(String, Object)} 或 {@link #postAcrossApp(String, Object)}
      */
     <T> boolean broadcast(
             @NonNull String key,

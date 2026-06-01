@@ -40,6 +40,7 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
       - app                   | AppExecutors、BaseIntent
       - channel               | 渠道抽象 AppChannel
       - livedata              | ValueMutableLiveData、AbsentLiveData、StateInt
+         - binding            | StateInt DataBinding 取值辅助
    - extensions               | 扩展函数与工具
       - equality              | 相等性比较（Binding 条件用）
       - hi / hiif             | 内联条件分支 hiIf
@@ -64,7 +65,8 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
         - [app](#devsimplecoreapp)                                  | AppExecutors、BaseIntent
         - [channel](#devsimplecorechannel)                          | AppChannel
         - [livedata](#devsimplecorelivedata)                        | LiveData 工具
-    - [extensions](#devsimpleextensions)                          | 扩展函数
+            - [binding](#devsimplecorelivedatabinding)              | StateInt 取值辅助
+    - [extensions](#devsimpleextensions)                            | 扩展函数
         - [equality](#devsimpleextensionsequality)                  | 相等性
         - [hi](#devsimpleextensionshi)                              | Hi 内联
         - [image](#devsimpleextensionsimage)                        | 图片配置
@@ -920,10 +922,9 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
 
 | 方法 | 注释 |
 | :- | :- |
-| dataValue | 获取数据值 |
-| setValue | 主线程直接设置值 |
-| postValue | 子线程安全设置值 ( 自动切换到主线程 ) |
-| smartUpdateValue | 智能线程判断 ( 自动选择 setValue、postValue ) |
+| updateValue | 主线程直接设置值 ( 过滤相同值 ) |
+| postUpdateValue | 子线程安全设置值 ( 自动切换到主线程、过滤相同值 ) |
+| smartUpdateValue | 智能线程判断 ( 自动选择 updateValue、postUpdateValue ) |
 | resetValue | 重置数据值 ( 主线程直接设置 null ) |
 | postResetValue | 重置数据值 ( 子线程安全设置 null ) |
 | smartResetValue | 重置数据值 ( 智能线程判断设置 null ) |
@@ -1109,6 +1110,16 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
 | setCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
 | postCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
 | smartUpdateCOMPLETE | 设置为 XXX 状态 ( 智能线程判断 ) |
+
+
+## <span id="devsimplecorelivedatabinding">**`dev.simple.core.livedata.binding`**</span>
+
+* **StateIntBinding ->** [StateIntBinding.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/src/main/java/dev/simple/core/livedata/binding/StateIntBinding.kt)
+
+| 方法 | 注释 |
+| :- | :- |
+| isState | 判断状态值是否等于目标状态 |
+| isXxx | 判断状态值是否为对应 StateInt 状态 ( isSuccess、isFail 等 ) |
 
 
 ## <span id="devsimpleextensionshi">**`dev.simple.extensions.hi`**</span>
