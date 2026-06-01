@@ -3,6 +3,7 @@ package dev.engine.web;
 import android.content.Context;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
@@ -173,6 +174,24 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
         // 归因注册行为 ( AndroidX WebKit, 需 ATTRIBUTION_REGISTRATION_BEHAVIOR 特性支持 )
         int attributionRegistrationBehavior();
+
+        // 是否启用 BackForwardCache 前进后退缓存 ( AndroidX WebKit, 需 BACK_FORWARD_CACHE 特性支持 )
+        Boolean backForwardCacheEnabled();
+
+        // 预测式加载状态 ( AndroidX WebKit, 实验性, 需 SPECULATIVE_LOADING 特性支持 )
+        int speculativeLoadingStatus();
+
+        // 长按超链接上下文菜单项 ( 位标志组合, AndroidX WebKit, 需 HYPERLINK_CONTEXT_MENU_ITEMS 特性支持 )
+        int hyperlinkContextMenuItems();
+
+        // 是否启用 PaymentRequest hasEnrolledInstrument ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+        Boolean hasEnrolledInstrumentEnabled();
+
+        // 是否在 shouldInterceptRequest 中携带 Cookie ( AndroidX WebKit, 需 COOKIE_INTERCEPT 特性支持 )
+        Boolean cookiesIncludedInShouldInterceptRequest();
+
+        // Web Authentication ( WebAuthn ) 支持级别 ( AndroidX WebKit, 需 WEB_AUTHENTICATION 特性支持 )
+        int webAuthenticationSupport();
     }
 
     /**
@@ -1391,6 +1410,70 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
             Executor executor
     );
 
+    /**
+     * 获取 BackForwardCache 实时配置对象 ( 实验性, 需 BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3 特性 )
+     * @param item WebView Item
+     * @return BackForwardCacheSettings ( 实时对象, 修改即时生效 )
+     */
+    Object getBackForwardCacheSettings(Item item);
+
+    /**
+     * 设置 WebView 默认流量统计 TAG ( 需 DEFAULT_TRAFFICSTATS_TAGGING 特性 )
+     * @param tag 流量统计 TAG
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setDefaultTrafficStatsTag(int tag);
+
+    /**
+     * 保存 WebView 状态 ( 支持限制大小、是否含前进历史, 需 SAVE_STATE 特性 )
+     * @param item                 WebView Item
+     * @param outState             状态保存 Bundle
+     * @param maxSizeBytes         状态最大字节数 ( 超出则丢弃更早历史 )
+     * @param includeForwardState  是否包含前进历史
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean saveState(
+            Item item,
+            Bundle outState,
+            int maxSizeBytes,
+            boolean includeForwardState
+    );
+
+    /**
+     * 添加导航监听 ( 回调在主线程, 需 NAVIGATION_LISTENER 特性 )
+     * @param item     WebView Item
+     * @param listener 导航监听 ( NavigationListener )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean addNavigationListener(
+            Item item,
+            Object listener
+    );
+
+    /**
+     * 添加导航监听 ( 指定回调执行器, 需 NAVIGATION_LISTENER 特性 )
+     * @param item     WebView Item
+     * @param executor 回调执行器
+     * @param listener 导航监听 ( NavigationListener )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean addNavigationListener(
+            Item item,
+            Executor executor,
+            Object listener
+    );
+
+    /**
+     * 移除导航监听 ( 需 NAVIGATION_LISTENER 特性 )
+     * @param item     WebView Item
+     * @param listener 导航监听 ( NavigationListener )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean removeNavigationListener(
+            Item item,
+            Object listener
+    );
+
     // ==========
     // = Cookie =
     // ==========
@@ -1438,4 +1521,11 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean flushCookie();
+
+    /**
+     * 获取指定 Url 全部 Cookie 的完整属性 ( 含 Domain、Path、Expires、Secure 等, 需 GET_COOKIE_INFO 特性 )
+     * @param url Url
+     * @return 各条 Cookie 的完整属性字符串列表
+     */
+    List<String> getCookieInfo(String url);
 }

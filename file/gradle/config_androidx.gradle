@@ -71,7 +71,7 @@ ext {
             credentials_play_services: "androidx.credentials:credentials-play-services-auth:1.6.0",
             // https://mvnrepository.com/artifact/androidx.webkit/webkit
             // WebView Jetpack 组件 https://developer.android.com/jetpack/androidx/releases/webkit
-            webkit                   : "androidx.webkit:webkit:1.16.0",
+            webkit                   : "androidx.webkit:webkit:1.17.0-alpha01",
             // https://mvnrepository.com/artifact/androidx.browser/browser
             // Custom Tabs 应用内浏览器 https://developer.android.com/jetpack/androidx/releases/browser
             browser                  : "androidx.browser:browser:1.10.0",

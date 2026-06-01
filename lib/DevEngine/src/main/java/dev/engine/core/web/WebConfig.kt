@@ -158,6 +158,24 @@ open class WebConfig private constructor(
     // 归因注册行为 ( AndroidX WebKit, 需 ATTRIBUTION_REGISTRATION_BEHAVIOR 特性支持 )
     private var mAttributionRegistrationBehavior = UNSET_INT
 
+    // 是否启用 BackForwardCache 前进后退缓存 ( AndroidX WebKit, 需 BACK_FORWARD_CACHE 特性支持 )
+    private var mBackForwardCacheEnabled: Boolean? = null
+
+    // 预测式加载状态 ( AndroidX WebKit, 实验性, 需 SPECULATIVE_LOADING 特性支持 )
+    private var mSpeculativeLoadingStatus = UNSET_INT
+
+    // 长按超链接上下文菜单项 ( 位标志组合, AndroidX WebKit, 需 HYPERLINK_CONTEXT_MENU_ITEMS 特性支持 )
+    private var mHyperlinkContextMenuItems = UNSET_INT
+
+    // 是否启用 PaymentRequest hasEnrolledInstrument ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+    private var mHasEnrolledInstrumentEnabled: Boolean? = null
+
+    // 是否在 shouldInterceptRequest 中携带 Cookie ( AndroidX WebKit, 需 COOKIE_INTERCEPT 特性支持 )
+    private var mCookiesIncludedInShouldInterceptRequest: Boolean? = null
+
+    // Web Authentication ( WebAuthn ) 支持级别 ( AndroidX WebKit, 需 WEB_AUTHENTICATION 特性支持 )
+    private var mWebAuthenticationSupport = UNSET_INT
+
     companion object {
 
         const val UNSET_INT = -1
@@ -223,6 +241,13 @@ open class WebConfig private constructor(
             this.mEnterpriseAuthenticationAppLinkPolicyEnabled =
                 it.mEnterpriseAuthenticationAppLinkPolicyEnabled
             this.mAttributionRegistrationBehavior = it.mAttributionRegistrationBehavior
+            this.mBackForwardCacheEnabled = it.mBackForwardCacheEnabled
+            this.mSpeculativeLoadingStatus = it.mSpeculativeLoadingStatus
+            this.mHyperlinkContextMenuItems = it.mHyperlinkContextMenuItems
+            this.mHasEnrolledInstrumentEnabled = it.mHasEnrolledInstrumentEnabled
+            this.mCookiesIncludedInShouldInterceptRequest =
+                it.mCookiesIncludedInShouldInterceptRequest
+            this.mWebAuthenticationSupport = it.mWebAuthenticationSupport
         }
     }
 
@@ -679,6 +704,62 @@ open class WebConfig private constructor(
 
     open fun setAttributionRegistrationBehavior(attributionRegistrationBehavior: Int): WebConfig {
         mAttributionRegistrationBehavior = attributionRegistrationBehavior
+        return this
+    }
+
+    override fun backForwardCacheEnabled(): Boolean? {
+        return mBackForwardCacheEnabled
+    }
+
+    open fun setBackForwardCacheEnabled(backForwardCacheEnabled: Boolean?): WebConfig {
+        mBackForwardCacheEnabled = backForwardCacheEnabled
+        return this
+    }
+
+    override fun speculativeLoadingStatus(): Int {
+        return mSpeculativeLoadingStatus
+    }
+
+    open fun setSpeculativeLoadingStatus(speculativeLoadingStatus: Int): WebConfig {
+        mSpeculativeLoadingStatus = speculativeLoadingStatus
+        return this
+    }
+
+    override fun hyperlinkContextMenuItems(): Int {
+        return mHyperlinkContextMenuItems
+    }
+
+    open fun setHyperlinkContextMenuItems(hyperlinkContextMenuItems: Int): WebConfig {
+        mHyperlinkContextMenuItems = hyperlinkContextMenuItems
+        return this
+    }
+
+    override fun hasEnrolledInstrumentEnabled(): Boolean? {
+        return mHasEnrolledInstrumentEnabled
+    }
+
+    open fun setHasEnrolledInstrumentEnabled(hasEnrolledInstrumentEnabled: Boolean?): WebConfig {
+        mHasEnrolledInstrumentEnabled = hasEnrolledInstrumentEnabled
+        return this
+    }
+
+    override fun cookiesIncludedInShouldInterceptRequest(): Boolean? {
+        return mCookiesIncludedInShouldInterceptRequest
+    }
+
+    open fun setCookiesIncludedInShouldInterceptRequest(
+        cookiesIncludedInShouldInterceptRequest: Boolean?
+    ): WebConfig {
+        mCookiesIncludedInShouldInterceptRequest = cookiesIncludedInShouldInterceptRequest
+        return this
+    }
+
+    override fun webAuthenticationSupport(): Int {
+        return mWebAuthenticationSupport
+    }
+
+    open fun setWebAuthenticationSupport(webAuthenticationSupport: Int): WebConfig {
+        mWebAuthenticationSupport = webAuthenticationSupport
         return this
     }
 }

@@ -98,7 +98,7 @@ allprojects {
                     // camerax_lifecycle
                     "androidx.camera:camera-lifecycle:1.7.0-alpha01",
                     // webkit
-                    "androidx.webkit:webkit:1.16.0",
+                    "androidx.webkit:webkit:1.17.0-alpha01",
                     // hilt_android
                     "com.google.dagger:hilt-android:2.59.2",
                     // hilt_android_compiler

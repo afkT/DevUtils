@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Paint
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Message
 import android.view.KeyEvent
 import android.view.View
@@ -16,6 +17,8 @@ import android.webkit.WebMessage
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.webkit.CookieManagerCompat
+import androidx.webkit.NavigationListener
 import androidx.webkit.ProxyConfig
 import androidx.webkit.ProxyController
 import androidx.webkit.ServiceWorkerClientCompat
@@ -248,8 +251,51 @@ open class WebViewEngineImpl(
                     webSettings, attributionRegistrationBehavior
                 )
             }
+            configIt.backForwardCacheEnabled()?.let {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.BACK_FORWARD_CACHE)) {
+                    WebSettingsCompat.setBackForwardCacheEnabled(webSettings, it)
+                }
+            }
+            applySpeculativeLoadingStatus(webSettings, configIt.speculativeLoadingStatus())
+            val hyperlinkContextMenuItems = configIt.hyperlinkContextMenuItems()
+            if (hyperlinkContextMenuItems >= 0
+                && WebViewFeature.isFeatureSupported(WebViewFeature.HYPERLINK_CONTEXT_MENU_ITEMS)
+            ) {
+                WebSettingsCompat.setHyperlinkContextMenuItems(webSettings, hyperlinkContextMenuItems)
+            }
+            configIt.hasEnrolledInstrumentEnabled()?.let {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
+                    WebSettingsCompat.setHasEnrolledInstrumentEnabled(webSettings, it)
+                }
+            }
+            configIt.cookiesIncludedInShouldInterceptRequest()?.let {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.COOKIE_INTERCEPT)) {
+                    WebSettingsCompat.setCookiesIncludedInShouldInterceptRequest(webSettings, it)
+                }
+            }
+            val webAuthenticationSupport = configIt.webAuthenticationSupport()
+            if (webAuthenticationSupport >= 0
+                && WebViewFeature.isFeatureSupported(WebViewFeature.WEB_AUTHENTICATION)
+            ) {
+                WebSettingsCompat.setWebAuthenticationSupport(webSettings, webAuthenticationSupport)
+            }
         } ?: return false
         return true
+    }
+
+    /**
+     * 应用预测式加载状态 ( 实验性 API, 单独封装以收敛 OptIn 注解 )
+     * @param webSettings [WebSettings]
+     * @param status 预测式加载状态 ( 小于 0 表示未设置 )
+     */
+    @OptIn(WebSettingsCompat.ExperimentalSpeculativeLoading::class)
+    protected open fun applySpeculativeLoadingStatus(
+        webSettings: WebSettings,
+        status: Int
+    ) {
+        if (status >= 0 && WebViewFeature.isFeatureSupported(WebViewFeature.SPECULATIVE_LOADING)) {
+            WebSettingsCompat.setSpeculativeLoadingStatus(webSettings, status)
+        }
     }
 
     override fun getWebView(item: WebItem?): View? {
@@ -1246,6 +1292,78 @@ open class WebViewEngineImpl(
         return TracingController.getInstance().stop(outputStream as? OutputStream, executor)
     }
 
+    @OptIn(WebSettingsCompat.ExperimentalBackForwardCacheSettings::class)
+    override fun getBackForwardCacheSettings(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3
+            )
+        ) return null
+        val webSettings = getSettings(item) ?: return null
+        return WebSettingsCompat.getBackForwardCacheSettings(webSettings)
+    }
+
+    override fun setDefaultTrafficStatsTag(tag: Int): Boolean {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.DEFAULT_TRAFFICSTATS_TAGGING
+            )
+        ) return false
+        WebViewCompat.setDefaultTrafficStatsTag(tag)
+        return true
+    }
+
+    override fun saveState(
+        item: WebItem?,
+        outState: Bundle?,
+        maxSizeBytes: Int,
+        includeForwardState: Boolean
+    ): Boolean {
+        outState ?: return false
+        if (maxSizeBytes < 1) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAVE_STATE)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.saveState(this, outState, maxSizeBytes, includeForwardState)
+            true
+        } ?: false
+    }
+
+    override fun addNavigationListener(
+        item: WebItem?,
+        listener: Any?
+    ): Boolean {
+        val navigationListener = listener as? NavigationListener ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.addNavigationListener(this, navigationListener)
+            true
+        } ?: false
+    }
+
+    override fun addNavigationListener(
+        item: WebItem?,
+        executor: Executor?,
+        listener: Any?
+    ): Boolean {
+        executor ?: return false
+        val navigationListener = listener as? NavigationListener ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.addNavigationListener(this, executor, navigationListener)
+            true
+        } ?: false
+    }
+
+    override fun removeNavigationListener(
+        item: WebItem?,
+        listener: Any?
+    ): Boolean {
+        val navigationListener = listener as? NavigationListener ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.removeNavigationListener(this, navigationListener)
+            true
+        } ?: false
+    }
+
     // ==========
     // = Cookie =
     // ==========
@@ -1325,6 +1443,17 @@ open class WebViewEngineImpl(
             LogPrintUtils.eTag(TAG, e, "flushCookie")
         }
         return false
+    }
+
+    override fun getCookieInfo(url: String?): MutableList<String> {
+        url ?: return ArrayList()
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_COOKIE_INFO)) return ArrayList()
+        return try {
+            CookieManagerCompat.getCookieInfo(CookieManager.getInstance(), url)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getCookieInfo")
+            ArrayList()
+        }
     }
 
     // ==========

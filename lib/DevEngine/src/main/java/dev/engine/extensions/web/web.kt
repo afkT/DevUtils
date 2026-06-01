@@ -3,6 +3,7 @@ package dev.engine.extensions.web
 import android.content.Context
 import android.graphics.Paint
 import android.net.Uri
+import android.os.Bundle
 import android.os.Message
 import android.view.KeyEvent
 import android.view.View
@@ -892,6 +893,51 @@ fun web_stopWebViewTracing(
     return engine.getWebEngine()?.stopWebViewTracing(outputStream, executor) ?: false
 }
 
+fun <Item : IWebEngine.EngineItem> Item?.web_getBackForwardCacheSettings(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getBackForwardCacheSettings(this)
+}
+
+fun web_setDefaultTrafficStatsTag(
+    engine: String? = null,
+    tag: Int
+): Boolean {
+    return engine.getWebEngine()?.setDefaultTrafficStatsTag(tag) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_saveState(
+    engine: String? = null,
+    outState: Bundle?,
+    maxSizeBytes: Int,
+    includeForwardState: Boolean
+): Boolean {
+    return engine.getWebEngine()?.saveState(this, outState, maxSizeBytes, includeForwardState)
+        ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_addNavigationListener(
+    engine: String? = null,
+    listener: Any?
+): Boolean {
+    return engine.getWebEngine()?.addNavigationListener(this, listener) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_addNavigationListener(
+    engine: String? = null,
+    executor: Executor?,
+    listener: Any?
+): Boolean {
+    return engine.getWebEngine()?.addNavigationListener(this, executor, listener) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_removeNavigationListener(
+    engine: String? = null,
+    listener: Any?
+): Boolean {
+    return engine.getWebEngine()?.removeNavigationListener(this, listener) ?: false
+}
+
 // ==========
 // = Cookie =
 // ==========
@@ -930,6 +976,13 @@ fun web_removeAllCookie(
     callback: Any?
 ): Boolean {
     return engine.getWebEngine()?.removeAllCookie(callback) ?: false
+}
+
+fun web_getCookieInfo(
+    engine: String? = null,
+    url: String?
+): MutableList<String>? {
+    return engine.getWebEngine()?.getCookieInfo(url)
 }
 
 fun web_flushCookie(
