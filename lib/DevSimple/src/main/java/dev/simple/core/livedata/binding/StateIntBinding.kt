@@ -291,4 +291,36 @@ object StateIntBinding {
     // REPEAT
     @JvmStatic
     fun isRepeat(state: Int?): Boolean = isState(state, StateInt.REPEAT)
+
+    // LOAD_SUCCESS
+    @JvmStatic
+    fun isLoadSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_SUCCESS)
+
+    // LOAD_FAIL
+    @JvmStatic
+    fun isLoadFail(state: Int?): Boolean = isState(state, StateInt.LOAD_FAIL)
+
+    // REFRESH_SUCCESS
+    @JvmStatic
+    fun isRefreshSuccess(state: Int?): Boolean = isState(state, StateInt.REFRESH_SUCCESS)
+
+    // REFRESH_FAIL
+    @JvmStatic
+    fun isRefreshFail(state: Int?): Boolean = isState(state, StateInt.REFRESH_FAIL)
+
+    // LOAD_MORE_SUCCESS
+    @JvmStatic
+    fun isLoadMoreSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_SUCCESS)
+
+    // LOAD_MORE_FAIL
+    @JvmStatic
+    fun isLoadMoreFail(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_FAIL)
+
+    // SAVING
+    @JvmStatic
+    fun isSaving(state: Int?): Boolean = isState(state, StateInt.SAVING)
+
+    // SAVED
+    @JvmStatic
+    fun isSaved(state: Int?): Boolean = isState(state, StateInt.SAVED)
 }

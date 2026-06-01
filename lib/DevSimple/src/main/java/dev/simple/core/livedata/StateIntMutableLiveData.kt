@@ -200,6 +200,30 @@ object StateInt {
 
     // 重复 ( 动画 )
     const val REPEAT = 1020365
+
+    // 加载成功
+    const val LOAD_SUCCESS = 1020366
+
+    // 加载失败
+    const val LOAD_FAIL = 1020367
+
+    // 刷新成功
+    const val REFRESH_SUCCESS = 1020368
+
+    // 刷新失败
+    const val REFRESH_FAIL = 1020369
+
+    // 加载更多成功
+    const val LOAD_MORE_SUCCESS = 1020370
+
+    // 加载更多失败
+    const val LOAD_MORE_FAIL = 1020371
+
+    // 保存中
+    const val SAVING = 1020372
+
+    // 已保存
+    const val SAVED = 1020373
 }
 
 /**
@@ -633,4 +657,52 @@ open class StateIntMutableLiveData(
     open fun setREPEAT(): Boolean = updateValue(StateInt.REPEAT)
     open fun postREPEAT(): Boolean = postUpdateValue(StateInt.REPEAT)
     open fun smartUpdateREPEAT(): Boolean = smartUpdateValue(StateInt.REPEAT)
+
+    // LOAD_SUCCESS
+    open fun isLOAD_SUCCESSState(): Boolean = isEqual(StateInt.LOAD_SUCCESS)
+    open fun setLOAD_SUCCESS(): Boolean = updateValue(StateInt.LOAD_SUCCESS)
+    open fun postLOAD_SUCCESS(): Boolean = postUpdateValue(StateInt.LOAD_SUCCESS)
+    open fun smartUpdateLOAD_SUCCESS(): Boolean = smartUpdateValue(StateInt.LOAD_SUCCESS)
+
+    // LOAD_FAIL
+    open fun isLOAD_FAILState(): Boolean = isEqual(StateInt.LOAD_FAIL)
+    open fun setLOAD_FAIL(): Boolean = updateValue(StateInt.LOAD_FAIL)
+    open fun postLOAD_FAIL(): Boolean = postUpdateValue(StateInt.LOAD_FAIL)
+    open fun smartUpdateLOAD_FAIL(): Boolean = smartUpdateValue(StateInt.LOAD_FAIL)
+
+    // REFRESH_SUCCESS
+    open fun isREFRESH_SUCCESSState(): Boolean = isEqual(StateInt.REFRESH_SUCCESS)
+    open fun setREFRESH_SUCCESS(): Boolean = updateValue(StateInt.REFRESH_SUCCESS)
+    open fun postREFRESH_SUCCESS(): Boolean = postUpdateValue(StateInt.REFRESH_SUCCESS)
+    open fun smartUpdateREFRESH_SUCCESS(): Boolean = smartUpdateValue(StateInt.REFRESH_SUCCESS)
+
+    // REFRESH_FAIL
+    open fun isREFRESH_FAILState(): Boolean = isEqual(StateInt.REFRESH_FAIL)
+    open fun setREFRESH_FAIL(): Boolean = updateValue(StateInt.REFRESH_FAIL)
+    open fun postREFRESH_FAIL(): Boolean = postUpdateValue(StateInt.REFRESH_FAIL)
+    open fun smartUpdateREFRESH_FAIL(): Boolean = smartUpdateValue(StateInt.REFRESH_FAIL)
+
+    // LOAD_MORE_SUCCESS
+    open fun isLOAD_MORE_SUCCESSState(): Boolean = isEqual(StateInt.LOAD_MORE_SUCCESS)
+    open fun setLOAD_MORE_SUCCESS(): Boolean = updateValue(StateInt.LOAD_MORE_SUCCESS)
+    open fun postLOAD_MORE_SUCCESS(): Boolean = postUpdateValue(StateInt.LOAD_MORE_SUCCESS)
+    open fun smartUpdateLOAD_MORE_SUCCESS(): Boolean = smartUpdateValue(StateInt.LOAD_MORE_SUCCESS)
+
+    // LOAD_MORE_FAIL
+    open fun isLOAD_MORE_FAILState(): Boolean = isEqual(StateInt.LOAD_MORE_FAIL)
+    open fun setLOAD_MORE_FAIL(): Boolean = updateValue(StateInt.LOAD_MORE_FAIL)
+    open fun postLOAD_MORE_FAIL(): Boolean = postUpdateValue(StateInt.LOAD_MORE_FAIL)
+    open fun smartUpdateLOAD_MORE_FAIL(): Boolean = smartUpdateValue(StateInt.LOAD_MORE_FAIL)
+
+    // SAVING
+    open fun isSAVINGState(): Boolean = isEqual(StateInt.SAVING)
+    open fun setSAVING(): Boolean = updateValue(StateInt.SAVING)
+    open fun postSAVING(): Boolean = postUpdateValue(StateInt.SAVING)
+    open fun smartUpdateSAVING(): Boolean = smartUpdateValue(StateInt.SAVING)
+
+    // SAVED
+    open fun isSAVEDState(): Boolean = isEqual(StateInt.SAVED)
+    open fun setSAVED(): Boolean = updateValue(StateInt.SAVED)
+    open fun postSAVED(): Boolean = postUpdateValue(StateInt.SAVED)
+    open fun smartUpdateSAVED(): Boolean = smartUpdateValue(StateInt.SAVED)
 }

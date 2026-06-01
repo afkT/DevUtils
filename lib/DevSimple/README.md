@@ -1210,6 +1210,38 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
 | setREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 主线程 ) |
 | postREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 子线程 ) |
 | smartUpdateREPEAT | 设置为 REPEAT ( 重复 ) 状态 ( 智能线程判断 ) |
+| isLOAD_SUCCESSState | 是否 LOAD_SUCCESS ( 加载成功 ) 状态 |
+| setLOAD_SUCCESS | 设置为 LOAD_SUCCESS ( 加载成功 ) 状态 ( 主线程 ) |
+| postLOAD_SUCCESS | 设置为 LOAD_SUCCESS ( 加载成功 ) 状态 ( 子线程 ) |
+| smartUpdateLOAD_SUCCESS | 设置为 LOAD_SUCCESS ( 加载成功 ) 状态 ( 智能线程判断 ) |
+| isLOAD_FAILState | 是否 LOAD_FAIL ( 加载失败 ) 状态 |
+| setLOAD_FAIL | 设置为 LOAD_FAIL ( 加载失败 ) 状态 ( 主线程 ) |
+| postLOAD_FAIL | 设置为 LOAD_FAIL ( 加载失败 ) 状态 ( 子线程 ) |
+| smartUpdateLOAD_FAIL | 设置为 LOAD_FAIL ( 加载失败 ) 状态 ( 智能线程判断 ) |
+| isREFRESH_SUCCESSState | 是否 REFRESH_SUCCESS ( 刷新成功 ) 状态 |
+| setREFRESH_SUCCESS | 设置为 REFRESH_SUCCESS ( 刷新成功 ) 状态 ( 主线程 ) |
+| postREFRESH_SUCCESS | 设置为 REFRESH_SUCCESS ( 刷新成功 ) 状态 ( 子线程 ) |
+| smartUpdateREFRESH_SUCCESS | 设置为 REFRESH_SUCCESS ( 刷新成功 ) 状态 ( 智能线程判断 ) |
+| isREFRESH_FAILState | 是否 REFRESH_FAIL ( 刷新失败 ) 状态 |
+| setREFRESH_FAIL | 设置为 REFRESH_FAIL ( 刷新失败 ) 状态 ( 主线程 ) |
+| postREFRESH_FAIL | 设置为 REFRESH_FAIL ( 刷新失败 ) 状态 ( 子线程 ) |
+| smartUpdateREFRESH_FAIL | 设置为 REFRESH_FAIL ( 刷新失败 ) 状态 ( 智能线程判断 ) |
+| isLOAD_MORE_SUCCESSState | 是否 LOAD_MORE_SUCCESS ( 加载更多成功 ) 状态 |
+| setLOAD_MORE_SUCCESS | 设置为 LOAD_MORE_SUCCESS ( 加载更多成功 ) 状态 ( 主线程 ) |
+| postLOAD_MORE_SUCCESS | 设置为 LOAD_MORE_SUCCESS ( 加载更多成功 ) 状态 ( 子线程 ) |
+| smartUpdateLOAD_MORE_SUCCESS | 设置为 LOAD_MORE_SUCCESS ( 加载更多成功 ) 状态 ( 智能线程判断 ) |
+| isLOAD_MORE_FAILState | 是否 LOAD_MORE_FAIL ( 加载更多失败 ) 状态 |
+| setLOAD_MORE_FAIL | 设置为 LOAD_MORE_FAIL ( 加载更多失败 ) 状态 ( 主线程 ) |
+| postLOAD_MORE_FAIL | 设置为 LOAD_MORE_FAIL ( 加载更多失败 ) 状态 ( 子线程 ) |
+| smartUpdateLOAD_MORE_FAIL | 设置为 LOAD_MORE_FAIL ( 加载更多失败 ) 状态 ( 智能线程判断 ) |
+| isSAVINGState | 是否 SAVING ( 保存中 ) 状态 |
+| setSAVING | 设置为 SAVING ( 保存中 ) 状态 ( 主线程 ) |
+| postSAVING | 设置为 SAVING ( 保存中 ) 状态 ( 子线程 ) |
+| smartUpdateSAVING | 设置为 SAVING ( 保存中 ) 状态 ( 智能线程判断 ) |
+| isSAVEDState | 是否 SAVED ( 已保存 ) 状态 |
+| setSAVED | 设置为 SAVED ( 已保存 ) 状态 ( 主线程 ) |
+| postSAVED | 设置为 SAVED ( 已保存 ) 状态 ( 子线程 ) |
+| smartUpdateSAVED | 设置为 SAVED ( 已保存 ) 状态 ( 智能线程判断 ) |
 
 
 ## <span id="devsimplecorelivedatabinding">**`dev.simple.core.livedata.binding`**</span>
