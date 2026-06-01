@@ -15,7 +15,7 @@ import dev.engine.extensions.permission.permission_isGrantedPermission
 import dev.engine.extensions.permission.permission_request
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.permission.IPermissionEngine
-import dev.simple.core.livedata.ValueLiveData
+import dev.simple.core.livedata.ValueMutableLiveData
 import dev.simple.extensions.hi.hiif.hiIfNotNull
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.camera.camera1.CameraAssist
@@ -152,7 +152,7 @@ open class ScanShapeViewModel : AppViewModel() {
     val cameraAssist = CameraAssist()
 
     // 手电动开关状态
-    val flashlightStatus = ValueLiveData(false)
+    val flashlightStatus = ValueMutableLiveData(false)
 
     // ==========
     // = 点击事件 =
@@ -198,7 +198,7 @@ open class ScanShapeViewModel : AppViewModel() {
      * 切换手电筒开关
      */
     fun toggleFlashlight() {
-        setFlashlight(flashlightStatus.dataValue() != true)
+        setFlashlight(flashlightStatus.value != true)
     }
 
     /**
@@ -219,7 +219,7 @@ open class ScanShapeViewModel : AppViewModel() {
      * 刷新手电筒状态
      */
     fun refreshFlashlightOn() {
-        flashlightStatus.setValue(cameraAssist.isFlashlightOn)
+        flashlightStatus.updateValue(cameraAssist.isFlashlightOn)
     }
 
     /**
@@ -232,6 +232,6 @@ open class ScanShapeViewModel : AppViewModel() {
         } else {
             cameraAssist.setFlashlightOff()
         }
-        flashlightStatus.setValue(open)
+        flashlightStatus.updateValue(open)
     }
 }

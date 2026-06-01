@@ -24,11 +24,11 @@ class SimpleFragment : BaseFragment<FragmentSimpleBinding, SimpleViewModel>(
     override fun initObserve() {
         super.initObserve()
         // 监听电影详情信息变更
-        viewModel.movieDetailOB.value.observe(this) { value ->
+        viewModel.movieDetailOB.observe(this) { value ->
             // 打印日志
             ResponseHelper.log(
-                "movieDetail ValueLiveData",
-                "设置 ObservableField<MovieDetailBean> 值：${value}"
+                "movieDetail ValueMutableLiveData",
+                "设置 ValueMutableLiveData<MovieDetailBean> 值：${value}"
             )
         }
         // 监听电影详情信息变更

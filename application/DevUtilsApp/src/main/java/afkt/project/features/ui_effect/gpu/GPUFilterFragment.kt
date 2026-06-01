@@ -19,7 +19,7 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import dev.base.simple.extensions.asFragment
 import dev.engine.extensions.log.log_eTag
 import dev.simple.core.adapter.AdapterModel
-import dev.simple.core.livedata.ValueLiveData
+import dev.simple.core.livedata.ValueMutableLiveData
 import dev.utils.app.RecyclerViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
@@ -53,10 +53,10 @@ class GPUFilterViewModel : AppViewModel() {
     val adapterModel = GPUFilterAdapter()
 
     // 滤镜名
-    val filterName = ValueLiveData<String>()
+    val filterName = ValueMutableLiveData<String>()
 
     // 滤镜后的 Bitmap
-    val filterBitmap = ValueLiveData<Bitmap>()
+    val filterBitmap = ValueMutableLiveData<Bitmap>()
 
     // 选择的图片
     var selectBitmap: Bitmap? = null

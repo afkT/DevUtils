@@ -12,7 +12,7 @@ import dev.assist.NumberControlAssist
 import dev.base.number.INumberListener
 import dev.base.simple.extensions.asFragment
 import dev.simple.core.adapter.AdapterModel
-import dev.simple.core.livedata.ValueLiveData
+import dev.simple.core.livedata.ValueMutableLiveData
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.quick.QuickHelper
 import dev.widget.decoration.linear.FirstLinearColorItemDecoration
@@ -49,7 +49,7 @@ class ShopCartViewModel : AppViewModel() {
     // =
 
     // 购物车数量
-    val numberText = ValueLiveData("0")
+    val numberText = ValueMutableLiveData("0")
 
     // 购物车动画
     private val animation = ShopCartAnimation()

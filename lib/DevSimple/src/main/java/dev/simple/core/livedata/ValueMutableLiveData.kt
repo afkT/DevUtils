@@ -1,7 +1,6 @@
 package dev.simple.core.livedata
 
 import android.os.Looper
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.utils.app.HandlerUtils
 
@@ -33,39 +32,30 @@ fun <T> MutableLiveData<T>.smartUpdateValue(
 // =
 
 /**
- * detail: 一个用于封装可观测单一状态、值的 LiveData 类
+ * detail: 一个用于封装可观测单一状态、值的 MutableLiveData 类
  * @author Ttt
  * 泛化概念：可表示 status、data、source、page 等
+ * <p></p>
+ * 在原生 [MutableLiveData.setValue]、[MutableLiveData.postValue] 基础上，
+ * 额外提供带相同值过滤、null 控制并返回是否更新成功的 [updateValue]、[postUpdateValue]
  */
-open class ValueLiveData<T>(
-    _value: T? = null
-) {
-
-    // 数据值
-    protected val _value = MutableLiveData<T>(_value)
-    val value: LiveData<T> get() = _value
+open class ValueMutableLiveData<T>(
+    value: T? = null
+) : MutableLiveData<T>(value) {
 
     /**
-     * 获取数据值
-     * @return value
-     */
-    open fun dataValue(): T? {
-        return _value.value
-    }
-
-    /**
-     * 主线程直接设置值
+     * 主线程直接设置值 ( 过滤相同值 )
      * @param value 待更新值
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
      */
-    open fun setValue(
+    open fun updateValue(
         value: T?,
         allowNull: Boolean = false
     ): Boolean {
         if (shouldUpdateValue(value)) {
             if (allowNull || value != null) {
-                _value.value = value
+                super.setValue(value)
                 return true
             }
         }
@@ -73,18 +63,18 @@ open class ValueLiveData<T>(
     }
 
     /**
-     * 子线程安全设置值 ( 自动切换到主线程 )
+     * 子线程安全设置值 ( 自动切换到主线程、过滤相同值 )
      * @param value 待更新值
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
      */
-    open fun postValue(
+    open fun postUpdateValue(
         value: T?,
         allowNull: Boolean = false
     ): Boolean {
         if (shouldUpdateValue(value)) {
             if (allowNull || value != null) {
-                _value.postValue(value)
+                super.postValue(value)
                 return true
             }
         }
@@ -92,7 +82,7 @@ open class ValueLiveData<T>(
     }
 
     /**
-     * 智能线程判断 ( 自动选择 setValue、postValue )
+     * 智能线程判断 ( 自动选择 updateValue、postUpdateValue )
      * @param value 待更新值
      * @param allowNull 是否允许设置为 null
      * @return `true` success, `false` fail
@@ -102,9 +92,9 @@ open class ValueLiveData<T>(
         allowNull: Boolean = false
     ): Boolean {
         return if (isMainThread()) {
-            setValue(value, allowNull)
+            updateValue(value, allowNull)
         } else {
-            postValue(value, allowNull)
+            postUpdateValue(value, allowNull)
         }
     }
 
@@ -113,7 +103,7 @@ open class ValueLiveData<T>(
      * @return `true` success, `false` fail
      */
     open fun resetValue(): Boolean {
-        return setValue(null, true)
+        return updateValue(null, true)
     }
 
     /**
@@ -121,7 +111,7 @@ open class ValueLiveData<T>(
      * @return `true` success, `false` fail
      */
     open fun postResetValue(): Boolean {
-        return postValue(null, true)
+        return postUpdateValue(null, true)
     }
 
     /**
@@ -138,7 +128,7 @@ open class ValueLiveData<T>(
      * @return `true` yes, `false` no
      */
     open fun shouldUpdateValue(value: T?): Boolean {
-        return !isEqual(value, _value.value)
+        return !isEqual(value, this.value)
     }
 
     /**
@@ -147,7 +137,7 @@ open class ValueLiveData<T>(
      * @return `true` yes, `false` no
      */
     open fun isEqual(value: T?): Boolean {
-        return isEqual(value, _value.value)
+        return isEqual(value, this.value)
     }
 
     /**

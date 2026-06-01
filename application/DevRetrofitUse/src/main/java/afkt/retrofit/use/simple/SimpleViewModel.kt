@@ -5,7 +5,7 @@ import afkt.retrofit.use.helper.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.retrofit.Base
-import dev.simple.core.livedata.ValueLiveData
+import dev.simple.core.livedata.ValueMutableLiveData
 import dev.simple.extensions.hi.hiif.hiIfNotNull
 import java.util.*
 
@@ -23,7 +23,7 @@ class SimpleViewModel(
     )
 
     // 电影详情信息
-    val movieDetailOB = ValueLiveData<MovieDetailBean>()
+    val movieDetailOB = ValueMutableLiveData<MovieDetailBean>()
 
     // 电影详情信息
     private val _movieDetail = MutableLiveData<MovieDetailBean>()
@@ -124,7 +124,7 @@ class SimpleViewModel(
      */
     private class MovieDetailCallback(
         tag: String,
-        private val movieDetail: ValueLiveData<MovieDetailBean>
+        private val movieDetail: ValueMutableLiveData<MovieDetailBean>
     ) : ResponseHelper.RequestStageCallback<MovieDetailBean>(tag) {
 
         override fun onSuccess(
