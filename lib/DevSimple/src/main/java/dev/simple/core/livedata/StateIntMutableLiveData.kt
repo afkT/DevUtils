@@ -128,10 +128,10 @@ object StateInt {
 }
 
 /**
- * detail: State Int LiveData
+ * detail: State Int MutableLiveData
  * @author Ttt
  */
-open class StateIntLiveData(
+open class StateIntMutableLiveData(
     _value: Int = StateInt.NORMAL
 ) : ValueMutableLiveData<Int>(_value) {
 

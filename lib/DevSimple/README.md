@@ -941,7 +941,7 @@ implementation 'io.github.afkt:DevSimple:1.0.7'
 | 方法 | 注释 |
 | :- | :- |
 
-* **StateInt ->** [StateIntLiveData.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/src/main/java/dev/simple/core/livedata/StateIntLiveData.kt)
+* **StateIntMutableLiveData ->** [StateIntMutableLiveData.kt](https://github.com/afkT/DevUtils/blob/master/lib/DevSimple/src/main/java/dev/simple/core/livedata/StateIntMutableLiveData.kt)
 
 | 方法 | 注释 |
 | :- | :- |
