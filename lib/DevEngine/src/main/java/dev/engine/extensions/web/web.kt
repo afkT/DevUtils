@@ -1,11 +1,14 @@
 package dev.engine.extensions.web
 
+import android.content.Context
 import android.graphics.Paint
+import android.net.Uri
 import android.os.Message
 import android.view.KeyEvent
 import android.view.View
 import dev.engine.DevEngine
 import dev.engine.web.IWebEngine
+import java.util.concurrent.Executor
 
 // ====================================
 // = IWebEngine<EngineConfig, EngineItem> =
@@ -590,6 +593,24 @@ fun <Item : IWebEngine.EngineItem> Item?.web_setRendererPriorityPolicy(
     ) ?: false
 }
 
+// ==============
+// = Web Message =
+// ==============
+
+fun <Item : IWebEngine.EngineItem> Item?.web_postWebMessage(
+    engine: String? = null,
+    message: Any?,
+    targetOrigin: Uri?
+): Boolean {
+    return engine.getWebEngine()?.postWebMessage(this, message, targetOrigin) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_createWebMessageChannel(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.createWebMessageChannel(this)
+}
+
 // ==========
 // = 全局静态 =
 // ==========
@@ -612,6 +633,132 @@ fun web_clearClientCertPreferences(
     onCleared: Runnable?
 ): Boolean {
     return engine.getWebEngine()?.clearClientCertPreferences(onCleared) ?: false
+}
+
+// =================
+// = AndroidX WebKit =
+// =================
+
+fun web_isWebViewFeatureSupported(
+    engine: String? = null,
+    feature: String?
+): Boolean {
+    return engine.getWebEngine()?.isWebViewFeatureSupported(feature) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_addDocumentStartJavaScript(
+    engine: String? = null,
+    script: String?,
+    allowedOriginRules: MutableSet<String>?
+): Any? {
+    return engine.getWebEngine()?.addDocumentStartJavaScript(this, script, allowedOriginRules)
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_addWebMessageListener(
+    engine: String? = null,
+    jsObjectName: String?,
+    allowedOriginRules: MutableSet<String>?,
+    listener: Any?
+): Boolean {
+    return engine.getWebEngine()?.addWebMessageListener(
+        this, jsObjectName, allowedOriginRules, listener
+    ) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_removeWebMessageListener(
+    engine: String? = null,
+    jsObjectName: String?
+): Boolean {
+    return engine.getWebEngine()?.removeWebMessageListener(this, jsObjectName) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_getWebViewClientCompat(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getWebViewClientCompat(this)
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_getWebChromeClientCompat(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getWebChromeClientCompat(this)
+}
+
+fun web_getCurrentWebViewPackageCompat(
+    engine: String? = null,
+    context: Context?
+): Any? {
+    return engine.getWebEngine()?.getCurrentWebViewPackageCompat(context)
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_getWebViewRenderProcess(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getWebViewRenderProcess(this)
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setWebViewRenderProcessClient(
+    engine: String? = null,
+    client: Any?
+): Boolean {
+    return engine.getWebEngine()?.setWebViewRenderProcessClient(this, client) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_getWebViewRenderProcessClient(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getWebViewRenderProcessClient(this)
+}
+
+fun web_isMultiProcessEnabled(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.isMultiProcessEnabled() ?: false
+}
+
+fun web_getVariationsHeader(
+    engine: String? = null
+): String? {
+    return engine.getWebEngine()?.getVariationsHeader()
+}
+
+fun web_startSafeBrowsing(
+    engine: String? = null,
+    context: Context?,
+    callback: Any?
+): Boolean {
+    return engine.getWebEngine()?.startSafeBrowsing(context, callback) ?: false
+}
+
+fun web_setSafeBrowsingAllowlist(
+    engine: String? = null,
+    hosts: MutableSet<String>?,
+    callback: Any?
+): Boolean {
+    return engine.getWebEngine()?.setSafeBrowsingAllowlist(hosts, callback) ?: false
+}
+
+fun web_getSafeBrowsingPrivacyPolicyUrl(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getSafeBrowsingPrivacyPolicyUrl()
+}
+
+fun web_setProxyOverride(
+    engine: String? = null,
+    proxyConfig: Any?,
+    executor: Executor?,
+    listener: Runnable?
+): Boolean {
+    return engine.getWebEngine()?.setProxyOverride(proxyConfig, executor, listener) ?: false
+}
+
+fun web_clearProxyOverride(
+    engine: String? = null,
+    executor: Executor?,
+    listener: Runnable?
+): Boolean {
+    return engine.getWebEngine()?.clearProxyOverride(executor, listener) ?: false
 }
 
 // ==========

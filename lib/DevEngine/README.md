@@ -199,7 +199,9 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 可选实现方案：
 
 * 依赖 [System WebView](https://developer.android.com/reference/android/webkit/WebView)
+  与 [WebView Jetpack 组件 androidx.webkit](https://developer.android.com/jetpack/androidx/releases/webkit)
   实现 [WebViewEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/web/engine_webview.kt)
+  ( androidx.webkit 能力通过 WebViewFeature 探测后调用 )
 
 
 ## 使用示例

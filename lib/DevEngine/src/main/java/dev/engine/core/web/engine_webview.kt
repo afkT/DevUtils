@@ -1,6 +1,8 @@
 package dev.engine.core.web
 
+import android.content.Context
 import android.graphics.Paint
+import android.net.Uri
 import android.os.Build
 import android.os.Message
 import android.view.KeyEvent
@@ -10,13 +12,21 @@ import android.webkit.CookieSyncManager
 import android.webkit.DownloadListener
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
+import android.webkit.WebMessage
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.webkit.ProxyConfig
+import androidx.webkit.ProxyController
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewCompat
+import androidx.webkit.WebViewFeature
+import androidx.webkit.WebViewRenderProcessClient
 import dev.DevUtils
 import dev.engine.web.IWebEngine
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
+import java.util.concurrent.Executor
 
 /**
  * detail: System WebView Engine 实现
@@ -199,6 +209,11 @@ open class WebViewEngineImpl(
                 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
             ) {
                 webSettings.disabledActionModeMenuItems = disabledActionModeMenuItems
+            }
+            configIt.algorithmicDarkeningAllowed()?.let {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
+                    WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, it)
+                }
             }
         } ?: return false
         return true
@@ -802,6 +817,26 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    // ==============
+    // = Web Message =
+    // ==============
+
+    override fun postWebMessage(
+        item: WebItem?,
+        message: Any?,
+        targetOrigin: Uri?
+    ): Boolean {
+        val webMessage = message as? WebMessage ?: return false
+        targetOrigin ?: return false
+        return getWebViewImpl(item)?.run {
+            postWebMessage(webMessage, targetOrigin); true
+        } ?: false
+    }
+
+    override fun createWebMessageChannel(item: WebItem?): Any? {
+        return getWebViewImpl(item)?.createWebMessageChannel()
+    }
+
     // ==========
     // = 全局静态 =
     // ==========
@@ -829,6 +864,176 @@ open class WebViewEngineImpl(
             true
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "clearClientCertPreferences")
+            false
+        }
+    }
+
+    // =================
+    // = AndroidX WebKit =
+    // =================
+
+    override fun isWebViewFeatureSupported(feature: String?): Boolean {
+        feature ?: return false
+        return try {
+            WebViewFeature.isFeatureSupported(feature)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "isWebViewFeatureSupported")
+            false
+        }
+    }
+
+    override fun addDocumentStartJavaScript(
+        item: WebItem?,
+        script: String?,
+        allowedOriginRules: MutableSet<String>?
+    ): Any? {
+        if (script == null || allowedOriginRules == null) return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) return null
+        return getWebViewImpl(item)?.let {
+            WebViewCompat.addDocumentStartJavaScript(it, script, allowedOriginRules)
+        }
+    }
+
+    override fun addWebMessageListener(
+        item: WebItem?,
+        jsObjectName: String?,
+        allowedOriginRules: MutableSet<String>?,
+        listener: Any?
+    ): Boolean {
+        if (jsObjectName == null || allowedOriginRules == null) return false
+        val messageListener = listener as? WebViewCompat.WebMessageListener ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.addWebMessageListener(
+                this, jsObjectName, allowedOriginRules, messageListener
+            )
+            true
+        } ?: false
+    }
+
+    override fun removeWebMessageListener(
+        item: WebItem?,
+        jsObjectName: String?
+    ): Boolean {
+        jsObjectName ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.removeWebMessageListener(this, jsObjectName)
+            true
+        } ?: false
+    }
+
+    override fun getWebViewClientCompat(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_CLIENT)) return null
+        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewClient(it) }
+    }
+
+    override fun getWebChromeClientCompat(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_CHROME_CLIENT)) return null
+        return getWebViewImpl(item)?.let { WebViewCompat.getWebChromeClient(it) }
+    }
+
+    override fun getCurrentWebViewPackageCompat(context: Context?): Any? {
+        context ?: return null
+        return WebViewCompat.getCurrentWebViewPackage(context)
+    }
+
+    override fun getWebViewRenderProcess(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_RENDERER)) return null
+        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcess(it) }
+    }
+
+    override fun setWebViewRenderProcessClient(
+        item: WebItem?,
+        client: Any?
+    ): Boolean {
+        val renderClient = client as? WebViewRenderProcessClient ?: return false
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE
+            )
+        ) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.setWebViewRenderProcessClient(this, renderClient)
+            true
+        } ?: false
+    }
+
+    override fun getWebViewRenderProcessClient(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE
+            )
+        ) return null
+        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcessClient(it) }
+    }
+
+    override fun isMultiProcessEnabled(): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROCESS)) return false
+        return WebViewCompat.isMultiProcessEnabled()
+    }
+
+    override fun getVariationsHeader(): String? {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_VARIATIONS_HEADER)) return null
+        return WebViewCompat.getVariationsHeader()
+    }
+
+    override fun startSafeBrowsing(
+        context: Context?,
+        callback: Any?
+    ): Boolean {
+        context ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.START_SAFE_BROWSING)) return false
+        @Suppress("UNCHECKED_CAST")
+        WebViewCompat.startSafeBrowsing(context, callback as? ValueCallback<Boolean>)
+        return true
+    }
+
+    override fun setSafeBrowsingAllowlist(
+        hosts: MutableSet<String>?,
+        callback: Any?
+    ): Boolean {
+        hosts ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ALLOWLIST)) return false
+        @Suppress("UNCHECKED_CAST")
+        WebViewCompat.setSafeBrowsingAllowlist(hosts, callback as? ValueCallback<Boolean>)
+        return true
+    }
+
+    override fun getSafeBrowsingPrivacyPolicyUrl(): Any? {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.SAFE_BROWSING_PRIVACY_POLICY_URL
+            )
+        ) return null
+        return WebViewCompat.getSafeBrowsingPrivacyPolicyUrl()
+    }
+
+    override fun setProxyOverride(
+        proxyConfig: Any?,
+        executor: Executor?,
+        listener: Runnable?
+    ): Boolean {
+        val config = proxyConfig as? ProxyConfig ?: return false
+        if (executor == null || listener == null) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE)) return false
+        return try {
+            ProxyController.getInstance().setProxyOverride(config, executor, listener)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setProxyOverride")
+            false
+        }
+    }
+
+    override fun clearProxyOverride(
+        executor: Executor?,
+        listener: Runnable?
+    ): Boolean {
+        if (executor == null || listener == null) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE)) return false
+        return try {
+            ProxyController.getInstance().clearProxyOverride(executor, listener)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "clearProxyOverride")
             false
         }
     }

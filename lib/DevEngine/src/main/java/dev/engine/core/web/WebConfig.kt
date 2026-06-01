@@ -146,6 +146,9 @@ open class WebConfig private constructor(
     // 禁用的 ActionMode 菜单项 ( Android 7.0 起支持 )
     private var mDisabledActionModeMenuItems = UNSET_INT
 
+    // 是否允许算法暗色模式 ( AndroidX WebKit, 需 ALGORITHMIC_DARKENING 特性支持 )
+    private var mAlgorithmicDarkeningAllowed: Boolean? = null
+
     companion object {
 
         const val UNSET_INT = -1
@@ -206,6 +209,7 @@ open class WebConfig private constructor(
             this.mSafeBrowsingEnabled = it.mSafeBrowsingEnabled
             this.mOffscreenPreRaster = it.mOffscreenPreRaster
             this.mDisabledActionModeMenuItems = it.mDisabledActionModeMenuItems
+            this.mAlgorithmicDarkeningAllowed = it.mAlgorithmicDarkeningAllowed
         }
     }
 
@@ -624,6 +628,15 @@ open class WebConfig private constructor(
 
     open fun setDisabledActionModeMenuItems(disabledActionModeMenuItems: Int): WebConfig {
         mDisabledActionModeMenuItems = disabledActionModeMenuItems
+        return this
+    }
+
+    override fun algorithmicDarkeningAllowed(): Boolean? {
+        return mAlgorithmicDarkeningAllowed
+    }
+
+    open fun setAlgorithmicDarkeningAllowed(algorithmicDarkeningAllowed: Boolean?): WebConfig {
+        mAlgorithmicDarkeningAllowed = algorithmicDarkeningAllowed
         return this
     }
 }

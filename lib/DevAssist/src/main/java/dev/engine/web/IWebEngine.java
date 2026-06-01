@@ -1,12 +1,16 @@
 package dev.engine.web;
 
+import android.content.Context;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Executor;
 
 /**
  * detail: WebView Engine 接口
@@ -156,6 +160,9 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
         // 禁用的 ActionMode 菜单项 ( Android 7.0 起支持 )
         int disabledActionModeMenuItems();
+
+        // 是否允许算法暗色模式 ( AndroidX WebKit, 需 ALGORITHMIC_DARKENING 特性支持 )
+        Boolean algorithmicDarkeningAllowed();
     }
 
     /**
@@ -1009,6 +1016,30 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
             boolean waivedWhenNotVisible
     );
 
+    // ==============
+    // = Web Message =
+    // ==============
+
+    /**
+     * 向网页投递一条 Web 消息 ( HTML5 postMessage )
+     * @param item         WebView Item
+     * @param message      Web 消息 ( WebMessage, 可携带 WebMessagePort )
+     * @param targetOrigin 接收方源 ( 限定可接收消息的页面 origin )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean postWebMessage(
+            Item item,
+            Object message,
+            Uri targetOrigin
+    );
+
+    /**
+     * 创建一对 Web 消息端口 ( HTML5 MessageChannel )
+     * @param item WebView Item
+     * @return 消息端口数组 ( WebMessagePort[] )
+     */
+    Object createWebMessageChannel(Item item);
+
     // ==========
     // = 全局静态 =
     // ==========
@@ -1032,6 +1063,166 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean clearClientCertPreferences(Runnable onCleared);
+
+    // =================
+    // = AndroidX WebKit =
+    // =================
+
+    /**
+     * 判断 AndroidX WebKit 特性是否支持
+     * @param feature 特性常量 ( WebViewFeature 中定义 )
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isWebViewFeatureSupported(String feature);
+
+    /**
+     * 在文档开始加载时注入 JS ( 需 DOCUMENT_START_SCRIPT 特性 )
+     * @param item                WebView Item
+     * @param script              注入脚本
+     * @param allowedOriginRules  允许的来源规则
+     * @return 脚本句柄 ( ScriptHandler )
+     */
+    Object addDocumentStartJavaScript(
+            Item item,
+            String script,
+            Set<String> allowedOriginRules
+    );
+
+    /**
+     * 添加 Web 消息监听 ( 安全 JSBridge, 需 WEB_MESSAGE_LISTENER 特性 )
+     * @param item                WebView Item
+     * @param jsObjectName        注入到页面的对象名
+     * @param allowedOriginRules  允许的来源规则
+     * @param listener            消息监听 ( WebViewCompat.WebMessageListener )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean addWebMessageListener(
+            Item item,
+            String jsObjectName,
+            Set<String> allowedOriginRules,
+            Object listener
+    );
+
+    /**
+     * 移除 Web 消息监听
+     * @param item         WebView Item
+     * @param jsObjectName 注入到页面的对象名
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean removeWebMessageListener(
+            Item item,
+            String jsObjectName
+    );
+
+    /**
+     * 获取处理各种通知和请求事件对象 ( 兼容版, 需 GET_WEB_VIEW_CLIENT 特性 )
+     * @param item WebView Item
+     * @return WebViewClient
+     */
+    Object getWebViewClientCompat(Item item);
+
+    /**
+     * 获取辅助处理 Javascript 对话框、标题等对象 ( 兼容版, 需 GET_WEB_CHROME_CLIENT 特性 )
+     * @param item WebView Item
+     * @return WebChromeClient
+     */
+    Object getWebChromeClientCompat(Item item);
+
+    /**
+     * 获取当前 WebView 内核包信息 ( 兼容版 )
+     * @param context Context
+     * @return 当前 WebView 内核包信息 ( PackageInfo )
+     */
+    Object getCurrentWebViewPackageCompat(Context context);
+
+    /**
+     * 获取 WebView 渲染进程 ( 需 GET_WEB_VIEW_RENDERER 特性 )
+     * @param item WebView Item
+     * @return 渲染进程 ( WebViewRenderProcess )
+     */
+    Object getWebViewRenderProcess(Item item);
+
+    /**
+     * 设置 WebView 渲染进程客户端 ( 需 WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE 特性 )
+     * @param item   WebView Item
+     * @param client 渲染进程客户端 ( WebViewRenderProcessClient )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setWebViewRenderProcessClient(
+            Item item,
+            Object client
+    );
+
+    /**
+     * 获取 WebView 渲染进程客户端
+     * @param item WebView Item
+     * @return 渲染进程客户端 ( WebViewRenderProcessClient )
+     */
+    Object getWebViewRenderProcessClient(Item item);
+
+    /**
+     * 是否启用多进程 ( 需 MULTI_PROCESS 特性 )
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isMultiProcessEnabled();
+
+    /**
+     * 获取 Variations Header ( 需 GET_VARIATIONS_HEADER 特性 )
+     * @return Variations Header
+     */
+    String getVariationsHeader();
+
+    /**
+     * 启动安全浏览 ( 需 START_SAFE_BROWSING 特性 )
+     * @param context  Context
+     * @param callback 启动结果回调 ( ValueCallback )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean startSafeBrowsing(
+            Context context,
+            Object callback
+    );
+
+    /**
+     * 设置安全浏览白名单 ( 需 SAFE_BROWSING_ALLOWLIST 特性 )
+     * @param hosts    白名单 Host
+     * @param callback 设置结果回调 ( ValueCallback )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setSafeBrowsingAllowlist(
+            Set<String> hosts,
+            Object callback
+    );
+
+    /**
+     * 获取安全浏览隐私政策地址 ( 需 SAFE_BROWSING_PRIVACY_POLICY_URL 特性 )
+     * @return 隐私政策地址 ( Uri )
+     */
+    Object getSafeBrowsingPrivacyPolicyUrl();
+
+    /**
+     * 设置 WebView 代理 ( 需 PROXY_OVERRIDE 特性 )
+     * @param proxyConfig 代理配置 ( ProxyConfig )
+     * @param executor    回调执行器
+     * @param listener    生效回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setProxyOverride(
+            Object proxyConfig,
+            Executor executor,
+            Runnable listener
+    );
+
+    /**
+     * 清除 WebView 代理 ( 需 PROXY_OVERRIDE 特性 )
+     * @param executor 回调执行器
+     * @param listener 生效回调
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean clearProxyOverride(
+            Executor executor,
+            Runnable listener
+    );
 
     // ==========
     // = Cookie =
