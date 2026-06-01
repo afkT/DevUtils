@@ -24,6 +24,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - refresh         | Refresh Engine 下拉刷新、上拉加载 View
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
+      - web             | WebView Engine 网页加载、配置、JS 交互
    - extensions         | Kotlin 扩展代码、函数实现
       - analytics       | Analytics Engine 数据统计 ( 埋点 )
       - barcode         | BarCode Engine 条形码、二维码处理
@@ -42,6 +43,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - share           | Share Engine 分享平台处理
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
+      - web             | WebView Engine 网页加载、配置、JS 交互
 ```
 
 
@@ -72,6 +74,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **Refresh Engine 下拉刷新、上拉加载 View**
 * **Storage Engine 外部、内部文件存储**
 * **Toast Engine 吐司提示**
+* **WebView Engine 网页加载、配置、JS 交互**
 
 > **该库会依赖第三方库导致项目体积变大等情况**，可自行 copy 所需已实现代码进行修改使用
 
@@ -189,6 +192,14 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 * 依赖 [Toaster 吐司框架](https://github.com/getActivity/Toaster)
   实现 [ToasterEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/toast/engine_toaster.kt)
+
+
+### WebView Engine 网页 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/web)
+
+可选实现方案：
+
+* 依赖 [System WebView](https://developer.android.com/reference/android/webkit/WebView)
+  实现 [WebViewEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/web/engine_webview.kt)
 
 
 ## 使用示例

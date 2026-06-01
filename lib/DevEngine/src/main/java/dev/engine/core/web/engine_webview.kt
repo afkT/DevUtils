@@ -1,0 +1,938 @@
+package dev.engine.core.web
+
+import android.graphics.Paint
+import android.os.Build
+import android.os.Message
+import android.view.KeyEvent
+import android.view.View
+import android.webkit.CookieManager
+import android.webkit.CookieSyncManager
+import android.webkit.DownloadListener
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import dev.DevUtils
+import dev.engine.web.IWebEngine
+import dev.utils.LogPrintUtils
+import dev.utils.app.ViewUtils
+
+/**
+ * detail: System WebView Engine 实现
+ * @author Ttt
+ * @see https://developer.android.com/reference/android/webkit/WebView
+ */
+open class WebViewEngineImpl(
+    @JvmField protected val mConfig: WebConfig
+) : IWebEngine<WebConfig?, WebItem?> {
+
+    // 日志 TAG
+    private val TAG = WebViewEngineImpl::class.java.simpleName
+
+    // =============
+    // = 对外公开方法 =
+    // =============
+
+    override fun getConfig(): WebConfig {
+        return mConfig
+    }
+
+    override fun initialize(item: WebItem?): Boolean {
+        getWebView(item) ?: return false
+        item?.let { itemIt ->
+            applyConfig(itemIt, getWebConfig(itemIt))
+            itemIt.webViewClient()?.let { setWebViewClient(itemIt, it) }
+            itemIt.webChromeClient()?.let { setWebChromeClient(itemIt, it) }
+            itemIt.downloadListener()?.let { setDownloadListener(itemIt, it) }
+            itemIt.findListener()?.let { setFindListener(itemIt, it) }
+            itemIt.javascriptInterfaces().forEach { (interfaceName, obj) ->
+                addJavascriptInterface(itemIt, obj, interfaceName)
+            }
+        } ?: return false
+        return true
+    }
+
+    override fun applyConfig(
+        item: WebItem?,
+        config: WebConfig?
+    ): Boolean {
+        val webSettings = getSettings(item) ?: return false
+        config?.let { configIt ->
+            configIt.javaScriptEnabled()?.let {
+                webSettings.javaScriptEnabled = it
+            }
+            configIt.renderPriority()?.let {
+                @Suppress("DEPRECATION")
+                webSettings.setRenderPriority(it)
+            }
+            configIt.useWideViewPort()?.let {
+                webSettings.useWideViewPort = it
+            }
+            configIt.loadWithOverviewMode()?.let {
+                webSettings.loadWithOverviewMode = it
+            }
+            configIt.layoutAlgorithm()?.let {
+                webSettings.layoutAlgorithm = it
+            }
+            configIt.supportZoom()?.let {
+                webSettings.setSupportZoom(it)
+            }
+            configIt.builtInZoomControls()?.let {
+                webSettings.builtInZoomControls = it
+            }
+            configIt.displayZoomControls()?.let {
+                webSettings.displayZoomControls = it
+            }
+            val textZoom = configIt.textZoom()
+            if (textZoom > 0) {
+                webSettings.textZoom = textZoom
+            }
+            configIt.standardFontFamily()?.let {
+                webSettings.standardFontFamily = it
+            }
+            val defaultFontSize = configIt.defaultFontSize()
+            if (defaultFontSize > 0) {
+                webSettings.defaultFontSize = defaultFontSize
+            }
+            val minimumFontSize = configIt.minimumFontSize()
+            if (minimumFontSize > 0) {
+                webSettings.minimumFontSize = minimumFontSize
+            }
+            val defaultFixedFontSize = configIt.defaultFixedFontSize()
+            if (defaultFixedFontSize > 0) {
+                webSettings.defaultFixedFontSize = defaultFixedFontSize
+            }
+            val minimumLogicalFontSize = configIt.minimumLogicalFontSize()
+            if (minimumLogicalFontSize > 0) {
+                webSettings.minimumLogicalFontSize = minimumLogicalFontSize
+            }
+            configIt.fixedFontFamily()?.let {
+                webSettings.fixedFontFamily = it
+            }
+            configIt.sansSerifFontFamily()?.let {
+                webSettings.sansSerifFontFamily = it
+            }
+            configIt.serifFontFamily()?.let {
+                webSettings.serifFontFamily = it
+            }
+            configIt.cursiveFontFamily()?.let {
+                webSettings.cursiveFontFamily = it
+            }
+            configIt.fantasyFontFamily()?.let {
+                webSettings.fantasyFontFamily = it
+            }
+            val mixedContentMode = configIt.mixedContentMode()
+            if (mixedContentMode >= 0
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+            ) {
+                webSettings.mixedContentMode = mixedContentMode
+            }
+            configIt.loadsImagesAutomatically()?.let {
+                webSettings.loadsImagesAutomatically = it
+            }
+            configIt.javaScriptCanOpenWindowsAutomatically()?.let {
+                webSettings.javaScriptCanOpenWindowsAutomatically = it
+            }
+            configIt.defaultTextEncodingName()?.let {
+                webSettings.defaultTextEncodingName = it
+            }
+            configIt.geolocationEnabled()?.let {
+                webSettings.setGeolocationEnabled(it)
+            }
+            configIt.userAgentString()?.let {
+                webSettings.userAgentString = it
+            }
+            configIt.allowFileAccess()?.let {
+                webSettings.allowFileAccess = it
+            }
+            configIt.allowFileAccessFromFileURLs()?.let {
+                webSettings.allowFileAccessFromFileURLs = it
+            }
+            configIt.allowUniversalAccessFromFileURLs()?.let {
+                webSettings.allowUniversalAccessFromFileURLs = it
+            }
+            configIt.blockNetworkLoads()?.let {
+                webSettings.blockNetworkLoads = it
+            }
+            configIt.blockNetworkImage()?.let {
+                webSettings.blockNetworkImage = it
+            }
+            configIt.mediaPlaybackRequiresUserGesture()?.let {
+                webSettings.mediaPlaybackRequiresUserGesture = it
+            }
+            val cacheMode = configIt.cacheMode()
+            if (cacheMode >= 0) {
+                webSettings.cacheMode = cacheMode
+            }
+            configIt.domStorageEnabled()?.let {
+                webSettings.domStorageEnabled = it
+            }
+            // Application Caches ( appCacheEnabled、appCachePath、appCacheMaxSize ) 配置仅作存储保留
+            // 对应 WebSettings.setAppCacheEnabled / setAppCachePath / setAppCacheMaxSize 已在 Android 13 移除, 故不再下发
+            configIt.databaseEnabled()?.let {
+                webSettings.databaseEnabled = it
+            }
+            configIt.databasePath()?.let {
+                @Suppress("DEPRECATION")
+                webSettings.databasePath = it
+            }
+            configIt.allowContentAccess()?.let {
+                webSettings.allowContentAccess = it
+            }
+            configIt.supportMultipleWindows()?.let {
+                webSettings.setSupportMultipleWindows(it)
+            }
+            configIt.needInitialFocus()?.let {
+                webSettings.setNeedInitialFocus(it)
+            }
+            configIt.safeBrowsingEnabled()?.let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    webSettings.safeBrowsingEnabled = it
+                }
+            }
+            configIt.offscreenPreRaster()?.let {
+                webSettings.offscreenPreRaster = it
+            }
+            val disabledActionModeMenuItems = configIt.disabledActionModeMenuItems()
+            if (disabledActionModeMenuItems >= 0
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+            ) {
+                webSettings.disabledActionModeMenuItems = disabledActionModeMenuItems
+            }
+        } ?: return false
+        return true
+    }
+
+    override fun getWebView(item: WebItem?): View? {
+        return getWebViewImpl(item)
+    }
+
+    override fun isWebViewNotEmpty(item: WebItem?): Boolean {
+        return getWebViewImpl(item) != null
+    }
+
+    // ==========
+    // = 加载方法 =
+    // ==========
+
+    override fun loadUrl(
+        item: WebItem?,
+        url: String?
+    ): Boolean {
+        url ?: return false
+        return getWebViewImpl(item)?.run {
+            loadUrl(url); true
+        } ?: false
+    }
+
+    override fun loadUrl(
+        item: WebItem?,
+        url: String?,
+        additionalHttpHeaders: MutableMap<String, String>?
+    ): Boolean {
+        if (url == null || additionalHttpHeaders == null) return false
+        return getWebViewImpl(item)?.run {
+            loadUrl(url, additionalHttpHeaders); true
+        } ?: false
+    }
+
+    override fun loadData(
+        item: WebItem?,
+        data: String?,
+        mimeType: String?,
+        encoding: String?
+    ): Boolean {
+        data ?: return false
+        return getWebViewImpl(item)?.run {
+            loadData(data, mimeType, encoding); true
+        } ?: false
+    }
+
+    override fun loadDataWithBaseURL(
+        item: WebItem?,
+        baseUrl: String?,
+        data: String?,
+        mimeType: String?,
+        encoding: String?,
+        historyUrl: String?
+    ): Boolean {
+        data ?: return false
+        return getWebViewImpl(item)?.run {
+            loadDataWithBaseURL(baseUrl, data, mimeType, encoding, historyUrl); true
+        } ?: false
+    }
+
+    override fun postUrl(
+        item: WebItem?,
+        url: String?,
+        postData: ByteArray?
+    ): Boolean {
+        if (url == null || postData == null) return false
+        return getWebViewImpl(item)?.run {
+            postUrl(url, postData); true
+        } ?: false
+    }
+
+    // ==========
+    // = 配置相关 =
+    // ==========
+
+    override fun getSettings(item: WebItem?): WebSettings? {
+        return getWebViewImpl(item)?.settings
+    }
+
+    override fun getUserAgentString(item: WebItem?): String? {
+        return getSettings(item)?.userAgentString
+    }
+
+    override fun setUserAgentString(
+        item: WebItem?,
+        ua: String?
+    ): Boolean {
+        return getSettings(item)?.run {
+            userAgentString = ua; true
+        } ?: false
+    }
+
+    // ==========
+    // = JS 交互 =
+    // ==========
+
+    override fun addJavascriptInterface(
+        item: WebItem?,
+        obj: Any?,
+        interfaceName: String?
+    ): Boolean {
+        if (obj == null || interfaceName == null) return false
+        return getWebViewImpl(item)?.run {
+            addJavascriptInterface(obj, interfaceName); true
+        } ?: false
+    }
+
+    override fun removeJavascriptInterface(
+        item: WebItem?,
+        interfaceName: String?
+    ): Boolean {
+        interfaceName ?: return false
+        return getWebViewImpl(item)?.run {
+            removeJavascriptInterface(interfaceName); true
+        } ?: false
+    }
+
+    override fun evaluateJavascript(
+        item: WebItem?,
+        script: String?,
+        callback: Any?
+    ): Boolean {
+        script ?: return false
+        val webView = getWebViewImpl(item) ?: return false
+        return try {
+            @Suppress("UNCHECKED_CAST")
+            webView.evaluateJavascript(script, callback as? ValueCallback<String>)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "evaluateJavascript")
+            false
+        }
+    }
+
+    // ==========
+    // = Client =
+    // ==========
+
+    override fun setWebViewClient(
+        item: WebItem?,
+        client: Any?
+    ): Boolean {
+        val webViewClient = client as? WebViewClient ?: return false
+        return getWebViewImpl(item)?.run {
+            this.webViewClient = webViewClient; true
+        } ?: false
+    }
+
+    override fun getWebViewClient(item: WebItem?): WebViewClient? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return getWebViewImpl(item)?.webViewClient
+        }
+        return null
+    }
+
+    override fun setWebChromeClient(
+        item: WebItem?,
+        client: Any?
+    ): Boolean {
+        val webChromeClient = client as? WebChromeClient ?: return false
+        return getWebViewImpl(item)?.run {
+            this.webChromeClient = webChromeClient; true
+        } ?: false
+    }
+
+    override fun getWebChromeClient(item: WebItem?): WebChromeClient? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return getWebViewImpl(item)?.webChromeClient
+        }
+        return null
+    }
+
+    override fun setDownloadListener(
+        item: WebItem?,
+        listener: Any?
+    ): Boolean {
+        val downloadListener = listener as? DownloadListener ?: return false
+        return getWebViewImpl(item)?.run {
+            setDownloadListener(downloadListener); true
+        } ?: false
+    }
+
+    override fun setFindListener(
+        item: WebItem?,
+        listener: Any?
+    ): Boolean {
+        val findListener = listener as? WebView.FindListener ?: return false
+        return getWebViewImpl(item)?.run {
+            setFindListener(findListener); true
+        } ?: false
+    }
+
+    // ==========
+    // = 导航历史 =
+    // ==========
+
+    override fun canGoBack(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.canGoBack() ?: false
+    }
+
+    override fun goBack(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            goBack(); true
+        } ?: false
+    }
+
+    override fun canGoForward(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.canGoForward() ?: false
+    }
+
+    override fun goForward(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            goForward(); true
+        } ?: false
+    }
+
+    override fun canGoBackOrForward(
+        item: WebItem?,
+        steps: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.canGoBackOrForward(steps) ?: false
+    }
+
+    override fun goBackOrForward(
+        item: WebItem?,
+        steps: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            goBackOrForward(steps); true
+        } ?: false
+    }
+
+    override fun copyBackForwardList(item: WebItem?): Any? {
+        return getWebViewImpl(item)?.copyBackForwardList()
+    }
+
+    override fun reload(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            reload(); true
+        } ?: false
+    }
+
+    override fun stopLoading(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            stopLoading(); true
+        } ?: false
+    }
+
+    // ==========
+    // = 清理操作 =
+    // ==========
+
+    override fun clearCache(
+        item: WebItem?,
+        includeDiskFiles: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            clearCache(includeDiskFiles); true
+        } ?: false
+    }
+
+    override fun clearHistory(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            clearHistory(); true
+        } ?: false
+    }
+
+    override fun clearFormData(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            clearFormData(); true
+        } ?: false
+    }
+
+    override fun clearMatches(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            clearMatches(); true
+        } ?: false
+    }
+
+    override fun clearSslPreferences(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            clearSslPreferences(); true
+        } ?: false
+    }
+
+    // ==========
+    // = 状态查询 =
+    // ==========
+
+    @Suppress("DEPRECATION")
+    override fun getScale(item: WebItem?): Float {
+        return getWebViewImpl(item)?.scale ?: 1.0F
+    }
+
+    override fun getScrollX(item: WebItem?): Int {
+        return getWebViewImpl(item)?.scrollX ?: 0
+    }
+
+    override fun getScrollY(item: WebItem?): Int {
+        return getWebViewImpl(item)?.scrollY ?: 0
+    }
+
+    override fun getContentHeight(item: WebItem?): Int {
+        return getWebViewImpl(item)?.contentHeight ?: 0
+    }
+
+    override fun getScaleHeight(item: WebItem?): Int {
+        return getScaleHeight(item, getScale(item))
+    }
+
+    override fun getScaleHeight(
+        item: WebItem?,
+        scale: Float
+    ): Int {
+        return (getContentHeight(item) * scale).toInt()
+    }
+
+    override fun getHeight(item: WebItem?): Int {
+        return getWebViewImpl(item)?.height ?: 0
+    }
+
+    override fun getUrl(item: WebItem?): String? {
+        return getWebViewImpl(item)?.url
+    }
+
+    override fun getOriginalUrl(item: WebItem?): String? {
+        return getWebViewImpl(item)?.originalUrl
+    }
+
+    override fun getTitle(item: WebItem?): String? {
+        return getWebViewImpl(item)?.title
+    }
+
+    override fun getProgress(item: WebItem?): Int {
+        return getWebViewImpl(item)?.progress ?: 0
+    }
+
+    override fun getFavicon(item: WebItem?): Any? {
+        return getWebViewImpl(item)?.favicon
+    }
+
+    override fun getHitTestResult(item: WebItem?): Any? {
+        return getWebViewImpl(item)?.hitTestResult
+    }
+
+    override fun getCertificate(item: WebItem?): Any? {
+        return getWebViewImpl(item)?.certificate
+    }
+
+    // ==========
+    // = 滚动缩放 =
+    // ==========
+
+    override fun pageDown(
+        item: WebItem?,
+        bottom: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.pageDown(bottom) ?: false
+    }
+
+    override fun pageUp(
+        item: WebItem?,
+        top: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.pageUp(top) ?: false
+    }
+
+    override fun scrollTo(
+        item: WebItem?,
+        x: Int,
+        y: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            scrollTo(x, y); true
+        } ?: false
+    }
+
+    override fun scrollBy(
+        item: WebItem?,
+        x: Int,
+        y: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            scrollBy(x, y); true
+        } ?: false
+    }
+
+    override fun flingScroll(
+        item: WebItem?,
+        vx: Int,
+        vy: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            flingScroll(vx, vy); true
+        } ?: false
+    }
+
+    @Suppress("DEPRECATION")
+    override fun zoomBy(
+        item: WebItem?,
+        zoomFactor: Float
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            zoomBy(zoomFactor); true
+        } ?: false
+    }
+
+    @Suppress("DEPRECATION")
+    override fun zoomIn(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.zoomIn() ?: false
+    }
+
+    @Suppress("DEPRECATION")
+    override fun zoomOut(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.zoomOut() ?: false
+    }
+
+    override fun setInitialScale(
+        item: WebItem?,
+        scaleInPercent: Int
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            setInitialScale(scaleInPercent); true
+        } ?: false
+    }
+
+    // ==========
+    // = 查找操作 =
+    // ==========
+
+    override fun findAllAsync(
+        item: WebItem?,
+        find: String?
+    ): Boolean {
+        find ?: return false
+        return getWebViewImpl(item)?.run {
+            findAllAsync(find); true
+        } ?: false
+    }
+
+    override fun findNext(
+        item: WebItem?,
+        forward: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            findNext(forward); true
+        } ?: false
+    }
+
+    // ==========
+    // = 生命周期 =
+    // ==========
+
+    override fun onPause(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            onPause(); true
+        } ?: false
+    }
+
+    override fun onResume(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            onResume(); true
+        } ?: false
+    }
+
+    override fun pauseTimers(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            pauseTimers(); true
+        } ?: false
+    }
+
+    override fun resumeTimers(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            resumeTimers(); true
+        } ?: false
+    }
+
+    @Suppress("DEPRECATION")
+    override fun freeMemory(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.run {
+            freeMemory(); true
+        } ?: false
+    }
+
+    override fun destroy(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.let {
+            it.clearHistory()
+            ViewUtils.removeSelfFromParent(it)
+            it.loadUrl("about:blank")
+            it.stopLoading()
+            it.webChromeClient = null
+            it.destroy()
+            item?.release()
+            true
+        } ?: false
+    }
+
+    // ==========
+    // = 其他操作 =
+    // ==========
+
+    override fun handlerKeyDown(
+        item: WebItem?,
+        keyCode: Int,
+        event: KeyEvent?
+    ): Boolean {
+        event ?: return false
+        // 只处理按下事件, 避免重复触发
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
+            // 检查 WebView 是否可以后退
+            if (canGoBack(item)) {
+                goBack(item)
+                return true
+            }
+        }
+        return false
+    }
+
+    override fun setLayerTypeSoftware(item: WebItem?): Boolean {
+        return setLayerType(item, View.LAYER_TYPE_SOFTWARE, null)
+    }
+
+    override fun setLayerType(
+        item: WebItem?,
+        layerType: Int,
+        paint: Paint?
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            setLayerType(layerType, paint); true
+        } ?: false
+    }
+
+    override fun setNetworkAvailable(
+        item: WebItem?,
+        networkUp: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            setNetworkAvailable(networkUp); true
+        } ?: false
+    }
+
+    override fun saveWebArchive(
+        item: WebItem?,
+        filename: String?
+    ): Boolean {
+        filename ?: return false
+        return getWebViewImpl(item)?.run {
+            saveWebArchive(filename); true
+        } ?: false
+    }
+
+    override fun requestFocusNodeHref(
+        item: WebItem?,
+        hrefMsg: Message?
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            requestFocusNodeHref(hrefMsg); true
+        } ?: false
+    }
+
+    override fun requestImageRef(
+        item: WebItem?,
+        msg: Message?
+    ): Boolean {
+        msg ?: return false
+        return getWebViewImpl(item)?.run {
+            requestImageRef(msg); true
+        } ?: false
+    }
+
+    override fun documentHasImages(
+        item: WebItem?,
+        response: Message?
+    ): Boolean {
+        response ?: return false
+        return getWebViewImpl(item)?.run {
+            documentHasImages(response); true
+        } ?: false
+    }
+
+    override fun createPrintDocumentAdapter(
+        item: WebItem?,
+        documentName: String?
+    ): Any? {
+        documentName ?: return null
+        return getWebViewImpl(item)?.createPrintDocumentAdapter(documentName)
+    }
+
+    override fun setRendererPriorityPolicy(
+        item: WebItem?,
+        rendererRequestedPriority: Int,
+        waivedWhenNotVisible: Boolean
+    ): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return false
+        return getWebViewImpl(item)?.run {
+            setRendererPriorityPolicy(rendererRequestedPriority, waivedWhenNotVisible); true
+        } ?: false
+    }
+
+    // ==========
+    // = 全局静态 =
+    // ==========
+
+    override fun setWebContentsDebuggingEnabled(enabled: Boolean): Boolean {
+        return try {
+            WebView.setWebContentsDebuggingEnabled(enabled)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setWebContentsDebuggingEnabled")
+            false
+        }
+    }
+
+    override fun getCurrentWebViewPackage(): Any? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return WebView.getCurrentWebViewPackage()
+        }
+        return null
+    }
+
+    override fun clearClientCertPreferences(onCleared: Runnable?): Boolean {
+        return try {
+            WebView.clearClientCertPreferences(onCleared)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "clearClientCertPreferences")
+            false
+        }
+    }
+
+    // ==========
+    // = Cookie =
+    // ==========
+
+    override fun setCookie(
+        url: String?,
+        cookie: String?
+    ): Boolean {
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                @Suppress("DEPRECATION")
+                CookieSyncManager.createInstance(DevUtils.getContext())
+            }
+            CookieManager.getInstance().setCookie(url, cookie)
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setCookie")
+        }
+        return false
+    }
+
+    override fun getCookie(url: String?): String? {
+        try {
+            return CookieManager.getInstance().getCookie(url)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getCookie")
+        }
+        return null
+    }
+
+    override fun removeCookie(callback: Any?) {
+        @Suppress("UNCHECKED_CAST")
+        val valueCallback = callback as? ValueCallback<Boolean>
+        removeSessionCookie(valueCallback)
+        removeAllCookie(valueCallback)
+    }
+
+    override fun removeSessionCookie(callback: Any?): Boolean {
+        try {
+            @Suppress("UNCHECKED_CAST")
+            val valueCallback = callback as? ValueCallback<Boolean>
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                CookieManager.getInstance().removeSessionCookies(valueCallback)
+            } else {
+                @Suppress("DEPRECATION")
+                CookieManager.getInstance().removeSessionCookie()
+            }
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "removeSessionCookie")
+        }
+        return false
+    }
+
+    override fun removeAllCookie(callback: Any?): Boolean {
+        try {
+            @Suppress("UNCHECKED_CAST")
+            val valueCallback = callback as? ValueCallback<Boolean>
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                CookieManager.getInstance().removeAllCookies(valueCallback)
+            } else {
+                @Suppress("DEPRECATION")
+                CookieManager.getInstance().removeAllCookie()
+            }
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "removeAllCookie")
+        }
+        return false
+    }
+
+    override fun flushCookie(): Boolean {
+        try {
+            CookieManager.getInstance().flush()
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "flushCookie")
+        }
+        return false
+    }
+
+    // ==========
+    // = 内部方法 =
+    // ==========
+
+    /**
+     * 获取 WebView Config
+     * @param item WebView Item
+     * @return [WebConfig]
+     */
+    protected open fun getWebConfig(item: WebItem?): WebConfig {
+        return item?.config() as? WebConfig ?: mConfig
+    }
+
+    /**
+     * 获取 WebView
+     * @param item WebView Item
+     * @return [WebView]
+     */
+    protected open fun getWebViewImpl(item: WebItem?): WebView? {
+        return item?.view()?.get() as? WebView
+    }
+}

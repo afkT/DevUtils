@@ -34,6 +34,8 @@ import dev.engine.core.refresh.RefreshConfig
 import dev.engine.core.refresh.SmartRefreshLayoutEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
 import dev.engine.core.toast.ToasterEngineImpl
+import dev.engine.core.web.WebConfig
+import dev.engine.core.web.WebViewEngineImpl
 import dev.engine.debug.DevDebugEngine
 import dev.engine.eventbus.DevEventBusEngine
 import dev.engine.eventbus.IEventBusEngine
@@ -59,6 +61,8 @@ import dev.engine.storage.DevStorageEngine
 import dev.engine.storage.IStorageEngine
 import dev.engine.toast.DevToastEngine
 import dev.engine.toast.IToastEngine
+import dev.engine.web.DevWebEngine
+import dev.engine.web.IWebEngine
 import dev.utils.app.cache.DevCache
 import dev.utils.app.logger.LogConfig
 import dev.utils.common.cipher.Cipher
@@ -176,6 +180,7 @@ object DevEngine {
      * @param barCodeConfig BarCode Config
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
+     * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
     fun completeInitialize(
@@ -186,6 +191,7 @@ object DevEngine {
         barCodeConfig: BarCodeConfig? = null,
         eventBusConfig: EventBusConfig? = EventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
+        webConfig: WebConfig? = WebConfig.create(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
         defaultMMKVInitialize(context)
@@ -197,7 +203,7 @@ object DevEngine {
                 initializeDefaultEngines(
                     context, cacheConfig,
                     createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig, barCodeConfig, eventBusConfig, refreshConfig
+                    logConfig, barCodeConfig, eventBusConfig, refreshConfig, webConfig
                 )
                 return
             } catch (_: Exception) {
@@ -205,7 +211,7 @@ object DevEngine {
         }
         initializeDefaultEngines(
             context, cacheConfig, keyValueConfig, logConfig,
-            barCodeConfig, eventBusConfig, refreshConfig
+            barCodeConfig, eventBusConfig, refreshConfig, webConfig
         )
     }
 
@@ -218,6 +224,7 @@ object DevEngine {
      * @param barCodeConfig BarCode Config
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
+     * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
     private fun initializeDefaultEngines(
@@ -228,6 +235,7 @@ object DevEngine {
         barCodeConfig: BarCodeConfig?,
         eventBusConfig: EventBusConfig?,
         refreshConfig: RefreshConfig?,
+        webConfig: WebConfig?,
     ) {
         // ========================
         // = BarCode Engine 条形码 =
@@ -339,6 +347,15 @@ object DevEngine {
         // 默认初始化 Toaster Toast Engine 实现
         defaultToasterEngineImpl().also { toast ->
             toast.initialize(DevUtils.getApplication(context))
+        }
+
+        // ========================
+        // = WebView Engine 网页 =
+        // ========================
+
+        webConfig?.let { config ->
+            // 初始化 System WebView Engine 实现
+            defaultWebViewEngineImpl(config)
         }
     }
 
@@ -590,6 +607,23 @@ object DevEngine {
         }
     }
 
+    // ========================
+    // = WebView Engine 网页 =
+    // ========================
+
+    /**
+     * 默认初始化 System WebView Engine 实现
+     * @param config WebView Config
+     * @return WebViewEngineImpl
+     */
+    fun defaultWebViewEngineImpl(
+        config: WebConfig
+    ): WebViewEngineImpl {
+        return newWebViewEngineImpl(config).apply {
+            DevWebEngine.setEngine(this)
+        }
+    }
+
     // ==============
     // = Engine set =
     // ==============
@@ -786,6 +820,18 @@ object DevEngine {
         DevToastEngine.setEngine(key, engine)
     }
 
+    /**
+     * 设置 Web Engine
+     * @param key    key
+     * @param engine {@link IWebEngine}
+     */
+    fun <Config : IWebEngine.EngineConfig, Item : IWebEngine.EngineItem> setWebEngine(
+        key: String,
+        engine: IWebEngine<Config, Item>
+    ) {
+        DevWebEngine.setEngine(key, engine)
+    }
+
     // ==========
     // = 获取方法 =
     // ==========
@@ -896,6 +942,12 @@ object DevEngine {
      */
     fun getToast() = DevToastEngine.getEngine()
 
+    /**
+     * 获取 Web Engine
+     * @return Web Engine
+     */
+    fun getWeb() = DevWebEngine.getEngine()
+
     // ==================
     // = Engine Key get =
     // ==================
@@ -1002,6 +1054,12 @@ object DevEngine {
      */
     fun getToast(key: String?) = DevToastEngine.getEngine(key)
 
+    /**
+     * 获取 Web Engine
+     * @return Web Engine
+     */
+    fun getWeb(key: String?) = DevWebEngine.getEngine(key)
+
     // =================
     // = Engine Assist =
     // =================
@@ -1107,6 +1165,12 @@ object DevEngine {
      * @return Toast Engine Generic Assist
      */
     fun getToastAssist() = DevToastEngine.getAssist()
+
+    /**
+     * 获取 Web Engine Generic Assist
+     * @return Web Engine Generic Assist
+     */
+    fun getWebAssist() = DevWebEngine.getAssist()
 
     // ==================
     // = 内置 Engine 实现 =
@@ -1341,6 +1405,21 @@ object DevEngine {
      */
     fun newToasterEngineImpl(): ToasterEngineImpl {
         return ToasterEngineImpl()
+    }
+
+    // ========================
+    // = WebView Engine 网页 =
+    // ========================
+
+    /**
+     * 创建 System WebView Engine 实现
+     * @param config WebView Config
+     * @return System WebView Engine 实现
+     */
+    fun newWebViewEngineImpl(
+        config: WebConfig
+    ): WebViewEngineImpl {
+        return WebViewEngineImpl(config)
     }
 
     // ===============
