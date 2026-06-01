@@ -192,6 +192,9 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
         // Web Authentication ( WebAuthn ) 支持级别 ( AndroidX WebKit, 需 WEB_AUTHENTICATION 特性支持 )
         int webAuthenticationSupport();
+
+        // 是否强制网页可缩放 ( GeckoView forceUserScalable / X5 强制手势缩放; System WebView 无对应实现 )
+        Boolean forceUserScalable();
     }
 
     /**
@@ -1473,6 +1476,62 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
             Item item,
             Object listener
     );
+
+    // ============
+    // = 跨内核扩展 =
+    // ============
+    // 下列能力为 System WebView、GeckoView、Tencent X5 等多内核通用抽象, 便于实现层扩展替换
+
+    /**
+     * 恢复 WebView 历史与状态 ( 与 saveState 配对 )
+     * @param item    WebView Item
+     * @param inState 状态 Bundle
+     * @return {@code true} success, {@code false} fail
+     * <pre>
+     *     System / X5 接收 Bundle 状态, GeckoView 实现层可改用其 SessionState 进行恢复
+     * </pre>
+     */
+    boolean restoreState(
+            Item item,
+            Bundle inState
+    );
+
+    /**
+     * 设置 WebView 激活 ( 可见 ) 状态
+     * @param item   WebView Item
+     * @param active 是否激活
+     * @return {@code true} success, {@code false} fail
+     * <pre>
+     *     GeckoView 对应 GeckoSession.setActive ( 非激活时显著降低内存 )
+     *     System / X5 对应 onResume / onPause
+     * </pre>
+     */
+    boolean setActive(
+            Item item,
+            boolean active
+    );
+
+    /**
+     * 获取内核类型标识
+     * @return 内核类型 ( 如 SystemWebView、GeckoView、X5 )
+     */
+    String getCoreType();
+
+    /**
+     * 获取内核版本
+     * @param context Context
+     * @return 内核版本 ( 如 System WebView 包版本、X5 TbsVersion、GeckoView buildId )
+     */
+    String getCoreVersion(Context context);
+
+    /**
+     * 内核是否就绪可用
+     * @return {@code true} yes, {@code false} no
+     * <pre>
+     *     System WebView 通常恒为 true, X5 / GeckoView 需内核下载初始化完成
+     * </pre>
+     */
+    boolean isCoreReady();
 
     // ==========
     // = Cookie =

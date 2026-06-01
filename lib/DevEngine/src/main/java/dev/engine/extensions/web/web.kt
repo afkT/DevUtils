@@ -938,6 +938,43 @@ fun <Item : IWebEngine.EngineItem> Item?.web_removeNavigationListener(
     return engine.getWebEngine()?.removeNavigationListener(this, listener) ?: false
 }
 
+// ============
+// = 跨内核扩展 =
+// ============
+
+fun <Item : IWebEngine.EngineItem> Item?.web_restoreState(
+    engine: String? = null,
+    inState: Bundle?
+): Boolean {
+    return engine.getWebEngine()?.restoreState(this, inState) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setActive(
+    engine: String? = null,
+    active: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setActive(this, active) ?: false
+}
+
+fun web_getCoreType(
+    engine: String? = null
+): String? {
+    return engine.getWebEngine()?.getCoreType()
+}
+
+fun web_getCoreVersion(
+    engine: String? = null,
+    context: Context?
+): String? {
+    return engine.getWebEngine()?.getCoreVersion(context)
+}
+
+fun web_isCoreReady(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.isCoreReady() ?: false
+}
+
 // ==========
 // = Cookie =
 // ==========

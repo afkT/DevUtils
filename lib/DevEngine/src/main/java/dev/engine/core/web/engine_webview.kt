@@ -279,6 +279,7 @@ open class WebViewEngineImpl(
             ) {
                 WebSettingsCompat.setWebAuthenticationSupport(webSettings, webAuthenticationSupport)
             }
+            // forceUserScalable 仅作存储, System WebView 无对应 API; GeckoView / X5 实现层按各自内核应用
         } ?: return false
         return true
     }
@@ -1362,6 +1363,48 @@ open class WebViewEngineImpl(
             WebViewCompat.removeNavigationListener(this, navigationListener)
             true
         } ?: false
+    }
+
+    // ============
+    // = 跨内核扩展 =
+    // ============
+
+    override fun restoreState(
+        item: WebItem?,
+        inState: Bundle?
+    ): Boolean {
+        inState ?: return false
+        return getWebViewImpl(item)?.run {
+            restoreState(inState); true
+        } ?: false
+    }
+
+    override fun setActive(
+        item: WebItem?,
+        active: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.run {
+            if (active) onResume() else onPause()
+            true
+        } ?: false
+    }
+
+    override fun getCoreType(): String {
+        return "SystemWebView"
+    }
+
+    override fun getCoreVersion(context: Context?): String? {
+        context ?: return null
+        return try {
+            WebViewCompat.getCurrentWebViewPackage(context)?.versionName
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getCoreVersion")
+            null
+        }
+    }
+
+    override fun isCoreReady(): Boolean {
+        return true
     }
 
     // ==========

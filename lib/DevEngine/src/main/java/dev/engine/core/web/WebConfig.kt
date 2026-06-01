@@ -176,6 +176,9 @@ open class WebConfig private constructor(
     // Web Authentication ( WebAuthn ) 支持级别 ( AndroidX WebKit, 需 WEB_AUTHENTICATION 特性支持 )
     private var mWebAuthenticationSupport = UNSET_INT
 
+    // 是否强制网页可缩放 ( GeckoView forceUserScalable / X5 强制手势缩放; System WebView 无对应实现 )
+    private var mForceUserScalable: Boolean? = null
+
     companion object {
 
         const val UNSET_INT = -1
@@ -248,6 +251,7 @@ open class WebConfig private constructor(
             this.mCookiesIncludedInShouldInterceptRequest =
                 it.mCookiesIncludedInShouldInterceptRequest
             this.mWebAuthenticationSupport = it.mWebAuthenticationSupport
+            this.mForceUserScalable = it.mForceUserScalable
         }
     }
 
@@ -760,6 +764,15 @@ open class WebConfig private constructor(
 
     open fun setWebAuthenticationSupport(webAuthenticationSupport: Int): WebConfig {
         mWebAuthenticationSupport = webAuthenticationSupport
+        return this
+    }
+
+    override fun forceUserScalable(): Boolean? {
+        return mForceUserScalable
+    }
+
+    open fun setForceUserScalable(forceUserScalable: Boolean?): WebConfig {
+        mForceUserScalable = forceUserScalable
         return this
     }
 }
