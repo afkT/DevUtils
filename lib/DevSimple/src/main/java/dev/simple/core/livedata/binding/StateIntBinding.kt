@@ -120,6 +120,10 @@ object StateIntBinding {
     @JvmStatic
     fun isConnecting(state: Int?): Boolean = isState(state, StateInt.CONNECTING)
 
+    // DISCONNECTING
+    @JvmStatic
+    fun isDisconnecting(state: Int?): Boolean = isState(state, StateInt.DISCONNECTING)
+
     // DISCONNECTED
     @JvmStatic
     fun isDisconnected(state: Int?): Boolean = isState(state, StateInt.DISCONNECTED)
@@ -196,6 +200,42 @@ object StateIntBinding {
     @JvmStatic
     fun isLoading(state: Int?): Boolean = isState(state, StateInt.LOADING)
 
+    // LOAD_SUCCESS
+    @JvmStatic
+    fun isLoadSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_SUCCESS)
+
+    // LOAD_FAIL
+    @JvmStatic
+    fun isLoadFail(state: Int?): Boolean = isState(state, StateInt.LOAD_FAIL)
+
+    // REFRESHING
+    @JvmStatic
+    fun isRefreshing(state: Int?): Boolean = isState(state, StateInt.REFRESHING)
+
+    // REFRESH_SUCCESS
+    @JvmStatic
+    fun isRefreshSuccess(state: Int?): Boolean = isState(state, StateInt.REFRESH_SUCCESS)
+
+    // REFRESH_FAIL
+    @JvmStatic
+    fun isRefreshFail(state: Int?): Boolean = isState(state, StateInt.REFRESH_FAIL)
+
+    // LOAD_MORE
+    @JvmStatic
+    fun isLoadMore(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE)
+
+    // LOAD_MORE_SUCCESS
+    @JvmStatic
+    fun isLoadMoreSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_SUCCESS)
+
+    // LOAD_MORE_FAIL
+    @JvmStatic
+    fun isLoadMoreFail(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_FAIL)
+
+    // NO_MORE
+    @JvmStatic
+    fun isNoMore(state: Int?): Boolean = isState(state, StateInt.NO_MORE)
+
     // EMPTY
     @JvmStatic
     fun isEmpty(state: Int?): Boolean = isState(state, StateInt.EMPTY)
@@ -203,22 +243,6 @@ object StateIntBinding {
     // TIMEOUT
     @JvmStatic
     fun isTimeout(state: Int?): Boolean = isState(state, StateInt.TIMEOUT)
-
-    // DISCONNECTING
-    @JvmStatic
-    fun isDisconnecting(state: Int?): Boolean = isState(state, StateInt.DISCONNECTING)
-
-    // REFRESHING
-    @JvmStatic
-    fun isRefreshing(state: Int?): Boolean = isState(state, StateInt.REFRESHING)
-
-    // LOAD_MORE
-    @JvmStatic
-    fun isLoadMore(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE)
-
-    // NO_MORE
-    @JvmStatic
-    fun isNoMore(state: Int?): Boolean = isState(state, StateInt.NO_MORE)
 
     // VALID
     @JvmStatic
@@ -291,30 +315,6 @@ object StateIntBinding {
     // REPEAT
     @JvmStatic
     fun isRepeat(state: Int?): Boolean = isState(state, StateInt.REPEAT)
-
-    // LOAD_SUCCESS
-    @JvmStatic
-    fun isLoadSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_SUCCESS)
-
-    // LOAD_FAIL
-    @JvmStatic
-    fun isLoadFail(state: Int?): Boolean = isState(state, StateInt.LOAD_FAIL)
-
-    // REFRESH_SUCCESS
-    @JvmStatic
-    fun isRefreshSuccess(state: Int?): Boolean = isState(state, StateInt.REFRESH_SUCCESS)
-
-    // REFRESH_FAIL
-    @JvmStatic
-    fun isRefreshFail(state: Int?): Boolean = isState(state, StateInt.REFRESH_FAIL)
-
-    // LOAD_MORE_SUCCESS
-    @JvmStatic
-    fun isLoadMoreSuccess(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_SUCCESS)
-
-    // LOAD_MORE_FAIL
-    @JvmStatic
-    fun isLoadMoreFail(state: Int?): Boolean = isState(state, StateInt.LOAD_MORE_FAIL)
 
     // SAVING
     @JvmStatic
