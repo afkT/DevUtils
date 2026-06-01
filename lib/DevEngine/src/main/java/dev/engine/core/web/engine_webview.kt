@@ -18,14 +18,22 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.webkit.ProxyConfig
 import androidx.webkit.ProxyController
+import androidx.webkit.ServiceWorkerClientCompat
+import androidx.webkit.ServiceWorkerControllerCompat
+import androidx.webkit.TracingConfig
+import androidx.webkit.TracingController
+import androidx.webkit.UserAgentMetadata
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewCompat
 import androidx.webkit.WebViewFeature
+import androidx.webkit.WebViewMediaIntegrityApiStatusConfig
 import androidx.webkit.WebViewRenderProcessClient
+import androidx.webkit.ProfileStore
 import dev.DevUtils
 import dev.engine.web.IWebEngine
 import dev.utils.LogPrintUtils
 import dev.utils.app.ViewUtils
+import java.io.OutputStream
 import java.util.concurrent.Executor
 
 /**
@@ -214,6 +222,31 @@ open class WebViewEngineImpl(
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
                     WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, it)
                 }
+            }
+            configIt.paymentRequestEnabled()?.let {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
+                    WebSettingsCompat.setPaymentRequestEnabled(webSettings, it)
+                }
+            }
+            configIt.enterpriseAuthenticationAppLinkPolicyEnabled()?.let {
+                if (WebViewFeature.isFeatureSupported(
+                        WebViewFeature.ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY
+                    )
+                ) {
+                    WebSettingsCompat.setEnterpriseAuthenticationAppLinkPolicyEnabled(
+                        webSettings, it
+                    )
+                }
+            }
+            val attributionRegistrationBehavior = configIt.attributionRegistrationBehavior()
+            if (attributionRegistrationBehavior >= 0
+                && WebViewFeature.isFeatureSupported(
+                    WebViewFeature.ATTRIBUTION_REGISTRATION_BEHAVIOR
+                )
+            ) {
+                WebSettingsCompat.setAttributionRegistrationBehavior(
+                    webSettings, attributionRegistrationBehavior
+                )
             }
         } ?: return false
         return true
@@ -1036,6 +1069,181 @@ open class WebViewEngineImpl(
             LogPrintUtils.eTag(TAG, e, "clearProxyOverride")
             false
         }
+    }
+
+    override fun setAudioMuted(
+        item: WebItem?,
+        mute: Boolean
+    ): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.setAudioMuted(this, mute)
+            true
+        } ?: false
+    }
+
+    override fun isAudioMuted(item: WebItem?): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
+        return getWebViewImpl(item)?.let { WebViewCompat.isAudioMuted(it) } ?: false
+    }
+
+    override fun postVisualStateCallback(
+        item: WebItem?,
+        requestId: Long,
+        callback: Any?
+    ): Boolean {
+        val visualCallback = callback as? WebViewCompat.VisualStateCallback ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.VISUAL_STATE_CALLBACK)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.postVisualStateCallback(this, requestId, visualCallback)
+            true
+        } ?: false
+    }
+
+    override fun setWebViewProfile(
+        item: WebItem?,
+        profileName: String?
+    ): Boolean {
+        profileName ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return false
+        return getWebViewImpl(item)?.run {
+            WebViewCompat.setProfile(this, profileName)
+            true
+        } ?: false
+    }
+
+    override fun getWebViewProfile(item: WebItem?): Any? {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
+        return getWebViewImpl(item)?.let { WebViewCompat.getProfile(it) }
+    }
+
+    override fun setUserAgentMetadata(
+        item: WebItem?,
+        metadata: Any?
+    ): Boolean {
+        val userAgentMetadata = metadata as? UserAgentMetadata ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.USER_AGENT_METADATA)) return false
+        val webSettings = getSettings(item) ?: return false
+        WebSettingsCompat.setUserAgentMetadata(webSettings, userAgentMetadata)
+        return true
+    }
+
+    override fun setWebViewMediaIntegrityApiStatus(
+        item: WebItem?,
+        permissionConfig: Any?
+    ): Boolean {
+        val config = permissionConfig as? WebViewMediaIntegrityApiStatusConfig ?: return false
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.WEBVIEW_MEDIA_INTEGRITY_API_STATUS
+            )
+        ) return false
+        val webSettings = getSettings(item) ?: return false
+        WebSettingsCompat.setWebViewMediaIntegrityApiStatus(webSettings, config)
+        return true
+    }
+
+    override fun getOrCreateWebProfile(name: String?): Any? {
+        name ?: return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
+        return ProfileStore.getInstance().getOrCreateProfile(name)
+    }
+
+    override fun getWebProfile(name: String?): Any? {
+        name ?: return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
+        return ProfileStore.getInstance().getProfile(name)
+    }
+
+    override fun deleteWebProfile(name: String?): Boolean {
+        name ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return false
+        return try {
+            ProfileStore.getInstance().deleteProfile(name)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "deleteWebProfile")
+            false
+        }
+    }
+
+    override fun getAllWebProfileNames(): MutableList<String> {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return ArrayList()
+        return ProfileStore.getInstance().allProfileNames
+    }
+
+    override fun setServiceWorkerClient(client: Any?): Boolean {
+        val serviceWorkerClient = client as? ServiceWorkerClientCompat ?: return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BASIC_USAGE)) {
+            return false
+        }
+        ServiceWorkerControllerCompat.getInstance().setServiceWorkerClient(serviceWorkerClient)
+        return true
+    }
+
+    override fun setServiceWorkerAllowContentAccess(allow: Boolean): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CONTENT_ACCESS)) {
+            return false
+        }
+        ServiceWorkerControllerCompat.getInstance()
+            .serviceWorkerWebSettings.allowContentAccess = allow
+        return true
+    }
+
+    override fun setServiceWorkerAllowFileAccess(allow: Boolean): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_FILE_ACCESS)) {
+            return false
+        }
+        ServiceWorkerControllerCompat.getInstance()
+            .serviceWorkerWebSettings.allowFileAccess = allow
+        return true
+    }
+
+    override fun setServiceWorkerBlockNetworkLoads(block: Boolean): Boolean {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.SERVICE_WORKER_BLOCK_NETWORK_LOADS
+            )
+        ) return false
+        ServiceWorkerControllerCompat.getInstance()
+            .serviceWorkerWebSettings.blockNetworkLoads = block
+        return true
+    }
+
+    override fun setServiceWorkerCacheMode(mode: Int): Boolean {
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CACHE_MODE)) {
+            return false
+        }
+        ServiceWorkerControllerCompat.getInstance()
+            .serviceWorkerWebSettings.cacheMode = mode
+        return true
+    }
+
+    override fun isWebViewTracing(): Boolean {
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
+            )
+        ) return false
+        return TracingController.getInstance().isTracing
+    }
+
+    override fun startWebViewTracing(config: Any?): Boolean {
+        val tracingConfig = config as? TracingConfig ?: return false
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
+            )
+        ) return false
+        TracingController.getInstance().start(tracingConfig)
+        return true
+    }
+
+    override fun stopWebViewTracing(
+        outputStream: Any?,
+        executor: Executor?
+    ): Boolean {
+        executor ?: return false
+        if (!WebViewFeature.isFeatureSupported(
+                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
+            )
+        ) return false
+        return TracingController.getInstance().stop(outputStream as? OutputStream, executor)
     }
 
     // ==========

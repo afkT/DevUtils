@@ -761,6 +761,137 @@ fun web_clearProxyOverride(
     return engine.getWebEngine()?.clearProxyOverride(executor, listener) ?: false
 }
 
+fun <Item : IWebEngine.EngineItem> Item?.web_setAudioMuted(
+    engine: String? = null,
+    mute: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setAudioMuted(this, mute) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_isAudioMuted(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.isAudioMuted(this) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_postVisualStateCallback(
+    engine: String? = null,
+    requestId: Long,
+    callback: Any?
+): Boolean {
+    return engine.getWebEngine()?.postVisualStateCallback(this, requestId, callback) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setWebViewProfile(
+    engine: String? = null,
+    profileName: String?
+): Boolean {
+    return engine.getWebEngine()?.setWebViewProfile(this, profileName) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_getWebViewProfile(
+    engine: String? = null
+): Any? {
+    return engine.getWebEngine()?.getWebViewProfile(this)
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setUserAgentMetadata(
+    engine: String? = null,
+    metadata: Any?
+): Boolean {
+    return engine.getWebEngine()?.setUserAgentMetadata(this, metadata) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setWebViewMediaIntegrityApiStatus(
+    engine: String? = null,
+    permissionConfig: Any?
+): Boolean {
+    return engine.getWebEngine()?.setWebViewMediaIntegrityApiStatus(this, permissionConfig) ?: false
+}
+
+fun web_getOrCreateWebProfile(
+    engine: String? = null,
+    name: String?
+): Any? {
+    return engine.getWebEngine()?.getOrCreateWebProfile(name)
+}
+
+fun web_getWebProfile(
+    engine: String? = null,
+    name: String?
+): Any? {
+    return engine.getWebEngine()?.getWebProfile(name)
+}
+
+fun web_deleteWebProfile(
+    engine: String? = null,
+    name: String?
+): Boolean {
+    return engine.getWebEngine()?.deleteWebProfile(name) ?: false
+}
+
+fun web_getAllWebProfileNames(
+    engine: String? = null
+): MutableList<String>? {
+    return engine.getWebEngine()?.getAllWebProfileNames()
+}
+
+fun web_setServiceWorkerClient(
+    engine: String? = null,
+    client: Any?
+): Boolean {
+    return engine.getWebEngine()?.setServiceWorkerClient(client) ?: false
+}
+
+fun web_setServiceWorkerAllowContentAccess(
+    engine: String? = null,
+    allow: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setServiceWorkerAllowContentAccess(allow) ?: false
+}
+
+fun web_setServiceWorkerAllowFileAccess(
+    engine: String? = null,
+    allow: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setServiceWorkerAllowFileAccess(allow) ?: false
+}
+
+fun web_setServiceWorkerBlockNetworkLoads(
+    engine: String? = null,
+    block: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setServiceWorkerBlockNetworkLoads(block) ?: false
+}
+
+fun web_setServiceWorkerCacheMode(
+    engine: String? = null,
+    mode: Int
+): Boolean {
+    return engine.getWebEngine()?.setServiceWorkerCacheMode(mode) ?: false
+}
+
+fun web_isWebViewTracing(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.isWebViewTracing() ?: false
+}
+
+fun web_startWebViewTracing(
+    engine: String? = null,
+    config: Any?
+): Boolean {
+    return engine.getWebEngine()?.startWebViewTracing(config) ?: false
+}
+
+fun web_stopWebViewTracing(
+    engine: String? = null,
+    outputStream: Any?,
+    executor: Executor?
+): Boolean {
+    return engine.getWebEngine()?.stopWebViewTracing(outputStream, executor) ?: false
+}
+
 // ==========
 // = Cookie =
 // ==========

@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
@@ -163,6 +164,15 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
         // 是否允许算法暗色模式 ( AndroidX WebKit, 需 ALGORITHMIC_DARKENING 特性支持 )
         Boolean algorithmicDarkeningAllowed();
+
+        // 是否启用 PaymentRequest 支付 API ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+        Boolean paymentRequestEnabled();
+
+        // 是否启用企业认证 AppLink 策略 ( AndroidX WebKit, 需 ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY 特性支持 )
+        Boolean enterpriseAuthenticationAppLinkPolicyEnabled();
+
+        // 归因注册行为 ( AndroidX WebKit, 需 ATTRIBUTION_REGISTRATION_BEHAVIOR 特性支持 )
+        int attributionRegistrationBehavior();
     }
 
     /**
@@ -1222,6 +1232,163 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
     boolean clearProxyOverride(
             Executor executor,
             Runnable listener
+    );
+
+    /**
+     * 静音或取消静音 WebView ( 需 MUTE_AUDIO 特性 )
+     * @param item WebView Item
+     * @param mute 是否静音
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setAudioMuted(
+            Item item,
+            boolean mute
+    );
+
+    /**
+     * WebView 是否静音 ( 需 MUTE_AUDIO 特性 )
+     * @param item WebView Item
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isAudioMuted(Item item);
+
+    /**
+     * 投递可视状态回调 ( 内容可绘制时触发, 用于规避白屏, 需 VISUAL_STATE_CALLBACK 特性 )
+     * @param item      WebView Item
+     * @param requestId 请求 id ( 回调原样返回 )
+     * @param callback  可视状态回调 ( WebViewCompat.VisualStateCallback )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean postVisualStateCallback(
+            Item item,
+            long requestId,
+            Object callback
+    );
+
+    /**
+     * 设置 WebView 使用的 Profile ( 多 Profile 数据隔离, 需 MULTI_PROFILE 特性 )
+     * @param item        WebView Item
+     * @param profileName Profile 名称
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setWebViewProfile(
+            Item item,
+            String profileName
+    );
+
+    /**
+     * 获取 WebView 使用的 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param item WebView Item
+     * @return Profile
+     */
+    Object getWebViewProfile(Item item);
+
+    /**
+     * 设置 WebView 用户代理元数据 ( 生成 UA Client Hints, 需 USER_AGENT_METADATA 特性 )
+     * @param item     WebView Item
+     * @param metadata 用户代理元数据 ( UserAgentMetadata )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setUserAgentMetadata(
+            Item item,
+            Object metadata
+    );
+
+    /**
+     * 设置 WebView Media Integrity API 权限 ( 需 WEBVIEW_MEDIA_INTEGRITY_API_STATUS 特性 )
+     * @param item             WebView Item
+     * @param permissionConfig 权限配置 ( WebViewMediaIntegrityApiStatusConfig )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setWebViewMediaIntegrityApiStatus(
+            Item item,
+            Object permissionConfig
+    );
+
+    /**
+     * 根据名称获取或创建 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return Profile
+     */
+    Object getOrCreateWebProfile(String name);
+
+    /**
+     * 根据名称获取 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return Profile ( 不存在返回 null )
+     */
+    Object getWebProfile(String name);
+
+    /**
+     * 根据名称删除 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean deleteWebProfile(String name);
+
+    /**
+     * 获取全部 Profile 名称 ( 需 MULTI_PROFILE 特性 )
+     * @return Profile 名称列表
+     */
+    List<String> getAllWebProfileNames();
+
+    /**
+     * 设置 ServiceWorker 客户端 ( 需 SERVICE_WORKER_BASIC_USAGE 特性 )
+     * @param client ServiceWorker 客户端 ( ServiceWorkerClientCompat )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setServiceWorkerClient(Object client);
+
+    /**
+     * 设置 ServiceWorker 是否允许访问 content:// 资源 ( 需 SERVICE_WORKER_CONTENT_ACCESS 特性 )
+     * @param allow 是否允许
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setServiceWorkerAllowContentAccess(boolean allow);
+
+    /**
+     * 设置 ServiceWorker 是否允许访问文件 ( 需 SERVICE_WORKER_FILE_ACCESS 特性 )
+     * @param allow 是否允许
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setServiceWorkerAllowFileAccess(boolean allow);
+
+    /**
+     * 设置 ServiceWorker 是否不从网络加载资源 ( 需 SERVICE_WORKER_BLOCK_NETWORK_LOADS 特性 )
+     * @param block 是否阻止
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setServiceWorkerBlockNetworkLoads(boolean block);
+
+    /**
+     * 设置 ServiceWorker 缓存模式 ( 需 SERVICE_WORKER_CACHE_MODE 特性 )
+     * @param mode 缓存模式
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setServiceWorkerCacheMode(int mode);
+
+    /**
+     * 是否正在进行性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isWebViewTracing();
+
+    /**
+     * 开始性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @param config 跟踪配置 ( TracingConfig )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean startWebViewTracing(Object config);
+
+    /**
+     * 停止性能跟踪并输出结果 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @param outputStream 结果输出流 ( OutputStream, 可为 null )
+     * @param executor     回调执行器
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean stopWebViewTracing(
+            Object outputStream,
+            Executor executor
     );
 
     // ==========

@@ -149,6 +149,15 @@ open class WebConfig private constructor(
     // 是否允许算法暗色模式 ( AndroidX WebKit, 需 ALGORITHMIC_DARKENING 特性支持 )
     private var mAlgorithmicDarkeningAllowed: Boolean? = null
 
+    // 是否启用 PaymentRequest 支付 API ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+    private var mPaymentRequestEnabled: Boolean? = null
+
+    // 是否启用企业认证 AppLink 策略 ( AndroidX WebKit, 需 ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY 特性支持 )
+    private var mEnterpriseAuthenticationAppLinkPolicyEnabled: Boolean? = null
+
+    // 归因注册行为 ( AndroidX WebKit, 需 ATTRIBUTION_REGISTRATION_BEHAVIOR 特性支持 )
+    private var mAttributionRegistrationBehavior = UNSET_INT
+
     companion object {
 
         const val UNSET_INT = -1
@@ -210,6 +219,10 @@ open class WebConfig private constructor(
             this.mOffscreenPreRaster = it.mOffscreenPreRaster
             this.mDisabledActionModeMenuItems = it.mDisabledActionModeMenuItems
             this.mAlgorithmicDarkeningAllowed = it.mAlgorithmicDarkeningAllowed
+            this.mPaymentRequestEnabled = it.mPaymentRequestEnabled
+            this.mEnterpriseAuthenticationAppLinkPolicyEnabled =
+                it.mEnterpriseAuthenticationAppLinkPolicyEnabled
+            this.mAttributionRegistrationBehavior = it.mAttributionRegistrationBehavior
         }
     }
 
@@ -637,6 +650,35 @@ open class WebConfig private constructor(
 
     open fun setAlgorithmicDarkeningAllowed(algorithmicDarkeningAllowed: Boolean?): WebConfig {
         mAlgorithmicDarkeningAllowed = algorithmicDarkeningAllowed
+        return this
+    }
+
+    override fun paymentRequestEnabled(): Boolean? {
+        return mPaymentRequestEnabled
+    }
+
+    open fun setPaymentRequestEnabled(paymentRequestEnabled: Boolean?): WebConfig {
+        mPaymentRequestEnabled = paymentRequestEnabled
+        return this
+    }
+
+    override fun enterpriseAuthenticationAppLinkPolicyEnabled(): Boolean? {
+        return mEnterpriseAuthenticationAppLinkPolicyEnabled
+    }
+
+    open fun setEnterpriseAuthenticationAppLinkPolicyEnabled(
+        enterpriseAuthenticationAppLinkPolicyEnabled: Boolean?
+    ): WebConfig {
+        mEnterpriseAuthenticationAppLinkPolicyEnabled = enterpriseAuthenticationAppLinkPolicyEnabled
+        return this
+    }
+
+    override fun attributionRegistrationBehavior(): Int {
+        return mAttributionRegistrationBehavior
+    }
+
+    open fun setAttributionRegistrationBehavior(attributionRegistrationBehavior: Int): WebConfig {
+        mAttributionRegistrationBehavior = attributionRegistrationBehavior
         return this
     }
 }
