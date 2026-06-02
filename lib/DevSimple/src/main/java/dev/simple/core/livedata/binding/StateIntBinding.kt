@@ -28,9 +28,9 @@ object StateIntBinding {
         return state == target
     }
 
-    // ===========
+    // ==========
     // = 状态快捷 =
-    // ===========
+    // ==========
 
     // NORMAL
     @JvmStatic

@@ -1,6 +1,7 @@
 package dev.engine.core.web
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Paint
 import android.net.Uri
 import android.os.Build
@@ -15,6 +16,7 @@ import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebMessage
 import android.webkit.WebSettings
+import android.webkit.WebStorage
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.webkit.CookieManagerCompat
@@ -70,8 +72,69 @@ open class WebViewEngineImpl(
             itemIt.javascriptInterfaces().forEach { (interfaceName, obj) ->
                 addJavascriptInterface(itemIt, obj, interfaceName)
             }
+            // 页面加载监听: 未显式设置 Client 时, 将内核无关的 OnWebListener 转译为 WebView 回调
+            itemIt.onWebListener()?.let { listener ->
+                bindOnWebListener(itemIt, listener)
+            }
         } ?: return false
         return true
+    }
+
+    /**
+     * 绑定页面加载监听 ( 将 OnWebListener 转译为 WebViewClient / WebChromeClient 回调 )
+     * @param item     WebView Item
+     * @param listener 页面加载监听
+     */
+    protected open fun bindOnWebListener(
+        item: WebItem?,
+        listener: IWebEngine.OnWebListener
+    ) {
+        val webView = getWebViewImpl(item) ?: return
+        if (item?.webViewClient() == null) {
+            webView.webViewClient = object : WebViewClient() {
+                override fun onPageStarted(
+                    view: WebView?,
+                    url: String?,
+                    favicon: Bitmap?
+                ) {
+                    listener.onPageStarted(view, url)
+                }
+
+                override fun onPageFinished(
+                    view: WebView?,
+                    url: String?
+                ) {
+                    listener.onPageFinished(view, url)
+                }
+
+                @Suppress("DEPRECATION")
+                override fun onReceivedError(
+                    view: WebView?,
+                    errorCode: Int,
+                    description: String?,
+                    failingUrl: String?
+                ) {
+                    listener.onReceivedError(view, errorCode, description, failingUrl)
+                }
+            }
+        }
+        if (item?.webChromeClient() == null) {
+            webView.webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(
+                    view: WebView?,
+                    newProgress: Int
+                ) {
+                    listener.onProgressChanged(view, newProgress)
+                }
+
+                override fun onReceivedTitle(
+                    view: WebView?,
+                    title: String?
+                ) {
+                    listener.onReceivedTitle(view, title)
+                }
+            }
+        }
     }
 
     override fun applyConfig(
@@ -581,6 +644,16 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.run {
             clearSslPreferences(); true
         } ?: false
+    }
+
+    override fun deleteAllWebStorage(): Boolean {
+        return try {
+            WebStorage.getInstance().deleteAllData()
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "deleteAllWebStorage")
+            false
+        }
     }
 
     // ==========
@@ -1327,6 +1400,14 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    override fun saveState(
+        item: WebItem?,
+        outState: Bundle?
+    ): Boolean {
+        outState ?: return false
+        return getWebViewImpl(item)?.let { it.saveState(outState) != null } ?: false
+    }
+
     override fun addNavigationListener(
         item: WebItem?,
         listener: Any?
@@ -1428,6 +1509,21 @@ open class WebViewEngineImpl(
         return false
     }
 
+    override fun setCookie(
+        url: String?,
+        cookie: String?,
+        callback: Any?
+    ): Boolean {
+        try {
+            @Suppress("UNCHECKED_CAST")
+            CookieManager.getInstance().setCookie(url, cookie, callback as? ValueCallback<Boolean>)
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setCookie - callback")
+        }
+        return false
+    }
+
     override fun getCookie(url: String?): String? {
         try {
             return CookieManager.getInstance().getCookie(url)
@@ -1435,6 +1531,60 @@ open class WebViewEngineImpl(
             LogPrintUtils.eTag(TAG, e, "getCookie")
         }
         return null
+    }
+
+    override fun setAcceptCookie(accept: Boolean): Boolean {
+        try {
+            CookieManager.getInstance().setAcceptCookie(accept)
+            return true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setAcceptCookie")
+        }
+        return false
+    }
+
+    override fun acceptCookie(): Boolean {
+        return try {
+            CookieManager.getInstance().acceptCookie()
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "acceptCookie")
+            false
+        }
+    }
+
+    override fun setAcceptThirdPartyCookies(
+        item: WebItem?,
+        accept: Boolean
+    ): Boolean {
+        return getWebViewImpl(item)?.let {
+            try {
+                CookieManager.getInstance().setAcceptThirdPartyCookies(it, accept)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "setAcceptThirdPartyCookies")
+                false
+            }
+        } ?: false
+    }
+
+    override fun acceptThirdPartyCookies(item: WebItem?): Boolean {
+        return getWebViewImpl(item)?.let {
+            try {
+                CookieManager.getInstance().acceptThirdPartyCookies(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "acceptThirdPartyCookies")
+                false
+            }
+        } ?: false
+    }
+
+    override fun hasCookies(): Boolean {
+        return try {
+            CookieManager.getInstance().hasCookies()
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "hasCookies")
+            false
+        }
     }
 
     override fun removeCookie(callback: Any?) {

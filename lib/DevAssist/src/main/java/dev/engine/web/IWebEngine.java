@@ -223,6 +223,9 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
         // JS 交互注入对象集合 ( interfaceName-obj )
         Map<String, Object> javascriptInterfaces();
+
+        // 页面加载监听 ( 内核无关, 实现层翻译为各内核回调 )
+        OnWebListener onWebListener();
     }
 
     /**
@@ -652,6 +655,12 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean clearSslPreferences(Item item);
+
+    /**
+     * 清除全部 Web 存储数据 ( localStorage、IndexedDB、WebSQL 等, 全局生效 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean deleteAllWebStorage();
 
     // ==========
     // = 状态查询 =
@@ -1109,9 +1118,9 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
     /**
      * 在文档开始加载时注入 JS ( 需 DOCUMENT_START_SCRIPT 特性 )
-     * @param item                WebView Item
-     * @param script              注入脚本
-     * @param allowedOriginRules  允许的来源规则
+     * @param item               WebView Item
+     * @param script             注入脚本
+     * @param allowedOriginRules 允许的来源规则
      * @return 脚本句柄 ( ScriptHandler )
      */
     Object addDocumentStartJavaScript(
@@ -1122,10 +1131,10 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
     /**
      * 添加 Web 消息监听 ( 安全 JSBridge, 需 WEB_MESSAGE_LISTENER 特性 )
-     * @param item                WebView Item
-     * @param jsObjectName        注入到页面的对象名
-     * @param allowedOriginRules  允许的来源规则
-     * @param listener            消息监听 ( WebViewCompat.WebMessageListener )
+     * @param item               WebView Item
+     * @param jsObjectName       注入到页面的对象名
+     * @param allowedOriginRules 允许的来源规则
+     * @param listener           消息监听 ( WebViewCompat.WebMessageListener )
      * @return {@code true} success, {@code false} fail
      */
     boolean addWebMessageListener(
@@ -1429,10 +1438,10 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
 
     /**
      * 保存 WebView 状态 ( 支持限制大小、是否含前进历史, 需 SAVE_STATE 特性 )
-     * @param item                 WebView Item
-     * @param outState             状态保存 Bundle
-     * @param maxSizeBytes         状态最大字节数 ( 超出则丢弃更早历史 )
-     * @param includeForwardState  是否包含前进历史
+     * @param item                WebView Item
+     * @param outState            状态保存 Bundle
+     * @param maxSizeBytes        状态最大字节数 ( 超出则丢弃更早历史 )
+     * @param includeForwardState 是否包含前进历史
      * @return {@code true} success, {@code false} fail
      */
     boolean saveState(
@@ -1440,6 +1449,17 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
             Bundle outState,
             int maxSizeBytes,
             boolean includeForwardState
+    );
+
+    /**
+     * 保存 WebView 状态 ( 基础版, 框架原生能力, 无特性门槛 )
+     * @param item     WebView Item
+     * @param outState 状态保存 Bundle
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean saveState(
+            Item item,
+            Bundle outState
     );
 
     /**
@@ -1549,11 +1569,61 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
     );
 
     /**
+     * 将 Cookie 设置到 WebView ( 带设置结果回调 )
+     * @param url      加载的 Url
+     * @param cookie   同步的 cookie
+     * @param callback 设置结果回调 ( ValueCallback )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setCookie(
+            String url,
+            String cookie,
+            Object callback
+    );
+
+    /**
      * 获取指定 Url 的 Cookie
      * @param url Url
      * @return Cookie
      */
     String getCookie(String url);
+
+    /**
+     * 设置是否接受 Cookie
+     * @param accept 是否接受
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setAcceptCookie(boolean accept);
+
+    /**
+     * 是否接受 Cookie
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean acceptCookie();
+
+    /**
+     * 设置指定 WebView 是否接受第三方 Cookie
+     * @param item   WebView Item
+     * @param accept 是否接受
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean setAcceptThirdPartyCookies(
+            Item item,
+            boolean accept
+    );
+
+    /**
+     * 指定 WebView 是否接受第三方 Cookie
+     * @param item WebView Item
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean acceptThirdPartyCookies(Item item);
+
+    /**
+     * 是否存在 Cookie
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean hasCookies();
 
     /**
      * 移除 Cookie ( Session、All )

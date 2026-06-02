@@ -301,6 +301,12 @@ fun <Item : IWebEngine.EngineItem> Item?.web_clearSslPreferences(
     return engine.getWebEngine()?.clearSslPreferences(this) ?: false
 }
 
+fun web_deleteAllWebStorage(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.deleteAllWebStorage() ?: false
+}
+
 // ==========
 // = 状态查询 =
 // ==========
@@ -916,6 +922,13 @@ fun <Item : IWebEngine.EngineItem> Item?.web_saveState(
         ?: false
 }
 
+fun <Item : IWebEngine.EngineItem> Item?.web_saveState(
+    engine: String? = null,
+    outState: Bundle?
+): Boolean {
+    return engine.getWebEngine()?.saveState(this, outState) ?: false
+}
+
 fun <Item : IWebEngine.EngineItem> Item?.web_addNavigationListener(
     engine: String? = null,
     listener: Any?
@@ -987,11 +1000,52 @@ fun web_setCookie(
     return engine.getWebEngine()?.setCookie(url, cookie) ?: false
 }
 
+fun web_setCookie(
+    engine: String? = null,
+    url: String?,
+    cookie: String?,
+    callback: Any?
+): Boolean {
+    return engine.getWebEngine()?.setCookie(url, cookie, callback) ?: false
+}
+
 fun web_getCookie(
     engine: String? = null,
     url: String?
 ): String? {
     return engine.getWebEngine()?.getCookie(url)
+}
+
+fun web_setAcceptCookie(
+    engine: String? = null,
+    accept: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setAcceptCookie(accept) ?: false
+}
+
+fun web_acceptCookie(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.acceptCookie() ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_setAcceptThirdPartyCookies(
+    engine: String? = null,
+    accept: Boolean
+): Boolean {
+    return engine.getWebEngine()?.setAcceptThirdPartyCookies(this, accept) ?: false
+}
+
+fun <Item : IWebEngine.EngineItem> Item?.web_acceptThirdPartyCookies(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.acceptThirdPartyCookies(this) ?: false
+}
+
+fun web_hasCookies(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.hasCookies() ?: false
 }
 
 fun web_removeCookie(

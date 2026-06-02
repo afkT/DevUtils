@@ -33,6 +33,9 @@ open class WebItem private constructor(
     // JS 交互注入对象集合 ( interfaceName-obj )
     private var mJavascriptInterfaces: MutableMap<String, Any> = LinkedHashMap()
 
+    // 页面加载监听
+    private var mOnWebListener: IWebEngine.OnWebListener? = null
+
     companion object {
 
         /**
@@ -67,6 +70,7 @@ open class WebItem private constructor(
         mDownloadListener = null
         mFindListener = null
         mJavascriptInterfaces.clear()
+        mOnWebListener = null
         return this
     }
 
@@ -130,6 +134,15 @@ open class WebItem private constructor(
         obj: Any
     ): WebItem {
         mJavascriptInterfaces[interfaceName] = obj
+        return this
+    }
+
+    override fun onWebListener(): IWebEngine.OnWebListener? {
+        return mOnWebListener
+    }
+
+    open fun setOnWebListener(listener: IWebEngine.OnWebListener?): WebItem {
+        mOnWebListener = listener
         return this
     }
 }
