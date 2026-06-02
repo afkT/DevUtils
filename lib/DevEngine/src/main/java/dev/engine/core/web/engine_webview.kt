@@ -126,7 +126,7 @@ open class WebViewEngineImpl(
             configIt.javaScriptEnabled()?.let {
                 webSettings.javaScriptEnabled = it
             }
-            configIt.renderPriority()?.let {
+            getRenderPriority(configIt.renderPriority())?.let {
                 @Suppress("DEPRECATION")
                 webSettings.setRenderPriority(it)
             }
@@ -136,7 +136,7 @@ open class WebViewEngineImpl(
             configIt.loadWithOverviewMode()?.let {
                 webSettings.loadWithOverviewMode = it
             }
-            configIt.layoutAlgorithm()?.let {
+            getLayoutAlgorithm(configIt.layoutAlgorithm())?.let {
                 webSettings.layoutAlgorithm = it
             }
             configIt.supportZoom()?.let {
@@ -1652,5 +1652,23 @@ open class WebViewEngineImpl(
      */
     protected open fun getWebViewImpl(item: WebItem?): WebView? {
         return item?.view()?.get() as? WebView
+    }
+
+    /**
+     * 获取渲染优先级
+     * @param renderPriority Render Priority Item
+     * @return [WebSettings.RenderPriority]
+     */
+    protected open fun getRenderPriority(renderPriority: Any?): WebSettings.RenderPriority? {
+        return renderPriority as? WebSettings.RenderPriority
+    }
+
+    /**
+     * 获取基础布局算法
+     * @param layoutAlgorithm Layout Algorithm Item
+     * @return [WebSettings.LayoutAlgorithm]
+     */
+    protected open fun getLayoutAlgorithm(layoutAlgorithm: Any?): WebSettings.LayoutAlgorithm? {
+        return layoutAlgorithm as? WebSettings.LayoutAlgorithm
     }
 }

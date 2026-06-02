@@ -1,6 +1,5 @@
 package dev.engine.core.web
 
-import android.webkit.WebSettings
 import dev.engine.core.web.WebConfig.Companion.UNSET_INT
 import dev.engine.web.IWebEngine
 
@@ -18,8 +17,8 @@ open class WebConfig private constructor(
     // 是否支持 JavaScript
     private var mJavaScriptEnabled: Boolean? = null
 
-    // 渲染优先级
-    private var mRenderPriority: WebSettings.RenderPriority? = null
+    // 渲染优先级 ( 内核相关对象 )
+    private var mRenderPriority: Any? = null
 
     // 是否使用宽视图
     private var mUseWideViewPort: Boolean? = null
@@ -27,8 +26,8 @@ open class WebConfig private constructor(
     // 是否按宽度缩小内容以适合屏幕
     private var mLoadWithOverviewMode: Boolean? = null
 
-    // 基础布局算法
-    private var mLayoutAlgorithm: WebSettings.LayoutAlgorithm? = null
+    // 基础布局算法 ( 内核相关对象 )
+    private var mLayoutAlgorithm: Any? = null
 
     // 是否支持缩放
     private var mSupportZoom: Boolean? = null
@@ -285,11 +284,11 @@ open class WebConfig private constructor(
         return this
     }
 
-    override fun renderPriority(): WebSettings.RenderPriority? {
+    override fun renderPriority(): Any? {
         return mRenderPriority
     }
 
-    open fun setRenderPriority(renderPriority: WebSettings.RenderPriority?): WebConfig {
+    open fun setRenderPriority(renderPriority: Any?): WebConfig {
         mRenderPriority = renderPriority
         return this
     }
@@ -312,11 +311,11 @@ open class WebConfig private constructor(
         return this
     }
 
-    override fun layoutAlgorithm(): WebSettings.LayoutAlgorithm? {
+    override fun layoutAlgorithm(): Any? {
         return mLayoutAlgorithm
     }
 
-    open fun setLayoutAlgorithm(layoutAlgorithm: WebSettings.LayoutAlgorithm?): WebConfig {
+    open fun setLayoutAlgorithm(layoutAlgorithm: Any?): WebConfig {
         mLayoutAlgorithm = layoutAlgorithm
         return this
     }
