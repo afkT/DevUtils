@@ -1,6 +1,7 @@
 package dev.engine.core.web
 
 import android.webkit.WebSettings
+import dev.engine.core.web.WebConfig.Companion.UNSET_INT
 import dev.engine.web.IWebEngine
 
 /**
