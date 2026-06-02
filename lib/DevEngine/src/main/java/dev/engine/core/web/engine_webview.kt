@@ -469,8 +469,7 @@ open class WebViewEngineImpl(
         script ?: return false
         val webView = getWebViewImpl(item) ?: return false
         return try {
-            @Suppress("UNCHECKED_CAST")
-            webView.evaluateJavascript(script, callback as? ValueCallback<String>)
+            webView.evaluateJavascript(script, getValueCallbackString(callback))
             true
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "evaluateJavascript")
@@ -486,7 +485,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         client: Any?
     ): Boolean {
-        val webViewClient = client as? WebViewClient ?: return false
+        val webViewClient = getWebViewClient(client) ?: return false
         return getWebViewImpl(item)?.run {
             this.webViewClient = webViewClient; true
         } ?: false
@@ -503,7 +502,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         client: Any?
     ): Boolean {
-        val webChromeClient = client as? WebChromeClient ?: return false
+        val webChromeClient = getWebChromeClient(client) ?: return false
         return getWebViewImpl(item)?.run {
             this.webChromeClient = webChromeClient; true
         } ?: false
@@ -520,7 +519,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         listener: Any?
     ): Boolean {
-        val downloadListener = listener as? DownloadListener ?: return false
+        val downloadListener = getDownloadListener(listener) ?: return false
         return getWebViewImpl(item)?.run {
             setDownloadListener(downloadListener); true
         } ?: false
@@ -530,7 +529,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         listener: Any?
     ): Boolean {
-        val findListener = listener as? WebView.FindListener ?: return false
+        val findListener = getFindListener(listener) ?: return false
         return getWebViewImpl(item)?.run {
             setFindListener(findListener); true
         } ?: false
@@ -962,7 +961,7 @@ open class WebViewEngineImpl(
         message: Any?,
         targetOrigin: Uri?
     ): Boolean {
-        val webMessage = message as? WebMessage ?: return false
+        val webMessage = getWebMessage(message) ?: return false
         targetOrigin ?: return false
         return getWebViewImpl(item)?.run {
             postWebMessage(webMessage, targetOrigin); true
@@ -1037,7 +1036,7 @@ open class WebViewEngineImpl(
         listener: Any?
     ): Boolean {
         if (jsObjectName == null || allowedOriginRules == null) return false
-        val messageListener = listener as? WebViewCompat.WebMessageListener ?: return false
+        val messageListener = getWebMessageListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) return false
         return getWebViewImpl(item)?.run {
             WebViewCompat.addWebMessageListener(
@@ -1083,7 +1082,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         client: Any?
     ): Boolean {
-        val renderClient = client as? WebViewRenderProcessClient ?: return false
+        val renderClient = getWebViewRenderProcessClient(client) ?: return false
         if (!WebViewFeature.isFeatureSupported(
                 WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE
             )
@@ -1118,8 +1117,7 @@ open class WebViewEngineImpl(
     ): Boolean {
         context ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.START_SAFE_BROWSING)) return false
-        @Suppress("UNCHECKED_CAST")
-        WebViewCompat.startSafeBrowsing(context, callback as? ValueCallback<Boolean>)
+        WebViewCompat.startSafeBrowsing(context, getValueCallbackBoolean(callback))
         return true
     }
 
@@ -1129,8 +1127,7 @@ open class WebViewEngineImpl(
     ): Boolean {
         hosts ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ALLOWLIST)) return false
-        @Suppress("UNCHECKED_CAST")
-        WebViewCompat.setSafeBrowsingAllowlist(hosts, callback as? ValueCallback<Boolean>)
+        WebViewCompat.setSafeBrowsingAllowlist(hosts, getValueCallbackBoolean(callback))
         return true
     }
 
@@ -1147,7 +1144,7 @@ open class WebViewEngineImpl(
         executor: Executor?,
         listener: Runnable?
     ): Boolean {
-        val config = proxyConfig as? ProxyConfig ?: return false
+        val config = getProxyConfig(proxyConfig) ?: return false
         if (executor == null || listener == null) return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE)) return false
         return try {
@@ -1195,7 +1192,7 @@ open class WebViewEngineImpl(
         requestId: Long,
         callback: Any?
     ): Boolean {
-        val visualCallback = callback as? WebViewCompat.VisualStateCallback ?: return false
+        val visualCallback = getVisualStateCallback(callback) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.VISUAL_STATE_CALLBACK)) return false
         return getWebViewImpl(item)?.run {
             WebViewCompat.postVisualStateCallback(this, requestId, visualCallback)
@@ -1224,7 +1221,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         metadata: Any?
     ): Boolean {
-        val userAgentMetadata = metadata as? UserAgentMetadata ?: return false
+        val userAgentMetadata = getUserAgentMetadata(metadata) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.USER_AGENT_METADATA)) return false
         val webSettings = getSettings(item) ?: return false
         WebSettingsCompat.setUserAgentMetadata(webSettings, userAgentMetadata)
@@ -1235,7 +1232,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         permissionConfig: Any?
     ): Boolean {
-        val config = permissionConfig as? WebViewMediaIntegrityApiStatusConfig ?: return false
+        val config = getWebViewMediaIntegrityApiStatusConfig(permissionConfig) ?: return false
         if (!WebViewFeature.isFeatureSupported(
                 WebViewFeature.WEBVIEW_MEDIA_INTEGRITY_API_STATUS
             )
@@ -1274,7 +1271,7 @@ open class WebViewEngineImpl(
     }
 
     override fun setServiceWorkerClient(client: Any?): Boolean {
-        val serviceWorkerClient = client as? ServiceWorkerClientCompat ?: return false
+        val serviceWorkerClient = getServiceWorkerClientCompat(client) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BASIC_USAGE)) {
             return false
         }
@@ -1328,7 +1325,7 @@ open class WebViewEngineImpl(
     }
 
     override fun startWebViewTracing(config: Any?): Boolean {
-        val tracingConfig = config as? TracingConfig ?: return false
+        val tracingConfig = getTracingConfig(config) ?: return false
         if (!WebViewFeature.isFeatureSupported(
                 WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
             )
@@ -1346,7 +1343,7 @@ open class WebViewEngineImpl(
                 WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
             )
         ) return false
-        return TracingController.getInstance().stop(outputStream as? OutputStream, executor)
+        return TracingController.getInstance().stop(getOutputStream(outputStream), executor)
     }
 
     @OptIn(WebSettingsCompat.ExperimentalBackForwardCacheSettings::class)
@@ -1395,7 +1392,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         listener: Any?
     ): Boolean {
-        val navigationListener = listener as? NavigationListener ?: return false
+        val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
             WebViewCompat.addNavigationListener(this, navigationListener)
@@ -1409,7 +1406,7 @@ open class WebViewEngineImpl(
         listener: Any?
     ): Boolean {
         executor ?: return false
-        val navigationListener = listener as? NavigationListener ?: return false
+        val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
             WebViewCompat.addNavigationListener(this, executor, navigationListener)
@@ -1421,7 +1418,7 @@ open class WebViewEngineImpl(
         item: WebItem?,
         listener: Any?
     ): Boolean {
-        val navigationListener = listener as? NavigationListener ?: return false
+        val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
             WebViewCompat.removeNavigationListener(this, navigationListener)
@@ -1498,8 +1495,7 @@ open class WebViewEngineImpl(
         callback: Any?
     ): Boolean {
         try {
-            @Suppress("UNCHECKED_CAST")
-            CookieManager.getInstance().setCookie(url, cookie, callback as? ValueCallback<Boolean>)
+            CookieManager.getInstance().setCookie(url, cookie, getValueCallbackBoolean(callback))
             return true
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "setCookie - callback")
@@ -1571,16 +1567,14 @@ open class WebViewEngineImpl(
     }
 
     override fun removeCookie(callback: Any?) {
-        @Suppress("UNCHECKED_CAST")
-        val valueCallback = callback as? ValueCallback<Boolean>
+        val valueCallback = getValueCallbackBoolean(callback)
         removeSessionCookie(valueCallback)
         removeAllCookie(valueCallback)
     }
 
     override fun removeSessionCookie(callback: Any?): Boolean {
         try {
-            @Suppress("UNCHECKED_CAST")
-            val valueCallback = callback as? ValueCallback<Boolean>
+            val valueCallback = getValueCallbackBoolean(callback)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager.getInstance().removeSessionCookies(valueCallback)
             } else {
@@ -1596,8 +1590,7 @@ open class WebViewEngineImpl(
 
     override fun removeAllCookie(callback: Any?): Boolean {
         try {
-            @Suppress("UNCHECKED_CAST")
-            val valueCallback = callback as? ValueCallback<Boolean>
+            val valueCallback = getValueCallbackBoolean(callback)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager.getInstance().removeAllCookies(valueCallback)
             } else {
@@ -1670,5 +1663,162 @@ open class WebViewEngineImpl(
      */
     protected open fun getLayoutAlgorithm(layoutAlgorithm: Any?): WebSettings.LayoutAlgorithm? {
         return layoutAlgorithm as? WebSettings.LayoutAlgorithm
+    }
+
+    /**
+     * 获取 String 类型回调
+     * @param callback Callback Item
+     * @return [ValueCallback]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getValueCallbackString(callback: Any?): ValueCallback<String>? {
+        return callback as? ValueCallback<String>
+    }
+
+    /**
+     * 获取 Boolean 类型回调
+     * @param callback Callback Item
+     * @return [ValueCallback]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getValueCallbackBoolean(callback: Any?): ValueCallback<Boolean>? {
+        return callback as? ValueCallback<Boolean>
+    }
+
+    /**
+     * 获取处理各种通知和请求事件对象
+     * @param client Client Item
+     * @return [WebViewClient]
+     */
+    protected open fun getWebViewClient(client: Any?): WebViewClient? {
+        return client as? WebViewClient
+    }
+
+    /**
+     * 获取辅助处理 Javascript 对话框、标题等对象
+     * @param client Client Item
+     * @return [WebChromeClient]
+     */
+    protected open fun getWebChromeClient(client: Any?): WebChromeClient? {
+        return client as? WebChromeClient
+    }
+
+    /**
+     * 获取下载监听
+     * @param listener Listener Item
+     * @return [DownloadListener]
+     */
+    protected open fun getDownloadListener(listener: Any?): DownloadListener? {
+        return listener as? DownloadListener
+    }
+
+    /**
+     * 获取查找结果监听
+     * @param listener Listener Item
+     * @return [WebView.FindListener]
+     */
+    protected open fun getFindListener(listener: Any?): WebView.FindListener? {
+        return listener as? WebView.FindListener
+    }
+
+    /**
+     * 获取 Web 消息
+     * @param message Message Item
+     * @return [WebMessage]
+     */
+    protected open fun getWebMessage(message: Any?): WebMessage? {
+        return message as? WebMessage
+    }
+
+    /**
+     * 获取 Web 消息监听
+     * @param listener Listener Item
+     * @return [WebViewCompat.WebMessageListener]
+     */
+    protected open fun getWebMessageListener(listener: Any?): WebViewCompat.WebMessageListener? {
+        return listener as? WebViewCompat.WebMessageListener
+    }
+
+    /**
+     * 获取 WebView 渲染进程客户端
+     * @param client Client Item
+     * @return [WebViewRenderProcessClient]
+     */
+    protected open fun getWebViewRenderProcessClient(client: Any?): WebViewRenderProcessClient? {
+        return client as? WebViewRenderProcessClient
+    }
+
+    /**
+     * 获取代理配置
+     * @param proxyConfig Proxy Config Item
+     * @return [ProxyConfig]
+     */
+    protected open fun getProxyConfig(proxyConfig: Any?): ProxyConfig? {
+        return proxyConfig as? ProxyConfig
+    }
+
+    /**
+     * 获取可视状态回调
+     * @param callback Callback Item
+     * @return [WebViewCompat.VisualStateCallback]
+     */
+    protected open fun getVisualStateCallback(callback: Any?): WebViewCompat.VisualStateCallback? {
+        return callback as? WebViewCompat.VisualStateCallback
+    }
+
+    /**
+     * 获取用户代理元数据
+     * @param metadata Metadata Item
+     * @return [UserAgentMetadata]
+     */
+    protected open fun getUserAgentMetadata(metadata: Any?): UserAgentMetadata? {
+        return metadata as? UserAgentMetadata
+    }
+
+    /**
+     * 获取 Media Integrity API 权限配置
+     * @param permissionConfig Permission Config Item
+     * @return [WebViewMediaIntegrityApiStatusConfig]
+     */
+    protected open fun getWebViewMediaIntegrityApiStatusConfig(
+        permissionConfig: Any?
+    ): WebViewMediaIntegrityApiStatusConfig? {
+        return permissionConfig as? WebViewMediaIntegrityApiStatusConfig
+    }
+
+    /**
+     * 获取 ServiceWorker 客户端
+     * @param client Client Item
+     * @return [ServiceWorkerClientCompat]
+     */
+    protected open fun getServiceWorkerClientCompat(client: Any?): ServiceWorkerClientCompat? {
+        return client as? ServiceWorkerClientCompat
+    }
+
+    /**
+     * 获取性能跟踪配置
+     * @param config Config Item
+     * @return [TracingConfig]
+     */
+    protected open fun getTracingConfig(config: Any?): TracingConfig? {
+        return config as? TracingConfig
+    }
+
+    /**
+     * 获取输出流
+     * @param outputStream Output Stream Item
+     * @return [OutputStream]
+     */
+    protected open fun getOutputStream(outputStream: Any?): OutputStream? {
+        return outputStream as? OutputStream
+    }
+
+    /**
+     * 获取导航监听
+     * @param listener Listener Item
+     * @return [NavigationListener]
+     */
+    protected open fun getNavigationListener(listener: Any?): NavigationListener? {
+        return listener as? NavigationListener
     }
 }
