@@ -192,6 +192,10 @@ open class WebConfig private constructor(
         fun create(config: WebConfig?): WebConfig {
             return WebConfig(config)
         }
+
+        fun default(): WebConfig {
+            return defaultWebConfig()
+        }
     }
 
     init {

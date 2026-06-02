@@ -191,7 +191,7 @@ object DevEngine {
         barCodeConfig: BarCodeConfig? = null,
         eventBusConfig: EventBusConfig? = EventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
-        webConfig: WebConfig? = WebConfig.create(),
+        webConfig: WebConfig? = WebConfig.default(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
         defaultMMKVInitialize(context)

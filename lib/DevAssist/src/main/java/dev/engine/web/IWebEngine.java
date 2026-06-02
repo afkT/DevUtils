@@ -1105,9 +1105,9 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
      */
     boolean clearClientCertPreferences(Runnable onCleared);
 
-    // =================
+    // ===================
     // = AndroidX WebKit =
-    // =================
+    // ===================
 
     /**
      * 判断 AndroidX WebKit 特性是否支持
@@ -1500,7 +1500,10 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
     // ============
     // = 跨内核扩展 =
     // ============
-    // 下列能力为 System WebView、GeckoView、Tencent X5 等多内核通用抽象, 便于实现层扩展替换
+
+    // =================================================================================
+    // = 下列能力为 System WebView、GeckoView、Tencent X5 等多内核通用抽象, 便于实现层扩展替换 =
+    // =================================================================================
 
     /**
      * 恢复 WebView 历史与状态 ( 与 saveState 配对 )
