@@ -868,8 +868,7 @@ open class WebViewEngineImpl(
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
             // 检查 WebView 是否可以后退
             if (canGoBack(item)) {
-                goBack(item)
-                return true
+                return goBack(item)
             }
         }
         return false
@@ -1088,10 +1087,9 @@ open class WebViewEngineImpl(
         client: Any?
     ): Boolean {
         val renderClient = getWebViewRenderProcessClient(client) ?: return false
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE)) {
+            return false
+        }
         return getWebViewImpl(item)?.run {
             WebViewCompat.setWebViewRenderProcessClient(this, renderClient)
             true
@@ -1099,10 +1097,9 @@ open class WebViewEngineImpl(
     }
 
     override fun getWebViewRenderProcessClient(item: WebItem?): Any? {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE
-            )
-        ) return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE)) {
+            return null
+        }
         return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcessClient(it) }
     }
 
@@ -1137,10 +1134,9 @@ open class WebViewEngineImpl(
     }
 
     override fun getSafeBrowsingPrivacyPolicyUrl(): Any? {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.SAFE_BROWSING_PRIVACY_POLICY_URL
-            )
-        ) return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_PRIVACY_POLICY_URL)) {
+            return null
+        }
         return WebViewCompat.getSafeBrowsingPrivacyPolicyUrl()
     }
 
@@ -1153,7 +1149,9 @@ open class WebViewEngineImpl(
         if (executor == null || listener == null) return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE)) return false
         return try {
-            ProxyController.getInstance().setProxyOverride(config, executor, listener)
+            ProxyController.getInstance().setProxyOverride(
+                config, executor, listener
+            )
             true
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "setProxyOverride")
@@ -1189,7 +1187,9 @@ open class WebViewEngineImpl(
 
     override fun isAudioMuted(item: WebItem?): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
-        return getWebViewImpl(item)?.let { WebViewCompat.isAudioMuted(it) } ?: false
+        return getWebViewImpl(item)?.let {
+            WebViewCompat.isAudioMuted(it)
+        } ?: false
     }
 
     override fun postVisualStateCallback(
@@ -1238,10 +1238,9 @@ open class WebViewEngineImpl(
         permissionConfig: Any?
     ): Boolean {
         val config = getWebViewMediaIntegrityApiStatusConfig(permissionConfig) ?: return false
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.WEBVIEW_MEDIA_INTEGRITY_API_STATUS
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEBVIEW_MEDIA_INTEGRITY_API_STATUS)) {
+            return false
+        }
         val webSettings = getSettings(item) ?: return false
         WebSettingsCompat.setWebViewMediaIntegrityApiStatus(webSettings, config)
         return true
@@ -1303,10 +1302,9 @@ open class WebViewEngineImpl(
     }
 
     override fun setServiceWorkerBlockNetworkLoads(block: Boolean): Boolean {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.SERVICE_WORKER_BLOCK_NETWORK_LOADS
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BLOCK_NETWORK_LOADS)) {
+            return false
+        }
         ServiceWorkerControllerCompat.getInstance()
             .serviceWorkerWebSettings.blockNetworkLoads = block
         return true
@@ -1316,25 +1314,22 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CACHE_MODE)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance()
-            .serviceWorkerWebSettings.cacheMode = mode
+        ServiceWorkerControllerCompat.getInstance().serviceWorkerWebSettings.cacheMode = mode
         return true
     }
 
     override fun isWebViewTracing(): Boolean {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
+            return false
+        }
         return TracingController.getInstance().isTracing
     }
 
     override fun startWebViewTracing(config: Any?): Boolean {
         val tracingConfig = getTracingConfig(config) ?: return false
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
+            return false
+        }
         TracingController.getInstance().start(tracingConfig)
         return true
     }
@@ -1344,11 +1339,12 @@ open class WebViewEngineImpl(
         executor: Executor?
     ): Boolean {
         executor ?: return false
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE
-            )
-        ) return false
-        return TracingController.getInstance().stop(getOutputStream(outputStream), executor)
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
+            return false
+        }
+        return TracingController.getInstance().stop(
+            getOutputStream(outputStream), executor
+        )
     }
 
     @SuppressLint("WrongConstant")
@@ -1356,19 +1352,17 @@ open class WebViewEngineImpl(
         markerClass = [WebSettingsCompat.ExperimentalBackForwardCacheSettings::class]
     )
     override fun getBackForwardCacheSettings(item: WebItem?): Any? {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3
-            )
-        ) return null
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3)) {
+            return null
+        }
         val webSettings = getSettings(item) ?: return null
         return WebSettingsCompat.getBackForwardCacheSettings(webSettings)
     }
 
     override fun setDefaultTrafficStatsTag(tag: Int): Boolean {
-        if (!WebViewFeature.isFeatureSupported(
-                WebViewFeature.DEFAULT_TRAFFICSTATS_TAGGING
-            )
-        ) return false
+        if (!WebViewFeature.isFeatureSupported(WebViewFeature.DEFAULT_TRAFFICSTATS_TAGGING)) {
+            return false
+        }
         WebViewCompat.setDefaultTrafficStatsTag(tag)
         return true
     }
@@ -1393,7 +1387,9 @@ open class WebViewEngineImpl(
         outState: Bundle?
     ): Boolean {
         outState ?: return false
-        return getWebViewImpl(item)?.let { it.saveState(outState) != null } ?: false
+        return getWebViewImpl(item)?.let {
+            it.saveState(outState) != null
+        } ?: false
     }
 
     override fun addNavigationListener(
@@ -1503,7 +1499,9 @@ open class WebViewEngineImpl(
         callback: Any?
     ): Boolean {
         try {
-            CookieManager.getInstance().setCookie(url, cookie, getValueCallbackBoolean(callback))
+            CookieManager.getInstance().setCookie(
+                url, cookie, getValueCallbackBoolean(callback)
+            )
             return true
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "setCookie - callback")
