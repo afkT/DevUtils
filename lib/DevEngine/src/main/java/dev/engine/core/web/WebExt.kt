@@ -36,12 +36,6 @@ internal fun defaultWebConfig(): WebConfig {
         .setBuiltInZoomControls(false)
         // 是否显示缩放工具
         .setDisplayZoomControls(false)
-        // 文本缩放倍数
-        .setTextZoom(0)
-        // WebView 字体大小
-        .setDefaultFontSize(0)
-        // WebView 支持最小字体大小
-        .setMinimumFontSize(0)
         // 编码格式
         .setDefaultTextEncodingName(DevFinal.ENCODE.UTF_8)
         // 是否允许网页执行定位操作
