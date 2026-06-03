@@ -34,6 +34,11 @@ fun String?.getBarCodeEngine(): IBarCodeEngine<
 // = 对外公开方法 =
 // =============
 
+/**
+ * 初始化方法
+ * @param engine String?
+ * @param config BarCode Config
+ */
 fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
     engine: String? = null,
     config: Config?
@@ -41,6 +46,11 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
     engine.getBarCodeEngine()?.initialize(config)
 }
 
+/**
+ * 获取 BarCode Engine Config
+ * @param engine String?
+ * @return BarCode Engine Config
+ */
 fun barcode_getConfig(
     engine: String? = null
 ): Any? {
@@ -51,6 +61,12 @@ fun barcode_getConfig(
 // = 生成条码 =
 // ==========
 
+/**
+ * 编码 ( 生成 ) 条码图片
+ * @receiver BarCode ( Data、Params ) Item
+ * @param engine String?
+ * @param callback 生成结果回调
+ */
 fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCode(
     engine: String? = null,
     callback: BarCodeEncodeCallback?
@@ -58,6 +74,15 @@ fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCode(
     engine.getBarCodeEngine()?.encodeBarCode(this, callback)
 }
 
+/**
+ * 编码 ( 生成 ) 条码图片
+ * <pre>
+ *     该方法是耗时操作, 请在子线程中调用
+ * </pre>
+ * @receiver BarCode ( Data、Params ) Item
+ * @param engine String?
+ * @return 条码图片
+ */
 @Throws(Exception::class)
 fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCodeSync(
     engine: String? = null
@@ -69,6 +94,12 @@ fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCodeSync(
 // = 解析条码 =
 // ==========
 
+/**
+ * 解码 ( 解析 ) 条码图片
+ * @receiver 待解析的条码图片
+ * @param engine String?
+ * @param callback 解析结果回调
+ */
 fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
     engine: String? = null,
     callback: BarCodeDecodeCallback<Result>?
@@ -80,6 +111,15 @@ fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
     }
 }
 
+/**
+ * 解码 ( 解析 ) 条码图片
+ * <pre>
+ *     该方法是耗时操作, 请在子线程中调用
+ * </pre>
+ * @receiver 待解析的条码图片
+ * @param engine String?
+ * @return 解析结果
+ */
 @Throws(Exception::class)
 fun Bitmap.barcode_decodeBarCodeSync(
     engine: String? = null
@@ -91,6 +131,14 @@ fun Bitmap.barcode_decodeBarCodeSync(
 // = 其他功能 =
 // ==========
 
+/**
+ * 添加 Icon 到条码图片上
+ * @receiver BarCode ( Data、Params ) Item
+ * @param engine String?
+ * @param src 条码图片
+ * @param icon icon
+ * @return 含 icon 条码图片
+ */
 @Throws(Exception::class)
 fun <Item : IBarCodeEngine.EngineItem> Item.barcode_addIconToBarCode(
     engine: String? = null,

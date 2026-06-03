@@ -30,6 +30,12 @@ fun String?.getEventBusEngine(): IEventBusEngine<in IEventBusEngine.EngineConfig
 // = 对外公开方法 =
 // =============
 
+/**
+ * 初始化方法
+ * @param engine String?
+ * @param config EventBus Config
+ * @return `true` success, `false` fail
+ */
 fun <Config : IEventBusEngine.EngineConfig> eventbus_initialize(
     engine: String? = null,
     config: Config
@@ -37,6 +43,13 @@ fun <Config : IEventBusEngine.EngineConfig> eventbus_initialize(
     return engine.getEventBusEngine()?.initialize(config) ?: false
 }
 
+/**
+ * 应用事件配置
+ * @param engine String?
+ * @param key key
+ * @param config EventBus Config
+ * @return `true` success, `false` fail
+ */
 fun <Config : IEventBusEngine.EngineConfig> eventbus_config(
     engine: String? = null,
     key: String,
@@ -49,6 +62,13 @@ fun <Config : IEventBusEngine.EngineConfig> eventbus_config(
 // = 发送事件 =
 // ==========
 
+/**
+ * 发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_post(
     engine: String? = null,
     value: T,
@@ -57,6 +77,14 @@ fun <T : Any> eventbus_post(
     return engine.getEventBusEngine()?.post(key, value) ?: false
 }
 
+/**
+ * 发送延迟事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param delay 延迟毫秒数
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_postDelay(
     engine: String? = null,
     value: T,
@@ -66,6 +94,15 @@ fun <T : Any> eventbus_postDelay(
     return engine.getEventBusEngine()?.postDelay(key, value, delay) ?: false
 }
 
+/**
+ * 发送延迟事件
+ * @param engine String?
+ * @param lifecycle 生命周期持有者
+ * @param value 事件数据
+ * @param delay 延迟毫秒数
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_postDelay(
     engine: String? = null,
     lifecycle: LifecycleOwner?,
@@ -77,6 +114,13 @@ fun <T : Any> eventbus_postDelay(
     return engine.getEventBusEngine()?.postDelay(key, lifecycle, value, delay) ?: false
 }
 
+/**
+ * 顺序发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_postOrderly(
     engine: String? = null,
     value: T,
@@ -85,6 +129,13 @@ fun <T : Any> eventbus_postOrderly(
     return engine.getEventBusEngine()?.postOrderly(key, value) ?: false
 }
 
+/**
+ * 跨进程发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_postAcrossProcess(
     engine: String? = null,
     value: T,
@@ -93,6 +144,13 @@ fun <T : Any> eventbus_postAcrossProcess(
     return engine.getEventBusEngine()?.postAcrossProcess(key, value) ?: false
 }
 
+/**
+ * 跨 App 发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_postAcrossApp(
     engine: String? = null,
     value: T,
@@ -101,6 +159,13 @@ fun <T : Any> eventbus_postAcrossApp(
     return engine.getEventBusEngine()?.postAcrossApp(key, value) ?: false
 }
 
+/**
+ * 广播形式发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 @Deprecated(
     message = "建议使用 eventbus_postAcrossProcess 或 eventbus_postAcrossApp",
     replaceWith = ReplaceWith("eventbus_postAcrossApp(engine, value, key)")
@@ -113,6 +178,15 @@ fun <T : Any> eventbus_broadcast(
     return engine.getEventBusEngine()?.broadcast(key, value) ?: false
 }
 
+/**
+ * 广播形式发送事件
+ * @param engine String?
+ * @param value 事件数据
+ * @param foreground `true` 前台广播, `false` 后台广播
+ * @param onlyInApp `true` 只在 App 内有效, `false` 全局有效
+ * @param key key
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> eventbus_broadcast(
     engine: String? = null,
     value: T,
@@ -127,6 +201,15 @@ fun <T : Any> eventbus_broadcast(
 // = 观察事件 =
 // ==========
 
+/**
+ * 注册生命周期感知观察者
+ * @param engine String?
+ * @param type 事件类型
+ * @param lifecycle 生命周期持有者
+ * @param key key
+ * @param observer 事件观察者
+ * @return `true` success, `false` fail
+ */
 fun <T> eventbus_observe(
     engine: String? = null,
     type: Class<T>,
@@ -138,6 +221,15 @@ fun <T> eventbus_observe(
     return engine.getEventBusEngine()?.observe(key, type, lifecycle, observer) ?: false
 }
 
+/**
+ * 注册生命周期感知 Sticky 观察者
+ * @param engine String?
+ * @param type 事件类型
+ * @param lifecycle 生命周期持有者
+ * @param key key
+ * @param observer 事件观察者
+ * @return `true` success, `false` fail
+ */
 fun <T> eventbus_observeSticky(
     engine: String? = null,
     type: Class<T>,
@@ -149,6 +241,14 @@ fun <T> eventbus_observeSticky(
     return engine.getEventBusEngine()?.observeSticky(key, type, lifecycle, observer) ?: false
 }
 
+/**
+ * 注册永久观察者
+ * @param engine String?
+ * @param type 事件类型
+ * @param key key
+ * @param observer 事件观察者
+ * @return `true` success, `false` fail
+ */
 fun <T> eventbus_observeForever(
     engine: String? = null,
     type: Class<T>,
@@ -158,6 +258,14 @@ fun <T> eventbus_observeForever(
     return engine.getEventBusEngine()?.observeForever(key, type, observer) ?: false
 }
 
+/**
+ * 注册永久 Sticky 观察者
+ * @param engine String?
+ * @param type 事件类型
+ * @param key key
+ * @param observer 事件观察者
+ * @return `true` success, `false` fail
+ */
 fun <T> eventbus_observeStickyForever(
     engine: String? = null,
     type: Class<T>,
@@ -167,6 +275,14 @@ fun <T> eventbus_observeStickyForever(
     return engine.getEventBusEngine()?.observeStickyForever(key, type, observer) ?: false
 }
 
+/**
+ * 移除永久观察者
+ * @param engine String?
+ * @param type 事件类型
+ * @param key key
+ * @param observer 事件观察者
+ * @return `true` success, `false` fail
+ */
 fun <T> eventbus_removeObserver(
     engine: String? = null,
     type: Class<T>,

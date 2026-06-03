@@ -46,6 +46,11 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = 对外公开方法 =
 // =============
 
+/**
+ * 获取 Cache Engine Config
+ * @param engine String?
+ * @return Cache Config
+ */
 fun cache_getConfig(
     engine: String? = null
 ): Any? {
@@ -54,42 +59,80 @@ fun cache_getConfig(
 
 // =
 
+/**
+ * 移除数据
+ * @receiver 保存的 key
+ * @param engine String?
+ */
 fun String.cache_remove(
     engine: String? = null
 ) {
     engine.getCacheEngine()?.remove(this)
 }
 
+/**
+ * 移除数组的数据
+ * @receiver 保存的 key 数组
+ * @param engine String?
+ */
 fun Array<String?>.cache_removeForKeys(
     engine: String? = null
 ) {
     engine.getCacheEngine()?.removeForKeys(this)
 }
 
+/**
+ * 是否存在 key
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
 fun String.cache_contains(
     engine: String? = null
 ): Boolean {
     return engine.getCacheEngine()?.contains(this) ?: false
 }
 
+/**
+ * 判断某个 key 是否过期
+ * <pre>
+ *     如果不存在该 key 也返回过期
+ * </pre>
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
 fun String.cache_isDue(
     engine: String? = null
 ): Boolean {
     return engine.getCacheEngine()?.isDue(this) ?: false
 }
 
+/**
+ * 清除全部数据
+ * @param engine String?
+ */
 fun cache_clear(
     engine: String? = null
 ) {
     engine.getCacheEngine()?.clear()
 }
 
+/**
+ * 清除过期数据
+ * @param engine String?
+ */
 fun cache_clearDue(
     engine: String? = null
 ) {
     engine.getCacheEngine()?.clearDue()
 }
 
+/**
+ * 清除某个类型的全部数据
+ * @param engine String?
+ * @param type 类型
+ */
 fun cache_clearType(
     engine: String? = null,
     type: Int
@@ -97,30 +140,56 @@ fun cache_clearType(
     engine.getCacheEngine()?.clearType(type)
 }
 
+/**
+ * 通过 Key 获取 Item
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return Item
+ */
 fun <Item : ICacheEngine.EngineItem> String.cache_getItemByKey(
     engine: String? = null
 ): Item? {
     return engine.getCacheEngine()?.getItemByKey(this) as? Item
 }
 
+/**
+ * 获取有效 Key 集合
+ * @param engine String?
+ * @return 有效 Key 集合
+ */
 fun <Item : ICacheEngine.EngineItem> cache_getKeys(
     engine: String? = null
 ): List<Item?>? {
     return engine.getCacheEngine()?.keys as? List<Item?>
 }
 
+/**
+ * 获取永久有效 Key 集合
+ * @param engine String?
+ * @return 永久有效 Key 集合
+ */
 fun <Item : ICacheEngine.EngineItem> cache_getPermanentKeys(
     engine: String? = null
 ): List<Item?>? {
     return engine.getCacheEngine()?.permanentKeys as? List<Item?>
 }
 
+/**
+ * 获取有效 Key 数量
+ * @param engine String?
+ * @return 有效 Key 数量
+ */
 fun cache_getCount(
     engine: String? = null
 ): Int {
     return engine.getCacheEngine()?.count ?: 0
 }
 
+/**
+ * 获取有效 Key 占用总大小
+ * @param engine String?
+ * @return 有效 Key 占用总大小
+ */
 fun cache_getSize(
     engine: String? = null
 ): Long {
@@ -131,6 +200,14 @@ fun cache_getSize(
 // = 存储 =
 // =======
 
+/**
+ * 保存 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Int,
@@ -139,6 +216,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Long,
@@ -147,6 +232,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Float,
@@ -155,6 +248,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Double,
@@ -163,6 +264,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Boolean,
@@ -171,6 +280,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: String?,
@@ -179,6 +296,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 byte[] 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: ByteArray?,
@@ -187,6 +312,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 Bitmap 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Bitmap?,
@@ -195,6 +328,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 Drawable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Drawable?,
@@ -203,6 +344,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 Serializable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Serializable?,
@@ -211,6 +360,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 Parcelable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: Parcelable?,
@@ -219,6 +376,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 JSONObject 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: JSONObject?,
@@ -227,6 +392,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存 JSONArray 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun String.cache_put(
     engine: String? = null,
     value: JSONArray?,
@@ -235,6 +408,14 @@ fun String.cache_put(
     return engine.getCacheEngine()?.put(this, value, validTime) ?: false
 }
 
+/**
+ * 保存指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
+ * @return `true` success, `false` fail
+ */
 fun <T> String.cache_put(
     engine: String? = null,
     value: T,
@@ -247,66 +428,133 @@ fun <T> String.cache_put(
 // = 获取 =
 // =======
 
+/**
+ * 获取 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getInt(
     engine: String? = null
 ): Int {
     return engine.getCacheEngine()?.getInt(this) ?: INTEGER_DEFAULT
 }
 
+/**
+ * 获取 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getLong(
     engine: String? = null
 ): Long {
     return engine.getCacheEngine()?.getLong(this) ?: LONG_DEFAULT
 }
 
+/**
+ * 获取 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getFloat(
     engine: String? = null
 ): Float {
     return engine.getCacheEngine()?.getFloat(this) ?: FLOAT_DEFAULT
 }
 
+/**
+ * 获取 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getDouble(
     engine: String? = null
 ): Double {
     return engine.getCacheEngine()?.getDouble(this) ?: DOUBLE_DEFAULT
 }
 
+/**
+ * 获取 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getBoolean(
     engine: String? = null
 ): Boolean {
     return engine.getCacheEngine()?.getBoolean(this) ?: BOOLEAN_DEFAULT
 }
 
+/**
+ * 获取 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getString(
     engine: String? = null
 ): String? {
     return engine.getCacheEngine()?.getString(this)
 }
 
+/**
+ * 获取 byte[] 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getBytes(
     engine: String? = null
 ): ByteArray? {
     return engine.getCacheEngine()?.getBytes(this)
 }
 
+/**
+ * 获取 Bitmap 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getBitmap(
     engine: String? = null
 ): Bitmap? {
     return engine.getCacheEngine()?.getBitmap(this)
 }
 
+/**
+ * 获取 Drawable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getDrawable(
     engine: String? = null
 ): Drawable? {
     return engine.getCacheEngine()?.getDrawable(this)
 }
 
+/**
+ * 获取 Serializable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getSerializable(
     engine: String? = null
 ): Any? {
     return engine.getCacheEngine()?.getSerializable(this)
 }
 
+/**
+ * 获取 Parcelable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param creator Parcelable.Creator
+ * @return 存储的数据
+ */
 fun <T> String.cache_getParcelable(
     engine: String? = null,
     creator: Parcelable.Creator<T>?
@@ -314,18 +562,37 @@ fun <T> String.cache_getParcelable(
     return engine.getCacheEngine()?.getParcelable(this, creator)
 }
 
+/**
+ * 获取 JSONObject 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getJSONObject(
     engine: String? = null
 ): JSONObject? {
     return engine.getCacheEngine()?.getJSONObject(this)
 }
 
+/**
+ * 获取 JSONArray 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.cache_getJSONArray(
     engine: String? = null
 ): JSONArray? {
     return engine.getCacheEngine()?.getJSONArray(this)
 }
 
+/**
+ * 获取指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param typeOfT Type T
+ * @return instance of type
+ */
 fun <T> String.cache_getEntity(
     engine: String? = null,
     typeOfT: Type?
@@ -337,6 +604,13 @@ fun <T> String.cache_getEntity(
 // = 获取 ( 默认值 ) =
 // =================
 
+/**
+ * 获取 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getInt(
     engine: String? = null,
     defaultValue: Int
@@ -344,6 +618,13 @@ fun String.cache_getInt(
     return engine.getCacheEngine()?.getInt(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getLong(
     engine: String? = null,
     defaultValue: Long
@@ -351,6 +632,13 @@ fun String.cache_getLong(
     return engine.getCacheEngine()?.getLong(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getFloat(
     engine: String? = null,
     defaultValue: Float
@@ -358,6 +646,13 @@ fun String.cache_getFloat(
     return engine.getCacheEngine()?.getFloat(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getDouble(
     engine: String? = null,
     defaultValue: Double
@@ -365,6 +660,13 @@ fun String.cache_getDouble(
     return engine.getCacheEngine()?.getDouble(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getBoolean(
     engine: String? = null,
     defaultValue: Boolean
@@ -372,6 +674,13 @@ fun String.cache_getBoolean(
     return engine.getCacheEngine()?.getBoolean(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getString(
     engine: String? = null,
     defaultValue: String?
@@ -379,6 +688,13 @@ fun String.cache_getString(
     return engine.getCacheEngine()?.getString(this, defaultValue)
 }
 
+/**
+ * 获取 byte[] 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getBytes(
     engine: String? = null,
     defaultValue: ByteArray?
@@ -386,6 +702,13 @@ fun String.cache_getBytes(
     return engine.getCacheEngine()?.getBytes(this, defaultValue)
 }
 
+/**
+ * 获取 Bitmap 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getBitmap(
     engine: String? = null,
     defaultValue: Bitmap?
@@ -393,6 +716,13 @@ fun String.cache_getBitmap(
     return engine.getCacheEngine()?.getBitmap(this, defaultValue)
 }
 
+/**
+ * 获取 Drawable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getDrawable(
     engine: String? = null,
     defaultValue: Drawable?
@@ -400,6 +730,13 @@ fun String.cache_getDrawable(
     return engine.getCacheEngine()?.getDrawable(this, defaultValue)
 }
 
+/**
+ * 获取 Serializable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getSerializable(
     engine: String? = null,
     defaultValue: Any?
@@ -407,6 +744,14 @@ fun String.cache_getSerializable(
     return engine.getCacheEngine()?.getSerializable(this, defaultValue)
 }
 
+/**
+ * 获取 Parcelable 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param creator Parcelable.Creator
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun <T> String.cache_getParcelable(
     engine: String? = null,
     creator: Parcelable.Creator<T>?,
@@ -415,6 +760,13 @@ fun <T> String.cache_getParcelable(
     return engine.getCacheEngine()?.getParcelable(this, creator, defaultValue)
 }
 
+/**
+ * 获取 JSONObject 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getJSONObject(
     engine: String? = null,
     defaultValue: JSONObject?
@@ -422,6 +774,13 @@ fun String.cache_getJSONObject(
     return engine.getCacheEngine()?.getJSONObject(this, defaultValue)
 }
 
+/**
+ * 获取 JSONArray 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.cache_getJSONArray(
     engine: String? = null,
     defaultValue: JSONArray?
@@ -429,6 +788,14 @@ fun String.cache_getJSONArray(
     return engine.getCacheEngine()?.getJSONArray(this, defaultValue)
 }
 
+/**
+ * 获取指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param typeOfT Type T
+ * @param defaultValue 默认值
+ * @return instance of type
+ */
 fun <T> String.cache_getEntity(
     engine: String? = null,
     typeOfT: Type?,

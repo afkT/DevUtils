@@ -32,6 +32,12 @@ fun String?.getAnalyticsEngine(): IAnalyticsEngine<
 // = 对外公开方法 =
 // =============
 
+/**
+ * 初始化方法
+ * @receiver Application
+ * @param engine String?
+ * @param config Analytics Config
+ */
 fun <Config : IAnalyticsEngine.EngineConfig> Application.analytics_initialize(
     engine: String? = null,
     config: Config?
@@ -39,6 +45,12 @@ fun <Config : IAnalyticsEngine.EngineConfig> Application.analytics_initialize(
     engine.getAnalyticsEngine()?.initialize(this, config)
 }
 
+/**
+ * 绑定
+ * @receiver Context
+ * @param engine String?
+ * @param config Analytics Config
+ */
 fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_register(
     engine: String? = null,
     config: Config?
@@ -46,6 +58,12 @@ fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_register(
     engine.getAnalyticsEngine()?.register(this, config)
 }
 
+/**
+ * 解绑
+ * @receiver Context
+ * @param engine String?
+ * @param config Analytics Config
+ */
 fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_unregister(
     engine: String? = null,
     config: Config?
@@ -53,6 +71,12 @@ fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_unregister(
     engine.getAnalyticsEngine()?.unregister(this, config)
 }
 
+/**
+ * 数据统计 ( 埋点 ) 方法
+ * @receiver Analytics ( Data、Params ) Item
+ * @param engine String?
+ * @return `true` success, `false` fail
+ */
 fun <Item : IAnalyticsEngine.EngineItem> Item.analytics_track(
     engine: String? = null
 ): Boolean {

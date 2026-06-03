@@ -33,6 +33,12 @@ fun String?.getShareEngine(): IShareEngine<in IShareEngine.EngineConfig, in ISha
 // = 对外公开方法 =
 // =============
 
+/**
+ * 初始化方法
+ * @receiver Application
+ * @param engine String?
+ * @param config Share Config
+ */
 fun <Config : IShareEngine.EngineConfig> Application.share_initialize(
     engine: String? = null,
     config: Config?
@@ -44,6 +50,14 @@ fun <Config : IShareEngine.EngineConfig> Application.share_initialize(
 // = 分享操作 =
 // ==========
 
+/**
+ * 打开小程序
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
     engine: String? = null,
     params: Item?,
@@ -56,6 +70,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
     } ?: false
 }
 
+/**
+ * 分享小程序
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
     engine: String? = null,
     params: Item?,
@@ -68,6 +90,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
     } ?: false
 }
 
+/**
+ * 分享链接
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
     engine: String? = null,
     params: Item?,
@@ -80,6 +110,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
     } ?: false
 }
 
+/**
+ * 分享图片
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
     engine: String? = null,
     params: Item?,
@@ -92,6 +130,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
     } ?: false
 }
 
+/**
+ * 分享多张图片
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
     engine: String? = null,
     params: Item?,
@@ -104,6 +150,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
     } ?: false
 }
 
+/**
+ * 分享文本
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
     engine: String? = null,
     params: Item?,
@@ -116,6 +170,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
     } ?: false
 }
 
+/**
+ * 分享视频
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
     engine: String? = null,
     params: Item?,
@@ -128,6 +190,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
     } ?: false
 }
 
+/**
+ * 分享音乐
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
     engine: String? = null,
     params: Item?,
@@ -140,6 +210,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
     } ?: false
 }
 
+/**
+ * 分享表情
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
     engine: String? = null,
     params: Item?,
@@ -152,6 +230,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
     } ?: false
 }
 
+/**
+ * 分享文件
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
     engine: String? = null,
     params: Item?,
@@ -164,6 +250,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
     } ?: false
 }
 
+/**
+ * 分享操作 ( 通用扩展 )
+ * @receiver Activity
+ * @param engine String?
+ * @param params Share ( Data、Params ) Item
+ * @param listener 分享回调
+ * @return `true` success, `false` fail
+ */
 fun <Item : IShareEngine.EngineItem> Activity.share_share(
     engine: String? = null,
     params: Item?,
@@ -178,6 +272,14 @@ fun <Item : IShareEngine.EngineItem> Activity.share_share(
 
 // =
 
+/**
+ * 部分平台 Activity onActivityResult 额外调用处理
+ * @receiver Context
+ * @param engine String?
+ * @param requestCode 请求 code
+ * @param resultCode resultCode
+ * @param intent Intent
+ */
 fun Context.share_onActivityResult(
     engine: String? = null,
     requestCode: Int,

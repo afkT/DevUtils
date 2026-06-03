@@ -24,6 +24,11 @@ fun String?.getLogEngine(): ILogEngine? {
 // = Key Log Engine =
 // ==================
 
+/**
+ * 判断是否打印日志
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
 fun log_isPrintLog(
     engine: String? = null
 ): Boolean {
@@ -34,6 +39,12 @@ fun log_isPrintLog(
 // = 使用默认 TAG ( 日志打印方法 ) =
 // =============================
 
+/**
+ * 打印 Log.DEBUG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_d(
     engine: String? = null,
     message: String?,
@@ -42,6 +53,12 @@ fun log_d(
     engine.getLogEngine()?.d(message, *args)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_e(
     engine: String? = null,
     message: String?,
@@ -50,6 +67,11 @@ fun log_e(
     engine.getLogEngine()?.e(message, *args)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @param engine String?
+ * @param throwable 异常
+ */
 fun log_e(
     engine: String? = null,
     throwable: Throwable?
@@ -57,6 +79,13 @@ fun log_e(
     engine.getLogEngine()?.e(throwable)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @param engine String?
+ * @param throwable 异常
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_e(
     engine: String? = null,
     throwable: Throwable?,
@@ -66,6 +95,12 @@ fun log_e(
     engine.getLogEngine()?.e(throwable, message, *args)
 }
 
+/**
+ * 打印 Log.WARN
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_w(
     engine: String? = null,
     message: String?,
@@ -74,6 +109,12 @@ fun log_w(
     engine.getLogEngine()?.w(message, *args)
 }
 
+/**
+ * 打印 Log.INFO
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_i(
     engine: String? = null,
     message: String?,
@@ -82,6 +123,12 @@ fun log_i(
     engine.getLogEngine()?.i(message, *args)
 }
 
+/**
+ * 打印 Log.VERBOSE
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_v(
     engine: String? = null,
     message: String?,
@@ -90,6 +137,12 @@ fun log_v(
     engine.getLogEngine()?.v(message, *args)
 }
 
+/**
+ * 打印 Log.ASSERT
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun log_wtf(
     engine: String? = null,
     message: String?,
@@ -100,6 +153,11 @@ fun log_wtf(
 
 // =
 
+/**
+ * 格式化 JSON 格式数据, 并打印
+ * @param engine String?
+ * @param json JSON 格式字符串
+ */
 fun log_json(
     engine: String? = null,
     json: String?
@@ -107,6 +165,11 @@ fun log_json(
     engine.getLogEngine()?.json(json)
 }
 
+/**
+ * 格式化 XML 格式数据, 并打印
+ * @param engine String?
+ * @param xml XML 格式字符串
+ */
 fun log_xml(
     engine: String? = null,
     xml: String?
@@ -118,6 +181,13 @@ fun log_xml(
 // = 使用自定义 TAG ( 日志打印方法 ) =
 // ==============================
 
+/**
+ * 打印 Log.DEBUG
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_dTag(
     engine: String? = null,
     message: String?,
@@ -126,6 +196,13 @@ fun String.log_dTag(
     engine.getLogEngine()?.dTag(this, message, *args)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_eTag(
     engine: String? = null,
     message: String?,
@@ -134,6 +211,12 @@ fun String.log_eTag(
     engine.getLogEngine()?.eTag(this, message, *args)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param throwable 异常
+ */
 fun String.log_eTag(
     engine: String? = null,
     throwable: Throwable?
@@ -141,6 +224,14 @@ fun String.log_eTag(
     engine.getLogEngine()?.eTag(this, throwable)
 }
 
+/**
+ * 打印 Log.ERROR
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param throwable 异常
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_eTag(
     engine: String? = null,
     throwable: Throwable?,
@@ -150,6 +241,13 @@ fun String.log_eTag(
     engine.getLogEngine()?.eTag(this, throwable, message, *args)
 }
 
+/**
+ * 打印 Log.WARN
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_wTag(
     engine: String? = null,
     message: String?,
@@ -158,6 +256,13 @@ fun String.log_wTag(
     engine.getLogEngine()?.wTag(this, message, *args)
 }
 
+/**
+ * 打印 Log.INFO
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_iTag(
     engine: String? = null,
     message: String?,
@@ -166,6 +271,13 @@ fun String.log_iTag(
     engine.getLogEngine()?.iTag(this, message, *args)
 }
 
+/**
+ * 打印 Log.VERBOSE
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_vTag(
     engine: String? = null,
     message: String?,
@@ -174,6 +286,13 @@ fun String.log_vTag(
     engine.getLogEngine()?.vTag(this, message, *args)
 }
 
+/**
+ * 打印 Log.ASSERT
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param message 日志信息
+ * @param args 格式化参数
+ */
 fun String.log_wtfTag(
     engine: String? = null,
     message: String?,
@@ -184,6 +303,12 @@ fun String.log_wtfTag(
 
 // =
 
+/**
+ * 格式化 JSON 格式数据, 并打印
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param json JSON 格式字符串
+ */
 fun String.log_jsonTag(
     engine: String? = null,
     json: String?
@@ -191,6 +316,12 @@ fun String.log_jsonTag(
     engine.getLogEngine()?.jsonTag(this, json)
 }
 
+/**
+ * 格式化 XML 格式数据, 并打印
+ * @receiver 日志 TAG
+ * @param engine String?
+ * @param xml XML 格式字符串
+ */
 fun String.log_xmlTag(
     engine: String? = null,
     xml: String?

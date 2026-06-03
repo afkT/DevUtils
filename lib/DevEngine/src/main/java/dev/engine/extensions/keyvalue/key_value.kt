@@ -40,6 +40,11 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = 对外公开方法 =
 // =============
 
+/**
+ * 获取 Key-Value Engine Config
+ * @param engine String?
+ * @return Key-Value Config
+ */
 fun kv_getConfig(
     engine: String? = null
 ): Any? {
@@ -48,12 +53,22 @@ fun kv_getConfig(
 
 // =
 
+/**
+ * 移除数据
+ * @receiver 保存的 key
+ * @param engine String?
+ */
 fun String.kv_remove(
     engine: String? = null
 ) {
     engine.getKeyValueEngine()?.remove(this)
 }
 
+/**
+ * 移除数组的数据
+ * @param engine String?
+ * @param keys 保存的 key 数组
+ */
 fun kv_removeForKeys(
     engine: String? = null,
     keys: Array<out String>?
@@ -61,12 +76,22 @@ fun kv_removeForKeys(
     engine.getKeyValueEngine()?.removeForKeys(keys)
 }
 
+/**
+ * 是否存在 key
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
 fun String.kv_contains(
     engine: String? = null
 ): Boolean {
     return engine.getKeyValueEngine()?.contains(this) ?: false
 }
 
+/**
+ * 清除全部数据
+ * @param engine String?
+ */
 fun kv_clear(
     engine: String? = null
 ) {
@@ -77,6 +102,13 @@ fun kv_clear(
 // = 存储 =
 // =======
 
+/**
+ * 保存 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putInt(
     engine: String? = null,
     value: Int
@@ -84,6 +116,13 @@ fun String.kv_putInt(
     return engine.getKeyValueEngine()?.putInt(this, value) ?: false
 }
 
+/**
+ * 保存 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putLong(
     engine: String? = null,
     value: Long
@@ -91,6 +130,13 @@ fun String.kv_putLong(
     return engine.getKeyValueEngine()?.putLong(this, value) ?: false
 }
 
+/**
+ * 保存 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putFloat(
     engine: String? = null,
     value: Float
@@ -98,6 +144,13 @@ fun String.kv_putFloat(
     return engine.getKeyValueEngine()?.putFloat(this, value) ?: false
 }
 
+/**
+ * 保存 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putDouble(
     engine: String? = null,
     value: Double
@@ -105,6 +158,13 @@ fun String.kv_putDouble(
     return engine.getKeyValueEngine()?.putDouble(this, value) ?: false
 }
 
+/**
+ * 保存 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putBoolean(
     engine: String? = null,
     value: Boolean
@@ -112,6 +172,13 @@ fun String.kv_putBoolean(
     return engine.getKeyValueEngine()?.putBoolean(this, value) ?: false
 }
 
+/**
+ * 保存 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun String.kv_putString(
     engine: String? = null,
     value: String?
@@ -119,6 +186,13 @@ fun String.kv_putString(
     return engine.getKeyValueEngine()?.putString(this, value) ?: false
 }
 
+/**
+ * 保存指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param value 存储的数据
+ * @return `true` success, `false` fail
+ */
 fun <T : Any> String.kv_putEntity(
     engine: String? = null,
     value: T
@@ -130,42 +204,85 @@ fun <T : Any> String.kv_putEntity(
 // = 获取 =
 // =======
 
+/**
+ * 获取 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getInt(
     engine: String? = null
 ): Int {
     return engine.getKeyValueEngine()?.getInt(this) ?: INTEGER_DEFAULT
 }
 
+/**
+ * 获取 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getLong(
     engine: String? = null
 ): Long {
     return engine.getKeyValueEngine()?.getLong(this) ?: LONG_DEFAULT
 }
 
+/**
+ * 获取 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getFloat(
     engine: String? = null
 ): Float {
     return engine.getKeyValueEngine()?.getFloat(this) ?: FLOAT_DEFAULT
 }
 
+/**
+ * 获取 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getDouble(
     engine: String? = null
 ): Double {
     return engine.getKeyValueEngine()?.getDouble(this) ?: DOUBLE_DEFAULT
 }
 
+/**
+ * 获取 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getBoolean(
     engine: String? = null
 ): Boolean {
     return engine.getKeyValueEngine()?.getBoolean(this) ?: BOOLEAN_DEFAULT
 }
 
+/**
+ * 获取 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @return 存储的数据
+ */
 fun String.kv_getString(
     engine: String? = null
 ): String? {
     return engine.getKeyValueEngine()?.getString(this)
 }
 
+/**
+ * 获取指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param typeOfT Type T
+ * @return instance of type
+ */
 fun <T : Any> String.kv_getEntity(
     engine: String? = null,
     typeOfT: Type?
@@ -177,6 +294,13 @@ fun <T : Any> String.kv_getEntity(
 // = 获取 ( 默认值 ) =
 // =================
 
+/**
+ * 获取 int 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getInt(
     engine: String? = null,
     defaultValue: Int
@@ -184,6 +308,13 @@ fun String.kv_getInt(
     return engine.getKeyValueEngine()?.getInt(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 long 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getLong(
     engine: String? = null,
     defaultValue: Long
@@ -191,6 +322,13 @@ fun String.kv_getLong(
     return engine.getKeyValueEngine()?.getLong(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 float 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getFloat(
     engine: String? = null,
     defaultValue: Float
@@ -198,6 +336,13 @@ fun String.kv_getFloat(
     return engine.getKeyValueEngine()?.getFloat(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 double 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getDouble(
     engine: String? = null,
     defaultValue: Double
@@ -205,6 +350,13 @@ fun String.kv_getDouble(
     return engine.getKeyValueEngine()?.getDouble(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 boolean 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getBoolean(
     engine: String? = null,
     defaultValue: Boolean
@@ -212,6 +364,13 @@ fun String.kv_getBoolean(
     return engine.getKeyValueEngine()?.getBoolean(this, defaultValue) ?: defaultValue
 }
 
+/**
+ * 获取 String 类型的数据
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param defaultValue 默认值
+ * @return 存储的数据
+ */
 fun String.kv_getString(
     engine: String? = null,
     defaultValue: String?
@@ -219,6 +378,14 @@ fun String.kv_getString(
     return engine.getKeyValueEngine()?.getString(this, defaultValue)
 }
 
+/**
+ * 获取指定类型对象
+ * @receiver 保存的 key
+ * @param engine String?
+ * @param typeOfT Type T
+ * @param defaultValue 默认值
+ * @return instance of type
+ */
 fun <T : Any> String.kv_getEntity(
     engine: String? = null,
     typeOfT: Type?,

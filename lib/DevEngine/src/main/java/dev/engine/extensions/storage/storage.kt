@@ -34,6 +34,13 @@ fun String?.getStorageEngine(): IStorageEngine<in IStorageEngine.EngineItem, in 
 // = 外部存储 =
 // ==========
 
+/**
+ * 插入一张图片到外部存储空间 ( SDCard )
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertImageToExternal(
     engine: String? = null,
     params: Item?,
@@ -46,6 +53,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条视频到外部存储空间 ( SDCard )
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertVideoToExternal(
     engine: String? = null,
     params: Item?,
@@ -58,6 +72,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条音频到外部存储空间 ( SDCard )
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertAudioToExternal(
     engine: String? = null,
     params: Item?,
@@ -70,6 +91,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条文件资源到外部存储空间 ( SDCard )
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertDownloadToExternal(
     engine: String? = null,
     params: Item?,
@@ -82,6 +110,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条多媒体资源到外部存储空间 ( SDCard )
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertMediaToExternal(
     engine: String? = null,
     params: Item?,
@@ -98,6 +133,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
 // = 内部存储 =
 // ==========
 
+/**
+ * 插入一张图片到内部存储空间
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertImageToInternal(
     engine: String? = null,
     params: Item?,
@@ -110,6 +152,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条视频到内部存储空间
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertVideoToInternal(
     engine: String? = null,
     params: Item?,
@@ -122,6 +171,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条音频到内部存储空间
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertAudioToInternal(
     engine: String? = null,
     params: Item?,
@@ -134,6 +190,13 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条文件资源到内部存储空间
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertDownloadToInternal(
     engine: String? = null,
     params: Item?,
@@ -146,6 +209,16 @@ fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> Dev
     }
 }
 
+/**
+ * 插入一条多媒体资源到内部存储空间
+ * <pre>
+ *     并不局限于多媒体, 如文本存储、其他文件写入等
+ * </pre>
+ * @receiver 数据来源
+ * @param engine String?
+ * @param params Storage ( Data、Params ) Item
+ * @param listener 插入多媒体资源事件
+ */
 fun <Item : IStorageEngine.EngineItem, Result : IStorageEngine.EngineResult> DevSource.storage_insertMediaToInternal(
     engine: String? = null,
     params: Item?,

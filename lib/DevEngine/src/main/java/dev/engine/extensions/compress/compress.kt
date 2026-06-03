@@ -31,6 +31,14 @@ fun String?.getCompressEngine(): ICompressEngine<in ICompressEngine.EngineConfig
 // = 对外公开方法 =
 // =============
 
+/**
+ * 压缩方法
+ * @param engine String?
+ * @param data 待压缩图片
+ * @param config 压缩配置参数
+ * @param compressListener 压缩回调接口
+ * @return `true` success, `false` fail
+ */
 fun <Config : ICompressEngine.EngineConfig> compress_any(
     engine: String? = null,
     data: Any?,
@@ -40,6 +48,16 @@ fun <Config : ICompressEngine.EngineConfig> compress_any(
     return engine.getCompressEngine()?.compress(data, config, compressListener) ?: false
 }
 
+/**
+ * 压缩方法
+ * @param engine String?
+ * @param data 待压缩图片
+ * @param config 压缩配置参数
+ * @param filter 开启压缩条件
+ * @param renameListener 压缩前重命名接口
+ * @param compressListener 压缩回调接口
+ * @return `true` success, `false` fail
+ */
 fun <Config : ICompressEngine.EngineConfig> compress_any(
     engine: String? = null,
     data: Any?,
@@ -55,6 +73,14 @@ fun <Config : ICompressEngine.EngineConfig> compress_any(
 
 // =
 
+/**
+ * 压缩方法
+ * @param engine String?
+ * @param lists 待压缩图片集合
+ * @param config 压缩配置参数
+ * @param compressListener 压缩回调接口
+ * @return `true` success, `false` fail
+ */
 fun <Config : ICompressEngine.EngineConfig> compress_list(
     engine: String? = null,
     lists: List<*>?,
@@ -66,6 +92,16 @@ fun <Config : ICompressEngine.EngineConfig> compress_list(
     ) ?: false
 }
 
+/**
+ * 压缩方法
+ * @param engine String?
+ * @param lists 待压缩图片集合
+ * @param config 压缩配置参数
+ * @param filter 开启压缩条件
+ * @param renameListener 压缩前重命名接口
+ * @param compressListener 压缩回调接口
+ * @return `true` success, `false` fail
+ */
 fun <Config : ICompressEngine.EngineConfig> compress_list(
     engine: String? = null,
     lists: List<*>?,
