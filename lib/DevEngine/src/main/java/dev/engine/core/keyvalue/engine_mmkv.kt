@@ -18,7 +18,9 @@ open class MMKVConfig(
     private val cipher: Cipher? = null
 ) : IKeyValueEngine.EngineConfig {
 
-    // 通用加解密中间层
+    /**
+     * 通用加解密中间层
+     */
     override fun cipher(): Cipher? = cipher
 }
 
@@ -55,22 +57,42 @@ open class MMKVKeyValueEngineImpl(
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 获取 Key-Value Engine Config
+     * @return Key-Value Config
+     */
     override fun getConfig(): MMKVConfig {
         return mConfig
     }
 
+    /**
+     * 移除数据
+     * @param key 保存的 key
+     */
     override fun remove(key: String?) {
         mHolder.removeValueForKey(key)
     }
 
+    /**
+     * 移除数组的数据
+     * @param keys 保存的 key 数组
+     */
     override fun removeForKeys(keys: Array<String?>?) {
         mHolder.removeValuesForKeys(keys)
     }
 
+    /**
+     * 是否存在 key
+     * @param key 保存的 key
+     * @return `true` yes, `false` no
+     */
     override fun contains(key: String?): Boolean {
         return mHolder.containsKey(key)
     }
 
+    /**
+     * 清除全部数据
+     */
     override fun clear() {
         mHolder.clear()
     }
@@ -79,6 +101,12 @@ open class MMKVKeyValueEngineImpl(
     // = 存储 =
     // =======
 
+    /**
+     * 保存 int 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putInt(
         key: String?,
         value: Int
@@ -86,6 +114,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, value)
     }
 
+    /**
+     * 保存 long 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putLong(
         key: String?,
         value: Long
@@ -93,6 +127,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, value)
     }
 
+    /**
+     * 保存 float 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putFloat(
         key: String?,
         value: Float
@@ -100,6 +140,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, value)
     }
 
+    /**
+     * 保存 double 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putDouble(
         key: String?,
         value: Double
@@ -107,6 +153,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, value)
     }
 
+    /**
+     * 保存 boolean 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putBoolean(
         key: String?,
         value: Boolean
@@ -114,6 +166,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, value)
     }
 
+    /**
+     * 保存 String 类型的数据
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun putString(
         key: String?,
         value: String?
@@ -127,6 +185,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.encode(key, content)
     }
 
+    /**
+     * 保存指定类型对象
+     * @param key 保存的 key
+     * @param value 存储的数据
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> putEntity(
         key: String?,
         value: T
@@ -138,30 +202,66 @@ open class MMKVKeyValueEngineImpl(
     // = 获取 =
     // =======
 
+    /**
+     * 获取 int 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getInt(key: String?): Int {
         return mHolder.decodeInt(key)
     }
 
+    /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getLong(key: String?): Long {
         return mHolder.decodeLong(key)
     }
 
+    /**
+     * 获取 float 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getFloat(key: String?): Float {
         return mHolder.decodeFloat(key)
     }
 
+    /**
+     * 获取 double 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getDouble(key: String?): Double {
         return mHolder.decodeDouble(key)
     }
 
+    /**
+     * 获取 boolean 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getBoolean(key: String?): Boolean {
         return mHolder.decodeBool(key)
     }
 
+    /**
+     * 获取 String 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
     override fun getString(key: String?): String? {
         return mHolder.decodeString(key)
     }
 
+    /**
+     * 获取指定类型对象
+     * @param key 保存的 key
+     * @param typeOfT Type T
+     * @return instance of type
+     */
     override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?
@@ -171,6 +271,12 @@ open class MMKVKeyValueEngineImpl(
 
     // =
 
+    /**
+     * 获取 int 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getInt(
         key: String?,
         defaultValue: Int
@@ -178,6 +284,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.decodeInt(key, defaultValue)
     }
 
+    /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getLong(
         key: String?,
         defaultValue: Long
@@ -185,6 +297,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.decodeLong(key, defaultValue)
     }
 
+    /**
+     * 获取 float 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getFloat(
         key: String?,
         defaultValue: Float
@@ -192,6 +310,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.decodeFloat(key, defaultValue)
     }
 
+    /**
+     * 获取 double 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getDouble(
         key: String?,
         defaultValue: Double
@@ -199,6 +323,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.decodeDouble(key, defaultValue)
     }
 
+    /**
+     * 获取 boolean 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getBoolean(
         key: String?,
         defaultValue: Boolean
@@ -206,6 +336,12 @@ open class MMKVKeyValueEngineImpl(
         return mHolder.decodeBool(key, defaultValue)
     }
 
+    /**
+     * 获取 String 类型的数据
+     * @param key 保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
     override fun getString(
         key: String?,
         defaultValue: String?
@@ -219,6 +355,13 @@ open class MMKVKeyValueEngineImpl(
         return content
     }
 
+    /**
+     * 获取指定类型对象
+     * @param key 保存的 key
+     * @param typeOfT Type T
+     * @param defaultValue 默认值
+     * @return instance of type
+     */
     override fun <T : Any> getEntity(
         key: String?,
         typeOfT: Type?,

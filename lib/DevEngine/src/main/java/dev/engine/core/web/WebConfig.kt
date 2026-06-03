@@ -275,6 +275,9 @@ open class WebConfig private constructor(
     // = get/set =
     // ===========
 
+    /**
+     * 是否支持 JavaScript
+     */
     override fun javaScriptEnabled(): Boolean? {
         return mJavaScriptEnabled
     }
@@ -284,6 +287,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 渲染优先级 ( 内核相关对象 )
+     */
     override fun renderPriority(): Any? {
         return mRenderPriority
     }
@@ -293,6 +299,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否使用宽视图
+     */
     override fun useWideViewPort(): Boolean? {
         return mUseWideViewPort
     }
@@ -302,6 +311,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否按宽度缩小内容以适合屏幕
+     */
     override fun loadWithOverviewMode(): Boolean? {
         return mLoadWithOverviewMode
     }
@@ -311,6 +323,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 基础布局算法 ( 内核相关对象 )
+     */
     override fun layoutAlgorithm(): Any? {
         return mLayoutAlgorithm
     }
@@ -320,6 +335,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持缩放
+     */
     override fun supportZoom(): Boolean? {
         return mSupportZoom
     }
@@ -329,6 +347,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否显示内置缩放工具
+     */
     override fun builtInZoomControls(): Boolean? {
         return mBuiltInZoomControls
     }
@@ -338,6 +359,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否显示缩放工具
+     */
     override fun displayZoomControls(): Boolean? {
         return mDisplayZoomControls
     }
@@ -347,6 +371,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 文本缩放倍数
+     */
     override fun textZoom(): Int {
         return mTextZoom
     }
@@ -356,6 +383,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * WebView 字体
+     */
     override fun standardFontFamily(): String? {
         return mStandardFontFamily
     }
@@ -365,6 +395,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * WebView 字体大小
+     */
     override fun defaultFontSize(): Int {
         return mDefaultFontSize
     }
@@ -374,6 +407,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * WebView 支持最小字体大小
+     */
     override fun minimumFontSize(): Int {
         return mMinimumFontSize
     }
@@ -383,6 +419,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 等宽字体大小
+     */
     override fun defaultFixedFontSize(): Int {
         return mDefaultFixedFontSize
     }
@@ -392,6 +431,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 最小逻辑字体大小
+     */
     override fun minimumLogicalFontSize(): Int {
         return mMinimumLogicalFontSize
     }
@@ -401,6 +443,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 等宽字体
+     */
     override fun fixedFontFamily(): String? {
         return mFixedFontFamily
     }
@@ -410,6 +455,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 无衬线字体
+     */
     override fun sansSerifFontFamily(): String? {
         return mSansSerifFontFamily
     }
@@ -419,6 +467,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 衬线字体
+     */
     override fun serifFontFamily(): String? {
         return mSerifFontFamily
     }
@@ -428,6 +479,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 手写字体
+     */
     override fun cursiveFontFamily(): String? {
         return mCursiveFontFamily
     }
@@ -437,6 +491,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 奇幻字体
+     */
     override fun fantasyFontFamily(): String? {
         return mFantasyFontFamily
     }
@@ -446,6 +503,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 混合内容模式
+     */
     override fun mixedContentMode(): Int {
         return mMixedContentMode
     }
@@ -455,6 +515,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持自动加载图片
+     */
     override fun loadsImagesAutomatically(): Boolean? {
         return mLoadsImagesAutomatically
     }
@@ -464,6 +527,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持通过 JS 打开新窗口
+     */
     override fun javaScriptCanOpenWindowsAutomatically(): Boolean? {
         return mJavaScriptCanOpenWindowsAutomatically
     }
@@ -475,6 +541,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 编码格式
+     */
     override fun defaultTextEncodingName(): String? {
         return mDefaultTextEncodingName
     }
@@ -484,6 +553,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否允许网页执行定位操作
+     */
     override fun geolocationEnabled(): Boolean? {
         return mGeolocationEnabled
     }
@@ -493,6 +565,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 浏览器标识 UA
+     */
     override fun userAgentString(): String? {
         return mUserAgentString
     }
@@ -502,6 +577,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否可以访问文件
+     */
     override fun allowFileAccess(): Boolean? {
         return mAllowFileAccess
     }
@@ -511,6 +589,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
+     */
     override fun allowFileAccessFromFileURLs(): Boolean? {
         return mAllowFileAccessFromFileURLs
     }
@@ -520,6 +601,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否允许通过 file url 加载的 JS 可以访问其他的源
+     */
     override fun allowUniversalAccessFromFileURLs(): Boolean? {
         return mAllowUniversalAccessFromFileURLs
     }
@@ -531,6 +615,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否不从网络加载资源
+     */
     override fun blockNetworkLoads(): Boolean? {
         return mBlockNetworkLoads
     }
@@ -540,6 +627,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否不从网络加载图像资源
+     */
     override fun blockNetworkImage(): Boolean? {
         return mBlockNetworkImage
     }
@@ -549,6 +639,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否需要用户手势来播放媒体
+     */
     override fun mediaPlaybackRequiresUserGesture(): Boolean? {
         return mMediaPlaybackRequiresUserGesture
     }
@@ -560,6 +653,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * WebView 缓存模式 ( null 表示未设置, 兼容 WebSettings.LOAD_DEFAULT = -1 取值 )
+     */
     override fun cacheMode(): Int? {
         return mCacheMode
     }
@@ -569,6 +665,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持 DOM Storage
+     */
     override fun domStorageEnabled(): Boolean? {
         return mDomStorageEnabled
     }
@@ -578,6 +677,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否开启 Application Caches 功能 ( Android 13 已移除对应 WebSettings API )
+     */
     override fun appCacheEnabled(): Boolean? {
         return mAppCacheEnabled
     }
@@ -587,6 +689,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * Application Caches 地址 ( Android 13 已移除对应 WebSettings API )
+     */
     override fun appCachePath(): String? {
         return mAppCachePath
     }
@@ -596,6 +701,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * Application Caches 大小 ( Android 13 已移除对应 WebSettings API )
+     */
     override fun appCacheMaxSize(): Long {
         return mAppCacheMaxSize
     }
@@ -605,6 +713,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持数据库缓存
+     */
     override fun databaseEnabled(): Boolean? {
         return mDatabaseEnabled
     }
@@ -614,6 +725,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 数据库缓存路径
+     */
     override fun databasePath(): String? {
         return mDatabasePath
     }
@@ -623,6 +737,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否允许访问 content:// 资源
+     */
     override fun allowContentAccess(): Boolean? {
         return mAllowContentAccess
     }
@@ -632,6 +749,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否支持多窗口
+     */
     override fun supportMultipleWindows(): Boolean? {
         return mSupportMultipleWindows
     }
@@ -641,6 +761,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否在加载时获取初始焦点
+     */
     override fun needInitialFocus(): Boolean? {
         return mNeedInitialFocus
     }
@@ -650,6 +773,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否开启安全浏览 ( Android 8.0 起支持 )
+     */
     override fun safeBrowsingEnabled(): Boolean? {
         return mSafeBrowsingEnabled
     }
@@ -659,6 +785,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否开启离屏预渲染
+     */
     override fun offscreenPreRaster(): Boolean? {
         return mOffscreenPreRaster
     }
@@ -668,6 +797,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 禁用的 ActionMode 菜单项 ( Android 7.0 起支持 )
+     */
     override fun disabledActionModeMenuItems(): Int {
         return mDisabledActionModeMenuItems
     }
@@ -677,6 +809,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否允许算法暗色模式 ( AndroidX WebKit, 需 ALGORITHMIC_DARKENING 特性支持 )
+     */
     override fun algorithmicDarkeningAllowed(): Boolean? {
         return mAlgorithmicDarkeningAllowed
     }
@@ -686,6 +821,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用 PaymentRequest 支付 API ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+     */
     override fun paymentRequestEnabled(): Boolean? {
         return mPaymentRequestEnabled
     }
@@ -695,6 +833,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用企业认证 AppLink 策略 ( AndroidX WebKit, 需 ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY 特性支持 )
+     */
     override fun enterpriseAuthenticationAppLinkPolicyEnabled(): Boolean? {
         return mEnterpriseAuthenticationAppLinkPolicyEnabled
     }
@@ -706,6 +847,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 归因注册行为 ( AndroidX WebKit, 需 ATTRIBUTION_REGISTRATION_BEHAVIOR 特性支持 )
+     */
     override fun attributionRegistrationBehavior(): Int {
         return mAttributionRegistrationBehavior
     }
@@ -715,6 +859,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用 BackForwardCache 前进后退缓存 ( AndroidX WebKit, 需 BACK_FORWARD_CACHE 特性支持 )
+     */
     override fun backForwardCacheEnabled(): Boolean? {
         return mBackForwardCacheEnabled
     }
@@ -724,6 +871,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 预测式加载状态 ( AndroidX WebKit, 实验性, 需 SPECULATIVE_LOADING 特性支持 )
+     */
     override fun speculativeLoadingStatus(): Int {
         return mSpeculativeLoadingStatus
     }
@@ -733,6 +883,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 长按超链接上下文菜单项 ( 位标志组合, AndroidX WebKit, 需 HYPERLINK_CONTEXT_MENU_ITEMS 特性支持 )
+     */
     override fun hyperlinkContextMenuItems(): Int {
         return mHyperlinkContextMenuItems
     }
@@ -742,6 +895,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用 PaymentRequest hasEnrolledInstrument ( AndroidX WebKit, 需 PAYMENT_REQUEST 特性支持 )
+     */
     override fun hasEnrolledInstrumentEnabled(): Boolean? {
         return mHasEnrolledInstrumentEnabled
     }
@@ -751,6 +907,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否在 shouldInterceptRequest 中携带 Cookie ( AndroidX WebKit, 需 COOKIE_INTERCEPT 特性支持 )
+     */
     override fun cookiesIncludedInShouldInterceptRequest(): Boolean? {
         return mCookiesIncludedInShouldInterceptRequest
     }
@@ -762,6 +921,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * Web Authentication ( WebAuthn ) 支持级别 ( AndroidX WebKit, 需 WEB_AUTHENTICATION 特性支持 )
+     */
     override fun webAuthenticationSupport(): Int {
         return mWebAuthenticationSupport
     }
@@ -771,6 +933,9 @@ open class WebConfig private constructor(
         return this
     }
 
+    /**
+     * 是否强制网页可缩放 ( GeckoView forceUserScalable / X5 强制手势缩放; System WebView 无对应实现 )
+     */
     override fun forceUserScalable(): Boolean? {
         return mForceUserScalable
     }

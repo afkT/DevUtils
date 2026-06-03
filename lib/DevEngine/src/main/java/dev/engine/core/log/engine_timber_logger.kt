@@ -26,6 +26,11 @@ abstract class TimberEngineImpl : ILogEngine {
     // = 使用默认 TAG ( 日志打印方法 ) =
     // =============================
 
+    /**
+     * 打印 Log.DEBUG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun d(
         message: String?,
         vararg args: Any?
@@ -33,6 +38,11 @@ abstract class TimberEngineImpl : ILogEngine {
         dTag(null, message, *args)
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun e(
         message: String?,
         vararg args: Any?
@@ -40,10 +50,20 @@ abstract class TimberEngineImpl : ILogEngine {
         eTag(null, message, *args)
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param throwable 异常
+     */
     override fun e(throwable: Throwable?) {
         eTag(null, throwable)
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param throwable 异常
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun e(
         throwable: Throwable?,
         message: String?,
@@ -52,6 +72,11 @@ abstract class TimberEngineImpl : ILogEngine {
         eTag(null, throwable, message, *args)
     }
 
+    /**
+     * 打印 Log.WARN
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun w(
         message: String?,
         vararg args: Any?
@@ -59,6 +84,11 @@ abstract class TimberEngineImpl : ILogEngine {
         wTag(null, message, *args)
     }
 
+    /**
+     * 打印 Log.INFO
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun i(
         message: String?,
         vararg args: Any?
@@ -66,6 +96,11 @@ abstract class TimberEngineImpl : ILogEngine {
         iTag(null, message, *args)
     }
 
+    /**
+     * 打印 Log.VERBOSE
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun v(
         message: String?,
         vararg args: Any?
@@ -73,6 +108,11 @@ abstract class TimberEngineImpl : ILogEngine {
         vTag(null, message, *args)
     }
 
+    /**
+     * 打印 Log.ASSERT
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun wtf(
         message: String?,
         vararg args: Any?
@@ -80,10 +120,18 @@ abstract class TimberEngineImpl : ILogEngine {
         wtfTag(null, message, *args)
     }
 
+    /**
+     * 格式化 JSON 格式数据, 并打印
+     * @param json JSON 格式字符串
+     */
     override fun json(json: String?) {
         jsonTag(null, json)
     }
 
+    /**
+     * 格式化 XML 格式数据, 并打印
+     * @param xml XML 格式字符串
+     */
     override fun xml(xml: String?) {
         xmlTag(null, xml)
     }
@@ -92,6 +140,12 @@ abstract class TimberEngineImpl : ILogEngine {
     // = 使用自定义 TAG ( 日志打印方法 ) =
     // ===============================
 
+    /**
+     * 打印 Log.DEBUG
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun dTag(
         tag: String?,
         message: String?,
@@ -105,6 +159,12 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun eTag(
         tag: String?,
         message: String?,
@@ -118,6 +178,11 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param tag 日志 TAG
+     * @param throwable 异常
+     */
     override fun eTag(
         tag: String?,
         throwable: Throwable?
@@ -131,6 +196,13 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.ERROR
+     * @param tag 日志 TAG
+     * @param throwable 异常
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun eTag(
         tag: String?,
         throwable: Throwable?,
@@ -145,6 +217,12 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.WARN
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun wTag(
         tag: String?,
         message: String?,
@@ -158,6 +236,12 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.INFO
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun iTag(
         tag: String?,
         message: String?,
@@ -171,6 +255,12 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.VERBOSE
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun vTag(
         tag: String?,
         message: String?,
@@ -184,6 +274,12 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 打印 Log.ASSERT
+     * @param tag 日志 TAG
+     * @param message 日志信息
+     * @param args 格式化参数
+     */
     override fun wtfTag(
         tag: String?,
         message: String?,
@@ -197,6 +293,11 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 格式化 JSON 格式数据, 并打印
+     * @param tag 日志 TAG
+     * @param json JSON 格式字符串
+     */
     override fun jsonTag(
         tag: String?,
         json: String?
@@ -209,6 +310,11 @@ abstract class TimberEngineImpl : ILogEngine {
         }
     }
 
+    /**
+     * 格式化 XML 格式数据, 并打印
+     * @param tag 日志 TAG
+     * @param xml XML 格式字符串
+     */
     override fun xmlTag(
         tag: String?,
         xml: String?

@@ -95,22 +95,48 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
     // = 其他方法 =
     // ==========
 
+    /**
+     * 判断字符串是否 JSON 格式
+     * @param json 待校验 JSON String
+     * @return `true` yes, `false` no
+     */
     override fun isJSON(json: String?): Boolean {
         return FastjsonUtils.isJSON(json)
     }
 
+    /**
+     * 判断字符串是否 JSON Object 格式
+     * @param json 待校验 JSON String
+     * @return `true` yes, `false` no
+     */
     override fun isJSONObject(json: String?): Boolean {
         return FastjsonUtils.isJSONObject(json)
     }
 
+    /**
+     * 判断字符串是否 JSON Array 格式
+     * @param json 待校验 JSON String
+     * @return `true` yes, `false` no
+     */
     override fun isJSONArray(json: String?): Boolean {
         return FastjsonUtils.isJSONArray(json)
     }
 
+    /**
+     * JSON String 缩进处理
+     * @param json JSON String
+     * @return JSON String
+     */
     override fun toJsonIndent(json: String?): String? {
         return FastjsonUtils.toJsonIndent(json)
     }
 
+    /**
+     * JSON String 缩进处理
+     * @param json JSON String
+     * @param config 配置信息
+     * @return JSON String
+     */
     override fun toJsonIndent(
         json: String?,
         config: JSONConfig?
@@ -118,10 +144,21 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.toJsonIndent(json)
     }
 
+    /**
+     * Object 转 JSON String 并进行缩进处理
+     * @param obj 对象
+     * @return JSON String
+     */
     override fun toJsonIndent(obj: Any?): String? {
         return FastjsonUtils.toJsonIndent(obj)
     }
 
+    /**
+     * Object 转 JSON String 并进行缩进处理
+     * @param obj 对象
+     * @param config 配置信息
+     * @return JSON String
+     */
     override fun toJsonIndent(
         obj: Any?,
         config: JSONConfig?

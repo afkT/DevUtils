@@ -91,6 +91,9 @@ open class RefreshItem private constructor(
     // = get/set =
     // ===========
 
+    /**
+     * Refresh View
+     */
     override fun view(): WeakReference<View>? {
         return mView
     }
@@ -115,6 +118,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * Refresh Config
+     */
     override fun config(): IRefreshEngine.EngineConfig? {
         return mConfig
     }
@@ -124,6 +130,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 内容 View
+     */
     override fun content(): View? {
         return mContent
     }
@@ -133,10 +142,16 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 内容宽度
+     */
     override fun contentWidth(): Int {
         return mContentWidth
     }
 
+    /**
+     * 内容高度
+     */
     override fun contentHeight(): Int {
         return mContentHeight
     }
@@ -150,6 +165,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 刷新头
+     */
     override fun header(): Any? {
         return mHeader
     }
@@ -159,10 +177,16 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * Header 宽度
+     */
     override fun headerWidth(): Int {
         return mHeaderWidth
     }
 
+    /**
+     * Header 高度
+     */
     override fun headerHeight(): Int {
         return mHeaderHeight
     }
@@ -176,6 +200,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 加载尾
+     */
     override fun footer(): Any? {
         return mFooter
     }
@@ -185,10 +212,16 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * Footer 宽度
+     */
     override fun footerWidth(): Int {
         return mFooterWidth
     }
 
+    /**
+     * Footer 高度
+     */
     override fun footerHeight(): Int {
         return mFooterHeight
     }
@@ -202,6 +235,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 固定在 Header 下方的视图 id
+     */
     override fun fixedHeaderViewId(): Int {
         return mFixedHeaderViewId
     }
@@ -211,6 +247,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 固定在 Footer 上方的视图 id
+     */
     override fun fixedFooterViewId(): Int {
         return mFixedFooterViewId
     }
@@ -220,6 +259,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * Header 滚动时跟随滚动的视图 id
+     */
     override fun headerTranslationViewId(): Int {
         return mHeaderTranslationViewId
     }
@@ -229,6 +271,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * Footer 滚动时跟随滚动的视图 id
+     */
     override fun footerTranslationViewId(): Int {
         return mFooterTranslationViewId
     }
@@ -238,6 +283,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 滚动边界判断
+     */
     override fun scrollBoundaryDecider(): Any? {
         return mScrollBoundaryDecider
     }
@@ -249,6 +297,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 刷新监听
+     */
     override fun onRefreshListener(): IRefreshEngine.OnRefreshListener? {
         return mOnRefreshListener
     }
@@ -260,6 +311,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 加载更多监听
+     */
     override fun onLoadMoreListener(): IRefreshEngine.OnLoadMoreListener? {
         return mOnLoadMoreListener
     }
@@ -271,6 +325,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 刷新、加载更多监听
+     */
     override fun onRefreshLoadMoreListener(): IRefreshEngine.OnRefreshLoadMoreListener? {
         return mOnRefreshLoadMoreListener
     }
@@ -282,6 +339,9 @@ open class RefreshItem private constructor(
         return this
     }
 
+    /**
+     * 多功能监听
+     */
     override fun multiListener(): Any? {
         return mMultiListener
     }

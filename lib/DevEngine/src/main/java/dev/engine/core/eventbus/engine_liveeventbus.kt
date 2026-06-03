@@ -18,10 +18,21 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 初始化方法
+     * @param config EventBus Config
+     * @return `true` success, `false` fail
+     */
     override fun initialize(config: EventBusConfig): Boolean {
         return applyConfig(config)
     }
 
+    /**
+     * 应用事件配置
+     * @param key key
+     * @param config EventBus Config
+     * @return `true` success, `false` fail
+     */
     override fun config(
         key: String,
         config: EventBusConfig
@@ -40,6 +51,12 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
     // = 发送事件 =
     // ==========
 
+    /**
+     * 发送事件
+     * @param key key
+     * @param value 事件数据
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> post(
         key: String,
         value: T
@@ -49,6 +66,13 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 发送延迟事件
+     * @param key key
+     * @param value 事件数据
+     * @param delay 延迟毫秒数
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> postDelay(
         key: String,
         value: T,
@@ -59,6 +83,14 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 发送延迟事件
+     * @param key key
+     * @param lifecycle 生命周期持有者
+     * @param value 事件数据
+     * @param delay 延迟毫秒数
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> postDelay(
         key: String,
         lifecycle: LifecycleOwner,
@@ -70,6 +102,12 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 顺序发送事件
+     * @param key key
+     * @param value 事件数据
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> postOrderly(
         key: String,
         value: T
@@ -79,6 +117,12 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 跨进程发送事件
+     * @param key key
+     * @param value 事件数据
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> postAcrossProcess(
         key: String,
         value: T
@@ -88,6 +132,12 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 跨 App 发送事件
+     * @param key key
+     * @param value 事件数据
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> postAcrossApp(
         key: String,
         value: T
@@ -97,6 +147,12 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 广播形式发送事件
+     * @param key key
+     * @param value 事件数据
+     * @return `true` success, `false` fail
+     */
     @Deprecated(
         message = "建议使用 postAcrossProcess 或 postAcrossApp",
         replaceWith = ReplaceWith("postAcrossApp(key, value)")
@@ -111,6 +167,14 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 广播形式发送事件
+     * @param key key
+     * @param value 事件数据
+     * @param foreground `true` 前台广播, `false` 后台广播
+     * @param onlyInApp `true` 只在 App 内有效, `false` 全局有效
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> broadcast(
         key: String,
         value: T,
@@ -126,6 +190,14 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
     // = 观察事件 =
     // ==========
 
+    /**
+     * 注册生命周期感知观察者
+     * @param key key
+     * @param type 事件类型
+     * @param lifecycle 生命周期持有者
+     * @param observer 事件观察者
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> observe(
         key: String,
         type: Class<T>,
@@ -137,6 +209,14 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 注册生命周期感知 Sticky 观察者
+     * @param key key
+     * @param type 事件类型
+     * @param lifecycle 生命周期持有者
+     * @param observer 事件观察者
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> observeSticky(
         key: String,
         type: Class<T>,
@@ -148,6 +228,13 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 注册永久观察者
+     * @param key key
+     * @param type 事件类型
+     * @param observer 事件观察者
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> observeForever(
         key: String,
         type: Class<T>,
@@ -158,6 +245,13 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 注册永久 Sticky 观察者
+     * @param key key
+     * @param type 事件类型
+     * @param observer 事件观察者
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> observeStickyForever(
         key: String,
         type: Class<T>,
@@ -168,6 +262,13 @@ open class LiveEventBusEngineImpl : IEventBusEngine<EventBusConfig> {
         } ?: false
     }
 
+    /**
+     * 移除永久观察者
+     * @param key key
+     * @param type 事件类型
+     * @param observer 事件观察者
+     * @return `true` success, `false` fail
+     */
     override fun <T : Any> removeObserver(
         key: String,
         type: Class<T>,

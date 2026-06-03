@@ -52,6 +52,9 @@ open class WebItem private constructor(
     // = get/set =
     // ===========
 
+    /**
+     * WebView
+     */
     override fun view(): WeakReference<View>? {
         return mView
     }
@@ -74,6 +77,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * WebView Config
+     */
     override fun config(): IWebEngine.EngineConfig? {
         return mConfig
     }
@@ -83,6 +89,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * 处理各种通知和请求事件对象 ( WebViewClient )
+     */
     override fun webViewClient(): Any? {
         return mWebViewClient
     }
@@ -92,6 +101,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * 辅助处理 Javascript 对话框、标题等对象 ( WebChromeClient )
+     */
     override fun webChromeClient(): Any? {
         return mWebChromeClient
     }
@@ -101,6 +113,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * 下载监听 ( DownloadListener )
+     */
     override fun downloadListener(): Any? {
         return mDownloadListener
     }
@@ -110,6 +125,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * 查找结果监听 ( FindListener )
+     */
     override fun findListener(): Any? {
         return mFindListener
     }
@@ -119,6 +137,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * JS 交互注入对象集合 ( interfaceName-obj )
+     */
     override fun javascriptInterfaces(): MutableMap<String, Any> {
         return mJavascriptInterfaces
     }
@@ -137,6 +158,9 @@ open class WebItem private constructor(
         return this
     }
 
+    /**
+     * 页面加载监听
+     */
     override fun onWebListener(): IWebEngine.OnWebListener? {
         return mOnWebListener
     }

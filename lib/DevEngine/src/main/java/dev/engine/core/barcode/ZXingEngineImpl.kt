@@ -40,10 +40,18 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 初始化方法
+     * @param config BarCode Config
+     */
     override fun initialize(config: BarCodeConfig?) {
         mBarCodeConfig = config
     }
 
+    /**
+     * 获取 BarCode Engine Config
+     * @return BarCode Engine Config
+     */
     override fun getConfig(): BarCodeConfig? {
         return mBarCodeConfig
     }
@@ -52,6 +60,11 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
     // = 生成条码 =
     // ==========
 
+    /**
+     * 编码 ( 生成 ) 条码图片
+     * @param params BarCode ( Data、Params ) Item
+     * @param callback 生成结果回调
+     */
     override fun encodeBarCode(
         params: BarCodeData?,
         callback: BarCodeEncodeCallback?
@@ -77,6 +90,14 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
         }
     }
 
+    /**
+     * 编码 ( 生成 ) 条码图片
+     * <pre>
+     *     该方法是耗时操作, 请在子线程中调用
+     * </pre>
+     * @param params BarCode ( Data、Params ) Item
+     * @return 条码图片
+     */
     override fun encodeBarCodeSync(params: BarCodeData?): Bitmap {
         val error = isValidData(params)
         if (error == null && params != null) {
@@ -110,6 +131,11 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
     // = 解析条码 =
     // ==========
 
+    /**
+     * 解码 ( 解析 ) 条码图片
+     * @param bitmap 待解析的条码图片
+     * @param callback 解析结果回调
+     */
     override fun decodeBarCode(
         bitmap: Bitmap?,
         callback: BarCodeDecodeCallback<BarCodeResult>?
@@ -131,6 +157,14 @@ open class ZXingEngineImpl(threadNumber: Int = 6) : IBarCodeEngine<BarCodeConfig
         }
     }
 
+    /**
+     * 解码 ( 解析 ) 条码图片
+     * <pre>
+     *     该方法是耗时操作, 请在子线程中调用
+     * </pre>
+     * @param bitmap 待解析的条码图片
+     * @return 解析结果
+     */
     override fun decodeBarCodeSync(bitmap: Bitmap?): BarCodeResult {
         if (bitmap != null) {
             val config = resolveBarCodeEngineConfig()

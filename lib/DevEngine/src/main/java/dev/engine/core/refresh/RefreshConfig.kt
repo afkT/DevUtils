@@ -182,6 +182,9 @@ open class RefreshConfig private constructor(
     // = get/set =
     // ===========
 
+    /**
+     * Header 高度 ( dp )
+     */
     override fun headerHeight(): Float {
         return mHeaderHeight
     }
@@ -191,6 +194,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header 高度 ( px )
+     */
     override fun headerHeightPx(): Int {
         return mHeaderHeightPx
     }
@@ -200,6 +206,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 高度 ( dp )
+     */
     override fun footerHeight(): Float {
         return mFooterHeight
     }
@@ -209,6 +218,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 高度 ( px )
+     */
     override fun footerHeightPx(): Int {
         return mFooterHeightPx
     }
@@ -218,6 +230,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header 起始偏移量 ( dp )
+     */
     override fun headerInsetStart(): Float {
         return mHeaderInsetStart
     }
@@ -227,6 +242,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header 起始偏移量 ( px )
+     */
     override fun headerInsetStartPx(): Int {
         return mHeaderInsetStartPx
     }
@@ -236,6 +254,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 起始偏移量 ( dp )
+     */
     override fun footerInsetStart(): Float {
         return mFooterInsetStart
     }
@@ -245,6 +266,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 起始偏移量 ( px )
+     */
     override fun footerInsetStartPx(): Int {
         return mFooterInsetStartPx
     }
@@ -254,6 +278,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 拖拽阻尼比率
+     */
     override fun dragRate(): Float {
         return mDragRate
     }
@@ -263,6 +290,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header 最大拖拽高度比率
+     */
     override fun headerMaxDragRate(): Float {
         return mHeaderMaxDragRate
     }
@@ -272,6 +302,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 最大拖拽高度比率
+     */
     override fun footerMaxDragRate(): Float {
         return mFooterMaxDragRate
     }
@@ -281,6 +314,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header 触发刷新比率
+     */
     override fun headerTriggerRate(): Float {
         return mHeaderTriggerRate
     }
@@ -290,6 +326,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer 触发加载比率
+     */
     override fun footerTriggerRate(): Float {
         return mFooterTriggerRate
     }
@@ -299,6 +338,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 回弹动画插值器
+     */
     override fun reboundInterpolator(): Interpolator? {
         return mReboundInterpolator
     }
@@ -308,6 +350,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 回弹动画时长
+     */
     override fun reboundDuration(): Int {
         return mReboundDuration
     }
@@ -317,6 +362,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用下拉刷新
+     */
     override fun enableRefresh(): Boolean? {
         return mEnableRefresh
     }
@@ -326,6 +374,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用上拉加载更多
+     */
     override fun enableLoadMore(): Boolean? {
         return mEnableLoadMore
     }
@@ -335,6 +386,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用滚动到底部自动加载
+     */
     override fun enableAutoLoadMore(): Boolean? {
         return mEnableAutoLoadMore
     }
@@ -344,6 +398,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用 Header 移动内容
+     */
     override fun enableHeaderTranslationContent(): Boolean? {
         return mEnableHeaderTranslationContent
     }
@@ -355,6 +412,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用 Footer 移动内容
+     */
     override fun enableFooterTranslationContent(): Boolean? {
         return mEnableFooterTranslationContent
     }
@@ -366,6 +426,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用越界回弹
+     */
     override fun enableOverScrollBounce(): Boolean? {
         return mEnableOverScrollBounce
     }
@@ -375,6 +438,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用纯滚动模式
+     */
     override fun enablePureScrollMode(): Boolean? {
         return mEnablePureScrollMode
     }
@@ -384,6 +450,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 加载完成后是否滚动内容显示新数据
+     */
     override fun enableScrollContentWhenLoaded(): Boolean? {
         return mEnableScrollContentWhenLoaded
     }
@@ -395,6 +464,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 刷新完成后是否滚动内容显示新数据
+     */
     override fun enableScrollContentWhenRefreshed(): Boolean? {
         return mEnableScrollContentWhenRefreshed
     }
@@ -406,6 +478,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 内容不满一页时是否可以加载更多
+     */
     override fun enableLoadMoreWhenContentNotFull(): Boolean? {
         return mEnableLoadMoreWhenContentNotFull
     }
@@ -417,6 +492,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用越界拖动
+     */
     override fun enableOverScrollDrag(): Boolean? {
         return mEnableOverScrollDrag
     }
@@ -426,6 +504,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 没有更多数据后 Footer 是否跟随内容
+     */
     override fun enableFooterFollowWhenNoMoreData(): Boolean? {
         return mEnableFooterFollowWhenNoMoreData
     }
@@ -437,6 +518,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Header FixedBehind 时是否裁剪 Header
+     */
     override fun enableClipHeaderWhenFixedBehind(): Boolean? {
         return mEnableClipHeaderWhenFixedBehind
     }
@@ -448,6 +532,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * Footer FixedBehind 时是否裁剪 Footer
+     */
     override fun enableClipFooterWhenFixedBehind(): Boolean? {
         return mEnableClipFooterWhenFixedBehind
     }
@@ -459,6 +546,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 是否启用嵌套滚动
+     */
     override fun enableNestedScroll(): Boolean? {
         return mEnableNestedScroll
     }
@@ -468,6 +558,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 刷新时是否禁用内容操作
+     */
     override fun disableContentWhenRefresh(): Boolean? {
         return mDisableContentWhenRefresh
     }
@@ -479,6 +572,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 加载时是否禁用内容操作
+     */
     override fun disableContentWhenLoading(): Boolean? {
         return mDisableContentWhenLoading
     }
@@ -490,6 +586,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 主题色
+     */
     override fun primaryColors(): IntArray? {
         return mPrimaryColors
     }
@@ -499,6 +598,9 @@ open class RefreshConfig private constructor(
         return this
     }
 
+    /**
+     * 主题色资源 id
+     */
     override fun primaryColorIds(): IntArray? {
         return mPrimaryColorIds
     }

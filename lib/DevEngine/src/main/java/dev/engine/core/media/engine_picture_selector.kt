@@ -43,10 +43,18 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     // = 配置方法 =
     // ==========
 
+    /**
+     * 获取全局配置
+     * @return 全局配置信息
+     */
     override fun getConfig(): MediaConfig {
         return PIC_CONFIG
     }
 
+    /**
+     * 设置全局配置
+     * @param config 新的配置信息
+     */
     override fun setConfig(config: MediaConfig?) {
         PIC_CONFIG.set(config)
     }
@@ -55,10 +63,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 打开相册拍照
+     * @param activity Activity
+     * @return `true` success, `false` fail
+     */
     override fun openCamera(activity: Activity?): Boolean {
         return openCamera(activity, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册拍照
+     * @param activity Activity
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openCamera(
         activity: Activity?,
         config: MediaConfig?
@@ -66,10 +85,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         return startCameraModel(config)
     }
 
+    /**
+     * 打开相册拍照
+     * @param fragment Fragment
+     * @return `true` success, `false` fail
+     */
     override fun openCamera(fragment: Fragment?): Boolean {
         return openCamera(fragment, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册拍照
+     * @param fragment Fragment
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openCamera(
         fragment: Fragment?,
         config: MediaConfig?
@@ -79,10 +109,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // =
 
+    /**
+     * 打开相册选择
+     * @param activity Activity
+     * @return `true` success, `false` fail
+     */
     override fun openGallery(activity: Activity?): Boolean {
         return openGallery(activity, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册选择
+     * @param activity Activity
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openGallery(
         activity: Activity?,
         config: MediaConfig?
@@ -90,10 +131,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         return startGalleryModel(config)
     }
 
+    /**
+     * 打开相册选择
+     * @param fragment Fragment
+     * @return `true` success, `false` fail
+     */
     override fun openGallery(fragment: Fragment?): Boolean {
         return openGallery(fragment, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册选择
+     * @param fragment Fragment
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openGallery(
         fragment: Fragment?,
         config: MediaConfig?
@@ -103,10 +155,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // =
 
+    /**
+     * 打开相册预览
+     * @param activity Activity
+     * @return `true` success, `false` fail
+     */
     override fun openPreview(activity: Activity?): Boolean {
         return openPreview(activity, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册预览
+     * @param activity Activity
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openPreview(
         activity: Activity?,
         config: MediaConfig?
@@ -114,10 +177,21 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         return startPreviewModel(config)
     }
 
+    /**
+     * 打开相册预览
+     * @param fragment Fragment
+     * @return `true` success, `false` fail
+     */
     override fun openPreview(fragment: Fragment?): Boolean {
         return openPreview(fragment, PIC_CONFIG)
     }
 
+    /**
+     * 打开相册预览
+     * @param fragment Fragment
+     * @param config 配置信息
+     * @return `true` success, `false` fail
+     */
     override fun openPreview(
         fragment: Fragment?,
         config: MediaConfig?
@@ -129,6 +203,11 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
     // = 其他方法 =
     // ==========
 
+    /**
+     * 删除缓存文件
+     * @param context Context
+     * @param type 类型 ( 图片、视频 )
+     */
     override fun deleteCacheDirFile(
         context: Context?,
         type: Int
@@ -140,6 +219,10 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         }
     }
 
+    /**
+     * 删除全部缓存文件
+     * @param context Context
+     */
     override fun deleteAllCacheDirFile(context: Context?) {
         try {
             PictureCacheManager.deleteAllCacheDirFile(context)
@@ -148,6 +231,12 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         }
     }
 
+    /**
+     * 是否图片选择 ( onActivityResult )
+     * @param requestCode 请求 code
+     * @param resultCode resultCode
+     * @return `true` success, `false` fail
+     */
     override fun isMediaSelectorResult(
         requestCode: Int,
         resultCode: Int
@@ -157,6 +246,11 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
 
     // =
 
+    /**
+     * 获取 Media Selector Data List
+     * @param intent onActivityResult Intent data
+     * @return Media Selector Data List
+     */
     override fun getSelectors(intent: Intent?): MutableList<MediaData> {
         val lists = mutableListOf<MediaData>()
         val result = PictureSelector.obtainSelectorList(intent)
@@ -168,6 +262,12 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         return lists
     }
 
+    /**
+     * 获取 Media Selector Uri List
+     * @param intent onActivityResult Intent data
+     * @param original 是否使用原图
+     * @return Media Selector Uri List
+     */
     override fun getSelectorUris(
         intent: Intent?,
         original: Boolean
@@ -190,11 +290,22 @@ open class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, MediaData> {
         return lists
     }
 
+    /**
+     * 获取 Single Media Selector Data
+     * @param intent onActivityResult Intent data
+     * @return Single Media Selector Data
+     */
     override fun getSingleSelector(intent: Intent?): MediaData? {
         val lists = getSelectors(intent)
         return if (lists.size > 0) lists[0] else null
     }
 
+    /**
+     * 获取 Single Media Selector Uri
+     * @param intent onActivityResult Intent data
+     * @param original 是否使用原图
+     * @return Single Media Selector Uri
+     */
     override fun getSingleSelectorUri(
         intent: Intent?,
         original: Boolean

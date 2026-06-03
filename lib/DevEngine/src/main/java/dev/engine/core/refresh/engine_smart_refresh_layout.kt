@@ -24,10 +24,19 @@ open class SmartRefreshLayoutEngineImpl(
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 获取 Refresh Engine Config
+     * @return Refresh Config
+     */
     override fun getConfig(): RefreshConfig {
         return mConfig
     }
 
+    /**
+     * 初始化 Refresh View
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun initialize(item: RefreshItem?): Boolean {
         val refreshLayout = getRefreshLayout(item) ?: return false
         applyConfig(item, getRefreshConfig(item))
@@ -104,6 +113,12 @@ open class SmartRefreshLayoutEngineImpl(
         return true
     }
 
+    /**
+     * 应用 Refresh Config
+     * @param item Refresh Item
+     * @param config Refresh Config
+     * @return `true` success, `false` fail
+     */
     override fun applyConfig(
         item: RefreshItem?,
         config: RefreshConfig?
@@ -234,6 +249,12 @@ open class SmartRefreshLayoutEngineImpl(
     // = 尺寸配置 =
     // ==========
 
+    /**
+     * 设置 Header 高度
+     * @param item Refresh Item
+     * @param dp dp
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderHeight(
         item: RefreshItem?,
         dp: Float
@@ -243,6 +264,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 高度
+     * @param item Refresh Item
+     * @param px px
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderHeightPx(
         item: RefreshItem?,
         px: Int
@@ -252,6 +279,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 高度
+     * @param item Refresh Item
+     * @param dp dp
+     * @return `true` success, `false` fail
+     */
     override fun setFooterHeight(
         item: RefreshItem?,
         dp: Float
@@ -261,6 +294,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 高度
+     * @param item Refresh Item
+     * @param px px
+     * @return `true` success, `false` fail
+     */
     override fun setFooterHeightPx(
         item: RefreshItem?,
         px: Int
@@ -270,6 +309,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 起始偏移量
+     * @param item Refresh Item
+     * @param dp dp
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderInsetStart(
         item: RefreshItem?,
         dp: Float
@@ -279,6 +324,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 起始偏移量
+     * @param item Refresh Item
+     * @param px px
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderInsetStartPx(
         item: RefreshItem?,
         px: Int
@@ -288,6 +339,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 起始偏移量
+     * @param item Refresh Item
+     * @param dp dp
+     * @return `true` success, `false` fail
+     */
     override fun setFooterInsetStart(
         item: RefreshItem?,
         dp: Float
@@ -297,6 +354,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 起始偏移量
+     * @param item Refresh Item
+     * @param px px
+     * @return `true` success, `false` fail
+     */
     override fun setFooterInsetStartPx(
         item: RefreshItem?,
         px: Int
@@ -310,6 +373,12 @@ open class SmartRefreshLayoutEngineImpl(
     // = 拖拽动画 =
     // ==========
 
+    /**
+     * 设置拖拽阻尼比率
+     * @param item Refresh Item
+     * @param rate 阻尼比率
+     * @return `true` success, `false` fail
+     */
     override fun setDragRate(
         item: RefreshItem?,
         rate: Float
@@ -319,6 +388,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 最大拖拽高度比率
+     * @param item Refresh Item
+     * @param rate 比率
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderMaxDragRate(
         item: RefreshItem?,
         rate: Float
@@ -328,6 +403,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 最大拖拽高度比率
+     * @param item Refresh Item
+     * @param rate 比率
+     * @return `true` success, `false` fail
+     */
     override fun setFooterMaxDragRate(
         item: RefreshItem?,
         rate: Float
@@ -337,6 +418,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 触发刷新比率
+     * @param item Refresh Item
+     * @param rate 比率
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderTriggerRate(
         item: RefreshItem?,
         rate: Float
@@ -346,6 +433,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 触发加载比率
+     * @param item Refresh Item
+     * @param rate 比率
+     * @return `true` success, `false` fail
+     */
     override fun setFooterTriggerRate(
         item: RefreshItem?,
         rate: Float
@@ -355,6 +448,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置回弹动画插值器
+     * @param item Refresh Item
+     * @param interpolator 动画插值器
+     * @return `true` success, `false` fail
+     */
     override fun setReboundInterpolator(
         item: RefreshItem?,
         interpolator: Interpolator?
@@ -365,6 +464,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置回弹动画时长
+     * @param item Refresh Item
+     * @param duration 时长
+     * @return `true` success, `false` fail
+     */
     override fun setReboundDuration(
         item: RefreshItem?,
         duration: Int
@@ -378,6 +483,12 @@ open class SmartRefreshLayoutEngineImpl(
     // = 组件设置 =
     // ==========
 
+    /**
+     * 设置刷新头
+     * @param item Refresh Item
+     * @param header 刷新头
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshHeader(
         item: RefreshItem?,
         header: Any?
@@ -387,6 +498,14 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置刷新头
+     * @param item Refresh Item
+     * @param header 刷新头
+     * @param width 宽度
+     * @param height 高度
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshHeader(
         item: RefreshItem?,
         header: Any?,
@@ -398,6 +517,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置加载尾
+     * @param item Refresh Item
+     * @param footer 加载尾
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshFooter(
         item: RefreshItem?,
         footer: Any?
@@ -407,6 +532,14 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置加载尾
+     * @param item Refresh Item
+     * @param footer 加载尾
+     * @param width 宽度
+     * @param height 高度
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshFooter(
         item: RefreshItem?,
         footer: Any?,
@@ -418,6 +551,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置内容 View
+     * @param item Refresh Item
+     * @param content 内容 View
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshContent(
         item: RefreshItem?,
         content: View?
@@ -428,6 +567,14 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置内容 View
+     * @param item Refresh Item
+     * @param content 内容 View
+     * @param width 宽度
+     * @param height 高度
+     * @return `true` success, `false` fail
+     */
     override fun setRefreshContent(
         item: RefreshItem?,
         content: View?,
@@ -444,6 +591,12 @@ open class SmartRefreshLayoutEngineImpl(
     // = 开关配置 =
     // ==========
 
+    /**
+     * 是否启用下拉刷新
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableRefresh(
         item: RefreshItem?,
         enabled: Boolean
@@ -454,6 +607,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用上拉加载更多
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableLoadMore(
         item: RefreshItem?,
         enabled: Boolean
@@ -464,6 +623,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用滚动到底部自动加载
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableAutoLoadMore(
         item: RefreshItem?,
         enabled: Boolean
@@ -474,6 +639,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用 Header 移动内容
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableHeaderTranslationContent(
         item: RefreshItem?,
         enabled: Boolean
@@ -483,6 +654,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用 Footer 移动内容
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableFooterTranslationContent(
         item: RefreshItem?,
         enabled: Boolean
@@ -492,6 +669,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用越界回弹
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableOverScrollBounce(
         item: RefreshItem?,
         enabled: Boolean
@@ -501,6 +684,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用纯滚动模式
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnablePureScrollMode(
         item: RefreshItem?,
         enabled: Boolean
@@ -510,6 +699,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 加载完成后是否滚动内容显示新数据
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableScrollContentWhenLoaded(
         item: RefreshItem?,
         enabled: Boolean
@@ -519,6 +714,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 刷新完成后是否滚动内容显示新数据
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableScrollContentWhenRefreshed(
         item: RefreshItem?,
         enabled: Boolean
@@ -528,6 +729,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 内容不满一页时是否可以加载更多
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableLoadMoreWhenContentNotFull(
         item: RefreshItem?,
         enabled: Boolean
@@ -537,6 +744,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用越界拖动
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableOverScrollDrag(
         item: RefreshItem?,
         enabled: Boolean
@@ -546,6 +759,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 没有更多数据后 Footer 是否跟随内容
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableFooterFollowWhenNoMoreData(
         item: RefreshItem?,
         enabled: Boolean
@@ -555,6 +774,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * Header FixedBehind 时是否裁剪 Header
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableClipHeaderWhenFixedBehind(
         item: RefreshItem?,
         enabled: Boolean
@@ -564,6 +789,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * Footer FixedBehind 时是否裁剪 Footer
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableClipFooterWhenFixedBehind(
         item: RefreshItem?,
         enabled: Boolean
@@ -573,6 +804,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否启用嵌套滚动
+     * @param item Refresh Item
+     * @param enabled 是否启用
+     * @return `true` success, `false` fail
+     */
     override fun setEnableNestedScroll(
         item: RefreshItem?,
         enabled: Boolean
@@ -582,6 +819,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置固定在 Header 下方的视图 id
+     * @param item Refresh Item
+     * @param id 视图 id
+     * @return `true` success, `false` fail
+     */
     override fun setFixedHeaderViewId(
         item: RefreshItem?,
         id: Int
@@ -591,6 +834,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置固定在 Footer 上方的视图 id
+     * @param item Refresh Item
+     * @param id 视图 id
+     * @return `true` success, `false` fail
+     */
     override fun setFixedFooterViewId(
         item: RefreshItem?,
         id: Int
@@ -600,6 +849,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Header 滚动时跟随滚动的视图 id
+     * @param item Refresh Item
+     * @param id 视图 id
+     * @return `true` success, `false` fail
+     */
     override fun setHeaderTranslationViewId(
         item: RefreshItem?,
         id: Int
@@ -609,6 +864,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 Footer 滚动时跟随滚动的视图 id
+     * @param item Refresh Item
+     * @param id 视图 id
+     * @return `true` success, `false` fail
+     */
     override fun setFooterTranslationViewId(
         item: RefreshItem?,
         id: Int
@@ -618,6 +879,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 刷新时是否禁用内容操作
+     * @param item Refresh Item
+     * @param disable 是否禁用
+     * @return `true` success, `false` fail
+     */
     override fun setDisableContentWhenRefresh(
         item: RefreshItem?,
         disable: Boolean
@@ -627,6 +894,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 加载时是否禁用内容操作
+     * @param item Refresh Item
+     * @param disable 是否禁用
+     * @return `true` success, `false` fail
+     */
     override fun setDisableContentWhenLoading(
         item: RefreshItem?,
         disable: Boolean
@@ -640,6 +913,12 @@ open class SmartRefreshLayoutEngineImpl(
     // = 监听设置 =
     // ==========
 
+    /**
+     * 设置刷新监听器
+     * @param item Refresh Item
+     * @param listener 刷新监听器
+     * @return `true` success, `false` fail
+     */
     override fun setOnRefreshListener(
         item: RefreshItem?,
         listener: IRefreshEngine.OnRefreshListener?
@@ -651,6 +930,12 @@ open class SmartRefreshLayoutEngineImpl(
         return true
     }
 
+    /**
+     * 设置加载监听器
+     * @param item Refresh Item
+     * @param listener 加载监听器
+     * @return `true` success, `false` fail
+     */
     override fun setOnLoadMoreListener(
         item: RefreshItem?,
         listener: IRefreshEngine.OnLoadMoreListener?
@@ -662,6 +947,12 @@ open class SmartRefreshLayoutEngineImpl(
         return true
     }
 
+    /**
+     * 设置刷新和加载监听器
+     * @param item Refresh Item
+     * @param listener 刷新、加载监听器
+     * @return `true` success, `false` fail
+     */
     override fun setOnRefreshLoadMoreListener(
         item: RefreshItem?,
         listener: IRefreshEngine.OnRefreshLoadMoreListener?
@@ -681,6 +972,12 @@ open class SmartRefreshLayoutEngineImpl(
         return true
     }
 
+    /**
+     * 设置多功能监听器
+     * @param item Refresh Item
+     * @param listener 多功能监听器
+     * @return `true` success, `false` fail
+     */
     override fun setOnMultiListener(
         item: RefreshItem?,
         listener: Any?
@@ -690,6 +987,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置滚动边界判断器
+     * @param item Refresh Item
+     * @param boundary 滚动边界判断器
+     * @return `true` success, `false` fail
+     */
     override fun setScrollBoundaryDecider(
         item: RefreshItem?,
         boundary: Any?
@@ -699,6 +1002,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置主题色
+     * @param item Refresh Item
+     * @param primaryColors 主题色
+     * @return `true` success, `false` fail
+     */
     override fun setPrimaryColors(
         item: RefreshItem?,
         primaryColors: IntArray?
@@ -709,6 +1018,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置主题色资源 id
+     * @param item Refresh Item
+     * @param primaryColorIds 主题色资源 id
+     * @return `true` success, `false` fail
+     */
     override fun setPrimaryColorsId(
         item: RefreshItem?,
         primaryColorIds: IntArray?
@@ -723,10 +1038,21 @@ open class SmartRefreshLayoutEngineImpl(
     // = 状态操作 =
     // ==========
 
+    /**
+     * 自动触发刷新
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun autoRefresh(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.autoRefresh() ?: false
     }
 
+    /**
+     * 自动触发刷新
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @return `true` success, `false` fail
+     */
     override fun autoRefresh(
         item: RefreshItem?,
         delayed: Int
@@ -734,10 +1060,24 @@ open class SmartRefreshLayoutEngineImpl(
         return getRefreshLayout(item)?.autoRefresh(delayed) ?: false
     }
 
+    /**
+     * 自动触发刷新动画
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun autoRefreshAnimationOnly(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.autoRefreshAnimationOnly() ?: false
     }
 
+    /**
+     * 自动触发刷新
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @param duration 拖拽动画持续时间
+     * @param dragRate 拉拽高度比率
+     * @param animationOnly 是否只显示动画
+     * @return `true` success, `false` fail
+     */
     override fun autoRefresh(
         item: RefreshItem?,
         delayed: Int,
@@ -750,10 +1090,21 @@ open class SmartRefreshLayoutEngineImpl(
         ) ?: false
     }
 
+    /**
+     * 自动触发加载
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun autoLoadMore(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.autoLoadMore() ?: false
     }
 
+    /**
+     * 自动触发加载
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @return `true` success, `false` fail
+     */
     override fun autoLoadMore(
         item: RefreshItem?,
         delayed: Int
@@ -761,10 +1112,24 @@ open class SmartRefreshLayoutEngineImpl(
         return getRefreshLayout(item)?.autoLoadMore(delayed) ?: false
     }
 
+    /**
+     * 自动触发加载动画
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun autoLoadMoreAnimationOnly(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.autoLoadMoreAnimationOnly() ?: false
     }
 
+    /**
+     * 自动触发加载
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @param duration 拖拽动画持续时间
+     * @param dragRate 拉拽高度比率
+     * @param animationOnly 是否只显示动画
+     * @return `true` success, `false` fail
+     */
     override fun autoLoadMore(
         item: RefreshItem?,
         delayed: Int,
@@ -777,6 +1142,12 @@ open class SmartRefreshLayoutEngineImpl(
         ) ?: false
     }
 
+    /**
+     * 完成刷新
+     * @param item Refresh Item
+     * @param success 是否成功
+     * @return `true` success, `false` fail
+     */
     override fun finishRefresh(
         item: RefreshItem?,
         success: Boolean
@@ -787,6 +1158,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成刷新
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @return `true` success, `false` fail
+     */
     override fun finishRefresh(
         item: RefreshItem?,
         delayed: Int
@@ -796,6 +1173,14 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成刷新
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @param success 是否成功
+     * @param noMoreData 是否没有更多数据
+     * @return `true` success, `false` fail
+     */
     override fun finishRefresh(
         item: RefreshItem?,
         delayed: Int,
@@ -808,12 +1193,23 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成刷新并标记没有更多数据
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun finishRefreshWithNoMoreData(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.run {
             finishRefreshWithNoMoreData(); true
         } ?: false
     }
 
+    /**
+     * 完成加载
+     * @param item Refresh Item
+     * @param success 是否成功
+     * @return `true` success, `false` fail
+     */
     override fun finishLoadMore(
         item: RefreshItem?,
         success: Boolean
@@ -824,6 +1220,12 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成加载
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @return `true` success, `false` fail
+     */
     override fun finishLoadMore(
         item: RefreshItem?,
         delayed: Int
@@ -833,6 +1235,14 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成加载
+     * @param item Refresh Item
+     * @param delayed 开始延时
+     * @param success 是否成功
+     * @param noMoreData 是否没有更多数据
+     * @return `true` success, `false` fail
+     */
     override fun finishLoadMore(
         item: RefreshItem?,
         delayed: Int,
@@ -845,18 +1255,34 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 完成加载并标记没有更多数据
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun finishLoadMoreWithNoMoreData(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.run {
             finishLoadMoreWithNoMoreData(); true
         } ?: false
     }
 
+    /**
+     * 关闭 Header 或 Footer
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun closeHeaderOrFooter(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.run {
             closeHeaderOrFooter(); true
         } ?: false
     }
 
+    /**
+     * 设置没有更多数据状态
+     * @param item Refresh Item
+     * @param noMoreData 是否没有更多数据
+     * @return `true` success, `false` fail
+     */
     override fun setNoMoreData(
         item: RefreshItem?,
         noMoreData: Boolean
@@ -866,12 +1292,23 @@ open class SmartRefreshLayoutEngineImpl(
         } ?: false
     }
 
+    /**
+     * 重置没有更多数据状态
+     * @param item Refresh Item
+     * @return `true` success, `false` fail
+     */
     override fun resetNoMoreData(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.run {
             resetNoMoreData(); true
         } ?: false
     }
 
+    /**
+     * 完成刷新、加载
+     * @param item Refresh Item
+     * @param success 是否成功
+     * @return `true` success, `false` fail
+     */
     override fun finishRefreshAndLoad(
         item: RefreshItem?,
         success: Boolean
@@ -881,6 +1318,13 @@ open class SmartRefreshLayoutEngineImpl(
         return finishRefresh || finishLoadMore
     }
 
+    /**
+     * 完成刷新或加载
+     * @param item Refresh Item
+     * @param refresh 是否刷新
+     * @param success 是否成功
+     * @return `true` success, `false` fail
+     */
     override fun finishRefreshOrLoad(
         item: RefreshItem?,
         refresh: Boolean,
@@ -897,26 +1341,56 @@ open class SmartRefreshLayoutEngineImpl(
     // = 状态查询 =
     // ==========
 
+    /**
+     * 获取刷新头
+     * @param item Refresh Item
+     * @return 刷新头
+     */
     override fun getRefreshHeader(item: RefreshItem?): Any? {
         return getRefreshLayout(item)?.refreshHeader
     }
 
+    /**
+     * 获取加载尾
+     * @param item Refresh Item
+     * @return 加载尾
+     */
     override fun getRefreshFooter(item: RefreshItem?): Any? {
         return getRefreshLayout(item)?.refreshFooter
     }
 
+    /**
+     * 获取当前状态
+     * @param item Refresh Item
+     * @return 当前状态
+     */
     override fun getState(item: RefreshItem?): Any? {
         return getRefreshLayout(item)?.state
     }
 
+    /**
+     * 获取实体布局视图
+     * @param item Refresh Item
+     * @return 实体布局视图
+     */
     override fun getLayout(item: RefreshItem?): ViewGroup? {
         return getRefreshLayout(item)?.layout
     }
 
+    /**
+     * 是否正在刷新
+     * @param item Refresh Item
+     * @return `true` yes, `false` no
+     */
     override fun isRefreshing(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.isRefreshing ?: false
     }
 
+    /**
+     * 是否正在加载
+     * @param item Refresh Item
+     * @return `true` yes, `false` no
+     */
     override fun isLoading(item: RefreshItem?): Boolean {
         return getRefreshLayout(item)?.isLoading ?: false
     }

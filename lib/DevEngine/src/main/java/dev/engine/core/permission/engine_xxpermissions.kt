@@ -45,6 +45,13 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
     // = 权限请求 =
     // ==========
 
+    /**
+     * 请求权限
+     * @param activity Activity
+     * @param permission 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         activity: Activity,
         permission: PermissionItem,
@@ -53,6 +60,13 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         return request(activity, mutableListOf(permission), callback)
     }
 
+    /**
+     * 请求权限
+     * @param activity Activity
+     * @param permissions 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         activity: Activity,
         permissions: List<PermissionItem?>,
@@ -73,6 +87,13 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 请求权限
+     * @param fragment Fragment
+     * @param permission 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         fragment: Fragment,
         permission: PermissionItem,
@@ -81,6 +102,13 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         return request(fragment, mutableListOf(permission), callback)
     }
 
+    /**
+     * 请求权限
+     * @param fragment Fragment
+     * @param permissions 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         fragment: Fragment,
         permissions: List<PermissionItem?>,
@@ -103,6 +131,14 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
     // = 权限请求 ( 配置 ) =
     // ===================
 
+    /**
+     * 请求权限
+     * @param config Config
+     * @param activity Activity
+     * @param permission 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         config: PermissionConfig,
         activity: Activity,
@@ -112,6 +148,14 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         return request(config, activity, mutableListOf(permission), callback)
     }
 
+    /**
+     * 请求权限
+     * @param config Config
+     * @param activity Activity
+     * @param permissions 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         config: PermissionConfig,
         activity: Activity,
@@ -135,6 +179,14 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 请求权限
+     * @param config Config
+     * @param fragment Fragment
+     * @param permission 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         config: PermissionConfig,
         fragment: Fragment,
@@ -144,6 +196,14 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         return request(config, fragment, mutableListOf(permission), callback)
     }
 
+    /**
+     * 请求权限
+     * @param config Config
+     * @param fragment Fragment
+     * @param permissions 待申请权限
+     * @param callback 权限请求回调
+     * @return `true` success, `false` fail
+     */
     override fun request(
         config: PermissionConfig,
         fragment: Fragment,
@@ -169,6 +229,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
     // = 快捷方法 =
     // ==========
 
+    /**
+     * 判断是否授予了权限
+     * @param context Context
+     * @param permission 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun isGrantedPermission(
         context: Context,
         permission: PermissionItem
@@ -178,6 +244,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         )
     }
 
+    /**
+     * 判断是否授予了权限
+     * @param context Context
+     * @param permissions 待判断权限列表
+     * @return `true` yes, `false` no
+     */
     override fun isGrantedPermissions(
         context: Context,
         permissions: List<PermissionItem?>
@@ -189,6 +261,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 获取已经授予的权限
+     * @param context Context
+     * @param permissions 待判断权限列表
+     * @return 已经授予的权限集合
+     */
     override fun getGrantedPermissions(
         context: Context,
         permissions: List<PermissionItem?>
@@ -198,6 +276,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         ).toPermissionItems()
     }
 
+    /**
+     * 获取已经拒绝的权限
+     * @param context Context
+     * @param permissions 待判断权限列表
+     * @return 已经拒绝的权限集合
+     */
     override fun getDeniedPermissions(
         context: Context,
         permissions: List<PermissionItem?>
@@ -209,6 +293,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 获取拒绝权限询问勾选状态
+     * @param activity Activity
+     * @param permission 待判断权限
+     * @return `true` 没有勾选不再询问, `false` 勾选了不再询问
+     */
     override fun isDoNotAskAgainPermission(
         activity: Activity,
         permission: PermissionItem
@@ -218,6 +308,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         )
     }
 
+    /**
+     * 获取拒绝权限询问勾选状态
+     * @param activity Activity
+     * @param permissions 待判断权限列表
+     * @return `true` 没有勾选不再询问, `false` 勾选了不再询问
+     */
     override fun isDoNotAskAgainPermissions(
         activity: Activity,
         permissions: List<PermissionItem?>
@@ -229,6 +325,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 判断两个权限是否相等
+     * @param permission 待判断权限
+     * @param permission2 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun equalsPermission(
         permission: PermissionItem,
         permission2: PermissionItem
@@ -239,6 +341,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         )
     }
 
+    /**
+     * 判断两个权限是否相等
+     * @param permission 待判断权限
+     * @param permissionName 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun equalsPermission(
         permission: PermissionItem,
         permissionName: String
@@ -249,6 +357,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         )
     }
 
+    /**
+     * 判断两个权限是否相等
+     * @param permissionName1 待判断权限
+     * @param permissionName2 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun equalsPermission(
         permissionName1: String,
         permissionName2: String
@@ -260,6 +374,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
 
     // =
 
+    /**
+     * 判断权限列表中是否包含某个权限
+     * @param permissions 待判断权限列表
+     * @param permission 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun containsPermission(
         permissions: List<PermissionItem?>,
         permission: PermissionItem
@@ -270,6 +390,12 @@ open class XXPermissionsEngineImpl : IPermissionEngine<PermissionConfig, Permiss
         )
     }
 
+    /**
+     * 判断权限列表中是否包含某个权限
+     * @param permissions 待判断权限列表
+     * @param permissionName 待判断权限
+     * @return `true` yes, `false` no
+     */
     override fun containsPermission(
         permissions: List<PermissionItem?>,
         permissionName: String

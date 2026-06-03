@@ -13,6 +13,13 @@ import java.io.File
  */
 open class LubanEngineImpl : ICompressEngine<CompressConfig> {
 
+    /**
+     * 压缩方法
+     * @param data 待压缩图片
+     * @param config 压缩配置参数
+     * @param compressListener 压缩回调接口
+     * @return `true` success, `false` fail
+     */
     override fun compress(
         data: Any?,
         config: CompressConfig?,
@@ -21,6 +28,15 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
         return compress(data, config, null, null, compressListener)
     }
 
+    /**
+     * 压缩方法
+     * @param data 待压缩图片
+     * @param config 压缩配置参数
+     * @param filter 开启压缩条件
+     * @param renameListener 压缩前重命名接口
+     * @param compressListener 压缩回调接口
+     * @return `true` success, `false` fail
+     */
     override fun compress(
         data: Any?,
         config: CompressConfig?,
@@ -35,6 +51,13 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
         )
     }
 
+    /**
+     * 压缩方法
+     * @param lists 待压缩图片集合
+     * @param config 压缩配置参数
+     * @param compressListener 压缩回调接口
+     * @return `true` success, `false` fail
+     */
     override fun compress(
         lists: MutableList<*>?,
         config: CompressConfig?,
@@ -43,6 +66,15 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
         return compress(lists, config, null, null, compressListener)
     }
 
+    /**
+     * 压缩方法
+     * @param lists 待压缩图片集合
+     * @param config 压缩配置参数
+     * @param filter 开启压缩条件
+     * @param renameListener 压缩前重命名接口
+     * @param compressListener 压缩回调接口
+     * @return `true` success, `false` fail
+     */
     override fun compress(
         lists: MutableList<*>?,
         config: CompressConfig?,
