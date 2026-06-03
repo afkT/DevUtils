@@ -38,10 +38,19 @@ open class WebViewEngineImpl(
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 获取 WebView Engine Config
+     * @return WebView Config
+     */
     override fun getConfig(): WebConfig {
         return mConfig
     }
 
+    /**
+     * 初始化 WebView ( 应用配置、设置 Client、监听、JS 交互对象 )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun initialize(item: WebItem?): Boolean {
         getWebView(item) ?: return false
         item?.let { itemIt ->
@@ -118,6 +127,12 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 应用 WebView Config
+     * @param item WebView Item
+     * @param config WebView Config
+     * @return `true` success, `false` fail
+     */
     @SuppressLint("WrongConstant")
     override fun applyConfig(
         item: WebItem?,
@@ -348,10 +363,20 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 获取 WebView
+     * @param item WebView Item
+     * @return WebView
+     */
     override fun getWebView(item: WebItem?): View? {
         return getWebViewImpl(item)
     }
 
+    /**
+     * WebView 是否不为 null
+     * @param item WebView Item
+     * @return `true` yes, `false` no
+     */
     override fun isWebViewNotEmpty(item: WebItem?): Boolean {
         return getWebViewImpl(item) != null
     }
@@ -360,6 +385,12 @@ open class WebViewEngineImpl(
     // = 加载方法 =
     // ==========
 
+    /**
+     * 加载网页
+     * @param item WebView Item
+     * @param url 资源地址
+     * @return `true` success, `false` fail
+     */
     override fun loadUrl(
         item: WebItem?,
         url: String?
@@ -370,6 +401,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 加载网页
+     * @param item WebView Item
+     * @param url 资源地址
+     * @param additionalHttpHeaders Http 请求头信息
+     * @return `true` success, `false` fail
+     */
     override fun loadUrl(
         item: WebItem?,
         url: String?,
@@ -381,6 +419,14 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 加载 Html 代码
+     * @param item WebView Item
+     * @param data Html 数据
+     * @param mimeType 加载网页的类型
+     * @param encoding 编码格式
+     * @return `true` success, `false` fail
+     */
     override fun loadData(
         item: WebItem?,
         data: String?,
@@ -393,6 +439,16 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 加载 Html 代码
+     * @param item WebView Item
+     * @param baseUrl 基础链接
+     * @param data Html 数据
+     * @param mimeType 加载网页的类型
+     * @param encoding 编码格式
+     * @param historyUrl 可用历史记录
+     * @return `true` success, `false` fail
+     */
     override fun loadDataWithBaseURL(
         item: WebItem?,
         baseUrl: String?,
@@ -407,6 +463,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 使用 POST 方法将带有 postData 的 url 加载到 WebView 中
+     * @param item WebView Item
+     * @param url 资源地址
+     * @param postData post 数据 ( 注意 UrlEncode )
+     * @return `true` success, `false` fail
+     */
     override fun postUrl(
         item: WebItem?,
         url: String?,
@@ -422,14 +485,30 @@ open class WebViewEngineImpl(
     // = 配置相关 =
     // ==========
 
+    /**
+     * 获取 WebView 配置 ( WebSettings )
+     * @param item WebView Item
+     * @return WebView 配置对象
+     */
     override fun getSettings(item: WebItem?): WebSettings? {
         return getWebViewImpl(item)?.settings
     }
 
+    /**
+     * 获取浏览器标识 UA
+     * @param item WebView Item
+     * @return 浏览器标识 UA
+     */
     override fun getUserAgentString(item: WebItem?): String? {
         return getSettings(item)?.userAgentString
     }
 
+    /**
+     * 设置浏览器标识 UA
+     * @param item WebView Item
+     * @param ua 浏览器标识 UA
+     * @return `true` success, `false` fail
+     */
     override fun setUserAgentString(
         item: WebItem?,
         ua: String?
@@ -443,6 +522,13 @@ open class WebViewEngineImpl(
     // = JS 交互 =
     // ==========
 
+    /**
+     * 添加 JS 交互注入对象
+     * @param item WebView Item
+     * @param obj JavaScript 交互方法注入对象
+     * @param interfaceName 在 JavaScript 中公开对象的名称
+     * @return `true` success, `false` fail
+     */
     @SuppressLint("JavascriptInterface")
     override fun addJavascriptInterface(
         item: WebItem?,
@@ -455,6 +541,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 移除 JS 交互注入对象
+     * @param item WebView Item
+     * @param interfaceName 在 JavaScript 中公开对象的名称
+     * @return `true` success, `false` fail
+     */
     override fun removeJavascriptInterface(
         item: WebItem?,
         interfaceName: String?
@@ -465,6 +557,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 执行 JS 方法
+     * @param item WebView Item
+     * @param script JS 内容
+     * @param callback 执行回调结果 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun evaluateJavascript(
         item: WebItem?,
         script: String?,
@@ -485,6 +584,12 @@ open class WebViewEngineImpl(
     // = Client =
     // ==========
 
+    /**
+     * 设置处理各种通知和请求事件对象
+     * @param item WebView Item
+     * @param client WebViewClient
+     * @return `true` success, `false` fail
+     */
     override fun setWebViewClient(
         item: WebItem?,
         client: Any?
@@ -495,6 +600,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取处理各种通知和请求事件对象
+     * @param item WebView Item
+     * @return WebViewClient
+     */
     override fun getWebViewClient(item: WebItem?): WebViewClient? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return getWebViewImpl(item)?.webViewClient
@@ -502,6 +612,12 @@ open class WebViewEngineImpl(
         return null
     }
 
+    /**
+     * 设置辅助 WebView 处理 Javascript 对话框、标题等对象
+     * @param item WebView Item
+     * @param client WebChromeClient
+     * @return `true` success, `false` fail
+     */
     override fun setWebChromeClient(
         item: WebItem?,
         client: Any?
@@ -512,6 +628,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取辅助 WebView 处理 Javascript 对话框、标题等对象
+     * @param item WebView Item
+     * @return WebChromeClient
+     */
     override fun getWebChromeClient(item: WebItem?): WebChromeClient? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return getWebViewImpl(item)?.webChromeClient
@@ -519,6 +640,12 @@ open class WebViewEngineImpl(
         return null
     }
 
+    /**
+     * 设置下载监听
+     * @param item WebView Item
+     * @param listener DownloadListener
+     * @return `true` success, `false` fail
+     */
     override fun setDownloadListener(
         item: WebItem?,
         listener: Any?
@@ -529,6 +656,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置查找结果监听
+     * @param item WebView Item
+     * @param listener FindListener
+     * @return `true` success, `false` fail
+     */
     override fun setFindListener(
         item: WebItem?,
         listener: Any?
@@ -543,26 +676,52 @@ open class WebViewEngineImpl(
     // = 导航历史 =
     // ==========
 
+    /**
+     * WebView 是否可以后退
+     * @param item WebView Item
+     * @return `true` yes, `false` no
+     */
     override fun canGoBack(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.canGoBack() ?: false
     }
 
+    /**
+     * WebView 后退
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun goBack(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             goBack(); true
         } ?: false
     }
 
+    /**
+     * WebView 是否可以前进
+     * @param item WebView Item
+     * @return `true` yes, `false` no
+     */
     override fun canGoForward(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.canGoForward() ?: false
     }
 
+    /**
+     * WebView 前进
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun goForward(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             goForward(); true
         } ?: false
     }
 
+    /**
+     * WebView 是否可以跳转到当前起始点相距的历史记录
+     * @param item WebView Item
+     * @param steps 相距索引
+     * @return `true` yes, `false` no
+     */
     override fun canGoBackOrForward(
         item: WebItem?,
         steps: Int
@@ -570,6 +729,12 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.canGoBackOrForward(steps) ?: false
     }
 
+    /**
+     * WebView 跳转到当前起始点相距的历史记录
+     * @param item WebView Item
+     * @param steps 相距索引 ( 负数后退、正数前进 )
+     * @return `true` success, `false` fail
+     */
     override fun goBackOrForward(
         item: WebItem?,
         steps: Int
@@ -579,16 +744,31 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取 WebView 历史记录列表 ( WebBackForwardList )
+     * @param item WebView Item
+     * @return WebView 历史记录列表
+     */
     override fun copyBackForwardList(item: WebItem?): Any? {
         return getWebViewImpl(item)?.copyBackForwardList()
     }
 
+    /**
+     * 刷新页面 ( 当前页面的所有资源都会重新加载 )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun reload(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             reload(); true
         } ?: false
     }
 
+    /**
+     * 停止加载
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun stopLoading(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             stopLoading(); true
@@ -599,6 +779,12 @@ open class WebViewEngineImpl(
     // = 清理操作 =
     // ==========
 
+    /**
+     * 清除资源缓存
+     * @param item WebView Item
+     * @param includeDiskFiles 是否清空本地缓存 ( false 则只会清空内存缓存, true 全部清空 )
+     * @return `true` success, `false` fail
+     */
     override fun clearCache(
         item: WebItem?,
         includeDiskFiles: Boolean
@@ -608,30 +794,54 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 清除当前 WebView 访问的历史记录
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun clearHistory(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             clearHistory(); true
         } ?: false
     }
 
+    /**
+     * 清除自动完成填充的表单数据
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun clearFormData(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             clearFormData(); true
         } ?: false
     }
 
+    /**
+     * 清除高亮显示的查找结果
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun clearMatches(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             clearMatches(); true
         } ?: false
     }
 
+    /**
+     * 清除 SSL 偏好设置
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun clearSslPreferences(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             clearSslPreferences(); true
         } ?: false
     }
 
+    /**
+     * 清除全部 Web 存储数据 ( localStorage、IndexedDB、WebSQL 等, 全局生效 )
+     * @return `true` success, `false` fail
+     */
     override fun deleteAllWebStorage(): Boolean {
         return try {
             WebStorage.getInstance().deleteAllData()
@@ -646,27 +856,58 @@ open class WebViewEngineImpl(
     // = 状态查询 =
     // ==========
 
+    /**
+     * 获取缩放比例
+     * @param item WebView Item
+     * @return 缩放比例
+     */
     @Suppress("DEPRECATION")
     override fun getScale(item: WebItem?): Float {
         return getWebViewImpl(item)?.scale ?: 1.0F
     }
 
+    /**
+     * 获取当前内容横向滚动距离
+     * @param item WebView Item
+     * @return 当前内容横向滚动距离
+     */
     override fun getScrollX(item: WebItem?): Int {
         return getWebViewImpl(item)?.scrollX ?: 0
     }
 
+    /**
+     * 获取当前可见区域的顶端距整个页面顶端的距离 ( 当前内容滚动的距离 )
+     * @param item WebView Item
+     * @return 当前内容滚动的距离
+     */
     override fun getScrollY(item: WebItem?): Int {
         return getWebViewImpl(item)?.scrollY ?: 0
     }
 
+    /**
+     * 获取 HTML 的高度 ( 原始高度, 不包括缩放后的高度 )
+     * @param item WebView Item
+     * @return HTML 的高度
+     */
     override fun getContentHeight(item: WebItem?): Int {
         return getWebViewImpl(item)?.contentHeight ?: 0
     }
 
+    /**
+     * 获取缩放高度
+     * @param item WebView Item
+     * @return 缩放高度
+     */
     override fun getScaleHeight(item: WebItem?): Int {
         return getScaleHeight(item, getScale(item))
     }
 
+    /**
+     * 获取缩放高度
+     * @param item WebView Item
+     * @param scale 缩放比例
+     * @return 缩放高度
+     */
     override fun getScaleHeight(
         item: WebItem?,
         scale: Float
@@ -674,34 +915,74 @@ open class WebViewEngineImpl(
         return (getContentHeight(item) * scale).toInt()
     }
 
+    /**
+     * 获取 WebView 控件高度
+     * @param item WebView Item
+     * @return WebView 控件高度
+     */
     override fun getHeight(item: WebItem?): Int {
         return getWebViewImpl(item)?.height ?: 0
     }
 
+    /**
+     * 获取当前 Url
+     * @param item WebView Item
+     * @return 当前 Url
+     */
     override fun getUrl(item: WebItem?): String? {
         return getWebViewImpl(item)?.url
     }
 
+    /**
+     * 获取最初请求 Url
+     * @param item WebView Item
+     * @return 最初请求 Url
+     */
     override fun getOriginalUrl(item: WebItem?): String? {
         return getWebViewImpl(item)?.originalUrl
     }
 
+    /**
+     * 获取当前页面标题
+     * @param item WebView Item
+     * @return 当前页面标题
+     */
     override fun getTitle(item: WebItem?): String? {
         return getWebViewImpl(item)?.title
     }
 
+    /**
+     * 获取当前页面加载进度
+     * @param item WebView Item
+     * @return 当前页面加载进度
+     */
     override fun getProgress(item: WebItem?): Int {
         return getWebViewImpl(item)?.progress ?: 0
     }
 
+    /**
+     * 获取当前页面图标 ( Bitmap )
+     * @param item WebView Item
+     * @return 当前页面图标
+     */
     override fun getFavicon(item: WebItem?): Any? {
         return getWebViewImpl(item)?.favicon
     }
 
+    /**
+     * 获取长按事件类型 ( HitTestResult )
+     * @param item WebView Item
+     * @return 长按事件类型
+     */
     override fun getHitTestResult(item: WebItem?): Any? {
         return getWebViewImpl(item)?.hitTestResult
     }
 
+    /**
+     * 获取当前页面 SSL 证书 ( SslCertificate )
+     * @param item WebView Item
+     * @return 当前页面 SSL 证书
+     */
     override fun getCertificate(item: WebItem?): Any? {
         return getWebViewImpl(item)?.certificate
     }
@@ -710,6 +991,12 @@ open class WebViewEngineImpl(
     // = 滚动缩放 =
     // ==========
 
+    /**
+     * 将视图内容向下滚动一半页面大小
+     * @param item WebView Item
+     * @param bottom 是否滑动到底部
+     * @return `true` success, `false` fail
+     */
     override fun pageDown(
         item: WebItem?,
         bottom: Boolean
@@ -717,6 +1004,12 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.pageDown(bottom) ?: false
     }
 
+    /**
+     * 将视图内容向上滚动一半页面大小
+     * @param item WebView Item
+     * @param top 是否滑动到顶部
+     * @return `true` success, `false` fail
+     */
     override fun pageUp(
         item: WebItem?,
         top: Boolean
@@ -724,6 +1017,13 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.pageUp(top) ?: false
     }
 
+    /**
+     * 滚动到指定坐标
+     * @param item WebView Item
+     * @param x 横向坐标
+     * @param y 纵向坐标
+     * @return `true` success, `false` fail
+     */
     override fun scrollTo(
         item: WebItem?,
         x: Int,
@@ -734,6 +1034,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 滚动指定偏移量
+     * @param item WebView Item
+     * @param x 横向偏移量
+     * @param y 纵向偏移量
+     * @return `true` success, `false` fail
+     */
     override fun scrollBy(
         item: WebItem?,
         x: Int,
@@ -744,6 +1051,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 以给定的速度开始滑动
+     * @param item WebView Item
+     * @param vx 横向速度
+     * @param vy 纵向速度
+     * @return `true` success, `false` fail
+     */
     override fun flingScroll(
         item: WebItem?,
         vx: Int,
@@ -754,6 +1068,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 按指定比例缩放
+     * @param item WebView Item
+     * @param zoomFactor 缩放比例
+     * @return `true` success, `false` fail
+     */
     @Suppress("DEPRECATION")
     override fun zoomBy(
         item: WebItem?,
@@ -764,16 +1084,32 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 放大
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     @Suppress("DEPRECATION")
     override fun zoomIn(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.zoomIn() ?: false
     }
 
+    /**
+     * 缩小
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     @Suppress("DEPRECATION")
     override fun zoomOut(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.zoomOut() ?: false
     }
 
+    /**
+     * 设置初始缩放比例
+     * @param item WebView Item
+     * @param scaleInPercent 缩放百分比
+     * @return `true` success, `false` fail
+     */
     override fun setInitialScale(
         item: WebItem?,
         scaleInPercent: Int
@@ -787,6 +1123,12 @@ open class WebViewEngineImpl(
     // = 查找操作 =
     // ==========
 
+    /**
+     * 异步查找页面内所有匹配项
+     * @param item WebView Item
+     * @param find 查找内容
+     * @return `true` success, `false` fail
+     */
     override fun findAllAsync(
         item: WebItem?,
         find: String?
@@ -797,6 +1139,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 跳转到下一个 ( 上一个 ) 查找匹配项
+     * @param item WebView Item
+     * @param forward 是否向前查找
+     * @return `true` success, `false` fail
+     */
     override fun findNext(
         item: WebItem?,
         forward: Boolean
@@ -810,30 +1158,55 @@ open class WebViewEngineImpl(
     // = 生命周期 =
     // ==========
 
+    /**
+     * 暂停 WebView ( Activity onPause )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun onPause(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             onPause(); true
         } ?: false
     }
 
+    /**
+     * 恢复 WebView ( Activity onResume )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun onResume(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             onResume(); true
         } ?: false
     }
 
+    /**
+     * 暂停所有 WebView 的布局、解析、JavaScript 定时器
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun pauseTimers(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             pauseTimers(); true
         } ?: false
     }
 
+    /**
+     * 恢复所有 WebView 的布局、解析、JavaScript 定时器
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun resumeTimers(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
             resumeTimers(); true
         } ?: false
     }
 
+    /**
+     * 释放内存
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     @Suppress("DEPRECATION")
     override fun freeMemory(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.run {
@@ -841,6 +1214,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 销毁处理 ( 避免 WebView 引起的内存泄漏 )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun destroy(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.let {
             it.clearHistory()
@@ -858,6 +1236,13 @@ open class WebViewEngineImpl(
     // = 其他操作 =
     // ==========
 
+    /**
+     * 处理按键 ( 是否回退 )
+     * @param item WebView Item
+     * @param keyCode 按键类型
+     * @param event 按键事件
+     * @return `true` 拦截事件, `false` 不拦截接着处理
+     */
     override fun handlerKeyDown(
         item: WebItem?,
         keyCode: Int,
@@ -874,10 +1259,22 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 关闭 WebView 硬件加速功能 ( 解决 WebView 闪烁问题 )
+     * @param item WebView Item
+     * @return `true` success, `false` fail
+     */
     override fun setLayerTypeSoftware(item: WebItem?): Boolean {
         return setLayerType(item, View.LAYER_TYPE_SOFTWARE, null)
     }
 
+    /**
+     * 设置 WebView 硬件加速类型
+     * @param item WebView Item
+     * @param layerType 硬件加速类型
+     * @param paint Paint
+     * @return `true` success, `false` fail
+     */
     override fun setLayerType(
         item: WebItem?,
         layerType: Int,
@@ -888,6 +1285,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 WebView 是否处于可联网状态
+     * @param item WebView Item
+     * @param networkUp 是否可联网
+     * @return `true` success, `false` fail
+     */
     override fun setNetworkAvailable(
         item: WebItem?,
         networkUp: Boolean
@@ -897,6 +1300,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 保存当前页面为 Web 归档文件
+     * @param item WebView Item
+     * @param filename 保存文件路径
+     * @return `true` success, `false` fail
+     */
     override fun saveWebArchive(
         item: WebItem?,
         filename: String?
@@ -907,6 +1316,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 请求获取长按聚焦节点的超链接信息
+     * @param item WebView Item
+     * @param hrefMsg 承载结果的消息 ( url 写入 data Bundle )
+     * @return `true` success, `false` fail
+     */
     override fun requestFocusNodeHref(
         item: WebItem?,
         hrefMsg: Message?
@@ -916,6 +1331,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 请求获取长按聚焦图片的地址信息
+     * @param item WebView Item
+     * @param msg 承载结果的消息 ( url 写入 data Bundle )
+     * @return `true` success, `false` fail
+     */
     override fun requestImageRef(
         item: WebItem?,
         msg: Message?
@@ -926,6 +1347,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 查询当前页面是否包含图片资源
+     * @param item WebView Item
+     * @param response 承载结果的消息 ( 是否包含图片写入 arg1 )
+     * @return `true` success, `false` fail
+     */
     override fun documentHasImages(
         item: WebItem?,
         response: Message?
@@ -936,6 +1363,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 创建打印文档适配器 ( PrintDocumentAdapter )
+     * @param item WebView Item
+     * @param documentName 文档名称
+     * @return 打印文档适配器
+     */
     override fun createPrintDocumentAdapter(
         item: WebItem?,
         documentName: String?
@@ -944,6 +1377,13 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.createPrintDocumentAdapter(documentName)
     }
 
+    /**
+     * 设置渲染进程优先级策略 ( Android 8.0 起支持 )
+     * @param item WebView Item
+     * @param rendererRequestedPriority 渲染进程请求优先级
+     * @param waivedWhenNotVisible 不可见时是否放弃优先级
+     * @return `true` success, `false` fail
+     */
     override fun setRendererPriorityPolicy(
         item: WebItem?,
         rendererRequestedPriority: Int,
@@ -959,6 +1399,13 @@ open class WebViewEngineImpl(
     // = Web Message =
     // ==============
 
+    /**
+     * 向网页投递一条 Web 消息 ( HTML5 postMessage )
+     * @param item WebView Item
+     * @param message Web 消息 ( WebMessage, 可携带 WebMessagePort )
+     * @param targetOrigin 接收方源 ( 限定可接收消息的页面 origin )
+     * @return `true` success, `false` fail
+     */
     override fun postWebMessage(
         item: WebItem?,
         message: Any?,
@@ -971,6 +1418,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 创建一对 Web 消息端口 ( HTML5 MessageChannel )
+     * @param item WebView Item
+     * @return 消息端口数组 ( WebMessagePort[] )
+     */
     override fun createWebMessageChannel(item: WebItem?): Any? {
         return getWebViewImpl(item)?.createWebMessageChannel()
     }
@@ -979,6 +1431,11 @@ open class WebViewEngineImpl(
     // = 全局静态 =
     // ==========
 
+    /**
+     * 设置是否开启 WebView 内容调试 ( Chrome inspect )
+     * @param enabled 是否开启
+     * @return `true` success, `false` fail
+     */
     override fun setWebContentsDebuggingEnabled(enabled: Boolean): Boolean {
         return try {
             WebView.setWebContentsDebuggingEnabled(enabled)
@@ -989,6 +1446,10 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 获取当前 WebView 内核包信息 ( PackageInfo, Android 8.0 起支持 )
+     * @return 当前 WebView 内核包信息
+     */
     override fun getCurrentWebViewPackage(): Any? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return WebView.getCurrentWebViewPackage()
@@ -996,6 +1457,11 @@ open class WebViewEngineImpl(
         return null
     }
 
+    /**
+     * 清除客户端证书选择偏好
+     * @param onCleared 清除完成回调
+     * @return `true` success, `false` fail
+     */
     override fun clearClientCertPreferences(onCleared: Runnable?): Boolean {
         return try {
             WebView.clearClientCertPreferences(onCleared)
@@ -1010,6 +1476,11 @@ open class WebViewEngineImpl(
     // = AndroidX WebKit =
     // ===================
 
+    /**
+     * 判断 AndroidX WebKit 特性是否支持
+     * @param feature 特性常量 ( WebViewFeature 中定义 )
+     * @return `true` yes, `false` no
+     */
     @SuppressLint("WrongConstant")
     override fun isWebViewFeatureSupported(feature: String?): Boolean {
         feature ?: return false
@@ -1021,6 +1492,13 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 在文档开始加载时注入 JS ( 需 DOCUMENT_START_SCRIPT 特性 )
+     * @param item WebView Item
+     * @param script 注入脚本
+     * @param allowedOriginRules 允许的来源规则
+     * @return 脚本句柄 ( ScriptHandler )
+     */
     override fun addDocumentStartJavaScript(
         item: WebItem?,
         script: String?,
@@ -1033,6 +1511,14 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 添加 Web 消息监听 ( 安全 JSBridge, 需 WEB_MESSAGE_LISTENER 特性 )
+     * @param item WebView Item
+     * @param jsObjectName 注入到页面的对象名
+     * @param allowedOriginRules 允许的来源规则
+     * @param listener 消息监听 ( WebViewCompat.WebMessageListener )
+     * @return `true` success, `false` fail
+     */
     override fun addWebMessageListener(
         item: WebItem?,
         jsObjectName: String?,
@@ -1050,6 +1536,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 移除 Web 消息监听
+     * @param item WebView Item
+     * @param jsObjectName 注入到页面的对象名
+     * @return `true` success, `false` fail
+     */
     override fun removeWebMessageListener(
         item: WebItem?,
         jsObjectName: String?
@@ -1062,26 +1554,52 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取处理各种通知和请求事件对象 ( 兼容版, 需 GET_WEB_VIEW_CLIENT 特性 )
+     * @param item WebView Item
+     * @return WebViewClient
+     */
     override fun getWebViewClientCompat(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_CLIENT)) return null
         return getWebViewImpl(item)?.let { WebViewCompat.getWebViewClient(it) }
     }
 
+    /**
+     * 获取辅助处理 Javascript 对话框、标题等对象 ( 兼容版, 需 GET_WEB_CHROME_CLIENT 特性 )
+     * @param item WebView Item
+     * @return WebChromeClient
+     */
     override fun getWebChromeClientCompat(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_CHROME_CLIENT)) return null
         return getWebViewImpl(item)?.let { WebViewCompat.getWebChromeClient(it) }
     }
 
+    /**
+     * 获取当前 WebView 内核包信息 ( 兼容版 )
+     * @param context Context
+     * @return 当前 WebView 内核包信息 ( PackageInfo )
+     */
     override fun getCurrentWebViewPackageCompat(context: Context?): Any? {
         context ?: return null
         return WebViewCompat.getCurrentWebViewPackage(context)
     }
 
+    /**
+     * 获取 WebView 渲染进程 ( 需 GET_WEB_VIEW_RENDERER 特性 )
+     * @param item WebView Item
+     * @return 渲染进程 ( WebViewRenderProcess )
+     */
     override fun getWebViewRenderProcess(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_RENDERER)) return null
         return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcess(it) }
     }
 
+    /**
+     * 设置 WebView 渲染进程客户端 ( 需 WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE 特性 )
+     * @param item WebView Item
+     * @param client 渲染进程客户端 ( WebViewRenderProcessClient )
+     * @return `true` success, `false` fail
+     */
     override fun setWebViewRenderProcessClient(
         item: WebItem?,
         client: Any?
@@ -1096,6 +1614,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取 WebView 渲染进程客户端
+     * @param item WebView Item
+     * @return 渲染进程客户端 ( WebViewRenderProcessClient )
+     */
     override fun getWebViewRenderProcessClient(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE)) {
             return null
@@ -1103,16 +1626,30 @@ open class WebViewEngineImpl(
         return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcessClient(it) }
     }
 
+    /**
+     * 是否启用多进程 ( 需 MULTI_PROCESS 特性 )
+     * @return `true` yes, `false` no
+     */
     override fun isMultiProcessEnabled(): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROCESS)) return false
         return WebViewCompat.isMultiProcessEnabled()
     }
 
+    /**
+     * 获取 Variations Header ( 需 GET_VARIATIONS_HEADER 特性 )
+     * @return Variations Header
+     */
     override fun getVariationsHeader(): String? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_VARIATIONS_HEADER)) return null
         return WebViewCompat.getVariationsHeader()
     }
 
+    /**
+     * 启动安全浏览 ( 需 START_SAFE_BROWSING 特性 )
+     * @param context Context
+     * @param callback 启动结果回调 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun startSafeBrowsing(
         context: Context?,
         callback: Any?
@@ -1123,6 +1660,12 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置安全浏览白名单 ( 需 SAFE_BROWSING_ALLOWLIST 特性 )
+     * @param hosts 白名单 Host
+     * @param callback 设置结果回调 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun setSafeBrowsingAllowlist(
         hosts: MutableSet<String>?,
         callback: Any?
@@ -1133,6 +1676,10 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 获取安全浏览隐私政策地址 ( 需 SAFE_BROWSING_PRIVACY_POLICY_URL 特性 )
+     * @return 隐私政策地址 ( Uri )
+     */
     override fun getSafeBrowsingPrivacyPolicyUrl(): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_PRIVACY_POLICY_URL)) {
             return null
@@ -1140,6 +1687,13 @@ open class WebViewEngineImpl(
         return WebViewCompat.getSafeBrowsingPrivacyPolicyUrl()
     }
 
+    /**
+     * 设置 WebView 代理 ( 需 PROXY_OVERRIDE 特性 )
+     * @param proxyConfig 代理配置 ( ProxyConfig )
+     * @param executor 回调执行器
+     * @param listener 生效回调
+     * @return `true` success, `false` fail
+     */
     override fun setProxyOverride(
         proxyConfig: Any?,
         executor: Executor?,
@@ -1159,6 +1713,12 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 清除 WebView 代理 ( 需 PROXY_OVERRIDE 特性 )
+     * @param executor 回调执行器
+     * @param listener 生效回调
+     * @return `true` success, `false` fail
+     */
     override fun clearProxyOverride(
         executor: Executor?,
         listener: Runnable?
@@ -1174,6 +1734,12 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 静音或取消静音 WebView ( 需 MUTE_AUDIO 特性 )
+     * @param item WebView Item
+     * @param mute 是否静音
+     * @return `true` success, `false` fail
+     */
     override fun setAudioMuted(
         item: WebItem?,
         mute: Boolean
@@ -1185,6 +1751,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * WebView 是否静音 ( 需 MUTE_AUDIO 特性 )
+     * @param item WebView Item
+     * @return `true` yes, `false` no
+     */
     override fun isAudioMuted(item: WebItem?): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
         return getWebViewImpl(item)?.let {
@@ -1192,6 +1763,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 投递可视状态回调 ( 内容可绘制时触发, 用于规避白屏, 需 VISUAL_STATE_CALLBACK 特性 )
+     * @param item WebView Item
+     * @param requestId 请求 id ( 回调原样返回 )
+     * @param callback 可视状态回调 ( WebViewCompat.VisualStateCallback )
+     * @return `true` success, `false` fail
+     */
     override fun postVisualStateCallback(
         item: WebItem?,
         requestId: Long,
@@ -1205,6 +1783,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 WebView 使用的 Profile ( 多 Profile 数据隔离, 需 MULTI_PROFILE 特性 )
+     * @param item WebView Item
+     * @param profileName Profile 名称
+     * @return `true` success, `false` fail
+     */
     override fun setWebViewProfile(
         item: WebItem?,
         profileName: String?
@@ -1217,11 +1801,22 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取 WebView 使用的 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param item WebView Item
+     * @return Profile
+     */
     override fun getWebViewProfile(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
         return getWebViewImpl(item)?.let { WebViewCompat.getProfile(it) }
     }
 
+    /**
+     * 设置 WebView 用户代理元数据 ( 生成 UA Client Hints, 需 USER_AGENT_METADATA 特性 )
+     * @param item WebView Item
+     * @param metadata 用户代理元数据 ( UserAgentMetadata )
+     * @return `true` success, `false` fail
+     */
     override fun setUserAgentMetadata(
         item: WebItem?,
         metadata: Any?
@@ -1233,6 +1828,12 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置 WebView Media Integrity API 权限 ( 需 WEBVIEW_MEDIA_INTEGRITY_API_STATUS 特性 )
+     * @param item WebView Item
+     * @param permissionConfig 权限配置 ( WebViewMediaIntegrityApiStatusConfig )
+     * @return `true` success, `false` fail
+     */
     override fun setWebViewMediaIntegrityApiStatus(
         item: WebItem?,
         permissionConfig: Any?
@@ -1246,18 +1847,33 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 根据名称获取或创建 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return Profile
+     */
     override fun getOrCreateWebProfile(name: String?): Any? {
         name ?: return null
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
         return ProfileStore.getInstance().getOrCreateProfile(name)
     }
 
+    /**
+     * 根据名称获取 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return Profile ( 不存在返回 null )
+     */
     override fun getWebProfile(name: String?): Any? {
         name ?: return null
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
         return ProfileStore.getInstance().getProfile(name)
     }
 
+    /**
+     * 根据名称删除 Profile ( 需 MULTI_PROFILE 特性 )
+     * @param name Profile 名称
+     * @return `true` success, `false` fail
+     */
     override fun deleteWebProfile(name: String?): Boolean {
         name ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return false
@@ -1269,11 +1885,20 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 获取全部 Profile 名称 ( 需 MULTI_PROFILE 特性 )
+     * @return Profile 名称列表
+     */
     override fun getAllWebProfileNames(): MutableList<String> {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return ArrayList()
         return ProfileStore.getInstance().allProfileNames
     }
 
+    /**
+     * 设置 ServiceWorker 客户端 ( 需 SERVICE_WORKER_BASIC_USAGE 特性 )
+     * @param client ServiceWorker 客户端 ( ServiceWorkerClientCompat )
+     * @return `true` success, `false` fail
+     */
     override fun setServiceWorkerClient(client: Any?): Boolean {
         val serviceWorkerClient = getServiceWorkerClientCompat(client) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BASIC_USAGE)) {
@@ -1283,6 +1908,11 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置 ServiceWorker 是否允许访问 content:// 资源 ( 需 SERVICE_WORKER_CONTENT_ACCESS 特性 )
+     * @param allow 是否允许
+     * @return `true` success, `false` fail
+     */
     override fun setServiceWorkerAllowContentAccess(allow: Boolean): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CONTENT_ACCESS)) {
             return false
@@ -1292,6 +1922,11 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置 ServiceWorker 是否允许访问文件 ( 需 SERVICE_WORKER_FILE_ACCESS 特性 )
+     * @param allow 是否允许
+     * @return `true` success, `false` fail
+     */
     override fun setServiceWorkerAllowFileAccess(allow: Boolean): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_FILE_ACCESS)) {
             return false
@@ -1301,6 +1936,11 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置 ServiceWorker 是否不从网络加载资源 ( 需 SERVICE_WORKER_BLOCK_NETWORK_LOADS 特性 )
+     * @param block 是否阻止
+     * @return `true` success, `false` fail
+     */
     override fun setServiceWorkerBlockNetworkLoads(block: Boolean): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BLOCK_NETWORK_LOADS)) {
             return false
@@ -1310,6 +1950,11 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 设置 ServiceWorker 缓存模式 ( 需 SERVICE_WORKER_CACHE_MODE 特性 )
+     * @param mode 缓存模式
+     * @return `true` success, `false` fail
+     */
     override fun setServiceWorkerCacheMode(mode: Int): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CACHE_MODE)) {
             return false
@@ -1318,6 +1963,10 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 是否正在进行性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @return `true` yes, `false` no
+     */
     override fun isWebViewTracing(): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
             return false
@@ -1325,6 +1974,11 @@ open class WebViewEngineImpl(
         return TracingController.getInstance().isTracing
     }
 
+    /**
+     * 开始性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @param config 跟踪配置 ( TracingConfig )
+     * @return `true` success, `false` fail
+     */
     override fun startWebViewTracing(config: Any?): Boolean {
         val tracingConfig = getTracingConfig(config) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
@@ -1334,6 +1988,12 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 停止性能跟踪并输出结果 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+     * @param outputStream 结果输出流 ( OutputStream, 可为 null )
+     * @param executor 回调执行器
+     * @return `true` success, `false` fail
+     */
     override fun stopWebViewTracing(
         outputStream: Any?,
         executor: Executor?
@@ -1347,6 +2007,11 @@ open class WebViewEngineImpl(
         )
     }
 
+    /**
+     * 获取 BackForwardCache 实时配置对象 ( 实验性, 需 BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3 特性 )
+     * @param item WebView Item
+     * @return BackForwardCacheSettings ( 实时对象, 修改即时生效 )
+     */
     @SuppressLint("WrongConstant")
     @androidx.annotation.OptIn(
         markerClass = [WebSettingsCompat.ExperimentalBackForwardCacheSettings::class]
@@ -1359,6 +2024,11 @@ open class WebViewEngineImpl(
         return WebSettingsCompat.getBackForwardCacheSettings(webSettings)
     }
 
+    /**
+     * 设置 WebView 默认流量统计 TAG ( 需 DEFAULT_TRAFFICSTATS_TAGGING 特性 )
+     * @param tag 流量统计 TAG
+     * @return `true` success, `false` fail
+     */
     override fun setDefaultTrafficStatsTag(tag: Int): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.DEFAULT_TRAFFICSTATS_TAGGING)) {
             return false
@@ -1367,6 +2037,14 @@ open class WebViewEngineImpl(
         return true
     }
 
+    /**
+     * 保存 WebView 状态 ( 支持限制大小、是否含前进历史, 需 SAVE_STATE 特性 )
+     * @param item WebView Item
+     * @param outState 状态保存 Bundle
+     * @param maxSizeBytes 状态最大字节数 ( 超出则丢弃更早历史 )
+     * @param includeForwardState 是否包含前进历史
+     * @return `true` success, `false` fail
+     */
     override fun saveState(
         item: WebItem?,
         outState: Bundle?,
@@ -1382,6 +2060,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 保存 WebView 状态 ( 基础版, 框架原生能力, 无特性门槛 )
+     * @param item WebView Item
+     * @param outState 状态保存 Bundle
+     * @return `true` success, `false` fail
+     */
     override fun saveState(
         item: WebItem?,
         outState: Bundle?
@@ -1392,6 +2076,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 添加导航监听 ( 回调在主线程, 需 NAVIGATION_LISTENER 特性 )
+     * @param item WebView Item
+     * @param listener 导航监听 ( NavigationListener )
+     * @return `true` success, `false` fail
+     */
     override fun addNavigationListener(
         item: WebItem?,
         listener: Any?
@@ -1404,6 +2094,13 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 添加导航监听 ( 指定回调执行器, 需 NAVIGATION_LISTENER 特性 )
+     * @param item WebView Item
+     * @param executor 回调执行器
+     * @param listener 导航监听 ( NavigationListener )
+     * @return `true` success, `false` fail
+     */
     override fun addNavigationListener(
         item: WebItem?,
         executor: Executor?,
@@ -1418,6 +2115,12 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 移除导航监听 ( 需 NAVIGATION_LISTENER 特性 )
+     * @param item WebView Item
+     * @param listener 导航监听 ( NavigationListener )
+     * @return `true` success, `false` fail
+     */
     override fun removeNavigationListener(
         item: WebItem?,
         listener: Any?
@@ -1434,6 +2137,15 @@ open class WebViewEngineImpl(
     // = 跨内核扩展 =
     // ============
 
+    /**
+     * 恢复 WebView 历史与状态 ( 与 saveState 配对 )
+     * <pre>
+     *     System / X5 接收 Bundle 状态, GeckoView 实现层可改用其 SessionState 进行恢复
+     * </pre>
+     * @param item WebView Item
+     * @param inState 状态 Bundle
+     * @return `true` success, `false` fail
+     */
     override fun restoreState(
         item: WebItem?,
         inState: Bundle?
@@ -1444,6 +2156,16 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 设置 WebView 激活 ( 可见 ) 状态
+     * <pre>
+     *     GeckoView 对应 GeckoSession.setActive ( 非激活时显著降低内存 )
+     *     System / X5 对应 onResume / onPause
+     * </pre>
+     * @param item WebView Item
+     * @param active 是否激活
+     * @return `true` success, `false` fail
+     */
     override fun setActive(
         item: WebItem?,
         active: Boolean
@@ -1454,10 +2176,19 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 获取内核类型标识
+     * @return 内核类型 ( 如 SystemWebView、GeckoView、X5 )
+     */
     override fun getCoreType(): String {
         return "SystemWebView"
     }
 
+    /**
+     * 获取内核版本
+     * @param context Context
+     * @return 内核版本 ( 如 System WebView 包版本、X5 TbsVersion、GeckoView buildId )
+     */
     override fun getCoreVersion(context: Context?): String? {
         context ?: return null
         return try {
@@ -1468,6 +2199,13 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 内核是否就绪可用
+     * <pre>
+     *     System WebView 通常恒为 true, X5 / GeckoView 需内核下载初始化完成
+     * </pre>
+     * @return `true` yes, `false` no
+     */
     override fun isCoreReady(): Boolean {
         return true
     }
@@ -1476,6 +2214,12 @@ open class WebViewEngineImpl(
     // = Cookie =
     // ==========
 
+    /**
+     * 将 Cookie 设置到 WebView
+     * @param url 加载的 Url
+     * @param cookie 同步的 cookie
+     * @return `true` success, `false` fail
+     */
     override fun setCookie(
         url: String?,
         cookie: String?
@@ -1493,6 +2237,13 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 将 Cookie 设置到 WebView ( 带设置结果回调 )
+     * @param url 加载的 Url
+     * @param cookie 同步的 cookie
+     * @param callback 设置结果回调 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun setCookie(
         url: String?,
         cookie: String?,
@@ -1509,6 +2260,11 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 获取指定 Url 的 Cookie
+     * @param url Url
+     * @return Cookie
+     */
     override fun getCookie(url: String?): String? {
         try {
             return CookieManager.getInstance().getCookie(url)
@@ -1518,6 +2274,11 @@ open class WebViewEngineImpl(
         return null
     }
 
+    /**
+     * 设置是否接受 Cookie
+     * @param accept 是否接受
+     * @return `true` success, `false` fail
+     */
     override fun setAcceptCookie(accept: Boolean): Boolean {
         try {
             CookieManager.getInstance().setAcceptCookie(accept)
@@ -1528,6 +2289,10 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 是否接受 Cookie
+     * @return `true` yes, `false` no
+     */
     override fun acceptCookie(): Boolean {
         return try {
             CookieManager.getInstance().acceptCookie()
@@ -1537,6 +2302,12 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 设置指定 WebView 是否接受第三方 Cookie
+     * @param item WebView Item
+     * @param accept 是否接受
+     * @return `true` success, `false` fail
+     */
     override fun setAcceptThirdPartyCookies(
         item: WebItem?,
         accept: Boolean
@@ -1552,6 +2323,11 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 指定 WebView 是否接受第三方 Cookie
+     * @param item WebView Item
+     * @return `true` yes, `false` no
+     */
     override fun acceptThirdPartyCookies(item: WebItem?): Boolean {
         return getWebViewImpl(item)?.let {
             try {
@@ -1563,6 +2339,10 @@ open class WebViewEngineImpl(
         } ?: false
     }
 
+    /**
+     * 是否存在 Cookie
+     * @return `true` yes, `false` no
+     */
     override fun hasCookies(): Boolean {
         return try {
             CookieManager.getInstance().hasCookies()
@@ -1572,12 +2352,21 @@ open class WebViewEngineImpl(
         }
     }
 
+    /**
+     * 移除 Cookie ( Session、All )
+     * @param callback 移除回调 ( ValueCallback )
+     */
     override fun removeCookie(callback: Any?) {
         val valueCallback = getValueCallbackBoolean(callback)
         removeSessionCookie(valueCallback)
         removeAllCookie(valueCallback)
     }
 
+    /**
+     * 移除 Session Cookie
+     * @param callback 移除回调 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun removeSessionCookie(callback: Any?): Boolean {
         try {
             val valueCallback = getValueCallbackBoolean(callback)
@@ -1594,6 +2383,11 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 移除所有的 Cookie
+     * @param callback 移除回调 ( ValueCallback )
+     * @return `true` success, `false` fail
+     */
     override fun removeAllCookie(callback: Any?): Boolean {
         try {
             val valueCallback = getValueCallbackBoolean(callback)
@@ -1610,6 +2404,10 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 同步 ( 刷新 ) Cookie 到本地存储
+     * @return `true` success, `false` fail
+     */
     override fun flushCookie(): Boolean {
         try {
             CookieManager.getInstance().flush()
@@ -1620,6 +2418,11 @@ open class WebViewEngineImpl(
         return false
     }
 
+    /**
+     * 获取指定 Url 全部 Cookie 的完整属性 ( 含 Domain、Path、Expires、Secure 等, 需 GET_COOKIE_INFO 特性 )
+     * @param url Url
+     * @return 各条 Cookie 的完整属性字符串列表
+     */
     override fun getCookieInfo(url: String?): MutableList<String> {
         url ?: return ArrayList()
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_COOKIE_INFO)) return ArrayList()

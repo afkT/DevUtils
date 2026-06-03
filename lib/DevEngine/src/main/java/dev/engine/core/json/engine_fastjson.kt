@@ -13,10 +13,21 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
     // = 转换方法 =
     // ==========
 
+    /**
+     * 将对象转换为 JSON String
+     * @param obj 对象
+     * @return JSON String
+     */
     override fun toJson(obj: Any?): String? {
         return FastjsonUtils.toJson(obj)
     }
 
+    /**
+     * 将对象转换为 JSON String
+     * @param obj 对象
+     * @param config 配置信息
+     * @return JSON String
+     */
     override fun toJson(
         obj: Any?,
         config: JSONConfig?
@@ -24,6 +35,12 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.toJson(obj)
     }
 
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json JSON String
+     * @param classOfT Class T
+     * @return instance of type
+     */
     override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?
@@ -31,6 +48,13 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.fromJson(json, classOfT)
     }
 
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json JSON String
+     * @param classOfT Class T
+     * @param config 配置信息
+     * @return instance of type
+     */
     override fun <T : Any> fromJson(
         json: String?,
         classOfT: Class<T>?,
@@ -39,6 +63,12 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.fromJson(json, classOfT)
     }
 
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json JSON String
+     * @param typeOfT Type T
+     * @return instance of type
+     */
     override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?
@@ -46,6 +76,13 @@ open class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.fromJson(json, typeOfT)
     }
 
+    /**
+     * 将 JSON String 映射为指定类型对象
+     * @param json JSON String
+     * @param typeOfT Type T
+     * @param config 配置信息
+     * @return instance of type
+     */
     override fun <T : Any> fromJson(
         json: String?,
         typeOfT: Type?,
