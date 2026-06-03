@@ -1,5 +1,6 @@
 package dev.engine.core.web
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Paint
@@ -117,6 +118,7 @@ open class WebViewEngineImpl(
         }
     }
 
+    @SuppressLint("WrongConstant")
     override fun applyConfig(
         item: WebItem?,
         config: WebConfig?
@@ -225,9 +227,8 @@ open class WebViewEngineImpl(
             configIt.mediaPlaybackRequiresUserGesture()?.let {
                 webSettings.mediaPlaybackRequiresUserGesture = it
             }
-            val cacheMode = configIt.cacheMode()
-            if (cacheMode >= 0) {
-                webSettings.cacheMode = cacheMode
+            configIt.cacheMode()?.let {
+                webSettings.cacheMode = it
             }
             configIt.domStorageEnabled()?.let {
                 webSettings.domStorageEnabled = it
@@ -335,7 +336,9 @@ open class WebViewEngineImpl(
      * @param webSettings [WebSettings]
      * @param status 预测式加载状态 ( 小于 0 表示未设置 )
      */
-    @OptIn(WebSettingsCompat.ExperimentalSpeculativeLoading::class)
+    @androidx.annotation.OptIn(
+        markerClass = [WebSettingsCompat.ExperimentalSpeculativeLoading::class]
+    )
     protected open fun applySpeculativeLoadingStatus(
         webSettings: WebSettings,
         status: Int
@@ -440,6 +443,7 @@ open class WebViewEngineImpl(
     // = JS 交互 =
     // ==========
 
+    @SuppressLint("JavascriptInterface")
     override fun addJavascriptInterface(
         item: WebItem?,
         obj: Any?,
@@ -1007,6 +1011,7 @@ open class WebViewEngineImpl(
     // = AndroidX WebKit =
     // ===================
 
+    @SuppressLint("WrongConstant")
     override fun isWebViewFeatureSupported(feature: String?): Boolean {
         feature ?: return false
         return try {
@@ -1346,7 +1351,10 @@ open class WebViewEngineImpl(
         return TracingController.getInstance().stop(getOutputStream(outputStream), executor)
     }
 
-    @OptIn(WebSettingsCompat.ExperimentalBackForwardCacheSettings::class)
+    @SuppressLint("WrongConstant")
+    @androidx.annotation.OptIn(
+        markerClass = [WebSettingsCompat.ExperimentalBackForwardCacheSettings::class]
+    )
     override fun getBackForwardCacheSettings(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(
                 WebViewFeature.BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3

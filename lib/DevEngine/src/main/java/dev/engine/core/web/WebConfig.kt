@@ -107,8 +107,8 @@ open class WebConfig private constructor(
     // 是否需要用户手势来播放媒体
     private var mMediaPlaybackRequiresUserGesture: Boolean? = null
 
-    // WebView 缓存模式
-    private var mCacheMode = UNSET_INT
+    // WebView 缓存模式 ( null 表示未设置, 兼容 WebSettings.LOAD_DEFAULT = -1 取值 )
+    private var mCacheMode: Int? = null
 
     // 是否支持 DOM Storage
     private var mDomStorageEnabled: Boolean? = null
@@ -560,11 +560,11 @@ open class WebConfig private constructor(
         return this
     }
 
-    override fun cacheMode(): Int {
+    override fun cacheMode(): Int? {
         return mCacheMode
     }
 
-    open fun setCacheMode(cacheMode: Int): WebConfig {
+    open fun setCacheMode(cacheMode: Int?): WebConfig {
         mCacheMode = cacheMode
         return this
     }

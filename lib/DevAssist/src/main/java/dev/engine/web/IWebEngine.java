@@ -124,8 +124,8 @@ public interface IWebEngine<Config extends IWebEngine.EngineConfig,
         // 是否需要用户手势来播放媒体
         Boolean mediaPlaybackRequiresUserGesture();
 
-        // WebView 缓存模式
-        int cacheMode();
+        // WebView 缓存模式 ( null 表示未设置, 兼容 WebSettings.LOAD_DEFAULT = -1 取值 )
+        Integer cacheMode();
 
         // 是否支持 DOM Storage
         Boolean domStorageEnabled();
