@@ -54,16 +54,24 @@ open class WebViewEngineImpl(
     override fun initialize(item: WebItem?): Boolean {
         getWebView(item) ?: return false
         item?.let { itemIt ->
+            // 将 WebConfig 下发到 WebSettings ( 优先 item 级配置, 否则 Engine 默认配置 )
             applyConfig(itemIt, getWebConfig(itemIt))
+            // 若 item 已配置 WebViewClient, 则绑定到 WebView
             itemIt.webViewClient()?.let { setWebViewClient(itemIt, it) }
+            // 若 item 已配置 WebChromeClient, 则绑定到 WebView
             itemIt.webChromeClient()?.let { setWebChromeClient(itemIt, it) }
+            // 若 item 已配置 DownloadListener, 则绑定到 WebView
             itemIt.downloadListener()?.let { setDownloadListener(itemIt, it) }
+            // 若 item 已配置 FindListener, 则绑定到 WebView
             itemIt.findListener()?.let { setFindListener(itemIt, it) }
+            // 遍历 item 注册的 JS 交互对象 ( 接口名 -> 注入实例 )
             itemIt.javascriptInterfaces().forEach { (interfaceName, obj) ->
+                // 将单个 JS 交互对象注入 WebView, 供页面 JavaScript 调用
                 addJavascriptInterface(itemIt, obj, interfaceName)
             }
             // 页面加载监听: 未显式设置 Client 时, 将内核无关的 OnWebListener 转译为 WebView 回调
             itemIt.onWebListener()?.let { listener ->
+                // 将 OnWebListener 适配为 WebViewClient / WebChromeClient 并挂到 WebView
                 bindOnWebListener(itemIt, listener)
             }
         } ?: return false
@@ -168,169 +176,206 @@ open class WebViewEngineImpl(
     ): Boolean {
         val webSettings = getSettings(item) ?: return false
         config?.let { configIt ->
+            // 是否启用 JavaScript
             configIt.javaScriptEnabled()?.let {
                 webSettings.javaScriptEnabled = it
             }
+            // 渲染优先级 ( 高 / 低 / 正常 )
             getRenderPriority(configIt.renderPriority())?.let {
                 @Suppress("DEPRECATION")
                 webSettings.setRenderPriority(it)
             }
+            // 是否使用宽视口 ( viewport meta 适配 )
             configIt.useWideViewPort()?.let {
                 webSettings.useWideViewPort = it
             }
+            // 是否以概览模式加载 ( 缩小页面以适应屏幕宽度 )
             configIt.loadWithOverviewMode()?.let {
                 webSettings.loadWithOverviewMode = it
             }
+            // 布局算法 ( 正常 / 单列 / 窄列 )
             getLayoutAlgorithm(configIt.layoutAlgorithm())?.let {
                 webSettings.layoutAlgorithm = it
             }
+            // 是否支持手势缩放
             configIt.supportZoom()?.let {
                 webSettings.setSupportZoom(it)
             }
+            // 是否启用内置缩放控件
             configIt.builtInZoomControls()?.let {
                 webSettings.builtInZoomControls = it
             }
+            // 是否显示缩放控件按钮
             configIt.displayZoomControls()?.let {
                 webSettings.displayZoomControls = it
             }
+            // 文字缩放百分比 ( 大于 0 时生效 )
             val textZoom = configIt.textZoom()
             if (textZoom > 0) {
                 webSettings.textZoom = textZoom
             }
+            // 默认标准字体族
             configIt.standardFontFamily()?.let {
                 webSettings.standardFontFamily = it
             }
+            // 默认字体大小 ( 大于 0 时生效 )
             val defaultFontSize = configIt.defaultFontSize()
             if (defaultFontSize > 0) {
                 webSettings.defaultFontSize = defaultFontSize
             }
+            // 最小字体大小 ( 大于 0 时生效 )
             val minimumFontSize = configIt.minimumFontSize()
             if (minimumFontSize > 0) {
                 webSettings.minimumFontSize = minimumFontSize
             }
+            // 默认等宽字体大小 ( 大于 0 时生效 )
             val defaultFixedFontSize = configIt.defaultFixedFontSize()
             if (defaultFixedFontSize > 0) {
                 webSettings.defaultFixedFontSize = defaultFixedFontSize
             }
+            // 最小逻辑字体大小 ( 大于 0 时生效 )
             val minimumLogicalFontSize = configIt.minimumLogicalFontSize()
             if (minimumLogicalFontSize > 0) {
                 webSettings.minimumLogicalFontSize = minimumLogicalFontSize
             }
+            // 等宽字体族
             configIt.fixedFontFamily()?.let {
                 webSettings.fixedFontFamily = it
             }
+            // 无衬线字体族
             configIt.sansSerifFontFamily()?.let {
                 webSettings.sansSerifFontFamily = it
             }
+            // 衬线字体族
             configIt.serifFontFamily()?.let {
                 webSettings.serifFontFamily = it
             }
+            // 草书字体族
             configIt.cursiveFontFamily()?.let {
                 webSettings.cursiveFontFamily = it
             }
+            // 装饰字体族 ( fantasy )
             configIt.fantasyFontFamily()?.let {
                 webSettings.fantasyFontFamily = it
             }
+            // 混合内容模式 ( HTTP 页面加载 HTTPS 资源, Android 5.0+ )
             val mixedContentMode = configIt.mixedContentMode()
-            if (mixedContentMode >= 0
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-            ) {
+            if (mixedContentMode >= 0) {
                 webSettings.mixedContentMode = mixedContentMode
             }
+            // 是否自动加载图片
             configIt.loadsImagesAutomatically()?.let {
                 webSettings.loadsImagesAutomatically = it
             }
+            // JavaScript 是否可自动打开新窗口
             configIt.javaScriptCanOpenWindowsAutomatically()?.let {
                 webSettings.javaScriptCanOpenWindowsAutomatically = it
             }
+            // 默认文本编码
             configIt.defaultTextEncodingName()?.let {
                 webSettings.defaultTextEncodingName = it
             }
+            // 是否启用地理位置 API
             configIt.geolocationEnabled()?.let {
                 webSettings.setGeolocationEnabled(it)
             }
+            // 自定义 User-Agent 字符串
             configIt.userAgentString()?.let {
                 webSettings.userAgentString = it
             }
+            // 是否允许访问本地文件
             configIt.allowFileAccess()?.let {
                 webSettings.allowFileAccess = it
             }
+            // 是否允许 file:// URL 访问其他 file:// URL
             configIt.allowFileAccessFromFileURLs()?.let {
                 webSettings.allowFileAccessFromFileURLs = it
             }
+            // 是否允许 file:// URL 跨域访问任意来源
             configIt.allowUniversalAccessFromFileURLs()?.let {
                 webSettings.allowUniversalAccessFromFileURLs = it
             }
+            // 是否阻止所有网络加载
             configIt.blockNetworkLoads()?.let {
                 webSettings.blockNetworkLoads = it
             }
+            // 是否阻止网络图片加载
             configIt.blockNetworkImage()?.let {
                 webSettings.blockNetworkImage = it
             }
+            // 媒体播放是否需用户手势触发
             configIt.mediaPlaybackRequiresUserGesture()?.let {
                 webSettings.mediaPlaybackRequiresUserGesture = it
             }
+            // 缓存模式 ( 默认 / 无缓存 / 仅缓存等 )
             configIt.cacheMode()?.let {
                 webSettings.cacheMode = it
             }
+            // 是否启用 DOM Storage ( localStorage / sessionStorage )
             configIt.domStorageEnabled()?.let {
                 webSettings.domStorageEnabled = it
             }
             // Application Caches ( appCacheEnabled、appCachePath、appCacheMaxSize ) 配置仅作存储保留
             // 对应 WebSettings.setAppCacheEnabled / setAppCachePath / setAppCacheMaxSize 已在 Android 13 移除, 故不再下发
+            // 是否启用 Web SQL 数据库
             configIt.databaseEnabled()?.let {
                 webSettings.databaseEnabled = it
             }
+            // Web SQL 数据库存储路径
             configIt.databasePath()?.let {
                 @Suppress("DEPRECATION")
                 webSettings.databasePath = it
             }
+            // 是否允许 content:// 协议访问
             configIt.allowContentAccess()?.let {
                 webSettings.allowContentAccess = it
             }
+            // 是否支持多窗口 ( window.open )
             configIt.supportMultipleWindows()?.let {
                 webSettings.setSupportMultipleWindows(it)
             }
+            // 加载时是否请求输入焦点
             configIt.needInitialFocus()?.let {
                 webSettings.setNeedInitialFocus(it)
             }
+            // 是否启用安全浏览 ( Android 8.0+ )
             configIt.safeBrowsingEnabled()?.let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     webSettings.safeBrowsingEnabled = it
                 }
             }
+            // 离屏预光栅化 ( 提升滚动性能 )
             configIt.offscreenPreRaster()?.let {
                 webSettings.offscreenPreRaster = it
             }
+            // 文本选择 ActionMode 禁用的菜单项 ( Android 7.0+ )
             val disabledActionModeMenuItems = configIt.disabledActionModeMenuItems()
-            if (disabledActionModeMenuItems >= 0
-                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-            ) {
+            if (disabledActionModeMenuItems >= 0) {
                 webSettings.disabledActionModeMenuItems = disabledActionModeMenuItems
             }
+            // 是否允许算法暗色模式 ( AndroidX WebKit )
             configIt.algorithmicDarkeningAllowed()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
                     WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, it)
                 }
             }
+            // 是否启用 Payment Request API
             configIt.paymentRequestEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
                     WebSettingsCompat.setPaymentRequestEnabled(webSettings, it)
                 }
             }
+            // 是否启用企业认证 App Link 策略
             configIt.enterpriseAuthenticationAppLinkPolicyEnabled()?.let {
-                if (WebViewFeature.isFeatureSupported(
-                        WebViewFeature.ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY
-                    )
-                ) {
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY)) {
                     WebSettingsCompat.setEnterpriseAuthenticationAppLinkPolicyEnabled(
                         webSettings, it
                     )
                 }
             }
+            // 归因注册行为 ( AndroidX WebKit )
             val attributionRegistrationBehavior = configIt.attributionRegistrationBehavior()
-            if (attributionRegistrationBehavior >= 0
-                && WebViewFeature.isFeatureSupported(
+            if (attributionRegistrationBehavior >= 0 && WebViewFeature.isFeatureSupported(
                     WebViewFeature.ATTRIBUTION_REGISTRATION_BEHAVIOR
                 )
             ) {
@@ -338,34 +383,41 @@ open class WebViewEngineImpl(
                     webSettings, attributionRegistrationBehavior
                 )
             }
+            // 是否启用前进后退缓存 ( bfcache )
             configIt.backForwardCacheEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.BACK_FORWARD_CACHE)) {
                     WebSettingsCompat.setBackForwardCacheEnabled(webSettings, it)
                 }
             }
+            // 预测式加载状态 ( 实验性 API )
             applySpeculativeLoadingStatus(webSettings, configIt.speculativeLoadingStatus())
+            // 超链接上下文菜单项 ( AndroidX WebKit )
             val hyperlinkContextMenuItems = configIt.hyperlinkContextMenuItems()
-            if (hyperlinkContextMenuItems >= 0
-                && WebViewFeature.isFeatureSupported(WebViewFeature.HYPERLINK_CONTEXT_MENU_ITEMS)
+            if (hyperlinkContextMenuItems >= 0 && WebViewFeature.isFeatureSupported(
+                    WebViewFeature.HYPERLINK_CONTEXT_MENU_ITEMS
+                )
             ) {
                 WebSettingsCompat.setHyperlinkContextMenuItems(
-                    webSettings,
-                    hyperlinkContextMenuItems
+                    webSettings, hyperlinkContextMenuItems
                 )
             }
+            // 是否启用已注册支付工具检测
             configIt.hasEnrolledInstrumentEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
                     WebSettingsCompat.setHasEnrolledInstrumentEnabled(webSettings, it)
                 }
             }
+            // shouldInterceptRequest 回调是否附带 Cookie
             configIt.cookiesIncludedInShouldInterceptRequest()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.COOKIE_INTERCEPT)) {
                     WebSettingsCompat.setCookiesIncludedInShouldInterceptRequest(webSettings, it)
                 }
             }
+            // Web Authentication API 支持级别
             val webAuthenticationSupport = configIt.webAuthenticationSupport()
-            if (webAuthenticationSupport >= 0
-                && WebViewFeature.isFeatureSupported(WebViewFeature.WEB_AUTHENTICATION)
+            if (webAuthenticationSupport >= 0 && WebViewFeature.isFeatureSupported(
+                    WebViewFeature.WEB_AUTHENTICATION
+                )
             ) {
                 WebSettingsCompat.setWebAuthenticationSupport(webSettings, webAuthenticationSupport)
             }
