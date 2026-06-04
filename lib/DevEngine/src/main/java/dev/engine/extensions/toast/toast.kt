@@ -36,7 +36,10 @@ fun String?.getToastEngine(): IToastEngine<
  * @param engine String?
  * @param application Application
  */
-fun toast_initialize(engine: String? = null, application: Application) {
+fun toast_initialize(
+    engine: String? = null,
+    application: Application
+) {
     engine.getToastEngine()?.initialize(application)
 }
 
@@ -54,7 +57,10 @@ fun toast_isInit(engine: String? = null): Boolean {
  * @param engine String?
  * @param debug 是否为调试模式
  */
-fun toast_setDebugMode(engine: String? = null, debug: Boolean) {
+fun toast_setDebugMode(
+    engine: String? = null,
+    debug: Boolean
+) {
     engine.getToastEngine()?.setDebugMode(debug)
 }
 
@@ -63,7 +69,10 @@ fun toast_setDebugMode(engine: String? = null, debug: Boolean) {
  * @param engine String?
  * @param config Toast Config
  */
-fun <Config : IToastEngine.EngineConfig> toast_setConfig(engine: String? = null, config: Config?) {
+fun <Config : IToastEngine.EngineConfig> toast_setConfig(
+    engine: String? = null,
+    config: Config?
+) {
     engine.getToastEngine()?.setConfig(config)
 }
 
@@ -135,7 +144,10 @@ fun toast_delayedShow(
  * @param engine String?
  * @param id 字符串资源 ID
  */
-fun toast_debugShow(engine: String? = null, id: Int) {
+fun toast_debugShow(
+    engine: String? = null,
+    id: Int
+) {
     engine.getToastEngine()?.debugShow(id)
 }
 
@@ -144,7 +156,10 @@ fun toast_debugShow(engine: String? = null, id: Int) {
  * @param engine String?
  * @param obj 要显示的对象
  */
-fun toast_debugShow(engine: String? = null, obj: Any?) {
+fun toast_debugShow(
+    engine: String? = null,
+    obj: Any?
+) {
     engine.getToastEngine()?.debugShow(obj)
 }
 
@@ -153,7 +168,10 @@ fun toast_debugShow(engine: String? = null, obj: Any?) {
  * @param engine String?
  * @param text 要显示的文本
  */
-fun toast_debugShow(engine: String? = null, text: CharSequence?) {
+fun toast_debugShow(
+    engine: String? = null,
+    text: CharSequence?
+) {
     engine.getToastEngine()?.debugShow(text)
 }
 
@@ -162,7 +180,10 @@ fun toast_debugShow(engine: String? = null, text: CharSequence?) {
  * @param engine String?
  * @param id 字符串资源 ID
  */
-fun toast_showShort(engine: String? = null, id: Int) {
+fun toast_showShort(
+    engine: String? = null,
+    id: Int
+) {
     engine.getToastEngine()?.showShort(id)
 }
 
@@ -171,7 +192,10 @@ fun toast_showShort(engine: String? = null, id: Int) {
  * @param engine String?
  * @param obj 要显示的对象
  */
-fun toast_showShort(engine: String? = null, obj: Any?) {
+fun toast_showShort(
+    engine: String? = null,
+    obj: Any?
+) {
     engine.getToastEngine()?.showShort(obj)
 }
 
@@ -180,7 +204,10 @@ fun toast_showShort(engine: String? = null, obj: Any?) {
  * @param engine String?
  * @param text 要显示的文本
  */
-fun toast_showShort(engine: String? = null, text: CharSequence?) {
+fun toast_showShort(
+    engine: String? = null,
+    text: CharSequence?
+) {
     engine.getToastEngine()?.showShort(text)
 }
 
@@ -189,7 +216,10 @@ fun toast_showShort(engine: String? = null, text: CharSequence?) {
  * @param engine String?
  * @param id 字符串资源 ID
  */
-fun toast_showLong(engine: String? = null, id: Int) {
+fun toast_showLong(
+    engine: String? = null,
+    id: Int
+) {
     engine.getToastEngine()?.showLong(id)
 }
 
@@ -198,7 +228,10 @@ fun toast_showLong(engine: String? = null, id: Int) {
  * @param engine String?
  * @param obj 要显示的对象
  */
-fun toast_showLong(engine: String? = null, obj: Any?) {
+fun toast_showLong(
+    engine: String? = null,
+    obj: Any?
+) {
     engine.getToastEngine()?.showLong(obj)
 }
 
@@ -207,7 +240,10 @@ fun toast_showLong(engine: String? = null, obj: Any?) {
  * @param engine String?
  * @param text 要显示的文本
  */
-fun toast_showLong(engine: String? = null, text: CharSequence?) {
+fun toast_showLong(
+    engine: String? = null,
+    text: CharSequence?
+) {
     engine.getToastEngine()?.showLong(text)
 }
 
@@ -216,7 +252,10 @@ fun toast_showLong(engine: String? = null, text: CharSequence?) {
  * @param engine String?
  * @param id 字符串资源 ID
  */
-fun toast_show(engine: String? = null, id: Int) {
+fun toast_show(
+    engine: String? = null,
+    id: Int
+) {
     engine.getToastEngine()?.show(id)
 }
 
@@ -225,7 +264,10 @@ fun toast_show(engine: String? = null, id: Int) {
  * @param engine String?
  * @param obj 要显示的对象
  */
-fun toast_show(engine: String? = null, obj: Any?) {
+fun toast_show(
+    engine: String? = null,
+    obj: Any?
+) {
     engine.getToastEngine()?.show(obj)
 }
 
@@ -234,7 +276,10 @@ fun toast_show(engine: String? = null, obj: Any?) {
  * @param engine String?
  * @param text 要显示的文本
  */
-fun toast_show(engine: String? = null, text: CharSequence?) {
+fun toast_show(
+    engine: String? = null,
+    text: CharSequence?
+) {
     engine.getToastEngine()?.show(text)
 }
 
@@ -243,7 +288,10 @@ fun toast_show(engine: String? = null, text: CharSequence?) {
  * @param engine String?
  * @param item Toast 参数
  */
-fun <Item : IToastEngine.EngineItem> toast_show(engine: String? = null, item: Item) {
+fun <Item : IToastEngine.EngineItem> toast_show(
+    engine: String? = null,
+    item: Item
+) {
     engine.getToastEngine()?.show(item)
 }
 
@@ -256,7 +304,10 @@ fun <Item : IToastEngine.EngineItem> toast_show(engine: String? = null, item: It
  * @param engine String?
  * @param id 布局资源 ID
  */
-fun toast_setView(engine: String? = null, id: Int) {
+fun toast_setView(
+    engine: String? = null,
+    id: Int
+) {
     engine.getToastEngine()?.setView(id)
 }
 
@@ -265,7 +316,10 @@ fun toast_setView(engine: String? = null, id: Int) {
  * @param engine String?
  * @param gravity 重心
  */
-fun toast_setGravity(engine: String? = null, gravity: Int) {
+fun toast_setGravity(
+    engine: String? = null,
+    gravity: Int
+) {
     engine.getToastEngine()?.setGravity(gravity)
 }
 

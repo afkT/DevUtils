@@ -1354,16 +1354,25 @@ open class WebViewEngineImpl(
      * @return `true` success, `false` fail
      */
     override fun destroy(item: WebItem?): Boolean {
-        return getWebViewImpl(item)?.let {
-            it.clearHistory()
-            ViewUtils.removeSelfFromParent(it)
-            it.loadUrl("about:blank")
-            it.stopLoading()
-            it.webChromeClient = null
-            it.destroy()
-            item?.release()
+        val webView = getWebViewImpl(item) ?: return false
+        return try {
+            try {
+                // 准备步骤: 任一步抛异常都不应阻断后续的核心销毁与释放
+                webView.clearHistory()
+                ViewUtils.removeSelfFromParent(webView)
+                webView.loadUrl("about:blank")
+                webView.stopLoading()
+                webView.webChromeClient = null
+            } finally {
+                // 核心释放: 必须执行, 否则 WebView 易引起内存泄漏
+                webView.destroy()
+                item?.release()
+            }
             true
-        } ?: false
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "destroy")
+            false
+        }
     }
 
     // ==========
@@ -1586,7 +1595,12 @@ open class WebViewEngineImpl(
      */
     override fun getCurrentWebViewPackage(): Any? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return WebView.getCurrentWebViewPackage()
+            return try {
+                WebView.getCurrentWebViewPackage()
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getCurrentWebViewPackage")
+                null
+            }
         }
         return null
     }
