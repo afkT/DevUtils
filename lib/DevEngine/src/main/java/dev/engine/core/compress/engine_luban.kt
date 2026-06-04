@@ -98,6 +98,11 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
                 config.ignoreSize, config.focusAlpha, config.targetDir
             ).setFailFinish(config.isFailFinish()), predicate, rename,
             object : LubanUtils.OnCompressListener {
+                /**
+                 * 开始压缩前调用
+                 * @param index 当前压缩索引
+                 * @param count 压缩总数
+                 */
                 override fun onStart(
                     index: Int,
                     count: Int
@@ -105,6 +110,12 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
                     compressListener.onStart(index, count)
                 }
 
+                /**
+                 * 压缩成功后调用
+                 * @param file 压缩成功文件
+                 * @param index 当前压缩索引
+                 * @param count 压缩总数
+                 */
                 override fun onSuccess(
                     file: File?,
                     index: Int,
@@ -113,6 +124,12 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
                     compressListener.onSuccess(file, index, count)
                 }
 
+                /**
+                 * 当压缩过程出现问题时触发
+                 * @param error 异常信息
+                 * @param index 当前压缩索引
+                 * @param count 压缩总数
+                 */
                 override fun onError(
                     error: Throwable,
                     index: Int,
@@ -121,6 +138,12 @@ open class LubanEngineImpl : ICompressEngine<CompressConfig> {
                     compressListener.onError(error, index, count)
                 }
 
+                /**
+                 * 压缩完成 ( 压缩结束 )
+                 * @param lists 压缩成功存储 List
+                 * @param maps 每个索引对应压缩存储地址
+                 * @param count 压缩总数
+                 */
                 override fun onComplete(
                     lists: List<File>,
                     maps: Map<Int, File?>,

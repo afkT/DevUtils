@@ -5,6 +5,10 @@ import com.hjq.permissions.OnPermissionInterceptor
 import com.hjq.permissions.permission.base.IPermission
 import dev.engine.permission.IPermissionEngine
 
+/**
+ * detail: Permission Config
+ * @author Ttt
+ */
 open class PermissionConfig(
     // 权限请求拦截器
     val interceptor: OnPermissionInterceptor? = null,
@@ -12,12 +16,17 @@ open class PermissionConfig(
     val description: OnPermissionDescription? = null
 ) : IPermissionEngine.EngineConfig
 
+/**
+ * detail: Permission Item
+ * @author Ttt
+ */
 open class PermissionItem(
     val permission: IPermission
 ) : IPermissionEngine.EngineItem {
 
     /**
      * 获取权限的名称
+     * @return 权限名称
      */
     override fun permissionName(): String {
         return permission.permissionName

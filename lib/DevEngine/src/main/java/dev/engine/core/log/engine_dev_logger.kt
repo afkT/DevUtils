@@ -12,6 +12,12 @@ abstract class DevLoggerEngineImpl(
     open val logConfig: LogConfig? = null
 ) : ILogEngine {
 
+    /**
+     * 判断是否打印日志
+     * @return `true` yes, `false` no
+     */
+    abstract override fun isPrintLog(): Boolean
+
     private fun pass(): Boolean = isPrintLog()
 
     // =============================

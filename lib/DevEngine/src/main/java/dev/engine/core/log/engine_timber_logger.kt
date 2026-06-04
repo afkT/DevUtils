@@ -18,6 +18,12 @@ import timber.log.Timber
  */
 abstract class TimberEngineImpl : ILogEngine {
 
+    /**
+     * 判断是否打印日志
+     * @return `true` yes, `false` no
+     */
+    abstract override fun isPrintLog(): Boolean
+
     private fun pass(): Boolean = isPrintLog()
 
     private fun line(message: String?): String = message ?: ""

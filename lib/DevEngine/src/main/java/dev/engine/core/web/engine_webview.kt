@@ -82,6 +82,12 @@ open class WebViewEngineImpl(
         val webView = getWebViewImpl(item) ?: return
         if (item?.webViewClient() == null) {
             webView.webViewClient = object : WebViewClient() {
+                /**
+                 * 页面开始加载
+                 * @param view WebView
+                 * @param url 加载地址
+                 * @param favicon 页面 favicon
+                 */
                 override fun onPageStarted(
                     view: WebView?,
                     url: String?,
@@ -90,6 +96,11 @@ open class WebViewEngineImpl(
                     listener.onPageStarted(view, url)
                 }
 
+                /**
+                 * 页面加载完成
+                 * @param view WebView
+                 * @param url 加载地址
+                 */
                 override fun onPageFinished(
                     view: WebView?,
                     url: String?
@@ -97,6 +108,13 @@ open class WebViewEngineImpl(
                     listener.onPageFinished(view, url)
                 }
 
+                /**
+                 * 接收加载错误
+                 * @param view WebView
+                 * @param errorCode 错误码
+                 * @param description 错误描述
+                 * @param failingUrl 加载失败地址
+                 */
                 @Suppress("DEPRECATION")
                 override fun onReceivedError(
                     view: WebView?,
@@ -110,6 +128,11 @@ open class WebViewEngineImpl(
         }
         if (item?.webChromeClient() == null) {
             webView.webChromeClient = object : WebChromeClient() {
+                /**
+                 * 加载进度变化
+                 * @param view WebView
+                 * @param newProgress 当前进度
+                 */
                 override fun onProgressChanged(
                     view: WebView?,
                     newProgress: Int
@@ -117,6 +140,11 @@ open class WebViewEngineImpl(
                     listener.onProgressChanged(view, newProgress)
                 }
 
+                /**
+                 * 接收网页标题
+                 * @param view WebView
+                 * @param title 网页标题
+                 */
                 override fun onReceivedTitle(
                     view: WebView?,
                     title: String?
