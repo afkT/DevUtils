@@ -52,24 +52,44 @@ fun DevSource?.requireSource(): Boolean {
 // = pause and resume =
 // ====================
 
+/**
+ * 暂停关联的图片加载请求
+ * @receiver [Fragment]
+ * @param engine String?
+ */
 fun Fragment.pause(
     engine: String? = null
 ) {
     engine.getImageEngine()?.pause(this)
 }
 
+/**
+ * 恢复关联的图片加载请求
+ * @receiver [Fragment]
+ * @param engine String?
+ */
 fun Fragment.resume(
     engine: String? = null
 ) {
     engine.getImageEngine()?.resume(this)
 }
 
+/**
+ * 暂停关联的图片加载请求
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.pause(
     engine: String? = null
 ) {
     engine.getImageEngine()?.pause(this)
 }
 
+/**
+ * 恢复关联的图片加载请求
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.resume(
     engine: String? = null
 ) {
@@ -80,6 +100,12 @@ fun Context.resume(
 // = preload =
 // ===========
 
+/**
+ * 预加载图片资源
+ * @receiver [Context]
+ * @param engine String?
+ * @param source 数据来源
+ */
 fun Context.preload(
     engine: String? = null,
     source: DevSource?
@@ -88,6 +114,13 @@ fun Context.preload(
     engine.getImageEngine()?.preload(this, source)
 }
 
+/**
+ * 预加载图片资源
+ * @receiver [Context]
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ */
 fun <Config : IImageEngine.EngineConfig> Context.preload(
     engine: String? = null,
     source: DevSource?,
@@ -101,12 +134,23 @@ fun <Config : IImageEngine.EngineConfig> Context.preload(
 // = clear =
 // =========
 
+/**
+ * 清除关联的图片加载
+ * @receiver [View]
+ * @param engine String?
+ */
 fun View.clear(
     engine: String? = null
 ) {
     engine.getImageEngine()?.clear(this)
 }
 
+/**
+ * 清除关联的图片加载
+ * @receiver [Fragment]
+ * @param engine String?
+ * @param view [View]
+ */
 fun Fragment.clear(
     engine: String? = null,
     view: View?
@@ -114,18 +158,33 @@ fun Fragment.clear(
     engine.getImageEngine()?.clear(this, view)
 }
 
+/**
+ * 清除磁盘缓存
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.clearDiskCache(
     engine: String? = null
 ) {
     engine.getImageEngine()?.clearDiskCache(this)
 }
 
+/**
+ * 清除内存缓存
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.clearMemoryCache(
     engine: String? = null
 ) {
     engine.getImageEngine()?.clearMemoryCache(this)
 }
 
+/**
+ * 清除全部缓存
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.clearAllCache(
     engine: String? = null
 ) {
@@ -136,6 +195,11 @@ fun Context.clearAllCache(
 // = other =
 // =========
 
+/**
+ * 低内存回调处理
+ * @receiver [Context]
+ * @param engine String?
+ */
 fun Context.lowMemory(
     engine: String? = null
 ) {
@@ -146,6 +210,12 @@ fun Context.lowMemory(
 // = display =
 // ===========
 
+/**
+ * 加载图片并显示到 ImageView
+ * @receiver [ImageView]
+ * @param engine String?
+ * @param source 数据来源
+ */
 fun ImageView.display(
     engine: String? = null,
     source: DevSource?
@@ -154,6 +224,12 @@ fun ImageView.display(
     engine.getImageEngine()?.display(this, source)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ */
 fun <Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,
     source: DevSource?,
@@ -163,6 +239,12 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
     engine.getImageEngine()?.display(this, source, config)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param listener 加载监听
+ */
 fun <T : Any> ImageView.display(
     engine: String? = null,
     source: DevSource?,
@@ -172,6 +254,13 @@ fun <T : Any> ImageView.display(
     engine.getImageEngine()?.display(this, source, listener)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,
     source: DevSource?,
@@ -184,6 +273,13 @@ fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
 
 // =
 
+/**
+ * 加载图片并显示到 ImageView
+ * @receiver [ImageView]
+ * @param engine String?
+ * @param source 数据来源
+ * @param fragment [Fragment]
+ */
 fun ImageView.display(
     engine: String? = null,
     fragment: Fragment?,
@@ -193,6 +289,13 @@ fun ImageView.display(
     engine.getImageEngine()?.display(fragment, this, source)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param fragment [Fragment]
+ */
 fun <Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,
     fragment: Fragment?,
@@ -203,6 +306,13 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
     engine.getImageEngine()?.display(fragment, this, source, config)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param listener 加载监听
+ * @param fragment [Fragment]
+ */
 fun <T : Any> ImageView.display(
     engine: String? = null,
     fragment: Fragment?,
@@ -213,6 +323,14 @@ fun <T : Any> ImageView.display(
     engine.getImageEngine()?.display(fragment, this, source, listener)
 }
 
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ * @param fragment [Fragment]
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,
     fragment: Fragment?,
@@ -228,6 +346,13 @@ fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
 // = load =
 // ========
 
+/**
+ * 加载图片
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     engine: String? = null,
     source: DevSource?,
@@ -238,6 +363,13 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     engine.getImageEngine()?.loadImage(this, source, config, listener)
 }
 
+/**
+ * 加载图片
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> Fragment.loadImage(
     engine: String? = null,
     source: DevSource?,
@@ -248,6 +380,14 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Fragment.loadImage(
     engine.getImageEngine()?.loadImage(this, source, config, listener)
 }
 
+/**
+ * 加载图片
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param type 目标类型
+ * @return [T] instance of type
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     engine: String? = null,
     source: DevSource?,
@@ -258,6 +398,13 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImage(
     return engine.getImageEngine()?.loadImage(this, source, config, type)
 }
 
+/**
+ * 加载图片
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param type 目标类型
+ */
 fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImageThrows(
     engine: String? = null,
     source: DevSource?,
@@ -270,6 +417,13 @@ fun <T : Any, Config : IImageEngine.EngineConfig> Context.loadImageThrows(
 
 // =
 
+/**
+ * 加载 Bitmap
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     engine: String? = null,
     source: DevSource?,
@@ -280,6 +434,13 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     engine.getImageEngine()?.loadBitmap(this, source, config, listener)
 }
 
+/**
+ * 加载 Bitmap
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <Config : IImageEngine.EngineConfig> Fragment.loadBitmap(
     engine: String? = null,
     source: DevSource?,
@@ -290,6 +451,13 @@ fun <Config : IImageEngine.EngineConfig> Fragment.loadBitmap(
     engine.getImageEngine()?.loadBitmap(this, source, config, listener)
 }
 
+/**
+ * 加载 Bitmap
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @return [Bitmap]
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     engine: String? = null,
     source: DevSource?,
@@ -299,6 +467,13 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmap(
     return engine.getImageEngine()?.loadBitmap(this, source, config)
 }
 
+/**
+ * 加载 Bitmap
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @return [Bitmap]
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadBitmapThrows(
     engine: String? = null,
     source: DevSource?,
@@ -310,6 +485,13 @@ fun <Config : IImageEngine.EngineConfig> Context.loadBitmapThrows(
 
 // =
 
+/**
+ * 加载 Drawable
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     engine: String? = null,
     source: DevSource?,
@@ -320,6 +502,13 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     engine.getImageEngine()?.loadDrawable(this, source, config, listener)
 }
 
+/**
+ * 加载 Drawable
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
 fun <Config : IImageEngine.EngineConfig> Fragment.loadDrawable(
     engine: String? = null,
     source: DevSource?,
@@ -330,6 +519,13 @@ fun <Config : IImageEngine.EngineConfig> Fragment.loadDrawable(
     engine.getImageEngine()?.loadDrawable(this, source, config, listener)
 }
 
+/**
+ * 加载 Drawable
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @return [Drawable]
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     engine: String? = null,
     source: DevSource?,
@@ -339,6 +535,13 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawable(
     return engine.getImageEngine()?.loadDrawable(this, source, config)
 }
 
+/**
+ * 加载 Drawable
+ * @param engine String?
+ * @param source 数据来源
+ * @param config 配置信息
+ * @return [Drawable]
+ */
 fun <Config : IImageEngine.EngineConfig> Context.loadDrawableThrows(
     engine: String? = null,
     source: DevSource?,
@@ -352,6 +555,14 @@ fun <Config : IImageEngine.EngineConfig> Context.loadDrawableThrows(
 // = convert =
 // ===========
 
+/**
+ * 转换图片格式
+ * @receiver [Context]
+ * @param engine String?
+ * @param listener 加载监听
+ * @param sources 数据来源列表
+ * @return `true` success, `false` fail
+ */
 fun Context.convertImageFormat(
     engine: String? = null,
     sources: MutableList<DevSource>?,
@@ -360,6 +571,14 @@ fun Context.convertImageFormat(
     return engine.getImageEngine()?.convertImageFormat(this, sources, listener) ?: false
 }
 
+/**
+ * 转换图片格式
+ * @param engine String?
+ * @param config 配置信息
+ * @param listener 加载监听
+ * @param sources 数据来源列表
+ * @return `true` success, `false` fail
+ */
 fun <Config : IImageEngine.EngineConfig> Context.convertImageFormat(
     engine: String? = null,
     sources: MutableList<DevSource>?,

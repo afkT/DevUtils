@@ -52,24 +52,40 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = pause and resume =
     // ====================
 
+    /**
+     * 暂停 Fragment 关联的图片加载请求
+     * @param fragment [Fragment]
+     */
     override fun pause(fragment: Fragment?) {
         fragment?.let {
             Glide.with(it).pauseRequests()
         }
     }
 
+    /**
+     * 恢复 Fragment 关联的图片加载请求
+     * @param fragment [Fragment]
+     */
     override fun resume(fragment: Fragment?) {
         fragment?.let {
             Glide.with(it).resumeRequests()
         }
     }
 
+    /**
+     * 暂停 Context 关联的图片加载请求
+     * @param context [Context]
+     */
     override fun pause(context: Context?) {
         context?.let {
             Glide.with(it).pauseRequests()
         }
     }
 
+    /**
+     * 恢复 Context 关联的图片加载请求
+     * @param context [Context]
+     */
     override fun resume(context: Context?) {
         context?.let {
             Glide.with(it).resumeRequests()
@@ -80,6 +96,11 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = preload =
     // ===========
 
+    /**
+     * 预加载图片资源
+     * @param context [Context]
+     * @param source 数据来源
+     */
     override fun preload(
         context: Context?,
         source: DevSource?
@@ -90,6 +111,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 预加载图片资源
+     * @param context [Context]
+     * @param source 数据来源
+     * @param config 配置信息
+     */
     override fun preload(
         context: Context?,
         source: DevSource?,
@@ -107,12 +134,21 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = clear =
     // =========
 
+    /**
+     * 清除 View 关联的图片加载
+     * @param view [View]
+     */
     override fun clear(view: View?) {
         view?.context?.let {
             Glide.with(view.context).clear(view)
         }
     }
 
+    /**
+     * 清除 Fragment 与 View 关联的图片加载
+     * @param fragment [Fragment]
+     * @param view [View]
+     */
     override fun clear(
         fragment: Fragment?,
         view: View?
@@ -122,6 +158,10 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 清除磁盘缓存
+     * @param context [Context]
+     */
     override fun clearDiskCache(context: Context?) {
         if (context != null) {
             Thread {
@@ -135,6 +175,10 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 清除内存缓存
+     * @param context [Context]
+     */
     override fun clearMemoryCache(context: Context?) {
         if (context != null) {
             try {
@@ -146,6 +190,10 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 清除全部缓存
+     * @param context [Context]
+     */
     override fun clearAllCache(context: Context?) {
         clearDiskCache(context)
         clearMemoryCache(context)
@@ -155,6 +203,10 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = other =
     // =========
 
+    /**
+     * 低内存回调处理
+     * @param context [Context]
+     */
     override fun lowMemory(context: Context?) {
         if (context != null) {
             try {
@@ -169,6 +221,11 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = display =
     // ===========
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param url 图片地址
+     */
     override fun display(
         imageView: ImageView?,
         url: String?
@@ -176,6 +233,11 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), null)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param source 数据来源
+     */
     override fun display(
         imageView: ImageView?,
         source: DevSource?
@@ -183,6 +245,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, source, null)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param config 配置信息
+     */
     override fun display(
         imageView: ImageView?,
         url: String?,
@@ -191,6 +259,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), config)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param config 配置信息
+     */
     override fun display(
         imageView: ImageView?,
         source: DevSource?,
@@ -208,6 +282,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
@@ -216,6 +296,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), null, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
@@ -224,6 +310,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, source, null, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         imageView: ImageView?,
         url: String?,
@@ -233,6 +326,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(imageView, DevSource.create(url), config, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         imageView: ImageView?,
         source: DevSource?,
@@ -253,6 +353,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param url 图片地址
+     */
     override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -261,6 +367,12 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), null)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param source 数据来源
+     */
     override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -269,6 +381,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, source, null)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param config 配置信息
+     */
     override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -278,6 +397,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), config)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param config 配置信息
+     */
     override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -298,6 +424,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -307,6 +440,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), null, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -316,6 +456,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, source, null, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param url 图片地址
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -326,6 +474,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         display(fragment, imageView, DevSource.create(url), config, listener)
     }
 
+    /**
+     * 加载图片并显示到 ImageView
+     * @param fragment Fragment
+     * @param imageView ImageView
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> display(
         fragment: Fragment?,
         imageView: ImageView?,
@@ -351,6 +507,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = load =
     // ========
 
+    /**
+     * 加载图片
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
@@ -386,6 +549,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 加载图片
+     * @param fragment Fragment
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun <T : Any> loadImage(
         fragment: Fragment?,
         source: DevSource?,
@@ -421,6 +591,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         }
     }
 
+    /**
+     * 加载图片
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param type 目标类型
+     * @return [T] instance of type
+     */
     override fun <T : Any> loadImage(
         context: Context?,
         source: DevSource?,
@@ -435,6 +613,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         return null
     }
 
+    /**
+     * 加载图片
+     * @param context [Context]
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param type 目标类型
+     * @return [T] instance of type
+     */
     override fun <T : Any> loadImageThrows(
         context: Context?,
         source: DevSource?,
@@ -490,6 +676,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
+    /**
+     * 加载 Bitmap
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun loadBitmap(
         context: Context?,
         source: DevSource?,
@@ -499,6 +692,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         loadImage(context, source, config, listener)
     }
 
+    /**
+     * 加载 Bitmap
+     * @param fragment Fragment
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun loadBitmap(
         fragment: Fragment?,
         source: DevSource?,
@@ -508,6 +708,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         loadImage(fragment, source, config, listener)
     }
 
+    /**
+     * 加载 Bitmap
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @return [Bitmap]
+     */
     override fun loadBitmap(
         context: Context?,
         source: DevSource?,
@@ -516,6 +723,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         return loadImage(context, source, config, Bitmap::class.java)
     }
 
+    /**
+     * 加载 Bitmap
+     * @param context [Context]
+     * @param source 数据来源
+     * @param config 配置信息
+     * @return [Bitmap]
+     */
     override fun loadBitmapThrows(
         context: Context?,
         source: DevSource?,
@@ -526,6 +740,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // =
 
+    /**
+     * 加载 Drawable
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun loadDrawable(
         context: Context?,
         source: DevSource?,
@@ -535,6 +756,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         loadImage(context, source, config, listener)
     }
 
+    /**
+     * 加载 Drawable
+     * @param fragment Fragment
+     * @param source 数据来源
+     * @param config 配置信息
+     * @param listener 加载监听
+     */
     override fun loadDrawable(
         fragment: Fragment?,
         source: DevSource?,
@@ -544,6 +772,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         loadImage(fragment, source, config, listener)
     }
 
+    /**
+     * 加载 Drawable
+     * @param context Context
+     * @param source 数据来源
+     * @param config 配置信息
+     * @return [Drawable]
+     */
     override fun loadDrawable(
         context: Context?,
         source: DevSource?,
@@ -552,6 +787,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         return loadImage(context, source, config, Drawable::class.java)
     }
 
+    /**
+     * 加载 Drawable
+     * @param context [Context]
+     * @param source 数据来源
+     * @param config 配置信息
+     * @return [Drawable]
+     */
     override fun loadDrawableThrows(
         context: Context?,
         source: DevSource?,
@@ -564,6 +806,13 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
     // = convert =
     // ===========
 
+    /**
+     * 转换图片格式
+     * @param context Context
+     * @param sources 数据来源列表
+     * @param listener 转换监听
+     * @return `true` success, `false` fail
+     */
     override fun convertImageFormat(
         context: Context?,
         sources: MutableList<DevSource>?,
@@ -572,6 +821,14 @@ open class GlideEngineImpl : IImageEngine<ImageConfig> {
         return convertImageFormat(context, sources, null, listener)
     }
 
+    /**
+     * 转换图片格式
+     * @param context Context
+     * @param sources 数据来源列表
+     * @param config 配置信息
+     * @param listener 转换监听
+     * @return `true` success, `false` fail
+     */
     override fun convertImageFormat(
         context: Context?,
         sources: MutableList<DevSource>?,
