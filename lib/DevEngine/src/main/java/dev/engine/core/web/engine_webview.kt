@@ -356,21 +356,37 @@ open class WebViewEngineImpl(
             // 是否允许算法暗色模式 ( AndroidX WebKit )
             configIt.algorithmicDarkeningAllowed()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
-                    WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, it)
+                    try {
+                        WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, it)
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(TAG, e, "applyConfig - algorithmicDarkeningAllowed")
+                    }
                 }
             }
             // 是否启用 Payment Request API
             configIt.paymentRequestEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
-                    WebSettingsCompat.setPaymentRequestEnabled(webSettings, it)
+                    try {
+                        WebSettingsCompat.setPaymentRequestEnabled(webSettings, it)
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(TAG, e, "applyConfig - paymentRequestEnabled")
+                    }
                 }
             }
             // 是否启用企业认证 App Link 策略
             configIt.enterpriseAuthenticationAppLinkPolicyEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.ENTERPRISE_AUTHENTICATION_APP_LINK_POLICY)) {
-                    WebSettingsCompat.setEnterpriseAuthenticationAppLinkPolicyEnabled(
-                        webSettings, it
-                    )
+                    try {
+                        WebSettingsCompat.setEnterpriseAuthenticationAppLinkPolicyEnabled(
+                            webSettings, it
+                        )
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(
+                            TAG,
+                            e,
+                            "applyConfig - enterpriseAuthenticationAppLinkPolicyEnabled"
+                        )
+                    }
                 }
             }
             // 归因注册行为 ( AndroidX WebKit )
@@ -379,14 +395,22 @@ open class WebViewEngineImpl(
                     WebViewFeature.ATTRIBUTION_REGISTRATION_BEHAVIOR
                 )
             ) {
-                WebSettingsCompat.setAttributionRegistrationBehavior(
-                    webSettings, attributionRegistrationBehavior
-                )
+                try {
+                    WebSettingsCompat.setAttributionRegistrationBehavior(
+                        webSettings, attributionRegistrationBehavior
+                    )
+                } catch (e: Exception) {
+                    LogPrintUtils.eTag(TAG, e, "applyConfig - attributionRegistrationBehavior")
+                }
             }
             // 是否启用前进后退缓存 ( bfcache )
             configIt.backForwardCacheEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.BACK_FORWARD_CACHE)) {
-                    WebSettingsCompat.setBackForwardCacheEnabled(webSettings, it)
+                    try {
+                        WebSettingsCompat.setBackForwardCacheEnabled(webSettings, it)
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(TAG, e, "applyConfig - backForwardCacheEnabled")
+                    }
                 }
             }
             // 预测式加载状态 ( 实验性 API )
@@ -397,20 +421,39 @@ open class WebViewEngineImpl(
                     WebViewFeature.HYPERLINK_CONTEXT_MENU_ITEMS
                 )
             ) {
-                WebSettingsCompat.setHyperlinkContextMenuItems(
-                    webSettings, hyperlinkContextMenuItems
-                )
+                try {
+                    WebSettingsCompat.setHyperlinkContextMenuItems(
+                        webSettings, hyperlinkContextMenuItems
+                    )
+                } catch (e: Exception) {
+                    LogPrintUtils.eTag(TAG, e, "applyConfig - hyperlinkContextMenuItems")
+                }
             }
             // 是否启用已注册支付工具检测
             configIt.hasEnrolledInstrumentEnabled()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.PAYMENT_REQUEST)) {
-                    WebSettingsCompat.setHasEnrolledInstrumentEnabled(webSettings, it)
+                    try {
+                        WebSettingsCompat.setHasEnrolledInstrumentEnabled(webSettings, it)
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(TAG, e, "applyConfig - hasEnrolledInstrumentEnabled")
+                    }
                 }
             }
             // shouldInterceptRequest 回调是否附带 Cookie
             configIt.cookiesIncludedInShouldInterceptRequest()?.let {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.COOKIE_INTERCEPT)) {
-                    WebSettingsCompat.setCookiesIncludedInShouldInterceptRequest(webSettings, it)
+                    try {
+                        WebSettingsCompat.setCookiesIncludedInShouldInterceptRequest(
+                            webSettings,
+                            it
+                        )
+                    } catch (e: Exception) {
+                        LogPrintUtils.eTag(
+                            TAG,
+                            e,
+                            "applyConfig - cookiesIncludedInShouldInterceptRequest"
+                        )
+                    }
                 }
             }
             // Web Authentication API 支持级别
@@ -419,7 +462,14 @@ open class WebViewEngineImpl(
                     WebViewFeature.WEB_AUTHENTICATION
                 )
             ) {
-                WebSettingsCompat.setWebAuthenticationSupport(webSettings, webAuthenticationSupport)
+                try {
+                    WebSettingsCompat.setWebAuthenticationSupport(
+                        webSettings,
+                        webAuthenticationSupport
+                    )
+                } catch (e: Exception) {
+                    LogPrintUtils.eTag(TAG, e, "applyConfig - webAuthenticationSupport")
+                }
             }
             // forceUserScalable 仅作存储, System WebView 无对应 API; GeckoView / X5 实现层按各自内核应用
         } ?: return false
@@ -439,7 +489,11 @@ open class WebViewEngineImpl(
         status: Int
     ) {
         if (status >= 0 && WebViewFeature.isFeatureSupported(WebViewFeature.SPECULATIVE_LOADING)) {
-            WebSettingsCompat.setSpeculativeLoadingStatus(webSettings, status)
+            try {
+                WebSettingsCompat.setSpeculativeLoadingStatus(webSettings, status)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "applySpeculativeLoadingStatus")
+            }
         }
     }
 
@@ -1587,7 +1641,12 @@ open class WebViewEngineImpl(
         if (script == null || allowedOriginRules == null) return null
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) return null
         return getWebViewImpl(item)?.let {
-            WebViewCompat.addDocumentStartJavaScript(it, script, allowedOriginRules)
+            try {
+                WebViewCompat.addDocumentStartJavaScript(it, script, allowedOriginRules)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "addDocumentStartJavaScript")
+                null
+            }
         }
     }
 
@@ -1609,10 +1668,15 @@ open class WebViewEngineImpl(
         val messageListener = getWebMessageListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.addWebMessageListener(
-                this, jsObjectName, allowedOriginRules, messageListener
-            )
-            true
+            try {
+                WebViewCompat.addWebMessageListener(
+                    this, jsObjectName, allowedOriginRules, messageListener
+                )
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "addWebMessageListener")
+                false
+            }
         } ?: false
     }
 
@@ -1629,8 +1693,13 @@ open class WebViewEngineImpl(
         jsObjectName ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.removeWebMessageListener(this, jsObjectName)
-            true
+            try {
+                WebViewCompat.removeWebMessageListener(this, jsObjectName)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "removeWebMessageListener")
+                false
+            }
         } ?: false
     }
 
@@ -1641,7 +1710,14 @@ open class WebViewEngineImpl(
      */
     override fun getWebViewClientCompat(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_CLIENT)) return null
-        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewClient(it) }
+        return getWebViewImpl(item)?.let {
+            try {
+                WebViewCompat.getWebViewClient(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getWebViewClientCompat")
+                null
+            }
+        }
     }
 
     /**
@@ -1651,7 +1727,14 @@ open class WebViewEngineImpl(
      */
     override fun getWebChromeClientCompat(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_CHROME_CLIENT)) return null
-        return getWebViewImpl(item)?.let { WebViewCompat.getWebChromeClient(it) }
+        return getWebViewImpl(item)?.let {
+            try {
+                WebViewCompat.getWebChromeClient(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getWebChromeClientCompat")
+                null
+            }
+        }
     }
 
     /**
@@ -1661,7 +1744,12 @@ open class WebViewEngineImpl(
      */
     override fun getCurrentWebViewPackageCompat(context: Context?): Any? {
         context ?: return null
-        return WebViewCompat.getCurrentWebViewPackage(context)
+        return try {
+            WebViewCompat.getCurrentWebViewPackage(context)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getCurrentWebViewPackageCompat")
+            null
+        }
     }
 
     /**
@@ -1671,7 +1759,14 @@ open class WebViewEngineImpl(
      */
     override fun getWebViewRenderProcess(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_WEB_VIEW_RENDERER)) return null
-        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcess(it) }
+        return getWebViewImpl(item)?.let {
+            try {
+                WebViewCompat.getWebViewRenderProcess(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getWebViewRenderProcess")
+                null
+            }
+        }
     }
 
     /**
@@ -1689,8 +1784,13 @@ open class WebViewEngineImpl(
             return false
         }
         return getWebViewImpl(item)?.run {
-            WebViewCompat.setWebViewRenderProcessClient(this, renderClient)
-            true
+            try {
+                WebViewCompat.setWebViewRenderProcessClient(this, renderClient)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "setWebViewRenderProcessClient")
+                false
+            }
         } ?: false
     }
 
@@ -1703,7 +1803,14 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE)) {
             return null
         }
-        return getWebViewImpl(item)?.let { WebViewCompat.getWebViewRenderProcessClient(it) }
+        return getWebViewImpl(item)?.let {
+            try {
+                WebViewCompat.getWebViewRenderProcessClient(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getWebViewRenderProcessClient")
+                null
+            }
+        }
     }
 
     /**
@@ -1712,7 +1819,12 @@ open class WebViewEngineImpl(
      */
     override fun isMultiProcessEnabled(): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROCESS)) return false
-        return WebViewCompat.isMultiProcessEnabled()
+        return try {
+            WebViewCompat.isMultiProcessEnabled()
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "isMultiProcessEnabled")
+            false
+        }
     }
 
     /**
@@ -1721,7 +1833,12 @@ open class WebViewEngineImpl(
      */
     override fun getVariationsHeader(): String? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.GET_VARIATIONS_HEADER)) return null
-        return WebViewCompat.getVariationsHeader()
+        return try {
+            WebViewCompat.getVariationsHeader()
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getVariationsHeader")
+            null
+        }
     }
 
     /**
@@ -1736,8 +1853,13 @@ open class WebViewEngineImpl(
     ): Boolean {
         context ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.START_SAFE_BROWSING)) return false
-        WebViewCompat.startSafeBrowsing(context, getValueCallbackBoolean(callback))
-        return true
+        return try {
+            WebViewCompat.startSafeBrowsing(context, getValueCallbackBoolean(callback))
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "startSafeBrowsing")
+            false
+        }
     }
 
     /**
@@ -1752,8 +1874,13 @@ open class WebViewEngineImpl(
     ): Boolean {
         hosts ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ALLOWLIST)) return false
-        WebViewCompat.setSafeBrowsingAllowlist(hosts, getValueCallbackBoolean(callback))
-        return true
+        return try {
+            WebViewCompat.setSafeBrowsingAllowlist(hosts, getValueCallbackBoolean(callback))
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setSafeBrowsingAllowlist")
+            false
+        }
     }
 
     /**
@@ -1764,7 +1891,12 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_PRIVACY_POLICY_URL)) {
             return null
         }
-        return WebViewCompat.getSafeBrowsingPrivacyPolicyUrl()
+        return try {
+            WebViewCompat.getSafeBrowsingPrivacyPolicyUrl()
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getSafeBrowsingPrivacyPolicyUrl")
+            null
+        }
     }
 
     /**
@@ -1826,8 +1958,13 @@ open class WebViewEngineImpl(
     ): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.setAudioMuted(this, mute)
-            true
+            try {
+                WebViewCompat.setAudioMuted(this, mute)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "setAudioMuted")
+                false
+            }
         } ?: false
     }
 
@@ -1839,7 +1976,12 @@ open class WebViewEngineImpl(
     override fun isAudioMuted(item: WebItem?): Boolean {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MUTE_AUDIO)) return false
         return getWebViewImpl(item)?.let {
-            WebViewCompat.isAudioMuted(it)
+            try {
+                WebViewCompat.isAudioMuted(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "isAudioMuted")
+                false
+            }
         } ?: false
     }
 
@@ -1858,8 +2000,13 @@ open class WebViewEngineImpl(
         val visualCallback = getVisualStateCallback(callback) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.VISUAL_STATE_CALLBACK)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.postVisualStateCallback(this, requestId, visualCallback)
-            true
+            try {
+                WebViewCompat.postVisualStateCallback(this, requestId, visualCallback)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "postVisualStateCallback")
+                false
+            }
         } ?: false
     }
 
@@ -1876,8 +2023,13 @@ open class WebViewEngineImpl(
         profileName ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.setProfile(this, profileName)
-            true
+            try {
+                WebViewCompat.setProfile(this, profileName)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "setWebViewProfile")
+                false
+            }
         } ?: false
     }
 
@@ -1888,7 +2040,14 @@ open class WebViewEngineImpl(
      */
     override fun getWebViewProfile(item: WebItem?): Any? {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
-        return getWebViewImpl(item)?.let { WebViewCompat.getProfile(it) }
+        return getWebViewImpl(item)?.let {
+            try {
+                WebViewCompat.getProfile(it)
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "getWebViewProfile")
+                null
+            }
+        }
     }
 
     /**
@@ -1904,8 +2063,13 @@ open class WebViewEngineImpl(
         val userAgentMetadata = getUserAgentMetadata(metadata) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.USER_AGENT_METADATA)) return false
         val webSettings = getSettings(item) ?: return false
-        WebSettingsCompat.setUserAgentMetadata(webSettings, userAgentMetadata)
-        return true
+        return try {
+            WebSettingsCompat.setUserAgentMetadata(webSettings, userAgentMetadata)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setUserAgentMetadata")
+            false
+        }
     }
 
     /**
@@ -1923,8 +2087,13 @@ open class WebViewEngineImpl(
             return false
         }
         val webSettings = getSettings(item) ?: return false
-        WebSettingsCompat.setWebViewMediaIntegrityApiStatus(webSettings, config)
-        return true
+        return try {
+            WebSettingsCompat.setWebViewMediaIntegrityApiStatus(webSettings, config)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setWebViewMediaIntegrityApiStatus")
+            false
+        }
     }
 
     /**
@@ -1935,7 +2104,12 @@ open class WebViewEngineImpl(
     override fun getOrCreateWebProfile(name: String?): Any? {
         name ?: return null
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
-        return ProfileStore.getInstance().getOrCreateProfile(name)
+        return try {
+            ProfileStore.getInstance().getOrCreateProfile(name)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getOrCreateWebProfile")
+            null
+        }
     }
 
     /**
@@ -1946,7 +2120,12 @@ open class WebViewEngineImpl(
     override fun getWebProfile(name: String?): Any? {
         name ?: return null
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return null
-        return ProfileStore.getInstance().getProfile(name)
+        return try {
+            ProfileStore.getInstance().getProfile(name)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getWebProfile")
+            null
+        }
     }
 
     /**
@@ -1971,7 +2150,12 @@ open class WebViewEngineImpl(
      */
     override fun getAllWebProfileNames(): MutableList<String> {
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.MULTI_PROFILE)) return ArrayList()
-        return ProfileStore.getInstance().allProfileNames
+        return try {
+            ProfileStore.getInstance().allProfileNames
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getAllWebProfileNames")
+            ArrayList()
+        }
     }
 
     /**
@@ -1984,8 +2168,13 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BASIC_USAGE)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance().setServiceWorkerClient(serviceWorkerClient)
-        return true
+        return try {
+            ServiceWorkerControllerCompat.getInstance().setServiceWorkerClient(serviceWorkerClient)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setServiceWorkerClient")
+            false
+        }
     }
 
     /**
@@ -1997,9 +2186,14 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CONTENT_ACCESS)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance()
-            .serviceWorkerWebSettings.allowContentAccess = allow
-        return true
+        return try {
+            ServiceWorkerControllerCompat.getInstance()
+                .serviceWorkerWebSettings.allowContentAccess = allow
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setServiceWorkerAllowContentAccess")
+            false
+        }
     }
 
     /**
@@ -2011,9 +2205,14 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_FILE_ACCESS)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance()
-            .serviceWorkerWebSettings.allowFileAccess = allow
-        return true
+        return try {
+            ServiceWorkerControllerCompat.getInstance()
+                .serviceWorkerWebSettings.allowFileAccess = allow
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setServiceWorkerAllowFileAccess")
+            false
+        }
     }
 
     /**
@@ -2025,9 +2224,14 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_BLOCK_NETWORK_LOADS)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance()
-            .serviceWorkerWebSettings.blockNetworkLoads = block
-        return true
+        return try {
+            ServiceWorkerControllerCompat.getInstance()
+                .serviceWorkerWebSettings.blockNetworkLoads = block
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setServiceWorkerBlockNetworkLoads")
+            false
+        }
     }
 
     /**
@@ -2039,8 +2243,13 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SERVICE_WORKER_CACHE_MODE)) {
             return false
         }
-        ServiceWorkerControllerCompat.getInstance().serviceWorkerWebSettings.cacheMode = mode
-        return true
+        return try {
+            ServiceWorkerControllerCompat.getInstance().serviceWorkerWebSettings.cacheMode = mode
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setServiceWorkerCacheMode")
+            false
+        }
     }
 
     /**
@@ -2051,7 +2260,12 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
             return false
         }
-        return TracingController.getInstance().isTracing
+        return try {
+            TracingController.getInstance().isTracing
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "isWebViewTracing")
+            false
+        }
     }
 
     /**
@@ -2064,8 +2278,13 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
             return false
         }
-        TracingController.getInstance().start(tracingConfig)
-        return true
+        return try {
+            TracingController.getInstance().start(tracingConfig)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "startWebViewTracing")
+            false
+        }
     }
 
     /**
@@ -2082,9 +2301,14 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.TRACING_CONTROLLER_BASIC_USAGE)) {
             return false
         }
-        return TracingController.getInstance().stop(
-            getOutputStream(outputStream), executor
-        )
+        return try {
+            TracingController.getInstance().stop(
+                getOutputStream(outputStream), executor
+            )
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "stopWebViewTracing")
+            false
+        }
     }
 
     /**
@@ -2101,7 +2325,12 @@ open class WebViewEngineImpl(
             return null
         }
         val webSettings = getSettings(item) ?: return null
-        return WebSettingsCompat.getBackForwardCacheSettings(webSettings)
+        return try {
+            WebSettingsCompat.getBackForwardCacheSettings(webSettings)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "getBackForwardCacheSettings")
+            null
+        }
     }
 
     /**
@@ -2113,8 +2342,13 @@ open class WebViewEngineImpl(
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.DEFAULT_TRAFFICSTATS_TAGGING)) {
             return false
         }
-        WebViewCompat.setDefaultTrafficStatsTag(tag)
-        return true
+        return try {
+            WebViewCompat.setDefaultTrafficStatsTag(tag)
+            true
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "setDefaultTrafficStatsTag")
+            false
+        }
     }
 
     /**
@@ -2135,8 +2369,13 @@ open class WebViewEngineImpl(
         if (maxSizeBytes < 1) return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.SAVE_STATE)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.saveState(this, outState, maxSizeBytes, includeForwardState)
-            true
+            try {
+                WebViewCompat.saveState(this, outState, maxSizeBytes, includeForwardState)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "saveState")
+                false
+            }
         } ?: false
     }
 
@@ -2169,8 +2408,13 @@ open class WebViewEngineImpl(
         val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.addNavigationListener(this, navigationListener)
-            true
+            try {
+                WebViewCompat.addNavigationListener(this, navigationListener)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "addNavigationListener")
+                false
+            }
         } ?: false
     }
 
@@ -2190,8 +2434,13 @@ open class WebViewEngineImpl(
         val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.addNavigationListener(this, executor, navigationListener)
-            true
+            try {
+                WebViewCompat.addNavigationListener(this, executor, navigationListener)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "addNavigationListener")
+                false
+            }
         } ?: false
     }
 
@@ -2208,8 +2457,13 @@ open class WebViewEngineImpl(
         val navigationListener = getNavigationListener(listener) ?: return false
         if (!WebViewFeature.isFeatureSupported(WebViewFeature.NAVIGATION_LISTENER)) return false
         return getWebViewImpl(item)?.run {
-            WebViewCompat.removeNavigationListener(this, navigationListener)
-            true
+            try {
+                WebViewCompat.removeNavigationListener(this, navigationListener)
+                true
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "removeNavigationListener")
+                false
+            }
         } ?: false
     }
 
