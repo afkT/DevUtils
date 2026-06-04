@@ -11,9 +11,9 @@ import dev.engine.DevEngine
 import dev.engine.web.IWebEngine
 import java.util.concurrent.Executor
 
-// ====================================
+// ========================================
 // = IWebEngine<EngineConfig, EngineItem> =
-// ====================================
+// ========================================
 
 /**
  * 通过 Key 获取 WebView Engine
@@ -1191,9 +1191,9 @@ fun web_clearClientCertPreferences(
     return engine.getWebEngine()?.clearClientCertPreferences(onCleared) ?: false
 }
 
-// =================
+// ==================
 // = AndroidX WebKit =
-// =================
+// ==================
 
 /**
  * 判断 AndroidX WebKit 特性是否支持
@@ -2006,6 +2006,17 @@ fun web_removeAllCookie(
 }
 
 /**
+ * 同步 ( 刷新 ) Cookie 到本地存储
+ * @param engine String?
+ * @return `true` success, `false` fail
+ */
+fun web_flushCookie(
+    engine: String? = null
+): Boolean {
+    return engine.getWebEngine()?.flushCookie() ?: false
+}
+
+/**
  * 获取指定 Url 全部 Cookie 的完整属性 ( 含 Domain、Path、Expires、Secure 等, 需 GET_COOKIE_INFO 特性 )
  * @param engine String?
  * @param url Url
@@ -2016,15 +2027,4 @@ fun web_getCookieInfo(
     url: String?
 ): MutableList<String>? {
     return engine.getWebEngine()?.getCookieInfo(url)
-}
-
-/**
- * 同步 ( 刷新 ) Cookie 到本地存储
- * @param engine String?
- * @return `true` success, `false` fail
- */
-fun web_flushCookie(
-    engine: String? = null
-): Boolean {
-    return engine.getWebEngine()?.flushCookie() ?: false
 }
