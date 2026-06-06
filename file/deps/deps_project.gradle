@@ -5,15 +5,6 @@ dependencies {
     // = 常用开发库 =
     // ============
 
-    // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    api deps_lib.common.okhttp3
-    // Retrofit 网络请求库  https://github.com/square/retrofit
-    api deps_lib.common.retrofit
-    // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
-    api deps_lib.common.retrofit_gson
-    // Glide 图片加载框架 https://github.com/bumptech/glide
-    api deps_lib.common.glide
-    kapt deps_lib.common.glide_compiler
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     api deps_lib.common.autosize
 
@@ -21,16 +12,6 @@ dependencies {
     // = 常用开发组件 =
     // ==============
 
-    // MVVM Adapter Binding https://github.com/evant/binding-collection-adapter
-    api deps_lib.common_widget.binding_collection_adapter
-    api deps_lib.common_widget.binding_collection_adapter_recyclerview
-    api deps_lib.common_widget.binding_collection_adapter_viewpager2
-//    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-//    api deps_lib.common_widget.smartrefreshlayout
-//    api deps_lib.common_widget.smartrefresh_header_classics
-//    api deps_lib.common_widget.smartrefresh_footer_classics
-    // Dialog 弹窗框架 https://github.com/kongzue/DialogX
-    api deps_lib.common_widget.dialogX
     // 标题栏框架 https://github.com/getActivity/TitleBar
     api deps_lib.common_widget.titleBar
     // 万能阴影布局 https://github.com/lihangleo2/ShadowLayout

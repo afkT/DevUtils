@@ -24,6 +24,8 @@ dependencies {
     api deps_lib.common.okhttp3
     // Retrofit 网络请求库  https://github.com/square/retrofit
     api deps_lib.common.retrofit
+    // Retrofit Gson Converter  https://github.com/square/retrofit/blob/master/retrofit-converters/gson
+    api deps_lib.common.retrofit_gson
 
     if (isPublishing) {
         // 打包时使用
