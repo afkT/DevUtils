@@ -12,7 +12,7 @@
 |----------|------|------------------|
 | `audits/` | `.cursor` 维护审计报告 | 1 |
 | `rules/` | Project Rules（`.mdc`） | 5 |
-| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 12 个 Skill + 8 份 reference |
+| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 13 个 Skill + 9 份 reference |
 
 ### 目录树
 
@@ -51,6 +51,9 @@
     │   ├── SKILL.md
     │   └── reference.md
     ├── ui-devwidget-round/
+    │   ├── SKILL.md
+    │   └── reference.md
+    ├── ui-dialogx-dialog/
     │   ├── SKILL.md
     │   └── reference.md
     └── ui-shadowlayout/
@@ -99,6 +102,7 @@
 | [release-changelog-update](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | 关 | — | 按既有版式用 git 提交说明更新 CHANGELOG / 发版记录。 |
 | [ui-devsimple-viewtheme](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [有](skills/ui-devsimple-viewtheme/reference.md) | 为布局控件补全 DevSimple `ViewTheme` 样式引用。 |
 | [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | [有](skills/ui-devwidget-round/reference.md) | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |
+| [ui-dialogx-dialog](skills/ui-dialogx-dialog/SKILL.md) | `ui-dialogx-dialog` | 默认 | [有](skills/ui-dialogx-dialog/reference.md) | 用 DialogX 做对话框、菜单、加载、提示、通知，替代系统弹窗。 |
 | [ui-shadowlayout](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | [有](skills/ui-shadowlayout/reference.md) | 用 ShadowLayout 做阴影、圆角、背景与状态效果，少写 selector/shape。 |
 
 ---
