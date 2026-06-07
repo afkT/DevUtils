@@ -88,6 +88,9 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
         // 按钮文本
         CharSequence buttonText();
 
+        // 按钮文本资源 id
+        int buttonTextResId();
+
         // 按钮点击事件
         OnButtonClickListener onButtonClickListener();
 
@@ -412,6 +415,24 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
      * @param popTip PopTip 对象
      */
     void hide(Object popTip);
+
+    /**
+     * 重新显示指定 PopTip ( hide 后复显 )
+     * @param popTip PopTip 对象
+     * @return PopTip 对象
+     */
+    Object show(Object popTip);
+
+    /**
+     * 重新显示指定 PopTip ( hide 后复显 )
+     * @param popTip   PopTip 对象
+     * @param activity 显示的 Activity
+     * @return PopTip 对象
+     */
+    Object show(
+            Object popTip,
+            Activity activity
+    );
 
     /**
      * 刷新指定 PopTip 界面

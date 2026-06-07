@@ -295,6 +295,41 @@ open class DialogXPopTipEngineImpl(
     }
 
     /**
+     * 重新显示指定 PopTip ( hide 后复显 )
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun show(popTip: Any?): Any? {
+        try {
+            (popTip as? PopTip)?.show()
+        } catch (_: Exception) {
+        }
+        return popTip
+    }
+
+    /**
+     * 重新显示指定 PopTip ( hide 后复显 )
+     * @param popTip [PopTip]
+     * @param activity 显示的 Activity
+     * @return [PopTip]
+     */
+    override fun show(
+        popTip: Any?,
+        activity: Activity?
+    ): Any? {
+        try {
+            val popTipObj = popTip as? PopTip ?: return popTip
+            if (activity != null) {
+                popTipObj.show(activity)
+            } else {
+                popTipObj.show()
+            }
+        } catch (_: Exception) {
+        }
+        return popTip
+    }
+
+    /**
      * 刷新指定 PopTip 界面
      * @param popTip [PopTip]
      */
@@ -1333,18 +1368,21 @@ open class DialogXPopTipEngineImpl(
         if (iconResId > 0) {
             popTip.setIconResId(iconResId)
         }
-        // 按钮
-        item.buttonText()?.let { buttonText ->
-            val listener = item.onButtonClickListener()
-            if (listener != null) {
-                popTip.setButton(
-                    buttonText,
-                    OnDialogButtonClickListener<PopTip> { dialog, view ->
-                        listener.onClick(dialog, view)
-                    }
-                )
+        // 按钮 ( 文本优先, 其次文本资源 id )
+        val buttonClick = wrapButtonClick(item.onButtonClickListener())
+        val buttonText = item.buttonText()
+        val buttonTextResId = item.buttonTextResId()
+        if (buttonText != null) {
+            if (buttonClick != null) {
+                popTip.setButton(buttonText, buttonClick)
             } else {
                 popTip.setButton(buttonText)
+            }
+        } else if (buttonTextResId > 0) {
+            if (buttonClick != null) {
+                popTip.setButton(buttonTextResId, buttonClick)
+            } else {
+                popTip.setButton(buttonTextResId)
             }
         }
         // 对齐方式

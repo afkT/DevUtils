@@ -29,6 +29,9 @@ open class PopTipItem private constructor(
     // 按钮文本
     private var mButtonText: CharSequence? = null
 
+    // 按钮文本资源 id
+    private var mButtonTextResId = PopTipConst.UNSET
+
     // 按钮点击事件
     private var mOnButtonClickListener: IPopTipEngine.OnButtonClickListener? = null
 
@@ -200,6 +203,18 @@ open class PopTipItem private constructor(
 
     open fun setButtonText(buttonText: CharSequence?): PopTipItem {
         mButtonText = buttonText
+        return this
+    }
+
+    /**
+     * 按钮文本资源 id
+     */
+    override fun buttonTextResId(): Int {
+        return mButtonTextResId
+    }
+
+    open fun setButtonTextResId(buttonTextResId: Int): PopTipItem {
+        mButtonTextResId = buttonTextResId
         return this
     }
 
